@@ -15,6 +15,7 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "bootstrap": "^4.3.1",
+    "diff": "^4.0.1",
     "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.4",
     "express-graphql": "^0.8.0",
@@ -32,7 +33,8 @@
     "react-relay": "^5.0.0",
     "survey-creator": "^1.1.0",
     "survey-react": "^1.1.1",
-    "surveyjs-widgets": "latest"
+    "surveyjs-widgets": "latest",
+    "sync-exec": "^0.6.2"
   },
   "devDependencies": {
     "babel-plugin-relay": "^5.0.0",
