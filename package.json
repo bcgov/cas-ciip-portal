@@ -21,7 +21,9 @@
     "graphql": "^14.4.2",
     "graphql-relay": "^0.6.0",
     "isomorphic-unfetch": "^3.0.0",
+    "jquery": "^3.3.1",
     "next": "^9.0.0",
+    "open": "^6.4.0",
     "pg": "^7.11.0",
     "postgraphile": "^4.4.1",
     "react": "^16.8.6",
@@ -30,8 +32,7 @@
     "react-relay": "^5.0.0",
     "survey-creator": "^1.1.0",
     "survey-react": "^1.1.1",
-    "surveyjs-widgets": "latest",
-    "jquery": "^3.3.1"
+    "surveyjs-widgets": "latest"
   },
   "devDependencies": {
     "babel-plugin-relay": "^5.0.0",
