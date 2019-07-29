@@ -1,0 +1,41 @@
+{
+  "name": "ggircs-industry-ciip-portal",
+  "version": "1.0.0",
+  "description": "The online portal for Industry to apply and track their CIIP applications",
+  "scripts": {
+    "predev": "npm run relay",
+    "dev": "node server",
+    "build": "next build",
+    "prestart": "npm run build",
+    "start": "NODE_ENV=production node server",
+    "relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "bootstrap": "^4.3.1",
+    "dotenv": "^4.0.0",
+    "dotenv-webpack": "^1.5.4",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.4.2",
+    "graphql-relay": "^0.6.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.0.0",
+    "pg": "^7.11.0",
+    "postgraphile": "^4.4.1",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-dom": "^16.8.6",
+    "react-relay": "^5.0.0",
+    "survey-creator": "^1.1.0",
+    "survey-react": "^1.1.1",
+    "surveyjs-widgets": "latest",
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "babel-plugin-relay": "^5.0.0",
+    "graphql-cli": "^3.0.11",
+    "relay-compiler": "^5.0.0"
+  }
+}
