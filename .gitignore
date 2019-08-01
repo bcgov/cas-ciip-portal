@@ -4,3 +4,4 @@ schema/schema.graphql
 node_modules
 .next
 .idea
+yarn-error.log
