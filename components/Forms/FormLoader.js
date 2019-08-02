@@ -58,7 +58,7 @@ class FormLoader extends Component {
         for (let field in form_data){
             if(form_data.hasOwnProperty(field)){
                 console.log(field, form_data[field]);
-                this.storeResult(field, form_data[field])
+               // this.storeResult(field, form_data[field])
             }
         }
 

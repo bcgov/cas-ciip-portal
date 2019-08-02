@@ -14,9 +14,9 @@ class BaseForm extends Component {
         }
     }
 
-    formIdHandler = (formId) => {
+    formIdHandler = (formId, formJson) => {
         this.setState({formId: formId})
-    }
+    };
 
     render() {
 

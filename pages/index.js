@@ -1,9 +1,7 @@
 import React , { Component } from 'react'
-import SignIn from '../components/SignIn'
-import {Col, Container, Row, Jumbotron, Button, Image, ButtonToolbar} from "react-bootstrap";
+import {Col, Container, Row, Image, ButtonToolbar} from "react-bootstrap";
 import Header from '../components/Header'
-import UserList from "../components/UserList";
-import Link from 'next/link';
+
 
 class Index extends Component {
   static displayName = `Index`
@@ -19,16 +17,16 @@ class Index extends Component {
                         CleanBC Industrial Incentive Program?</h1>
                     <p>
                         The CleanBC Program for Industry directs a portion of B.C.’s carbon tax paid by industry into incentives for cleaner operations.
-                    </p><p>
+                    </p>
+                    <p>
                         The program is designed for regulated large industrial operations, such as pulp and paper mills, natural gas operations, refineries, and large mines.
                     </p>
                     <br/>
                     <ButtonToolbar>
-                        <a href='/ciip-application' className='btn btn-primary'>Apply for CIIP</a>
-                        <a style={{marginLeft:"20px"}} href='/form-builder' className='btn btn-danger'>Build a form</a>
+                        <a href='/ciip-application' className='btn btn-primary'> Apply for CIIP </a>
+                        <a style={{marginLeft:"20px"}} href='/form-builder' className='btn btn-danger'> Build a form </a>
                     </ButtonToolbar>
                 </Col>
-
                 <Col md={8}>
                     <Image src="/static/polar-bear.jpg" fluid/>
                 </Col>
@@ -44,3 +42,13 @@ class Index extends Component {
 
 
 export default Index;
+/*
+    Forms
+    Build a base form.
+    Start with the schema
+    Analyze the ciip application
+    Re-use the schema matthieu built
+    create mutations
+
+
+ */

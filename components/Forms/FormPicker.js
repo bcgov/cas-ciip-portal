@@ -12,23 +12,22 @@ class FormPicker extends Component {
     }
 
 
-    formSelectHandler = (formId) => {
-        console.log('fid',formId)
-        formId && this.props.handleFormId(formId)
-    }
+    formSelectHandler = (formId, formJson) => {
+        console.log('FormPicker.js > formSelectHandler',formId, formJson)
+        formId && this.props.handleFormId(formId, formJson)
+    };
 
     formSelectButton = (form) => {
         return (
             <div>
-                <Dropdown.Item key={form.rowId} onClick={() => {this.formSelectHandler(form.rowId)}}>{form.name}</Dropdown.Item>
+                <Dropdown.Item key={form.rowId} onClick={() => {this.formSelectHandler(form.rowId, form.formJson)}}>{form.name}</Dropdown.Item>
             </div>
         )
-    }
+    };
 
     formPicker = ({error, props}) => {
         let formNodes = [];
         if(props){
-            console.log('fp', props.allFormJsons.nodes)
             const allForms = props.allFormJsons.nodes;
             allForms.forEach((form) => {
                 formNodes.push(this.formSelectButton(form));
@@ -47,7 +46,6 @@ class FormPicker extends Component {
     render() {
         return (
             <React.Fragment>
-
                 <QueryRenderer
                     environment={environment}
                     query={graphql`
@@ -56,14 +54,13 @@ class FormPicker extends Component {
                             nodes {
                                rowId
                                name
+                               formJson
                             }
                           }
                         }
                     `}
-
                     render={this.formPicker}
                 />
-
             </React.Fragment>
         );
     }
