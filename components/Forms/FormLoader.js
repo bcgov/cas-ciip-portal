@@ -22,7 +22,7 @@ class FormLoader extends Component {
             `;
     }
 
-    storeResult = (field, field_value) => {
+    storeResult = (form_result) => {
 
         const variables =
             {
@@ -30,8 +30,7 @@ class FormLoader extends Component {
                     "formResult": {
                         "formId": this.props.formId,
                         "userId": 2,
-                        "field":  field,
-                        "fieldValue": field_value
+                        "formResult":  JSON.stringify(form_result)
                     }
                 }
             };
@@ -55,13 +54,15 @@ class FormLoader extends Component {
     onComplete = (result) => {
         const form_data = result.data;
         console.log("form data", form_data);
+        this.storeResult(form_data)
+        /*
         for (let field in form_data){
             if(form_data.hasOwnProperty(field)){
                 console.log(field, form_data[field]);
-               // this.storeResult(field, form_data[field])
+               //
             }
         }
-
+        */
         console.log("Complete! " , result.data);
     };
 

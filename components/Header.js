@@ -28,6 +28,7 @@ const Header = () => {
                           <ButtonToolbar>
                               <a style={{marginLeft:"20px"}} href='/ciip-application' className='btn btn-primary'>Apply for CIIP</a>
                               <a style={{marginLeft:"20px"}} href='/form-builder' className='btn btn-secondary'>Build a form</a>
+                              <a style={{marginLeft:"20px"}} href='/admin' className='btn btn-secondary'>Products</a>
                               <a style={{marginLeft:"20px"}} target="_blank" href='http://localhost:3000/question/66' className='btn btn-info'>Admin</a>
                           </ButtonToolbar>
                       </Col>

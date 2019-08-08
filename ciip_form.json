@@ -562,8 +562,14 @@
             {
               "type": "text",
               "name": "associated_emissions",
-              "startWithNewLine": false,
               "title": "Associated Emission (tCO2e)"
+            },
+            {
+              "type": "text",
+              "name": "attributable_fuel_percentage",
+              "startWithNewLine": false,
+              "title": "Attributable % of Fuel",
+              "inputType": "number"
             },
             {
               "type": "text",

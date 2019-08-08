@@ -8,8 +8,7 @@ create table ggircs_portal.form_result (
   id serial not null,
   form_id int not null,
   user_id int not null,
-  field varchar(10000),
-  field_value varchar(100000)
+  form_result jsonb not null
 );
 
 create unique index form_result_id_uindex
@@ -22,7 +21,6 @@ alter table ggircs_portal.form_result
 comment on column ggircs_portal.form_result.id is 'Unique ID for the form';
 comment on column ggircs_portal.form_result.form_id is 'The Unique ID of the form';
 comment on column ggircs_portal.form_result.user_id is 'The Unique ID of the User';
-comment on column ggircs_portal.form_result.field is 'The field id / slug';
-comment on column ggircs_portal.form_result.field_value is 'The value of the field';
+comment on column ggircs_portal.form_result.form_result is 'JSON dump of form data';
 
 COMMIT;
