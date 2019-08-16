@@ -1,4 +1,5 @@
 import React ,{ Component } from 'react'
+import ReactDOM from 'react-dom';
 import {graphql, commitMutation} from "react-relay";
 import {Form, Button, Col, Row} from 'react-bootstrap';
 import initEnvironment from '../../lib/createRelayEnvironment';
@@ -20,13 +21,22 @@ class ProductRowItem extends Component {
                 }
             }
         `;
+        this.updateProduct = graphql`
+        mutation ProductRowItemProductMutation ($input: UpdateProductByRowIdInput!){
+            updateProductByRowId(input:$input){
+                product{
+                  rowId
+                }
+            }
+        }
+    `;
     }
 
 
     saveBenchmark = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        const saveVariables =
+        let saveVariables =
             {
                 "input": {
                     "benchmark": {
@@ -37,7 +47,7 @@ class ProductRowItem extends Component {
                 }
             }
 
-        const saveMutation = this.createBenchmark;
+        let saveMutation = this.createBenchmark;
         commitMutation(
             environment,
             {
@@ -50,6 +60,30 @@ class ProductRowItem extends Component {
                 onError: err => console.error(err),
             },
         );
+        saveVariables =
+            {
+                "input": {
+                    "productPatch": {
+                        "rowId": this.props.product.rowId,
+                        "name": ReactDOM.findDOMNode(this.refs.product_name).value,
+                        "description": ReactDOM.findDOMNode(this.refs.product_description).value
+                    },
+                    "rowId": this.props.product.rowId,
+                }
+            };
+        saveMutation = this.updateProduct;
+        commitMutation(
+          environment,
+          {
+              mutation: saveMutation,
+              variables: saveVariables,
+              onCompleted: (response, errors) => {
+                  console.log(response);
+              },
+              onError: err => console.error(err),
+          },
+      );
+      window.location.reload();
     }
 
     toggleMode = () => {
@@ -58,6 +92,7 @@ class ProductRowItem extends Component {
     };
 
     render(){
+
         const product = this.props.product;
         const benchmarks = this.props.product.benchmarksByProductId.nodes[0] ?
                            this.props.product.benchmarksByProductId.nodes[this.props.product.benchmarksByProductId.nodes.length-1]
@@ -90,18 +125,22 @@ class ProductRowItem extends Component {
                 <Form onSubmit={this.saveBenchmark} key={this.props.product.rowId}>
                     <Form.Row>
                         <Form.Group as={Col} md="4" controlId="product_name">
-                            <h5>{product.name}</h5>
-                            <p>{product.description}</p>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control required="required" type="string" step="0.01"
+                                          placeholder={product.name} defaultValue={product.name} ref='product_name' />
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control required="required" type="string" step="0.01"
+                                      placeholder={product.description} defaultValue={product.description} ref='product_description' />
                         </Form.Group>
                         <Form.Group as={Col} md="2" controlId="benchmark">
                             <Form.Label>Benchmark</Form.Label>
                             <Form.Control required="required" type="number" step="0.01"
-                                          placeholder={benchmarks.benchmark} />
+                                          placeholder={benchmarks.benchmark} defaultValue={benchmarks.benchmark} />
                         </Form.Group>
                         <Form.Group as={Col} md="2" controlId="eligibility_threshold">
                             <Form.Label>Eligibility Threshold</Form.Label>
                             <Form.Control required="required" type="number" step="0.01"
-                                          placeholder={benchmarks.eligibilityThreshold} />
+                                          placeholder={benchmarks.eligibilityThreshold} defaultValue={benchmarks.eligibilityThreshold} />
                         </Form.Group>
                         <Form.Group as={Col} md="4" style={{textAlign:"right"}} controlId="eligibility_threshold">
                             <br/>
