@@ -212,10 +212,14 @@ class ProductRowItem extends Component {
 // Proptype Validations
 ProductRowItem.propTypes = {
     product: propTypes.shape({
-      id: propTypes.number,
-      name: propTypes.string,
-      description: propTypes.string,
-      archived: propTypes.boolean
+        id: propTypes.number,
+        rowId: propTypes.number,
+        name: propTypes.string,
+        description: propTypes.string,
+        archived: propTypes.boolean,
+        benchmarksByProductId: propTypes.shape({
+            nodes: propTypes.array
+      })
     })
 }
 
