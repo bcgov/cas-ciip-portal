@@ -33,7 +33,8 @@ class ProductRowItem extends Component {
     `;
     }
 
-    archiveBenchmark = (event) => {
+    // Toggle the 'archived' value of a Product
+    toggleArchived = (event) => {
       event.preventDefault();
       event.stopPropagation();
       this.props.product.archived ? alert(`Restored ${this.props.product.rowId}`) : alert(`Archived ${this.props.product.rowId}`);
@@ -129,6 +130,7 @@ class ProductRowItem extends Component {
         const benchmarks = this.props.product.benchmarksByProductId.nodes[0] ?
                            this.props.product.benchmarksByProductId.nodes[this.props.product.benchmarksByProductId.nodes.length-1]
                             : {benchmark:'', eligibilityThreshold:''}
+        // Archived logic
         const background = this.props.product.archived ? 'lightGrey' : '';
         const buttonVariant = this.props.product.archived ? 'success' : 'warning';
         const archiveRestore = this.props.product.archived ? 'Restore' : 'Archive';
@@ -154,7 +156,7 @@ class ProductRowItem extends Component {
                         <Col md={2} style={{textAlign:'right'}}>
                             <ButtonGroup style={{width:'100%', marginTop: 10, marginBotton: 5}}>
                                 <Button style={{width:'50%'}} width='50%' onClick={this.toggleMode}>Edit</Button>
-                                <Button style={{width:'50%'}} variant={buttonVariant} onClick={this.archiveBenchmark}>{archiveRestore}</Button>
+                                <Button style={{width:'50%'}} variant={buttonVariant} onClick={this.toggleArchived}>{archiveRestore}</Button>
                             </ButtonGroup>
                         </Col>
                     </Row>
@@ -207,6 +209,7 @@ class ProductRowItem extends Component {
     }
 }
 
+// Proptype Validations
 ProductRowItem.propTypes = {
     product: propTypes.shape({
       id: propTypes.number,
