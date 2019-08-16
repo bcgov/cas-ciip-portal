@@ -147,10 +147,10 @@ class ProductRowItem extends Component {
                         <Col md={2}>
                             <Form.Label><small>Benchmark:</small> {benchmarks.benchmark}</Form.Label>
                         </Col>
-                        <Col md={2}>
+                        <Col md={3}>
                             <Form.Label><small>Eligibility Threshold:</small> {benchmarks.eligibilityThreshold}</Form.Label>
                         </Col>
-                        <Col md={2}>
+                        <Col md={1}>
                             <Form.Label><small>Archived:</small> {product.archived ? 'true': 'false'}</Form.Label>
                         </Col>
                         <Col md={2} style={{textAlign:'right'}}>
