@@ -1,7 +1,7 @@
 import React ,{ Component } from 'react'
 import ReactDOM from 'react-dom';
 import {graphql, commitMutation} from "react-relay";
-import {Form, Button, Col, Row} from 'react-bootstrap';
+import {Form, Button, ButtonGroup, Col, Row} from 'react-bootstrap';
 import initEnvironment from '../../lib/createRelayEnvironment';
 const environment = initEnvironment();
 
@@ -13,7 +13,7 @@ class ProductRowItem extends Component {
             mode: 'view'
         };
         this.createBenchmark = graphql`
-            mutation ProductRowItemMutation ($input: CreateBenchmarkInput!){
+            mutation ProductRowItemBenchmarkMutation ($input: CreateBenchmarkInput!){
                 createBenchmark(input:$input){
                     benchmark{
                         rowId
@@ -32,6 +32,37 @@ class ProductRowItem extends Component {
     `;
     }
 
+    archiveBenchmark = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      this.props.product.archived ? alert(`Restored ${this.props.product.rowId}`) : alert(`Archived ${this.props.product.rowId}`);
+      const toggleArchived = this.props.product.archived ? false : true;
+      const saveVariables =
+            {
+                "input": {
+                    "productPatch": {
+                        "rowId": this.props.product.rowId,
+                        "name": this.props.product.name,
+                        "description": this.props.product.description,
+                        "archived": toggleArchived
+                    },
+                    "rowId": this.props.product.rowId,
+                }
+            };
+        const saveMutation = this.updateProduct;
+        commitMutation(
+          environment,
+          {
+              mutation: saveMutation,
+              variables: saveVariables,
+              onCompleted: (response, errors) => {
+                  console.log(response);
+              },
+              onError: err => console.error(err),
+          },
+      );
+      window.location.reload();
+    }
 
     saveBenchmark = (event) => {
         event.preventDefault();
@@ -97,12 +128,15 @@ class ProductRowItem extends Component {
         const benchmarks = this.props.product.benchmarksByProductId.nodes[0] ?
                            this.props.product.benchmarksByProductId.nodes[this.props.product.benchmarksByProductId.nodes.length-1]
                             : {benchmark:'', eligibilityThreshold:''}
+        const background = this.props.product.archived ? 'lightGrey' : '';
+        const buttonVariant = this.props.product.archived ? 'success' : 'warning';
+        const archiveRestore = this.props.product.archived ? 'Restore' : 'Archive';
 
         return(
             <React.Fragment>
-            <div key={this.props.product.rowId} id="view-item" className={ this.state.mode }>
+            <div key={this.props.product.rowId} id="view-item" className={ this.state.mode } style={{background}}>
                 <div >
-                    <Row>
+                    <Row style={{padding: 5}}>
                         <Col md={4}>
                             <h5>{product.name}</h5>
                             <small>{product.description}</small>
@@ -110,11 +144,17 @@ class ProductRowItem extends Component {
                         <Col md={2}>
                             <Form.Label><small>Benchmark:</small> {benchmarks.benchmark}</Form.Label>
                         </Col>
-                        <Col md={4}>
+                        <Col md={2}>
                             <Form.Label><small>Eligibility Threshold:</small> {benchmarks.eligibilityThreshold}</Form.Label>
                         </Col>
+                        <Col md={2}>
+                            <Form.Label><small>Archived:</small> {product.archived ? 'true': 'false'}</Form.Label>
+                        </Col>
                         <Col md={2} style={{textAlign:'right'}}>
-                            <Button onClick={this.toggleMode}>Edit</Button>
+                            <ButtonGroup style={{width:'100%', marginTop: 10, marginBotton: 5}}>
+                                <Button style={{width:'50%'}} width='50%' onClick={this.toggleMode}>Edit</Button>
+                                <Button style={{width:'50%'}} variant={buttonVariant} onClick={this.archiveBenchmark}>{archiveRestore}</Button>
+                            </ButtonGroup>
                         </Col>
                     </Row>
                 </div>

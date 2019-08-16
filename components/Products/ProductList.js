@@ -14,14 +14,14 @@ class ProductList extends Component {
     listProducts = ({error, props}) => {
         console.log('ProductList.js > listProducts()', props, error);
         let productList = [];
+        let archivedList = [];
         if(props){
             const allProducts = props.allProducts.nodes;
             allProducts.forEach((product) => {
-                productList.push(<ProductRowItem key={product.rowId} product={product}/>);
+                product.archived ? archivedList.push(<ProductRowItem product={product}/>) : productList.push(<ProductRowItem product={product}/>);
             })
-
         }
-        return productList;
+        return productList.concat(archivedList);
     }
 
     render(){
@@ -32,14 +32,14 @@ class ProductList extends Component {
                     query ProductListQuery {
                         allProducts{
                             nodes{
-                                rowId
-                                name
-                                description
-                                benchmarksByProductId{
-                                    nodes{
-                                        benchmark
-                                        eligibilityThreshold
-                                    }
+                              rowId
+                              name
+                              description
+                              archived
+                              benchmarksByProductId{
+                                nodes{
+                                  benchmark
+                                  eligibilityThreshold
                                 }
                             }
                         }

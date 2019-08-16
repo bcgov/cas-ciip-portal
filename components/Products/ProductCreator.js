@@ -30,6 +30,7 @@ class ProductCreator extends Component {
                     "product": {
                         "name": event.target.product_name.value,
                         "description": event.target.product_description.value,
+                        "archived": false
                     }
                 }
             };

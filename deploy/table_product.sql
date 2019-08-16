@@ -7,7 +7,8 @@ BEGIN;
 create table ggircs_portal.product (
   id serial not null,
   name varchar(1000) not null,
-  description varchar(10000)
+  description varchar(10000),
+  archived boolean
 );
 
 create unique index product_id_uindex
@@ -19,5 +20,6 @@ alter table ggircs_portal.product
 
 comment on column ggircs_portal.product.id is 'Unique ID for the product';
 comment on column ggircs_portal.product.name is 'The name of the product';
+comment on column ggircs_portal.product.archived is 'Archived status';
 
 COMMIT;
