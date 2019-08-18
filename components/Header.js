@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import {ButtonToolbar, Row, Col} from "react-bootstrap";
-import Link from 'next/link'
+
 const Header = () => {
   return (
       <React.Fragment>

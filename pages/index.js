@@ -42,13 +42,3 @@ class Index extends Component {
 
 
 export default Index;
-/*
-    Forms
-    Build a base form.
-    Start with the schema
-    Analyze the ciip application
-    Re-use the schema matthieu built
-    create mutations
-
-
- */

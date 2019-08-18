@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "The online portal for Industry to apply and track their CIIP applications",
   "scripts": {
+    "test": "jest",
     "predev": "npm run relay",
     "dev": "node server",
     "build": "next build",
@@ -27,18 +28,39 @@
     "open": "^6.4.0",
     "pg": "^7.11.0",
     "postgraphile": "^4.4.1",
-    "react": "^16.8.6",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.9",
-    "react-dom": "^16.8.6",
+    "react-dom": "^16.9.0",
     "react-relay": "^5.0.0",
+    "sinon": "^7.4.1",
     "survey-creator": "^1.1.0",
     "survey-react": "^1.1.1",
     "surveyjs-widgets": "latest",
     "sync-exec": "^0.6.2"
   },
   "devDependencies": {
+    "@testing-library/react": "^9.1.2",
     "babel-plugin-relay": "^5.0.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.4.0",
     "graphql-cli": "^3.0.11",
-    "relay-compiler": "^5.0.0"
+    "graphql-query-test-mock": "^0.12.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.8.0",
+    "nock": "^10.0.6",
+    "node-fetch": "^2.6.0",
+    "relay-compiler": "^5.0.0",
+    "relay-test-utils": "^5.0.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>lib/setupTests.js"
+    ]
   }
 }

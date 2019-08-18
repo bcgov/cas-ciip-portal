@@ -1,71 +1,38 @@
 import React from 'react';
-import ProductList from '../../../components/Products/ProductList';
-import { wait, render } from '@testing-library/react';
+import {wait, render, fireEvent, getByText} from '@testing-library/react';
 import {queryMock} from "../../../lib/relayQueryMock";
+import FormPicker from "../../../components/Forms/FormPicker";
 
 let mockAppQueryData;
 
-describe('Product List', () => {
+describe('Form Loader', () => {
     beforeEach(() => {
         // Make sure mock data is always fresh for each test run
-        mockAppQueryData =  {
-            "allProducts": {
+        mockAppQueryData = {
+            "allFormJsons": {
                 "nodes": [
                     {
-                        "id": "WyJwcm9kdWN0cyIsOV0=",
-                        "rowId": 9,
-                        "name": "Milk",
-                        "description": "Sustenance for baby cows",
-                        "benchmarksByProductId": {
-                            "nodes": [
-                                {
-                                    "id": "WyJiZW5jaG1hcmtzIiw3XQ==",
-                                    "benchmark": 10,
-                                    "eligibilityThreshold": 20
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": "WyJwcm9kdWN0cyIsMTBd",
-                        "rowId": 10,
-                        "name": "Butter",
-                        "description": "Sustenance for Keto folk",
-                        "benchmarksByProductId": {
-                            "nodes": [
-                                {
-                                    "id": "WyJiZW5jaG1hcmtzIiw4XQ==",
-                                    "benchmark": 20,
-                                    "eligibilityThreshold": 40
-                                }
-                            ]
-                        }
+                        "rowId": 1,
+                        "id": "WyJmb3JtX2pzb25zIiwxXQ==",
+                        "name": "Test form 1",
+                        "formJson": "{\"elements\":[{\"name\":\"customerName\",\"type\":\"text\",\"title\":\"1: What is your name?\",\"isRequired\":true}]}"
                     }
                 ]
             }
-        };
+        }
     });
 
-    it('should render all the products', async () => {
+    it('should render the form', async () => {
         queryMock.mockQuery({
-            name: 'ProductListQuery',
+            name: 'FormPickerQuery',
             data: mockAppQueryData
         });
-
-        // This will replace the query in ProductList with the one above and wait till Milk is rendered
-        const r = render(<ProductList />);
-        await wait(() => r.getAllByText("Milk"));
+        const r = render(<FormPicker/>);
+     //   fireEvent.click(r.getByText("Please select a form"));
+        await wait(() => r.getAllByText(/Please select a form/i));
         expect(r).toMatchSnapshot();
     });
 
 });
 
-
-// Test product can be created
-
-
-// Test Product can edited
-
-// Test Benchmark can be updated
-
-// Test threshold can be updated
+// This component is most likely a --DEV only component, unless turned into a reusable component

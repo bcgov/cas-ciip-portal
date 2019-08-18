@@ -53,6 +53,7 @@ class ProductRowItem extends Component {
     }
 
     toggleMode = () => {
+        console.log('ProductRowItem > Edit clicked');
         this.state.mode === 'view' ? this.setState({ mode : 'edit' }) : this.setState( { mode: 'view' })
     };
 
@@ -64,8 +65,8 @@ class ProductRowItem extends Component {
 
         return(
             <React.Fragment>
-            <div id="view-item" className={ this.state.mode }>
-                <div key={this.props.product.rowId}>
+            <div key={this.props.product.rowId} id="view-item" className={ this.state.mode }>
+                <div >
                     <Row>
                         <Col md={4}>
                             <h5>{product.name}</h5>
@@ -85,7 +86,7 @@ class ProductRowItem extends Component {
                 <hr/>
             </div>
 
-            <div id="edit-item"  className={ this.state.mode }>
+            <div key={`edit-${this.props.product.rowId}`} id="edit-item"  className={ this.state.mode }>
                 <Form onSubmit={this.saveBenchmark} key={this.props.product.rowId}>
                     <Form.Row>
                         <Form.Group as={Col} md="4" controlId="product_name">

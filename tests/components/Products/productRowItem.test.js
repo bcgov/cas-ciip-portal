@@ -1,70 +1,40 @@
 import React from 'react';
-import ProductList from '../../../components/Products/ProductList';
-import { wait, render } from '@testing-library/react';
-import {queryMock} from "../../../lib/relayQueryMock";
+import ProductRowItem from '../../../components/Products/ProductRowItem';
+import { wait, render, fireEvent, getByText } from '@testing-library/react';
 
-let mockAppQueryData;
 
-describe('Product List', () => {
-    beforeEach(() => {
-        // Make sure mock data is always fresh for each test run
-        mockAppQueryData =  {
-            "allProducts": {
-                "nodes": [
-                    {
-                        "id": "WyJwcm9kdWN0cyIsOV0=",
-                        "rowId": 9,
-                        "name": "Milk",
-                        "description": "Sustenance for baby cows",
-                        "benchmarksByProductId": {
-                            "nodes": [
-                                {
-                                    "id": "WyJiZW5jaG1hcmtzIiw3XQ==",
-                                    "benchmark": 10,
-                                    "eligibilityThreshold": 20
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": "WyJwcm9kdWN0cyIsMTBd",
-                        "rowId": 10,
-                        "name": "Butter",
-                        "description": "Sustenance for Keto folk",
-                        "benchmarksByProductId": {
-                            "nodes": [
-                                {
-                                    "id": "WyJiZW5jaG1hcmtzIiw4XQ==",
-                                    "benchmark": 20,
-                                    "eligibilityThreshold": 40
-                                }
-                            ]
-                        }
-                    }
-                ]
+const product =   {
+    "rowId": 9,
+    "name": "Milk",
+    "description": "Sustenance for baby cows",
+    "benchmarksByProductId": {
+        "nodes": [
+            {
+                "benchmark": 10,
+                "eligibilityThreshold": 20
             }
-        };
-    });
+        ]
+    }
+};
 
-    it('should render all the products', async () => {
-        queryMock.mockQuery({
-            name: 'ProductListQuery',
-            data: mockAppQueryData
-        });
+describe('Product Row Item', () => {
 
+    it('should render the product', async () => {
         // This will replace the query in ProductList with the one above and wait till Milk is rendered
-        const r = render(<ProductList />);
+        const r = render(<ProductRowItem product={product} />);
         await wait(() => r.getAllByText("Milk"));
         expect(r).toMatchSnapshot();
     });
 
+    it('should toggle to edit when I click edit', () => {
+        const {getByLabelText, getByText, findByRole} = render(<ProductRowItem product={product} />);
+        fireEvent.click(getByText(/Edit/i));
+        expect(getByText('Save')).toBeDefined();
+    });
+
+
 });
 
-
-// Test product can be created
-
-
-// Test Product can edited
 
 // Test Benchmark can be updated
 

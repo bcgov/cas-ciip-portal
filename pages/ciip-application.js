@@ -10,7 +10,7 @@ class BaseForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formId:3
+            formId:2
         }
     }
 
@@ -26,7 +26,7 @@ class BaseForm extends Component {
                 <Container>
                     <Jumbotron>
                         <h3>Hello, Hamza!</h3><br/>
-                        <p>
+                        <p id="welcome-message">
                             Welcome to your CleanBC Industrial Incentives Program (CIIP) Portal.
                             This is where all your dreams come true. Not only do you get loads of money, you basically
                             get it for being an amazing person! You may now take a moment to let that CIIP in. {'\u2728'}
@@ -36,7 +36,6 @@ class BaseForm extends Component {
                             <FormPicker handleFormId={this.formIdHandler}/>
                         </ButtonToolbar>
                     </Jumbotron>
-
                     <FormLoader formId={this.state.formId}/>
                 </Container>
                 <br/>
@@ -48,6 +47,8 @@ class BaseForm extends Component {
 }
 
 export default BaseForm;
+
+
 
 /*
 1: create a table called forms - done

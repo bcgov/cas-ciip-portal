@@ -1,41 +1,35 @@
 import React from 'react';
-import ProductRowItem from '../../../components/Products/ProductRowItem';
-import { wait, render, fireEvent, getByText } from '@testing-library/react';
+import ProductCreator from '../../../components/Products/ProductCreator';
+import { render } from '@testing-library/react';
 
 
-const product =   {
-    "rowId": 9,
-    "name": "Milk",
-    "description": "Sustenance for baby cows",
-    "benchmarksByProductId": {
-        "nodes": [
-            {
-                "benchmark": 10,
-                "eligibilityThreshold": 20
-            }
-        ]
-    }
-};
 
-describe('Product Row Item', () => {
+describe('Product Creator', () => {
 
-    it('should render the product', async () => {
+    it('should render the product name field', async () => {
         // This will replace the query in ProductList with the one above and wait till Milk is rendered
-        const r = render(<ProductRowItem product={product} />);
-        await wait(() => r.getAllByText("Milk"));
-        expect(r).toMatchSnapshot();
+        const {getByLabelText} = render(<ProductCreator />);
+        expect(getByLabelText(/Product Name/i)).toBeDefined();
     });
 
-    it('should toggle to edit when I click edit', () => {
-        const {getByLabelText, getByText, findByRole} = render(<ProductRowItem product={product} />);
-        fireEvent.click(getByText(/Edit/i));
-        expect(getByText('Save')).toBeDefined();
+    it('should render the product desc field', async () => {
+        // This will replace the query in ProductList with the one above and wait till Milk is rendered
+        const {getByLabelText} = render(<ProductCreator />);
+        expect(getByLabelText(/Product Description/i)).toBeDefined();
     });
 
+    it('should render the Create Product button', async () => {
+        // This will replace the query in ProductList with the one above and wait till Milk is rendered
+        const {getByText} = render(<ProductCreator />);
+        expect(getByText(/Create Product/i)).toBeDefined();
+    });
+
+    it('should match the last usable snapshot', async () => {
+        // This will replace the query in ProductList with the one above and wait till Milk is rendered
+        const container = render(<ProductCreator />);
+        expect(container).toMatchSnapshot();
+    });
 
 });
 
-
-// Test Benchmark can be updated
-
-// Test threshold can be updated
+// Test the productCreator Mutation

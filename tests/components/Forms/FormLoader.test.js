@@ -1,71 +1,46 @@
 import React from 'react';
-import ProductList from '../../../components/Products/ProductList';
-import { wait, render } from '@testing-library/react';
+import {wait, render} from '@testing-library/react';
 import {queryMock} from "../../../lib/relayQueryMock";
+import FormLoader from "../../../components/Forms/FormLoader";
 
 let mockAppQueryData;
 
-describe('Product List', () => {
+describe('Form Loader', () => {
     beforeEach(() => {
         // Make sure mock data is always fresh for each test run
-        mockAppQueryData =  {
-            "allProducts": {
-                "nodes": [
-                    {
-                        "id": "WyJwcm9kdWN0cyIsOV0=",
-                        "rowId": 9,
-                        "name": "Milk",
-                        "description": "Sustenance for baby cows",
-                        "benchmarksByProductId": {
-                            "nodes": [
-                                {
-                                    "id": "WyJiZW5jaG1hcmtzIiw3XQ==",
-                                    "benchmark": 10,
-                                    "eligibilityThreshold": 20
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        "id": "WyJwcm9kdWN0cyIsMTBd",
-                        "rowId": 10,
-                        "name": "Butter",
-                        "description": "Sustenance for Keto folk",
-                        "benchmarksByProductId": {
-                            "nodes": [
-                                {
-                                    "id": "WyJiZW5jaG1hcmtzIiw4XQ==",
-                                    "benchmark": 20,
-                                    "eligibilityThreshold": 40
-                                }
-                            ]
-                        }
-                    }
-                ]
+        mockAppQueryData = {
+            "formJsonByRowId": {
+                "id": "WyJmb3JtX2pzb25zIiwxXQ==",
+                "name": "Test form 1",
+                "formJson": "{\"elements\":[{\"name\":\"customerName\",\"type\":\"text\",\"title\":\"What is your name?\",\"isRequired\":true}]}"
             }
-        };
+        }
     });
 
-    it('should render all the products', async () => {
+    it('should render the form', async () => {
         queryMock.mockQuery({
-            name: 'ProductListQuery',
+            name: 'FormLoaderQuery',
+            variables: {
+                "rowId": "1"
+            },
             data: mockAppQueryData
         });
-
-        // This will replace the query in ProductList with the one above and wait till Milk is rendered
-        const r = render(<ProductList />);
-        await wait(() => r.getAllByText("Milk"));
+        const r = render(<FormLoader formId='1'/>);
+        await wait(() => r.getAllByText(/What/i));
         expect(r).toMatchSnapshot();
     });
 
+    it('should render the complete button', async () => {
+        queryMock.mockQuery({
+            name: 'FormLoaderQuery',
+            variables: {
+                "rowId": "1"
+            },
+            data: mockAppQueryData
+        });
+        const r = render(<FormLoader formId='1'/>);
+        await wait(() => r.getAllByText(/Complete/i));
+        expect(r.getAllByText(/Complete/i)).toBeDefined();
+    });
+
 });
-
-
-// Test product can be created
-
-
-// Test Product can edited
-
-// Test Benchmark can be updated
-
-// Test threshold can be updated

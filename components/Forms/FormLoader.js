@@ -5,9 +5,8 @@ import "survey-creator/survey-creator.css";
 import {graphql, QueryRenderer, commitMutation} from "react-relay";
 import initEnvironment from '../../lib/createRelayEnvironment';
 const environment = initEnvironment();
+
 class FormLoader extends Component {
-
-
     constructor(props) {
         super(props);
         this.createFormResult = graphql`
@@ -38,7 +37,7 @@ class FormLoader extends Component {
         let mutation = this.createFormResult;
 
         commitMutation(
-            environment,
+            this.props.environment,
             {
                 mutation,
                 variables,
@@ -55,14 +54,6 @@ class FormLoader extends Component {
         const form_data = result.data;
         console.log("form data", form_data);
         this.storeResult(form_data)
-        /*
-        for (let field in form_data){
-            if(form_data.hasOwnProperty(field)){
-                console.log(field, form_data[field]);
-               //
-            }
-        }
-        */
         console.log("Complete! " , result.data);
     };
 
@@ -71,7 +62,7 @@ class FormLoader extends Component {
     };
 
     createForm = ({error, props}) => {
-        console.log('form props', props);
+        console.log('FormLoader > createForm(): ', props, error);
         this.onValueChanged();
         Survey.Survey.cssType = "bootstrap";
         if (props) {
@@ -94,44 +85,44 @@ class FormLoader extends Component {
         return (
             <React.Fragment>
                 <div id="surveyContainer">
-                <QueryRenderer
-                    environment={environment}
-                    query={graphql`
-                        query FormLoaderQuery($rowId:Int!) {
-                          formJsonByRowId(rowId:$rowId){
-                            id
-                            name
-                            formJson
-                          }
+                    <QueryRenderer
+                        environment={environment}
+                        query={graphql`
+                            query FormLoaderQuery($rowId:Int!) {
+                              formJsonByRowId(rowId:$rowId){
+                                id
+                                name
+                                formJson
+                              }
+                            }
+                        `}
+                        variables={{
+                            rowId: this.props.formId
+                        }}
+                        render={this.createForm}
+                    />
+                    <style jsx global>{`
+                        #surveyContainer{
+                            border: 1px solid #dcdcdcf2;
+                            border-radius: 4px;
+                            box-shadow: 0px 7px 9px 0px #00000026;
+                            padding:20px;
+                        }
+                        .card-footer :global{
+                            background:white!important;
+                            display:none;
+                        }
+                        .sv_container .panel-footer{
+                            background:white;
+                            text-align:right;
+                        }
+                        .sv_container .panel-footer .btn.sv_complete_btn {
+                            background:#036;
+                            color:white;
+
                         }
                     `}
-                    variables={{
-                        rowId: this.props.formId
-                    }}
-                    render={this.createForm}
-                />
-                <style jsx global>{`
-                    #surveyContainer{
-                        border: 1px solid #dcdcdcf2;
-                        border-radius: 4px;
-                        box-shadow: 0px 7px 9px 0px #00000026;
-                        padding:20px;
-                    }
-                    .card-footer :global{
-                        background:white!important;
-                        display:none;
-                    }
-                    .sv_container .panel-footer{
-                        background:white;
-                        text-align:right;
-                    }
-                    .sv_container .panel-footer .btn.sv_complete_btn {
-                        background:#036;
-                        color:white;
-
-                    }
-                `}
-                </style>
+                    </style>
                 </div>
 
             </React.Fragment>

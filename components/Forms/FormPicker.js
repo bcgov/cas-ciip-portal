@@ -19,8 +19,8 @@ class FormPicker extends Component {
 
     formSelectButton = (form) => {
         return (
-            <div>
-                <Dropdown.Item key={form.rowId} onClick={() => {this.formSelectHandler(form.rowId, form.formJson)}}>{form.name}</Dropdown.Item>
+            <div key={form.rowId}>
+                <Dropdown.Item  onClick={() => {this.formSelectHandler(form.rowId, form.formJson)}}>{form.name}</Dropdown.Item>
             </div>
         )
     };
