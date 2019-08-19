@@ -218,9 +218,9 @@ describe('Mutations', () => {
                   }
               }
           });
-          console.log(util.inspect(test, false, null, true /* enable colors */))
           expect(test).toExist;
           expect(typeof test.data.updateProductByRowId.product.rowId).toBe('number')
+          // console.log(util.inspect(test, false, null, true /* enable colors */))
       });
   });
 });
