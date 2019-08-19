@@ -44,7 +44,7 @@ class ProductList extends Component {
                             }
                         }
                     }
-                `}
+                }`}
                 render={this.listProducts}
             />
         )

@@ -137,8 +137,8 @@ class ProductRowItem extends Component {
 
         return(
             <React.Fragment>
-            <div key={this.props.product.rowId} id="view-item" className={ this.state.mode } style={{background}}>
-                <div >
+            <div key={this.props.product.rowId} id="view-item" className={ this.state.mode } >
+                <div style={{background}}>
                     <Row style={{padding: 5}}>
                         <Col md={4}>
                             <h5>{product.name}</h5>
