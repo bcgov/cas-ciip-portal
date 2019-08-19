@@ -141,7 +141,7 @@ describe('Mutations', () => {
           .toEqual(`Variable "$input" got invalid value { benchmark: { productId: 1, benchmark: 1 } }; Field value.benchmark.eligibilityThreshold of required type Int! was not provided.`);
       });
 
-        it('Should return fields if valid', () => {
+        it('Should return rowId if valid', () => {
             const mutation = `
                 mutation ProductRowItemBenchmarkMutation ($input: CreateBenchmarkInput!){
                     createBenchmark(input:$input){
@@ -166,4 +166,61 @@ describe('Mutations', () => {
             // console.log(util.inspect(test, false, null, true /* enable colors */))
         });
     });
+
+    describe('update product mutation', () => {
+      const mutation = `
+                  mutation ProductRowItemProductMutation ($input: UpdateProductByRowIdInput!){
+                      updateProductByRowId(input:$input){
+                          product{
+                              rowId
+                          }
+                      }
+                  }
+            `
+
+      it('Should throw an error if input is missing', () => {
+          let error;
+          try {
+              tester.mock(mutation);
+          } catch(err) {
+              error = err;
+          }
+          expect(error.message).toEqual('Variable "$input" of required type "UpdateProductByRowIdInput!" was not provided.');
+      });
+
+      it('Should throw an error if a variable is missing', () => {
+        let error;
+        try {
+            tester.mock(mutation, {
+              "input": {
+                "productPatch": {
+                    "description": 'ABC',
+                    "archived": false
+                }
+              }
+            });
+        } catch(err) {
+            error = err;
+        }
+        expect(error.message)
+        .toEqual(`Variable "$input" got invalid value { productPatch: { description: "ABC", archived: false } }; Field value.rowId of required type Int! was not provided.`);
+    });
+
+      it('Should return rowId if valid', () => {
+          const test = tester.mock(mutation, {
+              "input": {
+                  "rowId": 1,
+                  "productPatch": {
+                    "rowId": 1,
+                    "name": 'ABCDE',
+                    "description": 'ABC',
+                    "archived": false
+                  }
+              }
+          });
+          console.log(util.inspect(test, false, null, true /* enable colors */))
+          expect(test).toExist;
+          expect(typeof test.data.updateProductByRowId.product.rowId).toBe('number')
+      });
+  });
 });
