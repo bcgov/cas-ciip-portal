@@ -16,6 +16,7 @@ describe('Product List', () => {
                         "rowId": 9,
                         "name": "Milk",
                         "description": "Sustenance for baby cows",
+                        "archived": false,
                         "benchmarksByProductId": {
                             "nodes": [
                                 {
@@ -31,6 +32,7 @@ describe('Product List', () => {
                         "rowId": 10,
                         "name": "Butter",
                         "description": "Sustenance for Keto folk",
+                        "archived": false,
                         "benchmarksByProductId": {
                             "nodes": [
                                 {
