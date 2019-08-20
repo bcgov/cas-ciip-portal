@@ -7,6 +7,7 @@ type Benchmark implements Node {
   """Unique ID for the benchmark"""
   rowId: Int!
   productId: Int!
+  productBenchmarkId: Int!
 
   """The value of the benchmark"""
   benchmark: Int!
@@ -19,6 +20,9 @@ type Benchmark implements Node {
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
+
+  """Reads a single `ProductBenchmark` that is related to this `Benchmark`."""
+  productBenchmarkByProductBenchmarkId: ProductBenchmark
 }
 
 """
@@ -31,6 +35,9 @@ input BenchmarkCondition {
 
   """Checks for equality with the object’s `productId` field."""
   productId: Int
+
+  """Checks for equality with the object’s `productBenchmarkId` field."""
+  productBenchmarkId: Int
 
   """Checks for equality with the object’s `benchmark` field."""
   benchmark: Int
@@ -47,6 +54,7 @@ input BenchmarkInput {
   """Unique ID for the benchmark"""
   rowId: Int
   productId: Int!
+  productBenchmarkId: Int!
 
   """The value of the benchmark"""
   benchmark: Int!
@@ -65,6 +73,7 @@ input BenchmarkPatch {
   """Unique ID for the benchmark"""
   rowId: Int
   productId: Int
+  productBenchmarkId: Int
 
   """The value of the benchmark"""
   benchmark: Int
@@ -109,6 +118,8 @@ enum BenchmarksOrderBy {
   ID_DESC
   PRODUCT_ID_ASC
   PRODUCT_ID_DESC
+  PRODUCT_BENCHMARK_ID_ASC
+  PRODUCT_BENCHMARK_ID_DESC
   BENCHMARK_ASC
   BENCHMARK_DESC
   ELIGIBILITY_THRESHOLD_ASC
@@ -149,6 +160,9 @@ type CreateBenchmarkPayload {
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
+
+  """Reads a single `ProductBenchmark` that is related to this `Benchmark`."""
+  productBenchmarkByProductBenchmarkId: ProductBenchmark
 
   """An edge for our `Benchmark`. May be used by Relay 1."""
   benchmarkEdge(
@@ -290,6 +304,9 @@ type CreateProductPayload {
   """
   query: Query
 
+  """Reads a single `ProductBenchmark` that is related to this `Product`."""
+  productBenchmarkByProductBenchmarkId: ProductBenchmark
+
   """An edge for our `Product`. May be used by Relay 1."""
   productEdge(
     """The method to use when ordering `Product`."""
@@ -386,6 +403,9 @@ type DeleteBenchmarkPayload {
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
+
+  """Reads a single `ProductBenchmark` that is related to this `Benchmark`."""
+  productBenchmarkByProductBenchmarkId: ProductBenchmark
 
   """An edge for our `Benchmark`. May be used by Relay 1."""
   benchmarkEdge(
@@ -552,7 +572,7 @@ input DeleteProductByRowIdInput {
   """
   clientMutationId: String
 
-  """Unique ID for the product"""
+  """Foreign key to the product_benchmark through table"""
   rowId: Int!
 }
 
@@ -586,6 +606,9 @@ type DeleteProductPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `ProductBenchmark` that is related to this `Product`."""
+  productBenchmarkByProductBenchmarkId: ProductBenchmark
 
   """An edge for our `Product`. May be used by Relay 1."""
   productEdge(
@@ -1133,8 +1156,9 @@ type Product implements Node {
   """
   id: ID!
 
-  """Unique ID for the product"""
+  """Foreign key to the product_benchmark through table"""
   rowId: Int!
+  productBenchmarkId: Int!
 
   """The name of the product"""
   name: String!
@@ -1142,6 +1166,9 @@ type Product implements Node {
 
   """Archived status"""
   archived: Boolean
+
+  """Reads a single `ProductBenchmark` that is related to this `Product`."""
+  productBenchmarkByProductBenchmarkId: ProductBenchmark
 
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByProductId(
@@ -1187,6 +1214,64 @@ type ProductBenchmark implements Node {
 
   """The benchmark id"""
   benchmarkId: Int
+
+  """Reads and enables pagination through a set of `Product`."""
+  productsByProductBenchmarkId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Product`."""
+    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ProductCondition
+  ): ProductsConnection!
+
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByProductBenchmarkId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+  ): BenchmarksConnection!
 }
 
 """
@@ -1278,6 +1363,9 @@ input ProductCondition {
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 
+  """Checks for equality with the object’s `productBenchmarkId` field."""
+  productBenchmarkId: Int
+
   """Checks for equality with the object’s `name` field."""
   name: String
 
@@ -1290,8 +1378,9 @@ input ProductCondition {
 
 """An input for mutations affecting `Product`"""
 input ProductInput {
-  """Unique ID for the product"""
+  """Foreign key to the product_benchmark through table"""
   rowId: Int
+  productBenchmarkId: Int!
 
   """The name of the product"""
   name: String!
@@ -1305,8 +1394,9 @@ input ProductInput {
 Represents an update to a `Product`. Fields that are set will be updated.
 """
 input ProductPatch {
-  """Unique ID for the product"""
+  """Foreign key to the product_benchmark through table"""
   rowId: Int
+  productBenchmarkId: Int
 
   """The name of the product"""
   name: String
@@ -1347,6 +1437,8 @@ enum ProductsOrderBy {
   NATURAL
   ID_ASC
   ID_DESC
+  PRODUCT_BENCHMARK_ID_ASC
+  PRODUCT_BENCHMARK_ID_DESC
   NAME_ASC
   NAME_DESC
   DESCRIPTION_ASC
@@ -1652,6 +1744,9 @@ type UpdateBenchmarkPayload {
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
 
+  """Reads a single `ProductBenchmark` that is related to this `Benchmark`."""
+  productBenchmarkByProductBenchmarkId: ProductBenchmark
+
   """An edge for our `Benchmark`. May be used by Relay 1."""
   benchmarkEdge(
     """The method to use when ordering `Benchmark`."""
@@ -1849,7 +1944,7 @@ input UpdateProductByRowIdInput {
   """
   productPatch: ProductPatch!
 
-  """Unique ID for the product"""
+  """Foreign key to the product_benchmark through table"""
   rowId: Int!
 }
 
@@ -1887,6 +1982,9 @@ type UpdateProductPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `ProductBenchmark` that is related to this `Product`."""
+  productBenchmarkByProductBenchmarkId: ProductBenchmark
 
   """An edge for our `Product`. May be used by Relay 1."""
   productEdge(
