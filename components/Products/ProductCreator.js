@@ -18,64 +18,19 @@ class ProductCreator extends Component {
                 }
             }
         `;
-
-        this.createProductBenchmark = graphql`
-            mutation ProductCreatorProductBenchmarkMutation ($input: CreateProductBenchmarkInput!){
-                createProductBenchmark(input:$input){
-                    productBenchmark{
-                        rowId
-                    }
-                }
-            }
-        `;
-
-        this.updateProductBenchmark = graphql`
-            mutation ProductCreatorUpdateProductBenchmarkMutation ($input: UpdateProductBenchmarkByRowIdInput!){
-                updateProductBenchmarkByRowId(input:$input){
-                    productBenchmark{
-                        rowId
-                    }
-                }
-            }
-        `;
     }
 
-    updateProductBenchmarkProductId = (productBenchmarkId, productId) => {
-
-        const saveVariables =
-            {
-                "input": {
-                    "productBenchmarkPatch": {
-                        "productId": productId
-                    },
-                    "rowId": productBenchmarkId
-                },
-            }
-        const saveMutation = this.updateProductBenchmark;
-        commitMutation(
-            environment,
-            {
-                mutation: saveMutation,
-                variables: saveVariables,
-                onCompleted: (response, errors) => {
-                    console.log(response);
-                },
-                onError: err => console.error(err),
-            },
-      ) ;
-      window.location.reload();
-    }
-
-    saveProduct = (product, productBenchmarkId) => {
-
+    saveProduct = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
       const saveVariables =
           {
               "input": {
                   "product": {
-                      "productBenchmarkId": productBenchmarkId,
-                      "name": product.product_name,
-                      "description": product.product_desc,
-                      "archived": false
+                      "name": event.target.product_name.value,
+                      "description": event.target.product_description.value,
+                      "state": 'created',
+                      "parent": [null]
                   }
               }
           };
@@ -88,7 +43,6 @@ class ProductCreator extends Component {
               variables: saveVariables,
               onCompleted: (response, errors) => {
                   console.log(response);
-                  this.updateProductBenchmarkProductId(productBenchmarkId, response.createProduct.product.rowId);
                   this.createProductFromRef.current.reset();
               },
               onError: err => console.error(err),
@@ -96,38 +50,11 @@ class ProductCreator extends Component {
       );
   }
 
-    saveProductBenchmark = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        const product_name = event.target.product_name.value;
-        const product_desc = event.target.product_description.value;
-        const saveVariables =
-            {
-                "input": {
-                    "productBenchmark": {}
-                }
-            };
-
-        const saveMutation = this.createProductBenchmark;
-        commitMutation(
-            environment,
-            {
-                mutation: saveMutation,
-                variables: saveVariables,
-                onCompleted: (response, errors) => {
-                    console.log(response);
-                    this.saveProduct({product_name, product_desc}, response.createProductBenchmark.productBenchmark.rowId)
-                },
-                onError: err => console.error(err),
-            },
-        );
-    }
-
     render() {
         return (
             <React.Fragment>
                 <div>
-                    <Form ref={ this.createProductFromRef } onSubmit={this.saveProductBenchmark}>
+                    <Form ref={ this.createProductFromRef } onSubmit={this.saveProduct}>
                         <Form.Row>
                         <Form.Group as={Col} md="4" controlId="product_name">
                             <Form.Label>Product Name</Form.Label>

@@ -35,7 +35,8 @@ class ProductList extends Component {
                               rowId
                               name
                               description
-                              archived
+                              state
+                              parent
                               benchmarksByProductId{
                                 nodes{
                                   benchmark
