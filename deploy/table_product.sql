@@ -6,10 +6,10 @@ BEGIN;
 
 create table ggircs_portal.product (
   id serial not null,
-  product_benchmark_id int not null references ggircs_portal.product_benchmark,
   name varchar(1000) not null,
   description varchar(10000),
-  archived boolean
+  state varchar(1000),
+  parent integer ARRAY
 );
 
 create unique index product_id_uindex
@@ -20,8 +20,9 @@ alter table ggircs_portal.product
 		primary key (id);
 
 comment on column ggircs_portal.product.id is 'Unique ID for the product';
-comment on column ggircs_portal.product.id is 'Foreign key to the product_benchmark through table';
 comment on column ggircs_portal.product.name is 'The name of the product';
-comment on column ggircs_portal.product.archived is 'Archived status';
+comment on column ggircs_portal.product.description is 'The description of the product';
+comment on column ggircs_portal.product.state is 'The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)';
+comment on column ggircs_portal.product.name is 'The parent ID (previous state) of the product';
 
 COMMIT;
