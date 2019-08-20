@@ -13,6 +13,17 @@ class ProductRowItem extends Component {
         this.state = {
             mode: 'view'
         };
+
+        this.updateBenchmark = graphql`
+            mutation ProductRowItemUpdateBenchmarkMutation ($input: UpdateBenchmarkByRowIdInput!){
+                updateBenchmarkByRowId(input:$input) {
+                  benchmark{
+                    rowId
+                  }
+                }
+            }
+        `;
+
         this.createBenchmark = graphql`
             mutation ProductRowItemBenchmarkMutation ($input: CreateBenchmarkInput!){
                 createBenchmark(input:$input){
@@ -23,14 +34,23 @@ class ProductRowItem extends Component {
             }
         `;
         this.updateProduct = graphql`
-        mutation ProductRowItemProductMutation ($input: UpdateProductByRowIdInput!){
-            updateProductByRowId(input:$input){
-                product{
-                  rowId
+            mutation ProductRowItemUpdateProductMutation ($input: UpdateProductByRowIdInput!){
+                updateProductByRowId(input:$input){
+                    product{
+                      rowId
+                    }
                 }
             }
-        }
-    `;
+        `;
+        this.createProduct = graphql`
+            mutation ProductRowItemProductMutation ($input: CreateProductInput!){
+                createProduct(input:$input){
+                    product{
+                        rowId
+                    }
+                }
+            }
+        `;
     }
 
     // Toggle the 'archived' value of a Product
@@ -66,6 +86,61 @@ class ProductRowItem extends Component {
       window.location.reload();
     }
 
+    saveProduct = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      console.log('here')
+      const saveVariables =
+          {
+              "input": {
+                  "product": {
+                    "name": ReactDOM.findDOMNode(this.refs.product_name).value,
+                    "description": ReactDOM.findDOMNode(this.refs.product_description).value,
+                    "archived": false
+                  }
+              }
+          };
+
+      const saveMutation = this.createProduct;
+      commitMutation(
+          environment,
+          {
+              mutation: saveMutation,
+              variables: saveVariables,
+              onCompleted: (response, errors) => {
+                  console.log(response);
+                  alert("Product Created");
+                  this.createProductFromRef.current.reset();
+
+                  const updateBenchmark = this.updateBenchmark;
+                  const newProductId = response.data.createProduct.product.rowId;
+                  updateBenchmarkVariables =
+                      {
+                          "input": {
+                            "rowId": this.props.product.rowId,
+                            "benchmarkPatch": {
+                                "productId": newProductId
+                            }
+                          }
+                      }
+                  commitMutation(
+                    environment,
+                    {
+                        mutation: updateBenchmark,
+                        variables: updateBenchmarkVariables,
+                        onCompleted: (response, errors) => {
+                            console.log(response);
+                        },
+                        onError: err => console.error(err),
+                    },
+                );
+              },
+              onError: err => console.error(err),
+          },
+      );
+      window.location.reload();
+  }
+
     saveBenchmark = (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -93,35 +168,17 @@ class ProductRowItem extends Component {
                 onError: err => console.error(err),
             },
         );
-        saveVariables =
-            {
-                "input": {
-                    "productPatch": {
-                        "rowId": this.props.product.rowId,
-                        "name": ReactDOM.findDOMNode(this.refs.product_name).value,
-                        "description": ReactDOM.findDOMNode(this.refs.product_description).value
-                    },
-                    "rowId": this.props.product.rowId,
-                }
-            };
-        saveMutation = this.updateProduct;
-        commitMutation(
-          environment,
-          {
-              mutation: saveMutation,
-              variables: saveVariables,
-              onCompleted: (response, errors) => {
-                  console.log(response);
-              },
-              onError: err => console.error(err),
-          },
-      );
       window.location.reload();
     }
 
-    toggleMode = () => {
+    toggleProductMode = () => {
         console.log('ProductRowItem > Edit clicked');
-        this.state.mode === 'view' ? this.setState({ mode : 'edit' }) : this.setState( { mode: 'view' })
+        this.state.mode === 'view' || this.state.mode === 'benchmark' ? this.setState({ mode : 'product' }) : this.setState( { mode: 'view' })
+    };
+
+    toggleBenchmarkMode = () => {
+      console.log('ProductRowItem > Edit clicked');
+      this.state.mode === 'view' || this.state.mode === 'product' ? this.setState({ mode : 'benchmark' }) : this.setState( { mode: 'view' })
     };
 
     render(){
@@ -140,9 +197,18 @@ class ProductRowItem extends Component {
             <div key={this.props.product.rowId} id="view-item" className={ this.state.mode } >
                 <div style={{background}}>
                     <Row style={{padding: 5}}>
+                        <Col md={1} style={{textAlign:'right'}}>
+                          <Button style={{width:'100%'}} onClick={this.toggleProductMode}>Edit</Button>
+                        </Col>
                         <Col md={4}>
                             <h5>{product.name}</h5>
                             <small>{product.description}</small>
+                        </Col>
+                        <Col md={1}>
+                            <Form.Label><small>Archived:</small> {product.archived ? 'true': 'false'}</Form.Label>
+                        </Col>
+                        <Col md={1} style={{textAlign:'right'}}>
+                          <Button style={{width:'100%'}} onClick={this.toggleBenchmarkMode}>Edit</Button>
                         </Col>
                         <Col md={2}>
                             <Form.Label><small>Benchmark:</small> {benchmarks.benchmark}</Form.Label>
@@ -150,23 +216,21 @@ class ProductRowItem extends Component {
                         <Col md={3}>
                             <Form.Label><small>Eligibility Threshold:</small> {benchmarks.eligibilityThreshold}</Form.Label>
                         </Col>
-                        <Col md={1}>
-                            <Form.Label><small>Archived:</small> {product.archived ? 'true': 'false'}</Form.Label>
-                        </Col>
-                        <Col md={2} style={{textAlign:'right'}}>
-                            <ButtonGroup style={{width:'100%', marginTop: 10, marginBotton: 5}}>
-                                <Button style={{width:'50%'}} width='50%' onClick={this.toggleMode}>Edit</Button>
-                                <Button style={{width:'50%'}} variant={buttonVariant} onClick={this.toggleArchived}>{archiveRestore}</Button>
-                            </ButtonGroup>
-                        </Col>
                     </Row>
                 </div>
                 <hr/>
             </div>
 
-            <div key={`edit-${this.props.product.rowId}`} id="edit-item"  className={ this.state.mode }>
-                <Form onSubmit={this.saveBenchmark} key={this.props.product.rowId}>
+            <div key={`edit-pr${this.props.product.rowId}`} id="edit-product"  className={ this.state.mode }>
+                <Form onSubmit={this.saveProduct} key={this.props.product.rowId}>
                     <Form.Row>
+                        <Form.Group as={Col} md="1" style={{textAlign:"right"}} controlId="button_group">
+                            <ButtonGroup vertical style={{width:'100%', marginTop: 10, marginBotton: 5}}>
+                              <Button style={{marginTop:"8px", marginRight:"10px"}} type="submit">Save</Button>
+                              <Button variant="secondary" style={{marginTop:"8px"}} onClick={this.toggleProductMode}>Cancel</Button>
+                              <Button style={{marginTop: '8px', marginRight:"10px"}} variant={buttonVariant} onClick={this.toggleArchived}>{archiveRestore}</Button>
+                            </ButtonGroup>
+                        </Form.Group>
                         <Form.Group as={Col} md="4" controlId="product_name">
                         <Form.Label>Name</Form.Label>
                         <Form.Control required="required" type="string" step="0.01"
@@ -175,31 +239,57 @@ class ProductRowItem extends Component {
                         <Form.Control required="required" type="string" step="0.01"
                                       placeholder={product.description} defaultValue={product.description} ref='product_description' />
                         </Form.Group>
+                        <Form.Group as={Col} md="2">
+                        <Form.Label><small>Archived:</small> {product.archived ? 'true': 'false'}</Form.Label>
+                        </Form.Group>
+                        <Form.Group as={Col} md="2">
+                            <Form.Label><small>Benchmark:</small> {benchmarks.benchmark}</Form.Label>
+                        </Form.Group>
+                        <Form.Group as={Col} md="3">
+                            <Form.Label><small>Eligibility Threshold:</small> {benchmarks.eligibilityThreshold}</Form.Label>
+                        </Form.Group>
+                    </Form.Row>
+                </Form>
+                <hr/>
+            </div>
+
+            <div key={`edit-bm${this.props.product.rowId}`} id="edit-benchmark"  className={ this.state.mode }>
+                <Form onSubmit={this.saveBenchmark} key={this.props.product.rowId}>
+                    <Form.Row>
+                    <Form.Group as={Col} md="1">
+                        </Form.Group>
+                        <Form.Group as={Col} md="4">
+                            <h5>{product.name}</h5>
+                            <small>{product.description}</small>
+                        </Form.Group>
+                        <Form.Group as={Col} md="1">
+                            <Form.Label><small>Archived:</small> {product.archived ? 'true': 'false'}</Form.Label>
+                        </Form.Group>
+                        <Form.Group as={Col} md="1" style={{textAlign:"right"}}>
+                            <ButtonGroup vertical style={{width:'100%', marginTop: 10, marginBotton: 5}}>
+                              <Button style={{marginTop:"8px", marginRight:"10px"}} type="submit">Save</Button>
+                              <Button variant="secondary" style={{marginTop:"8px"}} onClick={this.toggleBenchmarkMode}>Cancel</Button>
+                            </ButtonGroup>
+                        </Form.Group>
                         <Form.Group as={Col} md="2" controlId="benchmark">
                             <Form.Label>Benchmark</Form.Label>
                             <Form.Control required="required" type="number" step="0.01"
                                           placeholder={benchmarks.benchmark} defaultValue={benchmarks.benchmark} />
                         </Form.Group>
-                        <Form.Group as={Col} md="2" controlId="eligibility_threshold">
+                        <Form.Group as={Col} md="3" controlId="eligibility_threshold">
                             <Form.Label>Eligibility Threshold</Form.Label>
                             <Form.Control required="required" type="number" step="0.01"
                                           placeholder={benchmarks.eligibilityThreshold} defaultValue={benchmarks.eligibilityThreshold} />
                         </Form.Group>
-                        <Form.Group as={Col} md="4" style={{textAlign:"right"}} controlId="eligibility_threshold">
-                            <br/>
-                            <Button style={{marginTop:"8px", marginRight:"10px"}} type="submit">Save</Button>
-                            <Button variant="secondary" style={{marginTop:"8px"}} onClick={this.toggleMode}>Cancel</Button>
-                        </Form.Group>
-
                     </Form.Row>
                 </Form>
                 <hr/>
             </div>
                 <style jsx>{`
-                    #edit-item.view, #view-item.edit {
+                    #edit-benchmark.view, #edit-benchmark.product, #edit-product.view, #edit-product.benchmark, #view-item.benchmark, #view-item.product {
                         display:none;
                     }
-                    #edit-item.edit, #view-item.view{
+                    #edit-benchmark.benchmark, #edit-product.product, #view-item.view{
                         display:initial;
                     }
                 `}
