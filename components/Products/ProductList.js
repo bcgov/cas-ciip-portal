@@ -18,7 +18,8 @@ class ProductList extends Component {
         if(props){
             const allProducts = props.allProducts.nodes;
             allProducts.forEach((product) => {
-                product.archived ? archivedList.push(<ProductRowItem product={product}/>) : productList.push(<ProductRowItem product={product}/>);
+              if (product.state !== 'deprecated')
+                product.state === 'archived' ? archivedList.push(<ProductRowItem product={product}/>) : productList.push(<ProductRowItem product={product}/>);
             })
         }
         return productList.concat(archivedList);
