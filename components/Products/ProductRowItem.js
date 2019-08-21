@@ -77,7 +77,9 @@ class ProductRowItem extends Component {
                     "name": this.props.product.name,
                     "description": this.props.product.description,
                     "state": toggleArchived ? 'archived' : 'active',
-                    "parent": [this.props.product.rowId]
+                    "parent": [this.props.product.rowId],
+                    "updatedAt": new Date().toUTCString(),
+                    "updatedBy": 'Admin'
                   }
               }
           };
@@ -90,7 +92,12 @@ class ProductRowItem extends Component {
               variables: saveVariables,
               onCompleted: async (response, errors) => {
                   console.log(response);
+                  const benchmarkResult = await this.getBenchmark(this.props.product.rowId);
+                  const benchmarkPatch = {
+                      "productId": response.createProduct.product.rowId
+                  }
                   await this.editProduct();
+                  await this.editBenchmark(benchmarkResult.allBenchmarks.nodes[0].rowId, benchmarkPatch);
                   window.location.reload();
               },
               onError: err => console.error(err),
@@ -139,7 +146,8 @@ class ProductRowItem extends Component {
                 "input": {
                     "rowId": this.props.product.rowId,
                     "productPatch": {
-                        "state": "deprecated"
+                        "state": "deprecated",
+                        "updatedAt": new Date().toUTCString()
                     }
                 }
             };
@@ -159,7 +167,6 @@ class ProductRowItem extends Component {
     saveProduct = async (event) => {
       event.preventDefault();
       event.stopPropagation();
-      const date = new Date().toUTCString();
       const saveVariables =
           {
               "input": {
@@ -168,7 +175,7 @@ class ProductRowItem extends Component {
                     "description": ReactDOM.findDOMNode(this.refs.product_description).value,
                     "state": 'active',
                     "parent": [this.props.product.rowId],
-                    "updatedAt": date,
+                    "updatedAt": new Date().toUTCString(),
                     "updatedBy": 'Admin'
                   }
               }
@@ -203,7 +210,8 @@ class ProductRowItem extends Component {
         // start_date received from user, defined in UI
         const start_date = new Date(ReactDOM.findDOMNode(this.refs.start_date).value).toUTCString();
         const benchmarkPatch = { 
-            "endDate": start_date
+            "endDate": start_date,
+            "updatedAt": current_date
         }
         // Set the id of the current benchmark (if one has been set)
         const currentBenchmarkId = this.props.product.benchmarksByProductId.nodes[0] ? this.props.product.benchmarksByProductId.nodes[this.props.product.benchmarksByProductId.nodes.length-1].rowId : null;
