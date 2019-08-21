@@ -6,7 +6,6 @@ schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a 
 table_user [schema_ggircs_portal] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
 table_form_json [schema_ggircs_portal] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
 table_form_result [schema_ggircs_portal table_form_json table_user] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
-table_product_benchmark [schema_ggircs_portal] 2019-08-20T18:27:56Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # add through table product_benchmark linking product and benchmark
 table_product [schema_ggircs_portal] 2019-08-06T20:15:37Z Hamza Javed <hamza@button.is> # A table for adding products (for benchmarks)
 table_benchmark [table_product] 2019-08-06T20:25:30Z Hamza Javed <hamza@button.is> # A table for Benchmarks and Eligibility Thresholds for products
 view_ciip_contact [table_form_result] 2019-08-19T21:59:40Z Hamza Javed <hamza@button.is> # Add view for contact details of applicant

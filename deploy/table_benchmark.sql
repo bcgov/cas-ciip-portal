@@ -11,7 +11,9 @@ create table ggircs_portal.benchmark (
   start_date TIMESTAMP WITH TIME ZONE,
   end_date TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  created_by varchar(1000)
+  created_by varchar(1000),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_by varchar(1000)
 );
 
 create unique index benchmark_id_uindex
@@ -29,6 +31,8 @@ comment on column ggircs_portal.benchmark.start_date is 'The date when this benc
 comment on column ggircs_portal.benchmark.end_date is 'The date when this benchmark became/becomes inactive';
 comment on column ggircs_portal.benchmark.created_at is 'Creation date of row';
 comment on column ggircs_portal.benchmark.created_by is 'Creator of row';
+comment on column ggircs_portal.benchmark.updated_at is 'Update date of row';
+comment on column ggircs_portal.benchmark.updated_by is 'Creator of row update';
 
 
 COMMIT;

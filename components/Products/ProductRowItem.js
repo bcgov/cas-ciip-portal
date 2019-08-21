@@ -69,7 +69,6 @@ class ProductRowItem extends Component {
     toggleArchived = (event) => {
       event.preventDefault();
       event.stopPropagation();
-      this.props.product.state === 'archived' ? alert(`Restored ${this.props.product.rowId}`) : alert(`Archived ${this.props.product.rowId}`);
       const toggleArchived = this.props.product.state === 'archived' ? false : true;
       const saveVariables =
           {
@@ -89,14 +88,14 @@ class ProductRowItem extends Component {
           {
               mutation: saveMutation,
               variables: saveVariables,
-              onCompleted: (response, errors) => {
+              onCompleted: async (response, errors) => {
                   console.log(response);
-                  this.createProductFromRef.current.reset();
+                  await this.editProduct();
+                  window.location.reload();
               },
               onError: err => console.error(err),
           },
       );
-      window.location.reload();
     }
 
     getBenchmark = async (productId) => {
