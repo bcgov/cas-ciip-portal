@@ -48,6 +48,7 @@ class ProductCreator extends Component {
               onError: err => console.error(err),
           },
       );
+      window.location.reload();
   }
 
     render() {

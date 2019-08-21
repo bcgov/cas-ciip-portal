@@ -1,7 +1,7 @@
 import React ,{ Component } from 'react';
 import ReactDOM from 'react-dom';
 import propTypes from 'prop-types';
-import {graphql, commitMutation} from "react-relay";
+import {graphql, commitMutation, fetchQuery} from "react-relay";
 import {Form, Button, ButtonGroup, Col, Row} from 'react-bootstrap';
 import initEnvironment from '../../lib/createRelayEnvironment';
 const environment = initEnvironment();
@@ -14,30 +14,11 @@ class ProductRowItem extends Component {
             mode: 'view'
         };
 
-        this.updateBenchmark = graphql`
-            mutation ProductRowItemUpdateBenchmarkMutation ($input: UpdateBenchmarkByRowIdInput!){
-                updateBenchmarkByRowId(input:$input) {
-                  benchmark{
-                    rowId
-                  }
-                }
-            }
-        `;
-
         this.createBenchmark = graphql`
             mutation ProductRowItemBenchmarkMutation ($input: CreateBenchmarkInput!){
                 createBenchmark(input:$input){
                     benchmark{
                         rowId
-                    }
-                }
-            }
-        `;
-        this.updateProduct = graphql`
-            mutation ProductRowItemUpdateProductMutation ($input: UpdateProductByRowIdInput!){
-                updateProductByRowId(input:$input){
-                    product{
-                      rowId
                     }
                 }
             }
@@ -51,52 +32,45 @@ class ProductRowItem extends Component {
                 }
             }
         `;
+        this.updateBenchmark = graphql`
+            mutation ProductRowItemUpdateBenchmarkMutation ($input: UpdateBenchmarkByRowIdInput!){
+                updateBenchmarkByRowId(input:$input) {
+                    benchmark{
+                        rowId
+                    }
+                }
+            }
+        `;
+
+        this.getBenchmarkByProductId = graphql`
+            query ProductRowItemBenchmarkQuery($condition: BenchmarkCondition) {
+                allBenchmarks(condition:$condition){
+                    nodes{
+                      id
+                      rowId
+                      productId
+                      benchmark
+                      eligibilityThreshold
+                    }
+                }
+            }
+        `;
     }
 
     // Toggle the 'archived' value of a Product
     toggleArchived = (event) => {
       event.preventDefault();
       event.stopPropagation();
-      this.props.product.archived ? alert(`Restored ${this.props.product.rowId}`) : alert(`Archived ${this.props.product.rowId}`);
-      const toggleArchived = this.props.product.archived ? false : true;
-      const saveVariables =
-            {
-                "input": {
-                    "productPatch": {
-                        "rowId": this.props.product.rowId,
-                        "name": this.props.product.name,
-                        "description": this.props.product.description,
-                        "archived": toggleArchived
-                    },
-                    "rowId": this.props.product.rowId,
-                }
-            };
-        const saveMutation = this.updateProduct;
-        commitMutation(
-          environment,
-          {
-              mutation: saveMutation,
-              variables: saveVariables,
-              onCompleted: (response, errors) => {
-                  console.log(response);
-              },
-              onError: err => console.error(err),
-          },
-      );
-      window.location.reload();
-    }
-
-    saveProduct = (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      console.log('here')
+      this.props.product.state === 'archived' ? alert(`Restored ${this.props.product.rowId}`) : alert(`Archived ${this.props.product.rowId}`);
+      const toggleArchived = this.props.product.state === 'archived' ? false : true;
       const saveVariables =
           {
               "input": {
                   "product": {
-                    "name": ReactDOM.findDOMNode(this.refs.product_name).value,
-                    "description": ReactDOM.findDOMNode(this.refs.product_description).value,
-                    "archived": false
+                    "name": this.props.product.name,
+                    "description": this.props.product.description,
+                    "state": toggleArchived ? 'archived' : 'restored',
+                    "parent": [this.props.product.rowId]
                   }
               }
           };
@@ -109,31 +83,76 @@ class ProductRowItem extends Component {
               variables: saveVariables,
               onCompleted: (response, errors) => {
                   console.log(response);
-                  alert("Product Created");
                   this.createProductFromRef.current.reset();
+              },
+              onError: err => console.error(err),
+          },
+      );
+      window.location.reload();
+    }
 
-                  const updateBenchmark = this.updateBenchmark;
-                  const newProductId = response.data.createProduct.product.rowId;
-                  updateBenchmarkVariables =
-                      {
-                          "input": {
-                            "rowId": this.props.product.rowId,
-                            "benchmarkPatch": {
-                                "productId": newProductId
-                            }
-                          }
-                      }
-                  commitMutation(
-                    environment,
-                    {
-                        mutation: updateBenchmark,
-                        variables: updateBenchmarkVariables,
-                        onCompleted: (response, errors) => {
-                            console.log(response);
-                        },
-                        onError: err => console.error(err),
-                    },
-                );
+    getBenchmark = async (productId) => {
+        console.log(productId)
+        const getBenchmarkVariables = 
+            {
+                "condition": {
+                    "productId": productId
+                }
+            }
+        const data = await fetchQuery(environment, this.getBenchmarkByProductId, getBenchmarkVariables)
+        return data
+    }
+
+    editBenchmark = (benchmarkRowId, newProductId) => {
+        console.log(newProductId)
+        const saveMutation = this.updateBenchmark;
+        const updateBenchmarkVariables =
+            {
+                "input": {
+                    "rowId": benchmarkRowId,
+                    "benchmarkPatch": {
+                        "productId": newProductId
+                    }
+                }
+            };
+        commitMutation(
+            environment,
+            {
+                mutation: saveMutation,
+                variables: updateBenchmarkVariables,
+                onCompleted: (response, errors) => {
+                    console.log(response);
+                },
+                onError: err => console.error(err),
+            },
+        );
+    };
+
+    saveProduct = async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const saveVariables =
+          {
+              "input": {
+                  "product": {
+                    "name": ReactDOM.findDOMNode(this.refs.product_name).value,
+                    "description": ReactDOM.findDOMNode(this.refs.product_description).value,
+                    "state": 'redefined',
+                    "parent": [this.props.product.rowId]
+                  }
+              }
+          };
+
+      const saveMutation = this.createProduct;
+      commitMutation(
+          environment,
+          {
+              mutation: saveMutation,
+              variables: saveVariables,
+              onCompleted: async (response, errors) => {
+                  console.log(response);
+                  const benchmarkResult = await this.getBenchmark(this.props.product.rowId);
+                  this.editBenchmark(benchmarkResult.allBenchmarks.nodes[0].rowId, response.createProduct.product.rowId);
               },
               onError: err => console.error(err),
           },
@@ -144,13 +163,18 @@ class ProductRowItem extends Component {
     saveBenchmark = (event) => {
         event.preventDefault();
         event.stopPropagation();
+        const date = new Date().toUTCString();
         let saveVariables =
             {
                 "input": {
                     "benchmark": {
                         "productId": this.props.product.rowId,
                         "benchmark": parseFloat(event.target.benchmark.value),
-                        "eligibilityThreshold": parseFloat(event.target.eligibility_threshold.value)
+                        "eligibilityThreshold": parseFloat(event.target.eligibility_threshold.value),
+                        "startDate": date,
+                        "endDate": null,
+                        "createdAt": date,
+                        "createdBy": 'Admin'
                     }
                 }
             }
@@ -163,7 +187,6 @@ class ProductRowItem extends Component {
                 variables: saveVariables,
                 onCompleted: (response, errors) => {
                     console.log(response);
-                    alert("Benchmark Created");
                 },
                 onError: err => console.error(err),
             },
@@ -188,9 +211,9 @@ class ProductRowItem extends Component {
                            this.props.product.benchmarksByProductId.nodes[this.props.product.benchmarksByProductId.nodes.length-1]
                             : {benchmark:'', eligibilityThreshold:''}
         // Archived logic
-        const background = this.props.product.archived ? 'lightGrey' : '';
-        const buttonVariant = this.props.product.archived ? 'success' : 'warning';
-        const archiveRestore = this.props.product.archived ? 'Restore' : 'Archive';
+        const background = this.props.product.state === 'archived' ? 'lightGrey' : '';
+        const buttonVariant = this.props.product.state === 'archived' ? 'success' : 'warning';
+        const archiveRestore = this.props.product.state === 'archived' ? 'Restore' : 'Archive';
 
         return(
             <React.Fragment>
@@ -205,7 +228,7 @@ class ProductRowItem extends Component {
                             <small>{product.description}</small>
                         </Col>
                         <Col md={1}>
-                            <Form.Label><small>Archived:</small> {product.archived ? 'true': 'false'}</Form.Label>
+                            <Form.Label><small>Archived:</small> {product.state === 'archived' ? 'true': 'false'}</Form.Label>
                         </Col>
                         <Col md={1} style={{textAlign:'right'}}>
                           <Button style={{width:'100%'}} onClick={this.toggleBenchmarkMode}>Edit</Button>
@@ -240,7 +263,7 @@ class ProductRowItem extends Component {
                                       placeholder={product.description} defaultValue={product.description} ref='product_description' />
                         </Form.Group>
                         <Form.Group as={Col} md="2">
-                        <Form.Label><small>Archived:</small> {product.archived ? 'true': 'false'}</Form.Label>
+                        <Form.Label><small>Archived:</small> {product.state === 'archived' ? 'true': 'false'}</Form.Label>
                         </Form.Group>
                         <Form.Group as={Col} md="2">
                             <Form.Label><small>Benchmark:</small> {benchmarks.benchmark}</Form.Label>
@@ -263,7 +286,7 @@ class ProductRowItem extends Component {
                             <small>{product.description}</small>
                         </Form.Group>
                         <Form.Group as={Col} md="1">
-                            <Form.Label><small>Archived:</small> {product.archived ? 'true': 'false'}</Form.Label>
+                            <Form.Label><small>Archived:</small> {product.state === 'archived' ? 'true': 'false'}</Form.Label>
                         </Form.Group>
                         <Form.Group as={Col} md="1" style={{textAlign:"right"}}>
                             <ButtonGroup vertical style={{width:'100%', marginTop: 10, marginBotton: 5}}>
