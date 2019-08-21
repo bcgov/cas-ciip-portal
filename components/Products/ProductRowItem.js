@@ -6,6 +6,10 @@ import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 import initEnvironment from '../../lib/createRelayEnvironment';
 const environment = initEnvironment();
 
+
+// TODO: create conflict logic & alerts:
+// Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
+//                   and an admin attempts to add another benchmark that will be considered current, do not create the benchmark and alert the user
 class ProductRowItem extends Component {
 
     constructor(props) {
@@ -93,6 +97,7 @@ class ProductRowItem extends Component {
               variables: saveVariables,
               onCompleted: async (response, errors) => {
                   console.log(response);
+                  // TODO: replace getBenchmark with get current benchmark logic from product props
                   const benchmarkResult = await this.getBenchmark(this.props.product.rowId);
                   const benchmarkPatch = {
                       "productId": response.createProduct.product.rowId
