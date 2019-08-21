@@ -37,7 +37,7 @@ class FormLoader extends Component {
         let mutation = this.createFormResult;
 
         commitMutation(
-            this.props.environment,
+            environment,
             {
                 mutation,
                 variables,
