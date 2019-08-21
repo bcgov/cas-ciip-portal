@@ -77,7 +77,7 @@ class ProductRowItem extends Component {
                   "product": {
                     "name": this.props.product.name,
                     "description": this.props.product.description,
-                    "state": toggleArchived ? 'archived' : 'restored',
+                    "state": toggleArchived ? 'archived' : 'active',
                     "parent": [this.props.product.rowId]
                   }
               }
@@ -168,7 +168,7 @@ class ProductRowItem extends Component {
                   "product": {
                     "name": ReactDOM.findDOMNode(this.refs.product_name).value,
                     "description": ReactDOM.findDOMNode(this.refs.product_description).value,
-                    "state": 'redefined',
+                    "state": 'active',
                     "parent": [this.props.product.rowId]
                   }
               }
@@ -183,13 +183,13 @@ class ProductRowItem extends Component {
               onCompleted: async (response, errors) => {
                   console.log(response);
                   const benchmarkResult = await this.getBenchmark(this.props.product.rowId);
-                  this.editProduct();
-                  this.editBenchmark(benchmarkResult.allBenchmarks.nodes[0].rowId, response.createProduct.product.rowId);
+                  await this.editProduct();
+                  await this.editBenchmark(benchmarkResult.allBenchmarks.nodes[0].rowId, response.createProduct.product.rowId);
+                  window.location.reload();
               },
               onError: err => console.error(err),
           },
       );
-      window.location.reload();
   }
 
     saveBenchmark = (event) => {
