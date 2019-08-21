@@ -22,6 +22,9 @@ type Benchmark implements Node {
   """The date when this benchmark became/becomes inactive"""
   endDate: Datetime
 
+  """Boolean indicating archived status"""
+  archived: Boolean
+
   """Creation date of row"""
   createdAt: Datetime
 
@@ -61,6 +64,9 @@ input BenchmarkCondition {
   """Checks for equality with the object’s `endDate` field."""
   endDate: Datetime
 
+  """Checks for equality with the object’s `archived` field."""
+  archived: Boolean
+
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -93,6 +99,9 @@ input BenchmarkInput {
 
   """The date when this benchmark became/becomes inactive"""
   endDate: Datetime
+
+  """Boolean indicating archived status"""
+  archived: Boolean
 
   """Creation date of row"""
   createdAt: Datetime
@@ -128,6 +137,9 @@ input BenchmarkPatch {
 
   """The date when this benchmark became/becomes inactive"""
   endDate: Datetime
+
+  """Boolean indicating archived status"""
+  archived: Boolean
 
   """Creation date of row"""
   createdAt: Datetime
@@ -183,6 +195,8 @@ enum BenchmarksOrderBy {
   START_DATE_DESC
   END_DATE_ASC
   END_DATE_DESC
+  ARCHIVED_ASC
+  ARCHIVED_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC

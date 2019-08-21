@@ -67,22 +67,22 @@ class ProductRowItem extends Component {
 
     // Toggle the 'archived' value of a Product
     toggleArchived = (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const toggleArchived = this.props.product.state === 'archived' ? false : true;
-      const saveVariables =
-          {
-              "input": {
-                  "product": {
-                    "name": this.props.product.name,
-                    "description": this.props.product.description,
-                    "state": toggleArchived ? 'archived' : 'active',
-                    "parent": [this.props.product.rowId],
-                    "updatedAt": new Date().toUTCString(),
-                    "updatedBy": 'Admin'
-                  }
-              }
-          };
+        event.preventDefault();
+        event.stopPropagation();
+        const toggleArchived = this.props.product.state === 'archived' ? false : true;
+        const saveVariables =
+            {
+                "input": {
+                    "product": {
+                      "name": this.props.product.name,
+                      "description": this.props.product.description,
+                      "state": toggleArchived ? 'archived' : 'active',
+                      "parent": [this.props.product.rowId],
+                      "updatedAt": new Date().toUTCString(),
+                      "updatedBy": 'Admin'
+                    }
+                }
+            };
 
       const saveMutation = this.createProduct;
       commitMutation(
@@ -105,6 +105,26 @@ class ProductRowItem extends Component {
       );
     }
 
+    // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation...maybe should be named differently?)
+    toggleBenchmarkArchived = async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        let currentBenchmark;
+        if (this.props.product.benchmarksByProductId.nodes[0]) {
+            this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
+                if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()))
+                    currentBenchmark = benchmark.rowId
+            });
+        }
+        const benchmarkPatch = {
+          "archived": true
+        }
+
+        await this.editBenchmark(currentBenchmark, benchmarkPatch);
+        window.location.reload();
+    }
+
+    // Get a benchmark by its productId
     getBenchmark = async (productId) => {
         console.log(productId)
         const getBenchmarkVariables = 
@@ -117,6 +137,7 @@ class ProductRowItem extends Component {
         return data
     }
 
+    // Edit a benchmark
     editBenchmark = (benchmarkRowId, benchmarkPatch) => {
         const saveMutation = this.updateBenchmark;
         const updateBenchmarkVariables =
@@ -139,6 +160,7 @@ class ProductRowItem extends Component {
         );
     };
 
+    // Edit a product
     editProduct = () => {
         const saveMutation = this.updateProduct;
         const updateProductVariables =
@@ -164,6 +186,7 @@ class ProductRowItem extends Component {
         );
     };
 
+    // Save a product
     saveProduct = async (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -182,6 +205,14 @@ class ProductRowItem extends Component {
           };
 
       const saveMutation = this.createProduct;
+      // Get the current Benchmark -- calculated by which benchmark is not null and current date within the start & end dates
+      let currentBenchmark;
+        if (this.props.product.benchmarksByProductId.nodes[0]) {
+            this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
+                if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()) && !benchmark.archived)
+                    currentBenchmark = benchmark.rowId
+            });
+        }
       commitMutation(
           environment,
           {
@@ -189,12 +220,13 @@ class ProductRowItem extends Component {
               variables: saveVariables,
               onCompleted: async (response, errors) => {
                   console.log(response);
-                  const benchmarkResult = await this.getBenchmark(this.props.product.rowId);
                   const benchmarkPatch = {
                       "productId": response.createProduct.product.rowId
                   }
+                  // update state && updatedAt fields of previous product
                   await this.editProduct();
-                  await this.editBenchmark(benchmarkResult.allBenchmarks.nodes[0].rowId, benchmarkPatch);
+                  // attach the previous Product's current benchmark to the new product
+                  await this.editBenchmark(currentBenchmark, benchmarkPatch);
                   window.location.reload();
               },
               onError: err => console.error(err),
@@ -202,6 +234,7 @@ class ProductRowItem extends Component {
       );
   }
 
+    // Save a new benchmark
     saveBenchmark = async (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -246,12 +279,13 @@ class ProductRowItem extends Component {
             },
         );
     }
-
+    // Toggle enabling of editing products
     toggleProductMode = () => {
         console.log('ProductRowItem > Edit clicked');
         this.state.mode === 'view' || this.state.mode === 'benchmark' ? this.setState({ mode : 'product' }) : this.setState( { mode: 'view' })
     };
 
+    // Toggle enabling of editing benchmarks
     toggleBenchmarkMode = () => {
       console.log('ProductRowItem > Edit clicked');
       this.state.mode === 'view' || this.state.mode === 'product' ? this.setState({ mode : 'benchmark' }) : this.setState( { mode: 'view' })
@@ -260,19 +294,19 @@ class ProductRowItem extends Component {
     render(){
 
         const product = this.props.product;
+        // Get the current benchmark for the product
         let benchmarks
-
         if (this.props.product.benchmarksByProductId.nodes[0]) {
-            // console.log(this.props.product.benchmarksByProductId.nodes[0])
             this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
-                if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()))
+                if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()) && !benchmark.archived)
                     benchmarks = benchmark;
             });
             if (!benchmarks) benchmarks = {benchmark:'', eligibilityThreshold:''};
         }
         else
            benchmarks = {benchmark:'', eligibilityThreshold:''};
-        // Archived logic
+
+        // Archived logic to determine display values
         const background = this.props.product.state === 'archived' ? 'lightGrey' : '';
         const buttonVariant = this.props.product.state === 'archived' ? 'success' : 'warning';
         const archiveRestore = this.props.product.state === 'archived' ? 'Restore' : 'Archive';
@@ -358,6 +392,7 @@ class ProductRowItem extends Component {
                             <ButtonGroup vertical style={{width:'100%', marginTop: 10, marginBotton: 5}}>
                               <Button style={{marginTop:"8px", marginRight:"10px"}} type="submit">Save</Button>
                               <Button variant="secondary" style={{marginTop:"8px"}} onClick={this.toggleBenchmarkMode}>Cancel</Button>
+                              <Button style={{marginTop: '8px', marginRight:"10px"}} variant={buttonVariant} onClick={this.toggleBenchmarkArchived}>{archiveRestore}</Button>
                             </ButtonGroup>
                         </Form.Group>
                         <Form.Group as={Col} md="3" controlId="benchmark">
