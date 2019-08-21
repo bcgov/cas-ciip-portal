@@ -110,15 +110,13 @@ class ProductRowItem extends Component {
         return data
     }
 
-    editBenchmark = (benchmarkRowId, newProductId) => {
+    editBenchmark = (benchmarkRowId, benchmarkPatch) => {
         const saveMutation = this.updateBenchmark;
         const updateBenchmarkVariables =
             {
                 "input": {
                     "rowId": benchmarkRowId,
-                    "benchmarkPatch": {
-                        "productId": newProductId
-                    }
+                    benchmarkPatch
                 }
             };
         commitMutation(
@@ -161,6 +159,7 @@ class ProductRowItem extends Component {
     saveProduct = async (event) => {
       event.preventDefault();
       event.stopPropagation();
+      const date = new Date().toUTCString();
       const saveVariables =
           {
               "input": {
@@ -168,7 +167,9 @@ class ProductRowItem extends Component {
                     "name": ReactDOM.findDOMNode(this.refs.product_name).value,
                     "description": ReactDOM.findDOMNode(this.refs.product_description).value,
                     "state": 'active',
-                    "parent": [this.props.product.rowId]
+                    "parent": [this.props.product.rowId],
+                    "updatedAt": date,
+                    "updatedBy": 'Admin'
                   }
               }
           };
@@ -182,8 +183,11 @@ class ProductRowItem extends Component {
               onCompleted: async (response, errors) => {
                   console.log(response);
                   const benchmarkResult = await this.getBenchmark(this.props.product.rowId);
+                  const benchmarkPatch = {
+                      "productId": response.createProduct.product.rowId
+                  }
                   await this.editProduct();
-                  await this.editBenchmark(benchmarkResult.allBenchmarks.nodes[0].rowId, response.createProduct.product.rowId);
+                  await this.editBenchmark(benchmarkResult.allBenchmarks.nodes[0].rowId, benchmarkPatch);
                   window.location.reload();
               },
               onError: err => console.error(err),
@@ -191,21 +195,28 @@ class ProductRowItem extends Component {
       );
   }
 
-    saveBenchmark = (event) => {
+    saveBenchmark = async (event) => {
         event.preventDefault();
         event.stopPropagation();
-        const date = new Date().toUTCString();
+        // current-_date for updatedAt field
+        const current_date = new Date().toUTCString();
+        // start_date received from user, defined in UI
+        const start_date = new Date(ReactDOM.findDOMNode(this.refs.start_date).value).toUTCString();
+        const benchmarkPatch = { 
+            "endDate": start_date
+        }
+        // Set the id of the current benchmark (if one has been set)
+        const currentBenchmarkId = this.props.product.benchmarksByProductId.nodes[0] ? this.props.product.benchmarksByProductId.nodes[this.props.product.benchmarksByProductId.nodes.length-1].rowId : null;
         let saveVariables =
             {
                 "input": {
                     "benchmark": {
                         "productId": this.props.product.rowId,
-                        "benchmark": parseFloat(event.target.benchmark.value),
-                        "eligibilityThreshold": parseFloat(event.target.eligibility_threshold.value),
-                        "startDate": date,
-                        "endDate": null,
-                        "createdAt": date,
-                        "createdBy": 'Admin'
+                        "benchmark": parseFloat(ReactDOM.findDOMNode(this.refs.benchmark).value),
+                        "eligibilityThreshold": parseFloat(ReactDOM.findDOMNode(this.refs.eligibility_threshold).value),
+                        "startDate": start_date,
+                        "updatedAt": current_date,
+                        "updatedBy": 'Admin'
                     }
                 }
             }
@@ -216,13 +227,16 @@ class ProductRowItem extends Component {
             {
                 mutation: saveMutation,
                 variables: saveVariables,
-                onCompleted: (response, errors) => {
+                onCompleted: async (response, errors) => {
                     console.log(response);
+                    // If there was a previously set benchmark, update its end_date
+                    if (currentBenchmarkId)
+                        await this.editBenchmark(currentBenchmarkId, benchmarkPatch)
+                    window.location.reload();
                 },
                 onError: err => console.error(err),
             },
         );
-      window.location.reload();
     }
 
     toggleProductMode = () => {
@@ -238,9 +252,18 @@ class ProductRowItem extends Component {
     render(){
 
         const product = this.props.product;
-        const benchmarks = this.props.product.benchmarksByProductId.nodes[0] ?
-                           this.props.product.benchmarksByProductId.nodes[this.props.product.benchmarksByProductId.nodes.length-1]
-                            : {benchmark:'', eligibilityThreshold:''}
+        let benchmarks
+
+        if (this.props.product.benchmarksByProductId.nodes[0]) {
+            // console.log(this.props.product.benchmarksByProductId.nodes[0])
+            this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
+                if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()))
+                    benchmarks = benchmark;
+            });
+            if (!benchmarks) benchmarks = {benchmark:'', eligibilityThreshold:''};
+        }
+        else
+           benchmarks = {benchmark:'', eligibilityThreshold:''};
         // Archived logic
         const background = this.props.product.state === 'archived' ? 'lightGrey' : '';
         const buttonVariant = this.props.product.state === 'archived' ? 'success' : 'warning';
@@ -266,9 +289,13 @@ class ProductRowItem extends Component {
                         </Col>
                         <Col md={2}>
                             <Form.Label><small>Benchmark:</small> {benchmarks.benchmark}</Form.Label>
+                            <br/>
+                            <Form.Label><small>Start Date:</small> {benchmarks.startDate}</Form.Label>
                         </Col>
                         <Col md={3}>
                             <Form.Label><small>Eligibility Threshold:</small> {benchmarks.eligibilityThreshold}</Form.Label>
+                            <br/>
+                            <Form.Label><small>End Date:</small> {benchmarks.endDate}</Form.Label>
                         </Col>
                     </Row>
                 </div>
@@ -310,7 +337,7 @@ class ProductRowItem extends Component {
             <div key={`edit-bm${this.props.product.rowId}`} id="edit-benchmark"  className={ this.state.mode }>
                 <Form onSubmit={this.saveBenchmark} key={this.props.product.rowId}>
                     <Form.Row>
-                    <Form.Group as={Col} md="1">
+                        <Form.Group as={Col} md="1">
                         </Form.Group>
                         <Form.Group as={Col} md="4">
                             <h5>{product.name}</h5>
@@ -325,15 +352,16 @@ class ProductRowItem extends Component {
                               <Button variant="secondary" style={{marginTop:"8px"}} onClick={this.toggleBenchmarkMode}>Cancel</Button>
                             </ButtonGroup>
                         </Form.Group>
-                        <Form.Group as={Col} md="2" controlId="benchmark">
+                        <Form.Group as={Col} md="3" controlId="benchmark">
                             <Form.Label>Benchmark</Form.Label>
                             <Form.Control required="required" type="number" step="0.01"
-                                          placeholder={benchmarks.benchmark} defaultValue={benchmarks.benchmark} />
-                        </Form.Group>
-                        <Form.Group as={Col} md="3" controlId="eligibility_threshold">
+                                          placeholder={benchmarks.benchmark} defaultValue={benchmarks.benchmark} ref='benchmark'/>
                             <Form.Label>Eligibility Threshold</Form.Label>
                             <Form.Control required="required" type="number" step="0.01"
-                                          placeholder={benchmarks.eligibilityThreshold} defaultValue={benchmarks.eligibilityThreshold} />
+                                          placeholder={benchmarks.eligibilityThreshold} defaultValue={benchmarks.eligibilityThreshold} ref='eligibility_threshold'/>
+                            <Form.Label>Start Date</Form.Label>
+                            <Form.Control required="required" type="string" step="0.01"
+                                          placeholder='dd/mm/yyyy' ref='start_date'/>
                         </Form.Group>
                     </Form.Row>
                 </Form>

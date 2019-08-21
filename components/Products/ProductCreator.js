@@ -23,6 +23,7 @@ class ProductCreator extends Component {
     saveProduct = (event) => {
       event.preventDefault();
       event.stopPropagation();
+      const date = new Date().toUTCString();
       const saveVariables =
           {
               "input": {
@@ -30,7 +31,9 @@ class ProductCreator extends Component {
                       "name": event.target.product_name.value,
                       "description": event.target.product_description.value,
                       "state": 'created',
-                      "parent": [null]
+                      "parent": [null],
+                      "createdAt": date,
+                      "createdBy": 'Admin'
                   }
               }
           };

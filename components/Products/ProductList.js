@@ -40,8 +40,11 @@ class ProductList extends Component {
                               parent
                               benchmarksByProductId{
                                 nodes{
+                                  rowId
                                   benchmark
                                   eligibilityThreshold
+                                  startDate
+                                  endDate
                                 }
                             }
                         }
