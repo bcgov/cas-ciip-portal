@@ -16,7 +16,7 @@ class ProductRowItem extends Component {
         super(props);
         this.state = {
             mode: 'view',
-            confirmationIsOpen: false
+            confirmationModalOpen: false
         };
 
         this.createBenchmark = graphql`
@@ -114,7 +114,7 @@ class ProductRowItem extends Component {
     // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation.)
     // The button is red && says 'Delete'. The value is not deleted, it is archived in the database, but is not recoverable through the UI
     toggleBenchmarkArchived = async (event) => {
-      this.setState({confirmationIsOpen: false})
+      this.setState({confirmationModalOpen: false})
         event.preventDefault();
         event.stopPropagation();
         let currentBenchmark;
@@ -300,11 +300,11 @@ class ProductRowItem extends Component {
     };
 
     openConfirmationWindow = () => {
-      this.setState({ confirmationIsOpen: true })
+      this.setState({ confirmationModalOpen: true })
     };
 
     closeConfirmationWindow = () => {
-      this.setState({ confirmationIsOpen: false })
+      this.setState({ confirmationModalOpen: false })
     };
 
     render(){
@@ -393,7 +393,7 @@ class ProductRowItem extends Component {
             </div>
 
             <div key={`edit-bm${this.props.product.rowId}`} id="edit-benchmark"  className={ this.state.mode }>
-            {this.state.confirmationIsOpen && (
+            {this.state.confirmationModalOpen && (
                   <Modal.Dialog>
                       <Modal.Header>
                           <Modal.Title>Are You Sure?</Modal.Title>
@@ -406,7 +406,7 @@ class ProductRowItem extends Component {
                           <button onClick={this.toggleBenchmarkArchived}>Yes</button>
                       </Modal.Footer>
                   </Modal.Dialog>
-                )}{!this.state.confirmationIsOpen && (
+                )}{!this.state.confirmationModalOpen && (
                 <Form onSubmit={this.saveBenchmark} key={this.props.product.rowId}>
                     <Form.Row>
                         <Form.Group as={Col} md="1">
