@@ -2,7 +2,7 @@ import React ,{ Component } from 'react';
 import ReactDOM from 'react-dom';
 import propTypes from 'prop-types';
 import {graphql, commitMutation, fetchQuery} from "react-relay";
-import {Form, Button, ButtonGroup, Col, Row} from 'react-bootstrap';
+import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 import initEnvironment from '../../lib/createRelayEnvironment';
 const environment = initEnvironment();
 
@@ -11,7 +11,8 @@ class ProductRowItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mode: 'view'
+            mode: 'view',
+            confirmationIsOpen: false
         };
 
         this.createBenchmark = graphql`
@@ -105,8 +106,10 @@ class ProductRowItem extends Component {
       );
     }
 
-    // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation...maybe should be named differently?)
+    // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation.)
+    // The button is red && says 'Delete'. The value is not deleted, it is archived in the database, but is not recoverable through the UI
     toggleBenchmarkArchived = async (event) => {
+      this.setState({confirmationIsOpen: false})
         event.preventDefault();
         event.stopPropagation();
         let currentBenchmark;
@@ -291,6 +294,14 @@ class ProductRowItem extends Component {
       this.state.mode === 'view' || this.state.mode === 'product' ? this.setState({ mode : 'benchmark' }) : this.setState( { mode: 'view' })
     };
 
+    openConfirmationWindow = () => {
+      this.setState({ confirmationIsOpen: true })
+    };
+
+    closeConfirmationWindow = () => {
+      this.setState({ confirmationIsOpen: false })
+    };
+
     render(){
 
         const product = this.props.product;
@@ -377,6 +388,20 @@ class ProductRowItem extends Component {
             </div>
 
             <div key={`edit-bm${this.props.product.rowId}`} id="edit-benchmark"  className={ this.state.mode }>
+            {this.state.confirmationIsOpen && (
+                  <Modal.Dialog>
+                      <Modal.Header>
+                          <Modal.Title>Are You Sure?</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body style={{color:"red"}}>
+                          This is a destructive action (benchmark will be destroyed)
+                      </Modal.Body>
+                      <Modal.Footer>
+                          <button onClick={this.closeConfirmationWindow}>No</button>
+                          <button onClick={this.toggleBenchmarkArchived}>Yes</button>
+                      </Modal.Footer>
+                  </Modal.Dialog>
+                )}{!this.state.confirmationIsOpen && (
                 <Form onSubmit={this.saveBenchmark} key={this.props.product.rowId}>
                     <Form.Row>
                         <Form.Group as={Col} md="1">
@@ -392,7 +417,7 @@ class ProductRowItem extends Component {
                             <ButtonGroup vertical style={{width:'100%', marginTop: 10, marginBotton: 5}}>
                               <Button style={{marginTop:"8px", marginRight:"10px"}} type="submit">Save</Button>
                               <Button variant="secondary" style={{marginTop:"8px"}} onClick={this.toggleBenchmarkMode}>Cancel</Button>
-                              <Button style={{marginTop: '8px', marginRight:"10px"}} variant={buttonVariant} onClick={this.toggleBenchmarkArchived}>{archiveRestore}</Button>
+                              <Button style={{marginTop: '8px', marginRight:"10px"}} variant='danger' onClick={this.openConfirmationWindow}>Delete</Button>
                             </ButtonGroup>
                         </Form.Group>
                         <Form.Group as={Col} md="3" controlId="benchmark">
@@ -408,6 +433,7 @@ class ProductRowItem extends Component {
                         </Form.Group>
                     </Form.Row>
                 </Form>
+                )}
                 <hr/>
             </div>
                 <style jsx>{`
@@ -431,7 +457,13 @@ ProductRowItem.propTypes = {
         rowId: propTypes.number,
         name: propTypes.string,
         description: propTypes.string,
+        state: propTypes.string,
+        parent: propTypes.array,
         archived: propTypes.boolean,
+        createdAt: propTypes.date,
+        createdBy: propTypes.string,
+        updatedAt: propTypes.date,
+        updatedBy: propTypes.string,
         benchmarksByProductId: propTypes.shape({
             nodes: propTypes.array
       })
