@@ -41,7 +41,15 @@ class ProductRowItem extends Component {
                 }
             }
         `;
-
+        this.updateProduct = graphql`
+            mutation ProductRowItemUpdateProductMutation ($input: UpdateProductByRowIdInput!){
+                updateProductByRowId(input:$input) {
+                    product{
+                        rowId
+                    }
+                }
+            }
+        `;
         this.getBenchmarkByProductId = graphql`
             query ProductRowItemBenchmarkQuery($condition: BenchmarkCondition) {
                 allBenchmarks(condition:$condition){
@@ -104,7 +112,6 @@ class ProductRowItem extends Component {
     }
 
     editBenchmark = (benchmarkRowId, newProductId) => {
-        console.log(newProductId)
         const saveMutation = this.updateBenchmark;
         const updateBenchmarkVariables =
             {
@@ -120,6 +127,30 @@ class ProductRowItem extends Component {
             {
                 mutation: saveMutation,
                 variables: updateBenchmarkVariables,
+                onCompleted: (response, errors) => {
+                    console.log(response);
+                },
+                onError: err => console.error(err),
+            },
+        );
+    };
+
+    editProduct = () => {
+        const saveMutation = this.updateProduct;
+        const updateProductVariables =
+            {
+                "input": {
+                    "rowId": this.props.product.rowId,
+                    "productPatch": {
+                        "state": "deprecated"
+                    }
+                }
+            };
+        commitMutation(
+            environment,
+            {
+                mutation: saveMutation,
+                variables: updateProductVariables,
                 onCompleted: (response, errors) => {
                     console.log(response);
                 },
@@ -152,6 +183,7 @@ class ProductRowItem extends Component {
               onCompleted: async (response, errors) => {
                   console.log(response);
                   const benchmarkResult = await this.getBenchmark(this.props.product.rowId);
+                  this.editProduct();
                   this.editBenchmark(benchmarkResult.allBenchmarks.nodes[0].rowId, response.createProduct.product.rowId);
               },
               onError: err => console.error(err),
