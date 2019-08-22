@@ -9,7 +9,11 @@ const environment = initEnvironment();
 
 // TODO: create conflict logic & alerts:
 // Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
-//                   and an admin attempts to add another benchmark that will be considered current, do not create the benchmark and alert the user
+//                   and an admin attempts to add another benchmark that will be considered current, do not create the benchmark and alert the user.
+//                   This should probably include checks on all benchmarks (including future benchmarks that have been defined)
+
+// TODO: Make the benchmark management system better. Currently the UI only shows the current benchmark, there is no way to view benchmarks
+//       that have been created for the future (to supplant the current one), or to see past benchmarks. This can currently only be done in the database
 class ProductRowItem extends Component {
 
     constructor(props) {
@@ -55,19 +59,6 @@ class ProductRowItem extends Component {
                 }
             }
         `;
-        this.getBenchmarkByProductId = graphql`
-            query ProductRowItemBenchmarkQuery($condition: BenchmarkCondition) {
-                allBenchmarks(condition:$condition){
-                    nodes{
-                      id
-                      rowId
-                      productId
-                      benchmark
-                      eligibilityThreshold
-                    }
-                }
-            }
-        `;
     }
 
     getCurrentBenchmark = () => {
@@ -108,7 +99,6 @@ class ProductRowItem extends Component {
               variables: saveVariables,
               onCompleted: async (response, errors) => {
                   console.log(response);
-                  // TODO: replace getBenchmark with get current benchmark logic from product props
                   const benchmarkResult = await this.getBenchmark(this.props.product.rowId);
                   const benchmarkPatch = {
                       "productId": response.createProduct.product.rowId
@@ -135,19 +125,6 @@ class ProductRowItem extends Component {
 
         await this.editBenchmark(currentBenchmark, benchmarkPatch);
         window.location.reload();
-    }
-
-    // Get a benchmark by its productId
-    getBenchmark = async (productId) => {
-        console.log(productId)
-        const getBenchmarkVariables = 
-            {
-                "condition": {
-                    "productId": productId
-                }
-            }
-        const data = await fetchQuery(environment, this.getBenchmarkByProductId, getBenchmarkVariables)
-        return data
     }
 
     // Edit a benchmark
