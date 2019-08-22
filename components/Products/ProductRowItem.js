@@ -1,7 +1,7 @@
 import React ,{ Component } from 'react';
 import ReactDOM from 'react-dom';
 import propTypes from 'prop-types';
-import {graphql, commitMutation, fetchQuery} from "react-relay";
+import {graphql, commitMutation} from "react-relay";
 import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 import initEnvironment from '../../lib/createRelayEnvironment';
 const environment = initEnvironment();
