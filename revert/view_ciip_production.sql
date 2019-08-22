@@ -2,6 +2,6 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+drop view ggircs_portal.ciip_production;
 
 COMMIT;

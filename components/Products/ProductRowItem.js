@@ -61,6 +61,7 @@ class ProductRowItem extends Component {
         `;
     }
 
+    // Get the product's current benchmark
     getCurrentBenchmark = () => {
       let currentBenchmark;
       if (this.props.product.benchmarksByProductId.nodes[0]) {
@@ -195,7 +196,7 @@ class ProductRowItem extends Component {
           };
 
       const saveMutation = this.createProduct;
-      // Get the current Benchmark -- calculated by which benchmark is not null and current date within the start & end dates
+      // Get the current Benchmark -- calculated by which benchmark is not archived and current date within the start & end dates
       const currentBenchmark = this.getCurrentBenchmark();
       commitMutation(
           environment,
