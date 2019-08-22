@@ -333,7 +333,7 @@ class ProductRowItem extends Component {
                 <div style={{background}}>
                     <Row style={{padding: 5}}>
                         <Col md={1} style={{textAlign:'right'}}>
-                          <Button style={{width:'100%'}} onClick={this.toggleProductMode}>Edit</Button>
+                          <Button data-testid='edit-product' style={{width:'100%'}} onClick={this.toggleProductMode}>Edit</Button>
                         </Col>
                         <Col md={4}>
                             <h5>{product.name}</h5>
@@ -343,7 +343,7 @@ class ProductRowItem extends Component {
                             <Form.Label><small>Archived:</small> {product.state === 'archived' ? 'true': 'false'}</Form.Label>
                         </Col>
                         <Col md={1} style={{textAlign:'right'}}>
-                          <Button style={{width:'100%'}} onClick={this.toggleBenchmarkMode}>Edit</Button>
+                          <Button data-testid='edit-benchmark' style={{width:'100%'}} onClick={this.toggleBenchmarkMode}>Edit</Button>
                         </Col>
                         <Col md={2}>
                             <Form.Label><small>Benchmark:</small> {benchmarks.benchmark}</Form.Label>
@@ -365,9 +365,9 @@ class ProductRowItem extends Component {
                     <Form.Row>
                         <Form.Group as={Col} md="1" style={{textAlign:"right"}} controlId="button_group">
                             <ButtonGroup vertical style={{width:'100%', marginTop: 10, marginBotton: 5}}>
-                              <Button style={{marginTop:"8px", marginRight:"10px"}} type="submit">Save</Button>
+                              <Button data-testid='save-product' style={{marginTop:"8px", marginRight:"10px"}} type="submit">Save</Button>
                               <Button variant="secondary" style={{marginTop:"8px"}} onClick={this.toggleProductMode}>Cancel</Button>
-                              <Button style={{marginTop: '8px', marginRight:"10px"}} variant={buttonVariant} onClick={this.toggleArchived}>{archiveRestore}</Button>
+                              <Button data-testid='archive-product' style={{marginTop: '8px', marginRight:"10px"}} variant={buttonVariant} onClick={this.toggleArchived}>{archiveRestore}</Button>
                             </ButtonGroup>
                         </Form.Group>
                         <Form.Group as={Col} md="4" controlId="product_name">
@@ -420,9 +420,9 @@ class ProductRowItem extends Component {
                         </Form.Group>
                         <Form.Group as={Col} md="1" style={{textAlign:"right"}}>
                             <ButtonGroup vertical style={{width:'100%', marginTop: 10, marginBotton: 5}}>
-                              <Button style={{marginTop:"8px", marginRight:"10px"}} type="submit">Save</Button>
+                              <Button data-testid='save-benchmark' style={{marginTop:"8px", marginRight:"10px"}} type="submit">Save</Button>
                               <Button variant="secondary" style={{marginTop:"8px"}} onClick={this.toggleBenchmarkMode}>Cancel</Button>
-                              <Button style={{marginTop: '8px', marginRight:"10px"}} variant='danger' onClick={this.openConfirmationWindow}>Delete</Button>
+                              <Button data-testid='archive-benchmark' style={{marginTop: '8px', marginRight:"10px"}} variant='danger' onClick={this.openConfirmationWindow}>Delete</Button>
                             </ButtonGroup>
                         </Form.Group>
                         <Form.Group as={Col} md="3" controlId="benchmark">
@@ -433,7 +433,7 @@ class ProductRowItem extends Component {
                             <Form.Control required="required" type="number" step="0.01"
                                           placeholder={benchmarks.eligibilityThreshold} defaultValue={benchmarks.eligibilityThreshold} ref='eligibility_threshold'/>
                             <Form.Label>Start Date</Form.Label>
-                            <Form.Control required="required" type="string" step="0.01"
+                            <Form.Control required="required" step="0.01"
                                           placeholder='dd/mm/yyyy' ref='start_date'/>
                         </Form.Group>
                     </Form.Row>

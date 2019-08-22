@@ -1,17 +1,15 @@
 import React from 'react';
 import ProductRowItem from '../../../components/Products/ProductRowItem';
-import { wait, render, fireEvent, getByText } from '@testing-library/react';
+import { wait, render, fireEvent, getByTestId, getByText } from '@testing-library/react';
 import EasyGraphQLTester from 'easygraphql-tester';
 import fs from 'fs';
 import path from 'path';
-import util from 'util';
-
 
 const product =   {
     "rowId": 9,
     "name": "Milk",
     "description": "Sustenance for baby cows",
-    "archived": false,
+    "state": 'active',
     "benchmarksByProductId": {
         "nodes": [
             {
@@ -26,7 +24,7 @@ const archivedProduct =   {
   "rowId": 9,
   "name": "Eggs",
   "description": "Large",
-  "archived": true,
+  "state":'archived',
   "benchmarksByProductId": {
       "nodes": [
           {
@@ -46,44 +44,74 @@ describe('Product Row Item', () => {
         expect(r).toMatchSnapshot();
     });
 
-    it('should toggle to edit when I click edit', () => {
-        const {getByLabelText, getByText, findByRole} = render(<ProductRowItem product={product} />);
-        fireEvent.click(getByText(/Edit/i));
-        expect(getByText('Save')).toBeDefined();
-    });
-
-    it('should make the benchmark editable when I click edit', () => {
-        const {getByLabelText, getByText, findByRole} = render(<ProductRowItem product={product} />);
-        fireEvent.click(getByText(/Edit/i));
-        fireEvent.change(getByLabelText('Benchmark'), { target: { value: 1 } });
-        expect(getByLabelText('Benchmark').value).toEqual('1');
-        expect(getByText('Save').type).toEqual('submit');
+    it('should toggle to product edit when I click edit product button', () => {
+        const {getByLabelText, getByText, findByRole, getByTestId} = render(<ProductRowItem product={product} />);
+        fireEvent.click(getByTestId('edit-product'));
+        expect(getByTestId('save-product')).toBeDefined();
     });
 
     it('should make the product name editable when I click edit', () => {
-        const {getByLabelText, getByText, findByRole} = render(<ProductRowItem product={product} />);
-        fireEvent.click(getByText(/Edit/i));
+        const {getByLabelText, getByText, findByRole, getByTestId} = render(<ProductRowItem product={product} />);
+        fireEvent.click(getByTestId('edit-product'));
         fireEvent.change(getByLabelText('Name'), { target: { value: 'Eggs' } });
         expect(getByLabelText('Name').value).toEqual('Eggs');
-        expect(getByText('Save').type).toEqual('submit');
+        expect(getByTestId('save-product').type).toEqual('submit');
     });
 
     it('should make the product description editable when I click edit', () => {
-        const {getByLabelText, getByText, findByRole} = render(<ProductRowItem product={product} />);
-        fireEvent.click(getByText(/Edit/i));
+        const {getByLabelText, getByText, findByRole, getByTestId} = render(<ProductRowItem product={product} />);
+        fireEvent.click(getByTestId('edit-product'));
         fireEvent.change(getByLabelText('Description'), { target: { value: 'Large' } });
         expect(getByLabelText('Description').value).toEqual('Large');
-        expect(getByText('Save').type).toEqual('submit');
+        expect(getByTestId('save-product').type).toEqual('submit');
     });
 
-    it('should be archivable when not archived', () => {
-        const {getByLabelText, getByText, findByRole} = render(<ProductRowItem product={product} />);
+    it('should be allow products to be archived when active', () => {
+        const {getByLabelText, getByText, findByRole, getByTestId} = render(<ProductRowItem product={product} />);
+        fireEvent.click(getByTestId('edit-product'));
         expect(getByText('Archive')).toBeDefined();
     });
 
-    it('should be restorable when archived', () => {
-      const {getByLabelText, getByText, findByRole} = render(<ProductRowItem product={archivedProduct} />);
+    it('should allow products to be restorable when archived', () => {
+      const {getByLabelText, getByText, findByRole, getByTestId} = render(<ProductRowItem product={archivedProduct} />);
+      fireEvent.click(getByTestId('edit-product'));
       expect(getByText('Restore')).toBeDefined();
+    });
+
+    it('should toggle to benchmark edit when I click edit benchmark button', () => {
+      const {getByLabelText, getByText, findByRole, getByTestId} = render(<ProductRowItem product={product} />);
+      fireEvent.click(getByTestId('edit-benchmark'));
+      expect(getByTestId('save-benchmark')).toBeDefined();
+    });
+
+    it('should make the benchmark editable when I click edit benchmark button', () => {
+        const {getByLabelText, getByText, findByRole, getByTestId} = render(<ProductRowItem product={product} />);
+        fireEvent.click(getByTestId('edit-benchmark'));
+        fireEvent.change(getByLabelText('Benchmark'), { target: { value: 1 } });
+        expect(getByLabelText('Benchmark').value).toEqual('1');
+        expect(getByTestId('save-benchmark').type).toEqual('submit');
+    });
+
+    it('should make the benchmark eligibility threshold editable when I click edit benchmark button', () => {
+      const {getByLabelText, getByText, findByRole, getByTestId} = render(<ProductRowItem product={product} />);
+      fireEvent.click(getByTestId('edit-benchmark'));
+      fireEvent.change(getByLabelText('Eligibility Threshold'), { target: { value: 1 } });
+      expect(getByLabelText('Eligibility Threshold').value).toEqual('1');
+      expect(getByTestId('save-benchmark').type).toEqual('submit');
+    });
+
+    it('should make the benchmark start date editable when I click edit benchmark button', () => {
+      const {getByLabelText, getByText, findByRole, getByTestId} = render(<ProductRowItem product={product} />);
+      fireEvent.click(getByTestId('edit-benchmark'));
+      fireEvent.change(getByLabelText('Start Date'), { target: { value: "1999" } });
+      expect(getByLabelText('Start Date').value).toEqual('1999');
+      expect(getByTestId('save-benchmark').type).toEqual('submit');
+    });
+
+    it('should make the benchmark archivable / deletable when I click edit benchmark button', () => {
+      const {getByLabelText, getByText, findByRole, getByTestId} = render(<ProductRowItem product={product} />);
+      fireEvent.click(getByTestId('edit-benchmark'));
+      expect(getByText('Delete')).toBeDefined();
     });
 });
 
@@ -195,15 +223,15 @@ describe('Mutations', () => {
               "input": {
                 "productPatch": {
                     "description": 'ABC',
-                    "archived": false
-                }
+                    "state": 'archived'
+                },
               }
             });
         } catch(err) {
             error = err;
         }
         expect(error.message)
-        .toEqual(`Variable "$input" got invalid value { productPatch: { description: "ABC", archived: false } }; Field value.rowId of required type Int! was not provided.`);
+        .toEqual(`Variable "$input" got invalid value { productPatch: { description: "ABC", state: "archived" } }; Field value.rowId of required type Int! was not provided.`);
     });
 
       it('Should return rowId if valid', () => {
@@ -214,7 +242,7 @@ describe('Mutations', () => {
                     "rowId": 1,
                     "name": 'ABCDE',
                     "description": 'ABC',
-                    "archived": false
+                    "state": 'archived'
                   }
               }
           });
