@@ -45,7 +45,8 @@ class ProductList extends Component {
                                   eligibilityThreshold
                                   startDate
                                   endDate
-                                  archived
+                                  deletedAt
+                                  deletedBy
                                 }
                             }
                         }

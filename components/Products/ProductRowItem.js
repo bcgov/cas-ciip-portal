@@ -66,8 +66,9 @@ class ProductRowItem extends Component {
       let currentBenchmark;
       if (this.props.product.benchmarksByProductId.nodes[0]) {
         this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
-            if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()) && !benchmark.archived)
-                currentBenchmark = benchmark.rowId
+            if (Date.parse(benchmark.startDate) < Date.now() &&
+            (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()) && !benchmark.deletedAt)
+                currentBenchmark = benchmark
         });
       }
       return currentBenchmark
@@ -85,9 +86,7 @@ class ProductRowItem extends Component {
                       "name": this.props.product.name,
                       "description": this.props.product.description,
                       "state": toggleArchived ? 'archived' : 'active',
-                      "parent": [this.props.product.rowId],
-                      "updatedAt": new Date().toUTCString(),
-                      "updatedBy": 'Admin'
+                      "parent": [this.props.product.rowId]
                     }
                 }
             };
@@ -100,12 +99,13 @@ class ProductRowItem extends Component {
               variables: saveVariables,
               onCompleted: async (response, errors) => {
                   console.log(response);
-                  const benchmarkResult = await this.getBenchmark(this.props.product.rowId);
+                  const currentBenchmark = this.getCurrentBenchmark();
                   const benchmarkPatch = {
                       "productId": response.createProduct.product.rowId
                   }
                   await this.editProduct();
-                  await this.editBenchmark(benchmarkResult.allBenchmarks.nodes[0].rowId, benchmarkPatch);
+                  if (currentBenchmark)
+                      await this.editBenchmark(currentBenchmark.rowId, benchmarkPatch);
                   window.location.reload();
               },
               onError: err => console.error(err),
@@ -115,16 +115,17 @@ class ProductRowItem extends Component {
 
     // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation.)
     // The button is red && says 'Delete'. The value is not deleted, it is archived in the database, but is not recoverable through the UI
-    toggleBenchmarkArchived = async (event) => {
+    toggleBenchmarkDeleted = async (event) => {
       this.setState({confirmationModalOpen: false})
         event.preventDefault();
         event.stopPropagation();
         const currentBenchmark = this.getCurrentBenchmark();
         const benchmarkPatch = {
-          "archived": true
+          "deletedAt": new Date().toUTCString(),
+          "deletedBy": 'Admin'
         }
 
-        await this.editBenchmark(currentBenchmark, benchmarkPatch);
+        await this.editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         window.location.reload();
     }
 
@@ -160,7 +161,8 @@ class ProductRowItem extends Component {
                     "rowId": this.props.product.rowId,
                     "productPatch": {
                         "state": "deprecated",
-                        "updatedAt": new Date().toUTCString()
+                        "deletedAt": new Date().toUTCString(),
+                        "deletedBy": 'Admin'
                     }
                 }
             };
@@ -189,8 +191,6 @@ class ProductRowItem extends Component {
                     "description": ReactDOM.findDOMNode(this.refs.product_description).value,
                     "state": 'active',
                     "parent": [this.props.product.rowId],
-                    "updatedAt": new Date().toUTCString(),
-                    "updatedBy": 'Admin'
                   }
               }
           };
@@ -211,7 +211,8 @@ class ProductRowItem extends Component {
                   // update state && updatedAt fields of previous product
                   await this.editProduct();
                   // attach the previous Product's current benchmark to the new product
-                  await this.editBenchmark(currentBenchmark, benchmarkPatch);
+                  if (currentBenchmark)
+                      await this.editBenchmark(currentBenchmark.rowId, benchmarkPatch);
                   window.location.reload();
               },
               onError: err => console.error(err),
@@ -231,8 +232,24 @@ class ProductRowItem extends Component {
             "endDate": start_date,
             "updatedAt": current_date
         }
-        // Set the id of the current benchmark (if one has been set)
-        const currentBenchmark = this.getCurrentBenchmark()
+        // Set the current benchmark (if one has been set)
+        const currentBenchmark = this.getCurrentBenchmark();
+
+        // Conflict handling
+        if (currentBenchmark && (Date.parse(start_date) < Date.parse(currentBenchmark.startDate))) {
+           alert('Start date of new benchmark is less than the start date of the current benchmark');
+           return;
+        }
+        const validBenchmarks = [];
+        this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
+            if (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.parse(current_date))
+                validBenchmarks.push(benchmark);
+        })
+        console.log(validBenchmarks)
+        if (validBenchmarks.length > 1) {
+            alert('Too many benchmarks already created, only one active benchmark and one upcoming benchmark can be defined at one time');
+            return;
+        }
         let saveVariables =
             {
                 "input": {
@@ -257,7 +274,7 @@ class ProductRowItem extends Component {
                     console.log(response);
                     // If there was a previously set benchmark, update its end_date
                     if (currentBenchmark)
-                        await this.editBenchmark(currentBenchmark, benchmarkPatch)
+                        await this.editBenchmark(currentBenchmark.rowId, benchmarkPatch)
                     window.location.reload();
                 },
                 onError: err => console.error(err),
@@ -291,7 +308,7 @@ class ProductRowItem extends Component {
         let benchmarks
         if (this.props.product.benchmarksByProductId.nodes[0]) {
             this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
-                if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()) && !benchmark.archived)
+                if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()) && !benchmark.deletedAt)
                     benchmarks = benchmark;
             });
             if (!benchmarks) benchmarks = {benchmark:'', eligibilityThreshold:''};
@@ -380,7 +397,7 @@ class ProductRowItem extends Component {
                       </Modal.Body>
                       <Modal.Footer>
                           <button onClick={this.closeConfirmationWindow}>No</button>
-                          <button onClick={this.toggleBenchmarkArchived}>Yes</button>
+                          <button onClick={this.toggleBenchmarkDeleted}>Yes</button>
                       </Modal.Footer>
                   </Modal.Dialog>
                 )}{!this.state.confirmationModalOpen && (
