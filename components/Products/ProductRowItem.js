@@ -70,6 +70,17 @@ class ProductRowItem extends Component {
         `;
     }
 
+    getCurrentBenchmark = () => {
+      let currentBenchmark;
+      if (this.props.product.benchmarksByProductId.nodes[0]) {
+        this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
+            if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()) && !benchmark.archived)
+                currentBenchmark = benchmark.rowId
+        });
+      }
+      return currentBenchmark
+    }
+
     // Toggle the 'archived' value of a Product
     toggleArchived = (event) => {
         event.preventDefault();
@@ -117,13 +128,7 @@ class ProductRowItem extends Component {
       this.setState({confirmationModalOpen: false})
         event.preventDefault();
         event.stopPropagation();
-        let currentBenchmark;
-        if (this.props.product.benchmarksByProductId.nodes[0]) {
-            this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
-                if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()))
-                    currentBenchmark = benchmark.rowId
-            });
-        }
+        const currentBenchmark = this.getCurrentBenchmark();
         const benchmarkPatch = {
           "archived": true
         }
@@ -214,13 +219,7 @@ class ProductRowItem extends Component {
 
       const saveMutation = this.createProduct;
       // Get the current Benchmark -- calculated by which benchmark is not null and current date within the start & end dates
-      let currentBenchmark;
-        if (this.props.product.benchmarksByProductId.nodes[0]) {
-            this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
-                if (Date.parse(benchmark.startDate) < Date.now() && (benchmark.endDate === null || Date.parse(benchmark.endDate) > Date.now()) && !benchmark.archived)
-                    currentBenchmark = benchmark.rowId
-            });
-        }
+      const currentBenchmark = this.getCurrentBenchmark();
       commitMutation(
           environment,
           {
@@ -255,7 +254,7 @@ class ProductRowItem extends Component {
             "updatedAt": current_date
         }
         // Set the id of the current benchmark (if one has been set)
-        const currentBenchmarkId = this.props.product.benchmarksByProductId.nodes[0] ? this.props.product.benchmarksByProductId.nodes[this.props.product.benchmarksByProductId.nodes.length-1].rowId : null;
+        const currentBenchmark = this.getCurrentBenchmark()
         let saveVariables =
             {
                 "input": {
@@ -279,8 +278,8 @@ class ProductRowItem extends Component {
                 onCompleted: async (response, errors) => {
                     console.log(response);
                     // If there was a previously set benchmark, update its end_date
-                    if (currentBenchmarkId)
-                        await this.editBenchmark(currentBenchmarkId, benchmarkPatch)
+                    if (currentBenchmark)
+                        await this.editBenchmark(currentBenchmark, benchmarkPatch)
                     window.location.reload();
                 },
                 onError: err => console.error(err),
