@@ -11,6 +11,10 @@
     "start": "NODE_ENV=production node server",
     "relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose"
   },
+  "engines": {
+    "node": "10.13.0",
+    "yarn": "1.17.3"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
