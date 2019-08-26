@@ -6,8 +6,21 @@ jobs:
       - image: circleci/postgres:11.4
     steps:
       - checkout
-      - run: yarn
-      - run: yarn test
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Run Tests via Yarn
+          command: yarn test
 workflows:
   version: 2
   test:
