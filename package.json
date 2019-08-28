@@ -47,7 +47,8 @@
   },
   "resolutions": {
     "graphql-cli/**/lodash": "^4.17.13",
-    "graphql-cli/**/npm-run": "^5.0.1"
+    "graphql-cli/**/npm-run": "^5.0.1",
+    "graphql-cli/**/open": "^6.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^9.1.2",

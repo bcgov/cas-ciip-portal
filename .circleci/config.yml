@@ -21,6 +21,10 @@ jobs:
       - run:
           name: Run Tests via Yarn
           command: yarn test
+      - run:
+          name: Audit Dependencies
+          # https://yarnpkg.com/lang/en/docs/cli/audit/
+          command: yarn audit --level info
 workflows:
   version: 2
   test:
