@@ -45,7 +45,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: ${PREFIX}perl:${PERL_VERSION}
+          name: ${PREFIX}ggircs-perl:${PERL_VERSION}
       type: Source
     triggers: []
   status:
