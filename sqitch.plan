@@ -15,3 +15,4 @@ view_ciip_operator [table_form_result] 2019-08-19T23:42:39Z Hamza Javed <hamza@b
 view_ciip_certifier [table_form_result] 2019-08-20T22:33:11Z Hamza Javed <hamza@button.is> # Certifier Details
 view_ciip_electricity_and_heat [table_form_result] 2019-08-20T22:40:48Z Hamza Javed <hamza@button.is> # Electricity and Heat consumption reported for the ciip application
 view_ciip_production [table_form_result] 2019-08-20T23:22:31Z Hamza Javed <hamza@button.is> # Module throughput and production data reported in the ciip application
+function_get_products_by_application_id [schema_ggircs_portal view_ciip_production] 2019-08-27T19:13:39Z Hamza Javed <hamza@button.is> # Create postgraphile query for getting production data from application id

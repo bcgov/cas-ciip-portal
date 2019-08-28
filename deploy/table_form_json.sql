@@ -560,7 +560,7 @@ insert into ggircs_portal.form_json
      "templateElements": [
       {
        "type": "dropdown",
-       "name": "fuel_type",
+       "name": "processing_unit",
        "title": "Processing Unit Module",
        "choices": [
         "Inlet Compression",
@@ -578,7 +578,7 @@ insert into ggircs_portal.form_json
       },
       {
        "type": "dropdown",
-       "name": "fuel_units",
+       "name": "units",
        "startWithNewLine": false,
        "title": "Units",
        "choices": [
