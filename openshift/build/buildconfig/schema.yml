@@ -40,6 +40,7 @@ objects:
       git:
         ref: ${GIT_SHA1}
         uri: https://github.com/bcgov/${PREFIX}ciip-portal-schema.git
+      contextDir: schema
       type: Git
     strategy:
       sourceStrategy:
