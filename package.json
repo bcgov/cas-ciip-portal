@@ -39,6 +39,9 @@
     "surveyjs-widgets": "latest",
     "sync-exec": "^0.6.2"
   },
+  "resolutions": {
+    "graphql-cli/**/lodash": "^4.17.13"
+  },
   "devDependencies": {
     "@testing-library/react": "^9.1.2",
     "babel-plugin-relay": "^5.0.0",
