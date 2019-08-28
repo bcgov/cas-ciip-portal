@@ -8,7 +8,6 @@
     "dev": "node server",
     "prebuild": "npm run relay",
     "build": "next build",
-    "prestart": "npm run build",
     "start": "NODE_ENV=production node server",
     "relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose"
   },
