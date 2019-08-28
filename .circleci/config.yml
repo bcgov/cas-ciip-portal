@@ -1,4 +1,8 @@
 version: 2.1
+
+orbs:
+  redhat-openshift: circleci/redhat-openshift@0.2.0
+
 jobs:
   test:
     docker:
@@ -25,8 +29,138 @@ jobs:
           name: Audit Dependencies
           # https://yarnpkg.com/lang/en/docs/cli/audit/
           command: yarn audit --level info
+
+  test-local-cluster:
+    executor: redhat-openshift/machine-for-local-cluster
+    steps:
+      - checkout
+      - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
+      - redhat-openshift/create-local-cluster-with-oc:
+          skip-registry-check: true
+      - redhat-openshift/login-and-update-kubeconfig:
+          insecure-skip-tls-verify: true
+          openshift-platform-version: 3.x
+          password: password
+          server-address: 'https://127.0.0.1:8443'
+          username: dev1
+      - run:
+          command: docker login -u "$RED_HAT_DOCKER_USERNAME" -p "$RED_HAT_DOCKER_PASSWORD" "$RED_HAT_DOCKER_SERVER"
+          name: Log in to Red Hat docker registry
+      - run:
+          command: make provision
+          name: Provision the cluster project set
+      - run:
+          command: make configure
+          name: Configure the cluster
+      - run:
+          command: make build
+          name: Build image on the cluster
+      - run:
+          command: make install-dev
+          name: Deploy to dev
+      - run:
+          command: make install-test
+          name: Deploy to test
+      - run:
+          command: make install-prod
+          name: Deploy to prod
+
+  lint:
+    executor: redhat-openshift/default
+    steps:
+      - checkout
+      - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
+      - redhat-openshift/login-and-update-kubeconfig:
+          insecure-skip-tls-verify: true
+          openshift-platform-version: 3.x
+          server-address: $OC_SERVER_ADDRESS
+          token: $OC_TOKEN
+      - run:
+          command: make lint
+          name: Lint the openshift yaml
+
+  configure:
+    executor: redhat-openshift/default
+    steps:
+      - checkout
+      - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
+      - redhat-openshift/login-and-update-kubeconfig:
+          insecure-skip-tls-verify: true
+          openshift-platform-version: 3.x
+          server-address: $OC_SERVER_ADDRESS
+          token: $OC_TOKEN
+      - run:
+          command: make configure
+          name: Configure imagestream to point at the current SHA1
+
+  build_schema:
+    executor: redhat-openshift/default
+    steps:
+      - checkout
+      - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
+      - redhat-openshift/login-and-update-kubeconfig:
+          insecure-skip-tls-verify: true
+          openshift-platform-version: 3.x
+          server-address: $OC_SERVER_ADDRESS
+          token: $OC_TOKEN
+      - run:
+          command: make build_schema
+          name: Build image on the remote cluster
+
+  build_app:
+    executor: redhat-openshift/default
+    steps:
+      - checkout
+      - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
+      - redhat-openshift/login-and-update-kubeconfig:
+          insecure-skip-tls-verify: true
+          openshift-platform-version: 3.x
+          server-address: $OC_SERVER_ADDRESS
+          token: $OC_TOKEN
+      - run:
+          command: make build_app
+          name: Build image on the remote cluster
+
 workflows:
   version: 2
   test:
     jobs:
       - test
+      - lint:
+          context: cas-pipeline
+      - configure:
+          context: cas-pipeline
+          requires:
+            - lint
+      - build_schema:
+          context: cas-pipeline
+          requires:
+            - configure
+      - build_app:
+          context: cas-pipeline
+          requires:
+            - configure
+      # - test-local-cluster:
+      #     context: cas-pipeline
+      #     requires:
+      #       - lint

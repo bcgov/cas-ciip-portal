@@ -1,0 +1,52 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+
+parameters:
+- description: Version of Perl image to be used (latest for now).
+  displayName: Version of Perl Image
+  name: PERL_VERSION
+  required: true
+  value: latest
+- description: Prefix to prepend to object name.
+  displayName: Prefix
+  name: PREFIX
+  required: true
+- description: SHA1 of git revision to be deployed.
+  displayName: Git SHA1
+  name: GIT_SHA1
+  required: true
+
+objects:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    name: ${PREFIX}ciip-portal-schema
+  spec:
+    runPolicy: Parallel
+    nodeSelector:
+        beta.kubernetes.io/os: linux
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${PREFIX}ciip-portal:${GIT_SHA1}
+    resources:
+      limits:
+        cpu: "1"
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    source:
+      git:
+        ref: ${GIT_SHA1}
+        uri: https://github.com/bcgov/${PREFIX}ciip-portal-schema.git
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: ${PREFIX}perl:${PERL_VERSION}
+      type: Source
+    triggers: []
+  status:
+    lastVersion: 0
