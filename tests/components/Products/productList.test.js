@@ -16,12 +16,16 @@ describe('Product List', () => {
                         "rowId": 9,
                         "name": "Milk",
                         "description": "Sustenance for baby cows",
+                        "state": "active",
                         "benchmarksByProductId": {
                             "nodes": [
                                 {
-                                    "id": "WyJiZW5jaG1hcmtzIiw3XQ==",
-                                    "benchmark": 10,
-                                    "eligibilityThreshold": 20
+                                  "rowId": 1,
+                                  "id": "WyJiZW5jaG1hcmtzIiw4XQ==",
+                                  "benchmark": 10,
+                                  "eligibilityThreshold": 20,
+                                  "start_date": '1999',
+                                  "end_date": '1999'
                                 }
                             ]
                         }
@@ -31,12 +35,17 @@ describe('Product List', () => {
                         "rowId": 10,
                         "name": "Butter",
                         "description": "Sustenance for Keto folk",
+                        "state": "active",
+                        "parent": [],
                         "benchmarksByProductId": {
                             "nodes": [
                                 {
+                                    "rowId": 1,
                                     "id": "WyJiZW5jaG1hcmtzIiw4XQ==",
                                     "benchmark": 20,
-                                    "eligibilityThreshold": 40
+                                    "eligibilityThreshold": 40,
+                                    "start_date": '1999',
+                                    "end_date": '1999'
                                 }
                             ]
                         }

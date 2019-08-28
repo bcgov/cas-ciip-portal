@@ -6,6 +6,8 @@ type Benchmark implements Node {
 
   """Unique ID for the benchmark"""
   rowId: Int!
+
+  """Foreign key to the product"""
   productId: Int!
 
   """The value of the benchmark"""
@@ -14,8 +16,25 @@ type Benchmark implements Node {
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int!
 
+  """The date when this benchmark became/becomes active"""
+  startDate: Datetime
+
+  """The date when this benchmark became/becomes inactive"""
+  endDate: Datetime
+
   """Creation date of row"""
   createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  updatedAt: Datetime
+
+  """The user who deleted the row"""
+  updatedBy: String
+  deletedAt: Datetime
+  deletedBy: String
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
@@ -38,14 +57,37 @@ input BenchmarkCondition {
   """Checks for equality with the object’s `eligibilityThreshold` field."""
   eligibilityThreshold: Int
 
+  """Checks for equality with the object’s `startDate` field."""
+  startDate: Datetime
+
+  """Checks for equality with the object’s `endDate` field."""
+  endDate: Datetime
+
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: String
 }
 
 """An input for mutations affecting `Benchmark`"""
 input BenchmarkInput {
   """Unique ID for the benchmark"""
   rowId: Int
+
+  """Foreign key to the product"""
   productId: Int!
 
   """The value of the benchmark"""
@@ -54,8 +96,25 @@ input BenchmarkInput {
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int!
 
+  """The date when this benchmark became/becomes active"""
+  startDate: Datetime
+
+  """The date when this benchmark became/becomes inactive"""
+  endDate: Datetime
+
   """Creation date of row"""
   createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  updatedAt: Datetime
+
+  """The user who deleted the row"""
+  updatedBy: String
+  deletedAt: Datetime
+  deletedBy: String
 }
 
 """
@@ -64,6 +123,8 @@ Represents an update to a `Benchmark`. Fields that are set will be updated.
 input BenchmarkPatch {
   """Unique ID for the benchmark"""
   rowId: Int
+
+  """Foreign key to the product"""
   productId: Int
 
   """The value of the benchmark"""
@@ -72,8 +133,25 @@ input BenchmarkPatch {
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int
 
+  """The date when this benchmark became/becomes active"""
+  startDate: Datetime
+
+  """The date when this benchmark became/becomes inactive"""
+  endDate: Datetime
+
   """Creation date of row"""
   createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  updatedAt: Datetime
+
+  """The user who deleted the row"""
+  updatedBy: String
+  deletedAt: Datetime
+  deletedBy: String
 }
 
 """A connection to a list of `Benchmark` values."""
@@ -113,10 +191,707 @@ enum BenchmarksOrderBy {
   BENCHMARK_DESC
   ELIGIBILITY_THRESHOLD_ASC
   ELIGIBILITY_THRESHOLD_DESC
+  START_DATE_ASC
+  START_DATE_DESC
+  END_DATE_ASC
+  END_DATE_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
+}
+
+"""The view for certifier data reported in the application"""
+type CiipCertifier {
+  """The application id used for reference and join"""
+  applicationId: Int
+
+  """The certifier fax"""
+  fax: String
+
+  """The certifier phone"""
+  phone: String
+
+  """The certifier position"""
+  position: String
+
+  """The last name of the certifier"""
+  lastName: String
+
+  """The first name of the certifier"""
+  firstName: String
+
+  """The email address of the certifier"""
+  emailAddress: String
+  certifierName: String
+  certificationDate: String
+}
+
+"""
+A condition to be used against `CiipCertifier` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CiipCertifierCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `fax` field."""
+  fax: String
+
+  """Checks for equality with the object’s `phone` field."""
+  phone: String
+
+  """Checks for equality with the object’s `position` field."""
+  position: String
+
+  """Checks for equality with the object’s `lastName` field."""
+  lastName: String
+
+  """Checks for equality with the object’s `firstName` field."""
+  firstName: String
+
+  """Checks for equality with the object’s `emailAddress` field."""
+  emailAddress: String
+
+  """Checks for equality with the object’s `certifierName` field."""
+  certifierName: String
+
+  """Checks for equality with the object’s `certificationDate` field."""
+  certificationDate: String
+}
+
+"""A connection to a list of `CiipCertifier` values."""
+type CiipCertifiersConnection {
+  """A list of `CiipCertifier` objects."""
+  nodes: [CiipCertifier]!
+
+  """
+  A list of edges which contains the `CiipCertifier` and cursor to aid in pagination.
+  """
+  edges: [CiipCertifiersEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipCertifier` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipCertifier` edge in the connection."""
+type CiipCertifiersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipCertifier` at the end of the edge."""
+  node: CiipCertifier
+}
+
+"""Methods to use when ordering `CiipCertifier`."""
+enum CiipCertifiersOrderBy {
+  NATURAL
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  FAX_ASC
+  FAX_DESC
+  PHONE_ASC
+  PHONE_DESC
+  POSITION_ASC
+  POSITION_DESC
+  LAST_NAME_ASC
+  LAST_NAME_DESC
+  FIRST_NAME_ASC
+  FIRST_NAME_DESC
+  EMAIL_ADDRESS_ASC
+  EMAIL_ADDRESS_DESC
+  CERTIFIER_NAME_ASC
+  CERTIFIER_NAME_DESC
+  CERTIFICATION_DATE_ASC
+  CERTIFICATION_DATE_DESC
+}
+
+"""The view for contact data reported in the application"""
+type CiipContact {
+  """The application id used for reference and join"""
+  applicationId: Int
+
+  """The contact fax"""
+  fax: String
+
+  """The contact phone"""
+  phone: String
+
+  """The contact position"""
+  position: String
+
+  """The last name of the contact"""
+  lastName: String
+
+  """The first name of the contact"""
+  firstName: String
+
+  """The email address of the contact"""
+  emailAddress: String
+}
+
+"""
+A condition to be used against `CiipContact` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input CiipContactCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `fax` field."""
+  fax: String
+
+  """Checks for equality with the object’s `phone` field."""
+  phone: String
+
+  """Checks for equality with the object’s `position` field."""
+  position: String
+
+  """Checks for equality with the object’s `lastName` field."""
+  lastName: String
+
+  """Checks for equality with the object’s `firstName` field."""
+  firstName: String
+
+  """Checks for equality with the object’s `emailAddress` field."""
+  emailAddress: String
+}
+
+"""A connection to a list of `CiipContact` values."""
+type CiipContactsConnection {
+  """A list of `CiipContact` objects."""
+  nodes: [CiipContact]!
+
+  """
+  A list of edges which contains the `CiipContact` and cursor to aid in pagination.
+  """
+  edges: [CiipContactsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipContact` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipContact` edge in the connection."""
+type CiipContactsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipContact` at the end of the edge."""
+  node: CiipContact
+}
+
+"""Methods to use when ordering `CiipContact`."""
+enum CiipContactsOrderBy {
+  NATURAL
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  FAX_ASC
+  FAX_DESC
+  PHONE_ASC
+  PHONE_DESC
+  POSITION_ASC
+  POSITION_DESC
+  LAST_NAME_ASC
+  LAST_NAME_DESC
+  FIRST_NAME_ASC
+  FIRST_NAME_DESC
+  EMAIL_ADDRESS_ASC
+  EMAIL_ADDRESS_DESC
+}
+
+"""The view for electricity and heat data reported in the application"""
+type CiipElectricityAndHeat {
+  applicationId: Int
+
+  """The application id used for reference and join"""
+  sold: String
+
+  """The heat quantity"""
+  quantity: String
+
+  """The heat position"""
+  description: String
+  consumedOnsite: String
+
+  """The last name of the heat"""
+  generatedOnsite: String
+  consumptionType: String
+}
+
+"""
+A condition to be used against `CiipElectricityAndHeat` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input CiipElectricityAndHeatCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `sold` field."""
+  sold: String
+
+  """Checks for equality with the object’s `quantity` field."""
+  quantity: String
+
+  """Checks for equality with the object’s `description` field."""
+  description: String
+
+  """Checks for equality with the object’s `consumedOnsite` field."""
+  consumedOnsite: String
+
+  """Checks for equality with the object’s `generatedOnsite` field."""
+  generatedOnsite: String
+
+  """Checks for equality with the object’s `consumptionType` field."""
+  consumptionType: String
+}
+
+"""A connection to a list of `CiipElectricityAndHeat` values."""
+type CiipElectricityAndHeatsConnection {
+  """A list of `CiipElectricityAndHeat` objects."""
+  nodes: [CiipElectricityAndHeat]!
+
+  """
+  A list of edges which contains the `CiipElectricityAndHeat` and cursor to aid in pagination.
+  """
+  edges: [CiipElectricityAndHeatsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CiipElectricityAndHeat` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `CiipElectricityAndHeat` edge in the connection."""
+type CiipElectricityAndHeatsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipElectricityAndHeat` at the end of the edge."""
+  node: CiipElectricityAndHeat
+}
+
+"""Methods to use when ordering `CiipElectricityAndHeat`."""
+enum CiipElectricityAndHeatsOrderBy {
+  NATURAL
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  SOLD_ASC
+  SOLD_DESC
+  QUANTITY_ASC
+  QUANTITY_DESC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+  CONSUMED_ONSITE_ASC
+  CONSUMED_ONSITE_DESC
+  GENERATED_ONSITE_ASC
+  GENERATED_ONSITE_DESC
+  CONSUMPTION_TYPE_ASC
+  CONSUMPTION_TYPE_DESC
+}
+
+"""A connection to a list of `CiipFacility` values."""
+type CiipFacilitiesConnection {
+  """A list of `CiipFacility` objects."""
+  nodes: [CiipFacility]!
+
+  """
+  A list of edges which contains the `CiipFacility` and cursor to aid in pagination.
+  """
+  edges: [CiipFacilitiesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipFacility` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipFacility` edge in the connection."""
+type CiipFacilitiesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipFacility` at the end of the edge."""
+  node: CiipFacility
+}
+
+"""Methods to use when ordering `CiipFacility`."""
+enum CiipFacilitiesOrderBy {
+  NATURAL
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  LATITUDE_ASC
+  LATITUDE_DESC
+  LONGITUDE_ASC
+  LONGITUDE_DESC
+  NAICS_CODE_ASC
+  NAICS_CODE_DESC
+  FACILITY_NAME_ASC
+  FACILITY_NAME_DESC
+  FACILITY_TYPE_ASC
+  FACILITY_TYPE_DESC
+  FACILITY_DESCRIPTION_ASC
+  FACILITY_DESCRIPTION_DESC
+}
+
+"""The view for facility data reported in the application"""
+type CiipFacility {
+  """The application id used for reference and join"""
+  applicationId: Int
+
+  """The facility latitude"""
+  latitude: String
+
+  """The facility longitude"""
+  longitude: String
+
+  """The facility naics code"""
+  naicsCode: String
+
+  """The name of the facility"""
+  facilityName: String
+
+  """The facility type"""
+  facilityType: String
+
+  """The description of the facility"""
+  facilityDescription: String
+}
+
+"""
+A condition to be used against `CiipFacility` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CiipFacilityCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `latitude` field."""
+  latitude: String
+
+  """Checks for equality with the object’s `longitude` field."""
+  longitude: String
+
+  """Checks for equality with the object’s `naicsCode` field."""
+  naicsCode: String
+
+  """Checks for equality with the object’s `facilityName` field."""
+  facilityName: String
+
+  """Checks for equality with the object’s `facilityType` field."""
+  facilityType: String
+
+  """Checks for equality with the object’s `facilityDescription` field."""
+  facilityDescription: String
+}
+
+"""The view for fuel data reported in the application"""
+type CiipFuel {
+  """The application id used for reference and join"""
+  applicationId: Int
+
+  """The fuel quantity"""
+  quantity: String
+
+  """The fuel type"""
+  fuelType: String
+
+  """The fuel units"""
+  fuelUnits: String
+
+  """The methodology used for reporting"""
+  methodology: String
+
+  """The methodology details if other"""
+  methodologyComment: String
+
+  """The description of the fuel used"""
+  description: String
+}
+
+"""
+A condition to be used against `CiipFuel` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input CiipFuelCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `quantity` field."""
+  quantity: String
+
+  """Checks for equality with the object’s `fuelType` field."""
+  fuelType: String
+
+  """Checks for equality with the object’s `fuelUnits` field."""
+  fuelUnits: String
+
+  """Checks for equality with the object’s `methodology` field."""
+  methodology: String
+
+  """Checks for equality with the object’s `methodologyComment` field."""
+  methodologyComment: String
+
+  """Checks for equality with the object’s `description` field."""
+  description: String
+}
+
+"""A connection to a list of `CiipFuel` values."""
+type CiipFuelsConnection {
+  """A list of `CiipFuel` objects."""
+  nodes: [CiipFuel]!
+
+  """
+  A list of edges which contains the `CiipFuel` and cursor to aid in pagination.
+  """
+  edges: [CiipFuelsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipFuel` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipFuel` edge in the connection."""
+type CiipFuelsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipFuel` at the end of the edge."""
+  node: CiipFuel
+}
+
+"""Methods to use when ordering `CiipFuel`."""
+enum CiipFuelsOrderBy {
+  NATURAL
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  QUANTITY_ASC
+  QUANTITY_DESC
+  FUEL_TYPE_ASC
+  FUEL_TYPE_DESC
+  FUEL_UNITS_ASC
+  FUEL_UNITS_DESC
+  METHODOLOGY_ASC
+  METHODOLOGY_DESC
+  METHODOLOGY_COMMENT_ASC
+  METHODOLOGY_COMMENT_DESC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
+}
+
+"""The view for operator data reported in the application"""
+type CiipOperator {
+  """The application id used for reference and join"""
+  applicationId: Int
+
+  """The operator bcghgid"""
+  bcghgid: String
+
+  """The operator longitude"""
+  bcCorporateRegistryNumber: String
+
+  """The operator naics code"""
+  naicsCode: String
+
+  """The name of the operator"""
+  operatorName: String
+  operatorTradeName: String
+
+  """The Duns no."""
+  dunsNumber: String
+}
+
+"""
+A condition to be used against `CiipOperator` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CiipOperatorCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `bcghgid` field."""
+  bcghgid: String
+
+  """
+  Checks for equality with the object’s `bcCorporateRegistryNumber` field.
+  """
+  bcCorporateRegistryNumber: String
+
+  """Checks for equality with the object’s `naicsCode` field."""
+  naicsCode: String
+
+  """Checks for equality with the object’s `operatorName` field."""
+  operatorName: String
+
+  """Checks for equality with the object’s `operatorTradeName` field."""
+  operatorTradeName: String
+
+  """Checks for equality with the object’s `dunsNumber` field."""
+  dunsNumber: String
+}
+
+"""A connection to a list of `CiipOperator` values."""
+type CiipOperatorsConnection {
+  """A list of `CiipOperator` objects."""
+  nodes: [CiipOperator]!
+
+  """
+  A list of edges which contains the `CiipOperator` and cursor to aid in pagination.
+  """
+  edges: [CiipOperatorsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipOperator` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipOperator` edge in the connection."""
+type CiipOperatorsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipOperator` at the end of the edge."""
+  node: CiipOperator
+}
+
+"""Methods to use when ordering `CiipOperator`."""
+enum CiipOperatorsOrderBy {
+  NATURAL
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  BCGHGID_ASC
+  BCGHGID_DESC
+  BC_CORPORATE_REGISTRY_NUMBER_ASC
+  BC_CORPORATE_REGISTRY_NUMBER_DESC
+  NAICS_CODE_ASC
+  NAICS_CODE_DESC
+  OPERATOR_NAME_ASC
+  OPERATOR_NAME_DESC
+  OPERATOR_TRADE_NAME_ASC
+  OPERATOR_TRADE_NAME_DESC
+  DUNS_NUMBER_ASC
+  DUNS_NUMBER_DESC
+}
+
+"""The view for production data reported in the application"""
+type CiipProduction {
+  """The application id used for reference and join"""
+  applicationId: Int
+
+  """The production quantity"""
+  quantity: String
+
+  """The fuel type"""
+  fuelType: String
+
+  """The fuel units"""
+  fuelUnits: String
+
+  """The comments"""
+  comments: String
+
+  """The methodology details if other"""
+  associatedEmissions: String
+
+  """The fuel percentage that can be attributed to incentive"""
+  attributableFuelPercentage: String
+}
+
+"""
+A condition to be used against `CiipProduction` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CiipProductionCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `quantity` field."""
+  quantity: String
+
+  """Checks for equality with the object’s `fuelType` field."""
+  fuelType: String
+
+  """Checks for equality with the object’s `fuelUnits` field."""
+  fuelUnits: String
+
+  """Checks for equality with the object’s `comments` field."""
+  comments: String
+
+  """Checks for equality with the object’s `associatedEmissions` field."""
+  associatedEmissions: String
+
+  """
+  Checks for equality with the object’s `attributableFuelPercentage` field.
+  """
+  attributableFuelPercentage: String
+}
+
+"""A connection to a list of `CiipProduction` values."""
+type CiipProductionsConnection {
+  """A list of `CiipProduction` objects."""
+  nodes: [CiipProduction]!
+
+  """
+  A list of edges which contains the `CiipProduction` and cursor to aid in pagination.
+  """
+  edges: [CiipProductionsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipProduction` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipProduction` edge in the connection."""
+type CiipProductionsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipProduction` at the end of the edge."""
+  node: CiipProduction
+}
+
+"""Methods to use when ordering `CiipProduction`."""
+enum CiipProductionsOrderBy {
+  NATURAL
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  QUANTITY_ASC
+  QUANTITY_DESC
+  FUEL_TYPE_ASC
+  FUEL_TYPE_DESC
+  FUEL_UNITS_ASC
+  FUEL_UNITS_DESC
+  COMMENTS_ASC
+  COMMENTS_DESC
+  ASSOCIATED_EMISSIONS_ASC
+  ASSOCIATED_EMISSIONS_DESC
+  ATTRIBUTABLE_FUEL_PERCENTAGE_ASC
+  ATTRIBUTABLE_FUEL_PERCENTAGE_DESC
 }
 
 """All input for the create `Benchmark` mutation."""
@@ -1011,7 +1786,29 @@ type Product implements Node {
 
   """The name of the product"""
   name: String!
+
+  """The description of the product"""
   description: String
+
+  """
+  The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
+  """
+  state: String
+
+  """The parent ID(s) (previous state) of the product"""
+  parent: [Int]
+
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: String
 
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByProductId(
@@ -1055,6 +1852,24 @@ input ProductCondition {
 
   """Checks for equality with the object’s `description` field."""
   description: String
+
+  """Checks for equality with the object’s `state` field."""
+  state: String
+
+  """Checks for equality with the object’s `parent` field."""
+  parent: [Int]
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: String
 }
 
 """An input for mutations affecting `Product`"""
@@ -1064,7 +1879,29 @@ input ProductInput {
 
   """The name of the product"""
   name: String!
+
+  """The description of the product"""
   description: String
+
+  """
+  The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
+  """
+  state: String
+
+  """The parent ID(s) (previous state) of the product"""
+  parent: [Int]
+
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: String
 }
 
 """
@@ -1076,7 +1913,29 @@ input ProductPatch {
 
   """The name of the product"""
   name: String
+
+  """The description of the product"""
   description: String
+
+  """
+  The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
+  """
+  state: String
+
+  """The parent ID(s) (previous state) of the product"""
+  parent: [Int]
+
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: String
 }
 
 """A connection to a list of `Product` values."""
@@ -1114,6 +1973,18 @@ enum ProductsOrderBy {
   NAME_DESC
   DESCRIPTION_ASC
   DESCRIPTION_DESC
+  STATE_ASC
+  STATE_DESC
+  PARENT_ASC
+  PARENT_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
@@ -1165,6 +2036,211 @@ type Query implements Node {
     """
     condition: BenchmarkCondition
   ): BenchmarksConnection
+
+  """Reads and enables pagination through a set of `CiipCertifier`."""
+  allCiipCertifiers(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CiipCertifier`."""
+    orderBy: [CiipCertifiersOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipCertifierCondition
+  ): CiipCertifiersConnection
+
+  """Reads and enables pagination through a set of `CiipContact`."""
+  allCiipContacts(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CiipContact`."""
+    orderBy: [CiipContactsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipContactCondition
+  ): CiipContactsConnection
+
+  """
+  Reads and enables pagination through a set of `CiipElectricityAndHeat`.
+  """
+  allCiipElectricityAndHeats(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CiipElectricityAndHeat`."""
+    orderBy: [CiipElectricityAndHeatsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipElectricityAndHeatCondition
+  ): CiipElectricityAndHeatsConnection
+
+  """Reads and enables pagination through a set of `CiipFacility`."""
+  allCiipFacilities(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CiipFacility`."""
+    orderBy: [CiipFacilitiesOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipFacilityCondition
+  ): CiipFacilitiesConnection
+
+  """Reads and enables pagination through a set of `CiipFuel`."""
+  allCiipFuels(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CiipFuel`."""
+    orderBy: [CiipFuelsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipFuelCondition
+  ): CiipFuelsConnection
+
+  """Reads and enables pagination through a set of `CiipOperator`."""
+  allCiipOperators(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CiipOperator`."""
+    orderBy: [CiipOperatorsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipOperatorCondition
+  ): CiipOperatorsConnection
+
+  """Reads and enables pagination through a set of `CiipProduction`."""
+  allCiipProductions(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CiipProduction`."""
+    orderBy: [CiipProductionsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipProductionCondition
+  ): CiipProductionsConnection
 
   """Reads and enables pagination through a set of `FormJson`."""
   allFormJsons(
