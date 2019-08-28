@@ -36,11 +36,11 @@
     "sinon": "^7.4.1",
     "survey-creator": "^1.1.0",
     "survey-react": "^1.1.1",
-    "surveyjs-widgets": "latest",
-    "sync-exec": "^0.6.2"
+    "surveyjs-widgets": "latest"
   },
   "resolutions": {
-    "graphql-cli/**/lodash": "^4.17.13"
+    "graphql-cli/**/lodash": "^4.17.13",
+    "graphql-cli/**/npm-run": "^5.0.1"
   },
   "devDependencies": {
     "@testing-library/react": "^9.1.2",
