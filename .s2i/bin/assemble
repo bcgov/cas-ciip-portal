@@ -38,13 +38,14 @@ echo "---> Adding Yarn to PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 echo "---> Installing all dependencies"
-yarn install --frozen-lockfile
+yarn install --frozen-lockfile --production=false
 
 
 #do not fail when there is no build script
 echo "---> Building"
-yarn run relay
 yarn build
+
+yarn install --frozen-lockfile --production=true
 
 # Fix source directory permissions
 fix-permissions ./
