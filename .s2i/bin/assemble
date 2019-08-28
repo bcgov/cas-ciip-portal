@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Prevent running assemble in builders different than official STI image.
+# The official nodejs:8-onbuild already run npm install and use different
+# application folder.
+[ -d "/usr/src/app" ] && exit 0
+
+set -e
+
+shopt -s dotglob
+if [ -d /tmp/artifacts ] && [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+    echo "---> Restoring previous build artifacts ..."
+    mv -T --verbose /tmp/artifacts/node_modules "${HOME}/node_modules"
+fi
+
+echo "---> Installing application source ..."
+mv /tmp/src/* ./
+
+# Set the DEV_MODE to false by default.
+if [ -z "$DEV_MODE" ]; then
+  export DEV_MODE=false
+fi
+
+# If NODE_ENV is not set by the user, then NODE_ENV is determined by whether
+# the container is run in development mode.
+if [ -z "$NODE_ENV" ]; then
+  if [ "$DEV_MODE" == true ]; then
+    export NODE_ENV=development
+  else
+    export NODE_ENV=production
+  fi
+fi
+
+echo "---> Installing Yarn"
+curl -o- -L https://yarnpkg.com/install.sh | bash
+
+echo "---> Installing all dependencies"
+yarn install
+
+#do not fail when there is no build script
+echo "---> Building"
+yarn build
+
+# Fix source directory permissions
+fix-permissions ./

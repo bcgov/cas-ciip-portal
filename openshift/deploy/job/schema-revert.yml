@@ -26,14 +26,14 @@ objects:
 - apiVersion: batch/v1
   kind: Job
   metadata:
-    name: ${PREFIX}ciip-2018-schema-revert
+    name: ${PREFIX}ciip-portal-schema-revert
   spec:
     backoffLimit: 0
     activeDeadlineSeconds: 120
     template:
       metadata:
         labels:
-          name: ${PREFIX}ciip-2018-schema-revert
+          name: ${PREFIX}ciip-portal-schema-revert
       spec:
         restartPolicy: Never
         containers:
@@ -42,7 +42,7 @@ objects:
           - bash
           - -c
           - |
-            sqitch revert @v1.0.0 -y;
+            sqitch revert table_benchmark -y;
           env:
           - name: SQITCH_TARGET
             value: "db:pg:"
@@ -69,8 +69,8 @@ objects:
             value: OpenShift Deployer
           - name: SQITCH_EMAIL
             value: deployer@pathfinder.gov.bc.ca
-          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}ciip-2018-schema:${GIT_SHA1}
-          name: ${PREFIX}ciip-2018-schema-revert
+          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}ciip-portal-schema:${GIT_SHA1}
+          name: ${PREFIX}ciip-portal-schema-revert
           resources:
             limits:
               cpu: 100m

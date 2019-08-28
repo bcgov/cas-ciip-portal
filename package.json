@@ -6,6 +6,7 @@
     "test": "jest",
     "predev": "npm run relay",
     "dev": "node server",
+    "prebuild": "npm run relay",
     "build": "next build",
     "prestart": "npm run build",
     "start": "NODE_ENV=production node server",
