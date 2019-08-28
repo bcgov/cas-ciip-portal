@@ -34,8 +34,12 @@ fi
 echo "---> Installing Yarn"
 curl -o- -L https://yarnpkg.com/install.sh | bash
 
+echo "---> Adding Yarn to PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 echo "---> Installing all dependencies"
 yarn install
+
 
 #do not fail when there is no build script
 echo "---> Building"
