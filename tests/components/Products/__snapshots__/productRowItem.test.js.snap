@@ -6,79 +6,136 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="jsx-1811490283 view"
+        class="jsx-456558826 view"
         id="view-item"
       >
         <div
-          class="jsx-1811490283"
+          class="jsx-456558826"
         >
           <div
             class="row"
+            style="padding: 5px;"
           >
             <div
-              class="col-md-4"
-            >
-              <h5
-                class="jsx-1811490283"
-              >
-                Milk
-              </h5>
-              <small
-                class="jsx-1811490283"
-              >
-                Sustenance for baby cows
-              </small>
-            </div>
-            <div
-              class="col-md-2"
-            >
-              <label
-                class="form-label"
-              >
-                <small
-                  class="jsx-1811490283"
-                >
-                  Benchmark:
-                </small>
-                 
-                10
-              </label>
-            </div>
-            <div
-              class="col-md-4"
-            >
-              <label
-                class="form-label"
-              >
-                <small
-                  class="jsx-1811490283"
-                >
-                  Eligibility Threshold:
-                </small>
-                 
-                20
-              </label>
-            </div>
-            <div
-              class="col-md-2"
+              class="col-md-1"
               style="text-align: right;"
             >
               <button
                 class="btn btn-primary"
+                data-testid="edit-product"
+                style="width: 100%;"
                 type="button"
               >
                 Edit
               </button>
             </div>
+            <div
+              class="col-md-4"
+            >
+              <h5
+                class="jsx-456558826"
+              >
+                Milk
+              </h5>
+              <small
+                class="jsx-456558826"
+              >
+                Sustenance for baby cows
+              </small>
+            </div>
+            <div
+              class="col-md-1"
+            >
+              <label
+                class="form-label"
+              >
+                <small
+                  class="jsx-456558826"
+                >
+                  Archived:
+                </small>
+                 
+                false
+              </label>
+            </div>
+            <div
+              class="col-md-1"
+              style="text-align: right;"
+            >
+              <button
+                class="btn btn-primary"
+                data-testid="edit-benchmark"
+                style="width: 100%;"
+                type="button"
+              >
+                Edit
+              </button>
+            </div>
+            <div
+              class="col-md-2"
+            >
+              <label
+                class="form-label"
+              >
+                <small
+                  class="jsx-456558826"
+                >
+                  Benchmark:
+                </small>
+                 
+                
+              </label>
+              <br
+                class="jsx-456558826"
+              />
+              <label
+                class="form-label"
+              >
+                <small
+                  class="jsx-456558826"
+                >
+                  Start Date:
+                </small>
+                 
+              </label>
+            </div>
+            <div
+              class="col-md-3"
+            >
+              <label
+                class="form-label"
+              >
+                <small
+                  class="jsx-456558826"
+                >
+                  Eligibility Threshold:
+                </small>
+                 
+                
+              </label>
+              <br
+                class="jsx-456558826"
+              />
+              <label
+                class="form-label"
+              >
+                <small
+                  class="jsx-456558826"
+                >
+                  End Date:
+                </small>
+                 
+              </label>
+            </div>
           </div>
         </div>
         <hr
-          class="jsx-1811490283"
+          class="jsx-456558826"
         />
       </div>
       <div
-        class="jsx-1811490283 view"
-        id="edit-item"
+        class="jsx-456558826 view"
+        id="edit-product"
       >
         <form
           class=""
@@ -87,21 +144,202 @@ Object {
             class="form-row"
           >
             <div
+              class="form-group col-md-1"
+              style="text-align: right;"
+            >
+              <div
+                class="btn-group-vertical"
+                role="group"
+                style="width: 100%; margin-top: 10px;"
+              >
+                <button
+                  class="btn btn-primary"
+                  data-testid="save-product"
+                  style="margin-top: 8px; margin-right: 10px;"
+                  type="submit"
+                >
+                  Save
+                </button>
+                <button
+                  class="btn btn-secondary"
+                  style="margin-top: 8px;"
+                  type="button"
+                >
+                  Cancel
+                </button>
+                <button
+                  class="btn btn-warning"
+                  data-testid="archive-product"
+                  style="margin-top: 8px; margin-right: 10px;"
+                  type="button"
+                >
+                  Archive
+                </button>
+              </div>
+            </div>
+            <div
               class="form-group col-md-4"
             >
-              <h5
-                class="jsx-1811490283"
+              <label
+                class="form-label"
+                for="product_name"
               >
-                Milk
-              </h5>
-              <p
-                class="jsx-1811490283"
+                Name
+              </label>
+              <input
+                class="form-control"
+                id="product_name"
+                placeholder="Milk"
+                required=""
+                step="0.01"
+                type="string"
+                value="Milk"
+              />
+              <label
+                class="form-label"
+                for="product_name"
               >
-                Sustenance for baby cows
-              </p>
+                Description
+              </label>
+              <input
+                class="form-control"
+                id="product_name"
+                placeholder="Sustenance for baby cows"
+                required=""
+                step="0.01"
+                type="string"
+                value="Sustenance for baby cows"
+              />
             </div>
             <div
               class="form-group col-md-2"
+            >
+              <label
+                class="form-label"
+              >
+                <small
+                  class="jsx-456558826"
+                >
+                  Archived:
+                </small>
+                 
+                false
+              </label>
+            </div>
+            <div
+              class="form-group col-md-2"
+            >
+              <label
+                class="form-label"
+              >
+                <small
+                  class="jsx-456558826"
+                >
+                  Benchmark:
+                </small>
+                 
+                
+              </label>
+            </div>
+            <div
+              class="form-group col-md-3"
+            >
+              <label
+                class="form-label"
+              >
+                <small
+                  class="jsx-456558826"
+                >
+                  Eligibility Threshold:
+                </small>
+                 
+                
+              </label>
+            </div>
+          </div>
+        </form>
+        <hr
+          class="jsx-456558826"
+        />
+      </div>
+      <div
+        class="jsx-456558826 view"
+        id="edit-benchmark"
+      >
+        <form
+          class=""
+        >
+          <div
+            class="form-row"
+          >
+            <div
+              class="form-group col-md-1"
+            />
+            <div
+              class="form-group col-md-4"
+            >
+              <h5
+                class="jsx-456558826"
+              >
+                Milk
+              </h5>
+              <small
+                class="jsx-456558826"
+              >
+                Sustenance for baby cows
+              </small>
+            </div>
+            <div
+              class="form-group col-md-1"
+            >
+              <label
+                class="form-label"
+              >
+                <small
+                  class="jsx-456558826"
+                >
+                  Archived:
+                </small>
+                 
+                false
+              </label>
+            </div>
+            <div
+              class="form-group col-md-1"
+              style="text-align: right;"
+            >
+              <div
+                class="btn-group-vertical"
+                role="group"
+                style="width: 100%; margin-top: 10px;"
+              >
+                <button
+                  class="btn btn-primary"
+                  data-testid="save-benchmark"
+                  style="margin-top: 8px; margin-right: 10px;"
+                  type="submit"
+                >
+                  Save
+                </button>
+                <button
+                  class="btn btn-secondary"
+                  style="margin-top: 8px;"
+                  type="button"
+                >
+                  Cancel
+                </button>
+                <button
+                  class="btn btn-danger"
+                  data-testid="archive-benchmark"
+                  style="margin-top: 8px; margin-right: 10px;"
+                  type="button"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+            <div
+              class="form-group col-md-3"
             >
               <label
                 class="form-label"
@@ -112,39 +350,200 @@ Object {
               <input
                 class="form-control"
                 id="benchmark"
-                placeholder="10"
+                placeholder=""
                 required=""
                 step="0.01"
                 type="number"
+                value=""
               />
-            </div>
-            <div
-              class="form-group col-md-2"
-            >
               <label
                 class="form-label"
-                for="eligibility_threshold"
+                for="benchmark"
               >
                 Eligibility Threshold
               </label>
               <input
                 class="form-control"
-                id="eligibility_threshold"
-                placeholder="20"
+                id="benchmark"
+                placeholder=""
                 required=""
                 step="0.01"
                 type="number"
+                value=""
+              />
+              <label
+                class="form-label"
+                for="benchmark"
+              >
+                Start Date
+              </label>
+              <input
+                class="form-control"
+                id="benchmark"
+                placeholder="dd/mm/yyyy"
+                required=""
+                step="0.01"
               />
             </div>
-            <div
-              class="form-group col-md-4"
-              style="text-align: right;"
+          </div>
+        </form>
+        <hr
+          class="jsx-456558826"
+        />
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="jsx-456558826 view"
+      id="view-item"
+    >
+      <div
+        class="jsx-456558826"
+      >
+        <div
+          class="row"
+          style="padding: 5px;"
+        >
+          <div
+            class="col-md-1"
+            style="text-align: right;"
+          >
+            <button
+              class="btn btn-primary"
+              data-testid="edit-product"
+              style="width: 100%;"
+              type="button"
             >
-              <br
-                class="jsx-1811490283"
-              />
+              Edit
+            </button>
+          </div>
+          <div
+            class="col-md-4"
+          >
+            <h5
+              class="jsx-456558826"
+            >
+              Milk
+            </h5>
+            <small
+              class="jsx-456558826"
+            >
+              Sustenance for baby cows
+            </small>
+          </div>
+          <div
+            class="col-md-1"
+          >
+            <label
+              class="form-label"
+            >
+              <small
+                class="jsx-456558826"
+              >
+                Archived:
+              </small>
+               
+              false
+            </label>
+          </div>
+          <div
+            class="col-md-1"
+            style="text-align: right;"
+          >
+            <button
+              class="btn btn-primary"
+              data-testid="edit-benchmark"
+              style="width: 100%;"
+              type="button"
+            >
+              Edit
+            </button>
+          </div>
+          <div
+            class="col-md-2"
+          >
+            <label
+              class="form-label"
+            >
+              <small
+                class="jsx-456558826"
+              >
+                Benchmark:
+              </small>
+               
+              
+            </label>
+            <br
+              class="jsx-456558826"
+            />
+            <label
+              class="form-label"
+            >
+              <small
+                class="jsx-456558826"
+              >
+                Start Date:
+              </small>
+               
+            </label>
+          </div>
+          <div
+            class="col-md-3"
+          >
+            <label
+              class="form-label"
+            >
+              <small
+                class="jsx-456558826"
+              >
+                Eligibility Threshold:
+              </small>
+               
+              
+            </label>
+            <br
+              class="jsx-456558826"
+            />
+            <label
+              class="form-label"
+            >
+              <small
+                class="jsx-456558826"
+              >
+                End Date:
+              </small>
+               
+            </label>
+          </div>
+        </div>
+      </div>
+      <hr
+        class="jsx-456558826"
+      />
+    </div>
+    <div
+      class="jsx-456558826 view"
+      id="edit-product"
+    >
+      <form
+        class=""
+      >
+        <div
+          class="form-row"
+        >
+          <div
+            class="form-group col-md-1"
+            style="text-align: right;"
+          >
+            <div
+              class="btn-group-vertical"
+              role="group"
+              style="width: 100%; margin-top: 10px;"
+            >
               <button
                 class="btn btn-primary"
+                data-testid="save-product"
                 style="margin-top: 8px; margin-right: 10px;"
                 type="submit"
               >
@@ -157,90 +556,104 @@ Object {
               >
                 Cancel
               </button>
+              <button
+                class="btn btn-warning"
+                data-testid="archive-product"
+                style="margin-top: 8px; margin-right: 10px;"
+                type="button"
+              >
+                Archive
+              </button>
             </div>
           </div>
-        </form>
-        <hr
-          class="jsx-1811490283"
-        />
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="jsx-1811490283 view"
-      id="view-item"
-    >
-      <div
-        class="jsx-1811490283"
-      >
-        <div
-          class="row"
-        >
           <div
-            class="col-md-4"
+            class="form-group col-md-4"
           >
-            <h5
-              class="jsx-1811490283"
+            <label
+              class="form-label"
+              for="product_name"
             >
-              Milk
-            </h5>
-            <small
-              class="jsx-1811490283"
+              Name
+            </label>
+            <input
+              class="form-control"
+              id="product_name"
+              placeholder="Milk"
+              required=""
+              step="0.01"
+              type="string"
+              value="Milk"
+            />
+            <label
+              class="form-label"
+              for="product_name"
             >
-              Sustenance for baby cows
-            </small>
+              Description
+            </label>
+            <input
+              class="form-control"
+              id="product_name"
+              placeholder="Sustenance for baby cows"
+              required=""
+              step="0.01"
+              type="string"
+              value="Sustenance for baby cows"
+            />
           </div>
           <div
-            class="col-md-2"
+            class="form-group col-md-2"
           >
             <label
               class="form-label"
             >
               <small
-                class="jsx-1811490283"
+                class="jsx-456558826"
+              >
+                Archived:
+              </small>
+               
+              false
+            </label>
+          </div>
+          <div
+            class="form-group col-md-2"
+          >
+            <label
+              class="form-label"
+            >
+              <small
+                class="jsx-456558826"
               >
                 Benchmark:
               </small>
                
-              10
+              
             </label>
           </div>
           <div
-            class="col-md-4"
+            class="form-group col-md-3"
           >
             <label
               class="form-label"
             >
               <small
-                class="jsx-1811490283"
+                class="jsx-456558826"
               >
                 Eligibility Threshold:
               </small>
                
-              20
+              
             </label>
           </div>
-          <div
-            class="col-md-2"
-            style="text-align: right;"
-          >
-            <button
-              class="btn btn-primary"
-              type="button"
-            >
-              Edit
-            </button>
-          </div>
         </div>
-      </div>
+      </form>
       <hr
-        class="jsx-1811490283"
+        class="jsx-456558826"
       />
     </div>
     <div
-      class="jsx-1811490283 view"
-      id="edit-item"
+      class="jsx-456558826 view"
+      id="edit-benchmark"
     >
       <form
         class=""
@@ -249,21 +662,73 @@ Object {
           class="form-row"
         >
           <div
+            class="form-group col-md-1"
+          />
+          <div
             class="form-group col-md-4"
           >
             <h5
-              class="jsx-1811490283"
+              class="jsx-456558826"
             >
               Milk
             </h5>
-            <p
-              class="jsx-1811490283"
+            <small
+              class="jsx-456558826"
             >
               Sustenance for baby cows
-            </p>
+            </small>
           </div>
           <div
-            class="form-group col-md-2"
+            class="form-group col-md-1"
+          >
+            <label
+              class="form-label"
+            >
+              <small
+                class="jsx-456558826"
+              >
+                Archived:
+              </small>
+               
+              false
+            </label>
+          </div>
+          <div
+            class="form-group col-md-1"
+            style="text-align: right;"
+          >
+            <div
+              class="btn-group-vertical"
+              role="group"
+              style="width: 100%; margin-top: 10px;"
+            >
+              <button
+                class="btn btn-primary"
+                data-testid="save-benchmark"
+                style="margin-top: 8px; margin-right: 10px;"
+                type="submit"
+              >
+                Save
+              </button>
+              <button
+                class="btn btn-secondary"
+                style="margin-top: 8px;"
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                class="btn btn-danger"
+                data-testid="archive-benchmark"
+                style="margin-top: 8px; margin-right: 10px;"
+                type="button"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+          <div
+            class="form-group col-md-3"
           >
             <label
               class="form-label"
@@ -274,56 +739,45 @@ Object {
             <input
               class="form-control"
               id="benchmark"
-              placeholder="10"
+              placeholder=""
               required=""
               step="0.01"
               type="number"
+              value=""
             />
-          </div>
-          <div
-            class="form-group col-md-2"
-          >
             <label
               class="form-label"
-              for="eligibility_threshold"
+              for="benchmark"
             >
               Eligibility Threshold
             </label>
             <input
               class="form-control"
-              id="eligibility_threshold"
-              placeholder="20"
+              id="benchmark"
+              placeholder=""
               required=""
               step="0.01"
               type="number"
+              value=""
             />
-          </div>
-          <div
-            class="form-group col-md-4"
-            style="text-align: right;"
-          >
-            <br
-              class="jsx-1811490283"
+            <label
+              class="form-label"
+              for="benchmark"
+            >
+              Start Date
+            </label>
+            <input
+              class="form-control"
+              id="benchmark"
+              placeholder="dd/mm/yyyy"
+              required=""
+              step="0.01"
             />
-            <button
-              class="btn btn-primary"
-              style="margin-top: 8px; margin-right: 10px;"
-              type="submit"
-            >
-              Save
-            </button>
-            <button
-              class="btn btn-secondary"
-              style="margin-top: 8px;"
-              type="button"
-            >
-              Cancel
-            </button>
           </div>
         </div>
       </form>
       <hr
-        class="jsx-1811490283"
+        class="jsx-456558826"
       />
     </div>
   </div>,

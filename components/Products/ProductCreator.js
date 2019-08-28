@@ -18,38 +18,41 @@ class ProductCreator extends Component {
                 }
             }
         `;
-
     }
 
     saveProduct = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        const saveVariables =
-            {
-                "input": {
-                    "product": {
-                        "name": event.target.product_name.value,
-                        "description": event.target.product_description.value,
-                    }
-                }
-            };
+      event.preventDefault();
+      event.stopPropagation();
+      const date = new Date().toUTCString();
+      const saveVariables =
+          {
+              "input": {
+                  "product": {
+                      "name": event.target.product_name.value,
+                      "description": event.target.product_description.value,
+                      "state": 'created',
+                      "parent": [null],
+                      "createdAt": date,
+                      "createdBy": 'Admin'
+                  }
+              }
+          };
 
-        const saveMutation = this.createProduct;
-        commitMutation(
-            environment,
-            {
-                mutation: saveMutation,
-                variables: saveVariables,
-                onCompleted: (response, errors) => {
-                    console.log(response);
-                    alert("Product Created");
-                    this.createProductFromRef.current.reset();
-                },
-                onError: err => console.error(err),
-            },
-        );
-    }
-
+      const saveMutation = this.createProduct;
+      commitMutation(
+          environment,
+          {
+              mutation: saveMutation,
+              variables: saveVariables,
+              onCompleted: (response, errors) => {
+                  console.log(response);
+                  this.createProductFromRef.current.reset();
+              },
+              onError: err => console.error(err),
+          },
+      );
+      window.location.reload();
+  }
 
     render() {
         return (
