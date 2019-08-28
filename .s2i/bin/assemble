@@ -43,6 +43,7 @@ yarn install --frozen-lockfile
 
 #do not fail when there is no build script
 echo "---> Building"
+yarn run relay
 yarn build
 
 # Fix source directory permissions
