@@ -28,7 +28,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: ${PREFIX}ciip-portal:${GIT_SHA1}
+        name: ${PREFIX}ciip-portal-schema:${GIT_SHA1}
     resources:
       limits:
         cpu: "1"
