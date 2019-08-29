@@ -39,7 +39,7 @@ class ApplicationList extends Component {
                 environment={environment}
                 query={graphql`
                     query ApplicationListQuery {
-                        allApplications(orderBy: {field: operatorName, direction: ASC}){
+                        allApplications{
                             nodes{
                               applicationId
                               facilityName
