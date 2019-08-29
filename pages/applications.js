@@ -11,6 +11,7 @@ class Applications extends Component {
                <Header/>
                <Container>
                   <h1>Applications</h1>
+                  <hr/>
                   <br/>
                   <br/>
                   <ApplicationList/>
