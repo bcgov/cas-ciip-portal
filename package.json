@@ -12,7 +12,7 @@
     "relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose"
   },
   "engines": {
-    "node": "10.16.3",
+    "node": "10.14.1",
     "yarn": "1.17.3"
   },
   "author": "",
