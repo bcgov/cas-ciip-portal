@@ -8,7 +8,14 @@ create table ggircs_portal.benchmark (
   product_id int not null references ggircs_portal.product(id),
   benchmark int not null,
   eligibility_threshold int not null,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  start_date TIMESTAMP WITH TIME ZONE,
+  end_date TIMESTAMP WITH TIME ZONE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  created_by varchar(1000),
+  updated_at TIMESTAMP WITH TIME ZONE,
+  updated_by varchar(1000),
+  deleted_at TIMESTAMP WITH TIME ZONE,
+  deleted_by varchar(1000)
 );
 
 create unique index benchmark_id_uindex
@@ -19,9 +26,15 @@ alter table ggircs_portal.benchmark
 		primary key (id);
 
 comment on column ggircs_portal.benchmark.id is 'Unique ID for the benchmark';
+comment on column ggircs_portal.benchmark.product_id is 'Foreign key to the product';
 comment on column ggircs_portal.benchmark.benchmark is 'The value of the benchmark';
 comment on column ggircs_portal.benchmark.eligibility_threshold is 'The value of eligibility_threshold';
+comment on column ggircs_portal.benchmark.start_date is 'The date when this benchmark became/becomes active';
+comment on column ggircs_portal.benchmark.end_date is 'The date when this benchmark became/becomes inactive';
 comment on column ggircs_portal.benchmark.created_at is 'Creation date of row';
+comment on column ggircs_portal.benchmark.created_by is 'Creator of row';
+comment on column ggircs_portal.benchmark.updated_at is 'Deletion date of row';
+comment on column ggircs_portal.benchmark.updated_by is 'The user who deleted the row';
 
 
 COMMIT;
