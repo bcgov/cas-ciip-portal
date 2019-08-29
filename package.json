@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "The online portal for Industry to apply and track their CIIP applications",
   "scripts": {
-    "pretest": "npm run relay",
     "test": "jest",
     "predev": "npm run relay",
     "dev": "node server",
