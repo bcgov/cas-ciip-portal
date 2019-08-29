@@ -11,19 +11,26 @@
     "start": "NODE_ENV=production node server",
     "relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose"
   },
+  "engines": {
+    "node": "10.16.3",
+    "yarn": "1.17.3"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "bootstrap": "^4.3.1",
+    "cors": "^2.8.5",
     "diff": "^4.0.1",
     "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.4",
     "express-graphql": "^0.8.0",
+    "express-session": "^1.16.2",
     "graphql": "^14.4.2",
     "graphql-relay": "^0.6.0",
     "isomorphic-unfetch": "^3.0.0",
     "jquery": "^3.3.1",
+    "keycloak-connect": "^7.0.0",
     "next": "^9.0.0",
     "open": "^6.4.0",
     "pg": "^7.11.0",
@@ -36,8 +43,12 @@
     "sinon": "^7.4.1",
     "survey-creator": "^1.1.0",
     "survey-react": "^1.1.1",
-    "surveyjs-widgets": "latest",
-    "sync-exec": "^0.6.2"
+    "surveyjs-widgets": "latest"
+  },
+  "resolutions": {
+    "graphql-cli/**/lodash": "^4.17.13",
+    "graphql-cli/**/npm-run": "^5.0.1",
+    "graphql-cli/**/open": "^6.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^9.1.2",
