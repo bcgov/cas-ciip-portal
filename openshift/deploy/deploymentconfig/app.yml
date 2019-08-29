@@ -63,7 +63,7 @@ objects:
           - name: JAVA_TIMEZONE
             value: US/Pacific
           - name: PORT
-            value: 3000
+            value: "3000"
           image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}ciip-portal-app:${GIT_SHA1}
           imagePullPolicy: IfNotPresent
           name: ${PREFIX}ciip-portal-app
