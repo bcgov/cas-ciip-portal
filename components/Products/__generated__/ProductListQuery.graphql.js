@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8524a59437d96420f5f01a874eecf44b
+ * @relayHash dd1016d644bda236ce342c097fb7e255
  */
 
 /* eslint-disable */
@@ -16,10 +16,17 @@ export type ProductListQueryResponse = {|
       +rowId: number,
       +name: string,
       +description: ?string,
+      +state: ?string,
+      +parent: ?$ReadOnlyArray<?number>,
       +benchmarksByProductId: {|
         +nodes: $ReadOnlyArray<?{|
+          +rowId: number,
           +benchmark: number,
           +eligibilityThreshold: number,
+          +startDate: ?any,
+          +endDate: ?any,
+          +deletedAt: ?any,
+          +deletedBy: ?string,
         |}>
       |},
     |}>
@@ -39,10 +46,17 @@ query ProductListQuery {
       rowId
       name
       description
+      state
+      parent
       benchmarksByProductId {
         nodes {
+          rowId
           benchmark
           eligibilityThreshold
+          startDate
+          endDate
+          deletedAt
+          deletedBy
           id
         }
       }
@@ -77,18 +91,60 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "benchmark",
+  "name": "state",
   "args": null,
   "storageKey": null
 },
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "eligibilityThreshold",
+  "name": "parent",
   "args": null,
   "storageKey": null
 },
 v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "benchmark",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "eligibilityThreshold",
+  "args": null,
+  "storageKey": null
+},
+v7 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "startDate",
+  "args": null,
+  "storageKey": null
+},
+v8 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "endDate",
+  "args": null,
+  "storageKey": null
+},
+v9 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "deletedAt",
+  "args": null,
+  "storageKey": null
+},
+v10 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "deletedBy",
+  "args": null,
+  "storageKey": null
+},
+v11 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -125,6 +181,8 @@ return {
               (v0/*: any*/),
               (v1/*: any*/),
               (v2/*: any*/),
+              (v3/*: any*/),
+              (v4/*: any*/),
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -143,8 +201,13 @@ return {
                     "concreteType": "Benchmark",
                     "plural": true,
                     "selections": [
-                      (v3/*: any*/),
-                      (v4/*: any*/)
+                      (v0/*: any*/),
+                      (v5/*: any*/),
+                      (v6/*: any*/),
+                      (v7/*: any*/),
+                      (v8/*: any*/),
+                      (v9/*: any*/),
+                      (v10/*: any*/)
                     ]
                   }
                 ]
@@ -181,6 +244,8 @@ return {
               (v0/*: any*/),
               (v1/*: any*/),
               (v2/*: any*/),
+              (v3/*: any*/),
+              (v4/*: any*/),
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -199,14 +264,19 @@ return {
                     "concreteType": "Benchmark",
                     "plural": true,
                     "selections": [
-                      (v3/*: any*/),
-                      (v4/*: any*/),
-                      (v5/*: any*/)
+                      (v0/*: any*/),
+                      (v5/*: any*/),
+                      (v6/*: any*/),
+                      (v7/*: any*/),
+                      (v8/*: any*/),
+                      (v9/*: any*/),
+                      (v10/*: any*/),
+                      (v11/*: any*/)
                     ]
                   }
                 ]
               },
-              (v5/*: any*/)
+              (v11/*: any*/)
             ]
           }
         ]
@@ -217,11 +287,11 @@ return {
     "operationKind": "query",
     "name": "ProductListQuery",
     "id": null,
-    "text": "query ProductListQuery {\n  allProducts {\n    nodes {\n      rowId\n      name\n      description\n      benchmarksByProductId {\n        nodes {\n          benchmark\n          eligibilityThreshold\n          id\n        }\n      }\n      id\n    }\n  }\n}\n",
+    "text": "query ProductListQuery {\n  allProducts {\n    nodes {\n      rowId\n      name\n      description\n      state\n      parent\n      benchmarksByProductId {\n        nodes {\n          rowId\n          benchmark\n          eligibilityThreshold\n          startDate\n          endDate\n          deletedAt\n          deletedBy\n          id\n        }\n      }\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4bcfbad35b57617165620fa1e524bd12';
+(node/*: any*/).hash = '106040a9597c5b488c14f200665a0fcb';
 module.exports = node;

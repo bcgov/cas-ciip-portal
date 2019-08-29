@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fb996f65b1b0c43f6e532598e026f052
+ * @relayHash ca816ff73014ed017e311b88673cb0cc
  */
 
 /* eslint-disable */
@@ -9,40 +9,44 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type CreateBenchmarkInput = {|
+export type CreateProductInput = {|
   clientMutationId?: ?string,
-  benchmark: BenchmarkInput,
+  product: ProductInput,
 |};
-export type BenchmarkInput = {|
+export type ProductInput = {|
   rowId?: ?number,
-  productId: number,
-  benchmark: number,
-  eligibilityThreshold: number,
+  name: string,
+  description?: ?string,
+  state?: ?string,
+  parent?: ?$ReadOnlyArray<?number>,
   createdAt?: ?any,
+  createdBy?: ?string,
+  deletedAt?: ?any,
+  deletedBy?: ?string,
 |};
-export type ProductRowItemMutationVariables = {|
-  input: CreateBenchmarkInput
+export type ProductRowItemProductMutationVariables = {|
+  input: CreateProductInput
 |};
-export type ProductRowItemMutationResponse = {|
-  +createBenchmark: ?{|
-    +benchmark: ?{|
+export type ProductRowItemProductMutationResponse = {|
+  +createProduct: ?{|
+    +product: ?{|
       +rowId: number
     |}
   |}
 |};
-export type ProductRowItemMutation = {|
-  variables: ProductRowItemMutationVariables,
-  response: ProductRowItemMutationResponse,
+export type ProductRowItemProductMutation = {|
+  variables: ProductRowItemProductMutationVariables,
+  response: ProductRowItemProductMutationResponse,
 |};
 */
 
 
 /*
-mutation ProductRowItemMutation(
-  $input: CreateBenchmarkInput!
+mutation ProductRowItemProductMutation(
+  $input: CreateProductInput!
 ) {
-  createBenchmark(input: $input) {
-    benchmark {
+  createProduct(input: $input) {
+    product {
       rowId
       id
     }
@@ -55,7 +59,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "CreateBenchmarkInput!",
+    "type": "CreateProductInput!",
     "defaultValue": null
   }
 ],
@@ -77,7 +81,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "ProductRowItemMutation",
+    "name": "ProductRowItemProductMutation",
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -85,19 +89,19 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "createBenchmark",
+        "name": "createProduct",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateBenchmarkPayload",
+        "concreteType": "CreateProductPayload",
         "plural": false,
         "selections": [
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "benchmark",
+            "name": "product",
             "storageKey": null,
             "args": null,
-            "concreteType": "Benchmark",
+            "concreteType": "Product",
             "plural": false,
             "selections": [
               (v2/*: any*/)
@@ -109,25 +113,25 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "ProductRowItemMutation",
+    "name": "ProductRowItemProductMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "createBenchmark",
+        "name": "createProduct",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateBenchmarkPayload",
+        "concreteType": "CreateProductPayload",
         "plural": false,
         "selections": [
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "benchmark",
+            "name": "product",
             "storageKey": null,
             "args": null,
-            "concreteType": "Benchmark",
+            "concreteType": "Product",
             "plural": false,
             "selections": [
               (v2/*: any*/),
@@ -146,13 +150,13 @@ return {
   },
   "params": {
     "operationKind": "mutation",
-    "name": "ProductRowItemMutation",
+    "name": "ProductRowItemProductMutation",
     "id": null,
-    "text": "mutation ProductRowItemMutation(\n  $input: CreateBenchmarkInput!\n) {\n  createBenchmark(input: $input) {\n    benchmark {\n      rowId\n      id\n    }\n  }\n}\n",
+    "text": "mutation ProductRowItemProductMutation(\n  $input: CreateProductInput!\n) {\n  createProduct(input: $input) {\n    product {\n      rowId\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '06b977323553a1267a76b81461c0bdf4';
+(node/*: any*/).hash = '12693dd97aefb68d57cfb34f49cd5ef1';
 module.exports = node;

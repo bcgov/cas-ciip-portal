@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 72468cb0d3b916e64018e902dcd8ca47
+ * @relayHash 93f2cf30011fdc175ff34b5d61fbbc76
  */
 
 /* eslint-disable */
@@ -9,13 +9,14 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type CreateProductInput = {|
+export type UpdateProductByRowIdInput = {|
   clientMutationId?: ?string,
-  product: ProductInput,
+  productPatch: ProductPatch,
+  rowId: number,
 |};
-export type ProductInput = {|
+export type ProductPatch = {|
   rowId?: ?number,
-  name: string,
+  name?: ?string,
   description?: ?string,
   state?: ?string,
   parent?: ?$ReadOnlyArray<?number>,
@@ -24,28 +25,28 @@ export type ProductInput = {|
   deletedAt?: ?any,
   deletedBy?: ?string,
 |};
-export type ProductCreatorMutationVariables = {|
-  input: CreateProductInput
+export type ProductRowItemUpdateProductMutationVariables = {|
+  input: UpdateProductByRowIdInput
 |};
-export type ProductCreatorMutationResponse = {|
-  +createProduct: ?{|
+export type ProductRowItemUpdateProductMutationResponse = {|
+  +updateProductByRowId: ?{|
     +product: ?{|
       +rowId: number
     |}
   |}
 |};
-export type ProductCreatorMutation = {|
-  variables: ProductCreatorMutationVariables,
-  response: ProductCreatorMutationResponse,
+export type ProductRowItemUpdateProductMutation = {|
+  variables: ProductRowItemUpdateProductMutationVariables,
+  response: ProductRowItemUpdateProductMutationResponse,
 |};
 */
 
 
 /*
-mutation ProductCreatorMutation(
-  $input: CreateProductInput!
+mutation ProductRowItemUpdateProductMutation(
+  $input: UpdateProductByRowIdInput!
 ) {
-  createProduct(input: $input) {
+  updateProductByRowId(input: $input) {
     product {
       rowId
       id
@@ -59,7 +60,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "CreateProductInput!",
+    "type": "UpdateProductByRowIdInput!",
     "defaultValue": null
   }
 ],
@@ -81,7 +82,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "ProductCreatorMutation",
+    "name": "ProductRowItemUpdateProductMutation",
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -89,10 +90,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "createProduct",
+        "name": "updateProductByRowId",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateProductPayload",
+        "concreteType": "UpdateProductPayload",
         "plural": false,
         "selections": [
           {
@@ -113,16 +114,16 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "ProductCreatorMutation",
+    "name": "ProductRowItemUpdateProductMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "createProduct",
+        "name": "updateProductByRowId",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateProductPayload",
+        "concreteType": "UpdateProductPayload",
         "plural": false,
         "selections": [
           {
@@ -150,13 +151,13 @@ return {
   },
   "params": {
     "operationKind": "mutation",
-    "name": "ProductCreatorMutation",
+    "name": "ProductRowItemUpdateProductMutation",
     "id": null,
-    "text": "mutation ProductCreatorMutation(\n  $input: CreateProductInput!\n) {\n  createProduct(input: $input) {\n    product {\n      rowId\n      id\n    }\n  }\n}\n",
+    "text": "mutation ProductRowItemUpdateProductMutation(\n  $input: UpdateProductByRowIdInput!\n) {\n  updateProductByRowId(input: $input) {\n    product {\n      rowId\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '21bc6575bcab2bbe4a71a1742c02ffa9';
+(node/*: any*/).hash = 'b90e512f60b5176ac9012fd712849b03';
 module.exports = node;
