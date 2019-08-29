@@ -74,17 +74,17 @@ app.prepare().then(() => {
                     };
                 },
             }
-            )
-            );
+        )
+    );
 
-            server.get('/form-builder', keycloak.protect());
+    server.get('/form-builder', keycloak.protect());
 
-            server.get('*', (req, res) => {
-                return handle(req, res)
-            })
+    server.get('*', (req, res) => {
+        return handle(req, res)
+    })
 
-            server.listen(port, err => {
-                if (err) throw err
-                console.log(`> Ready on http://localhost:${port}`)
-            })
-        })
+    server.listen(port, err => {
+        if (err) throw err
+        console.log(`> Ready on http://localhost:${port}`)
+    })
+})
