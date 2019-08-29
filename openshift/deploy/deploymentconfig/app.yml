@@ -1,8 +1,7 @@
 apiVersion: template.openshift.io/v1
 kind: Template
 labels:
-  template: job-template
-
+  template: deploy-template
 
 parameters:
 - description: Prefix to prepend to object name.
@@ -23,29 +22,25 @@ parameters:
   required: true
 
 objects:
-- apiVersion: batch/v1
-  kind: Job
+- apiVersion: v1
+  kind: DeploymentConfig
   metadata:
-    name: ${PREFIX}ciip-portal-schema
+    annotations:
+      template.alpha.openshift.io/wait-for-ready: "true"
+    name: ${PREFIX}ciip-portal-app
   spec:
-    backoffLimit: 0
-    activeDeadlineSeconds: 120
+    replicas: 2
+    selector:
+      name: ${PREFIX}ciip-portal-app
+    strategy:
+      type: Rolling
     template:
       metadata:
         labels:
-          name: ${PREFIX}ciip-portal-schema
+          name: ${PREFIX}ciip-portal-app
       spec:
-        restartPolicy: Never
         containers:
-        - command:
-          - /usr/bin/env
-          - bash
-          - -c
-          - |
-            sqitch deploy;
-          env:
-          - name: SQITCH_TARGET
-            value: "db:pg:"
+        - env:
           - name: PGUSER
             valueFrom:
               secretKeyRef:
@@ -65,16 +60,35 @@ objects:
             value: "5432"
           - name: PGHOST
             value: ${PREFIX}ggircs-postgres
-          - name: SQITCH_FULLNAME
-            value: OpenShift Deployer
-          - name: SQITCH_EMAIL
-            value: deployer@pathfinder.gov.bc.ca
-          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}ciip-portal-schema:${GIT_SHA1}
-          name: ${PREFIX}ciip-portal-schema
+          - name: JAVA_TIMEZONE
+            value: US/Pacific
+          - name: PORT
+            value: 3000
+          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}ciip-portal-app:${GIT_SHA1}
+          imagePullPolicy: IfNotPresent
+          name: ${PREFIX}ciip-portal-app
+          ports:
+          - containerPort: 3000
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           resources:
             limits:
-              cpu: 100m
-              memory: 64Mi
+              cpu: 500m
+              memory: 4Gi
             requests:
               cpu: 100m
-              memory: 64Mi
+              memory: 256Mi
+          securityContext:
+            capabilities: {}
+            privileged: false
+          terminationMessagePath: /dev/termination-log
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always

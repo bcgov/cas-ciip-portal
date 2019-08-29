@@ -105,7 +105,7 @@ PATHFINDER_PREFIX := wksv3k
 PROJECT_PREFIX := cas-
 
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
-PREVIOUS_DEPLOY_SHA1=$(shell $(OC) get job $(PROJECT_PREFIX)ciip-2018-schema --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
+PREVIOUS_DEPLOY_SHA1=$(shell $(OC) get job $(PROJECT_PREFIX)ciip-portal-schema --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
 
 .PHONY: help
 help: $(call make_help,help,Explains how to use this Makefile)
@@ -156,13 +156,15 @@ build: build_app
 
 .PHONY: install
 install: whoami
-	$(call oc_promote,$(PROJECT_PREFIX)ciip-2018-schema)
+	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-schema)
+	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-app)
 	$(call oc_wait_for_deploy,$(PROJECT_PREFIX)postgres)
-	$(call oc_wait_for_job,$(PROJECT_PREFIX)etl)
 ifneq (,$(PREVIOUS_DEPLOY_SHA1))
-	$(call oc_run_job,$(PROJECT_PREFIX)ciip-2018-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1))
+	$(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1))
 endif
-	$(call oc_run_job,$(PROJECT_PREFIX)ciip-2018-schema)
+	$(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema)
+	$(call oc_deploy)
+	$(call oc_wait_for_deploy,$(PROJECT_PREFIX)ciip-portal-app)
 
 .PHONY: install_test
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)

@@ -1,0 +1,39 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+
+parameters:
+- description: Openshift project name.
+  displayName: Project
+  name: OC_PROJECT
+  required: true
+- description: Prefix to prepend to object name.
+  displayName: Prefix
+  name: PREFIX
+  required: true
+
+objects:
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    name: ${PREFIX}ciip-portal-app
+  spec:
+    host: ciip-portal-${OC_PROJECT}.pathfinder.gov.bc.ca
+    port:
+      targetPort: ${PREFIX}ciip-portal-app
+    tls:
+      termination: edge
+    to:
+      kind: Service
+      name: ${PREFIX}ciip-portal-app
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - status: 'True'
+        type: Admitted
+      host: ciip-portal-${OC_PROJECT}.pathfinder.gov.bc.ca
+      routerName: router
+      wildcardPolicy: None
+
+

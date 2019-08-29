@@ -50,21 +50,21 @@ objects:
             valueFrom:
               secretKeyRef:
                 key: database-user
-                name: ${PREFIX}postgres
+                name: ${PREFIX}ggircs-postgres
           - name: PGPASSWORD
             valueFrom:
               secretKeyRef:
                 key: database-password
-                name: ${PREFIX}postgres
+                name: ${PREFIX}ggircs-postgres
           - name: PGDATABASE
             valueFrom:
               secretKeyRef:
                 key: database-name
-                name: ${PREFIX}postgres
+                name: ${PREFIX}ggircs-postgres
           - name: PGPORT
             value: "5432"
           - name: PGHOST
-            value: ${PREFIX}postgres
+            value: ${PREFIX}ggircs-postgres
           - name: SQITCH_FULLNAME
             value: OpenShift Deployer
           - name: SQITCH_EMAIL
