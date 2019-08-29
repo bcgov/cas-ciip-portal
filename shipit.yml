@@ -1,3 +1,5 @@
+dependencies:
+  override: []
 deploy:
   override:
     - git submodule init
