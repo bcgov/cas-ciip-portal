@@ -6,6 +6,11 @@ class ApplicationRowItem extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {showDetails: 'none'}
+    }
+
+    toggleDetails = () => {
+        this.state.showDetails === 'none' ? this.setState({showDetails: 'block'}) : this.setState({showDetails: 'none'})
     }
 
     render(){
@@ -17,7 +22,7 @@ class ApplicationRowItem extends Component {
             declined: 'danger',
             approved: 'success'
         }
-        const url = `https://metabase-wksv3k-dev.pathfinder.gov.bc.ca/dashboard/88?application_id=${application.applicationId}`;
+        const url = `https://metabase-wksv3k-dev.pathfinder.gov.bc.ca/public/dashboard/bb6a4b75-3a7f-4fab-9268-cb013ecfcb7b?application_id=${application.applicationId}`;
 
         return(
             <React.Fragment>
@@ -41,7 +46,19 @@ class ApplicationRowItem extends Component {
                             <Badge pill variant={statusBadgeColor[application.applicationStatus]} >{application.applicationStatus}</Badge>
                         </Col>
                         <Col md={3} style={{paddingLeft: 100}}>
-                            <Button style={{display: "table-cell"}} href={url} target="_blank" variant='primary'>View Application</Button>
+                            <Button style={{display: "table-cell"}} onClick={this.toggleDetails} target="_blank" variant='primary'>{this.state.showDetails === 'none' ? 'View Application' : 'Hide Application'}</Button>
+                        </Col>
+                    </Row>
+                    <Row id={this.props.application.applicationId} className="justify-content-md-center" style={{display: this.state.showDetails}}>
+                        <br/>
+                        <Col md={12}>
+                            <iframe
+                                src={url}
+                                frameBorder="0"
+                                width="100%"
+                                height="1000"
+                                allowtransparency="true">
+                            </iframe>
                         </Col>
                     </Row>
                 </Container>
