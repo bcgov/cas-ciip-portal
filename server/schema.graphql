@@ -1,3 +1,90 @@
+"""The application data"""
+type Application {
+  """The application id used for reference and join"""
+  applicationId: Int
+
+  """The facility related to the application"""
+  facilityName: String
+
+  """The operator related to the application"""
+  operatorName: String
+
+  """The application status"""
+  applicationStatus: String
+}
+
+"""
+A condition to be used against `Application` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input ApplicationCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `facilityName` field."""
+  facilityName: String
+
+  """Checks for equality with the object’s `operatorName` field."""
+  operatorName: String
+
+  """Checks for equality with the object’s `applicationStatus` field."""
+  applicationStatus: String
+}
+
+"""An input for mutations affecting `Application`"""
+input ApplicationInput {
+  """The application id used for reference and join"""
+  applicationId: Int
+
+  """The facility related to the application"""
+  facilityName: String
+
+  """The operator related to the application"""
+  operatorName: String
+
+  """The application status"""
+  applicationStatus: String
+}
+
+"""A connection to a list of `Application` values."""
+type ApplicationsConnection {
+  """A list of `Application` objects."""
+  nodes: [Application]!
+
+  """
+  A list of edges which contains the `Application` and cursor to aid in pagination.
+  """
+  edges: [ApplicationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Application` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Application` edge in the connection."""
+type ApplicationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Application` at the end of the edge."""
+  node: Application
+}
+
+"""Methods to use when ordering `Application`."""
+enum ApplicationsOrderBy {
+  NATURAL
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  FACILITY_NAME_ASC
+  FACILITY_NAME_DESC
+  OPERATOR_NAME_ASC
+  OPERATOR_NAME_DESC
+  APPLICATION_STATUS_ASC
+  APPLICATION_STATUS_DESC
+}
+
 type Benchmark implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -894,6 +981,41 @@ enum CiipProductionsOrderBy {
   ATTRIBUTABLE_FUEL_PERCENTAGE_DESC
 }
 
+"""All input for the create `Application` mutation."""
+input CreateApplicationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Application` to be created by this mutation."""
+  application: ApplicationInput!
+}
+
+"""The output of our create `Application` mutation."""
+type CreateApplicationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Application` that was created by this mutation."""
+  application: Application
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Application`. May be used by Relay 1."""
+  applicationEdge(
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = NATURAL
+  ): ApplicationsEdge
+}
+
 """All input for the create `Benchmark` mutation."""
 input CreateBenchmarkInput {
   """
@@ -1549,6 +1671,14 @@ scalar JSON
 The root mutation type which contains root level fields which mutate data.
 """
 type Mutation {
+  """Creates a single `Application`."""
+  createApplication(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateApplicationInput!
+  ): CreateApplicationPayload
+
   """Creates a single `Benchmark`."""
   createBenchmark(
     """
@@ -2007,6 +2137,35 @@ type Query implements Node {
     """The globally unique `ID`."""
     id: ID!
   ): Node
+
+  """Reads and enables pagination through a set of `Application`."""
+  allApplications(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationCondition
+  ): ApplicationsConnection
 
   """Reads and enables pagination through a set of `Benchmark`."""
   allBenchmarks(
