@@ -24,7 +24,6 @@ class ApplicationRowItem extends Component {
         }
         const url = `https://metabase-wksv3k-dev.pathfinder.gov.bc.ca/public/dashboard/bb6a4b75-3a7f-4fab-9268-cb013ecfcb7b?application_id=${application.applicationId}`;
         const nextUrl = `/application-details?application_id=${application.applicationId}`
-
         return(
             <React.Fragment>
               <div key={this.props.application.applicationId} >
@@ -72,6 +71,17 @@ class ApplicationRowItem extends Component {
           </React.Fragment>
         )
     }
+}
+
+// Proptype Validations
+ApplicationRowItem.propTypes = {
+    application: propTypes.shape({
+        applicationId: propTypes.number,
+        applicationStatus: propTypes.string,
+        certificationDate: propTypes.string,
+        facilityName: propTypes.string,
+        operatorName: propTypes.string
+  })
 }
 
 export default ApplicationRowItem;
