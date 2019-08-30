@@ -2,7 +2,7 @@ import React ,{ Component } from 'react'
 import {graphql, QueryRenderer} from "react-relay";
 import initEnvironment from '../../lib/createRelayEnvironment';
 import ApplicationRowItem from "./ApplicationRowItem";
-import {Dropdown, Button, Row, Col} from 'react-bootstrap';
+import {Container, Dropdown, Button, Row, Col} from 'react-bootstrap';
 const environment = initEnvironment();
 
 
@@ -43,26 +43,28 @@ class ApplicationList extends Component {
         console.log(this.state.direction);
         return(
             <React.Fragment>
-                <h5>Sort Applications</h5>
-                <Row>
-                    <Col md={2}>
-                        <Dropdown style={{width: "100%"}}>
-                            <Dropdown.Toggle style={{width: "100%"}} variant='info' id='dropdown-sort'>
-                                {this.state.orderByDisplay}
-                            </Dropdown.Toggle>
-                                <Dropdown.Menu style={{width: "100%"}}>
-                                    <Dropdown.Item eventKey='APPLICATION_ID_' onSelect={this.sortApplications}>application id</Dropdown.Item>
-                                    <Dropdown.Item eventKey='OPERATOR_NAME_' onSelect={this.sortApplications}>operator name</Dropdown.Item>
-                                    <Dropdown.Item eventKey='FACILITY_NAME_' onSelect={this.sortApplications}>facility name</Dropdown.Item>
-                                    <Dropdown.Item eventKey='CERTIFICATION_DATE_' onSelect={this.sortApplications}>certification date</Dropdown.Item>
-                                    <Dropdown.Item eventKey='APPLICATION_STATUS_' onSelect={this.sortApplications}>status</Dropdown.Item>
-                                </Dropdown.Menu>
-                        </Dropdown>
-                    </Col>
-                    <Col md={1}>
-                        <Button style={{width: "100%"}}onClick={this.toggleDirection} variant='info'>{this.state.direction}</Button>
-                    </Col>
-                </Row>
+                <Container style={{padding: 10, background: 'lightGrey'}}>
+                    <h5>Sort Applications</h5>
+                    <Row>
+                        <Col md={2}>
+                            <Dropdown style={{width: "100%"}}>
+                                <Dropdown.Toggle style={{width: "100%"}} variant='info' id='dropdown-sort'>
+                                    {this.state.orderByDisplay}
+                                </Dropdown.Toggle>
+                                    <Dropdown.Menu style={{width: "100%"}}>
+                                        <Dropdown.Item eventKey='APPLICATION_ID_' onSelect={this.sortApplications}>application id</Dropdown.Item>
+                                        <Dropdown.Item eventKey='OPERATOR_NAME_' onSelect={this.sortApplications}>operator name</Dropdown.Item>
+                                        <Dropdown.Item eventKey='FACILITY_NAME_' onSelect={this.sortApplications}>facility name</Dropdown.Item>
+                                        <Dropdown.Item eventKey='CERTIFICATION_DATE_' onSelect={this.sortApplications}>certification date</Dropdown.Item>
+                                        <Dropdown.Item eventKey='APPLICATION_STATUS_' onSelect={this.sortApplications}>status</Dropdown.Item>
+                                    </Dropdown.Menu>
+                            </Dropdown>
+                        </Col>
+                        <Col md={1}>
+                            <Button style={{width: "100%"}}onClick={this.toggleDirection} variant='info'>{this.state.direction}</Button>
+                        </Col>
+                    </Row>
+                </Container>
                 <br/>
                 <br/>
                 <QueryRenderer
