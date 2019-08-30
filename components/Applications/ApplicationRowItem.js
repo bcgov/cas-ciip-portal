@@ -23,6 +23,7 @@ class ApplicationRowItem extends Component {
             approved: 'success'
         }
         const url = `https://metabase-wksv3k-dev.pathfinder.gov.bc.ca/public/dashboard/bb6a4b75-3a7f-4fab-9268-cb013ecfcb7b?application_id=${application.applicationId}`;
+        const nextUrl = `/application-details?application_id=${application.applicationId}`
 
         return(
             <React.Fragment>
@@ -46,7 +47,7 @@ class ApplicationRowItem extends Component {
                             <Badge pill variant={statusBadgeColor[application.applicationStatus]} >{application.applicationStatus}</Badge>
                         </Col>
                         <Col md={3} style={{paddingLeft: 100}}>
-                            <Button style={{display: "table-cell"}} onClick={this.toggleDetails} target="_blank" variant='primary'>{this.state.showDetails === 'none' ? 'View Application' : 'Hide Application'}</Button>
+                            <Button style={{display: "table-cell"}} href={nextUrl} target="_blank" variant='primary'>{this.state.showDetails === 'none' ? 'View Application' : 'Hide Application'}</Button>
                         </Col>
                     </Row>
                     <Row id={this.props.application.applicationId} className="justify-content-md-center" style={{display: this.state.showDetails}}>
