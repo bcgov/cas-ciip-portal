@@ -13,7 +13,7 @@ class ApplicationList extends Component {
         this.state = {
             orderByField: "OPERATOR_NAME_",
             direction: "ASC",
-            orderByDisplay: "operator name"
+            orderByDisplay: "Operator Name"
         }
     }
 
@@ -29,12 +29,16 @@ class ApplicationList extends Component {
         return applicationList;
     }
 
-    sortApplications = (eventKey) => {
-      const display = eventKey.replace(/_/g, ' ').toLowerCase();
-      this.setState({orderByField: eventKey, orderByDisplay: display});
+    sortApplications = (eventKey, event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        event.persist();
+        this.setState({orderByField: eventKey, orderByDisplay: event.target.text});
     }
 
     toggleDirection = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         this.state.direction === 'ASC' ? this.setState({direction: 'DESC'}) : this.setState({direction: 'ASC'})
     }
 
@@ -52,11 +56,11 @@ class ApplicationList extends Component {
                                     {this.state.orderByDisplay}
                                 </Dropdown.Toggle>
                                     <Dropdown.Menu style={{width: "100%"}}>
-                                        <Dropdown.Item eventKey='APPLICATION_ID_' onSelect={this.sortApplications}>application id</Dropdown.Item>
-                                        <Dropdown.Item eventKey='OPERATOR_NAME_' onSelect={this.sortApplications}>operator name</Dropdown.Item>
-                                        <Dropdown.Item eventKey='FACILITY_NAME_' onSelect={this.sortApplications}>facility name</Dropdown.Item>
-                                        <Dropdown.Item eventKey='CERTIFICATION_DATE_' onSelect={this.sortApplications}>certification date</Dropdown.Item>
-                                        <Dropdown.Item eventKey='APPLICATION_STATUS_' onSelect={this.sortApplications}>status</Dropdown.Item>
+                                        <Dropdown.Item eventKey='APPLICATION_ID_' onSelect={this.sortApplications}>Application ID</Dropdown.Item>
+                                        <Dropdown.Item eventKey='OPERATOR_NAME_' onSelect={this.sortApplications}>Operator Name</Dropdown.Item>
+                                        <Dropdown.Item eventKey='FACILITY_NAME_' onSelect={this.sortApplications}>Facility Name</Dropdown.Item>
+                                        <Dropdown.Item eventKey='CERTIFICATION_DATE_' onSelect={this.sortApplications}>Submission Date</Dropdown.Item>
+                                        <Dropdown.Item eventKey='APPLICATION_STATUS_' onSelect={this.sortApplications}>Status</Dropdown.Item>
                                     </Dropdown.Menu>
                             </Dropdown>
                         </Col>
