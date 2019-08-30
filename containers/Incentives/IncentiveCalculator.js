@@ -1,7 +1,9 @@
 import React ,{ Component } from 'react'
 import {graphql, QueryRenderer, fetchQuery} from "react-relay";
 import initEnvironment from '../../lib/createRelayEnvironment';
-import IncentiveCalculator from '../../components/Incentives/IncentiveCalculator'
+import IncentiveSegment from "../../components/Incentives/IncentiveSegment";
+import IncentiveSegmentFormula from "../../components/Incentives/IncentiveSegmentFormula";
+import {Table, Jumbotron, Card} from 'react-bootstrap';
 const environment = initEnvironment();
 
 const allProductsQuery = graphql`
@@ -38,83 +40,145 @@ const productsByApplicationQuery = graphql`
         }
     `;
 
+const carbonTaxByOrganisationQuery = graphql`
+    query IncentiveCalculatorCarbonTaxByOrganisationQuery {
+        getCarbonTaxByOrganisation(orgId:599, reportingYear:"2012"){
+            nodes{
+                reportId
+                organisationId
+                fuelType
+                calculatedCarbonTax
+            }
+        }
+    }
+`;
 
 class IncentiveCalculatorContainer extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            totalCarbonIncentive:0,
+            incentiveSegments:[]
+        }
     }
 
     getData = async () => {
       const allProducts = await fetchQuery(environment, allProductsQuery);
       const productsByApplication = await fetchQuery(environment, productsByApplicationQuery);
+      const carbonTaxByOrganisation = await fetchQuery(environment, carbonTaxByOrganisationQuery);
+
+      const totalCarbonTax = carbonTaxByOrganisation.getCarbonTaxByOrganisation.nodes.reduce((total, curr) => {
+          return parseFloat(total) + parseFloat(curr.calculatedCarbonTax)
+      }, 0);
+
       return ({
           allProducts,
           productsByApplication,
-          carbonTaxPaid: 1000000 // assume a value until ciip and swrs are connected
+          carbonTaxPaid: totalCarbonTax // assume a value until ciip and swrs are connected
       });
     };
 
-    calculateIncentive = async () => {
+    generateIncentiveCalculationData = async () => {
         const data = await this.getData();
         const productsReported = data.productsByApplication.getProductsByApplicationId.nodes;
         const allProducts = data.allProducts.allProducts.nodes;
-        let eligibleFuelList = [];
-        let carbonIncentive = 0;
+        let totalCarbonIncentive = 0;
+        let incentiveSegments = [];
 
         productsReported.forEach((product) => {
            // Get bm/et details for the product from the Products table
            const productDetails = allProducts.filter((p) => p.name === product.processingUnit);
-           console.log('each product', product, productDetails);
+           const productQuantity = parseFloat(product.quantity)
+           const attributableFuelPercentage = parseFloat(product.attributableFuelPercentage)
            const benchmark = productDetails[0].benchmarksByProductId.nodes[0].benchmark;
            const eligibilityThreshold = productDetails[0].benchmarksByProductId.nodes[0].eligibilityThreshold;
            let eligibilityValue = 0;
 
-           if (product.quantity > benchmark && product.quantity < eligibilityThreshold){
-               eligibilityValue = ((product.quantity - benchmark) / (eligibilityThreshold - benchmark));
+           if (productQuantity > benchmark && productQuantity < eligibilityThreshold){
+               eligibilityValue = ((productQuantity - benchmark) / (eligibilityThreshold - benchmark));
            }
 
-           const eligibleFuelValue = product.attributableFuelPercentage/100 * eligibilityValue;
-           carbonIncentive = carbonIncentive + ( eligibleFuelValue * data.carbonTaxPaid )
+           const eligibleFuelValue = attributableFuelPercentage/100 * eligibilityValue;
+           totalCarbonIncentive = totalCarbonIncentive + ( eligibleFuelValue * data.carbonTaxPaid );
+
+           incentiveSegments.push(
+                <IncentiveSegment
+                    name = {product.processingUnit}
+                    quantity={productQuantity}
+                    benchmark={benchmark}
+                    eligibilityThreshold={eligibilityThreshold}
+                    fuelPercentage={attributableFuelPercentage}
+                    carbonTaxPaid={data.carbonTaxPaid}
+                    incentiveSegment={eligibleFuelValue * data.carbonTaxPaid}
+                />
+            );
 
         });
 
-        console.log('ct',carbonIncentive);
+        this.setState({
+            totalCarbonIncentive: totalCarbonIncentive,
+            incentiveSegments:  incentiveSegments
+        });
+
     };
 
+    componentDidMount() {
+        this.generateIncentiveCalculationData();
+    }
 
     render(){
-       this.calculateIncentive();
-       return <IncentiveCalculator/>
+        const incentiveSegments =  this.state.incentiveSegments;
+        return (
+            <React.Fragment>
+                <Jumbotron>
+                    <div style={{marginBottom:'30px'}}>
+                        <h5>
+                            Incentive by Product:
+                        </h5>
+                        <p>
+                            This formula gives the partial incentive for each product reported in <br/>
+                            the CIIP application. The total Incentive is the sum of these partial incentives.
+                            <br/>
+                        </p>
+                    </div>
+                    <IncentiveSegmentFormula/>
+                </Jumbotron>
+
+                <div className='incentive-breakdown'>
+                    <Table responsive="lg"  striped bordered hover>
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Calculation Breakdown</th>
+                            <th>Incentive for product</th>
+                            <th>Chart</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {incentiveSegments.map(( segment, index ) => (
+                            <React.Fragment key={index}>
+                                { segment }
+                            </React.Fragment>
+                        ))}
+                        <tr>
+                            <td colSpan="2"><strong>Total Incentive</strong></td>
+                            <td>
+                                <strong>
+                                CAD {this.state.totalCarbonIncentive.toFixed(2)}
+                                </strong>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </Table>
+
+                </div>
+            </React.Fragment>
+        )
+
     }
+
 
 }
 
 export default IncentiveCalculatorContainer;
-
-/*
-
-Incentives Calculator
-1: Get the application by id - fetch application
-2: Write function to fetch production data by application id
-3: get the benchmark / et for each production item - fetch benchmarks
-4: assume a carbox tax paid value until ciip and swrs are connected
-5: find details for product -- todo: use products ids
-6: calculate percentage eligibility
-7: multiply by fuel allocation and ct
-8: voila
-
-
-4: Create a view from the carbon tax table
-4: get the carbon tax paid by facility that year
-
-q = 73
-bm = 10
-et = 90
-60/80 = 75% eligible
-fuel = 40%
-0.75 * 0.40 = 0.315
-
-total = 1,000,000
-
-*/

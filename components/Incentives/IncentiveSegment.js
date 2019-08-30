@@ -1,29 +1,67 @@
 import React ,{ Component } from 'react'
-import {graphql, QueryRenderer, fetchQuery} from "react-relay";
+import propTypes from "prop-types";
+import MathJax from 'react-mathjax2';
+import BenchmarkChart from "./BenchmarkChart";
 
-class IncentiveCalculator extends Component {
+
+class IncentiveSegment extends Component {
 
     constructor(props) {
         super(props);
     }
 
-
     render(){
-       return 'Hello Component'
+        const formula = `
+            \\left(${this.props.quantity} - ${this.props.benchmark}
+            \\over
+            ${this.props.eligibilityThreshold} - ${this.props.benchmark} \\right)
+            \\times 
+            ${this.props.fuelPercentage}
+            \\times 
+            ${this.props.carbonTaxPaid}
+        `;
+        return (
+            <tr>
+                <td>{this.props.name}</td>
+                <td>
+                    <MathJax.Context input='tex'>
+                        <MathJax.Node>{formula}</MathJax.Node>
+                    </MathJax.Context>
+                </td>
+                <td>CAD {this.props.incentiveSegment.toFixed(2)} </td>
+                <td>
+                    <BenchmarkChart
+                        quantity={this.props.quantity}
+                        benchmark={this.props.benchmark}
+                        eligibilityThreshold={this.props.eligibilityThreshold}
+                    />
+                </td>
+                <style jsx>{`
+                   td{
+                        vertical-align:middle;
+                    }
+                 `}</style>
+
+            </tr>
+
+       )
     }
 
 }
 
-export default IncentiveCalculator;
 
-/*
+// Proptype Validations
+IncentiveSegment.propTypes = {
+    name: propTypes.string,
+    quantity: propTypes.number,
+    benchmark: propTypes.number,
+    eligibilityThreshold: propTypes.number,
+    carbonTaxPaid: propTypes.number,
+    incentiveSegment: propTypes.number,
+    fuelPercentage: propTypes.number
+};
 
-Incentives Calculator
-1: Get the application by id - fetch application
-2: extract the production data from the app
-3: get the benchmark / et for each production item - fetch benchmarks
-4: Create a view from the carbon tax table
-4: get the carbon tax paid by facility that year
-5: do the calculation
 
-*/
+
+export default IncentiveSegment;
+

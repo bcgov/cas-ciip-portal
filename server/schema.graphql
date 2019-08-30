@@ -6,6 +6,8 @@ type Benchmark implements Node {
 
   """Unique ID for the benchmark"""
   rowId: Int!
+
+  """Foreign key to the product"""
   productId: Int!
 
   """The value of the benchmark"""
@@ -14,8 +16,25 @@ type Benchmark implements Node {
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int!
 
+  """The date when this benchmark became/becomes active"""
+  startDate: Datetime
+
+  """The date when this benchmark became/becomes inactive"""
+  endDate: Datetime
+
   """Creation date of row"""
   createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  updatedAt: Datetime
+
+  """The user who deleted the row"""
+  updatedBy: String
+  deletedAt: Datetime
+  deletedBy: String
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
@@ -38,14 +57,37 @@ input BenchmarkCondition {
   """Checks for equality with the object’s `eligibilityThreshold` field."""
   eligibilityThreshold: Int
 
+  """Checks for equality with the object’s `startDate` field."""
+  startDate: Datetime
+
+  """Checks for equality with the object’s `endDate` field."""
+  endDate: Datetime
+
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: String
 }
 
 """An input for mutations affecting `Benchmark`"""
 input BenchmarkInput {
   """Unique ID for the benchmark"""
   rowId: Int
+
+  """Foreign key to the product"""
   productId: Int!
 
   """The value of the benchmark"""
@@ -54,8 +96,25 @@ input BenchmarkInput {
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int!
 
+  """The date when this benchmark became/becomes active"""
+  startDate: Datetime
+
+  """The date when this benchmark became/becomes inactive"""
+  endDate: Datetime
+
   """Creation date of row"""
   createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  updatedAt: Datetime
+
+  """The user who deleted the row"""
+  updatedBy: String
+  deletedAt: Datetime
+  deletedBy: String
 }
 
 """
@@ -64,6 +123,8 @@ Represents an update to a `Benchmark`. Fields that are set will be updated.
 input BenchmarkPatch {
   """Unique ID for the benchmark"""
   rowId: Int
+
+  """Foreign key to the product"""
   productId: Int
 
   """The value of the benchmark"""
@@ -72,8 +133,25 @@ input BenchmarkPatch {
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int
 
+  """The date when this benchmark became/becomes active"""
+  startDate: Datetime
+
+  """The date when this benchmark became/becomes inactive"""
+  endDate: Datetime
+
   """Creation date of row"""
   createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  updatedAt: Datetime
+
+  """The user who deleted the row"""
+  updatedBy: String
+  deletedAt: Datetime
+  deletedBy: String
 }
 
 """A connection to a list of `Benchmark` values."""
@@ -113,11 +191,30 @@ enum BenchmarksOrderBy {
   BENCHMARK_DESC
   ELIGIBILITY_THRESHOLD_ASC
   ELIGIBILITY_THRESHOLD_DESC
+  START_DATE_ASC
+  START_DATE_DESC
+  END_DATE_ASC
+  END_DATE_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
+
+"""
+A floating point number that requires more precision than IEEE 754 binary 64
+"""
+scalar BigFloat
 
 """
 A signed eight-byte integer. The upper big integer values are greater than the
@@ -711,14 +808,29 @@ enum CiipOperatorsOrderBy {
   DUNS_NUMBER_DESC
 }
 
+"""The view for production data reported in the application"""
 type CiipProduction {
   rowId: BigInt
+
+  """The application id used for reference and join"""
   applicationId: Int
+
+  """The production quantity"""
   quantity: String
+
+  """The actual equipment"""
   processingUnit: String
+
+  """The emission/fuel units for the production unit"""
   units: String
+
+  """The comments"""
   comments: String
+
+  """The methodology details if other"""
   associatedEmissions: String
+
+  """The fuel percentage that can be attributed to incentive"""
   attributableFuelPercentage: String
 }
 
@@ -1448,6 +1560,158 @@ type DeleteUserPayload {
   ): UsersEdge
 }
 
+type EstimatedCarbonTaxPaid {
+  reportId: Int
+  organisationId: Int
+  facilityId: Int
+  activityId: Int
+  fuelId: Int
+  emissionId: Int
+  naicsId: Int
+  year: Int
+  fuelType: String
+  fuelAmount: BigFloat
+  fuelCharge: BigFloat
+  proRatedFuelCharge: BigFloat
+  unitConversionFactor: Int
+  calculatedCarbonTax: BigFloat
+  flatCalculation: String
+  proRatedCalculatedCarbonTax: BigFloat
+  proRatedCalculation: String
+  reportingPeriodDuration: String
+}
+
+"""
+A condition to be used against `EstimatedCarbonTaxPaid` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input EstimatedCarbonTaxPaidCondition {
+  """Checks for equality with the object’s `reportId` field."""
+  reportId: Int
+
+  """Checks for equality with the object’s `organisationId` field."""
+  organisationId: Int
+
+  """Checks for equality with the object’s `facilityId` field."""
+  facilityId: Int
+
+  """Checks for equality with the object’s `activityId` field."""
+  activityId: Int
+
+  """Checks for equality with the object’s `fuelId` field."""
+  fuelId: Int
+
+  """Checks for equality with the object’s `emissionId` field."""
+  emissionId: Int
+
+  """Checks for equality with the object’s `naicsId` field."""
+  naicsId: Int
+
+  """Checks for equality with the object’s `year` field."""
+  year: Int
+
+  """Checks for equality with the object’s `fuelType` field."""
+  fuelType: String
+
+  """Checks for equality with the object’s `fuelAmount` field."""
+  fuelAmount: BigFloat
+
+  """Checks for equality with the object’s `fuelCharge` field."""
+  fuelCharge: BigFloat
+
+  """Checks for equality with the object’s `proRatedFuelCharge` field."""
+  proRatedFuelCharge: BigFloat
+
+  """Checks for equality with the object’s `unitConversionFactor` field."""
+  unitConversionFactor: Int
+
+  """Checks for equality with the object’s `calculatedCarbonTax` field."""
+  calculatedCarbonTax: BigFloat
+
+  """Checks for equality with the object’s `flatCalculation` field."""
+  flatCalculation: String
+
+  """
+  Checks for equality with the object’s `proRatedCalculatedCarbonTax` field.
+  """
+  proRatedCalculatedCarbonTax: BigFloat
+
+  """Checks for equality with the object’s `proRatedCalculation` field."""
+  proRatedCalculation: String
+
+  """Checks for equality with the object’s `reportingPeriodDuration` field."""
+  reportingPeriodDuration: String
+}
+
+"""A connection to a list of `EstimatedCarbonTaxPaid` values."""
+type EstimatedCarbonTaxPaidsConnection {
+  """A list of `EstimatedCarbonTaxPaid` objects."""
+  nodes: [EstimatedCarbonTaxPaid]!
+
+  """
+  A list of edges which contains the `EstimatedCarbonTaxPaid` and cursor to aid in pagination.
+  """
+  edges: [EstimatedCarbonTaxPaidsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `EstimatedCarbonTaxPaid` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `EstimatedCarbonTaxPaid` edge in the connection."""
+type EstimatedCarbonTaxPaidsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `EstimatedCarbonTaxPaid` at the end of the edge."""
+  node: EstimatedCarbonTaxPaid
+}
+
+"""Methods to use when ordering `EstimatedCarbonTaxPaid`."""
+enum EstimatedCarbonTaxPaidsOrderBy {
+  NATURAL
+  REPORT_ID_ASC
+  REPORT_ID_DESC
+  ORGANISATION_ID_ASC
+  ORGANISATION_ID_DESC
+  FACILITY_ID_ASC
+  FACILITY_ID_DESC
+  ACTIVITY_ID_ASC
+  ACTIVITY_ID_DESC
+  FUEL_ID_ASC
+  FUEL_ID_DESC
+  EMISSION_ID_ASC
+  EMISSION_ID_DESC
+  NAICS_ID_ASC
+  NAICS_ID_DESC
+  YEAR_ASC
+  YEAR_DESC
+  FUEL_TYPE_ASC
+  FUEL_TYPE_DESC
+  FUEL_AMOUNT_ASC
+  FUEL_AMOUNT_DESC
+  FUEL_CHARGE_ASC
+  FUEL_CHARGE_DESC
+  PRO_RATED_FUEL_CHARGE_ASC
+  PRO_RATED_FUEL_CHARGE_DESC
+  UNIT_CONVERSION_FACTOR_ASC
+  UNIT_CONVERSION_FACTOR_DESC
+  CALCULATED_CARBON_TAX_ASC
+  CALCULATED_CARBON_TAX_DESC
+  FLAT_CALCULATION_ASC
+  FLAT_CALCULATION_DESC
+  PRO_RATED_CALCULATED_CARBON_TAX_ASC
+  PRO_RATED_CALCULATED_CARBON_TAX_DESC
+  PRO_RATED_CALCULATION_ASC
+  PRO_RATED_CALCULATION_DESC
+  REPORTING_PERIOD_DURATION_ASC
+  REPORTING_PERIOD_DURATION_DESC
+}
+
 type FormJson implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -1942,7 +2206,29 @@ type Product implements Node {
 
   """The name of the product"""
   name: String!
+
+  """The description of the product"""
   description: String
+
+  """
+  The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
+  """
+  state: String
+
+  """The parent ID(s) (previous state) of the product"""
+  parent: [Int]
+
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: String
 
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByProductId(
@@ -1986,6 +2272,24 @@ input ProductCondition {
 
   """Checks for equality with the object’s `description` field."""
   description: String
+
+  """Checks for equality with the object’s `state` field."""
+  state: String
+
+  """Checks for equality with the object’s `parent` field."""
+  parent: [Int]
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: String
 }
 
 """An input for mutations affecting `Product`"""
@@ -1995,7 +2299,29 @@ input ProductInput {
 
   """The name of the product"""
   name: String!
+
+  """The description of the product"""
   description: String
+
+  """
+  The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
+  """
+  state: String
+
+  """The parent ID(s) (previous state) of the product"""
+  parent: [Int]
+
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: String
 }
 
 """
@@ -2007,7 +2333,29 @@ input ProductPatch {
 
   """The name of the product"""
   name: String
+
+  """The description of the product"""
   description: String
+
+  """
+  The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
+  """
+  state: String
+
+  """The parent ID(s) (previous state) of the product"""
+  parent: [Int]
+
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Date of deletion"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: String
 }
 
 """A connection to a list of `Product` values."""
@@ -2045,6 +2393,18 @@ enum ProductsOrderBy {
   NAME_DESC
   DESCRIPTION_ASC
   DESCRIPTION_DESC
+  STATE_ASC
+  STATE_DESC
+  PARENT_ASC
+  PARENT_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
@@ -2331,6 +2691,37 @@ type Query implements Node {
     condition: CiipProductionDatumCondition
   ): CiipProductionDataConnection
 
+  """
+  Reads and enables pagination through a set of `EstimatedCarbonTaxPaid`.
+  """
+  allEstimatedCarbonTaxPaids(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `EstimatedCarbonTaxPaid`."""
+    orderBy: [EstimatedCarbonTaxPaidsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: EstimatedCarbonTaxPaidCondition
+  ): EstimatedCarbonTaxPaidsConnection
+
   """Reads and enables pagination through a set of `FormJson`."""
   allFormJsons(
     """Only read the first `n` values of the set."""
@@ -2452,6 +2843,32 @@ type Query implements Node {
   formResultByRowId(rowId: Int!): FormResult
   productByRowId(rowId: Int!): Product
   userByRowId(rowId: Int!): User
+
+  """
+  Reads and enables pagination through a set of `EstimatedCarbonTaxPaid`.
+  """
+  getCarbonTaxByOrganisation(
+    orgId: Int
+    reportingYear: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+  ): EstimatedCarbonTaxPaidsConnection!
 
   """Reads and enables pagination through a set of `CiipProduction`."""
   getProductsByApplicationId(
