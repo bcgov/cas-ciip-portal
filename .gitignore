@@ -4,3 +4,5 @@ node_modules
 .next
 .idea
 yarn-error.log
+generated/
+snapshots/
