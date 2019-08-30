@@ -1,6 +1,6 @@
 import React ,{ Component } from 'react';
 import propTypes from 'prop-types';
-import {Form, Button, Badge, Col, Row, Modal, Container} from 'react-bootstrap';
+import {Form, Button, Badge, Col, Row, Modal, Container, Dropdown} from 'react-bootstrap';
 
 class ApplicationRowItem extends Component {
 
@@ -34,13 +34,17 @@ class ApplicationRowItem extends Component {
                             <h5>Application ID</h5>
                             <small>{application.applicationId}</small>
                         </Col>
-                        <Col md={3}>
+                        <Col md={2}>
                             <h5>Operator Name</h5>
                             <small>{application.operatorName}</small>
                         </Col>
-                        <Col md={3}>
+                        <Col md={2}>
                             <h5>Facility Name</h5>
                             <small>{application.facilityName}</small>
+                        </Col>
+                        <Col md={2}>
+                            <h5>Submitted</h5>
+                            <small>{application.certificationDate}</small>
                         </Col>
                         <Col md={1}>
                             <h5>Status</h5>
