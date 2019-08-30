@@ -24,9 +24,9 @@ const allProductsQuery = graphql`
         }
     `;
 
-const productsByApplicationQuery = graphql`
-        query IncentiveCalculatorProductsByApplicationQuery {
-            getProductsByApplicationId(appId:6){
+const productsByBcghgidQuery = graphql`
+        query IncentiveCalculatorProductsByBcghgidQuery($bcghgidInput: String) {
+            getProductsByBcghgid(bcghgidInput: $bcghgidInput){
                 nodes{
                     rowId
                     quantity
@@ -40,9 +40,9 @@ const productsByApplicationQuery = graphql`
         }
     `;
 
-const carbonTaxByOrganisationQuery = graphql`
-    query IncentiveCalculatorCarbonTaxByOrganisationQuery {
-        getCarbonTaxByOrganisation(orgId:599, reportingYear:"2012"){
+const carbonTaxByBcghgidQuery = graphql`
+    query IncentiveCalculatorCarbonTaxByBcghgidQuery($bcghgidInput: String, $reportingYear: String) {
+        getCarbonTaxByBcghgid(bcghgidInput:$bcghgidInput, reportingYear:$reportingYear){
             nodes{
                 reportId
                 organisationId
@@ -65,23 +65,24 @@ class IncentiveCalculatorContainer extends Component {
 
     getData = async () => {
       const allProducts = await fetchQuery(environment, allProductsQuery);
-      const productsByApplication = await fetchQuery(environment, productsByApplicationQuery);
-      const carbonTaxByOrganisation = await fetchQuery(environment, carbonTaxByOrganisationQuery);
+      const reportedProducts = await fetchQuery(environment, productsByBcghgidQuery, {bcghgidInput:'4'});
+      const carbonTaxByBcghgid = await fetchQuery(environment, carbonTaxByBcghgidQuery , {bcghgidInput: '12111130401', reportingYear:'2014'});
 
-      const totalCarbonTax = carbonTaxByOrganisation.getCarbonTaxByOrganisation.nodes.reduce((total, curr) => {
+      const totalCarbonTax = carbonTaxByBcghgid.getCarbonTaxByBcghgid.nodes.reduce((total, curr) => {
           return parseFloat(total) + parseFloat(curr.calculatedCarbonTax)
       }, 0);
 
       return ({
           allProducts,
-          productsByApplication,
+          reportedProducts,
           carbonTaxPaid: totalCarbonTax // assume a value until ciip and swrs are connected
       });
     };
 
     generateIncentiveCalculationData = async () => {
         const data = await this.getData();
-        const productsReported = data.productsByApplication.getProductsByApplicationId.nodes;
+        console.log('data', data)
+        const productsReported = data.reportedProducts.getProductsByBcghgid.nodes;
         const allProducts = data.allProducts.allProducts.nodes;
         let totalCarbonIncentive = 0;
         let incentiveSegments = [];
@@ -171,14 +172,19 @@ class IncentiveCalculatorContainer extends Component {
                         </tr>
                         </tbody>
                     </Table>
-
                 </div>
             </React.Fragment>
         )
 
     }
 
-
 }
 
 export default IncentiveCalculatorContainer;
+
+/*
+    add data validation
+    add tests for missing data
+    add errors for missing data
+
+ */

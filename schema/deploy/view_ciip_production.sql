@@ -6,12 +6,14 @@ BEGIN;
     with x as (
       select
         id,
-        json_array_elements((form_result -> 'module_throughput_and_production_data')::json) as production_data
+        json_array_elements((form_result -> 'module_throughput_and_production_data')::json) as production_data,
+        json_array_elements((form_result -> 'reporting_operation_information')::json) as operator_data
       from ggircs_portal.form_result
     )
     select
        row_number() over (Partition by true) as row_id,
        x.id as application_id,
+       x.operator_data ->> 'bcghgid' as bcghgid,
        x.production_data ->> 'quantity' as quantity,
        x.production_data ->> 'processing_unit' as processing_unit,
        x.production_data ->> 'units' as units,

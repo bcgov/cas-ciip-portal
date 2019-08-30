@@ -2,6 +2,6 @@
 
 BEGIN;
 
-drop function ggircs_portal.get_carbon_tax_by_organisation;
+drop function ggircs_portal.get_carbon_tax_by_bcghgid;
 
 COMMIT;

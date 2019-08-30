@@ -814,6 +814,7 @@ type CiipProduction {
 
   """The application id used for reference and join"""
   applicationId: Int
+  bcghgid: String
 
   """The production quantity"""
   quantity: String
@@ -844,6 +845,9 @@ input CiipProductionCondition {
 
   """Checks for equality with the object’s `applicationId` field."""
   applicationId: Int
+
+  """Checks for equality with the object’s `bcghgid` field."""
+  bcghgid: String
 
   """Checks for equality with the object’s `quantity` field."""
   quantity: String
@@ -1023,6 +1027,8 @@ enum CiipProductionsOrderBy {
   ROW_ID_DESC
   APPLICATION_ID_ASC
   APPLICATION_ID_DESC
+  BCGHGID_ASC
+  BCGHGID_DESC
   QUANTITY_ASC
   QUANTITY_DESC
   PROCESSING_UNIT_ASC
@@ -1578,6 +1584,7 @@ type EstimatedCarbonTaxPaid {
   flatCalculation: String
   proRatedCalculatedCarbonTax: BigFloat
   proRatedCalculation: String
+  bcghgid: String
   reportingPeriodDuration: String
 }
 
@@ -1638,6 +1645,9 @@ input EstimatedCarbonTaxPaidCondition {
 
   """Checks for equality with the object’s `proRatedCalculation` field."""
   proRatedCalculation: String
+
+  """Checks for equality with the object’s `bcghgid` field."""
+  bcghgid: String
 
   """Checks for equality with the object’s `reportingPeriodDuration` field."""
   reportingPeriodDuration: String
@@ -1708,6 +1718,8 @@ enum EstimatedCarbonTaxPaidsOrderBy {
   PRO_RATED_CALCULATED_CARBON_TAX_DESC
   PRO_RATED_CALCULATION_ASC
   PRO_RATED_CALCULATION_DESC
+  BCGHGID_ASC
+  BCGHGID_DESC
   REPORTING_PERIOD_DURATION_ASC
   REPORTING_PERIOD_DURATION_DESC
 }
@@ -2847,8 +2859,8 @@ type Query implements Node {
   """
   Reads and enables pagination through a set of `EstimatedCarbonTaxPaid`.
   """
-  getCarbonTaxByOrganisation(
-    orgId: Int
+  getCarbonTaxByBcghgid(
+    bcghgidInput: String
     reportingYear: String
 
     """Only read the first `n` values of the set."""
@@ -2873,6 +2885,29 @@ type Query implements Node {
   """Reads and enables pagination through a set of `CiipProduction`."""
   getProductsByApplicationId(
     appId: Int
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+  ): CiipProductionsConnection!
+
+  """Reads and enables pagination through a set of `CiipProduction`."""
+  getProductsByBcghgid(
+    bcghgidInput: String
 
     """Only read the first `n` values of the set."""
     first: Int
