@@ -1,7 +1,8 @@
-__generated__/
 schema/schema.graphql
 .DS_Store
 node_modules
 .next
 .idea
 yarn-error.log
+__generated__/
+__snapshots__/

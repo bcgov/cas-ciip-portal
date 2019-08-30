@@ -1,0 +1,32 @@
+version: 2.1
+jobs:
+  test:
+    docker:
+      - image: circleci/node:10.16.3
+      - image: circleci/postgres:11.4
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Run Tests via Yarn
+          command: yarn test
+      - run:
+          name: Audit Dependencies
+          # https://yarnpkg.com/lang/en/docs/cli/audit/
+          command: yarn audit --level info
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
