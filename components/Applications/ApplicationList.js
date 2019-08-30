@@ -11,8 +11,9 @@ class ApplicationList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orderBy: "OPERATOR_NAME_ASC",
-            direction: "ASC"
+            orderByField: "OPERATOR_NAME_",
+            direction: "ASC",
+            orderByDisplay: "operator name"
         }
     }
 
@@ -29,8 +30,8 @@ class ApplicationList extends Component {
     }
 
     sortApplications = (eventKey) => {
-      this.setState({orderBy: `${eventKey}${this.state.direction}`});
-      console.log(eventKey);
+      const display = eventKey.replace(/_/g, ' ').toLowerCase();
+      this.setState({orderByField: eventKey, orderByDisplay: display});
     }
 
     toggleDirection = (event) => {
@@ -38,26 +39,35 @@ class ApplicationList extends Component {
     }
 
     render(){
-        console.log(this.state);
+        console.log(this.state.orderByField);
+        console.log(this.state.direction);
         return(
             <React.Fragment>
-              <Row>
-                <Dropdown>
-                    <Dropdown.Toggle variant='primary' id='dropdown-sort'>
-                        Sort By
-                    </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item eventKey='APPLICATION_STATUS_' onSelect={this.sortApplications}>status</Dropdown.Item>
-                            <Dropdown.Item eventKey='CERTIFICATION_DATE_' onSelect={this.sortApplications}>certification date</Dropdown.Item>
-                        </Dropdown.Menu>
-                </Dropdown>
-                <Button onClick={this.toggleDirection} variant='primary'>{this.state.direction}</Button>
+                <h5>Sort Applications</h5>
+                <Row>
+                    <Col md={2}>
+                        <Dropdown style={{width: "100%"}}>
+                            <Dropdown.Toggle style={{width: "100%"}} variant='info' id='dropdown-sort'>
+                                {this.state.orderByDisplay}
+                            </Dropdown.Toggle>
+                                <Dropdown.Menu style={{width: "100%"}}>
+                                    <Dropdown.Item eventKey='APPLICATION_ID_' onSelect={this.sortApplications}>application id</Dropdown.Item>
+                                    <Dropdown.Item eventKey='OPERATOR_NAME_' onSelect={this.sortApplications}>operator name</Dropdown.Item>
+                                    <Dropdown.Item eventKey='FACILITY_NAME_' onSelect={this.sortApplications}>facility name</Dropdown.Item>
+                                    <Dropdown.Item eventKey='CERTIFICATION_DATE_' onSelect={this.sortApplications}>certification date</Dropdown.Item>
+                                    <Dropdown.Item eventKey='APPLICATION_STATUS_' onSelect={this.sortApplications}>status</Dropdown.Item>
+                                </Dropdown.Menu>
+                        </Dropdown>
+                    </Col>
+                    <Col md={1}>
+                        <Button style={{width: "100%"}}onClick={this.toggleDirection} variant='info'>{this.state.direction}</Button>
+                    </Col>
                 </Row>
                 <br/>
                 <br/>
                 <QueryRenderer
                     environment={environment}
-                    variables={{orderBy: this.state.orderBy}}
+                    variables={{orderBy: `${this.state.orderByField}${this.state.direction}`}}
                     query={graphql`
                         query ApplicationListQuery($orderBy: [ApplicationsOrderBy!]) {
                             allApplications(orderBy: $orderBy){
