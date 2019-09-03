@@ -72,7 +72,7 @@ class ApplicationList extends Component {
         }
         return(
             <React.Fragment>
-                <Container style={{padding: 10, background: 'lightGrey'}}>
+                <Container style={{padding: 10, background: '#dee2e6'}}>
                     <Row>
                         <Col md={2}>
                         <h5>Sort Applications</h5>
