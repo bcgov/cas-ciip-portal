@@ -37,12 +37,13 @@ objects:
       spec:
         restartPolicy: Never
         containers:
+        # TODO: revert to a release to avoid deleting all the data
         - command:
           - /usr/bin/env
           - bash
           - -c
           - |
-            sqitch revert table_benchmark -y;
+            sqitch revert -y;
           env:
           - name: SQITCH_TARGET
             value: "db:pg:"
