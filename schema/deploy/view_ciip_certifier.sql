@@ -5,7 +5,7 @@ BEGIN;
   create view ggircs_portal.ciip_certifier as (
     with x as (
       select
-        id,
+        cast(id as text) as id,
         json_array_elements((form_result -> 'certifiying_official')::json) as certifier_data
       from ggircs_portal.form_result
     )

@@ -18,7 +18,10 @@ create table ggircs_portal.application as (
        x.facility_data ->> 'facility_name' as facility_name,
        x.operator_data ->> 'operator_name' as operator_name,
        x.certifier_data ->> 'certification_date' as certification_date
-       
+       x.facility_data ->> 'bcghgid' as bcghgid,
+       '2018' as reporting_year --todo: figure out how to pull reporting years
+
+
     from x
  );
 

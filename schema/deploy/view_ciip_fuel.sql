@@ -5,7 +5,7 @@ BEGIN;
   create view ggircs_portal.ciip_fuel as (
     with x as (
       select
-        id,
+        cast(id as text) as id,
         json_array_elements((form_result -> 'fuels')::json) as fuel_data
       from ggircs_portal.form_result
     )

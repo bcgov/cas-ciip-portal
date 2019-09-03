@@ -6,7 +6,7 @@ BEGIN;
 create view ggircs_portal.ciip_operator as (
     with x as (
       select
-        id,
+        cast(id as text) as id,
         json_array_elements((form_result -> 'reporting_operation_information')::json) as operator_data
       from ggircs_portal.form_result
     )
