@@ -305,6 +305,18 @@ enum BenchmarksOrderBy {
   PRIMARY_KEY_DESC
 }
 
+"""
+A floating point number that requires more precision than IEEE 754 binary 64
+"""
+scalar BigFloat
+
+"""
+A signed eight-byte integer. The upper big integer values are greater than the
+max value for a JavaScript number. Therefore all big integers will be output as
+strings and not numbers.
+"""
+scalar BigInt
+
 """The view for certifier data reported in the application"""
 type CiipCertifier {
   """The application id used for reference and join"""
@@ -892,17 +904,20 @@ enum CiipOperatorsOrderBy {
 
 """The view for production data reported in the application"""
 type CiipProduction {
+  rowId: BigInt
+
   """The application id used for reference and join"""
   applicationId: Int
+  bcghgid: String
 
   """The production quantity"""
   quantity: String
 
-  """The fuel type"""
-  fuelType: String
+  """The actual equipment"""
+  processingUnit: String
 
-  """The fuel units"""
-  fuelUnits: String
+  """The emission/fuel units for the production unit"""
+  units: String
 
   """The comments"""
   comments: String
@@ -919,17 +934,23 @@ A condition to be used against `CiipProduction` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
 input CiipProductionCondition {
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: BigInt
+
   """Checks for equality with the object’s `applicationId` field."""
   applicationId: Int
+
+  """Checks for equality with the object’s `bcghgid` field."""
+  bcghgid: String
 
   """Checks for equality with the object’s `quantity` field."""
   quantity: String
 
-  """Checks for equality with the object’s `fuelType` field."""
-  fuelType: String
+  """Checks for equality with the object’s `processingUnit` field."""
+  processingUnit: String
 
-  """Checks for equality with the object’s `fuelUnits` field."""
-  fuelUnits: String
+  """Checks for equality with the object’s `units` field."""
+  units: String
 
   """Checks for equality with the object’s `comments` field."""
   comments: String
@@ -972,14 +993,18 @@ type CiipProductionsEdge {
 """Methods to use when ordering `CiipProduction`."""
 enum CiipProductionsOrderBy {
   NATURAL
+  ROW_ID_ASC
+  ROW_ID_DESC
   APPLICATION_ID_ASC
   APPLICATION_ID_DESC
+  BCGHGID_ASC
+  BCGHGID_DESC
   QUANTITY_ASC
   QUANTITY_DESC
-  FUEL_TYPE_ASC
-  FUEL_TYPE_DESC
-  FUEL_UNITS_ASC
-  FUEL_UNITS_DESC
+  PROCESSING_UNIT_ASC
+  PROCESSING_UNIT_DESC
+  UNITS_ASC
+  UNITS_DESC
   COMMENTS_ASC
   COMMENTS_DESC
   ASSOCIATED_EMISSIONS_ASC
@@ -1461,6 +1486,164 @@ type DeleteUserPayload {
     """The method to use when ordering `User`."""
     orderBy: [UsersOrderBy!] = PRIMARY_KEY_ASC
   ): UsersEdge
+}
+
+type EstimatedCarbonTaxPaid {
+  reportId: Int
+  organisationId: Int
+  facilityId: Int
+  activityId: Int
+  fuelId: Int
+  emissionId: Int
+  naicsId: Int
+  year: Int
+  fuelType: String
+  fuelAmount: BigFloat
+  fuelCharge: BigFloat
+  proRatedFuelCharge: BigFloat
+  unitConversionFactor: Int
+  calculatedCarbonTax: BigFloat
+  flatCalculation: String
+  proRatedCalculatedCarbonTax: BigFloat
+  proRatedCalculation: String
+  bcghgid: String
+  reportingPeriodDuration: String
+}
+
+"""
+A condition to be used against `EstimatedCarbonTaxPaid` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input EstimatedCarbonTaxPaidCondition {
+  """Checks for equality with the object’s `reportId` field."""
+  reportId: Int
+
+  """Checks for equality with the object’s `organisationId` field."""
+  organisationId: Int
+
+  """Checks for equality with the object’s `facilityId` field."""
+  facilityId: Int
+
+  """Checks for equality with the object’s `activityId` field."""
+  activityId: Int
+
+  """Checks for equality with the object’s `fuelId` field."""
+  fuelId: Int
+
+  """Checks for equality with the object’s `emissionId` field."""
+  emissionId: Int
+
+  """Checks for equality with the object’s `naicsId` field."""
+  naicsId: Int
+
+  """Checks for equality with the object’s `year` field."""
+  year: Int
+
+  """Checks for equality with the object’s `fuelType` field."""
+  fuelType: String
+
+  """Checks for equality with the object’s `fuelAmount` field."""
+  fuelAmount: BigFloat
+
+  """Checks for equality with the object’s `fuelCharge` field."""
+  fuelCharge: BigFloat
+
+  """Checks for equality with the object’s `proRatedFuelCharge` field."""
+  proRatedFuelCharge: BigFloat
+
+  """Checks for equality with the object’s `unitConversionFactor` field."""
+  unitConversionFactor: Int
+
+  """Checks for equality with the object’s `calculatedCarbonTax` field."""
+  calculatedCarbonTax: BigFloat
+
+  """Checks for equality with the object’s `flatCalculation` field."""
+  flatCalculation: String
+
+  """
+  Checks for equality with the object’s `proRatedCalculatedCarbonTax` field.
+  """
+  proRatedCalculatedCarbonTax: BigFloat
+
+  """Checks for equality with the object’s `proRatedCalculation` field."""
+  proRatedCalculation: String
+
+  """Checks for equality with the object’s `bcghgid` field."""
+  bcghgid: String
+
+  """Checks for equality with the object’s `reportingPeriodDuration` field."""
+  reportingPeriodDuration: String
+}
+
+"""A connection to a list of `EstimatedCarbonTaxPaid` values."""
+type EstimatedCarbonTaxPaidsConnection {
+  """A list of `EstimatedCarbonTaxPaid` objects."""
+  nodes: [EstimatedCarbonTaxPaid]!
+
+  """
+  A list of edges which contains the `EstimatedCarbonTaxPaid` and cursor to aid in pagination.
+  """
+  edges: [EstimatedCarbonTaxPaidsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `EstimatedCarbonTaxPaid` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `EstimatedCarbonTaxPaid` edge in the connection."""
+type EstimatedCarbonTaxPaidsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `EstimatedCarbonTaxPaid` at the end of the edge."""
+  node: EstimatedCarbonTaxPaid
+}
+
+"""Methods to use when ordering `EstimatedCarbonTaxPaid`."""
+enum EstimatedCarbonTaxPaidsOrderBy {
+  NATURAL
+  REPORT_ID_ASC
+  REPORT_ID_DESC
+  ORGANISATION_ID_ASC
+  ORGANISATION_ID_DESC
+  FACILITY_ID_ASC
+  FACILITY_ID_DESC
+  ACTIVITY_ID_ASC
+  ACTIVITY_ID_DESC
+  FUEL_ID_ASC
+  FUEL_ID_DESC
+  EMISSION_ID_ASC
+  EMISSION_ID_DESC
+  NAICS_ID_ASC
+  NAICS_ID_DESC
+  YEAR_ASC
+  YEAR_DESC
+  FUEL_TYPE_ASC
+  FUEL_TYPE_DESC
+  FUEL_AMOUNT_ASC
+  FUEL_AMOUNT_DESC
+  FUEL_CHARGE_ASC
+  FUEL_CHARGE_DESC
+  PRO_RATED_FUEL_CHARGE_ASC
+  PRO_RATED_FUEL_CHARGE_DESC
+  UNIT_CONVERSION_FACTOR_ASC
+  UNIT_CONVERSION_FACTOR_DESC
+  CALCULATED_CARBON_TAX_ASC
+  CALCULATED_CARBON_TAX_DESC
+  FLAT_CALCULATION_ASC
+  FLAT_CALCULATION_DESC
+  PRO_RATED_CALCULATED_CARBON_TAX_ASC
+  PRO_RATED_CALCULATED_CARBON_TAX_DESC
+  PRO_RATED_CALCULATION_ASC
+  PRO_RATED_CALCULATION_DESC
+  BCGHGID_ASC
+  BCGHGID_DESC
+  REPORTING_PERIOD_DURATION_ASC
+  REPORTING_PERIOD_DURATION_DESC
 }
 
 type FormJson implements Node {
@@ -2408,6 +2591,37 @@ type Query implements Node {
     condition: CiipProductionCondition
   ): CiipProductionsConnection
 
+  """
+  Reads and enables pagination through a set of `EstimatedCarbonTaxPaid`.
+  """
+  allEstimatedCarbonTaxPaids(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `EstimatedCarbonTaxPaid`."""
+    orderBy: [EstimatedCarbonTaxPaidsOrderBy!] = [NATURAL]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: EstimatedCarbonTaxPaidCondition
+  ): EstimatedCarbonTaxPaidsConnection
+
   """Reads and enables pagination through a set of `FormJson`."""
   allFormJsons(
     """Only read the first `n` values of the set."""
@@ -2528,6 +2742,78 @@ type Query implements Node {
   formResultByRowId(rowId: Int!): FormResult
   productByRowId(rowId: Int!): Product
   userByRowId(rowId: Int!): User
+
+  """
+  Reads and enables pagination through a set of `EstimatedCarbonTaxPaid`.
+  """
+  getCarbonTaxByBcghgid(
+    bcghgidInput: String
+    reportingYear: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+  ): EstimatedCarbonTaxPaidsConnection!
+
+  """Reads and enables pagination through a set of `CiipProduction`."""
+  getProductsByApplicationId(
+    appId: Int
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+  ): CiipProductionsConnection!
+
+  """Reads and enables pagination through a set of `CiipProduction`."""
+  getProductsByBcghgid(
+    bcghgidInput: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+  ): CiipProductionsConnection!
 
   """Reads a single `Benchmark` using its globally unique `ID`."""
   benchmark(
