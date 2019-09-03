@@ -22,6 +22,7 @@ objects:
       targetPort: ${PREFIX}ciip-portal-app
     tls:
       termination: edge
+      insecureEdgeTerminationPolicy: Redirect
     to:
       kind: Service
       name: ${PREFIX}ciip-portal-app
