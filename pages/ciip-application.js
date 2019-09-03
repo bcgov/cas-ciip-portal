@@ -10,7 +10,7 @@ class BaseForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formId:2
+            formId:1
         }
     }
 
