@@ -6,7 +6,7 @@ orbs:
 jobs:
   test:
     docker:
-      - image: circleci/node:10.16.3
+      - image: circleci/node:10.14.1
       - image: circleci/postgres:11.4
     steps:
       - checkout
