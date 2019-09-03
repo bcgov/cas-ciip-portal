@@ -4,7 +4,7 @@
 
 BEGIN;
 
-create or replace function ggircs_portal.get_products_by_application_id(app_id int)
+create or replace function ggircs_portal.get_products_by_application_id(app_id text)
   returns setof ggircs_portal.ciip_production as $function$
 
     select *
