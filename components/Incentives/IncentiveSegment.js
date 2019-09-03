@@ -18,7 +18,7 @@ class IncentiveSegment extends Component {
             \\times 
             ${this.props.fuelPercentage}
             \\times 
-            ${this.props.carbonTaxPaid}
+            ${this.props.carbonTaxPaid.toFixed(2)}
         `;
         return (
             <tr>
@@ -43,7 +43,6 @@ class IncentiveSegment extends Component {
                  `}</style>
 
             </tr>
-
        )
     }
 
@@ -65,3 +64,6 @@ IncentiveSegment.propTypes = {
 
 export default IncentiveSegment;
 
+/*
+Can fuel percentages be reported as null?
+ */

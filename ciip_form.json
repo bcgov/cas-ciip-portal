@@ -31,13 +31,6 @@
             },
             {
               "type": "text",
-              "name": "bcghgid",
-              "startWithNewLine": false,
-              "title": "BCGHG ID Number",
-              "inputType": "number"
-            },
-            {
-              "type": "text",
               "name": "bc_corporate_registry_number",
               "title": "BC Corporate Registry Number ",
               "inputType": "number"
@@ -221,6 +214,13 @@
               "title": "Facility Name",
               "isRequired": true,
               "size": 340
+            },
+            {
+              "type": "text",
+              "name": "bcghgid",
+              "startWithNewLine": false,
+              "title": "BCGHG ID Number",
+              "inputType": "number"
             },
             {
               "type": "dropdown",

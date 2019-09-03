@@ -12,7 +12,6 @@ create view ggircs_portal.ciip_operator as (
     )
     select
        x.id as application_id,
-       x.operator_data ->> 'bcghgid' as bcghgid,
        x.operator_data ->> 'bc_corporate_registry_number' as bc_corporate_registry_number,
        x.operator_data ->> 'naics_code' as naics_code,
        x.operator_data ->> 'operator_name' as operator_name,
@@ -25,7 +24,6 @@ create view ggircs_portal.ciip_operator as (
 comment on view ggircs_portal.ciip_operator is 'The view for operator data reported in the application';
 comment on column ggircs_portal.ciip_operator.operator_name is 'The name of the operator';
 comment on column ggircs_portal.ciip_operator.application_id is 'The application id used for reference and join';
-comment on column ggircs_portal.ciip_operator.bcghgid is 'The operator bcghgid';
 comment on column ggircs_portal.ciip_operator.bc_corporate_registry_number is 'The operator longitude';
 comment on column ggircs_portal.ciip_operator.naics_code is 'The operator naics code';
 comment on column ggircs_portal.ciip_operator.duns_number is 'The Duns no.';

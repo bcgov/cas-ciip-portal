@@ -186,5 +186,14 @@ export default IncentiveCalculatorContainer;
     add data validation
     add tests for missing data
     add errors for missing data
+    todo:
+    1 create dummy data for actual swrs apps
+    2 verify incentives
+    2.5 move bcghgid to facility
+    3 create metabase application
+    4 create application with metabase widgets and incentives widget
+    5 add reporting year to ciip
+    6 use application id to get bcghgid and year
+    7 Q: how are we matching applications? Facility BCHGHID?
 
  */

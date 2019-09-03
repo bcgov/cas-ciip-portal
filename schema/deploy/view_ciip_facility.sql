@@ -12,6 +12,7 @@ BEGIN;
     )
     select
        x.id as application_id,
+       x.facility_data ->> 'bcghgid' as bcghgid,
        x.facility_data ->> 'latitude' as latitude,
        x.facility_data ->> 'longitude' as longitude,
        x.facility_data ->> 'naics_code' as naics_code,
