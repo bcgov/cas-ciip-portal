@@ -20,7 +20,7 @@ const Header = () => {
                       <img src="/static/logo-banner.png"
                            alt="Go to the Government of British Columbia website" />
                   </a>
-                  <h1>CleanBC Industrial Initiative Program</h1>
+                  <h1>CleanBC Industrial Incentive Program</h1>
               </div>
               <div className="buttons">
                   <Row>
