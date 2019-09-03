@@ -21,7 +21,7 @@ class ApplicationRowItem extends Component {
         return(
             <React.Fragment>
                 <div key={this.props.application.applicationId} >
-                    <Table striped bordered hover>
+                    <Table striped bordered hover style={{textAlign:"center"}}>
                         <thead>
                             <tr>
                                 <th>Application ID</th>
@@ -42,7 +42,7 @@ class ApplicationRowItem extends Component {
                                     <Badge pill style={{width: "100%"}} variant={statusBadgeColor[application.applicationStatus]} >{application.applicationStatus}</Badge>
                                 </td>
                                 <td>
-                                    <Button style={{display: "table-cell"}} href={applicationDetails} target="_blank" variant='primary'>View Application</Button>
+                                    <Button href={applicationDetails} target="_blank" variant='primary'>View Application</Button>
                                 </td>
                             </tr>
                         </tbody>
