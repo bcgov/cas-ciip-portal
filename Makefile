@@ -105,7 +105,7 @@ PATHFINDER_PREFIX := wksv3k
 PROJECT_PREFIX := cas-
 
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
-PREVIOUS_DEPLOY_SHA1=$(shell $(OC) get job $(PROJECT_PREFIX)ciip-portal-schema --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
+PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)ciip-portal-schema --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
 
 .PHONY: help
 help: $(call make_help,help,Explains how to use this Makefile)
