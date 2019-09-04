@@ -11,12 +11,15 @@ class ApplicationRowItem extends Component {
     render(){
 
         const application = this.props.application;
+        console.log('my application', application);
         const statusBadgeColor = {
             pending: 'warning',
             declined: 'danger',
             approved: 'success'
         }
-        const applicationDetails = `/application-details?application_id=${application.applicationId}`
+        const url = `http://localhost:3000/public/dashboard/985719f1-7eae-4c49-88a9-7d6c8edc1ad4?application_id=${application.applicationId}`;
+        //const url = `https://metabase-wksv3k-dev.pathfinder.gov.bc.ca/public/dashboard/bb6a4b75-3a7f-4fab-9268-cb013ecfcb7b?application_id=${application.applicationId}`;
+        const applicationDetails = `/application-details?application_id=${application.applicationId}&reportingyear=${application.reportingYear}&bcghgid=${application.bcghgid}`
 
         return(
             <React.Fragment>
@@ -54,6 +57,7 @@ class ApplicationRowItem extends Component {
 }
 
 // Proptype Validations
+
 ApplicationRowItem.propTypes = {
     application: propTypes.shape({
         applicationId: propTypes.number,
@@ -62,6 +66,6 @@ ApplicationRowItem.propTypes = {
         facilityName: propTypes.string,
         operatorName: propTypes.string
   })
-}
+};
 
 export default ApplicationRowItem;
