@@ -16,8 +16,8 @@ class ApplicationList extends Component {
             orderByField: "OPERATOR_NAME_",
             direction: "ASC",
             orderByDisplay: "Operator Name",
-            filterField: "none",
-            filterValue: null,
+            filterField: "application_id",
+            filterValue: 5,
             filterDisplay: "No Filter"
         }
     }
@@ -28,6 +28,19 @@ class ApplicationList extends Component {
         if(props){
             const allApplications = props.allApplications.nodes;
             allApplications.forEach((application) => {
+                applicationList.push(<ApplicationRowItem application={application} />);
+            })
+        }
+        return applicationList;
+    }
+
+    listSearchedApplications = ({error, props}) => {
+        console.log('ApplicationList.js > listSearchedApplications()', props, error);
+        console.log(this.state);
+        const applicationList = [];
+        if(props){
+            const filteredApplications = props.searchApplicationList.nodes;
+            filteredApplications.forEach((application) => {
                 applicationList.push(<ApplicationRowItem application={application} />);
             })
         }
@@ -64,12 +77,15 @@ class ApplicationList extends Component {
     }
 
     render(){
+        console.log(this.state);
         let vars;
         if (this.state.filterField !== 'none' && this.state.filterValue !== null) {
-           vars = {condition: { [this.state.filterField]: this.state.filterValue }, orderBy: `${this.state.orderByField}${this.state.direction}`};
+            vars = {field: this.state.filterField, search: this.state.filterValue, orderBy: `${this.state.orderByField}${this.state.direction}`};
+            // vars = {condition: { [this.state.filterField]: this.state.filterValue }, orderBy: `${this.state.orderByField}${this.state.direction}`};
         } else {
            vars = {orderBy: `${this.state.orderByField}${this.state.direction}`};
         }
+        const searchVars = {field: 'operator_name', search: 'a'};
         return(
             <React.Fragment>
                 <Container style={{padding: 10, background: '#dee2e6'}}>
@@ -109,7 +125,7 @@ class ApplicationList extends Component {
                                     <Dropdown.Menu style={{width: "100%"}}>
                                         <Dropdown.Item eventKey='none' onSelect={this.applyFilterField}>No Filter</Dropdown.Item>
                                         <Dropdown.Item eventKey='applicationId' onSelect={this.applyFilterField}>Application ID</Dropdown.Item>
-                                        <Dropdown.Item eventKey='operatorName' onSelect={this.applyFilterField}>Operator Name</Dropdown.Item>
+                                        <Dropdown.Item eventKey='operator_name' onSelect={this.applyFilterField}>Operator Name</Dropdown.Item>
                                         <Dropdown.Item eventKey='facilityName' onSelect={this.applyFilterField}>Facility Name</Dropdown.Item>
                                         <Dropdown.Item eventKey='certificationDate' onSelect={this.applyFilterField}>Submission Date</Dropdown.Item>
                                         <Dropdown.Item eventKey='applicationStatus' onSelect={this.applyFilterField}>Status</Dropdown.Item>
@@ -133,7 +149,7 @@ class ApplicationList extends Component {
                 </Container>
                 <br/>
                 <br/>
-                <QueryRenderer
+                {/* <QueryRenderer
                     environment={environment}
                     variables={vars}
                     query={graphql`
@@ -151,6 +167,25 @@ class ApplicationList extends Component {
                     `}
 
                     render={this.listApplications}
+                /> */}
+                <QueryRenderer
+                    environment={environment}
+                    variables={searchVars}
+                    query={graphql`
+                        query ApplicationListSearchQuery($field: String, $search: String) {
+                            searchApplicationList(field: $field, search: $search){
+                                nodes{
+                                  applicationId
+                                  facilityName
+                                  operatorName
+                                  applicationStatus
+                                  certificationDate
+                                }
+                            }
+                        }
+                    `}
+
+                    render={this.listSearchedApplications}
                 />
           </React.Fragment>
         )
