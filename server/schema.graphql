@@ -2817,8 +2817,10 @@ type Query implements Node {
 
   """Reads and enables pagination through a set of `Application`."""
   searchApplicationList(
-    field: String
-    search: String
+    searchField: String
+    searchValue: String
+    orderByField: String
+    direction: String
 
     """Only read the first `n` values of the set."""
     first: Int

@@ -13,7 +13,7 @@ class ApplicationList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orderByField: "OPERATOR_NAME_",
+            orderByField: "operator_name",
             direction: "ASC",
             orderByDisplay: "Operator Name",
             filterField: null,
@@ -79,13 +79,13 @@ class ApplicationList extends Component {
     render(){
         console.log(this.state);
         let vars;
-        if (this.state.filterField !== 'none' && this.state.filterValue !== null) {
-            vars = {field: this.state.filterField, search: this.state.filterValue, orderBy: `${this.state.orderByField}${this.state.direction}`};
-            // vars = {condition: { [this.state.filterField]: this.state.filterValue }, orderBy: `${this.state.orderByField}${this.state.direction}`};
-        } else {
-           vars = {orderBy: `${this.state.orderByField}${this.state.direction}`};
-        }
-        const searchVars = {field: this.state.filterField, search: this.state.filterValue};
+        // if (this.state.filterField !== 'none' && this.state.filterValue !== null) {
+        //     vars = {field: this.state.filterField, search: this.state.filterValue, orderBy: `${this.state.orderByField}${this.state.direction}`};
+        //     // vars = {condition: { [this.state.filterField]: this.state.filterValue }, orderBy: `${this.state.orderByField}${this.state.direction}`};
+        // } else {
+        //    vars = {orderBy: `${this.state.orderByField}${this.state.direction}`};
+        // }
+        const searchVars = {searchField: this.state.filterField, searchValue: this.state.filterValue, orderByField: this.state.orderByField, direction: this.state.direction};
         return(
             <React.Fragment>
                 <Container style={{padding: 10, background: '#dee2e6'}}>
@@ -105,11 +105,11 @@ class ApplicationList extends Component {
                                     {this.state.orderByDisplay}
                                 </Dropdown.Toggle>
                                     <Dropdown.Menu style={{width: "100%"}}>
-                                        <Dropdown.Item eventKey='APPLICATION_ID_' onSelect={this.sortApplications}>Application ID</Dropdown.Item>
-                                        <Dropdown.Item eventKey='OPERATOR_NAME_' onSelect={this.sortApplications}>Operator Name</Dropdown.Item>
-                                        <Dropdown.Item eventKey='FACILITY_NAME_' onSelect={this.sortApplications}>Facility Name</Dropdown.Item>
-                                        <Dropdown.Item eventKey='CERTIFICATION_DATE_' onSelect={this.sortApplications}>Submission Date</Dropdown.Item>
-                                        <Dropdown.Item eventKey='APPLICATION_STATUS_' onSelect={this.sortApplications}>Status</Dropdown.Item>
+                                        <Dropdown.Item eventKey='application_id' onSelect={this.sortApplications}>Application ID</Dropdown.Item>
+                                        <Dropdown.Item eventKey='operator_name' onSelect={this.sortApplications}>Operator Name</Dropdown.Item>
+                                        <Dropdown.Item eventKey='facility_name' onSelect={this.sortApplications}>Facility Name</Dropdown.Item>
+                                        <Dropdown.Item eventKey='certification_date' onSelect={this.sortApplications}>Submission Date</Dropdown.Item>
+                                        <Dropdown.Item eventKey='application_status' onSelect={this.sortApplications}>Status</Dropdown.Item>
                                     </Dropdown.Menu>
                             </Dropdown>
                         </Col>
@@ -172,8 +172,8 @@ class ApplicationList extends Component {
                     environment={environment}
                     variables={searchVars}
                     query={graphql`
-                        query ApplicationListSearchQuery($field: String, $search: String) {
-                            searchApplicationList(field: $field, search: $search){
+                        query ApplicationListSearchQuery($searchField: String, $searchValue: String, $orderByField: String, $direction: String) {
+                            searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction){
                                 nodes{
                                   applicationId
                                   facilityName
