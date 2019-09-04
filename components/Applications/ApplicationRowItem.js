@@ -1,6 +1,6 @@
 import React ,{ Component } from 'react';
 import propTypes from 'prop-types';
-import {Form, Button, Badge, Col, Row, Modal, Container, Dropdown, Table} from 'react-bootstrap';
+import {Button, Badge} from 'react-bootstrap';
 
 class ApplicationRowItem extends Component {
 
@@ -23,34 +23,18 @@ class ApplicationRowItem extends Component {
 
         return(
             <React.Fragment>
-                <div key={this.props.application.applicationId} >
-                    <Table striped bordered hover style={{textAlign:"center"}}>
-                        <thead>
-                            <tr>
-                                <th>Application ID</th>
-                                <th>Operator Name</th>
-                                <th>Facility Name</th>
-                                <th>Submitted</th>
-                                <th>Status</th>
-                                <th/>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{application.applicationId}</td>
-                                <td>{application.operatorName}</td>
-                                <td>{application.facilityName}</td>
-                                <td>{application.submissionDate}</td>
-                                <td>
-                                    <Badge pill style={{width: "100%"}} variant={statusBadgeColor[application.applicationStatus]} >{application.applicationStatus}</Badge>
-                                </td>
-                                <td>
-                                    <Button href={applicationDetails} target="_blank" variant='primary'>View Application</Button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </div>
+                <tr>
+                    <td>{application.applicationId}</td>
+                    <td>{application.operatorName}</td>
+                    <td>{application.facilityName}</td>
+                    <td>{application.submissionDate}</td>
+                    <td>
+                        <Badge pill style={{width: "100%"}} variant={statusBadgeColor[application.applicationStatus]} >{application.applicationStatus}</Badge>
+                    </td>
+                    <td>
+                        <Button href={applicationDetails} target="_blank" variant='primary'>View Application</Button>
+                    </td>
+                </tr>
           </React.Fragment>
         )
     }

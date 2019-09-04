@@ -2,7 +2,7 @@ import React ,{ Component } from 'react'
 import {graphql, QueryRenderer} from "react-relay";
 import initEnvironment from '../../lib/createRelayEnvironment';
 import ApplicationRowItem from "./ApplicationRowItem";
-import {Container, Dropdown, Button, Row, Col, Form} from 'react-bootstrap';
+import {Container, Dropdown, Button, Row, Col, Form, Table} from 'react-bootstrap';
 const environment = initEnvironment();
 
 // TODO: Dynamic options for filtering (ie: dropdown for status?), filtering with contains etc instead of just equals
@@ -127,27 +127,39 @@ class ApplicationList extends Component {
                 </Container>
                 <br/>
                 <br/>
-                <QueryRenderer
-                    environment={environment}
-                    variables={searchVars}
-                    query={graphql`
-                        query ApplicationListSearchQuery($searchField: String, $searchValue: String, $orderByField: String, $direction: String) {
-                            searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction){
-                                nodes{
-                                  applicationId
-                                  facilityName
-                                  operatorName
-                                  applicationStatus
-                                  bcghgid
-                                  reportingYear
-                                  submissionDate
+                <Table striped bordered hover style={{textAlign:"center"}}>
+                    <thead>
+                        <tr>
+                            <th>Application ID</th>
+                            <th>Operator Name</th>
+                            <th>Facility Name</th>
+                            <th>Submitted</th>
+                            <th>Status</th>
+                            <th/>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <QueryRenderer
+                            environment={environment}
+                            variables={searchVars}
+                            query={graphql`
+                                query ApplicationListSearchQuery($searchField: String, $searchValue: String, $orderByField: String, $direction: String) {
+                                    searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction){
+                                        nodes{
+                                        applicationId
+                                        facilityName
+                                        operatorName
+                                        applicationStatus
+                                        submissionDate
+                                        }
+                                    }
                                 }
-                            }
-                        }
-                    `}
+                            `}
 
-                    render={this.listSearchedApplications}
-                />
+                            render={this.listSearchedApplications}
+                        />
+                    </tbody>
+                </Table>
           </React.Fragment>
         )
     }
