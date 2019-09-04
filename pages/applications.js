@@ -12,8 +12,6 @@ class Applications extends Component {
                <Container>
                   <h1>Applications</h1>
                   <hr/>
-                  <br/>
-                  <br/>
                   <ApplicationList/>
                </Container>
            </React.Fragment>

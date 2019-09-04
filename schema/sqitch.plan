@@ -20,3 +20,4 @@ materialized_view_estimated_carbon_tax_paid 2019-08-29T21:37:02Z Hamza Javed <ha
 function_get_carbon_tax_by_organisation 2019-08-29T22:14:28Z Hamza Javed <hamza@button.is> # Get carbon tax paid by organisation and reporting year
 function_get_products_by_bcghgid 2019-08-30T18:49:23Z Hamza Javed <hamza@button.is> # Get production data by bcghgid
 table_application [schema_ggircs_portal table_form_result] 2019-08-29T19:42:02Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # add table application to schema ggircs_portal
+function_search_application_list [table_application] 2019-09-03T20:40:05Z Dylan Leard <dylan@button.is> # add function for searching the list of applications
