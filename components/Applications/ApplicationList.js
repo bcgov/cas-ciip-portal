@@ -16,8 +16,8 @@ class ApplicationList extends Component {
             orderByField: "OPERATOR_NAME_",
             direction: "ASC",
             orderByDisplay: "Operator Name",
-            filterField: "application_id",
-            filterValue: 5,
+            filterField: "operator_name",
+            filterValue: ".",
             filterDisplay: "No Filter"
         }
     }
@@ -85,7 +85,7 @@ class ApplicationList extends Component {
         } else {
            vars = {orderBy: `${this.state.orderByField}${this.state.direction}`};
         }
-        const searchVars = {field: 'operator_name', search: 'a'};
+        const searchVars = {field: this.state.filterField, search: this.state.filterValue};
         return(
             <React.Fragment>
                 <Container style={{padding: 10, background: '#dee2e6'}}>
@@ -124,11 +124,11 @@ class ApplicationList extends Component {
                                 </Dropdown.Toggle>
                                     <Dropdown.Menu style={{width: "100%"}}>
                                         <Dropdown.Item eventKey='none' onSelect={this.applyFilterField}>No Filter</Dropdown.Item>
-                                        <Dropdown.Item eventKey='applicationId' onSelect={this.applyFilterField}>Application ID</Dropdown.Item>
+                                        <Dropdown.Item eventKey='application_id' onSelect={this.applyFilterField}>Application ID</Dropdown.Item>
                                         <Dropdown.Item eventKey='operator_name' onSelect={this.applyFilterField}>Operator Name</Dropdown.Item>
-                                        <Dropdown.Item eventKey='facilityName' onSelect={this.applyFilterField}>Facility Name</Dropdown.Item>
-                                        <Dropdown.Item eventKey='certificationDate' onSelect={this.applyFilterField}>Submission Date</Dropdown.Item>
-                                        <Dropdown.Item eventKey='applicationStatus' onSelect={this.applyFilterField}>Status</Dropdown.Item>
+                                        <Dropdown.Item eventKey='facility_name' onSelect={this.applyFilterField}>Facility Name</Dropdown.Item>
+                                        <Dropdown.Item eventKey='certification_date' onSelect={this.applyFilterField}>Submission Date</Dropdown.Item>
+                                        <Dropdown.Item eventKey='application_status' onSelect={this.applyFilterField}>Status</Dropdown.Item>
                                     </Dropdown.Menu>
                             </Dropdown>
                         </Col>
