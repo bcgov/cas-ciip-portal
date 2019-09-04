@@ -66,12 +66,12 @@ class ApplicationList extends Component {
     getApplicationData = async () => {
         const applications = await fetchQuery( environment, getApplications, {searchField: this.state.filterField, searchValue: this.state.filterValue, orderByField: this.state.orderByField, direction: this.state.direction} );
         const applicationList = [];
-        
+
         const filteredApplications = applications.searchApplicationList.nodes;
         filteredApplications.forEach((application) => {
             applicationList.push(<ApplicationRowItem application={application} />);
         })
-    
+
         this.setState({ applicationList })
     }
 
@@ -84,7 +84,7 @@ class ApplicationList extends Component {
             || this.state.direction !== prevState.direction
             || this.state.filterField !== prevState.filterField
             || this.state.filterValue !== prevState.filterValue) {
-                
+
                 this.getApplicationData();
             }
     }
