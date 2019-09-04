@@ -40,7 +40,7 @@ class ApplicationRowItem extends Component {
                                 <td>{application.applicationId}</td>
                                 <td>{application.operatorName}</td>
                                 <td>{application.facilityName}</td>
-                                <td>{application.certificationDate}</td>
+                                <td>{application.submissionDate}</td>
                                 <td>
                                     <Badge pill style={{width: "100%"}} variant={statusBadgeColor[application.applicationStatus]} >{application.applicationStatus}</Badge>
                                 </td>
@@ -62,7 +62,7 @@ ApplicationRowItem.propTypes = {
     application: propTypes.shape({
         applicationId: propTypes.number,
         applicationStatus: propTypes.string,
-        certificationDate: propTypes.string,
+        submissionDate: propTypes.string,
         facilityName: propTypes.string,
         operatorName: propTypes.string
   })

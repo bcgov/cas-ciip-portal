@@ -6,11 +6,13 @@ type Application {
   """The facility related to the application"""
   facilityName: String
 
-  """The certification date of the application"""
+  """The operator related to the application"""
   operatorName: String
-  certificationDate: String
   bcghgid: String
   reportingYear: String
+
+  """The submission date of the application"""
+  submissionDate: Datetime
 
   """The application status"""
   applicationStatus: String
@@ -30,8 +32,8 @@ input ApplicationCondition {
   """Checks for equality with the object’s `operatorName` field."""
   operatorName: String
 
-  """Checks for equality with the object’s `certificationDate` field."""
-  certificationDate: String
+  """Checks for equality with the object’s `submissionDate` field."""
+  submissionDate: Datetime
 
   """Checks for equality with the object’s `bcghgid` field."""
   bcghgid: String
@@ -51,11 +53,13 @@ input ApplicationInput {
   """The facility related to the application"""
   facilityName: String
 
-  """The certification date of the application"""
+  """The operator related to the application"""
   operatorName: String
-  certificationDate: String
   bcghgid: String
   reportingYear: String
+
+  """The submission date of the application"""
+  submissionDate: Datetime
 
   """The application status"""
   applicationStatus: String
@@ -96,12 +100,12 @@ enum ApplicationsOrderBy {
   FACILITY_NAME_DESC
   OPERATOR_NAME_ASC
   OPERATOR_NAME_DESC
-  CERTIFICATION_DATE_ASC
-  CERTIFICATION_DATE_DESC
   BCGHGID_ASC
   BCGHGID_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
+  SUBMISSION_DATE_ASC
+  SUBMISSION_DATE_DESC
   APPLICATION_STATUS_ASC
   APPLICATION_STATUS_DESC
 }
@@ -354,7 +358,7 @@ type CiipCertifier {
   """The email address of the certifier"""
   emailAddress: String
   certifierName: String
-  certificationDate: String
+  certificationDate: Date
 }
 
 """
@@ -387,7 +391,7 @@ input CiipCertifierCondition {
   certifierName: String
 
   """Checks for equality with the object’s `certificationDate` field."""
-  certificationDate: String
+  certificationDate: Date
 }
 
 """A connection to a list of `CiipCertifier` values."""
@@ -540,10 +544,10 @@ type CiipElectricityAndHeat {
   applicationId: String
 
   """The application id used for reference and join"""
-  sold: String
+  sold: BigFloat
 
   """The heat quantity"""
-  quantity: String
+  quantity: BigFloat
 
   """The heat position"""
   description: String
@@ -563,10 +567,10 @@ input CiipElectricityAndHeatCondition {
   applicationId: String
 
   """Checks for equality with the object’s `sold` field."""
-  sold: String
+  sold: BigFloat
 
   """Checks for equality with the object’s `quantity` field."""
-  quantity: String
+  quantity: BigFloat
 
   """Checks for equality with the object’s `description` field."""
   description: String
@@ -682,13 +686,13 @@ type CiipFacility {
   bcghgid: String
 
   """The facility latitude"""
-  latitude: String
+  latitude: BigFloat
 
   """The facility longitude"""
-  longitude: String
+  longitude: BigFloat
 
   """The facility naics code"""
-  naicsCode: String
+  naicsCode: BigFloat
 
   """The name of the facility"""
   facilityName: String
@@ -712,13 +716,13 @@ input CiipFacilityCondition {
   bcghgid: String
 
   """Checks for equality with the object’s `latitude` field."""
-  latitude: String
+  latitude: BigFloat
 
   """Checks for equality with the object’s `longitude` field."""
-  longitude: String
+  longitude: BigFloat
 
   """Checks for equality with the object’s `naicsCode` field."""
-  naicsCode: String
+  naicsCode: BigFloat
 
   """Checks for equality with the object’s `facilityName` field."""
   facilityName: String
@@ -736,7 +740,7 @@ type CiipFuel {
   applicationId: String
 
   """The fuel quantity"""
-  quantity: String
+  quantity: BigFloat
 
   """The fuel type"""
   fuelType: String
@@ -763,7 +767,7 @@ input CiipFuelCondition {
   applicationId: String
 
   """Checks for equality with the object’s `quantity` field."""
-  quantity: String
+  quantity: BigFloat
 
   """Checks for equality with the object’s `fuelType` field."""
   fuelType: String
@@ -829,20 +833,20 @@ enum CiipFuelsOrderBy {
 """The view for operator data reported in the application"""
 type CiipOperator {
   """The application id used for reference and join"""
-  applicationId: String
+  applicationId: Int
 
   """The operator longitude"""
-  bcCorporateRegistryNumber: String
+  bcCorporateRegistryNumber: BigFloat
 
   """The operator naics code"""
-  naicsCode: String
+  naicsCode: BigFloat
 
   """The name of the operator"""
   operatorName: String
   operatorTradeName: String
 
   """The Duns no."""
-  dunsNumber: String
+  dunsNumber: BigFloat
 }
 
 """
@@ -851,15 +855,16 @@ tested for equality and combined with a logical ‘and.’
 """
 input CiipOperatorCondition {
   """Checks for equality with the object’s `applicationId` field."""
-  applicationId: String
+  applicationId: Int
+
 
   """
   Checks for equality with the object’s `bcCorporateRegistryNumber` field.
   """
-  bcCorporateRegistryNumber: String
+  bcCorporateRegistryNumber: BigFloat
 
   """Checks for equality with the object’s `naicsCode` field."""
-  naicsCode: String
+  naicsCode: BigFloat
 
   """Checks for equality with the object’s `operatorName` field."""
   operatorName: String
@@ -868,7 +873,7 @@ input CiipOperatorCondition {
   operatorTradeName: String
 
   """Checks for equality with the object’s `dunsNumber` field."""
-  dunsNumber: String
+  dunsNumber: BigFloat
 }
 
 """A connection to a list of `CiipOperator` values."""
@@ -919,11 +924,11 @@ type CiipProduction {
   rowId: BigInt
 
   """The application id used for reference and join"""
-  applicationId: String
-  bcghgid: String
+  applicationId: Int
+  bcghgid: BigFloat
 
   """The production quantity"""
-  quantity: String
+  quantity: BigFloat
 
   """The actual equipment"""
   product: String
@@ -938,7 +943,7 @@ type CiipProduction {
   associatedEmissions: String
 
   """The fuel percentage that can be attributed to incentive"""
-  attributableFuelPercentage: String
+  attributableFuelPercentage: BigFloat
 }
 
 """
@@ -953,10 +958,10 @@ input CiipProductionCondition {
   applicationId: String
 
   """Checks for equality with the object’s `bcghgid` field."""
-  bcghgid: String
+  bcghgid: BigFloat
 
   """Checks for equality with the object’s `quantity` field."""
-  quantity: String
+  quantity: BigFloat
 
   """Checks for equality with the object’s `product` field."""
   product: String
@@ -1071,7 +1076,7 @@ input CiipProductionDatumCondition {
   """
   Checks for equality with the object’s `attributableFuelPercentage` field.
   """
-  attributableFuelPercentage: String
+  attributableFuelPercentage: BigFloat
 }
 
 """An input for mutations affecting `CiipProductionDatum`"""
@@ -1399,6 +1404,9 @@ type CreateUserPayload {
 
 """A location in a connection that can be used for resuming pagination."""
 scalar Cursor
+
+"""The day, does not include a time."""
+scalar Date
 
 """
 A point in time as described by the [ISO
@@ -1975,6 +1983,7 @@ type FormResult implements Node {
 
   """The Unique ID of the User"""
   userId: Int!
+  submissionDate: Datetime
 
   """JSON dump of form data"""
   formResult: JSON!
@@ -1994,6 +2003,9 @@ input FormResultCondition {
   """Checks for equality with the object’s `userId` field."""
   userId: Int
 
+  """Checks for equality with the object’s `submissionDate` field."""
+  submissionDate: Datetime
+
   """Checks for equality with the object’s `formResult` field."""
   formResult: JSON
 }
@@ -2008,6 +2020,7 @@ input FormResultInput {
 
   """The Unique ID of the User"""
   userId: Int!
+  submissionDate: Datetime
 
   """JSON dump of form data"""
   formResult: JSON!
@@ -2025,6 +2038,7 @@ input FormResultPatch {
 
   """The Unique ID of the User"""
   userId: Int
+  submissionDate: Datetime
 
   """JSON dump of form data"""
   formResult: JSON
@@ -2065,6 +2079,8 @@ enum FormResultsOrderBy {
   FORM_ID_DESC
   USER_ID_ASC
   USER_ID_DESC
+  SUBMISSION_DATE_ASC
+  SUBMISSION_DATE_DESC
   FORM_RESULT_ASC
   FORM_RESULT_DESC
   PRIMARY_KEY_ASC

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a9863a0d1a359a795d41b95644df8e90
+ * @relayHash b09a506a3ee68a21e2069a11ce116211
  */
 
 /* eslint-disable */
@@ -22,9 +22,9 @@ export type ApplicationListSearchQueryResponse = {|
       +facilityName: ?string,
       +operatorName: ?string,
       +applicationStatus: ?string,
-      +certificationDate: ?string,
       +bcghgid: ?string,
       +reportingYear: ?string,
+      +submissionDate: ?any,
     |}>
   |}
 |};
@@ -48,9 +48,9 @@ query ApplicationListSearchQuery(
       facilityName
       operatorName
       applicationStatus
-      certificationDate
       bcghgid
       reportingYear
+      submissionDate
     }
   }
 }
@@ -154,7 +154,7 @@ v1 = [
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "certificationDate",
+            "name": "submissionDate",
             "args": null,
             "storageKey": null
           },
@@ -197,7 +197,7 @@ return {
     "operationKind": "query",
     "name": "ApplicationListSearchQuery",
     "id": null,
-    "text": "query ApplicationListSearchQuery(\n  $searchField: String\n  $searchValue: String\n  $orderByField: String\n  $direction: String\n) {\n  searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction) {\n    nodes {\n      applicationId\n      facilityName\n      operatorName\n      applicationStatus\n      certificationDate\n      bcghgid\n      reportingYear\n    }\n  }\n}\n",
+    "text": "query ApplicationListSearchQuery(\n  $searchField: String\n  $searchValue: String\n  $orderByField: String\n  $direction: String\n) {\n  searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction) {\n    nodes {\n      applicationId\n      facilityName\n      operatorName\n      applicationStatus\n      submissionDate\n      bcghgid\n      reportingYear\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

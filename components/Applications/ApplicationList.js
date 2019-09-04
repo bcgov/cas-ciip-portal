@@ -21,21 +21,8 @@ class ApplicationList extends Component {
         }
     }
 
-    listApplications = ({error, props}) => {
-        console.log('ApplicationList.js > listApplications()', props, error);
-        const applicationList = [];
-        if(props){
-            const allApplications = props.allApplications.nodes;
-            allApplications.forEach((application) => {
-                applicationList.push(<ApplicationRowItem application={application} />);
-            })
-        }
-        return applicationList;
-    }
-
     listSearchedApplications = ({error, props}) => {
         console.log('ApplicationList.js > listSearchedApplications()', props, error);
-        console.log(this.state);
         const applicationList = [];
         if(props){
             const filteredApplications = props.searchApplicationList.nodes;
@@ -76,8 +63,6 @@ class ApplicationList extends Component {
     }
 
     render(){
-        console.log(this.state);
-        let vars;
         const searchVars = {searchField: this.state.filterField, searchValue: this.state.filterValue, orderByField: this.state.orderByField, direction: this.state.direction};
         return(
             <React.Fragment>
@@ -101,7 +86,7 @@ class ApplicationList extends Component {
                                         <Dropdown.Item eventKey='application_id' onSelect={this.sortApplications}>Application ID</Dropdown.Item>
                                         <Dropdown.Item eventKey='operator_name' onSelect={this.sortApplications}>Operator Name</Dropdown.Item>
                                         <Dropdown.Item eventKey='facility_name' onSelect={this.sortApplications}>Facility Name</Dropdown.Item>
-                                        <Dropdown.Item eventKey='certification_date' onSelect={this.sortApplications}>Submission Date</Dropdown.Item>
+                                        <Dropdown.Item eventKey='submission_date' onSelect={this.sortApplications}>Submission Date</Dropdown.Item>
                                         <Dropdown.Item eventKey='application_status' onSelect={this.sortApplications}>Status</Dropdown.Item>
                                     </Dropdown.Menu>
                             </Dropdown>
@@ -120,7 +105,7 @@ class ApplicationList extends Component {
                                         <Dropdown.Item eventKey='application_id' onSelect={this.applyFilterField}>Application ID</Dropdown.Item>
                                         <Dropdown.Item eventKey='operator_name' onSelect={this.applyFilterField}>Operator Name</Dropdown.Item>
                                         <Dropdown.Item eventKey='facility_name' onSelect={this.applyFilterField}>Facility Name</Dropdown.Item>
-                                        <Dropdown.Item eventKey='certification_date' onSelect={this.applyFilterField}>Submission Date</Dropdown.Item>
+                                        <Dropdown.Item eventKey='submission_date' onSelect={this.applyFilterField}>Submission Date</Dropdown.Item>
                                         <Dropdown.Item eventKey='application_status' onSelect={this.applyFilterField}>Status</Dropdown.Item>
                                     </Dropdown.Menu>
                             </Dropdown>
@@ -142,25 +127,6 @@ class ApplicationList extends Component {
                 </Container>
                 <br/>
                 <br/>
-                {/* <QueryRenderer
-                    environment={environment}
-                    variables={vars}
-                    query={graphql`
-                        query ApplicationListQuery($condition: ApplicationCondition, $orderBy: [ApplicationsOrderBy!]) {
-                            allApplications(condition: $condition, orderBy: $orderBy){
-                                nodes{
-                                  applicationId
-                                  facilityName
-                                  operatorName
-                                  applicationStatus
-                                  certificationDate
-                                }
-                            }
-                        }
-                    `}
-
-                    render={this.listApplications}
-                /> */}
                 <QueryRenderer
                     environment={environment}
                     variables={searchVars}
@@ -172,9 +138,9 @@ class ApplicationList extends Component {
                                   facilityName
                                   operatorName
                                   applicationStatus
-                                  certificationDate
                                   bcghgid
                                   reportingYear
+                                  submissionDate
                                 }
                             }
                         }

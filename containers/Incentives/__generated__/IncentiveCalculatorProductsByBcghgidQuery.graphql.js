@@ -21,7 +21,7 @@ export type IncentiveCalculatorProductsByBcghgidQueryResponse = {|
       +applicationId: ?string,
       +fuelUnits: ?string,
       +associatedEmissions: ?string,
-      +attributableFuelPercentage: ?string,
+      +attributableFuelPercentage: ?any,
     |}>
   |}
 |};
@@ -166,3 +166,4 @@ return {
 // prettier-ignore
 (node/*: any*/).hash = '5196ee12f468afabbb5a169aec645df9';
 module.exports = node;
+
