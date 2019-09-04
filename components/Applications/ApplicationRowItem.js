@@ -22,20 +22,18 @@ class ApplicationRowItem extends Component {
         const applicationDetails = `/application-details?application_id=${application.applicationId}&reportingyear=${application.reportingYear}&bcghgid=${application.bcghgid}`
 
         return(
-            <React.Fragment>
-                <tr>
-                    <td>{application.applicationId}</td>
-                    <td>{application.operatorName}</td>
-                    <td>{application.facilityName}</td>
-                    <td>{application.submissionDate}</td>
-                    <td>
-                        <Badge pill style={{width: "100%"}} variant={statusBadgeColor[application.applicationStatus]} >{application.applicationStatus}</Badge>
-                    </td>
-                    <td>
-                        <Button href={applicationDetails} target="_blank" variant='primary'>View Application</Button>
-                    </td>
-                </tr>
-          </React.Fragment>
+            <tr>
+                <td>{application.applicationId}</td>
+                <td>{application.operatorName}</td>
+                <td>{application.facilityName}</td>
+                <td>{application.submissionDate}</td>
+                <td>
+                    <Badge pill style={{width: "100%"}} variant={statusBadgeColor[application.applicationStatus]} >{application.applicationStatus}</Badge>
+                </td>
+                <td>
+                    <Button href={applicationDetails} target="_blank" variant='primary'>View Application</Button>
+                </td>
+            </tr>
         )
     }
 }

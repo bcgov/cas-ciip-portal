@@ -1,11 +1,23 @@
 import React ,{ Component } from 'react'
-import {graphql, QueryRenderer} from "react-relay";
+import {graphql, fetchQuery} from "react-relay";
 import initEnvironment from '../../lib/createRelayEnvironment';
 import ApplicationRowItem from "./ApplicationRowItem";
 import {Container, Dropdown, Button, Row, Col, Form, Table} from 'react-bootstrap';
 const environment = initEnvironment();
 
-// TODO: Dynamic options for filtering (ie: dropdown for status?), filtering with contains etc instead of just equals
+const getApplications = graphql`
+    query ApplicationListSearchQuery($searchField: String, $searchValue: String, $orderByField: String, $direction: String) {
+        searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction){
+            nodes{
+            applicationId
+            facilityName
+            operatorName
+            applicationStatus
+            submissionDate
+            }
+        }
+    }
+`
 
 class ApplicationList extends Component {
 
@@ -17,20 +29,9 @@ class ApplicationList extends Component {
             orderByDisplay: "Operator Name",
             filterField: null,
             filterValue: null,
-            filterDisplay: "No Filter"
+            filterDisplay: "No Filter",
+            applicationList: []
         }
-    }
-
-    listSearchedApplications = ({error, props}) => {
-        console.log('ApplicationList.js > listSearchedApplications()', props, error);
-        const applicationList = [];
-        if(props){
-            const filteredApplications = props.searchApplicationList.nodes;
-            filteredApplications.forEach((application) => {
-                applicationList.push(<ApplicationRowItem application={application} />);
-            })
-        }
-        return applicationList;
     }
 
     sortApplications = (eventKey, event) => {
@@ -62,8 +63,35 @@ class ApplicationList extends Component {
         }
     }
 
+    getApplicationData = async () => {
+        const applications = await fetchQuery( environment, getApplications, {searchField: this.state.filterField, searchValue: this.state.filterValue, orderByField: this.state.orderByField, direction: this.state.direction} );
+        const applicationList = [];
+        
+        const filteredApplications = applications.searchApplicationList.nodes;
+        filteredApplications.forEach((application) => {
+            applicationList.push(<ApplicationRowItem application={application} />);
+        })
+    
+        this.setState({ applicationList })
+    }
+
+    componentDidMount() {
+        this.getApplicationData();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.orderByField !== prevState.orderByField
+            || this.state.direction !== prevState.direction
+            || this.state.filterField !== prevState.filterField
+            || this.state.filterValue !== prevState.filterValue) {
+                
+                this.getApplicationData();
+            }
+    }
+
     render(){
         const searchVars = {searchField: this.state.filterField, searchValue: this.state.filterValue, orderByField: this.state.orderByField, direction: this.state.direction};
+        const applications = this.state.applicationList;
         return(
             <React.Fragment>
                 <Container style={{padding: 10, background: '#dee2e6'}}>
@@ -139,25 +167,11 @@ class ApplicationList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <QueryRenderer
-                            environment={environment}
-                            variables={searchVars}
-                            query={graphql`
-                                query ApplicationListSearchQuery($searchField: String, $searchValue: String, $orderByField: String, $direction: String) {
-                                    searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction){
-                                        nodes{
-                                        applicationId
-                                        facilityName
-                                        operatorName
-                                        applicationStatus
-                                        submissionDate
-                                        }
-                                    }
-                                }
-                            `}
-
-                            render={this.listSearchedApplications}
-                        />
+                    {applications.map(( application, index ) => (
+                            <React.Fragment key={index}>
+                                { application }
+                            </React.Fragment>
+                        ))}
                     </tbody>
                 </Table>
           </React.Fragment>
