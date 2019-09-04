@@ -41,16 +41,16 @@ const productsByBcghgidQuery = graphql`
     `;
 
 const carbonTaxByBcghgidQuery = graphql`
-    query IncentiveCalculatorCarbonTaxByBcghgidQuery($bcghgidInput: String, $reportingYear: String) {
-        getCarbonTaxByBcghgid(bcghgidInput:$bcghgidInput, reportingYear:$reportingYear){
-            nodes{
-                reportId
-                organisationId
-                fuelType
-                calculatedCarbonTax
+        query IncentiveCalculatorCarbonTaxByBcghgidQuery($bcghgidInput: String, $reportingYear: String) {
+            getCarbonTaxByBcghgid(bcghgidInput:$bcghgidInput, reportingYear:$reportingYear){
+                nodes{
+                    reportId
+                    organisationId
+                    fuelType
+                    calculatedCarbonTax
+                }
             }
         }
-    }
 `;
 
 class IncentiveCalculatorContainer extends Component {
@@ -77,7 +77,7 @@ class IncentiveCalculatorContainer extends Component {
       return ({
           allProducts,
           reportedProducts,
-          carbonTaxPaid: totalCarbonTax // assume a value until ciip and swrs are connected
+          carbonTaxPaid: totalCarbonTax
       });
     };
 
@@ -185,20 +185,3 @@ class IncentiveCalculatorContainer extends Component {
 
 export default IncentiveCalculatorContainer;
 
-/*
-    add data validation
-    add tests for missing data
-    add errors for missing data
-    todo:
-    1 create dummy data for actual swrs apps
-    2 verify incentives
-    2.5 move bcghgid to facility
-    2.75 Get BCGHGID and year from Application ID
-
-    3.5 create metabase application using bid, year
-    4 create application with metabase widgets and incentives widget
-    5 add reporting year to ciip
-    6 use application id to get bcghgid and year
-    7 Q: how are we matching applications? Facility BCHGHID?
-
- */
