@@ -8,7 +8,9 @@ create or replace function ggircs_portal.search_application_list(field text, sea
     returns setof ggircs_portal.application as
         $function$
             begin
-                return query EXECUTE 'select * from ggircs_portal.application where '|| field || '::text ILIKE ''%' || search || '%'' ';
+                    if field is null then return query EXECUTE 'select * from ggircs_portal.application order by operator_name';
+                    else return query EXECUTE 'select * from ggircs_portal.application where '|| field || '::text ILIKE ''%' || search || '%'' order by operator_name';
+                end if;
             end
         $function$ language plpgsql stable;
 

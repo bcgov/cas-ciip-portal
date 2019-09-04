@@ -16,8 +16,8 @@ class ApplicationList extends Component {
             orderByField: "OPERATOR_NAME_",
             direction: "ASC",
             orderByDisplay: "Operator Name",
-            filterField: "operator_name",
-            filterValue: ".",
+            filterField: null,
+            filterValue: null,
             filterDisplay: "No Filter"
         }
     }
@@ -123,7 +123,7 @@ class ApplicationList extends Component {
                                     {this.state.filterDisplay}
                                 </Dropdown.Toggle>
                                     <Dropdown.Menu style={{width: "100%"}}>
-                                        <Dropdown.Item eventKey='none' onSelect={this.applyFilterField}>No Filter</Dropdown.Item>
+                                        <Dropdown.Item eventKey={null} onSelect={this.applyFilterField}>No Filter</Dropdown.Item>
                                         <Dropdown.Item eventKey='application_id' onSelect={this.applyFilterField}>Application ID</Dropdown.Item>
                                         <Dropdown.Item eventKey='operator_name' onSelect={this.applyFilterField}>Operator Name</Dropdown.Item>
                                         <Dropdown.Item eventKey='facility_name' onSelect={this.applyFilterField}>Facility Name</Dropdown.Item>
