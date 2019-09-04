@@ -18,7 +18,7 @@ BEGIN;
        x.certifier_data ->> 'first_name' as first_name,
        x.certifier_data ->> 'email_address' as email_address,
        x.certifier_data ->> 'certifier_name' as certifier_name,
-       x.certifier_data ->> 'date' as certification_date
+       (x.certifier_data ->> 'date')::date as certification_date
        -- add certifier address to address view
     from x
  );

@@ -11,7 +11,7 @@ BEGIN;
     )
     select
        x.id as application_id,
-       x.fuel_data ->> 'quantity' as quantity,
+       (x.fuel_data ->> 'quantity')::numeric as quantity,
        x.fuel_data ->> 'fuel_type' as fuel_type,
        x.fuel_data ->> 'fuel_units' as fuel_units,
        x.fuel_data ->> 'methodology' as methodology,

@@ -17,8 +17,8 @@ BEGIN;
     )
     select
        x.id as application_id,
-       x.heat_data ->> 'sold' as sold,
-       x.heat_data ->> 'quantity' as quantity,
+       (x.heat_data ->> 'sold')::numeric as sold,
+       (x.heat_data ->> 'quantity')::numeric as quantity,
        x.heat_data ->> 'description' as description,
        x.heat_data ->> 'consumed_onsite' as consumed_onsite,
        x.heat_data ->> 'generated_onsite' as generated_onsite,
@@ -40,8 +40,8 @@ BEGIN;
     )
     select
        x.id as application_id,
-       x.electricity_data ->> 'sold' as sold,
-       x.electricity_data ->> 'quantity' as quantity,
+       (x.electricity_data ->> 'sold')::numeric as sold,
+       (x.electricity_data ->> 'quantity')::numeric as quantity,
        x.electricity_data ->> 'description' as description,
        x.electricity_data ->> 'consumed_onsite' as consumed_onsite,
        x.electricity_data ->> 'generated_onsite' as generated_onsite,

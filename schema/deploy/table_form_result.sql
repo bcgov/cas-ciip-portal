@@ -8,6 +8,7 @@ create table ggircs_portal.form_result (
   id serial not null,
   form_id int not null,
   user_id int not null,
+  submission_date timestamptz default now(),
   form_result jsonb not null
 );
 
