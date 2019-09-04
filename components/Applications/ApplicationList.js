@@ -59,7 +59,10 @@ class ApplicationList extends Component {
         event.stopPropagation();
         event.persist();
         if (this.state.filterField !== "none") {
-            this.setState({filterValue: event.target[0].value});
+            if (this.state.filterField === "applicationId")
+                this.setState({filterValue: Number(event.target[0].value)});
+            else
+                this.setState({filterValue: event.target[0].value});
         }
     }
 
