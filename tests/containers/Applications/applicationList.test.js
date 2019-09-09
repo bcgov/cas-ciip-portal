@@ -4,8 +4,6 @@ import { render, waitForDomChange } from '@testing-library/react';
 import {queryMock} from "../../../lib/relayQueryMock";
 
 let mockAppQueryData;
-const date1 = new Date('1995-12-17T03:24:00');
-const date2 = new Date('2018-05-11T02:21:00');
 
 describe('Application List', () => {
     beforeEach(() => {
@@ -18,14 +16,14 @@ describe('Application List', () => {
                         "facilityName": 'facility1',
                         "operatorName": "operator1",
                         "applicationStatus": "approved",
-                        "submissionDate": date1.toUTCString()
+                        "submissionDate": 'Sun, 17 Dec 1995 03:24:00 GMT'
                     },
                     {
                         "applicationId": 2,
                         "facilityName": 'facility2',
                         "operatorName": "operator2",
                         "applicationStatus": "pending",
-                        "submissionDate": date2.toUTCString()
+                        "submissionDate": 'Fri, 11 May 2018 02:21:00 GMT'
                     }
                 ]
             }
