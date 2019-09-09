@@ -17,9 +17,10 @@ create table ggircs_portal.application as (
        x.id as application_id,
        x.facility_data ->> 'facility_name' as facility_name,
        x.operator_data ->> 'operator_name' as operator_name,
-       x.facility_data ->> 'bcghgid' as bcghgid,
+       x.submission_date as submission_date,
+       (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
        '2018' as reporting_year
-       x.submission_date as submission_date
+       
        
     from x
  );

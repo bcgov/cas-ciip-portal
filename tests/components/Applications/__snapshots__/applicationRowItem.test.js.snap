@@ -29,7 +29,7 @@ Object {
         <td>
           <a
             class="btn btn-primary"
-            href="/application-details?application_id=9"
+            href="/application-details?application_id=9&reportingyear=undefined&bcghgid=undefined"
             target="_blank"
           >
             View Application
@@ -63,7 +63,7 @@ Object {
       <td>
         <a
           class="btn btn-primary"
-          href="/application-details?application_id=9"
+          href="/application-details?application_id=9&reportingyear=undefined&bcghgid=undefined"
           target="_blank"
         >
           View Application

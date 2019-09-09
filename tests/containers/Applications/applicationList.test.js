@@ -1,7 +1,7 @@
 import React from 'react';
-import ApplicationList from '../../containers/Applications/ApplicationList';
+import ApplicationList from '../../../containers/Applications/ApplicationList';
 import { render, waitForDomChange } from '@testing-library/react';
-import {queryMock} from "../../lib/relayQueryMock";
+import {queryMock} from "../../../lib/relayQueryMock";
 
 let mockAppQueryData;
 const date1 = new Date('1995-12-17T03:24:00');

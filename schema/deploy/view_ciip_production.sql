@@ -19,7 +19,7 @@ BEGIN;
     select
        row_number() over (Partition by true) as row_id,
        x.id as application_id,
-       x.facility_data ->> 'bcghgid' as bcghgid,
+       (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
        (x.production_data ->> 'quantity')::numeric as quantity,
        x.production_data ->> 'product' as product,
        x.production_data ->> 'fuel_units' as fuel_units,
