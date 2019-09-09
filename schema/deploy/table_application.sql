@@ -7,7 +7,7 @@ BEGIN;
 create table ggircs_portal.application as (
     with x as (
       select
-        id,
+        cast(id as text) as id,
         json_array_elements((form_result -> 'facility_information')::json) as facility_data,
         json_array_elements((form_result -> 'reporting_operation_information')::json) as operator_data,
         json_array_elements((form_result -> 'certifiying_official')::json) as certifier_data
@@ -17,11 +17,9 @@ create table ggircs_portal.application as (
        x.id as application_id,
        x.facility_data ->> 'facility_name' as facility_name,
        x.operator_data ->> 'operator_name' as operator_name,
-       x.certifier_data ->> 'certification_date' as certification_date
+       x.certifier_data ->> 'certification_date' as certification_date,
        x.facility_data ->> 'bcghgid' as bcghgid,
-       '2018' as reporting_year --todo: figure out how to pull reporting years
-
-
+       '2018' as reporting_year
     from x
  );
 
