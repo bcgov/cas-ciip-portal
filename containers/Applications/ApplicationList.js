@@ -9,11 +9,11 @@ const getApplications = graphql`
     query ApplicationListSearchQuery($searchField: String, $searchValue: String, $orderByField: String, $direction: String) {
         searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction){
             nodes{
-            applicationId
-            facilityName
-            operatorName
-            applicationStatus
-            submissionDate
+                applicationId
+                facilityName
+                operatorName
+                applicationStatus
+                submissionDate
             }
         }
     }
@@ -90,7 +90,6 @@ class ApplicationList extends Component {
     }
 
     render(){
-        const searchVars = {searchField: this.state.filterField, searchValue: this.state.filterValue, orderByField: this.state.orderByField, direction: this.state.direction};
         const applications = this.state.applicationList;
         return(
             <React.Fragment>
@@ -168,10 +167,10 @@ class ApplicationList extends Component {
                     </thead>
                     <tbody>
                     {applications.map(( application, index ) => (
-                            <React.Fragment key={index}>
-                                { application }
-                            </React.Fragment>
-                        ))}
+                        <React.Fragment key={index}>
+                            { application }
+                        </React.Fragment>
+                    ))}
                     </tbody>
                 </Table>
           </React.Fragment>
