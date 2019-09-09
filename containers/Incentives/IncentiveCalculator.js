@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react'
-import {graphql, QueryRenderer, fetchQuery} from "react-relay";
+import {graphql, fetchQuery} from "react-relay";
 import initEnvironment from '../../lib/createRelayEnvironment';
 import IncentiveSegment from "../../components/Incentives/IncentiveSegment";
 import IncentiveSegmentFormula from "../../components/Incentives/IncentiveSegmentFormula";
@@ -7,38 +7,38 @@ import {Table, Jumbotron, Card} from 'react-bootstrap';
 const environment = initEnvironment();
 
 const allProductsQuery = graphql`
-        query IncentiveCalculatorQuery {
-            allProducts{
-                nodes{
-                    rowId
-                    name
-                    description
-                    benchmarksByProductId{
-                        nodes{
-                            benchmark
-                            eligibilityThreshold
-                        }
+    query IncentiveCalculatorQuery {
+        allProducts{
+            nodes{
+                rowId
+                name
+                description
+                benchmarksByProductId{
+                    nodes{
+                        benchmark
+                        eligibilityThreshold
                     }
                 }
             }
         }
-    `;
+    }
+`;
 
 const productsByBcghgidQuery = graphql`
-        query IncentiveCalculatorProductsByBcghgidQuery($bcghgidInput: String) {
-            getProductsByBcghgid(bcghgidInput: $bcghgidInput){
-                nodes{
-                    rowId
-                    quantity
-                    processingUnit
-                    applicationId
-                    units
-                    associatedEmissions
-                    attributableFuelPercentage
-                }
+    query IncentiveCalculatorProductsByBcghgidQuery($bcghgidInput: String) {
+        getProductsByBcghgid(bcghgidInput: $bcghgidInput){
+            nodes{
+                rowId
+                quantity
+                product
+                applicationId
+                fuelUnits
+                associatedEmissions
+                attributableFuelPercentage
             }
         }
-    `;
+    }
+`;
 
 const carbonTaxByBcghgidQuery = graphql`
     query IncentiveCalculatorCarbonTaxByBcghgidQuery($bcghgidInput: String, $reportingYear: String) {
@@ -64,48 +64,54 @@ class IncentiveCalculatorContainer extends Component {
     }
 
     getData = async () => {
-      const allProducts = await fetchQuery(environment, allProductsQuery);
-      const reportedProducts = await fetchQuery(environment, productsByBcghgidQuery, {bcghgidInput:'4'});
-      const carbonTaxByBcghgid = await fetchQuery(environment, carbonTaxByBcghgidQuery , {bcghgidInput: '12111130401', reportingYear:'2014'});
+        const allProducts = await fetchQuery(environment, allProductsQuery);
 
-      const totalCarbonTax = carbonTaxByBcghgid.getCarbonTaxByBcghgid.nodes.reduce((total, curr) => {
-          return parseFloat(total) + parseFloat(curr.calculatedCarbonTax)
-      }, 0);
+        const reportedProducts = await fetchQuery(environment, productsByBcghgidQuery, {bcghgidInput: this.props.bcghgid});
+        const carbonTaxByBcghgid = await fetchQuery(environment, carbonTaxByBcghgidQuery ,
+            {bcghgidInput: this.props.bcghgid, reportingYear: this.props.reportingYear});
 
-      return ({
-          allProducts,
-          reportedProducts,
-          carbonTaxPaid: totalCarbonTax // assume a value until ciip and swrs are connected
-      });
+        const totalCarbonTax = carbonTaxByBcghgid.getCarbonTaxByBcghgid.nodes.reduce((total, curr) => {
+            return parseFloat(total) + parseFloat(curr.calculatedCarbonTax)
+        }, 0);
+
+        return ({
+            allProducts,
+            reportedProducts,
+            carbonTaxPaid: totalCarbonTax
+        });
     };
 
     generateIncentiveCalculationData = async () => {
         const data = await this.getData();
-        console.log('data', data)
+        console.log('IncentiveCalculatorContainer, getdata(): ', data)
         const productsReported = data.reportedProducts.getProductsByBcghgid.nodes;
         const allProducts = data.allProducts.allProducts.nodes;
         let totalCarbonIncentive = 0;
         let incentiveSegments = [];
 
         productsReported.forEach((product) => {
-           // Get bm/et details for the product from the Products table
-           const productDetails = allProducts.filter((p) => p.name === product.processingUnit);
-           const productQuantity = parseFloat(product.quantity)
-           const attributableFuelPercentage = parseFloat(product.attributableFuelPercentage)
-           const benchmark = productDetails[0].benchmarksByProductId.nodes[0].benchmark;
-           const eligibilityThreshold = productDetails[0].benchmarksByProductId.nodes[0].eligibilityThreshold;
-           let eligibilityValue = 0;
+            // Get bm/et details for the product from the Products table
+            const productDetails = allProducts.filter((p) => p.name === product.product);
+            const productQuantity = parseFloat(product.quantity);
+            const attributableFuelPercentage = parseFloat(product.attributableFuelPercentage);
+            // const eligibilityThreshold = productDetails[0] ? productDetails[0].benchmarksByProductId.nodes[0].eligibilityThreshold : 0;
+            const bm_et = productDetails[0].benchmarksByProductId.nodes[productDetails[0].benchmarksByProductId.nodes.length - 1]
+            const benchmark = bm_et ? bm_et.benchmark : 0;
+            const eligibilityThreshold = bm_et ? bm_et.eligibilityThreshold : 0;
 
-           if (productQuantity > benchmark && productQuantity < eligibilityThreshold){
-               eligibilityValue = ((productQuantity - benchmark) / (eligibilityThreshold - benchmark));
-           }
+            //todo: How do we deal with benchmarks and products not set in db.
+            let eligibilityValue = 0;
 
-           const eligibleFuelValue = attributableFuelPercentage/100 * eligibilityValue;
-           totalCarbonIncentive = totalCarbonIncentive + ( eligibleFuelValue * data.carbonTaxPaid );
+            if (productQuantity > benchmark && productQuantity < eligibilityThreshold){
+                eligibilityValue = ((productQuantity - benchmark) / (eligibilityThreshold - benchmark));
+            }
 
-           incentiveSegments.push(
+            const eligibleFuelValue = attributableFuelPercentage/100 * eligibilityValue;
+            totalCarbonIncentive = totalCarbonIncentive + ( eligibleFuelValue * data.carbonTaxPaid );
+
+            incentiveSegments.push(
                 <IncentiveSegment
-                    name = {product.processingUnit}
+                    name = {product.product}
                     quantity={productQuantity}
                     benchmark={benchmark}
                     eligibilityThreshold={eligibilityThreshold}
@@ -166,7 +172,7 @@ class IncentiveCalculatorContainer extends Component {
                             <td colSpan="2"><strong>Total Incentive</strong></td>
                             <td>
                                 <strong>
-                                CAD {this.state.totalCarbonIncentive.toFixed(2)}
+                                    CAD {this.state.totalCarbonIncentive.toFixed(2)}
                                 </strong>
                             </td>
                         </tr>
@@ -182,9 +188,3 @@ class IncentiveCalculatorContainer extends Component {
 
 export default IncentiveCalculatorContainer;
 
-/*
-    add data validation
-    add tests for missing data
-    add errors for missing data
-
- */

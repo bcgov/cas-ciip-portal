@@ -1,5 +1,4 @@
 import React ,{ Component } from 'react'
-import ReactDOM from 'react-dom';
 import {graphql, QueryRenderer} from "react-relay";
 import initEnvironment from '../../lib/createRelayEnvironment';
 import ApplicationRowItem from "./ApplicationRowItem";
@@ -79,12 +78,6 @@ class ApplicationList extends Component {
     render(){
         console.log(this.state);
         let vars;
-        // if (this.state.filterField !== 'none' && this.state.filterValue !== null) {
-        //     vars = {field: this.state.filterField, search: this.state.filterValue, orderBy: `${this.state.orderByField}${this.state.direction}`};
-        //     // vars = {condition: { [this.state.filterField]: this.state.filterValue }, orderBy: `${this.state.orderByField}${this.state.direction}`};
-        // } else {
-        //    vars = {orderBy: `${this.state.orderByField}${this.state.direction}`};
-        // }
         const searchVars = {searchField: this.state.filterField, searchValue: this.state.filterValue, orderByField: this.state.orderByField, direction: this.state.direction};
         return(
             <React.Fragment>
@@ -180,6 +173,8 @@ class ApplicationList extends Component {
                                   operatorName
                                   applicationStatus
                                   certificationDate
+                                  bcghgid
+                                  reportingYear
                                 }
                             }
                         }

@@ -6,12 +6,13 @@ BEGIN;
   create view ggircs_portal.ciip_facility as (
     with x as (
       select
-        id,
+        cast(id as text) as id,
         json_array_elements((form_result -> 'facility_information')::json) as facility_data
       from ggircs_portal.form_result
     )
     select
        x.id as application_id,
+       x.facility_data ->> 'bcghgid' as bcghgid,
        x.facility_data ->> 'latitude' as latitude,
        x.facility_data ->> 'longitude' as longitude,
        x.facility_data ->> 'naics_code' as naics_code,

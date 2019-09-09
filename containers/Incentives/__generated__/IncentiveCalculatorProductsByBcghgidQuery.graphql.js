@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 24b1d70f647ff26a93be9fe310bffb5d
+ * @relayHash 6c0257184c769fbc5571c8ed1f2e0a66
  */
 
 /* eslint-disable */
@@ -17,9 +17,9 @@ export type IncentiveCalculatorProductsByBcghgidQueryResponse = {|
     +nodes: $ReadOnlyArray<?{|
       +rowId: ?any,
       +quantity: ?string,
-      +processingUnit: ?string,
-      +applicationId: ?number,
-      +units: ?string,
+      +product: ?string,
+      +applicationId: ?string,
+      +fuelUnits: ?string,
       +associatedEmissions: ?string,
       +attributableFuelPercentage: ?string,
     |}>
@@ -40,9 +40,9 @@ query IncentiveCalculatorProductsByBcghgidQuery(
     nodes {
       rowId
       quantity
-      processingUnit
+      product
       applicationId
-      units
+      fuelUnits
       associatedEmissions
       attributableFuelPercentage
     }
@@ -101,7 +101,7 @@ v1 = [
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "processingUnit",
+            "name": "product",
             "args": null,
             "storageKey": null
           },
@@ -115,7 +115,7 @@ v1 = [
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "units",
+            "name": "fuelUnits",
             "args": null,
             "storageKey": null
           },
@@ -158,11 +158,11 @@ return {
     "operationKind": "query",
     "name": "IncentiveCalculatorProductsByBcghgidQuery",
     "id": null,
-    "text": "query IncentiveCalculatorProductsByBcghgidQuery(\n  $bcghgidInput: String\n) {\n  getProductsByBcghgid(bcghgidInput: $bcghgidInput) {\n    nodes {\n      rowId\n      quantity\n      processingUnit\n      applicationId\n      units\n      associatedEmissions\n      attributableFuelPercentage\n    }\n  }\n}\n",
+    "text": "query IncentiveCalculatorProductsByBcghgidQuery(\n  $bcghgidInput: String\n) {\n  getProductsByBcghgid(bcghgidInput: $bcghgidInput) {\n    nodes {\n      rowId\n      quantity\n      product\n      applicationId\n      fuelUnits\n      associatedEmissions\n      attributableFuelPercentage\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '72015716b77e5bb4555e596cfe6b836c';
+(node/*: any*/).hash = '5196ee12f468afabbb5a169aec645df9';
 module.exports = node;

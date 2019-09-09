@@ -7,7 +7,7 @@ BEGIN;
     (
     with x as (
       select
-        id,
+        cast(id as text) as id,
         json_array_elements(
           (json_array_elements(
             ((form_result -> 'electricity_and_heat'))::json
@@ -30,7 +30,7 @@ BEGIN;
     (
     with x as (
       select
-        id,
+        cast(id as text) as id,
         json_array_elements(
           (json_array_elements(
             ((form_result -> 'electricity_and_heat'))::json
