@@ -5,12 +5,11 @@ import { withRouter } from 'next/router';
 import IncentiveCalculatorContainer from "../containers/Incentives/IncentiveCalculator";
 import Header from "../components/Header";
 
-class ApplicationRowItem extends Component {
+class ApplicationDetails extends Component {
 
     constructor(props) {
         super(props);
     }
-
 
     render(){
         const applicationId = this.props.router.query.application_id;
@@ -47,4 +46,4 @@ class ApplicationRowItem extends Component {
 
 
 
-export default withRouter(ApplicationRowItem);
+export default withRouter(ApplicationDetails);

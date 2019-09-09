@@ -63,6 +63,7 @@
     "graphql-query-test-mock": "^0.12.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
+    "jest-canvas-mock": "^2.1.1",
     "nock": "^10.0.6",
     "node-fetch": "^2.6.0",
     "relay-compiler": "^5.0.0",
@@ -74,7 +75,7 @@
       "\\.(css|less)$": "identity-obj-proxy"
     },
     "setupFilesAfterEnv": [
-      "<rootDir>lib/setupTests.js"
+      "<rootDir>lib/setupTests.js", "jest-canvas-mock"
     ]
   }
 }

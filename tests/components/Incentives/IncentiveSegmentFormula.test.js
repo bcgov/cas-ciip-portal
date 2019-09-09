@@ -1,38 +1,16 @@
-import React ,{ Component } from 'react'
-import MathJax from 'react-mathjax2';
-import {Row, Col} from "react-bootstrap";
+import React from 'react';
+import IncentiveSegmentFormula from '../../../components/Incentives/IncentiveSegmentFormula'
+import { shallow, mount, render } from 'enzyme';
 
-class IncentiveSegmentFormula extends Component {
 
-    constructor(props) {
-        super(props);
-    }
 
-    render(){
-        const formula = `
-            \\left(Quantity - Benchmark
-            \\over
-            Eligibility Threshold - Benchmark \\right)
-            \\times 
-           Attributable Fuel Percentage
-            \\times 
-           Estimated Carbon Tax Paid
-           
-        `;
-        return (
-            <Row>
-                <Col md={12}>
-                    <MathJax.Context input='tex'>
-                        <div>
-                            <MathJax.Node >{formula}</MathJax.Node>
-                        </div>
-                    </MathJax.Context>
-                </Col>
-            </Row>
-       )
-    }
+// It renders the formula
 
-}
+it('It matches the last accepted Snapshot', () => {
+    const wrapper = render(<IncentiveSegmentFormula />);
+    expect(wrapper).toMatchSnapshot();
+});
 
-export default IncentiveSegmentFormula;
 
+
+// Todo: Explore why MathJax is not being loaded by mount?

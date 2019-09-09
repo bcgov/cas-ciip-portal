@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash be34fd924527d95ad1d7cf4b0be3271f
+ * @relayHash a9863a0d1a359a795d41b95644df8e90
  */
 
 /* eslint-disable */
@@ -18,11 +18,13 @@ export type ApplicationListSearchQueryVariables = {|
 export type ApplicationListSearchQueryResponse = {|
   +searchApplicationList: {|
     +nodes: $ReadOnlyArray<?{|
-      +applicationId: ?number,
+      +applicationId: ?string,
       +facilityName: ?string,
       +operatorName: ?string,
       +applicationStatus: ?string,
       +certificationDate: ?string,
+      +bcghgid: ?string,
+      +reportingYear: ?string,
     |}>
   |}
 |};
@@ -47,6 +49,8 @@ query ApplicationListSearchQuery(
       operatorName
       applicationStatus
       certificationDate
+      bcghgid
+      reportingYear
     }
   }
 }
@@ -153,6 +157,20 @@ v1 = [
             "name": "certificationDate",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "bcghgid",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "reportingYear",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -179,11 +197,11 @@ return {
     "operationKind": "query",
     "name": "ApplicationListSearchQuery",
     "id": null,
-    "text": "query ApplicationListSearchQuery(\n  $searchField: String\n  $searchValue: String\n  $orderByField: String\n  $direction: String\n) {\n  searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction) {\n    nodes {\n      applicationId\n      facilityName\n      operatorName\n      applicationStatus\n      certificationDate\n    }\n  }\n}\n",
+    "text": "query ApplicationListSearchQuery(\n  $searchField: String\n  $searchValue: String\n  $orderByField: String\n  $direction: String\n) {\n  searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction) {\n    nodes {\n      applicationId\n      facilityName\n      operatorName\n      applicationStatus\n      certificationDate\n      bcghgid\n      reportingYear\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a213eca6815829b7c78eea7a37fc664a';
+(node/*: any*/).hash = '3bb8e524785fa9e3de7c8e5608175957';
 module.exports = node;

@@ -20,6 +20,7 @@ class IncentiveSegment extends Component {
             \\times 
             ${this.props.carbonTaxPaid.toFixed(2)}
         `;
+        console.log('Incentive Segment details',this.props. name, formula, this.props.incentiveSegment.toFixed(2));
         return (
             <tr>
                 <td>{this.props.name}</td>

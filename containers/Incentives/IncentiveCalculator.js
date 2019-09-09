@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react'
-import {graphql, QueryRenderer, fetchQuery} from "react-relay";
+import {graphql, fetchQuery} from "react-relay";
 import initEnvironment from '../../lib/createRelayEnvironment';
 import IncentiveSegment from "../../components/Incentives/IncentiveSegment";
 import IncentiveSegmentFormula from "../../components/Incentives/IncentiveSegmentFormula";
@@ -65,7 +65,7 @@ class IncentiveCalculatorContainer extends Component {
 
     getData = async () => {
       const allProducts = await fetchQuery(environment, allProductsQuery);
-      console.log('bcccc',this.props);
+
       const reportedProducts = await fetchQuery(environment, productsByBcghgidQuery, {bcghgidInput: this.props.bcghgid});
       const carbonTaxByBcghgid = await fetchQuery(environment, carbonTaxByBcghgidQuery ,
                                             {bcghgidInput: this.props.bcghgid, reportingYear: this.props.reportingYear});
@@ -83,7 +83,7 @@ class IncentiveCalculatorContainer extends Component {
 
     generateIncentiveCalculationData = async () => {
         const data = await this.getData();
-        console.log('data', data)
+        console.log('IncentiveCalculatorContainer, getdata(): ', data)
         const productsReported = data.reportedProducts.getProductsByBcghgid.nodes;
         const allProducts = data.allProducts.allProducts.nodes;
         let totalCarbonIncentive = 0;
@@ -92,10 +92,13 @@ class IncentiveCalculatorContainer extends Component {
         productsReported.forEach((product) => {
            // Get bm/et details for the product from the Products table
            const productDetails = allProducts.filter((p) => p.name === product.product);
-           const productQuantity = parseFloat(product.quantity)
-           const attributableFuelPercentage = parseFloat(product.attributableFuelPercentage)
-           const benchmark = productDetails[0] ? productDetails[0].benchmarksByProductId.nodes[0].benchmark : 0;
-           const eligibilityThreshold = productDetails[0] ? productDetails[0].benchmarksByProductId.nodes[0].eligibilityThreshold : 0;
+           const productQuantity = parseFloat(product.quantity);
+           const attributableFuelPercentage = parseFloat(product.attributableFuelPercentage);
+           // const eligibilityThreshold = productDetails[0] ? productDetails[0].benchmarksByProductId.nodes[0].eligibilityThreshold : 0;
+           const bm_et = productDetails[0].benchmarksByProductId.nodes[productDetails[0].benchmarksByProductId.nodes.length - 1]
+           const benchmark = bm_et ? bm_et.benchmark : 0;
+           const eligibilityThreshold = bm_et ? bm_et.eligibilityThreshold : 0;
+
            //todo: How do we deal with benchmarks and products not set in db.
            let eligibilityValue = 0;
 
