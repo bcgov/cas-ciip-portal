@@ -84,7 +84,7 @@ jobs:
           server-address: $OC_SERVER_ADDRESS
           token: $OC_TOKEN
       - run:
-          command: make lint CI_NO_POSTGRES=true
+          command: make lint
           name: Lint the openshift yaml
 
   configure:
@@ -102,7 +102,7 @@ jobs:
           server-address: $OC_SERVER_ADDRESS
           token: $OC_TOKEN
       - run:
-          command: make configure CI_NO_POSTGRES=true
+          command: make configure
           name: Configure imagestream to point at the current SHA1
 
   build_schema:
@@ -120,7 +120,7 @@ jobs:
           server-address: $OC_SERVER_ADDRESS
           token: $OC_TOKEN
       - run:
-          command: make build_schema CI_NO_POSTGRES=true
+          command: make build_schema
           name: Build image on the remote cluster
 
   build_app:
@@ -138,7 +138,7 @@ jobs:
           server-address: $OC_SERVER_ADDRESS
           token: $OC_TOKEN
       - run:
-          command: make build_app CI_NO_POSTGRES=true
+          command: make build_app
           name: Build image on the remote cluster
 
 workflows:

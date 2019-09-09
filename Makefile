@@ -1,4 +1,3 @@
-ifndef CI_NO_PIPELINE
 SHELL := /usr/bin/env bash
 include .pipeline/oc.mk
 
@@ -70,4 +69,3 @@ install:
 .PHONY: install_test
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)
 install_test: install
-endif

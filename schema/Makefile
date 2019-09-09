@@ -1,4 +1,3 @@
-ifndef CI_NO_POSTGRES
 PERL=perl
 RSYNC=rsync
 PERL_VERSION=${shell ${PERL} -e 'print substr($$^V, 1)'}
@@ -98,5 +97,3 @@ postinstall_check:
 
 .PHONY: dev_install
 dev_install: install_cpanm install_cpandeps postinstall_check
-
-endif
