@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Product List should render all the applications 1`] = `
+exports[`Application List should render all the applications 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
