@@ -1,6 +1,10 @@
 /**
  * @flow
+<<<<<<< 1788c68cba680e00be67f50e10a4947e7d9dcf60
  * @relayHash a9863a0d1a359a795d41b95644df8e90
+=======
+ * @relayHash b09a506a3ee68a21e2069a11ce116211
+>>>>>>> updated application list after change from certificationDate to submissionDate
  */
 
 /* eslint-disable */
@@ -22,9 +26,13 @@ export type ApplicationListSearchQueryResponse = {|
       +facilityName: ?string,
       +operatorName: ?string,
       +applicationStatus: ?string,
+<<<<<<< 1788c68cba680e00be67f50e10a4947e7d9dcf60
       +certificationDate: ?string,
       +bcghgid: ?string,
       +reportingYear: ?string,
+=======
+      +submissionDate: ?any,
+>>>>>>> updated application list after change from certificationDate to submissionDate
     |}>
   |}
 |};
@@ -48,9 +56,13 @@ query ApplicationListSearchQuery(
       facilityName
       operatorName
       applicationStatus
+<<<<<<< 1788c68cba680e00be67f50e10a4947e7d9dcf60
       certificationDate
       bcghgid
       reportingYear
+=======
+      submissionDate
+>>>>>>> updated application list after change from certificationDate to submissionDate
     }
   }
 }
@@ -154,7 +166,7 @@ v1 = [
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "certificationDate",
+            "name": "submissionDate",
             "args": null,
             "storageKey": null
           },
@@ -197,11 +209,19 @@ return {
     "operationKind": "query",
     "name": "ApplicationListSearchQuery",
     "id": null,
+<<<<<<< 1788c68cba680e00be67f50e10a4947e7d9dcf60
     "text": "query ApplicationListSearchQuery(\n  $searchField: String\n  $searchValue: String\n  $orderByField: String\n  $direction: String\n) {\n  searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction) {\n    nodes {\n      applicationId\n      facilityName\n      operatorName\n      applicationStatus\n      certificationDate\n      bcghgid\n      reportingYear\n    }\n  }\n}\n",
+=======
+    "text": "query ApplicationListSearchQuery(\n  $searchField: String\n  $searchValue: String\n  $orderByField: String\n  $direction: String\n) {\n  searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction) {\n    nodes {\n      applicationId\n      facilityName\n      operatorName\n      applicationStatus\n      submissionDate\n    }\n  }\n}\n",
+>>>>>>> updated application list after change from certificationDate to submissionDate
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
+<<<<<<< 1788c68cba680e00be67f50e10a4947e7d9dcf60
 (node/*: any*/).hash = '3bb8e524785fa9e3de7c8e5608175957';
+=======
+(node/*: any*/).hash = 'c065fdd2db599ce64d6b26f94e08ea36';
+>>>>>>> updated application list after change from certificationDate to submissionDate
 module.exports = node;

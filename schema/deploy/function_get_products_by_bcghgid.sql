@@ -8,7 +8,7 @@ create or replace function ggircs_portal.get_products_by_bcghgid(bcghgid_input t
 
     select *
     from ggircs_portal.ciip_production
-    where bcghgid = bcghgid_input
+    where bcghgid = bcghgid_input::numeric
 
   $function$ language sql stable;
 

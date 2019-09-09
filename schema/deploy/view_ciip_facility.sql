@@ -12,10 +12,10 @@ BEGIN;
     )
     select
        x.id as application_id,
-       x.facility_data ->> 'bcghgid' as bcghgid,
-       x.facility_data ->> 'latitude' as latitude,
-       x.facility_data ->> 'longitude' as longitude,
-       x.facility_data ->> 'naics_code' as naics_code,
+       (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
+       (x.facility_data ->> 'latitude')::numeric as latitude,
+       (x.facility_data ->> 'longitude')::numeric as longitude,
+       (x.facility_data ->> 'naics_code')::numeric as naics_code,
        x.facility_data ->> 'facility_name' as facility_name,
        x.facility_data ->> 'facility_type' as facility_type,
        x.facility_data ->> 'facility_description' as facility_description

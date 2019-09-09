@@ -12,11 +12,11 @@ create view ggircs_portal.ciip_operator as (
     )
     select
        x.id as application_id,
-       x.operator_data ->> 'bc_corporate_registry_number' as bc_corporate_registry_number,
-       x.operator_data ->> 'naics_code' as naics_code,
+       (x.operator_data ->> 'bc_corporate_registry_number')::numeric as bc_corporate_registry_number,
+       (x.operator_data ->> 'naics_code')::numeric as naics_code,
        x.operator_data ->> 'operator_name' as operator_name,
        x.operator_data ->> 'operator_trade_name' as operator_trade_name,
-       x.operator_data ->> 'duns_number' as duns_number
+       (x.operator_data ->> 'duns_number')::numeric as duns_number
        -- add operator address to address view
     from x
  );

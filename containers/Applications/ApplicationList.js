@@ -1,11 +1,23 @@
 import React ,{ Component } from 'react'
-import {graphql, QueryRenderer} from "react-relay";
+import {graphql, fetchQuery} from "react-relay";
 import initEnvironment from '../../lib/createRelayEnvironment';
-import ApplicationRowItem from "./ApplicationRowItem";
-import {Container, Dropdown, Button, Row, Col, Form} from 'react-bootstrap';
+import ApplicationRowItem from "../../components/Applications/ApplicationRowItem";
+import {Container, Dropdown, Button, Row, Col, Form, Table} from 'react-bootstrap';
 const environment = initEnvironment();
 
-// TODO: Dynamic options for filtering (ie: dropdown for status?), filtering with contains etc instead of just equals
+const getApplications = graphql`
+    query ApplicationListSearchQuery($searchField: String, $searchValue: String, $orderByField: String, $direction: String) {
+        searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction){
+            nodes{
+                applicationId
+                facilityName
+                operatorName
+                applicationStatus
+                submissionDate
+            }
+        }
+    }
+`
 
 class ApplicationList extends Component {
 
@@ -17,33 +29,9 @@ class ApplicationList extends Component {
             orderByDisplay: "Operator Name",
             filterField: null,
             filterValue: null,
-            filterDisplay: "No Filter"
+            filterDisplay: "No Filter",
+            applicationList: []
         }
-    }
-
-    listApplications = ({error, props}) => {
-        console.log('ApplicationList.js > listApplications()', props, error);
-        const applicationList = [];
-        if(props){
-            const allApplications = props.allApplications.nodes;
-            allApplications.forEach((application) => {
-                applicationList.push(<ApplicationRowItem application={application} />);
-            })
-        }
-        return applicationList;
-    }
-
-    listSearchedApplications = ({error, props}) => {
-        console.log('ApplicationList.js > listSearchedApplications()', props, error);
-        console.log(this.state);
-        const applicationList = [];
-        if(props){
-            const filteredApplications = props.searchApplicationList.nodes;
-            filteredApplications.forEach((application) => {
-                applicationList.push(<ApplicationRowItem application={application} />);
-            })
-        }
-        return applicationList;
     }
 
     sortApplications = (eventKey, event) => {
@@ -75,10 +63,34 @@ class ApplicationList extends Component {
         }
     }
 
+    getApplicationData = async () => {
+        const applications = await fetchQuery( environment, getApplications, {searchField: this.state.filterField, searchValue: this.state.filterValue, orderByField: this.state.orderByField, direction: this.state.direction} );
+        const applicationList = [];
+
+        const filteredApplications = applications.searchApplicationList.nodes;
+        filteredApplications.forEach((application) => {
+            applicationList.push(<ApplicationRowItem application={application} />);
+        })
+
+        this.setState({ applicationList })
+    }
+
+    componentDidMount() {
+        this.getApplicationData();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.orderByField !== prevState.orderByField
+            || this.state.direction !== prevState.direction
+            || this.state.filterField !== prevState.filterField
+            || this.state.filterValue !== prevState.filterValue) {
+
+                this.getApplicationData();
+            }
+    }
+
     render(){
-        console.log(this.state);
-        let vars;
-        const searchVars = {searchField: this.state.filterField, searchValue: this.state.filterValue, orderByField: this.state.orderByField, direction: this.state.direction};
+        const applications = this.state.applicationList;
         return(
             <React.Fragment>
                 <Container style={{padding: 10, background: '#dee2e6'}}>
@@ -101,7 +113,7 @@ class ApplicationList extends Component {
                                         <Dropdown.Item eventKey='application_id' onSelect={this.sortApplications}>Application ID</Dropdown.Item>
                                         <Dropdown.Item eventKey='operator_name' onSelect={this.sortApplications}>Operator Name</Dropdown.Item>
                                         <Dropdown.Item eventKey='facility_name' onSelect={this.sortApplications}>Facility Name</Dropdown.Item>
-                                        <Dropdown.Item eventKey='certification_date' onSelect={this.sortApplications}>Submission Date</Dropdown.Item>
+                                        <Dropdown.Item eventKey='submission_date' onSelect={this.sortApplications}>Submission Date</Dropdown.Item>
                                         <Dropdown.Item eventKey='application_status' onSelect={this.sortApplications}>Status</Dropdown.Item>
                                     </Dropdown.Menu>
                             </Dropdown>
@@ -120,7 +132,7 @@ class ApplicationList extends Component {
                                         <Dropdown.Item eventKey='application_id' onSelect={this.applyFilterField}>Application ID</Dropdown.Item>
                                         <Dropdown.Item eventKey='operator_name' onSelect={this.applyFilterField}>Operator Name</Dropdown.Item>
                                         <Dropdown.Item eventKey='facility_name' onSelect={this.applyFilterField}>Facility Name</Dropdown.Item>
-                                        <Dropdown.Item eventKey='certification_date' onSelect={this.applyFilterField}>Submission Date</Dropdown.Item>
+                                        <Dropdown.Item eventKey='submission_date' onSelect={this.applyFilterField}>Submission Date</Dropdown.Item>
                                         <Dropdown.Item eventKey='application_status' onSelect={this.applyFilterField}>Status</Dropdown.Item>
                                     </Dropdown.Menu>
                             </Dropdown>
@@ -142,46 +154,25 @@ class ApplicationList extends Component {
                 </Container>
                 <br/>
                 <br/>
-                {/* <QueryRenderer
-                    environment={environment}
-                    variables={vars}
-                    query={graphql`
-                        query ApplicationListQuery($condition: ApplicationCondition, $orderBy: [ApplicationsOrderBy!]) {
-                            allApplications(condition: $condition, orderBy: $orderBy){
-                                nodes{
-                                  applicationId
-                                  facilityName
-                                  operatorName
-                                  applicationStatus
-                                  certificationDate
-                                }
-                            }
-                        }
-                    `}
-
-                    render={this.listApplications}
-                /> */}
-                <QueryRenderer
-                    environment={environment}
-                    variables={searchVars}
-                    query={graphql`
-                        query ApplicationListSearchQuery($searchField: String, $searchValue: String, $orderByField: String, $direction: String) {
-                            searchApplicationList(searchField: $searchField, searchValue: $searchValue, orderByField: $orderByField, direction: $direction){
-                                nodes{
-                                  applicationId
-                                  facilityName
-                                  operatorName
-                                  applicationStatus
-                                  certificationDate
-                                  bcghgid
-                                  reportingYear
-                                }
-                            }
-                        }
-                    `}
-
-                    render={this.listSearchedApplications}
-                />
+                <Table striped bordered hover style={{textAlign:"center"}}>
+                    <thead>
+                        <tr>
+                            <th>Application ID</th>
+                            <th>Operator Name</th>
+                            <th>Facility Name</th>
+                            <th>Submitted</th>
+                            <th>Status</th>
+                            <th/>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {applications.map(( application, index ) => (
+                        <React.Fragment key={index}>
+                            { application }
+                        </React.Fragment>
+                    ))}
+                    </tbody>
+                </Table>
           </React.Fragment>
         )
     }

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6c0257184c769fbc5571c8ed1f2e0a66
+ * @relayHash ae67108ae4e00dd2b6d239282116e7fd
  */
 
 /* eslint-disable */
@@ -16,12 +16,12 @@ export type IncentiveCalculatorProductsByBcghgidQueryResponse = {|
   +getProductsByBcghgid: {|
     +nodes: $ReadOnlyArray<?{|
       +rowId: ?any,
-      +quantity: ?string,
+      +quantity: ?any,
       +product: ?string,
       +applicationId: ?string,
       +fuelUnits: ?string,
       +associatedEmissions: ?string,
-      +attributableFuelPercentage: ?string,
+      +attributableFuelPercentage: ?any,
     |}>
   |}
 |};

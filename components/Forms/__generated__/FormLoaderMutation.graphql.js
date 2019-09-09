@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 35cb6e718eb8ab7036d038cd2ec9d2a2
+ * @relayHash f7d420f7b1799aae7568add74e8843d7
  */
 
 /* eslint-disable */
@@ -17,6 +17,7 @@ export type FormResultInput = {|
   rowId?: ?number,
   formId: number,
   userId: number,
+  submissionDate?: ?any,
   formResult: any,
 |};
 export type FormLoaderMutationVariables = {|
