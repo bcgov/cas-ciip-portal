@@ -2,9 +2,9 @@ apiVersion: template.openshift.io/v1
 kind: Template
 
 parameters:
-- description: Version of Perl image to be used (latest for now).
-  displayName: Version of Perl Image
-  name: PERL_VERSION
+- description: Version of Node image to be used (latest for now).
+  displayName: Version of Node Image
+  name: NODE_VERSION
   required: true
   value: latest
 - description: Prefix to prepend to object name.
@@ -45,7 +45,7 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: ${PREFIX}node:${PERL_VERSION}
+          name: ${PREFIX}node:${NODE_VERSION}
       type: Source
     triggers: []
   status:
