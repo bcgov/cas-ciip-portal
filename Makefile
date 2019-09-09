@@ -58,12 +58,11 @@ PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)cii
 
 .PHONY: install
 install: whoami
+install:
 	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-schema)
 	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-app)
 	$(call oc_wait_for_deploy,$(PROJECT_PREFIX)postgres)
-ifneq (,$(PREVIOUS_DEPLOY_SHA1))
-	$(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1))
-endif
+	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
 	$(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema)
 	$(call oc_deploy)
 	$(call oc_wait_for_deploy,$(PROJECT_PREFIX)ciip-portal-app)
