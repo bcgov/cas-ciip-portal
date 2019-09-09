@@ -1,7 +1,7 @@
 import React ,{ Component } from 'react'
 import {graphql, fetchQuery} from "react-relay";
 import initEnvironment from '../../lib/createRelayEnvironment';
-import ApplicationRowItem from "./ApplicationRowItem";
+import ApplicationRowItem from "../../components/Applications/ApplicationRowItem";
 import {Container, Dropdown, Button, Row, Col, Form, Table} from 'react-bootstrap';
 const environment = initEnvironment();
 
