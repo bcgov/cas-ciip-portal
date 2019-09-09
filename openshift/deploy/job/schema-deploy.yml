@@ -26,14 +26,14 @@ objects:
 - apiVersion: batch/v1
   kind: Job
   metadata:
-    name: ${PREFIX}ciip-portal-schema
+    name: ${PREFIX}ciip-portal-schema-deploy
   spec:
     backoffLimit: 0
     activeDeadlineSeconds: 120
     template:
       metadata:
         labels:
-          name: ${PREFIX}ciip-portal-schema
+          name: ${PREFIX}ciip-portal-schema-deploy
       spec:
         restartPolicy: Never
         containers:
@@ -70,7 +70,7 @@ objects:
           - name: SQITCH_EMAIL
             value: deployer@pathfinder.gov.bc.ca
           image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}ciip-portal-schema:${GIT_SHA1}
-          name: ${PREFIX}ciip-portal-schema
+          name: ${PREFIX}ciip-portal-schema-deploy
           resources:
             limits:
               cpu: 100m

@@ -53,7 +53,7 @@ build: $(call make_help,build,Builds the source into an image in the tools proje
 build: build_schema
 build: build_app
 
-PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)ciip-portal-schema --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
+PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)ciip-portal-schema-deploy --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
 
 .PHONY: install
 install: whoami
@@ -62,7 +62,7 @@ install:
 	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-app)
 	$(call oc_wait_for_deploy,$(PROJECT_PREFIX)postgres)
 	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
-	$(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema)
+	$(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-deploy)
 	$(call oc_deploy)
 	$(call oc_wait_for_deploy,$(PROJECT_PREFIX)ciip-portal-app)
 
