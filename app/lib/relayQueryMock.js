@@ -1,3 +1,3 @@
-import { QueryMock } from 'graphql-query-test-mock';
+import {QueryMock} from 'graphql-query-test-mock';
 
 export const queryMock = new QueryMock();

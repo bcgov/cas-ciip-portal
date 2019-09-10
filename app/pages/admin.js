@@ -1,53 +1,46 @@
-import React , { Component } from 'react'
-import Header from '../components/Header'
-import {Container, Row, Col, DropdownButton, Dropdown, Jumbotron} from "react-bootstrap";
-import ProductCreator from "../components/Products/ProductCreator";
-import ProductList from "../components/Products/ProductList";
+import React, {Component} from 'react';
+import {Container, Row, Col, Jumbotron} from 'react-bootstrap';
+import Header from '../components/Header';
+import ProductCreator from '../components/Products/ProductCreator';
+import ProductList from '../components/Products/ProductList';
 
 class Admin extends Component {
+  state = {
+    formData: {formId: '', formJson: ''}
+  };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            formData: {formId: '', formJson: ''}
-        };
+  formIdHandler = (formId, formJson) => {
+    this.setState({formData: {formId, formJson}});
+    console.log('form-builder.js > formIdHandler state', this.state);
+  };
 
-    }
-
-    formIdHandler = (formId, formJson) => {
-        this.setState({formData: { formId, formJson }});
-        console.log('form-builder.js > formIdHandler state', this.state)
-    };
-
-    render(){
-       return(
-           <React.Fragment>
-                <Header/>
-                <Container>
-                    <Row>
-                        <Col>
-                            <h3>Products and Benchmarks</h3>
-                            <br/>
-                            <Jumbotron>
-                                <h4>Create a Product</h4>
-                                <br/>
-                               <ProductCreator/>
-                            </Jumbotron>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <ProductList/>
-                        </Col>
-                    </Row>
-                </Container>
-
-           </React.Fragment>
-       )
-    }
+  render() {
+    return (
+      <>
+        <Header />
+        <Container>
+          <Row>
+            <Col>
+              <h3>Products and Benchmarks</h3>
+              <br />
+              <Jumbotron>
+                <h4>Create a Product</h4>
+                <br />
+                <ProductCreator />
+              </Jumbotron>
+              <br />
+              <br />
+              <br />
+              <ProductList />
+            </Col>
+          </Row>
+        </Container>
+      </>
+    );
+  }
 }
 
 export default Admin;
-
 
 /*
 

@@ -1,8 +1,7 @@
 import React from 'react';
-import ApplicationDetails from '../../pages/application-details';
 import Router from 'next/router';
-import { shallow, mount, render } from 'enzyme';
-
+import {shallow, mount, render} from 'enzyme';
+import ApplicationDetails from '../../pages/application-details';
 
 // It matches the last accepted Snapshot
 
@@ -19,4 +18,3 @@ it('It matches the last accepted Snapshot', () => {
 // It receives the props for app_id, bcghgid and reporting year
 
 // It renders the metabase widgets
-

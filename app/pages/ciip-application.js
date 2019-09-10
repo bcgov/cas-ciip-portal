@@ -1,54 +1,48 @@
-import React , { Component } from 'react'
+import React, {Component} from 'react';
+import {Container, Jumbotron, ButtonToolbar} from 'react-bootstrap';
 import Header from '../components/Header';
 import FormLoader from '../components/Forms/FormLoader';
 import FormPicker from '../components/Forms/FormPicker';
-import {Container, Jumbotron, Button, Col, Row, ButtonToolbar} from "react-bootstrap";
-
 
 class BaseForm extends Component {
+  state = {
+    formId: 1
+  };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            formId:1
-        }
-    }
+  formIdHandler = formId => {
+    this.setState({formId});
+  };
 
-    formIdHandler = (formId, formJson) => {
-        this.setState({formId: formId})
-    };
-
-    render() {
-
-        return (
-            <React.Fragment>
-                <Header/>
-                <Container>
-                    <Jumbotron>
-                        <h3>Hello, Hamza!</h3><br/>
-                        <p id="welcome-message">
-                            Welcome to your CleanBC Industrial Incentives Program (CIIP) Portal.
-                            This is where all your dreams come true. Not only do you get loads of money, you basically
-                            get it for being an amazing person! You may now take a moment to let that CIIP in. {'\u2728'}
-                        </p>
-                        <br/>
-                        <ButtonToolbar>
-                            <FormPicker handleFormId={this.formIdHandler}/>
-                        </ButtonToolbar>
-                    </Jumbotron>
-                    <FormLoader formId={this.state.formId}/>
-                </Container>
-                <br/>
-                <br/>
-                <br/>
-            </React.Fragment>
-        );
-    }
+  render() {
+    return (
+      <>
+        <Header />
+        <Container>
+          <Jumbotron>
+            <h3>Hello, Hamza!</h3>
+            <br />
+            <p id="welcome-message">
+              Welcome to your CleanBC Industrial Incentives Program (CIIP)
+              Portal. This is where all your dreams come true. Not only do you
+              get loads of money, you basically get it for being an amazing
+              person! You may now take a moment to let that CIIP in. {'\u2728'}
+            </p>
+            <br />
+            <ButtonToolbar>
+              <FormPicker handleFormId={this.formIdHandler} />
+            </ButtonToolbar>
+          </Jumbotron>
+          <FormLoader formId={this.state.formId} />
+        </Container>
+        <br />
+        <br />
+        <br />
+      </>
+    );
+  }
 }
 
 export default BaseForm;
-
-
 
 /*
 1: create a table called forms - done
