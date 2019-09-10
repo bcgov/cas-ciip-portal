@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 const Keycloak = require('keycloak-connect');
 const cors = require('cors');
 
-  let databaseURL = 'postgres://';
+let databaseURL = 'postgres://';
 if (process.env.PGUSER) {
   databaseURL += process.env.PGUSER;
   if (process.env.PGPASSWORD) {
