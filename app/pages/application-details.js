@@ -21,7 +21,7 @@ class ApplicationDetails extends Component {
       application_id: applicationId,
       reportingyear: reportingYear,
       bcghgid
-    } = this.propTypes.router.query;
+    } = this.props.router.query;
 
     const url =
       'http://localhost:3000/public/dashboard/985719f1-7eae-4c49-88a9-7d6c8edc1ad4?' +
