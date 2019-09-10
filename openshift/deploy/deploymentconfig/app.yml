@@ -1,0 +1,92 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  template: deploy-template
+
+parameters:
+- description: Prefix to prepend to object name.
+  displayName: Prefix
+  name: PREFIX
+  required: true
+- description: SHA1 of git revision to be deployed.
+  displayName: Git SHA1
+  name: GIT_SHA1
+  required: true
+- description: Openshift project name
+  displayName: Project
+  name: OC_PROJECT
+  required: true
+- description: Openshift registry URL
+  displayName: Registry
+  name: OC_REGISTRY
+  required: true
+
+objects:
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      template.alpha.openshift.io/wait-for-ready: "true"
+    name: ${PREFIX}ciip-portal-app
+  spec:
+    replicas: 2
+    selector:
+      name: ${PREFIX}ciip-portal-app
+    strategy:
+      type: Rolling
+    template:
+      metadata:
+        labels:
+          name: ${PREFIX}ciip-portal-app
+      spec:
+        containers:
+        - env:
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                key: database-user
+                name: ${PREFIX}ggircs-postgres
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: ${PREFIX}ggircs-postgres
+          - name: PGDATABASE
+            valueFrom:
+              secretKeyRef:
+                key: database-name
+                name: ${PREFIX}ggircs-postgres
+          - name: PGPORT
+            value: "5432"
+          - name: PGHOST
+            value: ${PREFIX}ggircs-postgres
+          - name: PORT
+            value: "3000"
+          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}ciip-portal-app:${GIT_SHA1}
+          imagePullPolicy: IfNotPresent
+          name: ${PREFIX}ciip-portal-app
+          ports:
+          - containerPort: 3000
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 4Gi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          securityContext:
+            capabilities: {}
+            privileged: false
+          terminationMessagePath: /dev/termination-log
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
