@@ -8,8 +8,10 @@ jobs:
     docker:
       - image: circleci/node:10.14.1
       - image: circleci/postgres:11.4
+    working_directory: ~/cas-ciip-portal/app
     steps:
-      - checkout
+      - checkout:
+          path: ~/cas-ciip-portal
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
