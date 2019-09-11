@@ -1,6 +1,3 @@
 .DS_Store
-node_modules
-.next
 .idea
-yarn-error.log
-__generated__/
+.vscode

@@ -32,6 +32,32 @@ jobs:
           # https://yarnpkg.com/lang/en/docs/cli/audit/
           command: yarn audit --level info
 
+  check-code-style:
+    docker:
+      - image: circleci/node:10.14.1
+    working_directory: ~/cas-ciip-portal/app
+    steps:
+      - checkout:
+          path: ~/cas-ciip-portal
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Run XO via Yarn
+          command: yarn format || exit 0;
+      - run:
+          name: Check if there is some unformatted code
+          command: git diff --exit-code || (echo 'These files are not formatted correctly. Did you forget to \"yarn format\"?' && false)
+
   test-local-cluster:
     executor: redhat-openshift/machine-for-local-cluster
     steps:
@@ -47,7 +73,7 @@ jobs:
           insecure-skip-tls-verify: true
           openshift-platform-version: 3.x
           password: password
-          server-address: 'https://127.0.0.1:8443'
+          server-address: "https://127.0.0.1:8443"
           username: dev1
       - run:
           command: docker login -u "$RED_HAT_DOCKER_USERNAME" -p "$RED_HAT_DOCKER_PASSWORD" "$RED_HAT_DOCKER_SERVER"
@@ -71,7 +97,7 @@ jobs:
           command: make install-prod
           name: Deploy to prod
 
-  lint:
+  openshift-lint:
     executor: redhat-openshift/default
     steps:
       - checkout
@@ -148,7 +174,8 @@ workflows:
   test:
     jobs:
       - test
-      - lint:
+      - check-code-style
+      - openshift-lint:
           context: cas-pipeline
           filters:
             branches:
@@ -156,7 +183,7 @@ workflows:
       - configure:
           context: cas-pipeline
           requires:
-            - lint
+            - openshift-lint
           filters:
             branches:
               ignore: /^shipit-deploy\/.*/

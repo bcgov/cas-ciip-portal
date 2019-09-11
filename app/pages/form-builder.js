@@ -1,43 +1,37 @@
-import React , { Component } from 'react'
-import Header from '../components/Header'
+import React, {Component} from 'react';
+import {Container, Row, Col} from 'react-bootstrap';
+import Header from '../components/Header';
 import FormCreator from '../components/Forms/FormCreator';
-import FormPicker from "../components/Forms/FormPicker";
-import {Container , Row, Col, DropdownButton, Dropdown} from "react-bootstrap";
+import FormPicker from '../components/Forms/FormPicker';
 
 class FormBuilder extends Component {
+  state = {
+    formData: {formId: '', formJson: ''}
+  };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            formData: {formId: '', formJson: ''}
-        };
+  formIdHandler = (formId, formJson) => {
+    this.setState({formData: {formId, formJson}});
+    console.log('form-builder.js > formIdHandler state', this.state);
+  };
 
-    }
-
-    formIdHandler = (formId, formJson) => {
-        this.setState({formData: { formId, formJson }});
-        console.log('form-builder.js > formIdHandler state', this.state)
-    };
-
-    render(){
-       return(
-           <React.Fragment>
-                <Header/>
-                <Container>
-                    <Row>
-                        <Col style={{textAlign:"right"}} >
-                            <FormPicker handleFormId={this.formIdHandler}/>
-                        </Col>
-                    </Row>
-                </Container>
-               <FormCreator formData={this.state.formData}  />
-           </React.Fragment>
-       )
-    }
+  render() {
+    return (
+      <>
+        <Header />
+        <Container>
+          <Row>
+            <Col style={{textAlign: 'right'}}>
+              <FormPicker handleFormId={this.formIdHandler} />
+            </Col>
+          </Row>
+        </Container>
+        <FormCreator formData={this.state.formData} />
+      </>
+    );
+  }
 }
 
 export default FormBuilder;
-
 
 /*
 
