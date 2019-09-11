@@ -30,7 +30,7 @@ insert into ggircs_portal.form_json
   values (
     1,
     'CIIP Application (master)',
-    '
+    concat('
 {
  "title": "CIIP Application (master)",
  "pages": [
@@ -562,13 +562,7 @@ insert into ggircs_portal.form_json
        "type": "dropdown",
        "name": "processing_unit",
        "title": "Processing Unit Module",
-       "choices": [
-        "Inlet Compression",
-        "Dehydration",
-        "Amine Sweetening",
-        "Fractionation",
-        "Stabilization"
-       ]
+       "choices": [', (select string_agg(distinct format('"%s"',name), ',') from ggircs_portal.product), ']
       },
       {
        "type": "text",
@@ -777,7 +771,7 @@ insert into ggircs_portal.form_json
  ],
  "showQuestionNumbers": "off"
 }
-    '::jsonb
+    ')::jsonb
 );
 
 COMMIT;
