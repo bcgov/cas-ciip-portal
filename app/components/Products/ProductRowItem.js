@@ -240,7 +240,7 @@ class ProductRowItem extends Component {
       currentBenchmark &&
       Date.parse(start_date) < Date.parse(currentBenchmark.startDate)
     ) {
-      alert(
+      console.error(
         'Start date of new benchmark is less than the start date of the current benchmark'
       );
       return;
@@ -257,7 +257,7 @@ class ProductRowItem extends Component {
     });
     console.log(validBenchmarks);
     if (validBenchmarks.length > 1) {
-      alert(
+      console.error(
         'Too many benchmarks already created, only one active benchmark and one upcoming benchmark can be defined at one time'
       );
       return;

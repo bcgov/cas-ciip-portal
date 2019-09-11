@@ -90,7 +90,7 @@ class FormCreator extends Component {
             ? `Form Saved at id ${this.props.formData.formId}`
             : 'Form Created'
         );
-        alert('Form Saved');
+        console.log('Form Saved');
       },
       onError: err => console.error(err)
     });
