@@ -578,11 +578,18 @@ insert into ggircs_portal.form_json
        "choices": [
         {
          "value": "m3",
-         "text": "meters cube"
+         "text": "meters cube",
+         "visibleIf":"', (select trim(trailing ' or' from (select string_agg(distinct format('{module_throughput_and_production_data[0].processing_unit} = \"%s\" or',name), ' ') from ggircs_portal.product where product.units='m3' or product.units is null))), '"
         },
         {
          "value": "kl",
-         "text": "kiloliters"
+         "text": "kiloliters",
+         "visibleIf":"', (select trim(trailing ' or' from (select string_agg(distinct format('{module_throughput_and_production_data[0].processing_unit} = \"%s\" or',name), ' ') from ggircs_portal.product where product.units='kl' or product.units is null))), '"
+        },
+        {
+         "value": "t",
+         "text": "tonnes",
+         "visibleIf":"', (select trim(trailing ' or' from (select string_agg(distinct format('{module_throughput_and_production_data[0].processing_unit} = \"%s\" or',name), ' ') from ggircs_portal.product where product.units='t' or product.units is null))), '"
         }
        ]
       },
