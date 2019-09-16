@@ -19,7 +19,41 @@ class FormLoader extends Component {
         }
       }
     `;
+
+    this.createApplicationStatus = graphql`
+      mutation FormLoaderApplicationStatusMutation(
+        $input: CreateApplicationStatusInput!
+      ) {
+        createApplicationStatus(input: $input) {
+          applicationStatus {
+            rowId
+          }
+        }
+      }
+    `;
   }
+
+  storeApplicationStatus = resultId => {
+    const variables = {
+      input: {
+        applicationStatus: {
+          applicationStatus: 'pending',
+          formResultId: resultId
+        }
+      }
+    };
+
+    const mutation = this.createApplicationStatus;
+
+    commitMutation(environment, {
+      mutation,
+      variables,
+      onCompleted: (response, errors) => {
+        console.log('Application Status Created.');
+      },
+      onError: err => console.error(err)
+    });
+  };
 
   storeResult = form_result => {
     const variables = {
@@ -38,7 +72,9 @@ class FormLoader extends Component {
       mutation,
       variables,
       onCompleted: (response, errors) => {
+        console.log(response);
         console.log('Response received from server.');
+        this.storeApplicationStatus(response.createFormResult.formResult.rowId);
       },
       onError: err => console.error(err)
     });

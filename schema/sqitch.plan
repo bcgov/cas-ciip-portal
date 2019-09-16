@@ -8,7 +8,7 @@ table_product [schema_ggircs_portal] 2019-08-06T20:15:37Z Hamza Javed <hamza@but
 table_benchmark [table_product] 2019-08-06T20:25:30Z Hamza Javed <hamza@button.is> # A table for Benchmarks and Eligibility Thresholds for products
 table_form_json [schema_ggircs_portal] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
 table_form_result [schema_ggircs_portal table_form_json table_user] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
-table_application [schema_ggircs_portal table_form_result] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application to schema ggircs_portal
+table_application_status [schema_ggircs_portal] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application_status to schema ggircs_portal
 view_ciip_contact [table_form_result] 2019-08-19T21:59:40Z Hamza Javed <hamza@button.is> # Add view for contact details of applicant
 view_ciip_fuel [table_form_result] 2019-08-19T22:26:15Z Hamza Javed <hamza@button.is> # View for fuels reported in CIIP application
 view_ciip_facility [table_form_result] 2019-08-19T23:34:33Z Hamza Javed <hamza@button.is> # View for facility
@@ -16,10 +16,11 @@ view_ciip_operator [table_form_result] 2019-08-19T23:42:39Z Hamza Javed <hamza@b
 view_ciip_certifier [table_form_result] 2019-08-20T22:33:11Z Hamza Javed <hamza@button.is> # Certifier Details
 view_ciip_electricity_and_heat [table_form_result] 2019-08-20T22:40:48Z Hamza Javed <hamza@button.is> # Electricity and Heat consumption reported for the ciip application
 view_ciip_production [table_form_result] 2019-08-20T23:22:31Z Hamza Javed <hamza@button.is> # Module throughput and production data reported in the ciip application
+view_ciip_application [table_form_result table_application_status] 2019-09-16T17:34:49Z Dylan Leard <dylan@button.is> # add view ciip_application to schema ggircs_portal
 function_get_products_by_application_id [schema_ggircs_portal view_ciip_production] 2019-08-27T19:13:39Z Hamza Javed <hamza@button.is> # Create postgraphile query for getting production data from application id
 materialized_view_estimated_carbon_tax_paid 2019-08-29T21:37:02Z Hamza Javed <hamza@button.is> # Add a carbon tax paid view from the SWRS schema
 function_get_carbon_tax_by_organisation 2019-08-29T22:14:28Z Hamza Javed <hamza@button.is> # Get carbon tax paid by organisation and reporting year
 function_get_products_by_bcghgid 2019-08-30T18:49:23Z Hamza Javed <hamza@button.is> # Get production data by bcghgid
-function_search_application_list [table_application] 2019-09-03T20:40:05Z Dylan Leard <dylan@button.is> # add function for searching the list of applications
-function_update_form_json_product_list [table_form_json] 2019-09-11T17:45:39Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # function updates the list of products for the product dropdown. Used in trigger of the same name
-trigger_update_form_json_product_list [function_update_form_json_product_list] 2019-09-11T17:46:40Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # trigger on table form_json. Updates on changes to product table
+function_search_application_list [view_ciip_application] 2019-09-03T20:40:05Z Dylan Leard <dylan@button.is> # add function for searching the list of applications
+function_update_form_json_product_list [table_form_json] 2019-09-11T17:45:39Z Dylan Leard <dylan@button.is> # function updates the list of products for the product dropdown. Used in trigger of the same name
+trigger_update_form_json_product_list [function_update_form_json_product_list] 2019-09-11T17:46:40Z Dylan Leard <dylan@button.is> # trigger on table form_json. Updates on changes to product table
