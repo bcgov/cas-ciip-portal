@@ -14,7 +14,7 @@ create view ggircs_portal.ciip_application as (
         application_status
       from ggircs_portal.form_result
       join ggircs_portal.application_status
-      on form_result.id = application_status.id
+      on form_result.id = application_status.form_result_id
     )
     select
        x.id as application_id,
