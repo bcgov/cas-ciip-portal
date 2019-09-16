@@ -6,7 +6,9 @@ BEGIN;
 
 create table ggircs_portal.application_status (
     id int,
-    application_status varchar(1000)
+    application_status varchar(1000),
+    updated_by varchar(1000),
+    updated_at varchar(1000)
 );
 
 comment on table ggircs_portal.application_status is 'The application status data';
