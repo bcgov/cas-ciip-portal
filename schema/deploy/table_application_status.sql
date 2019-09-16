@@ -9,7 +9,7 @@ create table ggircs_portal.application_status (
     application_status varchar(1000),
     updated_by varchar(1000),
     updated_at varchar(1000),
-    form_json_id int not null references ggircs_portal.form_json(id)
+    form_result_id int not null references ggircs_portal.form_result(id)
 );
 
 create unique index application_status_id_uindex
@@ -24,6 +24,6 @@ comment on column ggircs_portal.application_status.id is 'The application id use
 comment on column ggircs_portal.application_status.application_status is 'The application status';
 comment on column ggircs_portal.application_status.updated_at is 'The date the application status was updated';
 comment on column ggircs_portal.application_status.updated_by is 'The person who updated the application status';
-comment on column ggircs_portal.application_status.updated_by is 'The foreign key to the corresponding form_json';
+comment on column ggircs_portal.application_status.updated_by is 'The foreign key to the corresponding form_result';
 
 COMMIT;
