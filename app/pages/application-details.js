@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import {Container} from 'react-bootstrap';
 import {withRouter} from 'next/router';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculator';
+import ApplicationStatusContainer from '../containers/Applications/ApplicationStatus';
 import Header from '../components/Header';
 
 class ApplicationDetails extends Component {
@@ -37,6 +38,7 @@ class ApplicationDetails extends Component {
               bcghgid={bcghgid}
               reportingYear={reportingYear}
             />
+            <ApplicationStatusContainer applicationId={applicationId} />
           </Container>
           <hr />
         </div>
