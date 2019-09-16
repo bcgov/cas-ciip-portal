@@ -2134,8 +2134,9 @@ type Product implements Node {
   """The name of the product"""
   name: String!
 
-  """The description of the product"""
+  """The unit of measure for the product"""
   description: String
+  units: String
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -2200,6 +2201,9 @@ input ProductCondition {
   """Checks for equality with the object’s `description` field."""
   description: String
 
+  """Checks for equality with the object’s `units` field."""
+  units: String
+
   """Checks for equality with the object’s `state` field."""
   state: String
 
@@ -2227,8 +2231,9 @@ input ProductInput {
   """The name of the product"""
   name: String!
 
-  """The description of the product"""
+  """The unit of measure for the product"""
   description: String
+  units: String
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -2261,8 +2266,9 @@ input ProductPatch {
   """The name of the product"""
   name: String
 
-  """The description of the product"""
+  """The unit of measure for the product"""
   description: String
+  units: String
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -2320,6 +2326,8 @@ enum ProductsOrderBy {
   NAME_DESC
   DESCRIPTION_ASC
   DESCRIPTION_DESC
+  UNITS_ASC
+  UNITS_DESC
   STATE_ASC
   STATE_DESC
   PARENT_ASC
