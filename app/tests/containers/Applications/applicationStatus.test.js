@@ -1,6 +1,5 @@
 import React from 'react';
-import {mount, render} from 'enzyme';
-import {wait} from '@testing-library/dom';
+import {mount} from 'enzyme';
 import ApplicationStatus from '../../../containers/Applications/ApplicationStatus';
 import {queryMock} from '../../../lib/relayQueryMock';
 
