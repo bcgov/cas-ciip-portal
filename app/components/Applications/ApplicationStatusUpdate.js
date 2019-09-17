@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import propTypes from 'prop-types';
-import {Button, Badge, Container, Row, Col, Dropdown} from 'react-bootstrap';
+import {Container, Row, Col, Dropdown} from 'react-bootstrap';
 
 class ApplicationStatusUpdate extends Component {
   static propTypes = {
