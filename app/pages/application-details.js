@@ -33,12 +33,13 @@ class ApplicationDetails extends Component {
         <div>
           <Header />
           <Container>
+            <ApplicationStatusContainer applicationId={applicationId} />
             <iframe src={url} frameBorder="0" width="100%" height="1000" />
+            <hr />
             <IncentiveCalculatorContainer
               bcghgid={bcghgid}
               reportingYear={reportingYear}
             />
-            <ApplicationStatusContainer applicationId={applicationId} />
           </Container>
           <hr />
         </div>
