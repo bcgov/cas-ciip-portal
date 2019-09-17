@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {graphql, fetchQuery} from 'react-relay';
+import {graphql, fetchQuery, commitMutation} from 'react-relay';
 import propTypes from 'prop-types';
-import {Container} from 'react-bootstrap';
 import initEnvironment from '../../lib/createRelayEnvironment';
+import ApplicationStatusUpdate from '../../components/Applications/ApplicationStatusUpdate';
 
 const environment = initEnvironment();
 
@@ -18,37 +18,91 @@ const getStatus = graphql`
   }
 `;
 
-class ApplicationStatusContainer extends Component {
-  propTypes = {
-    applicationId: propTypes.number.isRequired
-  };
+const setStatus = graphql`
+  mutation ApplicationStatusMutation(
+    $input: UpdateApplicationStatusByRowIdInput!
+  ) {
+    updateApplicationStatusByRowId(input: $input) {
+      applicationStatus {
+        rowId
+      }
+    }
+  }
+`;
 
-  state = {status: ''};
+class ApplicationStatusContainer extends Component {
+  state = {status: null, displayStatus: null};
 
   getApplicationStatus = async () => {
-    const queryReturn = await fetchQuery(environment, getStatus, {
-      $applicationStatusCondition: {formResultId: this.props.applicationId}
+    let queryReturn;
+    if (this.props) {
+      const formResultId = Number(this.props.applicationId);
+      queryReturn = await fetchQuery(environment, getStatus, {
+        applicationStatusCondition: {
+          formResultId
+        }
+      });
+    }
+
+    this.setState({
+      status: queryReturn.allApplicationStatuses.nodes[0].applicationStatus,
+      displayStatus: queryReturn.allApplicationStatuses.nodes[0].applicationStatus.replace(
+        /^\w/,
+        char => char.toUpperCase()
+      )
     });
-    console.log(status);
-    console.log(this.props);
-    // This.setState({status: queryReturn.allApplicationStatuses.nodes[0].applicationStatus});
   };
 
-  componentDidMount() {
-    this.getApplicationStatus();
+  setApplicationStatus = (eventKey, event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    event.persist();
+    this.setState({status: eventKey, displayStatus: event.target.text});
+    const date = new Date().toUTCString();
+    const saveVariables = {
+      input: {
+        rowId: 1,
+        applicationStatusPatch: {
+          applicationStatus: eventKey,
+          updatedAt: date,
+          updatedBy: 'Admin'
+        }
+      }
+    };
+
+    const saveMutation = setStatus;
+    commitMutation(environment, {
+      mutation: saveMutation,
+      variables: saveVariables,
+      onCompleted: response => {
+        console.log(response);
+      },
+      onError: err => console.error(err)
+    });
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.applicationId !== this.props.applicationId)
+      this.getApplicationStatus();
   }
 
   render() {
     return (
       <>
-        <Container style={{padding: 10, background: '#dee2e6'}}>
-          <div>
-            <h1>{this.state.status}</h1>
-          </div>
-        </Container>
+        {this.state.status ? (
+          <ApplicationStatusUpdate
+            applicationStatus={this.state.status}
+            displayStatus={this.state.displayStatus}
+            setApplicationStatus={this.setApplicationStatus}
+          />
+        ) : null}
       </>
     );
   }
+
+  static propTypes = {
+    applicationId: propTypes.number.isRequired
+  };
 }
 
 export default ApplicationStatusContainer;
