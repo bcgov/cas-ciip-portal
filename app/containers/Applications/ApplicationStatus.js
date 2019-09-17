@@ -101,7 +101,7 @@ class ApplicationStatusContainer extends Component {
   }
 
   static propTypes = {
-    applicationId: propTypes.number.isRequired
+    applicationId: propTypes.string.isRequired
   };
 }
 

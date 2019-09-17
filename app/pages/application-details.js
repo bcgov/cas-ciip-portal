@@ -7,16 +7,6 @@ import ApplicationStatusContainer from '../containers/Applications/ApplicationSt
 import Header from '../components/Header';
 
 class ApplicationDetails extends Component {
-  propTypes = {
-    router: propTypes.shape({
-      query: propTypes.shape({
-        application_id: propTypes.string,
-        reportingyear: propTypes.string,
-        bcghgid: propTypes.string
-      })
-    }).isRequired
-  };
-
   render() {
     const {
       application_id: applicationId,
@@ -46,6 +36,16 @@ class ApplicationDetails extends Component {
       </>
     );
   }
+
+  static propTypes = {
+    router: propTypes.shape({
+      query: propTypes.shape({
+        application_id: propTypes.string,
+        reportingyear: propTypes.string,
+        bcghgid: propTypes.string
+      })
+    }).isRequired
+  };
 }
 
 export default withRouter(ApplicationDetails);

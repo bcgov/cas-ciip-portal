@@ -33,6 +33,8 @@ const getApplications = graphql`
         operatorName
         applicationStatus
         submissionDate
+        reportingYear
+        bcghgid
       }
     }
   }

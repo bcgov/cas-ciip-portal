@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import {Button, Badge, Container, Row, Col, Dropdown} from 'react-bootstrap';
 
 class ApplicationStatusUpdate extends Component {
-  propTypes = {
+  static propTypes = {
     applicationStatus: propTypes.string.isRequired,
     displayStatus: propTypes.string.isRequired,
     setApplicationStatus: propTypes.func.isRequired
