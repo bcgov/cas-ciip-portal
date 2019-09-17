@@ -15,7 +15,7 @@ class ApplicationDetails extends Component {
     } = this.props.router.query;
 
     const url =
-      'http://localhost:3000/public/dashboard/985719f1-7eae-4c49-88a9-7d6c8edc1ad4?' +
+      'http://metabase-wksv3k-test.pathfinder.gov.bc.ca/public/dashboard/e5c89425-e6c1-489b-9329-a7ab68e44d8f?' +
       `application_id=${applicationId}&reportingyear=${reportingYear}&bcghgid=${bcghgid}`;
 
     return (
