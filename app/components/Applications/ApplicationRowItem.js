@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import {Button, Badge} from 'react-bootstrap';
 
 class ApplicationRowItem extends Component {
-  propTypes = {
+  static propTypes = {
     application: propTypes.shape({
       applicationId: propTypes.number,
       applicationStatus: propTypes.string,
