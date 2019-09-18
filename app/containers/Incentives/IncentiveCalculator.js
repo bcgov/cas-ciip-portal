@@ -113,44 +113,46 @@ class IncentiveCalculatorContainer extends Component {
       const productDetails = allProducts.filter(
         p => p.name === product.product
       );
-      const productQuantity = parseFloat(product.quantity);
-      const attributableFuelPercentage = parseFloat(
-        product.attributableFuelPercentage
-      );
-      // Const eligibilityThreshold = productDetails[0] ? productDetails[0].benchmarksByProductId.nodes[0].eligibilityThreshold : 0;
-      const bm_et =
-        productDetails[0].benchmarksByProductId.nodes[
-          productDetails[0].benchmarksByProductId.nodes.length - 1
-        ];
-      const benchmark = bm_et ? bm_et.benchmark : 0;
-      const eligibilityThreshold = bm_et ? bm_et.eligibilityThreshold : 0;
+      if (productDetails.length > 0) {
+        const productQuantity = parseFloat(product.quantity);
+        const attributableFuelPercentage = parseFloat(
+          product.attributableFuelPercentage
+        );
+        // Const eligibilityThreshold = productDetails[0] ? productDetails[0].benchmarksByProductId.nodes[0].eligibilityThreshold : 0;
+        const bm_et =
+          productDetails[0].benchmarksByProductId.nodes[
+            productDetails[0].benchmarksByProductId.nodes.length - 1
+          ];
+        const benchmark = bm_et ? bm_et.benchmark : 0;
+        const eligibilityThreshold = bm_et ? bm_et.eligibilityThreshold : 0;
 
-      // Todo: How do we deal with benchmarks and products not set in db.
-      let eligibilityValue = 0;
+        // Todo: How do we deal with benchmarks and products not set in db.
+        let eligibilityValue = 0;
 
-      if (
-        productQuantity > benchmark &&
-        productQuantity < eligibilityThreshold
-      ) {
-        eligibilityValue =
-          (productQuantity - benchmark) / (eligibilityThreshold - benchmark);
+        if (
+          productQuantity > benchmark &&
+          productQuantity < eligibilityThreshold
+        ) {
+          eligibilityValue =
+            (productQuantity - benchmark) / (eligibilityThreshold - benchmark);
+        }
+
+        const eligibleFuelValue =
+          (attributableFuelPercentage / 100) * eligibilityValue;
+        totalCarbonIncentive += eligibleFuelValue * data.carbonTaxPaid;
+
+        incentiveSegments.push(
+          <IncentiveSegment
+            name={product.product}
+            quantity={productQuantity}
+            benchmark={benchmark}
+            eligibilityThreshold={eligibilityThreshold}
+            fuelPercentage={attributableFuelPercentage}
+            carbonTaxPaid={data.carbonTaxPaid}
+            incentiveSegment={eligibleFuelValue * data.carbonTaxPaid}
+          />
+        );
       }
-
-      const eligibleFuelValue =
-        (attributableFuelPercentage / 100) * eligibilityValue;
-      totalCarbonIncentive += eligibleFuelValue * data.carbonTaxPaid;
-
-      incentiveSegments.push(
-        <IncentiveSegment
-          name={product.product}
-          quantity={productQuantity}
-          benchmark={benchmark}
-          eligibilityThreshold={eligibilityThreshold}
-          fuelPercentage={attributableFuelPercentage}
-          carbonTaxPaid={data.carbonTaxPaid}
-          incentiveSegment={eligibleFuelValue * data.carbonTaxPaid}
-        />
-      );
     });
 
     this.setState({

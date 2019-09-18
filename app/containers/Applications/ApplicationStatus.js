@@ -81,9 +81,8 @@ class ApplicationStatusContainer extends Component {
     });
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.applicationId !== this.props.applicationId)
-      this.getApplicationStatus();
+  componentDidMount() {
+    this.getApplicationStatus();
   }
 
   render() {

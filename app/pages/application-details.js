@@ -17,20 +17,22 @@ class ApplicationDetails extends Component {
     const url =
       'http://metabase-wksv3k-test.pathfinder.gov.bc.ca/public/dashboard/e5c89425-e6c1-489b-9329-a7ab68e44d8f?' +
       `application_id=${applicationId}&reportingyear=${reportingYear}&bcghgid=${bcghgid}`;
-
+    console.log(this.props.router.query);
     return (
       <>
         <div>
           <Header />
-          <Container>
-            <ApplicationStatusContainer applicationId={applicationId} />
-            <iframe src={url} frameBorder="0" width="100%" height="1000" />
-            <hr />
-            <IncentiveCalculatorContainer
-              bcghgid={bcghgid}
-              reportingYear={reportingYear}
-            />
-          </Container>
+          {this.props.router.query.application_id ? (
+            <Container>
+              <ApplicationStatusContainer applicationId={applicationId} />
+              <iframe src={url} frameBorder="0" width="100%" height="1000" />
+              <hr />
+              <IncentiveCalculatorContainer
+                bcghgid={bcghgid}
+                reportingYear={reportingYear}
+              />
+            </Container>
+          ) : null}
           <hr />
         </div>
       </>
