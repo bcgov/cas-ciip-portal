@@ -30,7 +30,7 @@ const setStatus = graphql`
   }
 `;
 
-class ApplicationStatusContainer extends Component {
+class ApplicationStatus extends Component {
   state = {status: null, displayStatus: null};
 
   getApplicationStatus = async () => {
@@ -103,4 +103,4 @@ class ApplicationStatusContainer extends Component {
   };
 }
 
-export default ApplicationStatusContainer;
+export default ApplicationStatus;

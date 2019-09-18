@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import {Container} from 'react-bootstrap';
 import {withRouter} from 'next/router';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculator';
-import ApplicationStatusContainer from '../containers/Applications/ApplicationStatus';
+import ApplicationStatus from '../containers/Applications/ApplicationStatus';
 import Header from '../components/Header';
 
 class ApplicationDetails extends Component {
@@ -24,7 +24,7 @@ class ApplicationDetails extends Component {
           <Header />
           {this.props.router.query.application_id ? (
             <Container>
-              <ApplicationStatusContainer applicationId={applicationId} />
+              <ApplicationStatus applicationId={applicationId} />
               <iframe src={url} frameBorder="0" width="100%" height="1000" />
               <hr />
               <IncentiveCalculatorContainer
