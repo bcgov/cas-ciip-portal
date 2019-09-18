@@ -34,23 +34,22 @@ class ApplicationStatusContainer extends Component {
   state = {status: null, displayStatus: null};
 
   getApplicationStatus = async () => {
-    let queryReturn;
-    if (this.props) {
+    if (this.props.applicationId) {
       const formResultId = Number(this.props.applicationId);
-      queryReturn = await fetchQuery(environment, getStatus, {
+      const queryReturn = await fetchQuery(environment, getStatus, {
         applicationStatusCondition: {
           formResultId
         }
       });
-    }
 
-    this.setState({
-      status: queryReturn.allApplicationStatuses.nodes[0].applicationStatus,
-      displayStatus: queryReturn.allApplicationStatuses.nodes[0].applicationStatus.replace(
-        /^\w/,
-        char => char.toUpperCase()
-      )
-    });
+      this.setState({
+        status: queryReturn.allApplicationStatuses.nodes[0].applicationStatus,
+        displayStatus: queryReturn.allApplicationStatuses.nodes[0].applicationStatus.replace(
+          /^\w/,
+          char => char.toUpperCase()
+        )
+      });
+    }
   };
 
   setApplicationStatus = (eventKey, event) => {
