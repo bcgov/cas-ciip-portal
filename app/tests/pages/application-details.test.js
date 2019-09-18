@@ -22,7 +22,7 @@ it('It renders the iFrame with metabase', () => {
       <iframe
         frameBorder="0"
         height="1000"
-        src="http://metabase-wksv3k-test.pathfinder.gov.bc.ca/public/dashboard/e5c89425-e6c1-489b-9329-a7ab68e44d8f?application_id=1&reportingyear=2018&bcghgid=100"
+        src="http://metabase-wksv3k-test.pathfinder.gov.bc.ca/public/dashboard/e5c89425-e6c1-489b-9329-a7ab68e44d8f?application_id=1&reporting_year=2018&bcghgid=100"
         width="100%"
       />
     )

@@ -25,7 +25,7 @@ describe('Application Status', () => {
       data: mockAppQueryData,
       variables: {
         applicationStatusCondition: {
-          formResultId: '1'
+          formResultId: 1
         }
       }
     });
