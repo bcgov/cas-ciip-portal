@@ -61,7 +61,7 @@ class ApplicationStatusContainer extends Component {
     const date = new Date().toUTCString();
     const saveVariables = {
       input: {
-        rowId: 1,
+        rowId: Number(this.props.applicationId),
         applicationStatusPatch: {
           applicationStatus: eventKey,
           updatedAt: date,
