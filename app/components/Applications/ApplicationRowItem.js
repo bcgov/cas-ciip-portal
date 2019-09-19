@@ -19,7 +19,8 @@ class ApplicationRowItem extends Component {
     const {application} = this.props;
     console.log('my application', application);
     const statusBadgeColor = {
-      pending: 'warning',
+      attention: 'warning',
+      pending: 'info',
       declined: 'danger',
       approved: 'success'
     };
