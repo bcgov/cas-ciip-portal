@@ -31,7 +31,7 @@ const setStatus = graphql`
 `;
 
 class ApplicationStatus extends Component {
-  state = {status: null, displayStatus: null};
+  state = {status: null};
 
   getApplicationStatus = async () => {
     if (this.props.applicationId) {
@@ -43,11 +43,7 @@ class ApplicationStatus extends Component {
       });
 
       this.setState({
-        status: queryReturn.allApplicationStatuses.nodes[0].applicationStatus,
-        displayStatus: queryReturn.allApplicationStatuses.nodes[0].applicationStatus.replace(
-          /^\w/,
-          char => char.toUpperCase()
-        )
+        status: queryReturn.allApplicationStatuses.nodes[0].applicationStatus
       });
     }
   };
@@ -56,7 +52,7 @@ class ApplicationStatus extends Component {
     event.preventDefault();
     event.stopPropagation();
     event.persist();
-    this.setState({status: eventKey, displayStatus: event.target.text});
+    this.setState({status: eventKey});
     const date = new Date().toUTCString();
     const saveVariables = {
       input: {
@@ -90,7 +86,6 @@ class ApplicationStatus extends Component {
         {this.state.status ? (
           <ApplicationStatusUpdate
             applicationStatus={this.state.status}
-            displayStatus={this.state.displayStatus}
             setApplicationStatus={this.setApplicationStatus}
           />
         ) : null}

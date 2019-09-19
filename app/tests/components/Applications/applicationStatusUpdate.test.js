@@ -8,7 +8,7 @@ const application = {
   displayStatus: 'Pending'
 };
 
-describe('Application Row Item', () => {
+describe('Application Status UPdate', () => {
   it('should render the application status', async () => {
     const r = shallow(
       <ApplicationStatusUpdate
@@ -17,6 +17,6 @@ describe('Application Row Item', () => {
         setApplicationStatus={jest.fn()}
       />
     );
-    expect(r.find('Bootstrap(DropdownToggle)').text()).toBe('Pending');
+    expect(r.find('Bootstrap(DropdownToggle)').text()).toBe('pending');
   });
 });

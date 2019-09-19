@@ -5,12 +5,11 @@ import {Container, Row, Col, Dropdown} from 'react-bootstrap';
 class ApplicationStatusUpdate extends Component {
   static propTypes = {
     applicationStatus: propTypes.string.isRequired,
-    displayStatus: propTypes.string.isRequired,
     setApplicationStatus: propTypes.func.isRequired
   };
 
   render() {
-    const {applicationStatus, displayStatus, setApplicationStatus} = this.props;
+    const {applicationStatus, setApplicationStatus} = this.props;
     const statusBadgeColor = {
       pending: 'info',
       attention: 'warning',
@@ -27,11 +26,11 @@ class ApplicationStatusUpdate extends Component {
           <Col md={2}>
             <Dropdown style={{width: '100%'}}>
               <Dropdown.Toggle
-                style={{width: '100%'}}
+                style={{width: '100%', textTransform: 'capitalize'}}
                 variant={statusBadgeColor[applicationStatus]}
                 id="dropdown"
               >
-                {displayStatus}
+                {applicationStatus}
               </Dropdown.Toggle>
               <Dropdown.Menu style={{width: '100%'}}>
                 <Dropdown.Item
