@@ -3,7 +3,7 @@
 BEGIN;
 
 
-create or replace function ggircs_portal.get_products_by_bcghgid(bcghgid_input text)
+create or replace function ggircs_portal.get_products_by_bcghgid(bcghgid_input numeric)
   returns setof ggircs_portal.ciip_production as $function$
 
     select *

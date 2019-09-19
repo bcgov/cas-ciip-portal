@@ -3033,7 +3033,7 @@ type Query implements Node {
   Reads and enables pagination through a set of `EstimatedCarbonTaxPaid`.
   """
   getCarbonTaxByBcghgid(
-    bcghgidInput: String
+    bcghgidInput: BigFloat
     reportingYear: String
 
     """Only read the first `n` values of the set."""
@@ -3080,7 +3080,7 @@ type Query implements Node {
 
   """Reads and enables pagination through a set of `CiipProduction`."""
   getProductsByBcghgid(
-    bcghgidInput: String
+    bcghgidInput: BigFloat
 
     """Only read the first `n` values of the set."""
     first: Int

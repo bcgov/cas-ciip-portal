@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {graphql, fetchQuery} from 'react-relay';
+import propTypes from 'prop-types';
 import {Table, Jumbotron, Card} from 'react-bootstrap';
 import initEnvironment from '../../lib/createRelayEnvironment';
 import IncentiveSegment from '../../components/Incentives/IncentiveSegment';
@@ -26,7 +27,7 @@ const allProductsQuery = graphql`
 `;
 
 const productsByBcghgidQuery = graphql`
-  query IncentiveCalculatorProductsByBcghgidQuery($bcghgidInput: String) {
+  query IncentiveCalculatorProductsByBcghgidQuery($bcghgidInput: BigFloat) {
     getProductsByBcghgid(bcghgidInput: $bcghgidInput) {
       nodes {
         rowId
@@ -43,7 +44,7 @@ const productsByBcghgidQuery = graphql`
 
 const carbonTaxByBcghgidQuery = graphql`
   query IncentiveCalculatorCarbonTaxByBcghgidQuery(
-    $bcghgidInput: String
+    $bcghgidInput: BigFloat
     $reportingYear: String
   ) {
     getCarbonTaxByBcghgid(
@@ -75,13 +76,13 @@ class IncentiveCalculatorContainer extends Component {
     const reportedProducts = await fetchQuery(
       environment,
       productsByBcghgidQuery,
-      {bcghgidInput: this.props.bcghgid}
+      {bcghgidInput: Number(this.props.bcghgid)}
     );
     const carbonTaxByBcghgid = await fetchQuery(
       environment,
       carbonTaxByBcghgidQuery,
       {
-        bcghgidInput: this.props.bcghgid,
+        bcghgidInput: Number(this.props.bcghgid),
         reportingYear: this.props.reportingYear
       }
     );
@@ -213,6 +214,11 @@ class IncentiveCalculatorContainer extends Component {
       </>
     );
   }
+
+  static propTypes = {
+    bcghgid: propTypes.string.isRequired,
+    reportingYear: propTypes.string.isRequired
+  };
 }
 
 export default IncentiveCalculatorContainer;

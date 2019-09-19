@@ -13,5 +13,3 @@ CREATE MATERIALIZED VIEW ggircs_portal.estimated_carbon_tax_paid as (
 );
 
 COMMIT;
-
-

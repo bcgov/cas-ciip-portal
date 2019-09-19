@@ -21,8 +21,8 @@ BEGIN;
        x.id as application_id,
        (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
        (x.production_data ->> 'quantity')::numeric as quantity,
-       x.production_data ->> 'product' as product,
-       x.production_data ->> 'fuel_units' as fuel_units,
+       x.production_data ->> 'processing_unit' as product,
+       x.production_data ->> 'units' as fuel_units,
        x.production_data ->> 'comments' as comments,
        x.production_data ->> 'associated_emissions' as associated_emissions,
        (x.production_data ->> 'attributable_fuel_percentage')::numeric as attributable_fuel_percentage
