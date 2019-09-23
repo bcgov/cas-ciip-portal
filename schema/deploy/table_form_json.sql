@@ -64,13 +64,6 @@ insert into ggircs_portal.form_json
       },
       {
        "type": "text",
-       "name": "bcghgid",
-       "startWithNewLine": false,
-       "title": "BCGHG ID Number",
-       "inputType": "number"
-      },
-      {
-       "type": "text",
        "name": "bc_corporate_registry_number",
        "title": "BC Corporate Registry Number ",
        "inputType": "number"
@@ -267,6 +260,13 @@ insert into ggircs_portal.form_json
         "LFO",
         "EIO"
        ]
+      },
+      {
+       "type": "text",
+       "name": "bcghgid",
+       "startWithNewLine": false,
+       "title": "BCGHG ID Number",
+       "inputType": "number"
       },
       {
        "type": "text",

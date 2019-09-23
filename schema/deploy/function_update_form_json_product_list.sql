@@ -42,13 +42,6 @@ create or replace function ggircs_portal.update_form_json_product_list()
                         },
                         {
                         "type": "text",
-                        "name": "bcghgid",
-                        "startWithNewLine": false,
-                        "title": "BCGHG ID Number",
-                        "inputType": "number"
-                        },
-                        {
-                        "type": "text",
                         "name": "bc_corporate_registry_number",
                         "title": "BC Corporate Registry Number ",
                         "inputType": "number"
@@ -245,6 +238,13 @@ create or replace function ggircs_portal.update_form_json_product_list()
                             "LFO",
                             "EIO"
                         ]
+                        },
+                        {
+                        "type": "text",
+                        "name": "bcghgid",
+                        "startWithNewLine": false,
+                        "title": "BCGHG ID Number",
+                        "inputType": "number"
                         },
                         {
                         "type": "text",
