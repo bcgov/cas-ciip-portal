@@ -579,7 +579,7 @@ insert into ggircs_portal.form_json
         {
          "value": "m3",
          "text": "meters cube",
-         "visibleIf":"', (select trim(trailing ' or' from (select string_agg(distinct format('{module_throughput_and_production_data[0].processing_unit} = \"%s\" or',name), ' ') from ggircs_portal.product where product.units='m3' or product.units is null))), '"
+         "visibleIf":"{module_throughput_and_production_data[{panelIndex}].processing_unit} = Dehydryation"
         },
         {
          "value": "kl",

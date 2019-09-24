@@ -129,12 +129,39 @@ class FormLoader extends Component {
     return <div>Loading...</div>;
   };
 
+  createFormNew = async () => {
+    this.onValueChanged();
+
+    if (this.props.formId) {
+      const formData = await fetchQuery(environment, getFormData, {
+        formIdInput: 1
+      });
+      const data = formData.getFormJsonWithProducts.nodes[0];
+      const parsedForm = JSON.parse(data.formJson);
+      const products = [
+        ...data.klProducts,
+        ...data.m3Products,
+        ...data.tProducts
+      ];
+      parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
+      const model = new Survey.Model(JSON.stringify(parsedForm));
+      return (
+        <Survey.Survey
+          model={model}
+          onComplete={this.onComplete}
+          onValueChanged={this.onValueChanged}
+        />
+      );
+    }
+
+    return <div>Loading...</div>;
+  };
+
   componentDidMount = async () => {
     const formData = await fetchQuery(environment, getFormData, {
       formIdInput: 1
     });
     const data = formData.getFormJsonWithProducts.nodes[0];
-    console.log(data.formJson);
     const parsedForm = JSON.parse(data.formJson);
     const products = [
       ...data.klProducts,
@@ -142,8 +169,28 @@ class FormLoader extends Component {
       ...data.tProducts
     ];
     console.log(products);
-    // Console.log(parsedForm.pages[2].elements[0].templateElements[0]);
-    // console.log(parsedForm.pages[2].elements[0].templateElements[2]);
+    console.log(parsedForm.pages[2].elements[0].templateElements[0]);
+    console.log(parsedForm.pages[2].elements[0].templateElements[2]);
+    parsedForm.pages[2].elements[0].templateElements[0].choices = products;
+    parsedForm.pages[2].elements[0].templateElements[2].choices = [
+      {
+        value: 'm3',
+        text: 'meters cube',
+        visibleIf: `${data.m3Products} contains {module_throughput_and_production_data[{panelIndex}].processing_unit} or ${products} not contains {module_throughput_and_production_data[{panelIndex}].processing_unit}`
+      },
+      {
+        value: 'kl',
+        text: 'kiloliters',
+        visibleIf: `${data.klProducts} contains {module_throughput_and_production_data[{panelIndex}].processing_unit} or ${products} not contains {module_throughput_and_production_data[{panelIndex}].processing_unit}`
+      },
+      {
+        value: 't',
+        text: 'tonnes',
+        visibleIf: `[${data.tProducts}] contains {module_throughput_and_production_data[{panelIndex}].processing_unit} or ${products} not contains {module_throughput_and_production_data[{panelIndex}].processing_unit}`
+      }
+    ];
+    console.log(parsedForm.pages[2].elements[0].templateElements[0]);
+    console.log(parsedForm.pages[2].elements[0].templateElements[2]);
   };
 
   render() {
