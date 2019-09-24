@@ -47,6 +47,10 @@ class FormLoader extends Component {
     `;
   }
 
+  state = {
+    formJson: <div>Loading...</div>
+  };
+
   storeApplicationStatus = resultId => {
     const variables = {
       input: {
@@ -104,38 +108,14 @@ class FormLoader extends Component {
 
   onValueChanged = () => {
     console.log('value changed');
-    // Console.log(
-    //   util.inspect(Survey.JsonObject, false, null, true /* Enable colors */)
-    // );
-  };
-
-  createForm = ({error, props}) => {
-    console.log('FormLoader > createForm():', props, error);
-    this.onValueChanged();
-    Survey.Survey.cssType = 'bootstrap';
-    if (props) {
-      const formJson = JSON.parse(props.formJsonByRowId.formJson);
-      formJson.completedHtml = '<h2>Thank you for your submission</h2>';
-      const model = new Survey.Model(JSON.stringify(formJson));
-      return (
-        <Survey.Survey
-          model={model}
-          onComplete={this.onComplete}
-          onValueChanged={this.onValueChanged}
-        />
-      );
-    }
-
-    return <div>Loading...</div>;
   };
 
   createFormNew = async () => {
-    this.onValueChanged();
-
     if (this.props.formId) {
       const formData = await fetchQuery(environment, getFormData, {
         formIdInput: 1
       });
+      Survey.Survey.cssType = 'bootstrap';
       const data = formData.getFormJsonWithProducts.nodes[0];
       const parsedForm = JSON.parse(data.formJson);
       const products = [
@@ -144,75 +124,49 @@ class FormLoader extends Component {
         ...data.tProducts
       ];
       parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
+      parsedForm.pages[2].elements[0].templateElements[0].choices = products;
+      parsedForm.pages[2].elements[0].templateElements[2].choices = [
+        {
+          value: 'm3',
+          text: 'meters cube',
+          visibleIf: `["${
+            data.m3Products[0]
+          }"] contains {panel.processing_unit}`
+        },
+        {
+          value: 'kl',
+          text: 'kiloliters',
+          visibleIf: `[${data.klProducts}] contains {module_throughput_and_production_data[{panelIndex}].processing_unit} or ${products} notcontains {module_throughput_and_production_data[{panelIndex}].processing_unit}`
+        },
+        {
+          value: 't',
+          text: 'tonnes',
+          visibleIf: `[${data.tProducts}] contains {module_throughput_and_production_data[{panelIndex}].processing_unit} or ${products} notcontains {module_throughput_and_production_data[{panelIndex}].processing_unit}`
+        }
+      ];
       const model = new Survey.Model(JSON.stringify(parsedForm));
-      return (
-        <Survey.Survey
-          model={model}
-          onComplete={this.onComplete}
-          onValueChanged={this.onValueChanged}
-        />
-      );
+      console.log(model);
+      this.setState({
+        formJson: (
+          <Survey.Survey
+            model={model}
+            onComplete={this.onComplete}
+            onValueChanged={this.onValueChanged}
+          />
+        )
+      });
     }
-
-    return <div>Loading...</div>;
   };
 
   componentDidMount = async () => {
-    const formData = await fetchQuery(environment, getFormData, {
-      formIdInput: 1
-    });
-    const data = formData.getFormJsonWithProducts.nodes[0];
-    const parsedForm = JSON.parse(data.formJson);
-    const products = [
-      ...data.klProducts,
-      ...data.m3Products,
-      ...data.tProducts
-    ];
-    console.log(products);
-    console.log(parsedForm.pages[2].elements[0].templateElements[0]);
-    console.log(parsedForm.pages[2].elements[0].templateElements[2]);
-    parsedForm.pages[2].elements[0].templateElements[0].choices = products;
-    parsedForm.pages[2].elements[0].templateElements[2].choices = [
-      {
-        value: 'm3',
-        text: 'meters cube',
-        visibleIf: `${data.m3Products} contains {module_throughput_and_production_data[{panelIndex}].processing_unit} or ${products} not contains {module_throughput_and_production_data[{panelIndex}].processing_unit}`
-      },
-      {
-        value: 'kl',
-        text: 'kiloliters',
-        visibleIf: `${data.klProducts} contains {module_throughput_and_production_data[{panelIndex}].processing_unit} or ${products} not contains {module_throughput_and_production_data[{panelIndex}].processing_unit}`
-      },
-      {
-        value: 't',
-        text: 'tonnes',
-        visibleIf: `[${data.tProducts}] contains {module_throughput_and_production_data[{panelIndex}].processing_unit} or ${products} not contains {module_throughput_and_production_data[{panelIndex}].processing_unit}`
-      }
-    ];
-    console.log(parsedForm.pages[2].elements[0].templateElements[0]);
-    console.log(parsedForm.pages[2].elements[0].templateElements[2]);
+    await this.createFormNew();
   };
 
   render() {
     return (
       <>
         <div id="surveyContainer">
-          <QueryRenderer
-            environment={environment}
-            query={graphql`
-              query FormLoaderQuery($rowId: Int!) {
-                formJsonByRowId(rowId: $rowId) {
-                  id
-                  name
-                  formJson
-                }
-              }
-            `}
-            variables={{
-              rowId: this.props.formId
-            }}
-            render={this.createForm}
-          />
+          {this.state.formJson}
           <style jsx global>
             {`
               #surveyContainer {
