@@ -1,11 +1,25 @@
+import util from 'util';
 import React, {Component} from 'react';
 import * as Survey from 'survey-react';
 import 'survey-react/survey.css';
 import 'survey-creator/survey-creator.css';
-import {graphql, QueryRenderer, commitMutation} from 'react-relay';
+import {graphql, QueryRenderer, commitMutation, fetchQuery} from 'react-relay';
 import initEnvironment from '../../lib/createRelayEnvironment';
 
 const environment = initEnvironment();
+
+const getFormData = graphql`
+  query FormLoaderJSONWithProductsQuery($formIdInput: BigFloat) {
+    getFormJsonWithProducts(formIdInput: $formIdInput) {
+      nodes {
+        klProducts
+        m3Products
+        tProducts
+        formJson
+      }
+    }
+  }
+`;
 
 class FormLoader extends Component {
   constructor(props) {
@@ -90,6 +104,9 @@ class FormLoader extends Component {
 
   onValueChanged = () => {
     console.log('value changed');
+    // Console.log(
+    //   util.inspect(Survey.JsonObject, false, null, true /* Enable colors */)
+    // );
   };
 
   createForm = ({error, props}) => {
@@ -110,6 +127,23 @@ class FormLoader extends Component {
     }
 
     return <div>Loading...</div>;
+  };
+
+  componentDidMount = async () => {
+    const formData = await fetchQuery(environment, getFormData, {
+      formIdInput: 1
+    });
+    const data = formData.getFormJsonWithProducts.nodes[0];
+    console.log(data.formJson);
+    const parsedForm = JSON.parse(data.formJson);
+    const products = [
+      ...data.klProducts,
+      ...data.m3Products,
+      ...data.tProducts
+    ];
+    console.log(products);
+    // Console.log(parsedForm.pages[2].elements[0].templateElements[0]);
+    // console.log(parsedForm.pages[2].elements[0].templateElements[2]);
   };
 
   render() {
