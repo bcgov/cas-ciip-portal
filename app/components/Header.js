@@ -50,7 +50,7 @@ const Header = () => {
                 </a>
                 <a
                   style={{marginLeft: '20px'}}
-                  href="/admin"
+                  href="/products"
                   className="btn btn-secondary"
                 >
                   Products
