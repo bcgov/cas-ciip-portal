@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import propTypes from 'prop-types';
 
-class FormLoader extends Component {
+class FormLoader extends PureComponent {
   static propTypes = {
     formJson: propTypes.object.isRequired
   };

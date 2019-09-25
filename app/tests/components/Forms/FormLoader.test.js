@@ -1,10 +1,7 @@
 import React from 'react';
 import {wait, render} from '@testing-library/react';
 import * as Survey from 'survey-react';
-import {queryMock} from '../../../lib/relayQueryMock';
 import FormLoader from '../../../components/Forms/FormLoader';
-
-let mockAppQueryData;
 
 describe('Form Loader', () => {
   let survey;
