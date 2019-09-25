@@ -123,29 +123,31 @@ class FormLoader extends Component {
         ...data.m3Products,
         ...data.tProducts
       ];
+      const allProducts = products.map(product => "'" + product + "'");
+      const m3 = data.m3Products.map(product => "'" + product + "'");
+      const kl = data.klProducts.map(product => "'" + product + "'");
+      const t = data.tProducts.map(product => "'" + product + "'");
+
       parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
       parsedForm.pages[2].elements[0].templateElements[0].choices = products;
       parsedForm.pages[2].elements[0].templateElements[2].choices = [
         {
           value: 'm3',
           text: 'meters cube',
-          visibleIf: `["${
-            data.m3Products[0]
-          }"] contains {panel.processing_unit}`
+          visibleIf: `[${m3}] contains {panel.processing_unit} or [${allProducts}] notcontains {panel.processing_unit}`
         },
         {
           value: 'kl',
           text: 'kiloliters',
-          visibleIf: `[${data.klProducts}] contains {module_throughput_and_production_data[{panelIndex}].processing_unit} or ${products} notcontains {module_throughput_and_production_data[{panelIndex}].processing_unit}`
+          visibleIf: `[${kl}] contains {panel.processing_unit} or [${allProducts}] notcontains {panel.processing_unit}`
         },
         {
           value: 't',
           text: 'tonnes',
-          visibleIf: `[${data.tProducts}] contains {module_throughput_and_production_data[{panelIndex}].processing_unit} or ${products} notcontains {module_throughput_and_production_data[{panelIndex}].processing_unit}`
+          visibleIf: `[${t}] contains {panel.processing_unit} or [${allProducts}] notcontains {panel.processing_unit}`
         }
       ];
       const model = new Survey.Model(JSON.stringify(parsedForm));
-      console.log(model);
       this.setState({
         formJson: (
           <Survey.Survey
