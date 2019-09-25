@@ -139,7 +139,7 @@ class FormLoaderContainer extends Component {
         ...data.m3Products,
         ...data.tProducts
       ]);
-      console.log(products);
+
       // Add quotes to beginning and end of each array item (for SurveyJs to read)
       const m3 = data.m3Products.map(product => "'" + product + "'");
       const kl = data.klProducts.map(product => "'" + product + "'");
@@ -166,7 +166,7 @@ class FormLoaderContainer extends Component {
           visibleIf: `[${t}] contains {panel.processing_unit}`
         }
       ];
-      console.log(parsedForm);
+
       // Create survey model from updated formJson
       const model = new Survey.Model(JSON.stringify(parsedForm));
       this.setState({
