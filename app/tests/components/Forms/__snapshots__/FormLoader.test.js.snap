@@ -10,7 +10,7 @@ Object {
         id="surveyContainer"
       >
         <div
-          class="sv_main sv_bootstrap_css"
+          class="sv_main sv_default_css"
         >
           <form>
             <div
@@ -20,17 +20,17 @@ Object {
               class=""
             >
               <div
-                class="panel-body card-block mt-4"
+                class="sv_body"
                 id="sp_100"
               >
                 <div
-                  class=""
+                  class="sv_p_root"
                 >
                   <div
                     class="sv_row"
                   >
                     <div
-                      class="sv_qstn"
+                      class="sv_q sv_qstn"
                       data-rendered="r"
                       id="sq_100"
                       style="width: 100.000000%;"
@@ -39,8 +39,7 @@ Object {
                         class=" undefined"
                       >
                         <h5
-                          class=""
-                          title="What is your name? *"
+                          class="sv_q_title"
                         >
                           <span
                             class="sv_q_num"
@@ -65,7 +64,7 @@ Object {
                         <input
                           aria-label="What is your name? *"
                           aria-required="true"
-                          class="form-control"
+                          class="sv_q_text_root"
                           id="sq_100i"
                           placeholder=""
                           size="25"
@@ -77,10 +76,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="panel-footer card-footer"
+                  class="sv_nav"
                 >
                   <input
-                    class=" btn sv_complete_btn"
+                    class=" sv_complete_btn"
                     style="margin-right: 5px;"
                     type="button"
                     value="Complete"
@@ -99,7 +98,7 @@ Object {
       id="surveyContainer"
     >
       <div
-        class="sv_main sv_bootstrap_css"
+        class="sv_main sv_default_css"
       >
         <form>
           <div
@@ -109,17 +108,17 @@ Object {
             class=""
           >
             <div
-              class="panel-body card-block mt-4"
+              class="sv_body"
               id="sp_100"
             >
               <div
-                class=""
+                class="sv_p_root"
               >
                 <div
                   class="sv_row"
                 >
                   <div
-                    class="sv_qstn"
+                    class="sv_q sv_qstn"
                     data-rendered="r"
                     id="sq_100"
                     style="width: 100.000000%;"
@@ -128,8 +127,7 @@ Object {
                       class=" undefined"
                     >
                       <h5
-                        class=""
-                        title="What is your name? *"
+                        class="sv_q_title"
                       >
                         <span
                           class="sv_q_num"
@@ -154,7 +152,7 @@ Object {
                       <input
                         aria-label="What is your name? *"
                         aria-required="true"
-                        class="form-control"
+                        class="sv_q_text_root"
                         id="sq_100i"
                         placeholder=""
                         size="25"
@@ -166,10 +164,10 @@ Object {
                 </div>
               </div>
               <div
-                class="panel-footer card-footer"
+                class="sv_nav"
               >
                 <input
-                  class=" btn sv_complete_btn"
+                  class=" sv_complete_btn"
                   style="margin-right: 5px;"
                   type="button"
                   value="Complete"

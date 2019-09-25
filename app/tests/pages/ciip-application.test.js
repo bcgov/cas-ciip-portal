@@ -24,9 +24,9 @@ it('It renders a welcome message', () => {
 describe('Testing the CIIP form', () => {
   // It loads the <FormLoader>
 
-  it('It loads the FormLoader', () => {
+  it('It loads the FormLoaderContainer', () => {
     const wrapper = mount(<BaseForm />);
-    const text = wrapper.find('FormLoader').text();
+    const text = wrapper.find('FormLoaderContainer').text();
     expect(text).toContain('Loading');
   });
 });
