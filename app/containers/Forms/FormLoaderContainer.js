@@ -8,20 +8,6 @@ import initEnvironment from '../../lib/createRelayEnvironment';
 import FormLoader from '../../components/Forms/FormLoader';
 
 const environment = initEnvironment();
-// Query: Gets form json along with products by their units
-const getFormData = graphql`
-  query FormLoaderContainerJSONWithProductsQuery($formIdInput: BigFloat) {
-    getFormJsonWithProducts(formIdInput: $formIdInput) {
-      nodes {
-        klProducts
-        m3Products
-        tProducts
-        nullProducts
-        formJson
-      }
-    }
-  }
-`;
 
 class FormLoaderContainer extends Component {
   static propTypes = {
@@ -30,6 +16,21 @@ class FormLoaderContainer extends Component {
 
   constructor(props) {
     super(props);
+
+    // Query: Gets form json along with products by their units
+    this.getFormData = graphql`
+      query FormLoaderContainerJSONWithProductsQuery($formIdInput: BigFloat) {
+        getFormJsonWithProducts(formIdInput: $formIdInput) {
+          nodes {
+            klProducts
+            m3Products
+            tProducts
+            nullProducts
+            formJson
+          }
+        }
+      }
+    `;
     // Mutation: stores the result of the form
     this.createFormResult = graphql`
       mutation FormLoaderContainerMutation($input: CreateFormResultInput!) {
@@ -126,7 +127,7 @@ class FormLoaderContainer extends Component {
   // Creates the Survey from the form JSON
   createSurveyForm = async () => {
     if (this.props.formId) {
-      const formData = await fetchQuery(environment, getFormData, {
+      const formData = await fetchQuery(environment, this.getFormData, {
         formIdInput: this.props.formId
       });
       Survey.Survey.cssType = 'bootstrap';
