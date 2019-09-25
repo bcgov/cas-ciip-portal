@@ -123,6 +123,46 @@ class FormLoaderContainer extends Component {
     console.log('value changed');
   };
 
+  // Function: Add the product/unit choices into the formJson before creating the survey
+  editFormJson = data => {
+    const parsedForm = JSON.parse(data.formJson);
+
+    // Merge product arrays to get all products (duplicate values with null units are possible, so create as a set to dedup)
+    const products = new Set([
+      ...data.klProducts,
+      ...data.m3Products,
+      ...data.tProducts
+    ]);
+
+    // Add quotes to beginning and end of each array item (for SurveyJs to read)
+    const m3 = data.m3Products.map(product => "'" + product + "'");
+    const kl = data.klProducts.map(product => "'" + product + "'");
+    const t = data.tProducts.map(product => "'" + product + "'");
+
+    parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
+
+    // Add choices into formJson for products and units (by product units)
+    parsedForm.pages[3].elements[0].templateElements[0].choices = products;
+    parsedForm.pages[3].elements[0].templateElements[2].choices = [
+      {
+        value: 'm3',
+        text: 'meters cube',
+        visibleIf: `[${m3}] contains {panel.processing_unit}`
+      },
+      {
+        value: 'kl',
+        text: 'kiloliters',
+        visibleIf: `[${kl}] contains {panel.processing_unit}`
+      },
+      {
+        value: 't',
+        text: 'tonnes',
+        visibleIf: `[${t}] contains {panel.processing_unit}`
+      }
+    ];
+    return parsedForm;
+  };
+
   // Creates the Survey from the form JSON
   createSurveyForm = async () => {
     if (this.props.formId) {
@@ -131,41 +171,8 @@ class FormLoaderContainer extends Component {
       });
       Survey.Survey.cssType = 'bootstrap';
       const data = formData.getFormJsonWithProducts.nodes[0];
-      const parsedForm = JSON.parse(data.formJson);
 
-      // Merge product arrays to get all products (duplicate values with null units are possible, so create as a set to dedup)
-      const products = new Set([
-        ...data.klProducts,
-        ...data.m3Products,
-        ...data.tProducts
-      ]);
-
-      // Add quotes to beginning and end of each array item (for SurveyJs to read)
-      const m3 = data.m3Products.map(product => "'" + product + "'");
-      const kl = data.klProducts.map(product => "'" + product + "'");
-      const t = data.tProducts.map(product => "'" + product + "'");
-
-      parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
-
-      // Add choices into formJson for products and units (by product units)
-      parsedForm.pages[3].elements[0].templateElements[0].choices = products;
-      parsedForm.pages[3].elements[0].templateElements[2].choices = [
-        {
-          value: 'm3',
-          text: 'meters cube',
-          visibleIf: `[${m3}] contains {panel.processing_unit}`
-        },
-        {
-          value: 'kl',
-          text: 'kiloliters',
-          visibleIf: `[${kl}] contains {panel.processing_unit}`
-        },
-        {
-          value: 't',
-          text: 'tonnes',
-          visibleIf: `[${t}] contains {panel.processing_unit}`
-        }
-      ];
+      const parsedForm = this.editFormJson(data);
 
       // Create survey model from updated formJson
       const model = new Survey.Model(JSON.stringify(parsedForm));
