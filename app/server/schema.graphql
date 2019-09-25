@@ -1884,6 +1884,7 @@ type FormJsonProductType {
   klProducts: [String]
   m3Products: [String]
   tProducts: [String]
+  nullProducts: [String]
   formId: Int
   formName: String
   formJson: JSON

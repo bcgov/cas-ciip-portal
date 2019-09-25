@@ -15,6 +15,7 @@ const getFormData = graphql`
         klProducts
         m3Products
         tProducts
+        nullProducts
         formJson
       }
     }
@@ -121,12 +122,14 @@ class FormLoader extends Component {
       const products = [
         ...data.klProducts,
         ...data.m3Products,
-        ...data.tProducts
+        ...data.tProducts,
+        ...data.nullProducts
       ];
-      const allProducts = products.map(product => "'" + product + "'");
+      //   Const allProducts = products.map(product => "'" + product + "'");
       const m3 = data.m3Products.map(product => "'" + product + "'");
       const kl = data.klProducts.map(product => "'" + product + "'");
       const t = data.tProducts.map(product => "'" + product + "'");
+      const nulled = data.nullProducts.map(product => "'" + product + "'");
 
       parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
       parsedForm.pages[2].elements[0].templateElements[0].choices = products;
@@ -134,17 +137,17 @@ class FormLoader extends Component {
         {
           value: 'm3',
           text: 'meters cube',
-          visibleIf: `[${m3}] contains {panel.processing_unit} or [${allProducts}] notcontains {panel.processing_unit}`
+          visibleIf: `[${m3}] contains {panel.processing_unit} or [${nulled}] contains {panel.processing_unit}`
         },
         {
           value: 'kl',
           text: 'kiloliters',
-          visibleIf: `[${kl}] contains {panel.processing_unit} or [${allProducts}] notcontains {panel.processing_unit}`
+          visibleIf: `[${kl}] contains {panel.processing_unit} or [${nulled}] contains {panel.processing_unit}`
         },
         {
           value: 't',
           text: 'tonnes',
-          visibleIf: `[${t}] contains {panel.processing_unit} or [${allProducts}] notcontains {panel.processing_unit}`
+          visibleIf: `[${t}] contains {panel.processing_unit} or [${nulled}] contains {panel.processing_unit}`
         }
       ];
       const model = new Survey.Model(JSON.stringify(parsedForm));
