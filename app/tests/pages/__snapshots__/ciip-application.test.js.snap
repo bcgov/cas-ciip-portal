@@ -6,7 +6,9 @@ exports[`It matches the last accepted Snapshot 1`] = `
   <Container
     fluid={false}
   >
-    <Bootstrap(Jumbotron)>
+    <Jumbotron
+      fluid={false}
+    >
       <h3>
         Hello, Hamza!
       </h3>
@@ -25,7 +27,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
           handleFormId={[Function]}
         />
       </ButtonToolbar>
-    </Bootstrap(Jumbotron)>
+    </Jumbotron>
     <FormLoader
       formId={1}
     />
