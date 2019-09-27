@@ -123,6 +123,10 @@ class FormLoaderContainer extends Component {
     console.log('value changed');
   };
 
+  addQuotes = products => {
+    return products.map(product => "'" + product + "'");
+  };
+
   // Function: Add the product/unit choices into the formJson before creating the survey
   editFormJson = data => {
     const parsedForm = JSON.parse(data.formJson);
@@ -135,9 +139,9 @@ class FormLoaderContainer extends Component {
     ]);
 
     // Add quotes to beginning and end of each array item (for SurveyJs to read)
-    const m3 = data.m3Products.map(product => "'" + product + "'");
-    const kl = data.klProducts.map(product => "'" + product + "'");
-    const t = data.tProducts.map(product => "'" + product + "'");
+    const m3 = this.addQuotes(data.m3Products);
+    const kl = this.addQuotes(data.klProducts);
+    const t = this.addQuotes(data.tProducts);
 
     parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
 
