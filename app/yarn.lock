@@ -1345,11 +1345,6 @@
   resolved "https://registry.yarnpkg.com/@types/keygrip/-/keygrip-1.0.1.tgz#ff540462d2fb4d0a88441ceaf27d287b01c3d878"
   integrity sha1-/1QEYtL7TQqIRBzq8n0oewHD2Hg=
 
-"@types/knockout@^3.4.0":
-  version "3.4.66"
-  resolved "https://registry.yarnpkg.com/@types/knockout/-/knockout-3.4.66.tgz#9dcede87f6f1da3f0128ee495023af2521271572"
-  integrity sha512-UNmyr4mM/y/AvQ6eQmd9v+9/QDZUxiudFb6U/sqIvKlQtAiUO5RM52YRP88CQzYOztxWw0t1feeFIKN3R4Q2Ow==
-
 "@types/koa-compose@*":
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/@types/koa-compose/-/koa-compose-3.2.4.tgz#76a461634a59c3e13449831708bb9b355fb1548e"
@@ -7195,7 +7190,7 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
-knockout@^3.4.0:
+knockout@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/knockout/-/knockout-3.5.0.tgz#6d3e19bf53b1dc4d8de81c97a5ba9672443dc292"
   integrity sha512-vBUF/IsBDzaejHkNpiquKdc5uPrImXuQ4Mb9lEfNNJ5cyHGI8ThDupR+h3eMFZhfmPE/brfwcIAn/fm0yOvJUg==
@@ -10703,20 +10698,19 @@ supports-hyperlinks@^1.0.1:
     supports-color "^5.0.0"
 
 survey-creator@^1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/survey-creator/-/survey-creator-1.1.1.tgz#53a930878049137ea4863c540958b4f07d956243"
-  integrity sha512-x+uai/RmLtObvo+6rz4cvQdcWk0EquCIcdIdUl14I/10kT5m13/ExWiEQl9L4XuAiVlcFtIPrTliIMyOuotesA==
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/survey-creator/-/survey-creator-1.1.13.tgz#88a2bcc6ba188f6f8033e1b7366e9f51f7bbd20e"
+  integrity sha512-5T8sCMn0bDdkcdCu6ypN4e8l7C4aeAbf4bazXkX2vszBScf5fmgj+vLTGiJDFcy8lTTzmdR6Lr3G7NwTtUEjWw==
   dependencies:
-    "@types/knockout" "^3.4.0"
-    knockout "^3.4.0"
-    survey-knockout "^1.1.1"
+    knockout "^3.5.0"
+    survey-knockout "^1.1.13"
 
-survey-knockout@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/survey-knockout/-/survey-knockout-1.1.1.tgz#70eb5271a99e502046460b1250257b7da8e7abfc"
-  integrity sha512-d97+C8YbUZwK5Z7JuqxqSXI+/iuQNO+n8gqLOnBsBndGoX0LnIPtJ0rUltMmSJQpSX5PIyUwWh9s9ZTRoBqGHw==
+survey-knockout@^1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/survey-knockout/-/survey-knockout-1.1.13.tgz#472d8d4a194f4f1c1e66e913e45ad0c6d4457294"
+  integrity sha512-yH56p8c/r96lksq6kmeNP4+tI7OLgusu0msJAvysKVg3xjo2jd/BAhSubwLCOElmUjBQ9w50fHztOuebx+GW3Q==
   dependencies:
-    knockout "^3.4.0"
+    knockout "^3.5.0"
 
 survey-react@^1.1.1:
   version "1.1.1"
