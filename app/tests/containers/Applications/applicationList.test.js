@@ -16,14 +16,18 @@ describe('Application List', () => {
             facilityName: 'facility1',
             operatorName: 'operator1',
             applicationStatus: 'approved',
-            submissionDate: 'Sun, 17 Dec 1995 03:24:00 GMT'
+            submissionDate: 'Sun, 17 Dec 1995 03:24:00 GMT',
+            bcghgid: '1',
+            reportingYear: '2018'
           },
           {
             applicationId: 2,
             facilityName: 'facility2',
             operatorName: 'operator2',
             applicationStatus: 'pending',
-            submissionDate: 'Fri, 11 May 2018 02:21:00 GMT'
+            submissionDate: 'Fri, 11 May 2018 02:21:00 GMT',
+            bcghgid: '1',
+            reportingYear: '2018'
           }
         ]
       }
