@@ -10,6 +10,7 @@ describe('Form Loader', () => {
       '{"elements":[{"name":"customerName","type":"text","title":"What is your name?","isRequired":true}]}'
     );
     survey = <Survey.Survey model={model} onComplete={jest.fn()} />;
+    Survey.Survey.cssType = 'bootstrap';
   });
 
   it('should render the form', async () => {
