@@ -12,6 +12,7 @@ describe('Application Status', () => {
       allApplicationStatuses: {
         nodes: [
           {
+            id: 'abc',
             applicationStatus: 'pending'
           }
         ]
