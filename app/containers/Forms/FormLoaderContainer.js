@@ -73,6 +73,8 @@ class FormLoaderContainer extends Component {
     const mutation = this.createApplicationStatus;
 
     commitMutation(environment, {
+      mutation,
+      variables,
       onCompleted: response => {
         console.log(response);
         console.log('Store Application Status Response received from server.');
@@ -121,10 +123,6 @@ class FormLoaderContainer extends Component {
     console.log('value changed');
   };
 
-  addQuotes = products => {
-    return products.map(product => "'" + product + "'");
-  };
-
   // Function: Add the product/unit choices into the formJson before creating the survey
   editFormJson = data => {
     const parsedForm = JSON.parse(data.formJson);
@@ -137,9 +135,9 @@ class FormLoaderContainer extends Component {
     ]);
 
     // Add quotes to beginning and end of each array item (for SurveyJs to read)
-    const m3 = this.addQuotes(data.m3Products);
-    const kl = this.addQuotes(data.klProducts);
-    const t = this.addQuotes(data.tProducts);
+    const m3 = data.m3Products.map(product => "'" + product + "'");
+    const kl = data.klProducts.map(product => "'" + product + "'");
+    const t = data.tProducts.map(product => "'" + product + "'");
 
     parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
 
@@ -211,11 +209,11 @@ class FormLoaderContainer extends Component {
                 background: white !important;
                 display: none;
               }
-              .sv_container .panel-footer {
+              .panel-footer {
                 background: white;
                 text-align: right;
               }
-              .sv_container .panel-footer .btn.sv_complete_btn {
+              .panel-footer .btn.sv_complete_btn {
                 background: #036;
                 color: white;
               }
