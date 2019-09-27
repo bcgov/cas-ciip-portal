@@ -102,7 +102,7 @@
     "jest-canvas-mock": "^2.1.1",
     "nock": "^10.0.6",
     "node-fetch": "^2.6.0",
-    "relay-compiler": "^5.0.0",
+    "relay-compiler": "^6.0.0",
     "relay-test-utils": "^5.0.0",
     "xo": "^0.24.0"
   },
