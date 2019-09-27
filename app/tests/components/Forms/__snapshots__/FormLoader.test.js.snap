@@ -6,27 +6,27 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sv_main sv_default_css"
+        class="sv_main sv_bootstrap_css"
       >
         <form>
           <div
             class="sv_custom_header"
           />
           <div
-            class="sv_container"
+            class=""
           >
             <div
-              class="sv_body"
+              class="panel-body card-block mt-4"
               id="sp_100"
             >
               <div
-                class="sv_p_root"
+                class=""
               >
                 <div
                   class="sv_row"
                 >
                   <div
-                    class="sv_q sv_qstn"
+                    class="sv_qstn"
                     data-rendered="r"
                     id="sq_100"
                     style="width: 100.000000%;"
@@ -35,7 +35,7 @@ Object {
                       class=" undefined"
                     >
                       <h5
-                        class="sv_q_title"
+                        class=""
                         title="What is your name? *"
                       >
                         <span
@@ -61,7 +61,7 @@ Object {
                       <input
                         aria-label="What is your name? *"
                         aria-required="true"
-                        class="sv_q_text_root"
+                        class="form-control"
                         id="sq_100i"
                         placeholder=""
                         size="25"
@@ -73,10 +73,10 @@ Object {
                 </div>
               </div>
               <div
-                class="sv_nav"
+                class="panel-footer card-footer"
               >
                 <input
-                  class=" sv_complete_btn"
+                  class=" btn sv_complete_btn"
                   style="margin-right: 5px;"
                   type="button"
                   value="Complete"
@@ -90,27 +90,27 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sv_main sv_default_css"
+      class="sv_main sv_bootstrap_css"
     >
       <form>
         <div
           class="sv_custom_header"
         />
         <div
-          class="sv_container"
+          class=""
         >
           <div
-            class="sv_body"
+            class="panel-body card-block mt-4"
             id="sp_100"
           >
             <div
-              class="sv_p_root"
+              class=""
             >
               <div
                 class="sv_row"
               >
                 <div
-                  class="sv_q sv_qstn"
+                  class="sv_qstn"
                   data-rendered="r"
                   id="sq_100"
                   style="width: 100.000000%;"
@@ -119,7 +119,7 @@ Object {
                     class=" undefined"
                   >
                     <h5
-                      class="sv_q_title"
+                      class=""
                       title="What is your name? *"
                     >
                       <span
@@ -145,7 +145,7 @@ Object {
                     <input
                       aria-label="What is your name? *"
                       aria-required="true"
-                      class="sv_q_text_root"
+                      class="form-control"
                       id="sq_100i"
                       placeholder=""
                       size="25"
@@ -157,10 +157,10 @@ Object {
               </div>
             </div>
             <div
-              class="sv_nav"
+              class="panel-footer card-footer"
             >
               <input
-                class=" sv_complete_btn"
+                class=" btn sv_complete_btn"
                 style="margin-right: 5px;"
                 type="button"
                 value="Complete"
