@@ -194,7 +194,7 @@ describe('Mutations', () => {
       }
 
       expect(error.message).toEqual(
-        'Variable "$input" got invalid value { benchmark: { productId: 1, benchmark: 1 } }; Field value.benchmark.eligibilityThreshold of required type Int! was not provided.'
+        'Variable "$input" got invalid value { productId: 1, benchmark: 1 } at "input.benchmark"; Field eligibilityThreshold of required type Int! was not provided.'
       );
     });
 
@@ -264,7 +264,7 @@ describe('Mutations', () => {
       }
 
       expect(error.message).toEqual(
-        'Variable "$input" got invalid value { productPatch: { description: "ABC", state: "archived" } }; Field value.rowId of required type Int! was not provided.'
+        'Variable "$input" got invalid value { productPatch: { description: "ABC", state: "archived" } }; Field rowId of required type Int! was not provided.'
       );
     });
 

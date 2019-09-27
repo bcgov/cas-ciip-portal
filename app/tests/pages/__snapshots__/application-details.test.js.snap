@@ -127,7 +127,9 @@ exports[`It matches the last accepted Snapshot 1`] = `
       />
       <hr />
       Array [
-        <Bootstrap(Jumbotron)>
+        <Jumbotron
+          fluid={false}
+        >
           <div
             className="jumbotron"
           >
@@ -164,7 +166,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
               </div>
             </ForwardRef>
           </div>
-        </Bootstrap(Jumbotron)>,
+        </Jumbotron>,
         <div
           className="incentive-breakdown"
         >

@@ -12,7 +12,8 @@
     "start": "NODE_ENV=production node server",
     "relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose",
     "format": "xo --fix",
-    "lint": "xo"
+    "lint": "xo",
+    "storybook": "start-storybook"
   },
   "xo": {
     "extends": [
@@ -81,8 +82,13 @@
     "graphql-cli/**/open": "^6.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@storybook/addon-a11y": "^5.2.1",
+    "@storybook/addons": "^5.2.1",
+    "@storybook/react": "^5.2.1",
     "@testing-library/react": "^9.1.2",
     "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
     "babel-plugin-relay": "^5.0.0",
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
@@ -98,11 +104,11 @@
     "graphql-cli": "^3.0.11",
     "graphql-query-test-mock": "^0.12.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.8.0",
+    "jest": "^24.9.0",
     "jest-canvas-mock": "^2.1.1",
     "nock": "^10.0.6",
     "node-fetch": "^2.6.0",
-    "relay-compiler": "^5.0.0",
+    "relay-compiler": "^6.0.0",
     "relay-test-utils": "^5.0.0",
     "xo": "^0.24.0"
   },
