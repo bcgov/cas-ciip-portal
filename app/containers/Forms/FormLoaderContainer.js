@@ -73,8 +73,6 @@ class FormLoaderContainer extends Component {
     const mutation = this.createApplicationStatus;
 
     commitMutation(environment, {
-      mutation,
-      variables,
       onCompleted: response => {
         console.log(response);
         console.log('Store Application Status Response received from server.');
