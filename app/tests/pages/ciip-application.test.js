@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import BaseForm from '../../pages/ciip-application';
 
 // It matches the last accepted Snapshot
@@ -20,7 +20,7 @@ it('It renders a welcome message', () => {
 // Todo: It renders a user name
 
 // Testing the CIIP Form
-// I think testing the form should be moved into a test of the container itself
+// TODO: I think testing the form should be moved into a test of the container itself
 
 // describe('Testing the CIIP form', () => {
 //   // It loads the <FormLoader>
