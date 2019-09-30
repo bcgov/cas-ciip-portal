@@ -9,36 +9,8 @@ import {
   Form,
   Table
 } from 'react-bootstrap';
-import initEnvironment from '../../lib/createRelayEnvironment';
+import withData from '../../lib/with-data';
 import ApplicationRowItem from '../../components/Applications/ApplicationRowItem';
-
-const environment = initEnvironment();
-
-const getApplications = graphql`
-  query ApplicationListSearchQuery(
-    $searchField: String
-    $searchValue: String
-    $orderByField: String
-    $direction: String
-  ) {
-    searchApplicationList(
-      searchField: $searchField
-      searchValue: $searchValue
-      orderByField: $orderByField
-      direction: $direction
-    ) {
-      nodes {
-        applicationId
-        facilityName
-        operatorName
-        applicationStatus
-        submissionDate
-        reportingYear
-        bcghgid
-      }
-    }
-  }
-`;
 
 class ApplicationList extends Component {
   state = {
@@ -88,38 +60,6 @@ class ApplicationList extends Component {
       this.setState({filterValue: event.target[0].value});
     }
   };
-
-  getApplicationData = async () => {
-    const applications = await fetchQuery(environment, getApplications, {
-      searchField: this.state.filterField,
-      searchValue: this.state.filterValue,
-      orderByField: this.state.orderByField,
-      direction: this.state.direction
-    });
-    const applicationList = [];
-
-    const filteredApplications = applications.searchApplicationList.nodes;
-    filteredApplications.forEach(application => {
-      applicationList.push(<ApplicationRowItem application={application} />);
-    });
-
-    this.setState({applicationList});
-  };
-
-  componentDidMount() {
-    this.getApplicationData();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      this.state.orderByField !== prevState.orderByField ||
-      this.state.direction !== prevState.direction ||
-      this.state.filterField !== prevState.filterField ||
-      this.state.filterValue !== prevState.filterValue
-    ) {
-      this.getApplicationData();
-    }
-  }
 
   render() {
     const applications = this.state.applicationList;
@@ -278,4 +218,31 @@ class ApplicationList extends Component {
   }
 }
 
-export default ApplicationList;
+export default withData(ApplicationList, {
+    query: graphql`
+      query ApplicationListQuery(
+        $searchField: String
+        $searchValue: String
+        $orderByField: String
+        $direction: String
+      ) {
+        searchApplicationList(
+          searchField: $searchField
+          searchValue: $searchValue
+          orderByField: $orderByField
+          direction: $direction
+        ) {
+          nodes {
+            applicationId
+            facilityName
+            operatorName
+            applicationStatus
+            submissionDate
+            reportingYear
+            bcghgid
+          }
+        }
+      }
+    `
+  }
+);

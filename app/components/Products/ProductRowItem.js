@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import propTypes from 'prop-types';
-import {graphql, commitMutation} from 'react-relay';
+import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
 import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
-import initEnvironment from '../../lib/createRelayEnvironment';
-
-const environment = initEnvironment();
 
 // TODO: create conflict logic & alerts:
 // Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
@@ -67,8 +64,8 @@ class ProductRowItem extends Component {
   // Get the product's current benchmark
   getCurrentBenchmark = () => {
     let currentBenchmark;
-    if (this.props.product.benchmarksByProductId.nodes[0]) {
-      this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
+    if (this.props.product.benchmarksByProductId.edges[0]) {
+      this.props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
         if (
           Date.parse(benchmark.startDate) < Date.now() &&
           (benchmark.endDate === null ||
@@ -247,7 +244,7 @@ class ProductRowItem extends Component {
     }
 
     const validBenchmarks = [];
-    this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
+    this.props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
       if (
         benchmark.endDate === null ||
         Date.parse(benchmark.endDate) > Date.parse(current_date)
@@ -325,8 +322,8 @@ class ProductRowItem extends Component {
     const {product} = this.props;
     // Get the current benchmark for the product
     let benchmarks;
-    if (this.props.product.benchmarksByProductId.nodes[0]) {
-      this.props.product.benchmarksByProductId.nodes.forEach(benchmark => {
+    if (this.props.product.benchmarksByProductId.edges[0]) {
+      this.props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
         if (
           Date.parse(benchmark.startDate) < Date.now() &&
           (benchmark.endDate === null ||
@@ -611,24 +608,30 @@ class ProductRowItem extends Component {
   }
 }
 
-// Proptype Validations
-ProductRowItem.propTypes = {
-  product: propTypes.shape({
-    id: propTypes.number,
-    rowId: propTypes.number,
-    name: propTypes.string,
-    description: propTypes.string,
-    state: propTypes.string,
-    parent: propTypes.array,
-    archived: propTypes.boolean,
-    createdAt: propTypes.date,
-    createdBy: propTypes.string,
-    updatedAt: propTypes.date,
-    updatedBy: propTypes.string,
-    benchmarksByProductId: propTypes.shape({
-      nodes: propTypes.array
-    })
-  })
-};
-
-export default ProductRowItem;
+export default createFragmentContainer(ProductRowItem, {
+  product: graphql`
+    fragment ProductRowItem_product on Product {
+      id
+      rowId
+      name
+      description
+      state
+      parent
+      createdAt
+      createdBy
+      benchmarksByProductId {
+        edges {
+          node {
+            rowId
+            benchmark
+            eligibilityThreshold
+            startDate
+            endDate
+            deletedAt
+            deletedBy
+          }
+        }
+      }
+    }
+  `
+});

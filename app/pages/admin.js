@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-<<<<<<< c124945ecf29134c02c925d5058c72750356840d
 import {Container, Row, Col, Jumbotron} from 'react-bootstrap';
 import Header from '../components/Header';
 import ProductCreator from '../components/Products/ProductCreator';
@@ -14,25 +13,19 @@ class Admin extends Component {
     this.setState({formData: {formId, formJson}});
     console.log('form-builder.js > formIdHandler state', this.state);
   };
-=======
-import {graphql} from 'react-relay';
-import ProductList from '../components/Products/ProductList';
 
-export default class Products extends Component {
   static query = graphql`
-    query productsQuery {
+    query adminQuery {
       query {
         ...ProductList_query
       }
     }
   `;
->>>>>>> wip: example use of singleton environment and fragments
 
   render() {
     const {query} = this.props;
     return (
       <>
-<<<<<<< c124945ecf29134c02c925d5058c72750356840d
         <Header />
         <Container>
           <Row>
@@ -47,19 +40,14 @@ export default class Products extends Component {
               <br />
               <br />
               <br />
-              <ProductList />
+              <ProductList query={query} />
             </Col>
           </Row>
         </Container>
-=======
-        <h1>Products</h1>
-        <ProductList query={query} />
->>>>>>> wip: example use of singleton environment and fragments
       </>
     );
   }
 }
-<<<<<<< c124945ecf29134c02c925d5058c72750356840d
 
 export default Admin;
 
@@ -84,5 +72,3 @@ BM and ET
 5: Update the components
 
  */
-=======
->>>>>>> wip: example use of singleton environment and fragments
