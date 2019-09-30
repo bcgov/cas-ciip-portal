@@ -17,19 +17,27 @@ class FormLoaderContainer extends Component {
   constructor(props) {
     super(props);
 
-    // Query: Gets form json along with products by their units
-    this.getFormData = graphql`
-      query FormLoaderContainerJSONWithProductsQuery($formIdInput: BigFloat) {
-        getFormJsonWithProducts(formIdInput: $formIdInput) {
+    this.getFormJson = graphql`
+      query FormLoaderContainerFormJsonQuery($condition: FormJsonCondition) {
+        allFormJsons(condition: $condition) {
           nodes {
-            klProducts
-            m3Products
-            tProducts
             formJson
           }
         }
       }
     `;
+
+    this.getProducts = graphql`
+      query FormLoaderContainerProductQuery {
+        allProducts {
+          nodes {
+            name
+            units
+          }
+        }
+      }
+    `;
+
     // Mutation: stores the result of the form
     this.createFormResult = graphql`
       mutation FormLoaderContainerMutation($input: CreateFormResultInput!) {
@@ -127,54 +135,49 @@ class FormLoaderContainer extends Component {
   editFormJson = data => {
     const parsedForm = JSON.parse(data.formJson);
 
-    // Merge product arrays to get all products (duplicate values with null units are possible, so create as a set to dedup)
-    const products = new Set([
-      ...data.klProducts,
-      ...data.m3Products,
-      ...data.tProducts
-    ]);
-
-    // Add quotes to beginning and end of each array item (for SurveyJs to read)
-    const m3 = data.m3Products.map(product => "'" + product + "'");
-    const kl = data.klProducts.map(product => "'" + product + "'");
-    const t = data.tProducts.map(product => "'" + product + "'");
-
     parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
 
     // Add choices into formJson for products and units (by product units)
-    parsedForm.pages[3].elements[0].templateElements[0].choices = products;
-    parsedForm.pages[3].elements[0].templateElements[2].choices = [
-      {
-        value: 'm3',
-        text: 'meters cube',
-        visibleIf: `[${m3}] contains {panel.processing_unit}`
-      },
-      {
-        value: 'kl',
-        text: 'kiloliters',
-        visibleIf: `[${kl}] contains {panel.processing_unit}`
-      },
-      {
-        value: 't',
-        text: 'tonnes',
-        visibleIf: `[${t}] contains {panel.processing_unit}`
+    parsedForm.pages[3].elements[0].templateElements[0].choices =
+      data.productList;
+
+    for (const key in data.unitObj) {
+      if (key !== 'null') {
+        parsedForm.pages[3].elements[0].templateElements[2].choices.push({
+          value: key,
+          text: key,
+          visibleIf: `[${data.unitObj[key]},${data.unitObj.null}] contains {panel.processing_unit}`
+        });
       }
-    ];
+    }
+
     return parsedForm;
   };
 
   // Creates the Survey from the form JSON
   createSurveyForm = async () => {
     if (this.props.formId) {
-      const formData = await fetchQuery(environment, this.getFormData, {
+      const formData = await fetchQuery(environment, this.getFormJson, {
         formIdInput: this.props.formId
       });
-      Survey.Survey.cssType = 'bootstrap';
-      const data = formData.getFormJsonWithProducts.nodes[0];
+      const products = await fetchQuery(environment, this.getProducts, {});
 
+      const unitObj = {};
+      const productList = [];
+
+      products.allProducts.nodes.forEach(product => {
+        if (unitObj[product.units] === undefined)
+          unitObj[product.units] = [`'${product.name}'`];
+        else unitObj[product.units].push(`'${product.name}'`);
+        productList.push(product.name);
+      });
+
+      const {formJson} = formData.allFormJsons.nodes[0];
+      const data = {formJson, unitObj, productList};
       const parsedForm = this.editFormJson(data);
 
       // Create survey model from updated formJson
+      Survey.Survey.cssType = 'bootstrap';
       const model = new Survey.Model(JSON.stringify(parsedForm));
       this.setState({
         formJson: (

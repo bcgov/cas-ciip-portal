@@ -1163,7 +1163,7 @@ type CreateApplicationStatusPayload {
   """An edge for our `ApplicationStatus`. May be used by Relay 1."""
   applicationStatusEdge(
     """The method to use when ordering `ApplicationStatus`."""
-    orderBy: [ApplicationStatusesOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationStatusesEdge
 }
 
@@ -1201,7 +1201,7 @@ type CreateBenchmarkPayload {
   """An edge for our `Benchmark`. May be used by Relay 1."""
   benchmarkEdge(
     """The method to use when ordering `Benchmark`."""
-    orderBy: [BenchmarksOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksEdge
 }
 
@@ -1236,7 +1236,7 @@ type CreateFormJsonPayload {
   """An edge for our `FormJson`. May be used by Relay 1."""
   formJsonEdge(
     """The method to use when ordering `FormJson`."""
-    orderBy: [FormJsonsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [FormJsonsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormJsonsEdge
 }
 
@@ -1271,7 +1271,7 @@ type CreateFormResultPayload {
   """An edge for our `FormResult`. May be used by Relay 1."""
   formResultEdge(
     """The method to use when ordering `FormResult`."""
-    orderBy: [FormResultsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormResultsEdge
 }
 
@@ -1306,7 +1306,7 @@ type CreateProductPayload {
   """An edge for our `Product`. May be used by Relay 1."""
   productEdge(
     """The method to use when ordering `Product`."""
-    orderBy: [ProductsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsEdge
 }
 
@@ -1341,7 +1341,7 @@ type CreateUserPayload {
   """An edge for our `User`. May be used by Relay 1."""
   userEdge(
     """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): UsersEdge
 }
 
@@ -1408,7 +1408,7 @@ type DeleteApplicationStatusPayload {
   """An edge for our `ApplicationStatus`. May be used by Relay 1."""
   applicationStatusEdge(
     """The method to use when ordering `ApplicationStatus`."""
-    orderBy: [ApplicationStatusesOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationStatusesEdge
 }
 
@@ -1461,7 +1461,7 @@ type DeleteBenchmarkPayload {
   """An edge for our `Benchmark`. May be used by Relay 1."""
   benchmarkEdge(
     """The method to use when ordering `Benchmark`."""
-    orderBy: [BenchmarksOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksEdge
 }
 
@@ -1511,7 +1511,7 @@ type DeleteFormJsonPayload {
   """An edge for our `FormJson`. May be used by Relay 1."""
   formJsonEdge(
     """The method to use when ordering `FormJson`."""
-    orderBy: [FormJsonsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [FormJsonsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormJsonsEdge
 }
 
@@ -1561,7 +1561,7 @@ type DeleteFormResultPayload {
   """An edge for our `FormResult`. May be used by Relay 1."""
   formResultEdge(
     """The method to use when ordering `FormResult`."""
-    orderBy: [FormResultsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormResultsEdge
 }
 
@@ -1611,7 +1611,7 @@ type DeleteProductPayload {
   """An edge for our `Product`. May be used by Relay 1."""
   productEdge(
     """The method to use when ordering `Product`."""
-    orderBy: [ProductsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsEdge
 }
 
@@ -1661,7 +1661,7 @@ type DeleteUserPayload {
   """An edge for our `User`. May be used by Relay 1."""
   userEdge(
     """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): UsersEdge
 }
 
@@ -3312,7 +3312,7 @@ type UpdateApplicationStatusPayload {
   """An edge for our `ApplicationStatus`. May be used by Relay 1."""
   applicationStatusEdge(
     """The method to use when ordering `ApplicationStatus`."""
-    orderBy: [ApplicationStatusesOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationStatusesEdge
 }
 
@@ -3374,7 +3374,7 @@ type UpdateBenchmarkPayload {
   """An edge for our `Benchmark`. May be used by Relay 1."""
   benchmarkEdge(
     """The method to use when ordering `Benchmark`."""
-    orderBy: [BenchmarksOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksEdge
 }
 
@@ -3433,7 +3433,7 @@ type UpdateFormJsonPayload {
   """An edge for our `FormJson`. May be used by Relay 1."""
   formJsonEdge(
     """The method to use when ordering `FormJson`."""
-    orderBy: [FormJsonsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [FormJsonsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormJsonsEdge
 }
 
@@ -3492,7 +3492,7 @@ type UpdateFormResultPayload {
   """An edge for our `FormResult`. May be used by Relay 1."""
   formResultEdge(
     """The method to use when ordering `FormResult`."""
-    orderBy: [FormResultsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormResultsEdge
 }
 
@@ -3551,7 +3551,7 @@ type UpdateProductPayload {
   """An edge for our `Product`. May be used by Relay 1."""
   productEdge(
     """The method to use when ordering `Product`."""
-    orderBy: [ProductsOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsEdge
 }
 
@@ -3610,7 +3610,7 @@ type UpdateUserPayload {
   """An edge for our `User`. May be used by Relay 1."""
   userEdge(
     """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = PRIMARY_KEY_ASC
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): UsersEdge
 }
 

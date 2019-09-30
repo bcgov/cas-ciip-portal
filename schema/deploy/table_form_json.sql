@@ -561,7 +561,8 @@ insert into ggircs_portal.form_json
       {
        "type": "dropdown",
        "name": "processing_unit",
-       "title": "Processing Unit Module"
+       "title": "Processing Unit Module",
+       "choices": []
       },
       {
        "type": "text",
@@ -573,7 +574,8 @@ insert into ggircs_portal.form_json
        "type": "dropdown",
        "name": "units",
        "startWithNewLine": false,
-       "title": "Units"
+       "title": "Units",
+       "choices": []
       },
       {
        "type": "text",
