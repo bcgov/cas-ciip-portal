@@ -1,11 +1,21 @@
 import React, {Component} from 'react';
+import {graphql} from 'react-relay';
 import {Col, Container, Row, Image, ButtonToolbar} from 'react-bootstrap';
 import Header from '../components/Header';
 
-class Index extends Component {
+export default class Index extends Component {
   static displayName = 'Index';
 
+  // convention is to prefix foldername_index when the file is named index
+  // @see https://github.com/facebook/relay/issues/1742
+  static query = graphql`
+    query pages_indexQuery {
+      id
+    }
+  `;
+
   render() {
+    const {id} = this.props;
     return (
       <>
         <Header />
@@ -53,5 +63,3 @@ class Index extends Component {
     );
   }
 }
-
-export default Index;

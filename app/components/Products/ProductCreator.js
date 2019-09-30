@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-import {graphql, commitMutation} from 'react-relay';
+import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
 import {Form, Button, Col} from 'react-bootstrap';
-import initEnvironment from '../../lib/createRelayEnvironment';
-
-const environment = initEnvironment();
 
 class ProductCreator extends Component {
   constructor(props) {
@@ -38,16 +35,17 @@ class ProductCreator extends Component {
     };
 
     const saveMutation = this.createProduct;
+    const {environment} = this.props.relay;
     commitMutation(environment, {
       mutation: saveMutation,
       variables: saveVariables,
       onCompleted: response => {
         console.log(response);
         this.createProductFromRef.current.reset();
+        window.location.reload();
       },
       onError: err => console.error(err)
     });
-    window.location.reload();
   };
 
   render() {
@@ -77,4 +75,4 @@ class ProductCreator extends Component {
   }
 }
 
-export default ProductCreator;
+export default createFragmentContainer(ProductCreator, {});

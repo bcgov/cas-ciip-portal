@@ -1,61 +1,33 @@
 import React, {Component} from 'react';
-import {graphql, QueryRenderer} from 'react-relay';
-import initEnvironment from '../../lib/createRelayEnvironment';
+import {graphql, createFragmentContainer} from 'react-relay';
 import ProductRowItem from './ProductRowItem';
 
-const environment = initEnvironment();
-
 class ProductList extends Component {
-  listProducts = ({error, props}) => {
-    console.log('ProductList.js > listProducts()', props, error);
-    const productList = [];
-    const archivedList = [];
-    if (props) {
-      const allProducts = props.allProducts.nodes;
-      allProducts.forEach(product => {
-        if (product.state === 'archived') {
-          archivedList.push(<ProductRowItem product={product} />);
-        } else if (product.state !== 'deprecated') {
-          productList.push(<ProductRowItem product={product} />);
-        }
-      });
-    }
-
-    return productList.concat(archivedList);
-  };
-
   render() {
-    return (
-      <QueryRenderer
-        environment={environment}
-        query={graphql`
-          query ProductListQuery {
-            allProducts {
-              nodes {
-                rowId
-                name
-                description
-                state
-                parent
-                benchmarksByProductId {
-                  nodes {
-                    rowId
-                    benchmark
-                    eligibilityThreshold
-                    startDate
-                    endDate
-                    deletedAt
-                    deletedBy
-                  }
-                }
-              }
-            }
-          }
-        `}
-        render={this.listProducts}
-      />
-    );
+    const {query} = this.props;
+    const {allProducts} = query || {};
+    const {edges} = allProducts || {};
+    if (!edges) return null;
+    const archivedList = edges.filter(({node}) => (node.state === 'archived'));
+    const productList = edges.filter(({node}) => (node.state !== 'deprecated' && node.state !== 'archived'));
+    const products = [...productList, ...archivedList]
+    console.log(products);
+    if (!products.length) return null;
+    return products.map(({node}) => (<ProductRowItem product={node}/>));
   }
 }
 
-export default ProductList;
+export default createFragmentContainer(ProductList, {
+  query: graphql`
+    fragment ProductList_query on Query {
+      allProducts {
+        edges {
+          node {
+            state
+            ...ProductRowItem_product
+          }
+        }
+      }
+    }
+  `
+});

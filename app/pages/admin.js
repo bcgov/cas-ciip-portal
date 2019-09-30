@@ -14,7 +14,16 @@ class Admin extends Component {
     console.log('form-builder.js > formIdHandler state', this.state);
   };
 
+  static query = graphql`
+    query adminQuery {
+      query {
+        ...ProductList_query
+      }
+    }
+  `;
+
   render() {
+    const {query} = this.props;
     return (
       <>
         <Header />
@@ -31,7 +40,7 @@ class Admin extends Component {
               <br />
               <br />
               <br />
-              <ProductList />
+              <ProductList query={query} />
             </Col>
           </Row>
         </Container>

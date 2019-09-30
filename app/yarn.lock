@@ -2196,6 +2196,11 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/relay-runtime@^5.0.3":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-5.0.5.tgz#62fb80d4925a707583e535f6d0afdf0762467adb"
+  integrity sha512-ZfhRGH8kYnMUeV3NBSYsy99hvJ/GiWAZ4Kc7KG7SuKXdYAHNuHV69TJnHmnmuh54EZytu3NplYDwccerghykpQ==
+
 "@types/serve-static@*":
   version "1.13.3"
   resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.13.3.tgz#eb7e1c41c4468272557e897e9171ded5e2ded9d1"
@@ -5382,13 +5387,6 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-end-of-stream@^1.1.0:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.4.tgz#5ae64a5f45057baf3626ec14da0ca5e4b2431eb0"
-  integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
-  dependencies:
-    once "^1.4.0"
-
 enhance-visitors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/enhance-visitors/-/enhance-visitors-1.0.0.tgz#aa945d05da465672a1ebd38fee2ed3da8518e95a"
@@ -5940,11 +5938,6 @@ estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1, estraverse@^4.2.0:
   integrity sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==
 
 esutils@^2.0.0, esutils@^2.0.2:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.3.tgz#74d2eb4de0b8da1293711910d50775b9b710ef64"
-  integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
-
-esutils@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.3.tgz#74d2eb4de0b8da1293711910d50775b9b710ef64"
   integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
@@ -11757,7 +11750,19 @@ react-redux@^7.0.2:
     prop-types "^15.7.2"
     react-is "^16.9.0"
 
-react-relay@^5.0.0:
+react-relay-network-modern-ssr@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/react-relay-network-modern-ssr/-/react-relay-network-modern-ssr-1.2.4.tgz#3d55ee9e9ed7ed07a2c7c56fc274eba3114777e1"
+  integrity sha512-WG7QunjWP1zv7hp+sOwpeAtqCt5mukxdtqvoFAoK9BOjAwlovBLVwX4fj3q859VEN6HM4e2GLRhkkfrsOwM6jQ==
+
+react-relay-network-modern@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-relay-network-modern/-/react-relay-network-modern-4.1.0.tgz#d87c7bf1af9dfa2c512de138d8577246d6e7a2c1"
+  integrity sha512-Q01Ag8laLUx9DchLSm3KpEwsqLf5wF8nBij6EHzwzTSyk6JMIZyZ7vHqwcKXOgy7LejHokUtRddquWr48O1/Qg==
+  optionalDependencies:
+    "@types/relay-runtime" "^5.0.3"
+
+react-relay@5.x:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-5.0.0.tgz#66af68e8e5fad05879a3f21f895a0296ef2741a8"
   integrity sha512-gpUvedaCaPVPT0nMrTbev2TzrU0atgq2j/zAnGHiR9WgqRXwtHsK6FWFN65HRbopO2DzuJx9VZ2I3VO6uL5EMA==
