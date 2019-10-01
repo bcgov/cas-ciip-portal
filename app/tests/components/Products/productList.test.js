@@ -17,6 +17,7 @@ describe('Product List', () => {
             name: 'Milk',
             description: 'Sustenance for baby cows',
             state: 'active',
+            parent: [],
             benchmarksByProductId: {
               nodes: [
                 {
@@ -24,8 +25,10 @@ describe('Product List', () => {
                   id: 'WyJiZW5jaG1hcmtzIiw4XQ==',
                   benchmark: 10,
                   eligibilityThreshold: 20,
-                  start_date: '1999',
-                  end_date: '1999'
+                  startDate: '1999',
+                  endDate: '1999',
+                  deletedAt: '',
+                  deletedBy: ''
                 }
               ]
             }
@@ -44,8 +47,10 @@ describe('Product List', () => {
                   id: 'WyJiZW5jaG1hcmtzIiw4XQ==',
                   benchmark: 20,
                   eligibilityThreshold: 40,
-                  start_date: '1999',
-                  end_date: '1999'
+                  startDate: '1999',
+                  endDate: '1999',
+                  deletedAt: '',
+                  deletedBy: ''
                 }
               ]
             }

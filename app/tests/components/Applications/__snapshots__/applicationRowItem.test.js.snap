@@ -5,71 +5,79 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <tr>
-        <td>
-          9
-        </td>
-        <td>
-          operator1
-        </td>
-        <td>
-          facility1
-        </td>
-        <td>
-          Sun, 17 Dec 1995 03:24:00 GMT
-        </td>
-        <td>
-          <span
-            class="badge badge-pill badge-info"
-            style="width: 100%;"
-          >
-            pending
-          </span>
-        </td>
-        <td>
-          <a
-            class="btn btn-primary"
-            href="/application-details?application_id=9&reportingyear=undefined&bcghgid=undefined"
-            target="_blank"
-          >
-            View Application
-          </a>
-        </td>
-      </tr>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              9
+            </td>
+            <td>
+              operator1
+            </td>
+            <td>
+              facility1
+            </td>
+            <td>
+              Sun, 17 Dec 1995 03:24:00 GMT
+            </td>
+            <td>
+              <span
+                class="badge badge-pill badge-info"
+                style="width: 100%;"
+              >
+                pending
+              </span>
+            </td>
+            <td>
+              <a
+                class="btn btn-primary"
+                href="/application-details?application_id=9&reportingyear=undefined&bcghgid=undefined"
+                target="_blank"
+              >
+                View Application
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>,
   "container": <div>
-    <tr>
-      <td>
-        9
-      </td>
-      <td>
-        operator1
-      </td>
-      <td>
-        facility1
-      </td>
-      <td>
-        Sun, 17 Dec 1995 03:24:00 GMT
-      </td>
-      <td>
-        <span
-          class="badge badge-pill badge-info"
-          style="width: 100%;"
-        >
-          pending
-        </span>
-      </td>
-      <td>
-        <a
-          class="btn btn-primary"
-          href="/application-details?application_id=9&reportingyear=undefined&bcghgid=undefined"
-          target="_blank"
-        >
-          View Application
-        </a>
-      </td>
-    </tr>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            9
+          </td>
+          <td>
+            operator1
+          </td>
+          <td>
+            facility1
+          </td>
+          <td>
+            Sun, 17 Dec 1995 03:24:00 GMT
+          </td>
+          <td>
+            <span
+              class="badge badge-pill badge-info"
+              style="width: 100%;"
+            >
+              pending
+            </span>
+          </td>
+          <td>
+            <a
+              class="btn btn-primary"
+              href="/application-details?application_id=9&reportingyear=undefined&bcghgid=undefined"
+              target="_blank"
+            >
+              View Application
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

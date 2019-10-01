@@ -170,7 +170,7 @@ Object {
             <td>
               <a
                 class="btn btn-primary"
-                href="/application-details?application_id=1&reportingyear=null&bcghgid=null"
+                href="/application-details?application_id=1&reportingyear=2018&bcghgid=1"
                 target="_blank"
               >
                 View Application
@@ -201,7 +201,7 @@ Object {
             <td>
               <a
                 class="btn btn-primary"
-                href="/application-details?application_id=2&reportingyear=null&bcghgid=null"
+                href="/application-details?application_id=2&reportingyear=2018&bcghgid=1"
                 target="_blank"
               >
                 View Application
@@ -378,7 +378,7 @@ Object {
           <td>
             <a
               class="btn btn-primary"
-              href="/application-details?application_id=1&reportingyear=null&bcghgid=null"
+              href="/application-details?application_id=1&reportingyear=2018&bcghgid=1"
               target="_blank"
             >
               View Application
@@ -409,7 +409,7 @@ Object {
           <td>
             <a
               class="btn btn-primary"
-              href="/application-details?application_id=2&reportingyear=null&bcghgid=null"
+              href="/application-details?application_id=2&reportingyear=2018&bcghgid=1"
               target="_blank"
             >
               View Application

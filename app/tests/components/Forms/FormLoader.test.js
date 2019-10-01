@@ -1,45 +1,26 @@
 import React from 'react';
 import {wait, render} from '@testing-library/react';
-import {queryMock} from '../../../lib/relayQueryMock';
+import * as Survey from 'survey-react';
 import FormLoader from '../../../components/Forms/FormLoader';
 
-let mockAppQueryData;
-
 describe('Form Loader', () => {
+  let survey;
   beforeEach(() => {
-    // Make sure mock data is always fresh for each test run
-    mockAppQueryData = {
-      formJsonByRowId: {
-        id: 'WyJmb3JtX2pzb25zIiwxXQ==',
-        name: 'Test form 1',
-        formJson:
-          '{"elements":[{"name":"customerName","type":"text","title":"What is your name?","isRequired":true}]}'
-      }
-    };
+    const model = new Survey.Model(
+      '{"elements":[{"name":"customerName","type":"text","title":"What is your name?","isRequired":true}]}'
+    );
+    survey = <Survey.Survey model={model} onComplete={jest.fn()} />;
+    Survey.Survey.cssType = 'bootstrap';
   });
 
   it('should render the form', async () => {
-    queryMock.mockQuery({
-      name: 'FormLoaderQuery',
-      variables: {
-        rowId: '1'
-      },
-      data: mockAppQueryData
-    });
-    const r = render(<FormLoader formId="1" />);
+    const r = render(<FormLoader formJson={survey} />);
     await wait(() => r.getAllByText(/What/i));
     expect(r).toMatchSnapshot();
   });
 
   it('should render the complete button', async () => {
-    queryMock.mockQuery({
-      name: 'FormLoaderQuery',
-      variables: {
-        rowId: '1'
-      },
-      data: mockAppQueryData
-    });
-    const r = render(<FormLoader formId="1" />);
+    const r = render(<FormLoader formJson={survey} />);
     await wait(() => r.getAllByText(/Complete/i));
     expect(r.getAllByText(/Complete/i)).toBeDefined();
   });

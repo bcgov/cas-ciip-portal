@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import propTypes from 'prop-types';
 import * as SurveyJSCreator from 'survey-creator';
 import 'survey-creator/survey-creator.css';
 import {graphql, commitMutation} from 'react-relay';
@@ -7,6 +8,13 @@ import initEnvironment from '../../lib/createRelayEnvironment';
 const environment = initEnvironment();
 
 class FormCreator extends Component {
+  static propTypes = {
+    formData: propTypes.shape({
+      formId: propTypes.number,
+      formJson: propTypes.object
+    }).isRequired
+  };
+
   constructor(props) {
     super(props);
     this.createFormJson = graphql`
@@ -58,7 +66,7 @@ class FormCreator extends Component {
     );
   }
 
-  saveMySurvey = (field, field_value) => {
+  saveMySurvey = () => {
     const formJson = JSON.parse(this.surveyCreator.text);
     const saveVariables = {
       input: {
@@ -84,13 +92,13 @@ class FormCreator extends Component {
     commitMutation(environment, {
       mutation: this.props.formData.formId ? updateMutation : saveMutation,
       variables: this.props.formData.formId ? updateVariables : saveVariables,
-      onCompleted: (response, errors) => {
+      onCompleted: response => {
         console.log(
           this.props.formData.formId
             ? `Form Saved at id ${this.props.formData.formId}`
             : 'Form Created'
         );
-        console.log('Form Saved');
+        console.log('Form Saved', response);
       },
       onError: err => console.error(err)
     });

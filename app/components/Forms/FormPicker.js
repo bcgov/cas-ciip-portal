@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
 import {graphql, QueryRenderer} from 'react-relay';
-import {Button, Row, Col, DropdownButton, Dropdown} from 'react-bootstrap';
+import {DropdownButton, Dropdown} from 'react-bootstrap';
 import initEnvironment from '../../lib/createRelayEnvironment';
 
 const environment = initEnvironment();
 
 class FormPicker extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   formSelectHandler = (formId, formJson) => {
     console.log('FormPicker.js > formSelectHandler', formId, formJson);
     formId && this.props.handleFormId(formId, formJson);
@@ -36,7 +32,7 @@ class FormPicker extends Component {
       allForms.forEach(form => {
         formNodes.push(this.formSelectButton(form));
       });
-    }
+    } else if (error) console.error(error);
 
     return (
       <div>

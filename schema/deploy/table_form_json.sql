@@ -30,7 +30,7 @@ insert into ggircs_portal.form_json
   values (
     1,
     'CIIP Application (master)',
-    concat('
+    '
 {
  "title": "CIIP Application (master)",
  "pages": [
@@ -562,7 +562,7 @@ insert into ggircs_portal.form_json
        "type": "dropdown",
        "name": "processing_unit",
        "title": "Processing Unit Module",
-       "choices": [', (select string_agg(distinct format('"%s"',name), ',') from ggircs_portal.product), ']
+       "choices": []
       },
       {
        "type": "text",
@@ -575,23 +575,7 @@ insert into ggircs_portal.form_json
        "name": "units",
        "startWithNewLine": false,
        "title": "Units",
-       "choices": [
-        {
-         "value": "m3",
-         "text": "meters cube",
-         "visibleIf":"', (select trim(trailing ' or' from (select string_agg(distinct format('{module_throughput_and_production_data[0].processing_unit} = \"%s\" or',name), ' ') from ggircs_portal.product where product.units='m3' or product.units is null))), '"
-        },
-        {
-         "value": "kl",
-         "text": "kiloliters",
-         "visibleIf":"', (select trim(trailing ' or' from (select string_agg(distinct format('{module_throughput_and_production_data[0].processing_unit} = \"%s\" or',name), ' ') from ggircs_portal.product where product.units='kl' or product.units is null))), '"
-        },
-        {
-         "value": "t",
-         "text": "tonnes",
-         "visibleIf":"', (select trim(trailing ' or' from (select string_agg(distinct format('{module_throughput_and_production_data[0].processing_unit} = \"%s\" or',name), ' ') from ggircs_portal.product where product.units='t' or product.units is null))), '"
-        }
-       ]
+       "choices": []
       },
       {
        "type": "text",
@@ -778,7 +762,7 @@ insert into ggircs_portal.form_json
  ],
  "showQuestionNumbers": "off"
 }
-    ')::jsonb
+    '::jsonb
 );
 
 COMMIT;

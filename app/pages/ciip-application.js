@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Jumbotron, ButtonToolbar} from 'react-bootstrap';
 import Header from '../components/Header';
-import FormLoader from '../components/Forms/FormLoader';
+import FormLoaderContainer from '../containers/Forms/FormLoaderContainer';
 import FormPicker from '../components/Forms/FormPicker';
 
 class BaseForm extends Component {
@@ -32,7 +32,7 @@ class BaseForm extends Component {
               <FormPicker handleFormId={this.formIdHandler} />
             </ButtonToolbar>
           </Jumbotron>
-          <FormLoader formId={this.state.formId} />
+          <FormLoaderContainer formId={this.state.formId} />
         </Container>
         <br />
         <br />

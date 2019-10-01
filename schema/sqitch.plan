@@ -22,6 +22,4 @@ materialized_view_estimated_carbon_tax_paid 2019-08-29T21:37:02Z Hamza Javed <ha
 function_get_carbon_tax_by_organisation 2019-08-29T22:14:28Z Hamza Javed <hamza@button.is> # Get carbon tax paid by organisation and reporting year
 function_get_products_by_bcghgid 2019-08-30T18:49:23Z Hamza Javed <hamza@button.is> # Get production data by bcghgid
 function_search_application_list [view_ciip_application] 2019-09-03T20:40:05Z Dylan Leard <dylan@button.is> # add function for searching the list of applications
-function_update_form_json_product_list [table_form_json] 2019-09-11T17:45:39Z Dylan Leard <dylan@button.is> # function updates the list of products for the product dropdown. Used in trigger of the same name
-trigger_update_form_json_product_list [function_update_form_json_product_list] 2019-09-11T17:46:40Z Dylan Leard <dylan@button.is> # trigger on table form_json. Updates on changes to product table
 function_insert_dummy_application_data [table_product table_benchmark table_form_result table_application_status] 2019-09-19T23:42:58Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # function inserts dummy data into product, benchmark, form_result and application_status

@@ -6,99 +6,6 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="jsx-1170957465"
-        id="surveyContainer"
-      >
-        <div
-          class="sv_main sv_bootstrap_css"
-        >
-          <form>
-            <div
-              class="sv_custom_header"
-            />
-            <div
-              class=""
-            >
-              <div
-                class="panel-body card-block mt-4"
-                id="sp_100"
-              >
-                <div
-                  class=""
-                >
-                  <div
-                    class="sv_row"
-                  >
-                    <div
-                      class="sv_qstn"
-                      data-rendered="r"
-                      id="sq_100"
-                      style="width: 100.000000%;"
-                    >
-                      <div
-                        class=" undefined"
-                      >
-                        <h5
-                          class=""
-                          title="What is your name? *"
-                        >
-                          <span
-                            class="sv_q_num"
-                            style="position: static;"
-                          >
-                            1
-                          </span>
-                          <span
-                            class="sv_q_num"
-                          >
-                            .
-                             
-                          </span>
-                          <span>
-                            What is your name? *
-                          </span>
-                        </h5>
-                      </div>
-                      <div
-                        class=""
-                      >
-                        <input
-                          aria-label="What is your name? *"
-                          aria-required="true"
-                          class="form-control"
-                          id="sq_100i"
-                          placeholder=""
-                          size="25"
-                          type="text"
-                          value=""
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="panel-footer card-footer"
-                >
-                  <input
-                    class=" btn sv_complete_btn"
-                    style="margin-right: 5px;"
-                    type="button"
-                    value="Complete"
-                  />
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="jsx-1170957465"
-      id="surveyContainer"
-    >
-      <div
         class="sv_main sv_bootstrap_css"
       >
         <form>
@@ -179,6 +86,89 @@ Object {
           </div>
         </form>
       </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="sv_main sv_bootstrap_css"
+    >
+      <form>
+        <div
+          class="sv_custom_header"
+        />
+        <div
+          class=""
+        >
+          <div
+            class="panel-body card-block mt-4"
+            id="sp_100"
+          >
+            <div
+              class=""
+            >
+              <div
+                class="sv_row"
+              >
+                <div
+                  class="sv_qstn"
+                  data-rendered="r"
+                  id="sq_100"
+                  style="width: 100.000000%;"
+                >
+                  <div
+                    class=" undefined"
+                  >
+                    <h5
+                      class=""
+                      title="What is your name? *"
+                    >
+                      <span
+                        class="sv_q_num"
+                        style="position: static;"
+                      >
+                        1
+                      </span>
+                      <span
+                        class="sv_q_num"
+                      >
+                        .
+                         
+                      </span>
+                      <span>
+                        What is your name? *
+                      </span>
+                    </h5>
+                  </div>
+                  <div
+                    class=""
+                  >
+                    <input
+                      aria-label="What is your name? *"
+                      aria-required="true"
+                      class="form-control"
+                      id="sq_100i"
+                      placeholder=""
+                      size="25"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="panel-footer card-footer"
+            >
+              <input
+                class=" btn sv_complete_btn"
+                style="margin-right: 5px;"
+                type="button"
+                value="Complete"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>,
   "debug": [Function],

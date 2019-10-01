@@ -121,14 +121,14 @@ describe('Incentive Calculator', () => {
 
     queryMock.mockQuery({
       name: 'IncentiveCalculatorProductsByBcghgidQuery',
-      variables: {bcghgidInput: null},
+      variables: {bcghgidInput: 1},
       data: reportedProductsMockData
     });
 
     queryMock.mockQuery({
       name: 'IncentiveCalculatorCarbonTaxByBcghgidQuery',
       data: carbonTaxMockData,
-      variables: {bcghgidInput: null, reportingYear: null}
+      variables: {bcghgidInput: 1, reportingYear: '2013'}
     });
   };
 
@@ -137,7 +137,7 @@ describe('Incentive Calculator', () => {
   it('should render reported products', async () => {
     mockQueries();
     // This will replace the query in ProductList with the one above and wait till Milk is rendered
-    const r = render(<IncentiveCalculator />);
+    const r = render(<IncentiveCalculator bcghgid="1" reportingYear="2013" />);
     await wait(() => r.getAllByText('Milk'));
     expect(r).toMatchSnapshot();
   });

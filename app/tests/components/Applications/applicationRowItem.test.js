@@ -12,7 +12,13 @@ const application = {
 
 describe('Application Row Item', () => {
   it('should render the application', async () => {
-    const r = render(<ApplicationRowItem application={application} />);
+    const r = render(
+      <table>
+        <tbody>
+          <ApplicationRowItem application={application} />
+        </tbody>
+      </table>
+    );
     await wait(() => r.getAllByText('facility1'));
     expect(r).toMatchSnapshot();
   });
