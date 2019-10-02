@@ -1,0 +1,380 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserDetails rendered correctly 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          class="jumbotron"
+        >
+          <h1
+            class="msg"
+          >
+            Welcome to CIIP 
+            Hamza
+             
+            Javed
+            !
+          </h1>
+          <a
+            class="btn btn-primary"
+            href="#"
+            role="button"
+          >
+            Get Started
+          </a>
+        </div>
+        <div
+          class="carousel slide"
+          style="margin-bottom: 25px;"
+        >
+          <ol
+            class="carousel-indicators"
+          >
+            <li
+              class="active"
+            />
+             
+            <li />
+             
+            <li />
+             
+          </ol>
+          <div
+            class="carousel-inner"
+          >
+            <div
+              class="carousel-item active carousel-item"
+            >
+              <img
+                alt="First slide"
+                class="d-block w-100 rounded"
+                src="../../static/Hero-Shot-with-Family-1200x628.jpg"
+              />
+            </div>
+            <div
+              class="carousel-item carousel-item"
+            >
+              <img
+                alt="Second slide"
+                class="d-block w-100 rounded"
+                src="../../static/CleanBC_WebsitePosts_Facts-Mobile-06-2.jpg"
+              />
+            </div>
+            <div
+              class="carousel-item carousel-item"
+            >
+              <img
+                alt="Third slide"
+                class="d-block w-100 rounded"
+                src="../../static/CleanBC-Reductions-2030-Target.jpg"
+              />
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#"
+            role="button"
+          >
+            <span
+              aria-hidden="true"
+              class="carousel-control-prev-icon"
+            />
+            <span
+              class="sr-only"
+            >
+              Previous
+            </span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#"
+            role="button"
+          >
+            <span
+              aria-hidden="true"
+              class="carousel-control-next-icon"
+            />
+            <span
+              class="sr-only"
+            >
+              Next
+            </span>
+          </a>
+        </div>
+        <h2>
+          User Profile
+        </h2>
+        <button
+          class="btn btn-primary"
+          data-testid="button-edit"
+          style="width: 75px;"
+          type="button"
+        >
+          Edit
+        </button>
+        <p />
+        <div />
+        <table
+          class="table table-striped table-bordered table-hover"
+          style="margin-top: 30px; margin-bottom: 50px;"
+        >
+          <tbody>
+            <tr>
+              <th>
+                First Name
+              </th>
+              <td>
+                Hamza
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Last Name
+              </th>
+              <td>
+                Javed
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Occupation
+              </th>
+              <td>
+                frontend developer
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Phone Number
+              </th>
+              <td>
+                6042999395
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Email
+              </th>
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        class="jumbotron"
+      >
+        <h1
+          class="msg"
+        >
+          Welcome to CIIP 
+          Hamza
+           
+          Javed
+          !
+        </h1>
+        <a
+          class="btn btn-primary"
+          href="#"
+          role="button"
+        >
+          Get Started
+        </a>
+      </div>
+      <div
+        class="carousel slide"
+        style="margin-bottom: 25px;"
+      >
+        <ol
+          class="carousel-indicators"
+        >
+          <li
+            class="active"
+          />
+           
+          <li />
+           
+          <li />
+           
+        </ol>
+        <div
+          class="carousel-inner"
+        >
+          <div
+            class="carousel-item active carousel-item"
+          >
+            <img
+              alt="First slide"
+              class="d-block w-100 rounded"
+              src="../../static/Hero-Shot-with-Family-1200x628.jpg"
+            />
+          </div>
+          <div
+            class="carousel-item carousel-item"
+          >
+            <img
+              alt="Second slide"
+              class="d-block w-100 rounded"
+              src="../../static/CleanBC_WebsitePosts_Facts-Mobile-06-2.jpg"
+            />
+          </div>
+          <div
+            class="carousel-item carousel-item"
+          >
+            <img
+              alt="Third slide"
+              class="d-block w-100 rounded"
+              src="../../static/CleanBC-Reductions-2030-Target.jpg"
+            />
+          </div>
+        </div>
+        <a
+          class="carousel-control-prev"
+          href="#"
+          role="button"
+        >
+          <span
+            aria-hidden="true"
+            class="carousel-control-prev-icon"
+          />
+          <span
+            class="sr-only"
+          >
+            Previous
+          </span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#"
+          role="button"
+        >
+          <span
+            aria-hidden="true"
+            class="carousel-control-next-icon"
+          />
+          <span
+            class="sr-only"
+          >
+            Next
+          </span>
+        </a>
+      </div>
+      <h2>
+        User Profile
+      </h2>
+      <button
+        class="btn btn-primary"
+        data-testid="button-edit"
+        style="width: 75px;"
+        type="button"
+      >
+        Edit
+      </button>
+      <p />
+      <div />
+      <table
+        class="table table-striped table-bordered table-hover"
+        style="margin-top: 30px; margin-bottom: 50px;"
+      >
+        <tbody>
+          <tr>
+            <th>
+              First Name
+            </th>
+            <td>
+              Hamza
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Last Name
+            </th>
+            <td>
+              Javed
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Occupation
+            </th>
+            <td>
+              frontend developer
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Phone Number
+            </th>
+            <td>
+              6042999395
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Email
+            </th>
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

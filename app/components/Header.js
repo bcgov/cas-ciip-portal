@@ -36,6 +36,13 @@ const Header = () => {
               <ButtonToolbar>
                 <a
                   style={{marginLeft: '20px'}}
+                  href="/welcome"
+                  className="btn btn-primary"
+                >
+                  Welcome
+                </a>
+                <a
+                  style={{marginLeft: '20px'}}
                   href="/ciip-application"
                   className="btn btn-primary"
                 >
