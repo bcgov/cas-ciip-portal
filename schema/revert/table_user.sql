@@ -2,6 +2,6 @@
 
 BEGIN;
 
-drop table  ggircs_portal.user;
+drop table  ggircs_portal.user cascade;
 
 COMMIT;
