@@ -5,7 +5,7 @@ import {Button, Badge} from 'react-bootstrap';
 class ApplicationRowItem extends Component {
   static propTypes = {
     application: propTypes.shape({
-      applicationId: propTypes.number,
+      applicationId: propTypes.string,
       applicationStatus: propTypes.string,
       submissionDate: propTypes.string,
       facilityName: propTypes.string,
@@ -17,7 +17,7 @@ class ApplicationRowItem extends Component {
 
   render() {
     const {application} = this.props;
-    console.log('my application', application);
+    // Console.log('my application', application);
     const statusBadgeColor = {
       attention: 'warning',
       pending: 'info',
