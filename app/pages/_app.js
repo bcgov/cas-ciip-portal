@@ -6,7 +6,7 @@ import {initEnvironment, createEnvironment} from '../lib/relay-environment';
 import ErrorBoundary from '../lib/error-boundary';
 
 export default class App extends NextApp {
-  static getInitialProps = async ({Component, router, ctx}) => {
+  static getInitialProps = async ({Component, ctx}) => {
     const {variables} = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
