@@ -9,7 +9,7 @@ import {
   Form,
   Table
 } from 'react-bootstrap';
-import ApplicationRowItem from '../../components/Applications/ApplicationRowItem';
+import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
 const ApplicationListContainer = props => {
   const {
@@ -29,12 +29,11 @@ const ApplicationListContainer = props => {
 
   useEffect(() => {
     const refetchVariables = {
-      searchField: props.searchField,
-      searchValue: props.searchValue,
-      orderByField: props.orderByField,
-      direction: props.direction
+      searchField,
+      searchValue,
+      orderByField,
+      direction
     };
-    console.log(props);
     props.relay.refetch(refetchVariables);
   });
 
@@ -181,7 +180,7 @@ const ApplicationListContainer = props => {
         </thead>
         <tbody>
           {edges.map(edge => (
-            <ApplicationRowItem
+            <ApplicationRowItemContainer
               key={edge.node.applicationId}
               application={edge.node}
             />
