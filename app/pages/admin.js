@@ -3,7 +3,7 @@ import {graphql} from 'react-relay';
 import {Container, Row, Col, Jumbotron} from 'react-bootstrap';
 import Header from '../components/Header';
 import ProductCreator from '../components/Products/ProductCreator';
-import ProductList from '../components/Products/ProductList';
+import ProductListContainer from '../containers/Products/ProductListContainer';
 
 class Admin extends Component {
   state = {
@@ -18,7 +18,7 @@ class Admin extends Component {
   static query = graphql`
     query adminQuery {
       query {
-        ...ProductList_query
+        ...ProductListContainer_query
       }
     }
   `;
@@ -41,7 +41,7 @@ class Admin extends Component {
               <br />
               <br />
               <br />
-              <ProductList query={query} />
+              <ProductListContainer query={query} />
             </Col>
           </Row>
         </Container>

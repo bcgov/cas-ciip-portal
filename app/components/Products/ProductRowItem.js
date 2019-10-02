@@ -65,16 +65,18 @@ class ProductRowItem extends Component {
   getCurrentBenchmark = () => {
     let currentBenchmark;
     if (this.props.product.benchmarksByProductId.edges[0]) {
-      this.props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
-        if (
-          Date.parse(benchmark.startDate) < Date.now() &&
-          (benchmark.endDate === null ||
-            Date.parse(benchmark.endDate) > Date.now()) &&
-          !benchmark.deletedAt
-        ) {
-          currentBenchmark = benchmark;
+      this.props.product.benchmarksByProductId.edges.forEach(
+        ({node: benchmark}) => {
+          if (
+            Date.parse(benchmark.startDate) < Date.now() &&
+            (benchmark.endDate === null ||
+              Date.parse(benchmark.endDate) > Date.now()) &&
+            !benchmark.deletedAt
+          ) {
+            currentBenchmark = benchmark;
+          }
         }
-      });
+      );
     }
 
     return currentBenchmark;
@@ -244,14 +246,16 @@ class ProductRowItem extends Component {
     }
 
     const validBenchmarks = [];
-    this.props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
-      if (
-        benchmark.endDate === null ||
-        Date.parse(benchmark.endDate) > Date.parse(current_date)
-      ) {
-        validBenchmarks.push(benchmark);
+    this.props.product.benchmarksByProductId.edges.forEach(
+      ({node: benchmark}) => {
+        if (
+          benchmark.endDate === null ||
+          Date.parse(benchmark.endDate) > Date.parse(current_date)
+        ) {
+          validBenchmarks.push(benchmark);
+        }
       }
-    });
+    );
     console.log(validBenchmarks);
     if (validBenchmarks.length > 1) {
       console.error(
@@ -323,16 +327,18 @@ class ProductRowItem extends Component {
     // Get the current benchmark for the product
     let benchmarks;
     if (this.props.product.benchmarksByProductId.edges[0]) {
-      this.props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
-        if (
-          Date.parse(benchmark.startDate) < Date.now() &&
-          (benchmark.endDate === null ||
-            Date.parse(benchmark.endDate) > Date.now()) &&
-          !benchmark.deletedAt
-        ) {
-          benchmarks = benchmark;
+      this.props.product.benchmarksByProductId.edges.forEach(
+        ({node: benchmark}) => {
+          if (
+            Date.parse(benchmark.startDate) < Date.now() &&
+            (benchmark.endDate === null ||
+              Date.parse(benchmark.endDate) > Date.now()) &&
+            !benchmark.deletedAt
+          ) {
+            benchmarks = benchmark;
+          }
         }
-      });
+      );
       if (!benchmarks) {
         benchmarks = {benchmark: '', eligibilityThreshold: ''};
       }

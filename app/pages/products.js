@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import ProductList from '../components/Products/ProductList';
+import ProductListContainer from '../components/Products/ProductList';
 
 export default class Products extends Component {
   static query = graphql`
     query productsQuery {
       query {
-        ...ProductList_query
+        ...ProductListContainer_query
       }
     }
   `;
@@ -16,7 +16,7 @@ export default class Products extends Component {
     return (
       <>
         <h1>Products</h1>
-        <ProductList query={query} />
+        <ProductListContainer query={query} />
       </>
     );
   }
