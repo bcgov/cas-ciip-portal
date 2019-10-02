@@ -36,7 +36,6 @@ class Applications extends Component {
     event.preventDefault();
     event.stopPropagation();
     event.persist();
-    console.log(eventKey, event.target.text);
     this.setState({
       orderByField: eventKey,
       orderByDisplay: event.target.text
@@ -72,7 +71,6 @@ class Applications extends Component {
   };
 
   static async getInitialProps() {
-    console.log(this.state);
     return {
       variables: {
         orderByField: this.state ? this.state.orderByField : 'operator_name',
