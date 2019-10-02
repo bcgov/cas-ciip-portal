@@ -8,12 +8,14 @@ class ProductList extends Component {
     const {allProducts} = query || {};
     const {edges} = allProducts || {};
     if (!edges) return null;
-    const archivedList = edges.filter(({node}) => (node.state === 'archived'));
-    const productList = edges.filter(({node}) => (node.state !== 'deprecated' && node.state !== 'archived'));
-    const products = [...productList, ...archivedList]
+    const archivedList = edges.filter(({node}) => node.state === 'archived');
+    const productList = edges.filter(
+      ({node}) => node.state !== 'deprecated' && node.state !== 'archived'
+    );
+    const products = [...productList, ...archivedList];
     console.log(products);
     if (!products.length) return null;
-    return products.map(({node}) => (<ProductRowItem product={node}/>));
+    return products.map(({node}) => <ProductRowItem product={node} />);
   }
 }
 

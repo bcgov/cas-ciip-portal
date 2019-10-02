@@ -24,8 +24,7 @@ class ApplicationRowItem extends Component {
       declined: 'danger',
       approved: 'success'
     };
-    // Const url = `http://localhost:3000/public/dashboard/985719f1-7eae-4c49-88a9-7d6c8edc1ad4?application_id=${application.applicationId}`;
-    // Const url = `https://metabase-wksv3k-dev.pathfinder.gov.bc.ca/public/dashboard/bb6a4b75-3a7f-4fab-9268-cb013ecfcb7b?application_id=${application.applicationId}`;
+
     const applicationDetails = `/application-details?application_id=${application.applicationId}&reportingyear=${application.reportingYear}&bcghgid=${application.bcghgid}`;
 
     return (

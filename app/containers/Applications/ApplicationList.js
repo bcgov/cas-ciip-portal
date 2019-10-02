@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {graphql, fetchQuery} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {
   Container,
   Dropdown,
@@ -9,7 +9,6 @@ import {
   Form,
   Table
 } from 'react-bootstrap';
-import withData from '../../lib/with-data';
 import ApplicationRowItem from '../../components/Applications/ApplicationRowItem';
 
 class ApplicationList extends Component {
@@ -19,9 +18,19 @@ class ApplicationList extends Component {
     orderByDisplay: 'Operator Name',
     filterField: null,
     filterValue: null,
-    filterDisplay: 'No Filter',
-    applicationList: []
+    filterDisplay: 'No Filter'
   };
+
+  // GetApplicationData = () => {
+  //   const applicationList = [];
+
+  //   const filteredApplications = this.props.query.searchApplicationList.edges;
+  //   filteredApplications.forEach(application => {
+  //     applicationList.push(<ApplicationRowItem application={application} />);
+  //   });
+
+  //   return applicationList;
+  // };
 
   sortApplications = (eventKey, event) => {
     event.preventDefault();
@@ -62,7 +71,9 @@ class ApplicationList extends Component {
   };
 
   render() {
-    const applications = this.state.applicationList;
+    // Console.log(this.props);
+    // Const applications = this.getApplicationData;
+    return <>hello</>;
     return (
       <>
         <Container style={{padding: 10, background: '#dee2e6'}}>
@@ -218,21 +229,23 @@ class ApplicationList extends Component {
   }
 }
 
-export default withData(ApplicationList, {
-    query: graphql`
-      query ApplicationListQuery(
-        $searchField: String
-        $searchValue: String
-        $orderByField: String
-        $direction: String
+export default createFragmentContainer(ApplicationList, {
+  query: graphql`
+    fragment ApplicationList_query on Query
+      @argumentDefinitions(
+        searchField: {type: "String"}
+        searchValue: {type: "String"}
+        orderByField: {type: "String"}
+        direction: {type: "String"}
       ) {
-        searchApplicationList(
-          searchField: $searchField
-          searchValue: $searchValue
-          orderByField: $orderByField
-          direction: $direction
-        ) {
-          nodes {
+      searchApplicationList(
+        searchField: $searchField
+        searchValue: $searchValue
+        orderByField: $orderByField
+        direction: $direction
+      ) {
+        edges {
+          node {
             applicationId
             facilityName
             operatorName
@@ -243,6 +256,6 @@ export default withData(ApplicationList, {
           }
         }
       }
-    `
-  }
-);
+    }
+  `
+});
