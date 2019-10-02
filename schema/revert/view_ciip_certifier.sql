@@ -1,8 +1,7 @@
 -- Revert ggircs-portal:view_ciip_certifier from pg
 
-BEGIN;
+begin;
 
 drop view ggircs_portal.ciip_certifier;
 
-
-COMMIT;
+commit;

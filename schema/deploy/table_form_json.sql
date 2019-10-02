@@ -6,20 +6,33 @@ begin;
 create table ggircs_portal.form_json (
   id serial not null,
   name varchar(1000) not null,
-  form_json jsonb not null
+  form_json jsonb not null,
+  created_at timestamp with time zone not null default now(),
+  created_by varchar(1000),
+  updated_at timestamp with time zone not null default now(),
+  updated_by varchar(1000)
   --todo: add versioning columns
 );
 
+create trigger _100_timestamps
+  before insert or update on ggircs_portal.form_json
+  for each row
+  execute procedure ggircs_portal.update_timestamps();
+
 create unique index form_json_id_uindex
-	on ggircs_portal.form_json (id);
+  on ggircs_portal.form_json (id);
 
 alter table ggircs_portal.form_json
-	add constraint form_json_pk
-		primary key (id);
+  add constraint form_json_pk
+    primary key (id);
 
 comment on column ggircs_portal.form_json.id is 'Unique ID for the form';
 comment on column ggircs_portal.form_json.name is 'Name for the form';
 comment on column ggircs_portal.form_json.form_json is 'The JSON object that creates the form';
+comment on column ggircs_portal.form_json.created_at is 'The date the form was updated';
+comment on column ggircs_portal.form_json.created_by is 'The person who updated the form';
+comment on column ggircs_portal.form_json.updated_at is 'The date the form was updated';
+comment on column ggircs_portal.form_json.updated_by is 'The person who updated the form';
 
 
 insert into ggircs_portal.form_json
@@ -1801,10 +1814,16 @@ insert into ggircs_portal.form_json
       "title": "Statement of Certification",
       "questionsOrder": "initial"
     }
-  ],
+   ],
   "showQuestionNumbers": "off"
-}'::jsonb
-);
-
+   "title": "Statement of Certification",
+   "questionsOrder": "initial"
+  }
+ ],
+ "showQuestionNumbers": "off"
+}
+    '::jsonb
+)
+on conflict (id) do nothing;
 
 commit;

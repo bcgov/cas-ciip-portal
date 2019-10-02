@@ -4,7 +4,7 @@
 -- requires: table_form_result
 -- requires: table_application_status
 
-BEGIN;
+begin;
 
 create or replace function ggircs_portal.insert_dummy_application_data()
   returns void
@@ -23,6 +23,6 @@ create or replace function ggircs_portal.insert_dummy_application_data()
   $function$
   language sql;
 
-COMMIT;
+commit;
 
 select ggircs_portal.insert_dummy_application_data();

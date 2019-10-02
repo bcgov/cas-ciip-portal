@@ -2,7 +2,7 @@
 -- requires: schema_ggircs_portal
 -- requires: view_ciip_production
 
-BEGIN;
+begin;
 
 create or replace function ggircs_portal.get_products_by_application_id(app_id text)
   returns setof ggircs_portal.ciip_production as $function$
@@ -13,4 +13,4 @@ create or replace function ggircs_portal.get_products_by_application_id(app_id t
 
   $function$ language sql stable;
 
-COMMIT;
+commit;

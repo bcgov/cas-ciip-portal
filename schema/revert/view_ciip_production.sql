@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:view_ciip_production from pg
 
-BEGIN;
+begin;
 
 drop view ggircs_portal.ciip_production;
 
-COMMIT;
+commit;

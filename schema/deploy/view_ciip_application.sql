@@ -2,7 +2,7 @@
 -- requires: table_form_result
 -- requires: table_application_status
 
-BEGIN;
+begin;
 
 create view ggircs_portal.ciip_application as (
     with x as (
@@ -28,4 +28,4 @@ create view ggircs_portal.ciip_application as (
     from x
 );
 
-COMMIT;
+commit;

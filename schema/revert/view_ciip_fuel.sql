@@ -1,8 +1,7 @@
 -- Revert ggircs-portal:view_ciip_fuel from pg
 
-BEGIN;
+begin;
 
 drop view ggircs_portal.ciip_fuel;
 
-
-COMMIT;
+commit;

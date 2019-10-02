@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:table_form_json from pg
 
-BEGIN;
+begin;
 
 drop table  ggircs_portal.form_json;
 
-COMMIT;
+commit;

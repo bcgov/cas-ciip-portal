@@ -1,7 +1,6 @@
 -- Deploy ggircs-portal:function_get_products_by_bcghgid to pg
 
-BEGIN;
-
+begin;
 
 create or replace function ggircs_portal.get_products_by_bcghgid(bcghgid_input numeric)
   returns setof ggircs_portal.ciip_production as $function$
@@ -12,7 +11,4 @@ create or replace function ggircs_portal.get_products_by_bcghgid(bcghgid_input n
 
   $function$ language sql stable;
 
-
-COMMIT;
-
-
+commit;
