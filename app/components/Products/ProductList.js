@@ -15,7 +15,9 @@ class ProductList extends Component {
     const products = [...productList, ...archivedList];
     console.log(products);
     if (!products.length) return null;
-    return products.map(({node}) => <ProductRowItem product={node} />);
+    return products.map(({node}) => (
+      <ProductRowItem key={node.id} product={node} />
+    ));
   }
 }
 
