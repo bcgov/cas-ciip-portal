@@ -1,9 +1,9 @@
 import React from 'react';
 import {wait, render} from '@testing-library/react';
-import ApplicationRowItem from '../../../components/Applications/ApplicationRowItem';
+import ApplicationRowItemContainer from '../../../containers/Applications/ApplicationRowItemContainer';
 
 const application = {
-  applicationId: 9,
+  applicationId: '9',
   applicationStatus: 'pending',
   facilityName: 'facility1',
   operatorName: 'operator1',
@@ -15,7 +15,7 @@ describe('Application Row Item', () => {
     const r = render(
       <table>
         <tbody>
-          <ApplicationRowItem application={application} />
+          <ApplicationRowItemContainer application={application} />
         </tbody>
       </table>
     );
