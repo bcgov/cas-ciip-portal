@@ -97,7 +97,7 @@ class ProductRowItem extends Component {
         }
       }
     };
-
+    const {environment} = this.props.relay;
     const saveMutation = this.createProduct;
     commitMutation(environment, {
       mutation: saveMutation,
@@ -167,6 +167,7 @@ class ProductRowItem extends Component {
         }
       }
     };
+    const {environment} = this.props.relay;
     commitMutation(environment, {
       mutation: saveMutation,
       variables: updateProductVariables,
@@ -196,6 +197,7 @@ class ProductRowItem extends Component {
     const saveMutation = this.createProduct;
     // Get the current Benchmark -- calculated by which benchmark is not archived and current date within the start & end dates
     const currentBenchmark = this.getCurrentBenchmark();
+    const {environment} = this.props.relay;
     commitMutation(environment, {
       mutation: saveMutation,
       variables: saveVariables,
@@ -280,7 +282,7 @@ class ProductRowItem extends Component {
         }
       }
     };
-
+    const {environment} = this.props.relay;
     const saveMutation = this.createBenchmark;
     commitMutation(environment, {
       mutation: saveMutation,
