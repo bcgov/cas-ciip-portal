@@ -178,26 +178,28 @@ const ApplicationListContainer = props => {
       </Container>
       <br />
       <br />
-      <Table striped bordered hover style={{textAlign: 'center'}}>
-        <thead>
-          <tr>
-            <th>Application ID</th>
-            <th>Operator Name</th>
-            <th>Facility Name</th>
-            <th>Submitted</th>
-            <th>Status</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {edges.map(edge => (
-            <ApplicationRowItemContainer
-              key={edge.node.id}
-              application={edge.node}
-            />
-          ))}
-        </tbody>
-      </Table>
+      <Container>
+        <Table striped bordered hover style={{textAlign: 'center'}}>
+          <thead>
+            <tr>
+              <th>Application ID</th>
+              <th>Operator Name</th>
+              <th>Facility Name</th>
+              <th>Submitted</th>
+              <th>Status</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {edges.map(edge => (
+              <ApplicationRowItemContainer
+                key={edge.node.id}
+                application={edge.node}
+              />
+            ))}
+          </tbody>
+        </Table>
+      </Container>
     </>
   );
 };
