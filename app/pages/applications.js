@@ -10,9 +10,9 @@ class Applications extends Component {
     orderByField: 'operator_name',
     direction: 'ASC',
     orderByDisplay: 'Operator Name',
-    filterField: null,
-    filterValue: null,
-    filterDisplay: 'No Filter'
+    searchField: null,
+    searchValue: null,
+    searchDisplay: 'No Filter'
   };
 
   // Actions to consume in downstream components
@@ -52,6 +52,18 @@ class Applications extends Component {
         orderByField: eventKey,
         orderByDisplay: event.target.text
       });
+    },
+    applySearchField: (event, eventKey) => {
+      this.setState({
+        searchField: eventKey,
+        searchDisplay: event.target.text,
+        searchValue: null
+      });
+    },
+    applySearchValue: event => {
+      if (this.state.searchField !== 'none') {
+        this.setState({searchValue: event.nativeEvent.target[0].value});
+      }
     }
   };
 
@@ -62,34 +74,14 @@ class Applications extends Component {
     this.actions[event.target.id](event, eventKey);
   };
 
-  applyFilterField = (eventKey, event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    event.persist();
-    this.setState({
-      filterField: eventKey,
-      filterDisplay: event.target.text,
-      filterValue: null
-    });
-  };
-
-  applyFilterValue = event => {
-    event.preventDefault();
-    event.stopPropagation();
-    event.persist();
-    if (this.state.filterField !== 'none') {
-      this.setState({filterValue: event.target[0].value});
-    }
-  };
-
   // TODO(wenzowski): how would we get a condition such that this.state is falsy?
   static async getInitialProps() {
     return {
       variables: {
         orderByField: this.state ? this.state.orderByField : 'operator_name',
         direction: this.state ? this.state.direction : 'ASC',
-        searchField: this.state ? this.state.filterField : null,
-        searchValue: this.state ? this.state.filterValue : null
+        searchField: this.state ? this.state.searchField : null,
+        searchValue: this.state ? this.state.searchValue : null
       }
     };
   }
@@ -102,14 +94,13 @@ class Applications extends Component {
       <DefaultLayout title="Applications">
         <ApplicationListContainer
           query={query}
-          applyFilterField={this.applyFilterField}
-          applyFilterValue={this.applyFilterValue}
+          applysearchValue={this.applysearchValue}
           orderByDisplay={this.state.orderByDisplay}
-          filterDisplay={this.state.filterDisplay}
+          searchDisplay={this.state.searchDisplay}
           direction={this.state.direction}
           orderByField={this.state.orderByField}
-          searchField={this.state.filterField}
-          searchValue={this.state.filterValue}
+          searchField={this.state.searchField}
+          searchValue={this.state.searchValue}
           handleEvent={this.handleEvent}
         />
       </DefaultLayout>

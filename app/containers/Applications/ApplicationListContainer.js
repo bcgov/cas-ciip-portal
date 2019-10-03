@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
 import {
   Container,
@@ -14,10 +14,8 @@ import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 const ApplicationListContainer = props => {
   // TODO(wenzowski): by migrating to an event switch convention, we need fewer props here
   const {
-    applyFilterField,
-    applyFilterValue,
     orderByDisplay,
-    filterDisplay,
+    searchDisplay,
     direction,
     orderByField,
     searchField,
@@ -25,8 +23,6 @@ const ApplicationListContainer = props => {
     handleEvent
   } = props;
   const {edges} = props.query.searchApplicationList;
-  // TODO(wenzowski): confirm why the ref is neccessary?
-  const inputref = useRef(null);
 
   useEffect(() => {
     const refetchVariables = {
@@ -117,36 +113,48 @@ const ApplicationListContainer = props => {
                 variant="info"
                 id="dropdown-filter"
               >
-                {filterDisplay}
+                {searchDisplay}
               </Dropdown.Toggle>
               <Dropdown.Menu style={{width: '100%'}}>
-                <Dropdown.Item eventKey={null} onSelect={applyFilterField}>
+                <Dropdown.Item
+                  id="applySearchField"
+                  eventKey={null}
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
+                >
                   No Filter
                 </Dropdown.Item>
-                <Dropdown.Item eventKey="id" onSelect={applyFilterField}>
+                <Dropdown.Item
+                  id="applySearchField"
+                  eventKey="id"
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
+                >
                   Application ID
                 </Dropdown.Item>
                 <Dropdown.Item
+                  id="applySearchField"
                   eventKey="operator_name"
-                  onSelect={applyFilterField}
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
                 >
                   Operator Name
                 </Dropdown.Item>
                 <Dropdown.Item
+                  id="applySearchField"
                   eventKey="facility_name"
-                  onSelect={applyFilterField}
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
                 >
                   Facility Name
                 </Dropdown.Item>
                 <Dropdown.Item
+                  id="applySearchField"
                   eventKey="submission_date"
-                  onSelect={applyFilterField}
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
                 >
                   Submission Date
                 </Dropdown.Item>
                 <Dropdown.Item
+                  id="applySearchField"
                   eventKey="application_status"
-                  onSelect={applyFilterField}
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
                 >
                   Status
                 </Dropdown.Item>
@@ -154,10 +162,10 @@ const ApplicationListContainer = props => {
             </Dropdown>
           </Col>
           <Col md={6}>
-            <Form ref={inputref} onSubmit={applyFilterValue}>
+            <Form id="applySearchValue" onSubmit={event => handleEvent(event)}>
               <Form.Row>
                 <Form.Group as={Col} md={8} controlId="filter">
-                  <Form.Control inputref="filter" type="string" step="0.01" />
+                  <Form.Control type="string" step="0.01" />
                 </Form.Group>
                 <Form.Group as={Col} md={1}>
                   <Button variant="info" type="submit">
@@ -198,6 +206,7 @@ const ApplicationListContainer = props => {
 // TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
 // and also for relay to refetch
 // @see https://facebook.github.io/relay/graphql/objectidentification.htm#sec-Node-Interface
+// TODO: Several entitites do not have graphql ID's because they are views!!
 export default createRefetchContainer(
   ApplicationListContainer,
   {
