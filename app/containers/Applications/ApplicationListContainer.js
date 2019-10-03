@@ -12,7 +12,6 @@ import {
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
 const ApplicationListContainer = props => {
-  // TODO(wenzowski): by migrating to an event switch convention, we need fewer props here
   const {
     orderByDisplay,
     searchDisplay,

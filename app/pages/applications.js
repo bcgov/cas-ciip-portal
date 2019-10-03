@@ -21,7 +21,7 @@ class Applications extends Component {
 
   // in downstream component
   // onClick={(event) => handleApplicationsAction({action: Applications.SORT_ACTION})})
-
+  // I didn't fully understand how to make this work, so I moved on with the way I did.
   static query = graphql`
     query applicationsQuery(
       $orderByField: String
