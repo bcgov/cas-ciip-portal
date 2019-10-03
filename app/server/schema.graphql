@@ -350,7 +350,7 @@ strings and not numbers.
 scalar BigInt
 
 type CiipApplication {
-  applicationId: String
+  rowId: String
   facilityName: String
   operatorName: String
   submissionDate: Datetime
@@ -364,8 +364,8 @@ A condition to be used against `CiipApplication` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
 input CiipApplicationCondition {
-  """Checks for equality with the object’s `applicationId` field."""
-  applicationId: String
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: String
 
   """Checks for equality with the object’s `facilityName` field."""
   facilityName: String
@@ -417,8 +417,8 @@ type CiipApplicationsEdge {
 """Methods to use when ordering `CiipApplication`."""
 enum CiipApplicationsOrderBy {
   NATURAL
-  APPLICATION_ID_ASC
-  APPLICATION_ID_DESC
+  ID_ASC
+  ID_DESC
   FACILITY_NAME_ASC
   FACILITY_NAME_DESC
   OPERATOR_NAME_ASC

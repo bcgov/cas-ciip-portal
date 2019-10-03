@@ -14,8 +14,6 @@ import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 const ApplicationListContainer = props => {
   // TODO(wenzowski): by migrating to an event switch convention, we need fewer props here
   const {
-    sortApplications,
-    toggleDirection,
     applyFilterField,
     applyFilterValue,
     orderByDisplay,
@@ -23,7 +21,8 @@ const ApplicationListContainer = props => {
     direction,
     orderByField,
     searchField,
-    searchValue
+    searchValue,
+    handleEvent
   } = props;
   const {edges} = props.query.searchApplicationList;
   // TODO(wenzowski): confirm why the ref is neccessary?
@@ -63,32 +62,37 @@ const ApplicationListContainer = props => {
               </Dropdown.Toggle>
               <Dropdown.Menu style={{width: '100%'}}>
                 <Dropdown.Item
-                  eventKey="application_id"
-                  onSelect={sortApplications}
+                  id="sortApplications"
+                  eventKey="id"
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
                 >
                   Application ID
                 </Dropdown.Item>
                 <Dropdown.Item
+                  id="sortApplications"
                   eventKey="operator_name"
-                  onSelect={sortApplications}
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
                 >
                   Operator Name
                 </Dropdown.Item>
                 <Dropdown.Item
+                  id="sortApplications"
                   eventKey="facility_name"
-                  onSelect={sortApplications}
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
                 >
                   Facility Name
                 </Dropdown.Item>
                 <Dropdown.Item
+                  id="sortApplications"
                   eventKey="submission_date"
-                  onSelect={sortApplications}
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
                 >
                   Submission Date
                 </Dropdown.Item>
                 <Dropdown.Item
+                  id="sortApplications"
                   eventKey="application_status"
-                  onSelect={sortApplications}
+                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
                 >
                   Status
                 </Dropdown.Item>
@@ -97,9 +101,10 @@ const ApplicationListContainer = props => {
           </Col>
           <Col md={1}>
             <Button
+              id="toggleDirection"
               style={{width: '100%'}}
               variant="info"
-              onClick={toggleDirection}
+              onClick={handleEvent}
             >
               {direction}
             </Button>
@@ -118,10 +123,7 @@ const ApplicationListContainer = props => {
                 <Dropdown.Item eventKey={null} onSelect={applyFilterField}>
                   No Filter
                 </Dropdown.Item>
-                <Dropdown.Item
-                  eventKey="application_id"
-                  onSelect={applyFilterField}
-                >
+                <Dropdown.Item eventKey="id" onSelect={applyFilterField}>
                   Application ID
                 </Dropdown.Item>
                 <Dropdown.Item
@@ -183,7 +185,7 @@ const ApplicationListContainer = props => {
         <tbody>
           {edges.map(edge => (
             <ApplicationRowItemContainer
-              key={edge.node.applicationId}
+              key={edge.node.id}
               application={edge.node}
             />
           ))}
@@ -192,7 +194,6 @@ const ApplicationListContainer = props => {
     </>
   );
 };
-
 
 // TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
 // and also for relay to refetch
@@ -216,7 +217,7 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
-              applicationId
+              rowId
               facilityName
               operatorName
               applicationStatus

@@ -41,22 +41,25 @@ class Applications extends Component {
     }
   `;
 
-  sortApplications = (eventKey, event) => {
+  actions = {
+    toggleDirection: () => {
+      this.state.direction === 'ASC'
+        ? this.setState({direction: 'DESC'})
+        : this.setState({direction: 'ASC'});
+    },
+    sortApplications: (event, eventKey) => {
+      this.setState({
+        orderByField: eventKey,
+        orderByDisplay: event.target.text
+      });
+    }
+  };
+
+  handleEvent = (event, eventKey) => {
     event.preventDefault();
     event.stopPropagation();
     event.persist();
-    this.setState({
-      orderByField: eventKey,
-      orderByDisplay: event.target.text
-    });
-  };
-
-  toggleDirection = event => {
-    event.preventDefault();
-    event.stopPropagation();
-    this.state.direction === 'ASC'
-      ? this.setState({direction: 'DESC'})
-      : this.setState({direction: 'ASC'});
+    this.actions[event.target.id](event, eventKey);
   };
 
   applyFilterField = (eventKey, event) => {
@@ -99,8 +102,6 @@ class Applications extends Component {
       <DefaultLayout title="Applications">
         <ApplicationListContainer
           query={query}
-          sortApplications={this.sortApplications}
-          toggleDirection={this.toggleDirection}
           applyFilterField={this.applyFilterField}
           applyFilterValue={this.applyFilterValue}
           orderByDisplay={this.state.orderByDisplay}
@@ -109,6 +110,7 @@ class Applications extends Component {
           orderByField={this.state.orderByField}
           searchField={this.state.filterField}
           searchValue={this.state.filterValue}
+          handleEvent={this.handleEvent}
         />
       </DefaultLayout>
     );

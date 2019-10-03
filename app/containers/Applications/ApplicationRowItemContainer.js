@@ -12,11 +12,11 @@ const ApplicationRowItemContainer = props => {
     approved: 'success'
   };
 
-  const applicationDetails = `/application-details?application_id=${application.applicationId}&reportingyear=${application.reportingYear}&bcghgid=${application.bcghgid}`;
+  const applicationDetails = `/application-details?application_id=${application.rowId}&reportingyear=${application.reportingYear}&bcghgid=${application.bcghgid}`;
 
   return (
     <tr>
-      <td>{application.applicationId}</td>
+      <td>{application.rowId}</td>
       <td>{application.operatorName}</td>
       <td>{application.facilityName}</td>
       <td>{application.submissionDate}</td>
@@ -42,7 +42,7 @@ export default ApplicationRowItemContainer;
 
 ApplicationRowItemContainer.propTypes = {
   application: propTypes.shape({
-    applicationId: propTypes.string,
+    rowId: propTypes.string,
     applicationStatus: propTypes.string,
     submissionDate: propTypes.string,
     facilityName: propTypes.string,
