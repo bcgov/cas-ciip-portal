@@ -8,7 +8,13 @@ const ProductListContainer = props => {
     const {query} = props;
     const allProducts = [...query.active.edges, ...query.archived.edges] || {};
     return allProducts.map(({node}) => (
-      <ProductRowItem key={node.id} product={node} />
+      <ProductRowItem
+        key={node.id}
+        product={node}
+        mode={props.mode}
+        confirmationModalOpen={props.confirmationModalOpen}
+        productRowActions={props.productRowActions}
+      />
     ));
   }
 

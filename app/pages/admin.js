@@ -7,13 +7,49 @@ import ProductListContainer from '../containers/Products/ProductListContainer';
 
 class Admin extends Component {
   state = {
-    formData: {formId: '', formJson: ''}
+    formData: {formId: '', formJson: ''},
+    mode: 'view',
+    confirmationModalOpen: false
+  };
+
+  /** **  ProductRowItem Actions ** **/
+
+  // Toggle enabling of editing products
+  toggleProductMode = () => {
+    console.log('ProductRowItem > Edit clicked');
+    this.state.mode === 'view' || this.state.mode === 'benchmark'
+      ? this.setState({mode: 'product'})
+      : this.setState({mode: 'view'});
+  };
+
+  // Toggle enabling of editing benchmarks
+  toggleBenchmarkMode = () => {
+    console.log('ProductRowItem > Edit clicked');
+    this.state.mode === 'view' || this.state.mode === 'product'
+      ? this.setState({mode: 'benchmark'})
+      : this.setState({mode: 'view'});
+  };
+
+  openConfirmationWindow = () => {
+    this.setState({confirmationModalOpen: true});
+  };
+
+  closeConfirmationWindow = () => {
+    this.setState({confirmationModalOpen: false});
   };
 
   formIdHandler = (formId, formJson) => {
     this.setState({formData: {formId, formJson}});
     console.log('form-builder.js > formIdHandler state', this.state);
   };
+
+  productRowActions = {
+    toggleProductMode: this.toggleProductMode,
+    toggleBenchmarkMode: this.toggleBenchmarkMode,
+    openConfirmationWindow: this.openConfirmationWindow,
+    closeConfirmationWindow: this.closeConfirmationWindow
+  };
+  /** ** END ProductRowItem Actions ** **/
 
   static query = graphql`
     query adminQuery {
@@ -41,7 +77,12 @@ class Admin extends Component {
               <br />
               <br />
               <br />
-              <ProductListContainer query={query} />
+              <ProductListContainer
+                productRowActions={this.productRowActions}
+                query={query}
+                mode={this.state.mode}
+                confirmationModalOpen={this.state.confirmationModalOpen}
+              />
             </Col>
           </Row>
         </Container>

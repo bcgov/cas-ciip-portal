@@ -1,6 +1,4 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import propTypes from 'prop-types';
+import React from 'react';
 import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
 import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 
@@ -11,106 +9,96 @@ import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 
 // TODO: Make the benchmark management system better. Currently the UI only shows the current benchmark, there is no way to view benchmarks
 //       that have been created for the future (to supplant the current one), or to see past benchmarks. This can currently only be done in the database
-class ProductRowItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mode: 'view',
-      confirmationModalOpen: false
-    };
-
-    this.createBenchmark = graphql`
-      mutation ProductRowItemBenchmarkMutation($input: CreateBenchmarkInput!) {
-        createBenchmark(input: $input) {
-          benchmark {
-            rowId
-          }
+const ProductRowItem = props => {
+  const createBenchmark = graphql`
+    mutation ProductRowItemBenchmarkMutation($input: CreateBenchmarkInput!) {
+      createBenchmark(input: $input) {
+        benchmark {
+          rowId
         }
       }
-    `;
-    this.createProduct = graphql`
-      mutation ProductRowItemProductMutation($input: CreateProductInput!) {
-        createProduct(input: $input) {
-          product {
-            rowId
-          }
+    }
+  `;
+  const createProduct = graphql`
+    mutation ProductRowItemProductMutation($input: CreateProductInput!) {
+      createProduct(input: $input) {
+        product {
+          rowId
         }
       }
-    `;
-    this.updateBenchmark = graphql`
-      mutation ProductRowItemUpdateBenchmarkMutation(
-        $input: UpdateBenchmarkByRowIdInput!
-      ) {
-        updateBenchmarkByRowId(input: $input) {
-          benchmark {
-            rowId
-          }
+    }
+  `;
+  const updateBenchmark = graphql`
+    mutation ProductRowItemUpdateBenchmarkMutation(
+      $input: UpdateBenchmarkByRowIdInput!
+    ) {
+      updateBenchmarkByRowId(input: $input) {
+        benchmark {
+          rowId
         }
       }
-    `;
-    this.updateProduct = graphql`
-      mutation ProductRowItemUpdateProductMutation(
-        $input: UpdateProductByRowIdInput!
-      ) {
-        updateProductByRowId(input: $input) {
-          product {
-            rowId
-          }
+    }
+  `;
+  const updateProduct = graphql`
+    mutation ProductRowItemUpdateProductMutation(
+      $input: UpdateProductByRowIdInput!
+    ) {
+      updateProductByRowId(input: $input) {
+        product {
+          rowId
         }
       }
-    `;
-  }
+    }
+  `;
 
   // Get the product's current benchmark
-  getCurrentBenchmark = () => {
+  const getCurrentBenchmark = () => {
     let currentBenchmark;
-    if (this.props.product.benchmarksByProductId.edges[0]) {
-      this.props.product.benchmarksByProductId.edges.forEach(
-        ({node: benchmark}) => {
-          if (
-            Date.parse(benchmark.startDate) < Date.now() &&
-            (benchmark.endDate === null ||
-              Date.parse(benchmark.endDate) > Date.now()) &&
-            !benchmark.deletedAt
-          ) {
-            currentBenchmark = benchmark;
-          }
+    if (props.product.benchmarksByProductId.edges[0]) {
+      props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
+        if (
+          Date.parse(benchmark.startDate) < Date.now() &&
+          (benchmark.endDate === null ||
+            Date.parse(benchmark.endDate) > Date.now()) &&
+          !benchmark.deletedAt
+        ) {
+          currentBenchmark = benchmark;
         }
-      );
+      });
     }
 
     return currentBenchmark;
   };
 
   // Toggle the 'archived' value of a Product
-  toggleArchived = event => {
+  const toggleArchived = event => {
     event.preventDefault();
     event.stopPropagation();
-    const toggleArchived = this.props.product.state !== 'archived';
+    const toggleArchived = props.product.state !== 'archived';
     const saveVariables = {
       input: {
         product: {
-          name: this.props.product.name,
-          description: this.props.product.description,
+          name: props.product.name,
+          description: props.product.description,
           state: toggleArchived ? 'archived' : 'active',
-          parent: [this.props.product.rowId]
+          parent: [props.product.rowId]
         }
       }
     };
-    const {environment} = this.props.relay;
-    const saveMutation = this.createProduct;
+    const {environment} = props.relay;
+    const saveMutation = createProduct;
     commitMutation(environment, {
       mutation: saveMutation,
       variables: saveVariables,
-      onCompleted: async (response, errors) => {
+      onCompleted: async response => {
         console.log(response);
-        const currentBenchmark = this.getCurrentBenchmark();
+        const currentBenchmark = getCurrentBenchmark();
         const benchmarkPatch = {
           productId: response.createProduct.product.rowId
         };
-        await this.editProduct();
+        await editProduct();
         if (currentBenchmark) {
-          await this.editBenchmark(currentBenchmark.rowId, benchmarkPatch);
+          await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
 
         window.location.reload();
@@ -121,23 +109,23 @@ class ProductRowItem extends Component {
 
   // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation.)
   // The button is red && says 'Delete'. The value is not deleted, it is archived in the database, but is not recoverable through the UI
-  toggleBenchmarkDeleted = async event => {
-    this.setState({confirmationModalOpen: false});
+  const toggleBenchmarkDeleted = async event => {
+    // This.setState({confirmationModalOpen: false});
     event.preventDefault();
     event.stopPropagation();
-    const currentBenchmark = this.getCurrentBenchmark();
+    const currentBenchmark = getCurrentBenchmark();
     const benchmarkPatch = {
       deletedAt: new Date().toUTCString(),
       deletedBy: 'Admin'
     };
 
-    await this.editBenchmark(currentBenchmark.rowId, benchmarkPatch);
+    await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
     window.location.reload();
   };
 
   // Edit a benchmark
-  editBenchmark = (benchmarkRowId, benchmarkPatch) => {
-    const saveMutation = this.updateBenchmark;
+  const editBenchmark = (benchmarkRowId, benchmarkPatch) => {
+    const saveMutation = updateBenchmark;
     const updateBenchmarkVariables = {
       input: {
         rowId: benchmarkRowId,
@@ -155,11 +143,11 @@ class ProductRowItem extends Component {
   };
 
   // Edit a product
-  editProduct = () => {
-    const saveMutation = this.updateProduct;
+  const editProduct = () => {
+    const saveMutation = updateProduct;
     const updateProductVariables = {
       input: {
-        rowId: this.props.product.rowId,
+        rowId: props.product.rowId,
         productPatch: {
           state: 'deprecated',
           deletedAt: new Date().toUTCString(),
@@ -167,11 +155,11 @@ class ProductRowItem extends Component {
         }
       }
     };
-    const {environment} = this.props.relay;
+    const {environment} = props.relay;
     commitMutation(environment, {
       mutation: saveMutation,
       variables: updateProductVariables,
-      onCompleted: (response, errors) => {
+      onCompleted: response => {
         console.log(response);
       },
       onError: err => console.error(err)
@@ -179,38 +167,37 @@ class ProductRowItem extends Component {
   };
 
   // Save a product
-  saveProduct = async event => {
+  const saveProduct = async event => {
     event.preventDefault();
     event.stopPropagation();
     const saveVariables = {
       input: {
         product: {
-          name: ReactDOM.findDOMNode(this.refs.product_name).value,
-          description: ReactDOM.findDOMNode(this.refs.product_description)
-            .value,
+          name: 'a', // ReactDOM.findDOMNode(refs.product_name).value,
+          description: 'b', // ReactDOM.findDOMNode(refs.product_description).value,
           state: 'active',
-          parent: [this.props.product.rowId]
+          parent: [props.product.rowId]
         }
       }
     };
 
-    const saveMutation = this.createProduct;
+    const saveMutation = createProduct;
     // Get the current Benchmark -- calculated by which benchmark is not archived and current date within the start & end dates
-    const currentBenchmark = this.getCurrentBenchmark();
-    const {environment} = this.props.relay;
+    const currentBenchmark = getCurrentBenchmark();
+    const {environment} = props.relay;
     commitMutation(environment, {
       mutation: saveMutation,
       variables: saveVariables,
-      onCompleted: async (response, errors) => {
+      onCompleted: async response => {
         console.log(response);
         const benchmarkPatch = {
           productId: response.createProduct.product.rowId
         };
         // Update state && updatedAt fields of previous product
-        await this.editProduct();
+        await editProduct();
         // Attach the previous Product's current benchmark to the new product
         if (currentBenchmark) {
-          await this.editBenchmark(currentBenchmark.rowId, benchmarkPatch);
+          await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
 
         window.location.reload();
@@ -220,26 +207,26 @@ class ProductRowItem extends Component {
   };
 
   // Save a new benchmark
-  saveBenchmark = async event => {
+  const saveBenchmark = async event => {
     event.preventDefault();
     event.stopPropagation();
     // Current-_date for updatedAt field
-    const current_date = new Date().toUTCString();
-    // Start_date received from user, defined in UI
-    const start_date = new Date(
-      ReactDOM.findDOMNode(this.refs.start_date).value
-    ).toUTCString();
+    const currentDate = new Date().toUTCString();
+    // StartDate received from user, defined in UI
+    const startDate = new Date('01-01-1999');
+    // ReactDOM.findDOMNode(this.refs.startDate).value
+    // ).toUTCString();
     const benchmarkPatch = {
-      endDate: start_date,
-      updatedAt: current_date
+      endDate: startDate,
+      updatedAt: currentDate
     };
     // Set the current benchmark (if one has been set)
-    const currentBenchmark = this.getCurrentBenchmark();
+    const currentBenchmark = getCurrentBenchmark();
 
     // Conflict handling
     if (
       currentBenchmark &&
-      Date.parse(start_date) < Date.parse(currentBenchmark.startDate)
+      Date.parse(startDate) < Date.parse(currentBenchmark.startDate)
     ) {
       console.error(
         'Start date of new benchmark is less than the start date of the current benchmark'
@@ -248,16 +235,14 @@ class ProductRowItem extends Component {
     }
 
     const validBenchmarks = [];
-    this.props.product.benchmarksByProductId.edges.forEach(
-      ({node: benchmark}) => {
-        if (
-          benchmark.endDate === null ||
-          Date.parse(benchmark.endDate) > Date.parse(current_date)
-        ) {
-          validBenchmarks.push(benchmark);
-        }
+    props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
+      if (
+        benchmark.endDate === null ||
+        Date.parse(benchmark.endDate) > Date.parse(currentDate)
+      ) {
+        validBenchmarks.push(benchmark);
       }
-    );
+    });
     console.log(validBenchmarks);
     if (validBenchmarks.length > 1) {
       console.error(
@@ -269,29 +254,29 @@ class ProductRowItem extends Component {
     const saveVariables = {
       input: {
         benchmark: {
-          productId: this.props.product.rowId,
-          benchmark: parseFloat(
-            ReactDOM.findDOMNode(this.refs.benchmark).value
-          ),
-          eligibilityThreshold: parseFloat(
-            ReactDOM.findDOMNode(this.refs.eligibility_threshold).value
-          ),
-          startDate: start_date,
-          updatedAt: current_date,
+          productId: props.product.rowId,
+          benchmark: 5, // ParseFloat(
+          // ReactDOM.findDOMNode(this.refs.benchmark).value
+          // )
+          eligibilityThreshold: 10, // ParseFloat(
+          //  ReactDOM.findDOMNode(this.refs.eligibility_threshold).value
+          // ),
+          startDate,
+          updatedAt: currentDate,
           updatedBy: 'Admin'
         }
       }
     };
-    const {environment} = this.props.relay;
-    const saveMutation = this.createBenchmark;
+    const {environment} = props.relay;
+    const saveMutation = createBenchmark;
     commitMutation(environment, {
       mutation: saveMutation,
       variables: saveVariables,
-      onCompleted: async (response, errors) => {
+      onCompleted: async response => {
         console.log(response);
         // If there was a previously set benchmark, update its end_date
         if (currentBenchmark) {
-          await this.editBenchmark(currentBenchmark.rowId, benchmarkPatch);
+          await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
 
         window.location.reload();
@@ -300,142 +285,216 @@ class ProductRowItem extends Component {
     });
   };
 
-  // Toggle enabling of editing products
-  toggleProductMode = () => {
-    console.log('ProductRowItem > Edit clicked');
-    this.state.mode === 'view' || this.state.mode === 'benchmark'
-      ? this.setState({mode: 'product'})
-      : this.setState({mode: 'view'});
-  };
-
-  // Toggle enabling of editing benchmarks
-  toggleBenchmarkMode = () => {
-    console.log('ProductRowItem > Edit clicked');
-    this.state.mode === 'view' || this.state.mode === 'product'
-      ? this.setState({mode: 'benchmark'})
-      : this.setState({mode: 'view'});
-  };
-
-  openConfirmationWindow = () => {
-    this.setState({confirmationModalOpen: true});
-  };
-
-  closeConfirmationWindow = () => {
-    this.setState({confirmationModalOpen: false});
-  };
-
-  render() {
-    const {product} = this.props;
-    // Get the current benchmark for the product
-    let benchmarks;
-    if (this.props.product.benchmarksByProductId.edges[0]) {
-      this.props.product.benchmarksByProductId.edges.forEach(
-        ({node: benchmark}) => {
-          if (
-            Date.parse(benchmark.startDate) < Date.now() &&
-            (benchmark.endDate === null ||
-              Date.parse(benchmark.endDate) > Date.now()) &&
-            !benchmark.deletedAt
-          ) {
-            benchmarks = benchmark;
-          }
-        }
-      );
-      if (!benchmarks) {
-        benchmarks = {benchmark: '', eligibilityThreshold: ''};
+  const {product} = props;
+  // Get the current benchmark for the product
+  let benchmarks;
+  if (props.product.benchmarksByProductId.edges[0]) {
+    props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
+      if (
+        Date.parse(benchmark.startDate) < Date.now() &&
+        (benchmark.endDate === null ||
+          Date.parse(benchmark.endDate) > Date.now()) &&
+        !benchmark.deletedAt
+      ) {
+        benchmarks = benchmark;
       }
-    } else {
+    });
+    if (!benchmarks) {
       benchmarks = {benchmark: '', eligibilityThreshold: ''};
     }
+  } else {
+    benchmarks = {benchmark: '', eligibilityThreshold: ''};
+  }
 
-    // Archived logic to determine display values
-    const background =
-      this.props.product.state === 'archived' ? 'lightGrey' : '';
-    const buttonVariant =
-      this.props.product.state === 'archived' ? 'success' : 'warning';
-    const archiveRestore =
-      this.props.product.state === 'archived' ? 'Restore' : 'Archive';
+  // Archived logic to determine display values
+  const background = props.product.state === 'archived' ? 'lightGrey' : '';
+  const buttonVariant =
+    props.product.state === 'archived' ? 'success' : 'warning';
+  const archiveRestore =
+    props.product.state === 'archived' ? 'Restore' : 'Archive';
 
-    return (
-      <>
-        <div
-          key={this.props.product.rowId}
-          id="view-item"
-          className={this.state.mode}
-        >
-          <div style={{background}}>
-            <Row style={{padding: 5}}>
-              <Col md={1} style={{textAlign: 'right'}}>
+  return (
+    <>
+      <div id="view-item" className={props.mode}>
+        <div style={{background}}>
+          <Row style={{padding: 5}}>
+            <Col md={1} style={{textAlign: 'right'}}>
+              <Button
+                data-testid="edit-product"
+                style={{width: '100%'}}
+                onClick={props.productRowActions.toggleProductMode}
+              >
+                Edit
+              </Button>
+            </Col>
+            <Col md={4}>
+              <h5>{product.name}</h5>
+              <small>{product.description}</small>
+            </Col>
+            <Col md={1}>
+              <Form.Label>
+                <small>Archived:</small>{' '}
+                {product.state === 'archived' ? 'true' : 'false'}
+              </Form.Label>
+            </Col>
+            <Col md={1} style={{textAlign: 'right'}}>
+              <Button
+                data-testid="edit-benchmark"
+                style={{width: '100%'}}
+                onClick={props.productRowActions.toggleBenchmarkMode}
+              >
+                Edit
+              </Button>
+            </Col>
+            <Col md={2}>
+              <Form.Label>
+                <small>Benchmark:</small> {benchmarks.benchmark}
+              </Form.Label>
+              <br />
+              <Form.Label>
+                <small>Start Date:</small> {benchmarks.startDate}
+              </Form.Label>
+            </Col>
+            <Col md={3}>
+              <Form.Label>
+                <small>Eligibility Threshold:</small>{' '}
+                {benchmarks.eligibilityThreshold}
+              </Form.Label>
+              <br />
+              <Form.Label>
+                <small>End Date:</small> {benchmarks.endDate}
+              </Form.Label>
+            </Col>
+          </Row>
+        </div>
+        <hr />
+      </div>
+
+      <div
+        key={`edit-pr${props.product.rowId}`}
+        id="edit-product"
+        className={props.mode}
+      >
+        <Form key={props.product.rowId} onSubmit={saveProduct}>
+          <Form.Row>
+            <Form.Group
+              as={Col}
+              md="1"
+              style={{textAlign: 'right'}}
+              controlId="button_group"
+            >
+              <ButtonGroup
+                vertical
+                style={{width: '100%', marginTop: 10, marginBotton: 5}}
+              >
                 <Button
-                  data-testid="edit-product"
-                  style={{width: '100%'}}
-                  onClick={this.toggleProductMode}
+                  data-testid="save-product"
+                  style={{marginTop: '8px', marginRight: '10px'}}
+                  type="submit"
                 >
-                  Edit
+                  Save
                 </Button>
-              </Col>
-              <Col md={4}>
+                <Button
+                  variant="secondary"
+                  style={{marginTop: '8px'}}
+                  onClick={props.productRowActions.toggleProductMode}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  data-testid="archive-product"
+                  style={{marginTop: '8px', marginRight: '10px'}}
+                  variant={buttonVariant}
+                  onClick={toggleArchived}
+                >
+                  {archiveRestore}
+                </Button>
+              </ButtonGroup>
+            </Form.Group>
+            <Form.Group as={Col} md="4" controlId="product_name">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                // Ref="product_name"
+                required="required"
+                type="string"
+                step="0.01"
+                placeholder={product.name}
+                defaultValue={product.name}
+              />
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                // Ref="product_description"
+                required="required"
+                type="string"
+                step="0.01"
+                placeholder={product.description}
+                defaultValue={product.description}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md="2">
+              <Form.Label>
+                <small>Archived:</small>{' '}
+                {product.state === 'archived' ? 'true' : 'false'}
+              </Form.Label>
+            </Form.Group>
+            <Form.Group as={Col} md="2">
+              <Form.Label>
+                <small>Benchmark:</small> {benchmarks.benchmark}
+              </Form.Label>
+            </Form.Group>
+            <Form.Group as={Col} md="3">
+              <Form.Label>
+                <small>Eligibility Threshold:</small>{' '}
+                {benchmarks.eligibilityThreshold}
+              </Form.Label>
+            </Form.Group>
+          </Form.Row>
+        </Form>
+        <hr />
+      </div>
+
+      <div
+        key={`edit-bm${props.product.rowId}`}
+        id="edit-benchmark"
+        className={props.mode}
+      >
+        {props.confirmationModalOpen && (
+          <Modal.Dialog>
+            <Modal.Header>
+              <Modal.Title>Are You Sure?</Modal.Title>
+            </Modal.Header>
+            <Modal.Body style={{color: 'red'}}>
+              This is a destructive action (benchmark will be destroyed)
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={props.productRowActions.closeConfirmationWindow}>
+                No
+              </Button>
+              <Button onClick={toggleBenchmarkDeleted}>Yes</Button>
+            </Modal.Footer>
+          </Modal.Dialog>
+        )}
+        {!props.confirmationModalOpen && (
+          <Form key={props.product.rowId} onSubmit={saveBenchmark}>
+            <Form.Row>
+              <Form.Group as={Col} md="1"></Form.Group>
+              <Form.Group as={Col} md="4">
                 <h5>{product.name}</h5>
                 <small>{product.description}</small>
-              </Col>
-              <Col md={1}>
+              </Form.Group>
+              <Form.Group as={Col} md="1">
                 <Form.Label>
                   <small>Archived:</small>{' '}
                   {product.state === 'archived' ? 'true' : 'false'}
                 </Form.Label>
-              </Col>
-              <Col md={1} style={{textAlign: 'right'}}>
-                <Button
-                  data-testid="edit-benchmark"
-                  style={{width: '100%'}}
-                  onClick={this.toggleBenchmarkMode}
-                >
-                  Edit
-                </Button>
-              </Col>
-              <Col md={2}>
-                <Form.Label>
-                  <small>Benchmark:</small> {benchmarks.benchmark}
-                </Form.Label>
-                <br />
-                <Form.Label>
-                  <small>Start Date:</small> {benchmarks.startDate}
-                </Form.Label>
-              </Col>
-              <Col md={3}>
-                <Form.Label>
-                  <small>Eligibility Threshold:</small>{' '}
-                  {benchmarks.eligibilityThreshold}
-                </Form.Label>
-                <br />
-                <Form.Label>
-                  <small>End Date:</small> {benchmarks.endDate}
-                </Form.Label>
-              </Col>
-            </Row>
-          </div>
-          <hr />
-        </div>
-
-        <div
-          key={`edit-pr${this.props.product.rowId}`}
-          id="edit-product"
-          className={this.state.mode}
-        >
-          <Form key={this.props.product.rowId} onSubmit={this.saveProduct}>
-            <Form.Row>
-              <Form.Group
-                as={Col}
-                md="1"
-                style={{textAlign: 'right'}}
-                controlId="button_group"
-              >
+              </Form.Group>
+              <Form.Group as={Col} md="1" style={{textAlign: 'right'}}>
                 <ButtonGroup
                   vertical
                   style={{width: '100%', marginTop: 10, marginBotton: 5}}
                 >
                   <Button
-                    data-testid="save-product"
+                    data-testid="save-benchmark"
                     style={{marginTop: '8px', marginRight: '10px'}}
                     type="submit"
                   >
@@ -444,177 +503,72 @@ class ProductRowItem extends Component {
                   <Button
                     variant="secondary"
                     style={{marginTop: '8px'}}
-                    onClick={this.toggleProductMode}
+                    onClick={props.productRowActions.toggleBenchmarkMode}
                   >
                     Cancel
                   </Button>
                   <Button
-                    data-testid="archive-product"
+                    data-testid="archive-benchmark"
                     style={{marginTop: '8px', marginRight: '10px'}}
-                    variant={buttonVariant}
-                    onClick={this.toggleArchived}
+                    variant="danger"
+                    onClick={props.productRowActions.openConfirmationWindow}
                   >
-                    {archiveRestore}
+                    Delete
                   </Button>
                 </ButtonGroup>
               </Form.Group>
-              <Form.Group as={Col} md="4" controlId="product_name">
-                <Form.Label>Name</Form.Label>
+              <Form.Group as={Col} md="3" controlId="benchmark">
+                <Form.Label>Benchmark</Form.Label>
                 <Form.Control
-                  ref="product_name"
+                  // Ref="benchmark"
                   required="required"
-                  type="string"
+                  type="number"
                   step="0.01"
-                  placeholder={product.name}
-                  defaultValue={product.name}
+                  placeholder={benchmarks.benchmark}
+                  defaultValue={benchmarks.benchmark}
                 />
-                <Form.Label>Description</Form.Label>
+                <Form.Label>Eligibility Threshold</Form.Label>
                 <Form.Control
-                  ref="product_description"
+                  // Ref="eligibility_threshold"
                   required="required"
-                  type="string"
+                  type="number"
                   step="0.01"
-                  placeholder={product.description}
-                  defaultValue={product.description}
+                  placeholder={benchmarks.eligibilityThreshold}
+                  defaultValue={benchmarks.eligibilityThreshold}
                 />
-              </Form.Group>
-              <Form.Group as={Col} md="2">
-                <Form.Label>
-                  <small>Archived:</small>{' '}
-                  {product.state === 'archived' ? 'true' : 'false'}
-                </Form.Label>
-              </Form.Group>
-              <Form.Group as={Col} md="2">
-                <Form.Label>
-                  <small>Benchmark:</small> {benchmarks.benchmark}
-                </Form.Label>
-              </Form.Group>
-              <Form.Group as={Col} md="3">
-                <Form.Label>
-                  <small>Eligibility Threshold:</small>{' '}
-                  {benchmarks.eligibilityThreshold}
-                </Form.Label>
+                <Form.Label>Start Date</Form.Label>
+                <Form.Control
+                  // Ref="startDate"
+                  required="required"
+                  step="0.01"
+                  placeholder="dd/mm/yyyy"
+                />
               </Form.Group>
             </Form.Row>
           </Form>
-          <hr />
-        </div>
-
-        <div
-          key={`edit-bm${this.props.product.rowId}`}
-          id="edit-benchmark"
-          className={this.state.mode}
-        >
-          {this.state.confirmationModalOpen && (
-            <Modal.Dialog>
-              <Modal.Header>
-                <Modal.Title>Are You Sure?</Modal.Title>
-              </Modal.Header>
-              <Modal.Body style={{color: 'red'}}>
-                This is a destructive action (benchmark will be destroyed)
-              </Modal.Body>
-              <Modal.Footer>
-                <button onClick={this.closeConfirmationWindow}>No</button>
-                <button onClick={this.toggleBenchmarkDeleted}>Yes</button>
-              </Modal.Footer>
-            </Modal.Dialog>
-          )}
-          {!this.state.confirmationModalOpen && (
-            <Form key={this.props.product.rowId} onSubmit={this.saveBenchmark}>
-              <Form.Row>
-                <Form.Group as={Col} md="1"></Form.Group>
-                <Form.Group as={Col} md="4">
-                  <h5>{product.name}</h5>
-                  <small>{product.description}</small>
-                </Form.Group>
-                <Form.Group as={Col} md="1">
-                  <Form.Label>
-                    <small>Archived:</small>{' '}
-                    {product.state === 'archived' ? 'true' : 'false'}
-                  </Form.Label>
-                </Form.Group>
-                <Form.Group as={Col} md="1" style={{textAlign: 'right'}}>
-                  <ButtonGroup
-                    vertical
-                    style={{width: '100%', marginTop: 10, marginBotton: 5}}
-                  >
-                    <Button
-                      data-testid="save-benchmark"
-                      style={{marginTop: '8px', marginRight: '10px'}}
-                      type="submit"
-                    >
-                      Save
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      style={{marginTop: '8px'}}
-                      onClick={this.toggleBenchmarkMode}
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      data-testid="archive-benchmark"
-                      style={{marginTop: '8px', marginRight: '10px'}}
-                      variant="danger"
-                      onClick={this.openConfirmationWindow}
-                    >
-                      Delete
-                    </Button>
-                  </ButtonGroup>
-                </Form.Group>
-                <Form.Group as={Col} md="3" controlId="benchmark">
-                  <Form.Label>Benchmark</Form.Label>
-                  <Form.Control
-                    ref="benchmark"
-                    required="required"
-                    type="number"
-                    step="0.01"
-                    placeholder={benchmarks.benchmark}
-                    defaultValue={benchmarks.benchmark}
-                  />
-                  <Form.Label>Eligibility Threshold</Form.Label>
-                  <Form.Control
-                    ref="eligibility_threshold"
-                    required="required"
-                    type="number"
-                    step="0.01"
-                    placeholder={benchmarks.eligibilityThreshold}
-                    defaultValue={benchmarks.eligibilityThreshold}
-                  />
-                  <Form.Label>Start Date</Form.Label>
-                  <Form.Control
-                    ref="start_date"
-                    required="required"
-                    step="0.01"
-                    placeholder="dd/mm/yyyy"
-                  />
-                </Form.Group>
-              </Form.Row>
-            </Form>
-          )}
-          <hr />
-        </div>
-        <style jsx>
-          {`
-            #edit-benchmark.view,
-            #edit-benchmark.product,
-            #edit-product.view,
-            #edit-product.benchmark,
-            #view-item.benchmark,
-            #view-item.product {
-              display: none;
-            }
-            #edit-benchmark.benchmark,
-            #edit-product.product,
-            #view-item.view {
-              display: initial;
-            }
-          `}
-        </style>
-      </>
-    );
-  }
-}
+        )}
+        <hr />
+      </div>
+      <style jsx>
+        {`
+          #edit-benchmark.view,
+          #edit-benchmark.product,
+          #edit-product.view,
+          #edit-product.benchmark,
+          #view-item.benchmark,
+          #view-item.product {
+            display: none;
+          }
+          #edit-benchmark.benchmark,
+          #edit-product.product,
+          #view-item.view {
+            display: initial;
+          }
+        `}
+      </style>
+    </>
+  );
+};
 
 export default createFragmentContainer(ProductRowItem, {
   product: graphql`
