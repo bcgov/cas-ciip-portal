@@ -18,7 +18,7 @@ create view ggircs_portal.ciip_application as (
     )
     select
        -- TODO(wenzowski): avoid aliasing `id` as another field since relay does some shit based on the primary key and stuff
-       x.id as application_id,
+       x.id,
        x.facility_data ->> 'facility_name' as facility_name,
        x.operator_data ->> 'operator_name' as operator_name,
        x.submission_date as submission_date,
