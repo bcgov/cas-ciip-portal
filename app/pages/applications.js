@@ -4,6 +4,8 @@ import DefaultLayout from '../layouts/default-layout';
 import ApplicationListContainer from '../containers/Applications/ApplicationListContainer';
 
 class Applications extends Component {
+  // TODO(wenzowski): is this an es6 thing? waaaaaaaaaaat?
+  // TODO(wenzowski): for the relay variables, can we contain them to one key in our state object?
   state = {
     orderByField: 'operator_name',
     direction: 'ASC',
@@ -12,6 +14,13 @@ class Applications extends Component {
     filterValue: null,
     filterDisplay: 'No Filter'
   };
+
+  // Actions to consume in downstream components
+  // static SORT_ACTION=1
+  // static MERGE_ACTION=2
+
+  // in downstream component
+  // onClick={(event) => handleApplicationsAction({action: Applications.SORT_ACTION})})
 
   static query = graphql`
     query applicationsQuery(
@@ -70,6 +79,7 @@ class Applications extends Component {
     }
   };
 
+  // TODO(wenzowski): how would we get a condition such that this.state is falsy?
   static async getInitialProps() {
     return {
       variables: {
@@ -81,6 +91,8 @@ class Applications extends Component {
     };
   }
 
+  // TODO(wenzowski): where possible, event switches should follow the `handleEvent()` naming convention
+  // @see https://reactpatterns.com/#event-switch
   render() {
     const {query} = this.props;
     return (

@@ -12,6 +12,7 @@ import {
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
 const ApplicationListContainer = props => {
+  // TODO(wenzowski): by migrating to an event switch convention, we need fewer props here
   const {
     sortApplications,
     toggleDirection,
@@ -25,6 +26,7 @@ const ApplicationListContainer = props => {
     searchValue
   } = props;
   const {edges} = props.query.searchApplicationList;
+  // TODO(wenzowski): confirm why the ref is neccessary?
   const inputref = useRef(null);
 
   useEffect(() => {
@@ -191,6 +193,10 @@ const ApplicationListContainer = props => {
   );
 };
 
+
+// TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
+// and also for relay to refetch
+// @see https://facebook.github.io/relay/graphql/objectidentification.htm#sec-Node-Interface
 export default createRefetchContainer(
   ApplicationListContainer,
   {

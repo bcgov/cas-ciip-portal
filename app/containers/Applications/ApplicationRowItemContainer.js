@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import {Button, Badge} from 'react-bootstrap';
 
+// TODO(wenzowski): I can haz fragment pls?
 const ApplicationRowItemContainer = props => {
   const {application} = props;
   const statusBadgeColor = {
