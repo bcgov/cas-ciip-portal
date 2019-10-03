@@ -2,7 +2,6 @@ import React from 'react';
 import propTypes from 'prop-types';
 import {Button, Badge} from 'react-bootstrap';
 
-// TODO(wenzowski): I can haz fragment pls?
 const ApplicationRowItemContainer = props => {
   const {application} = props;
   const statusBadgeColor = {
@@ -38,16 +37,16 @@ const ApplicationRowItemContainer = props => {
   );
 };
 
-export default ApplicationRowItemContainer;
-
-ApplicationRowItemContainer.propTypes = {
-  application: propTypes.shape({
-    rowId: propTypes.string,
-    applicationStatus: propTypes.string,
-    submissionDate: propTypes.string,
-    facilityName: propTypes.string,
-    operatorName: propTypes.string,
-    reportingYear: propTypes.string,
-    bcghgid: propTypes.string
-  }).isRequired
-};
+export default createFragmentContainer(ApplicationRowItemContainer, {
+  query: graphql`
+    fragment ApplicationRowItemContainer_query on CiipApplication {
+      rowId
+      facilityName
+      operatorName
+      applicationStatus
+      submissionDate
+      reportingYear
+      bcghgid
+    }
+  `
+});

@@ -227,13 +227,7 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
-              rowId
-              facilityName
-              operatorName
-              applicationStatus
-              submissionDate
-              reportingYear
-              bcghgid
+              ...ApplicationRowItemContainer_query
             }
           }
         }
