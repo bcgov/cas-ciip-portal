@@ -4,7 +4,6 @@ import ProductRowItem from '../../components/Products/ProductRowItem';
 
 const ProductListContainer = props => {
   if (props.query.active) {
-    console.log(props);
     const {query} = props;
     const allProducts = [...query.active.edges, ...query.archived.edges] || {};
     return allProducts.map(({node}) => (
