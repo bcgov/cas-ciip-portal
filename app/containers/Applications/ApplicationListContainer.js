@@ -207,7 +207,7 @@ const ApplicationListContainer = props => {
 // TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
 // and also for relay to refetch
 // @see https://facebook.github.io/relay/graphql/objectidentification.htm#sec-Node-Interface
-// TODO: Several entitites do not have graphql ID's because they are views!!
+// TODO: Several entitites do not have graphql ID's because they are views
 export default createRefetchContainer(
   ApplicationListContainer,
   {

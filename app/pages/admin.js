@@ -16,7 +16,6 @@ class Admin extends Component {
 
   // Toggle enabling of editing products
   toggleProductMode = () => {
-    console.log('ProductRowItem > Edit clicked');
     this.state.mode === 'view' || this.state.mode === 'benchmark'
       ? this.setState({mode: 'product'})
       : this.setState({mode: 'view'});
@@ -24,7 +23,6 @@ class Admin extends Component {
 
   // Toggle enabling of editing benchmarks
   toggleBenchmarkMode = () => {
-    console.log('ProductRowItem > Edit clicked');
     this.state.mode === 'view' || this.state.mode === 'product'
       ? this.setState({mode: 'benchmark'})
       : this.setState({mode: 'view'});
