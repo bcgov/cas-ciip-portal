@@ -194,7 +194,7 @@ const ApplicationListContainer = props => {
             {edges.map(edge => (
               <ApplicationRowItemContainer
                 key={edge.node.id}
-                application={edge.node}
+                ciipApplication={edge.node}
               />
             ))}
           </tbody>
@@ -227,7 +227,7 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
-              ...ApplicationRowItemContainer_query
+              ...ApplicationRowItemContainer_ciipApplication
             }
           }
         }

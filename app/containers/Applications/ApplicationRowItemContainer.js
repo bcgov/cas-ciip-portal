@@ -1,9 +1,9 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import {Button, Badge} from 'react-bootstrap';
+import {graphql, createFragmentContainer} from 'react-relay';
 
 const ApplicationRowItemContainer = props => {
-  const {application} = props;
+  const {ciipApplication} = props;
   const statusBadgeColor = {
     attention: 'warning',
     pending: 'info',
@@ -11,21 +11,21 @@ const ApplicationRowItemContainer = props => {
     approved: 'success'
   };
 
-  const applicationDetails = `/application-details?application_id=${application.rowId}&reportingyear=${application.reportingYear}&bcghgid=${application.bcghgid}`;
+  const applicationDetails = `/application-details?application_id=${ciipApplication.rowId}&reportingyear=${ciipApplication.reportingYear}&bcghgid=${ciipApplication.bcghgid}`;
 
   return (
     <tr>
-      <td>{application.rowId}</td>
-      <td>{application.operatorName}</td>
-      <td>{application.facilityName}</td>
-      <td>{application.submissionDate}</td>
+      <td>{ciipApplication.rowId}</td>
+      <td>{ciipApplication.operatorName}</td>
+      <td>{ciipApplication.facilityName}</td>
+      <td>{ciipApplication.submissionDate}</td>
       <td>
         <Badge
           pill
           style={{width: '100%'}}
-          variant={statusBadgeColor[application.applicationStatus]}
+          variant={statusBadgeColor[ciipApplication.applicationStatus]}
         >
-          {application.applicationStatus}
+          {ciipApplication.applicationStatus}
         </Badge>
       </td>
       <td>
@@ -38,8 +38,8 @@ const ApplicationRowItemContainer = props => {
 };
 
 export default createFragmentContainer(ApplicationRowItemContainer, {
-  query: graphql`
-    fragment ApplicationRowItemContainer_query on CiipApplication {
+  ciipApplication: graphql`
+    fragment ApplicationRowItemContainer_ciipApplication on CiipApplication {
       rowId
       facilityName
       operatorName
