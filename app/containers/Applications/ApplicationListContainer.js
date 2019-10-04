@@ -47,6 +47,7 @@ const ApplicationListContainer = props => {
         </Row>
         <Row>
           <Col md={2}>
+            {/* TODO: Create a dropdown component file to be re-used? This is repeated below */}
             <Dropdown style={{width: '100%'}}>
               <Dropdown.Toggle
                 style={{width: '100%'}}
