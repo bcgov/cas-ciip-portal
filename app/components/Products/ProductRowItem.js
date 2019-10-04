@@ -9,6 +9,9 @@ import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 
 // TODO: Make the benchmark management system better. Currently the UI only shows the current benchmark, there is no way to view benchmarks
 //       that have been created for the future (to supplant the current one), or to see past benchmarks. This can currently only be done in the database
+
+// TODO: The UI is a little borked, the edit buttons apply to all items on the page because of where state lives currently
+//       I have purposely left this not fixed as I believe this should be fixed in a separate refactor of this page
 const ProductRowItem = props => {
   const createBenchmark = graphql`
     mutation ProductRowItemBenchmarkMutation($input: CreateBenchmarkInput!) {
@@ -91,7 +94,6 @@ const ProductRowItem = props => {
       mutation: saveMutation,
       variables: saveVariables,
       onCompleted: async response => {
-        console.log(response);
         const currentBenchmark = getCurrentBenchmark();
         const benchmarkPatch = {
           productId: response.createProduct.product.rowId
@@ -171,11 +173,12 @@ const ProductRowItem = props => {
   const saveProduct = async event => {
     event.preventDefault();
     event.stopPropagation();
+    event.persist();
     const saveVariables = {
       input: {
         product: {
-          name: 'a', // ReactDOM.findDOMNode(refs.product_name).value,
-          description: 'b', // ReactDOM.findDOMNode(refs.product_description).value,
+          name: event.nativeEvent.target[3].value,
+          description: event.nativeEvent.target[4].value,
           state: 'active',
           parent: [props.product.rowId]
         }
@@ -201,7 +204,7 @@ const ProductRowItem = props => {
           await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
 
-        window.location.reload();
+        // Window.location.reload();
       },
       onError: err => console.error(err)
     });
@@ -211,12 +214,11 @@ const ProductRowItem = props => {
   const saveBenchmark = async event => {
     event.preventDefault();
     event.stopPropagation();
+    event.persist();
     // Current-_date for updatedAt field
     const currentDate = new Date().toUTCString();
     // StartDate received from user, defined in UI
-    const startDate = new Date('01-01-1999');
-    // ReactDOM.findDOMNode(this.refs.startDate).value
-    // ).toUTCString();
+    const startDate = new Date(event.nativeEvent.target[5].value).toUTCString();
     const benchmarkPatch = {
       endDate: startDate,
       updatedAt: currentDate
@@ -244,7 +246,7 @@ const ProductRowItem = props => {
         validBenchmarks.push(benchmark);
       }
     });
-    console.log(validBenchmarks);
+
     if (validBenchmarks.length > 1) {
       console.error(
         'Too many benchmarks already created, only one active benchmark and one upcoming benchmark can be defined at one time'
@@ -256,12 +258,8 @@ const ProductRowItem = props => {
       input: {
         benchmark: {
           productId: props.product.rowId,
-          benchmark: 5, // ParseFloat(
-          // ReactDOM.findDOMNode(this.refs.benchmark).value
-          // )
-          eligibilityThreshold: 10, // ParseFloat(
-          //  ReactDOM.findDOMNode(this.refs.eligibility_threshold).value
-          // ),
+          benchmark: parseFloat(event.nativeEvent.target[3].value),
+          eligibilityThreshold: parseFloat(event.nativeEvent.target[4].value),
           startDate,
           updatedAt: currentDate,
           updatedBy: 'Admin'
@@ -415,7 +413,6 @@ const ProductRowItem = props => {
             <Form.Group as={Col} md="4" controlId="product_name">
               <Form.Label>Name</Form.Label>
               <Form.Control
-                // Ref="product_name"
                 required="required"
                 type="string"
                 step="0.01"
@@ -424,7 +421,6 @@ const ProductRowItem = props => {
               />
               <Form.Label>Description</Form.Label>
               <Form.Control
-                // Ref="product_description"
                 required="required"
                 type="string"
                 step="0.01"
@@ -521,7 +517,6 @@ const ProductRowItem = props => {
               <Form.Group as={Col} md="3" controlId="benchmark">
                 <Form.Label>Benchmark</Form.Label>
                 <Form.Control
-                  // Ref="benchmark"
                   required="required"
                   type="number"
                   step="0.01"
@@ -530,7 +525,6 @@ const ProductRowItem = props => {
                 />
                 <Form.Label>Eligibility Threshold</Form.Label>
                 <Form.Control
-                  // Ref="eligibility_threshold"
                   required="required"
                   type="number"
                   step="0.01"
@@ -539,7 +533,6 @@ const ProductRowItem = props => {
                 />
                 <Form.Label>Start Date</Form.Label>
                 <Form.Control
-                  // Ref="startDate"
                   required="required"
                   step="0.01"
                   placeholder="dd/mm/yyyy"
