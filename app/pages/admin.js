@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {Container, Row, Col, Jumbotron} from 'react-bootstrap';
 import Header from '../components/Header';
-import ProductCreator from '../components/Products/ProductCreator';
+import ProductCreatorContainer from '../containers/Products/ProductCreatorContainer';
 import ProductListContainer from '../containers/Products/ProductListContainer';
 
 class Admin extends Component {
@@ -70,7 +70,7 @@ class Admin extends Component {
               <Jumbotron>
                 <h4>Create a Product</h4>
                 <br />
-                <ProductCreator />
+                <ProductCreatorContainer />
               </Jumbotron>
               <br />
               <br />

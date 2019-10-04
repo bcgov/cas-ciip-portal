@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
 import {Form, Button, Col} from 'react-bootstrap';
 
-const ProductCreator = props => {
+const ProductCreatorContainer = props => {
   const createProductFromRef = React.createRef();
   const createProduct = graphql`
     mutation ProductCreatorMutation($input: CreateProductInput!) {
@@ -66,4 +66,4 @@ const ProductCreator = props => {
   );
 };
 
-export default createFragmentContainer(ProductCreator, {});
+export default createFragmentContainer(ProductCreatorContainer, {});
