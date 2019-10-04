@@ -26,7 +26,7 @@ class ProductCreator extends Component {
         product: {
           name: event.target.product_name.value,
           description: event.target.product_description.value,
-          state: 'created',
+          state: 'active',
           parent: [null],
           createdAt: date,
           createdBy: 'Admin'
