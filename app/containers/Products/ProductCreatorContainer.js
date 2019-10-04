@@ -5,7 +5,7 @@ import {Form, Button, Col} from 'react-bootstrap';
 const ProductCreatorContainer = props => {
   const createProductFromRef = React.createRef();
   const createProduct = graphql`
-    mutation ProductCreatorMutation($input: CreateProductInput!) {
+    mutation ProductCreatorContainerMutation($input: CreateProductInput!) {
       createProduct(input: $input) {
         product {
           rowId
