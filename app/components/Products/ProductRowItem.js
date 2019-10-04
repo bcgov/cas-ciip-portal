@@ -132,10 +132,11 @@ const ProductRowItem = props => {
         benchmarkPatch
       }
     };
+    const {environment} = props.relay;
     commitMutation(environment, {
       mutation: saveMutation,
       variables: updateBenchmarkVariables,
-      onCompleted: (response, errors) => {
+      onCompleted: response => {
         console.log(response);
       },
       onError: err => console.error(err)
