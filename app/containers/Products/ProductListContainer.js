@@ -1,13 +1,13 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import ProductRowItem from '../../components/Products/ProductRowItem';
+import ProductRowItemContainer from './ProductRowItemContainer';
 
 const ProductListContainer = props => {
   if (props.query.active) {
     const {query} = props;
     const allProducts = [...query.active.edges, ...query.archived.edges] || {};
     return allProducts.map(({node}) => (
-      <ProductRowItem
+      <ProductRowItemContainer
         key={node.id}
         product={node}
         mode={props.mode}
@@ -36,7 +36,7 @@ export default createFragmentContainer(ProductListContainer, {
         edges {
           node {
             id
-            ...ProductRowItem_product
+            ...ProductRowItemContainer_product
           }
         }
       }
@@ -48,7 +48,7 @@ export default createFragmentContainer(ProductListContainer, {
         edges {
           node {
             id
-            ...ProductRowItem_product
+            ...ProductRowItemContainer_product
           }
         }
       }

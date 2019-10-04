@@ -12,9 +12,11 @@ import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 
 // TODO: The UI is a little borked, the edit buttons apply to all items on the page because of where state lives currently
 //       I have purposely left this not fixed as I believe this should be fixed in a separate refactor of this page
-const ProductRowItem = props => {
+const ProductRowItemContainer = props => {
   const createBenchmark = graphql`
-    mutation ProductRowItemBenchmarkMutation($input: CreateBenchmarkInput!) {
+    mutation ProductRowItemContainerBenchmarkMutation(
+      $input: CreateBenchmarkInput!
+    ) {
       createBenchmark(input: $input) {
         benchmark {
           rowId
@@ -23,7 +25,9 @@ const ProductRowItem = props => {
     }
   `;
   const createProduct = graphql`
-    mutation ProductRowItemProductMutation($input: CreateProductInput!) {
+    mutation ProductRowItemContainerProductMutation(
+      $input: CreateProductInput!
+    ) {
       createProduct(input: $input) {
         product {
           rowId
@@ -32,7 +36,7 @@ const ProductRowItem = props => {
     }
   `;
   const updateBenchmark = graphql`
-    mutation ProductRowItemUpdateBenchmarkMutation(
+    mutation ProductRowItemContainerUpdateBenchmarkMutation(
       $input: UpdateBenchmarkByRowIdInput!
     ) {
       updateBenchmarkByRowId(input: $input) {
@@ -43,7 +47,7 @@ const ProductRowItem = props => {
     }
   `;
   const updateProduct = graphql`
-    mutation ProductRowItemUpdateProductMutation(
+    mutation ProductRowItemContainerUpdateProductMutation(
       $input: UpdateProductByRowIdInput!
     ) {
       updateProductByRowId(input: $input) {
@@ -204,7 +208,7 @@ const ProductRowItem = props => {
           await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
 
-        // Window.location.reload();
+        window.location.reload();
       },
       onError: err => console.error(err)
     });
@@ -564,9 +568,9 @@ const ProductRowItem = props => {
   );
 };
 
-export default createFragmentContainer(ProductRowItem, {
+export default createFragmentContainer(ProductRowItemContainer, {
   product: graphql`
-    fragment ProductRowItem_product on Product {
+    fragment ProductRowItemContainer_product on Product {
       id
       rowId
       name
