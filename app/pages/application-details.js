@@ -6,6 +6,7 @@ import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalc
 import ApplicationStatus from '../containers/Applications/ApplicationStatus';
 import Header from '../components/Header';
 
+// TODO: decide what to show in this page & create a query from the props passed in
 class ApplicationDetails extends Component {
   render() {
     const {
