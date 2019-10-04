@@ -64,9 +64,6 @@ const Header = () => {
                 </a>
                 <a
                   style={{marginLeft: '20px'}}
-                  // (Dylan) Why these next 2 lines?
-                  // target="_blank"
-                  // rel="noopener noreferrer"
                   href="/admin"
                   className="btn btn-info"
                 >
