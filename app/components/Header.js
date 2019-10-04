@@ -50,7 +50,7 @@ const Header = () => {
                 </a>
                 <a
                   style={{marginLeft: '20px'}}
-                  href="/products"
+                  href="/admin"
                   className="btn btn-secondary"
                 >
                   Products
@@ -64,9 +64,10 @@ const Header = () => {
                 </a>
                 <a
                   style={{marginLeft: '20px'}}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="http://localhost:3000/question/66"
+                  // (Dylan) Why these next 2 lines?
+                  // target="_blank"
+                  // rel="noopener noreferrer"
+                  href="/admin"
                   className="btn btn-info"
                 >
                   Admin
