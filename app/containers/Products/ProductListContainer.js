@@ -3,8 +3,8 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import ProductRowItemContainer from './ProductRowItemContainer';
 
 const ProductListContainer = props => {
-  if (props.query.active) {
-    const {query} = props;
+  const {query} = props;
+  if (query && (query.active || query.archived) && (query.active.edges || query.archived.edges)) {
     const allProducts = [...query.active.edges, ...query.archived.edges];
     return allProducts.map(({node}) => (
       <ProductRowItemContainer
