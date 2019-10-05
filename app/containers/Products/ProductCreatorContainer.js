@@ -10,6 +10,9 @@ const ProductCreatorContainer = props => {
         product {
           rowId
         }
+        query {
+          ...ProductListContainer_query
+        }
       }
     }
   `;
@@ -39,7 +42,6 @@ const ProductCreatorContainer = props => {
       onCompleted: response => {
         console.log(response);
         createProductFromRef.current.reset();
-        window.location.reload();
       },
       onError: err => console.error(err)
     });

@@ -102,7 +102,6 @@ class Applications extends Component {
       <DefaultLayout title="Applications">
         <ApplicationListContainer
           query={query}
-          applysearchValue={this.applysearchValue}
           orderByDisplay={this.state.orderByDisplay}
           searchDisplay={this.state.searchDisplay}
           direction={this.state.direction}

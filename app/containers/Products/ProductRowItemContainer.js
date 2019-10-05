@@ -32,6 +32,9 @@ const ProductRowItemContainer = props => {
         product {
           rowId
         }
+        query {
+          ...ProductListContainer_query
+        }
       }
     }
   `;
@@ -107,7 +110,6 @@ const ProductRowItemContainer = props => {
           await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
 
-        window.location.reload();
       },
       onError: err => console.error(err)
     });
@@ -126,7 +128,6 @@ const ProductRowItemContainer = props => {
     };
 
     await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
-    window.location.reload();
   };
 
   // Edit a benchmark
@@ -208,7 +209,6 @@ const ProductRowItemContainer = props => {
           await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
 
-        window.location.reload();
       },
       onError: err => console.error(err)
     });
@@ -282,7 +282,6 @@ const ProductRowItemContainer = props => {
           await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
 
-        window.location.reload();
       },
       onError: err => console.error(err)
     });
