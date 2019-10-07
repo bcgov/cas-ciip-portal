@@ -109,7 +109,6 @@ const ProductRowItemContainer = props => {
         if (currentBenchmark) {
           await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
-
       },
       onError: err => console.error(err)
     });
@@ -208,7 +207,6 @@ const ProductRowItemContainer = props => {
         if (currentBenchmark) {
           await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
-
       },
       onError: err => console.error(err)
     });
@@ -281,7 +279,6 @@ const ProductRowItemContainer = props => {
         if (currentBenchmark) {
           await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
         }
-
       },
       onError: err => console.error(err)
     });
