@@ -1,0 +1,124 @@
+{
+  "title": "Electricity and Heat Information",
+  "pages": [
+    {
+      "name": "Electricity and Heat",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "name": "electricity_and_heat",
+          "title": "Electricity and Heat",
+          "templateElements": [
+            {
+              "type": "paneldynamic",
+              "name": "electricity",
+              "title": "Electricity (MWh)",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "description",
+                  "startWithNewLine": false,
+                  "title": "Purchased",
+                  "inputType": "number"
+                },
+                {
+                  "type": "text",
+                  "name": "generated_onsite",
+                  "startWithNewLine": false,
+                  "title": "Generated Onsite",
+                  "inputType": "number"
+                },
+                {
+                  "type": "text",
+                  "name": "consumed_onsite",
+                  "startWithNewLine": false,
+                  "title": "Consumed Onsite",
+                  "inputType": "number"
+                },
+                {
+                  "type": "text",
+                  "name": "sold",
+                  "width": "33.5%",
+                  "title": "Sold",
+                  "inputType": "number"
+                },
+                {
+                  "type": "text",
+                  "name": "quantity",
+                  "width": "66.5%",
+                  "startWithNewLine": false,
+                  "title": "Emissions from onsite generation (tCO2e)",
+                  "inputType": "number"
+                }
+              ],
+              "allowAddPanel": false,
+              "allowRemovePanel": false,
+              "panelCount": 1,
+              "minPanelCount": 1,
+              "keyName": "name",
+              "panelAddText": "Add another fuel",
+              "panelRemoveText": "Remove fuel"
+            },
+            {
+              "type": "paneldynamic",
+              "name": "heat",
+              "title": "Heat (GJ)",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "description",
+                  "title": "Purchased",
+                  "inputType": "number"
+                },
+                {
+                  "type": "text",
+                  "name": "generated_onsite",
+                  "startWithNewLine": false,
+                  "title": "Generated Onsite",
+                  "inputType": "number"
+                },
+                {
+                  "type": "text",
+                  "name": "consumed_onsite",
+                  "startWithNewLine": false,
+                  "title": "Consumed Onsite",
+                  "inputType": "number"
+                },
+                {
+                  "type": "text",
+                  "name": "sold",
+                  "width": "33.5%",
+                  "title": "Sold",
+                  "inputType": "number"
+                },
+                {
+                  "type": "text",
+                  "name": "quantity",
+                  "width": "66.5%",
+                  "startWithNewLine": false,
+                  "title": "Emissions from onsite generation (tCO2e)",
+                  "inputType": "number"
+                }
+              ],
+              "allowAddPanel": false,
+              "allowRemovePanel": false,
+              "panelCount": 1,
+              "minPanelCount": 1,
+              "keyName": "name",
+              "panelAddText": "Add another fuel",
+              "panelRemoveText": "Remove fuel"
+            }
+          ],
+          "templateTitle": "Fuel #{panelIndex}",
+          "panelCount": 1,
+          "minPanelCount": 1,
+          "keyName": "name",
+          "panelAddText": "Add another fuel",
+          "panelRemoveText": "Remove fuel"
+        }
+      ],
+      "title": "Electricity and Heat"
+    }
+  ],
+  "showQuestionNumbers": "off"
+}
