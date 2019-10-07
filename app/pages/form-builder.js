@@ -14,6 +14,7 @@ class FormBuilder extends Component {
     console.log('form-builder.js > formIdHandler state', this.state);
   };
 
+  // TODO: Fix FormCreator to use fragments
   render() {
     return (
       <>
@@ -21,11 +22,11 @@ class FormBuilder extends Component {
         <Container>
           <Row>
             <Col style={{textAlign: 'right'}}>
-              <FormPicker handleFormId={this.formIdHandler} />
+              {/* <FormPicker handleFormId={this.formIdHandler} /> */}
             </Col>
           </Row>
         </Container>
-        <FormCreator formData={this.state.formData} />
+        {/* <FormCreator formData={this.state.formData} /> */}
       </>
     );
   }
