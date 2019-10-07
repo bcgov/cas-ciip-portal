@@ -25,13 +25,13 @@ class ApplicationDetails extends Component {
           <Header />
           {this.props.router.query.application_id ? (
             <Container>
-              <ApplicationStatus applicationId={applicationId} />
+              {/* <ApplicationStatus applicationId={applicationId} /> */}
               <iframe src={url} frameBorder="0" width="100%" height="1000" />
               <hr />
-              <IncentiveCalculatorContainer
+              {/* <IncentiveCalculatorContainer
                 bcghgid={bcghgid}
                 reportingYear={reportingYear}
-              />
+              /> */}
             </Container>
           ) : null}
           <hr />

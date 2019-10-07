@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {graphql, fetchQuery} from 'react-relay';
 import propTypes from 'prop-types';
 import {Table, Jumbotron, Card} from 'react-bootstrap';
-import initEnvironment from '../../lib/createRelayEnvironment';
+// Import initEnvironment from '../../lib/createRelayEnvironment';
 import IncentiveSegment from '../../components/Incentives/IncentiveSegment';
 import IncentiveSegmentFormula from '../../components/Incentives/IncentiveSegmentFormula';
 
-const environment = initEnvironment();
+// Const environment = initEnvironment();
 
 const allProductsQuery = graphql`
   query IncentiveCalculatorQuery {

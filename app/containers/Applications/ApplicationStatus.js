@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {graphql, fetchQuery, commitMutation} from 'react-relay';
 import propTypes from 'prop-types';
-import initEnvironment from '../../lib/createRelayEnvironment';
+// Import initEnvironment from '../../lib/createRelayEnvironment';
 import ApplicationStatusUpdate from '../../components/Applications/ApplicationStatusUpdate';
 
-const environment = initEnvironment();
+// Const environment = initEnvironment();
 
 const getStatus = graphql`
   query ApplicationStatusQuery(
