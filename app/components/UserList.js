@@ -42,7 +42,7 @@ const renderQuery = ({error, props}) => {
 };
 
 const UserList = props => {
-  {environment}={this.props.relay}
+  const {environment} = props.relay;
   return (
     <>
       <h3>Users</h3>
