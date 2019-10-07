@@ -1,0 +1,159 @@
+{
+  "title": "Statement of Certification",
+  "pages": [
+    {
+      "name": "Statement of Certification",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "name": "certifiying_official",
+          "title": "Certifying Official",
+          "templateElements": [
+            {
+              "type": "html",
+              "name": "text_line_1",
+              "width": "5%",
+              "startWithNewLine": false,
+              "html": "<h5>I,</h5>"
+            },
+            {
+              "type": "text",
+              "name": "certifier_name",
+              "useDisplayValuesInTitle": false,
+              "width": "30%",
+              "startWithNewLine": false,
+              "titleLocation": "hidden"
+            },
+            {
+              "type": "html",
+              "name": "text_line_2",
+              "width": "65%",
+              "startWithNewLine": false,
+              "html": "<h5>(Certifying Official), having the authority to bind the company applying, </h5>"
+            },
+            {
+              "type": "html",
+              "name": "certification_text",
+              "html": "<h5>hereby certify that I have reviewed the information being submitted, that I have exercised due diligence to ensure that the information is true and complete, and that, to the best of my knowledge, the products and quantities submitted herein are accurate and based on reasonable estimates using available data; and agrees to repayment of incentive amounts erroneously paid or which are, upon audit or reconsideration by the Climate Action Secretariat, determined to either be inconsistent with the CleanBC Industrial Incentive Programs’ rules or not supported by evidence related to fuel usage and tax paid; and understand that any repayment amount may be deducted from a following year’s incentive payment.<h5>"
+            },
+            {
+              "type": "file",
+              "name": "signature_upload",
+              "width": "65%",
+              "title": "Signature of Certifying Official",
+              "maxSize": 0
+            },
+            {
+              "type": "text",
+              "name": "date",
+              "width": "35%",
+              "startWithNewLine": false,
+              "title": "Date",
+              "inputType": "date"
+            },
+            {
+              "type": "panel",
+              "name": "certifier_contact_details",
+              "elements": [
+                {
+                  "type": "text",
+                  "name": "first_name",
+                  "startWithNewLine": false,
+                  "title": "First Name",
+                  "isRequired": true,
+                  "size": 340
+                },
+                {
+                  "type": "text",
+                  "name": "last_name",
+                  "startWithNewLine": false,
+                  "title": "Last Name",
+                  "isRequired": true,
+                  "size": 340
+                },
+                {
+                  "type": "text",
+                  "name": "position",
+                  "startWithNewLine": false,
+                  "title": "Position/Title"
+                },
+                {
+                  "type": "text",
+                  "name": "email_address",
+                  "title": "Email Address",
+                  "isRequired": true,
+                  "inputType": "email"
+                },
+                {
+                  "type": "text",
+                  "name": "phone",
+                  "startWithNewLine": false,
+                  "title": "Telephone Number",
+                  "inputType": "tel"
+                },
+                {
+                  "type": "text",
+                  "name": "fax",
+                  "startWithNewLine": false,
+                  "title": "Fax Number",
+                  "inputType": "tel"
+                },
+                {
+                  "type": "text",
+                  "name": "mailing_address_line_1",
+                  "title": "Mailing Address"
+                },
+                {
+                  "type": "text",
+                  "name": "mailing_address_city",
+                  "startWithNewLine": false,
+                  "title": "Mailing Address City"
+                },
+                {
+                  "type": "dropdown",
+                  "name": "mailing_address_province",
+                  "startWithNewLine": false,
+                  "title": "Province",
+                  "choices": [
+                    "Alberta",
+                    "British Columbia",
+                    "Manitoba",
+                    "New Brunswick",
+                    "Newfoundland and Labrador",
+                    "Northwest Territories",
+                    "Nova Scotia",
+                    "Nunavut",
+                    "Ontario",
+                    "Prince Edward Island",
+                    "Quebec",
+                    "Saskatchewan",
+                    "Yukon"
+                  ]
+                },
+                {
+                  "type": "text",
+                  "name": "mailing_address_postal_code",
+                  "width": "32.5%",
+                  "title": "Mailing Address Postal Code",
+                  "validators": [
+                    {
+                      "type": "regex",
+                      "text": "The postal code should match this pattern: A1A1A1",
+                      "regex": "^([a-zA-Z]\\d){3}$"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "panelCount": 1
+        }
+      ],
+      "title": "Statement of Certification",
+      "questionsOrder": "initial"
+    }
+  ],
+  "showQuestionNumbers": "off"
+}
