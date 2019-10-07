@@ -72,7 +72,7 @@
     "react-dom": "^16.9.0",
     "react-mathjax": "^1.0.1",
     "react-mathjax2": "^0.0.2",
-    "react-relay": "5.x",
+    "react-relay": "6.x",
     "react-relay-network-modern": "^4.1.0",
     "react-relay-network-modern-ssr": "^1.2.4",
     "sinon": "^7.4.1",

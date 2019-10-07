@@ -11762,15 +11762,15 @@ react-relay-network-modern@^4.1.0:
   optionalDependencies:
     "@types/relay-runtime" "^5.0.3"
 
-react-relay@5.x:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-5.0.0.tgz#66af68e8e5fad05879a3f21f895a0296ef2741a8"
-  integrity sha512-gpUvedaCaPVPT0nMrTbev2TzrU0atgq2j/zAnGHiR9WgqRXwtHsK6FWFN65HRbopO2DzuJx9VZ2I3VO6uL5EMA==
+react-relay@6.x:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-6.0.0.tgz#2a54274a471ef801a465704e58f1db91059ad1d3"
+  integrity sha512-F0UO50TNIyfkTaCnKgbniATIWPpaX0ukQ5QPdaRRwL1qxslx90Umi83XaaiHyy1etKVePMZ+DHCd1aV7yw1AKA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^1.0.0"
     nullthrows "^1.1.0"
-    relay-runtime "5.0.0"
+    relay-runtime "6.0.0"
 
 react-select@^3.0.0:
   version "3.0.5"
