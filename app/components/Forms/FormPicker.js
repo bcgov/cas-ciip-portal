@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {graphql, QueryRenderer} from 'react-relay';
 import {DropdownButton, Dropdown} from 'react-bootstrap';
-import initEnvironment from '../../lib/createRelayEnvironment';
-
-const environment = initEnvironment();
 
 class FormPicker extends Component {
   formSelectHandler = (formId, formJson) => {

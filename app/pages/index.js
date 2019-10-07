@@ -36,7 +36,7 @@ export default class Index extends Component {
               </p>
               <br />
               <ButtonToolbar>
-                <a href="/ciip-application" className="btn btn-primary">
+                <a href="/form" className="btn btn-primary">
                   {' '}
                   Apply for CIIP{' '}
                 </a>

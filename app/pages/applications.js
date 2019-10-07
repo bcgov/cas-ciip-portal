@@ -4,8 +4,6 @@ import DefaultLayout from '../layouts/default-layout';
 import ApplicationListContainer from '../containers/Applications/ApplicationListContainer';
 
 class Applications extends Component {
-  // TODO(wenzowski): is this an es6 thing? waaaaaaaaaaat?
-  // TODO(wenzowski): for the relay variables, can we contain them to one key in our state object?
   state = {
     orderByField: 'operator_name',
     direction: 'ASC',
@@ -94,8 +92,6 @@ class Applications extends Component {
     };
   }
 
-  // TODO(wenzowski): where possible, event switches should follow the `handleEvent()` naming convention
-  // @see https://reactpatterns.com/#event-switch
   render() {
     const {query} = this.props;
     return (
