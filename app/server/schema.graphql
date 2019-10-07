@@ -350,7 +350,7 @@ strings and not numbers.
 scalar BigInt
 
 type CiipApplication {
-  applicationId: String
+  rowId: String
   facilityName: String
   operatorName: String
   submissionDate: Datetime
@@ -364,8 +364,8 @@ A condition to be used against `CiipApplication` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
 input CiipApplicationCondition {
-  """Checks for equality with the object’s `applicationId` field."""
-  applicationId: String
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: String
 
   """Checks for equality with the object’s `facilityName` field."""
   facilityName: String
@@ -417,8 +417,8 @@ type CiipApplicationsEdge {
 """Methods to use when ordering `CiipApplication`."""
 enum CiipApplicationsOrderBy {
   NATURAL
-  APPLICATION_ID_ASC
-  APPLICATION_ID_DESC
+  ID_ASC
+  ID_DESC
   FACILITY_NAME_ASC
   FACILITY_NAME_DESC
   OPERATOR_NAME_ASC
@@ -1880,38 +1880,6 @@ input FormJsonPatch {
   formJson: JSON
 }
 
-type FormJsonProductType {
-  klProducts: [String]
-  m3Products: [String]
-  tProducts: [String]
-  formId: Int
-  formName: String
-  formJson: JSON
-}
-
-"""A connection to a list of `FormJsonProductType` values."""
-type FormJsonProductTypesConnection {
-  """A list of `FormJsonProductType` objects."""
-  nodes: [FormJsonProductType]!
-
-  """
-  A list of edges which contains the `FormJsonProductType` and cursor to aid in pagination.
-  """
-  edges: [FormJsonProductTypesEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-}
-
-"""A `FormJsonProductType` edge in the connection."""
-type FormJsonProductTypesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `FormJsonProductType` at the end of the edge."""
-  node: FormJsonProductType
-}
-
 """A connection to a list of `FormJson` values."""
 type FormJsonsConnection {
   """A list of `FormJson` objects."""
@@ -3115,29 +3083,6 @@ type Query implements Node {
     """Read all values in the set after (below) this cursor."""
     after: Cursor
   ): EstimatedCarbonTaxPaidsConnection!
-
-  """Reads and enables pagination through a set of `FormJsonProductType`."""
-  getFormJsonWithProducts(
-    formIdInput: BigFloat
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-  ): FormJsonProductTypesConnection!
 
   """Reads and enables pagination through a set of `CiipProduction`."""
   getProductsByApplicationId(

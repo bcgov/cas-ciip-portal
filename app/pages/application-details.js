@@ -6,6 +6,7 @@ import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalc
 import ApplicationStatus from '../containers/Applications/ApplicationStatus';
 import Header from '../components/Header';
 
+// TODO: decide what to show in this page & create a query from the props passed in
 class ApplicationDetails extends Component {
   render() {
     const {
@@ -24,13 +25,13 @@ class ApplicationDetails extends Component {
           <Header />
           {this.props.router.query.application_id ? (
             <Container>
-              <ApplicationStatus applicationId={applicationId} />
+              {/* <ApplicationStatus applicationId={applicationId} /> */}
               <iframe src={url} frameBorder="0" width="100%" height="1000" />
               <hr />
-              <IncentiveCalculatorContainer
+              {/* <IncentiveCalculatorContainer
                 bcghgid={bcghgid}
                 reportingYear={reportingYear}
-              />
+              /> */}
             </Container>
           ) : null}
           <hr />

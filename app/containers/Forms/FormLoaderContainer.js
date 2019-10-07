@@ -1,74 +1,35 @@
-import React, {Component} from 'react';
-import propTypes from 'prop-types';
+import React from 'react';
 import * as Survey from 'survey-react';
 import 'survey-react/survey.css';
 import 'survey-creator/survey-creator.css';
-import {graphql, commitMutation, fetchQuery} from 'react-relay';
-import initEnvironment from '../../lib/createRelayEnvironment';
-import FormLoader from '../../components/Forms/FormLoader';
+import {graphql, commitMutation, createFragmentContainer} from 'react-relay';
 
-const environment = initEnvironment();
-
-class FormLoaderContainer extends Component {
-  static propTypes = {
-    formId: propTypes.number.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.getFormJson = graphql`
-      query FormLoaderContainerFormJsonQuery($condition: FormJsonCondition) {
-        allFormJsons(condition: $condition) {
-          nodes {
-            formJson
-          }
+const FormLoaderContainer = props => {
+  // Mutation: stores the result of the form
+  const createFormResult = graphql`
+    mutation FormLoaderContainerMutation($input: CreateFormResultInput!) {
+      createFormResult(input: $input) {
+        formResult {
+          rowId
         }
       }
-    `;
-
-    this.getProducts = graphql`
-      query FormLoaderContainerProductQuery {
-        allProducts {
-          nodes {
-            name
-            units
-          }
+    }
+  `;
+  // Mutation: stores a status along with the form result
+  const createApplicationStatus = graphql`
+    mutation FormLoaderContainerApplicationStatusMutation(
+      $input: CreateApplicationStatusInput!
+    ) {
+      createApplicationStatus(input: $input) {
+        applicationStatus {
+          rowId
         }
       }
-    `;
-
-    // Mutation: stores the result of the form
-    this.createFormResult = graphql`
-      mutation FormLoaderContainerMutation($input: CreateFormResultInput!) {
-        createFormResult(input: $input) {
-          formResult {
-            rowId
-          }
-        }
-      }
-    `;
-    // Mutation: stores a status along with the form result
-    this.createApplicationStatus = graphql`
-      mutation FormLoaderContainerApplicationStatusMutation(
-        $input: CreateApplicationStatusInput!
-      ) {
-        createApplicationStatus(input: $input) {
-          applicationStatus {
-            rowId
-          }
-        }
-      }
-    `;
-  }
-
-  // Set the state
-  state = {
-    formJson: <div>Loading...</div>
-  };
+    }
+  `;
 
   // Function: store the application status
-  storeApplicationStatus = resultId => {
+  const storeApplicationStatus = resultId => {
     const variables = {
       input: {
         applicationStatus: {
@@ -78,8 +39,8 @@ class FormLoaderContainer extends Component {
       }
     };
 
-    const mutation = this.createApplicationStatus;
-
+    const mutation = createApplicationStatus;
+    const {environment} = props.relay;
     commitMutation(environment, {
       mutation,
       variables,
@@ -93,46 +54,46 @@ class FormLoaderContainer extends Component {
   };
 
   // Function: store the form result
-  storeResult = formResult => {
+  const storeResult = formResult => {
     const variables = {
       input: {
         formResult: {
-          formId: this.props.formId,
+          formId: props.formId,
           userId: 2,
           formResult: JSON.stringify(formResult)
         }
       }
     };
 
-    const mutation = this.createFormResult;
-
+    const mutation = createFormResult;
+    const {environment} = props.relay;
     commitMutation(environment, {
       mutation,
       variables,
       onCompleted: response => {
         console.log(response);
         console.log('Store Result Response received from server.');
-        this.storeApplicationStatus(response.createFormResult.formResult.rowId);
+        storeApplicationStatus(response.createFormResult.formResult.rowId);
       },
       onError: err => console.error(err)
     });
   };
 
   // Define a callback methods on survey complete
-  onComplete = result => {
+  const onComplete = result => {
     const formData = result.data;
     console.log('form data', formData);
-    this.storeResult(formData);
+    storeResult(formData);
     console.log('Complete!', result.data);
   };
 
   // TODO: Is this going to be necessary going forward, or was it just for debugging?
-  onValueChanged = () => {
+  const onValueChanged = () => {
     console.log('value changed');
   };
 
   // Function: Add the product/unit choices into the formJson before creating the survey
-  editFormJson = data => {
+  const editFormJson = data => {
     const parsedForm = JSON.parse(data.formJson);
 
     parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
@@ -141,91 +102,102 @@ class FormLoaderContainer extends Component {
     parsedForm.pages[3].elements[0].templateElements[0].choices =
       data.productList;
 
-    for (const key in data.unitObj) {
-      if (key !== 'null') {
-        parsedForm.pages[3].elements[0].templateElements[2].choices.push({
-          value: key,
-          text: key,
-          visibleIf: `[${data.unitObj[key]},${data.unitObj.null}] contains {panel.processing_unit}`
-        });
-      }
-    }
+    // TODO: Units are broken, to be fixed on working with split forms
+    // For (const key in data.unitObj) {
+    //   if (key !== 'null') {
+    //     parsedForm.pages[3].elements[0].templateElements[2].choices.push({
+    //       value: key,
+    //       text: key,
+    //       visibleIf: `[${data.unitObj[key]},${data.unitObj.null}] contains {panel.processing_unit}`
+    //     });
+    //   }
+    // }
 
     return parsedForm;
   };
 
   // Creates the Survey from the form JSON
-  createSurveyForm = async () => {
-    if (this.props.formId) {
-      const formData = await fetchQuery(environment, this.getFormJson, {
-        formIdInput: this.props.formId
-      });
-      const products = await fetchQuery(environment, this.getProducts, {});
-
+  const createSurveyForm = () => {
+    if (props.query) {
       const unitObj = {};
       const productList = [];
 
-      products.allProducts.nodes.forEach(product => {
+      props.query.products.edges.forEach(({node: product}) => {
         if (unitObj[product.units] === undefined)
           unitObj[product.units] = [`'${product.name}'`];
         else unitObj[product.units].push(`'${product.name}'`);
         productList.push(product.name);
       });
 
-      const {formJson} = formData.allFormJsons.nodes[0];
+      const {formJson} = props.query.json.edges[0].node;
       const data = {formJson, unitObj, productList};
-      const parsedForm = this.editFormJson(data);
+      const parsedForm = editFormJson(data);
 
       // Create survey model from updated formJson
       Survey.Survey.cssType = 'bootstrap';
       const model = new Survey.Model(JSON.stringify(parsedForm));
-      this.setState({
-        formJson: (
-          <Survey.Survey
-            model={model}
-            onComplete={this.onComplete}
-            onValueChanged={this.onValueChanged}
-          />
-        )
-      });
+      return (
+        <Survey.Survey
+          model={model}
+          onComplete={onComplete}
+          onValueChanged={onValueChanged}
+        />
+      );
     }
   };
 
-  componentDidMount = async () => {
-    await this.createSurveyForm();
-  };
+  return (
+    <>
+      <div id="surveyContainer">
+        {createSurveyForm()}
+        <style jsx global>
+          {`
+            #surveyContainer {
+              border: 1px solid #dcdcdcf2;
+              border-radius: 4px;
+              box-shadow: 0px 7px 9px 0px #00000026;
+              padding: 20px;
+            }
+            .card-footer :global {
+              background: white !important;
+              display: none;
+            }
+            .panel-footer {
+              background: white;
+              text-align: right;
+            }
+            .panel-footer .btn.sv_complete_btn {
+              background: #036;
+              color: white;
+            }
+          `}
+        </style>
+      </div>
+    </>
+  );
+};
 
-  render() {
-    return (
-      <>
-        <div id="surveyContainer">
-          <FormLoader formJson={this.state.formJson} />
-          <style jsx global>
-            {`
-              #surveyContainer {
-                border: 1px solid #dcdcdcf2;
-                border-radius: 4px;
-                box-shadow: 0px 7px 9px 0px #00000026;
-                padding: 20px;
-              }
-              .card-footer :global {
-                background: white !important;
-                display: none;
-              }
-              .panel-footer {
-                background: white;
-                text-align: right;
-              }
-              .panel-footer .btn.sv_complete_btn {
-                background: #036;
-                color: white;
-              }
-            `}
-          </style>
-        </div>
-      </>
-    );
-  }
-}
-
-export default FormLoaderContainer;
+export default createFragmentContainer(FormLoaderContainer, {
+  query: graphql`
+    fragment FormLoaderContainer_query on Query
+      @argumentDefinitions(condition: {type: "Int"}) {
+      json: allFormJsons(condition: {rowId: 1}) {
+        edges {
+          node {
+            rowId
+            name
+            formJson
+          }
+        }
+      }
+      products: allProducts {
+        edges {
+          node {
+            name
+            units
+          }
+        }
+      }
+    }
+  `
+});

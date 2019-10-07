@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Container, Jumbotron, ButtonToolbar} from 'react-bootstrap';
+import {graphql} from 'react-relay';
 import Header from '../components/Header';
 import FormLoaderContainer from '../containers/Forms/FormLoaderContainer';
-import FormPicker from '../components/Forms/FormPicker';
+// Import FormPicker from '../components/Forms/FormPicker';
 
 class BaseForm extends Component {
   state = {
@@ -13,7 +14,25 @@ class BaseForm extends Component {
     this.setState({formId});
   };
 
+  static query = graphql`
+    query formQuery($condition: FormJsonCondition) {
+      query {
+        ...FormLoaderContainer_query @arguments(condition: $condition)
+      }
+    }
+  `;
+
+  static async getInitialProps() {
+    return {
+      variables: {
+        rowId: this.state ? this.state.formId : 1
+      }
+    };
+  }
+
+  // TODO: Fix formPicker to use relay fragments
   render() {
+    const {query} = this.props;
     return (
       <>
         <Header />
@@ -28,11 +47,11 @@ class BaseForm extends Component {
               person! You may now take a moment to let that CIIP in. {'\u2728'}
             </p>
             <br />
-            <ButtonToolbar>
+            {/* <ButtonToolbar>
               <FormPicker handleFormId={this.formIdHandler} />
-            </ButtonToolbar>
+            </ButtonToolbar> */}
           </Jumbotron>
-          <FormLoaderContainer formId={this.state.formId} />
+          <FormLoaderContainer query={query} formId={this.state.formId} />
         </Container>
         <br />
         <br />

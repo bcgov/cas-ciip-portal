@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import propTypes from 'prop-types';
 import * as SurveyJSCreator from 'survey-creator';
 import 'survey-creator/survey-creator.css';
-import {graphql, commitMutation} from 'react-relay';
-import initEnvironment from '../../lib/createRelayEnvironment';
-
-const environment = initEnvironment();
+import {graphql, commitMutation, createFragmentContainer} from 'react-relay';
 
 class FormCreator extends Component {
   static propTypes = {
@@ -88,6 +85,7 @@ class FormCreator extends Component {
     };
     const saveMutation = this.createFormJson;
     const updateMutation = this.updateFormJson;
+    const {environment} = this.props.relay;
     console.log('FormCreator.js > saveMySurvey', this.props.formData);
     commitMutation(environment, {
       mutation: this.props.formData.formId ? updateMutation : saveMutation,
@@ -105,7 +103,7 @@ class FormCreator extends Component {
   };
 }
 
-export default FormCreator;
+export default createFragmentContainer(FormCreator, {});
 
 /*
 Use proptypes

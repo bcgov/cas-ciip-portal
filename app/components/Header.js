@@ -36,7 +36,7 @@ const Header = () => {
               <ButtonToolbar>
                 <a
                   style={{marginLeft: '20px'}}
-                  href="/ciip-application"
+                  href="/form"
                   className="btn btn-primary"
                 >
                   Apply for CIIP
@@ -50,7 +50,7 @@ const Header = () => {
                 </a>
                 <a
                   style={{marginLeft: '20px'}}
-                  href="/products"
+                  href="/admin"
                   className="btn btn-secondary"
                 >
                   Products
@@ -64,9 +64,7 @@ const Header = () => {
                 </a>
                 <a
                   style={{marginLeft: '20px'}}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="http://localhost:3000/question/66"
+                  href="/admin"
                   className="btn btn-info"
                 >
                   Admin

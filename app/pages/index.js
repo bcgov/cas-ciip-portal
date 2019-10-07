@@ -6,7 +6,7 @@ import Header from '../components/Header';
 export default class Index extends Component {
   static displayName = 'Index';
 
-  // convention is to prefix foldername_index when the file is named index
+  // Convention is to prefix foldername_index when the file is named index
   // @see https://github.com/facebook/relay/issues/1742
   static query = graphql`
     query pages_indexQuery {
@@ -15,7 +15,6 @@ export default class Index extends Component {
   `;
 
   render() {
-    const {id} = this.props;
     return (
       <>
         <Header />
@@ -37,7 +36,7 @@ export default class Index extends Component {
               </p>
               <br />
               <ButtonToolbar>
-                <a href="/ciip-application" className="btn btn-primary">
+                <a href="/form" className="btn btn-primary">
                   {' '}
                   Apply for CIIP{' '}
                 </a>

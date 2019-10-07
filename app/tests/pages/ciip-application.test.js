@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import BaseForm from '../../pages/ciip-application';
+import BaseForm from '../../pages/form';
 
 // It matches the last accepted Snapshot
 
