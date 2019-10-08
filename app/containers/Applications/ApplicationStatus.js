@@ -9,6 +9,7 @@ const setStatus = graphql`
     updateApplicationStatusByRowId(input: $input) {
       applicationStatus {
         rowId
+        applicationStatus
       }
     }
   }
@@ -16,45 +17,50 @@ const setStatus = graphql`
 
 const ApplicationStatus = props => {
   if (props.applicationId) props.setApplicationId(props.applicationId);
-
+  if (!props.status && props.query.allApplicationStatuses.edges.length === 1)
+    props.setApplicationStatusInState(
+      props.query.allApplicationStatuses.edges[0].node.applicationStatus
+    );
+  let applicationStatus = props.status;
   useEffect(() => {
     const refetchVariables = {
       condition: {
-        rowId: props.applicationId
+        formResultId: Number(props.applicationId)
       }
     };
     props.relay.refetch(refetchVariables);
   });
 
-  // Const setApplicationStatus = (eventKey, event) => {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   event.persist();
-  //   // This.setState({status: eventKey});
-  //   const date = new Date().toUTCString();
-  //   const saveVariables = {
-  //     input: {
-  //       rowId: Number(props.applicationId),
-  //       applicationStatusPatch: {
-  //         applicationStatus: eventKey,
-  //         updatedAt: date,
-  //         updatedBy: 'Admin'
-  //       }
-  //     }
-  //   };
-  //   const {environment} = props.relay;
-  //   const saveMutation = setStatus;
-  //   commitMutation(environment, {
-  //     mutation: saveMutation,
-  //     variables: saveVariables,
-  //     onCompleted: response => {
-  //       console.log(response);
-  //     },
-  //     onError: err => console.error(err)
-  //   });
-  // };
+  const setApplicationStatus = (eventKey, event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    event.persist();
 
-  const {applicationStatus} = props;
+    const date = new Date().toUTCString();
+    const saveVariables = {
+      input: {
+        rowId: Number(props.applicationId),
+        applicationStatusPatch: {
+          applicationStatus: eventKey,
+          updatedAt: date,
+          updatedBy: 'Admin'
+        }
+      }
+    };
+    const {environment} = props.relay;
+    const saveMutation = setStatus;
+    commitMutation(environment, {
+      mutation: saveMutation,
+      variables: saveVariables,
+      onCompleted: response => {
+        console.log(response);
+        props.setApplicationStatusInState(eventKey);
+        applicationStatus = eventKey;
+      },
+      onError: err => console.error(err)
+    });
+  };
+
   const statusBadgeColor = {
     pending: 'info',
     attention: 'warning',
@@ -64,8 +70,7 @@ const ApplicationStatus = props => {
 
   return (
     <>
-      {/* <div>{props.}</div> */}
-      {props.status ? (
+      {props.query.allApplicationStatuses.edges.length === 1 ? (
         <Container>
           <Row>
             <Col md={3}>

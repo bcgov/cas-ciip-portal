@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import propTypes from 'prop-types';
 import {Container} from 'react-bootstrap';
-import {withRouter} from 'next/router';
 import {graphql} from 'react-relay';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculator';
 import ApplicationStatus from '../containers/Applications/ApplicationStatus';
@@ -9,7 +7,7 @@ import Header from '../components/Header';
 
 // TODO: decide what to show in this page & create a query from the props passed in
 class ApplicationDetails extends Component {
-  state = {status: null, query: null, applicationId: null};
+  state = {status: null, applicationId: null};
 
   static query = graphql`
     query applicationdetailsQuery(
@@ -22,19 +20,22 @@ class ApplicationDetails extends Component {
     }
   `;
 
-  static async getInitialProps() {
+  static getInitialProps() {
     return {
       variables: {
         condition: {
-          rowId: this.state ? Number(this.state.applicationId) : 1
+          formResultId: this.state ? Number(this.state.applicationId) : null
         }
       }
     };
   }
 
   setApplicationId = id => {
-    console.log(typeof parseInt(id));
     this.setState({applicationId: Number(id)});
+  };
+
+  setApplicationStatusInState = s => {
+    this.setState({status: s});
   };
 
   render() {
@@ -49,6 +50,8 @@ class ApplicationDetails extends Component {
               setApplicationId={this.setApplicationId}
               applicationId={this.props.router.query.applicationId}
               newApplicationId={this.state.applicationId}
+              status={this.state.status}
+              setApplicationStatusInState={this.setApplicationStatusInState}
             />
             <hr />
             {/* <IncentiveCalculatorContainer
