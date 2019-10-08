@@ -49,7 +49,8 @@ export default class App extends NextApp {
           variables={variables}
           render={({error, props}) => {
             if (error) return <div>{error.message}</div>;
-            if (props) return <Component {...props} />;
+            if (props)
+              return <Component {...props} router={this.props.router} />;
             return <div>Loading</div>;
           }}
         />

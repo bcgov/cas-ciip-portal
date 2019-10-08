@@ -1,22 +1,6 @@
-import React, {Component} from 'react';
-import {graphql, fetchQuery, commitMutation} from 'react-relay';
-import propTypes from 'prop-types';
-// Import initEnvironment from '../../lib/createRelayEnvironment';
-import ApplicationStatusUpdate from '../../components/Applications/ApplicationStatusUpdate';
-
-// Const environment = initEnvironment();
-
-const getStatus = graphql`
-  query ApplicationStatusQuery(
-    $applicationStatusCondition: ApplicationStatusCondition
-  ) {
-    allApplicationStatuses(condition: $applicationStatusCondition) {
-      nodes {
-        applicationStatus
-      }
-    }
-  }
-`;
+import React, {useEffect} from 'react';
+import {Container, Row, Col, Dropdown} from 'react-bootstrap';
+import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 
 const setStatus = graphql`
   mutation ApplicationStatusMutation(
@@ -30,72 +14,131 @@ const setStatus = graphql`
   }
 `;
 
-class ApplicationStatus extends Component {
-  state = {status: null};
+const ApplicationStatus = props => {
+  if (props.applicationId) props.setApplicationId(props.applicationId);
 
-  getApplicationStatus = async () => {
-    if (this.props.applicationId) {
-      const formResultId = Number(this.props.applicationId);
-      const queryReturn = await fetchQuery(environment, getStatus, {
-        applicationStatusCondition: {
-          formResultId
-        }
-      });
-
-      this.setState({
-        status: queryReturn.allApplicationStatuses.nodes[0].applicationStatus
-      });
-    }
-  };
-
-  setApplicationStatus = (eventKey, event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    event.persist();
-    this.setState({status: eventKey});
-    const date = new Date().toUTCString();
-    const saveVariables = {
-      input: {
-        rowId: Number(this.props.applicationId),
-        applicationStatusPatch: {
-          applicationStatus: eventKey,
-          updatedAt: date,
-          updatedBy: 'Admin'
-        }
+  useEffect(() => {
+    const refetchVariables = {
+      condition: {
+        rowId: props.applicationId
       }
     };
+    props.relay.refetch(refetchVariables);
+  });
 
-    const saveMutation = setStatus;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: saveVariables,
-      onCompleted: response => {
-        console.log(response);
-      },
-      onError: err => console.error(err)
-    });
+  // Const setApplicationStatus = (eventKey, event) => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   event.persist();
+  //   // This.setState({status: eventKey});
+  //   const date = new Date().toUTCString();
+  //   const saveVariables = {
+  //     input: {
+  //       rowId: Number(props.applicationId),
+  //       applicationStatusPatch: {
+  //         applicationStatus: eventKey,
+  //         updatedAt: date,
+  //         updatedBy: 'Admin'
+  //       }
+  //     }
+  //   };
+  //   const {environment} = props.relay;
+  //   const saveMutation = setStatus;
+  //   commitMutation(environment, {
+  //     mutation: saveMutation,
+  //     variables: saveVariables,
+  //     onCompleted: response => {
+  //       console.log(response);
+  //     },
+  //     onError: err => console.error(err)
+  //   });
+  // };
+
+  const {applicationStatus} = props;
+  const statusBadgeColor = {
+    pending: 'info',
+    attention: 'warning',
+    declined: 'danger',
+    approved: 'success'
   };
 
-  componentDidMount() {
-    this.getApplicationStatus();
-  }
+  return (
+    <>
+      {/* <div>{props.}</div> */}
+      {props.status ? (
+        <Container>
+          <Row>
+            <Col md={3}>
+              <h3>Application Status: </h3>
+            </Col>
+            <Col md={2}>
+              <Dropdown style={{width: '100%'}}>
+                <Dropdown.Toggle
+                  style={{width: '100%', textTransform: 'capitalize'}}
+                  variant={statusBadgeColor[applicationStatus]}
+                  id="dropdown"
+                >
+                  {applicationStatus}
+                </Dropdown.Toggle>
+                <Dropdown.Menu style={{width: '100%'}}>
+                  <Dropdown.Item
+                    eventKey="approved"
+                    onSelect={setApplicationStatus}
+                  >
+                    Approved
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    eventKey="declined"
+                    onSelect={setApplicationStatus}
+                  >
+                    Declined
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    eventKey="attention"
+                    onSelect={setApplicationStatus}
+                  >
+                    Attention
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    eventKey="pending"
+                    onSelect={setApplicationStatus}
+                  >
+                    Pending
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+          </Row>
+        </Container>
+      ) : null}
+    </>
+  );
+};
 
-  render() {
-    return (
-      <>
-        {this.state.status ? (
-          <ApplicationStatusUpdate
-            applicationStatus={this.state.status}
-            setApplicationStatus={this.setApplicationStatus}
-          />
-        ) : null}
-      </>
-    );
-  }
-
-  static propTypes = {
-    applicationId: propTypes.string.isRequired
-  };
-}
-
-export default ApplicationStatus;
+export default createRefetchContainer(
+  ApplicationStatus,
+  {
+    query: graphql`
+      fragment ApplicationStatus_query on Query
+        @argumentDefinitions(condition: {type: "ApplicationStatusCondition"}) {
+        allApplicationStatuses(condition: $condition) {
+          edges {
+            node {
+              rowId
+              applicationStatus
+            }
+          }
+        }
+      }
+    `
+  },
+  graphql`
+    query ApplicationStatusRefetchQuery(
+      $condition: ApplicationStatusCondition
+    ) {
+      query {
+        ...ApplicationStatus_query @arguments(condition: $condition)
+      }
+    }
+  `
+);
