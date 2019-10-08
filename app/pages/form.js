@@ -27,7 +27,7 @@ class BaseForm extends Component {
     return {
       variables: {
         condition: {
-          rowId: this.state.formId
+          rowId: 1
         }
       }
     };

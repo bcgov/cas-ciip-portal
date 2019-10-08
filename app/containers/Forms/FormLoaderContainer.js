@@ -119,38 +119,40 @@ const FormLoaderContainer = props => {
       }
     }
 
-    console.log(parsedForm);
     return parsedForm;
   };
 
   // Creates the Survey from the form JSON
   const createSurveyForm = () => {
-    if (props.query) {
-      const unitObj = {};
-      const productList = [];
+    const {query} = props;
+    const {products} = query || {};
+    const {edges = []} = products || {};
+    const {json} = query || {};
+    if (!json) return null;
+    const unitObj = {};
+    const productList = [];
 
-      props.query.products.edges.forEach(({node: product}) => {
-        if (unitObj[product.units] === undefined)
-          unitObj[product.units] = [`'${product.name}'`];
-        else unitObj[product.units].push(`'${product.name}'`);
-        productList.push(product.name);
-      });
+    edges.forEach(({node: product}) => {
+      if (unitObj[product.units] === undefined)
+        unitObj[product.units] = [`'${product.name}'`];
+      else unitObj[product.units].push(`'${product.name}'`);
+      productList.push(product.name);
+    });
 
-      const {formJson} = props.query.json.edges[0].node;
-      const data = {formJson, unitObj, productList};
-      const parsedForm = injectProductsUnits(data);
+    const {formJson} = json.edges[0].node;
+    const data = {formJson, unitObj, productList};
+    const parsedForm = injectProductsUnits(data);
 
-      // Create survey model from updated formJson
-      Survey.Survey.cssType = 'bootstrap';
-      const model = new Survey.Model(JSON.stringify(parsedForm));
-      return (
-        <Survey.Survey
-          model={model}
-          onComplete={onComplete}
-          onValueChanged={onValueChanged}
-        />
-      );
-    }
+    // Create survey model from updated formJson
+    Survey.Survey.cssType = 'bootstrap';
+    const model = new Survey.Model(JSON.stringify(parsedForm));
+    return (
+      <Survey.Survey
+        model={model}
+        onComplete={onComplete}
+        onValueChanged={onValueChanged}
+      />
+    );
   };
 
   return (

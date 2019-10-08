@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {graphql, QueryRenderer, createFragmentContainer} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 
 class FormPicker extends Component {
@@ -23,10 +23,12 @@ class FormPicker extends Component {
   };
 
   render() {
-    const formNodes = [];
-    this.props.query.allFormJsons.edges.forEach(edge => {
-      formNodes.push(this.formSelectButton(edge.node));
-    });
+    const {query} = this.props;
+    const {allFormJsons} = query || {};
+    const {edges} = allFormJsons || {};
+    const formNodes = edges
+      ? edges.map(({node}) => this.formSelectButton(node))
+      : [];
 
     return (
       <div>
