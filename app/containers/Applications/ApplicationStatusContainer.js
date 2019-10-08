@@ -3,7 +3,7 @@ import {Container, Row, Col, Dropdown} from 'react-bootstrap';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 
 const setStatus = graphql`
-  mutation ApplicationStatusMutation(
+  mutation ApplicationStatusContainerMutation(
     $input: UpdateApplicationStatusByRowIdInput!
   ) {
     updateApplicationStatusByRowId(input: $input) {
@@ -15,7 +15,7 @@ const setStatus = graphql`
   }
 `;
 
-const ApplicationStatus = props => {
+const ApplicationStatusContainer = props => {
   if (props.applicationId) props.setApplicationId(props.applicationId);
   if (!props.status && props.query.allApplicationStatuses.edges.length === 1)
     props.setApplicationStatusInState(
@@ -121,10 +121,10 @@ const ApplicationStatus = props => {
 };
 
 export default createRefetchContainer(
-  ApplicationStatus,
+  ApplicationStatusContainer,
   {
     query: graphql`
-      fragment ApplicationStatus_query on Query
+      fragment ApplicationStatusContainer_query on Query
         @argumentDefinitions(condition: {type: "ApplicationStatusCondition"}) {
         allApplicationStatuses(condition: $condition) {
           edges {
@@ -138,7 +138,7 @@ export default createRefetchContainer(
     `
   },
   graphql`
-    query ApplicationStatusRefetchQuery(
+    query ApplicationStatusContainerRefetchQuery(
       $condition: ApplicationStatusCondition
     ) {
       query {

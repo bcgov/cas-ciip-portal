@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Container} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculator';
-import ApplicationStatus from '../containers/Applications/ApplicationStatus';
+import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import Header from '../components/Header';
 
 // TODO: decide what to show in this page & create a query from the props passed in
@@ -45,7 +45,7 @@ class ApplicationDetails extends Component {
         <div>
           <Header />
           <Container>
-            <ApplicationStatus
+            <ApplicationStatusContainer
               query={query}
               setApplicationId={this.setApplicationId}
               applicationId={this.props.router.query.applicationId}
