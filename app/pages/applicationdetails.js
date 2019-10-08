@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container} from 'react-bootstrap';
 import {graphql} from 'react-relay';
-import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculator';
+import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import Header from '../components/Header';
 
@@ -14,8 +14,9 @@ class ApplicationDetails extends Component {
       $applicationStatusCondition: ApplicationStatusCondition
     ) {
       query {
-        ...ApplicationStatus_query
+        ...ApplicationStatusContainer_query
           @arguments(condition: $applicationStatusCondition)
+        ...IncentiveCalculatorContainer_query
       }
     }
   `;
@@ -54,12 +55,12 @@ class ApplicationDetails extends Component {
               setApplicationStatusInState={this.setApplicationStatusInState}
             />
             <hr />
-            {/* <IncentiveCalculatorContainer
-                bcghgid={bcghgid}
-                reportingYear={reportingYear}
-              /> */}
+            <IncentiveCalculatorContainer
+              query={query}
+              bcghgid={this.props.router.query.bcghgid}
+              reportingYear={this.props.router.query.reportingYear}
+            />
           </Container>
-          {/* ) : null} */}
           <hr />
         </div>
       </>

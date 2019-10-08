@@ -16,7 +16,9 @@ const setStatus = graphql`
 `;
 
 const ApplicationStatusContainer = props => {
+  // Set applicationId to state in parent component
   if (props.applicationId) props.setApplicationId(props.applicationId);
+  // Set applicationStatus to state in parent component
   if (!props.status && props.query.allApplicationStatuses.edges.length === 1)
     props.setApplicationStatusInState(
       props.query.allApplicationStatuses.edges[0].node.applicationStatus
@@ -31,6 +33,7 @@ const ApplicationStatusContainer = props => {
     props.relay.refetch(refetchVariables);
   });
 
+  // Save Application status to database
   const setApplicationStatus = (eventKey, event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -61,6 +64,7 @@ const ApplicationStatusContainer = props => {
     });
   };
 
+  // Dropdown color changes for statuses
   const statusBadgeColor = {
     pending: 'info',
     attention: 'warning',
@@ -142,7 +146,7 @@ export default createRefetchContainer(
       $condition: ApplicationStatusCondition
     ) {
       query {
-        ...ApplicationStatus_query @arguments(condition: $condition)
+        ...ApplicationStatusContainer_query @arguments(condition: $condition)
       }
     }
   `

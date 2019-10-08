@@ -1,33 +1,14 @@
 import React, {Component} from 'react';
-import {graphql, fetchQuery} from 'react-relay';
+import {graphql, fetchQuery, createRefetchContainer} from 'react-relay';
 import propTypes from 'prop-types';
 import {Table, Jumbotron, Card} from 'react-bootstrap';
-// Import initEnvironment from '../../lib/createRelayEnvironment';
 import IncentiveSegment from '../../components/Incentives/IncentiveSegment';
 import IncentiveSegmentFormula from '../../components/Incentives/IncentiveSegmentFormula';
 
-// Const environment = initEnvironment();
-
-const allProductsQuery = graphql`
-  query IncentiveCalculatorQuery {
-    allProducts {
-      nodes {
-        rowId
-        name
-        description
-        benchmarksByProductId {
-          nodes {
-            benchmark
-            eligibilityThreshold
-          }
-        }
-      }
-    }
-  }
-`;
-
 const productsByBcghgidQuery = graphql`
-  query IncentiveCalculatorProductsByBcghgidQuery($bcghgidInput: BigFloat) {
+  query IncentiveCalculatorContainerProductsByBcghgidQuery(
+    $bcghgidInput: BigFloat
+  ) {
     getProductsByBcghgid(bcghgidInput: $bcghgidInput) {
       nodes {
         rowId
@@ -43,7 +24,7 @@ const productsByBcghgidQuery = graphql`
 `;
 
 const carbonTaxByBcghgidQuery = graphql`
-  query IncentiveCalculatorCarbonTaxByBcghgidQuery(
+  query IncentiveCalculatorContainerCarbonTaxByBcghgidQuery(
     $bcghgidInput: BigFloat
     $reportingYear: String
   ) {
@@ -71,7 +52,9 @@ class IncentiveCalculatorContainer extends Component {
   }
 
   getData = async () => {
-    const allProducts = await fetchQuery(environment, allProductsQuery);
+    const {environment} = this.props.relay;
+
+    const {allProducts} = this.props.query;
 
     const reportedProducts = await fetchQuery(
       environment,
@@ -93,7 +76,6 @@ class IncentiveCalculatorContainer extends Component {
       },
       0
     );
-
     return {
       allProducts,
       reportedProducts,
@@ -102,27 +84,29 @@ class IncentiveCalculatorContainer extends Component {
   };
 
   generateIncentiveCalculationData = async () => {
+    console.log(this.props);
     const data = await this.getData();
     console.log('IncentiveCalculatorContainer, getdata():', data);
     const productsReported = data.reportedProducts.getProductsByBcghgid.nodes;
-    const allProducts = data.allProducts.allProducts.nodes;
+    const allProducts = data.allProducts.edges;
     let totalCarbonIncentive = 0;
     const incentiveSegments = [];
 
     productsReported.forEach(product => {
       // Get bm/et details for the product from the Products table
       const productDetails = allProducts.filter(
-        p => p.name === product.product
+        ({node: p}) => p.name === product.product
       );
       if (productDetails.length > 0) {
         const productQuantity = parseFloat(product.quantity);
         const attributableFuelPercentage = parseFloat(
           product.attributableFuelPercentage
         );
+        console.log(productDetails[0]);
         // Const eligibilityThreshold = productDetails[0] ? productDetails[0].benchmarksByProductId.nodes[0].eligibilityThreshold : 0;
         const bm_et =
-          productDetails[0].benchmarksByProductId.nodes[
-            productDetails[0].benchmarksByProductId.nodes.length - 1
+          productDetails[0].node.benchmarksByProductId.nodes[
+            productDetails[0].node.benchmarksByProductId.nodes.length - 1
           ];
         const benchmark = bm_et ? bm_et.benchmark : 0;
         const eligibilityThreshold = bm_et ? bm_et.eligibilityThreshold : 0;
@@ -167,6 +151,7 @@ class IncentiveCalculatorContainer extends Component {
   }
 
   render() {
+    console.log(this.props);
     const {incentiveSegments} = this.state;
     return (
       <>
@@ -221,4 +206,52 @@ class IncentiveCalculatorContainer extends Component {
   };
 }
 
-export default IncentiveCalculatorContainer;
+export default createRefetchContainer(IncentiveCalculatorContainer, {
+  query: graphql`
+    fragment IncentiveCalculatorContainer_query on Query {
+      allProducts: allProducts {
+        edges {
+          node {
+            rowId
+            name
+            description
+            benchmarksByProductId {
+              nodes {
+                benchmark
+                eligibilityThreshold
+              }
+            }
+          }
+        }
+      }
+    }
+  `
+});
+
+// Export default createRefetchContainer(
+//   ApplicationStatusContainer,
+//   {
+//     query: graphql`
+//       fragment ApplicationStatusContainer_query on Query
+//         @argumentDefinitions(condition: {type: "ApplicationStatusCondition"}) {
+//         allApplicationStatuses(condition: $condition) {
+//           edges {
+//             node {
+//               rowId
+//               applicationStatus
+//             }
+//           }
+//         }
+//       }
+//     `
+//   },
+//   graphql`
+//     query ApplicationStatusContainerRefetchQuery(
+//       $condition: ApplicationStatusCondition
+//     ) {
+//       query {
+//         ...ApplicationStatusContainer_query @arguments(condition: $condition)
+//       }
+//     }
+//   `
+// );
