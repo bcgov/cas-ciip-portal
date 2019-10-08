@@ -4,69 +4,76 @@ import 'survey-react/survey.css';
 import 'survey-creator/survey-creator.css';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 
-const FormLoaderContainer = props => {
+let lock;
+const FormLoaderContainer = ({query, relay, formId}) => {
+  const {products, json} = query || {};
+  const {environment} = relay;
+
   const [productList, setProductsList] = useState([]);
   useEffect(() => {
-    const {query} = props;
-    const {products} = query || {};
     const {edges = []} = products || {};
     setProductsList(edges.map(({node}) => node.name));
-  }, [props, props.query.products]);
+  }, [products]);
 
   const [unitsProducts, setUnitsProducts] = useState({});
   useEffect(() => {
-    const {query} = props;
-    const {products} = query || {};
     const {edges = []} = products || {};
 
-    const newUnitsProducts = {};
+    const newUnitsProducts = {null: []};
     edges.forEach(({node: product}) => {
       if (newUnitsProducts[product.units] === undefined)
         newUnitsProducts[product.units] = [`'${product.name}'`];
       else newUnitsProducts[product.units].push(`'${product.name}'`);
     });
     setUnitsProducts(newUnitsProducts);
-  }, [props, props.query.products, productList]);
+  }, [productList, products]);
 
   const [surveyModel, setSurveyModel] = useState(null);
   useEffect(() => {
-    const {query} = props;
-    const {json} = query || {};
-    if (!json) return setSurveyModel(null);
-    const {formJson} = json.edges[0].node;
+    setSurveyModel(null);
+    if (lock) {
+      clearTimeout(lock);
+      lock = null;
+    }
 
-    const parsedForm = JSON.parse(formJson);
-    // Inject the productList and unitsProducts into the form
-    for (const page of parsedForm.pages) {
-      for (const element of page.elements) {
-        for (const templateElement of element.templateElements) {
-          if (templateElement.type === 'dropdown') {
-            if (templateElement.name === 'product') {
-              templateElement.choices = productList;
-            } else if (templateElement.name === 'product_units') {
-              for (const key in unitsProducts) {
-                if (key !== 'null') {
-                  templateElement.choices.push({
-                    value: key,
-                    text: key,
-                    visibleIf: `[${unitsProducts[key]},${unitsProducts.null}] contains {panel.processing_unit}`
-                  });
+    lock = setTimeout(() => {
+      lock = null;
+      const {formJson} = json.edges[0].node;
+
+      const parsedForm = JSON.parse(formJson);
+      // Inject the productList and unitsProducts into the form
+      for (const page of parsedForm.pages) {
+        for (const element of page.elements) {
+          for (const templateElement of element.templateElements) {
+            if (templateElement.type === 'dropdown') {
+              if (templateElement.name === 'product') {
+                templateElement.choices = productList;
+              } else if (templateElement.name === 'product_units') {
+                templateElement.choices = [];
+                for (const key in unitsProducts) {
+                  if (key !== 'null') {
+                    const p = [...unitsProducts[key], ...unitsProducts.null];
+                    templateElement.choices.push({
+                      value: key,
+                      text: key,
+                      visibleIf: `[${p}] contains {panel.product}`
+                    });
+                  }
                 }
               }
             }
           }
         }
       }
-    }
-    // Create survey model from updated formJson
 
-    setSurveyModel(new Model(JSON.stringify(parsedForm)));
-  }, [productList, props, props.query.json, unitsProducts]);
+      setSurveyModel(new Model(JSON.stringify(parsedForm)));
+    }, 10);
+    // Create survey model from updated formJson
+  }, [json, productList, unitsProducts]);
 
   useEffect(() => {
-    const {relay, formId} = props;
     relay.refetch({condition: {rowId: formId}});
-  }, [props, props.formId, props.relay]);
+  }, [relay, formId]);
 
   // Mutation: stores the result of the form
   const createFormResult = graphql`
@@ -103,7 +110,6 @@ const FormLoaderContainer = props => {
     };
 
     const mutation = createApplicationStatus;
-    const {environment} = props.relay;
     commitMutation(environment, {
       mutation,
       variables,
@@ -121,7 +127,7 @@ const FormLoaderContainer = props => {
     const variables = {
       input: {
         formResult: {
-          formId: props.formId,
+          formId,
           userId: 2,
           formResult: JSON.stringify(formResult)
         }
@@ -129,7 +135,6 @@ const FormLoaderContainer = props => {
     };
 
     const mutation = createFormResult;
-    const {environment} = props.relay;
     commitMutation(environment, {
       mutation,
       variables,
