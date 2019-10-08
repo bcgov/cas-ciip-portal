@@ -1,27 +1,8 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {graphql, fetchQuery, createRefetchContainer} from 'react-relay';
-import propTypes from 'prop-types';
 import {Table, Jumbotron, Card} from 'react-bootstrap';
 import IncentiveSegment from '../../components/Incentives/IncentiveSegment';
 import IncentiveSegmentFormula from '../../components/Incentives/IncentiveSegmentFormula';
-
-const productsByBcghgidQuery = graphql`
-  query IncentiveCalculatorContainerProductsByBcghgidQuery(
-    $bcghgidInput: BigFloat
-  ) {
-    getProductsByBcghgid(bcghgidInput: $bcghgidInput) {
-      nodes {
-        rowId
-        quantity
-        product
-        applicationId
-        fuelUnits
-        associatedEmissions
-        attributableFuelPercentage
-      }
-    }
-  }
-`;
 
 const carbonTaxByBcghgidQuery = graphql`
   query IncentiveCalculatorContainerCarbonTaxByBcghgidQuery(
@@ -42,67 +23,58 @@ const carbonTaxByBcghgidQuery = graphql`
   }
 `;
 
-class IncentiveCalculatorContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      totalCarbonIncentive: 0,
-      incentiveSegments: []
+const IncentiveCalculatorContainer = props => {
+  // Constructor(props) {
+  //   super(props);
+  //   state = {
+  //     totalCarbonIncentive: 0,
+  //     incentiveSegments: []
+  //   };
+  // }
+
+  const fakeState = {totalCarbonIncentive: 0, incentiveSegments: []};
+  props.setBcghgidInState(props.bcghgid);
+  useEffect(() => {
+    const refetchVariables = {
+      bcghgidInput: Number(props.bcghgid)
     };
-  }
+    props.relay.refetch(refetchVariables);
+  });
 
-  getData = async () => {
-    const {environment} = this.props.relay;
+  const getData = () => {
+    const {allProducts} = props.query;
 
-    const {allProducts} = this.props.query;
+    const reportedProducts = props.query.bcghgidProducts;
 
-    const reportedProducts = await fetchQuery(
-      environment,
-      productsByBcghgidQuery,
-      {bcghgidInput: Number(this.props.bcghgid)}
-    );
-    const carbonTaxByBcghgid = await fetchQuery(
-      environment,
-      carbonTaxByBcghgidQuery,
-      {
-        bcghgidInput: Number(this.props.bcghgid),
-        reportingYear: this.props.reportingYear
-      }
-    );
-
-    const totalCarbonTax = carbonTaxByBcghgid.getCarbonTaxByBcghgid.nodes.reduce(
-      (total, curr) => {
-        return parseFloat(total) + parseFloat(curr.calculatedCarbonTax);
-      },
-      0
-    );
+    // Const totalCarbonTax = carbonTaxByBcghgid.getCarbonTaxByBcghgid.nodes.reduce(
+    //   (total, curr) => {
+    //     return parseFloat(total) + parseFloat(curr.calculatedCarbonTax);
+    //   },
+    //   0
+    // );
     return {
       allProducts,
       reportedProducts,
-      carbonTaxPaid: totalCarbonTax
+      carbonTaxPaid: 0 // TotalCarbonTax
     };
   };
 
-  generateIncentiveCalculationData = async () => {
-    console.log(this.props);
-    const data = await this.getData();
-    console.log('IncentiveCalculatorContainer, getdata():', data);
-    const productsReported = data.reportedProducts.getProductsByBcghgid.nodes;
+  const generateIncentiveCalculationData = () => {
+    const data = getData();
+    const productsReported = data.reportedProducts.edges;
     const allProducts = data.allProducts.edges;
-    let totalCarbonIncentive = 0;
-    const incentiveSegments = [];
 
     productsReported.forEach(product => {
       // Get bm/et details for the product from the Products table
       const productDetails = allProducts.filter(
-        ({node: p}) => p.name === product.product
+        ({node: p}) => p.name === product.node.product
       );
+
       if (productDetails.length > 0) {
-        const productQuantity = parseFloat(product.quantity);
+        const productQuantity = parseFloat(product.node.quantity);
         const attributableFuelPercentage = parseFloat(
-          product.attributableFuelPercentage
+          product.node.attributableFuelPercentage
         );
-        console.log(productDetails[0]);
         // Const eligibilityThreshold = productDetails[0] ? productDetails[0].benchmarksByProductId.nodes[0].eligibilityThreshold : 0;
         const bm_et =
           productDetails[0].node.benchmarksByProductId.nodes[
@@ -124,11 +96,12 @@ class IncentiveCalculatorContainer extends Component {
 
         const eligibleFuelValue =
           (attributableFuelPercentage / 100) * eligibilityValue;
-        totalCarbonIncentive += eligibleFuelValue * data.carbonTaxPaid;
+        fakeState.totalCarbonIncentive +=
+          eligibleFuelValue * data.carbonTaxPaid;
 
-        incentiveSegments.push(
+        fakeState.incentiveSegments.push(
           <IncentiveSegment
-            name={product.product}
+            name={product.node.product}
             quantity={productQuantity}
             benchmark={benchmark}
             eligibilityThreshold={eligibilityThreshold}
@@ -139,94 +112,102 @@ class IncentiveCalculatorContainer extends Component {
         );
       }
     });
-
-    this.setState({
-      totalCarbonIncentive,
-      incentiveSegments
-    });
+    return fakeState;
   };
 
-  componentDidMount() {
-    this.generateIncentiveCalculationData();
-  }
+  const realFakeState = generateIncentiveCalculationData();
 
-  render() {
-    console.log(this.props);
-    const {incentiveSegments} = this.state;
-    return (
-      <>
-        <Jumbotron>
-          <div style={{marginBottom: '30px'}}>
-            <h5>Incentive by Product:</h5>
-            <p>
-              This formula gives the partial incentive for each product reported
-              in <br />
-              the CIIP application. The total Incentive is the sum of these
-              partial incentives.
-              <br />
-            </p>
-          </div>
-          <IncentiveSegmentFormula />
-        </Jumbotron>
-
-        <div className="incentive-breakdown">
-          <Table striped bordered hover responsive="lg">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Calculation Breakdown</th>
-                <th>Incentive for product</th>
-                <th>Chart</th>
-              </tr>
-            </thead>
-            <tbody>
-              {incentiveSegments.map((segment, index) => (
-                <React.Fragment key={index}>{segment}</React.Fragment>
-              ))}
-              <tr>
-                <td colSpan="2">
-                  <strong>Total Incentive</strong>
-                </td>
-                <td>
-                  <strong>
-                    CAD {this.state.totalCarbonIncentive.toFixed(2)}
-                  </strong>
-                </td>
-              </tr>
-            </tbody>
-          </Table>
+  return (
+    <>
+      <Jumbotron>
+        <div style={{marginBottom: '30px'}}>
+          <h5>Incentive by Product:</h5>
+          <p>
+            This formula gives the partial incentive for each product reported
+            in <br />
+            the CIIP application. The total Incentive is the sum of these
+            partial incentives.
+            <br />
+          </p>
         </div>
-      </>
-    );
-  }
+        <IncentiveSegmentFormula />
+      </Jumbotron>
 
-  static propTypes = {
-    bcghgid: propTypes.string.isRequired,
-    reportingYear: propTypes.string.isRequired
-  };
-}
+      <div className="incentive-breakdown">
+        <Table striped bordered hover responsive="lg">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Calculation Breakdown</th>
+              <th>Incentive for product</th>
+              <th>Chart</th>
+            </tr>
+          </thead>
+          <tbody>
+            {realFakeState.incentiveSegments.map((segment, index) => (
+              <React.Fragment key={index}>{segment}</React.Fragment>
+            ))}
+            <tr>
+              <td colSpan="2">
+                <strong>Total Incentive</strong>
+              </td>
+              <td>
+                {/* <strong>CAD {state.totalCarbonIncentive.toFixed(2)}</strong> */}
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
+    </>
+  );
+};
 
-export default createRefetchContainer(IncentiveCalculatorContainer, {
-  query: graphql`
-    fragment IncentiveCalculatorContainer_query on Query {
-      allProducts: allProducts {
-        edges {
-          node {
-            rowId
-            name
-            description
-            benchmarksByProductId {
-              nodes {
-                benchmark
-                eligibilityThreshold
+export default createRefetchContainer(
+  IncentiveCalculatorContainer,
+  {
+    query: graphql`
+      fragment IncentiveCalculatorContainer_query on Query
+        @argumentDefinitions(bcghgidInput: {type: "BigFloat"}) {
+        allProducts: allProducts {
+          edges {
+            node {
+              rowId
+              name
+              description
+              benchmarksByProductId {
+                nodes {
+                  benchmark
+                  eligibilityThreshold
+                }
               }
             }
           }
         }
+        bcghgidProducts: getProductsByBcghgid(bcghgidInput: $bcghgidInput) {
+          edges {
+            node {
+              rowId
+              quantity
+              product
+              applicationId
+              fuelUnits
+              associatedEmissions
+              attributableFuelPercentage
+            }
+          }
+        }
+      }
+    `
+  },
+  graphql`
+    query IncentiveCalculatorContainerRefetchQuery($bcghgidInput: BigFloat) {
+      query {
+        ...IncentiveCalculatorContainer_query
+          @arguments(bcghgidInput: $bcghgidInput)
       }
     }
   `
-});
+);
 
 // Export default createRefetchContainer(
 //   ApplicationStatusContainer,

@@ -10,7 +10,6 @@ export default class App extends NextApp {
     const {variables = {}} = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
-
     try {
       if (initEnvironment && Component.query) {
         const {environment, relaySSR} = initEnvironment();
@@ -40,7 +39,6 @@ export default class App extends NextApp {
         variables
       })
     );
-
     return (
       <ErrorBoundary>
         <QueryRenderer

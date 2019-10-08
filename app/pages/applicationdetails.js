@@ -7,16 +7,18 @@ import Header from '../components/Header';
 
 // TODO: decide what to show in this page & create a query from the props passed in
 class ApplicationDetails extends Component {
-  state = {status: null, applicationId: null};
+  state = {status: null, applicationId: null, bcghgid: null};
 
   static query = graphql`
     query applicationdetailsQuery(
       $applicationStatusCondition: ApplicationStatusCondition
+      $bcghgidInput: BigFloat
     ) {
       query {
         ...ApplicationStatusContainer_query
           @arguments(condition: $applicationStatusCondition)
         ...IncentiveCalculatorContainer_query
+          @arguments(bcghgidInput: $bcghgidInput)
       }
     }
   `;
@@ -26,7 +28,8 @@ class ApplicationDetails extends Component {
       variables: {
         condition: {
           formResultId: this.state ? Number(this.state.applicationId) : null
-        }
+        },
+        bcghgidInput: this.state ? this.state.bcghgid : null
       }
     };
   }
@@ -37,6 +40,10 @@ class ApplicationDetails extends Component {
 
   setApplicationStatusInState = s => {
     this.setState({status: s});
+  };
+
+  setBcghgidInState = b => {
+    this.setState({bcghgid: b});
   };
 
   render() {
@@ -59,6 +66,7 @@ class ApplicationDetails extends Component {
               query={query}
               bcghgid={this.props.router.query.bcghgid}
               reportingYear={this.props.router.query.reportingYear}
+              setBcghgidInState={this.setBcghgidInState}
             />
           </Container>
           <hr />
