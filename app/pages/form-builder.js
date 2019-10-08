@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import Header from '../components/Header';
-import FormCreator from '../components/Forms/FormCreator';
-import FormPicker from '../components/Forms/FormPicker';
+import FormCreator from '../containers/Forms/FormCreator';
+import FormPicker from '../containers/Forms/FormPicker';
 
 class FormBuilder extends Component {
   state = {

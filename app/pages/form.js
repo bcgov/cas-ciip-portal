@@ -3,7 +3,7 @@ import {Container, Jumbotron, ButtonToolbar} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import Header from '../components/Header';
 import FormLoaderContainer from '../containers/Forms/FormLoaderContainer';
-import FormPicker from '../components/Forms/FormPicker';
+import FormPicker from '../containers/Forms/FormPicker';
 
 class BaseForm extends Component {
   state = {

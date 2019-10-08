@@ -1,10 +1,73 @@
-import React from 'react';
-import * as Survey from 'survey-react';
+import React, {useEffect, useState} from 'react';
+import {Survey, Model} from 'survey-react';
 import 'survey-react/survey.css';
 import 'survey-creator/survey-creator.css';
-import {graphql, commitMutation, createFragmentContainer} from 'react-relay';
+import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 
 const FormLoaderContainer = props => {
+  const [productList, setProductsList] = useState([]);
+  useEffect(() => {
+    const {query} = props;
+    const {products} = query || {};
+    const {edges = []} = products || {};
+    setProductsList(edges.map(({node}) => node.name));
+  }, [props, props.query.products]);
+
+  const [unitsProducts, setUnitsProducts] = useState({});
+  useEffect(() => {
+    const {query} = props;
+    const {products} = query || {};
+    const {edges = []} = products || {};
+
+    const newUnitsProducts = {};
+    edges.forEach(({node: product}) => {
+      if (newUnitsProducts[product.units] === undefined)
+        newUnitsProducts[product.units] = [`'${product.name}'`];
+      else newUnitsProducts[product.units].push(`'${product.name}'`);
+    });
+    setUnitsProducts(newUnitsProducts);
+  }, [props, props.query.products, productList]);
+
+  const [surveyModel, setSurveyModel] = useState(null);
+  useEffect(() => {
+    const {query} = props;
+    const {json} = query || {};
+    if (!json) return setSurveyModel(null);
+    const {formJson} = json.edges[0].node;
+
+    const parsedForm = JSON.parse(formJson);
+    // Inject the productList and unitsProducts into the form
+    for (const page of parsedForm.pages) {
+      for (const element of page.elements) {
+        for (const templateElement of element.templateElements) {
+          if (templateElement.type === 'dropdown') {
+            if (templateElement.name === 'product') {
+              templateElement.choices = productList;
+            } else if (templateElement.name === 'product_units') {
+              for (const key in unitsProducts) {
+                if (key !== 'null') {
+                  templateElement.choices.push({
+                    value: key,
+                    text: key,
+                    visibleIf: `[${unitsProducts[key]},${unitsProducts.null}] contains {panel.processing_unit}`
+                  });
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    // Create survey model from updated formJson
+
+    setSurveyModel(new Model(JSON.stringify(parsedForm)));
+  }, [productList, props, props.query.json, unitsProducts]);
+
+  useEffect(() => {
+    const {relay, formId} = props;
+    relay.refetch({condition: {rowId: formId}});
+  }, [props, props.formId, props.relay]);
+
   // Mutation: stores the result of the form
   const createFormResult = graphql`
     mutation FormLoaderContainerMutation($input: CreateFormResultInput!) {
@@ -92,73 +155,17 @@ const FormLoaderContainer = props => {
     console.log('value changed');
   };
 
-  // Function: Add the product/unit choices into the formJson before creating the survey
-  const injectProductsUnits = data => {
-    const parsedForm = JSON.parse(data.formJson);
+  if (!surveyModel) return null;
 
-    parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
-    for (const page of parsedForm.pages) {
-      for (const element of page.elements) {
-        for (const templateElement of element.templateElements) {
-          if (templateElement.type === 'dropdown') {
-            if (templateElement.name === 'product') {
-              templateElement.choices = data.productList;
-            } else if (templateElement.name === 'product_units') {
-              for (const key in data.unitObj) {
-                if (key !== 'null') {
-                  templateElement.choices.push({
-                    value: key,
-                    text: key,
-                    visibleIf: `[${data.unitObj[key]},${data.unitObj.null}] contains {panel.processing_unit}`
-                  });
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    return parsedForm;
-  };
-
-  // Creates the Survey from the form JSON
-  const createSurveyForm = () => {
-    const {query} = props;
-    const {products} = query || {};
-    const {edges = []} = products || {};
-    const {json} = query || {};
-    if (!json) return null;
-    const unitObj = {};
-    const productList = [];
-
-    edges.forEach(({node: product}) => {
-      if (unitObj[product.units] === undefined)
-        unitObj[product.units] = [`'${product.name}'`];
-      else unitObj[product.units].push(`'${product.name}'`);
-      productList.push(product.name);
-    });
-
-    const {formJson} = json.edges[0].node;
-    const data = {formJson, unitObj, productList};
-    const parsedForm = injectProductsUnits(data);
-
-    // Create survey model from updated formJson
-    Survey.Survey.cssType = 'bootstrap';
-    const model = new Survey.Model(JSON.stringify(parsedForm));
-    return (
-      <Survey.Survey
-        model={model}
-        onComplete={onComplete}
-        onValueChanged={onValueChanged}
-      />
-    );
-  };
-
+  Survey.cssType = 'bootstrap';
   return (
     <>
       <div id="surveyContainer">
-        {createSurveyForm()}
+        <Survey
+          model={surveyModel}
+          onComplete={onComplete}
+          onValueChanged={onValueChanged}
+        />
         <style jsx global>
           {`
             #surveyContainer {
@@ -186,27 +193,37 @@ const FormLoaderContainer = props => {
   );
 };
 
-export default createFragmentContainer(FormLoaderContainer, {
-  query: graphql`
-    fragment FormLoaderContainer_query on Query
-      @argumentDefinitions(condition: {type: "FormJsonCondition"}) {
-      json: allFormJsons(condition: $condition) {
-        edges {
-          node {
-            rowId
-            name
-            formJson
+export default createRefetchContainer(
+  FormLoaderContainer,
+  {
+    query: graphql`
+      fragment FormLoaderContainer_query on Query
+        @argumentDefinitions(condition: {type: "FormJsonCondition"}) {
+        json: allFormJsons(condition: $condition) {
+          edges {
+            node {
+              rowId
+              name
+              formJson
+            }
+          }
+        }
+        products: allProducts {
+          edges {
+            node {
+              name
+              units
+            }
           }
         }
       }
-      products: allProducts {
-        edges {
-          node {
-            name
-            units
-          }
-        }
+    `
+  },
+  graphql`
+    query FormLoaderContainerRefetchQuery($condition: FormJsonCondition) {
+      query {
+        ...FormLoaderContainer_query @arguments(condition: $condition)
       }
     }
   `
-});
+);
