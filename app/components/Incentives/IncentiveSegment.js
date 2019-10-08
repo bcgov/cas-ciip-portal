@@ -51,15 +51,6 @@ class IncentiveSegment extends Component {
 }
 
 // Proptype Validations
-IncentiveSegment.propTypes = {
-  name: propTypes.string,
-  quantity: propTypes.number,
-  benchmark: propTypes.number,
-  eligibilityThreshold: propTypes.number,
-  carbonTaxPaid: propTypes.number,
-  incentiveSegment: propTypes.number,
-  fuelPercentage: propTypes.number
-};
 
 export default IncentiveSegment;
 
