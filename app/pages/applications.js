@@ -13,11 +13,7 @@ class Applications extends Component {
     searchDisplay: 'No Filter'
   };
 
-  // Actions to consume in downstream components
-  // static SORT_ACTION=1
-  // static MERGE_ACTION=2
-
-  // in downstream component
+  // In downstream component
   // onClick={(event) => handleApplicationsAction({action: Applications.SORT_ACTION})})
   // I didn't fully understand how to make this work, so I moved on with the way I did.
   static query = graphql`
@@ -93,6 +89,7 @@ class Applications extends Component {
   }
 
   render() {
+    console.log(this);
     const {query} = this.props;
     return (
       <DefaultLayout title="Applications">
