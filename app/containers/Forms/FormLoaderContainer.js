@@ -93,26 +93,33 @@ const FormLoaderContainer = props => {
   };
 
   // Function: Add the product/unit choices into the formJson before creating the survey
-  const editFormJson = data => {
+  const injectProductsUnits = data => {
     const parsedForm = JSON.parse(data.formJson);
 
     parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
+    for (const page of parsedForm.pages) {
+      for (const element of page.elements) {
+        for (const templateElement of element.templateElements) {
+          if (templateElement.type === 'dropdown') {
+            if (templateElement.name === 'product') {
+              templateElement.choices = data.productList;
+            } else if (templateElement.name === 'product_units') {
+              for (const key in data.unitObj) {
+                if (key !== 'null') {
+                  templateElement.choices.push({
+                    value: key,
+                    text: key,
+                    visibleIf: `[${data.unitObj[key]},${data.unitObj.null}] contains {panel.processing_unit}`
+                  });
+                }
+              }
+            }
+          }
+        }
+      }
+    }
 
-    // Add choices into formJson for products and units (by product units)
-    parsedForm.pages[3].elements[0].templateElements[0].choices =
-      data.productList;
-
-    // TODO: Units are broken, to be fixed on working with split forms
-    // For (const key in data.unitObj) {
-    //   if (key !== 'null') {
-    //     parsedForm.pages[3].elements[0].templateElements[2].choices.push({
-    //       value: key,
-    //       text: key,
-    //       visibleIf: `[${data.unitObj[key]},${data.unitObj.null}] contains {panel.processing_unit}`
-    //     });
-    //   }
-    // }
-
+    console.log(parsedForm);
     return parsedForm;
   };
 
@@ -131,7 +138,7 @@ const FormLoaderContainer = props => {
 
       const {formJson} = props.query.json.edges[0].node;
       const data = {formJson, unitObj, productList};
-      const parsedForm = editFormJson(data);
+      const parsedForm = injectProductsUnits(data);
 
       // Create survey model from updated formJson
       Survey.Survey.cssType = 'bootstrap';
@@ -180,8 +187,8 @@ const FormLoaderContainer = props => {
 export default createFragmentContainer(FormLoaderContainer, {
   query: graphql`
     fragment FormLoaderContainer_query on Query
-      @argumentDefinitions(condition: {type: "Int"}) {
-      json: allFormJsons(condition: {rowId: 1}) {
+      @argumentDefinitions(condition: {type: "FormJsonCondition"}) {
+      json: allFormJsons(condition: $condition) {
         edges {
           node {
             rowId

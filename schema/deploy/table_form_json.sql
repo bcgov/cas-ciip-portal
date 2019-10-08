@@ -1,7 +1,7 @@
 -- Deploy ggircs-portal:table_form_json to pg
 -- requires: schema_ggircs_portal
 
-BEGIN;
+begin;
 
 create table ggircs_portal.form_json (
   id serial not null,
@@ -1596,7 +1596,7 @@ insert into ggircs_portal.form_json
           "templateElements": [
             {
               "type": "dropdown",
-              "name": "fuel_type",
+              "name": "product",
               "title": "Processing Unit Module",
               "choices": [
                 "Inlet Compression",
@@ -1614,7 +1614,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "dropdown",
-              "name": "fuel_units",
+              "name": "product_units",
               "startWithNewLine": false,
               "title": "Units",
               "choices": [
@@ -1831,4 +1831,4 @@ insert into ggircs_portal.form_json
 );
 
 
-COMMIT;
+commit;

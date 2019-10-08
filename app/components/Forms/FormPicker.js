@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {graphql, QueryRenderer} from 'react-relay';
+import {graphql, QueryRenderer, createFragmentContainer} from 'react-relay';
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 
 class FormPicker extends Component {
@@ -22,14 +22,11 @@ class FormPicker extends Component {
     );
   };
 
-  formPicker = ({error, props}) => {
+  render() {
     const formNodes = [];
-    if (props) {
-      const allForms = props.allFormJsons.nodes;
-      allForms.forEach(form => {
-        formNodes.push(this.formSelectButton(form));
-      });
-    } else if (error) console.error(error);
+    this.props.query.allFormJsons.edges.forEach(edge => {
+      formNodes.push(this.formSelectButton(edge.node));
+    });
 
     return (
       <div>
@@ -38,29 +35,21 @@ class FormPicker extends Component {
         </DropdownButton>
       </div>
     );
-  };
-
-  render() {
-    return (
-      <>
-        <QueryRenderer
-          environment={environment}
-          query={graphql`
-            query FormPickerQuery {
-              allFormJsons {
-                nodes {
-                  rowId
-                  name
-                  formJson
-                }
-              }
-            }
-          `}
-          render={this.formPicker}
-        />
-      </>
-    );
   }
 }
 
-export default FormPicker;
+export default createFragmentContainer(FormPicker, {
+  query: graphql`
+    fragment FormPicker_query on Query {
+      allFormJsons {
+        edges {
+          node {
+            rowId
+            name
+            formJson
+          }
+        }
+      }
+    }
+  `
+});

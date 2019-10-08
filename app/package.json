@@ -42,7 +42,13 @@
           "allowTernary": true
         }
       ],
-      "react/prop-types": 0
+      "react/prop-types": 0,
+      "max-depth": [
+        1,
+        {
+          "max": 8
+        }
+      ]
     }
   },
   "engines": {
