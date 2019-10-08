@@ -10,7 +10,7 @@ class FormPicker extends Component {
 
   formSelectButton = form => {
     return (
-      <div key={form.rowId}>
+      <div key={form.id}>
         <Dropdown.Item
           onClick={() => {
             this.formSelectHandler(form.rowId, form.formJson);
@@ -40,12 +40,14 @@ class FormPicker extends Component {
   }
 }
 
+// export default FormPicker;
 export default createFragmentContainer(FormPicker, {
   query: graphql`
     fragment FormPicker_query on Query {
       allFormJsons {
         edges {
           node {
+            id
             rowId
             name
             formJson
