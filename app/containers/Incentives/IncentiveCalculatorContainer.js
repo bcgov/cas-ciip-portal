@@ -24,19 +24,13 @@ const carbonTaxByBcghgidQuery = graphql`
 `;
 
 const IncentiveCalculatorContainer = props => {
-  // Constructor(props) {
-  //   super(props);
-  //   state = {
-  //     totalCarbonIncentive: 0,
-  //     incentiveSegments: []
-  //   };
-  // }
-
   const fakeState = {totalCarbonIncentive: 0, incentiveSegments: []};
   props.setBcghgidInState(props.bcghgid);
+  props.setReportingYearInState(props.reportingYear);
   useEffect(() => {
     const refetchVariables = {
-      bcghgidInput: Number(props.bcghgid)
+      bcghgidInput: Number(props.bcghgid),
+      reportingYear: props.reportingYear
     };
     props.relay.refetch(refetchVariables);
   });
@@ -46,16 +40,18 @@ const IncentiveCalculatorContainer = props => {
 
     const reportedProducts = props.query.bcghgidProducts;
 
-    // Const totalCarbonTax = carbonTaxByBcghgid.getCarbonTaxByBcghgid.nodes.reduce(
-    //   (total, curr) => {
-    //     return parseFloat(total) + parseFloat(curr.calculatedCarbonTax);
-    //   },
-    //   0
-    // );
+    const totalCarbonTax = props.query.carbonTax.edges.reduce(
+      // CarbonTaxByBcghgid.getCarbonTaxByBcghgid.nodes.reduce(
+      (total, curr) => {
+        return parseFloat(total) + parseFloat(curr.node.calculatedCarbonTax);
+      },
+      0
+    );
+
     return {
       allProducts,
       reportedProducts,
-      carbonTaxPaid: 0 // TotalCarbonTax
+      carbonTaxPaid: totalCarbonTax
     };
   };
 
@@ -167,7 +163,10 @@ export default createRefetchContainer(
   {
     query: graphql`
       fragment IncentiveCalculatorContainer_query on Query
-        @argumentDefinitions(bcghgidInput: {type: "BigFloat"}) {
+        @argumentDefinitions(
+          bcghgidInput: {type: "BigFloat"}
+          reportingYear: {type: "String"}
+        ) {
         allProducts: allProducts {
           edges {
             node {
@@ -196,43 +195,31 @@ export default createRefetchContainer(
             }
           }
         }
+        carbonTax: getCarbonTaxByBcghgid(
+          bcghgidInput: $bcghgidInput
+          reportingYear: $reportingYear
+        ) {
+          edges {
+            node {
+              reportId
+              organisationId
+              fuelType
+              calculatedCarbonTax
+            }
+          }
+        }
       }
     `
   },
   graphql`
-    query IncentiveCalculatorContainerRefetchQuery($bcghgidInput: BigFloat) {
+    query IncentiveCalculatorContainerRefetchQuery(
+      $bcghgidInput: BigFloat
+      $reportingYear: String
+    ) {
       query {
         ...IncentiveCalculatorContainer_query
-          @arguments(bcghgidInput: $bcghgidInput)
+          @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
       }
     }
   `
 );
-
-// Export default createRefetchContainer(
-//   ApplicationStatusContainer,
-//   {
-//     query: graphql`
-//       fragment ApplicationStatusContainer_query on Query
-//         @argumentDefinitions(condition: {type: "ApplicationStatusCondition"}) {
-//         allApplicationStatuses(condition: $condition) {
-//           edges {
-//             node {
-//               rowId
-//               applicationStatus
-//             }
-//           }
-//         }
-//       }
-//     `
-//   },
-//   graphql`
-//     query ApplicationStatusContainerRefetchQuery(
-//       $condition: ApplicationStatusCondition
-//     ) {
-//       query {
-//         ...ApplicationStatusContainer_query @arguments(condition: $condition)
-//       }
-//     }
-//   `
-// );
