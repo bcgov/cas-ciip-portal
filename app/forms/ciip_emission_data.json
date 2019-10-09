@@ -1,5 +1,6 @@
 {
   "title": "Emissions",
+  "showCompletedPage": false,
   "pages": [
     {
       "name": "Emissions",
