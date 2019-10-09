@@ -5,10 +5,9 @@ import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalc
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import Header from '../components/Header';
 
-// TODO: decide what to show in this page & create a query from the props passed in
+// TODO: decide what to show in this page
 class ApplicationDetails extends Component {
   state = {
-    status: null,
     applicationId: null,
     bcghgid: null,
     reportingYear: null
@@ -45,10 +44,6 @@ class ApplicationDetails extends Component {
     this.setState({applicationId: Number(id)});
   };
 
-  setApplicationStatusInState = s => {
-    this.setState({status: s});
-  };
-
   setBcghgidInState = b => {
     this.setState({bcghgid: b});
   };
@@ -66,11 +61,7 @@ class ApplicationDetails extends Component {
           <Container>
             <ApplicationStatusContainer
               query={query}
-              setApplicationId={this.setApplicationId}
               applicationId={this.props.router.query.applicationId}
-              newApplicationId={this.state.applicationId}
-              status={this.state.status}
-              setApplicationStatusInState={this.setApplicationStatusInState}
             />
             <hr />
             <IncentiveCalculatorContainer
