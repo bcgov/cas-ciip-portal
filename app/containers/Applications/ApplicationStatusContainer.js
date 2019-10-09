@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {Container, Row, Col, Dropdown} from 'react-bootstrap';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
+import DropdownMenuItemComponent from '../../components/DropdownMenuItemComponent';
 
 const setStatus = graphql`
   mutation ApplicationStatusContainerMutation(
@@ -90,30 +91,14 @@ const ApplicationStatusContainer = props => {
                   {applicationStatus}
                 </Dropdown.Toggle>
                 <Dropdown.Menu style={{width: '100%'}}>
-                  <Dropdown.Item
-                    eventKey="approved"
-                    onSelect={setApplicationStatus}
-                  >
-                    Approved
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    eventKey="declined"
-                    onSelect={setApplicationStatus}
-                  >
-                    Declined
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    eventKey="attention"
-                    onSelect={setApplicationStatus}
-                  >
-                    Attention
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    eventKey="pending"
-                    onSelect={setApplicationStatus}
-                  >
-                    Pending
-                  </Dropdown.Item>
+                  {Object.keys(statusBadgeColor).map(status => (
+                    <DropdownMenuItemComponent
+                      key={status}
+                      itemEventKey={status}
+                      itemFunc={setApplicationStatus}
+                      itemTitle={status}
+                    />
+                  ))}
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
