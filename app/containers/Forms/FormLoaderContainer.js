@@ -5,7 +5,7 @@ import 'survey-creator/survey-creator.css';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 
 let lock;
-const FormLoaderContainer = ({query, relay, formId}) => {
+const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
   const {products, json} = query || {};
   const {environment} = relay;
 
@@ -31,6 +31,9 @@ const FormLoaderContainer = ({query, relay, formId}) => {
   const [surveyModel, setSurveyModel] = useState(null);
   useEffect(() => {
     setSurveyModel(null);
+    const {edges} = json || {};
+    if (!edges || edges.length === 0) return;
+    const {formJson} = edges[0].node;
     if (lock) {
       clearTimeout(lock);
       lock = null;
@@ -38,7 +41,6 @@ const FormLoaderContainer = ({query, relay, formId}) => {
 
     lock = setTimeout(() => {
       lock = null;
-      const {formJson} = json.edges[0].node;
 
       const parsedForm = JSON.parse(formJson);
       // Inject the productList and unitsProducts into the form
@@ -141,7 +143,8 @@ const FormLoaderContainer = ({query, relay, formId}) => {
       onCompleted: response => {
         console.log(response);
         console.log('Store Result Response received from server.');
-        storeApplicationStatus(response.createFormResult.formResult.rowId);
+        // FIXME
+        // StoreApplicationStatus(response.createFormResult.formResult.rowId);
       },
       onError: err => console.error(err)
     });
@@ -153,6 +156,7 @@ const FormLoaderContainer = ({query, relay, formId}) => {
     console.log('form data', formData);
     storeResult(formData);
     console.log('Complete!', result.data);
+    onFormComplete();
   };
 
   // TODO: Is this going to be necessary going forward, or was it just for debugging?
