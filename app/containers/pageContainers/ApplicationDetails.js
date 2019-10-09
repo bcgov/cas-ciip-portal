@@ -3,7 +3,7 @@ import {graphql} from 'react-relay';
 import {Container} from 'react-bootstrap';
 import IncentiveCalculatorContainer from '../Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../Applications/ApplicationStatusContainer';
-import Header from '../../components/Header';
+import DefaultLayout from '../../layouts/default-layout';
 
 // TODO: decide what to show in this page
 class ApplicationDetails extends Component {
@@ -55,26 +55,20 @@ class ApplicationDetails extends Component {
   render() {
     const {query} = this.props;
     return (
-      <>
-        <div>
-          <Header />
-          <Container>
-            <ApplicationStatusContainer
-              query={query}
-              applicationId={this.props.router.query.applicationId}
-            />
-            <hr />
-            <IncentiveCalculatorContainer
-              query={query}
-              bcghgid={this.props.router.query.bcghgid}
-              reportingYear={this.props.router.query.reportingYear}
-              setBcghgidInState={this.setBcghgidInState}
-              setReportingYearInState={this.setReportingYearInState}
-            />
-          </Container>
-          <hr />
-        </div>
-      </>
+      <DefaultLayout>
+        <ApplicationStatusContainer
+          query={query}
+          applicationId={this.props.router.query.applicationId}
+        />
+        <hr />
+        <IncentiveCalculatorContainer
+          query={query}
+          bcghgid={this.props.router.query.bcghgid}
+          reportingYear={this.props.router.query.reportingYear}
+          setBcghgidInState={this.setBcghgidInState}
+          setReportingYearInState={this.setReportingYearInState}
+        />
+      </DefaultLayout>
     );
   }
 }
