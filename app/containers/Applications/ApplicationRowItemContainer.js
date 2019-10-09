@@ -30,7 +30,7 @@ const ApplicationRowItemContainer = props => {
       <td>
         <Link
           href={{
-            pathname: '/applicationdetails',
+            pathname: '/application-details',
             query: {
               applicationId: ciipApplication.rowId,
               reportingYear: ciipApplication.reportingYear,

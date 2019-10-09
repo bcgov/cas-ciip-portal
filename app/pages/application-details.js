@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Container} from 'react-bootstrap';
-import {graphql} from 'react-relay';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import Header from '../components/Header';
+import applicationDetails from '../queries/applicationDetails';
 
 // TODO: decide what to show in this page
 class ApplicationDetails extends Component {
@@ -13,20 +13,7 @@ class ApplicationDetails extends Component {
     reportingYear: null
   };
 
-  static query = graphql`
-    query applicationdetailsQuery(
-      $applicationStatusCondition: ApplicationStatusCondition
-      $bcghgidInput: BigFloat
-      $reportingYear: String
-    ) {
-      query {
-        ...ApplicationStatusContainer_query
-          @arguments(condition: $applicationStatusCondition)
-        ...IncentiveCalculatorContainer_query
-          @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
-      }
-    }
-  `;
+  static query = applicationDetails;
 
   static getInitialProps() {
     return {
