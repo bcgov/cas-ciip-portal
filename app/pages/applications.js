@@ -1,3 +1,1 @@
-import Applications from '../containers/pageContainers/Applications';
-
-export default Applications;
+export {default} from '../containers/pageContainers/Applications';
