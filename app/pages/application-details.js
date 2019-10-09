@@ -1,3 +1,1 @@
-import ApplicationDetails from '../containers/pageContainers/ApplicationDetails';
-
-export default ApplicationDetails;
+export {default} from '../containers/pageContainers/ApplicationDetails';
