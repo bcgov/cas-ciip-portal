@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
-import {Container, Row, Col, Dropdown} from 'react-bootstrap';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
-import DropdownMenuItemComponent from '../../components/DropdownMenuItemComponent';
+import ApplicationStatusItemContainer from './ApplicationStatusItemContainer';
 
 const setStatus = graphql`
   mutation ApplicationStatusContainerMutation(
@@ -17,18 +16,13 @@ const setStatus = graphql`
 `;
 
 const ApplicationStatusContainer = props => {
-  // Set applicationId to state in parent component
-  if (props.applicationId) props.setApplicationId(props.applicationId);
-  // Set applicationStatus to state in parent component
-  if (!props.status && props.query.allApplicationStatuses.edges.length === 1)
-    props.setApplicationStatusInState(
-      props.query.allApplicationStatuses.edges[0].node.applicationStatus
-    );
-  let applicationStatus = props.status;
+  const {allApplicationStatuses} = props.query;
   useEffect(() => {
     const refetchVariables = {
       condition: {
-        formResultId: Number(props.applicationId)
+        formResultId: Number(props.applicationId),
+        applicationStatus:
+          allApplicationStatuses.edges[0].node.applicationStatus
       }
     };
     props.relay.refetch(refetchVariables);
@@ -58,52 +52,19 @@ const ApplicationStatusContainer = props => {
       variables: saveVariables,
       onCompleted: response => {
         console.log(response);
-        props.setApplicationStatusInState(eventKey);
-        applicationStatus = eventKey;
       },
       onError: err => console.error(err)
     });
   };
 
-  // Dropdown color changes for statuses
-  const statusBadgeColor = {
-    pending: 'info',
-    attention: 'warning',
-    declined: 'danger',
-    approved: 'success'
-  };
-
   return (
     <>
-      {props.query.allApplicationStatuses.edges.length === 1 ? (
-        <Container>
-          <Row>
-            <Col md={3}>
-              <h3>Application Status: </h3>
-            </Col>
-            <Col md={2}>
-              <Dropdown style={{width: '100%'}}>
-                <Dropdown.Toggle
-                  style={{width: '100%', textTransform: 'capitalize'}}
-                  variant={statusBadgeColor[applicationStatus]}
-                  id="dropdown"
-                >
-                  {applicationStatus}
-                </Dropdown.Toggle>
-                <Dropdown.Menu style={{width: '100%'}}>
-                  {Object.keys(statusBadgeColor).map(status => (
-                    <DropdownMenuItemComponent
-                      key={status}
-                      itemEventKey={status}
-                      itemFunc={setApplicationStatus}
-                      itemTitle={status}
-                    />
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
-            </Col>
-          </Row>
-        </Container>
+      {allApplicationStatuses.edges.length === 1 ? (
+        <ApplicationStatusItemContainer
+          key={allApplicationStatuses.edges[0].node.id}
+          applicationStatus={allApplicationStatuses.edges[0].node}
+          setApplicationStatus={setApplicationStatus}
+        />
       ) : null}
     </>
   );
@@ -118,8 +79,7 @@ export default createRefetchContainer(
         allApplicationStatuses(condition: $condition) {
           edges {
             node {
-              rowId
-              applicationStatus
+              ...ApplicationStatusItemContainer_applicationStatus
             }
           }
         }
