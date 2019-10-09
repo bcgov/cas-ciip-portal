@@ -40,7 +40,6 @@ class FormPicker extends Component {
   }
 }
 
-// export default FormPicker;
 export default createFragmentContainer(FormPicker, {
   query: graphql`
     fragment FormPicker_query on Query {

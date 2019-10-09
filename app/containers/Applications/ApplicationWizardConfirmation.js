@@ -1,5 +1,9 @@
 import React from 'react';
 
+/*
+ * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
+ * and allows the user to submit their application.
+ */
 const ApplicationWizardConfirmation = () => {
   return (
     <>

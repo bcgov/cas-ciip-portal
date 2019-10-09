@@ -3,6 +3,11 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import ApplicationWizardStep from './ApplicationWizardStep';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 
+/*
+ * The ApplicationWizard container retrieves the ordered list of forms to render in the
+ * application process. Each ApplicationWizardStep is rendered, and at the end the
+ * ApplicationWizardConfirmation is rendered.
+ */
 const ApplicationWizard = ({query}) => {
   const {wizard} = query || {};
 
