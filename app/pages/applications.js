@@ -89,7 +89,6 @@ class Applications extends Component {
   }
 
   render() {
-    console.log(this);
     const {query} = this.props;
     return (
       <DefaultLayout title="Applications">
