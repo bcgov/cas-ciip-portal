@@ -3,7 +3,13 @@
 
 begin;
 
--- xxx add ddls here.
-create function ciip_application_by_row_id(row_id int) returns ggircs_portal.ciip_application
+create function ggircs_portal.ciip_application_by_row_id(row_id integer)
+  returns ggircs_portal.ciip_application
+  as $function$
+
+  select * from ggircs_portal.ciip_application where id::int = row_id;
+
+  $function$
+  language sql stable;
 
 commit;

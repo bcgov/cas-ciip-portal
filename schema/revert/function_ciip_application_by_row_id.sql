@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:function_ciip_application_by_row_id from pg
 
-BEGIN;
+begin;
 
--- XXX Add DDLs here.
+drop function ggircs_portal.ciip_application_by_row_id;
 
-COMMIT;
+commit;
