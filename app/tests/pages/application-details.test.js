@@ -7,7 +7,7 @@ const router = {
     '/application-details?application_id=1&reportingyear=2018&bcghgid=100',
   route: '/application-details',
   pathname: '/application-details',
-  query: {application_id: '1', reportingyear: '2018', bcghgid: '100'}
+  query: {applicationId: '1', reportingYear: '2018', bcghgid: '100'}
 };
 
 it('It matches the last accepted Snapshot', () => {

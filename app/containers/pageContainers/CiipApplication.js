@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Container, Jumbotron} from 'react-bootstrap';
+import {Jumbotron} from 'react-bootstrap';
 import {graphql} from 'react-relay';
-import Header from '../../components/Header';
 import DefaultLayout from '../../layouts/default-layout';
 import ApplicationWizard from '../Applications/ApplicationWizard';
 
