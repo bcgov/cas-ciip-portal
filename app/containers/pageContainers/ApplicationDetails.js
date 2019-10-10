@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {Container} from 'react-bootstrap';
 import IncentiveCalculatorContainer from '../Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../Applications/ApplicationStatusContainer';
 import DefaultLayout from '../../layouts/default-layout';
