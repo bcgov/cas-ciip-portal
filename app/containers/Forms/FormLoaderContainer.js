@@ -164,6 +164,7 @@ const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
     console.log('value changed');
   };
 
+  // TODO: Loading spinner (or equivalent UI) here
   if (!surveyModel) return null;
 
   Survey.cssType = 'bootstrap';
