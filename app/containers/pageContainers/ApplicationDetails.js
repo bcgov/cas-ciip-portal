@@ -31,8 +31,6 @@ class ApplicationDetails extends Component {
         condition: {
           formResultId: this.state ? Number(this.state.applicationId) : null
         },
-        bcghgidInput: this.state ? this.state.bcghgid : null,
-        reportingYear: this.state ? this.state.reportingYear : null
       }
     };
   }

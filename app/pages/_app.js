@@ -31,7 +31,7 @@ export default class App extends NextApp {
   };
 
   render() {
-    const {Component, variables = {}, relayData} = this.props;
+    const {Component, variables = {}, router = {}, relayData} = this.props;
     const environment = createEnvironment(
       relayData,
       JSON.stringify({
@@ -44,7 +44,7 @@ export default class App extends NextApp {
         <QueryRenderer
           environment={environment}
           query={Component.query}
-          variables={variables}
+          variables={{...router.query, ...variables}}
           render={({error, props}) => {
             if (error) return <div>{error.message}</div>;
             if (props)
