@@ -1,77 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {Survey, Model} from 'survey-react';
-import 'survey-react/survey.css';
-import 'survey-creator/survey-creator.css';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
+import FormWithProductUnits from './FormWithProductUnits';
 
-let lock;
 export const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
-  const {products, json} = query || {};
+  const {json} = query || {};
   const {environment} = relay;
 
-  const [productList, setProductsList] = useState([]);
+  const [formJson, setFormJson] = useState(null);
   useEffect(() => {
-    const {edges = []} = products || {};
-    setProductsList(edges.map(({node}) => node.name));
-  }, [products]);
-
-  const [unitsProducts, setUnitsProducts] = useState({});
-  useEffect(() => {
-    const {edges = []} = products || {};
-
-    const newUnitsProducts = {null: []};
-    edges.forEach(({node: product}) => {
-      if (newUnitsProducts[product.units] === undefined)
-        newUnitsProducts[product.units] = [`'${product.name}'`];
-      else newUnitsProducts[product.units].push(`'${product.name}'`);
-    });
-    setUnitsProducts(newUnitsProducts);
-  }, [productList, products]);
-
-  const [surveyModel, setSurveyModel] = useState(null);
-  useEffect(() => {
-    setSurveyModel(null);
     const {edges} = json || {};
     if (!edges || edges.length === 0) return;
-    const {formJson} = edges[0].node;
-    if (lock) {
-      clearTimeout(lock);
-      lock = null;
-    }
-
-    lock = setTimeout(() => {
-      lock = null;
-
-      const parsedForm = JSON.parse(formJson);
-      // Inject the productList and unitsProducts into the form
-      for (const page of parsedForm.pages) {
-        for (const element of page.elements) {
-          for (const templateElement of element.templateElements) {
-            if (templateElement.type === 'dropdown') {
-              if (templateElement.name === 'product') {
-                templateElement.choices = productList;
-              } else if (templateElement.name === 'product_units') {
-                templateElement.choices = [];
-                for (const key in unitsProducts) {
-                  if (key !== 'null') {
-                    const p = [...unitsProducts[key], ...unitsProducts.null];
-                    templateElement.choices.push({
-                      value: key,
-                      text: key,
-                      visibleIf: `[${p}] contains {panel.product}`
-                    });
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      setSurveyModel(new Model(JSON.stringify(parsedForm)));
-    }, 10);
-    // Create survey model from updated formJson
-  }, [json, productList, unitsProducts]);
+    setFormJson(edges[0].node.formJson);
+  }, [json]);
 
   useEffect(() => {
     relay.refetch({condition: {rowId: formId}});
@@ -163,47 +103,12 @@ export const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
     onFormComplete();
   };
 
-  // TODO: Is this going to be necessary going forward, or was it just for debugging?
-  const onValueChanged = () => {
-    console.log('value changed');
-  };
-
-  // TODO: Loading spinner (or equivalent UI) here
-  if (!surveyModel) return null;
-
-  Survey.cssType = 'bootstrap';
   return (
-    <>
-      <div id="surveyContainer">
-        <Survey
-          model={surveyModel}
-          onComplete={onComplete}
-          onValueChanged={onValueChanged}
-        />
-        <style jsx global>
-          {`
-            #surveyContainer {
-              border: 1px solid #dcdcdcf2;
-              border-radius: 4px;
-              box-shadow: 0px 7px 9px 0px #00000026;
-              padding: 20px;
-            }
-            .card-footer :global {
-              background: white !important;
-              display: none;
-            }
-            .panel-footer {
-              background: white;
-              text-align: right;
-            }
-            .panel-footer .btn.sv_complete_btn {
-              background: #036;
-              color: white;
-            }
-          `}
-        </style>
-      </div>
-    </>
+    <FormWithProductUnits
+      query={query}
+      formJson={formJson}
+      onComplete={onComplete}
+    />
   );
 };
 
@@ -216,20 +121,11 @@ export default createRefetchContainer(
         json: allFormJsons(condition: $condition) {
           edges {
             node {
-              rowId
-              name
               formJson
             }
           }
         }
-        products: allProducts {
-          edges {
-            node {
-              name
-              units
-            }
-          }
-        }
+        ...FormWithProductUnits_query
       }
     `
   },
