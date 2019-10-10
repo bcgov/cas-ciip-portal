@@ -1,58 +1,96 @@
-import React, {Component} from 'react';
-import propTypes from 'prop-types';
+import React from 'react';
+import {createFragmentContainer, graphql} from 'react-relay';
 import MathJax from 'react-mathjax2';
 import BenchmarkChart from './BenchmarkChart';
 
-class IncentiveSegment extends Component {
-  render() {
-    const formula = `
-            \\left(${this.props.quantity} - ${this.props.benchmark}
-            \\over
-            ${this.props.eligibilityThreshold} - ${
-      this.props.benchmark
-    } \\right)
-            \\times
-            ${this.props.fuelPercentage}
-            \\times
-            ${this.props.carbonTaxPaid.toFixed(2)}
-        `;
-    console.log(
-      'Incentive Segment details',
-      this.props.name,
-      formula,
-      this.props.incentiveSegment.toFixed(2)
+const IncentiveSegment = props => {
+  const {allProducts, reported, carbonTax} = props;
+  const totalCarbonTax = carbonTax.edges.reduce((total, curr) => {
+    return parseFloat(total) + parseFloat(curr.node.calculatedCarbonTax);
+  }, 0);
+
+  const productDetails = allProducts.edges.filter(
+    ({node: p}) => p.name === reported.product
+  );
+  let benchmark = 0;
+  let eligibilityThreshold = 0;
+  let eligibilityValue = 0;
+  let eligibleFuelValue = 0;
+
+  if (productDetails.length > 0) {
+    const productQuantity = parseFloat(reported.quantity);
+    const attributableFuelPercentage = parseFloat(
+      reported.attributableFuelPercentage
     );
-    return (
-      <tr>
-        <td>{this.props.name}</td>
-        <td>
-          <MathJax.Context input="tex">
-            <MathJax.Node>{formula}</MathJax.Node>
-          </MathJax.Context>
-        </td>
-        <td>CAD {this.props.incentiveSegment.toFixed(2)} </td>
-        <td>
-          <BenchmarkChart
-            quantity={this.props.quantity}
-            benchmark={this.props.benchmark}
-            eligibilityThreshold={this.props.eligibilityThreshold}
-          />
-        </td>
-        <style jsx>
-          {`
-            td {
-              vertical-align: middle;
-            }
-          `}
-        </style>
-      </tr>
-    );
+
+    const details =
+      productDetails[0].node.benchmarksByProductId.nodes[
+        productDetails[0].node.benchmarksByProductId.nodes.length - 1
+      ];
+    benchmark = details ? details.benchmark : 0;
+    eligibilityThreshold = details ? details.eligibilityThreshold : 0;
+
+    // Todo: How do we deal with benchmarks and products not set in db.
+
+    if (productQuantity > benchmark && productQuantity < eligibilityThreshold) {
+      eligibilityValue =
+        (productQuantity - benchmark) / (eligibilityThreshold - benchmark);
+    }
+
+    eligibleFuelValue = (attributableFuelPercentage / 100) * eligibilityValue;
   }
-}
 
-// Proptype Validations
+  const formula = `
+      \\left(${reported.quantity} - ${benchmark}
+      \\over
+      ${eligibilityThreshold} - ${benchmark} \\right)
+      \\times
+      ${reported.attributableFuelPercentage}
+      \\times
+      ${totalCarbonTax.toFixed(2)}
+  `;
+  console.log('Incentive Segment details', reported.product, formula);
 
-export default IncentiveSegment;
+  return (
+    <tr>
+      <td>{reported.product}</td>
+      <td>
+        <MathJax.Context input="tex">
+          <MathJax.Node>{formula}</MathJax.Node>
+        </MathJax.Context>
+      </td>
+      <td>CAD {(eligibleFuelValue * totalCarbonTax).toFixed(2)} </td>
+      <td>
+        <BenchmarkChart
+          quantity={Number(reported.quantity)}
+          benchmark={benchmark}
+          eligibilityThreshold={eligibilityThreshold}
+        />
+      </td>
+      <style jsx>
+        {`
+          td {
+            vertical-align: middle;
+          }
+        `}
+      </style>
+    </tr>
+  );
+};
+
+export default createFragmentContainer(IncentiveSegment, {
+  reported: graphql`
+    fragment IncentiveSegment_reported on CiipProduction {
+      rowId
+      quantity
+      product
+      applicationId
+      fuelUnits
+      associatedEmissions
+      attributableFuelPercentage
+    }
+  `
+});
 
 /*
 Can fuel percentages be reported as null?

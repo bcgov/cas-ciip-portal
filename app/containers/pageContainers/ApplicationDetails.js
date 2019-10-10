@@ -8,9 +8,7 @@ import DefaultLayout from '../../layouts/default-layout';
 // TODO: decide what to show in this page
 class ApplicationDetails extends Component {
   state = {
-    applicationId: null,
-    bcghgid: null,
-    reportingYear: null
+    applicationId: null
   };
 
   static query = graphql`
@@ -44,14 +42,6 @@ class ApplicationDetails extends Component {
     this.setState({applicationId: Number(id)});
   };
 
-  setBcghgidInState = b => {
-    this.setState({bcghgid: b});
-  };
-
-  setReportingYearInState = r => {
-    this.setState({reportingYear: r});
-  };
-
   render() {
     const {query} = this.props;
     return (
@@ -65,8 +55,6 @@ class ApplicationDetails extends Component {
           query={query}
           bcghgid={this.props.router.query.bcghgid}
           reportingYear={this.props.router.query.reportingYear}
-          setBcghgidInState={this.setBcghgidInState}
-          setReportingYearInState={this.setReportingYearInState}
         />
       </DefaultLayout>
     );
