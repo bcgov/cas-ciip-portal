@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import propTypes from 'prop-types';
 
+// TODO: does this need to stay as a class component?
 class BenchmarkChart extends Component {
   constructor(props) {
     super(props);

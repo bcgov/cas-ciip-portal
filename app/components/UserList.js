@@ -5,6 +5,7 @@ import {graphql, QueryRenderer} from 'react-relay';
 
 // const environment = initEnvironment();
 
+// TODO: What is this? It is not used anywhere.
 const renderQuery = ({error, props}) => {
   if (error) {
     return <div>error</div>;
