@@ -1,5 +1,6 @@
 {
   "title": "Production Information",
+  "showCompletedPage": false,
   "pages": [
     {
       "name": "Module Throughput and Emissions",
@@ -11,7 +12,7 @@
           "templateElements": [
             {
               "type": "dropdown",
-              "name": "fuel_type",
+              "name": "product",
               "title": "Processing Unit Module",
               "choices": [
                 "Inlet Compression",
@@ -29,7 +30,7 @@
             },
             {
               "type": "dropdown",
-              "name": "fuel_units",
+              "name": "product_units",
               "startWithNewLine": false,
               "title": "Units",
               "choices": [

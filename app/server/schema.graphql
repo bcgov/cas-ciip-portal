@@ -433,6 +433,138 @@ enum CiipApplicationsOrderBy {
   REPORTING_YEAR_DESC
 }
 
+"""
+A table defining which forms are in the application wizard and their order
+"""
+type CiipApplicationWizard implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """The id of the form"""
+  formId: Int!
+
+  """The zero-indexed position of the form in the wizard"""
+  formPosition: Int!
+
+  """
+  Whether the form is initialized with data submitted in the previous year's application
+  """
+  prepopulateFromCiip: Boolean!
+
+  """
+  Whether the form is initialized with data submitted in the previous year's application
+  """
+  prepopulateFromSwrs: Boolean!
+
+  """
+  Reads a single `FormJson` that is related to this `CiipApplicationWizard`.
+  """
+  formJsonByFormId: FormJson
+}
+
+"""
+A condition to be used against `CiipApplicationWizard` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input CiipApplicationWizardCondition {
+  """Checks for equality with the object’s `formId` field."""
+  formId: Int
+
+  """Checks for equality with the object’s `formPosition` field."""
+  formPosition: Int
+
+  """Checks for equality with the object’s `prepopulateFromCiip` field."""
+  prepopulateFromCiip: Boolean
+
+  """Checks for equality with the object’s `prepopulateFromSwrs` field."""
+  prepopulateFromSwrs: Boolean
+}
+
+"""An input for mutations affecting `CiipApplicationWizard`"""
+input CiipApplicationWizardInput {
+  """The id of the form"""
+  formId: Int!
+
+  """The zero-indexed position of the form in the wizard"""
+  formPosition: Int!
+
+  """
+  Whether the form is initialized with data submitted in the previous year's application
+  """
+  prepopulateFromCiip: Boolean!
+
+  """
+  Whether the form is initialized with data submitted in the previous year's application
+  """
+  prepopulateFromSwrs: Boolean!
+}
+
+"""
+Represents an update to a `CiipApplicationWizard`. Fields that are set will be updated.
+"""
+input CiipApplicationWizardPatch {
+  """The id of the form"""
+  formId: Int
+
+  """The zero-indexed position of the form in the wizard"""
+  formPosition: Int
+
+  """
+  Whether the form is initialized with data submitted in the previous year's application
+  """
+  prepopulateFromCiip: Boolean
+
+  """
+  Whether the form is initialized with data submitted in the previous year's application
+  """
+  prepopulateFromSwrs: Boolean
+}
+
+"""A connection to a list of `CiipApplicationWizard` values."""
+type CiipApplicationWizardsConnection {
+  """A list of `CiipApplicationWizard` objects."""
+  nodes: [CiipApplicationWizard]!
+
+  """
+  A list of edges which contains the `CiipApplicationWizard` and cursor to aid in pagination.
+  """
+  edges: [CiipApplicationWizardsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CiipApplicationWizard` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `CiipApplicationWizard` edge in the connection."""
+type CiipApplicationWizardsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipApplicationWizard` at the end of the edge."""
+  node: CiipApplicationWizard
+}
+
+"""Methods to use when ordering `CiipApplicationWizard`."""
+enum CiipApplicationWizardsOrderBy {
+  NATURAL
+  FORM_ID_ASC
+  FORM_ID_DESC
+  FORM_POSITION_ASC
+  FORM_POSITION_DESC
+  PREPOPULATE_FROM_CIIP_ASC
+  PREPOPULATE_FROM_CIIP_DESC
+  PREPOPULATE_FROM_SWRS_ASC
+  PREPOPULATE_FROM_SWRS_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
 """The view for certifier data reported in the application"""
 type CiipCertifier {
   """The application id used for reference and join"""
@@ -1078,130 +1210,6 @@ input CiipProductionCondition {
   attributableFuelPercentage: BigFloat
 }
 
-"""A connection to a list of `CiipProductionDatum` values."""
-type CiipProductionDataConnection {
-  """A list of `CiipProductionDatum` objects."""
-  nodes: [CiipProductionDatum]!
-
-  """
-  A list of edges which contains the `CiipProductionDatum` and cursor to aid in pagination.
-  """
-  edges: [CiipProductionDataEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `CiipProductionDatum` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""A `CiipProductionDatum` edge in the connection."""
-type CiipProductionDataEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipProductionDatum` at the end of the edge."""
-  node: CiipProductionDatum
-}
-
-"""Methods to use when ordering `CiipProductionDatum`."""
-enum CiipProductionDataOrderBy {
-  NATURAL
-  ROW_ID_ASC
-  ROW_ID_DESC
-  APPLICATION_ID_ASC
-  APPLICATION_ID_DESC
-  QUANTITY_ASC
-  QUANTITY_DESC
-  PROCESSING_UNIT_ASC
-  PROCESSING_UNIT_DESC
-  UNITS_ASC
-  UNITS_DESC
-  COMMENTS_ASC
-  COMMENTS_DESC
-  ASSOCIATED_EMISSIONS_ASC
-  ASSOCIATED_EMISSIONS_DESC
-  ATTRIBUTABLE_FUEL_PERCENTAGE_ASC
-  ATTRIBUTABLE_FUEL_PERCENTAGE_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-type CiipProductionDatum implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-  rowId: BigInt!
-  applicationId: Int
-  quantity: String
-  processingUnit: String
-  units: String
-  comments: String
-  associatedEmissions: String
-  attributableFuelPercentage: String
-}
-
-"""
-A condition to be used against `CiipProductionDatum` object types. All fields
-are tested for equality and combined with a logical ‘and.’
-"""
-input CiipProductionDatumCondition {
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: BigInt
-
-  """Checks for equality with the object’s `applicationId` field."""
-  applicationId: Int
-
-  """Checks for equality with the object’s `quantity` field."""
-  quantity: String
-
-  """Checks for equality with the object’s `processingUnit` field."""
-  processingUnit: String
-
-  """Checks for equality with the object’s `units` field."""
-  units: String
-
-  """Checks for equality with the object’s `comments` field."""
-  comments: String
-
-  """Checks for equality with the object’s `associatedEmissions` field."""
-  associatedEmissions: String
-
-  """
-  Checks for equality with the object’s `attributableFuelPercentage` field.
-  """
-  attributableFuelPercentage: String
-}
-
-"""An input for mutations affecting `CiipProductionDatum`"""
-input CiipProductionDatumInput {
-  rowId: BigInt!
-  applicationId: Int
-  quantity: String
-  processingUnit: String
-  units: String
-  comments: String
-  associatedEmissions: String
-  attributableFuelPercentage: String
-}
-
-"""
-Represents an update to a `CiipProductionDatum`. Fields that are set will be updated.
-"""
-input CiipProductionDatumPatch {
-  rowId: BigInt
-  applicationId: Int
-  quantity: String
-  processingUnit: String
-  units: String
-  comments: String
-  associatedEmissions: String
-  attributableFuelPercentage: String
-}
-
 """A connection to a list of `CiipProduction` values."""
 type CiipProductionsConnection {
   """A list of `CiipProduction` objects."""
@@ -1329,39 +1337,44 @@ type CreateBenchmarkPayload {
   ): BenchmarksEdge
 }
 
-"""All input for the create `CiipProductionDatum` mutation."""
-input CreateCiipProductionDatumInput {
+"""All input for the create `CiipApplicationWizard` mutation."""
+input CreateCiipApplicationWizardInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """The `CiipProductionDatum` to be created by this mutation."""
-  ciipProductionDatum: CiipProductionDatumInput!
+  """The `CiipApplicationWizard` to be created by this mutation."""
+  ciipApplicationWizard: CiipApplicationWizardInput!
 }
 
-"""The output of our create `CiipProductionDatum` mutation."""
-type CreateCiipProductionDatumPayload {
+"""The output of our create `CiipApplicationWizard` mutation."""
+type CreateCiipApplicationWizardPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `CiipProductionDatum` that was created by this mutation."""
-  ciipProductionDatum: CiipProductionDatum
+  """The `CiipApplicationWizard` that was created by this mutation."""
+  ciipApplicationWizard: CiipApplicationWizard
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """An edge for our `CiipProductionDatum`. May be used by Relay 1."""
-  ciipProductionDatumEdge(
-    """The method to use when ordering `CiipProductionDatum`."""
-    orderBy: [CiipProductionDataOrderBy!] = PRIMARY_KEY_ASC
-  ): CiipProductionDataEdge
+  """
+  Reads a single `FormJson` that is related to this `CiipApplicationWizard`.
+  """
+  formJsonByFormId: FormJson
+
+  """An edge for our `CiipApplicationWizard`. May be used by Relay 1."""
+  ciipApplicationWizardEdge(
+    """The method to use when ordering `CiipApplicationWizard`."""
+    orderBy: [CiipApplicationWizardsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipApplicationWizardsEdge
 }
 
 """All input for the create `FormJson` mutation."""
@@ -1624,18 +1637,20 @@ type DeleteBenchmarkPayload {
   ): BenchmarksEdge
 }
 
-"""All input for the `deleteCiipProductionDatumByRowId` mutation."""
-input DeleteCiipProductionDatumByRowIdInput {
+"""All input for the `deleteCiipApplicationWizardByFormId` mutation."""
+input DeleteCiipApplicationWizardByFormIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  rowId: BigInt!
+
+  """The id of the form"""
+  formId: Int!
 }
 
-"""All input for the `deleteCiipProductionDatum` mutation."""
-input DeleteCiipProductionDatumInput {
+"""All input for the `deleteCiipApplicationWizard` mutation."""
+input DeleteCiipApplicationWizardInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1643,33 +1658,38 @@ input DeleteCiipProductionDatumInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `CiipProductionDatum` to be deleted.
+  The globally unique `ID` which will identify a single `CiipApplicationWizard` to be deleted.
   """
   id: ID!
 }
 
-"""The output of our delete `CiipProductionDatum` mutation."""
-type DeleteCiipProductionDatumPayload {
+"""The output of our delete `CiipApplicationWizard` mutation."""
+type DeleteCiipApplicationWizardPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `CiipProductionDatum` that was deleted by this mutation."""
-  ciipProductionDatum: CiipProductionDatum
-  deletedCiipProductionDatumId: ID
+  """The `CiipApplicationWizard` that was deleted by this mutation."""
+  ciipApplicationWizard: CiipApplicationWizard
+  deletedCiipApplicationWizardId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """An edge for our `CiipProductionDatum`. May be used by Relay 1."""
-  ciipProductionDatumEdge(
-    """The method to use when ordering `CiipProductionDatum`."""
-    orderBy: [CiipProductionDataOrderBy!] = PRIMARY_KEY_ASC
-  ): CiipProductionDataEdge
+  """
+  Reads a single `FormJson` that is related to this `CiipApplicationWizard`.
+  """
+  formJsonByFormId: FormJson
+
+  """An edge for our `CiipApplicationWizard`. May be used by Relay 1."""
+  ciipApplicationWizardEdge(
+    """The method to use when ordering `CiipApplicationWizard`."""
+    orderBy: [CiipApplicationWizardsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipApplicationWizardsEdge
 }
 
 """All input for the `deleteFormJsonByRowId` mutation."""
@@ -2044,6 +2064,40 @@ type FormJson implements Node {
 
   """The JSON object that creates the form"""
   formJson: JSON!
+
+  """
+  Reads a single `CiipApplicationWizard` that is related to this `FormJson`.
+  """
+  ciipApplicationWizardByFormId: CiipApplicationWizard
+
+  """Reads and enables pagination through a set of `CiipApplicationWizard`."""
+  ciipApplicationWizardsByFormId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CiipApplicationWizard`."""
+    orderBy: [CiipApplicationWizardsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipApplicationWizardCondition
+  ): CiipApplicationWizardsConnection! @deprecated(reason: "Please use ciipApplicationWizardByFormId instead")
 }
 
 """
@@ -2321,13 +2375,13 @@ type Mutation {
     input: CreateBenchmarkInput!
   ): CreateBenchmarkPayload
 
-  """Creates a single `CiipProductionDatum`."""
-  createCiipProductionDatum(
+  """Creates a single `CiipApplicationWizard`."""
+  createCiipApplicationWizard(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateCiipProductionDatumInput!
-  ): CreateCiipProductionDatumPayload
+    input: CreateCiipApplicationWizardInput!
+  ): CreateCiipApplicationWizardPayload
 
   """Creates a single `FormJson`."""
   createFormJson(
@@ -2396,22 +2450,24 @@ type Mutation {
   ): UpdateBenchmarkPayload
 
   """
-  Updates a single `CiipProductionDatum` using its globally unique id and a patch.
+  Updates a single `CiipApplicationWizard` using its globally unique id and a patch.
   """
-  updateCiipProductionDatum(
+  updateCiipApplicationWizard(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateCiipProductionDatumInput!
-  ): UpdateCiipProductionDatumPayload
+    input: UpdateCiipApplicationWizardInput!
+  ): UpdateCiipApplicationWizardPayload
 
-  """Updates a single `CiipProductionDatum` using a unique key and a patch."""
-  updateCiipProductionDatumByRowId(
+  """
+  Updates a single `CiipApplicationWizard` using a unique key and a patch.
+  """
+  updateCiipApplicationWizardByFormId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateCiipProductionDatumByRowIdInput!
-  ): UpdateCiipProductionDatumPayload
+    input: UpdateCiipApplicationWizardByFormIdInput!
+  ): UpdateCiipApplicationWizardPayload
 
   """Updates a single `FormJson` using its globally unique id and a patch."""
   updateFormJson(
@@ -2511,21 +2567,21 @@ type Mutation {
     input: DeleteBenchmarkByRowIdInput!
   ): DeleteBenchmarkPayload
 
-  """Deletes a single `CiipProductionDatum` using its globally unique id."""
-  deleteCiipProductionDatum(
+  """Deletes a single `CiipApplicationWizard` using its globally unique id."""
+  deleteCiipApplicationWizard(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteCiipProductionDatumInput!
-  ): DeleteCiipProductionDatumPayload
+    input: DeleteCiipApplicationWizardInput!
+  ): DeleteCiipApplicationWizardPayload
 
-  """Deletes a single `CiipProductionDatum` using a unique key."""
-  deleteCiipProductionDatumByRowId(
+  """Deletes a single `CiipApplicationWizard` using a unique key."""
+  deleteCiipApplicationWizardByFormId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteCiipProductionDatumByRowIdInput!
-  ): DeleteCiipProductionDatumPayload
+    input: DeleteCiipApplicationWizardByFormIdInput!
+  ): DeleteCiipApplicationWizardPayload
 
   """Deletes a single `FormJson` using its globally unique id."""
   deleteFormJson(
@@ -2992,6 +3048,35 @@ type Query implements Node {
     condition: CiipApplicationCondition
   ): CiipApplicationsConnection
 
+  """Reads and enables pagination through a set of `CiipApplicationWizard`."""
+  allCiipApplicationWizards(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `CiipApplicationWizard`."""
+    orderBy: [CiipApplicationWizardsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipApplicationWizardCondition
+  ): CiipApplicationWizardsConnection
+
   """Reads and enables pagination through a set of `CiipCertifier`."""
   allCiipCertifiers(
     """Only read the first `n` values of the set."""
@@ -3197,35 +3282,6 @@ type Query implements Node {
     condition: CiipProductionCondition
   ): CiipProductionsConnection
 
-  """Reads and enables pagination through a set of `CiipProductionDatum`."""
-  allCiipProductionData(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `CiipProductionDatum`."""
-    orderBy: [CiipProductionDataOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipProductionDatumCondition
-  ): CiipProductionDataConnection
-
   """
   Reads and enables pagination through a set of `EstimatedCarbonTaxPaid`.
   """
@@ -3374,7 +3430,7 @@ type Query implements Node {
   ): UsersConnection
   applicationStatusByRowId(rowId: Int!): ApplicationStatus
   benchmarkByRowId(rowId: Int!): Benchmark
-  ciipProductionDatumByRowId(rowId: BigInt!): CiipProductionDatum
+  ciipApplicationWizardByFormId(formId: Int!): CiipApplicationWizard
   formJsonByRowId(rowId: Int!): FormJson
   formResultByRowId(rowId: Int!): FormResult
   productByRowId(rowId: Int!): Product
@@ -3517,13 +3573,13 @@ type Query implements Node {
     id: ID!
   ): Benchmark
 
-  """Reads a single `CiipProductionDatum` using its globally unique `ID`."""
-  ciipProductionDatum(
+  """Reads a single `CiipApplicationWizard` using its globally unique `ID`."""
+  ciipApplicationWizard(
     """
-    The globally unique `ID` to be used in selecting a single `CiipProductionDatum`.
+    The globally unique `ID` to be used in selecting a single `CiipApplicationWizard`.
     """
     id: ID!
-  ): CiipProductionDatum
+  ): CiipApplicationWizard
 
   """Reads a single `FormJson` using its globally unique `ID`."""
   formJson(
@@ -3678,8 +3734,8 @@ type UpdateBenchmarkPayload {
   ): BenchmarksEdge
 }
 
-"""All input for the `updateCiipProductionDatumByRowId` mutation."""
-input UpdateCiipProductionDatumByRowIdInput {
+"""All input for the `updateCiipApplicationWizardByFormId` mutation."""
+input UpdateCiipApplicationWizardByFormIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -3687,14 +3743,16 @@ input UpdateCiipProductionDatumByRowIdInput {
   clientMutationId: String
 
   """
-  An object where the defined keys will be set on the `CiipProductionDatum` being updated.
+  An object where the defined keys will be set on the `CiipApplicationWizard` being updated.
   """
-  ciipProductionDatumPatch: CiipProductionDatumPatch!
-  rowId: BigInt!
+  ciipApplicationWizardPatch: CiipApplicationWizardPatch!
+
+  """The id of the form"""
+  formId: Int!
 }
 
-"""All input for the `updateCiipProductionDatum` mutation."""
-input UpdateCiipProductionDatumInput {
+"""All input for the `updateCiipApplicationWizard` mutation."""
+input UpdateCiipApplicationWizardInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -3702,37 +3760,42 @@ input UpdateCiipProductionDatumInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `CiipProductionDatum` to be updated.
+  The globally unique `ID` which will identify a single `CiipApplicationWizard` to be updated.
   """
   id: ID!
 
   """
-  An object where the defined keys will be set on the `CiipProductionDatum` being updated.
+  An object where the defined keys will be set on the `CiipApplicationWizard` being updated.
   """
-  ciipProductionDatumPatch: CiipProductionDatumPatch!
+  ciipApplicationWizardPatch: CiipApplicationWizardPatch!
 }
 
-"""The output of our update `CiipProductionDatum` mutation."""
-type UpdateCiipProductionDatumPayload {
+"""The output of our update `CiipApplicationWizard` mutation."""
+type UpdateCiipApplicationWizardPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `CiipProductionDatum` that was updated by this mutation."""
-  ciipProductionDatum: CiipProductionDatum
+  """The `CiipApplicationWizard` that was updated by this mutation."""
+  ciipApplicationWizard: CiipApplicationWizard
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """An edge for our `CiipProductionDatum`. May be used by Relay 1."""
-  ciipProductionDatumEdge(
-    """The method to use when ordering `CiipProductionDatum`."""
-    orderBy: [CiipProductionDataOrderBy!] = PRIMARY_KEY_ASC
-  ): CiipProductionDataEdge
+  """
+  Reads a single `FormJson` that is related to this `CiipApplicationWizard`.
+  """
+  formJsonByFormId: FormJson
+
+  """An edge for our `CiipApplicationWizard`. May be used by Relay 1."""
+  ciipApplicationWizardEdge(
+    """The method to use when ordering `CiipApplicationWizard`."""
+    orderBy: [CiipApplicationWizardsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipApplicationWizardsEdge
 }
 
 """All input for the `updateFormJsonByRowId` mutation."""

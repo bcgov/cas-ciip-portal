@@ -1,7 +1,7 @@
 import React from 'react';
 import {wait, render} from '@testing-library/react';
 import {queryMock} from '../../../lib/relayQueryMock';
-import FormPicker from '../../../components/Forms/FormPicker';
+import FormPicker from '../../../containers/Forms/FormPicker';
 
 let mockAppQueryData;
 

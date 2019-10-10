@@ -1,5 +1,6 @@
 {
   "title": "Administrative Information",
+  "showCompletedPage": false,
   "pages": [
     {
       "name": "Administrative Information",
@@ -221,14 +222,7 @@
               "type": "dropdown",
               "name": "facility_type",
               "title": "Facility Type",
-              "choices": [
-                "IF_A",
-                "IF_B",
-                "L_C",
-                "SFO",
-                "LFO",
-                "EIO"
-              ]
+              "choices": ["IF_A", "IF_B", "L_C", "SFO", "LFO", "EIO"]
             },
             {
               "type": "text",

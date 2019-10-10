@@ -1,5 +1,6 @@
 {
   "title": "Electricity and Heat Information",
+  "showCompletedPage": false,
   "pages": [
     {
       "name": "Electricity and Heat",

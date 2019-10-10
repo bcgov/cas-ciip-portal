@@ -7,7 +7,7 @@ import ErrorBoundary from '../lib/error-boundary';
 
 export default class App extends NextApp {
   static getInitialProps = async ({Component, ctx}) => {
-    const {variables} = Component.getInitialProps
+    const {variables = {}} = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
 

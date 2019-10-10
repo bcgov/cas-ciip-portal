@@ -36,7 +36,7 @@ const Header = () => {
               <ButtonToolbar>
                 <a
                   style={{marginLeft: '20px'}}
-                  href="/form"
+                  href="/ciip-application"
                   className="btn btn-primary"
                 >
                   Apply for CIIP

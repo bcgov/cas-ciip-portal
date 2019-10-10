@@ -1,10 +1,82 @@
-import React from 'react';
-import * as Survey from 'survey-react';
+import React, {useEffect, useState} from 'react';
+import {Survey, Model} from 'survey-react';
 import 'survey-react/survey.css';
 import 'survey-creator/survey-creator.css';
-import {graphql, commitMutation, createFragmentContainer} from 'react-relay';
+import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 
-const FormLoaderContainer = props => {
+let lock;
+const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
+  const {products, json} = query || {};
+  const {environment} = relay;
+
+  const [productList, setProductsList] = useState([]);
+  useEffect(() => {
+    const {edges = []} = products || {};
+    setProductsList(edges.map(({node}) => node.name));
+  }, [products]);
+
+  const [unitsProducts, setUnitsProducts] = useState({});
+  useEffect(() => {
+    const {edges = []} = products || {};
+
+    const newUnitsProducts = {null: []};
+    edges.forEach(({node: product}) => {
+      if (newUnitsProducts[product.units] === undefined)
+        newUnitsProducts[product.units] = [`'${product.name}'`];
+      else newUnitsProducts[product.units].push(`'${product.name}'`);
+    });
+    setUnitsProducts(newUnitsProducts);
+  }, [productList, products]);
+
+  const [surveyModel, setSurveyModel] = useState(null);
+  useEffect(() => {
+    setSurveyModel(null);
+    const {edges} = json || {};
+    if (!edges || edges.length === 0) return;
+    const {formJson} = edges[0].node;
+    if (lock) {
+      clearTimeout(lock);
+      lock = null;
+    }
+
+    lock = setTimeout(() => {
+      lock = null;
+
+      const parsedForm = JSON.parse(formJson);
+      // Inject the productList and unitsProducts into the form
+      for (const page of parsedForm.pages) {
+        for (const element of page.elements) {
+          for (const templateElement of element.templateElements) {
+            if (templateElement.type === 'dropdown') {
+              if (templateElement.name === 'product') {
+                templateElement.choices = productList;
+              } else if (templateElement.name === 'product_units') {
+                templateElement.choices = [];
+                for (const key in unitsProducts) {
+                  if (key !== 'null') {
+                    const p = [...unitsProducts[key], ...unitsProducts.null];
+                    templateElement.choices.push({
+                      value: key,
+                      text: key,
+                      visibleIf: `[${p}] contains {panel.product}`
+                    });
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      setSurveyModel(new Model(JSON.stringify(parsedForm)));
+    }, 10);
+    // Create survey model from updated formJson
+  }, [json, productList, unitsProducts]);
+
+  useEffect(() => {
+    relay.refetch({condition: {rowId: formId}});
+  }, [relay, formId]);
+
   // Mutation: stores the result of the form
   const createFormResult = graphql`
     mutation FormLoaderContainerMutation($input: CreateFormResultInput!) {
@@ -40,7 +112,6 @@ const FormLoaderContainer = props => {
     };
 
     const mutation = createApplicationStatus;
-    const {environment} = props.relay;
     commitMutation(environment, {
       mutation,
       variables,
@@ -58,7 +129,7 @@ const FormLoaderContainer = props => {
     const variables = {
       input: {
         formResult: {
-          formId: props.formId,
+          formId,
           userId: 2,
           formResult: JSON.stringify(formResult)
         }
@@ -66,14 +137,14 @@ const FormLoaderContainer = props => {
     };
 
     const mutation = createFormResult;
-    const {environment} = props.relay;
     commitMutation(environment, {
       mutation,
       variables,
       onCompleted: response => {
         console.log(response);
         console.log('Store Result Response received from server.');
-        storeApplicationStatus(response.createFormResult.formResult.rowId);
+        // FIXME
+        // StoreApplicationStatus(response.createFormResult.formResult.rowId);
       },
       onError: err => console.error(err)
     });
@@ -85,6 +156,7 @@ const FormLoaderContainer = props => {
     console.log('form data', formData);
     storeResult(formData);
     console.log('Complete!', result.data);
+    onFormComplete();
   };
 
   // TODO: Is this going to be necessary going forward, or was it just for debugging?
@@ -92,64 +164,18 @@ const FormLoaderContainer = props => {
     console.log('value changed');
   };
 
-  // Function: Add the product/unit choices into the formJson before creating the survey
-  const editFormJson = data => {
-    const parsedForm = JSON.parse(data.formJson);
+  // TODO: Loading spinner (or equivalent UI) here
+  if (!surveyModel) return null;
 
-    parsedForm.completedHtml = '<h2>Thank you for your submission</h2>';
-
-    // Add choices into formJson for products and units (by product units)
-    parsedForm.pages[3].elements[0].templateElements[0].choices =
-      data.productList;
-
-    // TODO: Units are broken, to be fixed on working with split forms
-    // For (const key in data.unitObj) {
-    //   if (key !== 'null') {
-    //     parsedForm.pages[3].elements[0].templateElements[2].choices.push({
-    //       value: key,
-    //       text: key,
-    //       visibleIf: `[${data.unitObj[key]},${data.unitObj.null}] contains {panel.processing_unit}`
-    //     });
-    //   }
-    // }
-
-    return parsedForm;
-  };
-
-  // Creates the Survey from the form JSON
-  const createSurveyForm = () => {
-    if (props.query) {
-      const unitObj = {};
-      const productList = [];
-
-      props.query.products.edges.forEach(({node: product}) => {
-        if (unitObj[product.units] === undefined)
-          unitObj[product.units] = [`'${product.name}'`];
-        else unitObj[product.units].push(`'${product.name}'`);
-        productList.push(product.name);
-      });
-
-      const {formJson} = props.query.json.edges[0].node;
-      const data = {formJson, unitObj, productList};
-      const parsedForm = editFormJson(data);
-
-      // Create survey model from updated formJson
-      Survey.Survey.cssType = 'bootstrap';
-      const model = new Survey.Model(JSON.stringify(parsedForm));
-      return (
-        <Survey.Survey
-          model={model}
-          onComplete={onComplete}
-          onValueChanged={onValueChanged}
-        />
-      );
-    }
-  };
-
+  Survey.cssType = 'bootstrap';
   return (
     <>
       <div id="surveyContainer">
-        {createSurveyForm()}
+        <Survey
+          model={surveyModel}
+          onComplete={onComplete}
+          onValueChanged={onValueChanged}
+        />
         <style jsx global>
           {`
             #surveyContainer {
@@ -177,27 +203,37 @@ const FormLoaderContainer = props => {
   );
 };
 
-export default createFragmentContainer(FormLoaderContainer, {
-  query: graphql`
-    fragment FormLoaderContainer_query on Query
-      @argumentDefinitions(condition: {type: "Int"}) {
-      json: allFormJsons(condition: {rowId: 1}) {
-        edges {
-          node {
-            rowId
-            name
-            formJson
+export default createRefetchContainer(
+  FormLoaderContainer,
+  {
+    query: graphql`
+      fragment FormLoaderContainer_query on Query
+        @argumentDefinitions(condition: {type: "FormJsonCondition"}) {
+        json: allFormJsons(condition: $condition) {
+          edges {
+            node {
+              rowId
+              name
+              formJson
+            }
+          }
+        }
+        products: allProducts {
+          edges {
+            node {
+              name
+              units
+            }
           }
         }
       }
-      products: allProducts {
-        edges {
-          node {
-            name
-            units
-          }
-        }
+    `
+  },
+  graphql`
+    query FormLoaderContainerRefetchQuery($condition: FormJsonCondition) {
+      query {
+        ...FormLoaderContainer_query @arguments(condition: $condition)
       }
     }
   `
-});
+);

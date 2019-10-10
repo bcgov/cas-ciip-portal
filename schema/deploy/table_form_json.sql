@@ -1,7 +1,7 @@
 -- Deploy ggircs-portal:table_form_json to pg
 -- requires: schema_ggircs_portal
 
-BEGIN;
+begin;
 
 create table ggircs_portal.form_json (
   id serial not null,
@@ -31,6 +31,7 @@ insert into ggircs_portal.form_json
     'Admin',
    '{
   "title": "Administrative Information",
+  "showCompletedPage": false,
   "pages": [
     {
       "name": "Administrative Information",
@@ -354,17 +355,12 @@ insert into ggircs_portal.form_json
   ],
   "showQuestionNumbers": "off"
 }'::jsonb
-);
-
-insert into ggircs_portal.form_json
-  (
-    id, name, form_json
-  )
-  values (
+), (
     2,
     'Emission',
    '{
   "title": "Emissions",
+  "showCompletedPage": false,
   "pages": [
     {
       "name": "Emissions",
@@ -1347,17 +1343,12 @@ insert into ggircs_portal.form_json
   ],
   "showQuestionNumbers": "off"
 }'::jsonb
-);
-
-insert into ggircs_portal.form_json
-  (
-    id, name, form_json
-  )
-  values (
+), (
     3,
     'Fuel',
    '{
   "title": "Fuel Usage",
+  "showCompletedPage": false,
   "pages": [
     {
       "name": "Fuel Usage",
@@ -1441,17 +1432,12 @@ insert into ggircs_portal.form_json
   ],
   "showQuestionNumbers": "off"
 }'::jsonb
-);
-
-insert into ggircs_portal.form_json
-  (
-    id, name, form_json
-  )
-  values (
+), (
     4,
     'Electricity and Heat',
    '{
   "title": "Electricity and Heat Information",
+  "showCompletedPage": false,
   "pages": [
     {
       "name": "Electricity and Heat",
@@ -1574,17 +1560,12 @@ insert into ggircs_portal.form_json
   ],
   "showQuestionNumbers": "off"
 }'::jsonb
-);
-
-insert into ggircs_portal.form_json
-  (
-    id, name, form_json
-  )
-  values (
+), (
     5,
     'Production',
    '{
   "title": "Production Information",
+  "showCompletedPage": false,
   "pages": [
     {
       "name": "Module Throughput and Emissions",
@@ -1596,7 +1577,7 @@ insert into ggircs_portal.form_json
           "templateElements": [
             {
               "type": "dropdown",
-              "name": "fuel_type",
+              "name": "product",
               "title": "Processing Unit Module",
               "choices": [
                 "Inlet Compression",
@@ -1614,7 +1595,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "dropdown",
-              "name": "fuel_units",
+              "name": "product_units",
               "startWithNewLine": false,
               "title": "Units",
               "choices": [
@@ -1660,17 +1641,12 @@ insert into ggircs_portal.form_json
   ],
   "showQuestionNumbers": "off"
 }'::jsonb
-);
-
-insert into ggircs_portal.form_json
-  (
-    id, name, form_json
-  )
-  values (
+), (
     6,
     'Statement of Certification',
    '{
   "title": "Statement of Certification",
+  "showCompletedPage": false,
   "pages": [
     {
       "name": "Statement of Certification",
@@ -1831,4 +1807,4 @@ insert into ggircs_portal.form_json
 );
 
 
-COMMIT;
+commit;
