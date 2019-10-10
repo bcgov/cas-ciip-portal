@@ -160,8 +160,8 @@ describe('Mutations', () => {
                     }
                 `;
         tester.mock(mutation);
-      } catch (error2) {
-        error = error2;
+      } catch (error_) {
+        error = error_;
       }
 
       expect(error.message).toEqual(
@@ -189,8 +189,8 @@ describe('Mutations', () => {
             }
           }
         });
-      } catch (error2) {
-        error = error2;
+      } catch (error_) {
+        error = error_;
       }
 
       expect(error.message).toEqual(
@@ -239,8 +239,8 @@ describe('Mutations', () => {
       let error;
       try {
         tester.mock(mutation);
-      } catch (error2) {
-        error = error2;
+      } catch (error_) {
+        error = error_;
       }
 
       expect(error.message).toEqual(
@@ -259,8 +259,8 @@ describe('Mutations', () => {
             }
           }
         });
-      } catch (error2) {
-        error = error2;
+      } catch (error_) {
+        error = error_;
       }
 
       expect(error.message).toEqual(
