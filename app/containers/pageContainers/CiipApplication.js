@@ -5,8 +5,12 @@ import Header from '../../components/Header';
 import ApplicationWizard from '../Applications/ApplicationWizard';
 
 class CiipApplication extends Component {
+  static getInitialProps = () => {
+    return {variables: {formCondition: {rowId: -1}}};
+  };
+
   static query = graphql`
-    query CiipApplicationQuery($formCondition: FormJsonCondition) {
+    query CiipApplicationQuery($formCondition: FormJsonCondition!) {
       query {
         ...ApplicationWizard_query @arguments(formCondition: $formCondition)
       }
