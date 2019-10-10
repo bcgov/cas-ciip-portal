@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {Container, Row, Col, Jumbotron} from 'react-bootstrap';
+import {Row, Col, Jumbotron} from 'react-bootstrap';
 import DefaultLayout from '../../layouts/default-layout';
 import ProductCreatorContainer from '../Products/ProductCreatorContainer';
 import ProductListContainer from '../Products/ProductListContainer';
