@@ -1,9 +1,9 @@
 import React from 'react';
 import {createFragmentContainer, graphql} from 'react-relay';
 import MathJax from 'react-mathjax2';
-import BenchmarkChart from './BenchmarkChart';
+import BenchmarkChart from '../../components/Incentives/BenchmarkChart';
 
-const IncentiveSegment = props => {
+const IncentiveSegmentContainer = props => {
   const {allProducts, reported, carbonTax} = props;
   const totalCarbonTax = carbonTax.edges.reduce((total, curr) => {
     return parseFloat(total) + parseFloat(curr.node.calculatedCarbonTax);
@@ -78,9 +78,9 @@ const IncentiveSegment = props => {
   );
 };
 
-export default createFragmentContainer(IncentiveSegment, {
+export default createFragmentContainer(IncentiveSegmentContainer, {
   reported: graphql`
-    fragment IncentiveSegment_reported on CiipProduction {
+    fragment IncentiveSegmentContainer_reported on CiipProduction {
       rowId
       quantity
       product

@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
-import IncentiveSegment from '../../components/Incentives/IncentiveSegment';
 import IncentiveSegmentFormula from '../../components/Incentives/IncentiveSegmentFormula';
+import IncentiveSegmentContainer from './IncentiveSegmentContainer';
 
 const IncentiveCalculatorContainer = props => {
   useEffect(() => {
@@ -44,7 +44,7 @@ const IncentiveCalculatorContainer = props => {
           <tbody>
             {props
               ? bcghgidProducts.edges.map(edge => (
-                  <IncentiveSegment
+                  <IncentiveSegmentContainer
                     key={edge.node.id}
                     reported={edge.node}
                     allProducts={allProducts}
@@ -95,7 +95,7 @@ export default createRefetchContainer(
         bcghgidProducts: getProductsByBcghgid(bcghgidInput: $bcghgidInput) {
           edges {
             node {
-              ...IncentiveSegment_reported
+              ...IncentiveSegmentContainer_reported
             }
           }
         }
