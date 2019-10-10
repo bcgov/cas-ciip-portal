@@ -1,7 +1,7 @@
 import React from 'react';
 import {wait, render} from '@testing-library/react';
 import * as Survey from 'survey-react';
-import FormLoader from '../../../components/Forms/FormLoader';
+import FormLoaderContainer from '../../../containers/Forms/FormLoaderContainer';
 
 describe('Form Loader', () => {
   let survey;
@@ -14,13 +14,13 @@ describe('Form Loader', () => {
   });
 
   it('should render the form', async () => {
-    const r = render(<FormLoader formJson={survey} />);
+    const r = render(<FormLoaderContainer formJson={survey} />);
     await wait(() => r.getAllByText(/What/i));
     expect(r).toMatchSnapshot();
   });
 
   it('should render the complete button', async () => {
-    const r = render(<FormLoader formJson={survey} />);
+    const r = render(<FormLoaderContainer formJson={survey} />);
     await wait(() => r.getAllByText(/Complete/i));
     expect(r.getAllByText(/Complete/i)).toBeDefined();
   });

@@ -1,11 +1,11 @@
 import React from 'react';
 import {withA11y} from '@storybook/addon-a11y';
 import {Table} from 'react-bootstrap';
-import ApplicationRowItem from '../../../components/Applications/ApplicationRowItem';
+import ApplicationRowItemContainer from '../../../containers/Applications/ApplicationRowItemContainer';
 
 export default {
   title: 'Application Row Item',
-  component: ApplicationRowItem,
+  component: ApplicationRowItemContainer,
   decorators: [withA11y]
 };
 const application = {
@@ -30,7 +30,7 @@ export const normal = () => (
       </tr>
     </thead>
     <tbody>
-      <ApplicationRowItem application={application} />
+      <ApplicationRowItemContainer application={application} />
     </tbody>
   </Table>
 );

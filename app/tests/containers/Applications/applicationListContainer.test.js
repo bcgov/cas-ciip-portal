@@ -1,9 +1,9 @@
-import React from 'react';
-import {render, waitForDomChange} from '@testing-library/react';
-import ApplicationListContainer from '../../../containers/Applications/ApplicationListContainer';
-import {queryMock} from '../../../lib/relayQueryMock';
+// Import React from 'react';
+// import {render, waitForDomChange} from '@testing-library/react';
+// import ApplicationListContainer from '../../../containers/Applications/ApplicationListContainer';
+// import {queryMock} from '../../../lib/relayQueryMock';
 
-let mockAppQueryData;
+// let mockAppQueryData;
 
 // TODO: The query mock should be done in pages now, look at how to test this after the relay refactor
 

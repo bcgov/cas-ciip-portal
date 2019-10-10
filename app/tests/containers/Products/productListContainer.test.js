@@ -1,6 +1,6 @@
 import React from 'react';
 import {wait, render} from '@testing-library/react';
-import ProductList from '../../../components/Products/ProductList';
+import ProductListContainer from '../../../containers/Products/ProductListContainer';
 import {queryMock} from '../../../lib/relayQueryMock';
 
 let mockAppQueryData;
@@ -67,7 +67,7 @@ describe('Product List', () => {
     });
 
     // This will replace the query in ProductList with the one above and wait till Milk is rendered
-    const r = render(<ProductList />);
+    const r = render(<ProductListContainer />);
     await wait(() => r.getAllByText('Milk'));
     expect(r).toMatchSnapshot();
   });

@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import ApplicationStatus from '../../../containers/Applications/ApplicationStatus';
+import ApplicationStatusContainer from '../../../containers/Applications/ApplicationStatusContainer';
 import {queryMock} from '../../../lib/relayQueryMock';
 
 let mockAppQueryData;
@@ -31,7 +31,7 @@ describe('Application Status', () => {
       }
     });
 
-    const r = mount(<ApplicationStatus applicationId="1" />);
+    const r = mount(<ApplicationStatusContainer applicationId="1" />);
     expect(r.props().applicationId).toEqual('1');
   });
 });

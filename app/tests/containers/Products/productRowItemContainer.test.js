@@ -3,7 +3,7 @@ import path from 'path';
 import React from 'react';
 import {wait, render, fireEvent} from '@testing-library/react';
 import EasyGraphQLTester from 'easygraphql-tester';
-import ProductRowItem from '../../../components/Products/ProductRowItem';
+import ProductRowItemContainer from '../../../containers/Products/ProductRowItemContainer';
 
 const product = {
   rowId: 9,
@@ -38,20 +38,20 @@ const archivedProduct = {
 describe('Product Row Item', () => {
   it('should render the product', async () => {
     // This will replace the query in ProductList with the one above and wait till Milk is rendered
-    const r = render(<ProductRowItem product={product} />);
+    const r = render(<ProductRowItemContainer product={product} />);
     await wait(() => r.getAllByText('Milk'));
     expect(r).toMatchSnapshot();
   });
 
   it('should toggle to product edit when I click edit product button', () => {
-    const {getByTestId} = render(<ProductRowItem product={product} />);
+    const {getByTestId} = render(<ProductRowItemContainer product={product} />);
     fireEvent.click(getByTestId('edit-product'));
     expect(getByTestId('save-product')).toBeDefined();
   });
 
   it('should make the product name editable when I click edit', () => {
     const {getByLabelText, getByTestId} = render(
-      <ProductRowItem product={product} />
+      <ProductRowItemContainer product={product} />
     );
     fireEvent.click(getByTestId('edit-product'));
     fireEvent.change(getByLabelText('Name'), {target: {value: 'Eggs'}});
@@ -61,7 +61,7 @@ describe('Product Row Item', () => {
 
   it('should make the product description editable when I click edit', () => {
     const {getByLabelText, getByTestId} = render(
-      <ProductRowItem product={product} />
+      <ProductRowItemContainer product={product} />
     );
     fireEvent.click(getByTestId('edit-product'));
     fireEvent.change(getByLabelText('Description'), {
@@ -73,7 +73,7 @@ describe('Product Row Item', () => {
 
   it('should be allow products to be archived when active', () => {
     const {getByText, getByTestId} = render(
-      <ProductRowItem product={product} />
+      <ProductRowItemContainer product={product} />
     );
     fireEvent.click(getByTestId('edit-product'));
     expect(getByText('Archive')).toBeDefined();
@@ -81,21 +81,21 @@ describe('Product Row Item', () => {
 
   it('should allow products to be restorable when archived', () => {
     const {getByText, getByTestId} = render(
-      <ProductRowItem product={archivedProduct} />
+      <ProductRowItemContainer product={archivedProduct} />
     );
     fireEvent.click(getByTestId('edit-product'));
     expect(getByText('Restore')).toBeDefined();
   });
 
   it('should toggle to benchmark edit when I click edit benchmark button', () => {
-    const {getByTestId} = render(<ProductRowItem product={product} />);
+    const {getByTestId} = render(<ProductRowItemContainer product={product} />);
     fireEvent.click(getByTestId('edit-benchmark'));
     expect(getByTestId('save-benchmark')).toBeDefined();
   });
 
   it('should make the benchmark editable when I click edit benchmark button', () => {
     const {getByLabelText, getByTestId} = render(
-      <ProductRowItem product={product} />
+      <ProductRowItemContainer product={product} />
     );
     fireEvent.click(getByTestId('edit-benchmark'));
     fireEvent.change(getByLabelText('Benchmark'), {target: {value: 1}});
@@ -105,7 +105,7 @@ describe('Product Row Item', () => {
 
   it('should make the benchmark eligibility threshold editable when I click edit benchmark button', () => {
     const {getByLabelText, getByTestId} = render(
-      <ProductRowItem product={product} />
+      <ProductRowItemContainer product={product} />
     );
     fireEvent.click(getByTestId('edit-benchmark'));
     fireEvent.change(getByLabelText('Eligibility Threshold'), {
@@ -117,7 +117,7 @@ describe('Product Row Item', () => {
 
   it('should make the benchmark start date editable when I click edit benchmark button', () => {
     const {getByLabelText, getByTestId} = render(
-      <ProductRowItem product={product} />
+      <ProductRowItemContainer product={product} />
     );
     fireEvent.click(getByTestId('edit-benchmark'));
     fireEvent.change(getByLabelText('Start Date'), {
@@ -129,7 +129,7 @@ describe('Product Row Item', () => {
 
   it('should make the benchmark archivable / deletable when I click edit benchmark button', () => {
     const {getByText, getByTestId} = render(
-      <ProductRowItem product={product} />
+      <ProductRowItemContainer product={product} />
     );
     fireEvent.click(getByTestId('edit-benchmark'));
     expect(getByText('Delete')).toBeDefined();
@@ -160,8 +160,8 @@ describe('Mutations', () => {
                     }
                 `;
         tester.mock(mutation);
-      } catch (error_) {
-        error = error_;
+      } catch (error2) {
+        error = error2;
       }
 
       expect(error.message).toEqual(
@@ -189,8 +189,8 @@ describe('Mutations', () => {
             }
           }
         });
-      } catch (error_) {
-        error = error_;
+      } catch (error2) {
+        error = error2;
       }
 
       expect(error.message).toEqual(
@@ -239,8 +239,8 @@ describe('Mutations', () => {
       let error;
       try {
         tester.mock(mutation);
-      } catch (error_) {
-        error = error_;
+      } catch (error2) {
+        error = error2;
       }
 
       expect(error.message).toEqual(
@@ -259,8 +259,8 @@ describe('Mutations', () => {
             }
           }
         });
-      } catch (error_) {
-        error = error_;
+      } catch (error2) {
+        error = error2;
       }
 
       expect(error.message).toEqual(

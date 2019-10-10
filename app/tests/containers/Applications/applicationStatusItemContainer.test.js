@@ -1,7 +1,7 @@
 import React from 'react';
 // Import {wait, render} from '@testing-library/react';
 import {shallow} from 'enzyme';
-import ApplicationStatusUpdate from '../../../components/Applications/ApplicationStatusUpdate';
+import ApplicationStatusItemContainer from '../../../containers/Applications/ApplicationStatusItemContainer';
 
 const application = {
   applicationStatus: 'pending',
@@ -11,7 +11,7 @@ const application = {
 describe('Application Status UPdate', () => {
   it('should render the application status', async () => {
     const r = shallow(
-      <ApplicationStatusUpdate
+      <ApplicationStatusItemContainer
         applicationStatus={application.applicationStatus}
         displayStatus={application.displayStatus}
         setApplicationStatus={jest.fn()}
