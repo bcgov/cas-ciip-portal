@@ -2202,7 +2202,7 @@ input DeleteFormResultByRowIdInput {
   """
   clientMutationId: String
 
-  """Unique ID for the form"""
+  """Unique ID for the result"""
   rowId: Int!
 }
 
@@ -6026,7 +6026,7 @@ input UpdateFormResultByRowIdInput {
   """
   formResultPatch: FormResultPatch!
 
-  """Unique ID for the form"""
+  """Unique ID for the result"""
   rowId: Int!
 }
 
