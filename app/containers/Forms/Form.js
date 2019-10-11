@@ -1,8 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import BootstrapForm from 'react-bootstrap/Form';
 import FormWithProductUnits from './FormWithProductUnits';
 
-export const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
+const Form = ({
+  query,
+  relay,
+  formId,
+  onFormComplete,
+  startsEditable,
+  initialData,
+  initialDataSource
+}) => {
   const {json} = query || {};
   const {environment} = relay;
 
@@ -12,6 +26,8 @@ export const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
     if (!edges || edges.length === 0) return;
     setFormJson(edges[0].node.formJson);
   }, [json]);
+
+  const [editable, setEditable] = useState(startsEditable);
 
   useEffect(() => {
     relay.refetch({condition: {rowId: formId}});
@@ -104,19 +120,50 @@ export const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
   };
 
   return (
-    <FormWithProductUnits
-      query={query}
-      formJson={formJson}
-      onComplete={onComplete}
-    />
+    <>
+      {!editable && (
+        <>
+          <Alert variant="info">
+            We filled this form for you with the data coming from{' '}
+            {initialDataSource}. Please review it and either submit or edit it.
+          </Alert>
+          <div>
+            <Button style={{margin: '5px'}} onClick={() => setEditable(true)}>
+              Edit
+            </Button>
+            <Button
+              style={{margin: '5px 0px 5px 5px'}}
+              onClick={() => onComplete({data: initialData})}
+            >
+              Submit
+            </Button>
+            <style jsx>
+              {`
+                div {
+                  display: flex;
+                  justify-content: flex-end;
+                }
+              `}
+            </style>
+          </div>
+        </>
+      )}
+      <FormWithProductUnits
+        query={query}
+        formJson={formJson}
+        initialData={initialData}
+        editable={editable}
+        onComplete={onComplete}
+      />
+    </>
   );
 };
 
 export default createRefetchContainer(
-  FormLoaderContainer,
+  Form,
   {
     query: graphql`
-      fragment FormLoaderContainer_query on Query
+      fragment Form_query on Query
         @argumentDefinitions(condition: {type: "FormJsonCondition"}) {
         json: allFormJsons(condition: $condition) {
           edges {
@@ -130,9 +177,9 @@ export default createRefetchContainer(
     `
   },
   graphql`
-    query FormLoaderContainerRefetchQuery($condition: FormJsonCondition) {
+    query FormRefetchQuery($condition: FormJsonCondition) {
       query {
-        ...FormLoaderContainer_query @arguments(condition: $condition)
+        ...Form_query @arguments(condition: $condition)
       }
     }
   `

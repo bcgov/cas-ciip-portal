@@ -52,7 +52,7 @@ export default createFragmentContainer(ApplicationWizard, {
           }
         }
       }
-      ...FormLoaderContainer_query @arguments(condition: $formCondition)
+      ...ApplicationWizardStep_query @arguments(formCondition: $formCondition)
     }
   `
 });

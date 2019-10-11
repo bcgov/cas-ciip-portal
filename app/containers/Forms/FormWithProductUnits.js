@@ -5,7 +5,8 @@ import 'survey-creator/survey-creator.css';
 import {graphql, createFragmentContainer} from 'react-relay';
 import SurveyWrapper from '../../components/Survey/SurveyWrapper';
 
-const FormWithProductUnits = ({query, formJson, onComplete}) => {
+const FormWithProductUnits = props => {
+  const {query, formJson} = props;
   const {allProducts} = query || {};
 
   const [productList, setProductsList] = useState([]);
@@ -27,9 +28,11 @@ const FormWithProductUnits = ({query, formJson, onComplete}) => {
     setUnitsProducts(newUnitsProducts);
   }, [allProducts, productList]);
 
-  const [surveyModel, setSurveyModel] = useState(null);
+  const [formJsonWithProductUnits, setFormJsonWithProductUnits] = useState(
+    null
+  );
   useEffect(() => {
-    if (!formJson) return setSurveyModel(null);
+    if (!formJson) return setFormJsonWithProductUnits(null);
 
     const formSpec = JSON.parse(formJson);
     // Inject the productList and unitsProducts into the form
@@ -57,12 +60,13 @@ const FormWithProductUnits = ({query, formJson, onComplete}) => {
       }
     }
 
-    setSurveyModel(new Model(JSON.stringify(formSpec)));
+    // FormSpec.showNavigationButtons = 'none';
+    setFormJsonWithProductUnits(JSON.stringify(formSpec));
 
     // Create survey model from updated formJson
   }, [formJson, productList, unitsProducts]);
 
-  return <SurveyWrapper model={surveyModel} onComplete={onComplete} />;
+  return <SurveyWrapper {...props} formJson={formJsonWithProductUnits} />;
 };
 
 export default createFragmentContainer(FormWithProductUnits, {
