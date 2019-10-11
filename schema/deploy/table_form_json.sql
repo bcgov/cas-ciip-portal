@@ -1815,14 +1815,8 @@ insert into ggircs_portal.form_json
       "questionsOrder": "initial"
     }
    ],
-  "showQuestionNumbers": "off"
-   "title": "Statement of Certification",
-   "questionsOrder": "initial"
-  }
- ],
- "showQuestionNumbers": "off"
-}
-    '::jsonb
+   "showQuestionNumbers": "off"
+    }'::jsonb
 )
 on conflict (id) do nothing;
 
