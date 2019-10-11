@@ -6,8 +6,7 @@ begin;
 create view ggircs_portal.ciip_operator as (
     with x as (
       select
-        cast(form_result.id as text) as id,
-        form_result.application_id,
+        form_result.application_id as id,
         json_array_elements((form_result -> 'reporting_operation_information')::json) as operator_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
@@ -16,7 +15,6 @@ create view ggircs_portal.ciip_operator as (
     )
     select
        x.id,
-       x.application_id,
        (x.operator_data ->> 'bc_corporate_registry_number')::numeric as bc_corporate_registry_number,
        (x.operator_data ->> 'naics_code')::numeric as naics_code,
        x.operator_data ->> 'operator_name' as operator_name,

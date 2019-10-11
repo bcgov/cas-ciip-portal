@@ -9,7 +9,7 @@ create or replace function ggircs_portal.get_products_by_application_id(app_id t
 
     select *
     from ggircs_portal.ciip_production
-    where application_id::text = app_id
+    where id::text = app_id
 
   $function$ language sql stable;
 

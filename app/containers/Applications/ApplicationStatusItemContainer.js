@@ -48,8 +48,7 @@ const ApplicationStatusItemContainer = props => {
 export default createFragmentContainer(ApplicationStatusItemContainer, {
   applicationStatus: graphql`
     fragment ApplicationStatusItemContainer_applicationStatus on ApplicationStatus {
-      id
-      rowId
+      applicationId
       applicationStatus
     }
   `

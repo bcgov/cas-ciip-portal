@@ -5,8 +5,7 @@ begin;
   create view ggircs_portal.ciip_contact as (
     with x as (
       select
-        cast(form_result.id as text) as id,
-        form_result.application_id,
+        form_result.application_id as id,
         json_array_elements((form_result -> 'operational_representative_information')::json) as contact_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
@@ -15,7 +14,6 @@ begin;
     )
     select
        x.id,
-       x.application_id,
        x.contact_data ->> 'fax' as fax,
        x.contact_data ->> 'phone' as phone,
        x.contact_data ->> 'position' as position,

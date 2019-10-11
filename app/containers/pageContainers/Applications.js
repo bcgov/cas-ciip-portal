@@ -91,18 +91,20 @@ class Applications extends Component {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout title="Applications">
-        <ApplicationListContainer
-          query={query}
-          orderByDisplay={this.state.orderByDisplay}
-          searchDisplay={this.state.searchDisplay}
-          direction={this.state.direction}
-          orderByField={this.state.orderByField}
-          searchField={this.state.searchField}
-          searchValue={this.state.searchValue}
-          handleEvent={this.handleEvent}
-        />
-      </DefaultLayout>
+      <>
+        <DefaultLayout title="Applications">
+          <ApplicationListContainer
+            query={query}
+            orderByDisplay={this.state.orderByDisplay}
+            searchDisplay={this.state.searchDisplay}
+            direction={this.state.direction}
+            orderByField={this.state.orderByField}
+            searchField={this.state.searchField}
+            searchValue={this.state.searchValue}
+            handleEvent={this.handleEvent}
+          />
+        </DefaultLayout>
+      </>
     );
   }
 }

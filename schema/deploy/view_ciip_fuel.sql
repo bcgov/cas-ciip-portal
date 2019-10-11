@@ -5,8 +5,7 @@ begin;
   create view ggircs_portal.ciip_fuel as (
     with x as (
       select
-        cast(form_result.id as text) as id,
-        form_result.application_id,
+        form_result.application_id as id,
         json_array_elements((form_result -> 'fuels')::json) as fuel_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
@@ -15,7 +14,6 @@ begin;
     )
     select
        x.id,
-       x.application_id,
        (x.fuel_data ->> 'quantity')::numeric as quantity,
        x.fuel_data ->> 'fuel_type' as fuel_type,
        x.fuel_data ->> 'fuel_units' as fuel_units,

@@ -8,7 +8,7 @@ const setStatus = graphql`
   ) {
     updateApplicationStatusByRowId(input: $input) {
       applicationStatus {
-        rowId
+        applicationId
         applicationStatus
       }
     }
@@ -16,11 +16,12 @@ const setStatus = graphql`
 `;
 
 const ApplicationStatusContainer = props => {
+  console.log(props);
   const {allApplicationStatuses} = props.query;
   useEffect(() => {
     const refetchVariables = {
       condition: {
-        formResultId: Number(props.applicationId),
+        applicationId: Number(props.applicationId),
         applicationStatus:
           allApplicationStatuses.edges[0].node.applicationStatus
       }
@@ -79,6 +80,7 @@ export default createRefetchContainer(
         allApplicationStatuses(condition: $condition) {
           edges {
             node {
+              id
               ...ApplicationStatusItemContainer_applicationStatus
             }
           }

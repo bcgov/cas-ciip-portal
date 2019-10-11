@@ -13,6 +13,7 @@ const IncentiveCalculatorContainer = props => {
     props.relay.refetch(refetchVariables);
   });
 
+  console.log(props);
   const {allProducts, bcghgidProducts, carbonTax} = props.query;
   return (
     <>

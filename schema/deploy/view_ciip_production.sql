@@ -6,8 +6,7 @@ begin;
     with x as (
       select * from
       (select
-         cast(form_result.id as text) as id,
-         form_result.application_id,
+         form_result.application_id as id,
          json_array_elements((form_result -> 'module_throughput_and_production_data')::json) as production_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
@@ -15,18 +14,16 @@ begin;
       and form_json.name = 'Production') as A
       inner join
       (select
-         cast(form_result.id as text) as fid,
-         form_result.application_id as application_id_facility,
+         form_result.application_id as fid,
          json_array_elements((form_result -> 'facility_information')::json) as facility_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
       and form_json.name = 'Admin') as B
-      on A.application_id = B.application_id_facility
+      on A.id = B.fid
     )
     select
        x.id,
-       x.application_id,
        (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
        (x.production_data ->> 'quantity')::numeric as quantity,
        x.production_data ->> 'processing_unit' as product,

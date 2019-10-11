@@ -5,6 +5,7 @@ import BenchmarkChart from '../../components/Incentives/BenchmarkChart';
 
 const IncentiveSegmentContainer = props => {
   const {allProducts, reported, carbonTax} = props;
+  console.log(props);
   const totalCarbonTax = carbonTax.edges.reduce((total, curr) => {
     return parseFloat(total) + parseFloat(curr.node.calculatedCarbonTax);
   }, 0);
@@ -84,7 +85,6 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
       rowId
       quantity
       product
-      applicationId
       fuelUnits
       associatedEmissions
       attributableFuelPercentage

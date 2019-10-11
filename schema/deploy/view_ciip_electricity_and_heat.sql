@@ -7,8 +7,7 @@ begin;
     (
     with x as (
       select
-        cast(form_result.id as text) as id,
-        form_result.application_id,
+        form_result.application_id as id,
         json_array_elements(
           (json_array_elements(
             ((form_result -> 'electricity_and_heat'))::json
@@ -21,7 +20,6 @@ begin;
     )
     select
        x.id,
-       x.application_id,
        (x.heat_data ->> 'sold')::numeric as sold,
        (x.heat_data ->> 'quantity')::numeric as quantity,
        x.heat_data ->> 'description' as description,
@@ -35,8 +33,7 @@ begin;
     (
     with x as (
       select
-        cast(form_result.id as text) as id,
-        form_result.application_id,
+        form_result.application_id as id,
         json_array_elements(
           (json_array_elements(
             ((form_result -> 'electricity_and_heat'))::json
@@ -49,7 +46,6 @@ begin;
     )
     select
        x.id,
-       x.application_id,
        (x.electricity_data ->> 'sold')::numeric as sold,
        (x.electricity_data ->> 'quantity')::numeric as quantity,
        x.electricity_data ->> 'description' as description,

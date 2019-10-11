@@ -29,8 +29,8 @@ class ApplicationDetails extends Component {
     return {
       variables: {
         condition: {
-          formResultId: this.state ? Number(this.state.applicationId) : null
-        },
+          rowId: this.state ? Number(this.state.applicationId) : null
+        }
       }
     };
   }
