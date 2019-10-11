@@ -16,7 +16,6 @@ const setStatus = graphql`
 `;
 
 const ApplicationStatusContainer = props => {
-  console.log(props);
   const {allApplicationStatuses} = props.query;
   useEffect(() => {
     const refetchVariables = {
