@@ -14,7 +14,6 @@ const IncentiveCalculatorContainer = props => {
   });
 
   const {allProducts, bcghgidProducts, carbonTax} = props.query;
-
   return (
     <>
       <Jumbotron>
@@ -95,6 +94,7 @@ export default createRefetchContainer(
         bcghgidProducts: getProductsByBcghgid(bcghgidInput: $bcghgidInput) {
           edges {
             node {
+              id
               ...IncentiveSegmentContainer_reported
             }
           }

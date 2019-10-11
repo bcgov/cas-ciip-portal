@@ -27,5 +27,8 @@ create view ggircs_portal.ciip_application as (
 
     from x
 );
+-- Postgraphile smart-comments: These comments allow Postgraphile to infer relations between views
+-- as though they were tables (ie faking a primary key in order to create an ID! type)
+comment on view ggircs_portal.ciip_application is E'@primaryKey id';
 
 commit;
