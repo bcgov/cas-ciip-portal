@@ -6,6 +6,7 @@ begin;
   create type ggircs_portal.organisation_data as (
       report_id integer ,
       swrs_report_id integer ,
+      swrs_organisation_id integer ,
       reporting_year varchar(1000),
       operator_name varchar(1000),
       operator_trade_name varchar(1000),
@@ -20,8 +21,7 @@ begin;
 
   create or replace function ggircs_portal.get_swrs_organisation_data(
     facility_id integer ,
-    reporting_year varchar(1000),
-    view_name text
+    reporting_year varchar(1000)
   )
   returns setof ggircs_portal.organisation_data
   as
@@ -42,6 +42,7 @@ begin;
         select
           _rep.id as report_id,
           _rep.swrs_report_id as swrs_report_id,
+          _org.swrs_organisation_id as swrs_organisation_id,
           _rep.reporting_period_duration as reporting_year,
           _org.business_legal_name as operator_name,
           _org.english_trade_name as operator_trade_name,
@@ -72,4 +73,4 @@ begin;
 commit;
 
 
---select ggircs_portal.get_swrs_organisation_data(1766, '2018', '')
+--select ggircs_portal.get_swrs_organisation_data(1766, '2018')

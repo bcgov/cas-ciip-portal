@@ -26,3 +26,10 @@ function_search_application_list [view_ciip_application] 2019-09-03T20:40:05Z Dy
 function_insert_dummy_application_data [table_product table_benchmark table_form_result table_application_status] 2019-09-19T23:42:58Z Dylan Leard <dylan@button.is> # function inserts dummy data into product, benchmark, form_result and application_status
 function_get_swrs_organisation_data [schema_ggircs_portal] 2019-10-01T20:51:53Z Hamza Javed <hamza@button.is> # Function that imports information from swrs based on parameters
 table_ciip_application_wizard [table_form_json] 2019-10-09T17:18:33Z Matthieu Foucault <matthieu@button.is> # Add table_ciip_application_wizard
+function_get_swrs_facility_data 2019-10-07T21:25:50Z Hamza Javed <hamza@button.is> # Function to import facility data from swrs
+function_get_swrs_operator_contact_data 2019-10-07T21:28:12Z Hamza Javed <hamza@button.is> # Get operator contact data from SWRS via function
+function_get_swrs_emission_data 2019-10-07T23:36:44Z Hamza Javed <hamza@button.is> # Get summarized emission data from swrs
+function_get_swrs_fuel_data 2019-10-08T16:31:12Z Hamza Javed <hamza@button.is> # Get fuel data from swrs
+table_organisation [schema_ggircs_portal] 2019-10-11T18:45:40Z Hamza Javed <hamza@button.is> # The organisation data for CIIP
+table_user_organisation [schema_ggircs_portal table_user table_organisation] 2019-10-11T18:46:57Z Hamza Javed <hamza@button.is> # Through table for Users and Organisations with a many to many relationship
+table_facility [schema_ggircs_portal table_organisation] 2019-10-11T18:47:49Z Hamza Javed <hamza@button.is> # Facility data for CIIP

@@ -11,11 +11,19 @@ type ApplicationStatus implements Node {
   """The application status"""
   applicationStatus: String
 
-  """The foreign key to the corresponding form_result"""
-  updatedBy: String
+  """The date the application status was updated"""
+  createdAt: Datetime!
+
+  """The person who updated the application status"""
+  createdBy: String
 
   """The date the application status was updated"""
-  updatedAt: String
+  updatedAt: Datetime!
+
+  """The person who updated the application status"""
+  updatedBy: String
+
+  """The foreign key to the corresponding form_result"""
   formResultId: Int!
 
   """
@@ -35,11 +43,17 @@ input ApplicationStatusCondition {
   """Checks for equality with the object’s `applicationStatus` field."""
   applicationStatus: String
 
-  """Checks for equality with the object’s `updatedBy` field."""
-  updatedBy: String
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
 
   """Checks for equality with the object’s `updatedAt` field."""
-  updatedAt: String
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
 
   """Checks for equality with the object’s `formResultId` field."""
   formResultId: Int
@@ -80,10 +94,14 @@ enum ApplicationStatusesOrderBy {
   ID_DESC
   APPLICATION_STATUS_ASC
   APPLICATION_STATUS_DESC
-  UPDATED_BY_ASC
-  UPDATED_BY_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
   UPDATED_AT_ASC
   UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
   FORM_RESULT_ID_ASC
   FORM_RESULT_ID_DESC
   PRIMARY_KEY_ASC
@@ -98,11 +116,19 @@ input ApplicationStatusInput {
   """The application status"""
   applicationStatus: String
 
-  """The foreign key to the corresponding form_result"""
-  updatedBy: String
+  """The date the application status was updated"""
+  createdAt: Datetime
+
+  """The person who updated the application status"""
+  createdBy: String
 
   """The date the application status was updated"""
-  updatedAt: String
+  updatedAt: Datetime
+
+  """The person who updated the application status"""
+  updatedBy: String
+
+  """The foreign key to the corresponding form_result"""
   formResultId: Int!
 }
 
@@ -116,11 +142,19 @@ input ApplicationStatusPatch {
   """The application status"""
   applicationStatus: String
 
-  """The foreign key to the corresponding form_result"""
-  updatedBy: String
+  """The date the application status was updated"""
+  createdAt: Datetime
+
+  """The person who updated the application status"""
+  createdBy: String
 
   """The date the application status was updated"""
-  updatedAt: String
+  updatedAt: Datetime
+
+  """The person who updated the application status"""
+  updatedBy: String
+
+  """The foreign key to the corresponding form_result"""
   formResultId: Int
 }
 
@@ -149,17 +183,21 @@ type Benchmark implements Node {
   endDate: Datetime
 
   """Creation date of row"""
-  createdAt: Datetime
+  createdAt: Datetime!
 
   """Creator of row"""
   createdBy: String
 
+  """Last update date of row"""
+  updatedAt: Datetime!
+
+  """The user who last updated the row"""
+  updatedBy: String
+
   """Deletion date of row"""
-  updatedAt: Datetime
+  deletedAt: Datetime
 
   """The user who deleted the row"""
-  updatedBy: String
-  deletedAt: Datetime
   deletedBy: String
 
   """Reads a single `Product` that is related to this `Benchmark`."""
@@ -234,12 +272,16 @@ input BenchmarkInput {
   """Creator of row"""
   createdBy: String
 
-  """Deletion date of row"""
+  """Last update date of row"""
   updatedAt: Datetime
 
-  """The user who deleted the row"""
+  """The user who last updated the row"""
   updatedBy: String
+
+  """Deletion date of row"""
   deletedAt: Datetime
+
+  """The user who deleted the row"""
   deletedBy: String
 }
 
@@ -271,12 +313,16 @@ input BenchmarkPatch {
   """Creator of row"""
   createdBy: String
 
-  """Deletion date of row"""
+  """Last update date of row"""
   updatedAt: Datetime
 
-  """The user who deleted the row"""
+  """The user who last updated the row"""
   updatedBy: String
+
+  """Deletion date of row"""
   deletedAt: Datetime
+
+  """The user who deleted the row"""
   deletedBy: String
 }
 
@@ -565,27 +611,27 @@ enum CiipApplicationWizardsOrderBy {
   PRIMARY_KEY_DESC
 }
 
-"""The view for certifier data reported in the application"""
+"""the view for certifier data reported in the application"""
 type CiipCertifier {
-  """The application id used for reference and join"""
+  """the application id used for reference and join"""
   applicationId: String
 
-  """The certifier fax"""
+  """the certifier fax"""
   fax: String
 
-  """The certifier phone"""
+  """the certifier phone"""
   phone: String
 
-  """The certifier position"""
+  """the certifier position"""
   position: String
 
-  """The last name of the certifier"""
+  """the last name of the certifier"""
   lastName: String
 
-  """The first name of the certifier"""
+  """the first name of the certifier"""
   firstName: String
 
-  """The email address of the certifier"""
+  """the email address of the certifier"""
   emailAddress: String
   certifierName: String
   certificationDate: Date
@@ -1377,6 +1423,44 @@ type CreateCiipApplicationWizardPayload {
   ): CiipApplicationWizardsEdge
 }
 
+"""All input for the create `Facility` mutation."""
+input CreateFacilityInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Facility` to be created by this mutation."""
+  facility: FacilityInput!
+}
+
+"""The output of our create `Facility` mutation."""
+type CreateFacilityPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Facility` that was created by this mutation."""
+  facility: Facility
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Organisation` that is related to this `Facility`."""
+  organisationByOrganisationId: Organisation
+
+  """An edge for our `Facility`. May be used by Relay 1."""
+  facilityEdge(
+    """The method to use when ordering `Facility`."""
+    orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FacilitiesEdge
+}
+
 """All input for the create `FormJson` mutation."""
 input CreateFormJsonInput {
   """
@@ -1447,6 +1531,41 @@ type CreateFormResultPayload {
   ): FormResultsEdge
 }
 
+"""All input for the create `Organisation` mutation."""
+input CreateOrganisationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Organisation` to be created by this mutation."""
+  organisation: OrganisationInput!
+}
+
+"""The output of our create `Organisation` mutation."""
+type CreateOrganisationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Organisation` that was created by this mutation."""
+  organisation: Organisation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Organisation`. May be used by Relay 1."""
+  organisationEdge(
+    """The method to use when ordering `Organisation`."""
+    orderBy: [OrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): OrganisationsEdge
+}
+
 """All input for the create `Product` mutation."""
 input CreateProductInput {
   """
@@ -1492,6 +1611,49 @@ input CreateUserInput {
 
   """The `User` to be created by this mutation."""
   user: UserInput!
+}
+
+"""All input for the create `UserOrganisation` mutation."""
+input CreateUserOrganisationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `UserOrganisation` to be created by this mutation."""
+  userOrganisation: UserOrganisationInput!
+}
+
+"""The output of our create `UserOrganisation` mutation."""
+type CreateUserOrganisationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UserOrganisation` that was created by this mutation."""
+  userOrganisation: UserOrganisation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `UserOrganisation`."""
+  userByUserId: User
+
+  """
+  Reads a single `Organisation` that is related to this `UserOrganisation`.
+  """
+  organisationByOrganisationId: Organisation
+
+  """An edge for our `UserOrganisation`. May be used by Relay 1."""
+  userOrganisationEdge(
+    """The method to use when ordering `UserOrganisation`."""
+    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UserOrganisationsEdge
 }
 
 """The output of our create `User` mutation."""
@@ -1692,6 +1854,59 @@ type DeleteCiipApplicationWizardPayload {
   ): CiipApplicationWizardsEdge
 }
 
+"""All input for the `deleteFacilityByRowId` mutation."""
+input DeleteFacilityByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """unique id for the facility"""
+  rowId: Int!
+}
+
+"""All input for the `deleteFacility` mutation."""
+input DeleteFacilityInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Facility` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `Facility` mutation."""
+type DeleteFacilityPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Facility` that was deleted by this mutation."""
+  facility: Facility
+  deletedFacilityId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Organisation` that is related to this `Facility`."""
+  organisationByOrganisationId: Organisation
+
+  """An edge for our `Facility`. May be used by Relay 1."""
+  facilityEdge(
+    """The method to use when ordering `Facility`."""
+    orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FacilitiesEdge
+}
+
 """All input for the `deleteFormJsonByRowId` mutation."""
 input DeleteFormJsonByRowIdInput {
   """
@@ -1792,6 +2007,56 @@ type DeleteFormResultPayload {
   ): FormResultsEdge
 }
 
+"""All input for the `deleteOrganisationByRowId` mutation."""
+input DeleteOrganisationByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """unique if for the organisation"""
+  rowId: Int!
+}
+
+"""All input for the `deleteOrganisation` mutation."""
+input DeleteOrganisationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Organisation` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `Organisation` mutation."""
+type DeleteOrganisationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Organisation` that was deleted by this mutation."""
+  organisation: Organisation
+  deletedOrganisationId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Organisation`. May be used by Relay 1."""
+  organisationEdge(
+    """The method to use when ordering `Organisation`."""
+    orderBy: [OrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): OrganisationsEdge
+}
+
 """All input for the `deleteProductByRowId` mutation."""
 input DeleteProductByRowIdInput {
   """
@@ -1868,6 +2133,64 @@ input DeleteUserInput {
   id: ID!
 }
 
+"""All input for the `deleteUserOrganisationByRowId` mutation."""
+input DeleteUserOrganisationByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """unique id of the row"""
+  rowId: Int!
+}
+
+"""All input for the `deleteUserOrganisation` mutation."""
+input DeleteUserOrganisationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `UserOrganisation` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `UserOrganisation` mutation."""
+type DeleteUserOrganisationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UserOrganisation` that was deleted by this mutation."""
+  userOrganisation: UserOrganisation
+  deletedUserOrganisationId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `UserOrganisation`."""
+  userByUserId: User
+
+  """
+  Reads a single `Organisation` that is related to this `UserOrganisation`.
+  """
+  organisationByOrganisationId: Organisation
+
+  """An edge for our `UserOrganisation`. May be used by Relay 1."""
+  userOrganisationEdge(
+    """The method to use when ordering `UserOrganisation`."""
+    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UserOrganisationsEdge
+}
+
 """The output of our delete `User` mutation."""
 type DeleteUserPayload {
   """
@@ -1890,6 +2213,40 @@ type DeleteUserPayload {
     """The method to use when ordering `User`."""
     orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
   ): UsersEdge
+}
+
+"""A connection to a list of `EmissionDatum` values."""
+type EmissionDataConnection {
+  """A list of `EmissionDatum` objects."""
+  nodes: [EmissionDatum]!
+
+  """
+  A list of edges which contains the `EmissionDatum` and cursor to aid in pagination.
+  """
+  edges: [EmissionDataEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `EmissionDatum` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `EmissionDatum` edge in the connection."""
+type EmissionDataEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `EmissionDatum` at the end of the edge."""
+  node: EmissionDatum
+}
+
+type EmissionDatum {
+  reportId: Int
+  quantity: BigFloat
+  calculatedQuantity: BigFloat
+  emissionCategory: String
+  gasType: String
 }
 
 type EstimatedCarbonTaxPaid {
@@ -2050,6 +2407,369 @@ enum EstimatedCarbonTaxPaidsOrderBy {
   REPORTING_PERIOD_DURATION_DESC
 }
 
+"""A connection to a list of `Facility` values."""
+type FacilitiesConnection {
+  """A list of `Facility` objects."""
+  nodes: [Facility]!
+
+  """
+  A list of edges which contains the `Facility` and cursor to aid in pagination.
+  """
+  edges: [FacilitiesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Facility` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Facility` edge in the connection."""
+type FacilitiesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Facility` at the end of the edge."""
+  node: Facility
+}
+
+"""Methods to use when ordering `Facility`."""
+enum FacilitiesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  ORGANISATION_ID_ASC
+  ORGANISATION_ID_DESC
+  REPORT_ID_ASC
+  REPORT_ID_DESC
+  SWRS_REPORT_ID_ASC
+  SWRS_REPORT_ID_DESC
+  SWRS_FACILITY_ID_ASC
+  SWRS_FACILITY_ID_DESC
+  SWRS_ORGANISATION_ID_ASC
+  SWRS_ORGANISATION_ID_DESC
+  REPORTING_YEAR_ASC
+  REPORTING_YEAR_DESC
+  FACILITY_NAME_ASC
+  FACILITY_NAME_DESC
+  FACILITY_TYPE_ASC
+  FACILITY_TYPE_DESC
+  BCGHGID_ASC
+  BCGHGID_DESC
+  NAICS_CODE_ASC
+  NAICS_CODE_DESC
+  NAICS_CLASSIFICATION_ASC
+  NAICS_CLASSIFICATION_DESC
+  LATITUDE_ASC
+  LATITUDE_DESC
+  LONGITUDE_ASC
+  LONGITUDE_DESC
+  FACILITY_MAILING_ADDRESS_ASC
+  FACILITY_MAILING_ADDRESS_DESC
+  FACILITY_CITY_ASC
+  FACILITY_CITY_DESC
+  FACILITY_PROVINCE_ASC
+  FACILITY_PROVINCE_DESC
+  FACILITY_POSTAL_CODE_ASC
+  FACILITY_POSTAL_CODE_DESC
+  FACILITY_COUNTRY_ASC
+  FACILITY_COUNTRY_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Facility implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """unique id for the facility"""
+  rowId: Int!
+
+  """the id of the organization responsible for that facility"""
+  organisationId: Int!
+
+  """report id from swrs"""
+  reportId: Int
+
+  """swrs report id from swrs"""
+  swrsReportId: Int
+  swrsFacilityId: Int
+
+  """swrs organisation id"""
+  swrsOrganisationId: Int
+
+  """the reporting year"""
+  reportingYear: String
+
+  """the facility name"""
+  facilityName: String
+
+  """type of facility based on emission quantity"""
+  facilityType: String
+
+  """CAS internal identifier"""
+  bcghgid: String
+
+  """The NAICS code / sector"""
+  naicsCode: Int
+
+  """description of the naics code"""
+  naicsClassification: String
+
+  """facility latitude"""
+  latitude: BigFloat
+
+  """facility longitude"""
+  longitude: BigFloat
+
+  """facility mailing address"""
+  facilityMailingAddress: String
+
+  """facility city"""
+  facilityCity: String
+
+  """facility province"""
+  facilityProvince: String
+
+  """facility postal code"""
+  facilityPostalCode: String
+
+  """facility country"""
+  facilityCountry: String
+
+  """Reads a single `Organisation` that is related to this `Facility`."""
+  organisationByOrganisationId: Organisation
+}
+
+"""
+A condition to be used against `Facility` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input FacilityCondition {
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `organisationId` field."""
+  organisationId: Int
+
+  """Checks for equality with the object’s `reportId` field."""
+  reportId: Int
+
+  """Checks for equality with the object’s `swrsReportId` field."""
+  swrsReportId: Int
+
+  """Checks for equality with the object’s `swrsFacilityId` field."""
+  swrsFacilityId: Int
+
+  """Checks for equality with the object’s `swrsOrganisationId` field."""
+  swrsOrganisationId: Int
+
+  """Checks for equality with the object’s `reportingYear` field."""
+  reportingYear: String
+
+  """Checks for equality with the object’s `facilityName` field."""
+  facilityName: String
+
+  """Checks for equality with the object’s `facilityType` field."""
+  facilityType: String
+
+  """Checks for equality with the object’s `bcghgid` field."""
+  bcghgid: String
+
+  """Checks for equality with the object’s `naicsCode` field."""
+  naicsCode: Int
+
+  """Checks for equality with the object’s `naicsClassification` field."""
+  naicsClassification: String
+
+  """Checks for equality with the object’s `latitude` field."""
+  latitude: BigFloat
+
+  """Checks for equality with the object’s `longitude` field."""
+  longitude: BigFloat
+
+  """Checks for equality with the object’s `facilityMailingAddress` field."""
+  facilityMailingAddress: String
+
+  """Checks for equality with the object’s `facilityCity` field."""
+  facilityCity: String
+
+  """Checks for equality with the object’s `facilityProvince` field."""
+  facilityProvince: String
+
+  """Checks for equality with the object’s `facilityPostalCode` field."""
+  facilityPostalCode: String
+
+  """Checks for equality with the object’s `facilityCountry` field."""
+  facilityCountry: String
+}
+
+"""A connection to a list of `FacilityDatum` values."""
+type FacilityDataConnection {
+  """A list of `FacilityDatum` objects."""
+  nodes: [FacilityDatum]!
+
+  """
+  A list of edges which contains the `FacilityDatum` and cursor to aid in pagination.
+  """
+  edges: [FacilityDataEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `FacilityDatum` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `FacilityDatum` edge in the connection."""
+type FacilityDataEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FacilityDatum` at the end of the edge."""
+  node: FacilityDatum
+}
+
+type FacilityDatum {
+  reportId: Int
+  swrsReportId: Int
+  swrsFacilityId: Int
+  swrsOrganisationId: Int
+  reportingYear: String
+  facilityName: String
+  facilityType: String
+  bcghgid: String
+  naicsCode: Int
+  naicsClassification: String
+  latitude: BigFloat
+  longitude: BigFloat
+  facilityMailingAddress: String
+  facilityCity: String
+  facilityProvince: String
+  facilityPostalCode: String
+  facilityCountry: String
+}
+
+"""An input for mutations affecting `Facility`"""
+input FacilityInput {
+  """unique id for the facility"""
+  rowId: Int!
+
+  """the id of the organization responsible for that facility"""
+  organisationId: Int!
+
+  """report id from swrs"""
+  reportId: Int
+
+  """swrs report id from swrs"""
+  swrsReportId: Int
+  swrsFacilityId: Int
+
+  """swrs organisation id"""
+  swrsOrganisationId: Int
+
+  """the reporting year"""
+  reportingYear: String
+
+  """the facility name"""
+  facilityName: String
+
+  """type of facility based on emission quantity"""
+  facilityType: String
+
+  """CAS internal identifier"""
+  bcghgid: String
+
+  """The NAICS code / sector"""
+  naicsCode: Int
+
+  """description of the naics code"""
+  naicsClassification: String
+
+  """facility latitude"""
+  latitude: BigFloat
+
+  """facility longitude"""
+  longitude: BigFloat
+
+  """facility mailing address"""
+  facilityMailingAddress: String
+
+  """facility city"""
+  facilityCity: String
+
+  """facility province"""
+  facilityProvince: String
+
+  """facility postal code"""
+  facilityPostalCode: String
+
+  """facility country"""
+  facilityCountry: String
+}
+
+"""
+Represents an update to a `Facility`. Fields that are set will be updated.
+"""
+input FacilityPatch {
+  """unique id for the facility"""
+  rowId: Int
+
+  """the id of the organization responsible for that facility"""
+  organisationId: Int
+
+  """report id from swrs"""
+  reportId: Int
+
+  """swrs report id from swrs"""
+  swrsReportId: Int
+  swrsFacilityId: Int
+
+  """swrs organisation id"""
+  swrsOrganisationId: Int
+
+  """the reporting year"""
+  reportingYear: String
+
+  """the facility name"""
+  facilityName: String
+
+  """type of facility based on emission quantity"""
+  facilityType: String
+
+  """CAS internal identifier"""
+  bcghgid: String
+
+  """The NAICS code / sector"""
+  naicsCode: Int
+
+  """description of the naics code"""
+  naicsClassification: String
+
+  """facility latitude"""
+  latitude: BigFloat
+
+  """facility longitude"""
+  longitude: BigFloat
+
+  """facility mailing address"""
+  facilityMailingAddress: String
+
+  """facility city"""
+  facilityCity: String
+
+  """facility province"""
+  facilityProvince: String
+
+  """facility postal code"""
+  facilityPostalCode: String
+
+  """facility country"""
+  facilityCountry: String
+}
+
 type FormJson implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -2064,6 +2784,18 @@ type FormJson implements Node {
 
   """The JSON object that creates the form"""
   formJson: JSON!
+
+  """The date the form was updated"""
+  createdAt: Datetime!
+
+  """The person who updated the form"""
+  createdBy: String
+
+  """The date the form was updated"""
+  updatedAt: Datetime!
+
+  """The person who updated the form"""
+  updatedBy: String
 
   """
   Reads a single `CiipApplicationWizard` that is related to this `FormJson`.
@@ -2113,6 +2845,18 @@ input FormJsonCondition {
 
   """Checks for equality with the object’s `formJson` field."""
   formJson: JSON
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
 }
 
 """An input for mutations affecting `FormJson`"""
@@ -2125,6 +2869,18 @@ input FormJsonInput {
 
   """The JSON object that creates the form"""
   formJson: JSON!
+
+  """The date the form was updated"""
+  createdAt: Datetime
+
+  """The person who updated the form"""
+  createdBy: String
+
+  """The date the form was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the form"""
+  updatedBy: String
 }
 
 """
@@ -2139,6 +2895,18 @@ input FormJsonPatch {
 
   """The JSON object that creates the form"""
   formJson: JSON
+
+  """The date the form was updated"""
+  createdAt: Datetime
+
+  """The person who updated the form"""
+  createdBy: String
+
+  """The date the form was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the form"""
+  updatedBy: String
 }
 
 """A connection to a list of `FormJson` values."""
@@ -2176,6 +2944,14 @@ enum FormJsonsOrderBy {
   NAME_DESC
   FORM_JSON_ASC
   FORM_JSON_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
@@ -2198,6 +2974,18 @@ type FormResult implements Node {
 
   """JSON dump of form data"""
   formResult: JSON!
+
+  """The date the form was updated"""
+  createdAt: Datetime!
+
+  """The person who updated the form"""
+  createdBy: String
+
+  """The date the form was updated"""
+  updatedAt: Datetime!
+
+  """The person who updated the form"""
+  updatedBy: String
 
   """Reads and enables pagination through a set of `ApplicationStatus`."""
   applicationStatusesByFormResultId(
@@ -2248,6 +3036,18 @@ input FormResultCondition {
 
   """Checks for equality with the object’s `formResult` field."""
   formResult: JSON
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
 }
 
 """An input for mutations affecting `FormResult`"""
@@ -2264,6 +3064,18 @@ input FormResultInput {
 
   """JSON dump of form data"""
   formResult: JSON!
+
+  """The date the form was updated"""
+  createdAt: Datetime
+
+  """The person who updated the form"""
+  createdBy: String
+
+  """The date the form was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the form"""
+  updatedBy: String
 }
 
 """
@@ -2282,6 +3094,18 @@ input FormResultPatch {
 
   """JSON dump of form data"""
   formResult: JSON
+
+  """The date the form was updated"""
+  createdAt: Datetime
+
+  """The person who updated the form"""
+  createdBy: String
+
+  """The date the form was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the form"""
+  updatedBy: String
 }
 
 """A connection to a list of `FormResult` values."""
@@ -2323,8 +3147,54 @@ enum FormResultsOrderBy {
   SUBMISSION_DATE_DESC
   FORM_RESULT_ASC
   FORM_RESULT_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
+}
+
+"""A connection to a list of `FuelDatum` values."""
+type FuelDataConnection {
+  """A list of `FuelDatum` objects."""
+  nodes: [FuelDatum]!
+
+  """
+  A list of edges which contains the `FuelDatum` and cursor to aid in pagination.
+  """
+  edges: [FuelDataEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `FuelDatum` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `FuelDatum` edge in the connection."""
+type FuelDataEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FuelDatum` at the end of the edge."""
+  node: FuelDatum
+}
+
+type FuelDatum {
+  reportId: Int
+  fuelType: String
+  fuelClassification: String
+  fuelDescription: String
+  fuelUnits: String
+  annualFuelAmount: BigFloat
+  annualWeightedAvgHhv: BigFloat
+  annualWeightedAvgCarbonContent: BigFloat
+  alternativeMethodolodyDescription: String
 }
 
 """All input for the `insertDummyApplicationData` mutation."""
@@ -2383,6 +3253,14 @@ type Mutation {
     input: CreateCiipApplicationWizardInput!
   ): CreateCiipApplicationWizardPayload
 
+  """Creates a single `Facility`."""
+  createFacility(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateFacilityInput!
+  ): CreateFacilityPayload
+
   """Creates a single `FormJson`."""
   createFormJson(
     """
@@ -2399,6 +3277,14 @@ type Mutation {
     input: CreateFormResultInput!
   ): CreateFormResultPayload
 
+  """Creates a single `Organisation`."""
+  createOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateOrganisationInput!
+  ): CreateOrganisationPayload
+
   """Creates a single `Product`."""
   createProduct(
     """
@@ -2414,6 +3300,14 @@ type Mutation {
     """
     input: CreateUserInput!
   ): CreateUserPayload
+
+  """Creates a single `UserOrganisation`."""
+  createUserOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUserOrganisationInput!
+  ): CreateUserOrganisationPayload
 
   """
   Updates a single `ApplicationStatus` using its globally unique id and a patch.
@@ -2469,6 +3363,22 @@ type Mutation {
     input: UpdateCiipApplicationWizardByFormIdInput!
   ): UpdateCiipApplicationWizardPayload
 
+  """Updates a single `Facility` using its globally unique id and a patch."""
+  updateFacility(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateFacilityInput!
+  ): UpdateFacilityPayload
+
+  """Updates a single `Facility` using a unique key and a patch."""
+  updateFacilityByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateFacilityByRowIdInput!
+  ): UpdateFacilityPayload
+
   """Updates a single `FormJson` using its globally unique id and a patch."""
   updateFormJson(
     """
@@ -2503,6 +3413,24 @@ type Mutation {
     input: UpdateFormResultByRowIdInput!
   ): UpdateFormResultPayload
 
+  """
+  Updates a single `Organisation` using its globally unique id and a patch.
+  """
+  updateOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateOrganisationInput!
+  ): UpdateOrganisationPayload
+
+  """Updates a single `Organisation` using a unique key and a patch."""
+  updateOrganisationByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateOrganisationByRowIdInput!
+  ): UpdateOrganisationPayload
+
   """Updates a single `Product` using its globally unique id and a patch."""
   updateProduct(
     """
@@ -2534,6 +3462,24 @@ type Mutation {
     """
     input: UpdateUserByRowIdInput!
   ): UpdateUserPayload
+
+  """
+  Updates a single `UserOrganisation` using its globally unique id and a patch.
+  """
+  updateUserOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserOrganisationInput!
+  ): UpdateUserOrganisationPayload
+
+  """Updates a single `UserOrganisation` using a unique key and a patch."""
+  updateUserOrganisationByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserOrganisationByRowIdInput!
+  ): UpdateUserOrganisationPayload
 
   """Deletes a single `ApplicationStatus` using its globally unique id."""
   deleteApplicationStatus(
@@ -2583,6 +3529,22 @@ type Mutation {
     input: DeleteCiipApplicationWizardByFormIdInput!
   ): DeleteCiipApplicationWizardPayload
 
+  """Deletes a single `Facility` using its globally unique id."""
+  deleteFacility(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFacilityInput!
+  ): DeleteFacilityPayload
+
+  """Deletes a single `Facility` using a unique key."""
+  deleteFacilityByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFacilityByRowIdInput!
+  ): DeleteFacilityPayload
+
   """Deletes a single `FormJson` using its globally unique id."""
   deleteFormJson(
     """
@@ -2615,6 +3577,22 @@ type Mutation {
     input: DeleteFormResultByRowIdInput!
   ): DeleteFormResultPayload
 
+  """Deletes a single `Organisation` using its globally unique id."""
+  deleteOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteOrganisationInput!
+  ): DeleteOrganisationPayload
+
+  """Deletes a single `Organisation` using a unique key."""
+  deleteOrganisationByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteOrganisationByRowIdInput!
+  ): DeleteOrganisationPayload
+
   """Deletes a single `Product` using its globally unique id."""
   deleteProduct(
     """
@@ -2646,6 +3624,22 @@ type Mutation {
     """
     input: DeleteUserByRowIdInput!
   ): DeleteUserPayload
+
+  """Deletes a single `UserOrganisation` using its globally unique id."""
+  deleteUserOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserOrganisationInput!
+  ): DeleteUserOrganisationPayload
+
+  """Deletes a single `UserOrganisation` using a unique key."""
+  deleteUserOrganisationByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserOrganisationByRowIdInput!
+  ): DeleteUserOrganisationPayload
   insertDummyApplicationData(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -2660,6 +3654,208 @@ interface Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+}
+
+"""A connection to a list of `OperatorContactDatum` values."""
+type OperatorContactDataConnection {
+  """A list of `OperatorContactDatum` objects."""
+  nodes: [OperatorContactDatum]!
+
+  """
+  A list of edges which contains the `OperatorContactDatum` and cursor to aid in pagination.
+  """
+  edges: [OperatorContactDataEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `OperatorContactDatum` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `OperatorContactDatum` edge in the connection."""
+type OperatorContactDataEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `OperatorContactDatum` at the end of the edge."""
+  node: OperatorContactDatum
+}
+
+type OperatorContactDatum {
+  reportId: Int
+  swrsReportId: Int
+  swrsOrganisationId: Int
+  reportingYear: String
+  firstName: String
+  lastName: String
+  positionTitle: String
+  contactType: String
+  email: String
+  telephone: String
+  fax: String
+  contactMailingAddress: String
+  contactCity: String
+  contactProvince: String
+  contactPostalCode: String
+  contactCountry: String
+}
+
+type Organisation implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """unique if for the organisation"""
+  rowId: Int!
+
+  """report id from swrs"""
+  reportId: Int
+
+  """swrs report id from swrs"""
+  swrsReportId: Int
+
+  """swrs organisation id"""
+  swrsOrganisationId: Int
+
+  """the reporting year"""
+  reportingYear: String
+
+  """legal name of organisation"""
+  operatorName: String
+
+  """trade name of organisation"""
+  operatorTradeName: String
+
+  """duns number"""
+  duns: String
+
+  """cra business number"""
+  craBusinessNumber: String
+
+  """organisation mailing address"""
+  operatorMailingAddress: String
+
+  """organisation city"""
+  operatorCity: String
+
+  """organisation province"""
+  operatorProvince: String
+
+  """organisation postal code"""
+  operatorPostalCode: String
+
+  """organisation country"""
+  operatorCountry: String
+
+  """Reads and enables pagination through a set of `UserOrganisation`."""
+  userOrganisationsByOrganisationId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UserOrganisation`."""
+    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserOrganisationCondition
+  ): UserOrganisationsConnection!
+
+  """Reads and enables pagination through a set of `Facility`."""
+  facilitiesByOrganisationId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Facility`."""
+    orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FacilityCondition
+  ): FacilitiesConnection!
+}
+
+"""
+A condition to be used against `Organisation` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input OrganisationCondition {
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `reportId` field."""
+  reportId: Int
+
+  """Checks for equality with the object’s `swrsReportId` field."""
+  swrsReportId: Int
+
+  """Checks for equality with the object’s `swrsOrganisationId` field."""
+  swrsOrganisationId: Int
+
+  """Checks for equality with the object’s `reportingYear` field."""
+  reportingYear: String
+
+  """Checks for equality with the object’s `operatorName` field."""
+  operatorName: String
+
+  """Checks for equality with the object’s `operatorTradeName` field."""
+  operatorTradeName: String
+
+  """Checks for equality with the object’s `duns` field."""
+  duns: String
+
+  """Checks for equality with the object’s `craBusinessNumber` field."""
+  craBusinessNumber: String
+
+  """Checks for equality with the object’s `operatorMailingAddress` field."""
+  operatorMailingAddress: String
+
+  """Checks for equality with the object’s `operatorCity` field."""
+  operatorCity: String
+
+  """Checks for equality with the object’s `operatorProvince` field."""
+  operatorProvince: String
+
+  """Checks for equality with the object’s `operatorPostalCode` field."""
+  operatorPostalCode: String
+
+  """Checks for equality with the object’s `operatorCountry` field."""
+  operatorCountry: String
 }
 
 """A connection to a list of `OrganisationDatum` values."""
@@ -2693,6 +3889,7 @@ type OrganisationDataEdge {
 type OrganisationDatum {
   reportId: Int
   swrsReportId: Int
+  swrsOrganisationId: Int
   reportingYear: String
   operatorName: String
   operatorTradeName: String
@@ -2703,6 +3900,159 @@ type OrganisationDatum {
   operatorProvince: String
   operatorPostalCode: String
   operatorCountry: String
+}
+
+"""An input for mutations affecting `Organisation`"""
+input OrganisationInput {
+  """unique if for the organisation"""
+  rowId: Int!
+
+  """report id from swrs"""
+  reportId: Int
+
+  """swrs report id from swrs"""
+  swrsReportId: Int
+
+  """swrs organisation id"""
+  swrsOrganisationId: Int
+
+  """the reporting year"""
+  reportingYear: String
+
+  """legal name of organisation"""
+  operatorName: String
+
+  """trade name of organisation"""
+  operatorTradeName: String
+
+  """duns number"""
+  duns: String
+
+  """cra business number"""
+  craBusinessNumber: String
+
+  """organisation mailing address"""
+  operatorMailingAddress: String
+
+  """organisation city"""
+  operatorCity: String
+
+  """organisation province"""
+  operatorProvince: String
+
+  """organisation postal code"""
+  operatorPostalCode: String
+
+  """organisation country"""
+  operatorCountry: String
+}
+
+"""
+Represents an update to a `Organisation`. Fields that are set will be updated.
+"""
+input OrganisationPatch {
+  """unique if for the organisation"""
+  rowId: Int
+
+  """report id from swrs"""
+  reportId: Int
+
+  """swrs report id from swrs"""
+  swrsReportId: Int
+
+  """swrs organisation id"""
+  swrsOrganisationId: Int
+
+  """the reporting year"""
+  reportingYear: String
+
+  """legal name of organisation"""
+  operatorName: String
+
+  """trade name of organisation"""
+  operatorTradeName: String
+
+  """duns number"""
+  duns: String
+
+  """cra business number"""
+  craBusinessNumber: String
+
+  """organisation mailing address"""
+  operatorMailingAddress: String
+
+  """organisation city"""
+  operatorCity: String
+
+  """organisation province"""
+  operatorProvince: String
+
+  """organisation postal code"""
+  operatorPostalCode: String
+
+  """organisation country"""
+  operatorCountry: String
+}
+
+"""A connection to a list of `Organisation` values."""
+type OrganisationsConnection {
+  """A list of `Organisation` objects."""
+  nodes: [Organisation]!
+
+  """
+  A list of edges which contains the `Organisation` and cursor to aid in pagination.
+  """
+  edges: [OrganisationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Organisation` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Organisation` edge in the connection."""
+type OrganisationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Organisation` at the end of the edge."""
+  node: Organisation
+}
+
+"""Methods to use when ordering `Organisation`."""
+enum OrganisationsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  REPORT_ID_ASC
+  REPORT_ID_DESC
+  SWRS_REPORT_ID_ASC
+  SWRS_REPORT_ID_DESC
+  SWRS_ORGANISATION_ID_ASC
+  SWRS_ORGANISATION_ID_DESC
+  REPORTING_YEAR_ASC
+  REPORTING_YEAR_DESC
+  OPERATOR_NAME_ASC
+  OPERATOR_NAME_DESC
+  OPERATOR_TRADE_NAME_ASC
+  OPERATOR_TRADE_NAME_DESC
+  DUNS_ASC
+  DUNS_DESC
+  CRA_BUSINESS_NUMBER_ASC
+  CRA_BUSINESS_NUMBER_DESC
+  OPERATOR_MAILING_ADDRESS_ASC
+  OPERATOR_MAILING_ADDRESS_DESC
+  OPERATOR_CITY_ASC
+  OPERATOR_CITY_DESC
+  OPERATOR_PROVINCE_ASC
+  OPERATOR_PROVINCE_DESC
+  OPERATOR_POSTAL_CODE_ASC
+  OPERATOR_POSTAL_CODE_DESC
+  OPERATOR_COUNTRY_ASC
+  OPERATOR_COUNTRY_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
 }
 
 """Information about pagination in a connection."""
@@ -2745,10 +4095,16 @@ type Product implements Node {
   parent: [Int]
 
   """Creation date of row"""
-  createdAt: Datetime
+  createdAt: Datetime!
 
   """Creator of row"""
   createdBy: String
+
+  """Updated date of row"""
+  updatedAt: Datetime!
+
+  """Updator of row"""
+  updatedBy: String
 
   """Date of deletion"""
   deletedAt: Datetime
@@ -2814,6 +4170,12 @@ input ProductCondition {
   """Checks for equality with the object’s `createdBy` field."""
   createdBy: String
 
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
+
   """Checks for equality with the object’s `deletedAt` field."""
   deletedAt: Datetime
 
@@ -2846,6 +4208,12 @@ input ProductInput {
 
   """Creator of row"""
   createdBy: String
+
+  """Updated date of row"""
+  updatedAt: Datetime
+
+  """Updator of row"""
+  updatedBy: String
 
   """Date of deletion"""
   deletedAt: Datetime
@@ -2881,6 +4249,12 @@ input ProductPatch {
 
   """Creator of row"""
   createdBy: String
+
+  """Updated date of row"""
+  updatedAt: Datetime
+
+  """Updator of row"""
+  updatedBy: String
 
   """Date of deletion"""
   deletedAt: Datetime
@@ -2934,6 +4308,10 @@ enum ProductsOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
   DELETED_AT_ASC
   DELETED_AT_DESC
   DELETED_BY_ASC
@@ -3313,6 +4691,35 @@ type Query implements Node {
     condition: EstimatedCarbonTaxPaidCondition
   ): EstimatedCarbonTaxPaidsConnection
 
+  """Reads and enables pagination through a set of `Facility`."""
+  allFacilities(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Facility`."""
+    orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FacilityCondition
+  ): FacilitiesConnection
+
   """Reads and enables pagination through a set of `FormJson`."""
   allFormJsons(
     """Only read the first `n` values of the set."""
@@ -3371,6 +4778,35 @@ type Query implements Node {
     condition: FormResultCondition
   ): FormResultsConnection
 
+  """Reads and enables pagination through a set of `Organisation`."""
+  allOrganisations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Organisation`."""
+    orderBy: [OrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: OrganisationCondition
+  ): OrganisationsConnection
+
   """Reads and enables pagination through a set of `Product`."""
   allProducts(
     """Only read the first `n` values of the set."""
@@ -3428,13 +4864,45 @@ type Query implements Node {
     """
     condition: UserCondition
   ): UsersConnection
+
+  """Reads and enables pagination through a set of `UserOrganisation`."""
+  allUserOrganisations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UserOrganisation`."""
+    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserOrganisationCondition
+  ): UserOrganisationsConnection
   applicationStatusByRowId(rowId: Int!): ApplicationStatus
   benchmarkByRowId(rowId: Int!): Benchmark
   ciipApplicationWizardByFormId(formId: Int!): CiipApplicationWizard
+  facilityByRowId(rowId: Int!): Facility
   formJsonByRowId(rowId: Int!): FormJson
   formResultByRowId(rowId: Int!): FormResult
+  organisationByRowId(rowId: Int!): Organisation
   productByRowId(rowId: Int!): Product
   userByRowId(rowId: Int!): User
+  userOrganisationByRowId(rowId: Int!): UserOrganisation
 
   """
   Reads and enables pagination through a set of `EstimatedCarbonTaxPaid`.
@@ -3508,11 +4976,106 @@ type Query implements Node {
     after: Cursor
   ): CiipProductionsConnection!
 
+  """Reads and enables pagination through a set of `EmissionDatum`."""
+  getSwrsEmissionData(
+    facilityId: Int
+    reportingYear: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+  ): EmissionDataConnection!
+
+  """Reads and enables pagination through a set of `FacilityDatum`."""
+  getSwrsFacilityData(
+    facilityId: Int
+    reportingYear: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+  ): FacilityDataConnection!
+
+  """Reads and enables pagination through a set of `FuelDatum`."""
+  getSwrsFuelData(
+    facilityId: Int
+    reportingYear: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+  ): FuelDataConnection!
+
+  """Reads and enables pagination through a set of `OperatorContactDatum`."""
+  getSwrsOperatorContactData(
+    facilityId: Int
+    reportingYear: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+  ): OperatorContactDataConnection!
+
   """Reads and enables pagination through a set of `OrganisationDatum`."""
   getSwrsOrganisationData(
     facilityId: Int
     reportingYear: String
-    viewName: String
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -3581,6 +5144,12 @@ type Query implements Node {
     id: ID!
   ): CiipApplicationWizard
 
+  """Reads a single `Facility` using its globally unique `ID`."""
+  facility(
+    """The globally unique `ID` to be used in selecting a single `Facility`."""
+    id: ID!
+  ): Facility
+
   """Reads a single `FormJson` using its globally unique `ID`."""
   formJson(
     """The globally unique `ID` to be used in selecting a single `FormJson`."""
@@ -3595,6 +5164,14 @@ type Query implements Node {
     id: ID!
   ): FormResult
 
+  """Reads a single `Organisation` using its globally unique `ID`."""
+  organisation(
+    """
+    The globally unique `ID` to be used in selecting a single `Organisation`.
+    """
+    id: ID!
+  ): Organisation
+
   """Reads a single `Product` using its globally unique `ID`."""
   product(
     """The globally unique `ID` to be used in selecting a single `Product`."""
@@ -3606,6 +5183,14 @@ type Query implements Node {
     """The globally unique `ID` to be used in selecting a single `User`."""
     id: ID!
   ): User
+
+  """Reads a single `UserOrganisation` using its globally unique `ID`."""
+  userOrganisation(
+    """
+    The globally unique `ID` to be used in selecting a single `UserOrganisation`.
+    """
+    id: ID!
+  ): UserOrganisation
 }
 
 """All input for the `updateApplicationStatusByRowId` mutation."""
@@ -3798,6 +5383,68 @@ type UpdateCiipApplicationWizardPayload {
   ): CiipApplicationWizardsEdge
 }
 
+"""All input for the `updateFacilityByRowId` mutation."""
+input UpdateFacilityByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Facility` being updated.
+  """
+  facilityPatch: FacilityPatch!
+
+  """unique id for the facility"""
+  rowId: Int!
+}
+
+"""All input for the `updateFacility` mutation."""
+input UpdateFacilityInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Facility` to be updated.
+  """
+  id: ID!
+
+  """
+  An object where the defined keys will be set on the `Facility` being updated.
+  """
+  facilityPatch: FacilityPatch!
+}
+
+"""The output of our update `Facility` mutation."""
+type UpdateFacilityPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Facility` that was updated by this mutation."""
+  facility: Facility
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Organisation` that is related to this `Facility`."""
+  organisationByOrganisationId: Organisation
+
+  """An edge for our `Facility`. May be used by Relay 1."""
+  facilityEdge(
+    """The method to use when ordering `Facility`."""
+    orderBy: [FacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FacilitiesEdge
+}
+
 """All input for the `updateFormJsonByRowId` mutation."""
 input UpdateFormJsonByRowIdInput {
   """
@@ -3916,6 +5563,65 @@ type UpdateFormResultPayload {
   ): FormResultsEdge
 }
 
+"""All input for the `updateOrganisationByRowId` mutation."""
+input UpdateOrganisationByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Organisation` being updated.
+  """
+  organisationPatch: OrganisationPatch!
+
+  """unique if for the organisation"""
+  rowId: Int!
+}
+
+"""All input for the `updateOrganisation` mutation."""
+input UpdateOrganisationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Organisation` to be updated.
+  """
+  id: ID!
+
+  """
+  An object where the defined keys will be set on the `Organisation` being updated.
+  """
+  organisationPatch: OrganisationPatch!
+}
+
+"""The output of our update `Organisation` mutation."""
+type UpdateOrganisationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Organisation` that was updated by this mutation."""
+  organisation: Organisation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Organisation`. May be used by Relay 1."""
+  organisationEdge(
+    """The method to use when ordering `Organisation`."""
+    orderBy: [OrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): OrganisationsEdge
+}
+
 """All input for the `updateProductByRowId` mutation."""
 input UpdateProductByRowIdInput {
   """
@@ -4011,6 +5717,73 @@ input UpdateUserInput {
   userPatch: UserPatch!
 }
 
+"""All input for the `updateUserOrganisationByRowId` mutation."""
+input UpdateUserOrganisationByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `UserOrganisation` being updated.
+  """
+  userOrganisationPatch: UserOrganisationPatch!
+
+  """unique id of the row"""
+  rowId: Int!
+}
+
+"""All input for the `updateUserOrganisation` mutation."""
+input UpdateUserOrganisationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `UserOrganisation` to be updated.
+  """
+  id: ID!
+
+  """
+  An object where the defined keys will be set on the `UserOrganisation` being updated.
+  """
+  userOrganisationPatch: UserOrganisationPatch!
+}
+
+"""The output of our update `UserOrganisation` mutation."""
+type UpdateUserOrganisationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UserOrganisation` that was updated by this mutation."""
+  userOrganisation: UserOrganisation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `UserOrganisation`."""
+  userByUserId: User
+
+  """
+  Reads a single `Organisation` that is related to this `UserOrganisation`.
+  """
+  organisationByOrganisationId: Organisation
+
+  """An edge for our `UserOrganisation`. May be used by Relay 1."""
+  userOrganisationEdge(
+    """The method to use when ordering `UserOrganisation`."""
+    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UserOrganisationsEdge
+}
+
 """The output of our update `User` mutation."""
 type UpdateUserPayload {
   """
@@ -4043,6 +5816,9 @@ type User implements Node {
   """Unique ID for the user"""
   rowId: Int!
 
+  """Universally Unique ID for the user used for auth"""
+  uuid: UUID
+
   """User's first name"""
   firstName: String
 
@@ -4051,6 +5827,47 @@ type User implements Node {
 
   """User's email address"""
   emailAddress: String
+
+  """The date the user was updated"""
+  createdAt: Datetime!
+
+  """The person who updated the user"""
+  createdBy: String
+
+  """The date the user was updated"""
+  updatedAt: Datetime!
+
+  """The person who updated the user"""
+  updatedBy: String
+
+  """Reads and enables pagination through a set of `UserOrganisation`."""
+  userOrganisationsByUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UserOrganisation`."""
+    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserOrganisationCondition
+  ): UserOrganisationsConnection!
 }
 
 """
@@ -4060,6 +5877,9 @@ input UserCondition {
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 
+  """Checks for equality with the object’s `uuid` field."""
+  uuid: UUID
+
   """Checks for equality with the object’s `firstName` field."""
   firstName: String
 
@@ -4068,6 +5888,18 @@ input UserCondition {
 
   """Checks for equality with the object’s `emailAddress` field."""
   emailAddress: String
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
 }
 
 """An input for mutations affecting `User`"""
@@ -4075,6 +5907,9 @@ input UserInput {
   """Unique ID for the user"""
   rowId: Int!
 
+  """Universally Unique ID for the user used for auth"""
+  uuid: UUID
+
   """User's first name"""
   firstName: String
 
@@ -4083,6 +5918,124 @@ input UserInput {
 
   """User's email address"""
   emailAddress: String
+
+  """The date the user was updated"""
+  createdAt: Datetime
+
+  """The person who updated the user"""
+  createdBy: String
+
+  """The date the user was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the user"""
+  updatedBy: String
+}
+
+type UserOrganisation implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """unique id of the row"""
+  rowId: Int!
+
+  """foreign key that references the user table"""
+  userId: Int!
+
+  """foreign key that references the organisation table"""
+  organisationId: Int!
+
+  """Reads a single `User` that is related to this `UserOrganisation`."""
+  userByUserId: User
+
+  """
+  Reads a single `Organisation` that is related to this `UserOrganisation`.
+  """
+  organisationByOrganisationId: Organisation
+}
+
+"""
+A condition to be used against `UserOrganisation` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input UserOrganisationCondition {
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: Int
+
+  """Checks for equality with the object’s `organisationId` field."""
+  organisationId: Int
+}
+
+"""An input for mutations affecting `UserOrganisation`"""
+input UserOrganisationInput {
+  """unique id of the row"""
+  rowId: Int!
+
+  """foreign key that references the user table"""
+  userId: Int!
+
+  """foreign key that references the organisation table"""
+  organisationId: Int!
+}
+
+"""
+Represents an update to a `UserOrganisation`. Fields that are set will be updated.
+"""
+input UserOrganisationPatch {
+  """unique id of the row"""
+  rowId: Int
+
+  """foreign key that references the user table"""
+  userId: Int
+
+  """foreign key that references the organisation table"""
+  organisationId: Int
+}
+
+"""A connection to a list of `UserOrganisation` values."""
+type UserOrganisationsConnection {
+  """A list of `UserOrganisation` objects."""
+  nodes: [UserOrganisation]!
+
+  """
+  A list of edges which contains the `UserOrganisation` and cursor to aid in pagination.
+  """
+  edges: [UserOrganisationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `UserOrganisation` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `UserOrganisation` edge in the connection."""
+type UserOrganisationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `UserOrganisation` at the end of the edge."""
+  node: UserOrganisation
+}
+
+"""Methods to use when ordering `UserOrganisation`."""
+enum UserOrganisationsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  ORGANISATION_ID_ASC
+  ORGANISATION_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
 }
 
 """Represents an update to a `User`. Fields that are set will be updated."""
@@ -4090,6 +6043,9 @@ input UserPatch {
   """Unique ID for the user"""
   rowId: Int
 
+  """Universally Unique ID for the user used for auth"""
+  uuid: UUID
+
   """User's first name"""
   firstName: String
 
@@ -4098,6 +6054,18 @@ input UserPatch {
 
   """User's email address"""
   emailAddress: String
+
+  """The date the user was updated"""
+  createdAt: Datetime
+
+  """The person who updated the user"""
+  createdBy: String
+
+  """The date the user was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the user"""
+  updatedBy: String
 }
 
 """A connection to a list of `User` values."""
@@ -4131,12 +6099,27 @@ enum UsersOrderBy {
   NATURAL
   ID_ASC
   ID_DESC
+  UUID_ASC
+  UUID_DESC
   FIRST_NAME_ASC
   FIRST_NAME_DESC
   LAST_NAME_ASC
   LAST_NAME_DESC
   EMAIL_ADDRESS_ASC
   EMAIL_ADDRESS_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
+
+"""
+A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
+"""
+scalar UUID
