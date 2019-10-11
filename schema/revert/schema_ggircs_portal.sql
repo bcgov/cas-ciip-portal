@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:schema_ggircs_portal from pg
 
-BEGIN;
+begin;
 
 drop schema ggircs_portal;
 
-COMMIT;
+commit;

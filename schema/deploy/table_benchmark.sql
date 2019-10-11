@@ -1,29 +1,34 @@
 -- Deploy ggircs-portal:table_benchmark to pg
 -- requires: table_benchmark
 
-BEGIN;
+begin;
 
 create table ggircs_portal.benchmark (
   id serial not null,
   product_id int not null references ggircs_portal.product(id),
   benchmark int not null,
   eligibility_threshold int not null,
-  start_date TIMESTAMP WITH TIME ZONE,
-  end_date TIMESTAMP WITH TIME ZONE,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  start_date timestamp with time zone,
+  end_date timestamp with time zone,
+  created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
-  updated_at TIMESTAMP WITH TIME ZONE,
+  updated_at timestamp with time zone not null default now(),
   updated_by varchar(1000),
-  deleted_at TIMESTAMP WITH TIME ZONE,
+  deleted_at timestamp with time zone,
   deleted_by varchar(1000)
 );
 
+create trigger _100_timestamps
+  before insert or update on ggircs_portal.benchmark
+  for each row
+  execute procedure ggircs_portal.update_timestamps();
+
 create unique index benchmark_id_uindex
-	on ggircs_portal.benchmark (id);
+  on ggircs_portal.benchmark (id);
 
 alter table ggircs_portal.benchmark
-	add constraint benchmark_pk
-		primary key (id);
+  add constraint benchmark_pk
+    primary key (id);
 
 comment on column ggircs_portal.benchmark.id is 'Unique ID for the benchmark';
 comment on column ggircs_portal.benchmark.product_id is 'Foreign key to the product';
@@ -33,8 +38,9 @@ comment on column ggircs_portal.benchmark.start_date is 'The date when this benc
 comment on column ggircs_portal.benchmark.end_date is 'The date when this benchmark became/becomes inactive';
 comment on column ggircs_portal.benchmark.created_at is 'Creation date of row';
 comment on column ggircs_portal.benchmark.created_by is 'Creator of row';
-comment on column ggircs_portal.benchmark.updated_at is 'Deletion date of row';
-comment on column ggircs_portal.benchmark.updated_by is 'The user who deleted the row';
+comment on column ggircs_portal.benchmark.updated_at is 'Last update date of row';
+comment on column ggircs_portal.benchmark.updated_by is 'The user who last updated the row';
+comment on column ggircs_portal.benchmark.deleted_at is 'Deletion date of row';
+comment on column ggircs_portal.benchmark.deleted_by is 'The user who deleted the row';
 
-
-COMMIT;
+commit;

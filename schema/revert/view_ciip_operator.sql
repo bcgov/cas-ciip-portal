@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:view_ciip_operator from pg
 
-BEGIN;
+begin;
 
 drop view ggircs_portal.ciip_operator;
 
-COMMIT;
+commit;

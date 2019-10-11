@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:table_user from pg
 
-BEGIN;
+begin;
 
-drop table  ggircs_portal.user;
+drop table ggircs_portal.user;
 
-COMMIT;
+commit;

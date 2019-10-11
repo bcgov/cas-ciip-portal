@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:table_benchmark from pg
 
-BEGIN;
+begin;
 
 drop table ggircs_portal.benchmark;
 
-COMMIT;
+commit;
