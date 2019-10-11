@@ -32,5 +32,4 @@ function_get_swrs_emission_data 2019-10-07T23:36:44Z Hamza Javed <hamza@button.i
 function_get_swrs_fuel_data 2019-10-08T16:31:12Z Hamza Javed <hamza@button.is> # Get fuel data from swrs
 table_organisation [schema_ggircs_portal] 2019-10-11T18:45:40Z Hamza Javed <hamza@button.is> # The organisation data for CIIP
 table_user_organisation [schema_ggircs_portal table_user table_organisation] 2019-10-11T18:46:57Z Hamza Javed <hamza@button.is> # Through table for Users and Organisations with a many to many relationship
-table_facility [schema_ggircs_portal] 2019-10-11T18:47:49Z Hamza Javed <hamza@button.is> # Facility data for CIIP
-table_organisation_facility [schema_ggircs_portal table_organisation table_facility] 2019-10-11T18:48:34Z Hamza Javed <hamza@button.is> # Through table for organisation and their facilities (1 to many)
+table_facility [schema_ggircs_portal table_organisation] 2019-10-11T18:47:49Z Hamza Javed <hamza@button.is> # Facility data for CIIP
