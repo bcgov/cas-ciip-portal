@@ -3709,6 +3709,7 @@ type Mutation {
     """
     input: UpdateUserOrganisationByRowIdInput!
   ): UpdateUserOrganisationPayload
+
   """Deletes a single `Application` using its globally unique id."""
   deleteApplication(
     """
@@ -5171,8 +5172,6 @@ type Query implements Node {
   benchmarkByRowId(rowId: Int!): Benchmark
   ciipApplicationByRowId(rowId: Int!): CiipApplication
   ciipApplicationWizardByFormId(formId: Int!): CiipApplicationWizard
-  facilityByRowId(rowId: Int!): Facility
-  ciipProductionByRowId(rowId: BigInt!): CiipProduction
   ciipCertifierByRowId(rowId: Int!): CiipCertifier
   ciipContactByRowId(rowId: Int!): CiipContact
   ciipElectricityAndHeatByRowId(rowId: Int!): CiipElectricityAndHeat
@@ -5180,6 +5179,7 @@ type Query implements Node {
   ciipFuelByRowId(rowId: Int!): CiipFuel
   ciipOperatorByRowId(rowId: Int!): CiipOperator
   ciipProductionByRowId(rowId: Int!): CiipProduction
+  facilityByRowId(rowId: Int!): Facility
   formJsonByRowId(rowId: Int!): FormJson
   formResultByRowId(rowId: Int!): FormResult
   organisationByRowId(rowId: Int!): Organisation
@@ -5443,11 +5443,6 @@ type Query implements Node {
     id: ID!
   ): CiipApplicationWizard
 
-  """Reads a single `Facility` using its globally unique `ID`."""
-  facility(
-    """The globally unique `ID` to be used in selecting a single `Facility`."""
-    id: ID!
-  ): Facility
   """Reads a single `CiipCertifier` using its globally unique `ID`."""
   ciipCertifier(
     """
@@ -5503,6 +5498,12 @@ type Query implements Node {
     """
     id: ID!
   ): CiipProduction
+
+  """Reads a single `Facility` using its globally unique `ID`."""
+  facility(
+    """The globally unique `ID` to be used in selecting a single `Facility`."""
+    id: ID!
+  ): Facility
 
   """Reads a single `FormJson` using its globally unique `ID`."""
   formJson(
