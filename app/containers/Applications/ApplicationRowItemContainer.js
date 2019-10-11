@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
+import Link from 'next/link';
 
 const ApplicationRowItemContainer = props => {
   const {ciipApplication} = props;
@@ -10,8 +11,6 @@ const ApplicationRowItemContainer = props => {
     declined: 'danger',
     approved: 'success'
   };
-
-  const applicationDetails = `/application-details?application_id=${ciipApplication.rowId}&reportingyear=${ciipApplication.reportingYear}&bcghgid=${ciipApplication.bcghgid}`;
 
   return (
     <tr>
@@ -29,9 +28,18 @@ const ApplicationRowItemContainer = props => {
         </Badge>
       </td>
       <td>
-        <Button href={applicationDetails} target="_blank" variant="primary">
-          View Application
-        </Button>
+        <Link
+          href={{
+            pathname: '/application-details',
+            query: {
+              applicationId: ciipApplication.rowId,
+              reportingYear: ciipApplication.reportingYear,
+              bcghgid: ciipApplication.bcghgid
+            }
+          }}
+        >
+          <Button variant="primary">View Application</Button>
+        </Link>
       </td>
     </tr>
   );

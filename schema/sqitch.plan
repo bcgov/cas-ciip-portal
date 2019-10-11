@@ -6,7 +6,8 @@ schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a 
 function_update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
 table_user [schema_ggircs_portal function_update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
 table_product [schema_ggircs_portal function_update_timestamps] 2019-08-06T20:15:37Z Hamza Javed <hamza@button.is> # A table for adding products (for benchmarks)
-table_benchmark [schema_ggircs_portal function_update_timestamps table_product] 2019-08-06T20:25:30Z Hamza Javed <hamza@button.is> # A table for Benchmarks and Eligibility Thresholds for products
+table_benchmark [table_product function_update_timestamps] 2019-08-06T20:25:30Z Hamza Javed <hamza@button.is> # A table for Benchmarks and Eligibility Thresholds for products
+table_application [schema_ggircs_portal function_update_timestamps] 2019-10-11T18:09:42Z Dylan Leard <dylan@button.is> # Application table
 table_form_json [schema_ggircs_portal function_update_timestamps] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
 table_form_result [schema_ggircs_portal function_update_timestamps table_form_json table_user] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
 table_application_status [schema_ggircs_portal function_update_timestamps] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application_status to schema ggircs_portal

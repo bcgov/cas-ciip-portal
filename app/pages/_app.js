@@ -10,7 +10,6 @@ export default class App extends NextApp {
     const {variables = {}} = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
-
     try {
       if (initEnvironment && Component.query) {
         const {environment, relaySSR} = initEnvironment();
@@ -32,7 +31,7 @@ export default class App extends NextApp {
   };
 
   render() {
-    const {Component, variables = {}, relayData} = this.props;
+    const {Component, variables = {}, router = {}, relayData} = this.props;
     const environment = createEnvironment(
       relayData,
       JSON.stringify({
@@ -40,16 +39,16 @@ export default class App extends NextApp {
         variables
       })
     );
-
     return (
       <ErrorBoundary>
         <QueryRenderer
           environment={environment}
           query={Component.query}
-          variables={variables}
+          variables={{...router.query, ...variables}}
           render={({error, props}) => {
             if (error) return <div>{error.message}</div>;
-            if (props) return <Component {...props} />;
+            if (props)
+              return <Component {...props} router={this.props.router} />;
             return <div>Loading</div>;
           }}
         />

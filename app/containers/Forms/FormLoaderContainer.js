@@ -87,42 +87,46 @@ const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
       }
     }
   `;
+
+  // TODO(Dylan): This block of code commented out until we figure out how formResults & Applications are being connected.
+  // Should be done transactionally as a stored procedure once a flow has been established
+
   // Mutation: stores a status along with the form result
-  const createApplicationStatus = graphql`
-    mutation FormLoaderContainerApplicationStatusMutation(
-      $input: CreateApplicationStatusInput!
-    ) {
-      createApplicationStatus(input: $input) {
-        applicationStatus {
-          rowId
-        }
-      }
-    }
-  `;
+  // const createApplicationStatus = graphql`
+  //   mutation FormLoaderContainerApplicationStatusMutation(
+  //     $input: CreateApplicationStatusInput!
+  //   ) {
+  //     createApplicationStatus(input: $input) {
+  //       applicationStatus {
+  //         rowId
+  //       }
+  //     }
+  //   }
+  // `;
 
   // Function: store the application status
-  const storeApplicationStatus = resultId => {
-    const variables = {
-      input: {
-        applicationStatus: {
-          applicationStatus: 'pending',
-          formResultId: resultId
-        }
-      }
-    };
+  // const storeApplicationStatus = resultId => {
+  //   const variables = {
+  //     input: {
+  //       applicationStatus: {
+  //         applicationStatus: 'pending',
+  //         formResultId: resultId
+  //       }
+  //     }
+  //   };
 
-    const mutation = createApplicationStatus;
-    commitMutation(environment, {
-      mutation,
-      variables,
-      onCompleted: response => {
-        console.log(response);
-        console.log('Store Application Status Response received from server.');
-        console.log('Application Status Created.');
-      },
-      onError: err => console.error(err)
-    });
-  };
+  //   const mutation = createApplicationStatus;
+  //   commitMutation(environment, {
+  //     mutation,
+  //     variables,
+  //     onCompleted: response => {
+  //       console.log(response);
+  //       console.log('Store Application Status Response received from server.');
+  //       console.log('Application Status Created.');
+  //     },
+  //     onError: err => console.error(err)
+  //   });
+  // };
 
   // Function: store the form result
   const storeResult = formResult => {

@@ -9,6 +9,7 @@ import {
   Form,
   Table
 } from 'react-bootstrap';
+import DropdownMenuItemComponent from '../../components/DropdownMenuItemComponent';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
 const ApplicationListContainer = props => {
@@ -33,6 +34,14 @@ const ApplicationListContainer = props => {
     props.relay.refetch(refetchVariables);
   });
 
+  const dropdownSortItems = [
+    {eventKey: 'id', title: 'Application ID'},
+    {eventKey: 'operator_name', title: 'Operator Name'},
+    {eventKey: 'facility_name', title: 'Facility Name'},
+    {eventKey: 'submission_date', title: 'Submission Date'},
+    {eventKey: 'application_status', title: 'Status'}
+  ];
+
   return (
     <>
       <Container style={{padding: 10, background: '#dee2e6'}}>
@@ -47,7 +56,6 @@ const ApplicationListContainer = props => {
         </Row>
         <Row>
           <Col md={2}>
-            {/* TODO: Create a dropdown component file to be re-used? This is repeated below */}
             <Dropdown style={{width: '100%'}}>
               <Dropdown.Toggle
                 style={{width: '100%'}}
@@ -57,41 +65,16 @@ const ApplicationListContainer = props => {
                 {orderByDisplay}
               </Dropdown.Toggle>
               <Dropdown.Menu style={{width: '100%'}}>
-                <Dropdown.Item
-                  id="sortApplications"
-                  eventKey="id"
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  Application ID
-                </Dropdown.Item>
-                <Dropdown.Item
-                  id="sortApplications"
-                  eventKey="operator_name"
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  Operator Name
-                </Dropdown.Item>
-                <Dropdown.Item
-                  id="sortApplications"
-                  eventKey="facility_name"
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  Facility Name
-                </Dropdown.Item>
-                <Dropdown.Item
-                  id="sortApplications"
-                  eventKey="submission_date"
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  Submission Date
-                </Dropdown.Item>
-                <Dropdown.Item
-                  id="sortApplications"
-                  eventKey="application_status"
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  Status
-                </Dropdown.Item>
+                {dropdownSortItems.map(item => (
+                  <DropdownMenuItemComponent
+                    key={item.eventKey}
+                    itemId="sortApplications"
+                    itemEventKey={item.eventKey}
+                    itemFunc={(eventKey, event) => handleEvent(event, eventKey)}
+                    itemTitle={item.title}
+                  />
+                ))}
+                ;
               </Dropdown.Menu>
             </Dropdown>
           </Col>
@@ -116,48 +99,18 @@ const ApplicationListContainer = props => {
                 {searchDisplay}
               </Dropdown.Toggle>
               <Dropdown.Menu style={{width: '100%'}}>
-                <Dropdown.Item
-                  id="applySearchField"
-                  eventKey={null}
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  No Filter
-                </Dropdown.Item>
-                <Dropdown.Item
-                  id="applySearchField"
-                  eventKey="id"
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  Application ID
-                </Dropdown.Item>
-                <Dropdown.Item
-                  id="applySearchField"
-                  eventKey="operator_name"
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  Operator Name
-                </Dropdown.Item>
-                <Dropdown.Item
-                  id="applySearchField"
-                  eventKey="facility_name"
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  Facility Name
-                </Dropdown.Item>
-                <Dropdown.Item
-                  id="applySearchField"
-                  eventKey="submission_date"
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  Submission Date
-                </Dropdown.Item>
-                <Dropdown.Item
-                  id="applySearchField"
-                  eventKey="application_status"
-                  onSelect={(eventKey, event) => handleEvent(event, eventKey)}
-                >
-                  Status
-                </Dropdown.Item>
+                {[
+                  {eventKey: null, title: 'No Filter'},
+                  ...dropdownSortItems
+                ].map(item => (
+                  <DropdownMenuItemComponent
+                    key={item.eventKey}
+                    itemId="applySearchField"
+                    itemEventKey={item.eventKey}
+                    itemFunc={(eventKey, event) => handleEvent(event, eventKey)}
+                    itemTitle={item.title}
+                  />
+                ))}
               </Dropdown.Menu>
             </Dropdown>
           </Col>
@@ -228,6 +181,7 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
+              id
               ...ApplicationRowItemContainer_ciipApplication
             }
           }

@@ -3,34 +3,42 @@
 
 begin;
 
-create view ggircs_portal.ciip_certifier as (
-  with x as (
+  create view ggircs_portal.ciip_certifier as (
+    with x as (
+      select
+        form_result.application_id as id,
+        json_array_elements((form_result -> 'certifiying_official')::json) as certifier_data
+      from ggircs_portal.form_result
+      join ggircs_portal.form_json
+      on form_result.form_id = form_json.id
+      and form_json.name = 'Statement of Certification'
+    )
     select
-      cast(id as text) as id,
-      json_array_elements((form_result -> 'certifiying_official')::json) as certifier_data
-    from ggircs_portal.form_result
-  )
-  select
-     x.id as application_id,
-     x.certifier_data ->> 'fax' as fax,
-     x.certifier_data ->> 'phone' as phone,
-     x.certifier_data ->> 'position' as position,
-     x.certifier_data ->> 'last_name' as last_name,
-     x.certifier_data ->> 'first_name' as first_name,
-     x.certifier_data ->> 'email_address' as email_address,
-     x.certifier_data ->> 'certifier_name' as certifier_name,
-     (x.certifier_data ->> 'date')::date as certification_date
-     -- add certifier address to address view
-  from x
-);
+       x.id,
+       x.certifier_data ->> 'fax' as fax,
+       x.certifier_data ->> 'phone' as phone,
+       x.certifier_data ->> 'position' as position,
+       x.certifier_data ->> 'last_name' as last_name,
+       x.certifier_data ->> 'first_name' as first_name,
+       x.certifier_data ->> 'email_address' as email_address,
+       x.certifier_data ->> 'certifier_name' as certifier_name,
+       (x.certifier_data ->> 'date')::date as certification_date
+       -- add certifier address to address view
+    from x
+ );
 
-comment on view ggircs_portal.ciip_certifier is 'the view for certifier data reported in the application';
-comment on column ggircs_portal.ciip_certifier.application_id is 'the application id used for reference and join';
-comment on column ggircs_portal.ciip_certifier.fax is 'the certifier fax';
-comment on column ggircs_portal.ciip_certifier.phone is 'the certifier phone';
-comment on column ggircs_portal.ciip_certifier.position is 'the certifier position';
-comment on column ggircs_portal.ciip_certifier.last_name is 'the last name of the certifier';
-comment on column ggircs_portal.ciip_certifier.first_name is 'the first name of the certifier';
-comment on column ggircs_portal.ciip_certifier.email_address is 'the email address of the certifier';
+-- Postgraphile smart-comments: These comments allow Postgraphile to infer relations between views
+-- as though they were tables (ie faking a primary key in order to create an ID! type)
+comment on view ggircs_portal.ciip_certifier is E'@primaryKey id';
+
+-- TODO(Dylan): Regular comments are interfering with postgraphile smart comments.
+-- comment on view ggircs_portal.ciip_certifier is 'The view for certifier data reported in the application';
+-- comment on column ggircs_portal.ciip_certifier.application_id is 'The application id used for reference and join';
+-- comment on column ggircs_portal.ciip_certifier.fax is 'The certifier fax';
+-- comment on column ggircs_portal.ciip_certifier.phone is 'The certifier phone';
+-- comment on column ggircs_portal.ciip_certifier.position is 'The certifier position';
+-- comment on column ggircs_portal.ciip_certifier.last_name is 'The last name of the certifier';
+-- comment on column ggircs_portal.ciip_certifier.first_name is 'The first name of the certifier';
+-- comment on column ggircs_portal.ciip_certifier.email_address is 'The email address of the certifier';
 
 commit;

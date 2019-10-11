@@ -1,12 +1,22 @@
 import React, {Component} from 'react';
 import propTypes from 'prop-types';
-import MathJax from 'react-mathjax2';
 
+// TODO: does this need to stay as a class component?
 class BenchmarkChart extends Component {
   constructor(props) {
     super(props);
     this.canvasRef = React.createRef();
   }
+
+  // Proptype Validations
+  static propTypes = (BenchmarkChart.propTypes = {
+    quantity: propTypes.number,
+    benchmark: propTypes.number,
+    eligibilityThreshold: propTypes.number,
+    carbonTaxPaid: propTypes.number,
+    incentiveSegment: propTypes.number,
+    fuelPercentage: propTypes.number
+  }.isRequired);
 
   componentDidMount() {
     const canvas = this.canvasRef.current;
@@ -47,15 +57,5 @@ class BenchmarkChart extends Component {
     );
   }
 }
-
-// Proptype Validations
-BenchmarkChart.propTypes = {
-  quantity: propTypes.number,
-  benchmark: propTypes.number,
-  eligibilityThreshold: propTypes.number,
-  carbonTaxPaid: propTypes.number,
-  incentiveSegment: propTypes.number,
-  fuelPercentage: propTypes.number
-};
 
 export default BenchmarkChart;

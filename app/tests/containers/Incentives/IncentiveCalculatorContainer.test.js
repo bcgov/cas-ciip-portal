@@ -1,6 +1,6 @@
 import React from 'react';
 import {wait, render} from '@testing-library/react';
-import IncentiveCalculator from '../../../containers/Incentives/IncentiveCalculator';
+import IncentiveCalculatorContainer from '../../../containers/Incentives/IncentiveCalculatorContainer';
 import {queryMock} from '../../../lib/relayQueryMock';
 
 let allProductsMockData;
@@ -137,7 +137,9 @@ describe('Incentive Calculator', () => {
   it('should render reported products', async () => {
     mockQueries();
     // This will replace the query in ProductList with the one above and wait till Milk is rendered
-    const r = render(<IncentiveCalculator bcghgid="1" reportingYear="2013" />);
+    const r = render(
+      <IncentiveCalculatorContainer bcghgid="1" reportingYear="2013" />
+    );
     await wait(() => r.getAllByText('Milk'));
     expect(r).toMatchSnapshot();
   });
@@ -145,7 +147,7 @@ describe('Incentive Calculator', () => {
   /* It('should calculate the correct incentive', async () => {
         mockQueries();
         // This will replace the query in ProductList with the one above and wait till Milk is rendered
-        const r = render(<IncentiveCalculator />);
+        const r = render(<IncentiveCalculatorContainer />);
         await wait(() => r.getAllByText("Milk"));
         expect(r).toMatchSnapshot();
     }); */
