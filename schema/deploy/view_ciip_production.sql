@@ -6,19 +6,27 @@ begin;
     with x as (
       select * from
       (select
-         cast(id as text) as id,
+         cast(form_result.id as text) as id,
+         form_result.application_id,
          json_array_elements((form_result -> 'module_throughput_and_production_data')::json) as production_data
-      from ggircs_portal.form_result) as A
+      from ggircs_portal.form_result
+      join ggircs_portal.form_json
+      on form_result.form_id = form_json.id
+      and form_json.name = 'Production') as A
       inner join
       (select
-         cast(id as text) as fid,
+         cast(form_result.id as text) as fid,
+         form_result.application_id as application_id_facility,
          json_array_elements((form_result -> 'facility_information')::json) as facility_data
-      from ggircs_portal.form_result) as B
-      on A.id = B.fid
+      from ggircs_portal.form_result
+      join ggircs_portal.form_json
+      on form_result.form_id = form_json.id
+      and form_json.name = 'Admin') as B
+      on A.application_id = B.application_id_facility
     )
     select
-       row_number() over (Partition by true) as id,
-       x.id as application_id,
+       x.id,
+       x.application_id,
        (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
        (x.production_data ->> 'quantity')::numeric as quantity,
        x.production_data ->> 'processing_unit' as product,

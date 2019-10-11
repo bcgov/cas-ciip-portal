@@ -8,16 +8,21 @@ create view ggircs_portal.ciip_application as (
     with x as (
       select
         cast(form_result.id as text) as id,
+        form_result.application_id,
         json_array_elements((form_result -> 'facility_information')::json) as facility_data,
         json_array_elements((form_result -> 'reporting_operation_information')::json) as operator_data,
         submission_date,
         application_status
       from ggircs_portal.form_result
       join ggircs_portal.application_status
-      on form_result.id = application_status.form_result_id
+      on form_result.application_id = application_status.application_id
+      join ggircs_portal.form_json
+      on form_result.form_id = form_json.id
+      and form_json.name = 'Admin'
     )
     select
        x.id,
+       x.application_id,
        x.facility_data ->> 'facility_name' as facility_name,
        x.operator_data ->> 'operator_name' as operator_name,
        x.submission_date as submission_date,

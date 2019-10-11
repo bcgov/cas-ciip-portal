@@ -6,6 +6,7 @@ begin;
 
 create table ggircs_portal.application_status (
     id serial not null,
+    application_id int not null references ggircs_portal.application(id),
     application_status varchar(1000),
     created_at timestamp with time zone not null default now(),
     created_by varchar(1000),
@@ -27,7 +28,8 @@ alter table ggircs_portal.application_status
     primary key (id);
 
 comment on table ggircs_portal.application_status is 'The application status data';
-comment on column ggircs_portal.application_status.id is 'The application id used for reference and join';
+comment on column ggircs_portal.application_status.id is 'The id used for reference and join';
+comment on column ggircs_portal.application_status.application_id is 'The foreign key to application used for reference and join';
 comment on column ggircs_portal.application_status.application_status is 'The application status';
 comment on column ggircs_portal.application_status.created_at is 'The date the application status was updated';
 comment on column ggircs_portal.application_status.created_by is 'The person who updated the application status';
