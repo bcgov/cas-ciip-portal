@@ -7,7 +7,7 @@
       "anyof",
       ["match", "**/*.sql", "wholename"]
     ],
-    "command": ["/usr/bin/env", "bash", "-c", "sqitch rebase -y 1>../log/sqitch.stdout.log 2>../log/sqitch.stderr.log; sqitch status > ../log/sqitch.status"],
+    "command": ["/usr/bin/env", "bash", "-c", "(sleep 1; until psql -c 'select false' > /dev/null; do sleep 1; done; sqitch rebase -y 1>../log/sqitch.stdout.log 2>../log/sqitch.stderr.log; sqitch status > ../log/sqitch.status) &"],
     "append_files": false
   }
 ]

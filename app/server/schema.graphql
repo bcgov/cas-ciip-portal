@@ -2450,11 +2450,25 @@ type EmissionDatum {
 }
 
 type EstimatedCarbonTaxPaid {
+  activityId: Int
   bcghgid: String
+  calculatedCarbonTax: BigFloat
+  emissionId: Int
   facilityId: Int
+  flatCalculation: String
+  fuelAmount: BigFloat
+  fuelCharge: BigFloat
+  fuelId: Int
+  fuelType: String
+  naicsId: Int
+  organisationId: Int
+  proRatedCalculatedCarbonTax: BigFloat
+  proRatedCalculation: String
+  proRatedFuelCharge: BigFloat
   reportId: Int
   reportingPeriodDuration: String
-  rowId: Int
+  unitConversionFactor: Int
+  year: Int
 }
 
 """
@@ -2462,11 +2476,52 @@ A condition to be used against `EstimatedCarbonTaxPaid` object types. All fields
 are tested for equality and combined with a logical ‘and.’
 """
 input EstimatedCarbonTaxPaidCondition {
+  """Checks for equality with the object’s `activityId` field."""
+  activityId: Int
+
   """Checks for equality with the object’s `bcghgid` field."""
   bcghgid: String
 
+  """Checks for equality with the object’s `calculatedCarbonTax` field."""
+  calculatedCarbonTax: BigFloat
+
+  """Checks for equality with the object’s `emissionId` field."""
+  emissionId: Int
+
   """Checks for equality with the object’s `facilityId` field."""
   facilityId: Int
+
+  """Checks for equality with the object’s `flatCalculation` field."""
+  flatCalculation: String
+
+  """Checks for equality with the object’s `fuelAmount` field."""
+  fuelAmount: BigFloat
+
+  """Checks for equality with the object’s `fuelCharge` field."""
+  fuelCharge: BigFloat
+
+  """Checks for equality with the object’s `fuelId` field."""
+  fuelId: Int
+
+  """Checks for equality with the object’s `fuelType` field."""
+  fuelType: String
+
+  """Checks for equality with the object’s `naicsId` field."""
+  naicsId: Int
+
+  """Checks for equality with the object’s `organisationId` field."""
+  organisationId: Int
+
+  """
+  Checks for equality with the object’s `proRatedCalculatedCarbonTax` field.
+  """
+  proRatedCalculatedCarbonTax: BigFloat
+
+  """Checks for equality with the object’s `proRatedCalculation` field."""
+  proRatedCalculation: String
+
+  """Checks for equality with the object’s `proRatedFuelCharge` field."""
+  proRatedFuelCharge: BigFloat
 
   """Checks for equality with the object’s `reportId` field."""
   reportId: Int
@@ -2474,8 +2529,11 @@ input EstimatedCarbonTaxPaidCondition {
   """Checks for equality with the object’s `reportingPeriodDuration` field."""
   reportingPeriodDuration: String
 
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
+  """Checks for equality with the object’s `unitConversionFactor` field."""
+  unitConversionFactor: Int
+
+  """Checks for equality with the object’s `year` field."""
+  year: Int
 }
 
 """A connection to a list of `EstimatedCarbonTaxPaid` values."""
@@ -2508,17 +2566,45 @@ type EstimatedCarbonTaxPaidsEdge {
 
 """Methods to use when ordering `EstimatedCarbonTaxPaid`."""
 enum EstimatedCarbonTaxPaidsOrderBy {
+  ACTIVITY_ID_ASC
+  ACTIVITY_ID_DESC
   BCGHGID_ASC
   BCGHGID_DESC
+  CALCULATED_CARBON_TAX_ASC
+  CALCULATED_CARBON_TAX_DESC
+  EMISSION_ID_ASC
+  EMISSION_ID_DESC
   FACILITY_ID_ASC
   FACILITY_ID_DESC
-  ID_ASC
-  ID_DESC
+  FLAT_CALCULATION_ASC
+  FLAT_CALCULATION_DESC
+  FUEL_AMOUNT_ASC
+  FUEL_AMOUNT_DESC
+  FUEL_CHARGE_ASC
+  FUEL_CHARGE_DESC
+  FUEL_ID_ASC
+  FUEL_ID_DESC
+  FUEL_TYPE_ASC
+  FUEL_TYPE_DESC
+  NAICS_ID_ASC
+  NAICS_ID_DESC
   NATURAL
+  ORGANISATION_ID_ASC
+  ORGANISATION_ID_DESC
+  PRO_RATED_CALCULATED_CARBON_TAX_ASC
+  PRO_RATED_CALCULATED_CARBON_TAX_DESC
+  PRO_RATED_CALCULATION_ASC
+  PRO_RATED_CALCULATION_DESC
+  PRO_RATED_FUEL_CHARGE_ASC
+  PRO_RATED_FUEL_CHARGE_DESC
   REPORT_ID_ASC
   REPORT_ID_DESC
   REPORTING_PERIOD_DURATION_ASC
   REPORTING_PERIOD_DURATION_DESC
+  UNIT_CONVERSION_FACTOR_ASC
+  UNIT_CONVERSION_FACTOR_DESC
+  YEAR_ASC
+  YEAR_DESC
 }
 
 """A connection to a list of `Facility` values."""
