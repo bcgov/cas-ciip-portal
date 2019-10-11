@@ -5,4 +5,4 @@ BEGIN;
 drop function ggircs_portal.get_swrs_fuel_data;
 drop type ggircs_portal.fuel_data;
 
-COMMIT;
+commit;
