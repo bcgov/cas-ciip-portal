@@ -5,4 +5,4 @@ BEGIN;
 drop function ggircs_portal.get_swrs_facility_data;
 drop type ggircs_portal.facility_data;
 
-COMMIT;
+commit;

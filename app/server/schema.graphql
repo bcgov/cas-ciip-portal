@@ -2098,7 +2098,7 @@ type FacilityDatum {
   reportingYear: String
   facilityName: String
   facilityType: String
-  bchghid: String
+  bcghgid: String
   naicsCode: Int
   naicsClassification: String
   latitude: BigFloat
