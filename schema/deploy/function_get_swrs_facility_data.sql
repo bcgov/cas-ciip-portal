@@ -11,7 +11,7 @@ begin;
       reporting_year varchar(1000),
       facility_name varchar(1000),
       facility_type varchar(1000),
-      bchghid varchar(1000),
+      bcghgid varchar(1000),
       naics_code integer,
       naics_classification varchar(1000),
       latitude numeric,
