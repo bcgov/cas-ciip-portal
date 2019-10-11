@@ -3179,6 +3179,7 @@ type FormResult implements Node {
 
   """The person who updated the form"""
   updatedBy: String
+
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
 

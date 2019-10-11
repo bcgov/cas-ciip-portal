@@ -21,11 +21,13 @@ create view ggircs_portal.ciip_application as (
     ),
     y as (
       select
+        form_result.application_id as id,
         json_array_elements((form_result -> 'reporting_operation_information')::json) as operator_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
       and form_json.name = 'Admin')
+
     select
        x.id,
        x.facility_data ->> 'facility_name' as facility_name,
@@ -35,7 +37,7 @@ create view ggircs_portal.ciip_application as (
        x.application_status as application_status,
        '2018' as reporting_year
 
-    from x,y
+    from x,y where x.id = y.id
 );
 -- Postgraphile smart-comments: These comments allow Postgraphile to infer relations between views
 -- as though they were tables (ie faking a primary key in order to create an ID! type)

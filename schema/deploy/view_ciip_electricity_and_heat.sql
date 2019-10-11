@@ -56,7 +56,6 @@ begin;
     from x
     )
  );
->>>>>>> updated the deploy files to receive the application_id foreign key
 
 -- Postgraphile smart-comments: These comments allow Postgraphile to infer relations between views
 -- as though they were tables (ie faking a primary key in order to create an ID! type)
@@ -70,6 +69,3 @@ comment on view ggircs_portal.ciip_electricity_and_heat is E'@primaryKey id';
 -- comment on column ggircs_portal.ciip_electricity_and_heat.generated_onsite is 'The last name of the heat';
 
 commit;
-
-
-
