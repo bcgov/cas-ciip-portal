@@ -12,7 +12,7 @@ create or replace function ggircs_portal.insert_dummy_application_data()
 
   insert into ggircs_portal.product(name, units, state) values ('Flaring, Venting, Fugitives, others', 'm3', 'active'), ('Sales Compression', 'm3', 'active'), ('Dehydration', 'kl', 'active'), ('Inlet Compression', 't', 'active');
   insert into ggircs_portal.benchmark(product_id, benchmark, eligibility_threshold, start_date) values (1, 600, 1500, '2019-09-17 14:49:54.191757-07'), (2, 200, 1000,'2019-09-17 14:49:54.191757-07'), (3, 1200, 5000,'2019-09-17 14:49:54.191757-07'), (4, 5000, 20000,'2019-09-17 14:49:54.191757-07');
-  insert into ggircs_portal.application(id) values (1),(2),(3);
+  insert into ggircs_portal.application(id, facility_id) values (1, 1),(2, 1),(3, 2);
   insert into ggircs_portal.form_result(id, form_id, user_id, application_id, submission_date, form_result)
   values
   (1,3,2,1, '2019-09-17 14:49:54.191757-07', '{"fuels": [{"quantity": 60, "fuel_type": "combusted natural gas", "fuel_units": "m3", "description": "Nulla duis distincti", "methodology": "wci 2.0"}]}'),
