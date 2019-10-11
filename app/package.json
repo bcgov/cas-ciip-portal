@@ -10,6 +10,7 @@
     "prebuild": "npm run relay",
     "build": "next build",
     "start": "NODE_ENV=production node server",
+    "schema": "postgraphile -X -c postgres://localhost/ggircs_dev -s ggircs_portal --export-schema-graphql server/schema.graphql --export-schema-json server/schema.json --classic-ids --sort-export",
     "relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose",
     "format": "xo --fix",
     "lint": "xo",

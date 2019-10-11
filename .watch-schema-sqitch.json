@@ -1,0 +1,13 @@
+[
+  "trigger",
+  "./schema",
+  {
+    "name": "sqitch",
+    "expression": [
+      "anyof",
+      ["match", "**/*.sql", "wholename"]
+    ],
+    "command": ["/usr/bin/env", "bash", "-c", "sqitch rebase -y 1>../log/sqitch.stdout.log 2>../log/sqitch.stderr.log; sqitch status > ../log/sqitch.status"],
+    "append_files": false
+  }
+]

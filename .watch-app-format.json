@@ -1,0 +1,15 @@
+[
+  "trigger",
+  "./app",
+  {
+    "name": "format",
+    "expression": [
+      "anyof",
+      ["match", "**/*.js", "wholename"],
+      ["match", "**/*.json", "wholename"],
+      ["match", "yarn.lock", "wholename"]
+    ],
+    "command": ["/usr/bin/env", "bash", "-c", "yarn run format 1>../log/format.stdout.log 2>../log/format.stderr.log"],
+    "append_files": false
+  }
+]

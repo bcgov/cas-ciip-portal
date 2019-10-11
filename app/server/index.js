@@ -59,7 +59,6 @@ app.prepare().then(() => {
   server.use(
     postgraphile(databaseURL, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
       graphiql: true,
-      exportGqlSchemaPath: schemaPath,
       classicIds: true,
       pgSettings(req) {
         const claims = {};
