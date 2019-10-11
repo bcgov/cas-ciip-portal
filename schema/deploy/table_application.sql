@@ -5,7 +5,7 @@
 -- requires: schema_ggircs_portal
 -- requires: table_form_result
 
-BEGIN;
+begin;
 
 create table ggircs_portal.application (
     id serial primary key
@@ -17,4 +17,4 @@ create unique index application_id_uindex
 comment on table ggircs_portal.application is 'The application data';
 comment on column ggircs_portal.application.id is 'The application id used for reference and join';
 
-COMMIT;
+commit;
