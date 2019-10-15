@@ -36,3 +36,8 @@ function_get_swrs_emission_data 2019-10-07T23:36:44Z Hamza Javed <hamza@button.i
 function_get_swrs_fuel_data 2019-10-08T16:31:12Z Hamza Javed <hamza@button.is> # Get fuel data from swrs
 function_save_product_mutation_chain [table_product table_benchmark] 2019-10-16T19:01:28Z Dylan Leard <dylan@button.is> # Stored procedure to save a product in place of mutation chaining
 function_create_benchmark_mutation_chain [table_benchmark] 2019-10-16T21:52:34Z Dylan Leard <dylan@button.is> # Stored procedure to save a benchmark instead of mutation chaining
+function_application_swrs_organisation_data [table_application function_get_swrs_organisation_data] 2019-10-15T18:10:37Z Matthieu Foucault <matthieu@button.is> # add application_swrs_organisation_data
+function_application_swrs_fuel_data [table_application function_get_swrs_fuel_data] 2019-10-15T18:10:37Z Matthieu Foucault <matthieu@button.is> # add application_swrs_fuel_data
+function_application_swrs_facility_data [table_application function_get_swrs_facility_data] 2019-10-15T18:10:37Z Matthieu Foucault <matthieu@button.is> # add application_swrs_facility_data
+function_application_swrs_emission_data [table_application function_get_swrs_emission_data] 2019-10-15T18:10:37Z Matthieu Foucault <matthieu@button.is> # add application_swrs_emission_data
+function_application_swrs_operator_contact_data [table_application function_get_swrs_operator_contact_data] 2019-10-15T18:10:37Z Matthieu Foucault <matthieu@button.is> # add application_swrs_operator_contact_data

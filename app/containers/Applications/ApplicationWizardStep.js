@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import Form from '../Forms/Form';
 
@@ -9,61 +9,54 @@ import Form from '../Forms/Form';
 const ApplicationWizardStep = ({
   query,
   formId,
+  formName,
   onStepComplete,
   prepopulateFromCiip,
   prepopulateFromSwrs
 }) => {
-  let initialData;
-  if (formId === 1)
-    initialData = {
-      facility_information: [
-        {
-          bcghgid: 17,
-          latitude: 70,
-          longitude: 68,
-          naics_code: 45,
-          nearest_city: 'Eligendi animi faci',
-          facility_name: 'Non esse labore nece',
-          facility_type: 'EIO',
-          facility_description: 'Ipsa ut alias volup',
-          mailing_address_city: 'Ut provident veniam',
-          mailing_address_line_1: 'Consectetur repudia',
-          mailing_address_province: 'Ontario'
-        }
-      ],
-      reporting_operation_information: [
-        {
-          naics_code: 7,
-          duns_number: 2,
-          operator_name: 'Aut irure maxime ut ',
-          operator_trade_name: 'Deleniti magnam id i',
-          mailing_address_city: 'Ad commodo dolore ul',
-          mailing_address_line_1: 'Ipsam alias pariatur',
-          mailing_address_country: 'Dicta sequi eos arc',
-          mailing_address_province: 'Saskatchewan',
-          bc_corporate_registry_number: 30
-        }
-      ],
-      operational_representative_information: [
-        {
-          fax: '+1 (261) 404-7797',
-          phone: '+1 (459) 161-6215',
-          position: 'Voluptates voluptate',
-          last_name: 'Ipsam ut eum reprehe',
-          first_name: 'Voluptatem Illum a',
-          email_address: 'ryjym@mailinator.com',
-          mailing_address_city: 'Accusantium fuga En',
-          mailing_address_line_1: 'Ad non non tempor do',
-          mailing_address_province: 'Saskatchewan'
-        }
-      ]
-    };
+  const [initialData, setInitialData] = useState(null);
+  useEffect(() => {
+    if (!prepopulateFromSwrs) return setInitialData(null);
+    const swrsData = {};
+    switch (formName) {
+      case 'Admin': {
+        const {application} = query;
+        const {edges} = application;
+        const {node} = edges[0];
+        const {
+          operatorName,
+          operatorTradeName,
+          duns,
+          craBusinessNumber,
+          operatorMailingAddress,
+          operatorCity,
+          operatorProvince,
+          operatorPostalCode,
+          operatorCountry
+        } = node.swrsOrganisationData.edges[0].node;
+        const reportingOperationInfo = {
+          operator_name: operatorName,
+          operator_trade_name: operatorTradeName,
+          duns_number: duns
+        };
+        swrsData.reporting_operation_information = [reportingOperationInfo];
+        break;
+      }
+
+      default:
+        setInitialData(null);
+    }
+
+    setInitialData(swrsData);
+  }, [formName, query, prepopulateFromSwrs]);
 
   let initialDataSource;
-  if (prepopulateFromCiip) {
-    initialDataSource = 'the CIIP application you submitted last year';
-  } else if (prepopulateFromSwrs) {
+  if (prepopulateFromSwrs) {
     initialDataSource = 'your last SWRS report';
+  }
+
+  if (prepopulateFromSwrs && !initialData) {
+    return <>Loading data from SWRS</>;
   }
 
   return (
@@ -81,7 +74,89 @@ const ApplicationWizardStep = ({
 export default createFragmentContainer(ApplicationWizardStep, {
   query: graphql`
     fragment ApplicationWizardStep_query on Query
-      @argumentDefinitions(formCondition: {type: "FormJsonCondition"}) {
+      @argumentDefinitions(
+        formCondition: {type: "FormJsonCondition"}
+        applicationCondition: {type: "ApplicationCondition"}
+      ) {
+      application: allApplications(condition: $applicationCondition) {
+        edges {
+          node {
+            swrsEmissionData(reportingYear: "2018") {
+              edges {
+                node {
+                  quantity
+                  calculatedQuantity
+                  emissionCategory
+                  gasType
+                }
+              }
+            }
+            swrsFacilityData(reportingYear: "2018") {
+              edges {
+                node {
+                  facilityName
+                  facilityType
+                  bcghgid
+                  naicsCode
+                  latitude
+                  longitude
+                  facilityMailingAddress
+                  facilityCity
+                  facilityProvince
+                  facilityPostalCode
+                  facilityCountry
+                }
+              }
+            }
+            swrsFuelData(reportingYear: "2018") {
+              edges {
+                node {
+                  fuelType
+                  fuelDescription
+                  fuelUnits
+                  annualFuelAmount
+                  annualWeightedAvgHhv
+                  annualWeightedAvgCarbonContent
+                  alternativeMethodolodyDescription
+                }
+              }
+            }
+            swrsOperatorContactData(reportingYear: "2018") {
+              edges {
+                node {
+                  firstName
+                  lastName
+                  positionTitle
+                  contactType
+                  email
+                  telephone
+                  fax
+                  contactMailingAddress
+                  contactCity
+                  contactProvince
+                  contactPostalCode
+                  contactCountry
+                }
+              }
+            }
+            swrsOrganisationData(reportingYear: "2018") {
+              edges {
+                node {
+                  operatorName
+                  operatorTradeName
+                  duns
+                  craBusinessNumber
+                  operatorMailingAddress
+                  operatorCity
+                  operatorProvince
+                  operatorPostalCode
+                  operatorCountry
+                }
+              }
+            }
+          }
+        }
+      }
       ...Form_query @arguments(condition: $formCondition)
     }
   `

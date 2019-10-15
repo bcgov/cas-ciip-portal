@@ -22,9 +22,12 @@ const ApplicationWizard = ({query}) => {
 
   if (renderFinalPage) return <ApplicationWizardConfirmation />;
 
-  const {formId, prepopulateFromCiip, prepopulateFromSwrs} = wizard.edges[
-    currentStep
-  ].node;
+  const {
+    formId,
+    prepopulateFromCiip,
+    prepopulateFromSwrs,
+    formJsonByFormId: {name}
+  } = wizard.edges[currentStep].node;
 
   return (
     <>
@@ -33,6 +36,7 @@ const ApplicationWizard = ({query}) => {
         formId={formId}
         prepopulateFromCiip={prepopulateFromCiip}
         prepopulateFromSwrs={prepopulateFromSwrs}
+        formName={name}
         onStepComplete={onStepComplete}
       />
     </>
@@ -42,17 +46,27 @@ const ApplicationWizard = ({query}) => {
 export default createFragmentContainer(ApplicationWizard, {
   query: graphql`
     fragment ApplicationWizard_query on Query
-      @argumentDefinitions(formCondition: {type: "FormJsonCondition"}) {
+      @argumentDefinitions(
+        formCondition: {type: "FormJsonCondition"}
+        applicationCondition: {type: "ApplicationCondition"}
+      ) {
       wizard: allCiipApplicationWizards(orderBy: FORM_POSITION_ASC) {
         edges {
           node {
             formId
             prepopulateFromCiip
             prepopulateFromSwrs
+            formJsonByFormId {
+              name
+            }
           }
         }
       }
-      ...ApplicationWizardStep_query @arguments(formCondition: $formCondition)
+      ...ApplicationWizardStep_query
+        @arguments(
+          formCondition: $formCondition
+          applicationCondition: $applicationCondition
+        )
     }
   `
 });

@@ -74,12 +74,16 @@ for equality and combined with a logical ‘and.’
 input ApplicationCondition {
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
+
+  """Checks for equality with the object’s `facilityId` field."""
+  facilityId: Int
 }
 
 """An input for mutations affecting `Application`"""
 input ApplicationInput {
   """The application id used for reference and join"""
   rowId: Int
+  facilityId: Int!
 }
 
 """
@@ -88,6 +92,7 @@ Represents an update to a `Application`. Fields that are set will be updated.
 input ApplicationPatch {
   """The application id used for reference and join"""
   rowId: Int
+  facilityId: Int
 }
 
 """A connection to a list of `Application` values."""
