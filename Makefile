@@ -88,6 +88,8 @@ unwatch:
 	watchman watch-del-all
 	watchman shutdown-server
 	if command -v launchctl; then launchctl unload ~/Library/LaunchAgents/com.github.facebook.watchman.plist; fi
+	kill -9 $(shell cat log/server.pid) || true # stop the watched app server
+	pg_ctl stop || true # stop the watched database server
 
 # TODO: delete this target
 # ...but maybe it's helpful for debugging watchman itself on a mac?

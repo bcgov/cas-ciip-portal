@@ -23,7 +23,7 @@
         ["match", "yarn.lock", "wholename"]
       ]
     ],
-    "command": ["/usr/bin/env", "bash", "-c", "yarn run relay 1>../log/relay.stdout.log 2>../log/relay.stderr.log"],
+    "command": ["/usr/bin/env", "bash", "-c", "yarn run build:relay 1>../log/relay.stdout.log 2>../log/relay.stderr.log"],
     "append_files": false
   }
 ]
