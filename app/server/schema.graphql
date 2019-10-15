@@ -5438,6 +5438,7 @@ type Query implements Node {
     offset: Int
     reportingYear: String
   ): EmissionDataConnection!
+  getSwrsFacilityData(facilityId: Int, reportingYear: String): FacilityDatum
 
   """Reads and enables pagination through a set of `FacilityDatum`."""
   getSwrsFacilityData(
@@ -5484,6 +5485,8 @@ type Query implements Node {
     offset: Int
     reportingYear: String
   ): FuelDataConnection!
+  getSwrsOperatorContactData(facilityId: Int, reportingYear: String): OperatorContactDatum
+  getSwrsOrganisationData(facilityId: Int, reportingYear: String): OrganisationDatum
 
   """Reads and enables pagination through a set of `OperatorContactDatum`."""
   getSwrsOperatorContactData(

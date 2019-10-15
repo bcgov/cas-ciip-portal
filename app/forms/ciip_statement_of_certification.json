@@ -7,7 +7,7 @@
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "certifiying_official",
+          "name": "certifyingOfficial",
           "title": "Certifying Official",
           "templateElements": [
             {
@@ -19,7 +19,7 @@
             },
             {
               "type": "text",
-              "name": "certifier_name",
+              "name": "certifierName",
               "useDisplayValuesInTitle": false,
               "width": "30%",
               "startWithNewLine": false,
@@ -27,19 +27,19 @@
             },
             {
               "type": "html",
-              "name": "text_line_2",
+              "name": "textLine2",
               "width": "65%",
               "startWithNewLine": false,
               "html": "<h5>(Certifying Official), having the authority to bind the company applying, </h5>"
             },
             {
               "type": "html",
-              "name": "certification_text",
+              "name": "certificationText",
               "html": "<h5>hereby certify that I have reviewed the information being submitted, that I have exercised due diligence to ensure that the information is true and complete, and that, to the best of my knowledge, the products and quantities submitted herein are accurate and based on reasonable estimates using available data; and agrees to repayment of incentive amounts erroneously paid or which are, upon audit or reconsideration by the Climate Action Secretariat, determined to either be inconsistent with the CleanBC Industrial Incentive Programs’ rules or not supported by evidence related to fuel usage and tax paid; and understand that any repayment amount may be deducted from a following year’s incentive payment.<h5>"
             },
             {
               "type": "file",
-              "name": "signature_upload",
+              "name": "signatureUpload",
               "width": "65%",
               "title": "Signature of Certifying Official",
               "maxSize": 0
@@ -54,11 +54,11 @@
             },
             {
               "type": "panel",
-              "name": "certifier_contact_details",
+              "name": "certifierContactDetails",
               "elements": [
                 {
                   "type": "text",
-                  "name": "first_name",
+                  "name": "firstName",
                   "startWithNewLine": false,
                   "title": "First Name",
                   "isRequired": true,
@@ -66,7 +66,7 @@
                 },
                 {
                   "type": "text",
-                  "name": "last_name",
+                  "name": "lastName",
                   "startWithNewLine": false,
                   "title": "Last Name",
                   "isRequired": true,
@@ -80,7 +80,7 @@
                 },
                 {
                   "type": "text",
-                  "name": "email_address",
+                  "name": "emailAddress",
                   "title": "Email Address",
                   "isRequired": true,
                   "inputType": "email"
@@ -101,18 +101,18 @@
                 },
                 {
                   "type": "text",
-                  "name": "mailing_address_line_1",
+                  "name": "mailingAddressLine1",
                   "title": "Mailing Address"
                 },
                 {
                   "type": "text",
-                  "name": "mailing_address_city",
+                  "name": "mailingAddressCity",
                   "startWithNewLine": false,
                   "title": "Mailing Address City"
                 },
                 {
                   "type": "dropdown",
-                  "name": "mailing_address_province",
+                  "name": "mailingAddressProvince",
                   "startWithNewLine": false,
                   "title": "Province",
                   "choices": [
@@ -133,7 +133,7 @@
                 },
                 {
                   "type": "text",
-                  "name": "mailing_address_postal_code",
+                  "name": "mailingAddressPostalCode",
                   "width": "32.5%",
                   "title": "Mailing Address Postal Code",
                   "validators": [

@@ -51,56 +51,56 @@ insert into ggircs_portal.form_json
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "reporting_operation_information",
+          "name": "reportingOperationInformation",
           "useDisplayValuesInTitle": false,
           "title": "Reporting Operation Information",
           "templateElements": [
             {
               "type": "text",
-              "name": "operator_name",
+              "name": "operatorName",
               "title": "Legal Name of Operator:",
               "isRequired": true,
               "size": 340
             },
             {
               "type": "text",
-              "name": "operator_trade_name",
+              "name": "operatorTradeName",
               "title": "Operator''s Trade Name"
             },
             {
               "type": "text",
-              "name": "duns_number",
+              "name": "duns",
               "title": "DUNS Number",
               "isRequired": true,
               "inputType": "number"
             },
             {
               "type": "text",
-              "name": "bc_corporate_registry_number",
+              "name": "bcCorporateRegistryNumber",
               "title": "BC Corporate Registry Number ",
               "inputType": "number"
             },
             {
               "type": "text",
-              "name": "naics_code",
+              "name": "naicsCode",
               "startWithNewLine": false,
               "title": "NAICS Code",
               "inputType": "number"
             },
             {
               "type": "text",
-              "name": "mailing_address_line_1",
+              "name": "mailingAddress",
               "title": "Operator Mailing Address"
             },
             {
               "type": "text",
-              "name": "mailing_address_city",
+              "name": "mailingAddressCity",
               "startWithNewLine": false,
               "title": "Mailing Address City"
             },
             {
               "type": "dropdown",
-              "name": "mailing_address_province",
+              "name": "mailingAddressProvince",
               "title": "Province",
               "choices": [
                 "Alberta",
@@ -120,7 +120,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "mailing_address_postal_code",
+              "name": "mailingAddressPostalCode",
               "startWithNewLine": false,
               "title": "Mailing Address Postal Code",
               "validators": [
@@ -133,7 +133,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "mailing_address_country",
+              "name": "mailingAddressCountry",
               "width": "50%",
               "title": "Mailing Address Country"
             }
@@ -148,12 +148,12 @@ insert into ggircs_portal.form_json
         },
         {
           "type": "paneldynamic",
-          "name": "operational_representative_information",
+          "name": "operationalRepresentativeInformation",
           "title": "Operational Representative",
           "templateElements": [
             {
               "type": "text",
-              "name": "first_name",
+              "name": "firstName",
               "startWithNewLine": false,
               "title": "First Name",
               "isRequired": true,
@@ -161,7 +161,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "last_name",
+              "name": "lastName",
               "startWithNewLine": false,
               "title": "Last Name",
               "isRequired": true,
@@ -175,7 +175,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "email_address",
+              "name": "emailAddress",
               "title": "Email Address",
               "isRequired": true,
               "inputType": "email"
@@ -196,18 +196,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "mailing_address_line_1",
+              "name": "mailingAddress",
               "title": "Operator Mailing Address"
             },
             {
               "type": "text",
-              "name": "mailing_address_city",
+              "name": "mailingAddressCity",
               "startWithNewLine": false,
               "title": "Mailing Address City"
             },
             {
               "type": "dropdown",
-              "name": "mailing_address_province",
+              "name": "mailingAddressProvince",
               "startWithNewLine": false,
               "title": "Province",
               "choices": [
@@ -228,7 +228,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "mailing_address_postal_code",
+              "name": "mailingAddressPostalCode",
               "width": "32.5%",
               "title": "Mailing Address Postal Code",
               "validators": [
@@ -250,19 +250,19 @@ insert into ggircs_portal.form_json
         },
         {
           "type": "paneldynamic",
-          "name": "facility_information",
+          "name": "facilityInformation",
           "title": "Facility Information",
           "templateElements": [
             {
               "type": "text",
-              "name": "facility_name",
+              "name": "facilityName",
               "title": "Facility Name",
               "isRequired": true,
               "size": 340
             },
             {
               "type": "dropdown",
-              "name": "facility_type",
+              "name": "facilityType",
               "title": "Facility Type",
               "choices": [
                 "IF_A",
@@ -282,7 +282,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "naics_code",
+              "name": "naicsCode",
               "startWithNewLine": false,
               "title": "NAICS Code",
               "inputType": "number"
@@ -302,23 +302,23 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "nearest_city",
+              "name": "nearestCity",
               "title": "Nearest City"
             },
             {
               "type": "text",
-              "name": "mailing_address_line_1",
+              "name": "mailingAddress",
               "title": "Mailing Address"
             },
             {
               "type": "text",
-              "name": "mailing_address_city",
+              "name": "mailingAddressCity",
               "startWithNewLine": false,
               "title": "Mailing Address City"
             },
             {
               "type": "dropdown",
-              "name": "mailing_address_province",
+              "name": "mailingAddressProvince",
               "title": "Province",
               "choices": [
                 "Alberta",
@@ -338,7 +338,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "mailing_address_postal_code",
+              "name": "mailingAddressPostalCode",
               "startWithNewLine": false,
               "title": "Mailing Address Postal Code",
               "validators": [
@@ -351,7 +351,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "comment",
-              "name": "facility_description",
+              "name": "facilityDescription",
               "title": "Facility Description"
             }
           ],
@@ -360,7 +360,7 @@ insert into ggircs_portal.form_json
           "panelCount": 1,
           "minPanelCount": 1,
           "keyName": "name",
-          "panelAddText": "Add another  item",
+          "panelAddText": "Add another item",
           "panelRemoveText": "Remove item"
         }
       ]
@@ -380,16 +380,16 @@ insert into ggircs_portal.form_json
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "stationary_combustion",
+          "name": "stationaryCombustion",
           "title": "Stationary Fuel Combustion Emissions ",
           "templateElements": [
             {
               "type": "panel",
-              "name": "stationary_co2_nonbio",
+              "name": "stationaryCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "stationary_co2nonbio_tonnes",
+                  "name": "stationaryCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -403,10 +403,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_co2nonbio_co2e",
+                  "name": "stationaryCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.stationaryCo2nonbioCo2e} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -414,11 +414,11 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "stationary_co2",
+              "name": "stationaryCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "stationary_co2_tonnes",
+                  "name": "stationaryCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -432,10 +432,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_co2_co2e",
+                  "name": "stationaryCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_co2_tonnes} * 1",
+                  "expression": "{panel.stationaryCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -443,18 +443,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "stationary_bioco2",
+              "name": "stationaryBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "stationary_bioco2_tonnes",
+                  "name": "stationaryBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -462,10 +462,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_bioco2_co2e",
+                  "name": "stationaryBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_bioco2_tonnes} * 1",
+                  "expression": "{panel.stationaryBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -473,18 +473,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "stationary_ch4",
+              "name": "stationaryCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "stationary_ch4_tonnes",
+                  "name": "stationaryCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -492,10 +492,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_ch4_co2e",
+                  "name": "stationaryCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_ch4_tonnes} * 25",
+                  "expression": "{panel.stationaryCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -503,18 +503,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "stationary_n2o",
+              "name": "stationaryN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "stationary_n2o_tonnes",
+                  "name": "stationaryN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -522,10 +522,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_n2o_co2e",
+                  "name": "stationaryN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_n2o_tonnes} * 298",
+                  "expression": "{panel.stationaryN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -547,11 +547,11 @@ insert into ggircs_portal.form_json
           "templateElements": [
             {
               "type": "panel",
-              "name": "venting_co2_nonbio",
+              "name": "ventingCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "venting_co2nonbio_tonnes",
+                  "name": "ventingCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -565,10 +565,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "venting_co2nonbio_co2e",
+                  "name": "ventingCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.ventingCo2nonbioTonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -576,11 +576,11 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "venting_co2",
+              "name": "ventingCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "venting_co2_tonnes",
+                  "name": "ventingCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -594,10 +594,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "venting_co2_co2e",
+                  "name": "ventingCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_co2_tonnes} * 1",
+                  "expression": "{panel.ventingCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -605,18 +605,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "venting_bioco2",
+              "name": "ventingBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "venting_bioco2_tonnes",
+                  "name": "ventingBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -624,10 +624,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "venting_bioco2_co2e",
+                  "name": "ventingBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_bioco2_tonnes} * 1",
+                  "expression": "{panel.ventingBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -635,18 +635,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "venting_ch4",
+              "name": "ventingCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "venting_ch4_tonnes",
+                  "name": "ventingCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -654,10 +654,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "venting_ch4_co2e",
+                  "name": "ventingCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_ch4_tonnes} * 25",
+                  "expression": "{panel.ventingCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -665,18 +665,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "venting_n2o",
+              "name": "ventingN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "venting_n2o_tonnes",
+                  "name": "ventingN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -684,10 +684,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "venting_n2o_co2e",
+                  "name": "ventingN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_n2o_tonnes} * 298",
+                  "expression": "{panel.ventingN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -709,11 +709,11 @@ insert into ggircs_portal.form_json
           "templateElements": [
             {
               "type": "panel",
-              "name": "flaring_co2_nonbio",
+              "name": "flaringCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "flaring_co2nonbio_tonnes",
+                  "name": "flaringCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -727,10 +727,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_co2nonbio_co2e",
+                  "name": "flaringCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.flaringCo2nonbioTonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -738,11 +738,11 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "flaring_co2",
+              "name": "flaringCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "flaring_co2_tonnes",
+                  "name": "flaringCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -756,10 +756,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_co2_co2e",
+                  "name": "flaringCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_co2_tonnes} * 1",
+                  "expression": "{panel.flaringCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -767,18 +767,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "flaring_bioco2",
+              "name": "flaringBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "flaring_bioco2_tonnes",
+                  "name": "flaringBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -786,10 +786,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_bioco2_co2e",
+                  "name": "flaringBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_bioco2_tonnes} * 1",
+                  "expression": "{panel.flaringBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -797,18 +797,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "flaring_ch4",
+              "name": "flaringCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "flaring_ch4_tonnes",
+                  "name": "flaringCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -816,10 +816,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_ch4_co2e",
+                  "name": "flaringCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_ch4_tonnes} * 25",
+                  "expression": "{panel.flaringCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -827,18 +827,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "flaring_n2o",
+              "name": "flaringN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "flaring_n2o_tonnes",
+                  "name": "flaringN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -846,10 +846,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_n2o_co2e",
+                  "name": "flaringN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_n2o_tonnes} * 298",
+                  "expression": "{panel.flaringN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -871,11 +871,11 @@ insert into ggircs_portal.form_json
           "templateElements": [
             {
               "type": "panel",
-              "name": "fugitive_co2_nonbio",
+              "name": "fugitiveCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "fugitive_co2nonbio_tonnes",
+                  "name": "fugitiveCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -889,10 +889,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_co2nonbio_co2e",
+                  "name": "fugitiveCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.fugitiveCo2nonbioTonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -900,11 +900,11 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "fugitive_co2",
+              "name": "fugitiveCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "fugitive_co2_tonnes",
+                  "name": "fugitiveCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -918,10 +918,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_co2_co2e",
+                  "name": "fugitiveCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_co2_tonnes} * 1",
+                  "expression": "{panel.fugitiveCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -929,18 +929,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "fugitive_bioco2",
+              "name": "fugitiveBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "fugitive_bioco2_tonnes",
+                  "name": "fugitiveBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -948,10 +948,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_bioco2_co2e",
+                  "name": "fugitiveBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_bioco2_tonnes} * 1",
+                  "expression": "{panel.fugitiveBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -959,18 +959,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "fugitive_ch4",
+              "name": "fugitiveCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "fugitive_ch4_tonnes",
+                  "name": "fugitiveCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -978,10 +978,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_ch4_co2e",
+                  "name": "fugitiveCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_ch4_tonnes} * 25",
+                  "expression": "{panel.fugitiveCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -989,18 +989,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "fugitive_n2o",
+              "name": "fugitiveN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "fugitive_n2o_tonnes",
+                  "name": "fugitiveN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -1008,10 +1008,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_n2o_co2e",
+                  "name": "fugitiveN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_n2o_tonnes} * 298",
+                  "expression": "{panel.fugitiveN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1033,11 +1033,11 @@ insert into ggircs_portal.form_json
           "templateElements": [
             {
               "type": "panel",
-              "name": "onsite_co2_nonbio",
+              "name": "onsiteCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "onsite_co2nonbio_tonnes",
+                  "name": "onsiteCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -1051,10 +1051,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_co2nonbio_co2e",
+                  "name": "onsiteCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.onsiteCo2nonbioTonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1062,11 +1062,11 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "onsite_co2",
+              "name": "onsiteCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "onsite_co2_tonnes",
+                  "name": "onsiteCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -1080,10 +1080,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_co2_co2e",
+                  "name": "onsiteCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_co2_tonnes} * 1",
+                  "expression": "{panel.onsiteCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1091,18 +1091,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "onsite_bioco2",
+              "name": "onsiteBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "onsite_bioco2_tonnes",
+                  "name": "onsiteBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -1110,10 +1110,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_bioco2_co2e",
+                  "name": "onsiteBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_bioco2_tonnes} * 1",
+                  "expression": "{panel.onsiteBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1121,18 +1121,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "onsite_ch4",
+              "name": "onsiteCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "onsite_ch4_tonnes",
+                  "name": "onsiteCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -1140,10 +1140,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_ch4_co2e",
+                  "name": "onsiteCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_ch4_tonnes} * 25",
+                  "expression": "{panel.onsiteCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1151,18 +1151,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "onsite_n2o",
+              "name": "onsiteN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "onsite_n2o_tonnes",
+                  "name": "onsiteN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -1170,10 +1170,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_n2o_co2e",
+                  "name": "onsiteN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_n2o_tonnes} * 298",
+                  "expression": "{panel.onsiteN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1195,11 +1195,11 @@ insert into ggircs_portal.form_json
           "templateElements": [
             {
               "type": "panel",
-              "name": "wastewater_co2_nonbio",
+              "name": "wastewaterCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "wastewater_co2nonbio_tonnes",
+                  "name": "wastewaterCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -1213,10 +1213,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_co2nonbio_co2e",
+                  "name": "wastewaterCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.wastewaterCo2nonbioTonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1224,11 +1224,11 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "wastewater_co2",
+              "name": "wastewaterCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "wastewater_co2_tonnes",
+                  "name": "wastewaterCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -1242,10 +1242,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_co2_co2e",
+                  "name": "wastewaterCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_co2_tonnes} * 1",
+                  "expression": "{panel.wastewaterCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1253,18 +1253,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "wastewater_bioco2",
+              "name": "wastewaterBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "wastewater_bioco2_tonnes",
+                  "name": "wastewaterBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -1272,10 +1272,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_bioco2_co2e",
+                  "name": "wastewaterBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_bioco2_tonnes} * 1",
+                  "expression": "{panel.wastewaterBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1283,18 +1283,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "wastewater_ch4",
+              "name": "wastewaterCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "wastewater_ch4_tonnes",
+                  "name": "wastewaterCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -1302,10 +1302,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_ch4_co2e",
+                  "name": "wastewaterCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_ch4_tonnes} * 25",
+                  "expression": "{panel.wastewaterCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1313,18 +1313,18 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "wastewater_n2o",
+              "name": "wastewaterN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "wastewater_n2o_tonnes",
+                  "name": "wastewaterN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -1332,10 +1332,10 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_n2o_co2e",
+                  "name": "wastewaterN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_n2o_tonnes} * 298",
+                  "expression": "{panel.wastewaterN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -1373,7 +1373,7 @@ insert into ggircs_portal.form_json
           "templateElements": [
             {
               "type": "dropdown",
-              "name": "fuel_type",
+              "name": "fuelType",
               "title": "Fuel Type",
               "choices": [
                 "flared natural gas",
@@ -1396,7 +1396,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "dropdown",
-              "name": "fuel_units",
+              "name": "fuelUnits",
               "startWithNewLine": false,
               "title": "Units",
               "choices": [
@@ -1457,7 +1457,7 @@ insert into ggircs_portal.form_json
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "electricity_and_heat",
+          "name": "electricityAndHeat",
           "title": "Electricity and Heat",
           "templateElements": [
             {
@@ -1474,14 +1474,14 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "text",
-                  "name": "generated_onsite",
+                  "name": "generatedOnsite",
                   "startWithNewLine": false,
                   "title": "Generated Onsite",
                   "inputType": "number"
                 },
                 {
                   "type": "text",
-                  "name": "consumed_onsite",
+                  "name": "consumedOnsite",
                   "startWithNewLine": false,
                   "title": "Consumed Onsite",
                   "inputType": "number"
@@ -1523,14 +1523,14 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "text",
-                  "name": "generated_onsite",
+                  "name": "generatedOnsite",
                   "startWithNewLine": false,
                   "title": "Generated Onsite",
                   "inputType": "number"
                 },
                 {
                   "type": "text",
-                  "name": "consumed_onsite",
+                  "name": "consumedOnsite",
                   "startWithNewLine": false,
                   "title": "Consumed Onsite",
                   "inputType": "number"
@@ -1585,7 +1585,7 @@ insert into ggircs_portal.form_json
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "module_throughput_and_production_data",
+          "name": "moduleThroughputAndProductionData",
           "title": "Production Data",
           "templateElements": [
             {
@@ -1608,7 +1608,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "dropdown",
-              "name": "product_units",
+              "name": "productUnits",
               "startWithNewLine": false,
               "title": "Units",
               "choices": [
@@ -1624,12 +1624,12 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "associated_emissions",
+              "name": "associatedEmissions",
               "title": "Associated Emission (tCO2e)"
             },
             {
               "type": "text",
-              "name": "attributable_fuel_percentage",
+              "name": "attributableFuelPercentage",
               "startWithNewLine": false,
               "title": "Attributable % of Fuel",
               "inputType": "number"
@@ -1666,7 +1666,7 @@ insert into ggircs_portal.form_json
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "certifiying_official",
+          "name": "certifyingOfficial",
           "title": "Certifying Official",
           "templateElements": [
             {
@@ -1678,7 +1678,7 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "text",
-              "name": "certifier_name",
+              "name": "certifierName",
               "useDisplayValuesInTitle": false,
               "width": "30%",
               "startWithNewLine": false,
@@ -1686,19 +1686,19 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "html",
-              "name": "text_line_2",
+              "name": "textLine2",
               "width": "65%",
               "startWithNewLine": false,
               "html": "<h5>(Certifying Official), having the authority to bind the company applying, </h5>"
             },
             {
               "type": "html",
-              "name": "certification_text",
+              "name": "certificationText",
               "html": "<h5>hereby certify that I have reviewed the information being submitted, that I have exercised due diligence to ensure that the information is true and complete, and that, to the best of my knowledge, the products and quantities submitted herein are accurate and based on reasonable estimates using available data; and agrees to repayment of incentive amounts erroneously paid or which are, upon audit or reconsideration by the Climate Action Secretariat, determined to either be inconsistent with the CleanBC Industrial Incentive Programs’ rules or not supported by evidence related to fuel usage and tax paid; and understand that any repayment amount may be deducted from a following year’s incentive payment.<h5>"
             },
             {
               "type": "file",
-              "name": "signature_upload",
+              "name": "signatureUpload",
               "width": "65%",
               "title": "Signature of Certifying Official",
               "maxSize": 0
@@ -1713,11 +1713,11 @@ insert into ggircs_portal.form_json
             },
             {
               "type": "panel",
-              "name": "certifier_contact_details",
+              "name": "certifierContactDetails",
               "elements": [
                 {
                   "type": "text",
-                  "name": "first_name",
+                  "name": "firstName",
                   "startWithNewLine": false,
                   "title": "First Name",
                   "isRequired": true,
@@ -1725,7 +1725,7 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "text",
-                  "name": "last_name",
+                  "name": "lastName",
                   "startWithNewLine": false,
                   "title": "Last Name",
                   "isRequired": true,
@@ -1739,7 +1739,7 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "text",
-                  "name": "email_address",
+                  "name": "emailAddress",
                   "title": "Email Address",
                   "isRequired": true,
                   "inputType": "email"
@@ -1760,18 +1760,18 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "text",
-                  "name": "mailing_address_line_1",
+                  "name": "mailingAddressLine1",
                   "title": "Mailing Address"
                 },
                 {
                   "type": "text",
-                  "name": "mailing_address_city",
+                  "name": "mailingAddressCity",
                   "startWithNewLine": false,
                   "title": "Mailing Address City"
                 },
                 {
                   "type": "dropdown",
-                  "name": "mailing_address_province",
+                  "name": "mailingAddressProvince",
                   "startWithNewLine": false,
                   "title": "Province",
                   "choices": [
@@ -1792,7 +1792,7 @@ insert into ggircs_portal.form_json
                 },
                 {
                   "type": "text",
-                  "name": "mailing_address_postal_code",
+                  "name": "mailingAddressPostalCode",
                   "width": "32.5%",
                   "title": "Mailing Address Postal Code",
                   "validators": [
@@ -1814,9 +1814,9 @@ insert into ggircs_portal.form_json
       "title": "Statement of Certification",
       "questionsOrder": "initial"
     }
-   ],
-   "showQuestionNumbers": "off"
-    }'::jsonb
+  ],
+  "showQuestionNumbers": "off"
+}'::jsonb
 )
 on conflict (id) do nothing;
 

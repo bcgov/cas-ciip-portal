@@ -8,13 +8,13 @@ begin;
     application ggircs_portal.application,
     reporting_year varchar(1000)
   )
-  returns setof ggircs_portal.operator_contact_data
+  returns ggircs_portal.operator_contact_data
   as
   $body$
     declare
     begin
-        return query (
-            select * from ggircs_portal.get_swrs_operator_contact_data(
+        return (
+            select ggircs_portal.get_swrs_operator_contact_data(
                (
                    select swrs_facility_id
                    from ggircs_portal.facility

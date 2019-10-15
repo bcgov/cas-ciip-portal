@@ -8,13 +8,13 @@ begin;
     application ggircs_portal.application,
     reporting_year varchar(1000)
   )
-  returns setof ggircs_portal.organisation_data
+  returns ggircs_portal.organisation_data
   as
   $body$
     declare
     begin
-        return query (
-            select * from ggircs_portal.get_swrs_organisation_data(
+        return (
+            select ggircs_portal.get_swrs_organisation_data(
                (
                    select swrs_facility_id
                    from ggircs_portal.facility
@@ -27,4 +27,3 @@ begin;
   $body$
   language 'plpgsql' stable;
 commit;
-

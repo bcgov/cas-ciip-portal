@@ -12,7 +12,7 @@
           "templateElements": [
             {
               "type": "dropdown",
-              "name": "fuel_type",
+              "name": "fuelType",
               "title": "Fuel Type",
               "choices": [
                 "flared natural gas",
@@ -35,7 +35,7 @@
             },
             {
               "type": "dropdown",
-              "name": "fuel_units",
+              "name": "fuelUnits",
               "startWithNewLine": false,
               "title": "Units",
               "choices": [

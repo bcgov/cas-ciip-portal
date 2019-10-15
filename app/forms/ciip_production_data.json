@@ -7,7 +7,7 @@
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "module_throughput_and_production_data",
+          "name": "moduleThroughputAndProductionData",
           "title": "Production Data",
           "templateElements": [
             {
@@ -30,7 +30,7 @@
             },
             {
               "type": "dropdown",
-              "name": "product_units",
+              "name": "productUnits",
               "startWithNewLine": false,
               "title": "Units",
               "choices": [
@@ -46,12 +46,12 @@
             },
             {
               "type": "text",
-              "name": "associated_emissions",
+              "name": "associatedEmissions",
               "title": "Associated Emission (tCO2e)"
             },
             {
               "type": "text",
-              "name": "attributable_fuel_percentage",
+              "name": "attributableFuelPercentage",
               "startWithNewLine": false,
               "title": "Attributable % of Fuel",
               "inputType": "number"

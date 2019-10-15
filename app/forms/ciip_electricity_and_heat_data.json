@@ -7,7 +7,7 @@
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "electricity_and_heat",
+          "name": "electricityAndHeat",
           "title": "Electricity and Heat",
           "templateElements": [
             {
@@ -24,14 +24,14 @@
                 },
                 {
                   "type": "text",
-                  "name": "generated_onsite",
+                  "name": "generatedOnsite",
                   "startWithNewLine": false,
                   "title": "Generated Onsite",
                   "inputType": "number"
                 },
                 {
                   "type": "text",
-                  "name": "consumed_onsite",
+                  "name": "consumedOnsite",
                   "startWithNewLine": false,
                   "title": "Consumed Onsite",
                   "inputType": "number"
@@ -73,14 +73,14 @@
                 },
                 {
                   "type": "text",
-                  "name": "generated_onsite",
+                  "name": "generatedOnsite",
                   "startWithNewLine": false,
                   "title": "Generated Onsite",
                   "inputType": "number"
                 },
                 {
                   "type": "text",
-                  "name": "consumed_onsite",
+                  "name": "consumedOnsite",
                   "startWithNewLine": false,
                   "title": "Consumed Onsite",
                   "inputType": "number"

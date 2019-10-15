@@ -7,16 +7,16 @@
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "stationary_combustion",
+          "name": "stationaryCombustion",
           "title": "Stationary Fuel Combustion Emissions ",
           "templateElements": [
             {
               "type": "panel",
-              "name": "stationary_co2_nonbio",
+              "name": "stationaryCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "stationary_co2nonbio_tonnes",
+                  "name": "stationaryCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -30,10 +30,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_co2nonbio_co2e",
+                  "name": "stationaryCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.stationaryCo2nonbioCo2e} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -41,11 +41,11 @@
             },
             {
               "type": "panel",
-              "name": "stationary_co2",
+              "name": "stationaryCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "stationary_co2_tonnes",
+                  "name": "stationaryCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -59,10 +59,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_co2_co2e",
+                  "name": "stationaryCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_co2_tonnes} * 1",
+                  "expression": "{panel.stationaryCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -70,18 +70,18 @@
             },
             {
               "type": "panel",
-              "name": "stationary_bioco2",
+              "name": "stationaryBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "stationary_bioco2_tonnes",
+                  "name": "stationaryBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -89,10 +89,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_bioco2_co2e",
+                  "name": "stationaryBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_bioco2_tonnes} * 1",
+                  "expression": "{panel.stationaryBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -100,18 +100,18 @@
             },
             {
               "type": "panel",
-              "name": "stationary_ch4",
+              "name": "stationaryCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "stationary_ch4_tonnes",
+                  "name": "stationaryCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -119,10 +119,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_ch4_co2e",
+                  "name": "stationaryCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_ch4_tonnes} * 25",
+                  "expression": "{panel.stationaryCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -130,18 +130,18 @@
             },
             {
               "type": "panel",
-              "name": "stationary_n2o",
+              "name": "stationaryN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "stationary_n2o_tonnes",
+                  "name": "stationaryN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -149,10 +149,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_n2o_co2e",
+                  "name": "stationaryN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_n2o_tonnes} * 298",
+                  "expression": "{panel.stationaryN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -174,11 +174,11 @@
           "templateElements": [
             {
               "type": "panel",
-              "name": "venting_co2_nonbio",
+              "name": "ventingCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "venting_co2nonbio_tonnes",
+                  "name": "ventingCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -192,10 +192,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "venting_co2nonbio_co2e",
+                  "name": "ventingCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.ventingCo2nonbioTonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -203,11 +203,11 @@
             },
             {
               "type": "panel",
-              "name": "venting_co2",
+              "name": "ventingCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "venting_co2_tonnes",
+                  "name": "ventingCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -221,10 +221,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "venting_co2_co2e",
+                  "name": "ventingCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_co2_tonnes} * 1",
+                  "expression": "{panel.ventingCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -232,18 +232,18 @@
             },
             {
               "type": "panel",
-              "name": "venting_bioco2",
+              "name": "ventingBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "venting_bioco2_tonnes",
+                  "name": "ventingBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -251,10 +251,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "venting_bioco2_co2e",
+                  "name": "ventingBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_bioco2_tonnes} * 1",
+                  "expression": "{panel.ventingBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -262,18 +262,18 @@
             },
             {
               "type": "panel",
-              "name": "venting_ch4",
+              "name": "ventingCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "venting_ch4_tonnes",
+                  "name": "ventingCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -281,10 +281,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "venting_ch4_co2e",
+                  "name": "ventingCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_ch4_tonnes} * 25",
+                  "expression": "{panel.ventingCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -292,18 +292,18 @@
             },
             {
               "type": "panel",
-              "name": "venting_n2o",
+              "name": "ventingN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "venting_n2o_tonnes",
+                  "name": "ventingN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -311,10 +311,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "venting_n2o_co2e",
+                  "name": "ventingN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_n2o_tonnes} * 298",
+                  "expression": "{panel.ventingN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -336,11 +336,11 @@
           "templateElements": [
             {
               "type": "panel",
-              "name": "flaring_co2_nonbio",
+              "name": "flaringCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "flaring_co2nonbio_tonnes",
+                  "name": "flaringCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -354,10 +354,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_co2nonbio_co2e",
+                  "name": "flaringCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.flaringCo2nonbioTonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -365,11 +365,11 @@
             },
             {
               "type": "panel",
-              "name": "flaring_co2",
+              "name": "flaringCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "flaring_co2_tonnes",
+                  "name": "flaringCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -383,10 +383,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_co2_co2e",
+                  "name": "flaringCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_co2_tonnes} * 1",
+                  "expression": "{panel.flaringCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -394,18 +394,18 @@
             },
             {
               "type": "panel",
-              "name": "flaring_bioco2",
+              "name": "flaringBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "flaring_bioco2_tonnes",
+                  "name": "flaringBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -413,10 +413,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_bioco2_co2e",
+                  "name": "flaringBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_bioco2_tonnes} * 1",
+                  "expression": "{panel.flaringBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -424,18 +424,18 @@
             },
             {
               "type": "panel",
-              "name": "flaring_ch4",
+              "name": "flaringCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "flaring_ch4_tonnes",
+                  "name": "flaringCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -443,10 +443,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_ch4_co2e",
+                  "name": "flaringCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_ch4_tonnes} * 25",
+                  "expression": "{panel.flaringCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -454,18 +454,18 @@
             },
             {
               "type": "panel",
-              "name": "flaring_n2o",
+              "name": "flaringN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "flaring_n2o_tonnes",
+                  "name": "flaringN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -473,10 +473,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_n2o_co2e",
+                  "name": "flaringN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_n2o_tonnes} * 298",
+                  "expression": "{panel.flaringN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -498,11 +498,11 @@
           "templateElements": [
             {
               "type": "panel",
-              "name": "fugitive_co2_nonbio",
+              "name": "fugitiveCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "fugitive_co2nonbio_tonnes",
+                  "name": "fugitiveCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -516,10 +516,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_co2nonbio_co2e",
+                  "name": "fugitiveCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.fugitiveCo2nonbioTonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -527,11 +527,11 @@
             },
             {
               "type": "panel",
-              "name": "fugitive_co2",
+              "name": "fugitiveCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "fugitive_co2_tonnes",
+                  "name": "fugitiveCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -545,10 +545,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_co2_co2e",
+                  "name": "fugitiveCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_co2_tonnes} * 1",
+                  "expression": "{panel.fugitiveCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -556,18 +556,18 @@
             },
             {
               "type": "panel",
-              "name": "fugitive_bioco2",
+              "name": "fugitiveBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "fugitive_bioco2_tonnes",
+                  "name": "fugitiveBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -575,10 +575,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_bioco2_co2e",
+                  "name": "fugitiveBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_bioco2_tonnes} * 1",
+                  "expression": "{panel.fugitiveBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -586,18 +586,18 @@
             },
             {
               "type": "panel",
-              "name": "fugitive_ch4",
+              "name": "fugitiveCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "fugitive_ch4_tonnes",
+                  "name": "fugitiveCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -605,10 +605,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_ch4_co2e",
+                  "name": "fugitiveCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_ch4_tonnes} * 25",
+                  "expression": "{panel.fugitiveCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -616,18 +616,18 @@
             },
             {
               "type": "panel",
-              "name": "fugitive_n2o",
+              "name": "fugitiveN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "fugitive_n2o_tonnes",
+                  "name": "fugitiveN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -635,10 +635,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_n2o_co2e",
+                  "name": "fugitiveN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_n2o_tonnes} * 298",
+                  "expression": "{panel.fugitiveN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -660,11 +660,11 @@
           "templateElements": [
             {
               "type": "panel",
-              "name": "onsite_co2_nonbio",
+              "name": "onsiteCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "onsite_co2nonbio_tonnes",
+                  "name": "onsiteCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -678,10 +678,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_co2nonbio_co2e",
+                  "name": "onsiteCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.onsiteCo2nonbioTonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -689,11 +689,11 @@
             },
             {
               "type": "panel",
-              "name": "onsite_co2",
+              "name": "onsiteCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "onsite_co2_tonnes",
+                  "name": "onsiteCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -707,10 +707,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_co2_co2e",
+                  "name": "onsiteCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_co2_tonnes} * 1",
+                  "expression": "{panel.onsiteCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -718,18 +718,18 @@
             },
             {
               "type": "panel",
-              "name": "onsite_bioco2",
+              "name": "onsiteBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "onsite_bioco2_tonnes",
+                  "name": "onsiteBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -737,10 +737,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_bioco2_co2e",
+                  "name": "onsiteBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_bioco2_tonnes} * 1",
+                  "expression": "{panel.onsiteBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -748,18 +748,18 @@
             },
             {
               "type": "panel",
-              "name": "onsite_ch4",
+              "name": "onsiteCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "onsite_ch4_tonnes",
+                  "name": "onsiteCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -767,10 +767,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_ch4_co2e",
+                  "name": "onsiteCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_ch4_tonnes} * 25",
+                  "expression": "{panel.onsiteCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -778,18 +778,18 @@
             },
             {
               "type": "panel",
-              "name": "onsite_n2o",
+              "name": "onsiteN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "onsite_n2o_tonnes",
+                  "name": "onsiteN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -797,10 +797,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_n2o_co2e",
+                  "name": "onsiteN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_n2o_tonnes} * 298",
+                  "expression": "{panel.onsiteN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -822,11 +822,11 @@
           "templateElements": [
             {
               "type": "panel",
-              "name": "wastewater_co2_nonbio",
+              "name": "wastewaterCo2Nonbio",
               "elements": [
                 {
                   "type": "text",
-                  "name": "wastewater_co2nonbio_tonnes",
+                  "name": "wastewaterCo2nonbioTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -840,10 +840,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_co2nonbio_co2e",
+                  "name": "wastewaterCo2nonbioCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.wastewaterCo2nonbioTonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -851,11 +851,11 @@
             },
             {
               "type": "panel",
-              "name": "wastewater_co2",
+              "name": "wastewaterCo2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "wastewater_co2_tonnes",
+                  "name": "wastewaterCo2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -869,10 +869,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_co2_co2e",
+                  "name": "wastewaterCo2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_co2_tonnes} * 1",
+                  "expression": "{panel.wastewaterCo2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -880,18 +880,18 @@
             },
             {
               "type": "panel",
-              "name": "wastewater_bioco2",
+              "name": "wastewaterBioco2",
               "elements": [
                 {
                   "type": "text",
-                  "name": "wastewater_bioco2_tonnes",
+                  "name": "wastewaterBioco2Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
+                  "name": "bioco2Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
@@ -899,10 +899,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_bioco2_co2e",
+                  "name": "wastewaterBioco2Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_bioco2_tonnes} * 1",
+                  "expression": "{panel.wastewaterBioco2Tonnes} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -910,18 +910,18 @@
             },
             {
               "type": "panel",
-              "name": "wastewater_ch4",
+              "name": "wastewaterCh4",
               "elements": [
                 {
                   "type": "text",
-                  "name": "wastewater_ch4_tonnes",
+                  "name": "wastewaterCh4Tonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
+                  "name": "ch4Gwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
@@ -929,10 +929,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_ch4_co2e",
+                  "name": "wastewaterCh4Co2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_ch4_tonnes} * 25",
+                  "expression": "{panel.wastewaterCh4Tonnes} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
@@ -940,18 +940,18 @@
             },
             {
               "type": "panel",
-              "name": "wastewater_n2o",
+              "name": "wastewaterN2o",
               "elements": [
                 {
                   "type": "text",
-                  "name": "wastewater_n2o_tonnes",
+                  "name": "wastewaterN2oTonnes",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
+                  "name": "n2oGwp",
                   "title": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
@@ -959,10 +959,10 @@
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_n2o_co2e",
+                  "name": "wastewaterN2oCo2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_n2o_tonnes} * 298",
+                  "expression": "{panel.wastewaterN2oTonnes} * 298",
                   "commentText": "Other (describe)"
                 }
               ],

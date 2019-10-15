@@ -6,7 +6,7 @@ begin;
     with x as (
       select
         form_result.application_id as id,
-        json_array_elements((form_result -> 'operational_representative_information')::json) as contact_data
+        json_array_elements((form_result -> 'operationalRepresentativeInformation')::json) as contact_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -17,9 +17,9 @@ begin;
        x.contact_data ->> 'fax' as fax,
        x.contact_data ->> 'phone' as phone,
        x.contact_data ->> 'position' as position,
-       x.contact_data ->> 'last_name' as last_name,
-       x.contact_data ->> 'first_name' as first_name,
-       x.contact_data ->> 'email_address' as email_address
+       x.contact_data ->> 'lastName' as last_name,
+       x.contact_data ->> 'firstName' as first_name,
+       x.contact_data ->> 'emailAddress' as email_address
        -- add contact address to address view
     from x
  );
