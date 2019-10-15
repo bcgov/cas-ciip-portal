@@ -4,7 +4,7 @@ import {Table, Jumbotron} from 'react-bootstrap';
 import IncentiveSegmentFormula from '../../components/Incentives/IncentiveSegmentFormula';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
 
-const IncentiveCalculatorContainer = props => {
+export const IncentiveCalculatorContainer = props => {
   useEffect(() => {
     const refetchVariables = {
       bcghgidInput: Number(props.bcghgid),

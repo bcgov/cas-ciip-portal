@@ -1,37 +1,42 @@
 import React from 'react';
-import {mount} from 'enzyme';
-import ApplicationStatusContainer from '../../../containers/Applications/ApplicationStatusContainer';
-import {queryMock} from '../../../lib/relayQueryMock';
+import {shallow} from 'enzyme';
+import {ApplicationStatusContainer} from '../../../containers/Applications/ApplicationStatusContainer';
 
-let mockAppQueryData;
-
-describe('Application Status', () => {
-  beforeEach(() => {
-    // Make sure mock data is always fresh for each test run
-    mockAppQueryData = {
+describe('ApplicationStatusContainer', () => {
+  it('should render the application status', async () => {
+    const query = {
       allApplicationStatuses: {
-        nodes: [
-          {
-            id: 'abc',
-            applicationStatus: 'pending'
-          }
-        ]
+        edges: [{node: {id: '1'}}]
       }
     };
+    const r = shallow(<ApplicationStatusContainer query={query} />);
+    expect(r).toMatchSnapshot();
+    expect(
+      r
+        .find('ForwardRef(Relay(ApplicationStatusItemContainer))')
+        .prop('applicationStatus')
+    ).toBe(query.allApplicationStatuses.edges[0].node);
   });
 
-  it.skip('should receive applicationId as props', async () => {
-    queryMock.mockQuery({
-      name: 'ApplicationStatusQuery',
-      data: mockAppQueryData,
-      variables: {
-        applicationStatusCondition: {
-          formResultId: 1
-        }
+  it('should render empty edges as empty', async () => {
+    const query = {
+      allApplicationStatuses: {
+        edges: []
       }
-    });
+    };
+    const r = shallow(<ApplicationStatusContainer query={query} />);
+    expect(r).toMatchSnapshot();
+    expect(r.isEmptyRender()).toBe(true);
+  });
 
-    const r = mount(<ApplicationStatusContainer applicationId="1" />);
-    expect(r.props().applicationId).toEqual('1');
+  it('should render extra edges as empty', async () => {
+    const query = {
+      allApplicationStatuses: {
+        edges: [{node: {id: '1'}}, {node: {id: '1'}}]
+      }
+    };
+    const r = shallow(<ApplicationStatusContainer query={query} />);
+    expect(r).toMatchSnapshot();
+    expect(r.isEmptyRender()).toBe(true);
   });
 });

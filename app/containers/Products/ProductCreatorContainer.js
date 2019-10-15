@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
 import {Form, Button, Col} from 'react-bootstrap';
 
-const ProductCreatorContainer = props => {
+export const ProductCreatorContainer = props => {
   const createProductFromRef = React.createRef();
   const createProduct = graphql`
     mutation ProductCreatorContainerMutation($input: CreateProductInput!) {

@@ -1,82 +1,30 @@
 import React from 'react';
-import {wait, render} from '@testing-library/react';
-import ProductListContainer from '../../../containers/Products/ProductListContainer';
-import {queryMock} from '../../../lib/relayQueryMock';
+import {shallow} from 'enzyme';
+import {ProductListContainer} from '../../../containers/Products/ProductListContainer';
 
-let mockAppQueryData;
-
-describe('Product List', () => {
-  beforeEach(() => {
-    // Make sure mock data is always fresh for each test run
-    mockAppQueryData = {
-      allProducts: {
-        nodes: [
-          {
-            id: 'WyJwcm9kdWN0cyIsOV0=',
-            rowId: 9,
-            name: 'Milk',
-            description: 'Sustenance for baby cows',
-            state: 'active',
-            parent: [],
-            benchmarksByProductId: {
-              nodes: [
-                {
-                  rowId: 1,
-                  id: 'WyJiZW5jaG1hcmtzIiw4XQ==',
-                  benchmark: 10,
-                  eligibilityThreshold: 20,
-                  startDate: '1999',
-                  endDate: '1999',
-                  deletedAt: '',
-                  deletedBy: ''
-                }
-              ]
-            }
-          },
-          {
-            id: 'WyJwcm9kdWN0cyIsMTBd',
-            rowId: 10,
-            name: 'Butter',
-            description: 'Sustenance for Keto folk',
-            state: 'active',
-            parent: [],
-            benchmarksByProductId: {
-              nodes: [
-                {
-                  rowId: 1,
-                  id: 'WyJiZW5jaG1hcmtzIiw4XQ==',
-                  benchmark: 20,
-                  eligibilityThreshold: 40,
-                  startDate: '1999',
-                  endDate: '1999',
-                  deletedAt: '',
-                  deletedBy: ''
-                }
-              ]
-            }
-          }
-        ]
+describe('ProductListContainer', () => {
+  it('should render the product list', async () => {
+    const query = {
+      active: {
+        edges: [{node: {id: 'product-1'}}]
+      },
+      archived: {
+        edges: [{node: {id: 'product-2'}}]
       }
     };
-  });
-
-  it.skip('should render all the products', async () => {
-    queryMock.mockQuery({
-      name: 'ProductListQuery',
-      data: mockAppQueryData
-    });
-
-    // This will replace the query in ProductList with the one above and wait till Milk is rendered
-    const r = render(<ProductListContainer />);
-    await wait(() => r.getAllByText('Milk'));
+    const r = shallow(<ProductListContainer query={query} />);
     expect(r).toMatchSnapshot();
+    expect(
+      r
+        .find('ForwardRef(Relay(ProductRowItemContainer))')
+        .first()
+        .prop('product')
+    ).toBe(query.active.edges[0].node);
+    expect(
+      r
+        .find('ForwardRef(Relay(ProductRowItemContainer))')
+        .last()
+        .prop('product')
+    ).toBe(query.archived.edges[0].node);
   });
 });
-
-// Test product can be created
-
-// Test Product can edited
-
-// Test Benchmark can be updated
-
-// Test threshold can be updated

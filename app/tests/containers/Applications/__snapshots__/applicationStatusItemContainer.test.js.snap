@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationStatusItemContainer should render the application status 1`] = `
+<Fragment>
+  <Container
+    fluid={false}
+  >
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col
+        md={3}
+      >
+        <h3>
+          Application Status: 
+        </h3>
+      </Col>
+      <Col
+        md={2}
+      >
+        <Dropdown
+          navbar={false}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <Bootstrap(DropdownToggle)
+            id="dropdown"
+            style={
+              Object {
+                "textTransform": "capitalize",
+                "width": "100%",
+              }
+            }
+            variant="info"
+          >
+            pending
+          </Bootstrap(DropdownToggle)>
+          <DropdownMenu
+            alignRight={false}
+            flip={true}
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            <DropdownMenuItemComponent
+              itemEventKey="pending"
+              itemFunc={[MockFunction]}
+              itemTitle="pending"
+              key="pending"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="attention"
+              itemFunc={[MockFunction]}
+              itemTitle="attention"
+              key="attention"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="declined"
+              itemFunc={[MockFunction]}
+              itemTitle="declined"
+              key="declined"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="approved"
+              itemFunc={[MockFunction]}
+              itemTitle="approved"
+              key="approved"
+            />
+          </DropdownMenu>
+        </Dropdown>
+      </Col>
+    </ForwardRef>
+  </Container>
+</Fragment>
+`;

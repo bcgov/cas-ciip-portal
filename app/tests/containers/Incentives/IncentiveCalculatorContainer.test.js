@@ -1,6 +1,6 @@
 import React from 'react';
 import {wait, render} from '@testing-library/react';
-import IncentiveCalculatorContainer from '../../../containers/Incentives/IncentiveCalculatorContainer';
+import {IncentiveCalculatorContainer} from '../../../containers/Incentives/IncentiveCalculatorContainer';
 import {queryMock} from '../../../lib/relayQueryMock';
 
 let allProductsMockData;

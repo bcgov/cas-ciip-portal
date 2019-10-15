@@ -1,24 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import {shallow, mount} from 'enzyme';
 import React from 'react';
 import {wait, render, fireEvent} from '@testing-library/react';
 import EasyGraphQLTester from 'easygraphql-tester';
-import ProductRowItemContainer from '../../../containers/Products/ProductRowItemContainer';
-
-const product = {
-  rowId: 9,
-  name: 'Milk',
-  description: 'Sustenance for baby cows',
-  state: 'active',
-  benchmarksByProductId: {
-    nodes: [
-      {
-        benchmark: 10,
-        eligibilityThreshold: 20
-      }
-    ]
-  }
-};
+import {ProductRowItemContainer} from '../../../containers/Products/ProductRowItemContainer';
 
 const archivedProduct = {
   rowId: 9,
@@ -35,18 +21,150 @@ const archivedProduct = {
   }
 };
 
-describe('Product Row Item', () => {
-  it.skip('should render the product', async () => {
-    // This will replace the query in ProductList with the one above and wait till Milk is rendered
-    const r = render(<ProductRowItemContainer product={product} />);
-    await wait(() => r.getAllByText('Milk'));
+const product = {
+  id: 'product-1',
+  rowId: 9,
+  name: 'Milk',
+  description: 'Sustenance for baby cows',
+  state: 'active',
+  parent: null,
+  createdAt: 'foo',
+  createdBy: 'foo',
+  benchmarksByProductId: {
+    edges: [
+      {
+        node: {
+          rowId: 1,
+          benchmark: 10,
+          eligibilityThreshold: 20,
+          startDate: null,
+          endDate: null,
+          deletedAt: null,
+          deletedBy: null
+        }
+      }
+    ]
+  }
+};
+
+const productRowActions = {
+  toggleProductMode: jest.fn(),
+  toggleBenchmarkMode: jest.fn(),
+  openConfirmationWindow: jest.fn(),
+  closeConfirmationWindow: jest.fn(),
+  toggleBenchmarkDeleted: jest.fn()
+};
+
+describe('ProductRowItemContainer', () => {
+  it('should render the product row item', async () => {
+    const r = shallow(
+      <ProductRowItemContainer
+        product={product}
+        productRowActions={productRowActions}
+      />
+    );
     expect(r).toMatchSnapshot();
   });
 
-  it.skip('should toggle to product edit when I click edit product button', () => {
-    const {getByTestId} = render(<ProductRowItemContainer product={product} />);
-    fireEvent.click(getByTestId('edit-product'));
-    expect(getByTestId('save-product')).toBeDefined();
+  it('should toggle product mode when I click edit product button', () => {
+    const r = mount(
+      <ProductRowItemContainer
+        product={product}
+        productRowActions={productRowActions}
+      />
+    );
+    const calls = productRowActions.toggleProductMode.mock.calls.length;
+    r.find('button.edit-product').simulate('click');
+    expect(productRowActions.toggleProductMode.mock.calls.length).toBe(
+      calls + 1
+    );
+  });
+
+  it('should toggle benchmark mode when I click edit product button', () => {
+    const r = mount(
+      <ProductRowItemContainer
+        product={product}
+        productRowActions={productRowActions}
+      />
+    );
+    const calls = productRowActions.toggleBenchmarkMode.mock.calls.length;
+    r.find('button.edit-benchmark').simulate('click');
+    expect(productRowActions.toggleBenchmarkMode.mock.calls.length).toBe(
+      calls + 1
+    );
+  });
+
+  it('should close confirmation window when I click the no button', () => {
+    const r = mount(
+      <ProductRowItemContainer
+        confirmationModalOpen
+        product={product}
+        productRowActions={productRowActions}
+      />
+    );
+    const calls = productRowActions.closeConfirmationWindow.mock.calls.length;
+    r.find('button.close-confirmation-window').simulate('click');
+    expect(productRowActions.closeConfirmationWindow.mock.calls.length).toBe(
+      calls + 1
+    );
+  });
+
+  // CurrentBenchmark needs isolation
+  it.skip('should mark benchmark deleted when I click the yes button', () => {
+    const r = mount(
+      <ProductRowItemContainer
+        confirmationModalOpen
+        product={product}
+        productRowActions={productRowActions}
+      />
+    );
+    const calls = productRowActions.toggleBenchmarkDeleted.mock.calls.length;
+    r.find('button.toggle-benchmark-deleted').simulate('click');
+    expect(productRowActions.toggleBenchmarkDeleted.mock.calls.length).toBe(
+      calls + 1
+    );
+  });
+
+  it.skip('should save on submit', () => {
+    const r = mount(
+      <ProductRowItemContainer
+        product={product}
+        productRowActions={productRowActions}
+      />
+    );
+    const calls = productRowActions.toggleBenchmarkMode.mock.calls.length;
+    r.find('form.save-benchmark').simulate('submit');
+    expect(productRowActions.toggleBenchmarkMode.mock.calls.length).toBe(
+      calls + 1
+    );
+  });
+
+  it('should toggle benchmark on secondary variant', () => {
+    const r = mount(
+      <ProductRowItemContainer
+        product={product}
+        productRowActions={productRowActions}
+      />
+    );
+    const calls = productRowActions.toggleBenchmarkMode.mock.calls.length;
+    r.find('button.secondary-toggle-benchmark-mode').simulate('click');
+    expect(productRowActions.toggleBenchmarkMode.mock.calls.length).toBe(
+      calls + 1
+    );
+  });
+
+  it('should open confirmation window when I click the archive button', () => {
+    const r = mount(
+      <ProductRowItemContainer
+        product={product}
+        productRowActions={productRowActions}
+      />
+    );
+    const calls = productRowActions.openConfirmationWindow.mock.calls.length;
+    r.find('button.archive-benchmark').simulate('click');
+    expect(productRowActions.openConfirmationWindow.mock.calls.length).toBe(
+      calls + 1
+    );
   });
 
   it.skip('should make the product name editable when I click edit', () => {

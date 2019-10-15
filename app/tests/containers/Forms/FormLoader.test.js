@@ -1,7 +1,7 @@
 import React from 'react';
 import {wait, render} from '@testing-library/react';
 import * as Survey from 'survey-react';
-import FormLoaderContainer from '../../../containers/Forms/FormLoaderContainer';
+import {FormLoaderContainer} from '../../../containers/Forms/FormLoaderContainer';
 
 describe('Form Loader', () => {
   let survey;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {wait, render} from '@testing-library/react';
 import {queryMock} from '../../../lib/relayQueryMock';
-import FormPicker from '../../../containers/Forms/FormPicker';
+import {FormPicker} from '../../../containers/Forms/FormPicker';
 
 let mockAppQueryData;
 
@@ -24,7 +24,7 @@ describe('Form Loader', () => {
   });
 
   // TODO: this snapshot differs on CI and needs to be debugged
-  it.skip('should render the form', async () => {
+  it('should render the form', async () => {
     queryMock.mockQuery({
       name: 'FormPickerQuery',
       data: mockAppQueryData

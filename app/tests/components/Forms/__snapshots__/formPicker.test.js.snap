@@ -1,77 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationRowItemContainer should render the application 1`] = `
+exports[`Form Loader should render the form 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <table>
-        <tbody>
-          <tr>
-            <td />
-            <td>
-              operator1
-            </td>
-            <td>
-              facility1
-            </td>
-            <td>
-              Sun, 17 Dec 1995 03:24:00 GMT
-            </td>
-            <td>
-              <span
-                class="badge badge-pill badge-info"
-                style="width: 100%;"
-              >
-                pending
-              </span>
-            </td>
-            <td>
-              <button
-                class="btn btn-primary"
-                type="button"
-              >
-                View Application
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div>
+        <div
+          class="dropdown"
+        >
+          <button
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="dropdown-toggle btn btn-primary"
+            id="dropdown-basic-button"
+            type="button"
+          >
+            Please select a form
+          </button>
+        </div>
+      </div>
     </div>
   </body>,
   "container": <div>
-    <table>
-      <tbody>
-        <tr>
-          <td />
-          <td>
-            operator1
-          </td>
-          <td>
-            facility1
-          </td>
-          <td>
-            Sun, 17 Dec 1995 03:24:00 GMT
-          </td>
-          <td>
-            <span
-              class="badge badge-pill badge-info"
-              style="width: 100%;"
-            >
-              pending
-            </span>
-          </td>
-          <td>
-            <button
-              class="btn btn-primary"
-              type="button"
-            >
-              View Application
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <div
+        class="dropdown"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="dropdown-toggle btn btn-primary"
+          id="dropdown-basic-button"
+          type="button"
+        >
+          Please select a form
+        </button>
+      </div>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

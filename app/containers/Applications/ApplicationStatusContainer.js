@@ -15,7 +15,7 @@ const setStatus = graphql`
   }
 `;
 
-const ApplicationStatusContainer = props => {
+export const ApplicationStatusContainer = props => {
   const {allApplicationStatuses} = props.query;
   useEffect(() => {
     const refetchVariables = {
@@ -57,17 +57,13 @@ const ApplicationStatusContainer = props => {
     });
   };
 
-  return (
-    <>
-      {allApplicationStatuses.edges.length === 1 ? (
-        <ApplicationStatusItemContainer
-          key={allApplicationStatuses.edges[0].node.id}
-          applicationStatus={allApplicationStatuses.edges[0].node}
-          setApplicationStatus={setApplicationStatus}
-        />
-      ) : null}
-    </>
-  );
+  return allApplicationStatuses.edges.length === 1 ? (
+    <ApplicationStatusItemContainer
+      key={allApplicationStatuses.edges[0].node.id}
+      applicationStatus={allApplicationStatuses.edges[0].node}
+      setApplicationStatus={setApplicationStatus}
+    />
+  ) : null;
 };
 
 export default createRefetchContainer(

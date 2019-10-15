@@ -1,0 +1,296 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationListContainer should render the application list 1`] = `
+<Fragment>
+  <Container
+    fluid={false}
+    style={
+      Object {
+        "background": "#dee2e6",
+        "padding": 10,
+      }
+    }
+  >
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col
+        md={2}
+      >
+        <h5>
+          Sort Applications
+        </h5>
+      </Col>
+      <Col
+        md={2}
+      />
+      <Col
+        md={3}
+      >
+        <h5>
+          Filter Applications
+        </h5>
+      </Col>
+    </ForwardRef>
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col
+        md={2}
+      >
+        <Dropdown
+          navbar={false}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <Bootstrap(DropdownToggle)
+            id="dropdown-sort"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+            variant="info"
+          />
+          <DropdownMenu
+            alignRight={false}
+            flip={true}
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            <DropdownMenuItemComponent
+              itemEventKey="id"
+              itemFunc={[Function]}
+              itemId="sortApplications"
+              itemTitle="Application ID"
+              key="id"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="operator_name"
+              itemFunc={[Function]}
+              itemId="sortApplications"
+              itemTitle="Operator Name"
+              key="operator_name"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="facility_name"
+              itemFunc={[Function]}
+              itemId="sortApplications"
+              itemTitle="Facility Name"
+              key="facility_name"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="submission_date"
+              itemFunc={[Function]}
+              itemId="sortApplications"
+              itemTitle="Submission Date"
+              key="submission_date"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="application_status"
+              itemFunc={[Function]}
+              itemId="sortApplications"
+              itemTitle="Status"
+              key="application_status"
+            />
+            ;
+          </DropdownMenu>
+        </Dropdown>
+      </Col>
+      <Col
+        md={1}
+      >
+        <Button
+          active={false}
+          disabled={false}
+          id="toggleDirection"
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+          type="button"
+          variant="info"
+        />
+      </Col>
+      <Col
+        md={1}
+      />
+      <Col
+        md={2}
+      >
+        <Dropdown
+          navbar={false}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <Bootstrap(DropdownToggle)
+            id="dropdown-filter"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+            variant="info"
+          />
+          <DropdownMenu
+            alignRight={false}
+            flip={true}
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            <DropdownMenuItemComponent
+              itemEventKey={null}
+              itemFunc={[Function]}
+              itemId="applySearchField"
+              itemTitle="No Filter"
+              key="null"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="id"
+              itemFunc={[Function]}
+              itemId="applySearchField"
+              itemTitle="Application ID"
+              key="id"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="operator_name"
+              itemFunc={[Function]}
+              itemId="applySearchField"
+              itemTitle="Operator Name"
+              key="operator_name"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="facility_name"
+              itemFunc={[Function]}
+              itemId="applySearchField"
+              itemTitle="Facility Name"
+              key="facility_name"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="submission_date"
+              itemFunc={[Function]}
+              itemId="applySearchField"
+              itemTitle="Submission Date"
+              key="submission_date"
+            />
+            <DropdownMenuItemComponent
+              itemEventKey="application_status"
+              itemFunc={[Function]}
+              itemId="applySearchField"
+              itemTitle="Status"
+              key="application_status"
+            />
+          </DropdownMenu>
+        </Dropdown>
+      </Col>
+      <Col
+        md={6}
+      >
+        <Form
+          id="applySearchValue"
+          inline={false}
+          onSubmit={[Function]}
+        >
+          <FormRow>
+            <FormGroup
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "Col",
+                  "render": [Function],
+                }
+              }
+              controlId="filter"
+              md={8}
+            >
+              <FormControl
+                step="0.01"
+                type="string"
+              />
+            </FormGroup>
+            <FormGroup
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "displayName": "Col",
+                  "render": [Function],
+                }
+              }
+              md={1}
+            >
+              <Button
+                active={false}
+                disabled={false}
+                type="submit"
+                variant="info"
+              >
+                Filter
+              </Button>
+            </FormGroup>
+          </FormRow>
+        </Form>
+      </Col>
+    </ForwardRef>
+  </Container>
+  <br />
+  <br />
+  <Container
+    fluid={false}
+  >
+    <Bootstrap(Table)
+      bordered={true}
+      hover={true}
+      striped={true}
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      <thead>
+        <tr>
+          <th>
+            Application ID
+          </th>
+          <th>
+            Operator Name
+          </th>
+          <th>
+            Facility Name
+          </th>
+          <th>
+            Submitted
+          </th>
+          <th>
+            Status
+          </th>
+          <th />
+        </tr>
+      </thead>
+      <tbody>
+        <ForwardRef(Relay(ApplicationRowItemContainer))
+          ciipApplication={
+            Object {
+              "id": "ciip-application-1",
+            }
+          }
+          key="ciip-application-1"
+        />
+      </tbody>
+    </Bootstrap(Table)>
+  </Container>
+</Fragment>
+`;
