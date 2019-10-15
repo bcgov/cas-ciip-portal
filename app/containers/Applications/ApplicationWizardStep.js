@@ -14,7 +14,7 @@ const ApplicationWizardStep = ({
   prepopulateFromCiip,
   prepopulateFromSwrs
 }) => {
-  const [initialData, setInitialData] = useState(null);
+  const [initialData, setInitialData] = useState({});
   useEffect(() => {
     if (!prepopulateFromSwrs) return setInitialData(null);
     const swrsData = {};
@@ -27,19 +27,77 @@ const ApplicationWizardStep = ({
           operatorName,
           operatorTradeName,
           duns,
-          craBusinessNumber,
           operatorMailingAddress,
           operatorCity,
           operatorProvince,
           operatorPostalCode,
           operatorCountry
-        } = node.swrsOrganisationData.edges[0].node;
-        const reportingOperationInfo = {
-          operator_name: operatorName,
-          operator_trade_name: operatorTradeName,
-          duns_number: duns
-        };
-        swrsData.reporting_operation_information = [reportingOperationInfo];
+        } = node.swrsOrganisationData;
+        const {
+          facilityName,
+          facilityType,
+          bcghgid,
+          naicsCode,
+          latitude,
+          longitude,
+          facilityMailingAddress,
+          facilityCity,
+          facilityProvince,
+          facilityPostalCode
+        } = node.swrsFacilityData;
+        swrsData.reportingOperationInformation = [
+          {
+            operatorName,
+            operatorTradeName,
+            duns,
+            naicsCode,
+            mailingAddress: operatorMailingAddress,
+            mailingAddressCity: operatorCity,
+            mailingAddressProvince: operatorProvince,
+            mailingAddressPostalCode: operatorPostalCode.replace(' ', ''),
+            mailingAddressCountry: operatorCountry
+          }
+        ];
+        swrsData.facilityInformation = [
+          {
+            facilityName,
+            facilityType,
+            bcghgid,
+            naicsCode,
+            latitude,
+            longitude,
+            mailingAddress: facilityMailingAddress,
+            mailingAddressCity: facilityCity,
+            mailingAddressProvince: facilityProvince,
+            mailingAddressPostalCode: facilityPostalCode.replace(' ', '')
+          }
+        ];
+        const {
+          firstName,
+          lastName,
+          positionTitle,
+          email,
+          telephone,
+          fax,
+          contactMailingAddress,
+          contactCity,
+          contactProvince,
+          contactPostalCode
+        } = node.swrsOperatorContactData;
+        swrsData.operationalRepresentativeInformation = [
+          {
+            firstName,
+            lastName,
+            position: positionTitle,
+            emailAddress: email,
+            phone: telephone,
+            fax,
+            mailingAddress: contactMailingAddress,
+            mailingAddressCity: contactCity,
+            mailingAddressProvince: contactProvince,
+            mailingAddressPostalCode: contactPostalCode.replace(' ', '')
+          }
+        ];
         break;
       }
 
@@ -92,21 +150,17 @@ export default createFragmentContainer(ApplicationWizardStep, {
               }
             }
             swrsFacilityData(reportingYear: "2018") {
-              edges {
-                node {
-                  facilityName
-                  facilityType
-                  bcghgid
-                  naicsCode
-                  latitude
-                  longitude
-                  facilityMailingAddress
-                  facilityCity
-                  facilityProvince
-                  facilityPostalCode
-                  facilityCountry
-                }
-              }
+              facilityName
+              facilityType
+              bcghgid
+              naicsCode
+              latitude
+              longitude
+              facilityMailingAddress
+              facilityCity
+              facilityProvince
+              facilityPostalCode
+              facilityCountry
             }
             swrsFuelData(reportingYear: "2018") {
               edges {
@@ -122,37 +176,26 @@ export default createFragmentContainer(ApplicationWizardStep, {
               }
             }
             swrsOperatorContactData(reportingYear: "2018") {
-              edges {
-                node {
-                  firstName
-                  lastName
-                  positionTitle
-                  contactType
-                  email
-                  telephone
-                  fax
-                  contactMailingAddress
-                  contactCity
-                  contactProvince
-                  contactPostalCode
-                  contactCountry
-                }
-              }
+              firstName
+              lastName
+              positionTitle
+              email
+              telephone
+              fax
+              contactMailingAddress
+              contactCity
+              contactProvince
+              contactPostalCode
             }
             swrsOrganisationData(reportingYear: "2018") {
-              edges {
-                node {
-                  operatorName
-                  operatorTradeName
-                  duns
-                  craBusinessNumber
-                  operatorMailingAddress
-                  operatorCity
-                  operatorProvince
-                  operatorPostalCode
-                  operatorCountry
-                }
-              }
+              operatorName
+              operatorTradeName
+              duns
+              operatorMailingAddress
+              operatorCity
+              operatorProvince
+              operatorPostalCode
+              operatorCountry
             }
           }
         }
