@@ -7,7 +7,7 @@ import Admin from "../../containers/pageContainers/Admin";
 const environment=createMockEnvironment();
 
 const query = graphql`
-query AdminMockedQuery {
+query AdminTestQuery {
   query {
     ...ProductListContainer_query
   }
@@ -27,7 +27,16 @@ const renderStory = (query, environment, variables = {}) => (
         return <Admin {...props} query={query}/>;
       }
       console.log(props)
-      return <Admin {...props} />;
+      return <Admin {...props} query={{active:{
+      edges:
+        [{node: {
+          id: 1, name:'buddy', state: 'active', benchmarksByProductId: {edges: []}
+        }}]}
+      , archived: {
+        edges:
+          [{node: {
+            id: 2, name:'holly', state: 'archived', benchmarksByProductId: {edges: []}
+          }}]}}}/>;
       return null;
     }}
   />
