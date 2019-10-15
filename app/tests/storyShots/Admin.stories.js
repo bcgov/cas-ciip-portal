@@ -46,3 +46,4 @@ storiesOf("containers/pageContainers/Admin", module)
   .add("Render Admin page", () => {
     return renderStory(query, environment);
   });
+  
