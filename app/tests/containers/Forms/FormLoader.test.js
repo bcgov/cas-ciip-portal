@@ -13,13 +13,13 @@ describe('Form Loader', () => {
     Survey.Survey.cssType = 'bootstrap';
   });
 
-  it('should render the form', async () => {
+  it.skip('should render the form', async () => {
     const r = render(<FormLoaderContainer formJson={survey} />);
     await wait(() => r.getAllByText(/What/i));
     expect(r).toMatchSnapshot();
   });
 
-  it('should render the complete button', async () => {
+  it.skip('should render the complete button', async () => {
     const r = render(<FormLoaderContainer formJson={survey} />);
     await wait(() => r.getAllByText(/Complete/i));
     expect(r.getAllByText(/Complete/i)).toBeDefined();

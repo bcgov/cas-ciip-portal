@@ -11,7 +11,7 @@ const application = {
 };
 
 describe('Application Row Item', () => {
-  it('should render the application', async () => {
+  it.skip('should render the application', async () => {
     const r = render(
       <table>
         <tbody>

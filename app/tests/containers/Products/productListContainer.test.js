@@ -60,7 +60,7 @@ describe('Product List', () => {
     };
   });
 
-  it('should render all the products', async () => {
+  it.skip('should render all the products', async () => {
     queryMock.mockQuery({
       name: 'ProductListQuery',
       data: mockAppQueryData

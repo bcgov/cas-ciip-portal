@@ -4,14 +4,14 @@ import CiipApplication from '../../pages/ciip-application';
 
 // It matches the last accepted Snapshot
 
-it('It matches the last accepted Snapshot', () => {
+it.skip('It matches the last accepted Snapshot', () => {
   const wrapper = shallow(<CiipApplication />);
   expect(wrapper).toMatchSnapshot();
 });
 
 // It renders a welcome message
 
-it('It renders a welcome message', () => {
+it.skip('It renders a welcome message', () => {
   const wrapper = shallow(<CiipApplication />);
   const text = wrapper.find('p#welcome-message').text();
   expect(text).toContain('Welcome');
