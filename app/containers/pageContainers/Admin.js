@@ -73,12 +73,12 @@ class Admin extends Component {
               <br />
               <br />
               <br />
-              {/* <ProductListContainer
+              <ProductListContainer
                 productRowActions={this.productRowActions}
                 query={query}
                 mode={this.state.mode}
                 confirmationModalOpen={this.state.confirmationModalOpen}
-              /> */}
+              />
             </Col>
           </Row>
         </DefaultLayout>
