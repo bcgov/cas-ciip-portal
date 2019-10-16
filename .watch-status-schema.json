@@ -1,0 +1,19 @@
+[
+  "trigger",
+  "./",
+  {
+    "name": "schema",
+    "expression": [
+      "anyof",
+      ["match", "log/sqitch.status", "wholename"],
+      ["match", "app/package.json", "wholename"]
+    ],
+    "command": [
+      "/usr/bin/env",
+      "bash",
+      "-c",
+      "cd app && yarn run build:schema 1>../log/schema.stdout.log 2>../log/schema.stderr.log"
+    ],
+    "append_files": false
+  }
+]

@@ -39,7 +39,8 @@ yarn install --frozen-lockfile --production=false
 
 #do not fail when there is no build script
 echo "---> Building"
-yarn build
+yarn build:relay
+yarn build:next
 
 yarn install --frozen-lockfile --production=true
 yarn cache clean

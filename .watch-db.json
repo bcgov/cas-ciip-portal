@@ -1,0 +1,13 @@
+[
+  "trigger",
+  "./",
+  {
+    "name": "db",
+    "expression": [
+      "anyof",
+      ["match", ".tool-versions", "wholename"]
+    ],
+    "command": ["/usr/bin/env", "bash", "-c", "pg_ctl restart -l log/db.log 1>log/db.stdout.log 2>log/db.stderr.log"],
+    "append_files": false
+  }
+]
