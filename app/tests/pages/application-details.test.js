@@ -1,6 +1,6 @@
 import React from 'react';
-import {mount} from 'enzyme';
-import ApplicationDetails from '../../pages/application-details';
+import {mount, shallow} from 'enzyme';
+import ApplicationDetails from '../../containers/pageContainers/ApplicationDetails';
 
 const router = {
   asPath:
@@ -11,29 +11,28 @@ const router = {
 };
 
 it.skip('It matches the last accepted Snapshot', () => {
-  const wrapper = mount(<ApplicationDetails router={router} />);
+  const wrapper = shallow(<ApplicationDetails router={router} />);
   expect(wrapper).toMatchSnapshot();
 });
 
-it.skip('It renders the iFrame with metabase', () => {
-  const wrapper = mount(<ApplicationDetails router={router} />);
+it('It receives the props for app_id, bcghgid and reporting year', () => {
+  const wrapper = shallow(<ApplicationDetails router={router} />);
   expect(
-    wrapper.containsMatchingElement(
-      <iframe
-        frameBorder="0"
-        height="1000"
-        src="http://metabase-wksv3k-test.pathfinder.gov.bc.ca/public/dashboard/e5c89425-e6c1-489b-9329-a7ab68e44d8f?application_id=1&reporting_year=2018&bcghgid=100"
-        width="100%"
-      />
-    )
-  ).toBeTruthy();
+    wrapper
+      .find('ForwardRef(Relay(ApplicationStatusContainer))')
+      .first()
+      .prop('applicationId')
+  ).toBe(router.query.applicationId);
+  expect(
+    wrapper
+      .find('ForwardRef(Relay(IncentiveCalculatorContainer))')
+      .first()
+      .prop('reportingYear')
+  ).toBe(router.query.reportingYear);
+  expect(
+    wrapper
+      .find('ForwardRef(Relay(IncentiveCalculatorContainer))')
+      .first()
+      .prop('bcghgid')
+  ).toBe(router.query.bcghgid);
 });
-
-it.skip('It receives the props for app_id, bcghgid and reporting year', () => {
-  const wrapper = mount(<ApplicationDetails router={router} />);
-  expect(wrapper.props().router.query.application_id).toEqual('1');
-  expect(wrapper.props().router.query.reportingyear).toEqual('2018');
-  expect(wrapper.props().router.query.bcghgid).toEqual('100');
-});
-
-// It renders the metabase widgets
