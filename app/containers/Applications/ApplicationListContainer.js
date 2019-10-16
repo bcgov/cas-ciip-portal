@@ -12,7 +12,7 @@ import {
 import DropdownMenuItemComponent from '../../components/DropdownMenuItemComponent';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
-const ApplicationListContainer = props => {
+export const ApplicationListContainer = props => {
   const {
     orderByDisplay,
     searchDisplay,

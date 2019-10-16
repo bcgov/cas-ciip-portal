@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductListContainer should render the product list 1`] = `
+Array [
+  <ForwardRef(Relay(ProductRowItemContainer))
+    key="product-1"
+    product={
+      Object {
+        "id": "product-1",
+      }
+    }
+  />,
+  <ForwardRef(Relay(ProductRowItemContainer))
+    key="product-2"
+    product={
+      Object {
+        "id": "product-2",
+      }
+    }
+  />,
+]
+`;

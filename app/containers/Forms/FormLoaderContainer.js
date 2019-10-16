@@ -5,7 +5,7 @@ import 'survey-creator/survey-creator.css';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 
 let lock;
-const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
+export const FormLoaderContainer = ({query, relay, formId, onFormComplete}) => {
   const {products, json} = query || {};
   const {environment} = relay;
 

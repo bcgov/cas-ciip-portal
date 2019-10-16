@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 
-class FormPicker extends Component {
+export class FormPicker extends Component {
   formSelectHandler = (formId, formJson) => {
-    console.log('FormPicker.js > formSelectHandler', formId, formJson);
+    // Console.log('FormPicker.js > formSelectHandler', formId, formJson);
     formId && this.props.handleFormId(formId, formJson);
   };
 

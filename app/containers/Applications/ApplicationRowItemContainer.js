@@ -3,8 +3,8 @@ import {Button, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import Link from 'next/link';
 
-const ApplicationRowItemContainer = props => {
-  const {ciipApplication} = props;
+export const ApplicationRowItemContainer = props => {
+  const {ciipApplication = {}} = props;
   const statusBadgeColor = {
     attention: 'warning',
     pending: 'info',

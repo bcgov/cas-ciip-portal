@@ -1,138 +1,168 @@
 import fs from 'fs';
 import path from 'path';
+import {shallow} from 'enzyme';
 import React from 'react';
-import {wait, render, fireEvent} from '@testing-library/react';
 import EasyGraphQLTester from 'easygraphql-tester';
-import ProductRowItemContainer from '../../../containers/Products/ProductRowItemContainer';
+import {ProductRowItemContainer} from '../../../containers/Products/ProductRowItemContainer';
 
 const product = {
+  id: 'product-1',
   rowId: 9,
   name: 'Milk',
   description: 'Sustenance for baby cows',
   state: 'active',
+  parent: null,
+  createdAt: 'foo',
+  createdBy: 'foo',
   benchmarksByProductId: {
-    nodes: [
+    edges: [
       {
-        benchmark: 10,
-        eligibilityThreshold: 20
+        node: {
+          rowId: 1,
+          benchmark: 10,
+          eligibilityThreshold: 20,
+          startDate: null,
+          endDate: null,
+          deletedAt: null,
+          deletedBy: null
+        }
       }
     ]
   }
 };
 
-const archivedProduct = {
-  rowId: 9,
-  name: 'Eggs',
-  description: 'Large',
-  state: 'archived',
-  benchmarksByProductId: {
-    nodes: [
-      {
-        benchmark: 1,
-        eligibilityThreshold: 1
-      }
-    ]
-  }
+const productRowActions = {
+  toggleProductMode: jest.fn(),
+  toggleBenchmarkMode: jest.fn(),
+  openConfirmationWindow: jest.fn(),
+  closeConfirmationWindow: jest.fn(),
+  toggleBenchmarkDeleted: jest.fn()
 };
 
-describe('Product Row Item', () => {
-  it('should render the product', async () => {
-    // This will replace the query in ProductList with the one above and wait till Milk is rendered
-    const r = render(<ProductRowItemContainer product={product} />);
-    await wait(() => r.getAllByText('Milk'));
-    expect(r).toMatchSnapshot();
-  });
-
-  it('should toggle to product edit when I click edit product button', () => {
-    const {getByTestId} = render(<ProductRowItemContainer product={product} />);
-    fireEvent.click(getByTestId('edit-product'));
-    expect(getByTestId('save-product')).toBeDefined();
-  });
-
-  it('should make the product name editable when I click edit', () => {
-    const {getByLabelText, getByTestId} = render(
-      <ProductRowItemContainer product={product} />
-    );
-    fireEvent.click(getByTestId('edit-product'));
-    fireEvent.change(getByLabelText('Name'), {target: {value: 'Eggs'}});
-    expect(getByLabelText('Name').value).toEqual('Eggs');
-    expect(getByTestId('save-product').type).toEqual('submit');
-  });
-
-  it('should make the product description editable when I click edit', () => {
-    const {getByLabelText, getByTestId} = render(
-      <ProductRowItemContainer product={product} />
-    );
-    fireEvent.click(getByTestId('edit-product'));
-    fireEvent.change(getByLabelText('Description'), {
-      target: {value: 'Large'}
+let render;
+describe('ProductRowItemContainer', () => {
+  describe('with active product', () => {
+    beforeAll(() => {
+      render = shallow(
+        <ProductRowItemContainer
+          product={product}
+          productRowActions={productRowActions}
+        />
+      );
     });
-    expect(getByLabelText('Description').value).toEqual('Large');
-    expect(getByTestId('save-product').type).toEqual('submit');
-  });
 
-  it('should be allow products to be archived when active', () => {
-    const {getByText, getByTestId} = render(
-      <ProductRowItemContainer product={product} />
-    );
-    fireEvent.click(getByTestId('edit-product'));
-    expect(getByText('Archive')).toBeDefined();
-  });
-
-  it('should allow products to be restorable when archived', () => {
-    const {getByText, getByTestId} = render(
-      <ProductRowItemContainer product={archivedProduct} />
-    );
-    fireEvent.click(getByTestId('edit-product'));
-    expect(getByText('Restore')).toBeDefined();
-  });
-
-  it('should toggle to benchmark edit when I click edit benchmark button', () => {
-    const {getByTestId} = render(<ProductRowItemContainer product={product} />);
-    fireEvent.click(getByTestId('edit-benchmark'));
-    expect(getByTestId('save-benchmark')).toBeDefined();
-  });
-
-  it('should make the benchmark editable when I click edit benchmark button', () => {
-    const {getByLabelText, getByTestId} = render(
-      <ProductRowItemContainer product={product} />
-    );
-    fireEvent.click(getByTestId('edit-benchmark'));
-    fireEvent.change(getByLabelText('Benchmark'), {target: {value: 1}});
-    expect(getByLabelText('Benchmark').value).toEqual('1');
-    expect(getByTestId('save-benchmark').type).toEqual('submit');
-  });
-
-  it('should make the benchmark eligibility threshold editable when I click edit benchmark button', () => {
-    const {getByLabelText, getByTestId} = render(
-      <ProductRowItemContainer product={product} />
-    );
-    fireEvent.click(getByTestId('edit-benchmark'));
-    fireEvent.change(getByLabelText('Eligibility Threshold'), {
-      target: {value: 1}
+    it('should render the product row item', () => {
+      expect(render).toMatchSnapshot();
     });
-    expect(getByLabelText('Eligibility Threshold').value).toEqual('1');
-    expect(getByTestId('save-benchmark').type).toEqual('submit');
-  });
 
-  it('should make the benchmark start date editable when I click edit benchmark button', () => {
-    const {getByLabelText, getByTestId} = render(
-      <ProductRowItemContainer product={product} />
-    );
-    fireEvent.click(getByTestId('edit-benchmark'));
-    fireEvent.change(getByLabelText('Start Date'), {
-      target: {value: '1999'}
+    it('should toggle product mode when I click edit product button', () => {
+      const calls = productRowActions.toggleProductMode.mock.calls.length;
+      render.find('Button.edit-product').simulate('click');
+      expect(productRowActions.toggleProductMode.mock.calls.length).toBe(
+        calls + 1
+      );
     });
-    expect(getByLabelText('Start Date').value).toEqual('1999');
-    expect(getByTestId('save-benchmark').type).toEqual('submit');
+
+    it('should toggle benchmark mode when I click edit product button', () => {
+      const calls = productRowActions.toggleBenchmarkMode.mock.calls.length;
+      render.find('Button.edit-benchmark').simulate('click');
+      expect(productRowActions.toggleBenchmarkMode.mock.calls.length).toBe(
+        calls + 1
+      );
+    });
+
+    it('should toggle benchmark on secondary variant', () => {
+      const calls = productRowActions.toggleBenchmarkMode.mock.calls.length;
+      render.find('Button.secondary-toggle-benchmark-mode').simulate('click');
+      expect(productRowActions.toggleBenchmarkMode.mock.calls.length).toBe(
+        calls + 1
+      );
+    });
+
+    it('should open confirmation window when I click the archive button', () => {
+      const calls = productRowActions.openConfirmationWindow.mock.calls.length;
+      render.find('Button.archive-benchmark').simulate('click');
+      expect(productRowActions.openConfirmationWindow.mock.calls.length).toBe(
+        calls + 1
+      );
+    });
+
+    // TODO: avoid using nativeEvent
+    it.skip('should save on submit', () => {
+      const calls = productRowActions.toggleBenchmarkMode.mock.calls.length;
+      render.find('form.save-benchmark').simulate('submit');
+      expect(productRowActions.toggleBenchmarkMode.mock.calls.length).toBe(
+        calls + 1
+      );
+    });
   });
 
-  it('should make the benchmark archivable / deletable when I click edit benchmark button', () => {
-    const {getByText, getByTestId} = render(
-      <ProductRowItemContainer product={product} />
-    );
-    fireEvent.click(getByTestId('edit-benchmark'));
-    expect(getByText('Delete')).toBeDefined();
+  describe('with archived product', () => {
+    beforeAll(() => {
+      render = shallow(
+        <ProductRowItemContainer
+          product={{...product, state: 'archived'}}
+          productRowActions={productRowActions}
+        />
+      );
+    });
+
+    it('should render the product row item', () => {
+      expect(render).toMatchSnapshot();
+    });
+  });
+
+  // TODO: setting css class based on a prop breaks encapsulation
+  const modes = ['view', 'product', 'benchmark'];
+  modes.forEach(mode => {
+    describe(`with mode set to ${mode}`, () => {
+      beforeAll(() => {
+        render = shallow(
+          <ProductRowItemContainer
+            mode={mode}
+            product={product}
+            productRowActions={productRowActions}
+          />
+        );
+      });
+
+      it(`should render the product row item with the ${mode} class`, () => {
+        expect(render).toMatchSnapshot();
+      });
+
+      it.todo(`should add the ${mode} class to the benchmark editor`);
+      it.todo(`should add the ${mode} class to the product editor`);
+      it.todo(`should add the ${mode} class to the item editor`);
+    });
+  });
+
+  describe('with confirmation modal open', () => {
+    beforeAll(() => {
+      render = shallow(
+        <ProductRowItemContainer
+          confirmationModalOpen
+          product={product}
+          productRowActions={productRowActions}
+        />
+      );
+    });
+
+    it('should close confirmation window when I click the no button', () => {
+      const calls = productRowActions.closeConfirmationWindow.mock.calls.length;
+      render.find('Button.close-confirmation-window').simulate('click');
+      expect(productRowActions.closeConfirmationWindow.mock.calls.length).toBe(
+        calls + 1
+      );
+    });
+
+    // TODO: CurrentBenchmark needs isolation
+    it.skip('should mark benchmark deleted when I click the yes button', () => {
+      const calls = productRowActions.toggleBenchmarkDeleted.mock.calls.length;
+      render.find('Button.toggle-benchmark-deleted').simulate('click');
+      expect(productRowActions.toggleBenchmarkDeleted.mock.calls.length).toBe(
+        calls + 1
+      );
+    });
   });
 });
 

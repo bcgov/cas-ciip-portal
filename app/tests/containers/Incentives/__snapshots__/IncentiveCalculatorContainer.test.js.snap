@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IncentiveCalculatorContainer should render the page 1`] = `
+<Fragment>
+  <Jumbotron
+    fluid={false}
+  >
+    <div
+      style={
+        Object {
+          "marginBottom": "30px",
+        }
+      }
+    >
+      <h5>
+        Incentive by Product:
+      </h5>
+      <p>
+        This formula gives the partial incentive for each product reported in 
+        <br />
+        the CIIP application. The total Incentive is the sum of these partial incentives.
+        <br />
+      </p>
+    </div>
+    <IncentiveSegmentFormula />
+  </Jumbotron>
+  <div
+    className="incentive-breakdown"
+  >
+    <Bootstrap(Table)
+      bordered={true}
+      hover={true}
+      responsive="lg"
+      striped={true}
+    >
+      <thead>
+        <tr>
+          <th>
+            Product
+          </th>
+          <th>
+            Calculation Breakdown
+          </th>
+          <th>
+            Incentive for product
+          </th>
+          <th>
+            Chart
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            colSpan="2"
+          >
+            <strong>
+              Total Incentive
+            </strong>
+          </td>
+          <td />
+        </tr>
+      </tbody>
+    </Bootstrap(Table)>
+  </div>
+</Fragment>
+`;

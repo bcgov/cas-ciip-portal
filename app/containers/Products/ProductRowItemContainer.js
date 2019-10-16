@@ -12,7 +12,7 @@ import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 
 // TODO: The UI is a little borked, the edit buttons apply to all items on the page because of where state lives currently
 //       I have purposely left this not fixed as I believe this should be fixed in a separate refactor of this page
-const ProductRowItemContainer = props => {
+export const ProductRowItemContainer = props => {
   const createBenchmark = graphql`
     mutation ProductRowItemContainerBenchmarkMutation(
       $input: CreateBenchmarkInput!
@@ -319,7 +319,7 @@ const ProductRowItemContainer = props => {
           <Row style={{padding: 5}}>
             <Col md={1} style={{textAlign: 'right'}}>
               <Button
-                data-testid="edit-product"
+                className="edit-product"
                 style={{width: '100%'}}
                 onClick={props.productRowActions.toggleProductMode}
               >
@@ -338,7 +338,7 @@ const ProductRowItemContainer = props => {
             </Col>
             <Col md={1} style={{textAlign: 'right'}}>
               <Button
-                data-testid="edit-benchmark"
+                className="edit-benchmark"
                 style={{width: '100%'}}
                 onClick={props.productRowActions.toggleBenchmarkMode}
               >
@@ -387,7 +387,7 @@ const ProductRowItemContainer = props => {
                 style={{width: '100%', marginTop: 10, marginBotton: 5}}
               >
                 <Button
-                  data-testid="save-product"
+                  className="save-product"
                   style={{marginTop: '8px', marginRight: '10px'}}
                   type="submit"
                 >
@@ -401,7 +401,7 @@ const ProductRowItemContainer = props => {
                   Cancel
                 </Button>
                 <Button
-                  data-testid="archive-product"
+                  className="archive-product"
                   style={{marginTop: '8px', marginRight: '10px'}}
                   variant={buttonVariant}
                   onClick={toggleArchived}
@@ -464,15 +464,27 @@ const ProductRowItemContainer = props => {
               This is a destructive action (benchmark will be destroyed)
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={props.productRowActions.closeConfirmationWindow}>
+              <Button
+                className="close-confirmation-window"
+                onClick={props.productRowActions.closeConfirmationWindow}
+              >
                 No
               </Button>
-              <Button onClick={toggleBenchmarkDeleted}>Yes</Button>
+              <Button
+                className="toggle-benchmark-deleted"
+                onClick={toggleBenchmarkDeleted}
+              >
+                Yes
+              </Button>
             </Modal.Footer>
           </Modal.Dialog>
         )}
         {!props.confirmationModalOpen && (
-          <Form key={props.product.rowId} onSubmit={saveBenchmark}>
+          <Form
+            key={props.product.rowId}
+            className="save-benchmark"
+            onSubmit={saveBenchmark}
+          >
             <Form.Row>
               <Form.Group as={Col} md="1"></Form.Group>
               <Form.Group as={Col} md="4">
@@ -491,7 +503,7 @@ const ProductRowItemContainer = props => {
                   style={{width: '100%', marginTop: 10, marginBotton: 5}}
                 >
                   <Button
-                    data-testid="save-benchmark"
+                    className="save-benchmark"
                     style={{marginTop: '8px', marginRight: '10px'}}
                     type="submit"
                   >
@@ -500,12 +512,13 @@ const ProductRowItemContainer = props => {
                   <Button
                     variant="secondary"
                     style={{marginTop: '8px'}}
+                    className="secondary-toggle-benchmark-mode"
                     onClick={props.productRowActions.toggleBenchmarkMode}
                   >
                     Cancel
                   </Button>
                   <Button
-                    data-testid="archive-benchmark"
+                    className="archive-benchmark"
                     style={{marginTop: '8px', marginRight: '10px'}}
                     variant="danger"
                     onClick={props.productRowActions.openConfirmationWindow}
