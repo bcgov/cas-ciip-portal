@@ -2,6 +2,123 @@ import React, {useState, useEffect} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import Form from '../Forms/Form';
 
+const getInitialAdminData = query => {
+  const {application} = query;
+  const {edges} = application;
+  const {node} = edges[0];
+  const {
+    operatorName,
+    operatorTradeName,
+    duns,
+    operatorMailingAddress,
+    operatorCity,
+    operatorProvince,
+    operatorPostalCode,
+    operatorCountry
+  } = node.swrsOrganisationData;
+  const {
+    facilityName,
+    facilityType,
+    bcghgid,
+    naicsCode,
+    latitude,
+    longitude,
+    facilityMailingAddress,
+    facilityCity,
+    facilityProvince,
+    facilityPostalCode
+  } = node.swrsFacilityData;
+
+  const {
+    firstName,
+    lastName,
+    positionTitle,
+    email,
+    telephone,
+    fax,
+    contactMailingAddress,
+    contactCity,
+    contactProvince,
+    contactPostalCode
+  } = node.swrsOperatorContactData;
+
+  return {
+    reportingOperationInformation: [
+      {
+        operatorName,
+        operatorTradeName,
+        duns,
+        naicsCode,
+        mailingAddress: operatorMailingAddress,
+        mailingAddressCity: operatorCity,
+        mailingAddressProvince: operatorProvince,
+        mailingAddressPostalCode: operatorPostalCode.replace(' ', ''),
+        mailingAddressCountry: operatorCountry
+      }
+    ],
+    facilityInformation: [
+      {
+        facilityName,
+        facilityType,
+        bcghgid,
+        naicsCode,
+        latitude,
+        longitude,
+        mailingAddress: facilityMailingAddress,
+        mailingAddressCity: facilityCity,
+        mailingAddressProvince: facilityProvince,
+        mailingAddressPostalCode: facilityPostalCode.replace(' ', '')
+      }
+    ],
+    operationalRepresentativeInformation: [
+      {
+        firstName,
+        lastName,
+        position: positionTitle,
+        emailAddress: email,
+        phone: telephone,
+        fax,
+        mailingAddress: contactMailingAddress,
+        mailingAddressCity: contactCity,
+        mailingAddressProvince: contactProvince,
+        mailingAddressPostalCode: contactPostalCode.replace(' ', '')
+      }
+    ]
+  };
+};
+
+const getInitialEmissionData = query => {
+  const {application} = query;
+  const {edges} = application;
+  const {node} = edges[0];
+  return {};
+};
+
+const getInitialFuelData = query => {
+  const {application} = query;
+  const {edges} = application;
+  const {node} = edges[0];
+  return {
+    fuels: node.swrsFuelData.edges.map(edge => {
+      const {
+        fuelType,
+        fuelDescription,
+        fuelUnits,
+        annualFuelAmount,
+        alternativeMethodolodyDescription
+      } = edge.node;
+      // TODO: The fuel types here should be mapped against the list available in CIIP
+      return {
+        fuelType,
+        fuelUnits,
+        description: fuelDescription,
+        quantity: annualFuelAmount,
+        methodology: alternativeMethodolodyDescription
+      };
+    })
+  };
+};
+
 /*
  * The ApplicationWizardStep renders a form and, where applicable,
  * (TODO) starts by presenting a summary of existing data to the user
@@ -17,95 +134,25 @@ const ApplicationWizardStep = ({
   const [initialData, setInitialData] = useState({});
   useEffect(() => {
     if (!prepopulateFromSwrs) return setInitialData(null);
-    const swrsData = {};
     switch (formName) {
       case 'Admin': {
-        const {application} = query;
-        const {edges} = application;
-        const {node} = edges[0];
-        const {
-          operatorName,
-          operatorTradeName,
-          duns,
-          operatorMailingAddress,
-          operatorCity,
-          operatorProvince,
-          operatorPostalCode,
-          operatorCountry
-        } = node.swrsOrganisationData;
-        const {
-          facilityName,
-          facilityType,
-          bcghgid,
-          naicsCode,
-          latitude,
-          longitude,
-          facilityMailingAddress,
-          facilityCity,
-          facilityProvince,
-          facilityPostalCode
-        } = node.swrsFacilityData;
-        swrsData.reportingOperationInformation = [
-          {
-            operatorName,
-            operatorTradeName,
-            duns,
-            naicsCode,
-            mailingAddress: operatorMailingAddress,
-            mailingAddressCity: operatorCity,
-            mailingAddressProvince: operatorProvince,
-            mailingAddressPostalCode: operatorPostalCode.replace(' ', ''),
-            mailingAddressCountry: operatorCountry
-          }
-        ];
-        swrsData.facilityInformation = [
-          {
-            facilityName,
-            facilityType,
-            bcghgid,
-            naicsCode,
-            latitude,
-            longitude,
-            mailingAddress: facilityMailingAddress,
-            mailingAddressCity: facilityCity,
-            mailingAddressProvince: facilityProvince,
-            mailingAddressPostalCode: facilityPostalCode.replace(' ', '')
-          }
-        ];
-        const {
-          firstName,
-          lastName,
-          positionTitle,
-          email,
-          telephone,
-          fax,
-          contactMailingAddress,
-          contactCity,
-          contactProvince,
-          contactPostalCode
-        } = node.swrsOperatorContactData;
-        swrsData.operationalRepresentativeInformation = [
-          {
-            firstName,
-            lastName,
-            position: positionTitle,
-            emailAddress: email,
-            phone: telephone,
-            fax,
-            mailingAddress: contactMailingAddress,
-            mailingAddressCity: contactCity,
-            mailingAddressProvince: contactProvince,
-            mailingAddressPostalCode: contactPostalCode.replace(' ', '')
-          }
-        ];
+        setInitialData(getInitialAdminData(query));
+        break;
+      }
+
+      case 'Emission': {
+        setInitialData(getInitialEmissionData(query));
+        break;
+      }
+
+      case 'Fuel': {
+        setInitialData(getInitialFuelData(query));
         break;
       }
 
       default:
-        setInitialData(null);
+        setInitialData({});
     }
-
-    setInitialData(swrsData);
   }, [formName, query, prepopulateFromSwrs]);
 
   let initialDataSource;
