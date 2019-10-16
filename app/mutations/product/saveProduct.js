@@ -21,7 +21,6 @@ export const saveProductMutation = (environment, newVariables, benchmarkId) => {
       benchmarkId
     }
   };
-  console.log(event);
 
   const saveMutation = mutation;
   // Get the current Benchmark -- calculated by which benchmark is not archived and current date within the start & end dates

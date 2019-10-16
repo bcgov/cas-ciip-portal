@@ -2,6 +2,7 @@ import React from 'react';
 import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
 import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 import {saveProductMutation} from '../../mutations/product/saveProduct';
+import {editBenchmarkMutation} from '../../mutations/product/editBenchmark';
 
 // TODO: create conflict logic & alerts:
 // Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
@@ -20,42 +21,6 @@ export const ProductRowItemContainer = props => {
     ) {
       createBenchmark(input: $input) {
         benchmark {
-          rowId
-        }
-      }
-    }
-  `;
-  const createProduct = graphql`
-    mutation ProductRowItemContainerProductMutation(
-      $input: CreateProductInput!
-    ) {
-      createProduct(input: $input) {
-        product {
-          rowId
-        }
-        query {
-          ...ProductListContainer_query
-        }
-      }
-    }
-  `;
-  const updateBenchmark = graphql`
-    mutation ProductRowItemContainerUpdateBenchmarkMutation(
-      $input: UpdateBenchmarkByRowIdInput!
-    ) {
-      updateBenchmarkByRowId(input: $input) {
-        benchmark {
-          rowId
-        }
-      }
-    }
-  `;
-  const updateProduct = graphql`
-    mutation ProductRowItemContainerUpdateProductMutation(
-      $input: UpdateProductByRowIdInput!
-    ) {
-      updateProductByRowId(input: $input) {
-        product {
           rowId
         }
       }
@@ -112,51 +77,11 @@ export const ProductRowItemContainer = props => {
       deletedBy: 'Admin'
     };
 
-    await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
-  };
-
-  // Edit a benchmark
-  const editBenchmark = (benchmarkRowId, benchmarkPatch) => {
-    const saveMutation = updateBenchmark;
-    const updateBenchmarkVariables = {
-      input: {
-        rowId: benchmarkRowId,
-        benchmarkPatch
-      }
-    };
-    const {environment} = props.relay;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: updateBenchmarkVariables,
-      onCompleted: response => {
-        console.log(response);
-      },
-      onError: err => console.error(err)
-    });
-  };
-
-  // Edit a product
-  const editProduct = () => {
-    const saveMutation = updateProduct;
-    const updateProductVariables = {
-      input: {
-        rowId: props.product.rowId,
-        productPatch: {
-          state: 'deprecated',
-          deletedAt: new Date().toUTCString(),
-          deletedBy: 'Admin'
-        }
-      }
-    };
-    const {environment} = props.relay;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: updateProductVariables,
-      onCompleted: response => {
-        console.log(response);
-      },
-      onError: err => console.error(err)
-    });
+    await editBenchmarkMutation(
+      props.relay.environment,
+      currentBenchmark.rowId,
+      benchmarkPatch
+    );
   };
 
   // Save a product
@@ -243,7 +168,11 @@ export const ProductRowItemContainer = props => {
         console.log(response);
         // If there was a previously set benchmark, update its end_date
         if (currentBenchmark) {
-          await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
+          await editBenchmarkMutation(
+            props.relay.environment,
+            currentBenchmark.rowId,
+            benchmarkPatch
+          );
         }
       },
       onError: err => console.error(err)
