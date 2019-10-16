@@ -150,7 +150,9 @@ describe('IncentiveCalculatorContainer', () => {
   it('should pass reported products as props to IncentiveSegmentContainer component', async () => {
     const query = {
       allProducts: {edges: []},
-      bcghgidProducts: {edges: [{node: {product: 'dylan'}}]},
+      bcghgidProducts: {
+        edges: [{node: {id: 'product-id-1', product: 'dylan'}}]
+      },
       carbonTax: []
     };
     const r = shallow(<IncentiveCalculatorContainer query={query} />);
