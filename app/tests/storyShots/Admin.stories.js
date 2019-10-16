@@ -22,12 +22,9 @@ const renderStory = (query, environment, variables = {}) => (
     render={({props, error}) => {
       if (error) {
         console.error(error);
-      } else if (props) {
-        console.log(props);
-        return <Admin {...props} query={query} />;
+        return null;
       }
 
-      console.log(props);
       return (
         <Admin
           {...props}
@@ -59,7 +56,6 @@ const renderStory = (query, environment, variables = {}) => (
           }}
         />
       );
-      return null;
     }}
   />
 );
