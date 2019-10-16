@@ -27,7 +27,6 @@ view_estimated_carbon_tax_paid 2019-08-29T21:37:02Z Hamza Javed <hamza@button.is
 function_get_carbon_tax_by_organisation 2019-08-29T22:14:28Z Hamza Javed <hamza@button.is> # Get carbon tax paid by organisation and reporting year
 function_get_products_by_bcghgid 2019-08-30T18:49:23Z Hamza Javed <hamza@button.is> # Get production data by bcghgid
 function_search_application_list [view_ciip_application] 2019-09-03T20:40:05Z Dylan Leard <dylan@button.is> # add function for searching the list of applications
-function_insert_dummy_application_data [table_product table_benchmark table_form_result table_application_status] 2019-09-19T23:42:58Z Dylan Leard <dylan@button.is> # function inserts dummy data into product, benchmark, form_result and application_status
 function_get_swrs_organisation_data [schema_ggircs_portal] 2019-10-01T20:51:53Z Hamza Javed <hamza@button.is> # Function that imports information from swrs based on parameters
 table_ciip_application_wizard [table_form_json] 2019-10-09T17:18:33Z Matthieu Foucault <matthieu@button.is> # Add table_ciip_application_wizard
 function_get_swrs_facility_data 2019-10-07T21:25:50Z Hamza Javed <hamza@button.is> # Function to import facility data from swrs
@@ -41,3 +40,5 @@ function_application_swrs_fuel_data [table_application function_get_swrs_fuel_da
 function_application_swrs_facility_data [table_application function_get_swrs_facility_data] 2019-10-15T18:10:37Z Matthieu Foucault <matthieu@button.is> # add application_swrs_facility_data
 function_application_swrs_emission_data [table_application function_get_swrs_emission_data] 2019-10-15T18:10:37Z Matthieu Foucault <matthieu@button.is> # add application_swrs_emission_data
 function_application_swrs_operator_contact_data [table_application function_get_swrs_operator_contact_data] 2019-10-15T18:10:37Z Matthieu Foucault <matthieu@button.is> # add application_swrs_operator_contact_data
+table_fuel [schema_ggircs_portal] 2019-10-16T18:17:17Z Matthieu Foucault <matthieu@button.is> # add fuel table
+function_insert_dummy_application_data [table_product table_benchmark table_form_result table_application_status table_fuel] 2019-09-19T23:42:58Z Dylan Leard <dylan@button.is> # function inserts dummy data into product, benchmark, form_result and application_status
