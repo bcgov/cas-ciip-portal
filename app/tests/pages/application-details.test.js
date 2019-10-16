@@ -1,5 +1,5 @@
 import React from 'react';
-import {mount, shallow} from 'enzyme';
+import {shallow} from 'enzyme';
 import ApplicationDetails from '../../containers/pageContainers/ApplicationDetails';
 
 const router = {
@@ -10,7 +10,7 @@ const router = {
   query: {applicationId: '1', reportingYear: '2018', bcghgid: '100'}
 };
 
-it.skip('It matches the last accepted Snapshot', () => {
+it('It matches the last accepted Snapshot', () => {
   const wrapper = shallow(<ApplicationDetails router={router} />);
   expect(wrapper).toMatchSnapshot();
 });
