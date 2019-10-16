@@ -60,9 +60,8 @@ jobs:
 
   check-graphql-schema-sync:
     docker:
-      - image: wenzowski/sqitch:0.9999
-      - image: circleci/postgres:11.4
       - image: circleci/node:10.14.1
+      - image: circleci/postgres:11.4
     steps:
       - checkout
       - restore_cache:
@@ -77,6 +76,9 @@ jobs:
           key: yarn-packages-{{ checksum "app/yarn.lock" }}
           paths:
             - ~/.cache/yarn
+      - run:
+          name: Install sqitch
+          command: cd schema && make dev_install
       - run:
           name: Deploy with sqitch
           command: cd schema && sqitch deploy
