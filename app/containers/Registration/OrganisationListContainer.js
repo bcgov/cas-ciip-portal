@@ -5,24 +5,19 @@ import {Dropdown, DropdownButton} from 'react-bootstrap';
 const OrganisationListContainer = props => {
   const {query} = props;
 
-  // Const query = graphql`
-  //   query OrganisationListContainerQuery {
-  //     query {
-  //       ...OrganisationListContainer_query
-  //     }
-  //   }
-  // `;
-
   if (query.allOrganisations) {
     const organisations = [...query.allOrganisations.edges];
+    const dropDownItems = [];
+
+    for (const org of organisations) {
+      dropDownItems.push(
+        <Dropdown.Item>{org.node.operatorName}</Dropdown.Item>
+      );
+    }
 
     return (
-      <DropdownButton title="Select Organisation...">
-        {organisations.map(org => (
-          <Dropdown.Item key={org.node.rowId}>
-            {org.node.operatorName}
-          </Dropdown.Item>
-        ))}
+      <DropdownButton title="Select Organization...">
+        {dropDownItems}
       </DropdownButton>
     );
   }
@@ -36,7 +31,7 @@ export default createFragmentContainer(OrganisationListContainer, {
       allOrganisations {
         edges {
           node {
-            rowId
+            id
             operatorName
           }
         }
