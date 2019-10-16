@@ -609,7 +609,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                         >
                                           <Button
                                             active={false}
-                                            data-testid="edit-product"
+                                            className="edit-product"
                                             disabled={false}
                                             onClick={[Function]}
                                             style={
@@ -621,8 +621,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                             variant="primary"
                                           >
                                             <button
-                                              className="btn btn-primary"
-                                              data-testid="edit-product"
+                                              className="edit-product btn btn-primary"
                                               disabled={false}
                                               onClick={[Function]}
                                               style={
@@ -695,7 +694,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                         >
                                           <Button
                                             active={false}
-                                            data-testid="edit-benchmark"
+                                            className="edit-benchmark"
                                             disabled={false}
                                             onClick={[Function]}
                                             style={
@@ -707,8 +706,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                             variant="primary"
                                           >
                                             <button
-                                              className="btn btn-primary"
-                                              data-testid="edit-benchmark"
+                                              className="edit-benchmark btn btn-primary"
                                               disabled={false}
                                               onClick={[Function]}
                                               style={
@@ -887,7 +885,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   <Button
                                                     active={false}
-                                                    data-testid="save-product"
+                                                    className="save-product"
                                                     disabled={false}
                                                     style={
                                                       Object {
@@ -899,8 +897,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     variant="primary"
                                                   >
                                                     <button
-                                                      className="btn btn-primary"
-                                                      data-testid="save-product"
+                                                      className="save-product btn btn-primary"
                                                       disabled={false}
                                                       style={
                                                         Object {
@@ -941,7 +938,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                   </Button>
                                                   <Button
                                                     active={false}
-                                                    data-testid="archive-product"
+                                                    className="archive-product"
                                                     disabled={false}
                                                     onClick={[Function]}
                                                     style={
@@ -954,8 +951,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     variant="warning"
                                                   >
                                                     <button
-                                                      className="btn btn-warning"
-                                                      data-testid="archive-product"
+                                                      className="archive-product btn btn-warning"
                                                       disabled={false}
                                                       onClick={[Function]}
                                                       style={
@@ -1167,11 +1163,12 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                 key="edit-bmundefined"
                               >
                                 <Form
+                                  className="save-benchmark"
                                   inline={false}
                                   onSubmit={[Function]}
                                 >
                                   <form
-                                    className=""
+                                    className="save-benchmark"
                                     onSubmit={[Function]}
                                   >
                                     <FormRow>
@@ -1318,7 +1315,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   <Button
                                                     active={false}
-                                                    data-testid="save-benchmark"
+                                                    className="save-benchmark"
                                                     disabled={false}
                                                     style={
                                                       Object {
@@ -1330,8 +1327,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     variant="primary"
                                                   >
                                                     <button
-                                                      className="btn btn-primary"
-                                                      data-testid="save-benchmark"
+                                                      className="save-benchmark btn btn-primary"
                                                       disabled={false}
                                                       style={
                                                         Object {
@@ -1346,6 +1342,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                   </Button>
                                                   <Button
                                                     active={false}
+                                                    className="secondary-toggle-benchmark-mode"
                                                     disabled={false}
                                                     onClick={[Function]}
                                                     style={
@@ -1357,7 +1354,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     variant="secondary"
                                                   >
                                                     <button
-                                                      className="btn btn-secondary"
+                                                      className="secondary-toggle-benchmark-mode btn btn-secondary"
                                                       disabled={false}
                                                       onClick={[Function]}
                                                       style={
@@ -1372,7 +1369,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                   </Button>
                                                   <Button
                                                     active={false}
-                                                    data-testid="archive-benchmark"
+                                                    className="archive-benchmark"
                                                     disabled={false}
                                                     onClick={[Function]}
                                                     style={
@@ -1385,8 +1382,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     variant="danger"
                                                   >
                                                     <button
-                                                      className="btn btn-danger"
-                                                      data-testid="archive-benchmark"
+                                                      className="archive-benchmark btn btn-danger"
                                                       disabled={false}
                                                       onClick={[Function]}
                                                       style={
@@ -1645,7 +1641,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                         >
                                           <Button
                                             active={false}
-                                            data-testid="edit-product"
+                                            className="edit-product"
                                             disabled={false}
                                             onClick={[Function]}
                                             style={
@@ -1657,8 +1653,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                             variant="primary"
                                           >
                                             <button
-                                              className="btn btn-primary"
-                                              data-testid="edit-product"
+                                              className="edit-product btn btn-primary"
                                               disabled={false}
                                               onClick={[Function]}
                                               style={
@@ -1731,7 +1726,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                         >
                                           <Button
                                             active={false}
-                                            data-testid="edit-benchmark"
+                                            className="edit-benchmark"
                                             disabled={false}
                                             onClick={[Function]}
                                             style={
@@ -1743,8 +1738,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                             variant="primary"
                                           >
                                             <button
-                                              className="btn btn-primary"
-                                              data-testid="edit-benchmark"
+                                              className="edit-benchmark btn btn-primary"
                                               disabled={false}
                                               onClick={[Function]}
                                               style={
@@ -1923,7 +1917,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   <Button
                                                     active={false}
-                                                    data-testid="save-product"
+                                                    className="save-product"
                                                     disabled={false}
                                                     style={
                                                       Object {
@@ -1935,8 +1929,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     variant="primary"
                                                   >
                                                     <button
-                                                      className="btn btn-primary"
-                                                      data-testid="save-product"
+                                                      className="save-product btn btn-primary"
                                                       disabled={false}
                                                       style={
                                                         Object {
@@ -1977,7 +1970,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                   </Button>
                                                   <Button
                                                     active={false}
-                                                    data-testid="archive-product"
+                                                    className="archive-product"
                                                     disabled={false}
                                                     onClick={[Function]}
                                                     style={
@@ -1990,8 +1983,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     variant="success"
                                                   >
                                                     <button
-                                                      className="btn btn-success"
-                                                      data-testid="archive-product"
+                                                      className="archive-product btn btn-success"
                                                       disabled={false}
                                                       onClick={[Function]}
                                                       style={
@@ -2203,11 +2195,12 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                 key="edit-bmundefined"
                               >
                                 <Form
+                                  className="save-benchmark"
                                   inline={false}
                                   onSubmit={[Function]}
                                 >
                                   <form
-                                    className=""
+                                    className="save-benchmark"
                                     onSubmit={[Function]}
                                   >
                                     <FormRow>
@@ -2354,7 +2347,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   <Button
                                                     active={false}
-                                                    data-testid="save-benchmark"
+                                                    className="save-benchmark"
                                                     disabled={false}
                                                     style={
                                                       Object {
@@ -2366,8 +2359,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     variant="primary"
                                                   >
                                                     <button
-                                                      className="btn btn-primary"
-                                                      data-testid="save-benchmark"
+                                                      className="save-benchmark btn btn-primary"
                                                       disabled={false}
                                                       style={
                                                         Object {
@@ -2382,6 +2374,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                   </Button>
                                                   <Button
                                                     active={false}
+                                                    className="secondary-toggle-benchmark-mode"
                                                     disabled={false}
                                                     onClick={[Function]}
                                                     style={
@@ -2393,7 +2386,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     variant="secondary"
                                                   >
                                                     <button
-                                                      className="btn btn-secondary"
+                                                      className="secondary-toggle-benchmark-mode btn btn-secondary"
                                                       disabled={false}
                                                       onClick={[Function]}
                                                       style={
@@ -2408,7 +2401,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                   </Button>
                                                   <Button
                                                     active={false}
-                                                    data-testid="archive-benchmark"
+                                                    className="archive-benchmark"
                                                     disabled={false}
                                                     onClick={[Function]}
                                                     style={
@@ -2421,8 +2414,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     variant="danger"
                                                   >
                                                     <button
-                                                      className="btn btn-danger"
-                                                      data-testid="archive-benchmark"
+                                                      className="archive-benchmark btn btn-danger"
                                                       disabled={false}
                                                       onClick={[Function]}
                                                       style={
