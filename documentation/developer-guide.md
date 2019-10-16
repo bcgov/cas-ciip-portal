@@ -37,3 +37,4 @@ local postgres server.
 
 [Watchman]: https://facebook.github.io/watchman/
 [extended json syntax]: https://facebook.github.io/watchman/docs/cmd/trigger.html#extended-syntax
+[multitail]: https://linux.die.net/man/1/multitail
