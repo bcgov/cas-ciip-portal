@@ -1496,6 +1496,44 @@ input CreateBenchmarkInput {
   clientMutationId: String
 }
 
+"""All input for the `createBenchmarkMutationChain` mutation."""
+input CreateBenchmarkMutationChainInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  productIdInput: Int
+  benchmarkInput: Int
+  eligibilityThresholdInput: Int
+  startDateInput: Datetime
+  prevBenchmarkIdInput: Int
+}
+
+"""The output of our `createBenchmarkMutationChain` mutation."""
+type CreateBenchmarkMutationChainPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  benchmark: Benchmark
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Product` that is related to this `Benchmark`."""
+  productByProductId: Product
+
+  """An edge for our `Benchmark`. May be used by Relay 1."""
+  benchmarkEdge(
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksEdge
+}
+
 """The output of our create `Benchmark` mutation."""
 type CreateBenchmarkPayload {
   """The `Benchmark` that was created by this mutation."""
@@ -4077,18 +4115,24 @@ type Mutation {
     """
     input: DeleteUserOrganisationByRowIdInput!
   ): DeleteUserOrganisationPayload
+  createBenchmarkMutationChain(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateBenchmarkMutationChainInput!
+  ): CreateBenchmarkMutationChainPayload
   insertDummyApplicationData(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
     input: InsertDummyApplicationDataInput!
   ): InsertDummyApplicationDataPayload
-  saveProduct(
+  saveProductMutationChain(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: SaveProductInput!
-  ): SaveProductPayload
+    input: SaveProductMutationChainInput!
+  ): SaveProductMutationChainPayload
 }
 
 """An object with a globally unique `ID`."""
@@ -5737,8 +5781,8 @@ type Query implements Node {
   userOrganisationByRowId(rowId: Int!): UserOrganisation
 }
 
-"""All input for the `saveProduct` mutation."""
-input SaveProductInput {
+"""All input for the `saveProductMutationChain` mutation."""
+input SaveProductMutationChainInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -5752,8 +5796,8 @@ input SaveProductInput {
   benchmarkId: Int
 }
 
-"""The output of our `saveProduct` mutation."""
-type SaveProductPayload {
+"""The output of our `saveProductMutationChain` mutation."""
+type SaveProductMutationChainPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.

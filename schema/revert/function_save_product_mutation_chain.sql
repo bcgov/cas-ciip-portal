@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.save_product;
+drop function ggircs_portal.save_product_mutation_chain;
 
 commit;

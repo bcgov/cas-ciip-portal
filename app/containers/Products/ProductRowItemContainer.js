@@ -1,8 +1,9 @@
 import React from 'react';
-import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 import {saveProductMutation} from '../../mutations/product/saveProduct';
-import {editBenchmarkMutation} from '../../mutations/product/editBenchmark';
+import {editBenchmarkMutation} from '../../mutations/benchmark/editBenchmark';
+import {createBenchmarkMutation} from '../../mutations/benchmark/createBenchmark';
 
 // TODO: create conflict logic & alerts:
 // Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
@@ -27,6 +28,7 @@ export const ProductRowItemContainer = props => {
     }
   `;
 
+const ProductRowItemContainer = props => {
   // Get the product's current benchmark
   const getCurrentBenchmark = () => {
     let currentBenchmark;
@@ -112,10 +114,6 @@ export const ProductRowItemContainer = props => {
     const currentDate = new Date().toUTCString();
     // StartDate received from user, defined in UI
     const startDate = new Date(event.nativeEvent.target[5].value).toUTCString();
-    const benchmarkPatch = {
-      endDate: startDate,
-      updatedAt: currentDate
-    };
     // Set the current benchmark (if one has been set)
     const currentBenchmark = getCurrentBenchmark();
 
@@ -147,36 +145,18 @@ export const ProductRowItemContainer = props => {
       return;
     }
 
-    const saveVariables = {
+    const newVariables = {
       input: {
-        benchmark: {
-          productId: props.product.rowId,
-          benchmark: parseFloat(event.nativeEvent.target[3].value),
-          eligibilityThreshold: parseFloat(event.nativeEvent.target[4].value),
-          startDate,
-          updatedAt: currentDate,
-          updatedBy: 'Admin'
-        }
+        productIdInput: props.product.rowId,
+        benchmarkInput: parseFloat(event.nativeEvent.target[3].value),
+        eligibilityThresholdInput: parseFloat(
+          event.nativeEvent.target[4].value
+        ),
+        startDateInput: startDate,
+        prevBenchmarkIdInput: currentBenchmark ? currentBenchmark.rowId : null
       }
     };
-    const {environment} = props.relay;
-    const saveMutation = createBenchmark;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: saveVariables,
-      onCompleted: async response => {
-        console.log(response);
-        // If there was a previously set benchmark, update its end_date
-        if (currentBenchmark) {
-          await editBenchmarkMutation(
-            props.relay.environment,
-            currentBenchmark.rowId,
-            benchmarkPatch
-          );
-        }
-      },
-      onError: err => console.error(err)
-    });
+    await createBenchmarkMutation(props.relay.environment, newVariables);
   };
 
   /** Mutations & functions above */

@@ -1,8 +1,8 @@
 import {commitMutation, graphql} from 'react-relay';
 
 const mutation = graphql`
-  mutation saveProductMutation($input: SaveProductInput!) {
-    saveProduct(input: $input) {
+  mutation saveProductMutation($input: SaveProductMutationChainInput!) {
+    saveProductMutationChain(input: $input) {
       product {
         id
       }

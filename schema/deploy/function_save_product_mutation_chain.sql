@@ -4,7 +4,7 @@
 
 begin;
 
-create or replace function ggircs_portal.save_product(prev_id int, new_name varchar(1000), new_description varchar(1000),
+create or replace function ggircs_portal.save_product_mutation_chain(prev_id int, new_name varchar(1000), new_description varchar(1000),
 new_state varchar(1000), new_parent int ARRAY, benchmark_id int)
 returns ggircs_portal.product
 as $function$
