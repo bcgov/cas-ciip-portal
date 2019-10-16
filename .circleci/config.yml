@@ -58,6 +58,35 @@ jobs:
           name: Check if there is some unformatted code
           command: git diff --exit-code || (echo 'These files are not formatted correctly. Did you forget to \"yarn format\"?' && false)
 
+  check-graphql-schema-sync:
+    docker:
+      - image: circleci/node:10.14.1
+      - image: wenzowski/sqitch:0.9999
+      - image: circleci/postgres:11.4
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: cd app && yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Deploy with sqitch
+          command: cd schema && sqitch deploy
+      - run:
+          name: Run postgraphile via Yarn
+          command: cd app && yarn build:schema
+      - run:
+          name: Check if there is some unformatted code
+          command: git diff --exit-code || (echo 'The graphql schema is out of sync. Did you forget to \"sqitch deploy\" and/or \"yarn build:schema\"?' && false)
+
   test-local-cluster:
     executor: redhat-openshift/machine-for-local-cluster
     steps:
@@ -175,6 +204,7 @@ workflows:
     jobs:
       - test
       - check-code-style
+      - check-graphql-schema-sync
       - openshift-lint:
           context: cas-pipeline
           filters:
