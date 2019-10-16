@@ -4,7 +4,7 @@ import {DropdownButton, Dropdown} from 'react-bootstrap';
 
 export class FormPicker extends Component {
   formSelectHandler = (formId, formJson) => {
-    console.log('FormPicker.js > formSelectHandler', formId, formJson);
+    // Console.log('FormPicker.js > formSelectHandler', formId, formJson);
     formId && this.props.handleFormId(formId, formJson);
   };
 
