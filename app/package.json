@@ -95,7 +95,7 @@
     "@babel/core": "^7.6.2",
     "@storybook/addon-a11y": "^5.2.1",
     "@storybook/addons": "^5.2.1",
-    "@storybook/react": "^5.2.1",
+    "@storybook/react": "^5.2.4",
     "@zeit/next-css": "^1.0.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
