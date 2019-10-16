@@ -1,6 +1,7 @@
 import React from 'react';
 import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
 import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
+import {saveProductMutation} from '../../mutations/product/saveProduct';
 
 // TODO: create conflict logic & alerts:
 // Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
@@ -81,37 +82,22 @@ export const ProductRowItemContainer = props => {
   };
 
   // Toggle the 'archived' value of a Product
-  const toggleArchived = event => {
+  const toggleArchived = async event => {
     event.preventDefault();
     event.stopPropagation();
-    const toggleArchived = props.product.state !== 'archived';
-    const saveVariables = {
-      input: {
-        product: {
-          name: props.product.name,
-          description: props.product.description,
-          state: toggleArchived ? 'archived' : 'active',
-          parent: [props.product.rowId]
-        }
-      }
+    const newState = props.product.state === 'archived' ? 'active' : 'archived';
+    const currentBenchmark = getCurrentBenchmark();
+    const newVariables = {
+      newName: props.product.name,
+      newDescription: props.product.description,
+      newState,
+      prevId: props.product.rowId
     };
-    const {environment} = props.relay;
-    const saveMutation = createProduct;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: saveVariables,
-      onCompleted: async response => {
-        const currentBenchmark = getCurrentBenchmark();
-        const benchmarkPatch = {
-          productId: response.createProduct.product.rowId
-        };
-        await editProduct();
-        if (currentBenchmark) {
-          await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
-        }
-      },
-      onError: err => console.error(err)
-    });
+    await saveProductMutation(
+      props.relay.environment,
+      newVariables,
+      currentBenchmark ? currentBenchmark.rowId : null
+    );
   };
 
   // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation.)
@@ -178,38 +164,18 @@ export const ProductRowItemContainer = props => {
     event.preventDefault();
     event.stopPropagation();
     event.persist();
-    const saveVariables = {
-      input: {
-        product: {
-          name: event.nativeEvent.target[3].value,
-          description: event.nativeEvent.target[4].value,
-          state: 'active',
-          parent: [props.product.rowId]
-        }
-      }
-    };
-
-    const saveMutation = createProduct;
-    // Get the current Benchmark -- calculated by which benchmark is not archived and current date within the start & end dates
     const currentBenchmark = getCurrentBenchmark();
-    const {environment} = props.relay;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: saveVariables,
-      onCompleted: async response => {
-        console.log(response);
-        const benchmarkPatch = {
-          productId: response.createProduct.product.rowId
-        };
-        // Update state && updatedAt fields of previous product
-        await editProduct();
-        // Attach the previous Product's current benchmark to the new product
-        if (currentBenchmark) {
-          await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
-        }
-      },
-      onError: err => console.error(err)
-    });
+    const newVariables = {
+      newName: event.nativeEvent.target[3].value,
+      newDescription: event.nativeEvent.target[4].value,
+      newState: 'active',
+      prevId: props.product.rowId
+    };
+    await saveProductMutation(
+      props.relay.environment,
+      newVariables,
+      currentBenchmark ? currentBenchmark.rowId : null
+    );
   };
 
   // Save a new benchmark
@@ -284,6 +250,8 @@ export const ProductRowItemContainer = props => {
     });
   };
 
+  /** Mutations & functions above */
+  /** Code for Rendering Below */
   const {product} = props;
   // Get the current benchmark for the product
   let benchmarks;

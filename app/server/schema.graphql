@@ -3901,6 +3901,194 @@ type Mutation {
     """
     input: UpdateUserOrganisationByRowIdInput!
   ): UpdateUserOrganisationPayload
+
+  """Deletes a single `Application` using its globally unique id."""
+  deleteApplication(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteApplicationInput!
+  ): DeleteApplicationPayload
+
+  """Deletes a single `Application` using a unique key."""
+  deleteApplicationByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteApplicationByRowIdInput!
+  ): DeleteApplicationPayload
+
+  """Deletes a single `ApplicationStatus` using its globally unique id."""
+  deleteApplicationStatus(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteApplicationStatusInput!
+  ): DeleteApplicationStatusPayload
+
+  """Deletes a single `ApplicationStatus` using a unique key."""
+  deleteApplicationStatusByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteApplicationStatusByRowIdInput!
+  ): DeleteApplicationStatusPayload
+
+  """Deletes a single `Benchmark` using its globally unique id."""
+  deleteBenchmark(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteBenchmarkInput!
+  ): DeleteBenchmarkPayload
+
+  """Deletes a single `Benchmark` using a unique key."""
+  deleteBenchmarkByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteBenchmarkByRowIdInput!
+  ): DeleteBenchmarkPayload
+
+  """Deletes a single `CiipApplicationWizard` using its globally unique id."""
+  deleteCiipApplicationWizard(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCiipApplicationWizardInput!
+  ): DeleteCiipApplicationWizardPayload
+
+  """Deletes a single `CiipApplicationWizard` using a unique key."""
+  deleteCiipApplicationWizardByFormId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCiipApplicationWizardByFormIdInput!
+  ): DeleteCiipApplicationWizardPayload
+
+  """Deletes a single `Facility` using its globally unique id."""
+  deleteFacility(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFacilityInput!
+  ): DeleteFacilityPayload
+
+  """Deletes a single `Facility` using a unique key."""
+  deleteFacilityByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFacilityByRowIdInput!
+  ): DeleteFacilityPayload
+
+  """Deletes a single `FormJson` using its globally unique id."""
+  deleteFormJson(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFormJsonInput!
+  ): DeleteFormJsonPayload
+
+  """Deletes a single `FormJson` using a unique key."""
+  deleteFormJsonByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFormJsonByRowIdInput!
+  ): DeleteFormJsonPayload
+
+  """Deletes a single `FormResult` using its globally unique id."""
+  deleteFormResult(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFormResultInput!
+  ): DeleteFormResultPayload
+
+  """Deletes a single `FormResult` using a unique key."""
+  deleteFormResultByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteFormResultByRowIdInput!
+  ): DeleteFormResultPayload
+
+  """Deletes a single `Organisation` using its globally unique id."""
+  deleteOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteOrganisationInput!
+  ): DeleteOrganisationPayload
+
+  """Deletes a single `Organisation` using a unique key."""
+  deleteOrganisationByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteOrganisationByRowIdInput!
+  ): DeleteOrganisationPayload
+
+  """Deletes a single `Product` using its globally unique id."""
+  deleteProduct(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteProductInput!
+  ): DeleteProductPayload
+
+  """Deletes a single `Product` using a unique key."""
+  deleteProductByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteProductByRowIdInput!
+  ): DeleteProductPayload
+
+  """Deletes a single `User` using its globally unique id."""
+  deleteUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `User` using a unique key."""
+  deleteUserByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserByRowIdInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `UserOrganisation` using its globally unique id."""
+  deleteUserOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserOrganisationInput!
+  ): DeleteUserOrganisationPayload
+
+  """Deletes a single `UserOrganisation` using a unique key."""
+  deleteUserOrganisationByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserOrganisationByRowIdInput!
+  ): DeleteUserOrganisationPayload
+  insertDummyApplicationData(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: InsertDummyApplicationDataInput!
+  ): InsertDummyApplicationDataPayload
+  saveProduct(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: SaveProductInput!
+  ): SaveProductPayload
 }
 
 """An object with a globally unique `ID`."""
@@ -5547,6 +5735,42 @@ type Query implements Node {
     id: ID!
   ): UserOrganisation
   userOrganisationByRowId(rowId: Int!): UserOrganisation
+}
+
+"""All input for the `saveProduct` mutation."""
+input SaveProductInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  prevId: Int
+  newName: String
+  newDescription: String
+  newState: String
+  newParent: [Int]
+  benchmarkId: Int
+}
+
+"""The output of our `saveProduct` mutation."""
+type SaveProductPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  product: Product
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Product`. May be used by Relay 1."""
+  productEdge(
+    """The method to use when ordering `Product`."""
+    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProductsEdge
 }
 
 """All input for the `updateApplicationByRowId` mutation."""
