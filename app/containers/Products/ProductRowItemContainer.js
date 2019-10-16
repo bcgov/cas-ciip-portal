@@ -15,20 +15,8 @@ import {createBenchmarkMutation} from '../../mutations/benchmark/createBenchmark
 
 // TODO: The UI is a little borked, the edit buttons apply to all items on the page because of where state lives currently
 //       I have purposely left this not fixed as I believe this should be fixed in a separate refactor of this page
-export const ProductRowItemContainer = props => {
-  const createBenchmark = graphql`
-    mutation ProductRowItemContainerBenchmarkMutation(
-      $input: CreateBenchmarkInput!
-    ) {
-      createBenchmark(input: $input) {
-        benchmark {
-          rowId
-        }
-      }
-    }
-  `;
 
-const ProductRowItemContainer = props => {
+export const ProductRowItemContainer = props => {
   // Get the product's current benchmark
   const getCurrentBenchmark = () => {
     let currentBenchmark;
