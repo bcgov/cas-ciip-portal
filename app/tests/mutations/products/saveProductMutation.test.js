@@ -70,7 +70,6 @@ describe('saveProductMutation', () => {
     });
 
     expect(test).toBeDefined();
-    console.log(test.data.saveProductMutationChain.product);
     expect(typeof test.data.saveProductMutationChain.product.id).toBe('string');
   });
 });
