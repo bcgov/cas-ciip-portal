@@ -171,6 +171,7 @@ const schemaCode = fs.readFileSync(
   'utf8'
 );
 
+/** *  MUTATIONS * **/
 describe('Mutations', () => {
   let tester;
   beforeEach(() => {
