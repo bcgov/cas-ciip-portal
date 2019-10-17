@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Router from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
 import ApplicationWizardStep from './ApplicationWizardStep';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
@@ -49,12 +50,13 @@ export default createFragmentContainer(ApplicationWizard, {
   query: graphql`
     fragment ApplicationWizard_query on Query
       @argumentDefinitions(
-        formCondition: {type: "FormJsonCondition"}
+        formId: {type: "ID!"}
         applicationId: {type: "ID!"}
       ) {
       application(id: $applicationId) {
         __typename
       }
+
       wizard: allCiipApplicationWizards(orderBy: FORM_POSITION_ASC) {
         edges {
           node {
@@ -62,13 +64,14 @@ export default createFragmentContainer(ApplicationWizard, {
             prepopulateFromCiip
             prepopulateFromSwrs
             formJsonByFormId {
+              id
               name
             }
           }
         }
       }
       ...ApplicationWizardStep_query
-        @arguments(formCondition: $formCondition, applicationId: $applicationId)
+        @arguments(formId: $formId, applicationId: $applicationId)
     }
   `
 });

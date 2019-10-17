@@ -171,14 +171,9 @@ export default createRefetchContainer(
   Form,
   {
     query: graphql`
-      fragment Form_query on Query
-        @argumentDefinitions(condition: {type: "FormJsonCondition"}) {
-        json: allFormJsons(condition: $condition) {
-          edges {
-            node {
-              formJson
-            }
-          }
+      fragment Form_query on Query @argumentDefinitions(formId: {type: "ID!"}) {
+        json: formJson(id: $formId) {
+          formJson
         }
         ...FormWithProductUnits_query
         ...FormWithFuelUnits_query
@@ -186,9 +181,9 @@ export default createRefetchContainer(
     `
   },
   graphql`
-    query FormRefetchQuery($condition: FormJsonCondition) {
+    query FormRefetchQuery($formId: ID!) {
       query {
-        ...Form_query @arguments(condition: $condition)
+        ...Form_query @arguments(formId: $formId)
       }
     }
   `

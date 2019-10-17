@@ -177,7 +177,7 @@ export default createFragmentContainer(ApplicationWizardStep, {
   query: graphql`
     fragment ApplicationWizardStep_query on Query
       @argumentDefinitions(
-        formCondition: {type: "FormJsonCondition"}
+        formId: {type: "ID!"}
         applicationId: {type: "ID!"}
       ) {
       application(id: $applicationId) {
@@ -238,7 +238,7 @@ export default createFragmentContainer(ApplicationWizardStep, {
         }
       }
 
-      ...Form_query @arguments(condition: $formCondition)
+      ...Form_query @arguments(formId: $formId)
     }
   `
 });

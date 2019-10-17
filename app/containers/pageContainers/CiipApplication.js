@@ -4,37 +4,26 @@ import DefaultLayout from '../../layouts/default-layout';
 import ApplicationWizard from '../Applications/ApplicationWizard';
 
 class CiipApplication extends Component {
-  static getInitialProps = ctx => {
-    console.log('ctx', ctx);
-    return {
-      variables: {
-        formCondition: {
-          rowId: -1
-        }
-      }
-    };
-  };
+  static getInitialProps = () => ({
+    variables: {
+      formId: ''
+    }
+  });
 
   static query = graphql`
-    query CiipApplicationQuery(
-      $formCondition: FormJsonCondition!
-      $applicationId: ID!
-    ) {
+    query CiipApplicationQuery($formId: ID!, $applicationId: ID!) {
       query {
         ...ApplicationWizard_query
-          @arguments(
-            formCondition: $formCondition
-            applicationId: $applicationId
-          )
+          @arguments(formId: $formId, applicationId: $applicationId)
       }
     }
   `;
 
   render() {
-    const {query} = this.props;
+    const {query, router} = this.props;
     return (
       <DefaultLayout>
-        <ApplicationWizard query={query} />
+        <ApplicationWizard query={query} router={router} />
       </DefaultLayout>
     );
   }
