@@ -52,6 +52,7 @@ const getInitialAdminData = query => {
         mailingAddress: operatorMailingAddress,
         mailingAddressCity: operatorCity,
         mailingAddressProvince: operatorProvince,
+        // TODO: the postal code field in the survey should remove spaces when validating/submitting
         mailingAddressPostalCode: operatorPostalCode.replace(' ', ''),
         mailingAddressCountry: operatorCountry
       }
@@ -87,10 +88,7 @@ const getInitialAdminData = query => {
   };
 };
 
-const getInitialEmissionData = query => {
-  const {application} = query;
-  const {edges} = application;
-  const {node} = edges[0];
+const getInitialEmissionData = _ => {
   return {};
 };
 
@@ -103,14 +101,11 @@ const getInitialFuelData = query => {
       const {
         fuelType,
         fuelDescription,
-        fuelUnits,
         annualFuelAmount,
         alternativeMethodolodyDescription
       } = edge.node;
-      // TODO: The fuel types here should be mapped against the list available in CIIP
       return {
         fuelType,
-        fuelUnits,
         description: fuelDescription,
         quantity: annualFuelAmount,
         methodology: alternativeMethodolodyDescription
@@ -131,6 +126,7 @@ const ApplicationWizardStep = ({
   prepopulateFromCiip,
   prepopulateFromSwrs
 }) => {
+  const {application} = query;
   const [initialData, setInitialData] = useState({});
   useEffect(() => {
     if (!prepopulateFromSwrs) return setInitialData(null);
@@ -160,6 +156,8 @@ const ApplicationWizardStep = ({
     initialDataSource = 'your last SWRS report';
   }
 
+  if (!application || !application.edges[0]) return null;
+
   if (prepopulateFromSwrs && !initialData) {
     return <>Loading data from SWRS</>;
   }
@@ -168,7 +166,8 @@ const ApplicationWizardStep = ({
     <Form
       query={query}
       formId={formId}
-      startsEditable={!prepopulateFromSwrs && !prepopulateFromCiip}
+      applicationId={application.edges[0].node.rowId}
+      startsEditable={!prepopulateFromSwrs}
       initialData={initialData}
       initialDataSource={initialDataSource}
       onFormComplete={onStepComplete}
@@ -186,6 +185,7 @@ export default createFragmentContainer(ApplicationWizardStep, {
       application: allApplications(condition: $applicationCondition) {
         edges {
           node {
+            rowId
             swrsEmissionData(reportingYear: "2018") {
               edges {
                 node {
@@ -207,17 +207,13 @@ export default createFragmentContainer(ApplicationWizardStep, {
               facilityCity
               facilityProvince
               facilityPostalCode
-              facilityCountry
             }
             swrsFuelData(reportingYear: "2018") {
               edges {
                 node {
                   fuelType
                   fuelDescription
-                  fuelUnits
                   annualFuelAmount
-                  annualWeightedAvgHhv
-                  annualWeightedAvgCarbonContent
                   alternativeMethodolodyDescription
                 }
               }

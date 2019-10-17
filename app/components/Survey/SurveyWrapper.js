@@ -5,7 +5,12 @@ const SurveyWrapper = ({formJson, initialData, onComplete, editable}) => {
   const createModel = () => {
     if (!formJson) return null;
     const m = new Model(formJson);
-    m.data = initialData;
+    m.checkErrorsMode = 'onValueChanged';
+    if (initialData) {
+      m.data = initialData;
+      m.clearIncorrectValues();
+    }
+
     m.mode = editable ? 'edit' : 'display';
     return m;
   };

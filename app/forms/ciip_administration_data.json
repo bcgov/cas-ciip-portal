@@ -220,7 +220,7 @@
               "type": "dropdown",
               "name": "facilityType",
               "title": "Facility Type",
-              "choices": ["IF_A", "IF_B", "L_C", "SFO", "LFO", "EIO"]
+              "choices": ["IF_a", "IF_b", "L_c", "SFO", "LFO", "EIO"]
             },
             {
               "type": "text",

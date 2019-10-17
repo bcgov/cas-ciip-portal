@@ -265,9 +265,9 @@ insert into ggircs_portal.form_json
               "name": "facilityType",
               "title": "Facility Type",
               "choices": [
-                "IF_A",
-                "IF_B",
-                "L_C",
+                "IF_a",
+                "IF_b",
+                "L_c",
                 "SFO",
                 "LFO",
                 "EIO"

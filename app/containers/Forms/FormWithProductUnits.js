@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Model} from 'survey-react';
 import 'survey-react/survey.css';
 import 'survey-creator/survey-creator.css';
 import {graphql, createFragmentContainer} from 'react-relay';
-import SurveyWrapper from '../../components/Survey/SurveyWrapper';
 
 const FormWithProductUnits = props => {
-  const {query, formJson} = props;
+  const {query, formJson, children} = props;
   const {allProducts} = query || {};
 
   const [productList, setProductsList] = useState([]);
@@ -42,7 +40,7 @@ const FormWithProductUnits = props => {
           if (templateElement.type === 'dropdown') {
             if (templateElement.name === 'product') {
               templateElement.choices = productList;
-            } else if (templateElement.name === 'product_units') {
+            } else if (templateElement.name === 'productUnits') {
               templateElement.choices = [];
               for (const key in unitsProducts) {
                 if (key !== 'null') {
@@ -66,7 +64,13 @@ const FormWithProductUnits = props => {
     // Create survey model from updated formJson
   }, [formJson, productList, unitsProducts]);
 
-  return <SurveyWrapper {...props} formJson={formJsonWithProductUnits} />;
+  return (
+    <>
+      {React.cloneElement(children, {
+        formJson: formJsonWithProductUnits
+      })}
+    </>
+  );
 };
 
 export default createFragmentContainer(FormWithProductUnits, {

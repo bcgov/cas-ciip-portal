@@ -2,15 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import BootstrapForm from 'react-bootstrap/Form';
+import SurveyWrapper from '../../components/Survey/SurveyWrapper';
 import FormWithProductUnits from './FormWithProductUnits';
+import FormWithFuelUnits from './FormWithFuelUnits';
 
 const Form = ({
   query,
   relay,
+  applicationId,
   formId,
   onFormComplete,
   startsEditable,
@@ -28,6 +27,9 @@ const Form = ({
   }, [json]);
 
   const [editable, setEditable] = useState(startsEditable);
+  useEffect(() => {
+    setEditable(startsEditable);
+  }, [startsEditable]);
 
   useEffect(() => {
     relay.refetch({condition: {rowId: formId}});
@@ -89,6 +91,7 @@ const Form = ({
     const variables = {
       input: {
         formResult: {
+          applicationId,
           formId,
           userId: 2,
           formResult: JSON.stringify(formResult)
@@ -127,34 +130,39 @@ const Form = ({
             We filled this form for you with the data coming from{' '}
             {initialDataSource}. Please review it and either submit or edit it.
           </Alert>
-          <div>
-            <Button style={{margin: '5px'}} onClick={() => setEditable(true)}>
-              Edit
-            </Button>
-            <Button
-              style={{margin: '5px 0px 5px 5px'}}
-              onClick={() => onComplete({data: initialData})}
-            >
-              Submit
-            </Button>
-            <style jsx>
-              {`
-                div {
-                  display: flex;
-                  justify-content: flex-end;
-                }
-              `}
-            </style>
-          </div>
         </>
       )}
-      <FormWithProductUnits
-        query={query}
-        formJson={formJson}
-        initialData={initialData}
-        editable={editable}
-        onComplete={onComplete}
-      />
+      <FormWithFuelUnits query={query} formJson={formJson}>
+        <FormWithProductUnits query={query} formJson={formJson}>
+          <SurveyWrapper
+            initialData={initialData}
+            editable={editable}
+            onComplete={onComplete}
+          />
+        </FormWithProductUnits>
+      </FormWithFuelUnits>
+      {!editable && (
+        // TODO: add some margins, and disable the button while submitting
+        <div>
+          <Button style={{margin: '5px'}} onClick={() => setEditable(true)}>
+            Edit
+          </Button>
+          <Button
+            style={{margin: '5px 0px 5px 5px'}}
+            onClick={() => onComplete({data: initialData})}
+          >
+            Submit
+          </Button>
+          <style jsx>
+            {`
+              div {
+                display: flex;
+                justify-content: flex-end;
+              }
+            `}
+          </style>
+        </div>
+      )}
     </>
   );
 };
@@ -173,6 +181,7 @@ export default createRefetchContainer(
           }
         }
         ...FormWithProductUnits_query
+        ...FormWithFuelUnits_query
       }
     `
   },
