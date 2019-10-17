@@ -1,0 +1,978 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
+<div>
+  Array [
+    "",
+    <header
+      className="jsx-1956122375"
+    >
+      <div
+        className="jsx-1956122375 banner"
+      >
+        <a
+          alt="British Columbia"
+          className="jsx-1956122375"
+          href="/"
+        >
+          <img
+            alt="Go to the Government of British Columbia website"
+            className="jsx-1956122375"
+            src="/static/logo-banner.png"
+          />
+        </a>
+        <h1
+          className="jsx-1956122375"
+        >
+          CleanBC Industrial Incentive Program
+        </h1>
+      </div>
+      <div
+        className="buttons"
+      >
+        <ForwardRef
+          noGutters={false}
+        >
+          <div
+            className="row"
+          >
+            <Col
+              md={
+                Object {
+                  "span": 8,
+                }
+              }
+            >
+              <div
+                className="col-md-8"
+              >
+                <a
+                  className="link"
+                  href="/userProfile"
+                >
+                  <p
+                    style={
+                      Object {
+                        "fontWeight": "bolder",
+                        "marginTop": "13px",
+                      }
+                    }
+                  >
+                    Mary Jane
+                     
+                    <br />
+                    Admin Rio Tinto
+                  </p>
+                </a>
+              </div>
+            </Col>
+            <Col
+              md={
+                Object {
+                  "span": 4,
+                }
+              }
+            >
+              <div
+                className="col-md-4"
+              >
+                <ButtonToolbar
+                  role="toolbar"
+                >
+                  <div
+                    className="btn-toolbar"
+                    role="toolbar"
+                  >
+                    <a
+                      className="btn"
+                      href="/applications"
+                      style={
+                        Object {
+                          "backgroundColor": "#EDA500",
+                          "color": "white",
+                          "marginTop": "18px",
+                        }
+                      }
+                    >
+                      Logout
+                    </a>
+                  </div>
+                </ButtonToolbar>
+              </div>
+            </Col>
+          </div>
+        </ForwardRef>
+      </div>
+    </header>,
+  ]
+  <header>
+    <nav
+      className="jsx-1507266372 navigation-main"
+      id="navbar"
+    >
+      <div
+        className="jsx-1507266372 container"
+      >
+        <ul
+          className="jsx-1507266372"
+        >
+          <li
+            className="jsx-1507266372"
+          >
+            <a
+              className="jsx-1507266372 active"
+              href="."
+            >
+              Apply for 2019
+            </a>
+          </li>
+          <li
+            className="jsx-1507266372"
+          >
+            <a
+              className="jsx-1507266372"
+              href="."
+            >
+              Applications
+            </a>
+          </li>
+          <li
+            className="jsx-1507266372"
+          >
+            <a
+              className="jsx-1507266372"
+              href="."
+            >
+              Contact Us
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <Container
+    fluid={false}
+  >
+    <div
+      className="container"
+    >
+      <ForwardRef
+        noGutters={false}
+      >
+        <div
+          className="row"
+        >
+          <Col>
+            <div
+              className="col"
+            >
+              <ForwardRef
+                noGutters={false}
+              >
+                <div
+                  className="row"
+                >
+                  <h2>
+                    Apply for CIIP 2019
+                  </h2>
+                  <p
+                    className="text"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                  </p>
+                </div>
+              </ForwardRef>
+              <ForwardRef
+                noGutters={false}
+              >
+                <div
+                  className="row"
+                >
+                  <h2>
+                    Pre-requisites:
+                  </h2>
+                  <p
+                    className="text"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                  </p>
+                </div>
+              </ForwardRef>
+            </div>
+          </Col>
+          <Col
+            md={
+              Object {
+                "span": 1,
+              }
+            }
+          >
+            <div
+              className="col-md-1"
+            />
+          </Col>
+          <Col>
+            <div
+              className="col"
+            >
+              <h2>
+                Select Organizations
+              </h2>
+              <ForwardRef
+                className="accordion"
+              >
+                <div
+                  className="accordion accordion"
+                >
+                  <div>
+                    <Card
+                      body={false}
+                    >
+                      <div
+                        className="card"
+                      >
+                        <CardHeader
+                          data-testid="btn-header"
+                        >
+                          <div
+                            className="card-header"
+                            data-testid="btn-header"
+                          >
+                            <ForwardRef
+                              as={
+                                Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "defaultProps": Object {
+                                    "active": false,
+                                    "disabled": false,
+                                    "type": "button",
+                                    "variant": "primary",
+                                  },
+                                  "displayName": "Button",
+                                  "render": [Function],
+                                }
+                              }
+                              eventKey={0}
+                              variant="link"
+                            >
+                              <Button
+                                active={false}
+                                disabled={false}
+                                onClick={[Function]}
+                                type="button"
+                                variant="link"
+                              >
+                                <button
+                                  className="btn btn-link"
+                                  disabled={false}
+                                  onClick={[Function]}
+                                  type="button"
+                                >
+                                  Rio Tinto Alcan
+                                </button>
+                              </Button>
+                            </ForwardRef>
+                          </div>
+                        </CardHeader>
+                        <div>
+                          <AccordionCollapse
+                            eventKey={0}
+                          >
+                            <div
+                              aria-expanded={null}
+                              className="collapse"
+                            >
+                              <CardBody
+                                data-testid="card"
+                                style={
+                                  Object {
+                                    "borderBottom": "1px solid #d3d3d3",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="card-body"
+                                  data-testid="card"
+                                  style={
+                                    Object {
+                                      "borderBottom": "1px solid #d3d3d3",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    style={
+                                      Object {
+                                        "fontWeight": "bold",
+                                      }
+                                    }
+                                  >
+                                    Facility1
+                                    <Button
+                                      active={false}
+                                      disabled={false}
+                                      style={
+                                        Object {
+                                          "marginLeft": "30px",
+                                        }
+                                      }
+                                      type="button"
+                                      variant="primary"
+                                    >
+                                      <button
+                                        className="btn btn-primary"
+                                        disabled={false}
+                                        style={
+                                          Object {
+                                            "marginLeft": "30px",
+                                          }
+                                        }
+                                        type="button"
+                                      >
+                                        Apply for CIIP for this facility
+                                      </button>
+                                    </Button>
+                                  </div>
+                                  <p
+                                    style={
+                                      Object {
+                                        "marginTop": "10px",
+                                      }
+                                    }
+                                  >
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                                  </p>
+                                </div>
+                              </CardBody>
+                            </div>
+                          </AccordionCollapse>
+                        </div>
+                        <div>
+                          <AccordionCollapse
+                            eventKey={0}
+                          >
+                            <div
+                              aria-expanded={null}
+                              className="collapse"
+                            >
+                              <CardBody
+                                data-testid="card"
+                                style={
+                                  Object {
+                                    "borderBottom": "1px solid #d3d3d3",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="card-body"
+                                  data-testid="card"
+                                  style={
+                                    Object {
+                                      "borderBottom": "1px solid #d3d3d3",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    style={
+                                      Object {
+                                        "fontWeight": "bold",
+                                      }
+                                    }
+                                  >
+                                    Facility2
+                                    <Button
+                                      active={false}
+                                      disabled={false}
+                                      style={
+                                        Object {
+                                          "marginLeft": "30px",
+                                        }
+                                      }
+                                      type="button"
+                                      variant="primary"
+                                    >
+                                      <button
+                                        className="btn btn-primary"
+                                        disabled={false}
+                                        style={
+                                          Object {
+                                            "marginLeft": "30px",
+                                          }
+                                        }
+                                        type="button"
+                                      >
+                                        Apply for CIIP for this facility
+                                      </button>
+                                    </Button>
+                                  </div>
+                                  <p
+                                    style={
+                                      Object {
+                                        "marginTop": "10px",
+                                      }
+                                    }
+                                  >
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                                  </p>
+                                </div>
+                              </CardBody>
+                            </div>
+                          </AccordionCollapse>
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                  <div>
+                    <Card
+                      body={false}
+                    >
+                      <div
+                        className="card"
+                      >
+                        <CardHeader
+                          data-testid="btn-header"
+                        >
+                          <div
+                            className="card-header"
+                            data-testid="btn-header"
+                          >
+                            <ForwardRef
+                              as={
+                                Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "defaultProps": Object {
+                                    "active": false,
+                                    "disabled": false,
+                                    "type": "button",
+                                    "variant": "primary",
+                                  },
+                                  "displayName": "Button",
+                                  "render": [Function],
+                                }
+                              }
+                              eventKey={1}
+                              variant="link"
+                            >
+                              <Button
+                                active={false}
+                                disabled={false}
+                                onClick={[Function]}
+                                type="button"
+                                variant="link"
+                              >
+                                <button
+                                  className="btn btn-link"
+                                  disabled={false}
+                                  onClick={[Function]}
+                                  type="button"
+                                >
+                                  Shell Coporation
+                                </button>
+                              </Button>
+                            </ForwardRef>
+                          </div>
+                        </CardHeader>
+                        <div>
+                          <AccordionCollapse
+                            eventKey={1}
+                          >
+                            <div
+                              aria-expanded={null}
+                              className="collapse"
+                            >
+                              <CardBody
+                                data-testid="card"
+                                style={
+                                  Object {
+                                    "borderBottom": "1px solid #d3d3d3",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="card-body"
+                                  data-testid="card"
+                                  style={
+                                    Object {
+                                      "borderBottom": "1px solid #d3d3d3",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    style={
+                                      Object {
+                                        "fontWeight": "bold",
+                                      }
+                                    }
+                                  >
+                                    Facility1
+                                    <Button
+                                      active={false}
+                                      disabled={false}
+                                      style={
+                                        Object {
+                                          "marginLeft": "30px",
+                                        }
+                                      }
+                                      type="button"
+                                      variant="primary"
+                                    >
+                                      <button
+                                        className="btn btn-primary"
+                                        disabled={false}
+                                        style={
+                                          Object {
+                                            "marginLeft": "30px",
+                                          }
+                                        }
+                                        type="button"
+                                      >
+                                        Apply for CIIP for this facility
+                                      </button>
+                                    </Button>
+                                  </div>
+                                  <p
+                                    style={
+                                      Object {
+                                        "marginTop": "10px",
+                                      }
+                                    }
+                                  >
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                                  </p>
+                                </div>
+                              </CardBody>
+                            </div>
+                          </AccordionCollapse>
+                        </div>
+                        <div>
+                          <AccordionCollapse
+                            eventKey={1}
+                          >
+                            <div
+                              aria-expanded={null}
+                              className="collapse"
+                            >
+                              <CardBody
+                                data-testid="card"
+                                style={
+                                  Object {
+                                    "borderBottom": "1px solid #d3d3d3",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="card-body"
+                                  data-testid="card"
+                                  style={
+                                    Object {
+                                      "borderBottom": "1px solid #d3d3d3",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    style={
+                                      Object {
+                                        "fontWeight": "bold",
+                                      }
+                                    }
+                                  >
+                                    Facility2
+                                    <Button
+                                      active={false}
+                                      disabled={false}
+                                      style={
+                                        Object {
+                                          "marginLeft": "30px",
+                                        }
+                                      }
+                                      type="button"
+                                      variant="primary"
+                                    >
+                                      <button
+                                        className="btn btn-primary"
+                                        disabled={false}
+                                        style={
+                                          Object {
+                                            "marginLeft": "30px",
+                                          }
+                                        }
+                                        type="button"
+                                      >
+                                        Apply for CIIP for this facility
+                                      </button>
+                                    </Button>
+                                  </div>
+                                  <p
+                                    style={
+                                      Object {
+                                        "marginTop": "10px",
+                                      }
+                                    }
+                                  >
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                                  </p>
+                                </div>
+                              </CardBody>
+                            </div>
+                          </AccordionCollapse>
+                        </div>
+                        <div>
+                          <AccordionCollapse
+                            eventKey={1}
+                          >
+                            <div
+                              aria-expanded={null}
+                              className="collapse"
+                            >
+                              <CardBody
+                                data-testid="card"
+                                style={
+                                  Object {
+                                    "borderBottom": "1px solid #d3d3d3",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="card-body"
+                                  data-testid="card"
+                                  style={
+                                    Object {
+                                      "borderBottom": "1px solid #d3d3d3",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    style={
+                                      Object {
+                                        "fontWeight": "bold",
+                                      }
+                                    }
+                                  >
+                                    Facility3
+                                    <Button
+                                      active={false}
+                                      disabled={false}
+                                      style={
+                                        Object {
+                                          "marginLeft": "30px",
+                                        }
+                                      }
+                                      type="button"
+                                      variant="primary"
+                                    >
+                                      <button
+                                        className="btn btn-primary"
+                                        disabled={false}
+                                        style={
+                                          Object {
+                                            "marginLeft": "30px",
+                                          }
+                                        }
+                                        type="button"
+                                      >
+                                        Apply for CIIP for this facility
+                                      </button>
+                                    </Button>
+                                  </div>
+                                  <p
+                                    style={
+                                      Object {
+                                        "marginTop": "10px",
+                                      }
+                                    }
+                                  >
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                                  </p>
+                                </div>
+                              </CardBody>
+                            </div>
+                          </AccordionCollapse>
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                  <div>
+                    <Card
+                      body={false}
+                    >
+                      <div
+                        className="card"
+                      >
+                        <CardHeader
+                          data-testid="btn-header"
+                        >
+                          <div
+                            className="card-header"
+                            data-testid="btn-header"
+                          >
+                            <ForwardRef
+                              as={
+                                Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "defaultProps": Object {
+                                    "active": false,
+                                    "disabled": false,
+                                    "type": "button",
+                                    "variant": "primary",
+                                  },
+                                  "displayName": "Button",
+                                  "render": [Function],
+                                }
+                              }
+                              eventKey={2}
+                              variant="link"
+                            >
+                              <Button
+                                active={false}
+                                disabled={false}
+                                onClick={[Function]}
+                                type="button"
+                                variant="link"
+                              >
+                                <button
+                                  className="btn btn-link"
+                                  disabled={false}
+                                  onClick={[Function]}
+                                  type="button"
+                                >
+                                  Shanghai Eletric
+                                </button>
+                              </Button>
+                            </ForwardRef>
+                          </div>
+                        </CardHeader>
+                        <div>
+                          <AccordionCollapse
+                            eventKey={2}
+                          >
+                            <div
+                              aria-expanded={null}
+                              className="collapse"
+                            >
+                              <CardBody
+                                data-testid="card"
+                                style={
+                                  Object {
+                                    "borderBottom": "1px solid #d3d3d3",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="card-body"
+                                  data-testid="card"
+                                  style={
+                                    Object {
+                                      "borderBottom": "1px solid #d3d3d3",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    style={
+                                      Object {
+                                        "fontWeight": "bold",
+                                      }
+                                    }
+                                  >
+                                    Facility1
+                                    <Button
+                                      active={false}
+                                      disabled={false}
+                                      style={
+                                        Object {
+                                          "marginLeft": "30px",
+                                        }
+                                      }
+                                      type="button"
+                                      variant="primary"
+                                    >
+                                      <button
+                                        className="btn btn-primary"
+                                        disabled={false}
+                                        style={
+                                          Object {
+                                            "marginLeft": "30px",
+                                          }
+                                        }
+                                        type="button"
+                                      >
+                                        Apply for CIIP for this facility
+                                      </button>
+                                    </Button>
+                                  </div>
+                                  <p
+                                    style={
+                                      Object {
+                                        "marginTop": "10px",
+                                      }
+                                    }
+                                  >
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                                  </p>
+                                </div>
+                              </CardBody>
+                            </div>
+                          </AccordionCollapse>
+                        </div>
+                        <div>
+                          <AccordionCollapse
+                            eventKey={2}
+                          >
+                            <div
+                              aria-expanded={null}
+                              className="collapse"
+                            >
+                              <CardBody
+                                data-testid="card"
+                                style={
+                                  Object {
+                                    "borderBottom": "1px solid #d3d3d3",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="card-body"
+                                  data-testid="card"
+                                  style={
+                                    Object {
+                                      "borderBottom": "1px solid #d3d3d3",
+                                    }
+                                  }
+                                >
+                                  <div
+                                    style={
+                                      Object {
+                                        "fontWeight": "bold",
+                                      }
+                                    }
+                                  >
+                                    Facility2
+                                    <Button
+                                      active={false}
+                                      disabled={false}
+                                      style={
+                                        Object {
+                                          "marginLeft": "30px",
+                                        }
+                                      }
+                                      type="button"
+                                      variant="primary"
+                                    >
+                                      <button
+                                        className="btn btn-primary"
+                                        disabled={false}
+                                        style={
+                                          Object {
+                                            "marginLeft": "30px",
+                                          }
+                                        }
+                                        type="button"
+                                      >
+                                        Apply for CIIP for this facility
+                                      </button>
+                                    </Button>
+                                  </div>
+                                  <p
+                                    style={
+                                      Object {
+                                        "marginTop": "10px",
+                                      }
+                                    }
+                                  >
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                                  </p>
+                                </div>
+                              </CardBody>
+                            </div>
+                          </AccordionCollapse>
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+                </div>
+              </ForwardRef>
+            </div>
+          </Col>
+        </div>
+      </ForwardRef>
+    </div>
+  </Container>
+  <p
+    style={
+      Object {
+        "padding": "50px",
+      }
+    }
+  />
+  <footer
+    className="jsx-55582602 footer"
+  >
+    <div
+      className="jsx-55582602 container"
+    >
+      <ul
+        className="jsx-55582602"
+      >
+        <li
+          className="jsx-55582602"
+        >
+          <a
+            className="jsx-55582602"
+            href="."
+          >
+            Home
+          </a>
+        </li>
+        <li
+          className="jsx-55582602"
+        >
+          <a
+            className="jsx-55582602"
+            href="."
+          >
+            Disclaimer
+          </a>
+        </li>
+        <li
+          className="jsx-55582602"
+        >
+          <a
+            className="jsx-55582602"
+            href="."
+          >
+            Privacy
+          </a>
+        </li>
+        <li
+          className="jsx-55582602"
+        >
+          <a
+            className="jsx-55582602"
+            href="."
+          >
+            Accessibility
+          </a>
+        </li>
+        <li
+          className="jsx-55582602"
+        >
+          <a
+            className="jsx-55582602"
+            href="."
+          >
+            Copyright
+          </a>
+        </li>
+        <li
+          className="jsx-55582602"
+        >
+          <a
+            className="jsx-55582602"
+            href="."
+          >
+            Contact Us
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</div>
+`;

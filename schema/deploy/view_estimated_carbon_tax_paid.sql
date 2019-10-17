@@ -7,6 +7,7 @@ create schema if not exists swrs;
 create table if not exists swrs.carbon_tax_calculation (id int, report_id int, facility_id int, organisation_id int, fuel_type text, calculated_carbon_tax numeric);
 create table if not exists swrs.report (id int, reporting_period_duration text);
 create table if not exists swrs.identifier (facility_bcghgid_id int, identifier_value text);
+
 -- ^ none of this hacky crap should be here
 
 create view ggircs_portal.estimated_carbon_tax_paid as (

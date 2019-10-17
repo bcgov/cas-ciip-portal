@@ -1,8 +1,44 @@
 import React from 'react';
 import Head from 'next/head';
-import {ButtonToolbar, Row, Col} from 'react-bootstrap';
+import { ButtonToolbar, Row, Col } from 'react-bootstrap';
 
-const Header = () => {
+const Header = props => {
+  const renderInfo = () => {
+    if (props.isLoggedIn === true) {
+      return (
+        <>
+          <div className="buttons">
+            <Row>
+              <Col md={{ span: 8 }}>
+                <a className="link" href="/userProfile">
+                  <p style={{ fontWeight: 'bolder', marginTop: '13px' }}>
+                    {props.userName} <br />
+                    {props.occupation}
+                  </p>
+                </a>
+              </Col>
+              <Col md={{ span: 4 }}>
+                <ButtonToolbar>
+                  <a
+                    style={{
+                      backgroundColor: '#EDA500',
+                      color: 'white',
+                      marginTop: '18px'
+                    }}
+                    href="/applications"
+                    className="btn"
+                  >
+                    Logout
+                  </a>
+                </ButtonToolbar>
+              </Col>
+            </Row>
+          </div>
+        </>
+      );
+    }
+  };
+
   return (
     <>
       <Head>
@@ -30,49 +66,7 @@ const Header = () => {
           </a>
           <h1>CleanBC Industrial Incentive Program</h1>
         </div>
-        <div className="buttons">
-          <Row>
-            <Col>
-              <ButtonToolbar>
-                <a
-                  style={{marginLeft: '20px'}}
-                  href="/ciip-application"
-                  className="btn btn-primary"
-                >
-                  Apply for CIIP
-                </a>
-                <a
-                  style={{marginLeft: '20px'}}
-                  href="/form-builder"
-                  className="btn btn-secondary"
-                >
-                  Build a form
-                </a>
-                <a
-                  style={{marginLeft: '20px'}}
-                  href="/admin"
-                  className="btn btn-secondary"
-                >
-                  Products
-                </a>
-                <a
-                  style={{marginLeft: '20px'}}
-                  href="/applications"
-                  className="btn btn-secondary"
-                >
-                  Applications
-                </a>
-                <a
-                  style={{marginLeft: '20px'}}
-                  href="/admin"
-                  className="btn btn-info"
-                >
-                  Admin
-                </a>
-              </ButtonToolbar>
-            </Col>
-          </Row>
-        </div>
+        {renderInfo()}
 
         <style jsx>
           {`
@@ -86,7 +80,6 @@ const Header = () => {
               top: 0px;
               //position: fixed;
               width: 100%;
-              margin-bottom: 40px;
             }
             body {
               padding: 40px;
@@ -116,13 +109,6 @@ const Header = () => {
                   border-color: lightgrey; */
             }
 
-            .buttons {
-              display: flex;
-              flex-grow: 1;
-              align-items: center;
-              justify-content: flex-end;
-            }
-
             /*
                   These are sample media queries only. Media queries are quite subjective
                   but, in general, should be made for the three different classes of screen
@@ -144,6 +130,29 @@ const Header = () => {
             }
           `}
         </style>
+        <style jsx global>{`
+          .buttons {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: flex-end;
+          }
+          .btn {
+            font-weight: bolder;
+          }
+          .link {
+            color: white;
+            text-decoration: none;
+          }
+          a:link,
+          a:visited {
+            color: white;
+          }
+          a:hover,
+          a:active {
+            color: white;
+          }
+        `}</style>
       </header>
     </>
   );
