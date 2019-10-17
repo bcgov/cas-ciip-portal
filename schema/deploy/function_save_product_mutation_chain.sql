@@ -5,7 +5,7 @@
 begin;
 
 create or replace function ggircs_portal.save_product_mutation_chain(prev_id int, new_name varchar(1000), new_description varchar(1000),
-new_state varchar(1000), new_parent int ARRAY, benchmark_id int)
+new_state varchar(1000), new_parent int ARRAY, benchmark_id int = null)
 returns ggircs_portal.product
 as $function$
 declare
@@ -32,6 +32,6 @@ begin
   select id, name, description from ggircs_portal.product where id = new_id into result;
   return result;
 end;
-$function$ language plpgsql volatile;
+$function$ language plpgsql strict volatile;
 
 commit;

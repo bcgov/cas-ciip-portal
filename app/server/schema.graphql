@@ -1498,17 +1498,17 @@ input CreateBenchmarkInput {
 
 """All input for the `createBenchmarkMutationChain` mutation."""
 input CreateBenchmarkMutationChainInput {
-  benchmarkInput: Int
+  benchmarkInput: Int!
 
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  eligibilityThresholdInput: Int
+  eligibilityThresholdInput: Int!
   prevBenchmarkIdInput: Int
-  productIdInput: Int
-  startDateInput: Datetime
+  productIdInput: Int!
+  startDateInput: Datetime!
 }
 
 """The output of our `createBenchmarkMutationChain` mutation."""
@@ -5610,11 +5610,11 @@ input SaveProductMutationChainInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  newDescription: String
-  newName: String
-  newParent: [Int]
-  newState: String
-  prevId: Int
+  newDescription: String!
+  newName: String!
+  newParent: [Int]!
+  newState: String!
+  prevId: Int!
 }
 
 """The output of our `saveProductMutationChain` mutation."""

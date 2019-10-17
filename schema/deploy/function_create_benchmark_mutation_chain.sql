@@ -4,7 +4,7 @@
 begin;
 
 create or replace function ggircs_portal.create_benchmark_mutation_chain(product_id_input int,  benchmark_input int, eligibility_threshold_input int,
-start_date_input timestamptz, prev_benchmark_id_input int)
+start_date_input timestamptz, prev_benchmark_id_input int = null)
 returns ggircs_portal.benchmark
 as $function$
 declare
@@ -26,6 +26,6 @@ begin
   select id, benchmark, eligibility_threshold from ggircs_portal.benchmark where id = new_id into result;
   return result;
 end;
-$function$ language plpgsql volatile;
+$function$ language plpgsql strict volatile;
 
 commit;
