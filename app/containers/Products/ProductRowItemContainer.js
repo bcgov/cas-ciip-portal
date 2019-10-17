@@ -2,8 +2,8 @@ import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 import {saveProductMutation} from '../../mutations/product/saveProductMutation';
-import {editBenchmarkMutation} from '../../mutations/benchmark/editBenchmark';
-import {createBenchmarkMutation} from '../../mutations/benchmark/createBenchmark';
+import {editBenchmarkMutation} from '../../mutations/benchmark/editBenchmarkMutation';
+import {createBenchmarkMutation} from '../../mutations/benchmark/createBenchmarkMutation';
 
 // TODO: create conflict logic & alerts:
 // Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
