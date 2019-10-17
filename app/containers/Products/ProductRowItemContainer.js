@@ -42,17 +42,16 @@ export const ProductRowItemContainer = props => {
     event.stopPropagation();
     const newState = props.product.state === 'archived' ? 'active' : 'archived';
     const currentBenchmark = getCurrentBenchmark();
-    const newVariables = {
-      newName: props.product.name,
-      newDescription: props.product.description,
-      newState,
-      prevId: props.product.rowId
+    const variables = {
+      input: {
+        newName: props.product.name,
+        newDescription: props.product.description,
+        newState,
+        prevId: props.product.rowId,
+        benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
+      }
     };
-    await saveProductMutation(
-      props.relay.environment,
-      newVariables,
-      currentBenchmark ? currentBenchmark.rowId : null
-    );
+    await saveProductMutation(props.relay.environment, variables);
   };
 
   // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation.)
@@ -80,17 +79,16 @@ export const ProductRowItemContainer = props => {
     event.stopPropagation();
     event.persist();
     const currentBenchmark = getCurrentBenchmark();
-    const newVariables = {
-      newName: event.nativeEvent.target[3].value,
-      newDescription: event.nativeEvent.target[4].value,
-      newState: 'active',
-      prevId: props.product.rowId
+    const variables = {
+      input: {
+        newName: event.nativeEvent.target[3].value,
+        newDescription: event.nativeEvent.target[4].value,
+        newState: 'active',
+        prevId: props.product.rowId,
+        benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
+      }
     };
-    await saveProductMutation(
-      props.relay.environment,
-      newVariables,
-      currentBenchmark ? currentBenchmark.rowId : null
-    );
+    await saveProductMutation(props.relay.environment, variables);
   };
 
   // Save a new benchmark

@@ -10,10 +10,10 @@ const mutation = graphql`
   }
 `;
 
-export const createBenchmarkMutation = (environment, newVariables) => {
+export const createBenchmarkMutation = (environment, variables) => {
   commitMutation(environment, {
     mutation,
-    variables: newVariables,
+    variables,
     onCompleted: async response => {
       console.log(response);
     },

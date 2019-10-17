@@ -15,16 +15,15 @@ export const editBenchmarkMutation = (
   benchmarkRowId,
   benchmarkPatch
 ) => {
-  const saveMutation = mutation;
-  const updateBenchmarkVariables = {
+  const variables = {
     input: {
       rowId: benchmarkRowId,
       benchmarkPatch
     }
   };
   commitMutation(environment, {
-    mutation: saveMutation,
-    variables: updateBenchmarkVariables,
+    mutation,
+    variables,
     onCompleted: response => {
       console.log(response);
     },
