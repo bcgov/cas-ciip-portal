@@ -44,7 +44,7 @@ export default class App extends NextApp {
         <QueryRenderer
           environment={environment}
           query={Component.query}
-          variables={{...router.query, ...variables}}
+          variables={{...variables, ...router.query}}
           render={({error, props}) => {
             if (error) return <div>{error.message}</div>;
             if (props)
