@@ -1,7 +1,7 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
-import {saveProductMutation} from '../../mutations/product/saveProduct';
+import {saveProductMutation} from '../../mutations/product/saveProductMutation';
 import {editBenchmarkMutation} from '../../mutations/benchmark/editBenchmark';
 import {createBenchmarkMutation} from '../../mutations/benchmark/createBenchmark';
 

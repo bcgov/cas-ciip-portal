@@ -3,6 +3,7 @@ import {commitMutation, graphql} from 'react-relay';
 const mutation = graphql`
   mutation saveProductMutation($input: SaveProductMutationChainInput!) {
     saveProductMutationChain(input: $input) {
+      clientMutationId
       product {
         id
       }
@@ -10,9 +11,12 @@ const mutation = graphql`
   }
 `;
 
+// TODO: abstract clientMutationId into a base class
+let i = 0;
 export const saveProductMutation = (environment, newVariables, benchmarkId) => {
-  const saveVariables = {
+  const variables = {
     input: {
+      clientMutationId: `save-product-mutation-${i}`,
       prevId: newVariables.prevId,
       newName: newVariables.newName,
       newDescription: newVariables.newDescription,
@@ -21,12 +25,14 @@ export const saveProductMutation = (environment, newVariables, benchmarkId) => {
       benchmarkId
     }
   };
+  i++;
 
-  const saveMutation = mutation;
-  // Get the current Benchmark -- calculated by which benchmark is not archived and current date within the start & end dates
+  // Currently not returning anything
+  // TODO: wrap onCompleted into a promise
+  // TODO: abstract onError into a base class
   commitMutation(environment, {
-    mutation: saveMutation,
-    variables: saveVariables,
+    mutation,
+    variables,
     onCompleted: async response => {
       console.log(response);
     },
