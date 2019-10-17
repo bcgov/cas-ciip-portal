@@ -3838,6 +3838,30 @@ A JavaScript object encoded in the JSON format as specified by [ECMA-404](http:/
 """
 scalar JSON
 
+type JwtToken {
+  acr: String
+  aud: String
+  authTime: Int
+  azp: String
+  email: String
+  emailVerified: Boolean
+  exp: Int
+  familyName: String
+  givenName: String
+  iat: Int
+  iss: String
+  jti: UUID
+  name: String
+  nbf: Int
+  preferredUsername: String
+  sessionState: UUID
+  sub: UUID
+  typ: String
+
+  """Reads a single `User` that is related to this `JwtToken`."""
+  userBySub: User
+}
+
 """
 The root mutation type which contains root level fields which mutate data.
 """
@@ -5885,6 +5909,7 @@ type Query implements Node {
     searchField: String
     searchValue: String
   ): CiipApplicationsConnection!
+  session: JwtToken
 
   """Reads a single `User` using its globally unique `ID`."""
   user(

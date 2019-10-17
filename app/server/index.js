@@ -64,20 +64,23 @@ app.prepare().then(() => {
       classicIds: true,
       pgSettings(req) {
         const claims = {};
-        if ((((req.kauth || {}).grant || {}).id_token || {}).content) {
-          // TODO: actually map jwt realms to postgres roles
-          // @see https://www.postgresql.org/docs/current/default-roles.html
-          // claims['role'] = 'pg_monitor';
-          const token = req.kauth.grant.id_token.content;
-          for (const property in token) {
-            claims[`jwt.claims.${property}`] = token[property];
-          }
+        if (
+          !req.kauth ||
+          !req.kauth.grant ||
+          !req.kauth.grant.id_token ||
+          !req.kauth.grant.id_token.content
+        )
+          return claims;
+
+        // TODO: actually map jwt realms to postgres roles
+        // @see https://www.postgresql.org/docs/current/default-roles.html
+        // claims['role'] = 'pg_monitor';
+        const token = req.kauth.grant.id_token.content;
+        for (const property in token) {
+          claims[`jwt.claims.${property}`] = token[property];
         }
 
-        console.dir(claims);
-        return {
-          ...claims
-        };
+        return claims;
       }
     })
   );
