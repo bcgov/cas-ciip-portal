@@ -205,14 +205,6 @@ type ApplicationStatus implements Node {
   createdBy: String
 
   """
-  Reads a single `FormResult` that is related to this `ApplicationStatus`.
-  """
-  formResultByFormResultId: FormResult
-
-  """The foreign key to the corresponding form_result"""
-  formResultId: Int!
-
-  """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
@@ -243,9 +235,6 @@ input ApplicationStatusCondition {
 
   """Checks for equality with the object’s `createdBy` field."""
   createdBy: String
-
-  """Checks for equality with the object’s `formResultId` field."""
-  formResultId: Int
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
@@ -295,8 +284,6 @@ enum ApplicationStatusesOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
-  FORM_RESULT_ID_ASC
-  FORM_RESULT_ID_DESC
   ID_ASC
   ID_DESC
   NATURAL
@@ -321,9 +308,6 @@ input ApplicationStatusInput {
 
   """The person who updated the application status"""
   createdBy: String
-
-  """The foreign key to the corresponding form_result"""
-  formResultId: Int!
 
   """The id used for reference and join"""
   rowId: Int
@@ -350,9 +334,6 @@ input ApplicationStatusPatch {
 
   """The person who updated the application status"""
   createdBy: String
-
-  """The foreign key to the corresponding form_result"""
-  formResultId: Int
 
   """The id used for reference and join"""
   rowId: Int
@@ -1537,11 +1518,6 @@ type CreateApplicationStatusPayload {
   clientMutationId: String
 
   """
-  Reads a single `FormResult` that is related to this `ApplicationStatus`.
-  """
-  formResultByFormResultId: FormResult
-
-  """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
@@ -2072,11 +2048,6 @@ type DeleteApplicationStatusPayload {
   """
   clientMutationId: String
   deletedApplicationStatusId: ID
-
-  """
-  Reads a single `FormResult` that is related to this `ApplicationStatus`.
-  """
-  formResultByFormResultId: FormResult
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -3354,35 +3325,6 @@ type FormResult implements Node {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
   applicationId: Int!
-
-  """Reads and enables pagination through a set of `ApplicationStatus`."""
-  applicationStatusesByFormResultId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationStatusCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ApplicationStatus`."""
-    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationStatusesConnection!
 
   """The date the form was updated"""
   createdAt: Datetime!
@@ -6084,11 +6026,6 @@ type UpdateApplicationStatusPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-
-  """
-  Reads a single `FormResult` that is related to this `ApplicationStatus`.
-  """
-  formResultByFormResultId: FormResult
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
