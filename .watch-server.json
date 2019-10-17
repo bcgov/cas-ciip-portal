@@ -6,6 +6,7 @@
     "expression": [
       "anyof",
       ["match", "app/server/**/*.js", "wholename"],
+      ["match", "app/server/schema*", "wholename"],
       ["match", "app/package.json", "wholename"],
       ["match", "app/yarn.lock", "wholename"],
       ["match", ".tool-versions", "wholename"]
