@@ -4,15 +4,12 @@ import DefaultLayout from '../../layouts/default-layout';
 import ApplicationWizard from '../Applications/ApplicationWizard';
 
 class CiipApplication extends Component {
-  static getInitialProps = () => {
+  static getInitialProps = ctx => {
+    console.log('ctx', ctx);
     return {
       variables: {
         formCondition: {
           rowId: -1
-        },
-        applicationCondition: {
-          // TODO: get the application id (instead of rowId) from the query string
-          rowId: 3
         }
       }
     };
@@ -21,13 +18,13 @@ class CiipApplication extends Component {
   static query = graphql`
     query CiipApplicationQuery(
       $formCondition: FormJsonCondition!
-      $applicationCondition: ApplicationCondition!
+      $applicationId: ID!
     ) {
       query {
         ...ApplicationWizard_query
           @arguments(
             formCondition: $formCondition
-            applicationCondition: $applicationCondition
+            applicationId: $applicationId
           )
       }
     }

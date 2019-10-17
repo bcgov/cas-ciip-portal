@@ -4,8 +4,6 @@ import Form from '../Forms/Form';
 
 const getInitialAdminData = query => {
   const {application} = query;
-  const {edges} = application;
-  const {node} = edges[0];
   const {
     operatorName,
     operatorTradeName,
@@ -15,7 +13,7 @@ const getInitialAdminData = query => {
     operatorProvince,
     operatorPostalCode,
     operatorCountry
-  } = node.swrsOrganisationData;
+  } = application.swrsOrganisationData;
   const {
     facilityName,
     facilityType,
@@ -27,7 +25,7 @@ const getInitialAdminData = query => {
     facilityCity,
     facilityProvince,
     facilityPostalCode
-  } = node.swrsFacilityData;
+  } = application.swrsFacilityData;
 
   const {
     firstName,
@@ -40,7 +38,7 @@ const getInitialAdminData = query => {
     contactCity,
     contactProvince,
     contactPostalCode
-  } = node.swrsOperatorContactData;
+  } = application.swrsOperatorContactData;
 
   return {
     reportingOperationInformation: [
@@ -156,7 +154,7 @@ const ApplicationWizardStep = ({
     initialDataSource = 'your last SWRS report';
   }
 
-  if (!application || !application.edges[0]) return null;
+  if (!application) return null;
 
   if (prepopulateFromSwrs && !initialData) {
     return <>Loading data from SWRS</>;
@@ -166,7 +164,7 @@ const ApplicationWizardStep = ({
     <Form
       query={query}
       formId={formId}
-      applicationId={application.edges[0].node.rowId}
+      applicationId={application.rowId}
       startsEditable={!prepopulateFromSwrs}
       initialData={initialData}
       initialDataSource={initialDataSource}
@@ -180,69 +178,66 @@ export default createFragmentContainer(ApplicationWizardStep, {
     fragment ApplicationWizardStep_query on Query
       @argumentDefinitions(
         formCondition: {type: "FormJsonCondition"}
-        applicationCondition: {type: "ApplicationCondition"}
+        applicationId: {type: "ID!"}
       ) {
-      application: allApplications(condition: $applicationCondition) {
-        edges {
-          node {
-            rowId
-            swrsEmissionData(reportingYear: "2018") {
-              edges {
-                node {
-                  quantity
-                  calculatedQuantity
-                  emissionCategory
-                  gasType
-                }
-              }
-            }
-            swrsFacilityData(reportingYear: "2018") {
-              facilityName
-              facilityType
-              bcghgid
-              naicsCode
-              latitude
-              longitude
-              facilityMailingAddress
-              facilityCity
-              facilityProvince
-              facilityPostalCode
-            }
-            swrsFuelData(reportingYear: "2018") {
-              edges {
-                node {
-                  fuelType
-                  fuelDescription
-                  annualFuelAmount
-                  alternativeMethodolodyDescription
-                }
-              }
-            }
-            swrsOperatorContactData(reportingYear: "2018") {
-              firstName
-              lastName
-              positionTitle
-              email
-              telephone
-              fax
-              contactMailingAddress
-              contactCity
-              contactProvince
-              contactPostalCode
-            }
-            swrsOrganisationData(reportingYear: "2018") {
-              operatorName
-              operatorTradeName
-              duns
-              operatorMailingAddress
-              operatorCity
-              operatorProvince
-              operatorPostalCode
-              operatorCountry
+      application(id: $applicationId) {
+        rowId
+        swrsEmissionData(reportingYear: "2018") {
+          edges {
+            node {
+              quantity
+              calculatedQuantity
+              emissionCategory
+              gasType
             }
           }
         }
+        swrsFacilityData(reportingYear: "2018") {
+          facilityName
+          facilityType
+          bcghgid
+          naicsCode
+          latitude
+          longitude
+          facilityMailingAddress
+          facilityCity
+          facilityProvince
+          facilityPostalCode
+        }
+        swrsFuelData(reportingYear: "2018") {
+          edges {
+            node {
+              fuelType
+              fuelDescription
+              annualFuelAmount
+              alternativeMethodolodyDescription
+            }
+          }
+        }
+        swrsOperatorContactData(reportingYear: "2018") {
+          firstName
+          lastName
+          positionTitle
+          email
+          telephone
+          fax
+          contactMailingAddress
+          contactCity
+          contactProvince
+          contactPostalCode
+        }
+        swrsOrganisationData(reportingYear: "2018") {
+          operatorName
+          operatorTradeName
+          duns
+          operatorMailingAddress
+          operatorCity
+          operatorProvince
+          operatorPostalCode
+          operatorCountry
+        }
       }
+
       ...Form_query @arguments(condition: $formCondition)
     }
   `

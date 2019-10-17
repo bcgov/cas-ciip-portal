@@ -9,7 +9,7 @@ import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
  * ApplicationWizardConfirmation is rendered.
  */
 const ApplicationWizard = ({query}) => {
-  const {wizard} = query || {};
+  const {wizard, application} = query || {};
 
   const [renderFinalPage, setRenderFinalPage] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -17,6 +17,8 @@ const ApplicationWizard = ({query}) => {
     if (currentStep < wizard.edges.length - 1) setCurrentStep(currentStep + 1);
     else setRenderFinalPage(true);
   };
+
+  if (!application) return <>This is not the application you are looking for</>;
 
   if (!wizard) return null;
 
@@ -48,8 +50,11 @@ export default createFragmentContainer(ApplicationWizard, {
     fragment ApplicationWizard_query on Query
       @argumentDefinitions(
         formCondition: {type: "FormJsonCondition"}
-        applicationCondition: {type: "ApplicationCondition"}
+        applicationId: {type: "ID!"}
       ) {
+      application(id: $applicationId) {
+        __typename
+      }
       wizard: allCiipApplicationWizards(orderBy: FORM_POSITION_ASC) {
         edges {
           node {
@@ -63,10 +68,7 @@ export default createFragmentContainer(ApplicationWizard, {
         }
       }
       ...ApplicationWizardStep_query
-        @arguments(
-          formCondition: $formCondition
-          applicationCondition: $applicationCondition
-        )
+        @arguments(formCondition: $formCondition, applicationId: $applicationId)
     }
   `
 });
