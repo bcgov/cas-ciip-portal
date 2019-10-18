@@ -445,14 +445,11 @@ export const ProductRowItemContainer = props => {
 export default createFragmentContainer(ProductRowItemContainer, {
   product: graphql`
     fragment ProductRowItemContainer_product on Product {
-      id
       rowId
       name
       description
       state
       parent
-      createdAt
-      createdBy
       benchmarksByProductId {
         edges {
           node {
@@ -462,7 +459,6 @@ export default createFragmentContainer(ProductRowItemContainer, {
             startDate
             endDate
             deletedAt
-            deletedBy
           }
         }
       }

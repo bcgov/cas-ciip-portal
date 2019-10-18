@@ -29,7 +29,7 @@ begin
       deleted_by = 'Admin' --TODO: Should this be included in the triggers?
   where product.id = prev_id;
 
-  select id, name, description from ggircs_portal.product where id = new_id into result;
+  select id, name, description, state, parent from ggircs_portal.product where id = new_id into result;
   return result;
 end;
 $function$ language plpgsql strict volatile;

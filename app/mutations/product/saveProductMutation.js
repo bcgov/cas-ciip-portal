@@ -6,6 +6,17 @@ const mutation = graphql`
       clientMutationId
       product {
         id
+        name
+        description
+        state
+        parent
+        benchmarksByProductId {
+          edges {
+            node {
+              id
+            }
+          }
+        }
       }
     }
   }
@@ -16,7 +27,6 @@ let i = 0;
 export const saveProductMutation = (environment, variables) => {
   variables.input.clientMutationId = `save-product-mutation-${i}`;
   i++;
-
   // Currently not returning anything
   // TODO: wrap onCompleted into a promise
   // TODO: abstract onError into a base class
