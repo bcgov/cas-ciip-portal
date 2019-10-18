@@ -45,9 +45,10 @@ export const ProductRowItemContainer = props => {
     const variables = {
       input: {
         newName: props.product.name,
-        newDescription: props.product.description,
+        newDescription: props.product.description || '',
         newState,
         prevId: props.product.rowId,
+        newParent: [props.product.rowId],
         benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
       }
     };
@@ -85,6 +86,7 @@ export const ProductRowItemContainer = props => {
         newDescription: event.nativeEvent.target[4].value,
         newState: 'active',
         prevId: props.product.rowId,
+        newParent: [props.product.rowId],
         benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
       }
     };

@@ -14,7 +14,7 @@ const mutation = graphql`
 // TODO: abstract clientMutationId into a base class
 let i = 0;
 export const saveProductMutation = (environment, variables) => {
-  variables.input.clientMutationid = `save-product-mutation-${i}`;
+  variables.input.clientMutationId = `save-product-mutation-${i}`;
   i++;
 
   // Currently not returning anything
