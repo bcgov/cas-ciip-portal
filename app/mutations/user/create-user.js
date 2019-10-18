@@ -21,13 +21,13 @@ export default function createUser(
   commitMutation(environment, {
     mutation,
     variables,
-    onCompleted: async (response, errors) => {
+    onCompleted: async response => {
       console.log(response);
-      onCompletedCallback;
+      onCompletedCallback();
     },
-    onError: err => {
+    onError: async err => {
       console.error(err);
-      onErrorCallback;
+      onErrorCallback();
     }
   });
 }
