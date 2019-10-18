@@ -70,12 +70,18 @@ export const ProductRowItemContainer = props => {
       deletedAt: new Date().toUTCString(),
       deletedBy: 'Admin'
     };
+    const variables = {
+      input: {
+        rowId: currentBenchmark.rowId,
+        benchmarkPatch
+      }
+    };
 
-    await editBenchmarkMutation(
+    const response = await editBenchmarkMutation(
       props.relay.environment,
-      currentBenchmark.rowId,
-      benchmarkPatch
+      variables
     );
+    console.log(response);
   };
 
   // Save a product
@@ -152,7 +158,11 @@ export const ProductRowItemContainer = props => {
         prevBenchmarkIdInput: currentBenchmark ? currentBenchmark.rowId : null
       }
     };
-    await createBenchmarkMutation(props.relay.environment, newVariables);
+    const response = await createBenchmarkMutation(
+      props.relay.environment,
+      newVariables
+    );
+    console.log(response);
   };
 
   /** Mutations & functions above */

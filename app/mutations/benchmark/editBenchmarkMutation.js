@@ -1,4 +1,4 @@
-import {commitMutation, graphql} from 'react-relay';
+import {commitMutation as commitMutationDefault, graphql} from 'react-relay';
 
 const mutation = graphql`
   mutation editBenchmarkMutation($input: UpdateBenchmarkByRowIdInput!) {
@@ -10,23 +10,28 @@ const mutation = graphql`
   }
 `;
 
-export const editBenchmarkMutation = (
-  environment,
-  benchmarkRowId,
-  benchmarkPatch
-) => {
-  const variables = {
-    input: {
-      rowId: benchmarkRowId,
-      benchmarkPatch
-    }
-  };
-  commitMutation(environment, {
-    mutation,
-    variables,
-    onCompleted: response => {
-      console.log(response);
-    },
-    onError: err => console.error(err)
-  });
+// TODO: abstract clientMutationId into a base class
+// TODO: May want to surface the onCompleted errors to the user (ie not reject, resolve & report)
+let i = 0;
+export const editBenchmarkMutation = async (environment, variables) => {
+  variables.input.clientMutationId = `edit-benchmark-mutation-${i}`;
+  i++;
+
+  function commitMutation(environment, options) {
+    return new Promise((resolve, reject) => {
+      commitMutationDefault(environment, {
+        ...options,
+        onError: error => {
+          reject(error);
+          console.log(error);
+        },
+        onCompleted: (response, errors) => {
+          errors ? reject(errors) : resolve(response);
+        }
+      });
+    });
+  }
+
+  // TODO: abstract onError into a base class
+  return commitMutation(environment, {mutation, variables});
 };

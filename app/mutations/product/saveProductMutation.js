@@ -23,6 +23,7 @@ const mutation = graphql`
 `;
 
 // TODO: abstract clientMutationId into a base class
+// TODO: May want to surface the onCompleted errors to the user (ie not reject, resolve & report)
 let i = 0;
 export const saveProductMutation = async (environment, variables) => {
   variables.input.clientMutationId = `save-product-mutation-${i}`;
