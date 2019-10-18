@@ -19,5 +19,3 @@ Readme WIP
 - React
 - React Bootstrap
 - Relay Modern
-
-

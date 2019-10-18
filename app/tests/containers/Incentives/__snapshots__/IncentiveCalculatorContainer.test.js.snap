@@ -16,7 +16,7 @@ exports[`IncentiveCalculatorContainer should render the page 1`] = `
         Incentive by Product:
       </h5>
       <p>
-        This formula gives the partial incentive for each product reported in 
+        This formula gives the partial incentive for each product reported in
         <br />
         the CIIP application. The total Incentive is the sum of these partial incentives.
         <br />

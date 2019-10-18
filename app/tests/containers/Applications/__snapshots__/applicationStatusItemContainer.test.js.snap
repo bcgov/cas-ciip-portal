@@ -12,7 +12,7 @@ exports[`ApplicationStatusItemContainer should render the application status 1`]
         md={3}
       >
         <h3>
-          Application Status: 
+          Application Status:
         </h3>
       </Col>
       <Col

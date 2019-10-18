@@ -72,7 +72,7 @@ exports[`ProductRowItemContainer with active product should render the product r
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </Col>
@@ -112,7 +112,7 @@ exports[`ProductRowItemContainer with active product should render the product r
             >
               Benchmark:
             </small>
-             
+
           </FormLabel>
           <br
             className="jsx-3284210077"
@@ -126,7 +126,7 @@ exports[`ProductRowItemContainer with active product should render the product r
             >
               Start Date:
             </small>
-             
+
           </FormLabel>
         </Col>
         <Col
@@ -141,7 +141,7 @@ exports[`ProductRowItemContainer with active product should render the product r
             >
               Eligibility Threshold:
             </small>
-             
+
           </FormLabel>
           <br
             className="jsx-3284210077"
@@ -155,7 +155,7 @@ exports[`ProductRowItemContainer with active product should render the product r
             >
               End Date:
             </small>
-             
+
           </FormLabel>
         </Col>
       </ForwardRef>
@@ -307,7 +307,7 @@ exports[`ProductRowItemContainer with active product should render the product r
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </FormGroup>
@@ -330,7 +330,7 @@ exports[`ProductRowItemContainer with active product should render the product r
             >
               Benchmark:
             </small>
-             
+
           </FormLabel>
         </FormGroup>
         <FormGroup
@@ -352,7 +352,7 @@ exports[`ProductRowItemContainer with active product should render the product r
             >
               Eligibility Threshold:
             </small>
-             
+
           </FormLabel>
         </FormGroup>
       </FormRow>
@@ -423,7 +423,7 @@ exports[`ProductRowItemContainer with active product should render the product r
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </FormGroup>
@@ -649,7 +649,7 @@ exports[`ProductRowItemContainer with archived product should render the product
             >
               Archived:
             </small>
-             
+
             true
           </FormLabel>
         </Col>
@@ -706,7 +706,7 @@ exports[`ProductRowItemContainer with archived product should render the product
             >
               Benchmark:
             </small>
-             
+
           </FormLabel>
           <br
             className="jsx-3284210077"
@@ -720,7 +720,7 @@ exports[`ProductRowItemContainer with archived product should render the product
             >
               Start Date:
             </small>
-             
+
           </FormLabel>
         </Col>
         <Col
@@ -735,7 +735,7 @@ exports[`ProductRowItemContainer with archived product should render the product
             >
               Eligibility Threshold:
             </small>
-             
+
           </FormLabel>
           <br
             className="jsx-3284210077"
@@ -749,7 +749,7 @@ exports[`ProductRowItemContainer with archived product should render the product
             >
               End Date:
             </small>
-             
+
           </FormLabel>
         </Col>
       </ForwardRef>
@@ -913,7 +913,7 @@ exports[`ProductRowItemContainer with archived product should render the product
             >
               Archived:
             </small>
-             
+
             true
           </FormLabel>
         </FormGroup>
@@ -936,7 +936,7 @@ exports[`ProductRowItemContainer with archived product should render the product
             >
               Benchmark:
             </small>
-             
+
           </FormLabel>
         </FormGroup>
         <FormGroup
@@ -958,7 +958,7 @@ exports[`ProductRowItemContainer with archived product should render the product
             >
               Eligibility Threshold:
             </small>
-             
+
           </FormLabel>
         </FormGroup>
       </FormRow>
@@ -1029,7 +1029,7 @@ exports[`ProductRowItemContainer with archived product should render the product
             >
               Archived:
             </small>
-             
+
             true
           </FormLabel>
         </FormGroup>
@@ -1284,7 +1284,7 @@ exports[`ProductRowItemContainer with mode set to benchmark should render the pr
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </Col>
@@ -1341,7 +1341,7 @@ exports[`ProductRowItemContainer with mode set to benchmark should render the pr
             >
               Benchmark:
             </small>
-             
+
           </FormLabel>
           <br
             className="jsx-3284210077"
@@ -1355,7 +1355,7 @@ exports[`ProductRowItemContainer with mode set to benchmark should render the pr
             >
               Start Date:
             </small>
-             
+
           </FormLabel>
         </Col>
         <Col
@@ -1370,7 +1370,7 @@ exports[`ProductRowItemContainer with mode set to benchmark should render the pr
             >
               Eligibility Threshold:
             </small>
-             
+
           </FormLabel>
           <br
             className="jsx-3284210077"
@@ -1384,7 +1384,7 @@ exports[`ProductRowItemContainer with mode set to benchmark should render the pr
             >
               End Date:
             </small>
-             
+
           </FormLabel>
         </Col>
       </ForwardRef>
@@ -1548,7 +1548,7 @@ exports[`ProductRowItemContainer with mode set to benchmark should render the pr
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </FormGroup>
@@ -1571,7 +1571,7 @@ exports[`ProductRowItemContainer with mode set to benchmark should render the pr
             >
               Benchmark:
             </small>
-             
+
           </FormLabel>
         </FormGroup>
         <FormGroup
@@ -1593,7 +1593,7 @@ exports[`ProductRowItemContainer with mode set to benchmark should render the pr
             >
               Eligibility Threshold:
             </small>
-             
+
           </FormLabel>
         </FormGroup>
       </FormRow>
@@ -1664,7 +1664,7 @@ exports[`ProductRowItemContainer with mode set to benchmark should render the pr
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </FormGroup>
@@ -1919,7 +1919,7 @@ exports[`ProductRowItemContainer with mode set to product should render the prod
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </Col>
@@ -1976,7 +1976,7 @@ exports[`ProductRowItemContainer with mode set to product should render the prod
             >
               Benchmark:
             </small>
-             
+
           </FormLabel>
           <br
             className="jsx-3284210077"
@@ -1990,7 +1990,7 @@ exports[`ProductRowItemContainer with mode set to product should render the prod
             >
               Start Date:
             </small>
-             
+
           </FormLabel>
         </Col>
         <Col
@@ -2005,7 +2005,7 @@ exports[`ProductRowItemContainer with mode set to product should render the prod
             >
               Eligibility Threshold:
             </small>
-             
+
           </FormLabel>
           <br
             className="jsx-3284210077"
@@ -2019,7 +2019,7 @@ exports[`ProductRowItemContainer with mode set to product should render the prod
             >
               End Date:
             </small>
-             
+
           </FormLabel>
         </Col>
       </ForwardRef>
@@ -2183,7 +2183,7 @@ exports[`ProductRowItemContainer with mode set to product should render the prod
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </FormGroup>
@@ -2206,7 +2206,7 @@ exports[`ProductRowItemContainer with mode set to product should render the prod
             >
               Benchmark:
             </small>
-             
+
           </FormLabel>
         </FormGroup>
         <FormGroup
@@ -2228,7 +2228,7 @@ exports[`ProductRowItemContainer with mode set to product should render the prod
             >
               Eligibility Threshold:
             </small>
-             
+
           </FormLabel>
         </FormGroup>
       </FormRow>
@@ -2299,7 +2299,7 @@ exports[`ProductRowItemContainer with mode set to product should render the prod
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </FormGroup>
@@ -2554,7 +2554,7 @@ exports[`ProductRowItemContainer with mode set to view should render the product
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </Col>
@@ -2611,7 +2611,7 @@ exports[`ProductRowItemContainer with mode set to view should render the product
             >
               Benchmark:
             </small>
-             
+
           </FormLabel>
           <br
             className="jsx-3284210077"
@@ -2625,7 +2625,7 @@ exports[`ProductRowItemContainer with mode set to view should render the product
             >
               Start Date:
             </small>
-             
+
           </FormLabel>
         </Col>
         <Col
@@ -2640,7 +2640,7 @@ exports[`ProductRowItemContainer with mode set to view should render the product
             >
               Eligibility Threshold:
             </small>
-             
+
           </FormLabel>
           <br
             className="jsx-3284210077"
@@ -2654,7 +2654,7 @@ exports[`ProductRowItemContainer with mode set to view should render the product
             >
               End Date:
             </small>
-             
+
           </FormLabel>
         </Col>
       </ForwardRef>
@@ -2818,7 +2818,7 @@ exports[`ProductRowItemContainer with mode set to view should render the product
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </FormGroup>
@@ -2841,7 +2841,7 @@ exports[`ProductRowItemContainer with mode set to view should render the product
             >
               Benchmark:
             </small>
-             
+
           </FormLabel>
         </FormGroup>
         <FormGroup
@@ -2863,7 +2863,7 @@ exports[`ProductRowItemContainer with mode set to view should render the product
             >
               Eligibility Threshold:
             </small>
-             
+
           </FormLabel>
         </FormGroup>
       </FormRow>
@@ -2934,7 +2934,7 @@ exports[`ProductRowItemContainer with mode set to view should render the product
             >
               Archived:
             </small>
-             
+
             false
           </FormLabel>
         </FormGroup>
