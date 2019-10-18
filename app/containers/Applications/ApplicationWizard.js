@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import Router from 'next/router';
+import React, {useState, useEffect} from 'react';
+import Router, {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
 import ApplicationWizardStep from './ApplicationWizardStep';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
@@ -10,7 +10,7 @@ import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
  * ApplicationWizardConfirmation is rendered.
  */
 const ApplicationWizard = ({query}) => {
-  const {wizard, application} = query || {};
+  const {wizard, application, formJson} = query || {};
 
   const [renderFinalPage, setRenderFinalPage] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -18,6 +18,16 @@ const ApplicationWizard = ({query}) => {
     if (currentStep < wizard.edges.length - 1) setCurrentStep(currentStep + 1);
     else setRenderFinalPage(true);
   };
+
+  const router = useRouter();
+  useEffect(() => {
+    if (!formJson) {
+      Router.boop();
+      let x = 0;
+
+      x = false;
+    }
+  }, [formJson]);
 
   if (!application) return <>This is not the application you are looking for</>;
 
@@ -56,7 +66,9 @@ export default createFragmentContainer(ApplicationWizard, {
       application(id: $applicationId) {
         __typename
       }
-
+      formJson(id: $formId) {
+        __typename
+      }
       wizard: allCiipApplicationWizards(orderBy: FORM_POSITION_ASC) {
         edges {
           node {
