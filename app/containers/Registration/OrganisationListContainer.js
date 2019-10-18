@@ -1,43 +1,46 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+import {Dropdown, DropdownButton} from 'react-bootstrap';
 
 const OrganisationListContainer = props => {
+  const {query} = props;
 
-    const {query} = props;
+  // Const query = graphql`
+  //   query OrganisationListContainerQuery {
+  //     query {
+  //       ...OrganisationListContainer_query
+  //     }
+  //   }
+  // `;
 
-    if (query.allOrganisations) {
+  if (query.allOrganisations) {
+    const organisations = [...query.allOrganisations.edges];
 
-        const organisations = [...query.allOrganisations.edges];
-        const dropDownItems = [];
+    return (
+      <DropdownButton title="Select Organisation...">
+        {organisations.map(org => (
+          <Dropdown.Item key={org.node.rowId}>
+            {org.node.operatorName}
+          </Dropdown.Item>
+        ))}
+      </DropdownButton>
+    );
+  }
 
-        for (const org of organisations) {
-            dropDownItems.push(
-                <Dropdown.Item>{org.node.operatorName}</Dropdown.Item>
-            );
-        }
-
-        return (
-            <DropdownButton title="Select Organization...">
-                {dropDownItems}
-            </DropdownButton>
-        );
-    }
-
-    return <>Loading</>;
-}
+  return <>Loading</>;
+};
 
 export default createFragmentContainer(OrganisationListContainer, {
-    query: graphql`
-        fragment OrganisationListContainer_query on Query {
-            allOrganisations {
-                edges {
-                    node {
-                        id
-                        operatorName
-                    }
-                } 
-            }
+  query: graphql`
+    fragment OrganisationListContainer_query on Query {
+      allOrganisations {
+        edges {
+          node {
+            rowId
+            operatorName
+          }
         }
-    `
+      }
+    }
+  `
 });
