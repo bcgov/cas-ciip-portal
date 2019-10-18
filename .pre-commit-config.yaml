@@ -1,3 +1,5 @@
+exclude: 'test\.js\.snap$'
+repos:
 - repo: local
   hooks:
     - id: yarn-format
