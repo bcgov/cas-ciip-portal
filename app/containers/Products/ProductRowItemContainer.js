@@ -52,7 +52,11 @@ export const ProductRowItemContainer = props => {
         benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
       }
     };
-    await saveProductMutation(props.relay.environment, variables);
+    const response = await saveProductMutation(
+      props.relay.environment,
+      variables
+    );
+    console.log(response);
   };
 
   // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation.)
@@ -90,7 +94,11 @@ export const ProductRowItemContainer = props => {
         benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
       }
     };
-    await saveProductMutation(props.relay.environment, variables);
+    const response = await saveProductMutation(
+      props.relay.environment,
+      variables
+    );
+    console.log(response);
   };
 
   // Save a new benchmark

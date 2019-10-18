@@ -1,4 +1,4 @@
-import {commitMutation, graphql} from 'react-relay';
+import {commitMutation as commitMutationDefault, graphql} from 'react-relay';
 
 const mutation = graphql`
   mutation saveProductMutation($input: SaveProductMutationChainInput!) {
@@ -24,18 +24,25 @@ const mutation = graphql`
 
 // TODO: abstract clientMutationId into a base class
 let i = 0;
-export const saveProductMutation = (environment, variables) => {
+export const saveProductMutation = async (environment, variables) => {
   variables.input.clientMutationId = `save-product-mutation-${i}`;
   i++;
-  // Currently not returning anything
-  // TODO: wrap onCompleted into a promise
+
+  function commitMutation(environment, options) {
+    return new Promise((resolve, reject) => {
+      commitMutationDefault(environment, {
+        ...options,
+        onError: error => {
+          reject(error);
+          console.log(error);
+        },
+        onCompleted: (response, errors) => {
+          errors ? reject(errors) : resolve(response);
+        }
+      });
+    });
+  }
+
   // TODO: abstract onError into a base class
-  commitMutation(environment, {
-    mutation,
-    variables,
-    onCompleted: async response => {
-      console.log(response);
-    },
-    onError: err => console.error(err)
-  });
+  return commitMutation(environment, {mutation, variables});
 };
