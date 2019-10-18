@@ -12,22 +12,15 @@ const mutation = graphql`
   }
 `;
 
-export default function createUser(
-  environment,
-  variables,
-  onCompletedCallback,
-  onErrorCallback
-) {
+export default function createUser(environment, variables) {
   commitMutation(environment, {
     mutation,
     variables,
-    onCompleted: async response => {
+    onCompleted: async (response, errors) => {
       console.log(response);
-      onCompletedCallback();
     },
-    onError: async err => {
+    onError: err => {
       console.error(err);
-      onErrorCallback();
     }
   });
 }
