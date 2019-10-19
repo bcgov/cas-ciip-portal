@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Button, Table, Jumbotron} from 'react-bootstrap';
+import {Button, Jumbotron} from 'react-bootstrap';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-class userProfile extends Component {
+class UserProfile extends Component {
   render() {
     return (
       <div>
@@ -11,7 +11,6 @@ class userProfile extends Component {
         <p />
         <Jumbotron>
           <h1>User Profile</h1>
-
           <p>
             <Button variant="primary">Edit Profile</Button>
           </p>
@@ -21,4 +20,4 @@ class userProfile extends Component {
     );
   }
 }
-export default userProfile;
+export default UserProfile;
