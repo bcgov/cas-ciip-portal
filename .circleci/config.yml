@@ -32,6 +32,43 @@ jobs:
           # https://yarnpkg.com/lang/en/docs/cli/audit/
           command: yarn audit --level info
 
+  integration:
+    docker:
+      - image: circleci/node:10.14.1
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - checkout:
+          path: ~/cas-ciip-portal
+      - restore_cache:
+          name: Restore asdf Tools Cache
+          keys:
+            - tool-versions-{{ checksum ".tool-versions" }}
+      - run:
+          name: Install tools via asdf
+          command: |
+            [[ -d ~/.asdf ]] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.4
+            pushd ~/.asdf && git checkout v0.7.4 && popd
+            echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+            source ~/.asdf/asdf.sh
+            cat .tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add || true
+            asdf plugin-update --all
+            bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+            asdf install
+            asdf reshim
+            pip install -r requirements.txt
+            asdf reshim
+            pushd app && yarn install --frozen-lockfile && popd
+      - save_cache:
+          name: Save asdf Tools Cache
+          key: tool-versions-{{ checksum ".tool-versions" }}
+          paths:
+            - ~/.asdf
+      - run:
+          name: Verify style with pre-commit
+          command: |
+            source ~/.asdf/asdf.sh
+            pre-commit run --all-files
+
   check-code-style:
     docker:
       - image: circleci/node:10.14.1
@@ -174,6 +211,7 @@ workflows:
   test:
     jobs:
       - test
+      - integration
       - check-code-style
       - openshift-lint:
           context: cas-pipeline
