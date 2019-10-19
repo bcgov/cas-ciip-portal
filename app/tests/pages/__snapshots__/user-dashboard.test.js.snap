@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
+<DefaultLayout
+  title="Industrial Reporter Dashboard"
+>
+  <Container
+    fluid={false}
+  >
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col>
+        <ForwardRef
+          noGutters={false}
+        >
+          <h2>
+            Apply for CIIP 2019
+          </h2>
+          <p
+            className="text"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </ForwardRef>
+        <ForwardRef
+          noGutters={false}
+        >
+          <h2>
+            Pre-requisites:
+          </h2>
+          <p
+            className="text"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
+        </ForwardRef>
+      </Col>
+      <Col
+        md={
+          Object {
+            "span": 1,
+          }
+        }
+      />
+      <Col>
+        <h2>
+          Reporting organisations
+        </h2>
+        <ForwardRef(Relay(Organisations)) />
+      </Col>
+    </ForwardRef>
+  </Container>
+</DefaultLayout>
+`;
