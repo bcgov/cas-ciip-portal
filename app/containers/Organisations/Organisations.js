@@ -1,22 +1,23 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Accordion} from 'react-bootstrap';
-import OrganisationsFragment from './OrganisationsFragment';
+import Organisation from './Organisation';
 
-const Organisations = props => {
+const Organisations = ({query: {allOrganisations}}) => {
   if (
-    !props ||
-    !props.query ||
-    !props.query.allOrganisations ||
-    !props.query.allOrganisations.edges
+    !allOrganisations ||
+    !allOrganisations.edges ||
+    allOrganisations.edges.length === 0
   ) {
-    return null;
+    return (
+      <>You are not registered to report for any organisation at this time.</>
+    );
   }
 
   return (
-    <Accordion>
-      {props.query.allOrganisations.edges.map(({node}) => {
-        return <OrganisationsFragment key={node.id} organisation={node} />;
+    <Accordion defaultActiveKey={allOrganisations.edges[0].node.id}>
+      {allOrganisations.edges.map(({node}) => {
+        return <Organisation key={node.id} organisation={node} />;
       })}
     </Accordion>
   );
@@ -29,7 +30,7 @@ export default createFragmentContainer(Organisations, {
         edges {
           node {
             id
-            ...OrganisationsFragment_organisation
+            ...Organisation_organisation
           }
         }
       }

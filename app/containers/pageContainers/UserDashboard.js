@@ -44,7 +44,7 @@ export default class UserDashBoard extends Component {
             </Col>
             <Col md={{span: 1}} />
             <Col>
-              <h2>Your reporting operations/facilities</h2>
+              <h2>Reporting organisations</h2>
               <Organisations query={this.props.query} />
             </Col>
           </Row>
