@@ -10,7 +10,6 @@ const Form = ({
   query,
   relay,
   applicationId,
-  formId,
   onFormComplete,
   startsEditable,
   initialData,
@@ -19,21 +18,10 @@ const Form = ({
   const {json} = query || {};
   const {environment} = relay;
 
-  const [formJson, setFormJson] = useState(null);
-  useEffect(() => {
-    const {edges} = json || {};
-    if (!edges || edges.length === 0) return;
-    setFormJson(edges[0].node.formJson);
-  }, [json]);
-
   const [editable, setEditable] = useState(startsEditable);
   useEffect(() => {
     setEditable(startsEditable);
   }, [startsEditable]);
-
-  useEffect(() => {
-    relay.refetch({condition: {rowId: formId}});
-  }, [relay, formId]);
 
   // Mutation: stores the result of the form
   const createFormResult = graphql`
@@ -92,7 +80,7 @@ const Form = ({
       input: {
         formResult: {
           applicationId,
-          formId,
+          formId: json.rowId,
           userId: 2,
           formResult: JSON.stringify(formResult)
         }
@@ -122,6 +110,9 @@ const Form = ({
     onFormComplete();
   };
 
+  if (!json) return null;
+  const {formJson} = json;
+
   return (
     <>
       {!editable && (
@@ -134,14 +125,10 @@ const Form = ({
       )}
       <FormWithFuelUnits query={query} formJson={formJson}>
         <FormWithProductUnits query={query} formJson={formJson}>
-          <SurveyWrapper
-            initialData={initialData}
-            editable={editable}
-            onComplete={onComplete}
-          />
+          <SurveyWrapper initialData={initialData} onComplete={onComplete} />
         </FormWithProductUnits>
       </FormWithFuelUnits>
-      {!editable && (
+      {/* {!editable && (
         // TODO: add some margins, and disable the button while submitting
         <div>
           <Button style={{margin: '5px'}} onClick={() => setEditable(true)}>
@@ -162,7 +149,7 @@ const Form = ({
             `}
           </style>
         </div>
-      )}
+      )} */}
     </>
   );
 };
@@ -173,6 +160,7 @@ export default createRefetchContainer(
     query: graphql`
       fragment Form_query on Query @argumentDefinitions(formId: {type: "ID!"}) {
         json: formJson(id: $formId) {
+          rowId
           formJson
         }
         ...FormWithProductUnits_query

@@ -2,8 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import Form from '../Forms/Form';
 
-const getInitialAdminData = query => {
-  const {application} = query;
+const getInitialAdminData = application => {
   const {
     operatorName,
     operatorTradeName,
@@ -90,12 +89,9 @@ const getInitialEmissionData = _ => {
   return {};
 };
 
-const getInitialFuelData = query => {
-  const {application} = query;
-  const {edges} = application;
-  const {node} = edges[0];
+const getInitialFuelData = application => {
   return {
-    fuels: node.swrsFuelData.edges.map(edge => {
+    fuels: application.swrsFuelData.edges.map(edge => {
       const {
         fuelType,
         fuelDescription,
@@ -118,7 +114,6 @@ const getInitialFuelData = query => {
  */
 const ApplicationWizardStep = ({
   query,
-  formId,
   formName,
   onStepComplete,
   prepopulateFromCiip,
@@ -130,24 +125,24 @@ const ApplicationWizardStep = ({
     if (!prepopulateFromSwrs) return setInitialData(null);
     switch (formName) {
       case 'Admin': {
-        setInitialData(getInitialAdminData(query));
+        setInitialData(getInitialAdminData(application));
         break;
       }
 
       case 'Emission': {
-        setInitialData(getInitialEmissionData(query));
+        setInitialData(getInitialEmissionData(application));
         break;
       }
 
       case 'Fuel': {
-        setInitialData(getInitialFuelData(query));
+        setInitialData(getInitialFuelData(application));
         break;
       }
 
       default:
         setInitialData({});
     }
-  }, [formName, query, prepopulateFromSwrs]);
+  }, [formName, query, prepopulateFromSwrs, application]);
 
   let initialDataSource;
   if (prepopulateFromSwrs) {
@@ -163,7 +158,6 @@ const ApplicationWizardStep = ({
   return (
     <Form
       query={query}
-      formId={formId}
       applicationId={application.rowId}
       startsEditable={!prepopulateFromSwrs}
       initialData={initialData}

@@ -20,10 +20,10 @@ class CiipApplication extends Component {
   `;
 
   render() {
-    const {query, router} = this.props;
+    const {query} = this.props;
     return (
       <DefaultLayout>
-        <ApplicationWizard query={query} router={router} />
+        <ApplicationWizard query={query} />
       </DefaultLayout>
     );
   }

@@ -11,7 +11,7 @@ const SurveyWrapper = ({formJson, initialData, onComplete, editable}) => {
       m.clearIncorrectValues();
     }
 
-    m.mode = editable ? 'edit' : 'display';
+    m.mode = editable === false ? 'display' : 'edit';
     return m;
   };
 

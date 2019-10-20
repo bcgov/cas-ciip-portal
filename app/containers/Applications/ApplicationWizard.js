@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import Router, {useRouter} from 'next/router';
+import {format} from 'url';
+import React, {useState, useEffect, useCallback} from 'react';
+import {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
 import ApplicationWizardStep from './ApplicationWizardStep';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
@@ -13,40 +14,54 @@ const ApplicationWizard = ({query}) => {
   const {wizard, application, formJson} = query || {};
 
   const [renderFinalPage, setRenderFinalPage] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-  const onStepComplete = () => {
-    if (currentStep < wizard.edges.length - 1) setCurrentStep(currentStep + 1);
-    else setRenderFinalPage(true);
-  };
 
   const router = useRouter();
-  useEffect(() => {
-    if (!formJson) {
-      Router.boop();
-      let x = 0;
 
-      x = false;
+  const setFormId = useCallback(formId => {
+    const newUrl = format({
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        formId
+      }
+    });
+    const as = newUrl;
+    if (formJson) router.push(newUrl, as, {shallow: true});
+    else router.replace(newUrl, as, {shallow: true});
+  });
+
+  useEffect(() => {
+    if (renderFinalPage) return;
+    if (!formJson) setFormId(wizard.edges[0].node.formJsonByFormId.id);
+  }, [formJson, renderFinalPage, setFormId, wizard.edges]);
+
+  const onStepComplete = () => {
+    for (let i = 0; i < wizard.edges.length; i++) {
+      if (wizard.edges[i].node.formJsonByFormId.id === formJson.id) {
+        // TODO: handle final page
+        setFormId(wizard.edges[i + 1].node.formJsonByFormId.id);
+      }
     }
-  }, [formJson]);
+  };
 
   if (!application) return <>This is not the application you are looking for</>;
 
-  if (!wizard) return null;
+  if (!wizard || !formJson) return null;
 
   if (renderFinalPage) return <ApplicationWizardConfirmation />;
 
   const {
-    formId,
     prepopulateFromCiip,
     prepopulateFromSwrs,
     formJsonByFormId: {name}
-  } = wizard.edges[currentStep].node;
+  } = wizard.edges.find(
+    ({node}) => node.formJsonByFormId.id === formJson.id
+  ).node;
 
   return (
     <>
       <ApplicationWizardStep
         query={query}
-        formId={formId}
         prepopulateFromCiip={prepopulateFromCiip}
         prepopulateFromSwrs={prepopulateFromSwrs}
         formName={name}
@@ -67,12 +82,11 @@ export default createFragmentContainer(ApplicationWizard, {
         __typename
       }
       formJson(id: $formId) {
-        __typename
+        id
       }
       wizard: allCiipApplicationWizards(orderBy: FORM_POSITION_ASC) {
         edges {
           node {
-            formId
             prepopulateFromCiip
             prepopulateFromSwrs
             formJsonByFormId {
