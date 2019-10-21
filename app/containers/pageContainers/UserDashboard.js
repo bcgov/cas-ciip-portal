@@ -3,6 +3,7 @@ import {Container, Col, Row} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import Organisations from '../Organisations/Organisations';
 import DefaultLayout from '../../layouts/default-layout';
+import {userOrganisationMutation} from '../../mutations/user_organisation/UserOrganisation';
 
 export default class UserDashBoard extends Component {
   static query = graphql`
@@ -31,6 +32,16 @@ export default class UserDashBoard extends Component {
 
   handleOrgChange = orgId => {
     this.setState({selectedOrg: orgId});
+  };
+
+  handleOrgConfirm = () => {
+    const response = userOrganisationMutation(this.props.relay.environment, {
+      input: {
+        userId: this.props.router.query.userId,
+        organisationId: this.state.selectedOrg
+      }
+    });
+    console.log(response);
   };
 
   render() {
@@ -174,6 +185,7 @@ export default class UserDashBoard extends Component {
                 handleInputChange={this.handleInputChange}
                 handleContextChange={this.handleContextChange}
                 handleOrgChange={this.handleOrgChange}
+                handleOrgConfirm={this.handleOrgConfirm}
               />
             </Col>
           </Row>

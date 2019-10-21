@@ -31,6 +31,8 @@ const Organisations = props => {
     console.log(`I CLAIM THIS ${org} ORG IN THE NAME OF GRAGNAR!! RAWR!`);
     props.handleContextChange();
     props.handleInputChange('');
+    props.handleOrgConfirm();
+    props.handleOrgChange(null);
   };
 
   const cancelClaim = () => {
