@@ -258,3 +258,18 @@ workflows:
       #     context: cas-pipeline
       #     requires:
       #       - lint
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+    jobs:
+      - tools
+      - audit:
+          requires:
+            - tools
