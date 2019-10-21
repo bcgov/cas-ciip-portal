@@ -2,14 +2,19 @@
   "trigger",
   "./app",
   {
-    "name": "format",
+    "name": "lint",
     "expression": [
       "anyof",
       ["match", "**/*.js", "wholename"],
       ["match", "**/*.json", "wholename"],
       ["match", "yarn.lock", "wholename"]
     ],
-    "command": ["/usr/bin/env", "bash", "-c", "yarn run format 1>../log/format.stdout.log 2>../log/format.stderr.log"],
+    "command": [
+      "/usr/bin/env",
+      "bash",
+      "-c",
+      "yarn run lint 1>../log/lint.stdout.log 2>../log/lint.stderr.log"
+    ],
     "append_files": false
   }
 ]
