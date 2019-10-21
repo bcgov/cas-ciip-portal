@@ -12,9 +12,11 @@ jobs:
       - checkout:
           path: ~/cas-ciip-portal
       - run:
-          name: Check OpenSSL version
+          name: Ensure python has OpenSSL
           command: |
-            openssl version -a
+            # @see https://github.com/pyenv/pyenv/wiki/Common-build-problems
+            sudo apt-get update
+            sudo apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
       - restore_cache:
           name: Restore asdf Tools Cache
           keys:
@@ -79,6 +81,7 @@ jobs:
           name: Verify style with pre-commit
           command: |
             source ~/.asdf/asdf.sh
+            asdf reshim
             pre-commit run --all-files
 
   unit:
