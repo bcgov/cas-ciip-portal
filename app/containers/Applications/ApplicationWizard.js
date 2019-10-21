@@ -1,9 +1,22 @@
 import {format} from 'url';
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
 import ApplicationWizardStep from './ApplicationWizardStep';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
+
+const setRouterQueryParam = (router, key, value, replace = false) => {
+  const newUrl = format({
+    pathname: router.pathname,
+    query: {
+      ...router.query,
+      [key]: value
+    }
+  });
+  const as = newUrl;
+  if (replace) router.replace(newUrl, as, {shallow: true});
+  else router.push(newUrl, as, {shallow: true});
+};
 
 /*
  * The ApplicationWizard container retrieves the ordered list of forms to render in the
@@ -13,33 +26,32 @@ import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 const ApplicationWizard = ({query}) => {
   const {wizard, application, formJson} = query || {};
 
-  const [renderFinalPage, setRenderFinalPage] = useState(false);
-
   const router = useRouter();
-
-  const setFormId = useCallback(formId => {
-    const newUrl = format({
-      pathname: router.pathname,
-      query: {
-        ...router.query,
-        formId
-      }
-    });
-    const as = newUrl;
-    if (formJson) router.push(newUrl, as, {shallow: true});
-    else router.replace(newUrl, as, {shallow: true});
-  });
+  const {confirmationPage} = router.query;
 
   useEffect(() => {
-    if (renderFinalPage) return;
-    if (!formJson) setFormId(wizard.edges[0].node.formJsonByFormId.id);
-  }, [formJson, renderFinalPage, setFormId, wizard.edges]);
+    if (confirmationPage) return;
+    if (!formJson)
+      setRouterQueryParam(
+        router,
+        'formId',
+        wizard.edges[0].node.formJsonByFormId.id,
+        !formJson
+        // If we're landing on the wizard page, the formJson isn't defined.
+        // We want to trigger a replace instead of a push in that case
+      );
+  }, [confirmationPage, formJson, router, wizard.edges]);
 
   const onStepComplete = () => {
     for (let i = 0; i < wizard.edges.length; i++) {
       if (wizard.edges[i].node.formJsonByFormId.id === formJson.id) {
-        // TODO: handle final page
-        setFormId(wizard.edges[i + 1].node.formJsonByFormId.id);
+        const goToConfirmation = i === wizard.edges.length - 1;
+        const formId = goToConfirmation
+          ? undefined
+          : wizard.edges[i + 1].node.formJsonByFormId.id;
+        setRouterQueryParam(router, 'formId', formId);
+        if (goToConfirmation)
+          setRouterQueryParam(router, 'confirmationPage', true);
       }
     }
   };
@@ -48,7 +60,7 @@ const ApplicationWizard = ({query}) => {
 
   if (!wizard || !formJson) return null;
 
-  if (renderFinalPage) return <ApplicationWizardConfirmation />;
+  if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
 
   const {
     prepopulateFromCiip,
