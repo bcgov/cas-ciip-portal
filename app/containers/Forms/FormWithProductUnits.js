@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import 'survey-react/survey.css';
-import 'survey-creator/survey-creator.css';
 import {graphql, createFragmentContainer} from 'react-relay';
 
 const FormWithProductUnits = props => {
