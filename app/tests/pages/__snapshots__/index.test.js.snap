@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`landing It matches the last accepted Snapshot 1`] = `
+<DefaultLayout>
+  <Jumbotron
+    fluid={false}
+  >
+    <h1
+      style={
+        Object {
+          "color": "#003366",
+          "fontSize": "Bold 25px",
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Welcome to the CIIP Portal
+    </h1>
+  </Jumbotron>
+  <Container
+    fluid={false}
+  >
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col
+        md={true}
+      >
+        <Card
+          body={false}
+          style={
+            Object {
+              "borderRadius": "15px",
+              "marginBottom": "25px",
+              "marginTop": "50px",
+              "textAlign": "center",
+            }
+          }
+        >
+          <CardBody
+            style={
+              Object {
+                "backgroundColor": "#003366",
+                "borderRadius": "15px",
+                "padding": "50px",
+              }
+            }
+          >
+            <CardTitle
+              style={
+                Object {
+                  "color": "white",
+                  "fontSize": "25px",
+                  "fontWeight": "bold",
+                  "marginBottom": "15px",
+                }
+              }
+            >
+              Login
+            </CardTitle>
+            <CardText
+              style={
+                Object {
+                  "color": "white",
+                }
+              }
+            >
+              If you have already registered, click below to log in.
+            </CardText>
+            <Link
+              href="/user-dashboard"
+            >
+              <Button
+                active={false}
+                disabled={false}
+                size="lg"
+                style={
+                  Object {
+                    "backgroundColor": "#EDA500",
+                    "color": "#003366",
+                  }
+                }
+                type="button"
+                variant="primary"
+              >
+                Login
+              </Button>
+            </Link>
+          </CardBody>
+        </Card>
+      </Col>
+      <Col>
+        <Card
+          body={false}
+          style={
+            Object {
+              "borderRadius": "15px",
+              "marginBottom": "25px",
+              "marginTop": "50px",
+              "textAlign": "center",
+            }
+          }
+        >
+          <CardBody
+            style={
+              Object {
+                "padding": "50px",
+              }
+            }
+          >
+            <CardTitle
+              style={
+                Object {
+                  "color": "#003366",
+                  "fontSize": "25px",
+                  "fontWeight": "bold",
+                  "marginBottom": "15px",
+                }
+              }
+            >
+              Register for CIIP
+            </CardTitle>
+            <CardText
+              style={
+                Object {
+                  "color": "#003366",
+                }
+              }
+            >
+              Click here to create your industrial reporter account.
+            </CardText>
+            <Link
+              href="/registration"
+            >
+              <Button
+                active={false}
+                disabled={false}
+                size="lg"
+                style={
+                  Object {
+                    "backgroundColor": "#003366",
+                  }
+                }
+                type="button"
+                variant="primary"
+              >
+                Register for CIIP
+              </Button>
+            </Link>
+          </CardBody>
+        </Card>
+      </Col>
+    </ForwardRef>
+  </Container>
+</DefaultLayout>
+`;

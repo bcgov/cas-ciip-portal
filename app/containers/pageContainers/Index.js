@@ -1,63 +1,97 @@
 import React, {Component} from 'react';
+import {Button, Container, Row, Col, Card, Jumbotron} from 'react-bootstrap';
 import {graphql} from 'react-relay';
-import {Col, Row, Image, ButtonToolbar} from 'react-bootstrap';
+import Link from 'next/link';
 import DefaultLayout from '../../layouts/default-layout';
 
-export default class Index extends Component {
-  static displayName = 'Index';
+const heading = {
+  color: '#003366',
+  fontSize: 'Bold 25px',
+  fontWeight: 'bold',
+  textAlign: 'center'
+};
 
-  // Convention is to prefix foldername_index when the file is named index
-  // @see https://github.com/facebook/relay/issues/1742
+const Cards = {
+  marginTop: '50px',
+  marginBottom: '25px',
+  borderRadius: '15px',
+  textAlign: 'center'
+};
+
+const CardBody1 = {
+  backgroundColor: '#003366',
+  padding: '50px',
+  borderRadius: '15px'
+};
+const CardTitle1 = {
+  color: 'white',
+  fontSize: '25px',
+  marginBottom: '15px',
+  fontWeight: 'bold'
+};
+const CardTitle2 = {
+  fontSize: '25px',
+  color: '#003366',
+  marginBottom: '15px',
+  fontWeight: 'bold'
+};
+export default class Index extends Component {
   static query = graphql`
     query IndexQuery {
-      id
+      query {
+        ...Organisations_query
+      }
     }
   `;
 
   render() {
     return (
-      <>
-        <DefaultLayout>
+      <DefaultLayout>
+        <Jumbotron>
+          <h1 style={heading}>Welcome to the CIIP Portal</h1>
+        </Jumbotron>
+        <Container>
           <Row>
-            <Col md={4}>
-              <h1 style={{margin: '60px 0 40px 0'}}>
-                What is the CleanBC Industrial Incentive Program?
-              </h1>
-              <p>
-                The CleanBC Program for Industry directs a portion of B.C.’s
-                carbon tax paid by industry into incentives for cleaner
-                operations.
-              </p>
-              <p>
-                The program is designed for regulated large industrial
-                operations, such as pulp and paper mills, natural gas
-                operations, refineries, and large mines.
-              </p>
-              <br />
-              <ButtonToolbar>
-                <a href="/form" className="btn btn-primary">
-                  {' '}
-                  Apply for CIIP{' '}
-                </a>
-                <a
-                  style={{marginLeft: '20px'}}
-                  href="/form-builder"
-                  className="btn btn-danger"
-                >
-                  {' '}
-                  Build a form{' '}
-                </a>
-              </ButtonToolbar>
+            <Col md>
+              <Card style={Cards}>
+                <Card.Body style={CardBody1}>
+                  <Card.Title style={CardTitle1}>Login</Card.Title>
+                  <Card.Text style={{color: 'white'}}>
+                    If you have already registered, click below to log in.
+                  </Card.Text>
+                  <Link href="/user-dashboard">
+                    <Button
+                      style={{backgroundColor: '#EDA500', color: '#003366'}}
+                      size="lg"
+                    >
+                      Login
+                    </Button>
+                  </Link>
+                </Card.Body>
+              </Card>
             </Col>
-            <Col md={8}>
-              <Image fluid src="/static/polar-bear.jpg" />
+            <Col>
+              <Card style={Cards}>
+                <Card.Body style={{padding: '50px'}}>
+                  <Card.Title style={CardTitle2}>Register for CIIP</Card.Title>
+                  <Card.Text style={{color: '#003366'}}>
+                    Click here to create your industrial reporter account.
+                  </Card.Text>
+                  <Link href="/registration">
+                    <Button
+                      style={{backgroundColor: '#003366'}}
+                      size="lg"
+                      onClick={this.showModal}
+                    >
+                      Register for CIIP
+                    </Button>
+                  </Link>
+                </Card.Body>
+              </Card>
             </Col>
           </Row>
-          <br />
-          <br />
-          <br />
-        </DefaultLayout>
-      </>
+        </Container>
+      </DefaultLayout>
     );
   }
 }
