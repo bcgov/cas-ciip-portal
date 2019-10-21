@@ -72,7 +72,7 @@ export const ProductRowItemContainer = props => {
     };
     const variables = {
       input: {
-        rowId: currentBenchmark.rowId,
+        id: currentBenchmark.id,
         benchmarkPatch
       }
     };
@@ -471,6 +471,7 @@ export default createFragmentContainer(ProductRowItemContainer, {
       benchmarksByProductId {
         edges {
           node {
+            id
             rowId
             benchmark
             eligibilityThreshold

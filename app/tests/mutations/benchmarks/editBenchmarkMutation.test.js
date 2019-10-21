@@ -9,11 +9,11 @@ const schemaCode = fs.readFileSync(
 
 const mutation = `
         mutation editBenchmarkTestMutation(
-          $input: UpdateBenchmarkByRowIdInput!
+          $input: UpdateBenchmarkInput!
         ) {
-          updateBenchmarkByRowId(input: $input) {
+          updateBenchmark(input: $input) {
             benchmark {
-              rowId
+              id
             }
           }
         }
@@ -34,7 +34,7 @@ describe('editBenchmark', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" of required type "UpdateBenchmarkByRowIdInput!" was not provided.'
+      'Variable "$input" of required type "UpdateBenchmarkInput!" was not provided.'
     );
   });
   it('Should throw an error if a variable is missing', () => {
@@ -42,7 +42,7 @@ describe('editBenchmark', () => {
     try {
       tester.mock(mutation, {
         input: {
-          rowId: 1
+          id: 'abc'
         }
       });
     } catch (error_) {
@@ -50,13 +50,13 @@ describe('editBenchmark', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { rowId: 1 }; Field benchmarkPatch of required type BenchmarkPatch! was not provided.'
+      'Variable "$input" got invalid value { id: "abc" }; Field benchmarkPatch of required type BenchmarkPatch! was not provided.'
     );
   });
-  it('Should return rowId(number) if valid', () => {
+  it('Should return id(string) if valid', () => {
     const test = tester.mock(mutation, {
       input: {
-        rowId: 1,
+        id: 'abc',
         benchmarkPatch: {
           deletedAt: '2017-01-01',
           deletedBy: 'Dylan'
@@ -65,8 +65,6 @@ describe('editBenchmark', () => {
     });
 
     expect(test).toBeDefined();
-    expect(typeof test.data.updateBenchmarkByRowId.benchmark.rowId).toBe(
-      'number'
-    );
+    expect(typeof test.data.updateBenchmark.benchmark.id).toBe('string');
   });
 });
