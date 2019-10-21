@@ -42,6 +42,7 @@ jobs:
           name: Install Dependencies
           command: |
             pushd app || exit 1
+            source ~/.asdf/asdf.sh
             yarn install --frozen-lockfile
             popd
       - save_cache:
@@ -64,7 +65,9 @@ jobs:
           at: ~/
       - run:
           name: Lint with Yarn & XO
-          command: yarn lint
+          command: |
+            source ~/.asdf/asdf.sh
+            yarn lint
 
   test:
     docker:
