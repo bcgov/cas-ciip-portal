@@ -29,42 +29,42 @@ jobs:
             asdf reshim
             pip install -r requirements.txt
             asdf reshim
-            pushd app && yarn install --frozen-lockfile && popd
       - save_cache:
           name: Save asdf Tools Cache
           key: tool-versions-{{ checksum ".tool-versions" }}
           paths:
             - ~/.asdf
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "app/yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            pushd app || exit 1
+            yarn install --frozen-lockfile
+            popd
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "app/yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
       - persist_to_workspace:
           root: ~/
           paths:
             - .asdf
+            - cas-ciip-portal
 
-  yarn_install:
+  lint:
     machine:
       image: ubuntu-1604:201903-01
     working_directory: ~/cas-ciip-portal/app
     steps:
       - attach_workspace:
           at: ~/
-      - checkout:
-          path: ~/cas-ciip-portal
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
-          name: Install Dependencies
-          command: yarn install --frozen-lockfile
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - ~/cas-ciip-portal
+          name: Lint with Yarn & XO
+          command: yarn lint
 
   test:
     docker:
@@ -273,7 +273,7 @@ workflows:
   test:
     jobs:
       - tools
-      - yarn_install:
+      - lint:
           requires:
             - tools
       - test
