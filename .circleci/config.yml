@@ -4,6 +4,42 @@ orbs:
   redhat-openshift: circleci/redhat-openshift@0.2.0
 
 jobs:
+  tools:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - checkout:
+          path: ~/cas-ciip-portal
+      - restore_cache:
+          name: Restore asdf Tools Cache
+          keys:
+            - tool-versions-{{ checksum ".tool-versions" }}
+      - run:
+          name: Install tools via asdf
+          command: |
+            [[ -d ~/.asdf ]] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.4
+            pushd ~/.asdf && git checkout v0.7.4 && popd
+            echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+            source ~/.asdf/asdf.sh
+            cat .tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add || true
+            asdf plugin-update --all
+            bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+            asdf install
+            asdf reshim
+            pip install -r requirements.txt
+            asdf reshim
+            pushd app && yarn install --frozen-lockfile && popd
+      - save_cache:
+          name: Save asdf Tools Cache
+          key: tool-versions-{{ checksum ".tool-versions" }}
+          paths:
+            - ~/.asdf
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - .asdf
+
   test:
     docker:
       - image: circleci/node:10.14.1
@@ -210,6 +246,7 @@ workflows:
   version: 2
   test:
     jobs:
+      - tools
       - test
       - integration
       - check-code-style
