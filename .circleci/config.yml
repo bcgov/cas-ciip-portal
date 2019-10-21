@@ -11,6 +11,10 @@ jobs:
     steps:
       - checkout:
           path: ~/cas-ciip-portal
+      - run:
+          name: Check OpenSSL version
+          command: |
+            openssl version -a
       - restore_cache:
           name: Restore asdf Tools Cache
           keys:
