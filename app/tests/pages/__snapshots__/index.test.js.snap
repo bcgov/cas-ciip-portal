@@ -11,7 +11,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
           "color": "#003366",
           "fontSize": "Bold 25px",
           "fontWeight": "bold",
-          "marginLeft": "400px",
+          "textAlign": "center",
         }
       }
     >
@@ -131,11 +131,10 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
               Click here to create your industrial reporter account.
             </CardText>
             <Link
-              href="/register"
+              href="/registration"
             >
               <Button
                 active={false}
-                data-testid="get-modal"
                 disabled={false}
                 size="lg"
                 style={
