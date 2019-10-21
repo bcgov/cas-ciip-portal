@@ -80,6 +80,7 @@ verify: verify_installed verify_ready
 install_cpanm:
 ifeq (${shell which ${CPANM}},)
 	# install cpanm
+	@@echo | ${CPAN} # accept cpan defaults blindly
 	@@${CPAN} App:cpanminus
 endif
 
