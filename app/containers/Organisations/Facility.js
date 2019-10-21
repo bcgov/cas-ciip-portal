@@ -14,7 +14,6 @@ export const FacilityComponent = props => {
   );
 };
 
-// Export default FacilitiesFragment;
 export default createFragmentContainer(FacilityComponent, {
   facility: graphql`
     fragment Facility_facility on Facility {

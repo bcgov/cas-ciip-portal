@@ -7,8 +7,8 @@ import DefaultLayout from '../../layouts/default-layout';
 const heading = {
   color: '#003366',
   fontSize: 'Bold 25px',
-  marginLeft: '400px',
-  fontWeight: 'bold'
+  fontWeight: 'bold',
+  textAlign: 'center'
 };
 
 const Cards = {
@@ -77,11 +77,10 @@ export default class Index extends Component {
                   <Card.Text style={{color: '#003366'}}>
                     Click here to create your industrial reporter account.
                   </Card.Text>
-                  <Link href="/register">
+                  <Link href="/registration">
                     <Button
                       style={{backgroundColor: '#003366'}}
                       size="lg"
-                      data-testid="get-modal"
                       onClick={this.showModal}
                     >
                       Register for CIIP
