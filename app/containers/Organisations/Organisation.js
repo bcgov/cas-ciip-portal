@@ -1,9 +1,10 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {Card, Accordion, Button} from 'react-bootstrap';
+import {Card, Accordion, Button, Dropdown} from 'react-bootstrap';
 import Facility from './Facility';
 
-export const OrganisationComponent = ({organisation}) => {
+export const OrganisationComponent = props => {
+  const {organisation} = props;
   if (
     !organisation ||
     !organisation.facilitiesByOrganisationId ||
@@ -12,7 +13,18 @@ export const OrganisationComponent = ({organisation}) => {
     return null;
   }
 
-  return (
+  console.log(organisation);
+  return props.select ? (
+    organisation.operatorName
+      .toLowerCase()
+      .includes(props.orgInput.toLowerCase()) ? (
+      <Dropdown.Item
+        onSelect={() => props.selectOrg(organisation.operatorName)}
+      >
+        {organisation.operatorName}
+      </Dropdown.Item>
+    ) : null
+  ) : (
     <Card>
       <Card.Header>
         <Accordion.Toggle as={Button} variant="link" eventKey={organisation.id}>
@@ -34,6 +46,7 @@ export default createFragmentContainer(OrganisationComponent, {
   organisation: graphql`
     fragment Organisation_organisation on Organisation {
       id
+      rowId
       operatorName
       facilitiesByOrganisationId {
         edges {

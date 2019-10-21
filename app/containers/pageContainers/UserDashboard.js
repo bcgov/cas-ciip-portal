@@ -13,6 +13,26 @@ export default class UserDashBoard extends Component {
     }
   `;
 
+  state = {
+    orgInput: '',
+    selectedOrg: null,
+    confirmOrg: false
+  };
+
+  handleInputChange = event => {
+    this.setState({orgInput: event});
+  };
+
+  handleContextChange = () => {
+    this.state.confirmOrg
+      ? this.setState({confirmOrg: false})
+      : this.setState({confirmOrg: true});
+  };
+
+  handleOrgChange = orgId => {
+    this.setState({selectedOrg: orgId});
+  };
+
   render() {
     return (
       <DefaultLayout title="Industrial Reporter Dashboard">
@@ -109,6 +129,9 @@ export default class UserDashBoard extends Component {
                   margin-bottom: 40px;
                   margin-top: 30px;
                 }
+                .dropdown-item:hover {
+                  background: #428bca;
+                }
               `}
             </style>
           </nav>
@@ -142,7 +165,16 @@ export default class UserDashBoard extends Component {
             <Col md={{span: 1}} />
             <Col>
               <h2>Reporting organisations</h2>
-              <Organisations query={this.props.query} />
+              <Organisations
+                query={this.props.query}
+                userId={this.props.router.query.userId}
+                orgInput={this.state.orgInput}
+                selectedOrg={this.state.selectedOrg}
+                confirmOrg={this.state.confirmOrg}
+                handleInputChange={this.handleInputChange}
+                handleContextChange={this.handleContextChange}
+                handleOrgChange={this.handleOrgChange}
+              />
             </Col>
           </Row>
         </Container>

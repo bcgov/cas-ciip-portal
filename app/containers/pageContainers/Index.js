@@ -59,7 +59,9 @@ export default class Index extends Component {
                   <Card.Text style={{color: 'white'}}>
                     If you have already registered, click below to log in.
                   </Card.Text>
-                  <Link href="/user-dashboard">
+                  <Link
+                    href={{pathname: '/user-dashboard', query: {userId: 1}}}
+                  >
                     <Button
                       style={{backgroundColor: '#EDA500', color: '#003366'}}
                       size="lg"
