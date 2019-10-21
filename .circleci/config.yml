@@ -110,6 +110,24 @@ jobs:
             source ~/.asdf/asdf.sh
             yarn audit --level info # https://yarnpkg.com/lang/en/docs/cli/audit/
 
+  schema:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: deploy schema
+          command: |
+            source ~/.asdf/asdf.sh
+            pg_ctl start
+            createdb ggircs_dev
+            pushd schema
+            sqitch deploy
+            sqitch verify
+            popd
+
   test-local-cluster:
     executor: redhat-openshift/machine-for-local-cluster
     steps:
@@ -235,7 +253,15 @@ workflows:
       - audit:
           requires:
             - tools
+      - schema:
+          requires:
+            - tools
       - openshift-lint:
+          requires:
+            - audit
+            - lint
+            - unit
+            - schema
           context: cas-pipeline
           filters:
             branches:
