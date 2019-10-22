@@ -33,46 +33,6 @@ const Form = ({
     }
   `;
 
-  // TODO(Dylan): This block of code commented out until we figure out how formResults & Applications are being connected.
-  // Should be done transactionally as a stored procedure once a flow has been established
-
-  // Mutation: stores a status along with the form result
-  // const createApplicationStatus = graphql`
-  //   mutation FormLoaderContainerApplicationStatusMutation(
-  //     $input: CreateApplicationStatusInput!
-  //   ) {
-  //     createApplicationStatus(input: $input) {
-  //       applicationStatus {
-  //         rowId
-  //       }
-  //     }
-  //   }
-  // `;
-
-  // Function: store the application status
-  // const storeApplicationStatus = resultId => {
-  //   const variables = {
-  //     input: {
-  //       applicationStatus: {
-  //         applicationStatus: 'pending',
-  //         formResultId: resultId
-  //       }
-  //     }
-  //   };
-
-  //   const mutation = createApplicationStatus;
-  //   commitMutation(environment, {
-  //     mutation,
-  //     variables,
-  //     onCompleted: response => {
-  //       console.log(response);
-  //       console.log('Store Application Status Response received from server.');
-  //       console.log('Application Status Created.');
-  //     },
-  //     onError: err => console.error(err)
-  //   });
-  // };
-
   // Function: store the form result
   const storeResult = formResult => {
     const variables = {
@@ -91,10 +51,7 @@ const Form = ({
       mutation,
       variables,
       onCompleted: response => {
-        console.log(response);
-        console.log('Store Result Response received from server.');
-        // FIXME
-        // StoreApplicationStatus(response.createFormResult.formResult.rowId);
+        console.log('Store Result Response received from server.', response);
       },
       onError: err => console.error(err)
     });
@@ -127,28 +84,6 @@ const Form = ({
           <SurveyWrapper initialData={initialData} onComplete={onComplete} />
         </FormWithProductUnits>
       </FormWithFuelUnits>
-      {/* {!editable && (
-        // TODO: add some margins, and disable the button while submitting
-        <div>
-          <Button style={{margin: '5px'}} onClick={() => setEditable(true)}>
-            Edit
-          </Button>
-          <Button
-            style={{margin: '5px 0px 5px 5px'}}
-            onClick={() => onComplete({data: initialData})}
-          >
-            Submit
-          </Button>
-          <style jsx>
-            {`
-              div {
-                display: flex;
-                justify-content: flex-end;
-              }
-            `}
-          </style>
-        </div>
-      )} */}
     </>
   );
 };
