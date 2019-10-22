@@ -105,7 +105,7 @@ const getInitialEmissionData = application => {
   return initialData;
 };
 
-const getInitialFuelData = application => {
+const getInitialFuelData = (application, allFuels) => {
   return {
     fuels: application.swrsFuelData.edges.map(edge => {
       const {
@@ -114,8 +114,12 @@ const getInitialFuelData = application => {
         annualFuelAmount,
         alternativeMethodolodyDescription
       } = edge.node;
+      const fuelUnits = allFuels.edges.find(
+        ({node: {name}}) => name === fuelType
+      ).node.units;
       return {
         fuelType,
+        fuelUnits,
         description: fuelDescription,
         quantity: annualFuelAmount,
         methodology: alternativeMethodolodyDescription
@@ -134,7 +138,7 @@ const ApplicationWizardStep = ({
   onStepComplete,
   prepopulateFromSwrs
 }) => {
-  const {application} = query;
+  const {application, allFuels} = query;
   const [initialData, setInitialData] = useState({});
   useEffect(() => {
     if (!prepopulateFromSwrs) return setInitialData(null);
@@ -150,14 +154,14 @@ const ApplicationWizardStep = ({
       }
 
       case 'Fuel': {
-        setInitialData(getInitialFuelData(application));
+        setInitialData(getInitialFuelData(application, allFuels));
         break;
       }
 
       default:
         setInitialData({});
     }
-  }, [formName, query, prepopulateFromSwrs, application]);
+  }, [formName, query, prepopulateFromSwrs, application, allFuels]);
 
   let initialDataSource;
   if (prepopulateFromSwrs) {
@@ -189,6 +193,14 @@ export default createFragmentContainer(ApplicationWizardStep, {
         formId: {type: "ID!"}
         applicationId: {type: "ID!"}
       ) {
+      allFuels {
+        edges {
+          node {
+            name
+            units
+          }
+        }
+      }
       application(id: $applicationId) {
         rowId
         swrsEmissionData(reportingYear: "2018") {
