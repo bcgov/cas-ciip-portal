@@ -1496,6 +1496,46 @@ input CreateBenchmarkInput {
   clientMutationId: String
 }
 
+"""All input for the `createBenchmarkMutationChain` mutation."""
+input CreateBenchmarkMutationChainInput {
+  benchmarkInput: Int!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  eligibilityThresholdInput: Int!
+  prevBenchmarkIdInput: Int
+  productIdInput: Int!
+  startDateInput: Datetime!
+}
+
+"""The output of our `createBenchmarkMutationChain` mutation."""
+type CreateBenchmarkMutationChainPayload {
+  benchmark: Benchmark
+
+  """An edge for our `Benchmark`. May be used by Relay 1."""
+  benchmarkEdge(
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """Reads a single `Product` that is related to this `Benchmark`."""
+  productByProductId: Product
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
 """The output of our create `Benchmark` mutation."""
 type CreateBenchmarkPayload {
   """The `Benchmark` that was created by this mutation."""
@@ -3465,6 +3505,12 @@ type Mutation {
     """
     input: CreateBenchmarkInput!
   ): CreateBenchmarkPayload
+  createBenchmarkMutationChain(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateBenchmarkMutationChainInput!
+  ): CreateBenchmarkMutationChainPayload
 
   """Creates a single `CiipApplicationWizard`."""
   createCiipApplicationWizard(
@@ -3711,6 +3757,12 @@ type Mutation {
     """
     input: InsertDummyApplicationDataInput!
   ): InsertDummyApplicationDataPayload
+  saveProductMutationChain(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: SaveProductMutationChainInput!
+  ): SaveProductMutationChainPayload
 
   """
   Updates a single `Application` using its globally unique id and a patch.
@@ -5547,6 +5599,43 @@ type Query implements Node {
     id: ID!
   ): UserOrganisation
   userOrganisationByRowId(rowId: Int!): UserOrganisation
+}
+
+"""All input for the `saveProductMutationChain` mutation."""
+input SaveProductMutationChainInput {
+  benchmarkId: Int
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  newDescription: String!
+  newName: String!
+  newParent: [Int]!
+  newState: String!
+  prevId: Int!
+}
+
+"""The output of our `saveProductMutationChain` mutation."""
+type SaveProductMutationChainPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  product: Product
+
+  """An edge for our `Product`. May be used by Relay 1."""
+  productEdge(
+    """The method to use when ordering `Product`."""
+    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProductsEdge
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
 }
 
 """All input for the `updateApplicationByRowId` mutation."""

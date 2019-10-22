@@ -1,6 +1,9 @@
 import React from 'react';
-import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
+import saveProductMutation from '../../mutations/product/saveProductMutation';
+import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
+import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
 
 // TODO: create conflict logic & alerts:
 // Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
@@ -12,55 +15,8 @@ import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
 
 // TODO: The UI is a little borked, the edit buttons apply to all items on the page because of where state lives currently
 //       I have purposely left this not fixed as I believe this should be fixed in a separate refactor of this page
-export const ProductRowItemContainer = props => {
-  const createBenchmark = graphql`
-    mutation ProductRowItemContainerBenchmarkMutation(
-      $input: CreateBenchmarkInput!
-    ) {
-      createBenchmark(input: $input) {
-        benchmark {
-          rowId
-        }
-      }
-    }
-  `;
-  const createProduct = graphql`
-    mutation ProductRowItemContainerProductMutation(
-      $input: CreateProductInput!
-    ) {
-      createProduct(input: $input) {
-        product {
-          rowId
-        }
-        query {
-          ...ProductListContainer_query
-        }
-      }
-    }
-  `;
-  const updateBenchmark = graphql`
-    mutation ProductRowItemContainerUpdateBenchmarkMutation(
-      $input: UpdateBenchmarkByRowIdInput!
-    ) {
-      updateBenchmarkByRowId(input: $input) {
-        benchmark {
-          rowId
-        }
-      }
-    }
-  `;
-  const updateProduct = graphql`
-    mutation ProductRowItemContainerUpdateProductMutation(
-      $input: UpdateProductByRowIdInput!
-    ) {
-      updateProductByRowId(input: $input) {
-        product {
-          rowId
-        }
-      }
-    }
-  `;
 
+export const ProductRowItemContainer = props => {
   // Get the product's current benchmark
   const getCurrentBenchmark = () => {
     let currentBenchmark;
@@ -81,37 +37,26 @@ export const ProductRowItemContainer = props => {
   };
 
   // Toggle the 'archived' value of a Product
-  const toggleArchived = event => {
+  const toggleArchived = async event => {
     event.preventDefault();
     event.stopPropagation();
-    const toggleArchived = props.product.state !== 'archived';
-    const saveVariables = {
+    const newState = props.product.state === 'archived' ? 'active' : 'archived';
+    const currentBenchmark = getCurrentBenchmark();
+    const variables = {
       input: {
-        product: {
-          name: props.product.name,
-          description: props.product.description,
-          state: toggleArchived ? 'archived' : 'active',
-          parent: [props.product.rowId]
-        }
+        newName: props.product.name,
+        newDescription: props.product.description || '',
+        newState,
+        prevId: props.product.rowId,
+        newParent: [props.product.rowId],
+        benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
       }
     };
-    const {environment} = props.relay;
-    const saveMutation = createProduct;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: saveVariables,
-      onCompleted: async response => {
-        const currentBenchmark = getCurrentBenchmark();
-        const benchmarkPatch = {
-          productId: response.createProduct.product.rowId
-        };
-        await editProduct();
-        if (currentBenchmark) {
-          await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
-        }
-      },
-      onError: err => console.error(err)
-    });
+    const response = await saveProductMutation(
+      props.relay.environment,
+      variables
+    );
+    console.log(response);
   };
 
   // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation.)
@@ -125,52 +70,18 @@ export const ProductRowItemContainer = props => {
       deletedAt: new Date().toUTCString(),
       deletedBy: 'Admin'
     };
-
-    await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
-  };
-
-  // Edit a benchmark
-  const editBenchmark = (benchmarkRowId, benchmarkPatch) => {
-    const saveMutation = updateBenchmark;
-    const updateBenchmarkVariables = {
+    const variables = {
       input: {
-        rowId: benchmarkRowId,
+        id: currentBenchmark.id,
         benchmarkPatch
       }
     };
-    const {environment} = props.relay;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: updateBenchmarkVariables,
-      onCompleted: response => {
-        console.log(response);
-      },
-      onError: err => console.error(err)
-    });
-  };
 
-  // Edit a product
-  const editProduct = () => {
-    const saveMutation = updateProduct;
-    const updateProductVariables = {
-      input: {
-        rowId: props.product.rowId,
-        productPatch: {
-          state: 'deprecated',
-          deletedAt: new Date().toUTCString(),
-          deletedBy: 'Admin'
-        }
-      }
-    };
-    const {environment} = props.relay;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: updateProductVariables,
-      onCompleted: response => {
-        console.log(response);
-      },
-      onError: err => console.error(err)
-    });
+    const response = await editBenchmarkMutation(
+      props.relay.environment,
+      variables
+    );
+    console.log(response);
   };
 
   // Save a product
@@ -178,38 +89,26 @@ export const ProductRowItemContainer = props => {
     event.preventDefault();
     event.stopPropagation();
     event.persist();
-    const saveVariables = {
+
+    const productNameTargetIndex = 3;
+    const descriptionTargetIndex = 4;
+
+    const currentBenchmark = getCurrentBenchmark();
+    const variables = {
       input: {
-        product: {
-          name: event.nativeEvent.target[3].value,
-          description: event.nativeEvent.target[4].value,
-          state: 'active',
-          parent: [props.product.rowId]
-        }
+        newName: event.nativeEvent.target[productNameTargetIndex].value,
+        newDescription: event.nativeEvent.target[descriptionTargetIndex].value,
+        newState: 'active',
+        prevId: props.product.rowId,
+        newParent: [props.product.rowId],
+        benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
       }
     };
-
-    const saveMutation = createProduct;
-    // Get the current Benchmark -- calculated by which benchmark is not archived and current date within the start & end dates
-    const currentBenchmark = getCurrentBenchmark();
-    const {environment} = props.relay;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: saveVariables,
-      onCompleted: async response => {
-        console.log(response);
-        const benchmarkPatch = {
-          productId: response.createProduct.product.rowId
-        };
-        // Update state && updatedAt fields of previous product
-        await editProduct();
-        // Attach the previous Product's current benchmark to the new product
-        if (currentBenchmark) {
-          await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
-        }
-      },
-      onError: err => console.error(err)
-    });
+    const response = await saveProductMutation(
+      props.relay.environment,
+      variables
+    );
+    console.log(response);
   };
 
   // Save a new benchmark
@@ -221,10 +120,6 @@ export const ProductRowItemContainer = props => {
     const currentDate = new Date().toUTCString();
     // StartDate received from user, defined in UI
     const startDate = new Date(event.nativeEvent.target[5].value).toUTCString();
-    const benchmarkPatch = {
-      endDate: startDate,
-      updatedAt: currentDate
-    };
     // Set the current benchmark (if one has been set)
     const currentBenchmark = getCurrentBenchmark();
 
@@ -256,34 +151,30 @@ export const ProductRowItemContainer = props => {
       return;
     }
 
-    const saveVariables = {
+    const benchmarkTargetIndex = 3;
+    const eligibilityThresholdTargetIndex = 4;
+    const newVariables = {
       input: {
-        benchmark: {
-          productId: props.product.rowId,
-          benchmark: parseFloat(event.nativeEvent.target[3].value),
-          eligibilityThreshold: parseFloat(event.nativeEvent.target[4].value),
-          startDate,
-          updatedAt: currentDate,
-          updatedBy: 'Admin'
-        }
+        productIdInput: props.product.rowId,
+        benchmarkInput: parseFloat(
+          event.nativeEvent.target[benchmarkTargetIndex].value
+        ),
+        eligibilityThresholdInput: parseFloat(
+          event.nativeEvent.target[eligibilityThresholdTargetIndex].value
+        ),
+        startDateInput: startDate,
+        prevBenchmarkIdInput: currentBenchmark ? currentBenchmark.rowId : null
       }
     };
-    const {environment} = props.relay;
-    const saveMutation = createBenchmark;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: saveVariables,
-      onCompleted: async response => {
-        console.log(response);
-        // If there was a previously set benchmark, update its end_date
-        if (currentBenchmark) {
-          await editBenchmark(currentBenchmark.rowId, benchmarkPatch);
-        }
-      },
-      onError: err => console.error(err)
-    });
+    const response = await createBenchmarkMutation(
+      props.relay.environment,
+      newVariables
+    );
+    console.log(response);
   };
 
+  /** Mutations & functions above */
+  /** Code for Rendering Below */
   const {product} = props;
   // Get the current benchmark for the product
   let benchmarks;
@@ -580,24 +471,21 @@ export const ProductRowItemContainer = props => {
 export default createFragmentContainer(ProductRowItemContainer, {
   product: graphql`
     fragment ProductRowItemContainer_product on Product {
-      id
       rowId
       name
       description
       state
       parent
-      createdAt
-      createdBy
       benchmarksByProductId {
         edges {
           node {
+            id
             rowId
             benchmark
             eligibilityThreshold
             startDate
             endDate
             deletedAt
-            deletedBy
           }
         }
       }
