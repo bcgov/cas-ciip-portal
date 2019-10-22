@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
 import SurveyWrapper from '../../components/Survey/SurveyWrapper';
 import FormWithProductUnits from './FormWithProductUnits';
 import FormWithFuelUnits from './FormWithFuelUnits';

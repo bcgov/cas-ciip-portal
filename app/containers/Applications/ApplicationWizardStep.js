@@ -85,8 +85,24 @@ const getInitialAdminData = application => {
   };
 };
 
-const getInitialEmissionData = _ => {
-  return {};
+const getInitialEmissionData = application => {
+  const initialData = {};
+  for (const {
+    node: {quantity, emissionCategory, gasType}
+  } of application.swrsEmissionData.edges) {
+    initialData[emissionCategory] = [
+      {
+        ...(initialData[emissionCategory] && initialData[emissionCategory][0]),
+        [gasType]: [
+          {
+            annualEmission: quantity
+          }
+        ]
+      }
+    ];
+  }
+
+  return initialData;
 };
 
 const getInitialFuelData = application => {
@@ -116,7 +132,6 @@ const ApplicationWizardStep = ({
   query,
   formName,
   onStepComplete,
-  prepopulateFromCiip,
   prepopulateFromSwrs
 }) => {
   const {application} = query;
@@ -180,7 +195,6 @@ export default createFragmentContainer(ApplicationWizardStep, {
           edges {
             node {
               quantity
-              calculatedQuantity
               emissionCategory
               gasType
             }
