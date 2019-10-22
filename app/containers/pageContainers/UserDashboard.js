@@ -39,7 +39,8 @@ export default class UserDashBoard extends Component {
       input: {
         userOrganisation: {
           userId: Number(this.props.router.query.userId),
-          organisationId: this.state.selectedOrg
+          organisationId: this.state.selectedOrg,
+          status: 'pending'
         }
       }
     });

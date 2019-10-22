@@ -6769,6 +6769,22 @@
               "deprecationReason": null
             },
             {
+              "name": "status",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "userByUserId",
               "description": "Reads a single `User` that is related to this `UserOrganisation`.",
               "args": [],
@@ -7163,6 +7179,16 @@
               "defaultValue": null
             },
             {
+              "name": "status",
+              "description": "Checks for equality with the object’s `status` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "userId",
               "description": "Checks for equality with the object’s `userId` field.",
               "type": {
@@ -7317,6 +7343,18 @@
             },
             {
               "name": "UPDATED_BY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "STATUS_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "STATUS_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -21154,6 +21192,20 @@
               "defaultValue": null
             },
             {
+              "name": "status",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
               "name": "userId",
               "description": "foreign key that references the user table",
               "type": {
@@ -26634,6 +26686,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "status",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null

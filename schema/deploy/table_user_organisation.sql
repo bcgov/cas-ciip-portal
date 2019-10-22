@@ -9,6 +9,7 @@ begin;
       id serial not null,
       user_id integer not null,
       organisation_id integer not null,
+      status varchar(1000) not null,
       primary key (id),
       foreign key (user_id) references ggircs_portal.user (id),
       foreign key (organisation_id) references ggircs_portal.organisation (id)
