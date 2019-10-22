@@ -19,7 +19,9 @@ export const OrganisationComponent = props => {
       .toLowerCase()
       .includes(props.orgInput.toLowerCase()) ? (
       <Dropdown.Item
-        onSelect={() => props.selectOrg(organisation.operatorName)}
+        onSelect={() =>
+          props.selectOrg(organisation.operatorName, organisation.rowId)
+        }
       >
         {organisation.operatorName}
       </Dropdown.Item>

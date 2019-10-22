@@ -6,7 +6,7 @@
 begin;
 
   create table ggircs_portal.user_organisation (
-      id integer not null,
+      id serial not null,
       user_id integer not null,
       organisation_id integer not null,
       primary key (id),
@@ -22,3 +22,4 @@ begin;
   insert into ggircs_portal.user_organisation (id, user_id, organisation_id) values (2, 1, 2);
 
 commit;
+

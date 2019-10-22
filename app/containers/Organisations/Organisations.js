@@ -22,8 +22,9 @@ const Organisations = props => {
     props.handleInputChange(event.target.value);
   };
 
-  const selectOrg = org => {
-    props.handleInputChange(org);
+  const selectOrg = (name, id) => {
+    props.handleInputChange(name);
+    props.handleOrgChange(id);
     props.handleContextChange();
   };
 
@@ -31,7 +32,7 @@ const Organisations = props => {
     console.log(`I CLAIM THIS ${org} ORG IN THE NAME OF GRAGNAR!! RAWR!`);
     props.handleContextChange();
     props.handleInputChange('');
-    props.handleOrgConfirm();
+    props.handleOrgConfirm(props.relay.environment);
     props.handleOrgChange(null);
   };
 

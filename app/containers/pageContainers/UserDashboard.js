@@ -34,11 +34,14 @@ export default class UserDashBoard extends Component {
     this.setState({selectedOrg: orgId});
   };
 
-  handleOrgConfirm = () => {
-    const response = userOrganisationMutation(this.props.relay.environment, {
+  handleOrgConfirm = async environment => {
+    console.log(this.props);
+    const response = await userOrganisationMutation(environment, {
       input: {
-        userId: this.props.router.query.userId,
-        organisationId: this.state.selectedOrg
+        userOrganisation: {
+          userId: Number(this.props.router.query.userId),
+          organisationId: this.state.selectedOrg
+        }
       }
     });
     console.log(response);

@@ -26,5 +26,5 @@ export const userOrganisationMutation = async (environment, variables) => {
   };
 
   // TODO: abstract onError into a base class
-  return commitMutation(this.environment, {mutation, variables});
+  return commitMutation(environment, {mutation, variables});
 };
