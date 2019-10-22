@@ -1,19 +1,21 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {Accordion, Dropdown, Button} from 'react-bootstrap';
+import {Table, Dropdown, Button} from 'react-bootstrap';
 import Organisation from './Organisation';
+import UserOrganisation from './UserOrganisation';
 
 const Organisations = props => {
-  const {allOrganisations} = props.query;
+  const {allUserOrganisations, allOrganisations} = props.query;
+  console.log(props);
   if (
-    !allOrganisations ||
-    !allOrganisations.edges ||
-    allOrganisations.edges.length === 0
-  ) {
-    return (
-      <>You are not registered to report for any organisation at this time.</>
-    );
-  }
+    (!allUserOrganisations ||
+      !allUserOrganisations.edges ||
+      allUserOrganisations.edges.length === 0) &&
+    (!allOrganisations ||
+      !allOrganisations.edges ||
+      allOrganisations.edges.length === 0)
+  )
+    return '...Loading';
 
   const changeInput = event => {
     event.stopPropagation();
@@ -28,8 +30,7 @@ const Organisations = props => {
     props.handleContextChange();
   };
 
-  const claimOrg = org => {
-    console.log(`I CLAIM THIS ${org} ORG IN THE NAME OF GRAGNAR!! RAWR!`);
+  const claimOrg = () => {
     props.handleContextChange();
     props.handleInputChange('');
     props.handleOrgConfirm(props.relay.environment);
@@ -42,12 +43,14 @@ const Organisations = props => {
     props.handleInputChange('');
   };
 
-  return (
-    <>
-      <Accordion defaultActiveKey={allOrganisations.edges[0].node.id}>
-        {allOrganisations.edges.map(({node}) => {
-          return <Organisation key={node.id} organisation={node} />;
-        })}
+  if (
+    !allUserOrganisations ||
+    !allUserOrganisations.edges ||
+    allUserOrganisations.edges.length === 0
+  ) {
+    return (
+      <>
+        You are not registered to report for any organisation at this time.
         {props.confirmOrg ? (
           <>
             <h1>Claim {props.orgInput}?</h1>
@@ -78,22 +81,90 @@ const Organisations = props => {
             </Dropdown.Menu>
           </Dropdown>
         )}
-      </Accordion>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Table striped bordered hover style={{textAlign: 'center'}}>
+        <thead>
+          <tr>
+            <th>Organisation</th>
+            <th>Access Status</th>
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {allUserOrganisations.edges.map(({node}) => {
+            return <UserOrganisation key={node.id} userOrganisation={node} />;
+          })}
+        </tbody>
+      </Table>
+      {props.confirmOrg ? (
+        <>
+          <h1>Claim {props.orgInput}?</h1>
+          <Button onClick={() => claimOrg(props.orgInput)}>Confirm</Button>
+          <Button variant="danger" onClick={cancelClaim}>
+            Cancel
+          </Button>
+        </>
+      ) : (
+        <Dropdown>
+          <b>Add an Organisation:</b> &nbsp;
+          <Dropdown.Toggle as="input" onChange={changeInput}></Dropdown.Toggle>
+          <Dropdown.Menu>
+            {allOrganisations.edges.map(({node}) => {
+              return (
+                <Organisation
+                  key={node.id}
+                  select
+                  organisation={node}
+                  orgInput={props.orgInput}
+                  selectOrg={selectOrg}
+                />
+              );
+            })}
+          </Dropdown.Menu>
+        </Dropdown>
+      )}
     </>
   );
 };
 
-export default createFragmentContainer(Organisations, {
-  query: graphql`
-    fragment Organisations_query on Query {
-      allOrganisations {
-        edges {
-          node {
-            id
-            ...Organisation_organisation
+export default createFragmentContainer(
+  Organisations,
+  {
+    query: graphql`
+      fragment Organisations_query on Query
+        @argumentDefinitions(condition: {type: "UserOrganisationCondition"}) {
+        allUserOrganisations(first: 2147483647, condition: $condition)
+          @connection(
+            key: "Organisations_allUserOrganisations"
+            filters: ["userId"]
+          ) {
+          edges {
+            node {
+              id
+              ...UserOrganisation_userOrganisation
+            }
+          }
+        }
+        allOrganisations {
+          edges {
+            node {
+              id
+              ...Organisation_organisation
+            }
           }
         }
       }
+    `
+  },
+  {
+    getVariables(props) {
+      const userId = {props};
+      return {condition: {userId}};
     }
-  `
-});
+  }
+);
