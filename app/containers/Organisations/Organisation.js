@@ -1,7 +1,6 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {Card, Accordion, Button, Dropdown} from 'react-bootstrap';
-import Facility from './Facility';
+import {Dropdown} from 'react-bootstrap';
 
 export const OrganisationComponent = props => {
   const {organisation} = props;
@@ -13,7 +12,6 @@ export const OrganisationComponent = props => {
     return null;
   }
 
-  console.log(props);
   return organisation.operatorName
     .toLowerCase()
     .includes(props.orgInput.toLowerCase()) ? (

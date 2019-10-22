@@ -1,5 +1,5 @@
-import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
+import React, {useEffect} from 'react';
+import {graphql, createRefetchContainer} from 'react-relay';
 import {Table, Dropdown, Button} from 'react-bootstrap';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
@@ -7,6 +7,15 @@ import UserOrganisation from './UserOrganisation';
 const Organisations = props => {
   const {allUserOrganisations, allOrganisations} = props.query;
   console.log(props);
+
+  useEffect(() => {
+    const refetchVariables = {
+      condition: {userId: Number(props.userId)}
+    };
+    console.log(refetchVariables);
+    props.relay.refetch(refetchVariables, {force: true});
+  });
+
   if (
     (!allUserOrganisations ||
       !allUserOrganisations.edges ||
@@ -132,17 +141,13 @@ const Organisations = props => {
   );
 };
 
-export default createFragmentContainer(
+export default createRefetchContainer(
   Organisations,
   {
     query: graphql`
       fragment Organisations_query on Query
         @argumentDefinitions(condition: {type: "UserOrganisationCondition"}) {
-        allUserOrganisations(first: 2147483647, condition: $condition)
-          @connection(
-            key: "Organisations_allUserOrganisations"
-            filters: ["userId"]
-          ) {
+        allUserOrganisations(condition: $condition) {
           edges {
             node {
               id
@@ -161,10 +166,11 @@ export default createFragmentContainer(
       }
     `
   },
-  {
-    getVariables(props) {
-      const userId = {props};
-      return {condition: {userId}};
+  graphql`
+    query OrganisationsQuery($condition: UserOrganisationCondition!) {
+      query {
+        ...Organisations_query @arguments(condition: $condition)
+      }
     }
-  }
+  `
 );
