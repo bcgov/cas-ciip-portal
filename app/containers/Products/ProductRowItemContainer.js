@@ -1,9 +1,9 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Form, Button, ButtonGroup, Col, Row, Modal} from 'react-bootstrap';
-import {saveProductMutation} from '../../mutations/product/saveProductMutation';
-import {editBenchmarkMutation} from '../../mutations/benchmark/editBenchmarkMutation';
-import {createBenchmarkMutation} from '../../mutations/benchmark/createBenchmarkMutation';
+import saveProductMutation from '../../mutations/product/saveProductMutation';
+import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
+import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
 
 // TODO: create conflict logic & alerts:
 // Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
@@ -89,11 +89,15 @@ export const ProductRowItemContainer = props => {
     event.preventDefault();
     event.stopPropagation();
     event.persist();
+
+    const productNameTargetIndex = 3;
+    const descriptionTargetIndex = 4;
+
     const currentBenchmark = getCurrentBenchmark();
     const variables = {
       input: {
-        newName: event.nativeEvent.target[3].value,
-        newDescription: event.nativeEvent.target[4].value,
+        newName: event.nativeEvent.target[productNameTargetIndex].value,
+        newDescription: event.nativeEvent.target[descriptionTargetIndex].value,
         newState: 'active',
         prevId: props.product.rowId,
         newParent: [props.product.rowId],
@@ -147,12 +151,16 @@ export const ProductRowItemContainer = props => {
       return;
     }
 
+    const benchmarkTargetIndex = 3;
+    const eligibilityThresholdTargetIndex = 4;
     const newVariables = {
       input: {
         productIdInput: props.product.rowId,
-        benchmarkInput: parseFloat(event.nativeEvent.target[3].value),
+        benchmarkInput: parseFloat(
+          event.nativeEvent.target[benchmarkTargetIndex].value
+        ),
         eligibilityThresholdInput: parseFloat(
-          event.nativeEvent.target[4].value
+          event.nativeEvent.target[eligibilityThresholdTargetIndex].value
         ),
         startDateInput: startDate,
         prevBenchmarkIdInput: currentBenchmark ? currentBenchmark.rowId : null

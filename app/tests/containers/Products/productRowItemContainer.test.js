@@ -1,8 +1,5 @@
-import fs from 'fs';
-import path from 'path';
 import {shallow} from 'enzyme';
 import React from 'react';
-import EasyGraphQLTester from 'easygraphql-tester';
 import {ProductRowItemContainer} from '../../../containers/Products/ProductRowItemContainer';
 
 const product = {

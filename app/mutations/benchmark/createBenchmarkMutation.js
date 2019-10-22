@@ -1,5 +1,5 @@
 import {graphql} from 'react-relay';
-import BaseMutation from '../mutationBaseClass';
+import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
   mutation createBenchmarkMutation($input: CreateBenchmarkMutationChainInput!) {
@@ -17,7 +17,7 @@ const mutation = graphql`
   }
 `;
 
-export const createBenchmarkMutation = async (environment, variables) => {
+const createBenchmarkMutation = async (environment, variables) => {
   const m = new BaseMutation(
     environment,
     mutation,
@@ -26,3 +26,5 @@ export const createBenchmarkMutation = async (environment, variables) => {
   );
   return m.performMutation();
 };
+
+export default createBenchmarkMutation;

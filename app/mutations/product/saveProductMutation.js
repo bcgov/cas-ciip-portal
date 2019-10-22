@@ -1,5 +1,5 @@
 import {graphql} from 'react-relay';
-import BaseMutation from '../mutationBaseClass';
+import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
   mutation saveProductMutation($input: SaveProductMutationChainInput!) {
@@ -25,7 +25,7 @@ const mutation = graphql`
 
 // TODO: abstract clientMutationId into a base class
 // TODO: May want to surface the onCompleted errors to the user (ie not reject, resolve & report)
-export const saveProductMutation = async (environment, variables) => {
+const saveProductMutation = async (environment, variables) => {
   const m = new BaseMutation(
     environment,
     mutation,
@@ -34,3 +34,5 @@ export const saveProductMutation = async (environment, variables) => {
   );
   return m.performMutation();
 };
+
+export default saveProductMutation;
