@@ -1689,12 +1689,7 @@ insert into ggircs_portal.form_json
               "type": "dropdown",
               "name": "fuelType",
               "title": "Fuel Type",
-              "choices": [
-                "flared natural gas",
-                "diesel",
-                "combusted natural gas",
-                "propane"
-              ]
+              "choices": []
             },
             {
               "type": "text",
@@ -1713,16 +1708,7 @@ insert into ggircs_portal.form_json
               "name": "fuelUnits",
               "startWithNewLine": false,
               "title": "Units",
-              "choices": [
-                {
-                  "value": "m3",
-                  "text": "meters cube"
-                },
-                {
-                  "value": "kl",
-                  "text": "kiloliters"
-                }
-              ]
+              "choices": []
             },
             {
               "type": "dropdown",
@@ -1767,12 +1753,11 @@ insert into ggircs_portal.form_json
   "showCompletedPage": false,
   "pages": [
     {
-      "name": "Electricity and Heat",
       "elements": [
         {
           "type": "paneldynamic",
           "name": "electricityAndHeat",
-          "title": "Electricity and Heat",
+          "title": " ",
           "templateElements": [
             {
               "type": "paneldynamic",
@@ -1818,11 +1803,7 @@ insert into ggircs_portal.form_json
               ],
               "allowAddPanel": false,
               "allowRemovePanel": false,
-              "panelCount": 1,
-              "minPanelCount": 1,
-              "keyName": "name",
-              "panelAddText": "Add another fuel",
-              "panelRemoveText": "Remove fuel"
+              "panelCount": 1
             },
             {
               "type": "paneldynamic",
@@ -1867,22 +1848,14 @@ insert into ggircs_portal.form_json
               ],
               "allowAddPanel": false,
               "allowRemovePanel": false,
-              "panelCount": 1,
-              "minPanelCount": 1,
-              "keyName": "name",
-              "panelAddText": "Add another fuel",
-              "panelRemoveText": "Remove fuel"
+              "panelCount": 1
             }
           ],
-          "templateTitle": "Fuel #{panelIndex}",
-          "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
-          "panelAddText": "Add another fuel",
-          "panelRemoveText": "Remove fuel"
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "panelCount": 1
         }
-      ],
-      "title": "Electricity and Heat"
+      ]
     }
   ],
   "showQuestionNumbers": "off"
