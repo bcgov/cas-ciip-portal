@@ -13,7 +13,6 @@ export const OrganisationComponent = props => {
     return null;
   }
 
-  console.log(organisation);
   return props.select ? (
     organisation.operatorName
       .toLowerCase()

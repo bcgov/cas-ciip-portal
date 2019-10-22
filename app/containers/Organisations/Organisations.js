@@ -58,6 +58,7 @@ const Organisations = props => {
           </>
         ) : (
           <Dropdown>
+            <b>Add an Organisation:</b> &nbsp;
             <Dropdown.Toggle
               as="input"
               onChange={changeInput}

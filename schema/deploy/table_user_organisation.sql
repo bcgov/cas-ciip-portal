@@ -22,4 +22,3 @@ begin;
   -- insert into ggircs_portal.user_organisation (user_id, organisation_id) values (1, 2);
 
 commit;
-

@@ -35,7 +35,6 @@ export default class UserDashBoard extends Component {
   };
 
   handleOrgConfirm = async environment => {
-    console.log(this.props);
     const response = await userOrganisationMutation(environment, {
       input: {
         userOrganisation: {
