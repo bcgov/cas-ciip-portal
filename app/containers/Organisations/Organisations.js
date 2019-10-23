@@ -6,15 +6,6 @@ import UserOrganisation from './UserOrganisation';
 
 const Organisations = props => {
   const {allUserOrganisations, allOrganisations} = props.query;
-  console.log(props);
-
-  useEffect(() => {
-    const refetchVariables = {
-      condition: {userId: Number(props.userId)}
-    };
-    console.log(refetchVariables);
-    props.relay.refetch(refetchVariables, {force: true});
-  });
 
   if (
     (!allUserOrganisations ||
@@ -44,6 +35,18 @@ const Organisations = props => {
     props.handleInputChange('');
     props.handleOrgConfirm(props.relay.environment);
     props.handleOrgChange(null);
+    const refetchVariables = {
+      condition: {userId: Number(props.userId)}
+    };
+    props.relay.refetch(
+      refetchVariables,
+      null,
+      // TODO: I hacked this window reload in. Probably a better way to do this
+      () => {
+        window.location.reload();
+      },
+      {force: true}
+    );
   };
 
   const cancelClaim = () => {
