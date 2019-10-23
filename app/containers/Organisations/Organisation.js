@@ -4,11 +4,7 @@ import {Dropdown} from 'react-bootstrap';
 
 export const OrganisationComponent = props => {
   const {organisation} = props;
-  if (
-    !organisation
-    // !organisation.facilitiesByOrganisationId ||
-    // !organisation.facilitiesByOrganisationId.edges
-  ) {
+  if (!organisation) {
     return null;
   }
 
