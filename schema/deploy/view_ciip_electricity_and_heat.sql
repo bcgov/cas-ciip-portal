@@ -10,7 +10,7 @@ begin;
         form_result.application_id as id,
         json_array_elements(
           (json_array_elements(
-            ((form_result -> 'electricity_and_heat'))::json
+            ((form_result -> 'electricityAndHeat'))::json
            ) -> 'heat')::json
         ) as heat_data
       from ggircs_portal.form_result
@@ -23,8 +23,8 @@ begin;
        (x.heat_data ->> 'sold')::numeric as sold,
        (x.heat_data ->> 'quantity')::numeric as quantity,
        x.heat_data ->> 'description' as description,
-       x.heat_data ->> 'consumed_onsite' as consumed_onsite,
-       x.heat_data ->> 'generated_onsite' as generated_onsite,
+       x.heat_data ->> 'consumedOnsite' as consumed_onsite,
+       x.heat_data ->> 'generatedOnsite' as generated_onsite,
        'heat' as consumption_type
        -- add heat address to address view
     from x
@@ -36,7 +36,7 @@ begin;
         form_result.application_id as id,
         json_array_elements(
           (json_array_elements(
-            ((form_result -> 'electricity_and_heat'))::json
+            ((form_result -> 'electricityAndHeat'))::json
            ) -> 'electricity')::json
         ) as electricity_data
       from ggircs_portal.form_result
@@ -49,8 +49,8 @@ begin;
        (x.electricity_data ->> 'sold')::numeric as sold,
        (x.electricity_data ->> 'quantity')::numeric as quantity,
        x.electricity_data ->> 'description' as description,
-       x.electricity_data ->> 'consumed_onsite' as consumed_onsite,
-       x.electricity_data ->> 'generated_onsite' as generated_onsite,
+       x.electricity_data ->> 'consumedOnsite' as consumed_onsite,
+       x.electricity_data ->> 'generatedOnsite' as generated_onsite,
        'electricity' as consumption_type
        -- add heat address to address view
     from x

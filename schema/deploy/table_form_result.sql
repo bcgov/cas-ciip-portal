@@ -22,8 +22,7 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
-create unique index form_result_id_uindex
-  on ggircs_portal.form_result (id);
+create unique index form_result_id_uindex on ggircs_portal.form_result(id);
 
 alter table ggircs_portal.form_result
   add constraint form_result_pk

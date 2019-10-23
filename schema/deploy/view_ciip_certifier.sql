@@ -7,7 +7,7 @@ begin;
     with x as (
       select
         form_result.application_id as id,
-        json_array_elements((form_result -> 'certifiying_official')::json) as certifier_data
+        json_array_elements((form_result -> 'certifiyingOfficial')::json) as certifier_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -18,10 +18,10 @@ begin;
        x.certifier_data ->> 'fax' as fax,
        x.certifier_data ->> 'phone' as phone,
        x.certifier_data ->> 'position' as position,
-       x.certifier_data ->> 'last_name' as last_name,
-       x.certifier_data ->> 'first_name' as first_name,
-       x.certifier_data ->> 'email_address' as email_address,
-       x.certifier_data ->> 'certifier_name' as certifier_name,
+       x.certifier_data ->> 'lastName' as last_name,
+       x.certifier_data ->> 'firstName' as first_name,
+       x.certifier_data ->> 'emailAddress' as email_address,
+       x.certifier_data ->> 'certifierName' as certifier_name,
        (x.certifier_data ->> 'date')::date as certification_date
        -- add certifier address to address view
     from x

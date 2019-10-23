@@ -3,12 +3,11 @@
   "showCompletedPage": false,
   "pages": [
     {
-      "name": "Electricity and Heat",
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "electricity_and_heat",
-          "title": "Electricity and Heat",
+          "name": "electricityAndHeat",
+          "title": " ",
           "templateElements": [
             {
               "type": "paneldynamic",
@@ -24,14 +23,14 @@
                 },
                 {
                   "type": "text",
-                  "name": "generated_onsite",
+                  "name": "generatedOnsite",
                   "startWithNewLine": false,
                   "title": "Generated Onsite",
                   "inputType": "number"
                 },
                 {
                   "type": "text",
-                  "name": "consumed_onsite",
+                  "name": "consumedOnsite",
                   "startWithNewLine": false,
                   "title": "Consumed Onsite",
                   "inputType": "number"
@@ -54,11 +53,7 @@
               ],
               "allowAddPanel": false,
               "allowRemovePanel": false,
-              "panelCount": 1,
-              "minPanelCount": 1,
-              "keyName": "name",
-              "panelAddText": "Add another fuel",
-              "panelRemoveText": "Remove fuel"
+              "panelCount": 1
             },
             {
               "type": "paneldynamic",
@@ -73,14 +68,14 @@
                 },
                 {
                   "type": "text",
-                  "name": "generated_onsite",
+                  "name": "generatedOnsite",
                   "startWithNewLine": false,
                   "title": "Generated Onsite",
                   "inputType": "number"
                 },
                 {
                   "type": "text",
-                  "name": "consumed_onsite",
+                  "name": "consumedOnsite",
                   "startWithNewLine": false,
                   "title": "Consumed Onsite",
                   "inputType": "number"
@@ -103,22 +98,14 @@
               ],
               "allowAddPanel": false,
               "allowRemovePanel": false,
-              "panelCount": 1,
-              "minPanelCount": 1,
-              "keyName": "name",
-              "panelAddText": "Add another fuel",
-              "panelRemoveText": "Remove fuel"
+              "panelCount": 1
             }
           ],
-          "templateTitle": "Fuel #{panelIndex}",
-          "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
-          "panelAddText": "Add another fuel",
-          "panelRemoveText": "Remove fuel"
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "panelCount": 1
         }
-      ],
-      "title": "Electricity and Heat"
+      ]
     }
   ],
   "showQuestionNumbers": "off"

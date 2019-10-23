@@ -7,58 +7,56 @@
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "reporting_operation_information",
+          "name": "reportingOperationInformation",
           "useDisplayValuesInTitle": false,
           "title": "Reporting Operation Information",
           "templateElements": [
             {
               "type": "text",
-              "name": "operator_name",
+              "name": "operatorName",
               "title": "Legal Name of Operator:",
-              "defaultValue": "Rio",
               "isRequired": true,
-              "readOnly": true,
               "size": 340
             },
             {
               "type": "text",
-              "name": "operator_trade_name",
-              "title": "Operator's Trade Name"
+              "name": "operatorTradeName",
+              "title": "Operator''s Trade Name"
             },
             {
               "type": "text",
-              "name": "duns_number",
+              "name": "duns",
               "title": "DUNS Number",
               "isRequired": true,
               "inputType": "number"
             },
             {
               "type": "text",
-              "name": "bc_corporate_registry_number",
+              "name": "bcCorporateRegistryNumber",
               "title": "BC Corporate Registry Number ",
               "inputType": "number"
             },
             {
               "type": "text",
-              "name": "naics_code",
+              "name": "naicsCode",
               "startWithNewLine": false,
               "title": "NAICS Code",
               "inputType": "number"
             },
             {
               "type": "text",
-              "name": "mailing_address_line_1",
+              "name": "mailingAddress",
               "title": "Operator Mailing Address"
             },
             {
               "type": "text",
-              "name": "mailing_address_city",
+              "name": "mailingAddressCity",
               "startWithNewLine": false,
               "title": "Mailing Address City"
             },
             {
               "type": "dropdown",
-              "name": "mailing_address_province",
+              "name": "mailingAddressProvince",
               "title": "Province",
               "choices": [
                 "Alberta",
@@ -78,7 +76,7 @@
             },
             {
               "type": "text",
-              "name": "mailing_address_postal_code",
+              "name": "mailingAddressPostalCode",
               "startWithNewLine": false,
               "title": "Mailing Address Postal Code",
               "validators": [
@@ -91,7 +89,7 @@
             },
             {
               "type": "text",
-              "name": "mailing_address_country",
+              "name": "mailingAddressCountry",
               "width": "50%",
               "title": "Mailing Address Country"
             }
@@ -106,12 +104,12 @@
         },
         {
           "type": "paneldynamic",
-          "name": "operational_representative_information",
+          "name": "operationalRepresentativeInformation",
           "title": "Operational Representative",
           "templateElements": [
             {
               "type": "text",
-              "name": "first_name",
+              "name": "firstName",
               "startWithNewLine": false,
               "title": "First Name",
               "isRequired": true,
@@ -119,7 +117,7 @@
             },
             {
               "type": "text",
-              "name": "last_name",
+              "name": "lastName",
               "startWithNewLine": false,
               "title": "Last Name",
               "isRequired": true,
@@ -133,7 +131,7 @@
             },
             {
               "type": "text",
-              "name": "email_address",
+              "name": "emailAddress",
               "title": "Email Address",
               "isRequired": true,
               "inputType": "email"
@@ -154,18 +152,18 @@
             },
             {
               "type": "text",
-              "name": "mailing_address_line_1",
+              "name": "mailingAddress",
               "title": "Operator Mailing Address"
             },
             {
               "type": "text",
-              "name": "mailing_address_city",
+              "name": "mailingAddressCity",
               "startWithNewLine": false,
               "title": "Mailing Address City"
             },
             {
               "type": "dropdown",
-              "name": "mailing_address_province",
+              "name": "mailingAddressProvince",
               "startWithNewLine": false,
               "title": "Province",
               "choices": [
@@ -186,7 +184,7 @@
             },
             {
               "type": "text",
-              "name": "mailing_address_postal_code",
+              "name": "mailingAddressPostalCode",
               "width": "32.5%",
               "title": "Mailing Address Postal Code",
               "validators": [
@@ -208,21 +206,21 @@
         },
         {
           "type": "paneldynamic",
-          "name": "facility_information",
+          "name": "facilityInformation",
           "title": "Facility Information",
           "templateElements": [
             {
               "type": "text",
-              "name": "facility_name",
+              "name": "facilityName",
               "title": "Facility Name",
               "isRequired": true,
               "size": 340
             },
             {
               "type": "dropdown",
-              "name": "facility_type",
+              "name": "facilityType",
               "title": "Facility Type",
-              "choices": ["IF_A", "IF_B", "L_C", "SFO", "LFO", "EIO"]
+              "choices": ["IF_a", "IF_b", "L_c", "SFO", "LFO", "EIO"]
             },
             {
               "type": "text",
@@ -233,7 +231,7 @@
             },
             {
               "type": "text",
-              "name": "naics_code",
+              "name": "naicsCode",
               "startWithNewLine": false,
               "title": "NAICS Code",
               "inputType": "number"
@@ -253,23 +251,23 @@
             },
             {
               "type": "text",
-              "name": "nearest_city",
+              "name": "nearestCity",
               "title": "Nearest City"
             },
             {
               "type": "text",
-              "name": "mailing_address_line_1",
+              "name": "mailingAddress",
               "title": "Mailing Address"
             },
             {
               "type": "text",
-              "name": "mailing_address_city",
+              "name": "mailingAddressCity",
               "startWithNewLine": false,
               "title": "Mailing Address City"
             },
             {
               "type": "dropdown",
-              "name": "mailing_address_province",
+              "name": "mailingAddressProvince",
               "title": "Province",
               "choices": [
                 "Alberta",
@@ -289,7 +287,7 @@
             },
             {
               "type": "text",
-              "name": "mailing_address_postal_code",
+              "name": "mailingAddressPostalCode",
               "startWithNewLine": false,
               "title": "Mailing Address Postal Code",
               "validators": [
@@ -302,7 +300,7 @@
             },
             {
               "type": "comment",
-              "name": "facility_description",
+              "name": "facilityDescription",
               "title": "Facility Description"
             }
           ],
@@ -311,7 +309,7 @@
           "panelCount": 1,
           "minPanelCount": 1,
           "keyName": "name",
-          "panelAddText": "Add another  item",
+          "panelAddText": "Add another item",
           "panelRemoveText": "Remove item"
         }
       ]

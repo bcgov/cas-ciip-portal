@@ -26,7 +26,7 @@ begin;
     facility_id integer ,
     reporting_year varchar(1000)
   )
-  returns setof ggircs_portal.operator_contact_data
+  returns ggircs_portal.operator_contact_data
   as
   $body$
     begin
@@ -37,33 +37,34 @@ begin;
         and    table_name = 'contact'
       )
       then
-      return query (
+      return (
         with selected_report as (
           select * from swrs.report where swrs_facility_id = '1766'
           and reporting_period_duration = '2018'
         )
-        select
-          _rep.id as report_id,
-          _rep.swrs_report_id as swrs_report_id,
-          _rep.swrs_organisation_id as swrs_organisation_id,
-          _rep.reporting_period_duration as reporting_year,
-          _contact.given_name as first_name,
-          _contact.family_name as last_name,
-          _contact.position as position_title,
-          _contact.contact_type as contact_type,
-          _contact.email_address as  email,
-          _contact.telephone_number as telephone,
-          _contact.fax_number as fax,
+        select row(
+          _rep.id,
+          _rep.swrs_report_id,
+          _rep.swrs_organisation_id,
+          _rep.reporting_period_duration,
+          _contact.given_name,
+          _contact.family_name,
+          _contact.position,
+          _contact.contact_type,
+          _contact.email_address,
+          _contact.telephone_number,
+          _contact.fax_number,
           cast('unit '  || ' ' || _contact_add.mailing_address_unit_number
                    || ', ' || _contact_add.mailing_address_street_number
                    || ' ' || _contact_add.mailing_address_street_name
                    || ' ' || _contact_add.mailing_address_street_type
                    || ' ' || _contact_add.mailing_address_street_direction as varchar(1000))
-                   as contact_mailing_address,
-           _contact_add.mailing_address_municipality as contact_city,
-           _contact_add.mailing_address_prov_terr_state as contact_province,
-           _contact_add.mailing_address_postal_code_zip_code as contact_postal_code,
-           _contact_add.mailing_address_country as contact_country
+                  ,
+           _contact_add.mailing_address_municipality,
+           _contact_add.mailing_address_prov_terr_state,
+           _contact_add.mailing_address_postal_code_zip_code,
+           _contact_add.mailing_address_country
+        )
           from selected_report as _rep
          inner join swrs.contact as _contact on _rep.id = _contact.report_id
          and _contact.contact_type = 'Operator Representative'

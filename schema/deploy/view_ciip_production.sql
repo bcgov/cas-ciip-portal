@@ -7,7 +7,7 @@ begin;
       select * from
       (select
          form_result.application_id as id,
-         json_array_elements((form_result -> 'module_throughput_and_production_data')::json) as production_data
+         json_array_elements((form_result -> 'moduleThroughputAnd_productionData')::json) as production_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -15,7 +15,7 @@ begin;
       inner join
       (select
          form_result.application_id as fid,
-         json_array_elements((form_result -> 'facility_information')::json) as facility_data
+         json_array_elements((form_result -> 'facilityInformation')::json) as facility_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -26,11 +26,11 @@ begin;
        x.id,
        (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
        (x.production_data ->> 'quantity')::numeric as quantity,
-       x.production_data ->> 'processing_unit' as product,
+       x.production_data ->> 'processingUnit' as product,
        x.production_data ->> 'units' as fuel_units,
        x.production_data ->> 'comments' as comments,
-       x.production_data ->> 'associated_emissions' as associated_emissions,
-       (x.production_data ->> 'attributable_fuel_percentage')::numeric as attributable_fuel_percentage
+       x.production_data ->> 'associatedEmissions' as associated_emissions,
+       (x.production_data ->> 'attributableFuelPercentage')::numeric as attributable_fuel_percentage
     from x
  );
 

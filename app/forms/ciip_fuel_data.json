@@ -12,14 +12,9 @@
           "templateElements": [
             {
               "type": "dropdown",
-              "name": "fuel_type",
+              "name": "fuelType",
               "title": "Fuel Type",
-              "choices": [
-                "flared natural gas",
-                "diesel",
-                "combusted natural gas",
-                "propane"
-              ]
+              "choices": []
             },
             {
               "type": "text",
@@ -35,19 +30,10 @@
             },
             {
               "type": "dropdown",
-              "name": "fuel_units",
+              "name": "fuelUnits",
               "startWithNewLine": false,
               "title": "Units",
-              "choices": [
-                {
-                  "value": "m3",
-                  "text": "meters cube"
-                },
-                {
-                  "value": "kl",
-                  "text": "kiloliters"
-                }
-              ]
+              "choices": []
             },
             {
               "type": "dropdown",

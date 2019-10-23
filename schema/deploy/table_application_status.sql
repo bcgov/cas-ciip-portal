@@ -11,8 +11,7 @@ create table ggircs_portal.application_status (
     created_at timestamp with time zone not null default now(),
     created_by varchar(1000),
     updated_at timestamp with time zone not null default now(),
-    updated_by varchar(1000),
-    form_result_id int not null references ggircs_portal.form_result(id)
+    updated_by varchar(1000)
 );
 
 create trigger _100_timestamps
@@ -35,6 +34,5 @@ comment on column ggircs_portal.application_status.created_at is 'The date the a
 comment on column ggircs_portal.application_status.created_by is 'The person who updated the application status';
 comment on column ggircs_portal.application_status.updated_at is 'The date the application status was updated';
 comment on column ggircs_portal.application_status.updated_by is 'The person who updated the application status';
-comment on column ggircs_portal.application_status.form_result_id is 'The foreign key to the corresponding form_result';
 
 commit;

@@ -8,7 +8,8 @@
 begin;
 
 create table ggircs_portal.application (
-    id serial primary key
+    id serial primary key,
+    facility_id integer not null references ggircs_portal.facility(id)
 );
 
 create unique index application_id_uindex

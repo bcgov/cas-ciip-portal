@@ -7,16 +7,16 @@
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "stationary_combustion",
+          "name": "GeneralStationaryCombustion",
           "title": "Stationary Fuel Combustion Emissions ",
           "templateElements": [
             {
-              "type": "panel",
-              "name": "stationary_co2_nonbio",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2nonbio",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "stationary_co2nonbio_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -30,22 +30,25 @@
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_co2nonbio_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from non-biomass (CO2)"
+              "title": "Carbon dioxide from non-biomass (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "stationary_co2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bionC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "stationary_co2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -59,126 +62,131 @@
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_co2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_co2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)"
+              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "stationary_bioco2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bioC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "stationary_bioco2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_bioco2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_bioco2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) "
+              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) ",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "stationary_ch4",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CH4",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "stationary_ch4_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_ch4_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_ch4_tonnes} * 25",
+                  "expression": "{panel.annualEmission} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Methane (CH4)"
+              "title": "Methane (CH4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "stationary_n2o",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "N2O",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "stationary_n2o_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "stationary_n2o_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.stationary_n2o_tonnes} * 298",
+                  "expression": "{panel.annualEmission} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Nitrous oxide (N2O)"
+              "title": "Nitrous oxide (N2O)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             }
           ],
           "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
           "allowAddPanel": false,
-          "allowRemovePanel": false,
-          "panelAddText": "Add another unit or product",
-          "panelRemoveText": "Remove unit or product"
+          "allowRemovePanel": false
         },
         {
           "type": "paneldynamic",
-          "name": "venting",
+          "name": "Venting",
           "title": "Venting Emissions",
           "templateElements": [
             {
-              "type": "panel",
-              "name": "venting_co2_nonbio",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2nonbio",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "venting_co2nonbio_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -192,22 +200,25 @@
                 },
                 {
                   "type": "expression",
-                  "name": "venting_co2nonbio_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from non-biomass (CO2)"
+              "title": "Carbon dioxide from non-biomass (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "venting_co2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bionC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "venting_co2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -221,126 +232,131 @@
                 },
                 {
                   "type": "expression",
-                  "name": "venting_co2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_co2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)"
+              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "venting_bioco2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bioC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "venting_bioco2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "venting_bioco2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_bioco2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) "
+              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) ",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "venting_ch4",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CH4",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "venting_ch4_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "venting_ch4_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_ch4_tonnes} * 25",
+                  "expression": "{panel.annualEmission} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Methane (CH4)"
+              "title": "Methane (CH4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "venting_n2o",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "N2O",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "venting_n2o_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "venting_n2o_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.venting_n2o_tonnes} * 298",
+                  "expression": "{panel.annualEmission} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Nitrous oxide (N2O)"
+              "title": "Nitrous oxide (N2O)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             }
           ],
           "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
           "allowAddPanel": false,
-          "allowRemovePanel": false,
-          "panelAddText": "Add another unit or product",
-          "panelRemoveText": "Remove unit or product"
+          "allowRemovePanel": false
         },
         {
           "type": "paneldynamic",
-          "name": "flaring",
+          "name": "Flaring",
           "title": "Flaring Emissions",
           "templateElements": [
             {
-              "type": "panel",
-              "name": "flaring_co2_nonbio",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2nonbio",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "flaring_co2nonbio_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -354,22 +370,25 @@
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_co2nonbio_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from non-biomass (CO2)"
+              "title": "Carbon dioxide from non-biomass (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "flaring_co2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bionC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "flaring_co2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -383,126 +402,131 @@
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_co2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_co2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)"
+              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "flaring_bioco2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bioC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "flaring_bioco2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_bioco2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_bioco2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) "
+              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) ",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "flaring_ch4",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CH4",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "flaring_ch4_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_ch4_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_ch4_tonnes} * 25",
+                  "expression": "{panel.annualEmission} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Methane (CH4)"
+              "title": "Methane (CH4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "flaring_n2o",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "N2O",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "flaring_n2o_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "flaring_n2o_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.flaring_n2o_tonnes} * 298",
+                  "expression": "{panel.annualEmission} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Nitrous oxide (N2O)"
+              "title": "Nitrous oxide (N2O)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             }
           ],
           "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
           "allowAddPanel": false,
-          "allowRemovePanel": false,
-          "panelAddText": "Add another unit or product",
-          "panelRemoveText": "Remove unit or product"
+          "allowRemovePanel": false
         },
         {
           "type": "paneldynamic",
-          "name": "fugitive",
+          "name": "Fugitive",
           "title": "Fugitive/Other Emissions",
           "templateElements": [
             {
-              "type": "panel",
-              "name": "fugitive_co2_nonbio",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2nonbio",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "fugitive_co2nonbio_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -516,22 +540,25 @@
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_co2nonbio_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from non-biomass (CO2)"
+              "title": "Carbon dioxide from non-biomass (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "fugitive_co2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bionC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "fugitive_co2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -545,126 +572,227 @@
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_co2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_co2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)"
+              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "fugitive_bioco2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bioC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "fugitive_bioco2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_bioco2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_bioco2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) "
+              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "fugitive_ch4",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CH4",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "fugitive_ch4_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_ch4_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_ch4_tonnes} * 25",
+                  "expression": "{panel.annualEmission} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Methane (CH4)"
+              "title": "Methane (CH4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "fugitive_n2o",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "N2O",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "fugitive_n2o_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "fugitive_n2o_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.fugitive_n2o_tonnes} * 298",
+                  "expression": "{panel.annualEmission} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Nitrous oxide (N2O)"
+              "title": "Nitrous oxide (N2O)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            },
+            {
+              "type": "paneldynamic",
+              "name": "SF6",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 22800 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 22800",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Sulfur Hexafluoride (SF6)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            },
+            {
+              "type": "paneldynamic",
+              "name": "Perfluoromethane_CF4",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 7390 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 7390",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Perfluoromethane (CF4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            },
+            {
+              "type": "paneldynamic",
+              "name": "Perfluoroethane_C2F6",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 12200 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 12200",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Perfluoroethane (C2F6)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             }
           ],
           "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
           "allowAddPanel": false,
-          "allowRemovePanel": false,
-          "panelAddText": "Add another unit or product",
-          "panelRemoveText": "Remove unit or product"
+          "allowRemovePanel": false
         },
         {
           "type": "paneldynamic",
-          "name": "onsite",
+          "name": "OnSiteTransportation",
           "title": "On-Site Transportation Emissions",
           "templateElements": [
             {
-              "type": "panel",
-              "name": "onsite_co2_nonbio",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2nonbio",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "onsite_co2nonbio_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -678,22 +806,25 @@
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_co2nonbio_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from non-biomass (CO2)"
+              "title": "Carbon dioxide from non-biomass (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "onsite_co2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bionC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "onsite_co2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -707,126 +838,131 @@
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_co2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_co2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)"
+              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "onsite_bioco2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bioC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "onsite_bioco2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_bioco2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_bioco2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) "
+              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) ",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "onsite_ch4",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CH4",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "onsite_ch4_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_ch4_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_ch4_tonnes} * 25",
+                  "expression": "{panel.annualEmission} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Methane (CH4)"
+              "title": "Methane (CH4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "onsite_n2o",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "N2O",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "onsite_n2o_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "onsite_n2o_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.onsite_n2o_tonnes} * 298",
+                  "expression": "{panel.annualEmission} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Nitrous oxide (N2O)"
+              "title": "Nitrous oxide (N2O)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             }
           ],
           "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
           "allowAddPanel": false,
-          "allowRemovePanel": false,
-          "panelAddText": "Add another unit or product",
-          "panelRemoveText": "Remove unit or product"
+          "allowRemovePanel": false
         },
         {
           "type": "paneldynamic",
-          "name": "wastewater",
-          "title": "Waste and Wastewater Emissions",
+          "name": "Waste",
+          "title": "Waste Emissions",
           "templateElements": [
             {
-              "type": "panel",
-              "name": "wastewater_co2_nonbio",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2nonbio",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "wastewater_co2nonbio_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -840,22 +976,25 @@
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_co2nonbio_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_co2nonbio_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from non-biomass (CO2)"
+              "title": "Carbon dioxide from non-biomass (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "wastewater_co2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bionC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "wastewater_co2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
@@ -869,113 +1008,288 @@
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_co2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_co2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)"
+              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "wastewater_bioco2",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CO2bioC",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "wastewater_bioco2_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "bioco2_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 1 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_bioco2_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_bioco2_tonnes} * 1",
+                  "expression": "{panel.annualEmission} * 1",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) "
+              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) ",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "wastewater_ch4",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "CH4",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "wastewater_ch4_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "ch4_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 25 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_ch4_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_ch4_tonnes} * 25",
+                  "expression": "{panel.annualEmission} * 25",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Methane (CH4)"
+              "title": "Methane (CH4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             },
             {
-              "type": "panel",
-              "name": "wastewater_n2o",
-              "elements": [
+              "type": "paneldynamic",
+              "name": "N2O",
+              "templateElements": [
                 {
                   "type": "text",
-                  "name": "wastewater_n2o_tonnes",
+                  "name": "annualEmission",
                   "startWithNewLine": false,
                   "title": "Tonnes",
                   "inputType": "number"
                 },
                 {
                   "type": "expression",
-                  "name": "n2o_gwp",
-                  "title": "GWP",
+                  "name": "GWP",
                   "startWithNewLine": false,
                   "expression": "\" x 298 = \"",
                   "commentText": "Other (describe)"
                 },
                 {
                   "type": "expression",
-                  "name": "wastewater_n2o_co2e",
+                  "name": "annualCO2e",
                   "startWithNewLine": false,
                   "title": "Tonnes (in CO2 Equivalent)",
-                  "expression": "{panel.wastewater_n2o_tonnes} * 298",
+                  "expression": "{panel.annualEmission} * 298",
                   "commentText": "Other (describe)"
                 }
               ],
-              "title": "Nitrous oxide (N2O)"
+              "title": "Nitrous oxide (N2O)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
             }
           ],
           "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
           "allowAddPanel": false,
-          "allowRemovePanel": false,
-          "panelAddText": "Add another unit or product",
-          "panelRemoveText": "Remove unit or product"
+          "allowRemovePanel": false
+        },
+        {
+          "type": "paneldynamic",
+          "name": "Wastewater",
+          "title": "Wastewater Emissions",
+          "templateElements": [
+            {
+              "type": "paneldynamic",
+              "name": "CO2nonbio",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 1 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 1",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Carbon dioxide from non-biomass (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            },
+            {
+              "type": "paneldynamic",
+              "name": "CO2bionC",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 1 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 1",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Carbon dioxide from biomass not listed in Schedule C of GGERR (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            },
+            {
+              "type": "paneldynamic",
+              "name": "CO2bioC",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 1 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 1",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Carbon dioxide from biomass listed in Schedule C of GGERR  (bioCO2) ",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            },
+            {
+              "type": "paneldynamic",
+              "name": "CH4",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 25 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 25",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Methane (CH4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            },
+            {
+              "type": "paneldynamic",
+              "name": "N2O",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 298 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 298",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Nitrous oxide (N2O)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            }
+          ],
+          "panelCount": 1,
+          "allowAddPanel": false,
+          "allowRemovePanel": false
         }
       ],
       "title": "Emissions"

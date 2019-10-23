@@ -2,21 +2,6 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <DefaultLayout>
-  <Jumbotron
-    fluid={false}
-  >
-    <h3>
-      Hello, Hamza!
-    </h3>
-    <br />
-    <p
-      id="welcome-message"
-    >
-      Welcome to your CleanBC Industrial Incentives Program (CIIP) Portal. This is where all your dreams come true. Not only do you get loads of money, you basically get it for being an amazing person! You may now take a moment to let that CIIP in. 
-      ✨
-    </p>
-    <br />
-  </Jumbotron>
   <ForwardRef(Relay(ApplicationWizard)) />
 </DefaultLayout>
 `;
