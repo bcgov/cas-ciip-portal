@@ -18,7 +18,7 @@ begin
 
   -- Update end date of previous benchmark if exists
   if prev_benchmark_id_input is not null then
-  update ggircs_portal.benchmark 
+  update ggircs_portal.benchmark
   set end_date = start_date_input - interval '1 day'
   where benchmark.id = prev_benchmark_id_input;
   end if;

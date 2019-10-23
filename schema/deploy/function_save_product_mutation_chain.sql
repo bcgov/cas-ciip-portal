@@ -18,7 +18,7 @@ begin
   values (new_name, new_description, new_state, new_parent) returning id into new_id;
 
   if benchmark_id is not null then
-  update ggircs_portal.benchmark 
+  update ggircs_portal.benchmark
   set product_id = new_id
   where benchmark.id = benchmark_id;
   end if;
