@@ -66,7 +66,7 @@ const Organisations = props => {
         {props.confirmOrg ? (
           <>
             <h1>Claim {props.orgInput}?</h1>
-            <Button onClick={() => claimOrg(props.orgInput)}>Confirm</Button>
+            <Button onClick={claimOrg}>Confirm</Button>
             <Button variant="danger" onClick={cancelClaim}>
               Cancel
             </Button>
@@ -116,7 +116,7 @@ const Organisations = props => {
       {props.confirmOrg ? (
         <>
           <h1>Claim {props.orgInput}?</h1>
-          <Button onClick={() => claimOrg(props.orgInput)}>Confirm</Button>
+          <Button onClick={claimOrg}>Confirm</Button>
           <Button variant="danger" onClick={cancelClaim}>
             Cancel
           </Button>
