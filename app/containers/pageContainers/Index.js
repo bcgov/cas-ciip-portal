@@ -35,6 +35,7 @@ const CardTitle2 = {
   marginBottom: '15px',
   fontWeight: 'bold'
 };
+
 export default class Index extends Component {
   static query = graphql`
     query IndexQuery {

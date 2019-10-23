@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <>
       <footer className="footer">
-        <div className="container">
+        <div className="container-fluid">
           <ul>
             <li>
               <a href=".">Home</a>
@@ -35,7 +35,7 @@ const Footer = () => {
               font-family: ‘Noto Sans’, Verdana, Arial, sans-serif;
             }
 
-            footer .container {
+            footer .container-fluid {
               display: flex;
               justify-content: center;
               flex-direction: column;

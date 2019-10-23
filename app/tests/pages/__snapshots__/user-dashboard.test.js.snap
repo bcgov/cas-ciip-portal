@@ -1,64 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
-<DefaultLayout
-  title="Industrial Reporter Dashboard"
->
-  <header>
-    <nav
-      className="jsx-2224254099 navigation-main"
-      id="navbar"
-    >
-      <div
-        className="jsx-2224254099 container"
-      >
-        <ul
-          className="jsx-2224254099"
-        >
-          <li
-            className="jsx-2224254099"
-          >
-            <a
-              className="jsx-2224254099 active"
-              href="."
-            >
-              Apply for 2019
-            </a>
-          </li>
-          <li
-            className="jsx-2224254099"
-          >
-            <a
-              className="jsx-2224254099"
-              href="."
-            >
-              Applications
-            </a>
-          </li>
-          <li
-            className="jsx-2224254099"
-          >
-            <a
-              className="jsx-2224254099"
-              href="."
-            >
-              Contact Us
-            </a>
-          </li>
-        </ul>
-      </div>
-      <JSXStyle
-        id="3632897488"
-      >
-        .navigation-main.jsx-2224254099{display:none;color:#fcba19;background-color:#38598a;width:100%;margin-bottom:0px;-webkit-box-shadow:0 6px 8px -4px #b3b1b3;-moz-box-shadow:0 6px 8px -4px #b3b1b3;box-shadow:0 6px 8px -4px #b3b1b3;}.navigation-main.jsx-2224254099 .container.jsx-2224254099{padding:10px 0 10px 0;}.navigation-main.jsx-2224254099 .container.jsx-2224254099 ul.jsx-2224254099{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;margin:0;color:#fff;list-style:none;margin-left:-50px;}.navigation-main.jsx-2224254099 .container.jsx-2224254099 ul.jsx-2224254099 li.jsx-2224254099 a.jsx-2224254099{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;font-size:17px;font-weight:normal;color:#fff;padding:0 15px 0 15px;-webkit-text-decoration:none;text-decoration:none;}.navigation-main.jsx-2224254099 .container.jsx-2224254099 ul.jsx-2224254099 li.jsx-2224254099 a.jsx-2224254099:hover{-webkit-text-decoration:underline;text-decoration:underline;}.navigation-main.jsx-2224254099 .container.jsx-2224254099 ul.jsx-2224254099 .active.jsx-2224254099{-webkit-text-decoration:underline;text-decoration:underline;font-weight:bold;}.jsx-2224254099:focus{outline:4px solid #3B99FC;outline-offset:1px;}@media screen and (min-width:768px){.navigation-main.jsx-2224254099{display:block;}.navigation-main.jsx-2224254099 .container.jsx-2224254099 ul.jsx-2224254099{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;}.navigation-main.jsx-2224254099 .container.jsx-2224254099 ul.jsx-2224254099 li.jsx-2224254099{margin:0;}.navigation-main.jsx-2224254099 .container.jsx-2224254099 ul.jsx-2224254099 li.jsx-2224254099 a.jsx-2224254099{border-right:1px solid #9b9b9b;}}
-      </JSXStyle>
-      <JSXStyle
-        id="868757066"
-      >
-        h2{color:#036;margin-top:50px;}.text{margin-top:20px;margin-bottom:40px;}.accordion{margin-bottom:40px;margin-top:30px;}
-      </JSXStyle>
-    </nav>
-  </header>
+<DefaultLayout>
   <Container
     fluid={false}
   >

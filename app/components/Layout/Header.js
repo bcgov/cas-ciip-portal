@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import {ButtonToolbar, Row, Col} from 'react-bootstrap';
 
+
 const Header = props => (
   <>
     <Head>
@@ -9,26 +10,25 @@ const Header = props => (
       <meta charSet="utf-8" />
       <link
         rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossOrigin="anonymous"
+        href="../../static/bootstrap.min.css"
       />
       <script src="https://surveyjs.azureedge.net/1.1.0/survey-creator.js" />
       <link
         rel="stylesheet"
-        href="https://surveyjs.azureedge.net/1.1.0/survey-creator.css"
+        href="../../static/survey-creator.css"
       />
     </Head>
     <header>
-      <div className="banner">
-        <a href="/" alt="British Columbia">
-          <img
-            src="/static/logo-banner.png"
-            alt="Go to the Government of British Columbia website"
-          />
-        </a>
-        <h1>CleanBC Industrial Incentive Program</h1>
-      </div>
+      <div className="container">
+        <div className="banner">
+          <a href="/" alt="British Columbia">
+            <img
+              src="/static/logo-banner.png"
+              alt="Go to the Government of British Columbia website"
+            />
+          </a>
+          <h1>CleanBC Industrial Incentive Program</h1>
+        </div>
       {props.isLoggedIn && (
         <>
           <div className="buttons">
@@ -61,22 +61,21 @@ const Header = props => (
         </>
       )}
 
+
+      </div>
       <style jsx>
         {`
           header {
             background-color: #036;
             border-bottom: 2px solid #fcba19;
-            margin-bottom: 40px;
-            padding: 0 65px 0 65px;
+            padding: 10px 65px 0 65px;
             color: #fff;
             display: flex;
             height: 65px;
             top: 0px;
             width: 100%;
           }
-          body {
-            padding: 40px;
-          }
+
           header h1 {
             font-family: ‘Noto Sans’, Verdana, Arial, sans-serif;
             font-weight: normal; /* 400 */
