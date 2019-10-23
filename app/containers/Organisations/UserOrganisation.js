@@ -38,9 +38,6 @@ export const UserOrganisationComponent = props => {
 export default createFragmentContainer(UserOrganisationComponent, {
   userOrganisation: graphql`
     fragment UserOrganisation_userOrganisation on UserOrganisation {
-      id
-      userId
-      organisationId
       status
       organisationByOrganisationId {
         operatorName

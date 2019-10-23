@@ -6,6 +6,13 @@ import UserOrganisation from './UserOrganisation';
 
 const Organisations = props => {
   const {allUserOrganisations, allOrganisations} = props.query;
+  const refetchVariables = {
+    condition: {userId: Number(props.userId)}
+  };
+  if (!props.userIdFromState) {
+    props.setUserId(props.userId);
+    props.relay.refetch(refetchVariables);
+  }
 
   if (
     (!allUserOrganisations ||
@@ -34,11 +41,8 @@ const Organisations = props => {
     props.handleContextChange();
     props.handleInputChange('');
     await props.handleOrgConfirm(props.relay.environment);
-    props.handleOrgChange(null);
-    const refetchVariables = {
-      condition: {userId: Number(props.userId)}
-    };
     props.relay.refetch(refetchVariables);
+    props.handleOrgChange(null);
   };
 
   const cancelClaim = () => {

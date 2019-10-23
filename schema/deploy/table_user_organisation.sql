@@ -19,7 +19,4 @@ begin;
   comment on column ggircs_portal.user_organisation.user_id is 'foreign key that references the user table';
   comment on column ggircs_portal.user_organisation.organisation_id is 'foreign key that references the organisation table';
 
-  -- insert into ggircs_portal.user_organisation (user_id, organisation_id) values (1, 1);
-  -- insert into ggircs_portal.user_organisation (user_id, organisation_id) values (1, 2);
-
 commit;
