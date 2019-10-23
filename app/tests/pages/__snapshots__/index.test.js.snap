@@ -69,7 +69,14 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
               If you have already registered, click below to log in.
             </CardText>
             <Link
-              href="/user-dashboard"
+              href={
+                Object {
+                  "pathname": "/user-dashboard",
+                  "query": Object {
+                    "userId": 1,
+                  },
+                }
+              }
             >
               <Button
                 active={false}
