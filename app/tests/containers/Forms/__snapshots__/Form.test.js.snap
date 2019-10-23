@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form Loader should match the snapshot 1`] = `
+<Fragment>
+  <ForwardRef(Relay(FormWithFuelUnitsComponent))
+    query={
+      Object {
+        "json": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "formJson": "{\\"elements\\":[{\\"name\\":\\"customerName\\",\\"type\\":\\"text\\",\\"title\\":\\"What is your name?\\",\\"isRequired\\":true}]}",
+                "id": "form-1",
+                "name": "testForm",
+                "rowId": 1,
+              },
+            },
+          ],
+        },
+      }
+    }
+  >
+    <ForwardRef(Relay(FormWithProductUnits))
+      query={
+        Object {
+          "json": Object {
+            "edges": Array [
+              Object {
+                "node": Object {
+                  "formJson": "{\\"elements\\":[{\\"name\\":\\"customerName\\",\\"type\\":\\"text\\",\\"title\\":\\"What is your name?\\",\\"isRequired\\":true}]}",
+                  "id": "form-1",
+                  "name": "testForm",
+                  "rowId": 1,
+                },
+              },
+            ],
+          },
+        }
+      }
+    >
+      <SurveyWrapper
+        onComplete={[Function]}
+      />
+    </ForwardRef(Relay(FormWithProductUnits))>
+  </ForwardRef(Relay(FormWithFuelUnitsComponent))>
+</Fragment>
+`;
+
+exports[`Form Loader should match the snapshot when it has initial data 1`] = `
+<Fragment>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="info"
+  >
+    We filled this form for you with the data coming from
+     
+    the test
+    . Please review it and either submit or edit it.
+  </Alert>
+  <ForwardRef(Relay(FormWithFuelUnitsComponent))
+    query={
+      Object {
+        "json": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "formJson": "{\\"elements\\":[{\\"name\\":\\"customerName\\",\\"type\\":\\"text\\",\\"title\\":\\"What is your name?\\",\\"isRequired\\":true}]}",
+                "id": "form-1",
+                "name": "testForm",
+                "rowId": 1,
+              },
+            },
+          ],
+        },
+      }
+    }
+  >
+    <ForwardRef(Relay(FormWithProductUnits))
+      query={
+        Object {
+          "json": Object {
+            "edges": Array [
+              Object {
+                "node": Object {
+                  "formJson": "{\\"elements\\":[{\\"name\\":\\"customerName\\",\\"type\\":\\"text\\",\\"title\\":\\"What is your name?\\",\\"isRequired\\":true}]}",
+                  "id": "form-1",
+                  "name": "testForm",
+                  "rowId": 1,
+                },
+              },
+            ],
+          },
+        }
+      }
+    >
+      <SurveyWrapper
+        initialData={
+          Object {
+            "customerName": "Morty",
+          }
+        }
+        onComplete={[Function]}
+      />
+    </ForwardRef(Relay(FormWithProductUnits))>
+  </ForwardRef(Relay(FormWithFuelUnitsComponent))>
+</Fragment>
+`;

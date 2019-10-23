@@ -1,26 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 import Alert from 'react-bootstrap/Alert';
 import SurveyWrapper from '../../components/Survey/SurveyWrapper';
 import FormWithProductUnits from './FormWithProductUnits';
 import FormWithFuelUnits from './FormWithFuelUnits';
 
-const Form = ({
+export const FormComponent = ({
   query,
   relay,
   applicationId,
   onFormComplete,
-  startsEditable,
   initialData,
   initialDataSource
 }) => {
   const {json} = query || {};
-  const {environment} = relay;
-
-  const [editable, setEditable] = useState(startsEditable);
-  useEffect(() => {
-    setEditable(startsEditable);
-  }, [startsEditable]);
 
   // Mutation: stores the result of the form
   const createFormResult = graphql`
@@ -35,6 +28,7 @@ const Form = ({
 
   // Function: store the form result
   const storeResult = formResult => {
+    const {environment} = relay;
     const variables = {
       input: {
         formResult: {
@@ -71,7 +65,7 @@ const Form = ({
 
   return (
     <>
-      {!editable && (
+      {initialData && Object.keys(initialData).length > 0 && (
         <>
           <Alert variant="info">
             We filled this form for you with the data coming from{' '}
@@ -89,7 +83,7 @@ const Form = ({
 };
 
 export default createRefetchContainer(
-  Form,
+  FormComponent,
   {
     query: graphql`
       fragment Form_query on Query @argumentDefinitions(formId: {type: "ID!"}) {
