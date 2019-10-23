@@ -19,12 +19,12 @@
   "xo": {
     "extends": [
       "xo-react",
-      "xo-typescript",
       "plugin:jest/recommended",
       "plugin:relay/recommended"
     ],
     "extensions": [
-      "ts"
+      "ts",
+      "tsx"
     ],
     "plugins": [
       "jest",
@@ -38,13 +38,14 @@
     "space": true,
     "prettier": true,
     "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
     "rules": {
-      "@typescript-eslint/explicit-function-return-type": 0,
-      "@typescript-eslint/strict-boolean-expressions": 0,
-      "@typescript-eslint/indent": [
-        "error",
-        2
-      ],
       "unicorn/filename-case": 0,
       "import/no-unassigned-import": 0,
       "no-unused-expressions": [
@@ -61,9 +62,23 @@
         }
       ]
     },
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
+    "overrides": [
+      {
+        "files": [
+          "*.ts",
+          "*.tsx"
+        ],
+        "extends": [
+          "xo-typescript"
+        ],
+        "rules": {
+          "@typescript-eslint/indent": [
+            "error",
+            2
+          ]
+        }
+      }
+    ]
   },
   "engines": {
     "node": "10.14.1",

@@ -75,7 +75,13 @@ export const FormComponent = ({
       )}
       <FormWithFuelUnits query={query} formJson={formJson}>
         <FormWithProductUnits query={query} formJson={formJson}>
-          <SurveyWrapper initialData={initialData} onComplete={onComplete} />
+          {({formJson}) => (
+            <SurveyWrapper
+              formJson={formJson}
+              initialData={initialData}
+              onComplete={onComplete}
+            />
+          )}
         </FormWithProductUnits>
       </FormWithFuelUnits>
     </>
