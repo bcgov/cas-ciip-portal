@@ -55,5 +55,3 @@ begin;
   language 'plpgsql' stable;
 
 commit;
-
-

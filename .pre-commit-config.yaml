@@ -1,0 +1,26 @@
+exclude: 'test\.js\.snap$'
+repos:
+- repo: local
+  hooks:
+    - id: yarn-format
+      name: Fix formatting and lint with XO
+      language: script
+      files: \.js$
+      entry: ./.bin/format.sh
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.3.0
+  hooks:
+    - id: check-added-large-files
+    - id: check-case-conflict
+    - id: check-executables-have-shebangs
+    - id: check-json
+    - id: check-vcs-permalinks
+    - id: check-yaml
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+- repo: https://github.com/Yelp/detect-secrets
+  rev: v0.12.7
+  hooks:
+    - id: detect-secrets
+      args: ['--baseline', '.secrets.baseline']
+      exclude: .*/tests/.*

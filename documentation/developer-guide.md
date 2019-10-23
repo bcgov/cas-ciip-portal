@@ -18,10 +18,23 @@ The `linter-xo-2` VSCode add XO support. The following VSCode settings will enab
     "editor.formatOnSave": true
 }
 ```
+## Pre-commit hooks
+
+The Yelp [pre-commit](https://pre-commit.com) framework is configured for this project
+to automatically dispatch multi-language pre-commit hooks. Wherever possible,
+non-destructive linting steps will automatically fix common errors in staged code
+either when explicitly running `pre-commit` or automatically via the
+[git hook](https://git-scm.com/docs/githooks).
+
+Installation:
+- `asdf install` (grab the python version specified in `.tool-versions`...but any python should do)
+- `pip install -r requirements.txt` (install pre-commit via pip...mac users might prefer homebrew)
+- `asdf reshim` (ensure all pip-installed tools are available on the path...ignore if using system python)
+- `pre-commit install` (create the `.git/hooks/pre-commit` file to run pre-commit automatically)
 
 ## Filesystem Watchers
 
-We use [Watchman] to recursively monitor our directory trees and dispatch 
+We use [Watchman] to recursively monitor our directory trees and dispatch
 lifecycle jobs as needed. We define triggers using the [extended json syntax]
 and commit these configuration files to the project. To start all triggers, run
 `make watch` and to stop watching run `make unwatch`.

@@ -9,7 +9,7 @@ create view ggircs_portal.ciip_application as (
       select
         form_result.application_id as id,
         json_array_elements((form_result -> 'facility_information')::json) as facility_data,
-        
+
         submission_date,
         application_status
       from ggircs_portal.form_result

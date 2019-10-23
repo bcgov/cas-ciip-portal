@@ -4,59 +4,195 @@ orbs:
   redhat-openshift: circleci/redhat-openshift@0.2.0
 
 jobs:
-  test:
-    docker:
-      - image: circleci/node:10.14.1
-      - image: circleci/postgres:11.4
-    working_directory: ~/cas-ciip-portal/app
+  tools:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
     steps:
       - checkout:
           path: ~/cas-ciip-portal
+      - run:
+          name: Ensure python has OpenSSL
+          command: |
+            # @see https://github.com/pyenv/pyenv/wiki/Common-build-problems
+            sudo apt-get update
+            sudo apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+      - restore_cache:
+          name: Restore asdf Tools Cache
+          keys:
+            - tool-versions-{{ checksum ".tool-versions" }}
+      - run:
+          name: Install tools via asdf
+          command: |
+            [[ -d ~/.asdf ]] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.4
+            pushd ~/.asdf && git checkout v0.7.4 && popd
+            echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+            echo -e '\nexport BASH_ENV="~/.asdf/asdf.sh"' >> ~/.bashrc
+            source ~/.bashrc
+            cat .tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add || true
+            asdf plugin-update --all
+            bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+            asdf install
+            asdf reshim
+            pip install -r requirements.txt
+            asdf reshim
+      - save_cache:
+          name: Save asdf Tools Cache
+          key: tool-versions-{{ checksum ".tool-versions" }}
+          paths:
+            - ~/.asdf
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
+            - yarn-packages-{{ checksum "app/yarn.lock" }}
       - run:
-          name: Install Dependencies
-          command: yarn install --frozen-lockfile
+          name: Install Yarn Dependencies
+          command: |
+            source ~/.bashrc
+            pushd app
+            yarn install --frozen-lockfile
+            popd
       - save_cache:
           name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
+          key: yarn-packages-{{ checksum "app/yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - run:
-          name: Run Tests via Yarn
-          command: yarn test
+          name: Configure Cpan
+          command: |
+            echo | cpan # accept cpan defaults
+      - restore_cache:
+          name: Restore Cpan Package Cache
+          keys:
+            - cpanm-packages-b-{{ checksum "schema/cpanfile" }}
       - run:
-          name: Audit Dependencies
-          # https://yarnpkg.com/lang/en/docs/cli/audit/
-          command: yarn audit --level info
+          name: Install Cpan Dependencies
+          command: |
+            source ~/.bashrc # load perl config (just written by cpan) & asdf
+            cat .tool-versions | xargs -n2 asdf global # make this project's versions global
+            pushd schema
+            make dev_install
+            popd
+      - save_cache:
+          name: Save Cpan Package Cache
+          key: cpanm-packages-b-{{ checksum "schema/cpanfile" }}
+          paths:
+            - ~/perl5
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - .asdf
+            - .bashrc
+            - cas-ciip-portal
+            - perl5
 
-  check-code-style:
-    docker:
-      - image: circleci/node:10.14.1
+  lint:
+    machine:
+      image: ubuntu-1604:201903-01
     working_directory: ~/cas-ciip-portal/app
     steps:
-      - checkout:
-          path: ~/cas-ciip-portal
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install --frozen-lockfile
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+      - attach_workspace:
+          at: ~/
       - run:
           name: Run XO via Yarn
-          command: yarn format || exit 0;
+          command: |
+            source ~/.asdf/asdf.sh
+            yarn format || true # TODO: need to clean up linter errors
       - run:
           name: Check if there is some unformatted code
           command: git diff --exit-code || (echo 'These files are not formatted correctly. Did you forget to \"yarn format\"?' && false)
+      - run:
+          name: Verify style with pre-commit
+          command: |
+            source ~/.asdf/asdf.sh
+            asdf reshim
+            pre-commit run --all-files
+
+  unit:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal/app
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Lint with Yarn & XO
+          command: |
+            source ~/.asdf/asdf.sh
+            yarn test
+
+  audit:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal/app
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Audit Dependencies
+          command: |
+            source ~/.asdf/asdf.sh
+            yarn audit --level info # https://yarnpkg.com/lang/en/docs/cli/audit/
+
+  schema:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: start postgres
+          command: |
+            source ~/.bashrc
+            pg_ctl start
+            createdb `whoami`
+            createdb ggircs_dev
+      - run:
+          name: deploy cas-ggircs schema (SHOULD NOT NEED THIS)
+          command: |
+            source ~/.bashrc
+            cat .tool-versions | xargs -n2 asdf global # make this project's versions global
+            git clone https://github.com/bcgov/cas-ggircs.git ~/cas-ggircs --branch master
+            pushd ~/cas-ggircs
+            sqitch deploy
+            popd
+      - run:
+          name: deploy schema
+          command: |
+            source ~/.bashrc
+            pushd schema
+            sqitch deploy
+            sqitch verify
+            popd
+      - run:
+          name: regenerate schema via introspection
+          command: |
+            source ~/.bashrc
+            pushd app
+            yarn build:schema
+            popd
+      - run:
+          name: check for inconsistency between schema ddl & graphql
+          command: git diff --exit-code || (echo 'The contents of the `schema` folder are out of sync with `app/server/schema.graphql`. Did you forget to \"yarn build:relay\"?' && false)
+      - run:
+          name: redeploy schema
+          command: |
+            source ~/.bashrc
+            pushd schema
+            sqitch rebase
+            sqitch verify
+            popd
+      - run:
+          name: regenerate schema via introspection
+          command: |
+            source ~/.bashrc
+            pushd app
+            yarn build:schema
+            popd
+      - run:
+          name: check for inconsistency between schema ddl & graphql
+          command: git diff --exit-code || (echo 'The contents of the `schema` folder are out of sync with `app/server/schema.graphql`. Did you forget to \"yarn build:relay\"?' && false)
 
   test-local-cluster:
     executor: redhat-openshift/machine-for-local-cluster
@@ -97,7 +233,7 @@ jobs:
           command: make install-prod
           name: Deploy to prod
 
-  openshift-lint:
+  pathfinder_lint:
     executor: redhat-openshift/default
     steps:
       - checkout
@@ -115,7 +251,7 @@ jobs:
           command: make lint
           name: Lint the openshift yaml
 
-  configure:
+  pathfinder_configure:
     executor: redhat-openshift/default
     steps:
       - checkout
@@ -133,7 +269,7 @@ jobs:
           command: make configure
           name: Configure imagestream to point at the current SHA1
 
-  build_schema:
+  pathfinder_build_schema:
     executor: redhat-openshift/default
     steps:
       - checkout
@@ -151,7 +287,7 @@ jobs:
           command: make build_schema
           name: Build image on the remote cluster
 
-  build_app:
+  pathfinder_build_app:
     executor: redhat-openshift/default
     steps:
       - checkout
@@ -173,35 +309,59 @@ workflows:
   version: 2
   test:
     jobs:
-      - test
-      - check-code-style
-      - openshift-lint:
+      - tools
+      - lint:
+          requires:
+            - tools
+      - unit:
+          requires:
+            - tools
+      - audit:
+          requires:
+            - tools
+      - schema:
+          requires:
+            - tools
+      - pathfinder_lint:
+          requires:
+            - audit
+            - lint
+            - unit
+            - schema
           context: cas-pipeline
           filters:
             branches:
-              ignore: /^shipit-deploy\/.*/
-      - configure:
+              only:
+                - develop
+                - master
+      - pathfinder_configure:
           context: cas-pipeline
           requires:
-            - openshift-lint
-          filters:
-            branches:
-              ignore: /^shipit-deploy\/.*/
-      - build_schema:
+            - pathfinder_lint
+      - pathfinder_build_schema:
           context: cas-pipeline
           requires:
-            - configure
-          filters:
-            branches:
-              ignore: /^shipit-deploy\/.*/
-      - build_app:
+            - pathfinder_configure
+      - pathfinder_build_app:
           context: cas-pipeline
           requires:
-            - configure
-          filters:
-            branches:
-              ignore: /^shipit-deploy\/.*/
+            - pathfinder_configure
       # - test-local-cluster:
       #     context: cas-pipeline
       #     requires:
       #       - lint
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+    jobs:
+      - tools
+      - audit:
+          requires:
+            - tools
