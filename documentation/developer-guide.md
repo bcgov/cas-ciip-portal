@@ -27,7 +27,7 @@ either when explicitly running `pre-commit` or automatically via the
 [git hook](https://git-scm.com/docs/githooks).
 
 Installation:
-- `asdf install` (grab the pything version specified in `.tool-versions`...but any python should do)
+- `asdf install` (grab the python version specified in `.tool-versions`...but any python should do)
 - `pip install -r requirements.txt` (install pre-commit via pip...mac users might prefer homebrew)
 - `asdf reshim` (ensure all pip-installed tools are available on the path...ignore if using system python)
 - `pre-commit install` (create the `.git/hooks/pre-commit` file to run pre-commit automatically)
