@@ -19,8 +19,12 @@
   "xo": {
     "extends": [
       "xo-react",
+      "xo-typescript",
       "plugin:jest/recommended",
       "plugin:relay/recommended"
+    ],
+    "extensions": [
+      "ts"
     ],
     "plugins": [
       "jest",
@@ -33,8 +37,14 @@
     ],
     "space": true,
     "prettier": true,
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
     "rules": {
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/strict-boolean-expressions": 0,
+      "@typescript-eslint/indent": [
+        "error",
+        2
+      ],
       "unicorn/filename-case": 0,
       "import/no-unassigned-import": 0,
       "no-unused-expressions": [
@@ -50,6 +60,9 @@
           "max": 8
         }
       ]
+    },
+    "parserOptions": {
+      "project": "./tsconfig.json"
     }
   },
   "engines": {
@@ -98,6 +111,8 @@
     "@storybook/react": "^5.2.1",
     "@types/react-relay": "^6.0.1",
     "@types/relay-runtime": "^6.0.6",
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
     "@zeit/next-css": "^1.0.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -111,6 +126,7 @@
     "eslint": "^6.5.1",
     "eslint-config-xo": "^0.27.1",
     "eslint-config-xo-react": "^0.20.0",
+    "eslint-config-xo-typescript": "^0.19.0",
     "eslint-plugin-jest": "^22.17.0",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2",
