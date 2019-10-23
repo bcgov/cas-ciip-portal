@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Jumbotron, Button, Table, Form} from 'react-bootstrap';
-import {graphql, commitMutation} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
+import editUserMutation from '../../mutations/industry/editUserMutation';
 import {useInput} from './InputHook';
 
 const edit = {
@@ -12,6 +13,7 @@ const table = {
 };
 
 const UserDetail = props => {
+  const {user} = props;
   const [editMode, setMode] = useState(0);
   const {
     value: firstName,
@@ -24,16 +26,8 @@ const UserDetail = props => {
   const {value: email, bind: bindEmail, reset: resetEmail} = useInput('');
   const {value: role, bind: bindRole, reset: resetRole} = useInput('');
   const {value: phone, bind: bindPhone, reset: resetPhone} = useInput('');
-  const updateUser = graphql`
-    mutation UserDetailMutation($input: UpdateUserByRowIdInput!) {
-      updateUserByRowId(input: $input) {
-        user {
-          rowId
-        }
-      }
-    }
-  `;
-  const handleSubmit = e => {
+
+  const handleSubmit = async e => {
     e.preventDefault();
     setMode(editMode - 1);
     resetFirstName();
@@ -41,13 +35,11 @@ const UserDetail = props => {
     resetEmail();
     resetPhone();
     resetRole();
-    console.log(firstName, lastName, phone);
 
-    const saveMutation = updateUser;
     const updateUserVariables = {
       input: {
-        rowId: 0,
-        UserPatch: {
+        rowId: user.rowId,
+        userPatch: {
           firstName,
           lastName,
           emailAddress: email,
@@ -56,14 +48,12 @@ const UserDetail = props => {
         }
       }
     };
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: updateUserVariables,
-      onCompleted: response => {
-        console.log(response);
-      },
-      onError: err => console.error(err)
-    });
+    const response = await editUserMutation(
+      props.relay.environment,
+      updateUserVariables
+    );
+    console.log(response);
+    location.reload();
   };
 
   const renderForm = () => {
@@ -77,7 +67,7 @@ const UserDetail = props => {
               aria-labelledby="NameInput"
               name="firstName"
               type="text"
-              placeholder={props.firstName}
+              placeholder={user.firstName}
               {...bindFirstName}
             />
           </Form.Group>
@@ -87,7 +77,7 @@ const UserDetail = props => {
               required
               name="lastName"
               type="text"
-              placeholder={props.lastName}
+              placeholder={user.lastName}
               {...bindLastName}
             />
           </Form.Group>
@@ -97,7 +87,7 @@ const UserDetail = props => {
               required
               name="role"
               type="text"
-              placeholder={props.role}
+              placeholder={user.occupation}
               {...bindRole}
             />
           </Form.Group>
@@ -107,7 +97,7 @@ const UserDetail = props => {
               required
               name="phone"
               type="text"
-              placeholder={props.phone}
+              placeholder={user.phoneNumber}
               {...bindPhone}
             />
           </Form.Group>
@@ -117,7 +107,7 @@ const UserDetail = props => {
               required
               name="email"
               type="email"
-              placeholder={props.email}
+              placeholder={user.emailAddress}
               {...bindEmail}
             />
           </Form.Group>
@@ -138,7 +128,7 @@ const UserDetail = props => {
       <Jumbotron>
         <h1>User Profile</h1>
         <p>
-          Welcome to Ciip {props.firstName} {props.lastName}!
+          Welcome to Ciip {user.firstName} {user.lastName}!
         </p>
       </Jumbotron>
       <Button
@@ -155,23 +145,23 @@ const UserDetail = props => {
         <tbody>
           <tr>
             <th>First Name</th>
-            <td>{props.firstName}</td>
+            <td>{user.firstName}</td>
           </tr>
           <tr>
             <th>Last Name</th>
-            <td>{props.lastName}</td>
+            <td>{user.lastName}</td>
           </tr>
           <tr>
             <th>Occupation</th>
-            <td>{props.role}</td>
+            <td>{user.occupation}</td>
           </tr>
           <tr>
             <th>Phone Number</th>
-            <td>{props.phone}</td>
+            <td>{user.phoneNumber}</td>
           </tr>
           <tr>
             <th>Email</th>
-            <td>{props.email}</td>
+            <td>{user.emailAddress}</td>
           </tr>
         </tbody>
       </Table>
@@ -179,4 +169,15 @@ const UserDetail = props => {
   );
 };
 
-export default UserDetail;
+export default createFragmentContainer(UserDetail, {
+  user: graphql`
+    fragment UserDetail_user on User {
+      rowId
+      firstName
+      lastName
+      emailAddress
+      phoneNumber
+      occupation
+    }
+  `
+});

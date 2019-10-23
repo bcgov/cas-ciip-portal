@@ -1,45 +1,33 @@
 import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
+import {graphql, createRefetchContainer} from 'react-relay';
 import UserDetail from './UserDetail';
 
 const IndustryUser = props => {
   const {query} = props;
   console.log(props);
-  if (!query || !query.allUsers) {
+  if (!query || !query.allUsers || !query.allUsers.edges) {
     return null;
   }
 
-  const {firstName} = query.allUsers.edges[0].node;
-  const {lastName} = query.allUsers.edges[0].node;
-  const {emailAddress} = query.allUsers.edges[0].node;
-  const {occupation} = query.allUsers.edges[0].node;
-  const {phoneNumber} = query.allUsers.edges[0].node;
-  console.log(firstName, lastName);
+  // Const refetchVariables = {
+  //   condition: {rowId: Number(props.userId)}
+  // };
+  // props.relay.refetch(refetchVariables);
   return (
     <>
-      <UserDetail
-        firstName={firstName}
-        lastName={lastName}
-        email={emailAddress}
-        role={occupation}
-        phone={phoneNumber}
-      />
+      <UserDetail user={query.allUsers.edges[0].node} />
     </>
   );
 };
 
-export default createFragmentContainer(IndustryUser, {
+export default createRefetchContainer(IndustryUser, {
   query: graphql`
-    fragment IndustryUser_query on Query {
-      allUsers {
+    fragment IndustryUser_query on Query
+      @argumentDefinitions(condition: {type: "UserCondition"}) {
+      allUsers(condition: $condition) {
         edges {
           node {
-            rowId
-            firstName
-            lastName
-            emailAddress
-            occupation
-            phoneNumber
+            ...UserDetail_user
           }
         }
       }
