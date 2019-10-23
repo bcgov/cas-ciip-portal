@@ -30,23 +30,15 @@ const Organisations = props => {
     props.handleContextChange();
   };
 
-  const claimOrg = () => {
+  const claimOrg = async () => {
     props.handleContextChange();
     props.handleInputChange('');
-    props.handleOrgConfirm(props.relay.environment);
+    await props.handleOrgConfirm(props.relay.environment);
     props.handleOrgChange(null);
     const refetchVariables = {
       condition: {userId: Number(props.userId)}
     };
-    props.relay.refetch(
-      refetchVariables,
-      null,
-      // TODO: I hacked this window reload in. Probably a better way to do this
-      () => {
-        window.location.reload();
-      },
-      {force: true}
-    );
+    props.relay.refetch(refetchVariables);
   };
 
   const cancelClaim = () => {
