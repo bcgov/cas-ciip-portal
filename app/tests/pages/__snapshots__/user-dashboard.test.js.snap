@@ -110,7 +110,9 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
           handleOrgConfirm={[Function]}
           orgInput=""
           selectedOrg={null}
+          setUserId={[Function]}
           userId={1}
+          userIdFromState={null}
         />
       </Col>
     </ForwardRef>
