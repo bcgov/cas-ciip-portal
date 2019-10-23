@@ -2,5 +2,6 @@
 
 (
 pushd app || exit 1
-yarn format "$@"
+files=("$@")
+yarn format "${files[@]/#app\//}" # remove "app/" from the file names
 )
