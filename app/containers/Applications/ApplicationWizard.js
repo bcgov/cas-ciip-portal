@@ -1,4 +1,3 @@
-import {format} from 'url';
 import React, {useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
@@ -6,16 +5,15 @@ import ApplicationWizardStep from './ApplicationWizardStep';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {
-  const newUrl = format({
+  const newUrl = {
     pathname: router.pathname,
     query: {
       ...router.query,
       [key]: value
     }
-  });
-  const as = newUrl;
-  if (replace) router.replace(newUrl, as, {shallow: true});
-  else router.push(newUrl, as, {shallow: true});
+  };
+  if (replace) router.replace(newUrl, newUrl, {shallow: true});
+  else router.push(newUrl, newUrl, {shallow: true});
 };
 
 /*
