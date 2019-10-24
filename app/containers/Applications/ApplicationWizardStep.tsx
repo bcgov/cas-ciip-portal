@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import Form from '../Forms/Form';
+import {ApplicationWizardStep_query} from './__generated__/ApplicationWizardStep_query.graphql';
 
-const getInitialAdminData = application => {
+type Application = ApplicationWizardStep_query['application'];
+
+const getInitialAdminData = (application: Application): any => {
   const {
     operatorName,
     operatorTradeName,
@@ -85,14 +88,18 @@ const getInitialAdminData = application => {
   };
 };
 
-const getInitialEmissionData = application => {
+const getInitialEmissionData = (application: Application): any => {
   const initialData = {};
   for (const {
     node: {quantity, emissionCategory, gasType}
   } of application.swrsEmissionData.edges) {
+    const emissionCategoryData =
+      initialData[emissionCategory] === undefined
+        ? {}
+        : initialData[emissionCategory][0];
     initialData[emissionCategory] = [
       {
-        ...(initialData[emissionCategory] && initialData[emissionCategory][0]),
+        ...emissionCategoryData,
         [gasType]: [
           {
             annualEmission: quantity
@@ -105,7 +112,10 @@ const getInitialEmissionData = application => {
   return initialData;
 };
 
-const getInitialFuelData = (application, allFuels) => {
+const getInitialFuelData = (
+  application: Application,
+  allFuels: ApplicationWizardStep_query['allFuels']
+): any => {
   return {
     fuels: application.swrsFuelData.edges.map(edge => {
       const {
@@ -128,11 +138,18 @@ const getInitialFuelData = (application, allFuels) => {
   };
 };
 
+interface Props {
+  query: ApplicationWizardStep_query;
+  formName: string;
+  onStepComplete: (data: any) => void;
+  prepopulateFromSwrs: boolean;
+}
+
 /*
  * The ApplicationWizardStep renders a form and, where applicable,
  * (TODO) starts by presenting a summary of existing data to the user
  */
-const ApplicationWizardStep = ({
+const ApplicationWizardStep: React.SFC<Props> = ({
   query,
   formName,
   onStepComplete,
@@ -168,9 +185,9 @@ const ApplicationWizardStep = ({
     initialDataSource = 'your last SWRS report';
   }
 
-  if (!application) return null;
+  if (application === undefined) return null;
 
-  if (prepopulateFromSwrs && !initialData) {
+  if (prepopulateFromSwrs && initialData === undefined) {
     return <>Loading data from SWRS</>;
   }
 

@@ -48,6 +48,13 @@
     "rules": {
       "unicorn/filename-case": 0,
       "import/no-unassigned-import": 0,
+      "import/extensions": [
+        "error",
+        "never",
+        {
+          "graphql": "always"
+        }
+      ],
       "no-unused-expressions": [
         1,
         {
@@ -65,17 +72,22 @@
     "overrides": [
       {
         "files": [
-          "*.ts",
-          "*.tsx"
+          "**/*.ts",
+          "**/*.tsx"
         ],
         "extends": [
-          "xo-typescript"
+          "xo-typescript",
+          "xo-react",
+          "plugin:jest/recommended",
+          "plugin:relay/recommended"
         ],
         "rules": {
           "@typescript-eslint/indent": [
             "error",
             2
-          ]
+          ],
+          "@typescript-eslint/camelcase": 0,
+          "react/jsx-uses-vars": 1
         }
       }
     ]

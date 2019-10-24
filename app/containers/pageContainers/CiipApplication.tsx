@@ -4,12 +4,6 @@ import DefaultLayout from '../../layouts/default-layout';
 import ApplicationWizard from '../Applications/ApplicationWizard';
 
 class CiipApplication extends Component {
-  static getInitialProps = () => ({
-    variables: {
-      formId: ''
-    }
-  });
-
   static query = graphql`
     query CiipApplicationQuery($formId: ID!, $applicationId: ID!) {
       query {
@@ -18,6 +12,12 @@ class CiipApplication extends Component {
       }
     }
   `;
+
+  static getInitialProps = () => ({
+    variables: {
+      formId: ''
+    }
+  });
 
   render() {
     const {query} = this.props;
