@@ -134,7 +134,7 @@ install_asdf_tools:
 	@cat .tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add || true
 	@asdf plugin-update --all
 	@bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-	@POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install
+	@MAKELEVEL=0 POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install
 	@asdf reshim
 	@pip install -r requirements.txt
 	@asdf reshim
