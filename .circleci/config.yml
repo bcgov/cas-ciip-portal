@@ -20,7 +20,7 @@ jobs:
       - restore_cache:
           name: Restore asdf Tools Cache
           keys:
-            - tool-versions-{{ checksum ".tool-versions" }}
+            - tool-versions-{{ checksum ".tool-versions" }}-v1
       - run:
           name: Install tools via asdf
           command: |
@@ -29,16 +29,10 @@ jobs:
             echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
             echo -e '\nexport BASH_ENV="~/.asdf/asdf.sh"' >> ~/.bashrc
             source ~/.bashrc
-            cat .tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add || true
-            asdf plugin-update --all
-            bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-            asdf install
-            asdf reshim
-            pip install -r requirements.txt
-            asdf reshim
+            make install_asdf_tools
       - save_cache:
           name: Save asdf Tools Cache
-          key: tool-versions-{{ checksum ".tool-versions" }}
+          key: tool-versions-{{ checksum ".tool-versions" }}-v1
           paths:
             - ~/.asdf
       - restore_cache:
@@ -70,9 +64,7 @@ jobs:
           command: |
             source ~/.bashrc # load perl config (just written by cpan) & asdf
             cat .tool-versions | xargs -n2 asdf global # make this project's versions global
-            pushd schema
-            make dev_install
-            popd
+            make install_perl_tools
       - save_cache:
           name: Save Cpan Package Cache
           key: cpanm-packages-b-{{ checksum "schema/cpanfile" }}
@@ -208,6 +200,26 @@ jobs:
             yarn build:relay # ensure relay modules are compiled from committed schema
             yarn build:next # ensure next.js can compile a production build
 
+  deploy-test-data:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: start postgres
+          command: |
+            source ~/.bashrc
+            pg_ctl start
+            createdb `whoami`
+      - run:
+          name: deploy schemas and data
+          command: |
+            source ~/.bashrc
+            pushd schema
+            ./deploy-test-data.sh
+
   test-local-cluster:
     executor: redhat-openshift/machine-for-local-cluster
     steps:
@@ -339,12 +351,16 @@ workflows:
       - compile:
           requires:
             - tools
+      - deploy-test-data:
+          requires:
+            - tools
       - pathfinder_lint:
           requires:
             - audit
             - lint
             - unit
             - schema
+            - deploy-test-data
           context: cas-pipeline
           filters:
             branches:
