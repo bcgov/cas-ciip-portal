@@ -97,3 +97,14 @@ unwatch:
 .PHONY: watch_log
 watch_log:
 	tail -f /usr/local/var/run/watchman/$(shell whoami)-state/log
+
+.PHONY: install_dev_tools
+install_dev_tools: $(call make_help,install_dev_tools,install development tools via asdf)
+install_dev_tools:
+	@cat .tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add || true
+	@asdf plugin-update --all
+	@bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+	@POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install
+	@asdf reshim
+	@pip install -r requirements.txt
+	@asdf reshim
