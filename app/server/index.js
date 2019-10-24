@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const {postgraphile} = require('postgraphile');
 const next = require('next');
+const PgManyToManyPlugin = require('@graphile-contrib/pg-many-to-many');
 
 const port = parseInt(process.env.PORT, 10) || 3004;
 const dev = process.env.NODE_ENV !== 'production';
@@ -58,6 +59,7 @@ app.prepare().then(() => {
 
   server.use(
     postgraphile(databaseURL, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
+      appendPlugins: [PgManyToManyPlugin],
       graphiql: true,
       classicIds: true,
       pgSettings(req) {

@@ -7,22 +7,12 @@ import {userOrganisationMutation} from '../../mutations/user_organisation/UserOr
 
 export default class UserDashBoard extends Component {
   static query = graphql`
-    query UserDashboardQuery($condition: UserOrganisationCondition!) {
+    query UserDashboardQuery($id: ID!) {
       query {
-        ...Organisations_query @arguments(condition: $condition)
+        ...Organisations_query @arguments(id: $id)
       }
     }
   `;
-
-  static async getInitialProps() {
-    return {
-      variables: {
-        condition: {
-          userId: this.state ? Number(this.state.userId) : null
-        }
-      }
-    };
-  }
 
   state = {
     orgInput: '',

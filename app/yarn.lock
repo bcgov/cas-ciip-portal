@@ -1199,6 +1199,11 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.4.tgz#622a72bebd1e3f48d921563b4b60a762295a81fc"
   integrity sha512-6PYY5DVdAY1ifaQW6XYTnOMihmBVT27elqSjEoodchsGjzYlEsTQMcEhSud99kVawatyTZRTiVkJ/c6lwbQ7nA==
 
+"@graphile-contrib/pg-many-to-many@^1.0.0-beta.12":
+  version "1.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/@graphile-contrib/pg-many-to-many/-/pg-many-to-many-1.0.0-beta.12.tgz#ca80221c8c3bbf881a47e6054bab52d841dc0a09"
+  integrity sha512-4k3IPqT84PhKyMFMT+r0nRU+/pEqAYCMgjSBOw5oD3pbi2TxCDdg7+e47QINeFtITiBfKd5uvb+pPzFZsKQMDA==
+
 "@graphile/lru@4.4.5":
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/@graphile/lru/-/lru-4.4.5.tgz#a0fb6da9fe2002116bc61708f8d49a2a8ac2f206"

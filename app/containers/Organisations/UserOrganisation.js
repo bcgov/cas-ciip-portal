@@ -4,14 +4,11 @@ import {Badge} from 'react-bootstrap';
 
 export const UserOrganisationComponent = props => {
   const {userOrganisation} = props;
-  if (
-    !userOrganisation // ||
-    // !userOrganisation.facilitiesByOrganisationId ||
-    // !userOrganisation.facilitiesByOrganisationId.edges
-  ) {
+  if (!userOrganisation) {
     return null;
   }
 
+  console.log('UO', props);
   const statusBadgeColor = {
     attention: 'warning',
     pending: 'info',

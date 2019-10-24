@@ -1,29 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
 import {Table, Dropdown, Button} from 'react-bootstrap';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
 
 const Organisations = props => {
-  const {allUserOrganisations, allOrganisations} = props.query;
-  const refetchVariables = {
-    condition: {userId: Number(props.userId)}
-  };
-  if (!props.userIdFromState) {
-    props.setUserId(props.userId);
-    props.relay.refetch(refetchVariables);
-  }
-
-  if (
-    (!allUserOrganisations ||
-      !allUserOrganisations.edges ||
-      allUserOrganisations.edges.length === 0) &&
-    (!allOrganisations ||
-      !allOrganisations.edges ||
-      allOrganisations.edges.length === 0)
-  )
-    return '...Loading';
-
+  const {user, allOrganisations} = props.query;
+  if (!user) return '...Loading';
   const changeInput = event => {
     event.stopPropagation();
     event.preventDefault();
@@ -41,7 +24,7 @@ const Organisations = props => {
     props.handleContextChange();
     props.handleInputChange('');
     await props.handleOrgConfirm(props.relay.environment);
-    props.relay.refetch(refetchVariables);
+    props.relay.refetch();
     props.handleOrgChange(null);
   };
 
@@ -51,11 +34,7 @@ const Organisations = props => {
     props.handleInputChange('');
   };
 
-  if (
-    !allUserOrganisations ||
-    !allUserOrganisations.edges ||
-    allUserOrganisations.edges.length === 0
-  ) {
+  if (!user) {
     return (
       <>
         You are not registered to report for any organisation at this time.
@@ -104,7 +83,7 @@ const Organisations = props => {
           </tr>
         </thead>
         <tbody>
-          {allUserOrganisations.edges.map(({node}) => {
+          {user.userOrganisationsByUserId.edges.map(({node}) => {
             return <UserOrganisation key={node.id} userOrganisation={node} />;
           })}
         </tbody>
@@ -145,15 +124,19 @@ export default createRefetchContainer(
   {
     query: graphql`
       fragment Organisations_query on Query
-        @argumentDefinitions(condition: {type: "UserOrganisationCondition"}) {
-        allUserOrganisations(condition: $condition) {
-          edges {
-            node {
-              id
-              ...UserOrganisation_userOrganisation
+        @argumentDefinitions(id: {type: "ID!"}) {
+        user(id: "WyJ1c2VycyIsMV0=") {
+          id
+          userOrganisationsByUserId {
+            edges {
+              node {
+                id
+                ...UserOrganisation_userOrganisation
+              }
             }
           }
         }
+
         allOrganisations {
           edges {
             node {
@@ -166,9 +149,9 @@ export default createRefetchContainer(
     `
   },
   graphql`
-    query OrganisationsQuery($condition: UserOrganisationCondition!) {
+    query OrganisationsRefetchQuery($id: ID!) {
       query {
-        ...Organisations_query @arguments(condition: $condition)
+        ...Organisations_query @arguments(id: $id)
       }
     }
   `

@@ -24,7 +24,6 @@ export const OrganisationComponent = props => {
 export default createFragmentContainer(OrganisationComponent, {
   organisation: graphql`
     fragment Organisation_organisation on Organisation {
-      id
       rowId
       operatorName
     }

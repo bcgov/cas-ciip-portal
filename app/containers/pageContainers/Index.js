@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Button, Container, Row, Col, Card, Jumbotron} from 'react-bootstrap';
-import {graphql} from 'react-relay';
 import Link from 'next/link';
 import DefaultLayout from '../../layouts/default-layout';
 
@@ -36,14 +35,6 @@ const CardTitle2 = {
   fontWeight: 'bold'
 };
 export default class Index extends Component {
-  static query = graphql`
-    query IndexQuery {
-      query {
-        ...Organisations_query
-      }
-    }
-  `;
-
   render() {
     return (
       <DefaultLayout>
@@ -60,7 +51,10 @@ export default class Index extends Component {
                     If you have already registered, click below to log in.
                   </Card.Text>
                   <Link
-                    href={{pathname: '/user-dashboard', query: {userId: 1}}}
+                    href={{
+                      pathname: '/user-dashboard',
+                      query: {userId: 1, id: 'WyJ1c2VycyIsMV0='}
+                    }}
                   >
                     <Button
                       style={{backgroundColor: '#EDA500', color: '#003366'}}
