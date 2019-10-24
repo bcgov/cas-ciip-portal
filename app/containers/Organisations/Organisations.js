@@ -34,60 +34,27 @@ const Organisations = props => {
     props.handleInputChange('');
   };
 
-  if (!user) {
-    return (
-      <>
-        You are not registered to report for any organisation at this time.
-        {props.confirmOrg ? (
-          <>
-            <h1>Claim {props.orgInput}?</h1>
-            <Button onClick={claimOrg}>Confirm</Button>
-            <Button variant="danger" onClick={cancelClaim}>
-              Cancel
-            </Button>
-          </>
-        ) : (
-          <Dropdown>
-            <b>Add an Organisation:</b> &nbsp;
-            <Dropdown.Toggle
-              as="input"
-              onChange={changeInput}
-            ></Dropdown.Toggle>
-            <Dropdown.Menu>
-              {allOrganisations.edges.map(({node}) => {
-                return (
-                  <Organisation
-                    key={node.id}
-                    select
-                    organisation={node}
-                    orgInput={props.orgInput}
-                    selectOrg={selectOrg}
-                  />
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
-        )}
-      </>
-    );
-  }
-
   return (
     <>
-      <Table striped bordered hover style={{textAlign: 'center'}}>
-        <thead>
-          <tr>
-            <th>Organisation</th>
-            <th>Access Status</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {user.userOrganisationsByUserId.edges.map(({node}) => {
-            return <UserOrganisation key={node.id} userOrganisation={node} />;
-          })}
-        </tbody>
-      </Table>
+      {user.userOrganisationsByUserId.edges.length === 0 ? (
+        <>You are not registered to report for any organisation at this time.</>
+      ) : (
+        <Table striped bordered hover style={{textAlign: 'center'}}>
+          <thead>
+            <tr>
+              <th>Organisation</th>
+              <th>Access Status</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {user.userOrganisationsByUserId.edges.map(({node}) => {
+              return <UserOrganisation key={node.id} userOrganisation={node} />;
+            })}
+          </tbody>
+        </Table>
+      )}
+
       {props.confirmOrg ? (
         <>
           <h4>Claim {props.orgInput}?</h4>
