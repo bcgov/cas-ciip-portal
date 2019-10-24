@@ -27,10 +27,12 @@ either when explicitly running `pre-commit` or automatically via the
 [git hook](https://git-scm.com/docs/githooks).
 
 Installation:
+- `asdf plugin-list` If any of the `yarn` `nodejs` `postgres` & `python` plugins are not listed install with asdf plugin-add <plugin>
 - `asdf install` (grab the python version specified in `.tool-versions`...but any python should do)
 - `pip install -r requirements.txt` (install pre-commit via pip...mac users might prefer homebrew)
 - `asdf reshim` (ensure all pip-installed tools are available on the path...ignore if using system python)
 - `pre-commit install` (create the `.git/hooks/pre-commit` file to run pre-commit automatically)
+- If pre-commit install fails, try installing sqlite3 with `sudo apt-get install libsqlite3-dev` then `asdf uninstall python` then `asdf install`
 
 ## Filesystem Watchers
 
