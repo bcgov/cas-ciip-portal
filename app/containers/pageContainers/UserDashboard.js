@@ -35,15 +35,19 @@ export default class UserDashBoard extends Component {
   };
 
   handleOrgConfirm = async environment => {
-    const response = await userOrganisationMutation(environment, {
-      input: {
-        userOrganisation: {
-          userId: Number(this.props.router.query.userId),
-          organisationId: this.state.selectedOrg,
-          status: 'pending'
+    const response = await userOrganisationMutation(
+      environment,
+      {
+        input: {
+          userOrganisation: {
+            userId: Number(this.props.router.query.userId),
+            organisationId: this.state.selectedOrg,
+            status: 'pending'
+          }
         }
-      }
-    });
+      },
+      this.props.router.query.id
+    );
     console.log(response);
   };
 

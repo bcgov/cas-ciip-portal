@@ -8,14 +8,12 @@ export const UserOrganisationComponent = props => {
     return null;
   }
 
-  console.log('UO', props);
   const statusBadgeColor = {
     attention: 'warning',
     pending: 'info',
     expired: 'danger',
     active: 'success'
   };
-
   return (
     <tr>
       <td>{userOrganisation.organisationByOrganisationId.operatorName}</td>

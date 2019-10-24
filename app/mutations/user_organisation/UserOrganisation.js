@@ -4,18 +4,34 @@ import BaseMutation from '../BaseMutation';
 const mutation = graphql`
   mutation UserOrganisationMutation($input: CreateUserOrganisationInput!) {
     createUserOrganisation(input: $input) {
-      userOrganisation {
-        id
+      userOrganisationEdge {
+        node {
+          ...UserOrganisation_userOrganisation
+        }
       }
     }
   }
 `;
-export const userOrganisationMutation = async (environment, variables) => {
-  const m = new BaseMutation(
-    environment,
-    mutation,
-    variables,
-    'create-user-organisation-mutation'
-  );
-  return m.performMutation();
+
+export const userOrganisationMutation = async (
+  environment,
+  variables,
+  user
+) => {
+  const configs = [
+    {
+      type: 'RANGE_ADD',
+      parentID: user,
+      connectionInfo: [
+        {
+          key: 'Organisations_userOrganisationsByUserId',
+          rangeBehavior: 'append'
+        }
+      ],
+      edgeName: 'userOrganisationEdge'
+    }
+  ];
+
+  const m = new BaseMutation('create-user-organisation-mutation', configs);
+  return m.performMutation(environment, mutation, variables);
 };

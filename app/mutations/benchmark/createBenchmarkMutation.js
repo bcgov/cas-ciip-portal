@@ -18,13 +18,8 @@ const mutation = graphql`
 `;
 
 const createBenchmarkMutation = async (environment, variables) => {
-  const m = new BaseMutation(
-    environment,
-    mutation,
-    variables,
-    'create-benchmark-mutation'
-  );
-  return m.performMutation();
+  const m = new BaseMutation('create-benchmark-mutation');
+  return m.performMutation(environment, mutation, variables);
 };
 
 export default createBenchmarkMutation;

@@ -1,22 +1,21 @@
 import {commitMutation as commitMutationDefault} from 'react-relay';
 
 export default class BaseMutation {
-  constructor(environment, mutation, variables, mutationName) {
-    this.environment = environment;
-    this.mutation = mutation;
-    this.variables = variables;
+  constructor(mutationName, configs) {
     this.mutationName = mutationName;
     this.counter = 0;
+    this.configs = configs;
   }
 
-  async performMutation() {
-    this.variables.input.clientMutationId = `${this.mutationName}-${this.counter}`;
+  async performMutation(environment, mutation, variables) {
+    variables.input.clientMutationId = `${this.mutationName}-${this.counter}`;
     this.counter++;
-
+    const {configs} = this;
     function commitMutation(environment, options) {
       return new Promise((resolve, reject) => {
         commitMutationDefault(environment, {
           ...options,
+          configs,
           onError: error => {
             reject(error);
             console.log(error);
@@ -28,8 +27,6 @@ export default class BaseMutation {
       });
     }
 
-    const {mutation} = this;
-    const {variables} = this;
-    return commitMutation(this.environment, {mutation, variables});
+    return commitMutation(environment, {mutation, variables});
   }
 }

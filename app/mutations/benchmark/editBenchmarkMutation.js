@@ -15,13 +15,8 @@ const mutation = graphql`
 // TODO: May want to surface the onCompleted errors to the user (ie not reject, resolve & report)
 // TODO: Add optimistic updates https://relay.dev/docs/en/mutations https://relay.dev/docs/en/relay-store
 const editBenchmarkMutation = async (environment, variables) => {
-  const m = new BaseMutation(
-    environment,
-    mutation,
-    variables,
-    'edit-benchmark-mutation'
-  );
-  return m.performMutation();
+  const m = new BaseMutation('edit-benchmark-mutation');
+  return m.performMutation(environment, mutation, variables);
 };
 
 export default editBenchmarkMutation;

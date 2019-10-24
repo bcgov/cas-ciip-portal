@@ -26,13 +26,8 @@ const mutation = graphql`
 // TODO: abstract clientMutationId into a base class
 // TODO: May want to surface the onCompleted errors to the user (ie not reject, resolve & report)
 const saveProductMutation = async (environment, variables) => {
-  const m = new BaseMutation(
-    environment,
-    mutation,
-    variables,
-    'save-product-mutation'
-  );
-  return m.performMutation();
+  const m = new BaseMutation('save-product-mutation');
+  return m.performMutation(environment, mutation, variables);
 };
 
 export default saveProductMutation;

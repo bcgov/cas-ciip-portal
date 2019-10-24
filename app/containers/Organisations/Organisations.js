@@ -90,7 +90,7 @@ const Organisations = props => {
       </Table>
       {props.confirmOrg ? (
         <>
-          <h1>Claim {props.orgInput}?</h1>
+          <h4>Claim {props.orgInput}?</h4>
           <Button onClick={claimOrg}>Confirm</Button>
           <Button variant="danger" onClick={cancelClaim}>
             Cancel
@@ -126,7 +126,7 @@ export default createFragmentContainer(Organisations, {
       user(id: "WyJ1c2VycyIsMV0=") {
         id
         userOrganisationsByUserId(first: 2147483647)
-          @connection(key: "Organistations_userOrganisationsByUserId") {
+          @connection(key: "Organisations_userOrganisationsByUserId") {
           edges {
             node {
               id
