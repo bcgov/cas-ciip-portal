@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql, createRefetchContainer} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Dropdown, Button} from 'react-bootstrap';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
@@ -8,9 +8,6 @@ const Organisations = props => {
   const {user, allOrganisations} = props.query;
   if (!user) return '...Loading';
 
-  const refetchVariables = {
-    id: props.userId
-  };
   const changeInput = event => {
     event.stopPropagation();
     event.preventDefault();
@@ -28,7 +25,6 @@ const Organisations = props => {
     props.handleContextChange();
     props.handleInputChange('');
     await props.handleOrgConfirm(props.relay.environment);
-    props.relay.refetch(refetchVariables);
     props.handleOrgChange(null);
   };
 
@@ -123,41 +119,31 @@ const Organisations = props => {
   );
 };
 
-export default createRefetchContainer(
-  Organisations,
-  {
-    query: graphql`
-      fragment Organisations_query on Query
-        @argumentDefinitions(id: {type: "ID!"}) {
-        user(id: "WyJ1c2VycyIsMV0=") {
-          id
-          userOrganisationsByUserId(first: 2147483647)
-            @connection(key: "Organistations_userOrganisationsByUserId") {
-            edges {
-              node {
-                id
-                ...UserOrganisation_userOrganisation
-              }
-            }
-          }
-        }
-
-        allOrganisations {
+export default createFragmentContainer(Organisations, {
+  query: graphql`
+    fragment Organisations_query on Query
+      @argumentDefinitions(id: {type: "ID!"}) {
+      user(id: "WyJ1c2VycyIsMV0=") {
+        id
+        userOrganisationsByUserId(first: 2147483647)
+          @connection(key: "Organistations_userOrganisationsByUserId") {
           edges {
             node {
               id
-              ...Organisation_organisation
+              ...UserOrganisation_userOrganisation
             }
           }
         }
       }
-    `
-  },
-  graphql`
-    query OrganisationsRefetchQuery($id: ID!) {
-      query {
-        ...Organisations_query @arguments(id: $id)
+
+      allOrganisations {
+        edges {
+          node {
+            id
+            ...Organisation_organisation
+          }
+        }
       }
     }
   `
-);
+});
