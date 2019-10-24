@@ -1,35 +1,25 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import DefaultLayout from '../../layouts/default-layout';
-import IndustryUser from '../Industry/IndustryUser';
+import UserDetail from '../Industry/UserDetail';
 
 class UserProfile extends Component {
-  state = {
-    userId: 1
-  };
-
   static query = graphql`
-    query UserProfileQuery($condition: UserCondition!) {
+    query UserProfileQuery {
       query {
-        ...IndustryUser_query @arguments(condition: $condition)
+        user(id: "WyJ1c2VycyIsMV0=") {
+          ...UserDetail_user
+        }
       }
     }
   `;
 
-  static getInitialProps = () => {
-    return {
-      variables: {
-        condition: {rowId: this.state ? this.state.userId : 1}
-      }
-    };
-  };
-
   render() {
-    const {query} = this.props;
+    const {user} = this.props.query;
     return (
       <>
         <DefaultLayout>
-          <IndustryUser query={query} userId={this.state.userId} />
+          <UserDetail user={user} />
         </DefaultLayout>
       </>
     );
