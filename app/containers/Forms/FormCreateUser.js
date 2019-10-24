@@ -1,139 +1,101 @@
-import React, {Component} from 'react';
-import {Row, Col, Form, Button, Alert} from 'react-bootstrap';
-import {createFragmentContainer} from 'react-relay';
-import createUser from '../../mutations/user/create-user';
+import React from 'react';
+import {Row, Col, Form, Button} from 'react-bootstrap';
+import {createFragmentContainer, graphql} from 'react-relay';
+import updateUserMutation from '../../mutations/user/updateUserMutation';
 
-class FormCreateUser extends Component {
-  state = {
-    firstName: '',
-    lastName: '',
-    emailAddress: '',
-    showSuccessMsg: false,
-    showErrorMsg: false
+const FormCreateUser = props => {
+  const {user} = props;
+
+  const createUserFromRef = React.createRef();
+
+  // Submit form to Patch User
+  const submitForm = () => {
+    // Event.preventDefault();
+    // event.stopPropagation();
+
+    // const userDetails = {
+    //   input: {
+    //     id: 'WyJ1c2VycyIsMV0=',
+    //     userPatch: user
+    //   }
+    // };
+
+    // updateUserMutation(props.relay.environment, userDetails);
+
+    createUserFromRef.current.reset();
   };
 
-  createUserFromRef = React.createRef();
-
-  // Submit form to Create User
-  submitForm = event => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const userDetails = {
-      input: {
-        user: {
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          emailAddress: this.state.emailAddress
-        }
-      }
-    };
-
-    const {environment} = this.props.relay;
-
-    const successCallback = () => {
-      this.setState({showSuccessMsg: true});
-    };
-
-    const errorCallback = () => {
-      this.setState({showErrorMsg: true});
-    };
-
-    // Create User mutation
-    createUser(environment, userDetails, successCallback, errorCallback);
-
-    this.createUserFromRef.current.reset();
+  const handleChange = e => {
+    updateUserMutation(props.relay.environment, props.user, {
+      [e.target.name]: e.target.value
+    });
   };
 
-  // Hide Success and Error messages
-  clearMessages = () => {
-    this.setState({showSuccessMsg: false, showErrorMsg: false});
-  };
+  return (
+    <>
+      <Form
+        ref={createUserFromRef}
+        id="registration-form"
+        onSubmit={submitForm}
+      >
+        <input hidden name="id" value={user.id} />
+        <Form.Group controlId="formBasicName">
+          <Row className="mb-4">
+            <Col>
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                required
+                type="string"
+                name="firstName"
+                value={user.firstName}
+                onChange={handleChange}
+              />
+            </Col>
+            <Col>
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                required
+                type="string"
+                name="lastName"
+                value={user.lastName}
+                onChange={handleChange}
+              />
+            </Col>
+          </Row>
+        </Form.Group>
+        <Form.Group>
+          <Row className="mb-4">
+            <Col>
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control
+                type="string"
+                name="emailAddress"
+                value={user.emailAddress}
+                onChange={handleChange}
+              />
+            </Col>
+            <Col>
+              <Form.Label>Phone No.</Form.Label>
+              <Form.Control type="string" />
+            </Col>
+          </Row>
+        </Form.Group>
 
-  render() {
-    return (
-      <>
-        <Form
-          ref={this.createUserFromRef}
-          id="registration-form"
-          onSubmit={this.submitForm}
-        >
-          <Form.Group controlId="formBasicName">
-            <Row className="mb-4">
-              <Col>
-                <Form.Label>First Name</Form.Label>
-                <Form.Control
-                  required
-                  type="string"
-                  name="firstName"
-                  onChange={e =>
-                    this.setState({[e.target.name]: e.target.value})
-                  }
-                />
-              </Col>
-              <Col>
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  required
-                  type="string"
-                  name="lastName"
-                  onChange={e =>
-                    this.setState({[e.target.name]: e.target.value})
-                  }
-                />
-              </Col>
-            </Row>
-          </Form.Group>
-          <Form.Group>
-            <Row className="mb-4">
-              <Col>
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control
-                  type="string"
-                  name="emailAddress"
-                  onChange={e =>
-                    this.setState({[e.target.name]: e.target.value})
-                  }
-                />
-              </Col>
-              <Col>
-                <Form.Label>Phone No.</Form.Label>
-                <Form.Control type="string" />
-              </Col>
-            </Row>
-          </Form.Group>
+        <Button variant="primary" type="submit" className="mt-4">
+          Submit
+        </Button>
+      </Form>
+    </>
+  );
+};
 
-          <Button
-            variant="primary"
-            type="submit"
-            className="mt-4"
-            onClick={this.clearMessages}
-          >
-            Submit
-          </Button>
-        </Form>
-
-        <Alert
-          dismissible
-          variant="success"
-          className="my-3"
-          show={this.state.showSuccessMsg}
-          onClose={() => this.setState({showSuccessMsg: false})}
-        >
-          <div>User successfully added</div>
-        </Alert>
-        <Alert
-          dismissible
-          variant="danger"
-          className="my-3"
-          show={this.state.showErrorMsg}
-          onClose={() => this.setState({showErrorMsg: false})}
-        >
-          <div>Error adding new User</div>
-        </Alert>
-      </>
-    );
-  }
-}
-
-export default createFragmentContainer(FormCreateUser, {});
+export default createFragmentContainer(FormCreateUser, {
+  user: graphql`
+    fragment FormCreateUser_user on User {
+      id
+      firstName
+      lastName
+      emailAddress
+    }
+  `
+});
