@@ -12,7 +12,7 @@ const table = {
   marginBottom: '50px'
 };
 
-const UserDetail = props => {
+export const UserDetail = props => {
   const {user} = props;
   const [editMode, setMode] = useState(0);
   const {
@@ -59,7 +59,7 @@ const UserDetail = props => {
   const renderForm = () => {
     if (editMode === 1) {
       return (
-        <Form data-testid="form-edit" onSubmit={handleSubmit}>
+        <Form className="form-edit" onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label id="NameInput">First Name</Form.Label>
             <Form.Control
@@ -112,7 +112,7 @@ const UserDetail = props => {
             />
           </Form.Group>
 
-          <Button data-testid="button-submit" variant="primary" type="submit">
+          <Button className="button-submit" variant="primary" type="submit">
             Submit
           </Button>
         </Form>
@@ -132,7 +132,7 @@ const UserDetail = props => {
         </p>
       </Jumbotron>
       <Button
-        data-testid="button-edit"
+        className="button-edit"
         style={edit}
         variant="primary"
         onClick={() => setMode(editMode + 1)}
