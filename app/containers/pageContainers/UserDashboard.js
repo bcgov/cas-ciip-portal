@@ -3,15 +3,53 @@ import {Container, Col, Row} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import Organisations from '../Organisations/Organisations';
 import DefaultLayout from '../../layouts/default-layout';
+import {userOrganisationMutation} from '../../mutations/user_organisation/UserOrganisation';
 
 export default class UserDashBoard extends Component {
   static query = graphql`
-    query UserDashboardQuery {
+    query UserDashboardQuery($id: ID!) {
       query {
-        ...Organisations_query
+        ...Organisations_query @arguments(id: $id)
       }
     }
   `;
+
+  state = {
+    orgInput: '',
+    selectedOrg: null,
+    confirmOrg: false
+  };
+
+  handleInputChange = event => {
+    this.setState({orgInput: event});
+  };
+
+  handleContextChange = () => {
+    this.state.confirmOrg
+      ? this.setState({confirmOrg: false})
+      : this.setState({confirmOrg: true});
+  };
+
+  handleOrgChange = orgId => {
+    this.setState({selectedOrg: orgId});
+  };
+
+  handleOrgConfirm = async environment => {
+    const response = await userOrganisationMutation(
+      environment,
+      {
+        input: {
+          userOrganisation: {
+            userId: Number(this.props.router.query.userId),
+            organisationId: this.state.selectedOrg,
+            status: 'pending'
+          }
+        }
+      },
+      this.props.router.query.id
+    );
+    console.log(response);
+  };
 
   render() {
     return (
@@ -109,6 +147,9 @@ export default class UserDashBoard extends Component {
                   margin-bottom: 40px;
                   margin-top: 30px;
                 }
+                .dropdown-item:hover {
+                  background: #428bca;
+                }
               `}
             </style>
           </nav>
@@ -142,7 +183,17 @@ export default class UserDashBoard extends Component {
             <Col md={{span: 1}} />
             <Col>
               <h2>Reporting organisations</h2>
-              <Organisations query={this.props.query} />
+              <Organisations
+                query={this.props.query}
+                userId={this.props.router.query.id}
+                orgInput={this.state.orgInput}
+                selectedOrg={this.state.selectedOrg}
+                confirmOrg={this.state.confirmOrg}
+                handleInputChange={this.handleInputChange}
+                handleContextChange={this.handleContextChange}
+                handleOrgChange={this.handleOrgChange}
+                handleOrgConfirm={this.handleOrgConfirm}
+              />
             </Col>
           </Row>
         </Container>

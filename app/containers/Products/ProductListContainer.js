@@ -30,8 +30,7 @@ export const ProductListContainer = props => {
 // https://www.prisma.io/blog/relay-moderns-connection-directive-1ecd8322f5c8
 export default createFragmentContainer(ProductListContainer, {
   query: graphql`
-    fragment ProductListContainer_query on Query
-      @argumentDefinitions(condition: {type: "ProductCondition"}) {
+    fragment ProductListContainer_query on Query {
       active: allProducts(first: 2147483647, condition: {state: "active"})
         @connection(
           key: "ProductListContainer_active"
