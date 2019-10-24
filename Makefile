@@ -1,5 +1,7 @@
 SHELL := /usr/bin/env bash
+ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),whoami lint configure build_app build_schema install install_test))
 include .pipeline/oc.mk
+endif
 
 PATHFINDER_PREFIX := wksv3k
 PROJECT_PREFIX := cas-
