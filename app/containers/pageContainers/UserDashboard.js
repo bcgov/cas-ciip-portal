@@ -17,12 +17,7 @@ export default class UserDashBoard extends Component {
   state = {
     orgInput: '',
     selectedOrg: null,
-    confirmOrg: false,
-    userId: null
-  };
-
-  setUserId = id => {
-    this.setState({userId: id});
+    confirmOrg: false
   };
 
   handleInputChange = event => {
@@ -186,8 +181,7 @@ export default class UserDashBoard extends Component {
               <h2>Reporting organisations</h2>
               <Organisations
                 query={this.props.query}
-                userId={this.props.router.query.userId}
-                userIdFromState={this.state.userId}
+                userId={this.props.router.query.id}
                 orgInput={this.state.orgInput}
                 selectedOrg={this.state.selectedOrg}
                 confirmOrg={this.state.confirmOrg}
@@ -195,7 +189,6 @@ export default class UserDashBoard extends Component {
                 handleContextChange={this.handleContextChange}
                 handleOrgChange={this.handleOrgChange}
                 handleOrgConfirm={this.handleOrgConfirm}
-                setUserId={this.setUserId}
               />
             </Col>
           </Row>
