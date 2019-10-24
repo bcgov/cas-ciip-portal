@@ -64,7 +64,7 @@ const UserList = props => {
               }
               edges {
                 node {
-                  rowId
+                  id
                   firstName
                   lastName
                 }
