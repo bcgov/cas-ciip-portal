@@ -6,7 +6,7 @@ const withCSS = require('@zeit/next-css');
 
 module.exports = withCSS({
   cssModules: true,
-/*  webpack: config => {
+  webpack: config => {
     config.plugins = config.plugins || [];
 
     config.plugins = [
@@ -20,5 +20,5 @@ module.exports = withCSS({
     ];
 
     return config;
-  }*/
+  }
 });
