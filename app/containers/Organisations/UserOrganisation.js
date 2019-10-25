@@ -2,6 +2,7 @@ import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Badge, Button} from 'react-bootstrap';
 import Link from 'next/link';
+import {updateUserOrganisationMutation} from '../../mutations/user_organisation/UpdateUserOrganisation';
 
 export const UserOrganisationComponent = props => {
   const {userOrganisation} = props;
@@ -15,6 +16,30 @@ export const UserOrganisationComponent = props => {
     expired: 'danger',
     active: 'success'
   };
+
+  /** TODO: INTENDED FOR DEMO ONLY. To be removed */
+  const setStatusActive = async id => {
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        id,
+        userOrganisationPatch: {
+          status: 'active'
+        }
+      }
+    };
+    const response = await updateUserOrganisationMutation(
+      environment,
+      variables
+    );
+    console.log(response);
+  };
+
+  if (userOrganisation.status !== 'active') {
+    setTimeout(setStatusActive, 4000, userOrganisation.id);
+  }
+  /** End removal block */
+
   return (
     <tr>
       <td>{userOrganisation.organisationByOrganisationId.operatorName}</td>
@@ -49,6 +74,7 @@ export const UserOrganisationComponent = props => {
 export default createFragmentContainer(UserOrganisationComponent, {
   userOrganisation: graphql`
     fragment UserOrganisation_userOrganisation on UserOrganisation {
+      id
       status
       organisationByOrganisationId {
         id
