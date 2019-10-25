@@ -8,10 +8,10 @@ class DefaultLayout extends Component {
   render() {
     const {children, title} = this.props;
     return (
-      <div className='page-wrap'>
+      <div className="page-wrap">
         <Header />
-        <Subheader/>
-        <Container className='content'>
+        <Subheader />
+        <Container className="content">
           {title ? (
             <>
               <h1>{title}</h1>
@@ -20,24 +20,26 @@ class DefaultLayout extends Component {
           ) : null}
           {children}
         </Container>
-        <Footer/>
+        <Footer />
         <style jsx global>
           {`
-          html, body,#__next, .page-wrap {
-            height: 100%;
-          }
-          .page-wrap {
-            display: flex;
-            flex-direction: column;
-          }
-          .content {
-            flex: 1 0 auto;
-          }
-          .footer {
-            flex-shrink: 0;
-          }
-
-        `}
+            html,
+            body,
+            #__next,
+            .page-wrap {
+              height: 100%;
+            }
+            .page-wrap {
+              display: flex;
+              flex-direction: column;
+            }
+            .content {
+              flex: 1 0 auto;
+            }
+            .footer {
+              flex-shrink: 0;
+            }
+          `}
         </style>
       </div>
     );

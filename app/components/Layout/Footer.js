@@ -23,7 +23,7 @@ const Footer = () => {
               font-family: ‘Noto Sans’, Verdana, Arial, sans-serif;
             }
 
-            footer .container{
+            footer .container {
               display: flex;
               justify-content: center;
               flex-direction: column;
