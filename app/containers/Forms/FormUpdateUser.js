@@ -3,7 +3,7 @@ import {Row, Col, Form, Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import updateUserMutation from '../../mutations/user/updateUserMutation';
 
-const FormUpdateUser = props => {
+export const FormUpdateUser = props => {
   const {user} = props;
 
   const createUserFromRef = React.createRef();

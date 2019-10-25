@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form Update User should render 1`] = `
+<Fragment>
+  <Form
+    id="registration-form"
+    inline={false}
+    onSubmit={[Function]}
+  >
+    <input
+      hidden={true}
+      name="id"
+      value="1"
+    />
+    <FormGroup
+      controlId="formBasicName"
+    >
+      <ForwardRef
+        className="mb-4"
+        noGutters={false}
+      >
+        <Col>
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            First Name
+          </FormLabel>
+          <FormControl
+            name="firstName"
+            onChange={[Function]}
+            required={true}
+            type="string"
+            value="Test"
+          />
+        </Col>
+        <Col>
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Last Name
+          </FormLabel>
+          <FormControl
+            name="lastName"
+            onChange={[Function]}
+            required={true}
+            type="string"
+            value="Test"
+          />
+        </Col>
+      </ForwardRef>
+    </FormGroup>
+    <FormGroup>
+      <ForwardRef
+        className="mb-4"
+        noGutters={false}
+      >
+        <Col>
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Email Address
+          </FormLabel>
+          <FormControl
+            name="emailAddress"
+            onChange={[Function]}
+            type="string"
+            value="Test@test.com"
+          />
+        </Col>
+        <Col>
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Phone No.
+          </FormLabel>
+          <FormControl
+            type="string"
+          />
+        </Col>
+      </ForwardRef>
+    </FormGroup>
+    <Button
+      active={false}
+      className="mt-4"
+      disabled={false}
+      type="submit"
+      variant="primary"
+    >
+      Continue
+    </Button>
+  </Form>
+</Fragment>
+`;
