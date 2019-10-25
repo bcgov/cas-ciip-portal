@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Col, Row} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import DefaultLayout from '../../layouts/default-layout';
 import OrganisationFacilities from '../Organisations/OrganisationFacilities';
@@ -15,7 +15,6 @@ export default class UserOrganisationFacilities extends Component {
 
   render() {
     const {router} = this.props;
-    console.log(router.query.organisationName);
     const orgTitle = `${router.query.organisationName} Facilities`;
     return (
       <DefaultLayout title={orgTitle}>
