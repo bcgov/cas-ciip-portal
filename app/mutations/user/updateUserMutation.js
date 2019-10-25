@@ -16,12 +16,7 @@ const mutation = graphql`
 `;
 
 const updateUserMutation = (environment, user, userPatch) => {
-  // TODO: userPatch make sure to patch only right fields
-  const UpdateUserInput = {
-    id: user.id,
-    userPatch
-  };
-
+  // Optimistic response
   const updateUserPayload = {
     updateUser: {
       user: {
@@ -32,7 +27,10 @@ const updateUserMutation = (environment, user, userPatch) => {
   };
 
   const variables = {
-    input: UpdateUserInput
+    input: {
+      id: user.id,
+      userPatch
+    }
   };
 
   return new BaseMutation('update-user-mutation').performMutation(

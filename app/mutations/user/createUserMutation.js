@@ -13,15 +13,16 @@ const mutation = graphql`
   }
 `;
 
-const createUserMutation = (environment, variables) => {
-  const createUserMutation = new BaseMutation(
+const createUserMutation = (environment, user) => {
+  const variables = {
+    input: {user}
+  };
+
+  return new BaseMutation('create-user-mutation').performMutation(
     environment,
     mutation,
-    variables,
-    'create-user-mutation'
+    variables
   );
-
-  return createUserMutation.performMutation();
 };
 
 export default createUserMutation;
