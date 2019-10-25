@@ -20,14 +20,4 @@ comment on column ggircs_portal.ciip_application_wizard.form_position is 'The ze
 comment on column ggircs_portal.ciip_application_wizard.prepopulate_from_ciip is 'Whether the form is initialized with data submitted in the previous year''s application';
 comment on column ggircs_portal.ciip_application_wizard.prepopulate_from_swrs is 'Whether the form is initialized with data submitted in the previous year''s application';
 
-insert into ggircs_portal.ciip_application_wizard
-  (form_id, form_position, prepopulate_from_ciip, prepopulate_from_swrs)
-values
-  (1, 0, true, true),
-  (2, 1, false, true),
-  (3, 2, false, true),
-  (4, 3, false, false),
-  (5, 4, false, false),
-  (6, 5, false, false);
-
 commit;
