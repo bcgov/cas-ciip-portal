@@ -29,14 +29,47 @@ export const FacilityComponent = ({relay, facility}) => {
   const {applicationsByFacilityId = {}} = facility;
   const {edges = []} = applicationsByFacilityId;
   const {node = {}} = edges[0] || {};
-  const {id: applicationId} = node;
+  const {id: applicationId, applicationStatusesByApplicationId} = node;
+
+  // Conditionall render apply / resume button depending on existence and status of Facility's application
+  const applyButton = () => {
+    if (!applicationId) {
+      return (
+        <Button variant="primary" onClick={startApplication}>
+          Apply for CIIP
+        </Button>
+      );
+    }
+
+    if (
+      applicationId &&
+      applicationStatusesByApplicationId.edges.length > 0 &&
+      applicationStatusesByApplicationId.edges[0].node.applicationStatus ===
+        'draft'
+    ) {
+      return (
+        <Link
+          href={{
+            pathname: '/ciip-application',
+            query: {
+              applicationId
+            }
+          }}
+        >
+          <Button variant="primary">Resume CIIP application</Button>
+        </Link>
+      );
+    }
+
+    return null;
+  };
 
   const statusBadgeColor = {
     attention: 'warning',
     pending: 'info',
     declined: 'danger',
     approved: 'success',
-    draft: 'secondary'
+    draft: 'dark'
   };
 
   return (
@@ -57,50 +90,30 @@ export const FacilityComponent = ({relay, facility}) => {
           </ListGroupItem>
           <ListGroupItem>
             Application Status: &nbsp;{' '}
-            {facility.applicationsByFacilityId.edges.length > 0 &&
-            facility.applicationsByFacilityId.edges[0].node
-              .applicationStatusesByApplicationId.edges.length > 0 ? (
+            {edges.length > 0 &&
+            applicationStatusesByApplicationId.edges.length > 0 ? (
               <>
                 <Badge
                   pill
                   variant={
                     statusBadgeColor[
-                      facility.applicationsByFacilityId.edges[0].node
-                        .applicationStatusesByApplicationId.edges[0].node
+                      applicationStatusesByApplicationId.edges[0].node
                         .applicationStatus
                     ]
                   }
                 >
                   {
-                    facility.applicationsByFacilityId.edges[0].node
-                      .applicationStatusesByApplicationId.edges[0].node
+                    applicationStatusesByApplicationId.edges[0].node
                       .applicationStatus
                   }
                 </Badge>
               </>
             ) : (
-              <>Not Started</>
+              <>N/A</>
             )}
           </ListGroupItem>
         </ListGroup>
-        <Card.Body>
-          {applicationId ? (
-            <Link
-              href={{
-                pathname: '/ciip-application',
-                query: {
-                  applicationId
-                }
-              }}
-            >
-              <Button variant="primary">Resume CIIP application</Button>
-            </Link>
-          ) : (
-            <Button variant="primary" onClick={startApplication}>
-              Apply for CIIP
-            </Button>
-          )}
-        </Card.Body>
+        <Card.Body>{applyButton()}</Card.Body>
       </Card>
     </>
   );
