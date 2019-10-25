@@ -6,10 +6,10 @@ import OrganisationFacilities from '../Organisations/OrganisationFacilities';
 
 export default class UserOrganisationFacilities extends Component {
   static query = graphql`
-    query UserOrganisationFacilitiesQuery($id: ID!) {
+    query UserOrganisationFacilitiesQuery($organisationId: ID!) {
       query {
-        ...OrganisationFacilities_query @arguments(id: $id)
-        organisation(id: "WyJvcmdhbmlzYXRpb25zIiwxXQ==") {
+        ...OrganisationFacilities_query @arguments(id: $organisationId)
+        organisation(id: $organisationId) {
           operatorName
         }
       }

@@ -22,7 +22,7 @@ export default createFragmentContainer(OrganisationFacilitiesComponent, {
   query: graphql`
     fragment OrganisationFacilities_query on Query
       @argumentDefinitions(id: {type: "ID!"}) {
-      organisation(id: "WyJvcmdhbmlzYXRpb25zIiwxXQ==") {
+      organisation(id: $organisationId) {
         id
         facilitiesByOrganisationId(first: 2147483647)
           @connection(key: "organisation_facilitiesByOrganisationId") {

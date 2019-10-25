@@ -34,10 +34,7 @@ export const UserOrganisationComponent = props => {
             href={{
               pathname: '/user-organisation-facilities',
               query: {
-                organisationId:
-                  userOrganisation.organisationByOrganisationId.id,
-                organisationName:
-                  userOrganisation.organisationByOrganisationId.operatorName
+                organisationId: userOrganisation.organisationByOrganisationId.id
               }
             }}
           >
