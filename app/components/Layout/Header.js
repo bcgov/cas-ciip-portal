@@ -8,7 +8,6 @@ const Header = props => (
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
       <link rel="stylesheet" href="../../static/bootstrap.min.css" />
-      <script src="https://surveyjs.azureedge.net/1.1.0/survey-creator.js" />
       <link rel="stylesheet" href="../../static/survey-creator.css" />
     </Head>
     <header>
