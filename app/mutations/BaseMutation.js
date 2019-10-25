@@ -1,7 +1,7 @@
 import {commitMutation as commitMutationDefault} from 'react-relay';
 
 export default class BaseMutation {
-  constructor(mutationName) {
+  constructor(mutationName, configs) {
     this.mutationName = mutationName;
     this.counter = 0;
     this.configs = configs;
