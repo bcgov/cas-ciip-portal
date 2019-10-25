@@ -44,8 +44,6 @@ export const FacilityComponent = ({relay, facility}) => {
   const {node = {}} = edges[0] || {};
   const {id: applicationId} = node;
 
-  console.log('app', applicationId);
-
   return (
     <>
       <Card style={{width: '33rem'}}>

@@ -20,6 +20,6 @@ begin;
   comment on column ggircs_portal.user_organisation.id is 'unique id of the row';
   comment on column ggircs_portal.user_organisation.user_id is 'foreign key that references the user table';
   comment on column ggircs_portal.user_organisation.organisation_id is 'foreign key that references the organisation table';
-  comment on column ggircs_portal.user_organisation.organisation_id is 'the status of user access to the organisation';
+  comment on column ggircs_portal.user_organisation.status is 'the status of user access to the organisation';
 
 commit;

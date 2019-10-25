@@ -41,11 +41,9 @@ export const UserOrganisationComponent = props => {
               }
             }}
           >
-            <Button variant="primary">Go</Button>
+            <Button variant="primary">View</Button>
           </Link>
-        ) : (
-          <Button variant="danger">X</Button>
-        )}
+        ) : null}
       </td>
     </tr>
   );

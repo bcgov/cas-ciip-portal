@@ -9,13 +9,16 @@ export default class UserOrganisationFacilities extends Component {
     query UserOrganisationFacilitiesQuery($id: ID!) {
       query {
         ...OrganisationFacilities_query @arguments(id: $id)
+        organisation(id: "WyJvcmdhbmlzYXRpb25zIiwxXQ==") {
+          operatorName
+        }
       }
     }
   `;
 
   render() {
-    const {router} = this.props;
-    const orgTitle = `${router.query.organisationName} Facilities`;
+    const {organisation} = this.props.query;
+    const orgTitle = `${organisation.operatorName} Facilities`;
     return (
       <DefaultLayout title={orgTitle}>
         <Container>

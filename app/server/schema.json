@@ -6760,7 +6760,7 @@
             },
             {
               "name": "organisationId",
-              "description": "the status of user access to the organisation",
+              "description": "foreign key that references the organisation table",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -6792,7 +6792,7 @@
             },
             {
               "name": "status",
-              "description": null,
+              "description": "the status of user access to the organisation",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -21400,7 +21400,7 @@
           "inputFields": [
             {
               "name": "organisationId",
-              "description": "the status of user access to the organisation",
+              "description": "foreign key that references the organisation table",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -21424,7 +21424,7 @@
             },
             {
               "name": "status",
-              "description": null,
+              "description": "the status of user access to the organisation",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -27086,7 +27086,7 @@
           "inputFields": [
             {
               "name": "organisationId",
-              "description": "the status of user access to the organisation",
+              "description": "foreign key that references the organisation table",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -27106,7 +27106,7 @@
             },
             {
               "name": "status",
-              "description": null,
+              "description": "the status of user access to the organisation",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
