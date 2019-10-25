@@ -122,7 +122,6 @@ export const UserDetail = props => {
     return <div />;
   };
 
-  console.log(props);
   return (
     <div>
       <Jumbotron>
