@@ -44,7 +44,7 @@ const Organisations = props => {
             <tr>
               <th>Organisation</th>
               <th>Access Status</th>
-              <th />
+              <th>Facilities</th>
             </tr>
           </thead>
           <tbody>

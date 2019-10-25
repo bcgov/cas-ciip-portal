@@ -1,6 +1,7 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {Badge} from 'react-bootstrap';
+import {Badge, Button} from 'react-bootstrap';
+import Link from 'next/link';
 
 export const UserOrganisationComponent = props => {
   const {userOrganisation} = props;
@@ -26,6 +27,26 @@ export const UserOrganisationComponent = props => {
           {userOrganisation.status}
         </Badge>
       </td>
+      <td>
+        {' '}
+        {userOrganisation.status === 'active' ? (
+          <Link
+            href={{
+              pathname: '/user-organisation-facilities',
+              query: {
+                organisationId:
+                  userOrganisation.organisationByOrganisationId.id,
+                organisationName:
+                  userOrganisation.organisationByOrganisationId.operatorName
+              }
+            }}
+          >
+            <Button variant="primary">Go</Button>
+          </Link>
+        ) : (
+          <Button variant="danger">X</Button>
+        )}
+      </td>
     </tr>
   );
 };
@@ -35,6 +56,7 @@ export default createFragmentContainer(UserOrganisationComponent, {
     fragment UserOrganisation_userOrganisation on UserOrganisation {
       status
       organisationByOrganisationId {
+        id
         operatorName
       }
     }

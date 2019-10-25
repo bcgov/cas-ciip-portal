@@ -17,7 +17,7 @@ export default class UserOrganisationFacilities extends Component {
     const {router} = this.props;
     const title = `${router.query.organisationName} Facilities`;
     return (
-      <DefaultLayout title={title}>
+      <DefaultLayout title={{title}}>
         <Container>
           <h2>Information:</h2>
           <p className="text">
