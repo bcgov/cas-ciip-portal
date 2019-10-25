@@ -6,9 +6,9 @@ begin;
 
 create table ggircs_portal.form_result (
   id integer primary key generated always as identity,
-  form_id int not null,
-  user_id int not null,
+  form_id int not null references ggircs_portal.form_json(id),
   application_id int not null references ggircs_portal.application(id),
+  user_id int not null,
   submission_date timestamp with time zone default now(),
   form_result jsonb not null,
   created_at timestamp with time zone not null default now(),

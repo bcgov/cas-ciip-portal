@@ -9,7 +9,7 @@ begin;
       user_id integer not null,
       organisation_id integer not null,
       status varchar(1000) not null,
-      primary ket (user_id, organisation_id),
+      primary key (user_id, organisation_id),
       foreign key (user_id) references ggircs_portal.user (id),
       foreign key (organisation_id) references ggircs_portal.organisation (id)
   );

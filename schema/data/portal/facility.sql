@@ -44,7 +44,7 @@ values
   'V1C6T8',
   'Canada'
 ),(
-  1,
+  2,
   2,
   2,
   1234,
@@ -63,9 +63,8 @@ values
   'British Columbia',
   'V0L2M0',
   'Canada'
-),
-,(
-  1,
+),(
+  3,
   2,
   2,
   1235,
@@ -85,24 +84,24 @@ values
   'V0L2M0',
   'Canada'
 )
-on conflict(id) set
-organisation_id,
-  report_id=excluded.report_id,
-  swrs_report_id=excluded.swrs_report_id,
-  swrs_facility_id=excluded.swrs_facility_id,
-  swrs_organisation_id=excluded.swrs_organisation_id,
-  reporting_year=excluded.reporting_year,
-  facility_name=excluded.facility_name,
-  facility_type=excluded.facility_type,
-  bcghgid=excluded.bcghgid,
-  naics_code=excluded.naics_code,
-  naics_classification=excluded.naics_classification,
-  latitude=excluded.latitude,
-  longitude=excluded.longitude,
-  facility_mailing_address=excluded.facility_mailing_address,
-  facility_city=excluded.facility_city,
-  facility_province=excluded.facility_province,
-  facility_postal_code=excluded.facility_postal_code,
-  facility_country=excluded.facility_country;
+on conflict(id) do update set
+organisation_id=excluded.organisation_id,
+report_id=excluded.report_id,
+swrs_report_id=excluded.swrs_report_id,
+swrs_facility_id=excluded.swrs_facility_id,
+swrs_organisation_id=excluded.swrs_organisation_id,
+reporting_year=excluded.reporting_year,
+facility_name=excluded.facility_name,
+facility_type=excluded.facility_type,
+bcghgid=excluded.bcghgid,
+naics_code=excluded.naics_code,
+naics_classification=excluded.naics_classification,
+latitude=excluded.latitude,
+longitude=excluded.longitude,
+facility_mailing_address=excluded.facility_mailing_address,
+facility_city=excluded.facility_city,
+facility_province=excluded.facility_province,
+facility_postal_code=excluded.facility_postal_code,
+facility_country=excluded.facility_country;
 
 commit;

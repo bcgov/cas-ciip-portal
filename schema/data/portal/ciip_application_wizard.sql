@@ -1,4 +1,4 @@
-begin
+begin;
 
 insert into ggircs_portal.ciip_application_wizard
   (form_id, form_position, prepopulate_from_ciip, prepopulate_from_swrs)
@@ -16,4 +16,4 @@ values
     prepopulate_from_swrs=excluded.prepopulate_from_swrs
   ;
 
-commit
+commit;
