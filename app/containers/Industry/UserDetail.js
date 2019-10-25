@@ -14,7 +14,7 @@ const table = {
 
 export const UserDetail = props => {
   const {user} = props;
-  const [editMode, setMode] = useState(0);
+  const [editMode, setMode] = useState(false);
   const {
     value: firstName,
     bind: bindFirstName,
@@ -29,7 +29,7 @@ export const UserDetail = props => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setMode(editMode - 1);
+    setMode(false);
     resetFirstName();
     resetLastName();
     resetEmail();
@@ -57,7 +57,7 @@ export const UserDetail = props => {
   };
 
   const renderForm = () => {
-    if (editMode === 1) {
+    if (editMode === true) {
       return (
         <Form className="form-edit" onSubmit={handleSubmit}>
           <Form.Group>
@@ -134,7 +134,7 @@ export const UserDetail = props => {
         className="button-edit"
         style={edit}
         variant="primary"
-        onClick={() => setMode(editMode + 1)}
+        onClick={() => setMode(true)}
       >
         Edit
       </Button>
