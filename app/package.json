@@ -76,7 +76,7 @@
     "open": "^6.4.0",
     "pg": "^7.11.0",
     "popper.js": "^1.15.0",
-    "postgraphile": "^4.4.1",
+    "postgraphile": "^4.4.4",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.9",
