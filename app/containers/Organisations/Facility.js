@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {Button, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Button, Badge, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 import createApplicationMutation from '../../mutations/application/createApplicationMutation';
@@ -31,6 +31,14 @@ export const FacilityComponent = ({relay, facility}) => {
   const {node = {}} = edges[0] || {};
   const {id: applicationId} = node;
 
+  const statusBadgeColor = {
+    attention: 'warning',
+    pending: 'info',
+    declined: 'danger',
+    approved: 'success',
+    draft: 'secondary'
+  };
+
   return (
     <>
       <Card style={{width: '33rem'}}>
@@ -46,6 +54,33 @@ export const FacilityComponent = ({relay, facility}) => {
           </ListGroupItem>
           <ListGroupItem>
             {facility.facilityCity}, {facility.facilityProvince}
+          </ListGroupItem>
+          <ListGroupItem>
+            Application Status: &nbsp;{' '}
+            {facility.applicationsByFacilityId.edges.length > 0 &&
+            facility.applicationsByFacilityId.edges[0].node
+              .applicationStatusesByApplicationId.edges.length > 0 ? (
+              <>
+                <Badge
+                  pill
+                  variant={
+                    statusBadgeColor[
+                      facility.applicationsByFacilityId.edges[0].node
+                        .applicationStatusesByApplicationId.edges[0].node
+                        .applicationStatus
+                    ]
+                  }
+                >
+                  {
+                    facility.applicationsByFacilityId.edges[0].node
+                      .applicationStatusesByApplicationId.edges[0].node
+                      .applicationStatus
+                  }
+                </Badge>
+              </>
+            ) : (
+              <>Not Started</>
+            )}
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
@@ -89,6 +124,13 @@ export default createFragmentContainer(FacilityComponent, {
         edges {
           node {
             id
+            applicationStatusesByApplicationId {
+              edges {
+                node {
+                  applicationStatus
+                }
+              }
+            }
           }
         }
       }
