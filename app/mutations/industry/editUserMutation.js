@@ -12,13 +12,8 @@ const mutation = graphql`
 `;
 
 const editUserMutation = async (environment, variables) => {
-  const m = new BaseMutation(
-    environment,
-    mutation,
-    variables,
-    'edit-user-mutation'
-  );
-  return m.performMutation();
+  const m = new BaseMutation('edit-user-mutation');
+  return m.performMutation(environment, mutation, variables);
 };
 
 export default editUserMutation;
