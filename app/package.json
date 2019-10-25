@@ -12,7 +12,7 @@
     "build:relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose",
     "build:next": "next build",
     "start": "NODE_ENV=production node server",
-    "format": "xo --fix",
+    "format": "xo --fix --ignore 'app/static/survey-creator.css",
     "lint": "xo",
     "storybook": "start-storybook"
   },
