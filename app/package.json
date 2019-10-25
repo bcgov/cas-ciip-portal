@@ -101,7 +101,7 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-relay": "^5.0.0",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "dotenv-webpack": "^1.5.4",
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
