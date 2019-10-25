@@ -34,6 +34,7 @@ const CardTitle2 = {
   marginBottom: '15px',
   fontWeight: 'bold'
 };
+
 export default class Index extends Component {
   render() {
     return (

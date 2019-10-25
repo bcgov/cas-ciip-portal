@@ -7,76 +7,65 @@ const Header = props => (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
-      <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossOrigin="anonymous"
-      />
-      <script src="https://surveyjs.azureedge.net/1.1.0/survey-creator.js" />
-      <link
-        rel="stylesheet"
-        href="https://surveyjs.azureedge.net/1.1.0/survey-creator.css"
-      />
+      <link rel="stylesheet" href="../../static/bootstrap.min.css" />
+      <link rel="stylesheet" href="../../static/survey-creator.css" />
     </Head>
     <header>
-      <div className="banner">
-        <a href="/" alt="British Columbia">
-          <img
-            src="/static/logo-banner.png"
-            alt="Go to the Government of British Columbia website"
-          />
-        </a>
-        <h1>CleanBC Industrial Incentive Program</h1>
-      </div>
-      {props.isLoggedIn && (
-        <>
-          <div className="buttons">
-            <Row>
-              <Col md={{span: 8}}>
-                <a className="link" href="/user-profile">
-                  <p style={{fontWeight: 'bolder', marginTop: '13px'}}>
-                    {props.userName} <br />
-                    {props.occupation}
-                  </p>
-                </a>
-              </Col>
-              <Col md={{span: 4}}>
-                <ButtonToolbar>
-                  <a
-                    style={{
-                      backgroundColor: '#EDA500',
-                      color: 'white',
-                      marginTop: '18px'
-                    }}
-                    href="/logout"
-                    className="btn"
-                  >
-                    Logout
+      <div className="container">
+        <div className="banner">
+          <a href="/" alt="British Columbia">
+            <img
+              src="/static/logo-banner.png"
+              alt="Go to the Government of British Columbia website"
+            />
+          </a>
+          <h1>CleanBC Industrial Incentive Program</h1>
+        </div>
+        {props.isLoggedIn && (
+          <>
+            <div className="buttons">
+              <Row>
+                <Col md={{span: 8}}>
+                  <a className="link" href="/user-profile">
+                    <p style={{fontWeight: 'bolder', marginTop: '13px'}}>
+                      {props.userName} <br />
+                      {props.occupation}
+                    </p>
                   </a>
-                </ButtonToolbar>
-              </Col>
-            </Row>
-          </div>
-        </>
-      )}
-
+                </Col>
+                <Col md={{span: 4}}>
+                  <ButtonToolbar>
+                    <a
+                      style={{
+                        backgroundColor: '#EDA500',
+                        color: 'white',
+                        marginTop: '18px'
+                      }}
+                      href="/logout"
+                      className="btn"
+                    >
+                      Logout
+                    </a>
+                  </ButtonToolbar>
+                </Col>
+              </Row>
+            </div>
+          </>
+        )}
+      </div>
       <style jsx>
         {`
           header {
             background-color: #036;
             border-bottom: 2px solid #fcba19;
-            margin-bottom: 40px;
-            padding: 0 65px 0 65px;
+            padding: 10px 65px 0 65px;
             color: #fff;
             display: flex;
             height: 65px;
             top: 0px;
             width: 100%;
           }
-          body {
-            padding: 40px;
-          }
+
           header h1 {
             font-family: ‘Noto Sans’, Verdana, Arial, sans-serif;
             font-weight: normal; /* 400 */

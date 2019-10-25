@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It matches the last accepted Snapshot 1`] = `
+<div
+  class="jsx-3493664545 page-wrap"
+>
+  <header
+    class="jsx-2125932305"
+  >
+    <div
+      class="jsx-2125932305 container"
+    >
+      <div
+        class="jsx-2125932305 banner"
+      >
+        <a
+          alt="British Columbia"
+          class="jsx-2125932305"
+          href="/"
+        >
+          <img
+            alt="Go to the Government of British Columbia website"
+            class="jsx-2125932305"
+            src="/static/logo-banner.png"
+          />
+        </a>
+        <h1
+          class="jsx-2125932305"
+        >
+          CleanBC Industrial Incentive Program
+        </h1>
+      </div>
+    </div>
+  </header>
+  <div
+    class="jsx-790244972"
+  >
+    <nav
+      class="jsx-790244972 navigation-main"
+      id="navbar"
+    >
+      <div
+        class="jsx-790244972 container"
+      >
+        <ul
+          class="jsx-790244972"
+        >
+          <li
+            class="jsx-790244972"
+          >
+            <a
+              class="jsx-790244972 active"
+              href="#"
+            >
+              Apply for 2019
+            </a>
+          </li>
+          <li
+            class="jsx-790244972"
+          >
+            <a
+              class="jsx-790244972"
+              href="#"
+            >
+              Applications
+            </a>
+          </li>
+          <li
+            class="jsx-790244972"
+          >
+            <a
+              class="jsx-790244972"
+              href="#"
+            >
+              Contact Us
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div
+    class="content container"
+  />
+  <footer
+    class="jsx-55582602 footer"
+  >
+    <div
+      class="jsx-55582602 container"
+    >
+      <ul
+        class="jsx-55582602"
+      >
+        <li
+          class="jsx-55582602"
+        >
+          <a
+            class="jsx-55582602"
+            href="."
+          >
+            Home
+          </a>
+        </li>
+        <li
+          class="jsx-55582602"
+        >
+          <a
+            class="jsx-55582602"
+            href="."
+          >
+            Contact Us
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</div>
+`;
