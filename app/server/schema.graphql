@@ -6781,7 +6781,7 @@ type UserOrganisation implements Node {
   """
   organisationByOrganisationId: Organisation
 
-  """foreign key that references the organisation table"""
+  """the status of user access to the organisation"""
   organisationId: Int!
 
   """unique id of the row"""
@@ -6815,7 +6815,7 @@ input UserOrganisationCondition {
 
 """An input for mutations affecting `UserOrganisation`"""
 input UserOrganisationInput {
-  """foreign key that references the organisation table"""
+  """the status of user access to the organisation"""
   organisationId: Int!
 
   """unique id of the row"""
@@ -6830,7 +6830,7 @@ input UserOrganisationInput {
 Represents an update to a `UserOrganisation`. Fields that are set will be updated.
 """
 input UserOrganisationPatch {
-  """foreign key that references the organisation table"""
+  """the status of user access to the organisation"""
   organisationId: Int
 
   """unique id of the row"""
