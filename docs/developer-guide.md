@@ -55,6 +55,7 @@ Installation:
 - `pip install -r requirements.txt` (install pre-commit via pip...mac users might prefer homebrew)
 - `asdf reshim` (ensure all pip-installed tools are available on the path...ignore if using system python)
 - `pre-commit install` (create the `.git/hooks/pre-commit` file to run pre-commit automatically)
+- `pre-commit install --hook-type commit-msg` (create the `.git/hooks/commit-msg` file to check commit message format automatically)
 - If pre-commit install fails, try installing sqlite3 with `sudo apt-get install libsqlite3-dev` then `asdf uninstall python` then `asdf install`
 
 ## Filesystem Watchers
