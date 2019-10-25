@@ -10572,7 +10572,7 @@ postgraphile-core@4.4.5:
     graphile-build "4.4.5"
     graphile-build-pg "4.4.5"
 
-postgraphile@^4.4.1:
+postgraphile@^4.4.4:
   version "4.4.4"
   resolved "https://registry.yarnpkg.com/postgraphile/-/postgraphile-4.4.4.tgz#2f8df890251d35cc469161538ec3d82dd504d4a1"
   integrity sha512-kT6Ygjet3RmzNBL+Ci87txRRisdu+HDY/peGpk+rsj8MTmRrkqR4oAifI9tyf0wwqGxmXymk9YP2L8KE8E+XOA==
