@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Organisations should render no organisations if the user has not requested any access 1`] = `
+<Fragment>
+  You are not registered to report for any organisation at this time.
+  <Dropdown
+    navbar={false}
+  >
+    <b>
+      Add an Organisation:
+    </b>
+      
+    <Bootstrap(DropdownToggle)
+      as="input"
+      onChange={[Function]}
+    />
+    <DropdownMenu
+      alignRight={false}
+      flip={true}
+    />
+  </Dropdown>
+</Fragment>
+`;
+
+exports[`Organisations should render the user's requested organisations 1`] = `
+<Fragment>
+  <Bootstrap(Table)
+    bordered={true}
+    hover={true}
+    striped={true}
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <thead>
+      <tr>
+        <th>
+          Organisation
+        </th>
+        <th>
+          Access Status
+        </th>
+        <th>
+          Facilities
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <ForwardRef(Relay(UserOrganisationComponent))
+        key="OrgId"
+        userOrganisation={
+          Object {
+            "id": "OrgId",
+          }
+        }
+      />
+    </tbody>
+  </Bootstrap(Table)>
+  <Dropdown
+    navbar={false}
+  >
+    <b>
+      Add an Organisation:
+    </b>
+      
+    <Bootstrap(DropdownToggle)
+      as="input"
+      onChange={[Function]}
+    />
+    <DropdownMenu
+      alignRight={false}
+      flip={true}
+    />
+  </Dropdown>
+</Fragment>
+`;

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OrganisationFacilities should render no OrganisationFacilities if the organisation has no facilities 1`] = `
+<Fragment>
+  <CardDeck />
+</Fragment>
+`;
+
+exports[`OrganisationFacilities should render the organisation's facilities 1`] = `
+<Fragment>
+  <CardDeck>
+    <ForwardRef(Relay(FacilityComponent))
+      facility={
+        Object {
+          "id": "FacId",
+        }
+      }
+      key="FacId"
+    />
+  </CardDeck>
+</Fragment>
+`;

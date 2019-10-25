@@ -4,7 +4,7 @@ import {Table, Dropdown, Button} from 'react-bootstrap';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
 
-const Organisations = props => {
+export const Organisations = props => {
   const {user, allOrganisations} = props.query;
   if (!user) return '...Loading';
 
