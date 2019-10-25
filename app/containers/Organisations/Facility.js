@@ -137,7 +137,7 @@ export default createFragmentContainer(FacilityComponent, {
         edges {
           node {
             id
-            applicationStatusesByApplicationId {
+            applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
               edges {
                 node {
                   applicationStatus

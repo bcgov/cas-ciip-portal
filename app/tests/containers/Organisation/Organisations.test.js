@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {Organisations} from '../../../containers/Organisations/Organisations';
+import {OrganisationsComponent} from '../../../containers/Organisations/Organisations';
 
 describe('Organisations', () => {
   it('should render no organisations if the user has not requested any access', async () => {
@@ -11,7 +11,7 @@ describe('Organisations', () => {
       },
       allOrganisations: {edges: []}
     };
-    const r = shallow(<Organisations query={query} />);
+    const r = shallow(<OrganisationsComponent query={query} />);
     expect(r).toMatchSnapshot();
   });
   it("should render the user's requested organisations", async () => {
@@ -30,7 +30,7 @@ describe('Organisations', () => {
       },
       allOrganisations: {edges: []}
     };
-    const r = shallow(<Organisations query={query} />);
+    const r = shallow(<OrganisationsComponent query={query} />);
     expect(r).toMatchSnapshot();
     expect(
       r

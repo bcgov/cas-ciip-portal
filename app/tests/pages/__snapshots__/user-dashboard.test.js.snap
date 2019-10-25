@@ -45,7 +45,7 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
         <h2>
           Reporting organisations
         </h2>
-        <ForwardRef(Relay(Organisations))
+        <ForwardRef(Relay(OrganisationsComponent))
           confirmOrg={false}
           handleContextChange={[Function]}
           handleInputChange={[Function]}

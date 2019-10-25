@@ -4,7 +4,7 @@ import {Table, Dropdown, Button} from 'react-bootstrap';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
 
-export const Organisations = props => {
+export const OrganisationsComponent = props => {
   const {user, allOrganisations} = props.query;
   if (!user) return '...Loading';
 
@@ -86,7 +86,7 @@ export const Organisations = props => {
   );
 };
 
-export default createFragmentContainer(Organisations, {
+export default createFragmentContainer(OrganisationsComponent, {
   query: graphql`
     fragment Organisations_query on Query
       @argumentDefinitions(id: {type: "ID!"}) {
