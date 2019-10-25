@@ -5,7 +5,7 @@
   "scripts": {
     "pretest": "npm run build:relay",
     "test": "jest",
-    "predev": "npm run build",
+    "predev": "npm run build:schema && npm run build:relay",
     "dev": "node server",
     "build": "npm run build:schema && npm run build:relay && npm run build:next",
     "build:schema": "postgraphile -X -c postgres://localhost/ggircs_dev -s ggircs_portal --export-schema-graphql server/schema.graphql --export-schema-json server/schema.json --classic-ids --sort-export && echo >> server/schema.json",
