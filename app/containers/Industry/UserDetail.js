@@ -19,13 +19,19 @@ export const UserDetail = props => {
     value: firstName,
     bind: bindFirstName,
     reset: resetFirstName
-  } = useInput('');
+  } = useInput(user.firstName);
   const {value: lastName, bind: bindLastName, reset: resetLastName} = useInput(
-    ''
+    user.lastName
   );
-  const {value: email, bind: bindEmail, reset: resetEmail} = useInput('');
-  const {value: role, bind: bindRole, reset: resetRole} = useInput('');
-  const {value: phone, bind: bindPhone, reset: resetPhone} = useInput('');
+  const {value: email, bind: bindEmail, reset: resetEmail} = useInput(
+    user.emailAddress
+  );
+  const {value: role, bind: bindRole, reset: resetRole} = useInput(
+    user.occupation
+  );
+  const {value: phone, bind: bindPhone, reset: resetPhone} = useInput(
+    user.phoneNumber
+  );
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -67,7 +73,6 @@ export const UserDetail = props => {
               aria-labelledby="NameInput"
               name="firstName"
               type="text"
-              placeholder={user.firstName}
               {...bindFirstName}
             />
           </Form.Group>
@@ -77,39 +82,20 @@ export const UserDetail = props => {
               required
               name="lastName"
               type="text"
-              placeholder={user.lastName}
               {...bindLastName}
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Occupation</Form.Label>
-            <Form.Control
-              required
-              name="role"
-              type="text"
-              placeholder={user.occupation}
-              {...bindRole}
-            />
+            <Form.Control required name="role" type="text" {...bindRole} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Phone Number</Form.Label>
-            <Form.Control
-              required
-              name="phone"
-              type="text"
-              placeholder={user.phoneNumber}
-              {...bindPhone}
-            />
+            <Form.Control required name="phone" type="text" {...bindPhone} />
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control
-              required
-              name="email"
-              type="email"
-              placeholder={user.emailAddress}
-              {...bindEmail}
-            />
+            <Form.Control required name="email" type="email" {...bindEmail} />
           </Form.Group>
 
           <Button className="button-submit" variant="primary" type="submit">
