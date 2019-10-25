@@ -12,16 +12,23 @@ _psql() {
 dropdb() {
   echo "Drop the $dev_db database if it exists"
   psql -tc "SELECT 1 FROM pg_database WHERE datname = '$dev_db'" | grep -q 1 && psql -c "DROP DATABASE $dev_db";
-  echo "Create the $dev_db database"
-  psql -c "CREATE DATABASE $dev_db";
-  dropped_db=1
+}
+
+createdb() {
+  echo "Create the $dev_db database if it does not exist"
+  psql -tc "SELECT 1 FROM pg_database WHERE datname = '$dev_db'" | grep -q 1 || psql -c "CREATE DATABASE $dev_db";
+}
+
+actions=()
+
+sqitch_revert() {
+  psql -tc "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1 && sqitch revert
 }
 
 deploySwrs() {
+  echo "Deploying the swrs schema to $dev_db"
   pushd .cas-ggircs
-  if [ $dropped_db -ne 1 ]; then
-    sqitch revert
-  fi
+  sqitch_revert
   sqitch deploy
   popd
   _psql <<EOF
@@ -37,23 +44,27 @@ EOF
 }
 
 deployPortal() {
-  if [ $dropped_db -ne 1 ]; then
-    sqitch revert
-  fi
+  echo "Deploying the portal schema to $dev_db"
+  sqitch_revert
   sqitch deploy
 }
 
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -d | --drop-db )
-    dropdb
+    actions+=('dropdb' 'deploySwrs' 'deployPortal')
     ;;
   -p | --deploy-portal-schema )
-    deployPortal
+    actions+=('deployPortal')
     ;;
   -s | --deploy-swrs-schema )
-    deploySwrs
+    actions+=('deploySwrs')
     ;;
 esac; shift; done
+
+[[ " ${actions[*]} " =~ " dropdb " ]] && dropdb
+createdb
+[[ " ${actions[*]} " =~ " deployPortal " ]] && deployPortal
+[[ " ${actions[*]} " =~ " deploySwrs " ]] && deploySwrs
 
 _psql <<EOF
 begin;
