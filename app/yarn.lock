@@ -12678,9 +12678,9 @@ survey-react@^1.1.1:
   integrity sha512-32ntnWiT9kyarwIZLg0nXP5Xy9WjZaIw+aXxjCrZVOIgKOsAkln4HjOw+X3C304C2va8G2lIMJ5kEKkhlWZyvg==
 
 surveyjs-widgets@latest:
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/surveyjs-widgets/-/surveyjs-widgets-1.1.15.tgz#faa6249a3c68ae23875198235d22125be2a052f9"
-  integrity sha512-EeBaSz5VUpp0F8GF9Nd+4g1Orxkx4feRGI0Uyf6vtYUwzGi38JpJimHcWzbhHEP02IzzXKQep5YL0D4eDgBdAg==
+  version "1.1.17"
+  resolved "https://registry.yarnpkg.com/surveyjs-widgets/-/surveyjs-widgets-1.1.17.tgz#9e57a5f4653425ff7fa261edef000ab4810cd24b"
+  integrity sha512-L+lA7gOwoJwP/oX3JG7msBPhh02TZGdog5DSghjbInuqE6XGcW8oZq5uNVemVJ991pHkWqxA97ehE+vTLWNo1A==
   dependencies:
     bootstrap-slider "^10.0.0"
     easy-autocomplete "^1.3.5"
