@@ -90,7 +90,7 @@
     "sinon": "^7.4.1",
     "survey-creator": "^1.1.15",
     "survey-react": "^1.1.1",
-    "surveyjs-widgets": "latest"
+    "surveyjs-widgets": "^1.1.17"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
