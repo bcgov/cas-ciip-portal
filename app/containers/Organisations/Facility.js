@@ -1,40 +1,27 @@
 import React from 'react';
-import {graphql, commitMutation, createFragmentContainer} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {Button, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
+import createApplicationMutation from '../../mutations/application/createApplicationMutation';
 
 export const FacilityComponent = ({relay, facility}) => {
   const {environment} = relay;
-  const createApplication = graphql`
-    mutation FacilityApplicationMutation($input: CreateApplicationInput!) {
-      createApplication(input: $input) {
-        application {
-          id
-        }
-      }
-    }
-  `;
   const router = useRouter();
-  const startApplication = () => {
+
+  const startApplication = async () => {
     const variables = {
       input: {
-        application: {
-          facilityId: facility.rowId
-        }
+        facilityIdInput: facility.rowId
       }
     };
-    const mutation = createApplication;
-    commitMutation(environment, {
-      mutation,
-      variables,
-      onCompleted: response => {
-        router.push({
-          pathname: '/ciip-application',
-          query: {
-            applicationId: response.createApplication.application.id
-          }
-        });
+
+    const response = await createApplicationMutation(environment, variables);
+    console.log(response);
+    router.push({
+      pathname: '/ciip-application',
+      query: {
+        applicationId: response.createApplicationMutationChain.application.id
       }
     });
   };
