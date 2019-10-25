@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It matches the last accepted Snapshot 1`] = `
+<header
+  class="jsx-2125932305"
+>
+  <div
+    class="jsx-2125932305 container"
+  >
+    <div
+      class="jsx-2125932305 banner"
+    >
+      <a
+        alt="British Columbia"
+        class="jsx-2125932305"
+        href="/"
+      >
+        <img
+          alt="Go to the Government of British Columbia website"
+          class="jsx-2125932305"
+          src="/static/logo-banner.png"
+        />
+      </a>
+      <h1
+        class="jsx-2125932305"
+      >
+        CleanBC Industrial Incentive Program
+      </h1>
+    </div>
+  </div>
+</header>
+`;

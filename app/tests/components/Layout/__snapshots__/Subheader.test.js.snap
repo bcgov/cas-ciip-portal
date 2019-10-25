@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It matches the last accepted Snapshot 1`] = `
+<div
+  class="jsx-790244972"
+>
+  <nav
+    class="jsx-790244972 navigation-main"
+    id="navbar"
+  >
+    <div
+      class="jsx-790244972 container"
+    >
+      <ul
+        class="jsx-790244972"
+      >
+        <li
+          class="jsx-790244972"
+        >
+          <a
+            class="jsx-790244972 active"
+            href="#"
+          >
+            Apply for 2019
+          </a>
+        </li>
+        <li
+          class="jsx-790244972"
+        >
+          <a
+            class="jsx-790244972"
+            href="#"
+          >
+            Applications
+          </a>
+        </li>
+        <li
+          class="jsx-790244972"
+        >
+          <a
+            class="jsx-790244972"
+            href="#"
+          >
+            Contact Us
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+`;
