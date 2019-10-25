@@ -78,7 +78,8 @@ watch:
 	watchman -j < .watch-status-schema.json
 	watchman -j < .watch-app-yarn.json
 	watchman -j < .watch-app-relay.json
-	watchman -j < .watch-app-lint.json
+# Todo: decision on whether we keep or remove lint watching because of XO threading bug
+#	watchman -j < .watch-app-lint.json
 	watchman -j < .watch-db.json
 	watchman -j < .watch-server.json
 
