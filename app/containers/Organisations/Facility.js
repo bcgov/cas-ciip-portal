@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql, commitMutation, createFragmentContainer} from 'react-relay';
-import {Button, Table, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Button, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 
