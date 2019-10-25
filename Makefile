@@ -78,7 +78,7 @@ watch:
 	watchman -j < .watch-status-schema.json
 	watchman -j < .watch-app-yarn.json
 	watchman -j < .watch-app-relay.json
-#	watchman -j < .watch-app-lint.json
+	watchman -j < .watch-app-lint.json
 	watchman -j < .watch-db.json
 	watchman -j < .watch-server.json
 
