@@ -59,6 +59,7 @@ export const FormUpdateUser = props => {
             <Col>
               <Form.Label>Email Address</Form.Label>
               <Form.Control
+                required
                 type="string"
                 name="emailAddress"
                 value={user.emailAddress}
@@ -68,6 +69,20 @@ export const FormUpdateUser = props => {
             <Col>
               <Form.Label>Phone No.</Form.Label>
               <Form.Control type="string" />
+            </Col>
+          </Row>
+        </Form.Group>
+        <Form.Group>
+          <Row className="mb-4">
+            <Col lg={6}>
+              <Form.Label>Occupation</Form.Label>
+              <Form.Control
+                required
+                type="string"
+                name="occupation"
+                value={user.occupation}
+                onChange={handleChange}
+              />
             </Col>
           </Row>
         </Form.Group>

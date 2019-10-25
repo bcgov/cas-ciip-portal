@@ -56,6 +56,7 @@ export const FormCreateUser = props => {
           <Col>
             <Form.Label>Email Address</Form.Label>
             <Form.Control
+              required
               type="string"
               name="emailAddress"
               onChange={handleChange}
@@ -64,6 +65,19 @@ export const FormCreateUser = props => {
           <Col>
             <Form.Label>Phone No.</Form.Label>
             <Form.Control type="string" />
+          </Col>
+        </Row>
+      </Form.Group>
+      <Form.Group>
+        <Row className="mb-4">
+          <Col lg={6}>
+            <Form.Label>Occupation</Form.Label>
+            <Form.Control
+              required
+              type="string"
+              name="occupation"
+              onChange={handleChange}
+            />
           </Col>
         </Row>
       </Form.Group>
