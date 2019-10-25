@@ -1,20 +1,8 @@
--- Deploy ggircs-portal:function_insert_dummy_application_data to pg
--- requires: table_product
--- requires: table_benchmark
--- requires: table_form_result
--- requires: table_application_status
+ begin;
 
-begin;
-
-create or replace function ggircs_portal.insert_dummy_application_data()
-  returns void
-  as $function$
-
-  insert into ggircs_portal.product(name, units, state) values ('Flaring, Venting, Fugitives, others', 'm3', 'active'), ('Sales Compression', 'm3', 'active'), ('Dehydration', 'kl', 'active'), ('Inlet Compression', 't', 'active');
-  insert into ggircs_portal.benchmark(product_id, benchmark, eligibility_threshold, start_date) values (1, 600, 1500, '2019-09-17 14:49:54.191757-07'), (2, 200, 1000,'2019-09-17 14:49:54.191757-07'), (3, 1200, 5000,'2019-09-17 14:49:54.191757-07'), (4, 5000, 20000,'2019-09-17 14:49:54.191757-07');
-  insert into ggircs_portal.application(facility_id) values (1),(2);
-  insert into ggircs_portal.form_result(form_id, user_id, application_id, submission_date, form_result)
-  values
+ insert into ggircs_portal.form_result(form_id, user_id, application_id, submission_date, form_result)
+ overriding default value
+ values
   (3,2,1, '2019-09-17 14:49:54.191757-07', '{"fuels": [{"quantity": 60, "fuelType": "combusted natural gas", "fuelUnits": "m3", "description": "Nulla duis distincti", "methodology": "wci 2.0"}]}'),
   (6,2,1, '2019-09-17 14:49:54.191757-07', '{"certifiyingOfficial": [{"fax": "+1 (827) 924-9225", "date": "1970-08-01", "phone": "+1 (248) 456-1467", "position": "Tempora ratione dolo", "lastName": "Dolore nulla unde te", "firstName": "Quasi voluptas atque", "emailAddress": "zyqowoc@mailinator.net", "certifierName": "Voluptatibus dolor i", "mailingAddressCity": "Beatae elit veritat", "mailingAddress": "Numquam reiciendis s", "mailingAddressProvince": "New Brunswick", "mailingAddressPostalCode": "h0h0h0"}]}'),
   (4,2,1, '2019-09-17 14:49:54.191757-07', '{"electricityAndHeat": [{"heat": [{"sold": 18, "quantity": 6, "description": 3, "consumedOnsite": 40, "generatedOnsite": 72}], "electricity": [{"sold": 65, "quantity": 51, "description": 23, "consumedOnsite": 97, "generatedOnsite": 2}]}]}'),
@@ -29,13 +17,11 @@ create or replace function ggircs_portal.insert_dummy_application_data()
   (1,2,2, '2019-09-17 14:49:54.191757-07', '{"facilityInformation": [{"bcghgid": 12111100001, "latitude": 62, "longitude": 7, "naicsCode": 89, "nearestCity": "Delectus exercitati", "facilityName": "Dolor veniam dolore", "facilityType": "IF_b", "facilityDescription": "Provident ut praese", "mailingAddressCity": "Explicabo Irure dol", "mailingAddress": "Quasi aliquid incidu", "mailingAddressProvince": "British Columbia", "mailingAddressPostalCode": "h0h0h0"}]}'),
   (1,2,2, '2019-09-17 14:49:54.191757-07', '{"reportingOperationInformation": [{"naicsCode": 92, "dunsNumber": 75, "operatorName": "Quo qui doloremque b", "operatorTradeName": "Sit dicta aut culpa", "mailingAddressCity": "Aut eum laborum Ut ", "mailingAddress": "Delectus obcaecati ", "mailingAddressCountry": "Minus dolores ration", "mailingAddressProvince": "British Columbia", "mailingAddressPostalCode": "h0h0h0", "bcCorporateRegistry_number": 28}]}'),
   (5,2,2, '2019-09-17 14:49:54.191757-07', '{"moduleThroughputAndProductionData": [{"units": ",m3", "comments": "Mollitia ex non temp", "quantity": 1100, "processingUnit": "Sales Compression", "associatedEmissions": "Molestiae blanditiis", "attributableFuelPercentage": 52}]}'),
-  (1,2,2, '2019-09-17 14:49:54.191757-07', '{"operationalRepresentativeInformation": [{"fax": "+1 (403) 112-7963", "phone": "+1 (475) 164-3308", "position": "Culpa officiis liber", "lastName": "Velit facilis offici", "firstName": "Facere nihil minima ", "emailAddress": "mojoqub@mailinator.com", "mailingAddressCity": "Nesciunt et tenetur", "mailingAddress": "Amet optio impedit", "mailingAddressProvince": "British Columbia", "mailingAddressPostalCode": "h0h0h0"}]}');
+  (1,2,2, '2019-09-17 14:49:54.191757-07', '{"operationalRepresentativeInformation": [{"fax": "+1 (403) 112-7963", "phone": "+1 (475) 164-3308", "position": "Culpa officiis liber", "lastName": "Velit facilis offici", "firstName": "Facere nihil minima ", "emailAddress": "mojoqub@mailinator.com", "mailingAddressCity": "Nesciunt et tenetur", "mailingAddress": "Amet optio impedit", "mailingAddressProvince": "British Columbia", "mailingAddressPostalCode": "h0h0h0"}]}')
+on conflict(form_id) do update set
+user_id=excluded.user_id,
+application_id=excluded.application_id,
+submission_date=excluded.submission_date,
+form_result=excluded.form_result;
 
-  insert into ggircs_portal.application_status(application_id, application_status) values (1, 'draft'), (2, 'pending');
-
-
-  $function$
-  language sql;
-
-select ggircs_portal.insert_dummy_application_data();
 commit;

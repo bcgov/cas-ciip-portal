@@ -4,7 +4,7 @@
 begin;
 
 create table ggircs_portal.product (
-  id serial not null,
+  id integer primary key generated always as identity,
   name varchar(1000) not null,
   description varchar(10000),
   units varchar(1000),
@@ -17,13 +17,6 @@ create table ggircs_portal.product (
   deleted_at timestamp with time zone,
   deleted_by varchar(1000)
 );
-
-create unique index product_id_uindex
-  on ggircs_portal.product (id);
-
-alter table ggircs_portal.product
-  add constraint product_pk
-    primary key (id);
 
 comment on column ggircs_portal.product.id is 'Unique ID for the product';
 comment on column ggircs_portal.product.name is 'The name of the product';

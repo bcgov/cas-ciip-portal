@@ -4,7 +4,7 @@
 begin;
 
 create table ggircs_portal.fuel (
-  id serial not null,
+  id integer primary key generated always as identity,
   name varchar(1000) not null,
   description varchar(10000),
   units varchar(1000),
@@ -17,13 +17,6 @@ create table ggircs_portal.fuel (
   deleted_at timestamp with time zone,
   deleted_by varchar(1000)
 );
-
-create unique index fuel_id_uindex
-  on ggircs_portal.fuel (id);
-
-alter table ggircs_portal.fuel
-  add constraint fuel_pk
-    primary key (id);
 
 comment on column ggircs_portal.fuel.id is 'Unique ID for the fuel';
 comment on column ggircs_portal.fuel.name is 'The name of the fuel';

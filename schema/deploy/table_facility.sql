@@ -4,7 +4,7 @@
 begin;
 
   create table ggircs_portal.facility (
-      id integer not null,
+      id integer primary key generated always as identity,
       organisation_id integer not null references ggircs_portal.organisation(id),
       report_id integer ,
       swrs_report_id integer ,
@@ -24,15 +24,6 @@ begin;
       facility_postal_code varchar(1000),
       facility_country varchar(1000)
   );
-
-
-  create unique index facility_id_index
-    on ggircs_portal.facility (id);
-
-  alter table ggircs_portal.facility
-    add constraint facility_pk
-      primary key (id);
-
 
   --Todo: refactor to add address table in CIIP
 

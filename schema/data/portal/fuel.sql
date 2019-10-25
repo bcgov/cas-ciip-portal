@@ -1,5 +1,7 @@
 begin;
-insert into ggircs_portal.fuel(id, name, units, state) values
+insert into ggircs_portal.fuel(id, name, units, state)
+overriding system value
+values
   (1, 'Acetylene','m3', 'active'),
   (2, 'Agricultural Byproducts','t', 'active'),
   (3,'Anthracite Coal','t', 'active'),

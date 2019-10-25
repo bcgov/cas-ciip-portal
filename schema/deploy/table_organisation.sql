@@ -5,7 +5,7 @@ begin;
 
 
   create table ggircs_portal.organisation (
-      id integer,
+      id integer primary key generated always as identity,
       report_id integer ,
       swrs_report_id integer ,
       swrs_organisation_id integer ,
@@ -21,30 +21,21 @@ begin;
       operator_country varchar(1000)
   );
 
+  --Todo: refactor to add address table in CIIP
 
-  create unique index organisation_id_index
-    on ggircs_portal.organisation (id);
-
-  alter table ggircs_portal.organisation
-    add constraint organisation_pk
-      primary key (id);
-
-
-    --Todo: refactor to add address table in CIIP
-
-    comment on column ggircs_portal.organisation.id is 'unique if for the organisation';
-    comment on column ggircs_portal.organisation.report_id is 'report id from swrs';
-    comment on column ggircs_portal.organisation.swrs_report_id is 'swrs report id from swrs';
-    comment on column ggircs_portal.organisation.swrs_organisation_id is 'swrs organisation id';
-    comment on column ggircs_portal.organisation.reporting_year is 'the reporting year';
-    comment on column ggircs_portal.organisation.operator_name is 'legal name of organisation';
-    comment on column ggircs_portal.organisation.operator_trade_name is 'trade name of organisation';
-    comment on column ggircs_portal.organisation.duns is 'duns number';
-    comment on column ggircs_portal.organisation.cra_business_number is 'cra business number';
-    comment on column ggircs_portal.organisation.operator_mailing_address is 'organisation mailing address';
-    comment on column ggircs_portal.organisation.operator_city is 'organisation city';
-    comment on column ggircs_portal.organisation.operator_province is 'organisation province';
-    comment on column ggircs_portal.organisation.operator_postal_code is 'organisation postal code';
-    comment on column ggircs_portal.organisation.operator_country is 'organisation country';
+  comment on column ggircs_portal.organisation.id is 'unique if for the organisation';
+  comment on column ggircs_portal.organisation.report_id is 'report id from swrs';
+  comment on column ggircs_portal.organisation.swrs_report_id is 'swrs report id from swrs';
+  comment on column ggircs_portal.organisation.swrs_organisation_id is 'swrs organisation id';
+  comment on column ggircs_portal.organisation.reporting_year is 'the reporting year';
+  comment on column ggircs_portal.organisation.operator_name is 'legal name of organisation';
+  comment on column ggircs_portal.organisation.operator_trade_name is 'trade name of organisation';
+  comment on column ggircs_portal.organisation.duns is 'duns number';
+  comment on column ggircs_portal.organisation.cra_business_number is 'cra business number';
+  comment on column ggircs_portal.organisation.operator_mailing_address is 'organisation mailing address';
+  comment on column ggircs_portal.organisation.operator_city is 'organisation city';
+  comment on column ggircs_portal.organisation.operator_province is 'organisation province';
+  comment on column ggircs_portal.organisation.operator_postal_code is 'organisation postal code';
+  comment on column ggircs_portal.organisation.operator_country is 'organisation country';
 
 commit;

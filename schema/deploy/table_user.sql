@@ -5,11 +5,13 @@ begin;
 
 create table ggircs_portal.user
 (
-  id int not null,
+  id integer primary key generated always as identity,
   uuid uuid,
   first_name varchar(1000),
   last_name varchar(1000),
   email_address varchar(1000),
+  occupation varchar(1000),
+  phone_number varchar(1000),
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
   updated_at timestamp with time zone not null default now(),
@@ -24,16 +26,6 @@ create trigger _100_timestamps
 
 create unique index user_email_address_uindex
   on ggircs_portal.user (email_address);
-
-create unique index user_id_uindex
-  on ggircs_portal.user (id);
-
-alter table ggircs_portal.user
-  add constraint user_pk
-    primary key (id);
-alter table ggircs_portal.user
-  add column occupation varchar(1000),
-  add column phone_number varchar(1000);
 
 comment on column ggircs_portal.user.id is 'Unique ID for the user';
 comment on column ggircs_portal.user.uuid is 'Universally Unique ID for the user used for auth';

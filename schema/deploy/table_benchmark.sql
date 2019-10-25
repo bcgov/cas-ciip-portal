@@ -4,7 +4,7 @@
 begin;
 
 create table ggircs_portal.benchmark (
-  id serial not null,
+  id integer primary key generated always as identity,
   product_id int not null references ggircs_portal.product(id),
   benchmark int not null,
   eligibility_threshold int not null,
@@ -22,13 +22,6 @@ create trigger _100_timestamps
   before insert or update on ggircs_portal.benchmark
   for each row
   execute procedure ggircs_portal.update_timestamps();
-
-create unique index benchmark_id_uindex
-  on ggircs_portal.benchmark (id);
-
-alter table ggircs_portal.benchmark
-  add constraint benchmark_pk
-    primary key (id);
 
 comment on column ggircs_portal.benchmark.id is 'Unique ID for the benchmark';
 comment on column ggircs_portal.benchmark.product_id is 'Foreign key to the product';
