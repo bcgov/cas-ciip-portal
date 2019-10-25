@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Jumbotron} from 'react-bootstrap';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../components/Layout/Header';
+import Footer from '../components/Layout/Footer';
 
 class UserProfile extends Component {
   render() {
