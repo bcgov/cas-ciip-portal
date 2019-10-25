@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserOrganisationFacilities page matches the last accepted Snapshot 1`] = `
+<DefaultLayout
+  title="Org Facilities"
+>
+  <Container
+    fluid={false}
+  >
+    <h2>
+      Information:
+    </h2>
+    <p
+      className="text"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </p>
+    <hr />
+    <ForwardRef(Relay(OrganisationFacilitiesComponent))
+      query={
+        Object {
+          "organisation": Object {
+            "operatorName": "Org",
+          },
+        }
+      }
+    />
+  </Container>
+</DefaultLayout>
+`;

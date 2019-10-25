@@ -1,40 +1,27 @@
 import React from 'react';
-import {graphql, commitMutation, createFragmentContainer} from 'react-relay';
-import {Button, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {graphql, createFragmentContainer} from 'react-relay';
+import {Button, Badge, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
+import createApplicationMutation from '../../mutations/application/createApplicationMutation';
 
 export const FacilityComponent = ({relay, facility}) => {
   const {environment} = relay;
-  const createApplication = graphql`
-    mutation FacilityApplicationMutation($input: CreateApplicationInput!) {
-      createApplication(input: $input) {
-        application {
-          id
-        }
-      }
-    }
-  `;
   const router = useRouter();
-  const startApplication = () => {
+
+  const startApplication = async () => {
     const variables = {
       input: {
-        application: {
-          facilityId: facility.rowId
-        }
+        facilityIdInput: facility.rowId
       }
     };
-    const mutation = createApplication;
-    commitMutation(environment, {
-      mutation,
-      variables,
-      onCompleted: response => {
-        router.push({
-          pathname: '/ciip-application',
-          query: {
-            applicationId: response.createApplication.application.id
-          }
-        });
+
+    const response = await createApplicationMutation(environment, variables);
+    console.log(response);
+    router.push({
+      pathname: '/ciip-application',
+      query: {
+        applicationId: response.createApplicationMutationChain.application.id
       }
     });
   };
@@ -42,7 +29,48 @@ export const FacilityComponent = ({relay, facility}) => {
   const {applicationsByFacilityId = {}} = facility;
   const {edges = []} = applicationsByFacilityId;
   const {node = {}} = edges[0] || {};
-  const {id: applicationId} = node;
+  const {id: applicationId, applicationStatusesByApplicationId} = node;
+
+  // Conditionall render apply / resume button depending on existence and status of Facility's application
+  const applyButton = () => {
+    if (!applicationId) {
+      return (
+        <Button variant="primary" onClick={startApplication}>
+          Apply for CIIP
+        </Button>
+      );
+    }
+
+    if (
+      applicationId &&
+      applicationStatusesByApplicationId.edges.length > 0 &&
+      applicationStatusesByApplicationId.edges[0].node.applicationStatus ===
+        'draft'
+    ) {
+      return (
+        <Link
+          href={{
+            pathname: '/ciip-application',
+            query: {
+              applicationId
+            }
+          }}
+        >
+          <Button variant="primary">Resume CIIP application</Button>
+        </Link>
+      );
+    }
+
+    return null;
+  };
+
+  const statusBadgeColor = {
+    attention: 'warning',
+    pending: 'info',
+    declined: 'danger',
+    approved: 'success',
+    draft: 'dark'
+  };
 
   return (
     <>
@@ -60,25 +88,32 @@ export const FacilityComponent = ({relay, facility}) => {
           <ListGroupItem>
             {facility.facilityCity}, {facility.facilityProvince}
           </ListGroupItem>
+          <ListGroupItem>
+            Application Status: &nbsp;{' '}
+            {edges.length > 0 &&
+            applicationStatusesByApplicationId.edges.length > 0 ? (
+              <>
+                <Badge
+                  pill
+                  variant={
+                    statusBadgeColor[
+                      applicationStatusesByApplicationId.edges[0].node
+                        .applicationStatus
+                    ]
+                  }
+                >
+                  {
+                    applicationStatusesByApplicationId.edges[0].node
+                      .applicationStatus
+                  }
+                </Badge>
+              </>
+            ) : (
+              <>N/A</>
+            )}
+          </ListGroupItem>
         </ListGroup>
-        <Card.Body>
-          {applicationId ? (
-            <Link
-              href={{
-                pathname: '/ciip-application',
-                query: {
-                  applicationId
-                }
-              }}
-            >
-              <Button variant="primary">Resume CIIP application</Button>
-            </Link>
-          ) : (
-            <Button variant="primary" onClick={startApplication}>
-              Apply for CIIP
-            </Button>
-          )}
-        </Card.Body>
+        <Card.Body>{applyButton()}</Card.Body>
       </Card>
     </>
   );
@@ -102,6 +137,13 @@ export default createFragmentContainer(FacilityComponent, {
         edges {
           node {
             id
+            applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
+              edges {
+                node {
+                  applicationStatus
+                }
+              }
+            }
           }
         }
       }
