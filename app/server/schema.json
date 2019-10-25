@@ -6792,7 +6792,7 @@
             },
             {
               "name": "status",
-              "description": null,
+              "description": "the status of user access to the organisation",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -21424,7 +21424,7 @@
             },
             {
               "name": "status",
-              "description": null,
+              "description": "the status of user access to the organisation",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -27106,7 +27106,7 @@
             },
             {
               "name": "status",
-              "description": null,
+              "description": "the status of user access to the organisation",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",

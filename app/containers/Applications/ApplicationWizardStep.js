@@ -3,6 +3,7 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import Form from '../Forms/Form';
 
 const getInitialAdminData = application => {
+  if (!application.swrsOrganisationData) return undefined;
   const {
     operatorName,
     operatorTradeName,
@@ -87,6 +88,7 @@ const getInitialAdminData = application => {
 
 const getInitialEmissionData = application => {
   const initialData = {};
+  if (!application.swrsEmissionData) return undefined;
   for (const {
     node: {quantity, emissionCategory, gasType}
   } of application.swrsEmissionData.edges) {
@@ -106,6 +108,7 @@ const getInitialEmissionData = application => {
 };
 
 const getInitialFuelData = (application, allFuels) => {
+  if (!application.swrsFuelData) return undefined;
   return {
     fuels: application.swrsFuelData.edges.map(edge => {
       const {
@@ -139,9 +142,9 @@ const ApplicationWizardStep = ({
   prepopulateFromSwrs
 }) => {
   const {application, allFuels} = query;
-  const [initialData, setInitialData] = useState({});
+  const [initialData, setInitialData] = useState(undefined);
   useEffect(() => {
-    if (!prepopulateFromSwrs) return setInitialData(null);
+    if (!prepopulateFromSwrs) return setInitialData(undefined);
     switch (formName) {
       case 'Admin': {
         setInitialData(getInitialAdminData(application));
@@ -159,7 +162,7 @@ const ApplicationWizardStep = ({
       }
 
       default:
-        setInitialData({});
+        setInitialData(undefined);
     }
   }, [formName, query, prepopulateFromSwrs, application, allFuels]);
 
@@ -169,10 +172,6 @@ const ApplicationWizardStep = ({
   }
 
   if (!application) return null;
-
-  if (prepopulateFromSwrs && !initialData) {
-    return <>Loading data from SWRS</>;
-  }
 
   return (
     <Form
