@@ -1,34 +1,29 @@
 import React from 'react';
 import {Row, Col, Form, Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
-import updateUserMutation from '../../mutations/user/updateUserMutation';
+import createUserMutation from '../../mutations/user/createUserMutation';
 
 const FormCreateUser = props => {
-  const {user} = props;
+  const user = {
+    firstName: '',
+    lastName: '',
+    emailAddress: ''
+  };
 
   const createUserFromRef = React.createRef();
 
-  // Submit form to Patch User
-  const submitForm = () => {
-    // Event.preventDefault();
-    // event.stopPropagation();
+  // Submit form to create new User
+  const submitForm = event => {
+    event.preventDefault();
+    event.stopPropagation();
 
-    // const userDetails = {
-    //   input: {
-    //     id: 'WyJ1c2VycyIsMV0=',
-    //     userPatch: user
-    //   }
-    // };
-
-    // updateUserMutation(props.relay.environment, userDetails);
+    createUserMutation(props.relay.environment, user);
 
     createUserFromRef.current.reset();
   };
 
   const handleChange = e => {
-    updateUserMutation(props.relay.environment, props.user, {
-      [e.target.name]: e.target.value
-    });
+    user[e.target.name] = e.target.value;
   };
 
   return (
@@ -38,7 +33,6 @@ const FormCreateUser = props => {
         id="registration-form"
         onSubmit={submitForm}
       >
-        <input hidden name="id" value={user.id} />
         <Form.Group controlId="formBasicName">
           <Row className="mb-4">
             <Col>
@@ -47,7 +41,6 @@ const FormCreateUser = props => {
                 required
                 type="string"
                 name="firstName"
-                value={user.firstName}
                 onChange={handleChange}
               />
             </Col>
@@ -57,7 +50,6 @@ const FormCreateUser = props => {
                 required
                 type="string"
                 name="lastName"
-                value={user.lastName}
                 onChange={handleChange}
               />
             </Col>
@@ -70,7 +62,6 @@ const FormCreateUser = props => {
               <Form.Control
                 type="string"
                 name="emailAddress"
-                value={user.emailAddress}
                 onChange={handleChange}
               />
             </Col>
@@ -89,13 +80,4 @@ const FormCreateUser = props => {
   );
 };
 
-export default createFragmentContainer(FormCreateUser, {
-  user: graphql`
-    fragment FormCreateUser_user on User {
-      id
-      firstName
-      lastName
-      emailAddress
-    }
-  `
-});
+export default createFragmentContainer(FormCreateUser, {});
