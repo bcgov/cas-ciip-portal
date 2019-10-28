@@ -24,7 +24,7 @@ const ApplicationWizard = ({query}) => {
   const {wizard, application, formJson} = query || {};
 
   const router = useRouter();
-  let {confirmationPage} = router.query;
+  const {confirmationPage} = router.query;
 
   useEffect(() => {
     if (confirmationPage) return;
@@ -56,7 +56,6 @@ const ApplicationWizard = ({query}) => {
   if (!application) return <>This is not the application you are looking for</>;
 
   if (!wizard || !formJson) return null;
-  confirmationPage = true;
 
   const {
     prepopulateFromCiip,

@@ -15,20 +15,21 @@ const ApplicationWizardConfirmation = props => {
   formResults.forEach(result => {
     const parsedResult = JSON.parse(result.node.formResult);
     const resultTitle = Object.keys(parsedResult);
+
     resultObject[resultTitle] = parsedResult;
   });
-
   // Create an array of keys to traverse the resultObject
   const formArray = Object.keys(resultObject);
 
-  const renderInputs = (formTitle, formInput, nest) => {
-    let value = resultObject[formTitle][formTitle][0][formInput];
+  const renderInputs = (formTitle, subTitle, formInput, nest) => {
+    let value = resultObject[formTitle][subTitle][0][formInput];
     // Space out camel cased inputs and Capitalize the input for display
+
     const prettyInput = formInput.replace(capitalRegex, ' $1').trim();
 
     // If there are nested values, change the location of the value variable
-    if (nest) value = resultObject[formTitle][formTitle][0][nest][0][formInput];
-
+    if (nest) value = resultObject[formTitle][subTitle][0][nest][0][formInput];
+    if (typeof value === 'object') return null;
     return (
       <>
         <td style={{width: '50%'}}>
@@ -39,23 +40,25 @@ const ApplicationWizardConfirmation = props => {
     );
   };
 
-  const renderForm = formTitle => {
+  const renderForm = (formTitle, formSubtitle) => {
     // Space out camel cased titles and capitalize for display
-    const prettyTitle = formTitle.replace(capitalRegex, ' $1').trim();
+
+    const prettyTitle = formSubtitle.replace(capitalRegex, ' $1').trim();
     // Get a list of keys for the form inputs
-    const formInputs = Object.keys(resultObject[formTitle][formTitle][0]);
+    const inputs = Object.keys(resultObject[formTitle][formSubtitle][0]);
+
     const nested = [];
     // Check for nested values (Electricity & heat have values nested under extra objects)
     if (
-      typeof resultObject[formTitle][formTitle][0][formInputs[0]] === 'object'
+      typeof resultObject[formTitle][formSubtitle][0][inputs[0]] === 'object'
     ) {
-      formInputs.forEach(input => {
+      inputs.forEach(input => {
         nested.push(input);
       });
     }
 
     return (
-      <Card key={formTitle} style={{marginTop: '10px'}}>
+      <Card key={(formTitle, formSubtitle)} style={{marginTop: '10px'}}>
         <Card.Header as="h5" style={{textTransform: 'capitalize'}}>
           {prettyTitle}
         </Card.Header>
@@ -72,15 +75,20 @@ const ApplicationWizardConfirmation = props => {
                   }}
                 >
                   <tr>
-                    <td>{nest}</td>
+                    <td>
+                      <strong>{nest}</strong>
+                    </td>
                   </tr>
                 </thead>
                 <tbody>
                   <tr />
+
                   {Object.keys(
-                    resultObject[formTitle][formTitle][0][nest][0]
+                    resultObject[formTitle][formSubtitle][0][nest][0]
                   ).map(input => (
-                    <tr key={input}>{renderInputs(formTitle, input, nest)}</tr>
+                    <tr key={(formTitle, formSubtitle, nest, input)}>
+                      {renderInputs(formTitle, formSubtitle, input, nest)}
+                    </tr>
                   ))}
                 </tbody>
               </Table>
@@ -88,8 +96,10 @@ const ApplicationWizardConfirmation = props => {
           ) : (
             <Table>
               <tbody>
-                {formInputs.map(input => (
-                  <tr key={input}>{renderInputs(formTitle, input)}</tr>
+                {inputs.map(input => (
+                  <tr key={(formTitle, formSubtitle, input)}>
+                    {renderInputs(formTitle, formSubtitle, input)}
+                  </tr>
                 ))}
               </tbody>
             </Table>
@@ -121,7 +131,11 @@ const ApplicationWizardConfirmation = props => {
 
   return (
     <>
-      {formArray.map(formTitle => renderForm(formTitle))}
+      {formArray.map(formTitle =>
+        Object.keys(resultObject[formTitle]).map(formSubtitle =>
+          renderForm(formTitle, formSubtitle)
+        )
+      )}
 
       <Button
         className="float-right"
