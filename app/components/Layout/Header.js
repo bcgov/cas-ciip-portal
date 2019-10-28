@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import {ButtonToolbar, Row, Col} from 'react-bootstrap';
+import {ButtonToolbar, Row, Col, Button} from 'react-bootstrap';
 import Link from 'next/link';
 
 const Header = props => (
@@ -14,13 +14,27 @@ const Header = props => (
     <header>
       <div className="container">
         <div className="banner">
-          <Link href="/" alt="British Columbia">
-            <img
-              src="/static/logo-banner.png"
-              alt="Go to the Government of British Columbia website"
-            />
-          </Link>
-          <h1>CleanBC Industrial Incentive Program</h1>
+          <div className="header-left">
+            <Link href="/" alt="British Columbia">
+              <img
+                src="/static/logo-banner.png"
+                alt="Go to the Government of British Columbia website"
+              />
+            </Link>
+            <h1>CleanBC Industrial Incentive Program</h1>
+          </div>
+          {!props.isLoggedIn && (
+            <div className="login-btns header-right">
+              <Row>
+                <Col>
+                  <Button style={{marginRight: '10px'}} variant="outline-light">
+                    Register
+                  </Button>
+                  <Button variant="outline-light">Login</Button>
+                </Col>
+              </Row>
+            </div>
+          )}
         </div>
         {props.isLoggedIn && (
           <>
@@ -59,7 +73,7 @@ const Header = props => (
           header {
             background-color: #036;
             border-bottom: 2px solid #fcba19;
-            padding: 10px 65px 0 65px;
+            padding: 10px 65px;
             color: #fff;
             display: flex;
             height: 65px;
@@ -73,10 +87,15 @@ const Header = props => (
             margin: 5px 5px 0 18px;
             visibility: hidden;
           }
-
+          .header-left {
+            display: flex;
+          }
+          .header-right {
+            margin-right: -25px;
+          }
           header .banner {
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
             margin: 0 10px 0 0;
           }
