@@ -38,7 +38,7 @@ values
   (32, 'Ethylene','kL', 'active'),
   (33,'E-Waste','t', 'active'),
   (34,'Explosives','t', 'active'),
-  (35,'Field gas or process vent gas ','m3', 'active'),
+  (35,'Field gas or process vent gas','m3', 'active'),
   (36,'Field Gas','m3', 'active'),
   (37,'Foreign Bituminous Coal','t', 'active'),
   (38,'Isobutane','kL', 'active'),
