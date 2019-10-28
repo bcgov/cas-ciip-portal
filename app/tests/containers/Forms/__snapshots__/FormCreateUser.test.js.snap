@@ -2,6 +2,7 @@
 
 exports[`Form Create User should render 1`] = `
 <Form
+  className="mb-5"
   id="registration-form"
   inline={false}
   onSubmit={[Function]}
@@ -58,6 +59,7 @@ exports[`Form Create User should render 1`] = `
         <FormControl
           name="emailAddress"
           onChange={[Function]}
+          required={true}
           type="string"
         />
       </Col>
@@ -69,6 +71,32 @@ exports[`Form Create User should render 1`] = `
           Phone No.
         </FormLabel>
         <FormControl
+          name="phoneNumber"
+          onChange={[Function]}
+          required={true}
+          type="string"
+        />
+      </Col>
+    </ForwardRef>
+  </FormGroup>
+  <FormGroup>
+    <ForwardRef
+      className="mb-4"
+      noGutters={false}
+    >
+      <Col
+        lg={6}
+      >
+        <FormLabel
+          column={false}
+          srOnly={false}
+        >
+          Occupation
+        </FormLabel>
+        <FormControl
+          name="occupation"
+          onChange={[Function]}
+          required={true}
           type="string"
         />
       </Col>

@@ -8,7 +8,7 @@ describe('Form Create User', () => {
 
     expect(wrapper).toMatchSnapshot();
 
-    expect(wrapper.find('FormControl').length).toBe(4);
+    expect(wrapper.find('FormControl').length).toBe(5);
     expect(wrapper.find('Button').length).toBe(1);
   });
 });
