@@ -1,20 +1,23 @@
 import React from 'react';
-
-const Subheader = props => (
+import Link from 'next/link';
+const Subheader = () => (
   <div>
     <nav className="navigation-main" id="navbar">
       <div className="container">
         <ul>
           <li>
-            <a href="#" className="active">
-              Apply for 2019
-            </a>
+            <Link
+              href={{
+                pathname: '/user-dashboard'
+              }}
+            >
+              <a href="#" className="active">
+                My Dashboard
+              </a>
+            </Link>
           </li>
           <li>
-            <a href="#">Applications</a>
-          </li>
-          <li>
-            <a href="#">Contact Us</a>
+            <a href="#">My Applications</a>
           </li>
         </ul>
       </div>

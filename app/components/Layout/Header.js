@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import {ButtonToolbar, Row, Col} from 'react-bootstrap';
+import Link from 'next/link';
 
 const Header = props => (
   <>
@@ -13,12 +14,12 @@ const Header = props => (
     <header>
       <div className="container">
         <div className="banner">
-          <a href="/" alt="British Columbia">
+          <Link href="/" alt="British Columbia">
             <img
               src="/static/logo-banner.png"
               alt="Go to the Government of British Columbia website"
             />
-          </a>
+          </Link>
           <h1>CleanBC Industrial Incentive Program</h1>
         </div>
         {props.isLoggedIn && (
