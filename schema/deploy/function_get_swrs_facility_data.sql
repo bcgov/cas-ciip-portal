@@ -57,12 +57,16 @@ begin;
           _fac.latitude,
           _fac.longitude,
 
-          cast('unit '  || ', ' || _fac_add.mailing_address_unit_number
-                   || ', ' || _fac_add.mailing_address_street_number
-                   || ' ' || _fac_add.mailing_address_street_name
-                   || ' ' || _fac_add.mailing_address_street_type
-                   || ' ' || _fac_add.mailing_address_street_direction as varchar(1000))
-                  ,
+          cast(
+            concat(
+              'unit ' || _fac_add.mailing_address_unit_number || ', ',
+              _fac_add.mailing_address_street_number || ' ',
+              _fac_add.mailing_address_street_number_suffix || ' ',
+              _fac_add.mailing_address_street_name || ' ',
+              _fac_add.mailing_address_street_type || ' ',
+              _fac_add.mailing_address_street_direction
+            )
+          as varchar(1000)),
            _fac_add.mailing_address_municipality,
            _fac_add.mailing_address_prov_terr_state,
            _fac_add.mailing_address_postal_code_zip_code,
