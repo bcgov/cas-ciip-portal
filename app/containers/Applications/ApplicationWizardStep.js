@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import Form from '../Forms/Form';
+import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 
 const getInitialAdminData = application => {
   if (!application.swrsOrganisationData) return undefined;
@@ -50,7 +51,7 @@ const getInitialAdminData = application => {
         mailingAddress: operatorMailingAddress,
         mailingAddressCity: operatorCity,
         mailingAddressProvince: operatorProvince,
-        // TODO: the postal code field in the survey should remove spaces when validating/submitting
+        // TODOx: the postal code field in the survey should remove spaces when validating/submitting
         mailingAddressPostalCode: operatorPostalCode.replace(' ', ''),
         mailingAddressCountry: operatorCountry
       }
@@ -133,13 +134,14 @@ const getInitialFuelData = (application, allFuels) => {
 
 /*
  * The ApplicationWizardStep renders a form and, where applicable,
- * (TODO) starts by presenting a summary of existing data to the user
+ *  TODOx: starts by presenting a summary of existing data to the user
  */
 const ApplicationWizardStep = ({
   query,
   formName,
   onStepComplete,
-  prepopulateFromSwrs
+  prepopulateFromSwrs,
+  confirmationPage
 }) => {
   const {application, allFuels} = query;
   const [initialData, setInitialData] = useState(undefined);
@@ -172,6 +174,8 @@ const ApplicationWizardStep = ({
   }
 
   if (!application) return null;
+
+  if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
 
   return (
     <Form
@@ -254,6 +258,13 @@ export default createFragmentContainer(ApplicationWizardStep, {
           operatorProvince
           operatorPostalCode
           operatorCountry
+        }
+        formResultsByApplicationId {
+          edges {
+            node {
+              formResult
+            }
+          }
         }
       }
 

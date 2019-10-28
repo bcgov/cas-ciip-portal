@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
 import ApplicationWizardStep from './ApplicationWizardStep';
-import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {
   const newUrl = {
@@ -25,7 +24,7 @@ const ApplicationWizard = ({query}) => {
   const {wizard, application, formJson} = query || {};
 
   const router = useRouter();
-  const {confirmationPage} = router.query;
+  let {confirmationPage} = router.query;
 
   useEffect(() => {
     if (confirmationPage) return;
@@ -57,8 +56,7 @@ const ApplicationWizard = ({query}) => {
   if (!application) return <>This is not the application you are looking for</>;
 
   if (!wizard || !formJson) return null;
-
-  if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
+  confirmationPage = true;
 
   const {
     prepopulateFromCiip,
@@ -75,6 +73,7 @@ const ApplicationWizard = ({query}) => {
         prepopulateFromCiip={prepopulateFromCiip}
         prepopulateFromSwrs={prepopulateFromSwrs}
         formName={name}
+        confirmationPage={confirmationPage}
         onStepComplete={onStepComplete}
       />
     </>
