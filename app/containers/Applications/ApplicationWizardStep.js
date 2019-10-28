@@ -196,6 +196,9 @@ export default createFragmentContainer(ApplicationWizardStep, {
         formId: {type: "ID!"}
         applicationId: {type: "ID!"}
       ) {
+      ...Form_query @arguments(formId: $formId)
+      ...ApplicationWizardConfirmation_query
+        @arguments(applicationId: $applicationId)
       allFuels {
         edges {
           node {
@@ -260,9 +263,6 @@ export default createFragmentContainer(ApplicationWizardStep, {
           operatorCountry
         }
       }
-      ...ApplicationWizardConfirmation_query
-        @arguments(applicationId: $applicationId)
-      ...Form_query @arguments(formId: $formId)
     }
   `
 });

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
-import Header from '../components/Header';
+// Import Header from '../components/Header';
 // Import FormCreator from '../containers/Forms/FormCreator';
 // import FormPicker from '../containers/Forms/FormPicker';
 
@@ -18,7 +18,7 @@ class FormBuilder extends Component {
   render() {
     return (
       <>
-        <Header />
+        {/* <Header /> */}
         <Container>
           <Row>
             <Col style={{textAlign: 'right'}}>
