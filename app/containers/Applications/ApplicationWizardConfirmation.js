@@ -1,5 +1,7 @@
 import React from 'react';
 import {Card, Table, Button} from 'react-bootstrap';
+import {createFragmentContainer} from 'react-relay';
+import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
 
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -90,6 +92,25 @@ const ApplicationWizardConfirmation = props => {
     );
   };
 
+  const submitApplication = async () => {
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        id:
+          props.query.application.applicationStatusesByApplicationId.edges[0]
+            .node.id,
+        applicationStatusPatch: {
+          applicationStatus: 'pending'
+        }
+      }
+    };
+    const response = await updateApplicationStatusMutation(
+      environment,
+      variables
+    );
+    console.log(response);
+  };
+
   return (
     <>
       {formArray.map(formTitle => renderForm(formTitle))}
@@ -97,7 +118,7 @@ const ApplicationWizardConfirmation = props => {
       <Button
         className="float-right"
         style={{marginTop: '10px'}}
-        onClick={() => console.log('Submitted')}
+        onClick={submitApplication}
       >
         Submit
       </Button>
@@ -105,4 +126,4 @@ const ApplicationWizardConfirmation = props => {
   );
 };
 
-export default ApplicationWizardConfirmation;
+export default createFragmentContainer(ApplicationWizardConfirmation, {});

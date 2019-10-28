@@ -266,6 +266,13 @@ export default createFragmentContainer(ApplicationWizardStep, {
             }
           }
         }
+        applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
+          edges {
+            node {
+              id
+            }
+          }
+        }
       }
 
       ...Form_query @arguments(formId: $formId)
