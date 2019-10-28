@@ -1,9 +1,10 @@
  begin;
 
- insert into ggircs_portal.form_result
- (id, form_id, user_id, application_id, submission_date, form_result)
- overriding system value
- values
+with rows as (
+insert into ggircs_portal.form_result
+(id, form_id, user_id, application_id, submission_date, form_result)
+overriding system value
+values
   (1,3,2,1, '2019-09-17 14:49:54.191757-07', '{"fuels": [{"quantity": 60, "fuelType": "combusted natural gas", "fuelUnits": "m3", "description": "Nulla duis distincti", "methodology": "wci 2.0"}]}'),
   (2,6,2,1, '2019-09-17 14:49:54.191757-07', '{"certifiyingOfficial": [{"fax": "+1 (827) 924-9225", "date": "1970-08-01", "phone": "+1 (248) 456-1467", "position": "Tempora ratione dolo", "lastName": "Dolore nulla unde te", "firstName": "Quasi voluptas atque", "emailAddress": "zyqowoc@mailinator.net", "certifierName": "Voluptatibus dolor i", "mailingAddressCity": "Beatae elit veritat", "mailingAddress": "Numquam reiciendis s", "mailingAddressProvince": "New Brunswick", "mailingAddressPostalCode": "h0h0h0"}]}'),
   (3,4,2,1, '2019-09-17 14:49:54.191757-07', '{"electricityAndHeat": [{"heat": [{"sold": 18, "quantity": 6, "description": 3, "consumedOnsite": 40, "generatedOnsite": 72}], "electricity": [{"sold": 65, "quantity": 51, "description": 23, "consumedOnsite": 97, "generatedOnsite": 2}]}]}'),
@@ -24,6 +25,12 @@ form_id=excluded.form_id,
 user_id=excluded.user_id,
 application_id=excluded.application_id,
 submission_date=excluded.submission_date,
-form_result=excluded.form_result;
+form_result=excluded.form_result
+returning 1
+) select 'Inserted ' || count(*) || ' rows into ggircs_portal.form_result' from rows;
+
+select setval from
+setval('ggircs_portal.form_result_id_seq', (select max(id) from ggircs_portal.form_result), true)
+where setval = 0;
 
 commit;

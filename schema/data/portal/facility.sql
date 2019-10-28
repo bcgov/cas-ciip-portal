@@ -1,5 +1,6 @@
 begin;
 
+with rows as (
 insert into ggircs_portal.facility (
   id,
   organisation_id,
@@ -102,6 +103,14 @@ facility_mailing_address=excluded.facility_mailing_address,
 facility_city=excluded.facility_city,
 facility_province=excluded.facility_province,
 facility_postal_code=excluded.facility_postal_code,
-facility_country=excluded.facility_country;
+facility_country=excluded.facility_country
+returning 1
+) select 'Inserted ' || count(*) || ' rows into ggircs_portal.facility' from rows;
+
+
+select setval from
+setval('ggircs_portal.facility_id_seq', (select max(id) from ggircs_portal.facility), true)
+where setval = 0;
+
 
 commit;

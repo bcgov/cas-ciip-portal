@@ -6,7 +6,7 @@ __dirname="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 pushd "$__dirname"
 
 _psql() {
-  PGOPTIONS='--client-min-messages=warning' psql -d $dev_db -qtA --set ON_ERROR_STOP=1 "$@" 2>&1
+  psql -d $dev_db -qtA --set ON_ERROR_STOP=1 "$@" 2>&1
 }
 
 dropdb() {
@@ -22,11 +22,17 @@ createdb() {
 actions=()
 
 sqitch_revert() {
-  psql -tc "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1 && sqitch revert
+  _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1 && sqitch revert -y
+  return 0
 }
 
 deploySwrs() {
   echo "Deploying the swrs schema to $dev_db"
+  if [ ! -f .cas-ggircs/sqitch.plan ]; then
+    echo "Could not find sqitch plan in $__dirname/.cas-ggircs."
+    echo "Did you forgot to init and/or update the submodule?"
+    exit 1
+  fi
   pushd .cas-ggircs
   sqitch_revert
   sqitch deploy
@@ -41,6 +47,11 @@ deploySwrs() {
 EOF
 
   _psql -c "select swrs_transform.load()"
+}
+
+deploySwrsIfNotExists() {
+  _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'swrs'" | grep -q 1 || deploySwrs
+  return 0
 }
 
 deployPortal() {
@@ -63,11 +74,16 @@ esac; shift; done
 
 [[ " ${actions[*]} " =~ " dropdb " ]] && dropdb
 createdb
+if [[ " ${actions[*]} " =~ " deploySwrs " ]]; then
+  deploySwrs
+else
+  deploySwrsIfNotExists
+fi
 [[ " ${actions[*]} " =~ " deployPortal " ]] && deployPortal
-[[ " ${actions[*]} " =~ " deploySwrs " ]] && deploySwrs
 
 _psql <<EOF
 begin;
+with rows as (
 insert into ggircs_portal.form_json
   (id, name, form_json)
   overriding system value
@@ -78,8 +94,15 @@ values
   (4, 'Electricity and Heat', '$(cat "$__dirname/data/portal/form_json/electricity_and_heat.json")'::jsonb),
   (5, 'Production', '$(cat "$__dirname/data/portal/form_json/production.json")'::jsonb),
   (6, 'Statement of Certification', '$(cat "$__dirname/data/portal/form_json/statement_of_certification.json")'::jsonb)
-  on conflict(id) do update
-  set name=excluded.name, form_json=excluded.form_json;
+on conflict(id) do update
+set name=excluded.name, form_json=excluded.form_json
+returning 1
+) select 'Inserted ' || count(*) || ' rows into ggircs_portal.form_json' from rows;
+
+select setval from
+setval('ggircs_portal.form_json_id_seq', (select max(id) from ggircs_portal.form_json), true)
+where setval = 0;
+
 commit;
 EOF
 

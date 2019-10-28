@@ -1,4 +1,6 @@
 begin;
+
+with rows as (
 insert into ggircs_portal.fuel(id, name, units, state)
 overriding system value
 values
@@ -90,6 +92,12 @@ values
   (86,'Flared Natural Gas CH4','m3', 'active'),
   (87,'Flared Natural Gas N20','m3', 'active'),
   (88,'Vented Natural Gas','m3', 'active')
-  on conflict(id) do update set units=excluded.units, state=excluded.state
-  ;
+on conflict(id) do update set units=excluded.units, state=excluded.state
+returning 1
+) select 'Inserted ' || count(*) || ' rows into ggircs_portal.fuel' from rows;
+
+select setval
+from setval('ggircs_portal.fuel_id_seq', (select max(id) from ggircs_portal.fuel), true)
+where setval = 0;
+
 commit;

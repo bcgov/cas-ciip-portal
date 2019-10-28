@@ -1,5 +1,6 @@
 begin;
 
+with rows as (
 insert into ggircs_portal.benchmark(id, product_id, benchmark, eligibility_threshold, start_date)
 overriding system value
 values
@@ -11,6 +12,12 @@ on conflict(id) do update set
 product_id=excluded.product_id,
 benchmark=excluded.benchmark,
 eligibility_threshold=excluded.eligibility_threshold,
-start_date=excluded.start_date;
+start_date=excluded.start_date
+returning 1
+) select 'Inserted ' || count(*) || ' rows into ggircs_portal.benchmark' from rows;
+
+select setval from
+setval('ggircs_portal.benchmark_id_seq', (select max(id) from ggircs_portal.benchmark), true)
+where setval = 0;
 
 commit;

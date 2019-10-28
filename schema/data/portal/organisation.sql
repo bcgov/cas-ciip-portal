@@ -1,5 +1,6 @@
 begin;
 
+with rows as (
 insert into ggircs_portal.organisation (
   id,
   report_id,
@@ -63,6 +64,12 @@ operator_mailing_address=excluded.operator_mailing_address,
 operator_city=excluded.operator_city,
 operator_province=excluded.operator_province,
 operator_postal_code=excluded.operator_postal_code,
-operator_country=excluded.operator_country;
+operator_country=excluded.operator_country
+returning 1
+) select 'Inserted ' || count(*) || ' rows into ggircs_portal.organisation' from rows;
+
+select setval from
+setval('ggircs_portal.organisation_id_seq', (select max(id) from ggircs_portal.organisation), true)
+where setval = 0;
 
 commit;

@@ -1,5 +1,6 @@
 begin;
 
+with rows as (
 insert into ggircs_portal.user (id, uuid, first_name, last_name, email_address, occupation, phone_number)
 overriding system value
 values
@@ -11,6 +12,12 @@ on conflict(id) do update set
   last_name=excluded.last_name,
   email_address=excluded.email_address,
   occupation=excluded.occupation,
-  phone_number=excluded.phone_number;
+  phone_number=excluded.phone_number
+returning 1
+) select 'Inserted ' || count(*) || ' rows into ggircs_portal.user' from rows;
+
+select setval from
+setval('ggircs_portal.user_id_seq', (select max(id) from ggircs_portal.user), true)
+where setval = 0;
 
 commit;
