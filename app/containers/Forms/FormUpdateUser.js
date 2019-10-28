@@ -27,6 +27,7 @@ export const FormUpdateUser = props => {
       <Form
         ref={createUserFromRef}
         id="registration-form"
+        className="mb-5"
         onSubmit={submitForm}
       >
         <input hidden name="id" value={user.id} />
@@ -68,7 +69,13 @@ export const FormUpdateUser = props => {
             </Col>
             <Col>
               <Form.Label>Phone No.</Form.Label>
-              <Form.Control type="string" />
+              <Form.Control
+                required
+                type="string"
+                name="phoneNumber"
+                value={user.phoneNumber}
+                onChange={handleChange}
+              />
             </Col>
           </Row>
         </Form.Group>
@@ -102,6 +109,8 @@ export default createFragmentContainer(FormUpdateUser, {
       firstName
       lastName
       emailAddress
+      phoneNumber
+      occupation
     }
   `
 });

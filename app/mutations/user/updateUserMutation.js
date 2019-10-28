@@ -5,10 +5,12 @@ const mutation = graphql`
   mutation updateUserMutation($input: UpdateUserInput!) {
     updateUser(input: $input) {
       user {
+        id
         firstName
         lastName
         emailAddress
-        id
+        occupation
+        phoneNumber
       }
       clientMutationId
     }

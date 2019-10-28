@@ -8,6 +8,8 @@ const mutation = graphql`
         firstName
         lastName
         emailAddress
+        occupation
+        phoneNumber
       }
     }
   }

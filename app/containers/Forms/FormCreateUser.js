@@ -7,9 +7,10 @@ export const FormCreateUser = props => {
   const user = {
     firstName: '',
     lastName: '',
-    emailAddress: ''
+    emailAddress: '',
+    occupation: '',
+    phoneNumber: ''
   };
-  console.log(props);
 
   const createUserFromRef = React.createRef();
 
@@ -28,7 +29,12 @@ export const FormCreateUser = props => {
   };
 
   return (
-    <Form ref={createUserFromRef} id="registration-form" onSubmit={submitForm}>
+    <Form
+      ref={createUserFromRef}
+      id="registration-form"
+      className="mb-5"
+      onSubmit={submitForm}
+    >
       <Form.Group controlId="formBasicName">
         <Row className="mb-4">
           <Col>
@@ -64,7 +70,12 @@ export const FormCreateUser = props => {
           </Col>
           <Col>
             <Form.Label>Phone No.</Form.Label>
-            <Form.Control type="string" />
+            <Form.Control
+              required
+              type="string"
+              name="phoneNumber"
+              onChange={handleChange}
+            />
           </Col>
         </Row>
       </Form.Group>
