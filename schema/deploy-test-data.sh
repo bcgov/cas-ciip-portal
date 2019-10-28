@@ -2,6 +2,36 @@
 set -e
 
 dev_db=ggircs_dev
+
+# =============================================================================
+# Usage:
+# -----------------------------------------------------------------------------
+usage() {
+    cat << EOF
+$0 [-d] [-p] [-s]
+
+Upserts test data in the $dev_db database, and deploys the schemas using sqitch if needed.
+If run without the corresponding options, this script will deploy the swrs and portal schemas
+if they do not exist, and then insert the portal test data.
+
+Options
+
+  -d, --drop-db
+    Drops the $dev_db database before deploying
+  -s, --deploy-swrs-schema
+    Redeploys the swrs schema and inserts the swrs test reports. This requires the .cas-ggircs submodule to be initialized
+  -p, --deploy-portal-schema
+    Redeploys the portal schema
+
+EOF
+    exit 1
+}
+
+if [ "$#" -gt 3 ]; then
+    echo "Passed $# parameters. Expected 0 to 3."
+    usage
+fi
+
 __dirname="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 pushd "$__dirname"
 
@@ -55,9 +85,15 @@ deploySwrsIfNotExists() {
 }
 
 deployPortal() {
+  deploySwrsIfNotExists
   echo "Deploying the portal schema to $dev_db"
   sqitch_revert
   sqitch deploy
+}
+
+deployPortalIfNotExists() {
+  _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'ggircs_portal'" | grep -q 1 || deployPortal
+  return 0
 }
 
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
@@ -74,12 +110,9 @@ esac; shift; done
 
 [[ " ${actions[*]} " =~ " dropdb " ]] && dropdb
 createdb
-if [[ " ${actions[*]} " =~ " deploySwrs " ]]; then
-  deploySwrs
-else
-  deploySwrsIfNotExists
-fi
+[[ " ${actions[*]} " =~ " deploySwrs " ]] && deploySwrs
 [[ " ${actions[*]} " =~ " deployPortal " ]] && deployPortal
+deployPortalIfNotExists
 
 _psql <<EOF
 begin;

@@ -223,7 +223,7 @@ jobs:
           command: |
             source ~/.bashrc
             pushd schema
-            ./deploy-test-data.sh --drop-db --deploy-swrs-schema --deploy-portal-schema
+            ./deploy-test-data.sh
       - run:
           name: deploying the data a second time should not fail on primary key conflicts
           command: |
