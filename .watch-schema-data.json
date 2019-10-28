@@ -1,0 +1,15 @@
+[
+  "trigger",
+  "./schema",
+  {
+    "name": "schema-data",
+    "expression": ["anyof", ["match", "**/*.sql", "wholename"]],
+    "command": [
+      "/usr/bin/env",
+      "bash",
+      "-c",
+      "(sleep 1; until psql -c 'select false' > /dev/null; do sleep 1; done; ./deploy-test-data.sh --deploy-portal-schema 1>../log/data.stdout.log 2>../log/data.stderr.log; sqitch status > ../log/sqitch.status) &"
+    ],
+    "append_files": false
+  }
+]

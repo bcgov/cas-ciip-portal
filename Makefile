@@ -76,12 +76,10 @@ install_test: install
 watch: $(call make_help,watch,configure and start the watchers & dev servers)
 watch:
 	watchman watch-project .
-	watchman -j < .watch-schema-sqitch.json
+	watchman -j < .watch-schema-data.json
 	watchman -j < .watch-status-schema.json
 	watchman -j < .watch-app-yarn.json
 	watchman -j < .watch-app-relay.json
-# Todo: decision on whether we keep or remove lint watching because of XO threading bug
-#	watchman -j < .watch-app-lint.json
 	watchman -j < .watch-db.json
 	watchman -j < .watch-server.json
 
