@@ -118,9 +118,12 @@ const getInitialFuelData = (application, allFuels) => {
         annualFuelAmount,
         alternativeMethodolodyDescription
       } = edge.node;
-      const fuelUnits = allFuels.edges.find(
+      const fuelNode = allFuels.edges.find(
         ({node: {name}}) => name === fuelType
-      ).node.units;
+      );
+      const fuelUnits = fuelNode ? fuelNode.node.units : undefined;
+      if (!fuelUnits)
+        console.warn(`Could not find fuel with type "${fuelType}"`);
       return {
         fuelType,
         fuelUnits,
