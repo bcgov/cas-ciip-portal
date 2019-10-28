@@ -11,18 +11,22 @@ const ApplicationWizardConfirmation = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
   const resultObject = {};
   const capitalRegex = /(?<cap>[A-Z])/g;
+  // Create a parsed result object from each formResult page
   formResults.forEach(result => {
     const parsedResult = JSON.parse(result.node.formResult);
     const resultTitle = Object.keys(parsedResult);
     resultObject[resultTitle] = parsedResult;
   });
 
+  // Create an array of keys to traverse the resultObject
   const formArray = Object.keys(resultObject);
 
   const renderInputs = (formTitle, formInput, nest) => {
     let value = resultObject[formTitle][formTitle][0][formInput];
+    // Space out camel cased inputs and Capitalize the input for display
     const prettyInput = formInput.replace(capitalRegex, ' $1').trim();
 
+    // If there are nested values, change the location of the value variable
     if (nest) value = resultObject[formTitle][formTitle][0][nest][0][formInput];
 
     return (
@@ -36,9 +40,12 @@ const ApplicationWizardConfirmation = props => {
   };
 
   const renderForm = formTitle => {
+    // Space out camel cased titles and capitalize for display
     const prettyTitle = formTitle.replace(capitalRegex, ' $1').trim();
+    // Get a list of keys for the form inputs
     const formInputs = Object.keys(resultObject[formTitle][formTitle][0]);
     const nested = [];
+    // Check for nested values (Electricity & heat have values nested under extra objects)
     if (
       typeof resultObject[formTitle][formTitle][0][formInputs[0]] === 'object'
     ) {
@@ -92,6 +99,7 @@ const ApplicationWizardConfirmation = props => {
     );
   };
 
+  // Change application status to 'pending' on application submit
   const submitApplication = async () => {
     const {environment} = props.relay;
     const variables = {
