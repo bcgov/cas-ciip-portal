@@ -19,7 +19,6 @@ export const ApplicationWizardConfirmationCardItemComponent = props => {
 
     // If there are nested values, change the location of the value variable
     if (nest) value = resultObject[formTitle][subTitle][0][nest][0][formInput];
-    if (typeof value === 'object') return null;
     return (
       <>
         <td style={{width: '50%'}}>
