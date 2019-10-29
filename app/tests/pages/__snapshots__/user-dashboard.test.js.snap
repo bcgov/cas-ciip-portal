@@ -11,7 +11,7 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
     <Col
       md={8}
     >
-      <ForwardRef(Relay(OrganisationsComponent))
+      <Relay(OrganisationsComponent)
         confirmOrg={false}
         handleContextChange={[Function]}
         handleInputChange={[Function]}
