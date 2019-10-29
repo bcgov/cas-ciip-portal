@@ -1,165 +1,322 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`landing It matches the last accepted Snapshot 1`] = `
-<DefaultLayout>
-  <Jumbotron
-    fluid={false}
+<DefaultLayout
+  isLoggedIn={false}
+  showSubheader={false}
+>
+  <ForwardRef
+    noGutters={false}
+    style={
+      Object {
+        "marginTop": "60px",
+      }
+    }
   >
-    <h1
+    <Col
+      md={5}
+    >
+      <h3
+        className="jsx-2421020044 blue"
+      >
+        What is the CleanBC Industrial Incentive Program?
+      </h3>
+      <p
+        className="jsx-2421020044"
+      >
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+      </p>
+      <a
+        className="jsx-2421020044 pad-bottom"
+        href="#value-props"
+      >
+        Learn More &gt;
+      </a>
+      <Card
+        body={false}
+        className="ciip-card"
+        style={
+          Object {
+            "margin": "30px 0",
+            "width": "100%",
+          }
+        }
+      >
+        <CardBody>
+          <CardTitle
+            className="blue"
+          >
+            Register for the Incentive Program
+          </CardTitle>
+          <CardText
+            style={
+              Object {
+                "padding": "10px 0 10px 0",
+              }
+            }
+          >
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
+          </CardText>
+          <Link
+            href={
+              Object {
+                "pathname": "/user-dashboard",
+                "query": Object {
+                  "id": "WyJ1c2VycyIsMV0=",
+                  "userId": 1,
+                },
+              }
+            }
+          >
+            <Button
+              active={false}
+              className="full-width"
+              disabled={false}
+              size="lg"
+              style={
+                Object {
+                  "padding": "15px",
+                }
+              }
+              type="button"
+              variant="primary"
+            >
+              Register
+            </Button>
+          </Link>
+        </CardBody>
+      </Card>
+      <Link
+        href={
+          Object {
+            "pathname": "/user-dashboard",
+            "query": Object {
+              "id": "WyJ1c2VycyIsMV0=",
+              "userId": 1,
+            },
+          }
+        }
+      >
+        <div
+          className="jsx-2421020044 login-link text-center "
+          style={
+            Object {
+              "textDecoration": "underline",
+            }
+          }
+        >
+          <a
+            className="jsx-2421020044"
+            href="#"
+          >
+            Already have an account? Click here to login.
+          </a>
+        </div>
+      </Link>
+    </Col>
+    <Col
+      className="with-shadow"
+      md={
+        Object {
+          "offset": 1,
+          "span": 6,
+        }
+      }
       style={
         Object {
-          "color": "#003366",
-          "fontSize": "Bold 25px",
-          "fontWeight": "bold",
-          "textAlign": "center",
+          "background": "url(../../static/what-is-it.jpg)",
+          "backgroundSize": "cover",
+        }
+      }
+    />
+  </ForwardRef>
+  <ForwardRef
+    id="value-props"
+    noGutters={false}
+    style={
+      Object {
+        "marginTop": "100px",
+      }
+    }
+  >
+    <Col
+      md={4}
+    >
+      <div
+        className="jsx-2421020044 value-prop"
+      >
+        <img
+          className="jsx-2421020044"
+          src="../../static/icons/import.png"
+        />
+        <h4
+          className="jsx-2421020044 blue"
+        >
+          Import data from emission reports
+        </h4>
+        <p
+          className="jsx-2421020044"
+        >
+          Reduce reporting burden no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit ame
+        </p>
+      </div>
+    </Col>
+    <Col
+      md={4}
+    >
+      <div
+        className="jsx-2421020044 value-prop"
+      >
+        <img
+          className="jsx-2421020044"
+          src="../../static/icons/production.png"
+        />
+        <h4
+          className="jsx-2421020044 blue"
+        >
+          Tell us about your production data
+        </h4>
+        <p
+          className="jsx-2421020044"
+        >
+          Reduce reporting burden no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit ame
+        </p>
+      </div>
+    </Col>
+    <Col
+      md={4}
+    >
+      <div
+        className="jsx-2421020044 value-prop"
+      >
+        <img
+          className="jsx-2421020044"
+          src="../../static/icons/paid.png"
+        />
+        <h4
+          className="jsx-2421020044 blue"
+        >
+          Get a portion of your Carbon tax back
+        </h4>
+        <p
+          className="jsx-2421020044"
+        >
+          Reduce reporting burden no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit ame
+        </p>
+      </div>
+    </Col>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+    style={
+      Object {
+        "marginTop": "100px",
+      }
+    }
+  >
+    <Col
+      md={
+        Object {
+          "span": 6,
         }
       }
     >
-      Welcome to the CIIP Portal
-    </h1>
-  </Jumbotron>
-  <Container
-    fluid={false}
-  >
-    <ForwardRef
-      noGutters={false}
+      <img
+        className="jsx-2421020044 with-shadow"
+        src="../../static/how-does-it-work.jpg"
+      />
+    </Col>
+    <Col
+      md={
+        Object {
+          "offset": 1,
+          "span": 5,
+        }
+      }
     >
-      <Col
-        md={true}
+      <h3
+        className="jsx-2421020044 blue"
       >
-        <Card
-          body={false}
-          style={
-            Object {
-              "borderRadius": "15px",
-              "marginBottom": "25px",
-              "marginTop": "50px",
-              "textAlign": "center",
-            }
+        How does the CIIP process work?
+      </h3>
+      <p
+        className="jsx-2421020044"
+      >
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+      </p>
+      <Card
+        body={false}
+        className="ciip-card"
+        style={
+          Object {
+            "border": "1px solid grey",
+            "margin": "40px 0",
+            "width": "100%",
           }
-        >
-          <CardBody
+        }
+      >
+        <CardBody>
+          <CardTitle
+            className="blue"
+          >
+            Some fact or figure about CIIP
+          </CardTitle>
+          <CardText
             style={
               Object {
-                "backgroundColor": "#003366",
-                "borderRadius": "15px",
-                "padding": "50px",
+                "padding": "10px 0 10px 0",
               }
             }
           >
-            <CardTitle
-              style={
-                Object {
-                  "color": "white",
-                  "fontSize": "25px",
-                  "fontWeight": "bold",
-                  "marginBottom": "15px",
-                }
-              }
-            >
-              Login
-            </CardTitle>
-            <CardText
-              style={
-                Object {
-                  "color": "white",
-                }
-              }
-            >
-              If you have already registered, click below to log in.
-            </CardText>
-            <Link
-              href={
-                Object {
-                  "pathname": "/user-dashboard",
-                  "query": Object {
-                    "id": "WyJ1c2VycyIsMV0=",
-                    "userId": 1,
-                  },
-                }
-              }
-            >
-              <Button
-                active={false}
-                disabled={false}
-                size="lg"
-                style={
-                  Object {
-                    "backgroundColor": "#EDA500",
-                    "color": "#003366",
-                  }
-                }
-                type="button"
-                variant="primary"
-              >
-                Login
-              </Button>
-            </Link>
-          </CardBody>
-        </Card>
-      </Col>
-      <Col>
-        <Card
-          body={false}
-          style={
-            Object {
-              "borderRadius": "15px",
-              "marginBottom": "25px",
-              "marginTop": "50px",
-              "textAlign": "center",
-            }
-          }
-        >
-          <CardBody
-            style={
-              Object {
-                "padding": "50px",
-              }
-            }
-          >
-            <CardTitle
-              style={
-                Object {
-                  "color": "#003366",
-                  "fontSize": "25px",
-                  "fontWeight": "bold",
-                  "marginBottom": "15px",
-                }
-              }
-            >
-              Register for CIIP
-            </CardTitle>
-            <CardText
-              style={
-                Object {
-                  "color": "#003366",
-                }
-              }
-            >
-              Click here to create your industrial reporter account.
-            </CardText>
-            <Link
-              href="/registration"
-            >
-              <Button
-                active={false}
-                disabled={false}
-                size="lg"
-                style={
-                  Object {
-                    "backgroundColor": "#003366",
-                  }
-                }
-                type="button"
-                variant="primary"
-              >
-                Register for CIIP
-              </Button>
-            </Link>
-          </CardBody>
-        </Card>
-      </Col>
-    </ForwardRef>
-  </Container>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
+          </CardText>
+        </CardBody>
+      </Card>
+      <p
+        className="jsx-2421020044"
+      >
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+      </p>
+    </Col>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+    style={
+      Object {
+        "display": "none",
+        "marginTop": "100px",
+      }
+    }
+  >
+    <Jumbotron
+      fluid={false}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <h3
+        className="jsx-2421020044 blue"
+      >
+        Have questions? Get in touch.
+      </h3>
+      <p
+        className="jsx-2421020044"
+      >
+        Phone: +1 099 9920 9002
+      </p>
+      <p
+        className="jsx-2421020044"
+      >
+        Email: cas@ggircs.com
+      </p>
+    </Jumbotron>
+  </ForwardRef>
+  <JSXStyle
+    id="2421020044"
+  >
+    .value-prop.jsx-2421020044{padding-right:30px;}.value-prop.jsx-2421020044 img.jsx-2421020044{max-width:100px;padding:30px 0;margin:0 auto;}.value-prop.jsx-2421020044 h4.jsx-2421020044{margin-bottom:20px;}.login-link.jsx-2421020044{border:1px solid #666;padding:20px;border-radius:4px;}
+  </JSXStyle>
 </DefaultLayout>
 `;

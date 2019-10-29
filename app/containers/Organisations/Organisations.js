@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {Table, Dropdown, Button} from 'react-bootstrap';
+import {Table, Dropdown, Button, Alert} from 'react-bootstrap';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
 
@@ -37,12 +37,24 @@ export const OrganisationsComponent = props => {
   return (
     <>
       {user.userOrganisationsByUserId.edges.length === 0 ? (
-        <>You are not registered to report for any organisation at this time.</>
+        <>
+          <Alert variant="warning">
+            You are not registered to apply for any Reporting Operation at this
+            time. You can request access to a Reporting Operation by selecting
+            one from the dropdown below.
+          </Alert>
+          <br />
+        </>
       ) : (
-        <Table striped bordered hover style={{textAlign: 'center'}}>
+        <Table
+          striped
+          bordered
+          hover
+          style={{textAlign: 'left', marginBottom: '40px'}}
+        >
           <thead>
             <tr>
-              <th>Organisation</th>
+              <th>Operation</th>
               <th>Access Status</th>
               <th>Facilities</th>
             </tr>
@@ -52,21 +64,40 @@ export const OrganisationsComponent = props => {
               return <UserOrganisation key={node.id} userOrganisation={node} />;
             })}
           </tbody>
+          <style jsx>
+            {`
+              th {
+                padding: 20px;
+                font-weight: 500;
+              }
+            `}
+          </style>
         </Table>
       )}
 
       {props.confirmOrg ? (
         <>
-          <h4>Claim {props.orgInput}?</h4>
-          <Button onClick={claimOrg}>Confirm</Button>
+          <h5 className="blue">Requesting access to: </h5>
+          <h4 style={{fontWeight: 300, margin: '15px 0'}}>{props.orgInput} </h4>
+          <Button
+            style={{marginRight: '15px'}}
+            variant="primary"
+            onClick={claimOrg}
+          >
+            Request Access
+          </Button>
           <Button variant="danger" onClick={cancelClaim}>
             Cancel
           </Button>
         </>
       ) : (
-        <Dropdown>
-          <b>Add an Organisation:</b> &nbsp;
-          <Dropdown.Toggle as="input" onChange={changeInput}></Dropdown.Toggle>
+        <Dropdown className="search-dropdown">
+          <h5>Add an Operation:</h5>
+          <Dropdown.Toggle
+            as="input"
+            placeholder="Search..."
+            onChange={changeInput}
+          ></Dropdown.Toggle>
           <Dropdown.Menu>
             {allOrganisations.edges.map(({node}) => {
               return (
@@ -80,6 +111,14 @@ export const OrganisationsComponent = props => {
               );
             })}
           </Dropdown.Menu>
+          <style jsx global>{`
+            .dropdown-toggle {
+              padding: 8px 16px;
+              width: 300px;
+              border-radius: 3px;
+              border: 1px solid #999;
+            }
+          `}</style>
         </Dropdown>
       )}
     </>

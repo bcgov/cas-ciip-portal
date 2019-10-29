@@ -15,7 +15,7 @@ const Header = props => (
       <div className="container">
         <div className="banner">
           <div className="header-left">
-            <Link href="/" alt="British Columbia">
+            <Link href="/">
               <img
                 src="/static/logo-banner.png"
                 alt="Go to the Government of British Columbia website"

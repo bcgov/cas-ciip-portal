@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Button, Row, Col, Card, Jumbotron} from 'react-bootstrap';
 import Link from 'next/link';
 import DefaultLayout from '../../layouts/default-layout';
-import './index.css';
 
 const aboveFoldImage = {
   background: 'url(../../static/what-is-it.jpg)',
@@ -48,7 +47,12 @@ export default class Index extends Component {
                     query: {userId: 1, id: 'WyJ1c2VycyIsMV0='}
                   }}
                 >
-                  <Button className="full-width" variant="primary" size="lg">
+                  <Button
+                    style={{padding: '15px'}}
+                    className="full-width"
+                    variant="primary"
+                    size="lg"
+                  >
                     Register
                   </Button>
                 </Link>
@@ -164,38 +168,6 @@ export default class Index extends Component {
             <p>Email: cas@ggircs.com</p>
           </Jumbotron>
         </Row>
-
-        <style jsx global>{`
-          h3 {
-            margin-bottom: 20px;
-            font-weight: 500;
-          }
-          .blue {
-            color: #036;
-          }
-          p {
-            line-height: 25px;
-          }
-          .ciip-card {
-            border: 1px solid #036;
-            padding: 15px;
-            border-radius: 0;
-            box-shadow: 1px 8px 13px -5px #00336694;
-          }
-          button.full-width {
-            width: 100%;
-          }
-          .btn-primary {
-            background: #036;
-            font-size: 18px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-          }
-          .with-shadow {
-            box-shadow: 1px 8px 13px -5px #00336694;
-          }
-        `}</style>
-
         <style jsx>{`
           .value-prop {
             padding-right: 30px;

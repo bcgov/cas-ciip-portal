@@ -30,7 +30,6 @@ const Subheader = () => (
         -webkit-box-shadow: 0 6px 8px -4px #b3b1b3;
         -moz-box-shadow: 0 6px 8px -4px #b3b1b3;
         box-shadow: 0 6px 8px -4px #b3b1b3;
-        margin-bottom: 50px;
         padding: 10px 0 10px 50px;
       }
       .navigation-main ul {
