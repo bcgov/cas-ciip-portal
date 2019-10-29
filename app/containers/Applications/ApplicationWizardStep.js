@@ -155,7 +155,6 @@ const ApplicationWizardStep = ({
       application.formResultsByApplicationId.edges[formJsonRowId - 1].node
         .formResult !== '{}'
     ) {
-      prepopulateFromSwrs = false;
       return setInitialData(
         JSON.parse(
           application.formResultsByApplicationId.edges[formJsonRowId - 1].node
