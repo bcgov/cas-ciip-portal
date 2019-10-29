@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationWizardConfirmationComponentCardItem should render the individual summary confirmation card component 1`] = `
+<Fragment>
+  <Card
+    body={false}
+    key="facility"
+    style={
+      Object {
+        "marginTop": "10px",
+      }
+    }
+  >
+    <CardHeader
+      as="h5"
+      onClick={[Function]}
+      style={
+        Object {
+          "textTransform": "capitalize",
+        }
+      }
+    >
+      facility
+       
+      <span
+        style={
+          Object {
+            "float": "right",
+          }
+        }
+      >
+        -
+      </span>
+    </CardHeader>
+    <Collapse
+      appear={false}
+      dimension="height"
+      getDimensionValue={[Function]}
+      in={true}
+      mountOnEnter={false}
+      timeout={300}
+      unmountOnExit={false}
+    >
+      <CardBody>
+        <Bootstrap(Table)>
+          <tbody>
+            <tr
+              key="name"
+            >
+              <td
+                style={
+                  Object {
+                    "width": "50%",
+                  }
+                }
+              >
+                <strong
+                  style={
+                    Object {
+                      "textTransform": "capitalize",
+                    }
+                  }
+                >
+                  name
+                  :
+                </strong>
+              </td>
+              <td
+                style={
+                  Object {
+                    "width": "50%",
+                  }
+                }
+              >
+                Jimbo
+              </td>
+            </tr>
+          </tbody>
+        </Bootstrap(Table)>
+      </CardBody>
+    </Collapse>
+  </Card>
+</Fragment>
+`;

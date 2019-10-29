@@ -6,7 +6,7 @@ import {createFragmentContainer} from 'react-relay';
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
  */
-const ApplicationWizardConfirmationCardItemComponent = props => {
+export const ApplicationWizardConfirmationCardItemComponent = props => {
   const [open, setOpen] = useState(false);
   const {resultObject} = props;
   const capitalRegex = /(?<cap>[A-Z])/g;

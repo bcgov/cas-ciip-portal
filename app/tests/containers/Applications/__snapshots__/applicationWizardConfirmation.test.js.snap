@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationWizardConfirmationComponent should render the summary confirmation component 1`] = `
+<Fragment>
+  <ForwardRef(Relay(ApplicationWizardConfirmationCardItemComponent))
+    formSubtitle="id"
+    formTitle="id"
+    key="id"
+    resultObject={
+      Object {
+        "id": Object {
+          "id": "form-results",
+        },
+      }
+    }
+  />
+  <Button
+    active={false}
+    className="float-right"
+    disabled={false}
+    onClick={[Function]}
+    style={
+      Object {
+        "marginTop": "10px",
+      }
+    }
+    type="button"
+    variant="primary"
+  >
+    Submit
+  </Button>
+</Fragment>
+`;

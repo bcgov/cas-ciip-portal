@@ -8,7 +8,7 @@ import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmati
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
  */
-const ApplicationWizardConfirmationComponent = props => {
+export const ApplicationWizardConfirmationComponent = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
   const resultObject = {};
   // Create a parsed result object from each formResult page
