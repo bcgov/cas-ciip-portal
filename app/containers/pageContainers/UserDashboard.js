@@ -125,6 +125,22 @@ export default class UserDashBoard extends Component {
                 </Accordion.Collapse>
               </Card>
             </Accordion>
+            <Card
+              className="ciip-card"
+              style={{
+                width: '100%',
+                margin: '40px 0',
+                border: '1px solid grey'
+              }}
+            >
+              <Card.Body>
+                <Card.Title className="blue">Contact Information</Card.Title>
+                <Card.Text style={{padding: '10px 0 10px 0'}}>
+                  Please email us at <strong>GHGRegulator@gov.bc.ca</strong> for
+                  any questions.
+                </Card.Text>
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       </DefaultLayout>
