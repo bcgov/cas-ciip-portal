@@ -8,7 +8,7 @@ import FormWithFuelUnits from './FormWithFuelUnits';
 export const FormComponent = ({
   query,
   relay,
-  applicationId,
+  formResultId,
   onFormComplete,
   initialData,
   initialDataSource
@@ -16,9 +16,9 @@ export const FormComponent = ({
   const {json} = query || {};
 
   // Mutation: stores the result of the form
-  const createFormResult = graphql`
-    mutation FormLoaderContainerMutation($input: CreateFormResultInput!) {
-      createFormResult(input: $input) {
+  const updateFormResult = graphql`
+    mutation FormLoaderContainerMutation($input: UpdateFormResultInput!) {
+      updateFormResult(input: $input) {
         formResult {
           rowId
         }
@@ -31,16 +31,14 @@ export const FormComponent = ({
     const {environment} = relay;
     const variables = {
       input: {
-        formResult: {
-          applicationId,
-          formId: json.rowId,
-          userId: 2,
+        id: formResultId,
+        formResultPatch: {
           formResult: JSON.stringify(formResult)
         }
       }
     };
 
-    const mutation = createFormResult;
+    const mutation = updateFormResult;
     commitMutation(environment, {
       mutation,
       variables,
@@ -88,7 +86,6 @@ export default createRefetchContainer(
     query: graphql`
       fragment Form_query on Query @argumentDefinitions(formId: {type: "ID!"}) {
         json: formJson(id: $formId) {
-          rowId
           formJson
         }
         ...FormWithProductUnits_query

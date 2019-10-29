@@ -38,14 +38,7 @@ const ApplicationWizard = ({query}) => {
         // If we're landing on the wizard page, the formJson isn't defined.
         // We want to trigger a replace instead of a push in that case
       );
-  }, [
-    confirmationPage,
-    formJson,
-    query.application.rowId,
-    query.formJson.rowId,
-    router,
-    wizard.edges
-  ]);
+  }, [confirmationPage, formJson, router, wizard.edges]);
 
   const onStepComplete = () => {
     for (let i = 0; i < wizard.edges.length; i++) {

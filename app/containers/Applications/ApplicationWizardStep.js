@@ -135,10 +135,6 @@ const getInitialFuelData = (application, allFuels) => {
   };
 };
 
-const prepopulateFromFormResult = application => {
-  console.log(application);
-};
-
 /*
  * The ApplicationWizardStep renders a form and, where applicable,
  *  TODOx: starts by presenting a summary of existing data to the user
@@ -153,15 +149,21 @@ const ApplicationWizardStep = ({
 }) => {
   const {application, allFuels} = query;
   const [initialData, setInitialData] = useState(undefined);
-  // Console.log(formJsonRowId);
-  // console.log(query);
+
   useEffect(() => {
     if (
       application.formResultsByApplicationId.edges[formJsonRowId - 1].node
         .formResult !== '{}'
-    )
+    ) {
       prepopulateFromSwrs = false;
-    prepopulateFromFormResult(application);
+      return setInitialData(
+        JSON.parse(
+          application.formResultsByApplicationId.edges[formJsonRowId - 1].node
+            .formResult
+        )
+      );
+    }
+
     if (!prepopulateFromSwrs) return setInitialData(undefined);
     switch (formName) {
       case 'Admin': {
@@ -192,7 +194,12 @@ const ApplicationWizardStep = ({
   ]);
 
   let initialDataSource;
-  if (prepopulateFromSwrs) {
+  if (
+    application.formResultsByApplicationId.edges[formJsonRowId - 1].node
+      .formResult !== '{}'
+  ) {
+    initialDataSource = 'your draft submission';
+  } else if (prepopulateFromSwrs) {
     initialDataSource = 'your last SWRS report';
   }
 
@@ -203,10 +210,13 @@ const ApplicationWizardStep = ({
   return (
     <Form
       query={query}
-      applicationId={application.rowId}
+      formResultId={
+        application.formResultsByApplicationId.edges[formJsonRowId - 1].node.id
+      }
       startsEditable={!prepopulateFromSwrs}
       initialData={initialData}
       initialDataSource={initialDataSource}
+      prepopulateFromSwrs={prepopulateFromSwrs}
       onFormComplete={onStepComplete}
     />
   );
@@ -231,11 +241,10 @@ export default createFragmentContainer(ApplicationWizardStep, {
         }
       }
       application(id: $applicationId) {
-        rowId
         formResultsByApplicationId {
           edges {
             node {
-              formId
+              id
               formResult
             }
           }
