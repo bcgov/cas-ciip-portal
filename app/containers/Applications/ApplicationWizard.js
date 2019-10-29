@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
+import ApplicationFormNavbar from '../../components/Forms/ApplicationFormNavbar';
 import ApplicationWizardStep from './ApplicationWizardStep';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {
@@ -37,7 +38,14 @@ const ApplicationWizard = ({query}) => {
         // If we're landing on the wizard page, the formJson isn't defined.
         // We want to trigger a replace instead of a push in that case
       );
-  }, [confirmationPage, formJson, router, wizard.edges]);
+  }, [
+    confirmationPage,
+    formJson,
+    query.application.rowId,
+    query.formJson.rowId,
+    router,
+    wizard.edges
+  ]);
 
   const onStepComplete = () => {
     for (let i = 0; i < wizard.edges.length; i++) {
@@ -67,12 +75,19 @@ const ApplicationWizard = ({query}) => {
 
   return (
     <>
+      <ApplicationFormNavbar
+        router={router}
+        setRouterQueryParam={setRouterQueryParam}
+        wizard={wizard}
+        confirmationPage={confirmationPage}
+      />
       <ApplicationWizardStep
         query={query}
         prepopulateFromCiip={prepopulateFromCiip}
         prepopulateFromSwrs={prepopulateFromSwrs}
         formName={name}
         confirmationPage={confirmationPage}
+        formJsonRowId={query.formJson.rowId}
         onStepComplete={onStepComplete}
       />
     </>
@@ -87,10 +102,11 @@ export default createFragmentContainer(ApplicationWizard, {
         applicationId: {type: "ID!"}
       ) {
       application(id: $applicationId) {
-        __typename
+        rowId
       }
       formJson(id: $formId) {
         id
+        rowId
       }
       wizard: allCiipApplicationWizards(orderBy: FORM_POSITION_ASC) {
         edges {

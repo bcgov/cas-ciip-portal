@@ -135,6 +135,10 @@ const getInitialFuelData = (application, allFuels) => {
   };
 };
 
+const prepopulateFromFormResult = application => {
+  console.log(application);
+};
+
 /*
  * The ApplicationWizardStep renders a form and, where applicable,
  *  TODOx: starts by presenting a summary of existing data to the user
@@ -144,11 +148,20 @@ const ApplicationWizardStep = ({
   formName,
   onStepComplete,
   prepopulateFromSwrs,
-  confirmationPage
+  confirmationPage,
+  formJsonRowId
 }) => {
   const {application, allFuels} = query;
   const [initialData, setInitialData] = useState(undefined);
+  // Console.log(formJsonRowId);
+  // console.log(query);
   useEffect(() => {
+    if (
+      application.formResultsByApplicationId.edges[formJsonRowId - 1].node
+        .formResult !== '{}'
+    )
+      prepopulateFromSwrs = false;
+    prepopulateFromFormResult(application);
     if (!prepopulateFromSwrs) return setInitialData(undefined);
     switch (formName) {
       case 'Admin': {
@@ -169,7 +182,14 @@ const ApplicationWizardStep = ({
       default:
         setInitialData(undefined);
     }
-  }, [formName, query, prepopulateFromSwrs, application, allFuels]);
+  }, [
+    formName,
+    query,
+    prepopulateFromSwrs,
+    application,
+    allFuels,
+    formJsonRowId
+  ]);
 
   let initialDataSource;
   if (prepopulateFromSwrs) {
@@ -212,6 +232,14 @@ export default createFragmentContainer(ApplicationWizardStep, {
       }
       application(id: $applicationId) {
         rowId
+        formResultsByApplicationId {
+          edges {
+            node {
+              formId
+              formResult
+            }
+          }
+        }
         swrsEmissionData(reportingYear: "2018") {
           edges {
             node {
