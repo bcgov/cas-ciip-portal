@@ -8,7 +8,7 @@ dev_db=ggircs_dev
 # -----------------------------------------------------------------------------
 usage() {
     cat << EOF
-$0 [-d] [-p] [-s]
+$0 [-d] [-p] [-s] [-h]
 
 Upserts test data in the $dev_db database, and deploys the schemas using sqitch if needed.
 If run without the corresponding options, this script will deploy the swrs and portal schemas
@@ -22,18 +22,20 @@ Options
     Redeploys the swrs schema and inserts the swrs test reports. This requires the .cas-ggircs submodule to be initialized
   -p, --deploy-portal-schema
     Redeploys the portal schema
+  -h, --help
+    Prints this message
 
 EOF
-    exit 1
 }
 
 if [ "$#" -gt 3 ]; then
     echo "Passed $# parameters. Expected 0 to 3."
     usage
+    exit 1
 fi
 
 __dirname="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-pushd "$__dirname"
+pushd "$__dirname" > /dev/null
 
 _psql() {
   psql -d $dev_db -qtA --set ON_ERROR_STOP=1 "$@" 2>&1
@@ -105,6 +107,10 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     ;;
   -s | --deploy-swrs-schema )
     actions+=('deploySwrs')
+    ;;
+  -h | --help )
+    usage
+    exit 0
     ;;
 esac; shift; done
 
