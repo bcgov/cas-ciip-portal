@@ -10,6 +10,8 @@ as $function$
 declare
   new_id int;
   result ggircs_portal.application;
+  form_count int;
+  counter int := 1;
 begin
 
   --Insert new value into application
@@ -20,7 +22,19 @@ begin
   insert into ggircs_portal.application_status(application_id, application_status)
   values (new_id, 'draft');
 
+  select count(id) as c from ggircs_portal.form_json into form_count;
+
   select id, facility_id from ggircs_portal.application where id = new_id into result;
+
+  loop
+
+    exit when counter = form_count+1;
+    insert into ggircs_portal.form_result(form_id, user_id, application_id, form_result)
+    values (counter, 2, new_id, '{}');
+    counter := counter + 1;
+
+  end loop;
+
   return result;
 end;
 $function$ language plpgsql strict volatile;

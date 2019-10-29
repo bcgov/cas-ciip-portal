@@ -6,7 +6,8 @@ import ApplicationWizard from '../Applications/ApplicationWizard';
 class CiipApplication extends Component {
   static getInitialProps = () => ({
     variables: {
-      formId: ''
+      formId: '',
+      applicationId: ''
     }
   });
 
