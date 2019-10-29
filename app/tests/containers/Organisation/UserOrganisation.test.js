@@ -22,7 +22,6 @@ describe('UserOrganisation', () => {
       <UserOrganisationComponent userOrganisation={userOrganisation} />
     );
     expect(r).toMatchSnapshot();
-    console.log(r.find('td'));
     expect(r.find('Badge').text()).toBe('active');
   });
 });

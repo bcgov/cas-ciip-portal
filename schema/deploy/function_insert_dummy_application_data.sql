@@ -31,7 +31,7 @@ create or replace function ggircs_portal.insert_dummy_application_data()
   (5,2,2, '2019-09-17 14:49:54.191757-07', '{"moduleThroughputAndProductionData": [{"units": ",m3", "comments": "Mollitia ex non temp", "quantity": 1100, "processingUnit": "Sales Compression", "associatedEmissions": "Molestiae blanditiis", "attributableFuelPercentage": 52}]}'),
   (1,2,2, '2019-09-17 14:49:54.191757-07', '{"operationalRepresentativeInformation": [{"fax": "+1 (403) 112-7963", "phone": "+1 (475) 164-3308", "position": "Culpa officiis liber", "lastName": "Velit facilis offici", "firstName": "Facere nihil minima ", "emailAddress": "mojoqub@mailinator.com", "mailingAddressCity": "Nesciunt et tenetur", "mailingAddress": "Amet optio impedit", "mailingAddressProvince": "British Columbia", "mailingAddressPostalCode": "h0h0h0"}]}');
 
-  insert into ggircs_portal.application_status(application_id, application_status) values (1, 'pending'), (2, 'pending');
+  insert into ggircs_portal.application_status(application_id, application_status) values (1, 'draft'), (2, 'pending');
 
     insert into ggircs_portal.fuel(name, units, state) values ('Acetylene','m3', 'active'),
   ('Agricultural Byproducts','t', 'active'),
