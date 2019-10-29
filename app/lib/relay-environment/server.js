@@ -19,7 +19,7 @@ export default {
           urlMiddleware({
             // TODO: set $RELAY_ENDPOINT
             // url: req => process.env.RELAY_ENDPOINT
-            url: req => 'http://localhost:3004/graphql'
+            url: _ => 'http://localhost:3004/graphql'
           }),
           relaySSR.getMiddleware()
         ])
@@ -32,9 +32,12 @@ export default {
 
     return new Environment({
       store,
-      network: Network.create(
-        () => relayData.find(([dataKey]) => dataKey === key)[1]
-      )
+      network: Network.create(() => {
+        if (!relayData) return;
+        const data = relayData.find(([dataKey]) => dataKey === key);
+        if (!data) return;
+        return data[1];
+      })
     });
   }
 };
