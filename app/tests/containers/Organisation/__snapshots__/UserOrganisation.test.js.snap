@@ -1,13 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserOrganisation should render a userOrganisation if the userOrganisation is passed as props 1`] = `
-<tr>
-  <td />
-  <td>
+<tr
+  className="jsx-2428472905"
+>
+  <td
+    className="jsx-2428472905"
+  />
+  <td
+    className="jsx-2428472905"
+  >
     <Badge
       pill={true}
       style={
         Object {
+          "padding": "8px",
           "width": "100%",
         }
       }
@@ -16,7 +23,9 @@ exports[`UserOrganisation should render a userOrganisation if the userOrganisati
       active
     </Badge>
   </td>
-  <td>
+  <td
+    className="jsx-2428472905"
+  >
      
     <Link
       href={
@@ -28,16 +37,19 @@ exports[`UserOrganisation should render a userOrganisation if the userOrganisati
         }
       }
     >
-      <Button
-        active={false}
-        disabled={false}
-        type="button"
-        variant="primary"
+      <a
+        className="jsx-2428472905"
+        href="#"
       >
-        View
-      </Button>
+        View Facilities
+      </a>
     </Link>
   </td>
+  <JSXStyle
+    id="2428472905"
+  >
+    td.jsx-2428472905{padding:20px;}
+  </JSXStyle>
 </tr>
 `;
 

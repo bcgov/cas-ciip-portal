@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {Badge, Button} from 'react-bootstrap';
+import {Badge} from 'react-bootstrap';
 import Link from 'next/link';
 import {updateUserOrganisationMutation} from '../../mutations/user_organisation/UpdateUserOrganisation';
 
@@ -46,7 +46,7 @@ export const UserOrganisationComponent = props => {
       <td>
         <Badge
           pill
-          style={{width: '100%'}}
+          style={{width: '100%', padding: '8px'}}
           variant={statusBadgeColor[userOrganisation.status]}
         >
           {userOrganisation.status}
@@ -63,10 +63,17 @@ export const UserOrganisationComponent = props => {
               }
             }}
           >
-            <Button variant="primary">View</Button>
+            <a href="#">View Facilities</a>
           </Link>
         ) : null}
       </td>
+      <style jsx>
+        {`
+          td {
+            padding: 20px;
+          }
+        `}
+      </style>
     </tr>
   );
 };

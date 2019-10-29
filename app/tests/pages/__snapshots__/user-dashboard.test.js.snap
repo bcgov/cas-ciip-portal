@@ -1,61 +1,148 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
-<DefaultLayout>
-  <Container
-    fluid={false}
+<DefaultLayout
+  showSubheader={true}
+  title="My Operations"
+>
+  <ForwardRef
+    noGutters={false}
   >
-    <ForwardRef
-      noGutters={false}
+    <Col
+      md={8}
     >
-      <Col>
-        <ForwardRef
-          noGutters={false}
-        >
-          <h2>
-            Apply for CIIP 2019
-          </h2>
-          <p
-            className="text"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
-        </ForwardRef>
-        <ForwardRef
-          noGutters={false}
-        >
-          <h2>
-            Pre-requisites:
-          </h2>
-          <p
-            className="text"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
-        </ForwardRef>
-      </Col>
-      <Col
-        md={
+      <Relay(OrganisationsComponent)
+        confirmOrg={false}
+        handleContextChange={[Function]}
+        handleInputChange={[Function]}
+        handleOrgChange={[Function]}
+        handleOrgConfirm={[Function]}
+        orgInput=""
+        selectedOrg={null}
+      />
+    </Col>
+    <Col
+      md={4}
+    >
+      <h5
+        style={
           Object {
-            "span": 1,
+            "marginBottom": "20px",
           }
         }
-      />
-      <Col>
-        <h2>
-          Reporting organisations
-        </h2>
-        <Relay(OrganisationsComponent)
-          confirmOrg={false}
-          handleContextChange={[Function]}
-          handleInputChange={[Function]}
-          handleOrgChange={[Function]}
-          handleOrgConfirm={[Function]}
-          orgInput=""
-          selectedOrg={null}
-        />
-      </Col>
-    </ForwardRef>
-  </Container>
+      >
+        Frequently Asked Questions
+      </h5>
+      <ForwardRef
+        defaultActiveKey="0"
+      >
+        <Card
+          body={false}
+        >
+          <CardHeader>
+            <ForwardRef
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "active": false,
+                    "disabled": false,
+                    "type": "button",
+                    "variant": "primary",
+                  },
+                  "displayName": "Button",
+                  "render": [Function],
+                }
+              }
+              eventKey="0"
+              variant="link"
+            >
+              What is an Operation?
+            </ForwardRef>
+          </CardHeader>
+          <AccordionCollapse
+            eventKey="0"
+          >
+            <CardBody>
+              <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+              </p>
+            </CardBody>
+          </AccordionCollapse>
+        </Card>
+        <Card
+          body={false}
+        >
+          <CardHeader>
+            <ForwardRef
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "active": false,
+                    "disabled": false,
+                    "type": "button",
+                    "variant": "primary",
+                  },
+                  "displayName": "Button",
+                  "render": [Function],
+                }
+              }
+              eventKey="1"
+              variant="link"
+            >
+              What happens when I request access to a Reporting Operation?
+            </ForwardRef>
+          </CardHeader>
+          <AccordionCollapse
+            eventKey="1"
+          >
+            <CardBody>
+              <p>
+                At vero eos et accusam et justo duo dolores et ea rebum.
+                 
+              </p>
+              <p>
+                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+              </p>
+            </CardBody>
+          </AccordionCollapse>
+        </Card>
+        <Card
+          body={false}
+        >
+          <CardHeader>
+            <ForwardRef
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "active": false,
+                    "disabled": false,
+                    "type": "button",
+                    "variant": "primary",
+                  },
+                  "displayName": "Button",
+                  "render": [Function],
+                }
+              }
+              eventKey="2"
+              variant="link"
+            >
+              How long does request approval take?
+            </ForwardRef>
+          </CardHeader>
+          <AccordionCollapse
+            eventKey="2"
+          >
+            <CardBody>
+               
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+            </CardBody>
+          </AccordionCollapse>
+        </Card>
+      </ForwardRef>
+    </Col>
+  </ForwardRef>
 </DefaultLayout>
 `;
