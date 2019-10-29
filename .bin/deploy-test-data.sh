@@ -35,7 +35,7 @@ if [ "$#" -gt 3 ]; then
 fi
 
 __dirname="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-pushd "$__dirname" > /dev/null
+pushd "$__dirname/../schema" > /dev/null
 
 _psql() {
   psql -d $dev_db -qtA --set ON_ERROR_STOP=1 "$@" 2>&1
@@ -43,12 +43,12 @@ _psql() {
 
 dropdb() {
   echo "Drop the $dev_db database if it exists"
-  psql -tc "SELECT 1 FROM pg_database WHERE datname = '$dev_db'" | grep -q 1 && psql -c "DROP DATABASE $dev_db";
+  psql -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$dev_db'" | grep -q 1 && psql -d postgres -c "DROP DATABASE $dev_db";
 }
 
 createdb() {
   echo "Create the $dev_db database if it does not exist"
-  psql -tc "SELECT 1 FROM pg_database WHERE datname = '$dev_db'" | grep -q 1 || psql -c "CREATE DATABASE $dev_db";
+  psql -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$dev_db'" | grep -q 1 || psql -d postgres -c "CREATE DATABASE $dev_db";
 }
 
 actions=()

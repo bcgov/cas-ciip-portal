@@ -217,19 +217,16 @@ jobs:
           command: |
             source ~/.bashrc
             pg_ctl start
-            createdb `whoami`
       - run:
           name: deploy schemas and data
           command: |
             source ~/.bashrc
-            pushd schema
-            ./deploy-test-data.sh
+            ./.bin/deploy-test-data.sh
       - run:
           name: deploying the data a second time should not fail on primary key conflicts
           command: |
             source ~/.bashrc
-            pushd schema
-            ./deploy-test-data.sh
+            ./.bin/deploy-test-data.sh
 
   test-local-cluster:
     executor: redhat-openshift/machine-for-local-cluster
