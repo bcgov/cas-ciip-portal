@@ -14,24 +14,37 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
     }
   >
     <Col
-      md={5}
+      md={6}
     >
       <h3
-        className="jsx-2421020044 blue"
+        className="jsx-1999586784 blue"
       >
         What is the CleanBC Industrial Incentive Program?
       </h3>
       <p
-        className="jsx-2421020044"
+        className="jsx-1999586784"
       >
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+        In 2018, B.C.’s $30 carbon tax rate was raised to $35, and it is set to increase by $5 every year until 2021. As the price of carbon rises, the CleanBC Program for Industry will support competitiveness and facilitate emission reductions using revenues from the carbon tax that industry pays above $30 per tonne carbon dioxide equivalent (tCO2e).
       </p>
-      <a
-        className="jsx-2421020044 pad-bottom"
-        href="#value-props"
+      <p
+        className="jsx-1999586784"
       >
-        Learn More &gt;
-      </a>
+        The CleanBC Industrial Incentive Program (CIIP) is part of the CleanBC Program for Industry, which applies to large industrial operations that report their emissions under the Greenhouse Gas Industrial Reporting and Control Act (GGIRCA).
+      </p>
+      <p
+        className="jsx-1999586784"
+      >
+        The CIIP helps cleaner industrial operations across the province by reducing carbon tax costs for facilities near world-leading emissions benchmarks.
+      </p>
+    </Col>
+    <Col
+      md={
+        Object {
+          "offset": 1,
+          "span": 5,
+        }
+      }
+    >
       <Card
         body={false}
         className="ciip-card"
@@ -46,7 +59,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
           <CardTitle
             className="blue"
           >
-            Register for the Incentive Program
+            Apply for CleanBC Industrial Incentive Program (CIIP)
           </CardTitle>
           <CardText
             style={
@@ -55,7 +68,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
               }
             }
           >
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
+            Operators must submit a CIIP application form by June 30, 2019. As part of the application, information about the operation’s energy use, emissions, and production is required.
           </CardText>
           <Link
             href={
@@ -81,7 +94,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
               type="button"
               variant="primary"
             >
-              Register
+              Register and Apply
             </Button>
           </Link>
         </CardBody>
@@ -98,7 +111,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         }
       >
         <div
-          className="jsx-2421020044 login-link text-center "
+          className="jsx-1999586784 login-link text-center"
           style={
             Object {
               "textDecoration": "underline",
@@ -106,7 +119,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
           }
         >
           <a
-            className="jsx-2421020044"
+            className="jsx-1999586784"
             href="#"
           >
             Already have an account? Click here to login.
@@ -114,21 +127,6 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         </div>
       </Link>
     </Col>
-    <Col
-      className="with-shadow"
-      md={
-        Object {
-          "offset": 1,
-          "span": 6,
-        }
-      }
-      style={
-        Object {
-          "background": "url(../../static/what-is-it.jpg)",
-          "backgroundSize": "cover",
-        }
-      }
-    />
   </ForwardRef>
   <ForwardRef
     id="value-props"
@@ -140,24 +138,33 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
     }
   >
     <Col
+      md={12}
+    >
+      <h4
+        className="jsx-1999586784 blue"
+      >
+        How to Apply
+      </h4>
+    </Col>
+    <Col
       md={4}
     >
       <div
-        className="jsx-2421020044 value-prop"
+        className="jsx-1999586784 value-prop"
       >
         <img
-          className="jsx-2421020044"
+          className="jsx-1999586784"
           src="../../static/icons/import.png"
         />
-        <h4
-          className="jsx-2421020044 blue"
+        <h5
+          className="jsx-1999586784 blue"
         >
-          Import data from emission reports
-        </h4>
+          1. Register as an Industrial Reporter
+        </h5>
         <p
-          className="jsx-2421020044"
+          className="jsx-1999586784"
         >
-          Reduce reporting burden no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit ame
+          Before you can apply for an operation, you have to register yourself as an industrial reporter.
         </p>
       </div>
     </Col>
@@ -165,21 +172,21 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-2421020044 value-prop"
+        className="jsx-1999586784 value-prop"
       >
         <img
-          className="jsx-2421020044"
+          className="jsx-1999586784"
           src="../../static/icons/production.png"
         />
-        <h4
-          className="jsx-2421020044 blue"
+        <h5
+          className="jsx-1999586784 blue"
         >
-          Tell us about your production data
-        </h4>
+          2. Request to apply for an Operation
+        </h5>
         <p
-          className="jsx-2421020044"
+          className="jsx-1999586784"
         >
-          Reduce reporting burden no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit ame
+          Once you’ve registered you can request to apply on behalf one or multiple Operations.
         </p>
       </div>
     </Col>
@@ -187,21 +194,21 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-2421020044 value-prop"
+        className="jsx-1999586784 value-prop"
       >
         <img
-          className="jsx-2421020044"
+          className="jsx-1999586784"
           src="../../static/icons/paid.png"
         />
-        <h4
-          className="jsx-2421020044 blue"
+        <h5
+          className="jsx-1999586784 blue"
         >
-          Get a portion of your Carbon tax back
-        </h4>
+          3. Apply on behalf of the Operation
+        </h5>
         <p
-          className="jsx-2421020044"
+          className="jsx-1999586784"
         >
-          Reduce reporting burden no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit ame
+          The CIIP team will verify and approve your request and then you can apply for the program.
         </p>
       </div>
     </Col>
@@ -222,8 +229,8 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       }
     >
       <img
-        className="jsx-2421020044 with-shadow"
-        src="../../static/how-does-it-work.jpg"
+        className="jsx-1999586784 with-shadow"
+        src="../../static/what-is-it.jpg"
       />
     </Col>
     <Col
@@ -235,15 +242,96 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       }
     >
       <h3
-        className="jsx-2421020044 blue"
+        className="jsx-1999586784 blue"
       >
-        How does the CIIP process work?
+        Key Dates
       </h3>
-      <p
-        className="jsx-2421020044"
+      <Bootstrap(Table)
+        bordered={true}
+        hover={true}
+        striped={true}
       >
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-      </p>
+        <thead
+          className="jsx-1999586784"
+        >
+          <tr
+            className="jsx-1999586784"
+          >
+            <th
+              className="jsx-1999586784"
+            >
+              Date
+            </th>
+            <th
+              className="jsx-1999586784"
+            />
+          </tr>
+        </thead>
+        <tbody
+          className="jsx-1999586784"
+        >
+          <tr
+            className="jsx-1999586784"
+          >
+            <td
+              className="jsx-1999586784"
+            >
+              May 1, 2020
+            </td>
+            <td
+              className="jsx-1999586784"
+            >
+              CIIP application forms open
+            </td>
+          </tr>
+          <tr
+            className="jsx-1999586784"
+          >
+            <td
+              className="jsx-1999586784"
+            >
+              May 16, 2020
+            </td>
+            <td
+              className="jsx-1999586784"
+            >
+              Webinar for CIIP
+            </td>
+          </tr>
+          <tr
+            className="jsx-1999586784"
+          >
+            <td
+              className="jsx-1999586784"
+            >
+              June 30, 2020
+            </td>
+            <td
+              className="jsx-1999586784"
+            >
+              CIIP application form due
+            </td>
+          </tr>
+          <tr
+            className="jsx-1999586784"
+          >
+            <td
+              className="jsx-1999586784"
+            >
+              May 31, 2021
+            </td>
+            <td
+              className="jsx-1999586784"
+            >
+              CIIP application form due 
+              <br
+                className="jsx-1999586784"
+              />
+              (along with 2019 GHG reporting data)
+            </td>
+          </tr>
+        </tbody>
+      </Bootstrap(Table)>
       <Card
         body={false}
         className="ciip-card"
@@ -259,7 +347,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
           <CardTitle
             className="blue"
           >
-            Some fact or figure about CIIP
+            Contact Information
           </CardTitle>
           <CardText
             style={
@@ -268,14 +356,30 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
               }
             }
           >
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
+            Please email us at 
+            <strong
+              className="jsx-1999586784"
+            >
+              GHGRegulator@gov.bc.ca
+            </strong>
+             for any questions.
           </CardText>
         </CardBody>
       </Card>
       <p
-        className="jsx-2421020044"
+        className="jsx-1999586784"
       >
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+        Further information on the CleanBC Industrial Incentive Program is available in this
+        <a
+          className="jsx-1999586784"
+          href="https://www2.gov.bc.ca/assets/gov/environment/climate-change/ind/cleanbc-program-for-industry/ciip_factsheet_190524_final.pdf?forcedownload=true"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+           
+          fact sheet
+        </a>
+        .
       </p>
     </Col>
   </ForwardRef>
@@ -297,26 +401,26 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       }
     >
       <h3
-        className="jsx-2421020044 blue"
+        className="jsx-1999586784 blue"
       >
         Have questions? Get in touch.
       </h3>
       <p
-        className="jsx-2421020044"
+        className="jsx-1999586784"
       >
         Phone: +1 099 9920 9002
       </p>
       <p
-        className="jsx-2421020044"
+        className="jsx-1999586784"
       >
         Email: cas@ggircs.com
       </p>
     </Jumbotron>
   </ForwardRef>
   <JSXStyle
-    id="2421020044"
+    id="1999586784"
   >
-    .value-prop.jsx-2421020044{padding-right:30px;}.value-prop.jsx-2421020044 img.jsx-2421020044{max-width:100px;padding:30px 0;margin:0 auto;}.value-prop.jsx-2421020044 h4.jsx-2421020044{margin-bottom:20px;}.login-link.jsx-2421020044{border:1px solid #666;padding:20px;border-radius:4px;}
+    .value-prop.jsx-1999586784{padding-right:30px;}.value-prop.jsx-1999586784 img.jsx-1999586784{max-width:100px;padding:30px 0;margin:0 auto;}.value-prop.jsx-1999586784 h4.jsx-1999586784{margin-bottom:20px;}.login-link.jsx-1999586784{border:1px solid #666;padding:20px;border-radius:4px;}li.jsx-1999586784{list-style:none;}
   </JSXStyle>
 </DefaultLayout>
 `;
