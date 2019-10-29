@@ -16,13 +16,13 @@ describe('ProductListContainer', () => {
     expect(r).toMatchSnapshot();
     expect(
       r
-        .find('ForwardRef(Relay(ProductRowItemContainer))')
+        .find('Relay(ProductRowItemContainer)')
         .first()
         .prop('product')
     ).toBe(query.active.edges[0].node);
     expect(
       r
-        .find('ForwardRef(Relay(ProductRowItemContainer))')
+        .find('Relay(ProductRowItemContainer)')
         .last()
         .prop('product')
     ).toBe(query.archived.edges[0].node);

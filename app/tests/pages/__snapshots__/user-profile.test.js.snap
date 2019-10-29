@@ -3,7 +3,7 @@
 exports[`user profile matches snapshot 1`] = `
 <Fragment>
   <DefaultLayout>
-    <ForwardRef(Relay(UserDetail))
+    <Relay(UserDetail)
       user={
         Object {
           "id": "WyJ1c2VycyIsMV0=",

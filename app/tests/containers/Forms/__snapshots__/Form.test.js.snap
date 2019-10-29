@@ -2,7 +2,7 @@
 
 exports[`Form Loader should match the snapshot 1`] = `
 <Fragment>
-  <ForwardRef(Relay(FormWithFuelUnitsComponent))
+  <Relay(FormWithFuelUnitsComponent)
     query={
       Object {
         "json": Object {
@@ -20,7 +20,7 @@ exports[`Form Loader should match the snapshot 1`] = `
       }
     }
   >
-    <ForwardRef(Relay(FormWithProductUnits))
+    <Relay(FormWithProductUnits)
       query={
         Object {
           "json": Object {
@@ -41,8 +41,8 @@ exports[`Form Loader should match the snapshot 1`] = `
       <SurveyWrapper
         onComplete={[Function]}
       />
-    </ForwardRef(Relay(FormWithProductUnits))>
-  </ForwardRef(Relay(FormWithFuelUnitsComponent))>
+    </Relay(FormWithProductUnits)>
+  </Relay(FormWithFuelUnitsComponent)>
 </Fragment>
 `;
 
@@ -72,7 +72,7 @@ exports[`Form Loader should match the snapshot when it has initial data 1`] = `
     the test
     . Please review it and either submit or edit it.
   </Alert>
-  <ForwardRef(Relay(FormWithFuelUnitsComponent))
+  <Relay(FormWithFuelUnitsComponent)
     query={
       Object {
         "json": Object {
@@ -90,7 +90,7 @@ exports[`Form Loader should match the snapshot when it has initial data 1`] = `
       }
     }
   >
-    <ForwardRef(Relay(FormWithProductUnits))
+    <Relay(FormWithProductUnits)
       query={
         Object {
           "json": Object {
@@ -116,7 +116,7 @@ exports[`Form Loader should match the snapshot when it has initial data 1`] = `
         }
         onComplete={[Function]}
       />
-    </ForwardRef(Relay(FormWithProductUnits))>
-  </ForwardRef(Relay(FormWithFuelUnitsComponent))>
+    </Relay(FormWithProductUnits)>
+  </Relay(FormWithFuelUnitsComponent)>
 </Fragment>
 `;

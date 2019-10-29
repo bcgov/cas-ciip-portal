@@ -194,6 +194,20 @@ jobs:
           name: check for inconsistency between schema ddl & graphql
           command: git diff --exit-code || (echo 'The contents of the `schema` folder are out of sync with `app/server/schema.graphql`. Did you forget to \"yarn build:relay\"?' && false)
 
+  compile:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal/app
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Compile for production
+          command: |
+            source ~/.asdf/asdf.sh
+            yarn build:relay # ensure relay modules are compiled from committed schema
+            yarn build:next # ensure next.js can compile a production build
+
   test-local-cluster:
     executor: redhat-openshift/machine-for-local-cluster
     steps:
@@ -320,6 +334,9 @@ workflows:
           requires:
             - tools
       - schema:
+          requires:
+            - tools
+      - compile:
           requires:
             - tools
       - pathfinder_lint:

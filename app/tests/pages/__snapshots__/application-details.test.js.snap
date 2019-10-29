@@ -2,11 +2,11 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <DefaultLayout>
-  <ForwardRef(Relay(ApplicationStatusContainer))
+  <Relay(ApplicationStatusContainer)
     applicationId="1"
   />
   <hr />
-  <ForwardRef(Relay(IncentiveCalculatorContainer))
+  <Relay(IncentiveCalculatorContainer)
     bcghgid="100"
     reportingYear="2018"
   />

@@ -12,9 +12,7 @@ describe('ApplicationListContainer', () => {
     const r = shallow(<ApplicationListContainer query={query} />);
     expect(r).toMatchSnapshot();
     expect(
-      r
-        .find('ForwardRef(Relay(ApplicationRowItemContainer))')
-        .prop('ciipApplication')
+      r.find('Relay(ApplicationRowItemContainer)').prop('ciipApplication')
     ).toBe(query.searchApplicationList.edges[0].node);
   });
 });

@@ -48,7 +48,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       </tr>
     </thead>
     <tbody>
-      <ForwardRef(Relay(UserOrganisationComponent))
+      <Relay(UserOrganisationComponent)
         key="OrgId"
         userOrganisation={
           Object {
