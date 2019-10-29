@@ -61,7 +61,7 @@ sqitch_revert() {
 deploySwrs() {
   echo "Deploying the swrs schema to $dev_db"
   if [ ! -f .cas-ggircs/sqitch.plan ]; then
-    echo "Could not find sqitch plan in $__dirname/.cas-ggircs."
+    echo "Could not find sqitch plan in schema/.cas-ggircs."
     echo "Did you forgot to init and/or update the submodule?"
     exit 1
   fi
@@ -127,12 +127,12 @@ insert into ggircs_portal.form_json
   (id, name, form_json)
   overriding system value
 values
-  (1, 'Admin', '$(cat "$__dirname/data/portal/form_json/administration.json")'::jsonb),
-  (2, 'Emission', '$(cat "$__dirname/data/portal/form_json/emission.json")'::jsonb),
-  (3, 'Fuel', '$(cat "$__dirname/data/portal/form_json/fuel.json")'::jsonb),
-  (4, 'Electricity and Heat', '$(cat "$__dirname/data/portal/form_json/electricity_and_heat.json")'::jsonb),
-  (5, 'Production', '$(cat "$__dirname/data/portal/form_json/production.json")'::jsonb),
-  (6, 'Statement of Certification', '$(cat "$__dirname/data/portal/form_json/statement_of_certification.json")'::jsonb)
+  (1, 'Admin', '$(cat "./data/portal/form_json/administration.json")'::jsonb),
+  (2, 'Emission', '$(cat "./data/portal/form_json/emission.json")'::jsonb),
+  (3, 'Fuel', '$(cat "./data/portal/form_json/fuel.json")'::jsonb),
+  (4, 'Electricity and Heat', '$(cat "./data/portal/form_json/electricity_and_heat.json")'::jsonb),
+  (5, 'Production', '$(cat "./data/portal/form_json/production.json")'::jsonb),
+  (6, 'Statement of Certification', '$(cat "./data/portal/form_json/statement_of_certification.json")'::jsonb)
 on conflict(id) do update
 set name=excluded.name, form_json=excluded.form_json
 returning 1
@@ -145,13 +145,13 @@ where setval = 0;
 commit;
 EOF
 
-_psql -f "$__dirname/data/portal/ciip_application_wizard.sql"
-_psql -f "$__dirname/data/portal/fuel.sql"
-_psql -f "$__dirname/data/portal/product.sql"
-_psql -f "$__dirname/data/portal/user.sql"
-_psql -f "$__dirname/data/portal/benchmark.sql"
-_psql -f "$__dirname/data/portal/organisation.sql"
-_psql -f "$__dirname/data/portal/facility.sql"
-_psql -f "$__dirname/data/portal/application.sql"
-_psql -f "$__dirname/data/portal/application_status.sql"
-_psql -f "$__dirname/data/portal/form_result.sql"
+_psql -f "./data/portal/ciip_application_wizard.sql"
+_psql -f "./data/portal/fuel.sql"
+_psql -f "./data/portal/product.sql"
+_psql -f "./data/portal/user.sql"
+_psql -f "./data/portal/benchmark.sql"
+_psql -f "./data/portal/organisation.sql"
+_psql -f "./data/portal/facility.sql"
+_psql -f "./data/portal/application.sql"
+_psql -f "./data/portal/application_status.sql"
+_psql -f "./data/portal/form_result.sql"
