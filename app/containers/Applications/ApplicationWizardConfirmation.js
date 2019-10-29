@@ -44,17 +44,14 @@ const ApplicationWizardConfirmationComponent = props => {
   return (
     <>
       {formArray.map(formTitle =>
-        Object.keys(resultObject[formTitle]).map(
-          formSubtitle => (
-            <ApplicationWizardConfirmationCardItem
-              key={(formTitle, formSubtitle)}
-              formTitle={formTitle}
-              formSubtitle={formSubtitle}
-              resultObject={resultObject}
-            />
-          )
-          // RenderForm(formTitle, formSubtitle)
-        )
+        Object.keys(resultObject[formTitle]).map(formSubtitle => (
+          <ApplicationWizardConfirmationCardItem
+            key={(formTitle, formSubtitle)}
+            formTitle={formTitle}
+            formSubtitle={formSubtitle}
+            resultObject={resultObject}
+          />
+        ))
       )}
 
       <Button
@@ -77,6 +74,13 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
           edges {
             node {
               formResult
+            }
+          }
+        }
+        applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
+          edges {
+            node {
+              id
             }
           }
         }

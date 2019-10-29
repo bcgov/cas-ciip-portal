@@ -54,7 +54,7 @@ const ApplicationWizardConfirmationCardItemComponent = props => {
           style={{textTransform: 'capitalize'}}
           onClick={() => setOpen(!open)}
         >
-          {prettyTitle}
+          {prettyTitle} <span style={{float: 'right'}}>{open ? '+' : '-'}</span>
         </Card.Header>
         <Collapse in={!open}>
           <Card.Body>

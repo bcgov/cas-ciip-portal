@@ -259,13 +259,6 @@ export default createFragmentContainer(ApplicationWizardStep, {
           operatorPostalCode
           operatorCountry
         }
-        applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
-          edges {
-            node {
-              id
-            }
-          }
-        }
       }
       ...ApplicationWizardConfirmation_query
         @arguments(applicationId: $applicationId)
