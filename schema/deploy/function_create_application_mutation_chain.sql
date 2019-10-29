@@ -26,6 +26,7 @@ begin
 
   select id, facility_id from ggircs_portal.application where id = new_id into result;
 
+  -- loop over number of forms and create a form_result row for each
   loop
 
     exit when counter = form_count+1;
