@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
-import {createFragmentContainer} from 'react-relay';
+import {createFragmentContainer, graphql} from 'react-relay';
 import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
 import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmationCardItem';
 
@@ -68,7 +68,19 @@ const ApplicationWizardConfirmationComponent = props => {
   );
 };
 
-export default createFragmentContainer(
-  ApplicationWizardConfirmationComponent,
-  {}
-);
+export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
+  query: graphql`
+    fragment ApplicationWizardConfirmation_query on Query
+      @argumentDefinitions(applicationId: {type: "ID!"}) {
+      application(id: $applicationId) {
+        formResultsByApplicationId {
+          edges {
+            node {
+              formResult
+            }
+          }
+        }
+      }
+    }
+  `
+});
