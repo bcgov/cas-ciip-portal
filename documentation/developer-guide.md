@@ -1,5 +1,20 @@
 # Developer Guidelines
 
+## Setting up the test data
+
+The `schema/deploy-test-data.sh` script allows you to set up you database schemas, and populate it with dummy data.
+
+### Prerequisites
+- Start your postgres database (`pg_ctl start` if you installed it with `asdf`)
+- Initialize the `schema/.cas-ggircs` [submodule] (`git submodule init && git submodule update`)
+
+### Deploying the data
+
+`./schema/deploy-test-data.sh -d` will drop the existing database if it exists and recreate it using the current deployment files.
+
+Run `./schema/deploy-test-data.sh --help` to learn about other available options.
+
+
 ## Code style and Linting
 
 We use [XO](https://github.com/xojs/xo) to lint the app's code. The following yarn scripts can be used to trigger formatting and linting:
@@ -56,3 +71,4 @@ local postgres server.
 [Watchman]: https://facebook.github.io/watchman/
 [extended json syntax]: https://facebook.github.io/watchman/docs/cmd/trigger.html#extended-syntax
 [multitail]: https://linux.die.net/man/1/multitail
+[submodule]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
