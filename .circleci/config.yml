@@ -364,10 +364,11 @@ workflows:
             - tools
       - pathfinder_lint:
           requires:
-            - audit
             - lint
             - unit
+            - audit
             - schema
+            - compile
             - deploy-test-data
           context: cas-pipeline
           filters:
