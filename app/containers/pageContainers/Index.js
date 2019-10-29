@@ -1,45 +1,50 @@
 import React, {Component} from 'react';
-import {Button, Row, Col, Card, Jumbotron} from 'react-bootstrap';
+import {Button, Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
 import Link from 'next/link';
 import DefaultLayout from '../../layouts/default-layout';
-
-const aboveFoldImage = {
-  background: 'url(../../static/what-is-it.jpg)',
-  backgroundSize: 'cover'
-};
 
 export default class Index extends Component {
   render() {
     return (
       <DefaultLayout showSubheader={false} isLoggedIn={false}>
         <Row style={{marginTop: '60px'}}>
-          <Col md={5}>
+          <Col md={6}>
             <h3 className="blue">
               What is the CleanBC Industrial Incentive Program?
             </h3>
             <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-              amet.
+              In 2018, B.C.’s $30 carbon tax rate was raised to $35, and it is
+              set to increase by $5 every year until 2021. As the price of
+              carbon rises, the CleanBC Program for Industry will support
+              competitiveness and facilitate emission reductions using revenues
+              from the carbon tax that industry pays above $30 per tonne carbon
+              dioxide equivalent (tCO2e).
             </p>
-            <a href="#value-props" className="pad-bottom">
-              Learn More &gt;
-            </a>
+            <p>
+              The CleanBC Industrial Incentive Program (CIIP) is part of the
+              CleanBC Program for Industry, which applies to large industrial
+              operations that report their emissions under the Greenhouse Gas
+              Industrial Reporting and Control Act (GGIRCA).
+            </p>
+            <p>
+              The CIIP helps cleaner industrial operations across the province
+              by reducing carbon tax costs for facilities near world-leading
+              emissions benchmarks.
+            </p>
+          </Col>
+          <Col md={{span: 5, offset: 1}}>
             <Card
               className="ciip-card"
               style={{width: '100%', margin: '30px 0'}}
             >
               <Card.Body>
                 <Card.Title className="blue">
-                  Register for the Incentive Program
+                  Apply for CleanBC Industrial Incentive Program (CIIP)
                 </Card.Title>
                 <Card.Text style={{padding: '10px 0 10px 0'}}>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat.
+                  Operators must submit a CIIP application form by June 30,
+                  2019. As part of the application, information about the
+                  operation’s energy use, emissions, and production is required.
                 </Card.Text>
                 <Link
                   href={{
@@ -53,7 +58,7 @@ export default class Index extends Component {
                     variant="primary"
                     size="lg"
                   >
-                    Register
+                    Register and Apply
                   </Button>
                 </Link>
               </Card.Body>
@@ -65,28 +70,26 @@ export default class Index extends Component {
               }}
             >
               <div
-                className="login-link text-center "
+                className="login-link text-center"
                 style={{textDecoration: 'underline'}}
               >
                 <a href="#">Already have an account? Click here to login.</a>
               </div>
             </Link>
           </Col>
-          <Col
-            md={{span: 6, offset: 1}}
-            className="with-shadow"
-            style={aboveFoldImage}
-          />
         </Row>
 
         <Row style={{marginTop: '100px'}} id="value-props">
+          <Col md={12}>
+            <h4 className="blue">How to Apply</h4>
+          </Col>
           <Col md={4}>
             <div className="value-prop">
               <img src="../../static/icons/import.png" />
-              <h4 className="blue">Import data from emission reports</h4>
+              <h5 className="blue">1. Register as an Industrial Reporter</h5>
               <p>
-                Reduce reporting burden no sea takimata sanctus est Lorem ipsum
-                dolor sit amet. Lorem ipsum dolor sit ame
+                Before you can apply for an operation, you have to register
+                yourself as an industrial reporter.
               </p>
             </div>
           </Col>
@@ -94,10 +97,10 @@ export default class Index extends Component {
           <Col md={4}>
             <div className="value-prop">
               <img src="../../static/icons/production.png" />
-              <h4 className="blue">Tell us about your production data</h4>
+              <h5 className="blue">2. Request to apply for an Operation</h5>
               <p>
-                Reduce reporting burden no sea takimata sanctus est Lorem ipsum
-                dolor sit amet. Lorem ipsum dolor sit ame
+                Once you’ve registered you can request to apply on behalf one or
+                multiple Operations.
               </p>
             </div>
           </Col>
@@ -105,10 +108,10 @@ export default class Index extends Component {
           <Col md={4}>
             <div className="value-prop">
               <img src="../../static/icons/paid.png" />
-              <h4 className="blue">Get a portion of your Carbon tax back</h4>
+              <h5 className="blue">3. Apply on behalf of the Operation</h5>
               <p>
-                Reduce reporting burden no sea takimata sanctus est Lorem ipsum
-                dolor sit amet. Lorem ipsum dolor sit ame
+                The CIIP team will verify and approve your request and then you
+                can apply for the program.
               </p>
             </div>
           </Col>
@@ -116,21 +119,41 @@ export default class Index extends Component {
 
         <Row style={{marginTop: '100px'}}>
           <Col md={{span: 6}}>
-            <img
-              className="with-shadow"
-              src="../../static/how-does-it-work.jpg"
-            />
+            <img className="with-shadow" src="../../static/what-is-it.jpg" />
           </Col>
           <Col md={{span: 5, offset: 1}}>
-            <h3 className="blue">How does the CIIP process work?</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-              amet.
-            </p>
+            <h3 className="blue">Key Dates</h3>
+
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>May 1, 2020</td>
+                  <td>CIIP application forms open</td>
+                </tr>
+                <tr>
+                  <td>May 16, 2020</td>
+                  <td>Webinar for CIIP</td>
+                </tr>
+                <tr>
+                  <td>June 30, 2020</td>
+                  <td>CIIP application form due</td>
+                </tr>
+                <tr>
+                  <td>May 31, 2021</td>
+                  <td>
+                    CIIP application form due <br />
+                    (along with 2019 GHG reporting data)
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+
             <Card
               className="ciip-card"
               style={{
@@ -140,23 +163,25 @@ export default class Index extends Component {
               }}
             >
               <Card.Body>
-                <Card.Title className="blue">
-                  Some fact or figure about CIIP
-                </Card.Title>
+                <Card.Title className="blue">Contact Information</Card.Title>
                 <Card.Text style={{padding: '10px 0 10px 0'}}>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat.
+                  Please email us at <strong>GHGRegulator@gov.bc.ca</strong> for
+                  any questions.
                 </Card.Text>
               </Card.Body>
             </Card>
             <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-              amet.
+              Further information on the CleanBC Industrial Incentive Program is
+              available in this
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www2.gov.bc.ca/assets/gov/environment/climate-change/ind/cleanbc-program-for-industry/ciip_factsheet_190524_final.pdf?forcedownload=true"
+              >
+                {' '}
+                fact sheet
+              </a>
+              .
             </p>
           </Col>
         </Row>
@@ -184,6 +209,9 @@ export default class Index extends Component {
             border: 1px solid #666;
             padding: 20px;
             border-radius: 4px;
+          }
+          li {
+            list-style: none;
           }
         `}</style>
       </DefaultLayout>

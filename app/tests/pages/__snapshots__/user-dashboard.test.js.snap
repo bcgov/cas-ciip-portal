@@ -142,6 +142,38 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
           </AccordionCollapse>
         </Card>
       </ForwardRef>
+      <Card
+        body={false}
+        className="ciip-card"
+        style={
+          Object {
+            "border": "1px solid grey",
+            "margin": "40px 0",
+            "width": "100%",
+          }
+        }
+      >
+        <CardBody>
+          <CardTitle
+            className="blue"
+          >
+            Contact Information
+          </CardTitle>
+          <CardText
+            style={
+              Object {
+                "padding": "10px 0 10px 0",
+              }
+            }
+          >
+            Please email us at 
+            <strong>
+              GHGRegulator@gov.bc.ca
+            </strong>
+             for any questions.
+          </CardText>
+        </CardBody>
+      </Card>
     </Col>
   </ForwardRef>
 </DefaultLayout>
