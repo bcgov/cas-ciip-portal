@@ -15,9 +15,7 @@ describe('ApplicationWizardConfirmationComponent', () => {
     expect(r).toMatchSnapshot();
     expect(
       r
-        .find(
-          'ForwardRef(Relay(ApplicationWizardConfirmationCardItemComponent))'
-        )
+        .find('Relay(ApplicationWizardConfirmationCardItemComponent)')
         .prop('formTitle')
     ).toBe('id');
   });

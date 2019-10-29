@@ -27,7 +27,7 @@ describe('IncentiveCalculatorContainer', () => {
     const r = shallow(<IncentiveCalculatorContainer query={query} />);
     expect(
       r
-        .find('ForwardRef(Relay(IncentiveSegmentContainer))')
+        .find('Relay(IncentiveSegmentContainer)')
         .first()
         .prop('reported')
     ).toBe(query.bcghgidProducts.edges[0].node);

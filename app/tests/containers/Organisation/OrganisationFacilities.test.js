@@ -30,8 +30,8 @@ describe('OrganisationFacilities', () => {
     };
     const r = shallow(<OrganisationFacilitiesComponent query={query} />);
     expect(r).toMatchSnapshot();
-    expect(
-      r.find('ForwardRef(Relay(FacilityComponent))').prop('facility')
-    ).toBe(query.organisation.facilitiesByOrganisationId.edges[0].node);
+    expect(r.find('Relay(FacilityComponent)').prop('facility')).toBe(
+      query.organisation.facilitiesByOrganisationId.edges[0].node
+    );
   });
 });

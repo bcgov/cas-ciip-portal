@@ -33,9 +33,7 @@ describe('Organisations', () => {
     const r = shallow(<OrganisationsComponent query={query} />);
     expect(r).toMatchSnapshot();
     expect(
-      r
-        .find('ForwardRef(Relay(UserOrganisationComponent))')
-        .prop('userOrganisation')
+      r.find('Relay(UserOrganisationComponent)').prop('userOrganisation')
     ).toBe(query.user.userOrganisationsByUserId.edges[0].node);
   });
 });

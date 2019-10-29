@@ -18,7 +18,7 @@ it('It passes a query to the ApplicationWizard component', () => {
   const wrapper = shallow(<CiipApplication query={query} />);
   expect(
     wrapper
-      .find('ForwardRef(Relay(ApplicationWizard))')
+      .find('Relay(ApplicationWizard)')
       .first()
       .prop('formJson')
   ).toBe(query.allFormJsons.edges.node);

@@ -5,7 +5,7 @@ exports[`ApplicationStatusContainer should render empty edges as empty 1`] = `""
 exports[`ApplicationStatusContainer should render extra edges as empty 1`] = `""`;
 
 exports[`ApplicationStatusContainer should render the application status 1`] = `
-<ForwardRef(Relay(ApplicationStatusItemContainer))
+<Relay(ApplicationStatusItemContainer)
   applicationStatus={
     Object {
       "id": "1",
