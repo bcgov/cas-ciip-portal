@@ -2,7 +2,7 @@
 
 exports[`ProductListContainer should render the product list 1`] = `
 Array [
-  <Relay(ProductRowItemContainer)
+  <ForwardRef(Relay(ProductRowItemContainer))
     key="product-1"
     product={
       Object {
@@ -10,7 +10,7 @@ Array [
       }
     }
   />,
-  <Relay(ProductRowItemContainer)
+  <ForwardRef(Relay(ProductRowItemContainer))
     key="product-2"
     product={
       Object {

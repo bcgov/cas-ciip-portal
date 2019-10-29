@@ -2,6 +2,6 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <DefaultLayout>
-  <Relay(ApplicationWizard) />
+  <ForwardRef(Relay(ApplicationWizard)) />
 </DefaultLayout>
 `;

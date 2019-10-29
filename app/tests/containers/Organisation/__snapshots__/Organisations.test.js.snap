@@ -87,15 +87,10 @@ exports[`Organisations should render the user's requested organisations 1`] = `
         </th>
       </tr>
     </thead>
-<<<<<<< HEAD
-    <tbody>
-      <Relay(UserOrganisationComponent)
-=======
     <tbody
       className="jsx-1706603431"
     >
       <ForwardRef(Relay(UserOrganisationComponent))
->>>>>>> Update design for user dashboard
         key="OrgId"
         userOrganisation={
           Object {

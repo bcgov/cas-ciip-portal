@@ -281,7 +281,7 @@ exports[`ApplicationListContainer should render the application list 1`] = `
         </tr>
       </thead>
       <tbody>
-        <Relay(ApplicationRowItemContainer)
+        <ForwardRef(Relay(ApplicationRowItemContainer))
           ciipApplication={
             Object {
               "id": "ciip-application-1",

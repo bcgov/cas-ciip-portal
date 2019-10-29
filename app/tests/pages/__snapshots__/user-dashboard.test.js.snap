@@ -97,35 +97,6 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
           <AccordionCollapse
             eventKey="1"
           >
-<<<<<<< HEAD
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
-        </ForwardRef>
-      </Col>
-      <Col
-        md={
-          Object {
-            "span": 1,
-          }
-        }
-      />
-      <Col>
-        <h2>
-          Reporting organisations
-        </h2>
-        <Relay(OrganisationsComponent)
-          confirmOrg={false}
-          handleContextChange={[Function]}
-          handleInputChange={[Function]}
-          handleOrgChange={[Function]}
-          handleOrgConfirm={[Function]}
-          orgInput=""
-          selectedOrg={null}
-        />
-      </Col>
-    </ForwardRef>
-  </Container>
-=======
             <CardBody>
               <p>
                 At vero eos et accusam et justo duo dolores et ea rebum.
@@ -173,6 +144,5 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
       </ForwardRef>
     </Col>
   </ForwardRef>
->>>>>>> Update design for user dashboard
 </DefaultLayout>
 `;

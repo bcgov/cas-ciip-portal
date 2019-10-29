@@ -9,7 +9,7 @@ exports[`OrganisationFacilities should render no OrganisationFacilities if the o
 exports[`OrganisationFacilities should render the organisation's facilities 1`] = `
 <Fragment>
   <CardDeck>
-    <Relay(FacilityComponent)
+    <ForwardRef(Relay(FacilityComponent))
       facility={
         Object {
           "id": "FacId",

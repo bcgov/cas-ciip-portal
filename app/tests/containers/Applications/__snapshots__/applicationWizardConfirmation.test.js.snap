@@ -2,7 +2,7 @@
 
 exports[`ApplicationWizardConfirmationComponent should render the summary confirmation component 1`] = `
 <Fragment>
-  <Relay(ApplicationWizardConfirmationCardItemComponent)
+  <ForwardRef(Relay(ApplicationWizardConfirmationCardItemComponent))
     formSubtitle="id"
     formTitle="id"
     key="id"
