@@ -37,4 +37,11 @@ comment on column ggircs_portal.user.created_by is 'The person who updated the u
 comment on column ggircs_portal.user.updated_at is 'The date the user was updated';
 comment on column ggircs_portal.user.updated_by is 'The person who updated the user';
 
+insert into ggircs_portal.user (uuid, first_name, last_name, email_address, occupation, phone_number)
+        values ('6c01258f-6ad8-4790-8ccc-485163f122a5' , 'Hamza', 'Javed', 'hamza@button.is', 'developer', '6043345678');
+insert into ggircs_portal.user (uuid, first_name, last_name, email_address, occupation, phone_number)
+        values ('ca716545-a8d3-4034-819c-5e45b0e775c9' , 'Alec', 'Wenzowski', 'alec@button.is', 'CEO', '7789906789');
+insert into ggircs_portal.user (uuid, first_name, last_name, email_address, occupation, phone_number)
+        values ('11bc5fb8-88f6-4b6e-92e3-581622ad4804', 'Kawhi', 'Leonard', 'kawhi@button.is', 'developer', '6045671234');
+
 commit;
