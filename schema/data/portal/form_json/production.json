@@ -48,7 +48,8 @@
             {
               "type": "text",
               "name": "associatedEmissions",
-              "title": "Associated Emission (tCO2e)"
+              "title": "Associated Emission (tCO2e)",
+              "inputType": "number"
             },
             {
               "type": "text",
