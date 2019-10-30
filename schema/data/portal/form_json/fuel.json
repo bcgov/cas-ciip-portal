@@ -1,6 +1,7 @@
 {
   "title": "Fuel Usage",
   "showCompletedPage": false,
+  "completeText": "Next",
   "pages": [
     {
       "name": "Fuel Usage",

@@ -1,6 +1,7 @@
 {
   "title": "Administrative Information",
   "showCompletedPage": false,
+  "completeText": "Next",
   "pages": [
     {
       "name": "Administrative Information",

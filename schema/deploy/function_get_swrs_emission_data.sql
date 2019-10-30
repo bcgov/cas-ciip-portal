@@ -41,7 +41,7 @@ begin;
              gas_type
              from swrs.emission as _emission
           inner join selected_report as _rep on _emission.report_id = _rep.id
-
+          where emission_category is not null
           group by report_id, emission_category, gas_type
           order by emission_category
         );

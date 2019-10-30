@@ -29,82 +29,78 @@ export const ApplicationWizardConfirmationCardItemComponent = props => {
     );
   };
 
-  const renderForm = (formTitle, formSubtitle) => {
-    // Space out camel cased titles and capitalize for display
+  const {formTitle, formSubtitle} = props;
 
-    const prettyTitle = formSubtitle.replace(capitalRegex, ' $1').trim();
-    // Get a list of keys for the form inputs
-    const inputs = Object.keys(resultObject[formTitle][formSubtitle][0]);
+  // Space out camel cased titles and capitalize for display
 
-    const nested = [];
-    // Check for nested values (Electricity & heat have values nested under extra objects)
-    if (
-      typeof resultObject[formTitle][formSubtitle][0][inputs[0]] === 'object'
-    ) {
-      inputs.forEach(input => {
-        nested.push(input);
-      });
-    }
+  const prettyTitle = formSubtitle.replace(capitalRegex, ' $1').trim();
+  // Get a list of keys for the form inputs
+  const inputs = Object.keys(resultObject[formTitle][formSubtitle][0]);
 
-    return (
-      <Card key={(formTitle, formSubtitle)} style={{marginTop: '10px'}}>
-        <Card.Header
-          as="h5"
-          style={{textTransform: 'capitalize'}}
-          onClick={() => setOpen(!open)}
-        >
-          {prettyTitle} <span style={{float: 'right'}}>{open ? '+' : '-'}</span>
-        </Card.Header>
-        <Collapse in={!open}>
-          <Card.Body>
-            {nested.length > 0 ? (
-              nested.map(nest => (
-                <Table key={nest}>
-                  <thead
-                    className="text-center"
-                    style={{
-                      width: '100%',
-                      textTransform: 'capitalize',
-                      textDecoration: 'underline'
-                    }}
-                  >
-                    <tr>
-                      <td>
-                        <strong>{nest}</strong>
-                      </td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr />
+  const nested = [];
+  // Check for nested values (Electricity & heat have values nested under extra objects)
+  if (Array.isArray(resultObject[formTitle][formSubtitle][0][inputs[0]])) {
+    inputs.forEach(input => {
+      nested.push(input);
+    });
+  }
 
-                    {Object.keys(
-                      resultObject[formTitle][formSubtitle][0][nest][0]
-                    ).map(input => (
-                      <tr key={(formTitle, formSubtitle, nest, input)}>
-                        {renderInputs(formTitle, formSubtitle, input, nest)}
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              ))
-            ) : (
-              <Table>
+  return (
+    <Card key={(formTitle, formSubtitle)} style={{marginTop: '10px'}}>
+      <Card.Header
+        as="h5"
+        style={{textTransform: 'capitalize'}}
+        onClick={() => setOpen(!open)}
+      >
+        {prettyTitle} <span style={{float: 'right'}}>{open ? '+' : '-'}</span>
+      </Card.Header>
+      <Collapse in={!open}>
+        <Card.Body>
+          {nested.length > 0 ? (
+            nested.map(nest => (
+              <Table key={nest}>
+                <thead
+                  className="text-center"
+                  style={{
+                    width: '100%',
+                    textTransform: 'capitalize',
+                    textDecoration: 'underline'
+                  }}
+                >
+                  <tr>
+                    <td>
+                      <strong>{nest}</strong>
+                    </td>
+                  </tr>
+                </thead>
                 <tbody>
-                  {inputs.map(input => (
-                    <tr key={(formTitle, formSubtitle, input)}>
-                      {renderInputs(formTitle, formSubtitle, input)}
+                  <tr />
+
+                  {Object.keys(
+                    resultObject[formTitle][formSubtitle][0][nest][0]
+                  ).map(input => (
+                    <tr key={(formTitle, formSubtitle, nest, input)}>
+                      {renderInputs(formTitle, formSubtitle, input, nest)}
                     </tr>
                   ))}
                 </tbody>
               </Table>
-            )}
-          </Card.Body>
-        </Collapse>
-      </Card>
-    );
-  };
-
-  return <>{renderForm(props.formTitle, props.formSubtitle)}</>;
+            ))
+          ) : (
+            <Table>
+              <tbody>
+                {inputs.map(input => (
+                  <tr key={(formTitle, formSubtitle, input)}>
+                    {renderInputs(formTitle, formSubtitle, input)}
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
+        </Card.Body>
+      </Collapse>
+    </Card>
+  );
 };
 
 export default createFragmentContainer(
