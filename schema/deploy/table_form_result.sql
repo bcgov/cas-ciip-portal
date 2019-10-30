@@ -5,10 +5,10 @@
 begin;
 
 create table ggircs_portal.form_result (
-  id serial not null,
-  form_id int not null,
-  user_id int not null,
+  id integer primary key generated always as identity,
+  form_id int not null references ggircs_portal.form_json(id),
   application_id int not null references ggircs_portal.application(id),
+  user_id int not null references ggircs_portal.user(id),
   submission_date timestamp with time zone default now(),
   form_result jsonb not null,
   created_at timestamp with time zone not null default now(),
@@ -21,12 +21,6 @@ create trigger _100_timestamps
   before insert or update on ggircs_portal.form_result
   for each row
   execute procedure ggircs_portal.update_timestamps();
-
-create unique index form_result_id_uindex on ggircs_portal.form_result(id);
-
-alter table ggircs_portal.form_result
-  add constraint form_result_pk
-    primary key (id);
 
 comment on column ggircs_portal.form_result.id is 'Unique ID for the form';
 comment on column ggircs_portal.form_result.form_id is 'The Unique ID of the form';

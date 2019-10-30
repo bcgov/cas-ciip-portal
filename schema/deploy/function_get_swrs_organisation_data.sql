@@ -48,12 +48,16 @@ begin;
           _org.english_trade_name,
           _org.duns,
           _org.cra_business_number,
-          cast('unit '  || ' ' || _org_add.mailing_address_unit_number
-                   || ', ' || _org_add.mailing_address_street_number
-                   || ' ' || _org_add.mailing_address_street_name
-                   || ' ' || _org_add.mailing_address_street_type
-                   || ' ' || _org_add.mailing_address_street_direction as varchar(1000))
-                  ,
+          cast(
+            concat(
+              'unit ' || _org_add.mailing_address_unit_number || ', ',
+              _org_add.mailing_address_street_number || ' ',
+              _org_add.mailing_address_street_number_suffix || ' ',
+              _org_add.mailing_address_street_name || ' ',
+              _org_add.mailing_address_street_type || ' ',
+              _org_add.mailing_address_street_direction
+            )
+          as varchar(1000)),
            _org_add.mailing_address_municipality,
            _org_add.mailing_address_prov_terr_state,
            _org_add.mailing_address_postal_code_zip_code,
