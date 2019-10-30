@@ -185,6 +185,7 @@
     "cypress": "^4.1.0",
     "cypress-axe": "^0.8.1",
     "cypress-plugin-retries": "^1.5.2",
+    "cz-conventional-changelog": "3.0.2",
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
