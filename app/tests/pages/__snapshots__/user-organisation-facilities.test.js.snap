@@ -3,7 +3,7 @@
 exports[`UserOrganisationFacilities page matches the last accepted Snapshot 1`] = `
 <DefaultLayout
   showSubheader={true}
-  title="Org Facilities"
+  title="Facilities for Org "
 >
   <Relay(OrganisationFacilitiesComponent)
     query={

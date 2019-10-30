@@ -39,40 +39,48 @@ export const OrganisationsComponent = props => {
       {user.userOrganisationsByUserId.edges.length === 0 ? (
         <>
           <Alert variant="warning">
-            You are not registered to apply for any Reporting Operation at this
-            time. You can request access to a Reporting Operation by selecting
-            one from the dropdown below.
+            You are not registered to apply for any Operator at this time. You
+            can request access to an Operator by selecting one from the dropdown
+            below.
           </Alert>
           <br />
         </>
       ) : (
-        <Table
-          striped
-          bordered
-          hover
-          style={{textAlign: 'left', marginBottom: '40px'}}
-        >
-          <thead>
-            <tr>
-              <th>Operation</th>
-              <th>Access Status</th>
-              <th>Facilities</th>
-            </tr>
-          </thead>
-          <tbody>
-            {user.userOrganisationsByUserId.edges.map(({node}) => {
-              return <UserOrganisation key={node.id} userOrganisation={node} />;
-            })}
-          </tbody>
-          <style jsx>
-            {`
-              th {
-                padding: 20px;
-                font-weight: 500;
-              }
-            `}
-          </style>
-        </Table>
+        <>
+          <Alert variant="info">
+            Once your access to the requested operators is approved you can view
+            their facilities and apply for CIIP for each.
+          </Alert>
+          <Table
+            striped
+            bordered
+            hover
+            style={{textAlign: 'left', marginBottom: '40px'}}
+          >
+            <thead>
+              <tr>
+                <th>Operator</th>
+                <th>Access Status</th>
+                <th>Operations/Facilities</th>
+              </tr>
+            </thead>
+            <tbody>
+              {user.userOrganisationsByUserId.edges.map(({node}) => {
+                return (
+                  <UserOrganisation key={node.id} userOrganisation={node} />
+                );
+              })}
+            </tbody>
+            <style jsx>
+              {`
+                th {
+                  padding: 20px;
+                  font-weight: 500;
+                }
+              `}
+            </style>
+          </Table>
+        </>
       )}
 
       {props.confirmOrg ? (
@@ -92,7 +100,10 @@ export const OrganisationsComponent = props => {
         </>
       ) : (
         <Dropdown className="search-dropdown">
-          <h5>Add an Operation:</h5>
+          <h5 style={{marginBottom: 0}}>Request access to an Operator:</h5>
+          <small style={{display: 'block', marginBottom: '20px'}}>
+            (You can search to narrow the results in the dropdown)
+          </small>
           <Dropdown.Toggle
             as="input"
             placeholder="Search..."

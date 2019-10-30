@@ -17,7 +17,7 @@ export default class UserOrganisationFacilities extends Component {
 
   render() {
     const {organisation} = this.props.query;
-    const orgTitle = `${organisation.operatorName} Facilities`;
+    const orgTitle = `Facilities for ${organisation.operatorName} `;
     return (
       <DefaultLayout showSubheader title={orgTitle}>
         <OrganisationFacilities query={this.props.query} />

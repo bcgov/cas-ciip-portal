@@ -63,7 +63,9 @@ export const UserOrganisationComponent = props => {
               }
             }}
           >
-            <a href="#">View Facilities</a>
+            <a className="btn btn-outline-primary" href="#">
+              View Facilities
+            </a>
           </Link>
         ) : null}
       </td>
