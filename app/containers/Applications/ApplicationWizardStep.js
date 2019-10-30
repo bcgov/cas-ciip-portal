@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import Form from '../Forms/Form';
+import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 
 const getInitialAdminData = application => {
   if (!application.swrsOrganisationData) return undefined;
@@ -50,7 +51,7 @@ const getInitialAdminData = application => {
         mailingAddress: operatorMailingAddress,
         mailingAddressCity: operatorCity,
         mailingAddressProvince: operatorProvince,
-        // TODO: the postal code field in the survey should remove spaces when validating/submitting
+        // TODOx: the postal code field in the survey should remove spaces when validating/submitting
         mailingAddressPostalCode: operatorPostalCode.replace(' ', ''),
         mailingAddressCountry: operatorCountry
       }
@@ -117,9 +118,12 @@ const getInitialFuelData = (application, allFuels) => {
         annualFuelAmount,
         alternativeMethodolodyDescription
       } = edge.node;
-      const fuelUnits = allFuels.edges.find(
+      const fuelNode = allFuels.edges.find(
         ({node: {name}}) => name === fuelType
-      ).node.units;
+      );
+      const fuelUnits = fuelNode ? fuelNode.node.units : undefined;
+      if (!fuelUnits)
+        console.warn(`Could not find fuel with type "${fuelType}"`);
       return {
         fuelType,
         fuelUnits,
@@ -133,13 +137,14 @@ const getInitialFuelData = (application, allFuels) => {
 
 /*
  * The ApplicationWizardStep renders a form and, where applicable,
- * (TODO) starts by presenting a summary of existing data to the user
+ *  TODOx: starts by presenting a summary of existing data to the user
  */
 const ApplicationWizardStep = ({
   query,
   formName,
   onStepComplete,
-  prepopulateFromSwrs
+  prepopulateFromSwrs,
+  confirmationPage
 }) => {
   const {application, allFuels} = query;
   const [initialData, setInitialData] = useState(undefined);
@@ -173,6 +178,8 @@ const ApplicationWizardStep = ({
 
   if (!application) return null;
 
+  if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
+
   return (
     <Form
       query={query}
@@ -192,6 +199,9 @@ export default createFragmentContainer(ApplicationWizardStep, {
         formId: {type: "ID!"}
         applicationId: {type: "ID!"}
       ) {
+      ...Form_query @arguments(formId: $formId)
+      ...ApplicationWizardConfirmation_query
+        @arguments(applicationId: $applicationId)
       allFuels {
         edges {
           node {
@@ -256,8 +266,6 @@ export default createFragmentContainer(ApplicationWizardStep, {
           operatorCountry
         }
       }
-
-      ...Form_query @arguments(formId: $formId)
     }
   `
 });

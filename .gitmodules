@@ -1,3 +1,7 @@
 [submodule ".pipeline"]
 	path = .pipeline
 	url = https://github.com/bcgov/cas-pipeline.git
+[submodule "schema/.cas-ggircs"]
+	path = schema/.cas-ggircs
+	url = https://github.com/bcgov/cas-ggircs.git
+	branch = develop

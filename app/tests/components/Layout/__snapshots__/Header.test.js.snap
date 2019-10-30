@@ -2,30 +2,53 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <header
-  class="jsx-2125932305"
+  class="jsx-982383367"
 >
   <div
-    class="jsx-2125932305 container"
+    class="jsx-982383367 container"
   >
     <div
-      class="jsx-2125932305 banner"
+      class="jsx-982383367 banner"
     >
-      <a
-        alt="British Columbia"
-        class="jsx-2125932305"
-        href="/"
+      <div
+        class="jsx-982383367 header-left"
       >
         <img
           alt="Go to the Government of British Columbia website"
-          class="jsx-2125932305"
+          class="jsx-982383367"
           src="/static/logo-banner.png"
         />
-      </a>
-      <h1
-        class="jsx-2125932305"
+        <h1
+          class="jsx-982383367"
+        >
+          CleanBC Industrial Incentive Program
+        </h1>
+      </div>
+      <div
+        class="jsx-982383367 login-btns header-right"
       >
-        CleanBC Industrial Incentive Program
-      </h1>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <button
+              class="btn btn-outline-light"
+              style="margin-right:10px"
+              type="button"
+            >
+              Register
+            </button>
+            <button
+              class="btn btn-outline-light"
+              type="button"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </header>

@@ -2,46 +2,36 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <div
-  class="jsx-790244972"
+  class="jsx-775259080"
 >
   <nav
-    class="jsx-790244972 navigation-main"
+    class="jsx-775259080 navigation-main"
     id="navbar"
   >
     <div
-      class="jsx-790244972 container"
+      class="jsx-775259080 container"
     >
       <ul
-        class="jsx-790244972"
+        class="jsx-775259080"
       >
         <li
-          class="jsx-790244972"
+          class="jsx-775259080"
         >
           <a
-            class="jsx-790244972 active"
+            class="jsx-775259080 active"
             href="#"
           >
-            Apply for 2019
+            My Dashboard
           </a>
         </li>
         <li
-          class="jsx-790244972"
+          class="jsx-775259080"
         >
           <a
-            class="jsx-790244972"
+            class="jsx-775259080"
             href="#"
           >
-            Applications
-          </a>
-        </li>
-        <li
-          class="jsx-790244972"
-        >
-          <a
-            class="jsx-790244972"
-            href="#"
-          >
-            Contact Us
+            My Applications
           </a>
         </li>
       </ul>

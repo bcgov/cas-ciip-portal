@@ -23,7 +23,6 @@ describe('Organisation', () => {
       <OrganisationComponent orgInput="b" organisation={organisation} />
     );
     expect(r).toMatchSnapshot();
-    console.log(r);
     expect(r.find('DropdownItem').text()).toBe('abc');
   });
 });

@@ -39,8 +39,8 @@ begin;
       then
       return (
         with selected_report as (
-          select * from swrs.report where swrs_facility_id = '1766'
-          and reporting_period_duration = '2018'
+          select * from swrs.report where swrs_facility_id = facility_id
+          and reporting_period_duration = reporting_year
         )
         select row(
           _rep.id,
@@ -54,12 +54,16 @@ begin;
           _contact.email_address,
           _contact.telephone_number,
           _contact.fax_number,
-          cast('unit '  || ' ' || _contact_add.mailing_address_unit_number
-                   || ', ' || _contact_add.mailing_address_street_number
-                   || ' ' || _contact_add.mailing_address_street_name
-                   || ' ' || _contact_add.mailing_address_street_type
-                   || ' ' || _contact_add.mailing_address_street_direction as varchar(1000))
-                  ,
+          cast(
+            concat(
+              'unit ' || _contact_add.mailing_address_unit_number || ', ',
+              _contact_add.mailing_address_street_number || ' ',
+              _contact_add.mailing_address_street_number_suffix || ' ',
+              _contact_add.mailing_address_street_name || ' ',
+              _contact_add.mailing_address_street_type || ' ',
+              _contact_add.mailing_address_street_direction
+            )
+          as varchar(1000)),
            _contact_add.mailing_address_municipality,
            _contact_add.mailing_address_prov_terr_state,
            _contact_add.mailing_address_postal_code_zip_code,

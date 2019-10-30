@@ -2,110 +2,86 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <div
-  class="jsx-3493664545 page-wrap"
+  class="jsx-1958721952 page-wrap"
 >
   <header
-    class="jsx-2125932305"
+    class="jsx-982383367"
   >
     <div
-      class="jsx-2125932305 container"
+      class="jsx-982383367 container"
     >
       <div
-        class="jsx-2125932305 banner"
+        class="jsx-982383367 banner"
       >
-        <a
-          alt="British Columbia"
-          class="jsx-2125932305"
-          href="/"
+        <div
+          class="jsx-982383367 header-left"
         >
           <img
             alt="Go to the Government of British Columbia website"
-            class="jsx-2125932305"
+            class="jsx-982383367"
             src="/static/logo-banner.png"
           />
-        </a>
-        <h1
-          class="jsx-2125932305"
+          <h1
+            class="jsx-982383367"
+          >
+            CleanBC Industrial Incentive Program
+          </h1>
+        </div>
+        <div
+          class="jsx-982383367 login-btns header-right"
         >
-          CleanBC Industrial Incentive Program
-        </h1>
+          <div
+            class="row"
+          >
+            <div
+              class="col"
+            >
+              <button
+                class="btn btn-outline-light"
+                style="margin-right:10px"
+                type="button"
+              >
+                Register
+              </button>
+              <button
+                class="btn btn-outline-light"
+                type="button"
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
   <div
-    class="jsx-790244972"
-  >
-    <nav
-      class="jsx-790244972 navigation-main"
-      id="navbar"
-    >
-      <div
-        class="jsx-790244972 container"
-      >
-        <ul
-          class="jsx-790244972"
-        >
-          <li
-            class="jsx-790244972"
-          >
-            <a
-              class="jsx-790244972 active"
-              href="#"
-            >
-              Apply for 2019
-            </a>
-          </li>
-          <li
-            class="jsx-790244972"
-          >
-            <a
-              class="jsx-790244972"
-              href="#"
-            >
-              Applications
-            </a>
-          </li>
-          <li
-            class="jsx-790244972"
-          >
-            <a
-              class="jsx-790244972"
-              href="#"
-            >
-              Contact Us
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <div
     class="content container"
   />
   <footer
-    class="jsx-55582602 footer"
+    class="jsx-2746091499 footer"
   >
     <div
-      class="jsx-55582602 container"
+      class="jsx-2746091499 container"
     >
       <ul
-        class="jsx-55582602"
+        class="jsx-2746091499"
       >
         <li
-          class="jsx-55582602"
+          class="jsx-2746091499"
         >
           <a
-            class="jsx-55582602"
+            class="jsx-2746091499"
             href="."
           >
             Home
           </a>
         </li>
         <li
-          class="jsx-55582602"
+          class="jsx-2746091499"
         >
           <a
-            class="jsx-55582602"
+            class="jsx-2746091499"
             href="."
           >
             Contact Us

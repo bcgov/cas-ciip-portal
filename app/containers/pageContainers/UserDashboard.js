@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Col, Row} from 'react-bootstrap';
+import {Col, Row, Accordion, Card, Button} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import Organisations from '../Organisations/Organisations';
 import DefaultLayout from '../../layouts/default-layout';
@@ -53,50 +53,96 @@ export default class UserDashBoard extends Component {
 
   render() {
     return (
-      <DefaultLayout>
-        <Container>
-          <Row>
-            <Col>
-              <Row>
-                <h2>Apply for CIIP 2019</h2>
-                <p className="text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur.
-                </p>
-              </Row>
-              <Row>
-                <h2>Pre-requisites:</h2>
-                <p className="text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur.
-                </p>
-              </Row>
-            </Col>
-            <Col md={{span: 1}} />
-            <Col>
-              <h2>Reporting organisations</h2>
-              <Organisations
-                query={this.props.query}
-                userId={this.props.router.query.id}
-                orgInput={this.state.orgInput}
-                selectedOrg={this.state.selectedOrg}
-                confirmOrg={this.state.confirmOrg}
-                handleInputChange={this.handleInputChange}
-                handleContextChange={this.handleContextChange}
-                handleOrgChange={this.handleOrgChange}
-                handleOrgConfirm={this.handleOrgConfirm}
-              />
-            </Col>
-          </Row>
-        </Container>
+      <DefaultLayout showSubheader title="My Operations">
+        <Row>
+          <Col md={8}>
+            <Organisations
+              query={this.props.query}
+              userId={this.props.router.query.id}
+              orgInput={this.state.orgInput}
+              selectedOrg={this.state.selectedOrg}
+              confirmOrg={this.state.confirmOrg}
+              handleInputChange={this.handleInputChange}
+              handleContextChange={this.handleContextChange}
+              handleOrgChange={this.handleOrgChange}
+              handleOrgConfirm={this.handleOrgConfirm}
+            />
+          </Col>
+          <Col md={4}>
+            <h5 style={{marginBottom: '20px'}}>Frequently Asked Questions</h5>
+            <Accordion defaultActiveKey="0">
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    What is an Operation?
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                    <p>
+                      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                      sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                      magna aliquyam erat, sed diam voluptua. At vero eos et
+                      accusam et justo duo dolores et ea rebum.
+                    </p>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                    What happens when I request access to a Reporting Operation?
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="1">
+                  <Card.Body>
+                    <p>
+                      At vero eos et accusam et justo duo dolores et ea rebum.{' '}
+                    </p>
+                    <p>
+                      Stet clita kasd gubergren, no sea takimata sanctus est
+                      Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                    </p>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="2">
+                    How long does request approval take?
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="2">
+                  <Card.Body>
+                    {' '}
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet.
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
+            <Card
+              className="ciip-card"
+              style={{
+                width: '100%',
+                margin: '40px 0',
+                border: '1px solid grey'
+              }}
+            >
+              <Card.Body>
+                <Card.Title className="blue">Contact Information</Card.Title>
+                <Card.Text style={{padding: '10px 0 10px 0'}}>
+                  Please email us at <strong>GHGRegulator@gov.bc.ca</strong> for
+                  any questions.
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       </DefaultLayout>
     );
   }

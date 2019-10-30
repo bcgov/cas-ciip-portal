@@ -1,20 +1,23 @@
 import React from 'react';
-
-const Subheader = props => (
+import Link from 'next/link';
+const Subheader = () => (
   <div>
     <nav className="navigation-main" id="navbar">
       <div className="container">
         <ul>
           <li>
-            <a href="#" className="active">
-              Apply for 2019
-            </a>
+            <Link
+              href={{
+                pathname: '/user-dashboard'
+              }}
+            >
+              <a href="#" className="active">
+                My Dashboard
+              </a>
+            </Link>
           </li>
           <li>
-            <a href="#">Applications</a>
-          </li>
-          <li>
-            <a href="#">Contact Us</a>
+            <a href="#">My Applications</a>
           </li>
         </ul>
       </div>
@@ -27,7 +30,6 @@ const Subheader = props => (
         -webkit-box-shadow: 0 6px 8px -4px #b3b1b3;
         -moz-box-shadow: 0 6px 8px -4px #b3b1b3;
         box-shadow: 0 6px 8px -4px #b3b1b3;
-        margin-bottom: 50px;
         padding: 10px 0 10px 50px;
       }
       .navigation-main ul {

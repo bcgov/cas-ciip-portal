@@ -21,6 +21,7 @@ const Footer = () => {
               border-top: 2px solid #fcba19;
               color: #fff;
               font-family: ‘Noto Sans’, Verdana, Arial, sans-serif;
+              margin-top: 100px;
             }
 
             footer .container {

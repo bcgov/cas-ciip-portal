@@ -12,9 +12,7 @@ describe('ApplicationStatusContainer', () => {
     const r = shallow(<ApplicationStatusContainer query={query} />);
     expect(r).toMatchSnapshot();
     expect(
-      r
-        .find('ForwardRef(Relay(ApplicationStatusItemContainer))')
-        .prop('applicationStatus')
+      r.find('Relay(ApplicationStatusItemContainer)').prop('applicationStatus')
     ).toBe(query.allApplicationStatuses.edges[0].node);
   });
 

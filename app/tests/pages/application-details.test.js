@@ -19,19 +19,19 @@ it('It receives the props for app_id, bcghgid and reporting year', () => {
   const wrapper = shallow(<ApplicationDetails router={router} />);
   expect(
     wrapper
-      .find('ForwardRef(Relay(ApplicationStatusContainer))')
+      .find('Relay(ApplicationStatusContainer)')
       .first()
       .prop('applicationId')
   ).toBe(router.query.applicationId);
   expect(
     wrapper
-      .find('ForwardRef(Relay(IncentiveCalculatorContainer))')
+      .find('Relay(IncentiveCalculatorContainer)')
       .first()
       .prop('reportingYear')
   ).toBe(router.query.reportingYear);
   expect(
     wrapper
-      .find('ForwardRef(Relay(IncentiveCalculatorContainer))')
+      .find('Relay(IncentiveCalculatorContainer)')
       .first()
       .prop('bcghgid')
   ).toBe(router.query.bcghgid);

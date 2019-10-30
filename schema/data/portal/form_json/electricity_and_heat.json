@@ -1,6 +1,7 @@
 {
   "title": "Electricity and Heat Information",
   "showCompletedPage": false,
+  "completeText": "Next",
   "pages": [
     {
       "elements": [
