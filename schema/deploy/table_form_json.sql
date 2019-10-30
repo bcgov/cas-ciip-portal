@@ -10,7 +10,9 @@ create table ggircs_portal.form_json (
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
   updated_at timestamp with time zone not null default now(),
-  updated_by varchar(1000)
+  updated_by varchar(1000),
+  prepopulate_from_ciip boolean not null,
+  prepopulate_from_swrs boolean not null
   --todo: add versioning columns
 );
 
@@ -29,5 +31,6 @@ comment on column ggircs_portal.form_json.created_at is 'The date the form was u
 comment on column ggircs_portal.form_json.created_by is 'The person who updated the form';
 comment on column ggircs_portal.form_json.updated_at is 'The date the form was updated';
 comment on column ggircs_portal.form_json.updated_by is 'The person who updated the form';
-
+comment on column ggircs_portal.form_json.prepopulate_from_ciip is 'Whether the form is initialized with data submitted in the previous year''s application';
+comment on column ggircs_portal.form_json.prepopulate_from_swrs is 'Whether the form is initialized with data submitted in the previous year''s application';
 commit;

@@ -11,7 +11,7 @@ declare
   new_id int;
   result ggircs_portal.application;
   form_count int;
-  counter int := 1;
+  temp_row record;
 begin
 
   --Insert new value into application
@@ -22,17 +22,19 @@ begin
   insert into ggircs_portal.application_status(application_id, application_status)
   values (new_id, 'draft');
 
-  select count(id) as c from ggircs_portal.form_json into form_count;
+  select count(form_id) as c from ggircs_portal.ciip_application_wizard into form_count;
 
   select id, facility_id from ggircs_portal.application where id = new_id into result;
+
+  for temp_row in
+
+    select form_id from ggircs_portal.ciip_application_wizard
 
   -- loop over number of forms and create a form_result row for each
   loop
     -- loop over what is in the wizard, not the forms in case some forms get added/disabled etc
-    exit when counter = form_count+1;
     insert into ggircs_portal.form_result(form_id, user_id, application_id, form_result)
-    values (counter, 2, new_id, '{}');
-    counter := counter + 1;
+    values (temp_row.form_id, 2, new_id, '{}');
 
   end loop;
 

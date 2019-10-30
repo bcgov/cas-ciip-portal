@@ -1,21 +1,21 @@
 import React from 'react';
 import {Nav} from 'react-bootstrap';
-import {createFragmentContainer} from 'react-relay';
+import {createFragmentContainer, graphql} from 'react-relay';
 import Link from 'next/link';
 
 const ApplicationFormNavbarComponent = props => {
-  const {wizard, application} = props;
+  const {application} = props.query;
   return (
     <>
       <Nav justify variant="tabs" defaultActiveKey="/home">
-        {wizard.edges.map(({node}) => (
-          <Nav.Item key={node.formJsonByFormId.id}>
+        {application.orderedFormResults.edges.map(({node}) => (
+          <Nav.Item key={node.id}>
             <Link
               passHref
               href={{
                 pathname: '/ciip-application',
                 query: {
-                  formId: node.formJsonByFormId.id,
+                  formResultId: node.id,
                   applicationId: application.id
                 }
               }}
@@ -29,4 +29,26 @@ const ApplicationFormNavbarComponent = props => {
   );
 };
 
-export default createFragmentContainer(ApplicationFormNavbarComponent, {});
+export default createFragmentContainer(ApplicationFormNavbarComponent, {
+  query: graphql`
+    fragment ApplicationFormNavbar_query on Query
+      @argumentDefinitions(
+        formResultId: {type: "ID!"}
+        applicationId: {type: "ID!"}
+      ) {
+      application(id: $applicationId) {
+        id
+        orderedFormResults {
+          edges {
+            node {
+              id
+              formJsonByFormId {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  `
+});

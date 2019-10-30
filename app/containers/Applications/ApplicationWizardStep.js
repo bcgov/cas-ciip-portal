@@ -139,32 +139,20 @@ const getInitialFuelData = (application, allFuels) => {
  * The ApplicationWizardStep renders a form and, where applicable,
  *  TODOx: starts by presenting a summary of existing data to the user
  */
-const ApplicationWizardStep = ({
-  query,
-  formName,
-  onStepComplete,
-  prepopulateFromSwrs,
-  confirmationPage,
-  formJsonRowId
-}) => {
-  const {application, allFuels} = query;
+const ApplicationWizardStep = ({query, onStepComplete, confirmationPage}) => {
+  const {application, allFuels, formResult} = query;
+
   const [initialData, setInitialData] = useState(undefined);
 
   useEffect(() => {
-    if (
-      application.formResultsByApplicationId.edges[formJsonRowId - 1].node
-        .formResult !== '{}'
-    ) {
-      return setInitialData(
-        JSON.parse(
-          application.formResultsByApplicationId.edges[formJsonRowId - 1].node
-            .formResult
-        )
-      );
+    if (!formResult) return;
+    const {formJsonByFormId} = formResult;
+    if (formResult.formResult !== '{}') {
+      return setInitialData(JSON.parse(formResult.formResult));
     }
 
-    if (!prepopulateFromSwrs) return setInitialData(undefined);
-    switch (formName) {
+    if (!formJsonByFormId.prepopulateFromSwrs) return setInitialData(undefined);
+    switch (formJsonByFormId.name) {
       case 'Admin': {
         setInitialData(getInitialAdminData(application));
         break;
@@ -183,23 +171,14 @@ const ApplicationWizardStep = ({
       default:
         setInitialData(undefined);
     }
-  }, [
-    formName,
-    query,
-    prepopulateFromSwrs,
-    application,
-    allFuels,
-    formJsonRowId
-  ]);
+  }, [application, allFuels, formResult]);
 
   let initialDataSource;
-  if (
-    application.formResultsByApplicationId.edges[formJsonRowId - 1].node
-      .formResult !== '{}'
-  ) {
+  if (!formResult) return null;
+  if (formResult.formResult !== '{}') {
     initialDataSource = 'your draft submission';
-  } else if (prepopulateFromSwrs) {
-    initialDataSource = 'your last SWRS report';
+  } else if (formResult.formJsonByFormId.prepopulateFromSwrs) {
+    initialDataSource = 'your last Emissions report';
   }
 
   if (!application) return null;
@@ -209,13 +188,8 @@ const ApplicationWizardStep = ({
   return (
     <Form
       query={query}
-      formResultId={
-        application.formResultsByApplicationId.edges[formJsonRowId - 1].node.id
-      }
-      startsEditable={!prepopulateFromSwrs}
       initialData={initialData}
       initialDataSource={initialDataSource}
-      prepopulateFromSwrs={prepopulateFromSwrs}
       onFormComplete={onStepComplete}
     />
   );
@@ -225,10 +199,10 @@ export default createFragmentContainer(ApplicationWizardStep, {
   query: graphql`
     fragment ApplicationWizardStep_query on Query
       @argumentDefinitions(
-        formId: {type: "ID!"}
+        formResultId: {type: "ID!"}
         applicationId: {type: "ID!"}
       ) {
-      ...Form_query @arguments(formId: $formId)
+      ...Form_query @arguments(formResultId: $formResultId)
       ...ApplicationWizardConfirmation_query
         @arguments(applicationId: $applicationId)
       allFuels {
@@ -239,15 +213,14 @@ export default createFragmentContainer(ApplicationWizardStep, {
           }
         }
       }
-      application(id: $applicationId) {
-        formResultsByApplicationId {
-          edges {
-            node {
-              id
-              formResult
-            }
-          }
+      formResult(id: $formResultId) {
+        formResult
+        formJsonByFormId {
+          name
+          prepopulateFromSwrs
         }
+      }
+      application(id: $applicationId) {
         swrsEmissionData(reportingYear: "2018") {
           edges {
             node {

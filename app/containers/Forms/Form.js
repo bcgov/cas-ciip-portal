@@ -8,19 +8,18 @@ import FormWithFuelUnits from './FormWithFuelUnits';
 export const FormComponent = ({
   query,
   relay,
-  formResultId,
   onFormComplete,
   initialData,
   initialDataSource
 }) => {
-  const {json} = query || {};
+  const {result} = query || {};
 
   // Mutation: stores the result of the form
   const updateFormResult = graphql`
     mutation FormLoaderContainerMutation($input: UpdateFormResultInput!) {
       updateFormResult(input: $input) {
         formResult {
-          rowId
+          id
           formResult
         }
       }
@@ -32,7 +31,7 @@ export const FormComponent = ({
     const {environment} = relay;
     const variables = {
       input: {
-        id: formResultId,
+        id: result.id,
         formResultPatch: {
           formResult: JSON.stringify(formResult)
         }
@@ -45,7 +44,7 @@ export const FormComponent = ({
       variables,
       onCompleted: response => {
         // This update Mutation needs an updater function
-        window.location.reload();
+        // window.location.reload();
         console.log('Store Result Response received from server.', response);
       },
       onError: err => console.error(err)
@@ -61,8 +60,10 @@ export const FormComponent = ({
     onFormComplete();
   };
 
-  if (!json) return null;
-  const {formJson} = json;
+  if (!result) return null;
+  const {
+    formJsonByFormId: {formJson}
+  } = result;
 
   return (
     <>
@@ -87,19 +88,23 @@ export default createRefetchContainer(
   FormComponent,
   {
     query: graphql`
-      fragment Form_query on Query @argumentDefinitions(formId: {type: "ID!"}) {
-        json: formJson(id: $formId) {
-          formJson
-        }
+      fragment Form_query on Query
+        @argumentDefinitions(formResultId: {type: "ID!"}) {
         ...FormWithProductUnits_query
         ...FormWithFuelUnits_query
+        result: formResult(id: $formResultId) {
+          id
+          formJsonByFormId {
+            formJson
+          }
+        }
       }
     `
   },
   graphql`
-    query FormRefetchQuery($formId: ID!) {
+    query FormRefetchQuery($formResultId: ID!) {
       query {
-        ...Form_query @arguments(formId: $formId)
+        ...Form_query @arguments(formResultId: $formResultId)
       }
     }
   `
