@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
+import {useRouter} from 'next/router';
 import {createFragmentContainer, graphql} from 'react-relay';
 import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
 import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmationCardItem';
@@ -9,6 +10,7 @@ import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmati
  * and allows the user to submit their application.
  */
 export const ApplicationWizardConfirmationComponent = props => {
+  const router = useRouter();
   const formResults = props.query.application.formResultsByApplicationId.edges;
   const resultObject = {};
   // Create a parsed result object from each formResult page
@@ -39,6 +41,10 @@ export const ApplicationWizardConfirmationComponent = props => {
       variables
     );
     console.log(response);
+    const newUrl = {
+      pathname: '/complete-submit'
+    };
+    router.replace(newUrl, newUrl, {shallow: true});
   };
 
   return (
