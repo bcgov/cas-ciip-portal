@@ -77,7 +77,6 @@ const ApplicationFormNavbarComponent = props => {
         <Nav.Item>
           <Nav.Link
             onClick={() => {
-              router.query.confirmationPage = false;
               setRouterQueryParam(
                 router,
                 'formId',

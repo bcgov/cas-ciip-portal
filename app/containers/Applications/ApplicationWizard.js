@@ -43,6 +43,7 @@ const ApplicationWizard = ({query}) => {
   const onStepComplete = () => {
     for (let i = 0; i < wizard.edges.length; i++) {
       if (wizard.edges[i].node.formJsonByFormId.id === formJson.id) {
+        // This is breaking in the nav beacause it is setting the router before it is going to the final page
         const goToConfirmation = i === wizard.edges.length - 1;
         const formId = goToConfirmation
           ? undefined
@@ -96,9 +97,10 @@ export default createFragmentContainer(ApplicationWizard, {
       ) {
       application(id: $applicationId) {
         rowId
+        # get the formResult id here & add to query params, then get the result in wizardStep
       }
       formJson(id: $formId) {
-        id
+        id # instead of this id
         rowId
       }
       wizard: allCiipApplicationWizards(orderBy: FORM_POSITION_ASC) {

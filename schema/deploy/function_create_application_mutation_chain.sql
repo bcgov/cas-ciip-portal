@@ -28,7 +28,7 @@ begin
 
   -- loop over number of forms and create a form_result row for each
   loop
-
+    -- loop over what is in the wizard, not the forms in case some forms get added/disabled etc
     exit when counter = form_count+1;
     insert into ggircs_portal.form_result(form_id, user_id, application_id, form_result)
     values (counter, 2, new_id, '{}');

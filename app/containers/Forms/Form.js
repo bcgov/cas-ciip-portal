@@ -21,6 +21,7 @@ export const FormComponent = ({
       updateFormResult(input: $input) {
         formResult {
           rowId
+          formResult
         }
       }
     }
@@ -43,6 +44,8 @@ export const FormComponent = ({
       mutation,
       variables,
       onCompleted: response => {
+        // This update Mutation needs an updater function
+        window.location.reload();
         console.log('Store Result Response received from server.', response);
       },
       onError: err => console.error(err)
