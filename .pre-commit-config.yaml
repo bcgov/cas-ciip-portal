@@ -1,4 +1,9 @@
-exclude: 'test\.js\.snap$'
+
+exclude: >
+            (?x)^(
+                test\.js\.snap$|
+                test\.js\.story$
+            )$
 repos:
 - repo: local
   hooks:
