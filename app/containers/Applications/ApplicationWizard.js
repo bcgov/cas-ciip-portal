@@ -74,6 +74,7 @@ const ApplicationWizard = ({query}) => {
         setRouterQueryParam={setRouterQueryParam}
         wizard={wizard}
         confirmationPage={confirmationPage}
+        application={application}
       />
       <ApplicationWizardStep
         query={query}
@@ -96,6 +97,7 @@ export default createFragmentContainer(ApplicationWizard, {
         applicationId: {type: "ID!"}
       ) {
       application(id: $applicationId) {
+        id
         rowId
         # get the formResult id here & add to query params, then get the result in wizardStep
       }
