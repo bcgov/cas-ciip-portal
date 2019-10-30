@@ -2,7 +2,7 @@
 exclude: >
             (?x)^(
                 test\.js\.snap$|
-                test\.js\.story$
+                stories\.story$
             )$
 repos:
 - repo: local
