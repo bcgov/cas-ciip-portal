@@ -6,10 +6,10 @@ import Subheader from '../components/Layout/Subheader';
 
 class DefaultLayout extends Component {
   render() {
-    const {children, title, showSubheader, isLoggedIn} = this.props;
+    const {children, title, showSubheader, session} = this.props;
     return (
       <div className="page-wrap">
-        <Header isLoggedOut={isLoggedIn} />
+        <Header session={session} />
         {showSubheader && <Subheader />}
         {title ? (
           <div className="page-title">

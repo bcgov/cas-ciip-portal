@@ -156,7 +156,7 @@ export const UserDetail = props => {
 
 export default createFragmentContainer(UserDetail, {
   user: graphql`
-    fragment UserDetail_user on User {
+    fragment UserDetailContainer_user on User {
       rowId
       firstName
       lastName

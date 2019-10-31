@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {UserDetail} from '../../../containers/Industry/UserDetail';
+import {UserDetail} from '../../../containers/Industry/UserDetailContainer';
 const user = {
   id: 'WyJ1c2VycyIsMV0=',
   rowId: 1,

@@ -15,7 +15,7 @@ const setStatus = graphql`
   }
 `;
 
-export const ApplicationStatusContainer = props => {
+export const ApplicationStatus = props => {
   const {allApplicationStatuses} = props.query;
   useEffect(() => {
     const refetchVariables = {
@@ -67,7 +67,7 @@ export const ApplicationStatusContainer = props => {
 };
 
 export default createRefetchContainer(
-  ApplicationStatusContainer,
+  ApplicationStatus,
   {
     query: graphql`
       fragment ApplicationStatusContainer_query on Query

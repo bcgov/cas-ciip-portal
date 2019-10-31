@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationStatusItemContainer should render the application status 1`] = `
+exports[`ApplicationStatusItem should render the application status 1`] = `
 <Fragment>
   <Container
     fluid={false}

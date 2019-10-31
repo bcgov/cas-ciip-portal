@@ -1,13 +1,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ProductCreatorContainer} from '../../../containers/Products/ProductCreatorContainer';
+import {ProductCreator} from '../../../containers/Products/ProductCreatorContainer';
 
-describe('ProductCreatorContainer', () => {
+describe('ProductCreator', () => {
   describe('render()', () => {
     let render;
 
     beforeAll(() => {
-      render = shallow(<ProductCreatorContainer />);
+      render = shallow(<ProductCreator />);
     });
 
     it('should match the last usable snapshot', async () => {

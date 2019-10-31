@@ -5,7 +5,7 @@ import IncentiveSegmentFormula from '../../components/Incentives/IncentiveSegmen
 import LoadingSpinner from '../../components/LoadingSpinner';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
 
-export const IncentiveCalculatorContainer = props => {
+export const IncentiveCalculator = props => {
   useEffect(() => {
     const refetchVariables = {
       bcghgidInput: Number(props.bcghgid),
@@ -70,7 +70,7 @@ export const IncentiveCalculatorContainer = props => {
 };
 
 export default createRefetchContainer(
-  IncentiveCalculatorContainer,
+  IncentiveCalculator,
   {
     query: graphql`
       fragment IncentiveCalculatorContainer_query on Query

@@ -1,12 +1,25 @@
 import React, {Component} from 'react';
 import {Button, Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
 import Link from 'next/link';
+import {graphql} from 'react-relay';
 import DefaultLayout from '../../layouts/default-layout';
 
 export default class Index extends Component {
+  static query = graphql`
+    query IndexQuery {
+      query {
+        session {
+          ...Header_session
+        }
+      }
+    }
+  `;
+
   render() {
+    const {query} = this.props;
+    const {session} = query || {};
     return (
-      <DefaultLayout showSubheader={false} isLoggedIn={false}>
+      <DefaultLayout showSubheader={false} session={session}>
         <Row style={{marginTop: '60px'}}>
           <Col md={6}>
             <h3 className="blue">

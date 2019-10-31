@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApplicationRowItemContainer} from '../../../containers/Applications/ApplicationRowItemContainer';
+import {ApplicationRowItem} from '../../../containers/Applications/ApplicationRowItemContainer';
 
-describe('ApplicationRowItemContainer', () => {
+describe('ApplicationRowItem', () => {
   it('should render the application', () => {
     const ciipApplication = {
       applicationId: '9',
@@ -12,7 +12,7 @@ describe('ApplicationRowItemContainer', () => {
       submissionDate: 'Sun, 17 Dec 1995 03:24:00 GMT'
     };
     const render = shallow(
-      <ApplicationRowItemContainer ciipApplication={ciipApplication} />
+      <ApplicationRowItem ciipApplication={ciipApplication} />
     );
     expect(render).toMatchSnapshot();
   });

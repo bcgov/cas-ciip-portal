@@ -12,11 +12,15 @@
     "build:relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose",
     "build:next": "next build",
     "start": "NODE_ENV=production node server",
-    "format": "xo --fix --ignore './static/survey-creator.css' './static/bootstrap.min.css'",
+    "format": "xo --fix",
     "lint": "xo",
     "storybook": "start-storybook"
   },
   "xo": {
+    "ignores": [
+      "./static/survey-creator.css",
+      "./static/bootstrap.min.css"
+    ],
     "extends": [
       "xo-react",
       "plugin:jest/recommended",

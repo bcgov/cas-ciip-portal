@@ -47,123 +47,151 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
       <div
         className="jsx-1958721952 page-wrap"
       >
-        <Header>
-          <header
-            className="jsx-2807878339"
+        <Relay(HeaderLayout)>
+          <Relay(HeaderLayout)
+            __relayContext={
+              Object {
+                "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+              }
+            }
+            componentRef={null}
           >
-            <div
-              className="jsx-2807878339 container"
+            <HeaderLayout
+              relay={
+                Object {
+                  "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+                }
+              }
+              session={null}
             >
-              <div
-                className="jsx-2807878339 banner"
+              <header
+                className="jsx-2807878339"
               >
                 <div
-                  className="jsx-2807878339 header-left"
+                  className="jsx-2807878339 container"
                 >
-                  <Link
-                    href="/"
-                  >
-                    <img
-                      alt="Go to the Government of British Columbia website"
-                      className="jsx-2807878339"
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      src="/static/logo-banner.png"
-                    />
-                  </Link>
-                  <h1
-                    className="jsx-2807878339"
-                  >
-                    CleanBC Industrial Incentive Program
-                  </h1>
-                </div>
-                <div
-                  className="jsx-2807878339 login-btns header-right"
-                >
-                  <ForwardRef
-                    noGutters={false}
+                  <div
+                    className="jsx-2807878339 banner"
                   >
                     <div
-                      className="row"
+                      className="jsx-2807878339 header-left"
                     >
-                      <Col>
-                        <div
-                          className="col"
-                        >
-                          <Link
-                            href={
-                              Object {
-                                "pathname": "/dummy-login",
-                              }
-                            }
-                          >
-                            <Button
-                              active={false}
-                              disabled={false}
-                              onClick={[Function]}
-                              onMouseEnter={[Function]}
-                              style={
-                                Object {
-                                  "marginRight": "10px",
-                                }
-                              }
-                              type="button"
-                              variant="outline-light"
-                            >
-                              <button
-                                className="btn btn-outline-light"
-                                disabled={false}
-                                onClick={[Function]}
-                                onMouseEnter={[Function]}
-                                style={
-                                  Object {
-                                    "marginRight": "10px",
-                                  }
-                                }
-                                type="button"
-                              >
-                                Register
-                              </button>
-                            </Button>
-                          </Link>
-                          <Link
-                            href={
-                              Object {
-                                "pathname": "/dummy-login",
-                              }
-                            }
-                          >
-                            <Button
-                              active={false}
-                              disabled={false}
-                              onClick={[Function]}
-                              onMouseEnter={[Function]}
-                              type="button"
-                              variant="outline-light"
-                            >
-                              <button
-                                className="btn btn-outline-light"
-                                disabled={false}
-                                onClick={[Function]}
-                                onMouseEnter={[Function]}
-                                type="button"
-                              >
-                                Login
-                              </button>
-                            </Button>
-                          </Link>
-                        </div>
-                      </Col>
+                      <Link
+                        href="/"
+                      >
+                        <img
+                          alt="Go to the Government of British Columbia website"
+                          className="jsx-2807878339"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                          src="/static/logo-banner.png"
+                        />
+                      </Link>
+                      <h1
+                        className="jsx-2807878339"
+                      >
+                        CleanBC Industrial Incentive Program
+                      </h1>
                     </div>
-                  </ForwardRef>
+                    <div
+                      className="jsx-2807878339 login-btns header-right"
+                    >
+                      <ForwardRef
+                        noGutters={false}
+                      >
+                        <div
+                          className="row"
+                        >
+                          <Col>
+                            <div
+                              className="col"
+                            >
+                              <FormRow>
+                                <div
+                                  className="form-row"
+                                >
+                                  <Col>
+                                    <div
+                                      className="col"
+                                    >
+                                      <Form
+                                        action="https://www.bceid.ca/register/"
+                                        inline={false}
+                                        method="get"
+                                        target="_blank"
+                                      >
+                                        <form
+                                          action="https://www.bceid.ca/register/"
+                                          className=""
+                                          method="get"
+                                          target="_blank"
+                                        >
+                                          <Button
+                                            active={false}
+                                            disabled={false}
+                                            type="submit"
+                                            variant="outline-light"
+                                          >
+                                            <button
+                                              className="btn btn-outline-light"
+                                              disabled={false}
+                                              type="submit"
+                                            >
+                                              Register
+                                            </button>
+                                          </Button>
+                                        </form>
+                                      </Form>
+                                    </div>
+                                  </Col>
+                                  <Col>
+                                    <div
+                                      className="col"
+                                    >
+                                      <Form
+                                        action="/login"
+                                        inline={false}
+                                        method="post"
+                                      >
+                                        <form
+                                          action="/login"
+                                          className=""
+                                          method="post"
+                                        >
+                                          <Button
+                                            active={false}
+                                            disabled={false}
+                                            type="submit"
+                                            variant="outline-light"
+                                          >
+                                            <button
+                                              className="btn btn-outline-light"
+                                              disabled={false}
+                                              type="submit"
+                                            >
+                                              Login
+                                            </button>
+                                          </Button>
+                                        </form>
+                                      </Form>
+                                    </div>
+                                  </Col>
+                                </div>
+                              </FormRow>
+                            </div>
+                          </Col>
+                        </div>
+                      </ForwardRef>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <JSXStyle
-              id="2807878339"
-            />
-          </header>
-        </Header>
+                <JSXStyle
+                  id="2807878339"
+                />
+              </header>
+            </HeaderLayout>
+          </Relay(HeaderLayout)>
+        </Relay(HeaderLayout)>
         <div
           className="jsx-1958721952 page-title"
         >
@@ -209,8 +237,8 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                           Create a Product
                         </h4>
                         <br />
-                        <Relay(ProductCreatorContainer)>
-                          <Relay(ProductCreatorContainer)
+                        <Relay(ProductCreator)>
+                          <Relay(ProductCreator)
                             __relayContext={
                               Object {
                                 "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
@@ -218,7 +246,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                             }
                             componentRef={null}
                           >
-                            <ProductCreatorContainer
+                            <ProductCreator
                               relay={
                                 Object {
                                   "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
@@ -347,15 +375,15 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                   </form>
                                 </Form>
                               </div>
-                            </ProductCreatorContainer>
-                          </Relay(ProductCreatorContainer)>
-                        </Relay(ProductCreatorContainer)>
+                            </ProductCreator>
+                          </Relay(ProductCreator)>
+                        </Relay(ProductCreator)>
                       </div>
                     </Jumbotron>
                     <br />
                     <br />
                     <br />
-                    <Relay(ProductListContainer)
+                    <Relay(ProductList)
                       confirmationModalOpen={false}
                       mode="view"
                       productRowActions={
@@ -399,7 +427,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                         }
                       }
                     >
-                      <Relay(ProductListContainer)
+                      <Relay(ProductList)
                         __relayContext={
                           Object {
                             "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
@@ -449,7 +477,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                           }
                         }
                       >
-                        <ProductListContainer
+                        <ProductList
                           confirmationModalOpen={false}
                           mode="view"
                           productRowActions={
@@ -2560,9 +2588,9 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                               </ProductRowItemComponent>
                             </Relay(ProductRowItemComponent)>
                           </Relay(ProductRowItemComponent)>
-                        </ProductListContainer>
-                      </Relay(ProductListContainer)>
-                    </Relay(ProductListContainer)>
+                        </ProductList>
+                      </Relay(ProductList)>
+                    </Relay(ProductList)>
                   </div>
                 </Col>
               </div>

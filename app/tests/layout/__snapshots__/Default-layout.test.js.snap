@@ -2,93 +2,18 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <div
-  class="jsx-1958721952 page-wrap"
+  className="jsx-1958721952 page-wrap"
 >
-  <header
-    class="jsx-2807878339"
-  >
-    <div
-      class="jsx-2807878339 container"
-    >
-      <div
-        class="jsx-2807878339 banner"
-      >
-        <div
-          class="jsx-2807878339 header-left"
-        >
-          <img
-            alt="Go to the Government of British Columbia website"
-            class="jsx-2807878339"
-            src="/static/logo-banner.png"
-          />
-          <h1
-            class="jsx-2807878339"
-          >
-            CleanBC Industrial Incentive Program
-          </h1>
-        </div>
-        <div
-          class="jsx-2807878339 login-btns header-right"
-        >
-          <div
-            class="row"
-          >
-            <div
-              class="col"
-            >
-              <button
-                class="btn btn-outline-light"
-                style="margin-right:10px"
-                type="button"
-              >
-                Register
-              </button>
-              <button
-                class="btn btn-outline-light"
-                type="button"
-              >
-                Login
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-  <div
-    class="content container"
+  <Relay(HeaderLayout) />
+  <Container
+    className="content"
+    fluid={false}
   />
-  <footer
-    class="jsx-2746091499 footer"
+  <Footer />
+  <JSXStyle
+    id="1958721952"
   >
-    <div
-      class="jsx-2746091499 container"
-    >
-      <ul
-        class="jsx-2746091499"
-      >
-        <li
-          class="jsx-2746091499"
-        >
-          <a
-            class="jsx-2746091499"
-            href="."
-          >
-            Home
-          </a>
-        </li>
-        <li
-          class="jsx-2746091499"
-        >
-          <a
-            class="jsx-2746091499"
-            href="."
-          >
-            Contact Us
-          </a>
-        </li>
-      </ul>
-    </div>
-  </footer>
+    html,body,#__next,.page-wrap{height:100%;}.page-wrap{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}.content{padding-top:50px;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto;}.footer{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;}h1{font-size:30px;}.page-title{background:#f5f5f5;border-bottom:1px solid #ccc;padding:40px 0 20px;}.page-title h1{font-size:25px;font-weight:400;}h3{margin-bottom:20px;font-weight:500;}.blue{color:#036;}p{line-height:25px;}.ciip-card{border:1px solid #036;padding:15px;border-radius:0;box-shadow:1px 8px 13px -5px #00336694;}button.full-width{width:100%;}.btn-primary{background:#036;border-color:#036;}.with-shadow{box-shadow:1px 8px 13px -5px #00336694;}.accordion button{text-align:left;padding-left:0;color:#1a5a96;}.accordion .card-body{font-size:15px;}
+  </JSXStyle>
 </div>
 `;

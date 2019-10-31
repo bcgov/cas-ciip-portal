@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductListContainer should render the product list 1`] = `
+exports[`ProductList should render the product list 1`] = `
 Array [
   <Relay(ProductRowItemComponent)
     key="product-1"

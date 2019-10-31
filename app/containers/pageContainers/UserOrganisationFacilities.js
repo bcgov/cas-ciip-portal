@@ -8,6 +8,9 @@ export default class UserOrganisationFacilities extends Component {
     query UserOrganisationFacilitiesQuery($organisationId: ID!) {
       query {
         ...OrganisationFacilities_query @arguments(id: $organisationId)
+        session {
+          ...Header_session
+        }
         organisation(id: $organisationId) {
           operatorName
         }
@@ -16,10 +19,10 @@ export default class UserOrganisationFacilities extends Component {
   `;
 
   render() {
-    const {organisation} = this.props.query;
+    const {organisation, session} = this.props.query;
     const orgTitle = `Facilities for ${organisation.operatorName} `;
     return (
-      <DefaultLayout showSubheader title={orgTitle}>
+      <DefaultLayout showSubheader session={session} title={orgTitle}>
         <OrganisationFacilities query={this.props.query} />
       </DefaultLayout>
     );

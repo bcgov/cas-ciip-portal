@@ -12,7 +12,7 @@ import {
 import DropdownMenuItemComponent from '../../components/DropdownMenuItemComponent';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
-export const ApplicationListContainer = props => {
+export const ApplicationList = props => {
   const {
     orderByDisplay,
     searchDisplay,
@@ -163,7 +163,7 @@ export const ApplicationListContainer = props => {
 // @see https://facebook.github.io/relay/graphql/objectidentification.htm#sec-Node-Interface
 // TODO: Several entitites do not have graphql ID's because they are views
 export default createRefetchContainer(
-  ApplicationListContainer,
+  ApplicationList,
   {
     query: graphql`
       fragment ApplicationListContainer_query on Query
