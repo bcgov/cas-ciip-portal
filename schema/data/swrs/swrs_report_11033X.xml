@@ -394,50 +394,6 @@
                 <SubProcess SubprocessName="(b) general stationary combustion, no useful energy" InformationRequirement="Required">
                     <Units/>
                 </SubProcess>
-                <SubProcess SubprocessName="(c) Combustion: Field gas or Process Vent Gas" InformationRequirement="Required">
-                    <Units>
-                        <Unit>
-                            <UnitDesc>Combustion: Field gas or Process vent gas</UnitDesc>
-                            <Fuels>
-                                <Fuel>
-                                    <FuelType>Field gas or process vent gas</FuelType>
-                                    <Emissions EmissionsType="Combustion: Field gas or Process Vent Gas">
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>true</NotApplicable>
-                                            <CalculatedQuantity xsi:nil="true"/>
-                                            <GasType>CO2nonbio</GasType>
-                                        </Emission>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>true</NotApplicable>
-                                            <CalculatedQuantity xsi:nil="true"/>
-                                            <GasType>CH4</GasType>
-                                        </Emission>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>true</NotApplicable>
-                                            <CalculatedQuantity xsi:nil="true"/>
-                                            <GasType>N2O</GasType>
-                                        </Emission>
-                                    </Emissions>
-                                </Fuel>
-                            </Fuels>
-                        </Unit>
-                    </Units>
-                </SubProcess>
                 <SubProcess SubprocessName="Additional information required when other activities selected are Activities in Table 2 rows 2, 4, 5 , or 6" InformationRequirement="Additional">
                     <Units>
                         <Unit>
