@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
 import IncentiveSegmentFormula from '../../components/Incentives/IncentiveSegmentFormula';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
 
 export const IncentiveCalculatorContainer = props => {
@@ -41,16 +42,18 @@ export const IncentiveCalculatorContainer = props => {
             </tr>
           </thead>
           <tbody>
-            {props
-              ? bcghgidProducts.edges.map(edge => (
-                  <IncentiveSegmentContainer
-                    key={edge.node.id}
-                    reported={edge.node}
-                    allProducts={allProducts}
-                    carbonTax={carbonTax}
-                  />
-                ))
-              : '...Loading'}
+            {props ? (
+              bcghgidProducts.edges.map(edge => (
+                <IncentiveSegmentContainer
+                  key={edge.node.id}
+                  reported={edge.node}
+                  allProducts={allProducts}
+                  carbonTax={carbonTax}
+                />
+              ))
+            ) : (
+              <LoadingSpinner />
+            )}
             <tr>
               <td colSpan="2">
                 <strong>Total Incentive</strong>

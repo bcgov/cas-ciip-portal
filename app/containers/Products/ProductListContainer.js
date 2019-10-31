@@ -1,5 +1,6 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductRowItemContainer from './ProductRowItemContainer';
 
 export const ProductListContainer = props => {
@@ -21,7 +22,7 @@ export const ProductListContainer = props => {
     ));
   }
 
-  return <>...Loading</>;
+  return <LoadingSpinner />;
 };
 
 // @connection on the two edge-returning queries supports downstream mutations

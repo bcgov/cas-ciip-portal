@@ -1,11 +1,12 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {CardDeck} from 'react-bootstrap';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import Facility from './Facility';
 
 export const OrganisationFacilitiesComponent = props => {
   const {organisation} = props.query;
-  if (!organisation) return '...Loading';
+  if (!organisation) return <LoadingSpinner />;
 
   return (
     <>

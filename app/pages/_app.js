@@ -4,6 +4,7 @@ import NextApp from 'next/app';
 
 import {initEnvironment, createEnvironment} from '../lib/relay-environment';
 import ErrorBoundary from '../lib/error-boundary';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export default class App extends NextApp {
   static getInitialProps = async ({Component, ctx}) => {
@@ -49,7 +50,16 @@ export default class App extends NextApp {
             if (error) return <div>{error.message}</div>;
             if (props)
               return <Component {...props} router={this.props.router} />;
-            return <div>Loading</div>;
+            return (
+              <div>
+                <LoadingSpinner />
+                <style jsx>{`
+                  div {
+                    height: 100vh;
+                  }
+                `}</style>
+              </div>
+            );
           }}
         />
       </ErrorBoundary>

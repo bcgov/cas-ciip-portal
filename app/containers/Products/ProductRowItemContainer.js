@@ -16,7 +16,7 @@ import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMu
 // TODO: The UI is a little borked, the edit buttons apply to all items on the page because of where state lives currently
 //       I have purposely left this not fixed as I believe this should be fixed in a separate refactor of this page
 
-export const ProductRowItemContainer = props => {
+export const ProductRowItemComponent = props => {
   // Get the product's current benchmark
   const getCurrentBenchmark = () => {
     let currentBenchmark;
@@ -468,7 +468,7 @@ export const ProductRowItemContainer = props => {
   );
 };
 
-export default createFragmentContainer(ProductRowItemContainer, {
+export default createFragmentContainer(ProductRowItemComponent, {
   product: graphql`
     fragment ProductRowItemContainer_product on Product {
       rowId
