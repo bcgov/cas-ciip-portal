@@ -43,7 +43,7 @@ describe('Facility', () => {
       <FacilityComponent relay={{environment: {}}} facility={facility} />
     );
     expect(r).toMatchSnapshot();
-    // Expect(r.find('CardTitle').text()).toBe('f');
+    expect(r.find('CardHeader').text()).toMatch(/Facility Name/);
   });
 
   it('should not render a Button if an applicationID exists and is not in draft status', async () => {
