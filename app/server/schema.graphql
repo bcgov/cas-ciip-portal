@@ -1,5 +1,7 @@
 """The application data"""
 type Application implements Node {
+  applicationStatus: ApplicationStatus
+
   """Reads and enables pagination through a set of `ApplicationStatus`."""
   applicationStatusesByApplicationId(
     """Read all values in the set after (below) this cursor."""
