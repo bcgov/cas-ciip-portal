@@ -5,30 +5,30 @@ exports[`It matches the last accepted Snapshot 1`] = `
   class="jsx-1958721952 page-wrap"
 >
   <header
-    class="jsx-982383367"
+    class="jsx-635217793"
   >
     <div
-      class="jsx-982383367 container"
+      class="jsx-635217793 container"
     >
       <div
-        class="jsx-982383367 banner"
+        class="jsx-635217793 banner"
       >
         <div
-          class="jsx-982383367 header-left"
+          class="jsx-635217793 header-left"
         >
           <img
             alt="Go to the Government of British Columbia website"
-            class="jsx-982383367"
+            class="jsx-635217793"
             src="/static/logo-banner.png"
           />
           <h1
-            class="jsx-982383367"
+            class="jsx-635217793"
           >
             CleanBC Industrial Incentive Program
           </h1>
         </div>
         <div
-          class="jsx-982383367 login-btns header-right"
+          class="jsx-635217793 login-btns header-right"
         >
           <div
             class="row"
