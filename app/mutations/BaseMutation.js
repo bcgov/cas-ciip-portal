@@ -33,8 +33,6 @@ export default class BaseMutation {
       });
     }
 
-    // Const {mutation} = this;
-    // const {variables} = this;
     // TODO: abstract onError into a base class
     return commitMutation(environment, {
       mutation,

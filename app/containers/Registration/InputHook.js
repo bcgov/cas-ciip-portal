@@ -11,7 +11,7 @@ export const useInput = (initialValue, onChange) => {
       value,
       onChange: event => {
         setValue(event.target.value);
-        onChange(event);
+        if (onChange) onChange(event);
       }
     }
   };

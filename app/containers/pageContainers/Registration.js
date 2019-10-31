@@ -18,12 +18,10 @@ class Registration extends Component {
     const {user} = this.props.query;
 
     return (
-      <>
-        <DefaultLayout title="Registration">
-          <h4 className="mb-5">Please verify or update your information</h4>
-          <FormEditUser user={user} />
-        </DefaultLayout>
-      </>
+      <DefaultLayout title="Registration">
+        <h4 className="mb-5">Please verify or update your information</h4>
+        <FormEditUser user={user} />
+      </DefaultLayout>
     );
   }
 }
