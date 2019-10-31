@@ -1,7 +1,9 @@
 import React from 'react';
 import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
 import Alert from 'react-bootstrap/Alert';
+import {useRouter} from 'next/router';
 import SurveyWrapper from '../../components/Survey/SurveyWrapper';
+import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
 import FormWithProductUnits from './FormWithProductUnits';
 import FormWithFuelUnits from './FormWithFuelUnits';
 
@@ -10,9 +12,12 @@ export const FormComponent = ({
   relay,
   onFormComplete,
   initialData,
-  initialDataSource
+  initialDataSource,
+  certificationPage
 }) => {
   const {result} = query || {};
+
+  const router = useRouter();
 
   // Mutation: stores the result of the form
   const updateFormResult = graphql`
@@ -51,20 +56,44 @@ export const FormComponent = ({
     });
   };
 
+  console.log(result);
+  // Change application status to 'pending' on application submit
+  const submitApplication = async () => {
+    const {environment} = relay;
+    const variables = {
+      input: {
+        id:
+          result.applicationByApplicationId.applicationStatusesByApplicationId
+            .edges[0].node.id,
+        applicationStatusPatch: {
+          applicationStatus: 'pending'
+        }
+      }
+    };
+    const response = await updateApplicationStatusMutation(
+      environment,
+      variables
+    );
+    console.log(response);
+    const newUrl = {
+      pathname: '/complete-submit'
+    };
+    router.replace(newUrl, newUrl, {shallow: true});
+  };
+
   // Define a callback methods on survey complete
   const onComplete = result => {
     const formData = result.data;
     console.log('form data', formData);
     storeResult(formData);
     console.log('Complete!', result.data);
-    onFormComplete();
+    certificationPage ? submitApplication() : onFormComplete();
   };
 
   if (!result) return null;
   const {
     formJsonByFormId: {formJson}
   } = result;
-
   return (
     <>
       {initialData && Object.keys(initialData).length > 0 && (
@@ -96,6 +125,16 @@ export default createRefetchContainer(
           id
           formJsonByFormId {
             formJson
+          }
+          applicationByApplicationId {
+            id
+            applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
           }
         }
       }

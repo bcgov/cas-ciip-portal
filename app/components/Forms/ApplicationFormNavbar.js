@@ -52,7 +52,8 @@ const ApplicationFormNavbarComponent = props => {
                   application.orderedFormResults.edges[
                     application.orderedFormResults.edges.length - 1
                   ].node.id,
-                applicationId: application.id
+                applicationId: application.id,
+                certificationPage: true
               }
             }}
           >
@@ -84,6 +85,8 @@ export default createFragmentContainer(ApplicationFormNavbarComponent, {
           }
         }
       }
+      ...ApplicationWizardConfirmation_query
+        @arguments(applicationId: $applicationId)
     }
   `
 });

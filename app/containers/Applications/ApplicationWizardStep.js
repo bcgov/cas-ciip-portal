@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
+import {useRouter} from 'next/router';
 import Form from '../Forms/Form';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 
@@ -140,6 +141,7 @@ const getInitialFuelData = (application, allFuels) => {
  *  TODOx: starts by presenting a summary of existing data to the user
  */
 const ApplicationWizardStep = ({query, onStepComplete, confirmationPage}) => {
+  const router = useRouter();
   const {application, allFuels, formResult} = query;
 
   const [initialData, setInitialData] = useState(undefined);
@@ -174,6 +176,8 @@ const ApplicationWizardStep = ({query, onStepComplete, confirmationPage}) => {
   }, [application, allFuels, formResult]);
 
   let initialDataSource;
+
+  if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
   if (!formResult) return null;
   if (formResult.formResult !== '{}') {
     initialDataSource = 'your draft submission';
@@ -183,13 +187,12 @@ const ApplicationWizardStep = ({query, onStepComplete, confirmationPage}) => {
 
   if (!application) return null;
 
-  if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
-
   return (
     <Form
       query={query}
       initialData={initialData}
       initialDataSource={initialDataSource}
+      certificationPage={router.query.certificationPage}
       onFormComplete={onStepComplete}
     />
   );
