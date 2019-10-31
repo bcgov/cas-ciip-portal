@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
+import Link from 'next/link';
 import {createFragmentContainer, graphql} from 'react-relay';
-import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
 import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmationCardItem';
 
 /*
@@ -10,6 +10,7 @@ import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmati
  */
 export const ApplicationWizardConfirmationComponent = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
+
   const resultObject = {};
   // Create a parsed result object from each formResult page
   formResults.forEach(result => {
@@ -22,24 +23,6 @@ export const ApplicationWizardConfirmationComponent = props => {
   const formArray = Object.keys(resultObject);
 
   // Change application status to 'pending' on application submit
-  const submitApplication = async () => {
-    const {environment} = props.relay;
-    const variables = {
-      input: {
-        id:
-          props.query.application.applicationStatusesByApplicationId.edges[0]
-            .node.id,
-        applicationStatusPatch: {
-          applicationStatus: 'pending'
-        }
-      }
-    };
-    const response = await updateApplicationStatusMutation(
-      environment,
-      variables
-    );
-    console.log(response);
-  };
 
   return (
     <>
@@ -54,13 +37,24 @@ export const ApplicationWizardConfirmationComponent = props => {
         ))
       )}
 
-      <Button
-        className="float-right"
-        style={{marginTop: '10px'}}
-        onClick={submitApplication}
+      <Link
+        passHref
+        href={{
+          pathname: '/ciip-application',
+          query: {
+            formResultId:
+              props.query.application.orderedFormResults.edges[
+                props.query.application.orderedFormResults.edges.length - 1
+              ].node.id,
+            applicationId: props.query.application.id,
+            certificationPage: true
+          }
+        }}
       >
-        Submit
-      </Button>
+        <Button className="float-right" style={{marginTop: '10px'}}>
+          Next
+        </Button>
+      </Link>
     </>
   );
 };
@@ -70,6 +64,7 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
     fragment ApplicationWizardConfirmation_query on Query
       @argumentDefinitions(applicationId: {type: "ID!"}) {
       application(id: $applicationId) {
+        id
         formResultsByApplicationId {
           edges {
             node {
@@ -77,7 +72,7 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
             }
           }
         }
-        applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
+        orderedFormResults {
           edges {
             node {
               id

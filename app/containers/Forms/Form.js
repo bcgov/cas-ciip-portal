@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import Alert from 'react-bootstrap/Alert';
 import SurveyWrapper from '../../components/Survey/SurveyWrapper';
 import FormWithProductUnits from './FormWithProductUnits';
@@ -7,62 +7,17 @@ import FormWithFuelUnits from './FormWithFuelUnits';
 
 export const FormComponent = ({
   query,
-  relay,
-  applicationId,
-  onFormComplete,
   initialData,
-  initialDataSource
+  initialDataSource,
+  onComplete,
+  onValueChanged
 }) => {
-  const {json} = query || {};
+  const {result} = query || {};
 
-  // Mutation: stores the result of the form
-  const createFormResult = graphql`
-    mutation FormLoaderContainerMutation($input: CreateFormResultInput!) {
-      createFormResult(input: $input) {
-        formResult {
-          rowId
-        }
-      }
-    }
-  `;
-
-  // Function: store the form result
-  const storeResult = formResult => {
-    const {environment} = relay;
-    const variables = {
-      input: {
-        formResult: {
-          applicationId,
-          formId: json.rowId,
-          userId: 2,
-          formResult: JSON.stringify(formResult)
-        }
-      }
-    };
-
-    const mutation = createFormResult;
-    commitMutation(environment, {
-      mutation,
-      variables,
-      onCompleted: response => {
-        console.log('Store Result Response received from server.', response);
-      },
-      onError: err => console.error(err)
-    });
-  };
-
-  // Define a callback methods on survey complete
-  const onComplete = result => {
-    const formData = result.data;
-    console.log('form data', formData);
-    storeResult(formData);
-    console.log('Complete!', result.data);
-    onFormComplete();
-  };
-
-  if (!json) return null;
-  const {formJson} = json;
-
+  if (!result) return null;
+  const {
+    formJsonByFormId: {formJson}
+  } = result;
   return (
     <>
       {initialData && Object.keys(initialData).length > 0 && (
@@ -75,32 +30,30 @@ export const FormComponent = ({
       )}
       <FormWithFuelUnits query={query} formJson={formJson}>
         <FormWithProductUnits query={query} formJson={formJson}>
-          <SurveyWrapper initialData={initialData} onComplete={onComplete} />
+          <SurveyWrapper
+            initialData={initialData}
+            onComplete={onComplete}
+            onValueChanged={onValueChanged}
+            onPanelDynamicValueChanged={onValueChanged}
+          />
         </FormWithProductUnits>
       </FormWithFuelUnits>
     </>
   );
 };
 
-export default createRefetchContainer(
-  FormComponent,
-  {
-    query: graphql`
-      fragment Form_query on Query @argumentDefinitions(formId: {type: "ID!"}) {
-        json: formJson(id: $formId) {
-          rowId
+export default createFragmentContainer(FormComponent, {
+  query: graphql`
+    fragment Form_query on Query
+      @argumentDefinitions(formResultId: {type: "ID!"}) {
+      ...FormWithProductUnits_query
+      ...FormWithFuelUnits_query
+      result: formResult(id: $formResultId) {
+        id
+        formJsonByFormId {
           formJson
         }
-        ...FormWithProductUnits_query
-        ...FormWithFuelUnits_query
-      }
-    `
-  },
-  graphql`
-    query FormRefetchQuery($formId: ID!) {
-      query {
-        ...Form_query @arguments(formId: $formId)
       }
     }
   `
-);
+});

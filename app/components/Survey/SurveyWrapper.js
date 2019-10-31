@@ -1,7 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Survey, Model} from 'survey-react';
 
-const SurveyWrapper = ({formJson, initialData, onComplete, editable}) => {
+const SurveyWrapper = ({
+  formJson,
+  initialData,
+  onComplete,
+  editable,
+  onValueChanged
+}) => {
   const createModel = () => {
     if (!formJson) return null;
     const m = new Model(formJson);
@@ -45,7 +51,13 @@ const SurveyWrapper = ({formJson, initialData, onComplete, editable}) => {
   return (
     <div id="surveyContainer">
       {oldModel && <Survey model={oldModel} />}
-      {model && <Survey model={model} onComplete={onComplete} />}
+      {model && (
+        <Survey
+          model={model}
+          onValueChanged={onValueChanged}
+          onComplete={onComplete}
+        />
+      )}
       <style jsx global>
         {`
           #surveyContainer {

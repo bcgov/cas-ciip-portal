@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
+import ApplicationFormNavbar from '../../components/Forms/ApplicationFormNavbar';
 import ApplicationWizardStep from './ApplicationWizardStep';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {
@@ -21,32 +22,32 @@ const setRouterQueryParam = (router, key, value, replace = false) => {
  * ApplicationWizardConfirmation is rendered.
  */
 const ApplicationWizard = ({query}) => {
-  const {wizard, application, formJson} = query || {};
+  const {application} = query || {};
 
   const router = useRouter();
-  const {confirmationPage} = router.query;
-
+  const {confirmationPage, formResultId} = router.query;
+  const orderedFormResults = application.orderedFormResults.edges;
   useEffect(() => {
     if (confirmationPage) return;
-    if (!formJson)
+    if (!formResultId)
       setRouterQueryParam(
         router,
-        'formId',
-        wizard.edges[0].node.formJsonByFormId.id,
-        !formJson
-        // If we're landing on the wizard page, the formJson isn't defined.
+        'formResultId',
+        orderedFormResults[0].node.id,
+        true
+        // If we're landing on the wizard page
         // We want to trigger a replace instead of a push in that case
       );
-  }, [confirmationPage, formJson, router, wizard.edges]);
+  }, [confirmationPage, formResultId, orderedFormResults, router]);
 
   const onStepComplete = () => {
-    for (let i = 0; i < wizard.edges.length; i++) {
-      if (wizard.edges[i].node.formJsonByFormId.id === formJson.id) {
-        const goToConfirmation = i === wizard.edges.length - 1;
-        const formId = goToConfirmation
+    for (let i = 0; i < orderedFormResults.length; i++) {
+      if (orderedFormResults[i].node.id === formResultId) {
+        const goToConfirmation = i === orderedFormResults.length - 2;
+        const formResultId = goToConfirmation
           ? undefined
-          : wizard.edges[i + 1].node.formJsonByFormId.id;
-        setRouterQueryParam(router, 'formId', formId);
+          : orderedFormResults[i + 1].node.id;
+        setRouterQueryParam(router, 'formResultId', formResultId);
         if (goToConfirmation)
           setRouterQueryParam(router, 'confirmationPage', true);
       }
@@ -55,23 +56,11 @@ const ApplicationWizard = ({query}) => {
 
   if (!application) return <>This is not the application you are looking for</>;
 
-  if (!wizard || !formJson) return null;
-
-  const {
-    prepopulateFromCiip,
-    prepopulateFromSwrs,
-    formJsonByFormId: {name}
-  } = wizard.edges.find(
-    ({node}) => node.formJsonByFormId.id === formJson.id
-  ).node;
-
   return (
     <>
+      <ApplicationFormNavbar query={query} />
       <ApplicationWizardStep
         query={query}
-        prepopulateFromCiip={prepopulateFromCiip}
-        prepopulateFromSwrs={prepopulateFromSwrs}
-        formName={name}
         confirmationPage={confirmationPage}
         onStepComplete={onStepComplete}
       />
@@ -83,29 +72,23 @@ export default createFragmentContainer(ApplicationWizard, {
   query: graphql`
     fragment ApplicationWizard_query on Query
       @argumentDefinitions(
-        formId: {type: "ID!"}
+        formResultId: {type: "ID!"}
         applicationId: {type: "ID!"}
       ) {
       application(id: $applicationId) {
-        __typename
-      }
-      formJson(id: $formId) {
         id
-      }
-      wizard: allCiipApplicationWizards(orderBy: FORM_POSITION_ASC) {
-        edges {
-          node {
-            prepopulateFromCiip
-            prepopulateFromSwrs
-            formJsonByFormId {
+        orderedFormResults {
+          edges {
+            node {
               id
-              name
             }
           }
         }
       }
+      ...ApplicationFormNavbar_query
+        @arguments(formResultId: $formResultId, applicationId: $applicationId)
       ...ApplicationWizardStep_query
-        @arguments(formId: $formId, applicationId: $applicationId)
+        @arguments(formResultId: $formResultId, applicationId: $applicationId)
     }
   `
 });

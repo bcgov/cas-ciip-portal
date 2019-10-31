@@ -11,8 +11,11 @@ export const ApplicationWizardConfirmationCardItemComponent = props => {
   const {resultObject} = props;
   const capitalRegex = /(?<cap>[A-Z])/g;
 
-  const renderInputs = (formTitle, subTitle, formInput, nest) => {
-    let value = resultObject[formTitle][subTitle][0][formInput];
+  const renderInputs = (formTitle, subTitle, formInput, nest, item, index) => {
+    let value;
+    nest
+      ? (value = null)
+      : (value = resultObject[formTitle][subTitle][index][formInput]);
     // Space out camel cased inputs and Capitalize the input for display
 
     const prettyInput = formInput.replace(capitalRegex, ' $1').trim();
@@ -88,13 +91,23 @@ export const ApplicationWizardConfirmationCardItemComponent = props => {
             ))
           ) : (
             <Table>
-              <tbody>
-                {inputs.map(input => (
-                  <tr key={(formTitle, formSubtitle, input)}>
-                    {renderInputs(formTitle, formSubtitle, input)}
-                  </tr>
-                ))}
-              </tbody>
+              {resultObject[formTitle][formSubtitle].map((item, index) => (
+                <tbody key={(formTitle, formSubtitle, index)}>
+                  <tr />
+                  {inputs.map(input => (
+                    <tr key={(formTitle, formSubtitle, input)}>
+                      {renderInputs(
+                        formTitle,
+                        formSubtitle,
+                        input,
+                        null,
+                        item,
+                        index
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              ))}
             </Table>
           )}
         </Card.Body>

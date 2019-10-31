@@ -10,6 +10,7 @@ as $function$
 declare
   new_id int;
   result ggircs_portal.application;
+  temp_row record;
 begin
 
   --Insert new value into application
@@ -21,6 +22,19 @@ begin
   values (new_id, 'draft');
 
   select id, facility_id from ggircs_portal.application where id = new_id into result;
+
+  for temp_row in
+
+    select form_id from ggircs_portal.ciip_application_wizard
+
+  -- loop over number of forms and create a form_result row for each
+  loop
+    -- loop over what is in the wizard, not the forms in case some forms get added/disabled etc
+    insert into ggircs_portal.form_result(form_id, user_id, application_id, form_result)
+    values (temp_row.form_id, 2, new_id, '{}');
+
+  end loop;
+
   return result;
 end;
 $function$ language plpgsql strict volatile;

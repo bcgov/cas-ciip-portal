@@ -2,19 +2,17 @@ begin;
 
 with rows as (
 insert into ggircs_portal.ciip_application_wizard
-  (form_id, form_position, prepopulate_from_ciip, prepopulate_from_swrs)
+  (form_id, form_position)
 values
-  (1, 0, true, true),
-  (2, 1, false, true),
-  (3, 2, false, true),
-  (4, 3, false, false),
-  (5, 4, false, false),
-  (6, 5, false, false)
+  (1, 0),
+  (2, 1),
+  (3, 2),
+  (4, 3),
+  (5, 4),
+  (6, 5)
 on conflict(form_id) do update
 set
-  form_position=excluded.form_position,
-  prepopulate_from_ciip=excluded.prepopulate_from_ciip,
-  prepopulate_from_swrs=excluded.prepopulate_from_swrs
+  form_position=excluded.form_position
 returning 1
 ) select 'Inserted ' || count(*) || ' rows into ggircs_portal.ciip_application_wizard' from rows;
 

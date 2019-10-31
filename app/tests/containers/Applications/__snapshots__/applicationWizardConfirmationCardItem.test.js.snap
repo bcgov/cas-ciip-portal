@@ -42,7 +42,10 @@ exports[`ApplicationWizardConfirmationComponentCardItem should render the indivi
   >
     <CardBody>
       <Bootstrap(Table)>
-        <tbody>
+        <tbody
+          key="0"
+        >
+          <tr />
           <tr
             key="name"
           >

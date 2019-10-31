@@ -6,15 +6,16 @@ import ApplicationWizard from '../Applications/ApplicationWizard';
 class CiipApplication extends Component {
   static getInitialProps = () => ({
     variables: {
-      formId: ''
+      formResultId: '',
+      applicationId: ''
     }
   });
 
   static query = graphql`
-    query CiipApplicationQuery($formId: ID!, $applicationId: ID!) {
+    query CiipApplicationQuery($formResultId: ID!, $applicationId: ID!) {
       query {
         ...ApplicationWizard_query
-          @arguments(formId: $formId, applicationId: $applicationId)
+          @arguments(formResultId: $formResultId, applicationId: $applicationId)
       }
     }
   `;

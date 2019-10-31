@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
+import {graphql, createRefetchContainer} from 'react-relay';
+import {useRouter} from 'next/router';
 import Form from '../Forms/Form';
+import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
+import updateFormResultMutation from '../../mutations/form/updateFormResultMutation';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 
 const getInitialAdminData = application => {
@@ -137,20 +140,83 @@ const getInitialFuelData = (application, allFuels) => {
 
 /*
  * The ApplicationWizardStep renders a form and, where applicable,
- *  TODOx: starts by presenting a summary of existing data to the user
+ *  starts by presenting a summary of existing data to the user
  */
 const ApplicationWizardStep = ({
   query,
-  formName,
   onStepComplete,
-  prepopulateFromSwrs,
-  confirmationPage
+  confirmationPage,
+  relay
 }) => {
-  const {application, allFuels} = query;
+  const router = useRouter();
+  const {application, allFuels, formResult} = query;
+
   const [initialData, setInitialData] = useState(undefined);
+
+  // Function: store the form result
+  const storeResult = async res => {
+    const {environment} = relay;
+    const variables = {
+      input: {
+        id: formResult.id,
+        formResultPatch: {
+          formResult: JSON.stringify(res)
+        }
+      }
+    };
+    const response = await updateFormResultMutation(environment, variables);
+    console.log(response);
+  };
+
+  // Change application status to 'pending' on application submit
+  const submitApplication = async () => {
+    const {environment} = relay;
+    const variables = {
+      input: {
+        id: application.applicationStatusesByApplicationId.edges[0].node.id,
+        applicationStatusPatch: {
+          applicationStatus: 'pending'
+        }
+      }
+    };
+    const response = await updateApplicationStatusMutation(
+      environment,
+      variables
+    );
+    console.log(response);
+    const newUrl = {
+      pathname: '/complete-submit'
+    };
+    router.replace(newUrl, newUrl, {shallow: true});
+  };
+
+  // Define a callback methods on survey complete
+  const onComplete = result => {
+    const formData = result.data;
+    console.log('form data', formData);
+    storeResult(formData);
+    console.log('Complete!', result.data);
+    router.query.certificationPage ? submitApplication() : onStepComplete();
+  };
+
+  const onValueChanged = async change => {
+    const formData = change.data;
+    console.log('form data', formData);
+    await storeResult(formData);
+    relay.refetch({formResultId: formResult.id}, null, () => {
+      console.log('REFETCHED');
+    });
+  };
+
   useEffect(() => {
-    if (!prepopulateFromSwrs) return setInitialData(undefined);
-    switch (formName) {
+    if (!formResult) return;
+    const {formJsonByFormId} = formResult;
+    if (formResult.formResult !== '{}') {
+      return setInitialData(JSON.parse(formResult.formResult));
+    }
+
+    if (!formJsonByFormId.prepopulateFromSwrs) return setInitialData(undefined);
+    switch (formJsonByFormId.name) {
       case 'Admin': {
         setInitialData(getInitialAdminData(application));
         break;
@@ -169,103 +235,136 @@ const ApplicationWizardStep = ({
       default:
         setInitialData(undefined);
     }
-  }, [formName, query, prepopulateFromSwrs, application, allFuels]);
+  }, [application, allFuels, formResult]);
 
   let initialDataSource;
-  if (prepopulateFromSwrs) {
-    initialDataSource = 'your last SWRS report';
+
+  if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
+  if (!formResult) return null;
+  if (formResult.formResult !== '{}') {
+    initialDataSource = 'your draft submission';
+  } else if (formResult.formJsonByFormId.prepopulateFromSwrs) {
+    initialDataSource = 'your last Emissions report';
   }
 
   if (!application) return null;
 
-  if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
-
   return (
     <Form
       query={query}
-      applicationId={application.rowId}
-      startsEditable={!prepopulateFromSwrs}
       initialData={initialData}
       initialDataSource={initialDataSource}
+      certificationPage={router.query.certificationPage}
       onFormComplete={onStepComplete}
+      onComplete={onComplete}
+      onValueChanged={onValueChanged}
     />
   );
 };
 
-export default createFragmentContainer(ApplicationWizardStep, {
-  query: graphql`
-    fragment ApplicationWizardStep_query on Query
-      @argumentDefinitions(
-        formId: {type: "ID!"}
-        applicationId: {type: "ID!"}
-      ) {
-      ...Form_query @arguments(formId: $formId)
-      ...ApplicationWizardConfirmation_query
-        @arguments(applicationId: $applicationId)
-      allFuels {
-        edges {
-          node {
+export default createRefetchContainer(
+  ApplicationWizardStep,
+  {
+    query: graphql`
+      fragment ApplicationWizardStep_query on Query
+        @argumentDefinitions(
+          formResultId: {type: "ID!"}
+          applicationId: {type: "ID!"}
+        ) {
+        ...Form_query @arguments(formResultId: $formResultId)
+        ...ApplicationWizardConfirmation_query
+          @arguments(applicationId: $applicationId)
+        allFuels {
+          edges {
+            node {
+              name
+              units
+            }
+          }
+        }
+
+        formResult(id: $formResultId) {
+          id
+          formResult
+          formJsonByFormId {
             name
-            units
+            prepopulateFromSwrs
+          }
+        }
+        application(id: $applicationId) {
+          applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+          swrsEmissionData(reportingYear: "2018") {
+            edges {
+              node {
+                quantity
+                emissionCategory
+                gasType
+              }
+            }
+          }
+          swrsFacilityData(reportingYear: "2018") {
+            facilityName
+            facilityType
+            bcghgid
+            naicsCode
+            latitude
+            longitude
+            facilityMailingAddress
+            facilityCity
+            facilityProvince
+            facilityPostalCode
+          }
+          swrsFuelData(reportingYear: "2018") {
+            edges {
+              node {
+                fuelType
+                fuelDescription
+                annualFuelAmount
+                alternativeMethodolodyDescription
+              }
+            }
+          }
+          swrsOperatorContactData(reportingYear: "2018") {
+            firstName
+            lastName
+            positionTitle
+            email
+            telephone
+            fax
+            contactMailingAddress
+            contactCity
+            contactProvince
+            contactPostalCode
+          }
+          swrsOrganisationData(reportingYear: "2018") {
+            operatorName
+            operatorTradeName
+            duns
+            operatorMailingAddress
+            operatorCity
+            operatorProvince
+            operatorPostalCode
+            operatorCountry
           }
         }
       }
-      application(id: $applicationId) {
-        rowId
-        swrsEmissionData(reportingYear: "2018") {
-          edges {
-            node {
-              quantity
-              emissionCategory
-              gasType
-            }
-          }
-        }
-        swrsFacilityData(reportingYear: "2018") {
-          facilityName
-          facilityType
-          bcghgid
-          naicsCode
-          latitude
-          longitude
-          facilityMailingAddress
-          facilityCity
-          facilityProvince
-          facilityPostalCode
-        }
-        swrsFuelData(reportingYear: "2018") {
-          edges {
-            node {
-              fuelType
-              fuelDescription
-              annualFuelAmount
-              alternativeMethodolodyDescription
-            }
-          }
-        }
-        swrsOperatorContactData(reportingYear: "2018") {
-          firstName
-          lastName
-          positionTitle
-          email
-          telephone
-          fax
-          contactMailingAddress
-          contactCity
-          contactProvince
-          contactPostalCode
-        }
-        swrsOrganisationData(reportingYear: "2018") {
-          operatorName
-          operatorTradeName
-          duns
-          operatorMailingAddress
-          operatorCity
-          operatorProvince
-          operatorPostalCode
-          operatorCountry
-        }
+    `
+  },
+  graphql`
+    query ApplicationWizardStepRefetchQuery(
+      $applicationId: ID!
+      $formResultId: ID!
+    ) {
+      query {
+        ...ApplicationWizardStep_query
+          @arguments(applicationId: $applicationId, formResultId: $formResultId)
       }
     }
   `
-});
+);
