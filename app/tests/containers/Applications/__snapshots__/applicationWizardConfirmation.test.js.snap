@@ -14,20 +14,33 @@ exports[`ApplicationWizardConfirmationComponent should render the summary confir
       }
     }
   />
-  <Button
-    active={false}
-    className="float-right"
-    disabled={false}
-    onClick={[Function]}
-    style={
+  <Link
+    href={
       Object {
-        "marginTop": "10px",
+        "pathname": "/ciip-application",
+        "query": Object {
+          "applicationId": undefined,
+          "certificationPage": true,
+          "formResultId": "abc",
+        },
       }
     }
-    type="button"
-    variant="primary"
+    passHref={true}
   >
-    Submit
-  </Button>
+    <Button
+      active={false}
+      className="float-right"
+      disabled={false}
+      style={
+        Object {
+          "marginTop": "10px",
+        }
+      }
+      type="button"
+      variant="primary"
+    >
+      Next
+    </Button>
+  </Link>
 </Fragment>
 `;

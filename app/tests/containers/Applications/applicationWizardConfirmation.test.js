@@ -8,6 +8,9 @@ describe('ApplicationWizardConfirmationComponent', () => {
       application: {
         formResultsByApplicationId: {
           edges: [{node: {formResult: '{"id": "form-results"}'}}]
+        },
+        orderedFormResults: {
+          edges: [{node: {id: 'abc'}}]
         }
       }
     };

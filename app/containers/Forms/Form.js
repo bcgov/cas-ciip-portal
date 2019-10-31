@@ -56,7 +56,6 @@ export const FormComponent = ({
     });
   };
 
-  console.log(result);
   // Change application status to 'pending' on application submit
   const submitApplication = async () => {
     const {environment} = relay;
