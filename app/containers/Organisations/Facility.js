@@ -29,7 +29,7 @@ export const FacilityComponent = ({relay, facility}) => {
   const {applicationsByFacilityId = {}} = facility;
   const {edges = []} = applicationsByFacilityId;
   const {node = {}} = edges[0] || {};
-  const {id: applicationId, applicationStatusesByApplicationId} = node;
+  const {id: applicationId, applicationStatus} = node;
 
   // Conditionall render apply / resume button depending on existence and status of Facility's application
   const applyButton = () => {
@@ -41,12 +41,7 @@ export const FacilityComponent = ({relay, facility}) => {
       );
     }
 
-    if (
-      applicationId &&
-      applicationStatusesByApplicationId.edges.length > 0 &&
-      applicationStatusesByApplicationId.edges[0].node.applicationStatus ===
-        'draft'
-    ) {
+    if (applicationId && applicationStatus.applicationStatus === 'draft') {
       return (
         <Link
           href={{
@@ -88,22 +83,15 @@ export const FacilityComponent = ({relay, facility}) => {
           </ListGroupItem>
           <ListGroupItem>
             <strong>Application Status:</strong> &nbsp;{' '}
-            {edges.length > 0 &&
-            applicationStatusesByApplicationId.edges.length > 0 ? (
+            {edges.length > 0 ? (
               <>
                 <Badge
                   pill
                   variant={
-                    statusBadgeColor[
-                      applicationStatusesByApplicationId.edges[0].node
-                        .applicationStatus
-                    ]
+                    statusBadgeColor[applicationStatus.applicationStatus]
                   }
                 >
-                  {
-                    applicationStatusesByApplicationId.edges[0].node
-                      .applicationStatus
-                  }
+                  {applicationStatus.applicationStatus}
                 </Badge>
               </>
             ) : (
@@ -135,12 +123,9 @@ export default createFragmentContainer(FacilityComponent, {
         edges {
           node {
             id
-            applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
-              edges {
-                node {
-                  applicationStatus
-                }
-              }
+            applicationStatus {
+              id
+              applicationStatus
             }
           }
         }
