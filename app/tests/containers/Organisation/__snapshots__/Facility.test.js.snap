@@ -262,7 +262,7 @@ exports[`Facility should render an Apply For CIIP button if no applicationID exi
         type="button"
         variant="primary"
       >
-        Apply for CIIP
+        Apply for CIIP for this facility
       </Button>
     </CardBody>
   </Card>

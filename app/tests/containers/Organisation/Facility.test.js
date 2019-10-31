@@ -70,6 +70,6 @@ describe('Facility', () => {
       <FacilityComponent relay={{environment: {}}} facility={facility} />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('Button').text()).toBe('Apply for CIIP');
+    expect(r.find('Button').text()).toBe('Apply for CIIP for this facility');
   });
 });

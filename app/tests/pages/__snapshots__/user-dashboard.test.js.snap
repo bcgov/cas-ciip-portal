@@ -63,7 +63,8 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
               Step 2:
             </strong>
             <br />
-            CIIP administrators will approve your request. 
+            CIIP administrators will approve your request.
+             
           </ListGroupItem>
           <ListGroupItem
             active={false}
