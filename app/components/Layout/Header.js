@@ -72,11 +72,9 @@ const Header = props => (
           top: 0px;
           width: 100%;
         }
-
         header h1 {
-          font-family: ‘Noto Sans’, Verdana, Arial, sans-serif;
-          font-weight: normal; /* 400 */
-          margin: 5px 5px 0 18px;
+          font-weight: normal;
+          margin: 8px 5px 5px 18px;
           visibility: hidden;
         }
         .header-left {
