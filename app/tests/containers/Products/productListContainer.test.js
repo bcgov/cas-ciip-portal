@@ -16,13 +16,13 @@ describe('ProductListContainer', () => {
     expect(r).toMatchSnapshot();
     expect(
       r
-        .find('Relay(ProductRowItemContainer)')
+        .find('Relay(ProductRowItemComponent)')
         .first()
         .prop('product')
     ).toBe(query.active.edges[0].node);
     expect(
       r
-        .find('Relay(ProductRowItemContainer)')
+        .find('Relay(ProductRowItemComponent)')
         .last()
         .prop('product')
     ).toBe(query.archived.edges[0].node);

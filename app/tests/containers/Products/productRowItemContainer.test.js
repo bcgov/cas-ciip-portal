@@ -1,6 +1,6 @@
 import {shallow} from 'enzyme';
 import React from 'react';
-import {ProductRowItemContainer} from '../../../containers/Products/ProductRowItemContainer';
+import {ProductRowItemComponent} from '../../../containers/Products/ProductRowItemContainer';
 
 const product = {
   id: 'product-1',
@@ -41,7 +41,7 @@ describe('ProductRowItemContainer', () => {
   describe('with active product', () => {
     beforeAll(() => {
       render = shallow(
-        <ProductRowItemContainer
+        <ProductRowItemComponent
           product={product}
           productRowActions={productRowActions}
         />
@@ -97,7 +97,7 @@ describe('ProductRowItemContainer', () => {
   describe('with archived product', () => {
     beforeAll(() => {
       render = shallow(
-        <ProductRowItemContainer
+        <ProductRowItemComponent
           product={{...product, state: 'archived'}}
           productRowActions={productRowActions}
         />
@@ -115,7 +115,7 @@ describe('ProductRowItemContainer', () => {
     describe(`with mode set to ${mode}`, () => {
       beforeAll(() => {
         render = shallow(
-          <ProductRowItemContainer
+          <ProductRowItemComponent
             mode={mode}
             product={product}
             productRowActions={productRowActions}
@@ -136,7 +136,7 @@ describe('ProductRowItemContainer', () => {
   describe('with confirmation modal open', () => {
     beforeAll(() => {
       render = shallow(
-        <ProductRowItemContainer
+        <ProductRowItemComponent
           confirmationModalOpen
           product={product}
           productRowActions={productRowActions}

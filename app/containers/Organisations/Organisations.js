@@ -1,12 +1,13 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Dropdown, Button, Alert} from 'react-bootstrap';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
 
 export const OrganisationsComponent = props => {
   const {user, allOrganisations} = props.query;
-  if (!user) return '...Loading';
+  if (!user) return <LoadingSpinner />;
 
   const changeInput = event => {
     event.stopPropagation();

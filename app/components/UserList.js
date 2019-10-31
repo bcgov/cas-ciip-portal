@@ -1,6 +1,7 @@
 import React from 'react';
 import {Accordion, Card, Button} from 'react-bootstrap';
 import {graphql, QueryRenderer} from 'react-relay';
+import LoadingSpinner from './LoadingSpinner';
 // Import initEnvironment from '../lib/createRelayEnvironment';
 
 // const environment = initEnvironment();
@@ -39,7 +40,7 @@ const renderQuery = ({error, props}) => {
     );
   }
 
-  return <div>Loading</div>;
+  return <LoadingSpinner />;
 };
 
 const UserList = props => {
