@@ -43,7 +43,7 @@ describe('Facility', () => {
       <FacilityComponent relay={{environment: {}}} facility={facility} />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('CardTitle').text()).toBe('f');
+    expect(r.find('CardHeader').text()).toMatch(/Facility Name/);
   });
 
   it('should not render a Button if an applicationID exists and is not in draft status', async () => {
@@ -70,6 +70,6 @@ describe('Facility', () => {
       <FacilityComponent relay={{environment: {}}} facility={facility} />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('Button').text()).toBe('Apply for CIIP');
+    expect(r.find('Button').text()).toBe('Apply for CIIP for this facility');
   });
 });

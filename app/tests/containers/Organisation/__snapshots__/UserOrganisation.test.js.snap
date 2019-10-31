@@ -38,7 +38,7 @@ exports[`UserOrganisation should render a userOrganisation if the userOrganisati
       }
     >
       <a
-        className="jsx-2428472905"
+        className="jsx-2428472905 btn btn-outline-primary"
         href="#"
       >
         View Facilities

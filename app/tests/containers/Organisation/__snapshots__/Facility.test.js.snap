@@ -6,20 +6,16 @@ exports[`Facility should not render a Button if an applicationID exists and is n
     body={false}
     style={
       Object {
-        "width": "33rem",
+        "maxWidth": "400px",
       }
     }
   >
     <CardHeader>
-      org
+      <strong>
+        Facility Name: 
+      </strong>
+      f
     </CardHeader>
-    <CardBody
-      border="dark"
-    >
-      <CardTitle>
-        f
-      </CardTitle>
-    </CardBody>
     <ListGroup
       className="list-group-flush"
       variant={null}
@@ -29,15 +25,15 @@ exports[`Facility should not render a Button if an applicationID exists and is n
         disabled={false}
         variant={null}
       >
+        <strong>
+          Address: 
+        </strong>
+         
+        <br />
         123
          
         123abc
-      </ListGroupItem>
-      <ListGroupItem
-        active={false}
-        disabled={false}
-        variant={null}
-      >
+        <br />
         Vic
         , 
         BC
@@ -47,7 +43,10 @@ exports[`Facility should not render a Button if an applicationID exists and is n
         disabled={false}
         variant={null}
       >
-        Application Status:  
+        <strong>
+          Application Status:
+        </strong>
+          
          
         <Badge
           pill={true}
@@ -68,20 +67,16 @@ exports[`Facility should render a Facility 1`] = `
     body={false}
     style={
       Object {
-        "width": "33rem",
+        "maxWidth": "400px",
       }
     }
   >
     <CardHeader>
-      org
+      <strong>
+        Facility Name: 
+      </strong>
+      f
     </CardHeader>
-    <CardBody
-      border="dark"
-    >
-      <CardTitle>
-        f
-      </CardTitle>
-    </CardBody>
     <ListGroup
       className="list-group-flush"
       variant={null}
@@ -91,15 +86,15 @@ exports[`Facility should render a Facility 1`] = `
         disabled={false}
         variant={null}
       >
+        <strong>
+          Address: 
+        </strong>
+         
+        <br />
         123
          
         123abc
-      </ListGroupItem>
-      <ListGroupItem
-        active={false}
-        disabled={false}
-        variant={null}
-      >
+        <br />
         Vic
         , 
         BC
@@ -109,7 +104,10 @@ exports[`Facility should render a Facility 1`] = `
         disabled={false}
         variant={null}
       >
-        Application Status:  
+        <strong>
+          Application Status:
+        </strong>
+          
          
         <Badge
           pill={true}
@@ -130,20 +128,16 @@ exports[`Facility should render a Resume Application button if an applicationID 
     body={false}
     style={
       Object {
-        "width": "33rem",
+        "maxWidth": "400px",
       }
     }
   >
     <CardHeader>
-      org
+      <strong>
+        Facility Name: 
+      </strong>
+      f
     </CardHeader>
-    <CardBody
-      border="dark"
-    >
-      <CardTitle>
-        f
-      </CardTitle>
-    </CardBody>
     <ListGroup
       className="list-group-flush"
       variant={null}
@@ -153,15 +147,15 @@ exports[`Facility should render a Resume Application button if an applicationID 
         disabled={false}
         variant={null}
       >
+        <strong>
+          Address: 
+        </strong>
+         
+        <br />
         123
          
         123abc
-      </ListGroupItem>
-      <ListGroupItem
-        active={false}
-        disabled={false}
-        variant={null}
-      >
+        <br />
         Vic
         , 
         BC
@@ -171,7 +165,10 @@ exports[`Facility should render a Resume Application button if an applicationID 
         disabled={false}
         variant={null}
       >
-        Application Status:  
+        <strong>
+          Application Status:
+        </strong>
+          
          
         <Badge
           pill={true}
@@ -212,20 +209,16 @@ exports[`Facility should render an Apply For CIIP button if no applicationID exi
     body={false}
     style={
       Object {
-        "width": "33rem",
+        "maxWidth": "400px",
       }
     }
   >
     <CardHeader>
-      org
+      <strong>
+        Facility Name: 
+      </strong>
+      f
     </CardHeader>
-    <CardBody
-      border="dark"
-    >
-      <CardTitle>
-        f
-      </CardTitle>
-    </CardBody>
     <ListGroup
       className="list-group-flush"
       variant={null}
@@ -235,15 +228,15 @@ exports[`Facility should render an Apply For CIIP button if no applicationID exi
         disabled={false}
         variant={null}
       >
+        <strong>
+          Address: 
+        </strong>
+         
+        <br />
         123
          
         123abc
-      </ListGroupItem>
-      <ListGroupItem
-        active={false}
-        disabled={false}
-        variant={null}
-      >
+        <br />
         Vic
         , 
         BC
@@ -253,9 +246,12 @@ exports[`Facility should render an Apply For CIIP button if no applicationID exi
         disabled={false}
         variant={null}
       >
-        Application Status:  
+        <strong>
+          Application Status:
+        </strong>
+          
          
-        N/A
+        Application not started
       </ListGroupItem>
     </ListGroup>
     <CardBody>
@@ -266,7 +262,7 @@ exports[`Facility should render an Apply For CIIP button if no applicationID exi
         type="button"
         variant="primary"
       >
-        Apply for CIIP
+        Apply for CIIP for this facility
       </Button>
     </CardBody>
   </Card>

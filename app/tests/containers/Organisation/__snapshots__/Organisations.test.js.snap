@@ -21,7 +21,7 @@ exports[`Organisations should render no organisations if the user has not reques
     }
     variant="warning"
   >
-    You are not registered to apply for any Reporting Operation at this time. You can request access to a Reporting Operation by selecting one from the dropdown below.
+    You are not registered to apply for any Operator at this time. You can request access to an Operator by selecting one from the dropdown below.
   </Alert>
   <br />
   <Dropdown
@@ -30,9 +30,25 @@ exports[`Organisations should render no organisations if the user has not reques
   >
     <h5
       className="jsx-14601785"
+      style={
+        Object {
+          "marginBottom": 0,
+        }
+      }
     >
-      Add an Operation:
+      Request access to an Operator:
     </h5>
+    <small
+      className="jsx-14601785"
+      style={
+        Object {
+          "display": "block",
+          "marginBottom": "20px",
+        }
+      }
+    >
+      (You can search to narrow the results in the dropdown)
+    </small>
     <Bootstrap(DropdownToggle)
       as="input"
       onChange={[Function]}
@@ -53,6 +69,27 @@ exports[`Organisations should render no organisations if the user has not reques
 
 exports[`Organisations should render the user's requested organisations 1`] = `
 <Fragment>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="info"
+  >
+    Once your access to the requested operators is approved you can view their facilities and apply for CIIP for each.
+  </Alert>
   <Bootstrap(Table)
     bordered={true}
     hover={true}
@@ -65,30 +102,30 @@ exports[`Organisations should render the user's requested organisations 1`] = `
     }
   >
     <thead
-      className="jsx-1706603431"
+      className="jsx-130150550"
     >
       <tr
-        className="jsx-1706603431"
+        className="jsx-130150550"
       >
         <th
-          className="jsx-1706603431"
+          className="jsx-130150550"
         >
-          Operation
+          Operator
         </th>
         <th
-          className="jsx-1706603431"
+          className="jsx-130150550"
         >
           Access Status
         </th>
         <th
-          className="jsx-1706603431"
+          className="jsx-130150550"
         >
-          Facilities
+          Operations/Facilities
         </th>
       </tr>
     </thead>
     <tbody
-      className="jsx-1706603431"
+      className="jsx-130150550"
     >
       <Relay(UserOrganisationComponent)
         key="OrgId"
@@ -100,9 +137,9 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       />
     </tbody>
     <JSXStyle
-      id="1706603431"
+      id="130150550"
     >
-      th.jsx-1706603431{padding:20px;font-weight:500;}
+      th.jsx-130150550{padding:20px;font-weight:500;}
     </JSXStyle>
   </Bootstrap(Table)>
   <Dropdown
@@ -111,9 +148,25 @@ exports[`Organisations should render the user's requested organisations 1`] = `
   >
     <h5
       className="jsx-14601785"
+      style={
+        Object {
+          "marginBottom": 0,
+        }
+      }
     >
-      Add an Operation:
+      Request access to an Operator:
     </h5>
+    <small
+      className="jsx-14601785"
+      style={
+        Object {
+          "display": "block",
+          "marginBottom": "20px",
+        }
+      }
+    >
+      (You can search to narrow the results in the dropdown)
+    </small>
     <Bootstrap(DropdownToggle)
       as="input"
       onChange={[Function]}

@@ -36,7 +36,7 @@ export const FacilityComponent = ({relay, facility}) => {
     if (!applicationId) {
       return (
         <Button variant="primary" onClick={startApplication}>
-          Apply for CIIP
+          Apply for CIIP for this facility
         </Button>
       );
     }
@@ -74,22 +74,20 @@ export const FacilityComponent = ({relay, facility}) => {
 
   return (
     <>
-      <Card style={{width: '33rem'}}>
+      <Card style={{maxWidth: '400px'}}>
         <Card.Header>
-          {facility.organisationByOrganisationId.operatorName}
+          <strong>Facility Name: </strong>
+          {facility.facilityName}
         </Card.Header>
-        <Card.Body border="dark">
-          <Card.Title>{facility.facilityName}</Card.Title>
-        </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroupItem>
+            <strong>Address: </strong> <br />
             {facility.facilityMailingAddress} {facility.facilityPostalCode}
-          </ListGroupItem>
-          <ListGroupItem>
+            <br />
             {facility.facilityCity}, {facility.facilityProvince}
           </ListGroupItem>
           <ListGroupItem>
-            Application Status: &nbsp;{' '}
+            <strong>Application Status:</strong> &nbsp;{' '}
             {edges.length > 0 &&
             applicationStatusesByApplicationId.edges.length > 0 ? (
               <>
@@ -109,7 +107,7 @@ export const FacilityComponent = ({relay, facility}) => {
                 </Badge>
               </>
             ) : (
-              <>N/A</>
+              <>Application not started</>
             )}
           </ListGroupItem>
         </ListGroup>

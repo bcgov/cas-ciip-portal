@@ -3,13 +3,17 @@
 exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
 <DefaultLayout
   showSubheader={true}
-  title="My Operations"
+  title="My Operators"
 >
   <ForwardRef
     noGutters={false}
   >
     <Col
-      md={8}
+      md={
+        Object {
+          "span": 8,
+        }
+      }
     >
       <Relay(OrganisationsComponent)
         confirmOrg={false}
@@ -31,149 +35,61 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
           }
         }
       >
-        Frequently Asked Questions
+        How to apply for CIIP
       </h5>
-      <ForwardRef
-        defaultActiveKey="0"
+      <div
+        className="how-to-apply"
       >
-        <Card
-          body={false}
+        <ListGroup
+          variant={null}
         >
-          <CardHeader>
-            <ForwardRef
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              eventKey="0"
-              variant="link"
-            >
-              What is an Operation?
-            </ForwardRef>
-          </CardHeader>
-          <AccordionCollapse
-            eventKey="0"
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
           >
-            <CardBody>
-              <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-              </p>
-            </CardBody>
-          </AccordionCollapse>
-        </Card>
-        <Card
-          body={false}
-        >
-          <CardHeader>
-            <ForwardRef
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              eventKey="1"
-              variant="link"
-            >
-              What happens when I request access to a Reporting Operation?
-            </ForwardRef>
-          </CardHeader>
-          <AccordionCollapse
-            eventKey="1"
-          >
-            <CardBody>
-              <p>
-                At vero eos et accusam et justo duo dolores et ea rebum.
-                 
-              </p>
-              <p>
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-              </p>
-            </CardBody>
-          </AccordionCollapse>
-        </Card>
-        <Card
-          body={false}
-        >
-          <CardHeader>
-            <ForwardRef
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              eventKey="2"
-              variant="link"
-            >
-              How long does request approval take?
-            </ForwardRef>
-          </CardHeader>
-          <AccordionCollapse
-            eventKey="2"
-          >
-            <CardBody>
-               
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
-            </CardBody>
-          </AccordionCollapse>
-        </Card>
-      </ForwardRef>
-      <Card
-        body={false}
-        className="ciip-card"
-        style={
-          Object {
-            "border": "1px solid grey",
-            "margin": "40px 0",
-            "width": "100%",
-          }
-        }
-      >
-        <CardBody>
-          <CardTitle
-            className="blue"
-          >
-            Contact Information
-          </CardTitle>
-          <CardText
-            style={
-              Object {
-                "padding": "10px 0 10px 0",
-              }
-            }
-          >
-            Please email us at 
             <strong>
-              GHGRegulator@gov.bc.ca
+              Step 1:
             </strong>
-             for any questions.
-          </CardText>
-        </CardBody>
-      </Card>
+            <br />
+            Request access to one or more Operators.
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 2:
+            </strong>
+            <br />
+            CIIP administrators will approve your request.
+             
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 3:
+            </strong>
+            <br />
+            Once approved, you can view all the facilities for the Operator.
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 4:
+            </strong>
+            <br />
+            You can apply for CIIP for each facility.
+          </ListGroupItem>
+        </ListGroup>
+      </div>
     </Col>
   </ForwardRef>
 </DefaultLayout>
