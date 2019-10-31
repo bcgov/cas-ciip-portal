@@ -10,58 +10,56 @@ const ApplicationFormNavbarComponent = props => {
     application.orderedFormResults.edges.length - 1
   );
   return (
-    <>
-      <Nav justify variant="tabs" defaultActiveKey="/home">
-        {preSummary.map(({node}) => (
-          <Nav.Item key={node.id}>
-            <Link
-              passHref
-              href={{
-                pathname: '/ciip-application',
-                query: {
-                  formResultId: node.id,
-                  applicationId: application.id
-                }
-              }}
-            >
-              <Nav.Link>{node.formJsonByFormId.name}</Nav.Link>
-            </Link>
-          </Nav.Item>
-        ))}
-        <Nav.Item key="submit">
+    <Nav justify variant="tabs">
+      {preSummary.map(({node}) => (
+        <Nav.Item key={node.id}>
           <Link
             passHref
             href={{
               pathname: '/ciip-application',
               query: {
-                applicationId: application.id,
-                confirmationPage: true
+                formResultId: node.id,
+                applicationId: application.id
               }
             }}
           >
-            <Nav.Link>Summary</Nav.Link>
+            <Nav.Link>{node.formJsonByFormId.name}</Nav.Link>
           </Link>
         </Nav.Item>
-        <Nav.Item key="certify">
-          <Link
-            passHref
-            href={{
-              pathname: '/ciip-application',
-              query: {
-                formResultId:
-                  application.orderedFormResults.edges[
-                    application.orderedFormResults.edges.length - 1
-                  ].node.id,
-                applicationId: application.id,
-                certificationPage: true
-              }
-            }}
-          >
-            <Nav.Link>Statement of Certification</Nav.Link>
-          </Link>
-        </Nav.Item>
-      </Nav>
-    </>
+      ))}
+      <Nav.Item key="submit">
+        <Link
+          passHref
+          href={{
+            pathname: '/ciip-application',
+            query: {
+              applicationId: application.id,
+              confirmationPage: true
+            }
+          }}
+        >
+          <Nav.Link>Summary</Nav.Link>
+        </Link>
+      </Nav.Item>
+      <Nav.Item key="certify">
+        <Link
+          passHref
+          href={{
+            pathname: '/ciip-application',
+            query: {
+              formResultId:
+                application.orderedFormResults.edges[
+                  application.orderedFormResults.edges.length - 1
+                ].node.id,
+              applicationId: application.id,
+              certificationPage: true
+            }
+          }}
+        >
+          <Nav.Link>Statement of Certification</Nav.Link>
+        </Link>
+      </Nav.Item>
+    </Nav>
   );
 };
 

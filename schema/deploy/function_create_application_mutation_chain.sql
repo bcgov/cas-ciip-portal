@@ -10,7 +10,6 @@ as $function$
 declare
   new_id int;
   result ggircs_portal.application;
-  form_count int;
   temp_row record;
 begin
 
@@ -21,8 +20,6 @@ begin
   -- Insert new value with application_id fk into application_status
   insert into ggircs_portal.application_status(application_id, application_status)
   values (new_id, 'draft');
-
-  select count(form_id) as c from ggircs_portal.ciip_application_wizard into form_count;
 
   select id, facility_id from ggircs_portal.application where id = new_id into result;
 
