@@ -53,13 +53,6 @@
             },
             {
               "type": "text",
-              "name": "attributableFuelPercentage",
-              "startWithNewLine": false,
-              "title": "Attributable % of Fuel",
-              "inputType": "number"
-            },
-            {
-              "type": "text",
               "name": "comments",
               "title": "Comments"
             }

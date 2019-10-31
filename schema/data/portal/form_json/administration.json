@@ -29,20 +29,20 @@
               "name": "duns",
               "title": "DUNS Number",
               "isRequired": true,
-              "inputType": "number"
+              "inputType": "text"
             },
             {
               "type": "text",
               "name": "bcCorporateRegistryNumber",
-              "title": "BC Corporate Registry Number ",
-              "inputType": "number"
+              "title": "BC Corporate Registry Number",
+              "inputType": "text"
             },
             {
               "type": "text",
               "name": "naicsCode",
               "startWithNewLine": false,
               "title": "NAICS Code",
-              "inputType": "number"
+              "inputType": "text"
             },
             {
               "type": "text",
@@ -200,10 +200,7 @@
           "allowAddPanel": false,
           "allowRemovePanel": false,
           "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
-          "panelAddText": "Add another  item",
-          "panelRemoveText": "Remove item"
+          "keyName": "name"
         },
         {
           "type": "paneldynamic",
@@ -228,7 +225,7 @@
               "name": "bcghgid",
               "startWithNewLine": false,
               "title": "BCGHG ID Number",
-              "inputType": "number"
+              "inputType": "text"
             },
             {
               "type": "text",
@@ -249,11 +246,6 @@
               "startWithNewLine": false,
               "title": "Longitude",
               "inputType": "number"
-            },
-            {
-              "type": "text",
-              "name": "nearestCity",
-              "title": "Nearest City"
             },
             {
               "type": "text",

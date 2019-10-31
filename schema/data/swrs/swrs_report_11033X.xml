@@ -377,41 +377,6 @@
                                     <FuelUnits>Sm^3</FuelUnits>
                                     <AnnualFuelAmount>2969200</AnnualFuelAmount>
                                     <MeasuredEmissionFactors/>
-                                    <Emissions>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>false</NotApplicable>
-                                            <Quantity>5909.828</Quantity>
-                                            <CalculatedQuantity>5909.828</CalculatedQuantity>
-                                            <GasType>CO2nonbio</GasType>
-                                        </Emission>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>false</NotApplicable>
-                                            <Quantity>19.420</Quantity>
-                                            <CalculatedQuantity>485.500</CalculatedQuantity>
-                                            <GasType>CH4</GasType>
-                                        </Emission>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>false</NotApplicable>
-                                            <Quantity>0.180</Quantity>
-                                            <CalculatedQuantity>53.640</CalculatedQuantity>
-                                            <GasType>N2O</GasType>
-                                        </Emission>
-                                    </Emissions>
                                     <AlternativeMethodologyDescription/>
                                 </Fuel>
                                 <Fuel>
@@ -420,84 +385,6 @@
                                     <FuelUnits>kilolitres</FuelUnits>
                                     <AnnualFuelAmount>123.41</AnnualFuelAmount>
                                     <MeasuredEmissionFactors/>
-                                    <Emissions>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>false</NotApplicable>
-                                            <Quantity>328.641</Quantity>
-                                            <CalculatedQuantity>328.641</CalculatedQuantity>
-                                            <GasType>CO2nonbio</GasType>
-                                        </Emission>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>false</NotApplicable>
-                                            <Quantity>0.016</Quantity>
-                                            <CalculatedQuantity>0.400</CalculatedQuantity>
-                                            <GasType>CH4</GasType>
-                                        </Emission>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>false</NotApplicable>
-                                            <Quantity>0.049</Quantity>
-                                            <CalculatedQuantity>14.602</CalculatedQuantity>
-                                            <GasType>N2O</GasType>
-                                        </Emission>
-                                    </Emissions>
-                                    <AlternativeMethodologyDescription/>
-                                </Fuel>
-                                <Fuel>
-                                    <FuelType>Propane (kilolitres)</FuelType>
-                                    <FuelClassification>non-biomass</FuelClassification>
-                                    <FuelUnits>kilolitres</FuelUnits>
-                                    <AnnualFuelAmount>88.06</AnnualFuelAmount>
-                                    <MeasuredEmissionFactors/>
-                                    <Emissions>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>false</NotApplicable>
-                                            <Quantity>132.097</Quantity>
-                                            <CalculatedQuantity>132.097</CalculatedQuantity>
-                                            <GasType>CO2nonbio</GasType>
-                                        </Emission>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>false</NotApplicable>
-                                            <Quantity>0.002</Quantity>
-                                            <CalculatedQuantity>0.050</CalculatedQuantity>
-                                            <GasType>CH4</GasType>
-                                        </Emission>
-                                        <Emission>
-                                            <Groups>
-                                                <EmissionGroupTypes>BC_FacilityTotal</EmissionGroupTypes>
-                                                <EmissionGroupTypes>BC_ScheduleB_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                                <EmissionGroupTypes>EC_GeneralStationaryCombustionEmissions</EmissionGroupTypes>
-                                            </Groups>
-                                            <NotApplicable>false</NotApplicable>
-                                            <Quantity>0.009</Quantity>
-                                            <CalculatedQuantity>2.682</CalculatedQuantity>
-                                            <GasType>N2O</GasType>
-                                        </Emission>
-                                    </Emissions>
                                     <AlternativeMethodologyDescription/>
                                 </Fuel>
                             </Fuels>
@@ -1575,29 +1462,6 @@
                             <Total>21962.78000000</Total>
                         </GrandTotal>
                     </Emissions>
-                    <Emissions EmissionsGasType="StationaryFuelCombustionEmissions">
-                        <TotalRow>
-                            <Quantity>6370.56600000</Quantity>
-                            <CalculatedQuantity>6370.56600000</CalculatedQuantity>
-                            <GasType>CO2</GasType>
-                            <GasGroupType>None</GasGroupType>
-                        </TotalRow>
-                        <TotalRow>
-                            <Quantity>19.43800000</Quantity>
-                            <CalculatedQuantity>485.95000000</CalculatedQuantity>
-                            <GasType>CH4</GasType>
-                            <GasGroupType>None</GasGroupType>
-                        </TotalRow>
-                        <TotalRow>
-                            <Quantity>0.23800000</Quantity>
-                            <CalculatedQuantity>70.92400000</CalculatedQuantity>
-                            <GasType>N2O</GasType>
-                            <GasGroupType>None</GasGroupType>
-                        </TotalRow>
-                        <GrandTotal>
-                            <Total>6927.44000000</Total>
-                        </GrandTotal>
-                    </Emissions>
                     <Emissions EmissionsGasType="VentingEmissions">
                         <TotalRow>
                             <Quantity>138.39800000</Quantity>
@@ -1613,29 +1477,6 @@
                         </TotalRow>
                         <GrandTotal>
                             <Total>38780.14800000</Total>
-                        </GrandTotal>
-                    </Emissions>
-                    <Emissions EmissionsGasType="WasteEmissions">
-                        <TotalRow>
-                            <Quantity>0.00000000</Quantity>
-                            <CalculatedQuantity>0.00000000</CalculatedQuantity>
-                            <GasType>CO2</GasType>
-                            <GasGroupType>None</GasGroupType>
-                        </TotalRow>
-                        <TotalRow>
-                            <Quantity>0.00000000</Quantity>
-                            <CalculatedQuantity>0.00000000</CalculatedQuantity>
-                            <GasType>CH4</GasType>
-                            <GasGroupType>None</GasGroupType>
-                        </TotalRow>
-                        <TotalRow>
-                            <Quantity>0.00000000</Quantity>
-                            <CalculatedQuantity>0.00000000</CalculatedQuantity>
-                            <GasType>N2O</GasType>
-                            <GasGroupType>None</GasGroupType>
-                        </TotalRow>
-                        <GrandTotal>
-                            <Total>0.00000000</Total>
                         </GrandTotal>
                     </Emissions>
                 </Totals>

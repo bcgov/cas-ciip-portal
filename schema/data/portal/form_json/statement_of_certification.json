@@ -39,13 +39,6 @@
               "html": "<h5>hereby certify that I have reviewed the information being submitted, that I have exercised due diligence to ensure that the information is true and complete, and that, to the best of my knowledge, the products and quantities submitted herein are accurate and based on reasonable estimates using available data; and agrees to repayment of incentive amounts erroneously paid or which are, upon audit or reconsideration by the Climate Action Secretariat, determined to either be inconsistent with the CleanBC Industrial Incentive Programs’ rules or not supported by evidence related to fuel usage and tax paid; and understand that any repayment amount may be deducted from a following year’s incentive payment.<h5>"
             },
             {
-              "type": "file",
-              "name": "signatureUpload",
-              "width": "65%",
-              "title": "Signature of Certifying Official",
-              "maxSize": 0
-            },
-            {
               "type": "text",
               "name": "date",
               "width": "35%",
