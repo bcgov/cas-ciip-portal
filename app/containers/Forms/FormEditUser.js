@@ -2,7 +2,7 @@ import React from 'react';
 import {Row, Col, Form, Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import updateUserMutation from '../../mutations/user/updateUserMutation';
-import {useInput} from '../Registration/InputHook';
+import {useInput} from '../../components/Forms/InputHook';
 
 export const FormEditUser = props => {
   const {user, submitAction, submitBtnName} = props;
