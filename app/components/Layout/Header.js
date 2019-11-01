@@ -19,10 +19,24 @@ const Header = props => (
           <div className="login-btns header-right">
             <Row>
               <Col>
-                <Button style={{marginRight: '10px'}} variant="outline-light">
-                  Register
-                </Button>
-                <Button variant="outline-light">Login</Button>
+                <Link
+                  href={{
+                    pathname: '/user-dashboard',
+                    query: {userId: 1, id: 'WyJ1c2VycyIsMV0='}
+                  }}
+                >
+                  <Button style={{marginRight: '10px'}} variant="outline-light">
+                    Register
+                  </Button>
+                </Link>
+                <Link
+                  href={{
+                    pathname: '/user-dashboard',
+                    query: {userId: 1, id: 'WyJ1c2VycyIsMV0='}
+                  }}
+                >
+                  <Button variant="outline-light">Login</Button>
+                </Link>
               </Col>
             </Row>
           </div>
