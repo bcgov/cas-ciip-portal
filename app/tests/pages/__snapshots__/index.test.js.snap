@@ -73,11 +73,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
           <Link
             href={
               Object {
-                "pathname": "/user-dashboard",
-                "query": Object {
-                  "id": "WyJ1c2VycyIsMV0=",
-                  "userId": 1,
-                },
+                "pathname": "/dummy-login",
               }
             }
           >
@@ -102,11 +98,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       <Link
         href={
           Object {
-            "pathname": "/user-dashboard",
-            "query": Object {
-              "id": "WyJ1c2VycyIsMV0=",
-              "userId": 1,
-            },
+            "pathname": "/dummy-login",
           }
         }
       >

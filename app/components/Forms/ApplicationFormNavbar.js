@@ -10,7 +10,7 @@ const ApplicationFormNavbarComponent = props => {
     application.orderedFormResults.edges.length - 1
   );
   return (
-    <Nav justify variant="tabs">
+    <Nav justify style={{display: 'none'}} variant="tabs">
       {preSummary.map(({node}) => (
         <Nav.Item key={node.id}>
           <Link
