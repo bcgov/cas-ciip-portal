@@ -6,7 +6,7 @@ exports[`ApplicationWizardConfirmationComponent should render the summary confir
     Summary of your application:
   </h1>
   <h5>
-    Please review the information you've provided before continuing.
+    Please review the information you have provided before continuing.
   </h5>
   <br />
   <Relay(ApplicationWizardConfirmationCardItemComponent)
