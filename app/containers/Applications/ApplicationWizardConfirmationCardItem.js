@@ -37,6 +37,9 @@ export const ApplicationWizardConfirmationCardItemComponent = props => {
   // Space out camel cased titles and capitalize for display
 
   const prettyTitle = formSubtitle.replace(capitalRegex, ' $1').trim();
+
+  // Fix for undefined / null render problem. Commented out for demo
+  // if (!resultObject[formTitle][formSubtitle][0]) return null;
   // Get a list of keys for the form inputs
   const inputs = Object.keys(resultObject[formTitle][formSubtitle][0]);
 

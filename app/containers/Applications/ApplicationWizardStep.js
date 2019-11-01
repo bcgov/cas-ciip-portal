@@ -241,9 +241,11 @@ const ApplicationWizardStep = ({
 
   if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
   if (!formResult) return null;
-  if (formResult.formResult !== '{}') {
-    initialDataSource = 'your draft submission';
-  } else if (formResult.formJsonByFormId.prepopulateFromSwrs) {
+  // Removed for demo & needs to be addressed in refactor of this page
+  // If (formResult.formResult !== '{}') {
+  //   initialDataSource = 'your draft submission';
+  // } else
+  if (formResult.formJsonByFormId.prepopulateFromSwrs) {
     initialDataSource = 'your last Emissions report';
   }
 
