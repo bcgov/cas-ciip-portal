@@ -21,8 +21,7 @@ const Header = props => (
               <Col>
                 <Link
                   href={{
-                    pathname: '/user-dashboard',
-                    query: {userId: 1, id: 'WyJ1c2VycyIsMV0='}
+                    pathname: '/dummy-login'
                   }}
                 >
                   <Button style={{marginRight: '10px'}} variant="outline-light">
@@ -31,8 +30,7 @@ const Header = props => (
                 </Link>
                 <Link
                   href={{
-                    pathname: '/user-dashboard',
-                    query: {userId: 1, id: 'WyJ1c2VycyIsMV0='}
+                    pathname: '/dummy-login'
                   }}
                 >
                   <Button variant="outline-light">Login</Button>

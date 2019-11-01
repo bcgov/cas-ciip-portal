@@ -48,8 +48,7 @@ export default class Index extends Component {
                 </Card.Text>
                 <Link
                   href={{
-                    pathname: '/user-dashboard',
-                    query: {userId: 1, id: 'WyJ1c2VycyIsMV0='}
+                    pathname: '/dummy-login'
                   }}
                 >
                   <Button
@@ -65,8 +64,7 @@ export default class Index extends Component {
             </Card>
             <Link
               href={{
-                pathname: '/user-dashboard',
-                query: {userId: 1, id: 'WyJ1c2VycyIsMV0='}
+                pathname: '/dummy-login'
               }}
             >
               <div

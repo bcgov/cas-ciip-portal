@@ -6,7 +6,15 @@ import DefaultLayout from '../layouts/default-layout';
 class CompleteSubmit extends Component {
   render() {
     return (
-      <DefaultLayout title="Thank you. Your submission has been sent">
+      <DefaultLayout
+        title={
+          <>
+            Thank you for your submission. Your application has been sent and is
+            being reviewed.
+            <br /> We will notify you as soon as there is an update.
+          </>
+        }
+      >
         <Link
           href={{
             pathname: '/user-dashboard',
@@ -19,7 +27,7 @@ class CompleteSubmit extends Component {
             variant="primary"
             size="sm"
           >
-            My Dashboard
+            Back to My Dashboard
           </Button>
         </Link>
       </DefaultLayout>

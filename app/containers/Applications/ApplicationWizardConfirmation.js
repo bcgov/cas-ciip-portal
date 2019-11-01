@@ -26,6 +26,11 @@ export const ApplicationWizardConfirmationComponent = props => {
 
   return (
     <>
+      <h1>Summary of your application:</h1>
+      <h5>
+        Please review the information you have provided before continuing.
+      </h5>
+      <br />
       {formArray.map(formTitle =>
         Object.keys(resultObject[formTitle]).map(formSubtitle => (
           <ApplicationWizardConfirmationCardItem

@@ -2,6 +2,13 @@
 
 exports[`ApplicationWizardConfirmationComponent should render the summary confirmation component 1`] = `
 <Fragment>
+  <h1>
+    Summary of your application:
+  </h1>
+  <h5>
+    Please review the information you've provided before continuing.
+  </h5>
+  <br />
   <Relay(ApplicationWizardConfirmationCardItemComponent)
     formSubtitle="id"
     formTitle="id"
