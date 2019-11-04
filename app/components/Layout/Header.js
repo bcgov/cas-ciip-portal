@@ -1,8 +1,9 @@
 import React from 'react';
-import {ButtonToolbar, Row, Col, Button} from 'react-bootstrap';
+import {Row, Col, Form, Button} from 'react-bootstrap';
+import {createFragmentContainer, graphql} from 'react-relay';
 import Link from 'next/link';
 
-const Header = props => (
+const HeaderLayout = props => (
   <header>
     <div className="container">
       <div className="banner">
@@ -15,62 +16,52 @@ const Header = props => (
           </Link>
           <h1>CleanBC Industrial Incentive Program</h1>
         </div>
-        {!props.isLoggedIn && (
-          <div className="login-btns header-right">
-            <Row>
-              <Col>
-                <Link
-                  href={{
-                    pathname: '/dummy-login'
-                  }}
-                >
-                  <Button style={{marginRight: '10px'}} variant="outline-light">
-                    Register
-                  </Button>
-                </Link>
-                <Link
-                  href={{
-                    pathname: '/dummy-login'
-                  }}
-                >
-                  <Button variant="outline-light">Login</Button>
-                </Link>
-              </Col>
-            </Row>
-          </div>
-        )}
+        <div className="login-btns header-right">
+          <Row>
+            <Col>
+              {props.session ? (
+                <Form.Row>
+                  <Col>
+                    <Form action="/user-profile" method="get">
+                      <Button type="submit" variant="outline-light">
+                        Profile
+                      </Button>
+                    </Form>
+                  </Col>
+                  <Col>
+                    <Form action="/logout" method="post">
+                      <Button type="submit" variant="outline-light">
+                        Logout
+                      </Button>
+                    </Form>
+                  </Col>
+                </Form.Row>
+              ) : (
+                <Form.Row>
+                  <Col>
+                    <Form
+                      target="_blank"
+                      action="https://www.bceid.ca/register/"
+                      method="get"
+                    >
+                      <Button type="submit" variant="outline-light">
+                        Register
+                      </Button>
+                    </Form>
+                  </Col>
+                  <Col>
+                    <Form action="/login" method="post">
+                      <Button type="submit" variant="outline-light">
+                        Login
+                      </Button>
+                    </Form>
+                  </Col>
+                </Form.Row>
+              )}
+            </Col>
+          </Row>
+        </div>
       </div>
-      {props.isLoggedIn && (
-        <>
-          <div className="buttons">
-            <Row>
-              <Col md={{span: 8}}>
-                <a className="link" href="/user-profile">
-                  <p style={{fontWeight: 'bolder', marginTop: '13px'}}>
-                    {props.userName} <br />
-                    {props.occupation}
-                  </p>
-                </a>
-              </Col>
-              <Col md={{span: 4}}>
-                <ButtonToolbar>
-                  <a
-                    style={{
-                      backgroundColor: '#EDA500',
-                      color: 'white',
-                      marginTop: '18px'
-                    }}
-                    href="/logout"
-                    className="btn"
-                  >
-                    Logout
-                  </a>
-                </ButtonToolbar>
-              </Col>
-            </Row>
-          </div>
-        </>
-      )}
     </div>
     <style jsx>
       {`
@@ -156,4 +147,11 @@ const Header = props => (
   </header>
 );
 
-export default Header;
+export {HeaderLayout};
+export default createFragmentContainer(HeaderLayout, {
+  session: graphql`
+    fragment Header_session on JwtToken {
+      sub
+    }
+  `
+});

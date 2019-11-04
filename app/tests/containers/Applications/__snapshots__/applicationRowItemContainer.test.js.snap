@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationRowItemContainer should render the application 1`] = `
+exports[`ApplicationRowItem should render the application 1`] = `
 <tr>
   <td />
   <td>

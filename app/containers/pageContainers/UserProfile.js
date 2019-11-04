@@ -1,25 +1,30 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import DefaultLayout from '../../layouts/default-layout';
-import UserDetail from '../Industry/UserDetail';
+import UserDetailContainer from '../Industry/UserDetailContainer';
 
 class UserProfile extends Component {
   static query = graphql`
     query UserProfileQuery {
       query {
-        user(id: "WyJ1c2VycyIsMV0=") {
-          ...UserDetail_user
+        session {
+          ...Header_session
+          userBySub {
+            ...UserDetailContainer_user
+          }
         }
       }
     }
   `;
 
   render() {
-    const {user} = this.props.query;
+    const {session} = this.props.query;
+    if (!session) return 'No session exists, the user should go sign in.';
+    if (!session.userBySub) return 'A session exists but not a user!';
     return (
       <>
-        <DefaultLayout>
-          <UserDetail user={user} />
+        <DefaultLayout session={session}>
+          <UserDetailContainer user={session.userBySub} />
         </DefaultLayout>
       </>
     );

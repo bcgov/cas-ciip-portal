@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ProductListContainer} from '../../../containers/Products/ProductListContainer';
+import {ProductList} from '../../../containers/Products/ProductListContainer';
 
-describe('ProductListContainer', () => {
+describe('ProductList', () => {
   it('should render the product list', async () => {
     const query = {
       active: {
@@ -12,7 +12,7 @@ describe('ProductListContainer', () => {
         edges: [{node: {id: 'product-2'}}]
       }
     };
-    const r = shallow(<ProductListContainer query={query} />);
+    const r = shallow(<ProductList query={query} />);
     expect(r).toMatchSnapshot();
     expect(
       r

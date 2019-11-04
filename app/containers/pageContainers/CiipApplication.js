@@ -14,6 +14,9 @@ class CiipApplication extends Component {
   static query = graphql`
     query CiipApplicationQuery($formResultId: ID!, $applicationId: ID!) {
       query {
+        session {
+          ...Header_session
+        }
         ...ApplicationWizard_query
           @arguments(formResultId: $formResultId, applicationId: $applicationId)
       }
@@ -22,8 +25,9 @@ class CiipApplication extends Component {
 
   render() {
     const {query} = this.props;
+    const {session} = query || {};
     return (
-      <DefaultLayout>
+      <DefaultLayout session={session}>
         <ApplicationWizard query={query} />
       </DefaultLayout>
     );

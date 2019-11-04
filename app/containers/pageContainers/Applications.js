@@ -24,6 +24,9 @@ class Applications extends Component {
       $searchValue: String
     ) {
       query {
+        session {
+          ...Header_session
+        }
         ...ApplicationListContainer_query
           @arguments(
             orderByField: $orderByField
@@ -92,7 +95,7 @@ class Applications extends Component {
     const {query} = this.props;
     return (
       <>
-        <DefaultLayout title="Applications">
+        <DefaultLayout title="Applications" session={query.session}>
           <ApplicationListContainer
             query={query}
             orderByDisplay={this.state.orderByDisplay}

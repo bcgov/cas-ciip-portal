@@ -52,6 +52,9 @@ class Admin extends Component {
   static query = graphql`
     query AdminQuery {
       query {
+        session {
+          ...Header_session
+        }
         ...ProductListContainer_query
       }
     }
@@ -61,7 +64,7 @@ class Admin extends Component {
     const {query} = this.props;
     return (
       <>
-        <DefaultLayout title="Products and Benchmarks">
+        <DefaultLayout title="Products and Benchmarks" session={query.session}>
           <Row>
             <Col>
               <br />

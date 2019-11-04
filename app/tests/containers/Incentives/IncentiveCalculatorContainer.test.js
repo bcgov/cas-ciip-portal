@@ -1,11 +1,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {IncentiveCalculatorContainer} from '../../../containers/Incentives/IncentiveCalculatorContainer';
+import {IncentiveCalculator} from '../../../containers/Incentives/IncentiveCalculatorContainer';
 
-describe('IncentiveCalculatorContainer', () => {
+describe('IncentiveCalculator', () => {
   it('should render the page', async () => {
     const r = shallow(
-      <IncentiveCalculatorContainer
+      <IncentiveCalculator
         query={{
           allProducts: {edges: []},
           bcghgidProducts: {edges: []},
@@ -24,7 +24,7 @@ describe('IncentiveCalculatorContainer', () => {
       },
       carbonTax: []
     };
-    const r = shallow(<IncentiveCalculatorContainer query={query} />);
+    const r = shallow(<IncentiveCalculator query={query} />);
     expect(
       r
         .find('Relay(IncentiveSegmentContainer)')

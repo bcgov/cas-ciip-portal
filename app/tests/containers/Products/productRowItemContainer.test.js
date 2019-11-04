@@ -37,7 +37,7 @@ const productRowActions = {
 };
 
 let render;
-describe('ProductRowItemContainer', () => {
+describe('ProductRowItem', () => {
   describe('with active product', () => {
     beforeAll(() => {
       render = shallow(

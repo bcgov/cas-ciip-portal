@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductRowItemContainer with active product should render the product row item 1`] = `
+exports[`ProductRowItem with active product should render the product row item 1`] = `
 <Fragment>
   <div
     className="jsx-3284210077 "
@@ -565,7 +565,7 @@ exports[`ProductRowItemContainer with active product should render the product r
 </Fragment>
 `;
 
-exports[`ProductRowItemContainer with archived product should render the product row item 1`] = `
+exports[`ProductRowItem with archived product should render the product row item 1`] = `
 <Fragment>
   <div
     className="jsx-3284210077 "
@@ -1200,7 +1200,7 @@ exports[`ProductRowItemContainer with archived product should render the product
 </Fragment>
 `;
 
-exports[`ProductRowItemContainer with mode set to benchmark should render the product row item with the benchmark class 1`] = `
+exports[`ProductRowItem with mode set to benchmark should render the product row item with the benchmark class 1`] = `
 <Fragment>
   <div
     className="jsx-3284210077 benchmark"
@@ -1835,7 +1835,7 @@ exports[`ProductRowItemContainer with mode set to benchmark should render the pr
 </Fragment>
 `;
 
-exports[`ProductRowItemContainer with mode set to product should render the product row item with the product class 1`] = `
+exports[`ProductRowItem with mode set to product should render the product row item with the product class 1`] = `
 <Fragment>
   <div
     className="jsx-3284210077 product"
@@ -2470,7 +2470,7 @@ exports[`ProductRowItemContainer with mode set to product should render the prod
 </Fragment>
 `;
 
-exports[`ProductRowItemContainer with mode set to view should render the product row item with the view class 1`] = `
+exports[`ProductRowItem with mode set to view should render the product row item with the view class 1`] = `
 <Fragment>
   <div
     className="jsx-3284210077 view"

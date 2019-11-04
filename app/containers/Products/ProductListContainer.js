@@ -3,7 +3,7 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductRowItemContainer from './ProductRowItemContainer';
 
-export const ProductListContainer = props => {
+export const ProductList = props => {
   const {query} = props;
   if (
     query &&
@@ -29,7 +29,7 @@ export const ProductListContainer = props => {
 // we need the first two billion edges to force graphql to return the right type
 // @see https://relay.dev/docs/en/pagination-container#connection
 // https://www.prisma.io/blog/relay-moderns-connection-directive-1ecd8322f5c8
-export default createFragmentContainer(ProductListContainer, {
+export default createFragmentContainer(ProductList, {
   query: graphql`
     fragment ProductListContainer_query on Query {
       active: allProducts(first: 2147483647, condition: {state: "active"})

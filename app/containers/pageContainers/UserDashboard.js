@@ -10,6 +10,9 @@ export default class UserDashBoard extends Component {
     query UserDashboardQuery($id: ID!) {
       query {
         ...Organisations_query @arguments(id: $id)
+        session {
+          ...Header_session
+        }
       }
     }
   `;
@@ -52,12 +55,14 @@ export default class UserDashBoard extends Component {
   };
 
   render() {
+    const {query} = this.props;
+    const {session} = query || {};
     return (
-      <DefaultLayout showSubheader title="My Operators">
+      <DefaultLayout showSubheader session={session} title="My Operators">
         <Row>
           <Col md={{span: 8}}>
             <Organisations
-              query={this.props.query}
+              query={query}
               userId={this.props.router.query.id}
               orgInput={this.state.orgInput}
               selectedOrg={this.state.selectedOrg}

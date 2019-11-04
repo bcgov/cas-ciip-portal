@@ -1,18 +1,18 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApplicationListContainer} from '../../../containers/Applications/ApplicationListContainer';
+import {ApplicationList} from '../../../containers/Applications/ApplicationListContainer';
 
-describe('ApplicationListContainer', () => {
+describe('ApplicationList', () => {
   it('should render the application list', async () => {
     const query = {
       searchApplicationList: {
         edges: [{node: {id: 'ciip-application-1'}}]
       }
     };
-    const r = shallow(<ApplicationListContainer query={query} />);
+    const r = shallow(<ApplicationList query={query} />);
     expect(r).toMatchSnapshot();
-    expect(
-      r.find('Relay(ApplicationRowItemContainer)').prop('ciipApplication')
-    ).toBe(query.searchApplicationList.edges[0].node);
+    expect(r.find('Relay(ApplicationRowItem)').prop('ciipApplication')).toBe(
+      query.searchApplicationList.edges[0].node
+    );
   });
 });

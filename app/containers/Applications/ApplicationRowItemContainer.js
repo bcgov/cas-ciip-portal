@@ -3,7 +3,7 @@ import {Button, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import Link from 'next/link';
 
-export const ApplicationRowItemContainer = props => {
+export const ApplicationRowItem = props => {
   const {ciipApplication = {}} = props;
   const statusBadgeColor = {
     attention: 'warning',
@@ -45,7 +45,7 @@ export const ApplicationRowItemContainer = props => {
   );
 };
 
-export default createFragmentContainer(ApplicationRowItemContainer, {
+export default createFragmentContainer(ApplicationRowItem, {
   ciipApplication: graphql`
     fragment ApplicationRowItemContainer_ciipApplication on CiipApplication {
       rowId

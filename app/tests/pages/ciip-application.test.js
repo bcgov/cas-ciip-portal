@@ -3,6 +3,7 @@ import {shallow} from 'enzyme';
 import CiipApplication from '../../containers/pageContainers/CiipApplication';
 
 const query = {
+  session: null,
   allFormJsons: {
     edges: [{node: {id: 'form-1'}}]
   }

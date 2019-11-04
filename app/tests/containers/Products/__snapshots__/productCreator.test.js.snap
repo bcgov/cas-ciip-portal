@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductCreatorContainer render() should match the last usable snapshot 1`] = `
+exports[`ProductCreator render() should match the last usable snapshot 1`] = `
 <Fragment>
   <div>
     <Form

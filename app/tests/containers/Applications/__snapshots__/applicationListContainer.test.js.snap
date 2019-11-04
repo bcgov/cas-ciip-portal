@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationListContainer should render the application list 1`] = `
+exports[`ApplicationList should render the application list 1`] = `
 <Fragment>
   <Container
     fluid={false}
@@ -281,7 +281,7 @@ exports[`ApplicationListContainer should render the application list 1`] = `
         </tr>
       </thead>
       <tbody>
-        <Relay(ApplicationRowItemContainer)
+        <Relay(ApplicationRowItem)
           ciipApplication={
             Object {
               "id": "ciip-application-1",

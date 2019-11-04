@@ -1,4 +1,4 @@
-const path = require('path');
+// Const path = require('path');
 const express = require('express');
 const {postgraphile} = require('postgraphile');
 const next = require('next');
@@ -8,7 +8,7 @@ const port = parseInt(process.env.PORT, 10) || 3004;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
-const schemaPath = path.join(__dirname, '/schema.graphql');
+// Const schemaPath = path.join(__dirname, '/schema.graphql');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const Keycloak = require('keycloak-connect');
@@ -64,25 +64,52 @@ app.prepare().then(() => {
       classicIds: true,
       pgSettings(req) {
         const claims = {};
-        if ((((req.kauth || {}).grant || {}).id_token || {}).content) {
-          // TODO: actually map jwt realms to postgres roles
-          // @see https://www.postgresql.org/docs/current/default-roles.html
-          // claims['role'] = 'pg_monitor';
-          const token = req.kauth.grant.id_token.content;
-          for (const property in token) {
-            claims[`jwt.claims.${property}`] = token[property];
-          }
-        }
+        if (
+          !req.kauth ||
+          !req.kauth.grant ||
+          !req.kauth.grant.id_token ||
+          !req.kauth.grant.id_token.content
+        )
+          return claims;
 
-        console.dir(claims);
-        return {
-          ...claims
-        };
+        // TODO: actually map jwt realms to postgres roles
+        // @see https://www.postgresql.org/docs/current/default-roles.html
+        // claims['role'] = 'pg_monitor';
+        const token = req.kauth.grant.id_token.content;
+        const properties = [
+          'jti',
+          'exp',
+          'nbf',
+          'iat',
+          'iss',
+          'aud',
+          'sub',
+          'typ',
+          'azp',
+          'auth_time',
+          'session_state',
+          'acr',
+          'email_verified',
+          'name',
+          'preferred_username',
+          'given_name',
+          'family_name',
+          'email'
+        ];
+        properties.forEach(property => {
+          claims[`jwt.claims.${property}`] = token[property];
+        });
+
+        return claims;
       }
     })
   );
 
-  server.get('/form-builder', keycloak.protect());
+  server.post('/login', keycloak.protect(), (req, res) =>
+    res.redirect(302, '/user-dashboard')
+  );
+  // Keycloak callbak; do not keycloak.protect() to avoid users being authenticated against their will via XSS attack
+  server.get('/login', (req, res) => res.redirect(302, '/user-dashboard'));
 
   server.get('*', (req, res) => {
     return handle(req, res);

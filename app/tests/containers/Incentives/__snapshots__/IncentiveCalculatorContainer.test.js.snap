@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IncentiveCalculatorContainer should render the page 1`] = `
+exports[`IncentiveCalculator should render the page 1`] = `
 <Fragment>
   <Jumbotron
     fluid={false}

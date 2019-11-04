@@ -3,7 +3,7 @@ import {Container, Row, Col, Dropdown} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import DropdownMenuItemComponent from '../../components/DropdownMenuItemComponent';
 
-export const ApplicationStatusItemContainer = props => {
+export const ApplicationStatusItem = props => {
   const statusBadgeColor = {
     pending: 'info',
     attention: 'warning',
@@ -45,7 +45,7 @@ export const ApplicationStatusItemContainer = props => {
   );
 };
 
-export default createFragmentContainer(ApplicationStatusItemContainer, {
+export default createFragmentContainer(ApplicationStatusItem, {
   applicationStatus: graphql`
     fragment ApplicationStatusItemContainer_applicationStatus on ApplicationStatus {
       applicationId

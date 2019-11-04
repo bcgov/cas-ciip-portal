@@ -2,7 +2,6 @@
 
 exports[`landing It matches the last accepted Snapshot 1`] = `
 <DefaultLayout
-  isLoggedIn={false}
   showSubheader={false}
 >
   <ForwardRef

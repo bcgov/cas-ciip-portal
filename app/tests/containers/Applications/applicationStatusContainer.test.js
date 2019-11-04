@@ -1,18 +1,18 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApplicationStatusContainer} from '../../../containers/Applications/ApplicationStatusContainer';
+import {ApplicationStatus} from '../../../containers/Applications/ApplicationStatusContainer';
 
-describe('ApplicationStatusContainer', () => {
+describe('ApplicationStatus', () => {
   it('should render the application status', async () => {
     const query = {
       allApplicationStatuses: {
         edges: [{node: {id: '1'}}]
       }
     };
-    const r = shallow(<ApplicationStatusContainer query={query} />);
+    const r = shallow(<ApplicationStatus query={query} />);
     expect(r).toMatchSnapshot();
     expect(
-      r.find('Relay(ApplicationStatusItemContainer)').prop('applicationStatus')
+      r.find('Relay(ApplicationStatusItem)').prop('applicationStatus')
     ).toBe(query.allApplicationStatuses.edges[0].node);
   });
 
@@ -22,7 +22,7 @@ describe('ApplicationStatusContainer', () => {
         edges: []
       }
     };
-    const r = shallow(<ApplicationStatusContainer query={query} />);
+    const r = shallow(<ApplicationStatus query={query} />);
     expect(r).toMatchSnapshot();
     expect(r.isEmptyRender()).toBe(true);
   });
@@ -33,7 +33,7 @@ describe('ApplicationStatusContainer', () => {
         edges: [{node: {id: '1'}}, {node: {id: '1'}}]
       }
     };
-    const r = shallow(<ApplicationStatusContainer query={query} />);
+    const r = shallow(<ApplicationStatus query={query} />);
     expect(r).toMatchSnapshot();
     expect(r.isEmptyRender()).toBe(true);
   });

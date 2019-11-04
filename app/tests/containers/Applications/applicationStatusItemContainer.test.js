@@ -1,15 +1,15 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApplicationStatusItemContainer} from '../../../containers/Applications/ApplicationStatusItemContainer';
+import {ApplicationStatusItem} from '../../../containers/Applications/ApplicationStatusItemContainer';
 
-describe('ApplicationStatusItemContainer', () => {
+describe('ApplicationStatusItem', () => {
   it('should render the application status', async () => {
     const applicationStatus = {
       applicationId: '123',
       applicationStatus: 'pending'
     };
     const r = shallow(
-      <ApplicationStatusItemContainer
+      <ApplicationStatusItem
         applicationStatus={applicationStatus}
         setApplicationStatus={jest.fn()}
       />

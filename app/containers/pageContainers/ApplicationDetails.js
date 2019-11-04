@@ -17,6 +17,9 @@ class ApplicationDetails extends Component {
       $reportingYear: String
     ) {
       query {
+        session {
+          ...Header_session
+        }
         ...ApplicationStatusContainer_query
           @arguments(condition: $applicationStatusCondition)
         ...IncentiveCalculatorContainer_query
@@ -41,8 +44,9 @@ class ApplicationDetails extends Component {
 
   render() {
     const {query} = this.props;
+    const {session} = query || {};
     return (
-      <DefaultLayout>
+      <DefaultLayout session={session}>
         <ApplicationStatusContainer
           query={query}
           applicationId={this.props.router.query.applicationId}
