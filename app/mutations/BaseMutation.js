@@ -7,8 +7,14 @@ export default class BaseMutation {
     this.configs = configs;
   }
 
-  async performMutation(environment, mutation, variables) {
-    variables.input.clientMutationId = `${this.mutationName}-${this.counter}`;
+  async performMutation(environment, mutation, variables, optimisticResponse) {
+    const clientMutationId = `${this.mutationName}-${this.counter}`;
+    variables.input.clientMutationId = clientMutationId;
+    if (optimisticResponse) {
+      const key = Object.keys(optimisticResponse)[0];
+      optimisticResponse[key].clientMutationId = clientMutationId;
+    }
+
     this.counter++;
     const {configs} = this;
     function commitMutation(environment, options) {
@@ -27,6 +33,11 @@ export default class BaseMutation {
       });
     }
 
-    return commitMutation(environment, {mutation, variables});
+    // TODO: abstract onError into a base class
+    return commitMutation(environment, {
+      mutation,
+      variables,
+      optimisticResponse
+    });
   }
 }
