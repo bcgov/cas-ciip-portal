@@ -106,6 +106,7 @@ export const OrganisationsComponent = props => {
             (You can search to narrow the results in the dropdown)
           </small>
           <Dropdown.Toggle
+            // @ts-ignore
             as="input"
             placeholder="Search..."
             onChange={changeInput}

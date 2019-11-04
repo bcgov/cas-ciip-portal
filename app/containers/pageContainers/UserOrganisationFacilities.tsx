@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
+import {UserOrganisationFacilitiesQueryResponse} from 'UserOrganisationFacilitiesQuery.graphql';
 import DefaultLayout from '../../layouts/default-layout';
 import OrganisationFacilities from '../Organisations/OrganisationFacilities';
 
-export default class UserOrganisationFacilities extends Component {
+interface Props {
+  query?: UserOrganisationFacilitiesQueryResponse['query'];
+}
+export default class UserOrganisationFacilities extends Component<Props> {
   static query = graphql`
     query UserOrganisationFacilitiesQuery($organisationId: ID!) {
       query {

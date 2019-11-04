@@ -30,11 +30,11 @@ export const FormComponent = ({
       )}
       <FormWithFuelUnits query={query} formJson={formJson}>
         <FormWithProductUnits query={query} formJson={formJson}>
+          // @ts-ignore formJson is injected by FormWithProductUnits
           <SurveyWrapper
             initialData={initialData}
             onComplete={onComplete}
             onValueChanged={onValueChanged}
-            onPanelDynamicValueChanged={onValueChanged}
           />
         </FormWithProductUnits>
       </FormWithFuelUnits>
@@ -49,7 +49,6 @@ export default createFragmentContainer(FormComponent, {
       ...FormWithProductUnits_query
       ...FormWithFuelUnits_query
       result: formResult(id: $formResultId) {
-        id
         formJsonByFormId {
           formJson
         }

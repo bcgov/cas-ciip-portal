@@ -2,11 +2,19 @@ import React from 'react';
 import {QueryRenderer, fetchQuery} from 'react-relay';
 import NextApp from 'next/app';
 
+import {NextRouter} from 'next/router';
 import {initEnvironment, createEnvironment} from '../lib/relay-environment';
 import ErrorBoundary from '../lib/error-boundary';
 import LoadingSpinner from '../components/LoadingSpinner';
 
-export default class App extends NextApp {
+interface AppProps {
+  pageProps: {
+    router: NextRouter;
+    variables: any;
+  };
+}
+
+export default class App extends NextApp<AppProps> {
   static getInitialProps = async ({Component, ctx}) => {
     const {variables = {}} = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
@@ -18,8 +26,10 @@ export default class App extends NextApp {
         await fetchQuery(environment, Component.query, variables);
 
         return {
-          variables,
-          relayData: await relaySSR.getCache()
+          pageProps: {
+            variables,
+            relayData: await relaySSR.getCache()
+          }
         };
       }
     } catch (error) {
@@ -27,15 +37,20 @@ export default class App extends NextApp {
     }
 
     return {
-      variables
+      pageProps: {variables}
     };
   };
 
   render() {
-    const {Component, variables = {}, router = {}, relayData} = this.props;
+    const {
+      Component,
+      router,
+      pageProps: {variables = {}, relayData}
+    } = this.props;
     const environment = createEnvironment(
       relayData,
       JSON.stringify({
+        // @ts-ignore
         queryID: Component.query ? Component.query().params.name : undefined,
         variables
       })
@@ -44,10 +59,11 @@ export default class App extends NextApp {
       <ErrorBoundary>
         <QueryRenderer
           environment={environment}
+          // @ts-ignore
           query={Component.query}
           variables={{...variables, ...router.query}}
           render={({error, props}) => {
-            if (error) return <div>{error.message}</div>;
+            if (error !== null) return <div>{error.message}</div>;
             if (props)
               return <Component {...props} router={this.props.router} />;
             return (

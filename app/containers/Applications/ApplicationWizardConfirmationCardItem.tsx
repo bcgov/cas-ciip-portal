@@ -11,7 +11,13 @@ export const ApplicationWizardConfirmationCardItemComponent = props => {
   const {resultObject} = props;
   const capitalRegex = /(?<cap>[A-Z])/g;
 
-  const renderInputs = (formTitle, subTitle, formInput, nest, item, index) => {
+  const renderInputs = (
+    formTitle,
+    subTitle,
+    formInput,
+    nest,
+    index?: number
+  ) => {
     let value;
     nest
       ? (value = null)
@@ -52,7 +58,7 @@ export const ApplicationWizardConfirmationCardItemComponent = props => {
   }
 
   return (
-    <Card key={(formTitle, formSubtitle)} style={{marginTop: '10px'}}>
+    <Card key={`${formTitle} ${formSubtitle}`} style={{marginTop: '10px'}}>
       <Card.Header
         as="h5"
         style={{textTransform: 'capitalize'}}
@@ -85,7 +91,9 @@ export const ApplicationWizardConfirmationCardItemComponent = props => {
                   {Object.keys(
                     resultObject[formTitle][formSubtitle][0][nest][0]
                   ).map(input => (
-                    <tr key={(formTitle, formSubtitle, nest, input)}>
+                    <tr
+                      key={`${formTitle}, ${formSubtitle}, ${nest}, ${input}`}
+                    >
                       {renderInputs(formTitle, formSubtitle, input, nest)}
                     </tr>
                   ))}
@@ -95,16 +103,15 @@ export const ApplicationWizardConfirmationCardItemComponent = props => {
           ) : (
             <Table>
               {resultObject[formTitle][formSubtitle].map((item, index) => (
-                <tbody key={(formTitle, formSubtitle, index)}>
+                <tbody key={`${formTitle} ${formSubtitle} ${item}`}>
                   <tr />
                   {inputs.map(input => (
-                    <tr key={(formTitle, formSubtitle, input)}>
+                    <tr key={`${formTitle} ${formSubtitle} ${input}`}>
                       {renderInputs(
                         formTitle,
                         formSubtitle,
                         input,
                         null,
-                        item,
                         index
                       )}
                     </tr>

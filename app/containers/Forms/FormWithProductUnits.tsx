@@ -11,7 +11,7 @@ const FormWithProductUnits = props => {
     setProductsList(edges.map(({node}) => node.name));
   }, [allProducts]);
 
-  const [unitsProducts, setUnitsProducts] = useState({});
+  const [unitsProducts, setUnitsProducts] = useState<any>({});
   useEffect(() => {
     const {edges = []} = allProducts || {};
 

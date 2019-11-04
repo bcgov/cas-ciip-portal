@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
-import propTypes from 'prop-types';
+
+interface Props {
+  quantity: number;
+  benchmark: number;
+  eligibilityThreshold: number;
+  carbonTaxPaid?: number;
+  incentiveSegment?: number;
+  fuelPercentage?: number;
+}
 
 // TODO: does this need to stay as a class component?
-class BenchmarkChart extends Component {
+// TODO: render this using svg instead of Canvas
+class BenchmarkChart extends Component<Props> {
+  canvasRef: React.RefObject<HTMLCanvasElement>;
   constructor(props) {
     super(props);
     this.canvasRef = React.createRef();
   }
-
-  // Proptype Validations
-  static propTypes = (BenchmarkChart.propTypes = {
-    quantity: propTypes.number,
-    benchmark: propTypes.number,
-    eligibilityThreshold: propTypes.number,
-    carbonTaxPaid: propTypes.number,
-    incentiveSegment: propTypes.number,
-    fuelPercentage: propTypes.number
-  }.isRequired);
 
   componentDidMount() {
     const canvas = this.canvasRef.current;

@@ -1,18 +1,14 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
+import {ApplicationsQueryResponse} from '__generated__/ApplicationsQuery.graphql';
 import DefaultLayout from '../../layouts/default-layout';
 import ApplicationListContainer from '../Applications/ApplicationListContainer';
 
-class Applications extends Component {
-  state = {
-    orderByField: 'operator_name',
-    direction: 'ASC',
-    orderByDisplay: 'Operator Name',
-    searchField: null,
-    searchValue: null,
-    searchDisplay: 'No Filter'
-  };
+interface Props {
+  query?: ApplicationsQueryResponse['query'];
+}
 
+class Applications extends Component<Props> {
   // In downstream component
   // onClick={(event) => handleApplicationsAction({action: Applications.SORT_ACTION})})
   // I didn't fully understand how to make this work, so I moved on with the way I did.
@@ -37,6 +33,26 @@ class Applications extends Component {
       }
     }
   `;
+
+  state = {
+    orderByField: 'operator_name',
+    direction: 'ASC',
+    orderByDisplay: 'Operator Name',
+    searchField: null,
+    searchValue: null,
+    searchDisplay: 'No Filter'
+  };
+
+  static async getInitialProps() {
+    return {
+      variables: {
+        orderByField: 'operator_name',
+        direction: 'ASC',
+        searchField: null,
+        searchValue: null
+      }
+    };
+  }
 
   toggleDirection = () => {
     this.state.direction === 'ASC'
@@ -65,31 +81,12 @@ class Applications extends Component {
     }
   };
 
-  actions = {
-    toggleDirection: this.toggleDirection,
-    sortApplications: this.sortApplications,
-    applySearchField: this.applySearchField,
-    applySearchValue: this.applySearchValue
-  };
-
   handleEvent = (event, eventKey) => {
     event.preventDefault();
     event.stopPropagation();
     event.persist();
-    this.actions[event.target.id](event, eventKey);
+    this[event.target.id](event, eventKey);
   };
-
-  // TODO(wenzowski): how would we get a condition such that this.state is falsy?
-  static async getInitialProps() {
-    return {
-      variables: {
-        orderByField: this.state ? this.state.orderByField : 'operator_name',
-        direction: this.state ? this.state.direction : 'ASC',
-        searchField: this.state ? this.state.searchField : null,
-        searchValue: this.state ? this.state.searchValue : null
-      }
-    };
-  }
 
   render() {
     const {query} = this.props;

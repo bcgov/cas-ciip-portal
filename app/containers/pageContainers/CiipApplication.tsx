@@ -1,16 +1,13 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
+import {CiipApplicationQueryResponse} from '__generated__/CiipApplicationQuery.graphql';
 import DefaultLayout from '../../layouts/default-layout';
 import ApplicationWizard from '../Applications/ApplicationWizard';
 
-class CiipApplication extends Component {
-  static getInitialProps = () => ({
-    variables: {
-      formResultId: '',
-      applicationId: ''
-    }
-  });
-
+interface Props {
+  query?: CiipApplicationQueryResponse['query'];
+}
+class CiipApplication extends Component<Props> {
   static query = graphql`
     query CiipApplicationQuery($formResultId: ID!, $applicationId: ID!) {
       query {
@@ -22,6 +19,13 @@ class CiipApplication extends Component {
       }
     }
   `;
+
+  static getInitialProps = () => ({
+    variables: {
+      formResultId: '',
+      applicationId: ''
+    }
+  });
 
   render() {
     const {query} = this.props;

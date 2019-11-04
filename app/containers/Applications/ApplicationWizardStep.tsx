@@ -256,8 +256,6 @@ const ApplicationWizardStep = ({
       query={query}
       initialData={initialData}
       initialDataSource={initialDataSource}
-      certificationPage={router.query.certificationPage}
-      onFormComplete={onStepComplete}
       onComplete={onComplete}
       onValueChanged={onValueChanged}
     />

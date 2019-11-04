@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
+// @ts-ignore
 import {Survey, Model} from 'survey-react';
 
 const SurveyWrapper = ({
   formJson,
   initialData,
   onComplete,
-  editable,
+  editable = true,
   onValueChanged
 }) => {
   const createModel = () => {

@@ -15,6 +15,7 @@ export default {
       relaySSR,
       environment: new Environment({
         store,
+        // @ts-ignore
         network: new RelayNetworkLayer([
           urlMiddleware({
             // TODO: set $RELAY_ENDPOINT

@@ -9,7 +9,7 @@
     "dev": "node server",
     "build": "npm run build:schema && npm run build:relay && npm run build:next",
     "build:schema": "postgraphile -X -c postgres://localhost/ggircs_dev -s ggircs_portal --export-schema-graphql server/schema.graphql --export-schema-json server/schema.json --classic-ids --sort-export && echo >> server/schema.json",
-    "build:relay": "relay-compiler --src ./ --exclude '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose",
+    "build:relay": "relay-compiler --src ./ --exclude --artifactDirectory ./__generated__ --language typescript '**/.next/**' '**/node_modules/**' '**/test/**'  '**/__generated__/**' '**/server/**' --schema ./server/schema.graphql --verbose",
     "build:next": "next build",
     "start": "NODE_ENV=production node server",
     "format": "xo --fix",
@@ -22,6 +22,7 @@
       "./static/bootstrap.min.css"
     ],
     "extends": [
+      "xo-typescript",
       "xo-react",
       "plugin:jest/recommended",
       "plugin:relay/recommended"
@@ -35,16 +36,43 @@
       "browser",
       "jest"
     ],
+    "extensions": [
+      "ts",
+      "tsx"
+    ],
     "space": true,
     "prettier": true,
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
     "rules": {
+      "@typescript-eslint/indent": [
+        "error",
+        2
+      ],
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/camelcase": 0,
+      "@typescript-eslint/strict-boolean-expressions": 0,
+      "react/jsx-uses-vars": 1,
       "unicorn/filename-case": 0,
       "import/no-unassigned-import": 0,
+      "@typescript-eslint/no-unnecessary-condition": 0,
       "no-unused-expressions": [
         1,
         {
           "allowTernary": true
+        }
+      ],
+      "import/extensions": [
+        "error",
+        "never",
+        {
+          "graphql": "always"
         }
       ],
       "react/prop-types": 0,
@@ -80,7 +108,6 @@
     "pg": "^7.11.0",
     "popper.js": "^1.15.0",
     "postgraphile": "^4.4.4",
-    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.9.0",
@@ -101,6 +128,11 @@
     "@storybook/addon-storyshots": "^5.2.4",
     "@storybook/addons": "^5.2.1",
     "@storybook/react": "^5.2.1",
+    "@types/jest": "^24.0.21",
+    "@types/react-relay": "^7.0.0",
+    "@types/relay-runtime": "^6.0.9",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
     "@zeit/next-css": "^1.0.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -115,6 +147,7 @@
     "eslint": "^6.5.1",
     "eslint-config-xo": "^0.27.1",
     "eslint-config-xo-react": "^0.20.0",
+    "eslint-config-xo-typescript": "^0.19.0",
     "eslint-plugin-jest": "^23.0.2",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2",
@@ -127,9 +160,12 @@
     "nock": "^9.6.1",
     "node-fetch": "^2.6.0",
     "relay-compiler": "^7.0.0",
+    "relay-compiler-language-typescript": "^10.1.0",
     "relay-test-utils": "^7.0.0",
     "react-test-renderer": "^16.10.2",
     "require-context.macro": "^1.2.2",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4",
     "webpack": "^4.41.0",
     "xo": "^0.25.0"
   },

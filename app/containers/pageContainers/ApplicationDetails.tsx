@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
+import {ApplicationDetailsQueryResponse} from '__generated__/ApplicationDetailsQuery.graphql';
+import {NextRouter} from 'next/router';
 import IncentiveCalculatorContainer from '../Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../Applications/ApplicationStatusContainer';
 import DefaultLayout from '../../layouts/default-layout';
 
-// TODO: decide what to show in this page
-class ApplicationDetails extends Component {
-  state = {
-    applicationId: null
-  };
+interface Props {
+  query?: ApplicationDetailsQueryResponse['query'];
+  router: NextRouter;
+}
 
+// TODO: decide what to show in this page
+class ApplicationDetails extends Component<Props> {
   static query = graphql`
     query ApplicationDetailsQuery(
       $applicationStatusCondition: ApplicationStatusCondition
@@ -32,15 +35,11 @@ class ApplicationDetails extends Component {
     return {
       variables: {
         condition: {
-          rowId: this.state ? Number(this.state.applicationId) : null
+          rowId: null
         }
       }
     };
   }
-
-  setApplicationId = id => {
-    this.setState({applicationId: Number(id)});
-  };
 
   render() {
     const {query} = this.props;

@@ -15,7 +15,7 @@ export const ApplicationWizardConfirmationComponent = props => {
   // Create a parsed result object from each formResult page
   formResults.forEach(result => {
     const parsedResult = JSON.parse(result.node.formResult);
-    const resultTitle = Object.keys(parsedResult);
+    const resultTitle = Object.keys(parsedResult).toString();
 
     resultObject[resultTitle] = parsedResult;
   });
@@ -34,7 +34,7 @@ export const ApplicationWizardConfirmationComponent = props => {
       {formArray.map(formTitle =>
         Object.keys(resultObject[formTitle]).map(formSubtitle => (
           <ApplicationWizardConfirmationCardItem
-            key={(formTitle, formSubtitle)}
+            key={`${formTitle} ${formSubtitle}`}
             formTitle={formTitle}
             formSubtitle={formSubtitle}
             resultObject={resultObject}

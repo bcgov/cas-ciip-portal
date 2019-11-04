@@ -4,7 +4,13 @@ import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
 import Subheader from '../components/Layout/Subheader';
 
-class DefaultLayout extends Component {
+interface Props {
+  title?: string;
+  showSubheader?: boolean;
+  isLoggedIn?: boolean;
+}
+
+class DefaultLayout extends Component<Props> {
   render() {
     const {children, title, showSubheader, session} = this.props;
     return (

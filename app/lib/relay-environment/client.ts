@@ -17,6 +17,7 @@ export default {
 
     storeEnvironment = new Environment({
       store,
+      // @ts-ignore
       network: new RelayNetworkLayer([
         cacheMiddleware({
           size: 100,
@@ -28,7 +29,7 @@ export default {
         urlMiddleware({
           // TODO: set $RELAY_ENDPOINT
           // url: req => process.env.RELAY_ENDPOINT
-          url: req => 'http://localhost:3004/graphql'
+          url: () => 'http://localhost:3004/graphql'
         })
       ])
     });

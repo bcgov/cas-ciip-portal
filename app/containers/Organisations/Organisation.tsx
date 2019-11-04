@@ -8,9 +8,14 @@ export const OrganisationComponent = props => {
     return null;
   }
 
-  return organisation.operatorName
-    .toLowerCase()
-    .includes(props.orgInput.toLowerCase()) ? (
+  if (
+    !organisation.operatorName
+      .toLowerCase()
+      .includes(props.orgInput.toLowerCase())
+  )
+    return null;
+
+  return (
     <Dropdown.Item
       onSelect={() =>
         props.selectOrg(organisation.operatorName, organisation.rowId)
@@ -18,7 +23,7 @@ export const OrganisationComponent = props => {
     >
       {organisation.operatorName}
     </Dropdown.Item>
-  ) : null;
+  );
 };
 
 export default createFragmentContainer(OrganisationComponent, {

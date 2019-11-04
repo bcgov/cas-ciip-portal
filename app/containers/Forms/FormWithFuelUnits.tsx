@@ -11,7 +11,7 @@ export const FormWithFuelUnitsComponent = props => {
     setFuelsList(edges.map(({node}) => node.name));
   }, [allFuels]);
 
-  const [unitsFuels, setUnitsFuels] = useState({});
+  const [unitsFuels, setUnitsFuels] = useState<any>({});
   useEffect(() => {
     const {edges = []} = allFuels || {};
 

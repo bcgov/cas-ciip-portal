@@ -275,7 +275,7 @@ export const ProductRowItemComponent = props => {
             >
               <ButtonGroup
                 vertical
-                style={{width: '100%', marginTop: 10, marginBotton: 5}}
+                style={{width: '100%', marginTop: 10, marginBottom: 5}}
               >
                 <Button
                   className="save-product"
@@ -304,7 +304,7 @@ export const ProductRowItemComponent = props => {
             <Form.Group as={Col} md="4" controlId="product_name">
               <Form.Label>Name</Form.Label>
               <Form.Control
-                required="required"
+                required
                 type="string"
                 step="0.01"
                 placeholder={product.name}
@@ -312,7 +312,7 @@ export const ProductRowItemComponent = props => {
               />
               <Form.Label>Description</Form.Label>
               <Form.Control
-                required="required"
+                required
                 type="string"
                 step="0.01"
                 placeholder={product.description}
@@ -391,7 +391,7 @@ export const ProductRowItemComponent = props => {
               <Form.Group as={Col} md="1" style={{textAlign: 'right'}}>
                 <ButtonGroup
                   vertical
-                  style={{width: '100%', marginTop: 10, marginBotton: 5}}
+                  style={{width: '100%', marginTop: 10, marginBottom: 5}}
                 >
                   <Button
                     className="save-benchmark"
@@ -421,7 +421,7 @@ export const ProductRowItemComponent = props => {
               <Form.Group as={Col} md="3" controlId="benchmark">
                 <Form.Label>Benchmark</Form.Label>
                 <Form.Control
-                  required="required"
+                  required
                   type="number"
                   step="0.01"
                   placeholder={benchmarks.benchmark}
@@ -429,18 +429,14 @@ export const ProductRowItemComponent = props => {
                 />
                 <Form.Label>Eligibility Threshold</Form.Label>
                 <Form.Control
-                  required="required"
+                  required
                   type="number"
                   step="0.01"
                   placeholder={benchmarks.eligibilityThreshold}
                   defaultValue={benchmarks.eligibilityThreshold}
                 />
                 <Form.Label>Start Date</Form.Label>
-                <Form.Control
-                  required="required"
-                  step="0.01"
-                  placeholder="dd/mm/yyyy"
-                />
+                <Form.Control required step="0.01" placeholder="dd/mm/yyyy" />
               </Form.Group>
             </Form.Row>
           </Form>

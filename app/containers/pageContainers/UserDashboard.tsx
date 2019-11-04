@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
 import {Col, Row, ListGroup} from 'react-bootstrap';
 import {graphql} from 'react-relay';
+import {NextRouter} from 'next/router';
+import {UserDashboardQueryResponse} from '__generated__/UserDashboardQuery.graphql';
 import Organisations from '../Organisations/Organisations';
 import DefaultLayout from '../../layouts/default-layout';
 import {userOrganisationMutation} from '../../mutations/user_organisation/UserOrganisation';
 
-export default class UserDashBoard extends Component {
+interface Props {
+  router: NextRouter;
+  query: UserDashboardQueryResponse['query'];
+}
+
+export default class UserDashBoard extends Component<Props> {
   static query = graphql`
     query UserDashboardQuery($id: ID!) {
       query {
