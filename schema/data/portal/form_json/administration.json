@@ -1,0 +1,312 @@
+{
+  "title": "Administrative Information",
+  "showCompletedPage": false,
+  "completeText": "Next",
+  "pages": [
+    {
+      "name": "Administrative Information",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "name": "reportingOperationInformation",
+          "useDisplayValuesInTitle": false,
+          "title": "Reporting Operation Information",
+          "templateElements": [
+            {
+              "type": "text",
+              "name": "operatorName",
+              "title": "Legal Name of Operator:",
+              "isRequired": true,
+              "size": 340
+            },
+            {
+              "type": "text",
+              "name": "operatorTradeName",
+              "title": "Operator''s Trade Name"
+            },
+            {
+              "type": "text",
+              "name": "duns",
+              "title": "DUNS Number",
+              "isRequired": true,
+              "inputType": "text"
+            },
+            {
+              "type": "text",
+              "name": "bcCorporateRegistryNumber",
+              "title": "BC Corporate Registry Number",
+              "inputType": "text"
+            },
+            {
+              "type": "text",
+              "name": "naicsCode",
+              "startWithNewLine": false,
+              "title": "NAICS Code",
+              "inputType": "text"
+            },
+            {
+              "type": "text",
+              "name": "mailingAddress",
+              "title": "Operator Mailing Address"
+            },
+            {
+              "type": "text",
+              "name": "mailingAddressCity",
+              "startWithNewLine": false,
+              "title": "Mailing Address City"
+            },
+            {
+              "type": "dropdown",
+              "name": "mailingAddressProvince",
+              "title": "Province",
+              "choices": [
+                "Alberta",
+                "British Columbia",
+                "Manitoba",
+                "New Brunswick",
+                "Newfoundland and Labrador",
+                "Northwest Territories",
+                "Nova Scotia",
+                "Nunavut",
+                "Ontario",
+                "Prince Edward Island",
+                "Quebec",
+                "Saskatchewan",
+                "Yukon"
+              ]
+            },
+            {
+              "type": "text",
+              "name": "mailingAddressPostalCode",
+              "startWithNewLine": false,
+              "title": "Mailing Address Postal Code",
+              "validators": [
+                {
+                  "type": "regex",
+                  "text": "The postal code should match this pattern: A1A1A1",
+                  "regex": "^([a-zA-Z]\\d){3}$"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "name": "mailingAddressCountry",
+              "width": "50%",
+              "title": "Mailing Address Country"
+            }
+          ],
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "panelCount": 1,
+          "minPanelCount": 1,
+          "keyName": "name",
+          "panelAddText": "Add another  item",
+          "panelRemoveText": "Remove item"
+        },
+        {
+          "type": "paneldynamic",
+          "name": "operationalRepresentativeInformation",
+          "title": "Operational Representative",
+          "templateElements": [
+            {
+              "type": "text",
+              "name": "firstName",
+              "startWithNewLine": false,
+              "title": "First Name",
+              "isRequired": true,
+              "size": 340
+            },
+            {
+              "type": "text",
+              "name": "lastName",
+              "startWithNewLine": false,
+              "title": "Last Name",
+              "isRequired": true,
+              "size": 340
+            },
+            {
+              "type": "text",
+              "name": "position",
+              "startWithNewLine": false,
+              "title": "Position/Title"
+            },
+            {
+              "type": "text",
+              "name": "emailAddress",
+              "title": "Email Address",
+              "isRequired": true,
+              "inputType": "email"
+            },
+            {
+              "type": "text",
+              "name": "phone",
+              "startWithNewLine": false,
+              "title": "Telephone Number",
+              "inputType": "tel"
+            },
+            {
+              "type": "text",
+              "name": "fax",
+              "startWithNewLine": false,
+              "title": "Fax Number",
+              "inputType": "tel"
+            },
+            {
+              "type": "text",
+              "name": "mailingAddress",
+              "title": "Operator Mailing Address"
+            },
+            {
+              "type": "text",
+              "name": "mailingAddressCity",
+              "startWithNewLine": false,
+              "title": "Mailing Address City"
+            },
+            {
+              "type": "dropdown",
+              "name": "mailingAddressProvince",
+              "startWithNewLine": false,
+              "title": "Province",
+              "choices": [
+                "Alberta",
+                "British Columbia",
+                "Manitoba",
+                "New Brunswick",
+                "Newfoundland and Labrador",
+                "Northwest Territories",
+                "Nova Scotia",
+                "Nunavut",
+                "Ontario",
+                "Prince Edward Island",
+                "Quebec",
+                "Saskatchewan",
+                "Yukon"
+              ]
+            },
+            {
+              "type": "text",
+              "name": "mailingAddressPostalCode",
+              "width": "32.5%",
+              "title": "Mailing Address Postal Code",
+              "validators": [
+                {
+                  "type": "regex",
+                  "text": "The postal code should match this pattern: A1A1A1",
+                  "regex": "^([a-zA-Z]\\d){3}$"
+                }
+              ]
+            }
+          ],
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "panelCount": 1,
+          "keyName": "name"
+        },
+        {
+          "type": "paneldynamic",
+          "name": "facilityInformation",
+          "title": "Facility Information",
+          "templateElements": [
+            {
+              "type": "text",
+              "name": "facilityName",
+              "title": "Facility Name",
+              "isRequired": true,
+              "size": 340
+            },
+            {
+              "type": "dropdown",
+              "name": "facilityType",
+              "title": "Facility Type",
+              "choices": ["IF_a", "IF_b", "L_c", "SFO", "LFO", "EIO"]
+            },
+            {
+              "type": "text",
+              "name": "bcghgid",
+              "startWithNewLine": false,
+              "title": "BCGHG ID Number",
+              "inputType": "text"
+            },
+            {
+              "type": "text",
+              "name": "naicsCode",
+              "startWithNewLine": false,
+              "title": "NAICS Code",
+              "inputType": "number"
+            },
+            {
+              "type": "text",
+              "name": "latitude",
+              "title": "Latitude",
+              "inputType": "number"
+            },
+            {
+              "type": "text",
+              "name": "longitude",
+              "startWithNewLine": false,
+              "title": "Longitude",
+              "inputType": "number"
+            },
+            {
+              "type": "text",
+              "name": "mailingAddress",
+              "title": "Mailing Address"
+            },
+            {
+              "type": "text",
+              "name": "mailingAddressCity",
+              "startWithNewLine": false,
+              "title": "Mailing Address City"
+            },
+            {
+              "type": "dropdown",
+              "name": "mailingAddressProvince",
+              "title": "Province",
+              "choices": [
+                "Alberta",
+                "British Columbia",
+                "Manitoba",
+                "New Brunswick",
+                "Newfoundland and Labrador",
+                "Northwest Territories",
+                "Nova Scotia",
+                "Nunavut",
+                "Ontario",
+                "Prince Edward Island",
+                "Quebec",
+                "Saskatchewan",
+                "Yukon"
+              ]
+            },
+            {
+              "type": "text",
+              "name": "mailingAddressPostalCode",
+              "startWithNewLine": false,
+              "title": "Mailing Address Postal Code",
+              "validators": [
+                {
+                  "type": "regex",
+                  "text": "The postal code should match this pattern: A1A1A1",
+                  "regex": "^([a-zA-Z]\\d){3}$"
+                }
+              ]
+            },
+            {
+              "type": "comment",
+              "name": "facilityDescription",
+              "title": "Facility Description"
+            }
+          ],
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "panelCount": 1,
+          "minPanelCount": 1,
+          "keyName": "name",
+          "panelAddText": "Add another item",
+          "panelRemoveText": "Remove item"
+        }
+      ]
+    }
+  ],
+  "showQuestionNumbers": "off"
+}

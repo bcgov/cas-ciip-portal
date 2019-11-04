@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationRowItemContainer should render the application 1`] = `
+<tr>
+  <td />
+  <td>
+    operator1
+  </td>
+  <td>
+    facility1
+  </td>
+  <td>
+    Sun, 17 Dec 1995 03:24:00 GMT
+  </td>
+  <td>
+    <Badge
+      pill={true}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+      variant="info"
+    >
+      pending
+    </Badge>
+  </td>
+  <td>
+    <Link
+      href={
+        Object {
+          "pathname": "/application-details",
+          "query": Object {
+            "applicationId": undefined,
+            "bcghgid": undefined,
+            "reportingYear": undefined,
+          },
+        }
+      }
+    >
+      <Button
+        active={false}
+        disabled={false}
+        type="button"
+        variant="primary"
+      >
+        View Application
+      </Button>
+    </Link>
+  </td>
+</tr>
+`;

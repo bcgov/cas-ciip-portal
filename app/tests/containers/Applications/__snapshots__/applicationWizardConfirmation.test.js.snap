@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationWizardConfirmationComponent should render the summary confirmation component 1`] = `
+<Fragment>
+  <h1>
+    Summary of your application:
+  </h1>
+  <h5>
+    Please review the information you have provided before continuing.
+  </h5>
+  <br />
+  <Relay(ApplicationWizardConfirmationCardItemComponent)
+    formSubtitle="id"
+    formTitle="id"
+    key="id"
+    resultObject={
+      Object {
+        "id": Object {
+          "id": "form-results",
+        },
+      }
+    }
+  />
+  <Link
+    href={
+      Object {
+        "pathname": "/ciip-application",
+        "query": Object {
+          "applicationId": undefined,
+          "certificationPage": true,
+          "formResultId": "abc",
+        },
+      }
+    }
+    passHref={true}
+  >
+    <Button
+      active={false}
+      className="float-right"
+      disabled={false}
+      style={
+        Object {
+          "marginTop": "10px",
+        }
+      }
+      type="button"
+      variant="primary"
+    >
+      Next
+    </Button>
+  </Link>
+</Fragment>
+`;

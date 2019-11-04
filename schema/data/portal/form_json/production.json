@@ -1,0 +1,73 @@
+{
+  "title": "Production Information",
+  "showCompletedPage": false,
+  "completeText": "Next",
+  "pages": [
+    {
+      "name": "Module Throughput and Emissions",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "name": "moduleThroughputAndProductionData",
+          "title": "Production Data",
+          "templateElements": [
+            {
+              "type": "dropdown",
+              "name": "product",
+              "title": "Processing Unit Module",
+              "choices": [
+                "Inlet Compression",
+                "Dehydration",
+                "Amine Sweetening",
+                "Fractionation",
+                "Stabilization"
+              ]
+            },
+            {
+              "type": "text",
+              "name": "quantity",
+              "title": "Quantity",
+              "inputType": "number"
+            },
+            {
+              "type": "dropdown",
+              "name": "productUnits",
+              "startWithNewLine": false,
+              "title": "Units",
+              "choices": [
+                {
+                  "value": "m3",
+                  "text": "meters cube"
+                },
+                {
+                  "value": "kl",
+                  "text": "kiloliters"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "name": "associatedEmissions",
+              "title": "Associated Emission (tCO2e)",
+              "inputType": "number"
+            },
+            {
+              "type": "text",
+              "name": "comments",
+              "title": "Comments"
+            }
+          ],
+          "templateTitle": "Processing Unit Module #{panelIndex}",
+          "panelCount": 1,
+          "minPanelCount": 1,
+          "keyName": "name",
+          "panelAddText": "Add another unit or product",
+          "panelRemoveText": "Remove unit or product"
+        }
+      ],
+      "title": "Module Throughput and Emissions",
+      "description": "Please provide cumulative throughput/production amounts for each module as well as allocated emissions: "
+    }
+  ],
+  "showQuestionNumbers": "off"
+}

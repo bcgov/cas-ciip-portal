@@ -36,5 +36,3 @@ objects:
       host: ciip-portal-${OC_PROJECT}.pathfinder.gov.bc.ca
       routerName: router
       wildcardPolicy: None
-
-

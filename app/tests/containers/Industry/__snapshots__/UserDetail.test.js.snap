@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserDetail matches snapshot 1`] = `
+<div>
+  <Jumbotron
+    fluid={false}
+  >
+    <h1>
+      User Profile
+    </h1>
+    <p>
+      Welcome to Ciip 
+      Hamza
+       
+      Javed
+      !
+    </p>
+  </Jumbotron>
+  <Button
+    active={false}
+    className="button-edit"
+    disabled={false}
+    onClick={[Function]}
+    style={
+      Object {
+        "width": "75px",
+      }
+    }
+    type="button"
+    variant="primary"
+  >
+    Edit
+  </Button>
+  <p />
+  <div />
+  <Bootstrap(Table)
+    bordered={true}
+    hover={true}
+    striped={true}
+    style={
+      Object {
+        "marginBottom": "50px",
+        "marginTop": "30px",
+      }
+    }
+  >
+    <tbody>
+      <tr>
+        <th>
+          First Name
+        </th>
+        <td>
+          Hamza
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Last Name
+        </th>
+        <td>
+          Javed
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Occupation
+        </th>
+        <td>
+          developer
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Phone Number
+        </th>
+        <td>
+          12345
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Email
+        </th>
+        <td>
+          hamza@button.is
+        </td>
+      </tr>
+    </tbody>
+  </Bootstrap(Table)>
+</div>
+`;

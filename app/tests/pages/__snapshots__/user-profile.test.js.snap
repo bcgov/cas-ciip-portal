@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user profile matches snapshot 1`] = `
+<Fragment>
+  <DefaultLayout>
+    <Relay(UserDetail)
+      user={
+        Object {
+          "id": "WyJ1c2VycyIsMV0=",
+        }
+      }
+    />
+  </DefaultLayout>
+</Fragment>
+`;

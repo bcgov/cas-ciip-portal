@@ -1,10 +1,12 @@
 import React from 'react';
 import {Accordion, Card, Button} from 'react-bootstrap';
 import {graphql, QueryRenderer} from 'react-relay';
-import initEnvironment from '../lib/createRelayEnvironment';
+import LoadingSpinner from './LoadingSpinner';
+// Import initEnvironment from '../lib/createRelayEnvironment';
 
-const environment = initEnvironment();
+// const environment = initEnvironment();
 
+// TODO: What is this? It is not used anywhere.
 const renderQuery = ({error, props}) => {
   if (error) {
     return <div>error</div>;
@@ -38,10 +40,11 @@ const renderQuery = ({error, props}) => {
     );
   }
 
-  return <div>Loading</div>;
+  return <LoadingSpinner />;
 };
 
 const UserList = props => {
+  const {environment} = props.relay;
   return (
     <>
       <h3>Users</h3>

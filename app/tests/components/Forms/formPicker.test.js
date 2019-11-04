@@ -1,39 +1,55 @@
 import React from 'react';
-import {wait, render} from '@testing-library/react';
+import {shallow} from 'enzyme';
 import {queryMock} from '../../../lib/relayQueryMock';
-import FormPicker from '../../../components/Forms/FormPicker';
+import {FormPicker} from '../../../containers/Forms/FormPicker';
 
 let mockAppQueryData;
 
 describe('Form Loader', () => {
-  beforeEach(() => {
-    // Make sure mock data is always fresh for each test run
-    mockAppQueryData = {
+  describe('render()', () => {
+    const query = {
       allFormJsons: {
-        nodes: [
+        edges: [
           {
-            rowId: 1,
-            id: 'WyJmb3JtX2pzb25zIiwxXQ==',
-            name: 'Test form 1',
-            formJson:
-              '{"elements":[{"name":"customerName","type":"text","title":"1: What is your name?","isRequired":true}]}'
+            node: {
+              rowId: 1,
+              id: 'WyJmb3JtX2pzb25zIiwxXQ==',
+              name: 'Test form 1',
+              formJson:
+                '{"elements":[{"name":"customerName","type":"text","title":"1: What is your name?","isRequired":true}]}'
+            }
           }
         ]
       }
     };
-  });
 
-  // TODO: this snapshot differs on CI and needs to be debugged
-  it.skip('should render the form', async () => {
-    queryMock.mockQuery({
-      name: 'FormPickerQuery',
-      data: mockAppQueryData
+    const handleFormId = jest.fn();
+
+    let render;
+    beforeAll(() => {
+      render = shallow(
+        <FormPicker query={query} handleFormId={handleFormId} />
+      );
     });
-    const r = render(<FormPicker />);
-    //   FireEvent.click(r.getByText("Please select a form"));
-    await wait(() => r.getAllByText(/Please select a form/i));
-    expect(r).toMatchSnapshot();
+
+    it('should render the form', async () => {
+      expect(render).toMatchSnapshot();
+    });
+
+    it('should have a dropdown button', () => {
+      const DropdownButton = render.find('DropdownButton');
+      expect(DropdownButton.prop('title')).toBe('Please select a form');
+    });
+
+    it('should have a clickable dropdown item', () => {
+      const DropdownItem = render.find('DropdownItem');
+      expect(DropdownItem.text()).toBe('Test form 1');
+      DropdownItem.simulate('click');
+      expect(handleFormId.mock.calls.length).toBe(1);
+      expect(handleFormId.mock.calls[0]).toEqual([
+        1,
+        query.allFormJsons.edges[0].node.formJson
+      ]);
+    });
   });
 });
-
-// This component is most likely a --DEV only component, unless turned into a reusable component

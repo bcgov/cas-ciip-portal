@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It matches the last accepted Snapshot 1`] = `
+<footer
+  class="jsx-2746091499 footer"
+>
+  <div
+    class="jsx-2746091499 container"
+  >
+    <ul
+      class="jsx-2746091499"
+    >
+      <li
+        class="jsx-2746091499"
+      >
+        <a
+          class="jsx-2746091499"
+          href="."
+        >
+          Home
+        </a>
+      </li>
+      <li
+        class="jsx-2746091499"
+      >
+        <a
+          class="jsx-2746091499"
+          href="."
+        >
+          Contact Us
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>
+`;

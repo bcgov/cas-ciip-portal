@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It matches the last accepted Snapshot 1`] = `
+<header
+  class="jsx-2807878339"
+>
+  <div
+    class="jsx-2807878339 container"
+  >
+    <div
+      class="jsx-2807878339 banner"
+    >
+      <div
+        class="jsx-2807878339 header-left"
+      >
+        <img
+          alt="Go to the Government of British Columbia website"
+          class="jsx-2807878339"
+          src="/static/logo-banner.png"
+        />
+        <h1
+          class="jsx-2807878339"
+        >
+          CleanBC Industrial Incentive Program
+        </h1>
+      </div>
+      <div
+        class="jsx-2807878339 login-btns header-right"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <button
+              class="btn btn-outline-light"
+              style="margin-right:10px"
+              type="button"
+            >
+              Register
+            </button>
+            <button
+              class="btn btn-outline-light"
+              type="button"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+`;

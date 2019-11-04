@@ -1,0 +1,14 @@
+[
+  "trigger",
+  "./app",
+  {
+    "name": "yarn",
+    "expression": [
+      "anyof",
+      ["match", "package.json", "wholename"],
+      ["match", "yarn.lock", "wholename"]
+    ],
+    "command": ["/usr/bin/env", "bash", "-c", "yarn --pure-lockfile 1>../log/yarn.stdout.log 2>../log/yarn.stderr.log"],
+    "append_files": false
+  }
+]

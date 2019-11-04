@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form Loader should match the snapshot 1`] = `""`;
+
+exports[`Form Loader should match the snapshot when it has initial data 1`] = `""`;

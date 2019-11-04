@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Organisation should not render an organisation if the organisation does not contain the search input 1`] = `""`;
+
+exports[`Organisation should render an organisation if the organisation contains the search input 1`] = `
+<DropdownItem
+  as={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "displayName": "SafeAnchor",
+      "render": [Function],
+    }
+  }
+  disabled={false}
+  onSelect={[Function]}
+>
+  abc
+</DropdownItem>
+`;

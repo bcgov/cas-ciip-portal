@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It matches the last accepted Snapshot 1`] = `
+<div
+  class="jsx-775259080"
+>
+  <nav
+    class="jsx-775259080 navigation-main"
+    id="navbar"
+  >
+    <div
+      class="jsx-775259080 container"
+    >
+      <ul
+        class="jsx-775259080"
+      >
+        <li
+          class="jsx-775259080"
+        >
+          <a
+            class="jsx-775259080 active"
+            href="#"
+          >
+            My Dashboard
+          </a>
+        </li>
+        <li
+          class="jsx-775259080"
+        >
+          <a
+            class="jsx-775259080"
+            href="#"
+          >
+            My Applications
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+`;

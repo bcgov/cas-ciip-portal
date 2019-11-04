@@ -1,0 +1,236 @@
+{
+  "title": "Emissions",
+  "showCompletedPage": false,
+  "completeText": "Next",
+  "pages": [
+    {
+      "name": "Emissions",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "name": "Venting",
+          "title": "Venting Emissions",
+          "templateElements": [
+            {
+              "type": "paneldynamic",
+              "name": "CO2nonbio",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 1 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 1",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Carbon dioxide from non-biomass (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            },
+            {
+              "type": "paneldynamic",
+              "name": "CH4",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 25 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 25",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Methane (CH4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            }
+          ],
+          "panelCount": 1,
+          "allowAddPanel": false,
+          "allowRemovePanel": false
+        },
+        {
+          "type": "paneldynamic",
+          "name": "Flaring",
+          "title": "Flaring Emissions",
+          "templateElements": [
+            {
+              "type": "paneldynamic",
+              "name": "CO2nonbio",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 1 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 1",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Carbon dioxide from non-biomass (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            },
+            {
+              "type": "paneldynamic",
+              "name": "CH4",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 25 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 25",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Methane (CH4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            }
+          ],
+          "panelCount": 1,
+          "allowAddPanel": false,
+          "allowRemovePanel": false
+        },
+        {
+          "type": "paneldynamic",
+          "name": "Fugitive",
+          "title": "Fugitive/Other Emissions",
+          "templateElements": [
+            {
+              "type": "paneldynamic",
+              "name": "CO2nonbio",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 1 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 1",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Carbon dioxide from non-biomass (CO2)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            },
+            {
+              "type": "paneldynamic",
+              "name": "CH4",
+              "templateElements": [
+                {
+                  "type": "text",
+                  "name": "annualEmission",
+                  "startWithNewLine": false,
+                  "title": "Tonnes",
+                  "inputType": "number"
+                },
+                {
+                  "type": "expression",
+                  "name": "GWP",
+                  "startWithNewLine": false,
+                  "expression": "\" x 25 = \"",
+                  "commentText": "Other (describe)"
+                },
+                {
+                  "type": "expression",
+                  "name": "annualCO2e",
+                  "startWithNewLine": false,
+                  "title": "Tonnes (in CO2 Equivalent)",
+                  "expression": "{panel.annualEmission} * 25",
+                  "commentText": "Other (describe)"
+                }
+              ],
+              "title": "Methane (CH4)",
+              "panelCount": 1,
+              "allowAddPanel": false,
+              "allowRemovePanel": false
+            }
+          ],
+          "panelCount": 1,
+          "allowAddPanel": false,
+          "allowRemovePanel": false
+        }
+      ],
+      "title": "Emissions"
+    }
+  ],
+  "showQuestionNumbers": "off"
+}

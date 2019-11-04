@@ -1,0 +1,418 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`landing It matches the last accepted Snapshot 1`] = `
+<DefaultLayout
+  isLoggedIn={false}
+  showSubheader={false}
+>
+  <ForwardRef
+    noGutters={false}
+    style={
+      Object {
+        "marginTop": "60px",
+      }
+    }
+  >
+    <Col
+      md={6}
+    >
+      <h3
+        className="jsx-1999586784 blue"
+      >
+        What is the CleanBC Industrial Incentive Program?
+      </h3>
+      <p
+        className="jsx-1999586784"
+      >
+        In 2018, B.C.’s $30 carbon tax rate was raised to $35, and it is set to increase by $5 every year until 2021. As the price of carbon rises, the CleanBC Program for Industry will support competitiveness and facilitate emission reductions using revenues from the carbon tax that industry pays above $30 per tonne carbon dioxide equivalent (tCO2e).
+      </p>
+      <p
+        className="jsx-1999586784"
+      >
+        The CleanBC Industrial Incentive Program (CIIP) is part of the CleanBC Program for Industry, which applies to large industrial operations that report their emissions under the Greenhouse Gas Industrial Reporting and Control Act (GGIRCA).
+      </p>
+      <p
+        className="jsx-1999586784"
+      >
+        The CIIP helps cleaner industrial operations across the province by reducing carbon tax costs for facilities near world-leading emissions benchmarks.
+      </p>
+    </Col>
+    <Col
+      md={
+        Object {
+          "offset": 1,
+          "span": 5,
+        }
+      }
+    >
+      <Card
+        body={false}
+        className="ciip-card"
+        style={
+          Object {
+            "margin": "30px 0",
+            "width": "100%",
+          }
+        }
+      >
+        <CardBody>
+          <CardTitle
+            className="blue"
+          >
+            Apply for CleanBC Industrial Incentive Program (CIIP)
+          </CardTitle>
+          <CardText
+            style={
+              Object {
+                "padding": "10px 0 10px 0",
+              }
+            }
+          >
+            Operators must submit a CIIP application form by June 30, 2019. As part of the application, information about the operation’s energy use, emissions, and production is required.
+          </CardText>
+          <Link
+            href={
+              Object {
+                "pathname": "/dummy-login",
+              }
+            }
+          >
+            <Button
+              active={false}
+              className="full-width"
+              disabled={false}
+              size="lg"
+              style={
+                Object {
+                  "padding": "15px",
+                }
+              }
+              type="button"
+              variant="primary"
+            >
+              Register and Apply
+            </Button>
+          </Link>
+        </CardBody>
+      </Card>
+      <Link
+        href={
+          Object {
+            "pathname": "/dummy-login",
+          }
+        }
+      >
+        <div
+          className="jsx-1999586784 login-link text-center"
+          style={
+            Object {
+              "textDecoration": "underline",
+            }
+          }
+        >
+          <a
+            className="jsx-1999586784"
+            href="#"
+          >
+            Already have an account? Click here to login.
+          </a>
+        </div>
+      </Link>
+    </Col>
+  </ForwardRef>
+  <ForwardRef
+    id="value-props"
+    noGutters={false}
+    style={
+      Object {
+        "marginTop": "100px",
+      }
+    }
+  >
+    <Col
+      md={12}
+    >
+      <h4
+        className="jsx-1999586784 blue"
+      >
+        How to Apply
+      </h4>
+    </Col>
+    <Col
+      md={4}
+    >
+      <div
+        className="jsx-1999586784 value-prop"
+      >
+        <img
+          className="jsx-1999586784"
+          src="../../static/icons/import.png"
+        />
+        <h5
+          className="jsx-1999586784 blue"
+        >
+          1. Register as an Industrial Reporter
+        </h5>
+        <p
+          className="jsx-1999586784"
+        >
+          Before you can apply for an operation, you have to register yourself as an industrial reporter.
+        </p>
+      </div>
+    </Col>
+    <Col
+      md={4}
+    >
+      <div
+        className="jsx-1999586784 value-prop"
+      >
+        <img
+          className="jsx-1999586784"
+          src="../../static/icons/production.png"
+        />
+        <h5
+          className="jsx-1999586784 blue"
+        >
+          2. Request to apply for an Operation
+        </h5>
+        <p
+          className="jsx-1999586784"
+        >
+          Once you’ve registered you can request to apply on behalf one or multiple Operations.
+        </p>
+      </div>
+    </Col>
+    <Col
+      md={4}
+    >
+      <div
+        className="jsx-1999586784 value-prop"
+      >
+        <img
+          className="jsx-1999586784"
+          src="../../static/icons/paid.png"
+        />
+        <h5
+          className="jsx-1999586784 blue"
+        >
+          3. Apply on behalf of the Operation
+        </h5>
+        <p
+          className="jsx-1999586784"
+        >
+          The CIIP team will verify and approve your request and then you can apply for the program.
+        </p>
+      </div>
+    </Col>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+    style={
+      Object {
+        "marginTop": "100px",
+      }
+    }
+  >
+    <Col
+      md={
+        Object {
+          "span": 6,
+        }
+      }
+    >
+      <img
+        className="jsx-1999586784 with-shadow"
+        src="../../static/what-is-it.jpg"
+      />
+    </Col>
+    <Col
+      md={
+        Object {
+          "offset": 1,
+          "span": 5,
+        }
+      }
+    >
+      <h3
+        className="jsx-1999586784 blue"
+      >
+        Key Dates
+      </h3>
+      <Bootstrap(Table)
+        bordered={true}
+        hover={true}
+        striped={true}
+      >
+        <thead
+          className="jsx-1999586784"
+        >
+          <tr
+            className="jsx-1999586784"
+          >
+            <th
+              className="jsx-1999586784"
+            >
+              Date
+            </th>
+            <th
+              className="jsx-1999586784"
+            />
+          </tr>
+        </thead>
+        <tbody
+          className="jsx-1999586784"
+        >
+          <tr
+            className="jsx-1999586784"
+          >
+            <td
+              className="jsx-1999586784"
+            >
+              May 1, 2020
+            </td>
+            <td
+              className="jsx-1999586784"
+            >
+              CIIP application forms open
+            </td>
+          </tr>
+          <tr
+            className="jsx-1999586784"
+          >
+            <td
+              className="jsx-1999586784"
+            >
+              May 16, 2020
+            </td>
+            <td
+              className="jsx-1999586784"
+            >
+              Webinar for CIIP
+            </td>
+          </tr>
+          <tr
+            className="jsx-1999586784"
+          >
+            <td
+              className="jsx-1999586784"
+            >
+              June 30, 2020
+            </td>
+            <td
+              className="jsx-1999586784"
+            >
+              CIIP application form due
+            </td>
+          </tr>
+          <tr
+            className="jsx-1999586784"
+          >
+            <td
+              className="jsx-1999586784"
+            >
+              May 31, 2021
+            </td>
+            <td
+              className="jsx-1999586784"
+            >
+              CIIP application form due 
+              <br
+                className="jsx-1999586784"
+              />
+              (along with 2019 GHG reporting data)
+            </td>
+          </tr>
+        </tbody>
+      </Bootstrap(Table)>
+      <Card
+        body={false}
+        className="ciip-card"
+        style={
+          Object {
+            "border": "1px solid grey",
+            "margin": "40px 0",
+            "width": "100%",
+          }
+        }
+      >
+        <CardBody>
+          <CardTitle
+            className="blue"
+          >
+            Contact Information
+          </CardTitle>
+          <CardText
+            style={
+              Object {
+                "padding": "10px 0 10px 0",
+              }
+            }
+          >
+            Please email us at 
+            <strong
+              className="jsx-1999586784"
+            >
+              GHGRegulator@gov.bc.ca
+            </strong>
+             for any questions.
+          </CardText>
+        </CardBody>
+      </Card>
+      <p
+        className="jsx-1999586784"
+      >
+        Further information on the CleanBC Industrial Incentive Program is available in this
+        <a
+          className="jsx-1999586784"
+          href="https://www2.gov.bc.ca/assets/gov/environment/climate-change/ind/cleanbc-program-for-industry/ciip_factsheet_190524_final.pdf?forcedownload=true"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+           
+          fact sheet
+        </a>
+        .
+      </p>
+    </Col>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+    style={
+      Object {
+        "display": "none",
+        "marginTop": "100px",
+      }
+    }
+  >
+    <Jumbotron
+      fluid={false}
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <h3
+        className="jsx-1999586784 blue"
+      >
+        Have questions? Get in touch.
+      </h3>
+      <p
+        className="jsx-1999586784"
+      >
+        Phone: +1 099 9920 9002
+      </p>
+      <p
+        className="jsx-1999586784"
+      >
+        Email: cas@ggircs.com
+      </p>
+    </Jumbotron>
+  </ForwardRef>
+  <JSXStyle
+    id="1999586784"
+  >
+    .value-prop.jsx-1999586784{padding-right:30px;}.value-prop.jsx-1999586784 img.jsx-1999586784{max-width:100px;padding:30px 0;margin:0 auto;}.value-prop.jsx-1999586784 h4.jsx-1999586784{margin-bottom:20px;}.login-link.jsx-1999586784{border:1px solid #666;padding:20px;border-radius:4px;}li.jsx-1999586784{list-style:none;}
+  </JSXStyle>
+</DefaultLayout>
+`;

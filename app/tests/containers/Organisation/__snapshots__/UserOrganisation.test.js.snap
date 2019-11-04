@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserOrganisation should render a userOrganisation if the userOrganisation is passed as props 1`] = `
+<tr
+  className="jsx-2428472905"
+>
+  <td
+    className="jsx-2428472905"
+  />
+  <td
+    className="jsx-2428472905"
+  >
+    <Badge
+      pill={true}
+      style={
+        Object {
+          "padding": "8px",
+          "width": "100%",
+        }
+      }
+      variant="success"
+    >
+      active
+    </Badge>
+  </td>
+  <td
+    className="jsx-2428472905"
+  >
+     
+    <Link
+      href={
+        Object {
+          "pathname": "/user-organisation-facilities",
+          "query": Object {
+            "organisationId": "orgId",
+          },
+        }
+      }
+    >
+      <a
+        className="jsx-2428472905 btn btn-outline-primary"
+        href="#"
+      >
+        View Facilities
+      </a>
+    </Link>
+  </td>
+  <JSXStyle
+    id="2428472905"
+  >
+    td.jsx-2428472905{padding:20px;}
+  </JSXStyle>
+</tr>
+`;
+
+exports[`UserOrganisation should render null if no userOrganisation is passed as props 1`] = `""`;

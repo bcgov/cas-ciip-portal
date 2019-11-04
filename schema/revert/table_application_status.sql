@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:table_application from pg
 
-BEGIN;
+begin;
 
 drop table ggircs_portal.application_status;
 
-COMMIT;
+commit;

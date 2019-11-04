@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form Loader render() should render the form 1`] = `
+<div>
+  <DropdownButton
+    id="dropdown-basic-button"
+    title="Please select a form"
+  >
+    <div
+      key="WyJmb3JtX2pzb25zIiwxXQ=="
+    >
+      <DropdownItem
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "SafeAnchor",
+            "render": [Function],
+          }
+        }
+        disabled={false}
+        onClick={[Function]}
+      >
+        Test form 1
+      </DropdownItem>
+    </div>
+  </DropdownButton>
+</div>
+`;

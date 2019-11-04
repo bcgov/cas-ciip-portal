@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Organisations should render no organisations if the user has not requested any access 1`] = `
+<Fragment>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="warning"
+  >
+    You are not registered to apply for any Operator at this time. You can request access to an Operator by selecting one from the dropdown below.
+  </Alert>
+  <br />
+  <Dropdown
+    className="search-dropdown"
+    navbar={false}
+  >
+    <h5
+      className="jsx-14601785"
+      style={
+        Object {
+          "marginBottom": 0,
+        }
+      }
+    >
+      Request access to an Operator:
+    </h5>
+    <small
+      className="jsx-14601785"
+      style={
+        Object {
+          "display": "block",
+          "marginBottom": "20px",
+        }
+      }
+    >
+      (You can search to narrow the results in the dropdown)
+    </small>
+    <Bootstrap(DropdownToggle)
+      as="input"
+      onChange={[Function]}
+      placeholder="Search..."
+    />
+    <DropdownMenu
+      alignRight={false}
+      flip={true}
+    />
+    <JSXStyle
+      id="14601785"
+    >
+      .dropdown-toggle{padding:8px 16px;width:300px;border-radius:3px;border:1px solid #999;}
+    </JSXStyle>
+  </Dropdown>
+</Fragment>
+`;
+
+exports[`Organisations should render the user's requested organisations 1`] = `
+<Fragment>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="info"
+  >
+    Once your access to the requested operators is approved you can view their facilities and apply for CIIP for each.
+  </Alert>
+  <Bootstrap(Table)
+    bordered={true}
+    hover={true}
+    striped={true}
+    style={
+      Object {
+        "marginBottom": "40px",
+        "textAlign": "left",
+      }
+    }
+  >
+    <thead
+      className="jsx-130150550"
+    >
+      <tr
+        className="jsx-130150550"
+      >
+        <th
+          className="jsx-130150550"
+        >
+          Operator
+        </th>
+        <th
+          className="jsx-130150550"
+        >
+          Access Status
+        </th>
+        <th
+          className="jsx-130150550"
+        >
+          Operations/Facilities
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="jsx-130150550"
+    >
+      <Relay(UserOrganisationComponent)
+        key="OrgId"
+        userOrganisation={
+          Object {
+            "id": "OrgId",
+          }
+        }
+      />
+    </tbody>
+    <JSXStyle
+      id="130150550"
+    >
+      th.jsx-130150550{padding:20px;font-weight:500;}
+    </JSXStyle>
+  </Bootstrap(Table)>
+  <Dropdown
+    className="search-dropdown"
+    navbar={false}
+  >
+    <h5
+      className="jsx-14601785"
+      style={
+        Object {
+          "marginBottom": 0,
+        }
+      }
+    >
+      Request access to an Operator:
+    </h5>
+    <small
+      className="jsx-14601785"
+      style={
+        Object {
+          "display": "block",
+          "marginBottom": "20px",
+        }
+      }
+    >
+      (You can search to narrow the results in the dropdown)
+    </small>
+    <Bootstrap(DropdownToggle)
+      as="input"
+      onChange={[Function]}
+      placeholder="Search..."
+    />
+    <DropdownMenu
+      alignRight={false}
+      flip={true}
+    />
+    <JSXStyle
+      id="14601785"
+    >
+      .dropdown-toggle{padding:8px 16px;width:300px;border-radius:3px;border:1px solid #999;}
+    </JSXStyle>
+  </Dropdown>
+</Fragment>
+`;
