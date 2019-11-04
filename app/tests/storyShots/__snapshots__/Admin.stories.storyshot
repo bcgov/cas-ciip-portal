@@ -1,0 +1,2616 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
+<ReactRelayQueryRenderer
+  environment={"RelayModernEnvironment(RelayModernMockEnvironment)"}
+  query={[Function]}
+  render={[Function]}
+  variables={Object {}}
+>
+  <Admin
+    query={
+      Object {
+        "active": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "benchmarksByProductId": Object {
+                  "edges": Array [],
+                },
+                "id": 1,
+                "name": "buddy",
+                "state": "active",
+              },
+            },
+          ],
+        },
+        "archived": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "benchmarksByProductId": Object {
+                  "edges": Array [],
+                },
+                "id": 2,
+                "name": "holly",
+                "state": "archived",
+              },
+            },
+          ],
+        },
+      }
+    }
+  >
+    <DefaultLayout
+      title="Products and Benchmarks"
+    >
+      <div
+        className="jsx-1958721952 page-wrap"
+      >
+        <Header>
+          <header
+            className="jsx-2807878339"
+          >
+            <div
+              className="jsx-2807878339 container"
+            >
+              <div
+                className="jsx-2807878339 banner"
+              >
+                <div
+                  className="jsx-2807878339 header-left"
+                >
+                  <Link
+                    href="/"
+                  >
+                    <img
+                      alt="Go to the Government of British Columbia website"
+                      className="jsx-2807878339"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      src="/static/logo-banner.png"
+                    />
+                  </Link>
+                  <h1
+                    className="jsx-2807878339"
+                  >
+                    CleanBC Industrial Incentive Program
+                  </h1>
+                </div>
+                <div
+                  className="jsx-2807878339 login-btns header-right"
+                >
+                  <ForwardRef
+                    noGutters={false}
+                  >
+                    <div
+                      className="row"
+                    >
+                      <Col>
+                        <div
+                          className="col"
+                        >
+                          <Link
+                            href={
+                              Object {
+                                "pathname": "/dummy-login",
+                              }
+                            }
+                          >
+                            <Button
+                              active={false}
+                              disabled={false}
+                              onClick={[Function]}
+                              onMouseEnter={[Function]}
+                              style={
+                                Object {
+                                  "marginRight": "10px",
+                                }
+                              }
+                              type="button"
+                              variant="outline-light"
+                            >
+                              <button
+                                className="btn btn-outline-light"
+                                disabled={false}
+                                onClick={[Function]}
+                                onMouseEnter={[Function]}
+                                style={
+                                  Object {
+                                    "marginRight": "10px",
+                                  }
+                                }
+                                type="button"
+                              >
+                                Register
+                              </button>
+                            </Button>
+                          </Link>
+                          <Link
+                            href={
+                              Object {
+                                "pathname": "/dummy-login",
+                              }
+                            }
+                          >
+                            <Button
+                              active={false}
+                              disabled={false}
+                              onClick={[Function]}
+                              onMouseEnter={[Function]}
+                              type="button"
+                              variant="outline-light"
+                            >
+                              <button
+                                className="btn btn-outline-light"
+                                disabled={false}
+                                onClick={[Function]}
+                                onMouseEnter={[Function]}
+                                type="button"
+                              >
+                                Login
+                              </button>
+                            </Button>
+                          </Link>
+                        </div>
+                      </Col>
+                    </div>
+                  </ForwardRef>
+                </div>
+              </div>
+            </div>
+            <JSXStyle
+              id="2807878339"
+            />
+          </header>
+        </Header>
+        <div
+          className="jsx-1958721952 page-title"
+        >
+          <Container
+            fluid={false}
+          >
+            <div
+              className="container"
+            >
+              <h1
+                className="jsx-1958721952"
+              >
+                Products and Benchmarks
+              </h1>
+            </div>
+          </Container>
+        </div>
+        <Container
+          className="content"
+          fluid={false}
+        >
+          <div
+            className="content container"
+          >
+            <ForwardRef
+              noGutters={false}
+            >
+              <div
+                className="row"
+              >
+                <Col>
+                  <div
+                    className="col"
+                  >
+                    <br />
+                    <Jumbotron
+                      fluid={false}
+                    >
+                      <div
+                        className="jumbotron"
+                      >
+                        <h4>
+                          Create a Product
+                        </h4>
+                        <br />
+                        <Relay(ProductCreatorContainer)>
+                          <Relay(ProductCreatorContainer)
+                            __relayContext={
+                              Object {
+                                "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+                              }
+                            }
+                            componentRef={null}
+                          >
+                            <ProductCreatorContainer
+                              relay={
+                                Object {
+                                  "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+                                }
+                              }
+                            >
+                              <div>
+                                <Form
+                                  inline={false}
+                                  onSubmit={[Function]}
+                                >
+                                  <form
+                                    className=""
+                                    onSubmit={[Function]}
+                                  >
+                                    <FormRow>
+                                      <div
+                                        className="form-row"
+                                      >
+                                        <FormGroup
+                                          as={
+                                            Object {
+                                              "$$typeof": Symbol(react.forward_ref),
+                                              "displayName": "Col",
+                                              "render": [Function],
+                                            }
+                                          }
+                                          controlId="product_name"
+                                          md="4"
+                                        >
+                                          <Col
+                                            className="form-group"
+                                            md="4"
+                                          >
+                                            <div
+                                              className="form-group col-md-4"
+                                            >
+                                              <FormLabel
+                                                column={false}
+                                                srOnly={false}
+                                              >
+                                                <label
+                                                  className="form-label"
+                                                  htmlFor="product_name"
+                                                >
+                                                  Product Name
+                                                </label>
+                                              </FormLabel>
+                                              <FormControl
+                                                placeholder=""
+                                                required="required"
+                                                type="text"
+                                              >
+                                                <input
+                                                  className="form-control"
+                                                  id="product_name"
+                                                  placeholder=""
+                                                  required="required"
+                                                  type="text"
+                                                />
+                                              </FormControl>
+                                            </div>
+                                          </Col>
+                                        </FormGroup>
+                                        <FormGroup
+                                          as={
+                                            Object {
+                                              "$$typeof": Symbol(react.forward_ref),
+                                              "displayName": "Col",
+                                              "render": [Function],
+                                            }
+                                          }
+                                          controlId="product_description"
+                                          md="8"
+                                        >
+                                          <Col
+                                            className="form-group"
+                                            md="8"
+                                          >
+                                            <div
+                                              className="form-group col-md-8"
+                                            >
+                                              <FormLabel
+                                                column={false}
+                                                srOnly={false}
+                                              >
+                                                <label
+                                                  className="form-label"
+                                                  htmlFor="product_description"
+                                                >
+                                                  Product Description
+                                                </label>
+                                              </FormLabel>
+                                              <FormControl
+                                                placeholder=""
+                                                required="required"
+                                                type="textbox"
+                                              >
+                                                <input
+                                                  className="form-control"
+                                                  id="product_description"
+                                                  placeholder=""
+                                                  required="required"
+                                                  type="textbox"
+                                                />
+                                              </FormControl>
+                                            </div>
+                                          </Col>
+                                        </FormGroup>
+                                      </div>
+                                    </FormRow>
+                                    <Button
+                                      active={false}
+                                      disabled={false}
+                                      type="submit"
+                                      variant="primary"
+                                    >
+                                      <button
+                                        className="btn btn-primary"
+                                        disabled={false}
+                                        type="submit"
+                                      >
+                                        Create Product
+                                      </button>
+                                    </Button>
+                                  </form>
+                                </Form>
+                              </div>
+                            </ProductCreatorContainer>
+                          </Relay(ProductCreatorContainer)>
+                        </Relay(ProductCreatorContainer)>
+                      </div>
+                    </Jumbotron>
+                    <br />
+                    <br />
+                    <br />
+                    <Relay(ProductListContainer)
+                      confirmationModalOpen={false}
+                      mode="view"
+                      productRowActions={
+                        Object {
+                          "closeConfirmationWindow": [Function],
+                          "openConfirmationWindow": [Function],
+                          "toggleBenchmarkMode": [Function],
+                          "toggleProductMode": [Function],
+                        }
+                      }
+                      query={
+                        Object {
+                          "active": Object {
+                            "edges": Array [
+                              Object {
+                                "node": Object {
+                                  "benchmarksByProductId": Object {
+                                    "edges": Array [],
+                                  },
+                                  "id": 1,
+                                  "name": "buddy",
+                                  "state": "active",
+                                },
+                              },
+                            ],
+                          },
+                          "archived": Object {
+                            "edges": Array [
+                              Object {
+                                "node": Object {
+                                  "benchmarksByProductId": Object {
+                                    "edges": Array [],
+                                  },
+                                  "id": 2,
+                                  "name": "holly",
+                                  "state": "archived",
+                                },
+                              },
+                            ],
+                          },
+                        }
+                      }
+                    >
+                      <Relay(ProductListContainer)
+                        __relayContext={
+                          Object {
+                            "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+                          }
+                        }
+                        componentRef={null}
+                        confirmationModalOpen={false}
+                        mode="view"
+                        productRowActions={
+                          Object {
+                            "closeConfirmationWindow": [Function],
+                            "openConfirmationWindow": [Function],
+                            "toggleBenchmarkMode": [Function],
+                            "toggleProductMode": [Function],
+                          }
+                        }
+                        query={
+                          Object {
+                            "active": Object {
+                              "edges": Array [
+                                Object {
+                                  "node": Object {
+                                    "benchmarksByProductId": Object {
+                                      "edges": Array [],
+                                    },
+                                    "id": 1,
+                                    "name": "buddy",
+                                    "state": "active",
+                                  },
+                                },
+                              ],
+                            },
+                            "archived": Object {
+                              "edges": Array [
+                                Object {
+                                  "node": Object {
+                                    "benchmarksByProductId": Object {
+                                      "edges": Array [],
+                                    },
+                                    "id": 2,
+                                    "name": "holly",
+                                    "state": "archived",
+                                  },
+                                },
+                              ],
+                            },
+                          }
+                        }
+                      >
+                        <ProductListContainer
+                          confirmationModalOpen={false}
+                          mode="view"
+                          productRowActions={
+                            Object {
+                              "closeConfirmationWindow": [Function],
+                              "openConfirmationWindow": [Function],
+                              "toggleBenchmarkMode": [Function],
+                              "toggleProductMode": [Function],
+                            }
+                          }
+                          query={
+                            Object {
+                              "active": Object {
+                                "edges": Array [
+                                  Object {
+                                    "node": Object {
+                                      "benchmarksByProductId": Object {
+                                        "edges": Array [],
+                                      },
+                                      "id": 1,
+                                      "name": "buddy",
+                                      "state": "active",
+                                    },
+                                  },
+                                ],
+                              },
+                              "archived": Object {
+                                "edges": Array [
+                                  Object {
+                                    "node": Object {
+                                      "benchmarksByProductId": Object {
+                                        "edges": Array [],
+                                      },
+                                      "id": 2,
+                                      "name": "holly",
+                                      "state": "archived",
+                                    },
+                                  },
+                                ],
+                              },
+                            }
+                          }
+                          relay={
+                            Object {
+                              "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+                            }
+                          }
+                        >
+                          <Relay(ProductRowItemComponent)
+                            confirmationModalOpen={false}
+                            key="1"
+                            mode="view"
+                            product={
+                              Object {
+                                "benchmarksByProductId": Object {
+                                  "edges": Array [],
+                                },
+                                "id": 1,
+                                "name": "buddy",
+                                "state": "active",
+                              }
+                            }
+                            productRowActions={
+                              Object {
+                                "closeConfirmationWindow": [Function],
+                                "openConfirmationWindow": [Function],
+                                "toggleBenchmarkMode": [Function],
+                                "toggleProductMode": [Function],
+                              }
+                            }
+                          >
+                            <Relay(ProductRowItemComponent)
+                              __relayContext={
+                                Object {
+                                  "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+                                }
+                              }
+                              componentRef={null}
+                              confirmationModalOpen={false}
+                              mode="view"
+                              product={
+                                Object {
+                                  "benchmarksByProductId": Object {
+                                    "edges": Array [],
+                                  },
+                                  "id": 1,
+                                  "name": "buddy",
+                                  "state": "active",
+                                }
+                              }
+                              productRowActions={
+                                Object {
+                                  "closeConfirmationWindow": [Function],
+                                  "openConfirmationWindow": [Function],
+                                  "toggleBenchmarkMode": [Function],
+                                  "toggleProductMode": [Function],
+                                }
+                              }
+                            >
+                              <ProductRowItemComponent
+                                confirmationModalOpen={false}
+                                mode="view"
+                                product={
+                                  Object {
+                                    "benchmarksByProductId": Object {
+                                      "edges": Array [],
+                                    },
+                                    "id": 1,
+                                    "name": "buddy",
+                                    "state": "active",
+                                  }
+                                }
+                                productRowActions={
+                                  Object {
+                                    "closeConfirmationWindow": [Function],
+                                    "openConfirmationWindow": [Function],
+                                    "toggleBenchmarkMode": [Function],
+                                    "toggleProductMode": [Function],
+                                  }
+                                }
+                                relay={
+                                  Object {
+                                    "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="jsx-3284210077 view"
+                                  id="view-item"
+                                >
+                                  <div
+                                    className="jsx-3284210077"
+                                    style={
+                                      Object {
+                                        "background": "",
+                                      }
+                                    }
+                                  >
+                                    <ForwardRef
+                                      noGutters={false}
+                                      style={
+                                        Object {
+                                          "padding": 5,
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="row"
+                                        style={
+                                          Object {
+                                            "padding": 5,
+                                          }
+                                        }
+                                      >
+                                        <Col
+                                          md={1}
+                                          style={
+                                            Object {
+                                              "textAlign": "right",
+                                            }
+                                          }
+                                        >
+                                          <div
+                                            className="col-md-1"
+                                            style={
+                                              Object {
+                                                "textAlign": "right",
+                                              }
+                                            }
+                                          >
+                                            <Button
+                                              active={false}
+                                              className="edit-product"
+                                              disabled={false}
+                                              onClick={[Function]}
+                                              style={
+                                                Object {
+                                                  "width": "100%",
+                                                }
+                                              }
+                                              type="button"
+                                              variant="primary"
+                                            >
+                                              <button
+                                                className="edit-product btn btn-primary"
+                                                disabled={false}
+                                                onClick={[Function]}
+                                                style={
+                                                  Object {
+                                                    "width": "100%",
+                                                  }
+                                                }
+                                                type="button"
+                                              >
+                                                Edit
+                                              </button>
+                                            </Button>
+                                          </div>
+                                        </Col>
+                                        <Col
+                                          md={4}
+                                        >
+                                          <div
+                                            className="col-md-4"
+                                          >
+                                            <h5
+                                              className="jsx-3284210077"
+                                            >
+                                              buddy
+                                            </h5>
+                                            <small
+                                              className="jsx-3284210077"
+                                            />
+                                          </div>
+                                        </Col>
+                                        <Col
+                                          md={1}
+                                        >
+                                          <div
+                                            className="col-md-1"
+                                          >
+                                            <FormLabel
+                                              column={false}
+                                              srOnly={false}
+                                            >
+                                              <label
+                                                className="form-label"
+                                              >
+                                                <small
+                                                  className="jsx-3284210077"
+                                                >
+                                                  Archived:
+                                                </small>
+                                                 
+                                                false
+                                              </label>
+                                            </FormLabel>
+                                          </div>
+                                        </Col>
+                                        <Col
+                                          md={1}
+                                          style={
+                                            Object {
+                                              "textAlign": "right",
+                                            }
+                                          }
+                                        >
+                                          <div
+                                            className="col-md-1"
+                                            style={
+                                              Object {
+                                                "textAlign": "right",
+                                              }
+                                            }
+                                          >
+                                            <Button
+                                              active={false}
+                                              className="edit-benchmark"
+                                              disabled={false}
+                                              onClick={[Function]}
+                                              style={
+                                                Object {
+                                                  "width": "100%",
+                                                }
+                                              }
+                                              type="button"
+                                              variant="primary"
+                                            >
+                                              <button
+                                                className="edit-benchmark btn btn-primary"
+                                                disabled={false}
+                                                onClick={[Function]}
+                                                style={
+                                                  Object {
+                                                    "width": "100%",
+                                                  }
+                                                }
+                                                type="button"
+                                              >
+                                                Edit
+                                              </button>
+                                            </Button>
+                                          </div>
+                                        </Col>
+                                        <Col
+                                          md={2}
+                                        >
+                                          <div
+                                            className="col-md-2"
+                                          >
+                                            <FormLabel
+                                              column={false}
+                                              srOnly={false}
+                                            >
+                                              <label
+                                                className="form-label"
+                                              >
+                                                <small
+                                                  className="jsx-3284210077"
+                                                >
+                                                  Benchmark:
+                                                </small>
+                                                 
+                                              </label>
+                                            </FormLabel>
+                                            <br
+                                              className="jsx-3284210077"
+                                            />
+                                            <FormLabel
+                                              column={false}
+                                              srOnly={false}
+                                            >
+                                              <label
+                                                className="form-label"
+                                              >
+                                                <small
+                                                  className="jsx-3284210077"
+                                                >
+                                                  Start Date:
+                                                </small>
+                                                 
+                                              </label>
+                                            </FormLabel>
+                                          </div>
+                                        </Col>
+                                        <Col
+                                          md={3}
+                                        >
+                                          <div
+                                            className="col-md-3"
+                                          >
+                                            <FormLabel
+                                              column={false}
+                                              srOnly={false}
+                                            >
+                                              <label
+                                                className="form-label"
+                                              >
+                                                <small
+                                                  className="jsx-3284210077"
+                                                >
+                                                  Eligibility Threshold:
+                                                </small>
+                                                 
+                                              </label>
+                                            </FormLabel>
+                                            <br
+                                              className="jsx-3284210077"
+                                            />
+                                            <FormLabel
+                                              column={false}
+                                              srOnly={false}
+                                            >
+                                              <label
+                                                className="form-label"
+                                              >
+                                                <small
+                                                  className="jsx-3284210077"
+                                                >
+                                                  End Date:
+                                                </small>
+                                                 
+                                              </label>
+                                            </FormLabel>
+                                          </div>
+                                        </Col>
+                                      </div>
+                                    </ForwardRef>
+                                  </div>
+                                  <hr
+                                    className="jsx-3284210077"
+                                  />
+                                </div>
+                                <div
+                                  className="jsx-3284210077 view"
+                                  id="edit-product"
+                                  key="edit-prundefined"
+                                >
+                                  <Form
+                                    inline={false}
+                                    onSubmit={[Function]}
+                                  >
+                                    <form
+                                      className=""
+                                      onSubmit={[Function]}
+                                    >
+                                      <FormRow>
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            controlId="button_group"
+                                            md="1"
+                                            style={
+                                              Object {
+                                                "textAlign": "right",
+                                              }
+                                            }
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="1"
+                                              style={
+                                                Object {
+                                                  "textAlign": "right",
+                                                }
+                                              }
+                                            >
+                                              <div
+                                                className="form-group col-md-1"
+                                                style={
+                                                  Object {
+                                                    "textAlign": "right",
+                                                  }
+                                                }
+                                              >
+                                                <ButtonGroup
+                                                  role="group"
+                                                  style={
+                                                    Object {
+                                                      "marginBotton": 5,
+                                                      "marginTop": 10,
+                                                      "width": "100%",
+                                                    }
+                                                  }
+                                                  toggle={false}
+                                                  vertical={true}
+                                                >
+                                                  <div
+                                                    className="btn-group-vertical"
+                                                    role="group"
+                                                    style={
+                                                      Object {
+                                                        "marginBotton": 5,
+                                                        "marginTop": 10,
+                                                        "width": "100%",
+                                                      }
+                                                    }
+                                                  >
+                                                    <Button
+                                                      active={false}
+                                                      className="save-product"
+                                                      disabled={false}
+                                                      style={
+                                                        Object {
+                                                          "marginRight": "10px",
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="submit"
+                                                      variant="primary"
+                                                    >
+                                                      <button
+                                                        className="save-product btn btn-primary"
+                                                        disabled={false}
+                                                        style={
+                                                          Object {
+                                                            "marginRight": "10px",
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="submit"
+                                                      >
+                                                        Save
+                                                      </button>
+                                                    </Button>
+                                                    <Button
+                                                      active={false}
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                      style={
+                                                        Object {
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="button"
+                                                      variant="secondary"
+                                                    >
+                                                      <button
+                                                        className="btn btn-secondary"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                        style={
+                                                          Object {
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="button"
+                                                      >
+                                                        Cancel
+                                                      </button>
+                                                    </Button>
+                                                    <Button
+                                                      active={false}
+                                                      className="archive-product"
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                      style={
+                                                        Object {
+                                                          "marginRight": "10px",
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="button"
+                                                      variant="warning"
+                                                    >
+                                                      <button
+                                                        className="archive-product btn btn-warning"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                        style={
+                                                          Object {
+                                                            "marginRight": "10px",
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="button"
+                                                      >
+                                                        Archive
+                                                      </button>
+                                                    </Button>
+                                                  </div>
+                                                </ButtonGroup>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            controlId="product_name"
+                                            md="4"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="4"
+                                            >
+                                              <div
+                                                className="form-group col-md-4"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                    htmlFor="product_name"
+                                                  >
+                                                    Name
+                                                  </label>
+                                                </FormLabel>
+                                                <FormControl
+                                                  defaultValue="buddy"
+                                                  placeholder="buddy"
+                                                  required="required"
+                                                  step="0.01"
+                                                  type="string"
+                                                >
+                                                  <input
+                                                    className="form-control"
+                                                    defaultValue="buddy"
+                                                    id="product_name"
+                                                    placeholder="buddy"
+                                                    required="required"
+                                                    step="0.01"
+                                                    type="string"
+                                                  />
+                                                </FormControl>
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                    htmlFor="product_name"
+                                                  >
+                                                    Description
+                                                  </label>
+                                                </FormLabel>
+                                                <FormControl
+                                                  required="required"
+                                                  step="0.01"
+                                                  type="string"
+                                                >
+                                                  <input
+                                                    className="form-control"
+                                                    id="product_name"
+                                                    required="required"
+                                                    step="0.01"
+                                                    type="string"
+                                                  />
+                                                </FormControl>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="2"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="2"
+                                            >
+                                              <div
+                                                className="form-group col-md-2"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                  >
+                                                    <small
+                                                      className="jsx-3284210077"
+                                                    >
+                                                      Archived:
+                                                    </small>
+                                                     
+                                                    false
+                                                  </label>
+                                                </FormLabel>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="2"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="2"
+                                            >
+                                              <div
+                                                className="form-group col-md-2"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                  >
+                                                    <small
+                                                      className="jsx-3284210077"
+                                                    >
+                                                      Benchmark:
+                                                    </small>
+                                                     
+                                                  </label>
+                                                </FormLabel>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="3"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="3"
+                                            >
+                                              <div
+                                                className="form-group col-md-3"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                  >
+                                                    <small
+                                                      className="jsx-3284210077"
+                                                    >
+                                                      Eligibility Threshold:
+                                                    </small>
+                                                     
+                                                  </label>
+                                                </FormLabel>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                        </div>
+                                      </FormRow>
+                                    </form>
+                                  </Form>
+                                  <hr
+                                    className="jsx-3284210077"
+                                  />
+                                </div>
+                                <div
+                                  className="jsx-3284210077 view"
+                                  id="edit-benchmark"
+                                  key="edit-bmundefined"
+                                >
+                                  <Form
+                                    className="save-benchmark"
+                                    inline={false}
+                                    onSubmit={[Function]}
+                                  >
+                                    <form
+                                      className="save-benchmark"
+                                      onSubmit={[Function]}
+                                    >
+                                      <FormRow>
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="1"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="1"
+                                            >
+                                              <div
+                                                className="form-group col-md-1"
+                                              />
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="4"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="4"
+                                            >
+                                              <div
+                                                className="form-group col-md-4"
+                                              >
+                                                <h5
+                                                  className="jsx-3284210077"
+                                                >
+                                                  buddy
+                                                </h5>
+                                                <small
+                                                  className="jsx-3284210077"
+                                                />
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="1"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="1"
+                                            >
+                                              <div
+                                                className="form-group col-md-1"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                  >
+                                                    <small
+                                                      className="jsx-3284210077"
+                                                    >
+                                                      Archived:
+                                                    </small>
+                                                     
+                                                    false
+                                                  </label>
+                                                </FormLabel>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="1"
+                                            style={
+                                              Object {
+                                                "textAlign": "right",
+                                              }
+                                            }
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="1"
+                                              style={
+                                                Object {
+                                                  "textAlign": "right",
+                                                }
+                                              }
+                                            >
+                                              <div
+                                                className="form-group col-md-1"
+                                                style={
+                                                  Object {
+                                                    "textAlign": "right",
+                                                  }
+                                                }
+                                              >
+                                                <ButtonGroup
+                                                  role="group"
+                                                  style={
+                                                    Object {
+                                                      "marginBotton": 5,
+                                                      "marginTop": 10,
+                                                      "width": "100%",
+                                                    }
+                                                  }
+                                                  toggle={false}
+                                                  vertical={true}
+                                                >
+                                                  <div
+                                                    className="btn-group-vertical"
+                                                    role="group"
+                                                    style={
+                                                      Object {
+                                                        "marginBotton": 5,
+                                                        "marginTop": 10,
+                                                        "width": "100%",
+                                                      }
+                                                    }
+                                                  >
+                                                    <Button
+                                                      active={false}
+                                                      className="save-benchmark"
+                                                      disabled={false}
+                                                      style={
+                                                        Object {
+                                                          "marginRight": "10px",
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="submit"
+                                                      variant="primary"
+                                                    >
+                                                      <button
+                                                        className="save-benchmark btn btn-primary"
+                                                        disabled={false}
+                                                        style={
+                                                          Object {
+                                                            "marginRight": "10px",
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="submit"
+                                                      >
+                                                        Save
+                                                      </button>
+                                                    </Button>
+                                                    <Button
+                                                      active={false}
+                                                      className="secondary-toggle-benchmark-mode"
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                      style={
+                                                        Object {
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="button"
+                                                      variant="secondary"
+                                                    >
+                                                      <button
+                                                        className="secondary-toggle-benchmark-mode btn btn-secondary"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                        style={
+                                                          Object {
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="button"
+                                                      >
+                                                        Cancel
+                                                      </button>
+                                                    </Button>
+                                                    <Button
+                                                      active={false}
+                                                      className="archive-benchmark"
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                      style={
+                                                        Object {
+                                                          "marginRight": "10px",
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="button"
+                                                      variant="danger"
+                                                    >
+                                                      <button
+                                                        className="archive-benchmark btn btn-danger"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                        style={
+                                                          Object {
+                                                            "marginRight": "10px",
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="button"
+                                                      >
+                                                        Delete
+                                                      </button>
+                                                    </Button>
+                                                  </div>
+                                                </ButtonGroup>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            controlId="benchmark"
+                                            md="3"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="3"
+                                            >
+                                              <div
+                                                className="form-group col-md-3"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                    htmlFor="benchmark"
+                                                  >
+                                                    Benchmark
+                                                  </label>
+                                                </FormLabel>
+                                                <FormControl
+                                                  defaultValue=""
+                                                  placeholder=""
+                                                  required="required"
+                                                  step="0.01"
+                                                  type="number"
+                                                >
+                                                  <input
+                                                    className="form-control"
+                                                    defaultValue=""
+                                                    id="benchmark"
+                                                    placeholder=""
+                                                    required="required"
+                                                    step="0.01"
+                                                    type="number"
+                                                  />
+                                                </FormControl>
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                    htmlFor="benchmark"
+                                                  >
+                                                    Eligibility Threshold
+                                                  </label>
+                                                </FormLabel>
+                                                <FormControl
+                                                  defaultValue=""
+                                                  placeholder=""
+                                                  required="required"
+                                                  step="0.01"
+                                                  type="number"
+                                                >
+                                                  <input
+                                                    className="form-control"
+                                                    defaultValue=""
+                                                    id="benchmark"
+                                                    placeholder=""
+                                                    required="required"
+                                                    step="0.01"
+                                                    type="number"
+                                                  />
+                                                </FormControl>
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                    htmlFor="benchmark"
+                                                  >
+                                                    Start Date
+                                                  </label>
+                                                </FormLabel>
+                                                <FormControl
+                                                  placeholder="dd/mm/yyyy"
+                                                  required="required"
+                                                  step="0.01"
+                                                >
+                                                  <input
+                                                    className="form-control"
+                                                    id="benchmark"
+                                                    placeholder="dd/mm/yyyy"
+                                                    required="required"
+                                                    step="0.01"
+                                                  />
+                                                </FormControl>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                        </div>
+                                      </FormRow>
+                                    </form>
+                                  </Form>
+                                  <hr
+                                    className="jsx-3284210077"
+                                  />
+                                </div>
+                                <JSXStyle
+                                  id="3284210077"
+                                />
+                              </ProductRowItemComponent>
+                            </Relay(ProductRowItemComponent)>
+                          </Relay(ProductRowItemComponent)>
+                          <Relay(ProductRowItemComponent)
+                            confirmationModalOpen={false}
+                            key="2"
+                            mode="view"
+                            product={
+                              Object {
+                                "benchmarksByProductId": Object {
+                                  "edges": Array [],
+                                },
+                                "id": 2,
+                                "name": "holly",
+                                "state": "archived",
+                              }
+                            }
+                            productRowActions={
+                              Object {
+                                "closeConfirmationWindow": [Function],
+                                "openConfirmationWindow": [Function],
+                                "toggleBenchmarkMode": [Function],
+                                "toggleProductMode": [Function],
+                              }
+                            }
+                          >
+                            <Relay(ProductRowItemComponent)
+                              __relayContext={
+                                Object {
+                                  "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+                                }
+                              }
+                              componentRef={null}
+                              confirmationModalOpen={false}
+                              mode="view"
+                              product={
+                                Object {
+                                  "benchmarksByProductId": Object {
+                                    "edges": Array [],
+                                  },
+                                  "id": 2,
+                                  "name": "holly",
+                                  "state": "archived",
+                                }
+                              }
+                              productRowActions={
+                                Object {
+                                  "closeConfirmationWindow": [Function],
+                                  "openConfirmationWindow": [Function],
+                                  "toggleBenchmarkMode": [Function],
+                                  "toggleProductMode": [Function],
+                                }
+                              }
+                            >
+                              <ProductRowItemComponent
+                                confirmationModalOpen={false}
+                                mode="view"
+                                product={
+                                  Object {
+                                    "benchmarksByProductId": Object {
+                                      "edges": Array [],
+                                    },
+                                    "id": 2,
+                                    "name": "holly",
+                                    "state": "archived",
+                                  }
+                                }
+                                productRowActions={
+                                  Object {
+                                    "closeConfirmationWindow": [Function],
+                                    "openConfirmationWindow": [Function],
+                                    "toggleBenchmarkMode": [Function],
+                                    "toggleProductMode": [Function],
+                                  }
+                                }
+                                relay={
+                                  Object {
+                                    "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+                                  }
+                                }
+                              >
+                                <div
+                                  className="jsx-3284210077 view"
+                                  id="view-item"
+                                >
+                                  <div
+                                    className="jsx-3284210077"
+                                    style={
+                                      Object {
+                                        "background": "lightGrey",
+                                      }
+                                    }
+                                  >
+                                    <ForwardRef
+                                      noGutters={false}
+                                      style={
+                                        Object {
+                                          "padding": 5,
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="row"
+                                        style={
+                                          Object {
+                                            "padding": 5,
+                                          }
+                                        }
+                                      >
+                                        <Col
+                                          md={1}
+                                          style={
+                                            Object {
+                                              "textAlign": "right",
+                                            }
+                                          }
+                                        >
+                                          <div
+                                            className="col-md-1"
+                                            style={
+                                              Object {
+                                                "textAlign": "right",
+                                              }
+                                            }
+                                          >
+                                            <Button
+                                              active={false}
+                                              className="edit-product"
+                                              disabled={false}
+                                              onClick={[Function]}
+                                              style={
+                                                Object {
+                                                  "width": "100%",
+                                                }
+                                              }
+                                              type="button"
+                                              variant="primary"
+                                            >
+                                              <button
+                                                className="edit-product btn btn-primary"
+                                                disabled={false}
+                                                onClick={[Function]}
+                                                style={
+                                                  Object {
+                                                    "width": "100%",
+                                                  }
+                                                }
+                                                type="button"
+                                              >
+                                                Edit
+                                              </button>
+                                            </Button>
+                                          </div>
+                                        </Col>
+                                        <Col
+                                          md={4}
+                                        >
+                                          <div
+                                            className="col-md-4"
+                                          >
+                                            <h5
+                                              className="jsx-3284210077"
+                                            >
+                                              holly
+                                            </h5>
+                                            <small
+                                              className="jsx-3284210077"
+                                            />
+                                          </div>
+                                        </Col>
+                                        <Col
+                                          md={1}
+                                        >
+                                          <div
+                                            className="col-md-1"
+                                          >
+                                            <FormLabel
+                                              column={false}
+                                              srOnly={false}
+                                            >
+                                              <label
+                                                className="form-label"
+                                              >
+                                                <small
+                                                  className="jsx-3284210077"
+                                                >
+                                                  Archived:
+                                                </small>
+                                                 
+                                                true
+                                              </label>
+                                            </FormLabel>
+                                          </div>
+                                        </Col>
+                                        <Col
+                                          md={1}
+                                          style={
+                                            Object {
+                                              "textAlign": "right",
+                                            }
+                                          }
+                                        >
+                                          <div
+                                            className="col-md-1"
+                                            style={
+                                              Object {
+                                                "textAlign": "right",
+                                              }
+                                            }
+                                          >
+                                            <Button
+                                              active={false}
+                                              className="edit-benchmark"
+                                              disabled={false}
+                                              onClick={[Function]}
+                                              style={
+                                                Object {
+                                                  "width": "100%",
+                                                }
+                                              }
+                                              type="button"
+                                              variant="primary"
+                                            >
+                                              <button
+                                                className="edit-benchmark btn btn-primary"
+                                                disabled={false}
+                                                onClick={[Function]}
+                                                style={
+                                                  Object {
+                                                    "width": "100%",
+                                                  }
+                                                }
+                                                type="button"
+                                              >
+                                                Edit
+                                              </button>
+                                            </Button>
+                                          </div>
+                                        </Col>
+                                        <Col
+                                          md={2}
+                                        >
+                                          <div
+                                            className="col-md-2"
+                                          >
+                                            <FormLabel
+                                              column={false}
+                                              srOnly={false}
+                                            >
+                                              <label
+                                                className="form-label"
+                                              >
+                                                <small
+                                                  className="jsx-3284210077"
+                                                >
+                                                  Benchmark:
+                                                </small>
+                                                 
+                                              </label>
+                                            </FormLabel>
+                                            <br
+                                              className="jsx-3284210077"
+                                            />
+                                            <FormLabel
+                                              column={false}
+                                              srOnly={false}
+                                            >
+                                              <label
+                                                className="form-label"
+                                              >
+                                                <small
+                                                  className="jsx-3284210077"
+                                                >
+                                                  Start Date:
+                                                </small>
+                                                 
+                                              </label>
+                                            </FormLabel>
+                                          </div>
+                                        </Col>
+                                        <Col
+                                          md={3}
+                                        >
+                                          <div
+                                            className="col-md-3"
+                                          >
+                                            <FormLabel
+                                              column={false}
+                                              srOnly={false}
+                                            >
+                                              <label
+                                                className="form-label"
+                                              >
+                                                <small
+                                                  className="jsx-3284210077"
+                                                >
+                                                  Eligibility Threshold:
+                                                </small>
+                                                 
+                                              </label>
+                                            </FormLabel>
+                                            <br
+                                              className="jsx-3284210077"
+                                            />
+                                            <FormLabel
+                                              column={false}
+                                              srOnly={false}
+                                            >
+                                              <label
+                                                className="form-label"
+                                              >
+                                                <small
+                                                  className="jsx-3284210077"
+                                                >
+                                                  End Date:
+                                                </small>
+                                                 
+                                              </label>
+                                            </FormLabel>
+                                          </div>
+                                        </Col>
+                                      </div>
+                                    </ForwardRef>
+                                  </div>
+                                  <hr
+                                    className="jsx-3284210077"
+                                  />
+                                </div>
+                                <div
+                                  className="jsx-3284210077 view"
+                                  id="edit-product"
+                                  key="edit-prundefined"
+                                >
+                                  <Form
+                                    inline={false}
+                                    onSubmit={[Function]}
+                                  >
+                                    <form
+                                      className=""
+                                      onSubmit={[Function]}
+                                    >
+                                      <FormRow>
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            controlId="button_group"
+                                            md="1"
+                                            style={
+                                              Object {
+                                                "textAlign": "right",
+                                              }
+                                            }
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="1"
+                                              style={
+                                                Object {
+                                                  "textAlign": "right",
+                                                }
+                                              }
+                                            >
+                                              <div
+                                                className="form-group col-md-1"
+                                                style={
+                                                  Object {
+                                                    "textAlign": "right",
+                                                  }
+                                                }
+                                              >
+                                                <ButtonGroup
+                                                  role="group"
+                                                  style={
+                                                    Object {
+                                                      "marginBotton": 5,
+                                                      "marginTop": 10,
+                                                      "width": "100%",
+                                                    }
+                                                  }
+                                                  toggle={false}
+                                                  vertical={true}
+                                                >
+                                                  <div
+                                                    className="btn-group-vertical"
+                                                    role="group"
+                                                    style={
+                                                      Object {
+                                                        "marginBotton": 5,
+                                                        "marginTop": 10,
+                                                        "width": "100%",
+                                                      }
+                                                    }
+                                                  >
+                                                    <Button
+                                                      active={false}
+                                                      className="save-product"
+                                                      disabled={false}
+                                                      style={
+                                                        Object {
+                                                          "marginRight": "10px",
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="submit"
+                                                      variant="primary"
+                                                    >
+                                                      <button
+                                                        className="save-product btn btn-primary"
+                                                        disabled={false}
+                                                        style={
+                                                          Object {
+                                                            "marginRight": "10px",
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="submit"
+                                                      >
+                                                        Save
+                                                      </button>
+                                                    </Button>
+                                                    <Button
+                                                      active={false}
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                      style={
+                                                        Object {
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="button"
+                                                      variant="secondary"
+                                                    >
+                                                      <button
+                                                        className="btn btn-secondary"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                        style={
+                                                          Object {
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="button"
+                                                      >
+                                                        Cancel
+                                                      </button>
+                                                    </Button>
+                                                    <Button
+                                                      active={false}
+                                                      className="archive-product"
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                      style={
+                                                        Object {
+                                                          "marginRight": "10px",
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="button"
+                                                      variant="success"
+                                                    >
+                                                      <button
+                                                        className="archive-product btn btn-success"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                        style={
+                                                          Object {
+                                                            "marginRight": "10px",
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="button"
+                                                      >
+                                                        Restore
+                                                      </button>
+                                                    </Button>
+                                                  </div>
+                                                </ButtonGroup>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            controlId="product_name"
+                                            md="4"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="4"
+                                            >
+                                              <div
+                                                className="form-group col-md-4"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                    htmlFor="product_name"
+                                                  >
+                                                    Name
+                                                  </label>
+                                                </FormLabel>
+                                                <FormControl
+                                                  defaultValue="holly"
+                                                  placeholder="holly"
+                                                  required="required"
+                                                  step="0.01"
+                                                  type="string"
+                                                >
+                                                  <input
+                                                    className="form-control"
+                                                    defaultValue="holly"
+                                                    id="product_name"
+                                                    placeholder="holly"
+                                                    required="required"
+                                                    step="0.01"
+                                                    type="string"
+                                                  />
+                                                </FormControl>
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                    htmlFor="product_name"
+                                                  >
+                                                    Description
+                                                  </label>
+                                                </FormLabel>
+                                                <FormControl
+                                                  required="required"
+                                                  step="0.01"
+                                                  type="string"
+                                                >
+                                                  <input
+                                                    className="form-control"
+                                                    id="product_name"
+                                                    required="required"
+                                                    step="0.01"
+                                                    type="string"
+                                                  />
+                                                </FormControl>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="2"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="2"
+                                            >
+                                              <div
+                                                className="form-group col-md-2"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                  >
+                                                    <small
+                                                      className="jsx-3284210077"
+                                                    >
+                                                      Archived:
+                                                    </small>
+                                                     
+                                                    true
+                                                  </label>
+                                                </FormLabel>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="2"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="2"
+                                            >
+                                              <div
+                                                className="form-group col-md-2"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                  >
+                                                    <small
+                                                      className="jsx-3284210077"
+                                                    >
+                                                      Benchmark:
+                                                    </small>
+                                                     
+                                                  </label>
+                                                </FormLabel>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="3"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="3"
+                                            >
+                                              <div
+                                                className="form-group col-md-3"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                  >
+                                                    <small
+                                                      className="jsx-3284210077"
+                                                    >
+                                                      Eligibility Threshold:
+                                                    </small>
+                                                     
+                                                  </label>
+                                                </FormLabel>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                        </div>
+                                      </FormRow>
+                                    </form>
+                                  </Form>
+                                  <hr
+                                    className="jsx-3284210077"
+                                  />
+                                </div>
+                                <div
+                                  className="jsx-3284210077 view"
+                                  id="edit-benchmark"
+                                  key="edit-bmundefined"
+                                >
+                                  <Form
+                                    className="save-benchmark"
+                                    inline={false}
+                                    onSubmit={[Function]}
+                                  >
+                                    <form
+                                      className="save-benchmark"
+                                      onSubmit={[Function]}
+                                    >
+                                      <FormRow>
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="1"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="1"
+                                            >
+                                              <div
+                                                className="form-group col-md-1"
+                                              />
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="4"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="4"
+                                            >
+                                              <div
+                                                className="form-group col-md-4"
+                                              >
+                                                <h5
+                                                  className="jsx-3284210077"
+                                                >
+                                                  holly
+                                                </h5>
+                                                <small
+                                                  className="jsx-3284210077"
+                                                />
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="1"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="1"
+                                            >
+                                              <div
+                                                className="form-group col-md-1"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                  >
+                                                    <small
+                                                      className="jsx-3284210077"
+                                                    >
+                                                      Archived:
+                                                    </small>
+                                                     
+                                                    true
+                                                  </label>
+                                                </FormLabel>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            md="1"
+                                            style={
+                                              Object {
+                                                "textAlign": "right",
+                                              }
+                                            }
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="1"
+                                              style={
+                                                Object {
+                                                  "textAlign": "right",
+                                                }
+                                              }
+                                            >
+                                              <div
+                                                className="form-group col-md-1"
+                                                style={
+                                                  Object {
+                                                    "textAlign": "right",
+                                                  }
+                                                }
+                                              >
+                                                <ButtonGroup
+                                                  role="group"
+                                                  style={
+                                                    Object {
+                                                      "marginBotton": 5,
+                                                      "marginTop": 10,
+                                                      "width": "100%",
+                                                    }
+                                                  }
+                                                  toggle={false}
+                                                  vertical={true}
+                                                >
+                                                  <div
+                                                    className="btn-group-vertical"
+                                                    role="group"
+                                                    style={
+                                                      Object {
+                                                        "marginBotton": 5,
+                                                        "marginTop": 10,
+                                                        "width": "100%",
+                                                      }
+                                                    }
+                                                  >
+                                                    <Button
+                                                      active={false}
+                                                      className="save-benchmark"
+                                                      disabled={false}
+                                                      style={
+                                                        Object {
+                                                          "marginRight": "10px",
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="submit"
+                                                      variant="primary"
+                                                    >
+                                                      <button
+                                                        className="save-benchmark btn btn-primary"
+                                                        disabled={false}
+                                                        style={
+                                                          Object {
+                                                            "marginRight": "10px",
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="submit"
+                                                      >
+                                                        Save
+                                                      </button>
+                                                    </Button>
+                                                    <Button
+                                                      active={false}
+                                                      className="secondary-toggle-benchmark-mode"
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                      style={
+                                                        Object {
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="button"
+                                                      variant="secondary"
+                                                    >
+                                                      <button
+                                                        className="secondary-toggle-benchmark-mode btn btn-secondary"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                        style={
+                                                          Object {
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="button"
+                                                      >
+                                                        Cancel
+                                                      </button>
+                                                    </Button>
+                                                    <Button
+                                                      active={false}
+                                                      className="archive-benchmark"
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                      style={
+                                                        Object {
+                                                          "marginRight": "10px",
+                                                          "marginTop": "8px",
+                                                        }
+                                                      }
+                                                      type="button"
+                                                      variant="danger"
+                                                    >
+                                                      <button
+                                                        className="archive-benchmark btn btn-danger"
+                                                        disabled={false}
+                                                        onClick={[Function]}
+                                                        style={
+                                                          Object {
+                                                            "marginRight": "10px",
+                                                            "marginTop": "8px",
+                                                          }
+                                                        }
+                                                        type="button"
+                                                      >
+                                                        Delete
+                                                      </button>
+                                                    </Button>
+                                                  </div>
+                                                </ButtonGroup>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                          <FormGroup
+                                            as={
+                                              Object {
+                                                "$$typeof": Symbol(react.forward_ref),
+                                                "displayName": "Col",
+                                                "render": [Function],
+                                              }
+                                            }
+                                            controlId="benchmark"
+                                            md="3"
+                                          >
+                                            <Col
+                                              className="form-group"
+                                              md="3"
+                                            >
+                                              <div
+                                                className="form-group col-md-3"
+                                              >
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                    htmlFor="benchmark"
+                                                  >
+                                                    Benchmark
+                                                  </label>
+                                                </FormLabel>
+                                                <FormControl
+                                                  defaultValue=""
+                                                  placeholder=""
+                                                  required="required"
+                                                  step="0.01"
+                                                  type="number"
+                                                >
+                                                  <input
+                                                    className="form-control"
+                                                    defaultValue=""
+                                                    id="benchmark"
+                                                    placeholder=""
+                                                    required="required"
+                                                    step="0.01"
+                                                    type="number"
+                                                  />
+                                                </FormControl>
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                    htmlFor="benchmark"
+                                                  >
+                                                    Eligibility Threshold
+                                                  </label>
+                                                </FormLabel>
+                                                <FormControl
+                                                  defaultValue=""
+                                                  placeholder=""
+                                                  required="required"
+                                                  step="0.01"
+                                                  type="number"
+                                                >
+                                                  <input
+                                                    className="form-control"
+                                                    defaultValue=""
+                                                    id="benchmark"
+                                                    placeholder=""
+                                                    required="required"
+                                                    step="0.01"
+                                                    type="number"
+                                                  />
+                                                </FormControl>
+                                                <FormLabel
+                                                  column={false}
+                                                  srOnly={false}
+                                                >
+                                                  <label
+                                                    className="form-label"
+                                                    htmlFor="benchmark"
+                                                  >
+                                                    Start Date
+                                                  </label>
+                                                </FormLabel>
+                                                <FormControl
+                                                  placeholder="dd/mm/yyyy"
+                                                  required="required"
+                                                  step="0.01"
+                                                >
+                                                  <input
+                                                    className="form-control"
+                                                    id="benchmark"
+                                                    placeholder="dd/mm/yyyy"
+                                                    required="required"
+                                                    step="0.01"
+                                                  />
+                                                </FormControl>
+                                              </div>
+                                            </Col>
+                                          </FormGroup>
+                                        </div>
+                                      </FormRow>
+                                    </form>
+                                  </Form>
+                                  <hr
+                                    className="jsx-3284210077"
+                                  />
+                                </div>
+                                <JSXStyle
+                                  id="3284210077"
+                                />
+                              </ProductRowItemComponent>
+                            </Relay(ProductRowItemComponent)>
+                          </Relay(ProductRowItemComponent)>
+                        </ProductListContainer>
+                      </Relay(ProductListContainer)>
+                    </Relay(ProductListContainer)>
+                  </div>
+                </Col>
+              </div>
+            </ForwardRef>
+          </div>
+        </Container>
+        <Footer>
+          <footer
+            className="jsx-2746091499 footer"
+          >
+            <div
+              className="jsx-2746091499 container"
+            >
+              <ul
+                className="jsx-2746091499"
+              >
+                <li
+                  className="jsx-2746091499"
+                >
+                  <a
+                    className="jsx-2746091499"
+                    href="."
+                  >
+                    Home
+                  </a>
+                </li>
+                <li
+                  className="jsx-2746091499"
+                >
+                  <a
+                    className="jsx-2746091499"
+                    href="."
+                  >
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <JSXStyle
+              id="2746091499"
+            />
+          </footer>
+        </Footer>
+        <JSXStyle
+          id="1958721952"
+        />
+      </div>
+    </DefaultLayout>
+  </Admin>
+</ReactRelayQueryRenderer>
+`;

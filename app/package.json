@@ -94,11 +94,13 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@storybook/addon-a11y": "^5.2.1",
+    "@storybook/addon-storyshots": "^5.2.4",
     "@storybook/addons": "^5.2.1",
     "@storybook/react": "^5.2.1",
     "@zeit/next-css": "^1.0.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
+    "babel-plugin-macros": "^2.6.1",
     "babel-plugin-relay": "^7.0.0",
     "dotenv": "^8.1.0",
     "dotenv-webpack": "^1.5.4",
@@ -122,6 +124,8 @@
     "node-fetch": "^2.6.0",
     "relay-compiler": "^7.0.0",
     "relay-test-utils": "^7.0.0",
+    "react-test-renderer": "^16.10.2",
+    "require-context.macro": "^1.2.2",
     "webpack": "^4.41.0",
     "xo": "^0.25.0"
   },
