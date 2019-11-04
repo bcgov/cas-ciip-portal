@@ -45,100 +45,142 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
       title="Products and Benchmarks"
     >
       <div
-        className="jsx-3493664545 page-wrap"
+        className="jsx-1958721952 page-wrap"
       >
         <Header>
-          <Head>
-            <Component
-              handleStateChange={null}
-              inAmpMode={false}
-              reduceComponentsToState={[Function]}
-            />
-          </Head>
           <header
-            className="jsx-2125932305"
+            className="jsx-2807878339"
           >
             <div
-              className="jsx-2125932305 container"
+              className="jsx-2807878339 container"
             >
               <div
-                className="jsx-2125932305 banner"
+                className="jsx-2807878339 banner"
               >
-                <a
-                  alt="British Columbia"
-                  className="jsx-2125932305"
-                  href="/"
+                <div
+                  className="jsx-2807878339 header-left"
                 >
-                  <img
-                    alt="Go to the Government of British Columbia website"
-                    className="jsx-2125932305"
-                    src="/static/logo-banner.png"
-                  />
-                </a>
-                <h1
-                  className="jsx-2125932305"
+                  <Link
+                    href="/"
+                  >
+                    <img
+                      alt="Go to the Government of British Columbia website"
+                      className="jsx-2807878339"
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      src="/static/logo-banner.png"
+                    />
+                  </Link>
+                  <h1
+                    className="jsx-2807878339"
+                  >
+                    CleanBC Industrial Incentive Program
+                  </h1>
+                </div>
+                <div
+                  className="jsx-2807878339 login-btns header-right"
                 >
-                  CleanBC Industrial Incentive Program
-                </h1>
+                  <ForwardRef
+                    noGutters={false}
+                  >
+                    <div
+                      className="row"
+                    >
+                      <Col>
+                        <div
+                          className="col"
+                        >
+                          <Link
+                            href={
+                              Object {
+                                "pathname": "/dummy-login",
+                              }
+                            }
+                          >
+                            <Button
+                              active={false}
+                              disabled={false}
+                              onClick={[Function]}
+                              onMouseEnter={[Function]}
+                              style={
+                                Object {
+                                  "marginRight": "10px",
+                                }
+                              }
+                              type="button"
+                              variant="outline-light"
+                            >
+                              <button
+                                className="btn btn-outline-light"
+                                disabled={false}
+                                onClick={[Function]}
+                                onMouseEnter={[Function]}
+                                style={
+                                  Object {
+                                    "marginRight": "10px",
+                                  }
+                                }
+                                type="button"
+                              >
+                                Register
+                              </button>
+                            </Button>
+                          </Link>
+                          <Link
+                            href={
+                              Object {
+                                "pathname": "/dummy-login",
+                              }
+                            }
+                          >
+                            <Button
+                              active={false}
+                              disabled={false}
+                              onClick={[Function]}
+                              onMouseEnter={[Function]}
+                              type="button"
+                              variant="outline-light"
+                            >
+                              <button
+                                className="btn btn-outline-light"
+                                disabled={false}
+                                onClick={[Function]}
+                                onMouseEnter={[Function]}
+                                type="button"
+                              >
+                                Login
+                              </button>
+                            </Button>
+                          </Link>
+                        </div>
+                      </Col>
+                    </div>
+                  </ForwardRef>
+                </div>
               </div>
             </div>
             <JSXStyle
-              id="2125932305"
+              id="2807878339"
             />
           </header>
         </Header>
-        <Subheader>
-          <div
-            className="jsx-790244972"
+        <div
+          className="jsx-1958721952 page-title"
+        >
+          <Container
+            fluid={false}
           >
-            <nav
-              className="jsx-790244972 navigation-main"
-              id="navbar"
+            <div
+              className="container"
             >
-              <div
-                className="jsx-790244972 container"
+              <h1
+                className="jsx-1958721952"
               >
-                <ul
-                  className="jsx-790244972"
-                >
-                  <li
-                    className="jsx-790244972"
-                  >
-                    <a
-                      className="jsx-790244972 active"
-                      href="#"
-                    >
-                      Apply for 2019
-                    </a>
-                  </li>
-                  <li
-                    className="jsx-790244972"
-                  >
-                    <a
-                      className="jsx-790244972"
-                      href="#"
-                    >
-                      Applications
-                    </a>
-                  </li>
-                  <li
-                    className="jsx-790244972"
-                  >
-                    <a
-                      className="jsx-790244972"
-                      href="#"
-                    >
-                      Contact Us
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-            <JSXStyle
-              id="790244972"
-            />
-          </div>
-        </Subheader>
+                Products and Benchmarks
+              </h1>
+            </div>
+          </Container>
+        </div>
         <Container
           className="content"
           fluid={false}
@@ -146,14 +188,6 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
           <div
             className="content container"
           >
-            <h1
-              className="jsx-3493664545"
-            >
-              Products and Benchmarks
-            </h1>
-            <hr
-              className="jsx-3493664545"
-            />
             <ForwardRef
               noGutters={false}
             >
@@ -464,7 +498,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                             }
                           }
                         >
-                          <Relay(ProductRowItemContainer)
+                          <Relay(ProductRowItemComponent)
                             confirmationModalOpen={false}
                             key="1"
                             mode="view"
@@ -487,7 +521,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                               }
                             }
                           >
-                            <Relay(ProductRowItemContainer)
+                            <Relay(ProductRowItemComponent)
                               __relayContext={
                                 Object {
                                   "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
@@ -515,7 +549,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                 }
                               }
                             >
-                              <ProductRowItemContainer
+                              <ProductRowItemComponent
                                 confirmationModalOpen={false}
                                 mode="view"
                                 product={
@@ -649,7 +683,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   Archived:
                                                 </small>
-
+                                                 
                                                 false
                                               </label>
                                             </FormLabel>
@@ -718,7 +752,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   Benchmark:
                                                 </small>
-
+                                                 
                                               </label>
                                             </FormLabel>
                                             <br
@@ -736,7 +770,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   Start Date:
                                                 </small>
-
+                                                 
                                               </label>
                                             </FormLabel>
                                           </div>
@@ -759,7 +793,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   Eligibility Threshold:
                                                 </small>
-
+                                                 
                                               </label>
                                             </FormLabel>
                                             <br
@@ -777,7 +811,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   End Date:
                                                 </small>
-
+                                                 
                                               </label>
                                             </FormLabel>
                                           </div>
@@ -1051,7 +1085,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     >
                                                       Archived:
                                                     </small>
-
+                                                     
                                                     false
                                                   </label>
                                                 </FormLabel>
@@ -1087,7 +1121,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     >
                                                       Benchmark:
                                                     </small>
-
+                                                     
                                                   </label>
                                                 </FormLabel>
                                               </div>
@@ -1122,7 +1156,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     >
                                                       Eligibility Threshold:
                                                     </small>
-
+                                                     
                                                   </label>
                                                 </FormLabel>
                                               </div>
@@ -1230,7 +1264,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     >
                                                       Archived:
                                                     </small>
-
+                                                     
                                                     false
                                                   </label>
                                                 </FormLabel>
@@ -1492,10 +1526,10 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                 <JSXStyle
                                   id="3284210077"
                                 />
-                              </ProductRowItemContainer>
-                            </Relay(ProductRowItemContainer)>
-                          </Relay(ProductRowItemContainer)>
-                          <Relay(ProductRowItemContainer)
+                              </ProductRowItemComponent>
+                            </Relay(ProductRowItemComponent)>
+                          </Relay(ProductRowItemComponent)>
+                          <Relay(ProductRowItemComponent)
                             confirmationModalOpen={false}
                             key="2"
                             mode="view"
@@ -1518,7 +1552,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                               }
                             }
                           >
-                            <Relay(ProductRowItemContainer)
+                            <Relay(ProductRowItemComponent)
                               __relayContext={
                                 Object {
                                   "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
@@ -1546,7 +1580,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                 }
                               }
                             >
-                              <ProductRowItemContainer
+                              <ProductRowItemComponent
                                 confirmationModalOpen={false}
                                 mode="view"
                                 product={
@@ -1680,7 +1714,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   Archived:
                                                 </small>
-
+                                                 
                                                 true
                                               </label>
                                             </FormLabel>
@@ -1749,7 +1783,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   Benchmark:
                                                 </small>
-
+                                                 
                                               </label>
                                             </FormLabel>
                                             <br
@@ -1767,7 +1801,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   Start Date:
                                                 </small>
-
+                                                 
                                               </label>
                                             </FormLabel>
                                           </div>
@@ -1790,7 +1824,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   Eligibility Threshold:
                                                 </small>
-
+                                                 
                                               </label>
                                             </FormLabel>
                                             <br
@@ -1808,7 +1842,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                 >
                                                   End Date:
                                                 </small>
-
+                                                 
                                               </label>
                                             </FormLabel>
                                           </div>
@@ -2082,7 +2116,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     >
                                                       Archived:
                                                     </small>
-
+                                                     
                                                     true
                                                   </label>
                                                 </FormLabel>
@@ -2118,7 +2152,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     >
                                                       Benchmark:
                                                     </small>
-
+                                                     
                                                   </label>
                                                 </FormLabel>
                                               </div>
@@ -2153,7 +2187,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     >
                                                       Eligibility Threshold:
                                                     </small>
-
+                                                     
                                                   </label>
                                                 </FormLabel>
                                               </div>
@@ -2261,7 +2295,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                                     >
                                                       Archived:
                                                     </small>
-
+                                                     
                                                     true
                                                   </label>
                                                 </FormLabel>
@@ -2523,9 +2557,9 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                 <JSXStyle
                                   id="3284210077"
                                 />
-                              </ProductRowItemContainer>
-                            </Relay(ProductRowItemContainer)>
-                          </Relay(ProductRowItemContainer)>
+                              </ProductRowItemComponent>
+                            </Relay(ProductRowItemComponent)>
+                          </Relay(ProductRowItemComponent)>
                         </ProductListContainer>
                       </Relay(ProductListContainer)>
                     </Relay(ProductListContainer)>
@@ -2537,29 +2571,29 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
         </Container>
         <Footer>
           <footer
-            className="jsx-55582602 footer"
+            className="jsx-2746091499 footer"
           >
             <div
-              className="jsx-55582602 container"
+              className="jsx-2746091499 container"
             >
               <ul
-                className="jsx-55582602"
+                className="jsx-2746091499"
               >
                 <li
-                  className="jsx-55582602"
+                  className="jsx-2746091499"
                 >
                   <a
-                    className="jsx-55582602"
+                    className="jsx-2746091499"
                     href="."
                   >
                     Home
                   </a>
                 </li>
                 <li
-                  className="jsx-55582602"
+                  className="jsx-2746091499"
                 >
                   <a
-                    className="jsx-55582602"
+                    className="jsx-2746091499"
                     href="."
                   >
                     Contact Us
@@ -2568,12 +2602,12 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
               </ul>
             </div>
             <JSXStyle
-              id="55582602"
+              id="2746091499"
             />
           </footer>
         </Footer>
         <JSXStyle
-          id="3493664545"
+          id="1958721952"
         />
       </div>
     </DefaultLayout>
