@@ -5,7 +5,7 @@ import DefaultLayout from '../../layouts/default-layout';
 import OrganisationFacilities from '../Organisations/OrganisationFacilities';
 
 interface Props {
-  query?: UserOrganisationFacilitiesQueryResponse['query'];
+  query: UserOrganisationFacilitiesQueryResponse['query'];
 }
 export default class UserOrganisationFacilities extends Component<Props> {
   static query = graphql`

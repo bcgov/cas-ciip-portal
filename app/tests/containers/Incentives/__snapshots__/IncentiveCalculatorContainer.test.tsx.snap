@@ -52,7 +52,7 @@ exports[`IncentiveCalculator should render the page 1`] = `
       <tbody>
         <tr>
           <td
-            colSpan="2"
+            colSpan={2}
           >
             <strong>
               Total Incentive

@@ -2,9 +2,14 @@ import React, {Component} from 'react';
 import {Button, Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
 import Link from 'next/link';
 import {graphql} from 'react-relay';
+import {IndexQueryResponse} from '__generated__/IndexQuery.graphql';
 import DefaultLayout from '../../layouts/default-layout';
 
-export default class Index extends Component {
+interface Props {
+  query: IndexQueryResponse['query'];
+}
+
+export default class Index extends Component<Props> {
   static query = graphql`
     query IndexQuery {
       query {

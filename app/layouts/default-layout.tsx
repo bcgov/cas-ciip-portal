@@ -5,9 +5,10 @@ import Footer from '../components/Layout/Footer';
 import Subheader from '../components/Layout/Subheader';
 
 interface Props {
-  title?: string;
+  title?: string | JSX.Element;
   showSubheader?: boolean;
   isLoggedIn?: boolean;
+  session?: any;
 }
 
 class DefaultLayout extends Component<Props> {

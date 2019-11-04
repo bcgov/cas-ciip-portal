@@ -1,8 +1,8 @@
-require('dotenv').config();
-
-const path = require('path');
-const Dotenv = require('dotenv-webpack');
-const withCSS = require('@zeit/next-css');
+import path from 'path';
+import dotenv from 'dotenv';
+dotenv.config();
+import Dotenv from 'dotenv-webpack';
+import withCSS from '@zeit/next-css';
 
 module.exports = withCSS({
   cssModules: true,

@@ -5,7 +5,7 @@ import DefaultLayout from '../../layouts/default-layout';
 import UserDetailContainer from '../Industry/UserDetailContainer';
 
 interface Props {
-  query?: UserProfileQueryResponse['query'];
+  query: UserProfileQueryResponse['query'];
 }
 class UserProfile extends Component<Props> {
   static query = graphql`

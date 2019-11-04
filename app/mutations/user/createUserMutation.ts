@@ -15,7 +15,7 @@ const mutation = graphql`
   }
 `;
 
-const createUserMutation = (environment, user) => {
+const createUserMutation = async (environment, user) => {
   const variables = {
     input: {user}
   };

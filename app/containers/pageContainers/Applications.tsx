@@ -5,7 +5,7 @@ import DefaultLayout from '../../layouts/default-layout';
 import ApplicationListContainer from '../Applications/ApplicationListContainer';
 
 interface Props {
-  query?: ApplicationsQueryResponse['query'];
+  query: ApplicationsQueryResponse['query'];
 }
 
 class Applications extends Component<Props> {

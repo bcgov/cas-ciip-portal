@@ -3,7 +3,7 @@ import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
 import {Form, Button, Col} from 'react-bootstrap';
 
 export const ProductCreator = props => {
-  const createProductFromRef = React.createRef();
+  const createProductFromRef = React.createRef<Form & HTMLFormElement>();
   const createProduct = graphql`
     mutation ProductCreatorContainerMutation($input: CreateProductInput!) {
       createProduct(input: $input) {
@@ -54,11 +54,11 @@ export const ProductCreator = props => {
           <Form.Row>
             <Form.Group as={Col} md="4" controlId="product_name">
               <Form.Label>Product Name</Form.Label>
-              <Form.Control required="required" type="text" placeholder="" />
+              <Form.Control required type="text" placeholder="" />
             </Form.Group>
             <Form.Group as={Col} md="8" controlId="product_description">
               <Form.Label>Product Description</Form.Label>
-              <Form.Control required="required" type="textbox" placeholder="" />
+              <Form.Control required type="textbox" placeholder="" />
             </Form.Group>
           </Form.Row>
           <Button type="submit">Create Product</Button>

@@ -27,7 +27,7 @@ exports[`ProductCreator render() should match the last usable snapshot 1`] = `
           </FormLabel>
           <FormControl
             placeholder=""
-            required="required"
+            required={true}
             type="text"
           />
         </FormGroup>
@@ -50,7 +50,7 @@ exports[`ProductCreator render() should match the last usable snapshot 1`] = `
           </FormLabel>
           <FormControl
             placeholder=""
-            required="required"
+            required={true}
             type="textbox"
           />
         </FormGroup>

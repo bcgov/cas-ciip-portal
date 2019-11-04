@@ -17,7 +17,7 @@ const mutation = graphql`
   }
 `;
 
-const updateUserMutation = (environment, user, userPatch) => {
+const updateUserMutation = async (environment, user, userPatch) => {
   // Optimistic response
   const updateUserPayload = {
     updateUser: {

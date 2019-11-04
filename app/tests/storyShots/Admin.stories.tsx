@@ -26,6 +26,7 @@ const renderStory = (query, environment, variables = {}) => (
       }
 
       return (
+        // @ts-ignore
         <Admin
           {...props}
           query={{

@@ -4,7 +4,7 @@ import {createFragmentContainer, graphql} from 'react-relay';
 import updateUserMutation from '../../mutations/user/updateUserMutation';
 import {useInput} from '../../components/Forms/InputHook';
 
-export const FormEditUser = props => {
+export const FormEditUserComponent = props => {
   const {user, submitAction, submitBtnName} = props;
 
   const handleChange = e => {
@@ -95,7 +95,7 @@ export const FormEditUser = props => {
   );
 };
 
-export default createFragmentContainer(FormEditUser, {
+export default createFragmentContainer(FormEditUserComponent, {
   user: graphql`
     fragment FormEditUser_user on User {
       id

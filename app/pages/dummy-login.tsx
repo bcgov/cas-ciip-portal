@@ -23,20 +23,20 @@ class CompleteSubmit extends Component {
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
+                  disabled
                   type="email"
                   placeholder="Enter email"
                   value="DouglasFir"
-                  disabled="disabled"
                 />
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  disabled
                   type="password"
                   placeholder="Password"
                   value="xxxxxxxxxxx"
-                  disabled="disabled"
                 />
               </Form.Group>
               <Link

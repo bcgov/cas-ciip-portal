@@ -5,7 +5,7 @@ import DefaultLayout from '../../layouts/default-layout';
 import ApplicationWizard from '../Applications/ApplicationWizard';
 
 interface Props {
-  query?: CiipApplicationQueryResponse['query'];
+  query: CiipApplicationQueryResponse['query'];
 }
 class CiipApplication extends Component<Props> {
   static query = graphql`

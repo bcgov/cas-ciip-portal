@@ -1,25 +1,41 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
+import {ProductListContainer_query} from '__generated__/ProductListContainer_query.graphql';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductRowItemContainer from './ProductRowItemContainer';
 
-export const ProductList = props => {
-  const {query} = props;
+interface Props {
+  query: ProductListContainer_query;
+  mode?: string;
+  confirmationModalOpen?: boolean;
+  productRowActions?: any;
+}
+
+export const ProductList: React.FunctionComponent<Props> = ({
+  query,
+  mode,
+  confirmationModalOpen,
+  productRowActions
+}) => {
   if (
     query &&
     (query.active || query.archived) &&
     (query.active.edges || query.archived.edges)
   ) {
     const allProducts = [...query.active.edges, ...query.archived.edges];
-    return allProducts.map(({node}) => (
-      <ProductRowItemContainer
-        key={node.id}
-        product={node}
-        mode={props.mode}
-        confirmationModalOpen={props.confirmationModalOpen}
-        productRowActions={props.productRowActions}
-      />
-    ));
+    return (
+      <>
+        {allProducts.map(({node}) => (
+          <ProductRowItemContainer
+            key={node.id}
+            product={node}
+            mode={mode}
+            confirmationModalOpen={confirmationModalOpen}
+            productRowActions={productRowActions}
+          />
+        ))}
+      </>
+    );
   }
 
   return <LoadingSpinner />;

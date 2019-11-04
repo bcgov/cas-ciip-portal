@@ -55,7 +55,7 @@ export const IncentiveCalculator = props => {
               <LoadingSpinner />
             )}
             <tr>
-              <td colSpan="2">
+              <td colSpan={2}>
                 <strong>Total Incentive</strong>
               </td>
               <td>

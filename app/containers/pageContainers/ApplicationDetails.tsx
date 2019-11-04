@@ -7,7 +7,7 @@ import ApplicationStatusContainer from '../Applications/ApplicationStatusContain
 import DefaultLayout from '../../layouts/default-layout';
 
 interface Props {
-  query?: ApplicationDetailsQueryResponse['query'];
+  query: ApplicationDetailsQueryResponse['query'];
   router: NextRouter;
 }
 

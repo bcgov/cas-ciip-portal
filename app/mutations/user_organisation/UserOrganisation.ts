@@ -1,4 +1,4 @@
-import {graphql} from 'react-relay';
+import {graphql, DeclarativeMutationConfig} from 'react-relay';
 import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
@@ -18,7 +18,7 @@ export const userOrganisationMutation = async (
   variables,
   user
 ) => {
-  const configs = [
+  const configs: DeclarativeMutationConfig[] = [
     {
       type: 'RANGE_ADD',
       parentID: user,

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ProductList should render the product list 1`] = `
-Array [
+<Fragment>
   <Relay(ProductRowItemComponent)
     key="product-1"
     product={
@@ -9,7 +9,7 @@ Array [
         "id": "product-1",
       }
     }
-  />,
+  />
   <Relay(ProductRowItemComponent)
     key="product-2"
     product={
@@ -17,6 +17,6 @@ Array [
         "id": "product-2",
       }
     }
-  />,
-]
+  />
+</Fragment>
 `;

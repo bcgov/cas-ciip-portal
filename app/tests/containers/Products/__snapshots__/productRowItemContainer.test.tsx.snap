@@ -195,7 +195,7 @@ exports[`ProductRowItem with active product should render the product row item 1
             role="group"
             style={
               Object {
-                "marginBotton": 5,
+                "marginBottom": 5,
                 "marginTop": 10,
                 "width": "100%",
               }
@@ -270,7 +270,7 @@ exports[`ProductRowItem with active product should render the product row item 1
           <FormControl
             defaultValue="Milk"
             placeholder="Milk"
-            required="required"
+            required={true}
             step="0.01"
             type="string"
           />
@@ -283,7 +283,7 @@ exports[`ProductRowItem with active product should render the product row item 1
           <FormControl
             defaultValue="Sustenance for baby cows"
             placeholder="Sustenance for baby cows"
-            required="required"
+            required={true}
             step="0.01"
             type="string"
           />
@@ -446,7 +446,7 @@ exports[`ProductRowItem with active product should render the product row item 1
             role="group"
             style={
               Object {
-                "marginBotton": 5,
+                "marginBottom": 5,
                 "marginTop": 10,
                 "width": "100%",
               }
@@ -522,7 +522,7 @@ exports[`ProductRowItem with active product should render the product row item 1
           <FormControl
             defaultValue=""
             placeholder=""
-            required="required"
+            required={true}
             step="0.01"
             type="number"
           />
@@ -535,7 +535,7 @@ exports[`ProductRowItem with active product should render the product row item 1
           <FormControl
             defaultValue=""
             placeholder=""
-            required="required"
+            required={true}
             step="0.01"
             type="number"
           />
@@ -547,7 +547,7 @@ exports[`ProductRowItem with active product should render the product row item 1
           </FormLabel>
           <FormControl
             placeholder="dd/mm/yyyy"
-            required="required"
+            required={true}
             step="0.01"
           />
         </FormGroup>
@@ -789,7 +789,7 @@ exports[`ProductRowItem with archived product should render the product row item
             role="group"
             style={
               Object {
-                "marginBotton": 5,
+                "marginBottom": 5,
                 "marginTop": 10,
                 "width": "100%",
               }
@@ -876,7 +876,7 @@ exports[`ProductRowItem with archived product should render the product row item
           <FormControl
             defaultValue="Milk"
             placeholder="Milk"
-            required="required"
+            required={true}
             step="0.01"
             type="string"
           />
@@ -889,7 +889,7 @@ exports[`ProductRowItem with archived product should render the product row item
           <FormControl
             defaultValue="Sustenance for baby cows"
             placeholder="Sustenance for baby cows"
-            required="required"
+            required={true}
             step="0.01"
             type="string"
           />
@@ -1052,7 +1052,7 @@ exports[`ProductRowItem with archived product should render the product row item
             role="group"
             style={
               Object {
-                "marginBotton": 5,
+                "marginBottom": 5,
                 "marginTop": 10,
                 "width": "100%",
               }
@@ -1157,7 +1157,7 @@ exports[`ProductRowItem with archived product should render the product row item
           <FormControl
             defaultValue=""
             placeholder=""
-            required="required"
+            required={true}
             step="0.01"
             type="number"
           />
@@ -1170,7 +1170,7 @@ exports[`ProductRowItem with archived product should render the product row item
           <FormControl
             defaultValue=""
             placeholder=""
-            required="required"
+            required={true}
             step="0.01"
             type="number"
           />
@@ -1182,7 +1182,7 @@ exports[`ProductRowItem with archived product should render the product row item
           </FormLabel>
           <FormControl
             placeholder="dd/mm/yyyy"
-            required="required"
+            required={true}
             step="0.01"
           />
         </FormGroup>
@@ -1424,7 +1424,7 @@ exports[`ProductRowItem with mode set to benchmark should render the product row
             role="group"
             style={
               Object {
-                "marginBotton": 5,
+                "marginBottom": 5,
                 "marginTop": 10,
                 "width": "100%",
               }
@@ -1511,7 +1511,7 @@ exports[`ProductRowItem with mode set to benchmark should render the product row
           <FormControl
             defaultValue="Milk"
             placeholder="Milk"
-            required="required"
+            required={true}
             step="0.01"
             type="string"
           />
@@ -1524,7 +1524,7 @@ exports[`ProductRowItem with mode set to benchmark should render the product row
           <FormControl
             defaultValue="Sustenance for baby cows"
             placeholder="Sustenance for baby cows"
-            required="required"
+            required={true}
             step="0.01"
             type="string"
           />
@@ -1687,7 +1687,7 @@ exports[`ProductRowItem with mode set to benchmark should render the product row
             role="group"
             style={
               Object {
-                "marginBotton": 5,
+                "marginBottom": 5,
                 "marginTop": 10,
                 "width": "100%",
               }
@@ -1792,7 +1792,7 @@ exports[`ProductRowItem with mode set to benchmark should render the product row
           <FormControl
             defaultValue=""
             placeholder=""
-            required="required"
+            required={true}
             step="0.01"
             type="number"
           />
@@ -1805,7 +1805,7 @@ exports[`ProductRowItem with mode set to benchmark should render the product row
           <FormControl
             defaultValue=""
             placeholder=""
-            required="required"
+            required={true}
             step="0.01"
             type="number"
           />
@@ -1817,7 +1817,7 @@ exports[`ProductRowItem with mode set to benchmark should render the product row
           </FormLabel>
           <FormControl
             placeholder="dd/mm/yyyy"
-            required="required"
+            required={true}
             step="0.01"
           />
         </FormGroup>
@@ -2059,7 +2059,7 @@ exports[`ProductRowItem with mode set to product should render the product row i
             role="group"
             style={
               Object {
-                "marginBotton": 5,
+                "marginBottom": 5,
                 "marginTop": 10,
                 "width": "100%",
               }
@@ -2146,7 +2146,7 @@ exports[`ProductRowItem with mode set to product should render the product row i
           <FormControl
             defaultValue="Milk"
             placeholder="Milk"
-            required="required"
+            required={true}
             step="0.01"
             type="string"
           />
@@ -2159,7 +2159,7 @@ exports[`ProductRowItem with mode set to product should render the product row i
           <FormControl
             defaultValue="Sustenance for baby cows"
             placeholder="Sustenance for baby cows"
-            required="required"
+            required={true}
             step="0.01"
             type="string"
           />
@@ -2322,7 +2322,7 @@ exports[`ProductRowItem with mode set to product should render the product row i
             role="group"
             style={
               Object {
-                "marginBotton": 5,
+                "marginBottom": 5,
                 "marginTop": 10,
                 "width": "100%",
               }
@@ -2427,7 +2427,7 @@ exports[`ProductRowItem with mode set to product should render the product row i
           <FormControl
             defaultValue=""
             placeholder=""
-            required="required"
+            required={true}
             step="0.01"
             type="number"
           />
@@ -2440,7 +2440,7 @@ exports[`ProductRowItem with mode set to product should render the product row i
           <FormControl
             defaultValue=""
             placeholder=""
-            required="required"
+            required={true}
             step="0.01"
             type="number"
           />
@@ -2452,7 +2452,7 @@ exports[`ProductRowItem with mode set to product should render the product row i
           </FormLabel>
           <FormControl
             placeholder="dd/mm/yyyy"
-            required="required"
+            required={true}
             step="0.01"
           />
         </FormGroup>
@@ -2694,7 +2694,7 @@ exports[`ProductRowItem with mode set to view should render the product row item
             role="group"
             style={
               Object {
-                "marginBotton": 5,
+                "marginBottom": 5,
                 "marginTop": 10,
                 "width": "100%",
               }
@@ -2781,7 +2781,7 @@ exports[`ProductRowItem with mode set to view should render the product row item
           <FormControl
             defaultValue="Milk"
             placeholder="Milk"
-            required="required"
+            required={true}
             step="0.01"
             type="string"
           />
@@ -2794,7 +2794,7 @@ exports[`ProductRowItem with mode set to view should render the product row item
           <FormControl
             defaultValue="Sustenance for baby cows"
             placeholder="Sustenance for baby cows"
-            required="required"
+            required={true}
             step="0.01"
             type="string"
           />
@@ -2957,7 +2957,7 @@ exports[`ProductRowItem with mode set to view should render the product row item
             role="group"
             style={
               Object {
-                "marginBotton": 5,
+                "marginBottom": 5,
                 "marginTop": 10,
                 "width": "100%",
               }
@@ -3062,7 +3062,7 @@ exports[`ProductRowItem with mode set to view should render the product row item
           <FormControl
             defaultValue=""
             placeholder=""
-            required="required"
+            required={true}
             step="0.01"
             type="number"
           />
@@ -3075,7 +3075,7 @@ exports[`ProductRowItem with mode set to view should render the product row item
           <FormControl
             defaultValue=""
             placeholder=""
-            required="required"
+            required={true}
             step="0.01"
             type="number"
           />
@@ -3087,7 +3087,7 @@ exports[`ProductRowItem with mode set to view should render the product row item
           </FormLabel>
           <FormControl
             placeholder="dd/mm/yyyy"
-            required="required"
+            required={true}
             step="0.01"
           />
         </FormGroup>

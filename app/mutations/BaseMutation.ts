@@ -25,14 +25,25 @@ export default class BaseMutation<
   async performMutation(
     environment: RelayModernEnvironment,
     mutation: GraphQLTaggedNode,
-    variables: T['variables']
+    variables: T['variables'],
+    optimisticResponse?: any
   ) {
-    variables.input.clientMutationId = `${this.mutationName}-${this.counter}`;
+    const clientMutationId = `${this.mutationName}-${this.counter}`;
+    variables.input.clientMutationId = clientMutationId;
+    if (optimisticResponse) {
+      const key = Object.keys(optimisticResponse)[0];
+      optimisticResponse[key].clientMutationId = clientMutationId;
+    }
+
     this.counter++;
     const {configs} = this;
     async function commitMutation(
       environment,
-      options: {mutation: GraphQLTaggedNode; variables: T['variables']}
+      options: {
+        mutation: GraphQLTaggedNode;
+        variables: T['variables'];
+        optimisticResponse: any;
+      }
     ) {
       return new Promise<T['response']>((resolve, reject) => {
         commitMutationDefault<T>(environment, {
@@ -49,6 +60,10 @@ export default class BaseMutation<
       });
     }
 
-    return commitMutation(environment, {mutation, variables});
+    return commitMutation(environment, {
+      mutation,
+      variables,
+      optimisticResponse
+    });
   }
 }

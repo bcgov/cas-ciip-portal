@@ -1,18 +1,17 @@
 // Const path = require('path');
-const express = require('express');
-const {postgraphile} = require('postgraphile');
-const next = require('next');
-const PgManyToManyPlugin = require('@graphile-contrib/pg-many-to-many');
+import express from 'express';
+import {postgraphile} from 'postgraphile';
+import next from 'next';
+import PgManyToManyPlugin from '@graphile-contrib/pg-many-to-many';
 
 const port = parseInt(process.env.PORT, 10) || 3004;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
-// Const schemaPath = path.join(__dirname, '/schema.graphql');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const Keycloak = require('keycloak-connect');
-const cors = require('cors');
+import session from 'express-session';
+import bodyParser from 'body-parser';
+import Keycloak from 'keycloak-connect';
+import cors from 'cors';
 
 let databaseURL = 'postgres://';
 if (process.env.PGUSER) {
@@ -111,7 +110,7 @@ app.prepare().then(() => {
   // Keycloak callbak; do not keycloak.protect() to avoid users being authenticated against their will via XSS attack
   server.get('/login', (req, res) => res.redirect(302, '/user-dashboard'));
 
-  server.get('*', (req, res) => {
+  server.get('*', async (req, res) => {
     return handle(req, res);
   });
 

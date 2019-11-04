@@ -51,10 +51,7 @@
       }
     },
     "rules": {
-      "@typescript-eslint/indent": [
-        "error",
-        2
-      ],
+      "@typescript-eslint/indent": 0,
       "@typescript-eslint/explicit-function-return-type": 0,
       "@typescript-eslint/camelcase": 0,
       "@typescript-eslint/strict-boolean-expressions": 0,
@@ -62,6 +59,13 @@
       "unicorn/filename-case": 0,
       "import/no-unassigned-import": 0,
       "@typescript-eslint/no-unnecessary-condition": 0,
+      "@typescript-eslint/quotes": [
+        1,
+        "single",
+        {
+          "avoidEscape": true
+        }
+      ],
       "no-unused-expressions": [
         1,
         {
@@ -157,12 +161,13 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
     "jest-canvas-mock": "^2.1.2",
+    "jest-raw-loader": "^1.0.1",
     "nock": "^9.6.1",
     "node-fetch": "^2.6.0",
+    "react-test-renderer": "^16.10.2",
     "relay-compiler": "^7.0.0",
     "relay-compiler-language-typescript": "^10.1.0",
     "relay-test-utils": "^7.0.0",
-    "react-test-renderer": "^16.10.2",
     "require-context.macro": "^1.2.2",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.4",
@@ -180,12 +185,16 @@
       ".storybook/Storyshots.test.js"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.ts",
       "\\.(css|less)$": "identity-obj-proxy"
     },
     "setupFilesAfterEnv": [
-      "<rootDir>lib/setupTests.js",
+      "<rootDir>lib/setupTests.ts",
       "jest-canvas-mock"
-    ]
+    ],
+    "transform": {
+      ".*(ts|tsx|js|jsx)$": "babel-jest",
+      "\\.graphql$": "jest-raw-loader"
+    }
   }
 }

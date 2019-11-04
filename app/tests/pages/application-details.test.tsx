@@ -1,8 +1,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
+import {NextRouter} from 'next/router';
 import ApplicationDetails from '../../containers/pageContainers/ApplicationDetails';
 
-const router = {
+// @ts-ignore
+const router: NextRouter = {
   asPath:
     '/application-details?application_id=1&reportingyear=2018&bcghgid=100',
   route: '/application-details',

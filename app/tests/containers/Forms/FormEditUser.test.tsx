@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {FormEditUser} from '../../../containers/Forms/FormEditUser';
+import {FormEditUserComponent} from '../../../containers/Forms/FormEditUser';
 
 describe('Form Edit User', () => {
   it('should render', () => {
@@ -11,7 +11,7 @@ describe('Form Edit User', () => {
       emailAddress: 'Test@test.com'
     };
 
-    const wrapper = shallow(<FormEditUser user={user} />);
+    const wrapper = shallow(<FormEditUserComponent user={user} />);
 
     expect(wrapper).toMatchSnapshot();
 
