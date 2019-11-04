@@ -20,7 +20,7 @@ export const FormComponent = ({
   } = result;
   return (
     <>
-      {initialData && Object.keys(initialData).length > 0 && (
+      {initialData && Object.keys(initialData).length > 0 && initialDataSource && (
         <>
           <Alert variant="info">
             We filled this form for you with the data coming from{' '}
