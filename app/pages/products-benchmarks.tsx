@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {Row, Col, Jumbotron} from 'react-bootstrap';
-import {ProductsBenchmarksQueryResponse} from 'ProductsBenchmarksQuery.graphql';
-import DefaultLayout from '../../layouts/default-layout';
-import ProductCreatorContainer from '../Products/ProductCreatorContainer';
-import ProductListContainer from '../Products/ProductListContainer';
+import {productsBenchmarksQueryResponse} from 'productsBenchmarksQuery.graphql';
+import DefaultLayout from '../layouts/default-layout';
+import ProductCreatorContainer from '../containers/Products/ProductCreatorContainer';
+import ProductListContainer from '../containers/Products/ProductListContainer';
 
 interface Props {
-  query: ProductsBenchmarksQueryResponse['query'];
+  query: productsBenchmarksQueryResponse['query'];
 }
 
 class ProductsBenchmarks extends Component<Props> {
   static query = graphql`
-    query ProductsBenchmarksQuery {
+    query productsBenchmarksQuery {
       query {
         ...ProductListContainer_query
       }

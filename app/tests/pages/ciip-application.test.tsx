@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import CiipApplication from '../../containers/pageContainers/CiipApplication';
+import CiipApplication from '../../pages/ciip-application';
 
 const query = {
   session: null,

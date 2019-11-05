@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import UserOrganisationFacilities from '../../containers/pageContainers/UserOrganisationFacilities';
+import UserOrganisationFacilities from '../../pages/user-organisation-facilities';
 
 describe('UserOrganisationFacilities page', () => {
   it('matches the last accepted Snapshot', () => {

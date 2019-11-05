@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {NextRouter} from 'next/router';
-import ApplicationDetails from '../../containers/pageContainers/ApplicationDetails';
+import ApplicationDetails from '../../pages/application-details';
 
 // @ts-ignore
 const router: NextRouter = {
