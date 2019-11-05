@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, ButtonGroup} from 'react-bootstrap';
+import Link from 'next/link';
 import DefaultLayout from '../../layouts/default-layout';
 
 class Admin extends Component {
@@ -8,29 +9,28 @@ class Admin extends Component {
       <>
         <DefaultLayout title="Administrators Dashboard">
           <div>
-            <a href="../products-benchmarks">
-              <Button className="buttons" size="lg">
-                View Products and Benchmarks
-              </Button>
-            </a>
-            <br />
-            <a href="../user-list">
-              <Button className="buttons" size="lg">
-                View Users
-              </Button>
-            </a>
-            <br />
-            <a href="../applications">
-              <Button className="buttons" size="lg">
-                View Applications
-              </Button>
-            </a>
-            <br />
+            <ButtonGroup vertical>
+              <Link href="../products-benchmarks">
+                <Button size="lg" className="buttons">
+                  View Products and Benchmarks
+                </Button>
+              </Link>
+              <Link href="../user-list">
+                <Button className="buttons" size="lg">
+                  View Users
+                </Button>
+              </Link>
+              <Link href="../applications">
+                <Button className="buttons" size="lg">
+                  View Applications
+                </Button>
+              </Link>
+            </ButtonGroup>
             <style global jsx>
               {`
                 .buttons {
-                  padding: 10px;
-                  margin: 25px 0 0 0;
+                  padding: 15px;
+                  margin: 0 0 25px 0;
                 }
               `}
             </style>

@@ -15,11 +15,9 @@ class Users extends Component {
   render() {
     const {query} = this.props;
     return (
-      <div>
-        <DefaultLayout title="User List">
-          <UserTable query={query} />
-        </DefaultLayout>
-      </div>
+      <DefaultLayout title="User List">
+        <UserTable query={query} />
+      </DefaultLayout>
     );
   }
 }
