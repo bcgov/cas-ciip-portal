@@ -3,9 +3,10 @@ import {Button, Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
 import Link from 'next/link';
 import {graphql} from 'react-relay';
 import {IndexQueryResponse} from '__generated__/IndexQuery.graphql';
+import {CiipPageComponentProps} from 'next-env';
 import DefaultLayout from '../../layouts/default-layout';
 
-interface Props {
+interface Props extends CiipPageComponentProps {
   query: IndexQueryResponse['query'];
 }
 

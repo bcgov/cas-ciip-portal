@@ -1,8 +1,9 @@
 import React from 'react';
 import {QueryRenderer, fetchQuery} from 'react-relay';
 import NextApp from 'next/app';
-
 import {NextRouter} from 'next/router';
+import {CiipPageComponent} from 'next-env';
+import {getRequest} from 'relay-runtime';
 import {initEnvironment, createEnvironment} from '../lib/relay-environment';
 import ErrorBoundary from '../lib/error-boundary';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -10,8 +11,9 @@ import LoadingSpinner from '../components/LoadingSpinner';
 interface AppProps {
   pageProps: {
     router: NextRouter;
-    variables: any;
+    variables: Record<string, any>;
   };
+  Component: CiipPageComponent;
 }
 
 export default class App extends NextApp<AppProps> {
@@ -50,9 +52,8 @@ export default class App extends NextApp<AppProps> {
     const environment = createEnvironment(
       relayData,
       JSON.stringify({
-        // @ts-ignore
         queryID: Component.query
-          ? (Component as any).query().default.params.name
+          ? getRequest(Component.query).params.name
           : undefined,
         variables
       })
@@ -61,10 +62,9 @@ export default class App extends NextApp<AppProps> {
       <ErrorBoundary>
         <QueryRenderer
           environment={environment}
-          // @ts-ignore
           query={Component.query}
           variables={{...variables, ...router.query}}
-          render={({error, props}) => {
+          render={({error, props}: {error: any; props: any}) => {
             if (error !== null) return <div>{error.message}</div>;
             if (props)
               return <Component {...props} router={this.props.router} />;
