@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
+import {UsersQueryResponse} from 'UsersQuery.graphql';
 import DefaultLayout from '../../layouts/default-layout';
 import UserTable from '../Admin/UserTable';
 
-class Users extends Component {
+interface Props {
+  query: UsersQueryResponse['query'];
+}
+
+class Users extends Component<Props> {
   static query = graphql`
     query UsersQuery {
       query {

@@ -1,11 +1,24 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {Row, Col, Jumbotron} from 'react-bootstrap';
+import {ProductsBenchmarksQueryResponse} from 'ProductsBenchmarksQuery.graphql';
 import DefaultLayout from '../../layouts/default-layout';
 import ProductCreatorContainer from '../Products/ProductCreatorContainer';
 import ProductListContainer from '../Products/ProductListContainer';
 
-class ProductsBenchmarks extends Component {
+interface Props {
+  query: ProductsBenchmarksQueryResponse['query'];
+}
+
+class ProductsBenchmarks extends Component<Props> {
+  static query = graphql`
+    query ProductsBenchmarksQuery {
+      query {
+        ...ProductListContainer_query
+      }
+    }
+  `;
+
   state = {
     formData: {formId: '', formJson: ''},
     mode: 'view',
@@ -41,21 +54,7 @@ class ProductsBenchmarks extends Component {
     console.log('form-builder.js > formIdHandler state', this.state);
   };
 
-  productRowActions = {
-    toggleProductMode: this.toggleProductMode,
-    toggleBenchmarkMode: this.toggleBenchmarkMode,
-    openConfirmationWindow: this.openConfirmationWindow,
-    closeConfirmationWindow: this.closeConfirmationWindow
-  };
   /** ** END ProductRowItem Actions ** **/
-
-  static query = graphql`
-    query ProductsBenchmarksQuery {
-      query {
-        ...ProductListContainer_query
-      }
-    }
-  `;
 
   render() {
     const {query} = this.props;
@@ -74,7 +73,12 @@ class ProductsBenchmarks extends Component {
               <br />
               <br />
               <ProductListContainer
-                productRowActions={this.productRowActions}
+                productRowActions={{
+                  toggleProductMode: this.toggleProductMode,
+                  toggleBenchmarkMode: this.toggleBenchmarkMode,
+                  openConfirmationWindow: this.openConfirmationWindow,
+                  closeConfirmationWindow: this.closeConfirmationWindow
+                }}
                 query={query}
                 mode={this.state.mode}
                 confirmationModalOpen={this.state.confirmationModalOpen}
