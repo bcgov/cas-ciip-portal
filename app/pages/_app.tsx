@@ -51,7 +51,9 @@ export default class App extends NextApp<AppProps> {
       relayData,
       JSON.stringify({
         // @ts-ignore
-        queryID: Component.query ? Component.query().params.name : undefined,
+        queryID: Component.query
+          ? (Component as any).query().default.params.name
+          : undefined,
         variables
       })
     );
