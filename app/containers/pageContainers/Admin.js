@@ -10,17 +10,17 @@ class Admin extends Component {
         <DefaultLayout title="Administrators Dashboard">
           <div>
             <ButtonGroup vertical>
-              <Link href="../products-benchmarks">
+              <Link href="/products-benchmarks">
                 <Button size="lg" className="buttons">
                   View Products and Benchmarks
                 </Button>
               </Link>
-              <Link href="../user-list">
+              <Link href="/user-list">
                 <Button className="buttons" size="lg">
                   View Users
                 </Button>
               </Link>
-              <Link href="../applications">
+              <Link href="/applications">
                 <Button className="buttons" size="lg">
                   View Applications
                 </Button>
