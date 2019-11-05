@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {UsersQueryResponse} from 'UsersQuery.graphql';
-import DefaultLayout from '../../layouts/default-layout';
-import UserTable from '../Admin/UserTable';
+import {userListQueryResponse} from 'userListQuery.graphql';
+import DefaultLayout from '../layouts/default-layout';
+import UserTable from '../containers/Admin/UserTable';
 
 interface Props {
-  query: UsersQueryResponse['query'];
+  query: userListQueryResponse['query'];
 }
 
-class Users extends Component<Props> {
+class UserList extends Component<Props> {
   static query = graphql`
-    query UsersQuery {
+    query userListQuery {
       query {
         ...UserTable_query
       }
@@ -27,4 +27,4 @@ class Users extends Component<Props> {
   }
 }
 
-export default Users;
+export default UserList;

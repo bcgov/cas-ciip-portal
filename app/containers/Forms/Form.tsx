@@ -30,7 +30,8 @@ export const FormComponent = ({
       )}
       <FormWithFuelUnits query={query} formJson={formJson}>
         <FormWithProductUnits query={query} formJson={formJson}>
-          // @ts-ignore formJson is injected by FormWithProductUnits
+          {/*
+          // @ts-ignore formJson is injected by FormWithProductUnits */}
           <SurveyWrapper
             initialData={initialData}
             onComplete={onComplete}

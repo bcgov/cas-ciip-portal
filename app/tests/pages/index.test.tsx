@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import Index from '../../containers/pageContainers/Index';
+import Index from '../../pages';
 
 describe('landing', () => {
   it('It matches the last accepted Snapshot', () => {
