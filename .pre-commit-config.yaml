@@ -10,7 +10,7 @@ repos:
     - id: yarn-format
       name: Fix formatting and lint with XO
       language: script
-      files: \.js$
+      files: \.(j|t)sx?$
       entry: ./.bin/format.sh
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v2.3.0

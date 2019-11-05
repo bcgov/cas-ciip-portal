@@ -3,7 +3,7 @@
 exports[`ApplicationWizardConfirmationComponentCardItem should render the individual summary confirmation card component 1`] = `
 <Card
   body={false}
-  key="facility"
+  key="facility facility"
   style={
     Object {
       "marginTop": "10px",
@@ -43,11 +43,11 @@ exports[`ApplicationWizardConfirmationComponentCardItem should render the indivi
     <CardBody>
       <Bootstrap(Table)>
         <tbody
-          key="0"
+          key="facility facility [object Object]"
         >
           <tr />
           <tr
-            key="name"
+            key="facility facility name"
           >
             <td
               style={

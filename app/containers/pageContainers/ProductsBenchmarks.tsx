@@ -1,0 +1,116 @@
+import React, {Component} from 'react';
+import {graphql} from 'react-relay';
+import {Row, Col, Jumbotron} from 'react-bootstrap';
+import {ProductsBenchmarksQueryResponse} from 'ProductsBenchmarksQuery.graphql';
+import DefaultLayout from '../../layouts/default-layout';
+import ProductCreatorContainer from '../Products/ProductCreatorContainer';
+import ProductListContainer from '../Products/ProductListContainer';
+
+interface Props {
+  query: ProductsBenchmarksQueryResponse['query'];
+}
+
+class ProductsBenchmarks extends Component<Props> {
+  static query = graphql`
+    query ProductsBenchmarksQuery {
+      query {
+        ...ProductListContainer_query
+      }
+    }
+  `;
+
+  state = {
+    formData: {formId: '', formJson: ''},
+    mode: 'view',
+    confirmationModalOpen: false
+  };
+
+  /** **  ProductRowItem Actions ** **/
+
+  // Toggle enabling of editing products
+  toggleProductMode = () => {
+    this.state.mode === 'view' || this.state.mode === 'benchmark'
+      ? this.setState({mode: 'product'})
+      : this.setState({mode: 'view'});
+  };
+
+  // Toggle enabling of editing benchmarks
+  toggleBenchmarkMode = () => {
+    this.state.mode === 'view' || this.state.mode === 'product'
+      ? this.setState({mode: 'benchmark'})
+      : this.setState({mode: 'view'});
+  };
+
+  openConfirmationWindow = () => {
+    this.setState({confirmationModalOpen: true});
+  };
+
+  closeConfirmationWindow = () => {
+    this.setState({confirmationModalOpen: false});
+  };
+
+  formIdHandler = (formId, formJson) => {
+    this.setState({formData: {formId, formJson}});
+    console.log('form-builder.js > formIdHandler state', this.state);
+  };
+
+  /** ** END ProductRowItem Actions ** **/
+
+  render() {
+    const {query} = this.props;
+    return (
+      <>
+        <DefaultLayout title="Products and Benchmarks">
+          <Row>
+            <Col>
+              <br />
+              <Jumbotron>
+                <h4>Create a Product</h4>
+                <br />
+                <ProductCreatorContainer />
+              </Jumbotron>
+              <br />
+              <br />
+              <br />
+              <ProductListContainer
+                productRowActions={{
+                  toggleProductMode: this.toggleProductMode,
+                  toggleBenchmarkMode: this.toggleBenchmarkMode,
+                  openConfirmationWindow: this.openConfirmationWindow,
+                  closeConfirmationWindow: this.closeConfirmationWindow
+                }}
+                query={query}
+                mode={this.state.mode}
+                confirmationModalOpen={this.state.confirmationModalOpen}
+              />
+            </Col>
+          </Row>
+        </DefaultLayout>
+      </>
+    );
+  }
+}
+
+export default ProductsBenchmarks;
+
+/*
+
+Product Creator:
+1: Add table for product (name and description)
+2: Add component for createproduct
+3: Add add fields for create product in component: Product name and description
+4: On save create object and push to createProduct mutation
+
+List of products
+1: create component for List of Products
+2: use queryrenderer to loop through products
+3: display products as a list
+
+BM and ET
+1: Create a component for BM and ET
+2: Pass product object to the component
+3: Component has prdouct name, description, BM and ET fields and a save button
+4: on save create update BM/ET Values: Todo: Add history in the future
+5: Update the components
+
+ */

@@ -1,4 +1,3 @@
-// Const path = require('path');
 const express = require('express');
 const {postgraphile} = require('postgraphile');
 const next = require('next');
@@ -8,7 +7,6 @@ const port = parseInt(process.env.PORT, 10) || 3004;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
-// Const schemaPath = path.join(__dirname, '/schema.graphql');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const Keycloak = require('keycloak-connect');
@@ -111,7 +109,7 @@ app.prepare().then(() => {
   // Keycloak callbak; do not keycloak.protect() to avoid users being authenticated against their will via XSS attack
   server.get('/login', (req, res) => res.redirect(302, '/user-dashboard'));
 
-  server.get('*', (req, res) => {
+  server.get('*', async (req, res) => {
     return handle(req, res);
   });
 

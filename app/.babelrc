@@ -3,7 +3,7 @@
     "next/babel"
   ],
   "plugins": [
-    "relay",
+    ["relay", { "artifactDirectory": "./__generated__" }],
     "macros"
   ]
 }

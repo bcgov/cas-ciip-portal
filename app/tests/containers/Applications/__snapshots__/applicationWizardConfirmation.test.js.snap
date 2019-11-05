@@ -12,7 +12,7 @@ exports[`ApplicationWizardConfirmationComponent should render the summary confir
   <Relay(ApplicationWizardConfirmationCardItemComponent)
     formSubtitle="id"
     formTitle="id"
-    key="id"
+    key="id id"
     resultObject={
       Object {
         "id": Object {

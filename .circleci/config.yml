@@ -89,7 +89,7 @@ jobs:
           name: Run XO via Yarn
           command: |
             source ~/.asdf/asdf.sh
-            yarn format || true # TODO: need to clean up linter errors
+            yarn format
       - run:
           name: Check if there is some unformatted code
           command: git diff --exit-code || (echo 'These files are not formatted correctly. Did you forget to \"yarn format\"?' && false)
