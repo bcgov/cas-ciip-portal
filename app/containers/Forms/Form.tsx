@@ -5,7 +5,7 @@ import SurveyWrapper from '../../components/Survey/SurveyWrapper';
 import FormWithProductUnits from './FormWithProductUnits';
 import FormWithFuelUnits from './FormWithFuelUnits';
 
-export const FormComponent = ({
+const FormComponent = ({
   query,
   initialData,
   initialDataSource,

@@ -13,11 +13,13 @@ const router: NextRouter = {
 };
 
 it('It matches the last accepted Snapshot', () => {
+  // @ts-ignore
   const wrapper = shallow(<ApplicationDetails router={router} />);
   expect(wrapper).toMatchSnapshot();
 });
 
 it('It receives the props for app_id, bcghgid and reporting year', () => {
+  // @ts-ignore
   const wrapper = shallow(<ApplicationDetails router={router} />);
   expect(
     wrapper

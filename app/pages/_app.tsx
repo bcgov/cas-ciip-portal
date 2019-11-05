@@ -18,19 +18,21 @@ interface AppProps {
 
 export default class App extends NextApp<AppProps> {
   static getInitialProps = async ({Component, ctx}) => {
-    const {variables = {}} = Component.getInitialProps
+    const initialProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
+    const variables = {
+      ...initialProps.variables,
+      ...ctx.query
+    };
     try {
       if (initEnvironment && Component.query) {
-        const {environment, relaySSR} = initEnvironment();
-
+        const {environment} = initEnvironment();
         await fetchQuery(environment, Component.query, variables);
 
         return {
           pageProps: {
-            variables,
-            relayData: await relaySSR.getCache()
+            variables
           }
         };
       }
@@ -47,19 +49,20 @@ export default class App extends NextApp<AppProps> {
     const {
       Component,
       router,
-      pageProps: {variables = {}, relayData}
+      pageProps: {variables = {}}
     } = this.props;
     const environment = createEnvironment(
-      relayData,
       JSON.stringify({
         queryID: Component.query
           ? getRequest(Component.query).params.name
           : undefined,
-        variables
+        variables: {...variables, ...router.query}
       })
     );
     return (
       <ErrorBoundary>
+        {/*
+          // @ts-ignore */}
         <QueryRenderer
           environment={environment}
           query={Component.query}
