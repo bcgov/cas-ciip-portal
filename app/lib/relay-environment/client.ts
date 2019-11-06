@@ -5,6 +5,7 @@ import {
   batchMiddleware,
   // LegacyBatchMiddleware,
   cacheMiddleware
+  // LoggerMiddleware
 } from 'react-relay-network-modern/node8';
 
 const source = new RecordSource();
@@ -27,10 +28,11 @@ export default {
           url: async _ => Promise.resolve('/graphql')
         }),
         batchMiddleware({
-          batchUrl: async _ => Promise.resolve('/graphql/batch'),
+          batchUrl: async _ => Promise.resolve('/graphql'),
           batchTimeout: 10,
           allowMutations: true
         })
+        // LoggerMiddleware(),
       ]),
       store
     });

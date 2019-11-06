@@ -17,9 +17,7 @@ export default {
           urlMiddleware({
             // TODOx: set $RELAY_ENDPOINT
             // url: req => process.env.RELAY_ENDPOINT
-            url: _ =>
-              'http://localhost:3004/graphql' ||
-              'http://localhost:3004/graphql/batch'
+            url: _ => 'http://localhost:3004/grapqhl'
           })
         ])
       })
@@ -35,9 +33,7 @@ export default {
         urlMiddleware({
           // TODOx: set $RELAY_ENDPOINT
           // url: req => process.env.RELAY_ENDPOINT
-          url: _ =>
-            'http://localhost:3004/graphql' ||
-            'http://localhost:3004/graphql/batch'
+          url: _ => 'http://localhost:3004/grapqhl'
         })
       ])
     });
