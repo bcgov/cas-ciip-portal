@@ -1,11 +1,18 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import Alert from 'react-bootstrap/Alert';
-import SurveyWrapper from '../../components/Survey/SurveyWrapper';
-import FormWithProductUnits from './FormWithProductUnits';
-import FormWithFuelUnits from './FormWithFuelUnits';
+import JsonSchemaForm, {IChangeEvent, ErrorSchema} from 'react-jsonschema-form';
+import {Form_query} from 'Form_query.graphql';
 
-export const FormComponent = ({
+interface Props {
+  query: Form_query;
+  initialData?: any;
+  initialDataSource?: string;
+  onComplete?: any;
+  onValueChanged: (e: IChangeEvent<unknown>, es?: ErrorSchema) => any;
+}
+// Note: https://github.com/graphile/postgraphile/issues/980
+export const FormComponent: React.FunctionComponent<Props> = ({
   query,
   initialData,
   initialDataSource,
@@ -14,10 +21,12 @@ export const FormComponent = ({
 }) => {
   const {result} = query || {};
 
-  if (!result) return null;
   const {
-    formJsonByFormId: {formJson}
-  } = result;
+    formJsonByFormId: {formJson},
+    formResult
+  } = result || {formJsonByFormId: {}};
+  if (!result) return null;
+
   return (
     <>
       {initialData && Object.keys(initialData).length > 0 && initialDataSource && (
@@ -28,17 +37,12 @@ export const FormComponent = ({
           </Alert>
         </>
       )}
-      <FormWithFuelUnits query={query} formJson={formJson}>
-        <FormWithProductUnits query={query} formJson={formJson}>
-          {/*
-          // @ts-ignore formJson is injected by FormWithProductUnits */}
-          <SurveyWrapper
-            initialData={initialData}
-            onComplete={onComplete}
-            onValueChanged={onValueChanged}
-          />
-        </FormWithProductUnits>
-      </FormWithFuelUnits>
+      <JsonSchemaForm
+        schema={formJson}
+        formData={formResult}
+        onChange={onValueChanged}
+        onSubmit={onComplete}
+      />
     </>
   );
 };
@@ -50,6 +54,7 @@ export default createFragmentContainer(FormComponent, {
       ...FormWithProductUnits_query
       ...FormWithFuelUnits_query
       result: formResult(id: $formResultId) {
+        formResult
         formJsonByFormId {
           formJson
         }
