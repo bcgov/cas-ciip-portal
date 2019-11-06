@@ -61,8 +61,6 @@ export default class App extends NextApp<AppProps> {
     );
     return (
       <ErrorBoundary>
-        {/*
-          // @ts-ignore */}
         <QueryRenderer
           environment={environment}
           query={Component.query}
