@@ -1,19 +1,7 @@
 import React, {useEffect} from 'react';
-import {graphql, commitMutation, createRefetchContainer} from 'react-relay';
+import {graphql, createRefetchContainer} from 'react-relay';
+import updateApplicationStatusByRowIdMutation from '../../mutations/application/updateApplicationStatusByRowIdMutation';
 import ApplicationStatusItemContainer from './ApplicationStatusItemContainer';
-
-const setStatus = graphql`
-  mutation ApplicationStatusContainerMutation(
-    $input: UpdateApplicationStatusByRowIdInput!
-  ) {
-    updateApplicationStatusByRowId(input: $input) {
-      applicationStatus {
-        applicationId
-        applicationStatus
-      }
-    }
-  }
-`;
 
 export const ApplicationStatus = props => {
   const {allApplicationStatuses} = props.query;
@@ -35,7 +23,8 @@ export const ApplicationStatus = props => {
     event.persist();
 
     const date = new Date().toUTCString();
-    const saveVariables = {
+
+    const variables = {
       input: {
         rowId: Number(props.applicationId),
         applicationStatusPatch: {
@@ -45,16 +34,8 @@ export const ApplicationStatus = props => {
         }
       }
     };
-    const {environment} = props.relay;
-    const saveMutation = setStatus;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: saveVariables,
-      onCompleted: response => {
-        console.log(response);
-      },
-      onError: err => console.error(err)
-    });
+
+    updateApplicationStatusByRowIdMutation(props.relay.environment, variables);
   };
 
   return allApplicationStatuses.edges.length === 1 ? (
