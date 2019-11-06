@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {graphql, createRefetchContainer} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {useRouter} from 'next/router';
 import Form from '../Forms/Form';
 import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
@@ -201,11 +201,8 @@ const ApplicationWizardStep = ({
 
   const onValueChanged = async change => {
     const formData = change.data;
-    console.log('form data', formData);
+    // Console.log('form data', formData);
     await storeResult(formData);
-    relay.refetch({formResultId: formResult.id}, null, () => {
-      console.log('REFETCHED');
-    });
   };
 
   useEffect(() => {
@@ -262,109 +259,95 @@ const ApplicationWizardStep = ({
   );
 };
 
-export default createRefetchContainer(
-  ApplicationWizardStep,
-  {
-    query: graphql`
-      fragment ApplicationWizardStep_query on Query
-        @argumentDefinitions(
-          formResultId: {type: "ID!"}
-          applicationId: {type: "ID!"}
-        ) {
-        ...Form_query @arguments(formResultId: $formResultId)
-        ...ApplicationWizardConfirmation_query
-          @arguments(applicationId: $applicationId)
-        allFuels {
-          edges {
-            node {
-              name
-              units
-            }
-          }
-        }
-
-        formResult(id: $formResultId) {
-          id
-          formResult
-          formJsonByFormId {
+export default createFragmentContainer(ApplicationWizardStep, {
+  query: graphql`
+    fragment ApplicationWizardStep_query on Query
+      @argumentDefinitions(
+        formResultId: {type: "ID!"}
+        applicationId: {type: "ID!"}
+      ) {
+      ...Form_query @arguments(formResultId: $formResultId)
+      ...ApplicationWizardConfirmation_query
+        @arguments(applicationId: $applicationId)
+      allFuels {
+        edges {
+          node {
             name
-            prepopulateFromSwrs
-          }
-        }
-        application(id: $applicationId) {
-          applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
-            edges {
-              node {
-                id
-              }
-            }
-          }
-          swrsEmissionData(reportingYear: "2018") {
-            edges {
-              node {
-                quantity
-                emissionCategory
-                gasType
-              }
-            }
-          }
-          swrsFacilityData(reportingYear: "2018") {
-            facilityName
-            facilityType
-            bcghgid
-            naicsCode
-            latitude
-            longitude
-            facilityMailingAddress
-            facilityCity
-            facilityProvince
-            facilityPostalCode
-          }
-          swrsFuelData(reportingYear: "2018") {
-            edges {
-              node {
-                fuelType
-                fuelDescription
-                annualFuelAmount
-                alternativeMethodolodyDescription
-              }
-            }
-          }
-          swrsOperatorContactData(reportingYear: "2018") {
-            firstName
-            lastName
-            positionTitle
-            email
-            telephone
-            fax
-            contactMailingAddress
-            contactCity
-            contactProvince
-            contactPostalCode
-          }
-          swrsOrganisationData(reportingYear: "2018") {
-            operatorName
-            operatorTradeName
-            duns
-            operatorMailingAddress
-            operatorCity
-            operatorProvince
-            operatorPostalCode
-            operatorCountry
+            units
           }
         }
       }
-    `
-  },
-  graphql`
-    query ApplicationWizardStepRefetchQuery(
-      $applicationId: ID!
-      $formResultId: ID!
-    ) {
-      query {
-        ...ApplicationWizardStep_query
-          @arguments(applicationId: $applicationId, formResultId: $formResultId)
+
+      formResult(id: $formResultId) {
+        id
+        formResult
+        formJsonByFormId {
+          name
+          prepopulateFromSwrs
+        }
+      }
+      application(id: $applicationId) {
+        applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+        swrsEmissionData(reportingYear: "2018") {
+          edges {
+            node {
+              quantity
+              emissionCategory
+              gasType
+            }
+          }
+        }
+        swrsFacilityData(reportingYear: "2018") {
+          facilityName
+          facilityType
+          bcghgid
+          naicsCode
+          latitude
+          longitude
+          facilityMailingAddress
+          facilityCity
+          facilityProvince
+          facilityPostalCode
+        }
+        swrsFuelData(reportingYear: "2018") {
+          edges {
+            node {
+              fuelType
+              fuelDescription
+              annualFuelAmount
+              alternativeMethodolodyDescription
+            }
+          }
+        }
+        swrsOperatorContactData(reportingYear: "2018") {
+          firstName
+          lastName
+          positionTitle
+          email
+          telephone
+          fax
+          contactMailingAddress
+          contactCity
+          contactProvince
+          contactPostalCode
+        }
+        swrsOrganisationData(reportingYear: "2018") {
+          operatorName
+          operatorTradeName
+          duns
+          operatorMailingAddress
+          operatorCity
+          operatorProvince
+          operatorPostalCode
+          operatorCountry
+        }
       }
     }
   `
-);
+});

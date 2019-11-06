@@ -2,43 +2,49 @@ import {
   RelayNetworkLayer,
   urlMiddleware
 } from 'react-relay-network-modern/node8';
-import RelaySSR from 'react-relay-network-modern-ssr/node8/server';
 import {Network, Environment, RecordSource, Store} from 'relay-runtime';
+
+async function fetchQuery(operation, variables) {
+  const response = await fetch('/graphql', {
+    method: 'POST',
+    headers: {
+      // Add authentication and other headers here
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      query: operation.text, // GraphQL text from input
+      variables
+    })
+  });
+
+  return response.json();
+}
 
 export default {
   initEnvironment: () => {
     const source = new RecordSource();
     const store = new Store(source);
-    const relaySSR = new RelaySSR();
 
     return {
-      relaySSR,
       environment: new Environment({
         store,
         // @ts-ignore
         network: new RelayNetworkLayer([
           urlMiddleware({
-            // TODO: set $RELAY_ENDPOINT
+            // TODOx: set $RELAY_ENDPOINT
             // url: req => process.env.RELAY_ENDPOINT
             url: _ => 'http://localhost:3004/graphql'
-          }),
-          relaySSR.getMiddleware()
+          })
         ])
       })
     };
   },
-  createEnvironment: (relayData, key) => {
+  createEnvironment: _ => {
     const source = new RecordSource();
     const store = new Store(source);
-
     return new Environment({
       store,
-      network: Network.create(() => {
-        if (!relayData) return;
-        const data = relayData.find(([dataKey]) => dataKey === key);
-        if (!data) return;
-        return data[1];
-      })
+      network: Network.create(fetchQuery)
     });
   }
 };

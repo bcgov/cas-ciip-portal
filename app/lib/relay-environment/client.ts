@@ -1,37 +1,61 @@
 import {
-  RelayNetworkLayer,
-  cacheMiddleware,
-  urlMiddleware
-} from 'react-relay-network-modern/node8';
-import RelaySSR from 'react-relay-network-modern-ssr/node8/client';
-import {Environment, RecordSource, Store} from 'relay-runtime';
+  Environment,
+  RecordSource,
+  Store,
+  QueryResponseCache,
+  Network
+} from 'relay-runtime';
 
 const source = new RecordSource();
 const store = new Store(source);
 
+const oneMinute = 60 * 1000;
+const cache = new QueryResponseCache({size: 250, ttl: oneMinute});
+
+async function fetchQuery(operation, variables, cacheConfig) {
+  const queryID = operation.text;
+  const isMutation = operation.operationKind === 'mutation';
+  const isQuery = operation.operationKind === 'query';
+  const forceFetch = cacheConfig && cacheConfig.force;
+
+  // Try to get data from cache on queries
+  const fromCache = cache.get(queryID, variables);
+  if (isQuery && fromCache !== null && !forceFetch) {
+    return fromCache;
+  }
+
+  // Otherwise, fetch data from server
+  const response = await fetch('/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      query: operation.text,
+      variables
+    })
+  });
+  const json = await response.json();
+
+  if (isQuery && json) {
+    cache.set(queryID, variables, json);
+  }
+
+  // Clear cache on mutations
+  if (isMutation) {
+    cache.clear();
+  }
+
+  return json;
+}
+
 let storeEnvironment = null;
 
 export default {
-  createEnvironment: relayData => {
-    if (storeEnvironment) return storeEnvironment;
-
+  createEnvironment: _ => {
     storeEnvironment = new Environment({
-      store,
-      // @ts-ignore
-      network: new RelayNetworkLayer([
-        cacheMiddleware({
-          size: 100,
-          ttl: 60 * 1000
-        }),
-        new RelaySSR(relayData).getMiddleware({
-          lookup: false
-        }),
-        urlMiddleware({
-          // TODO: set $RELAY_ENDPOINT
-          // url: req => process.env.RELAY_ENDPOINT
-          url: () => 'http://localhost:3004/graphql'
-        })
-      ])
+      network: Network.create(fetchQuery),
+      store
     });
 
     return storeEnvironment;
