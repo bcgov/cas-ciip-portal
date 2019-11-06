@@ -154,13 +154,13 @@ const ApplicationWizardStep = ({
   const [initialData, setInitialData] = useState(undefined);
 
   // Function: store the form result
-  const storeResult = async res => {
+  const storeResult = async formResult => {
     const {environment} = relay;
     const variables = {
       input: {
         id: formResult.id,
         formResultPatch: {
-          formResult: JSON.stringify(res)
+          formResult
         }
       }
     };
@@ -200,8 +200,7 @@ const ApplicationWizardStep = ({
   };
 
   const onValueChanged = async change => {
-    const formData = change.data;
-    // Console.log('form data', formData);
+    const {formData} = change;
     await storeResult(formData);
   };
 
@@ -209,7 +208,7 @@ const ApplicationWizardStep = ({
     if (!formResult) return;
     const {formJsonByFormId} = formResult;
     if (formResult.formResult !== '{}') {
-      return setInitialData(JSON.parse(formResult.formResult));
+      return setInitialData(formResult.formResult);
     }
 
     if (!formJsonByFormId.prepopulateFromSwrs) return setInitialData(undefined);

@@ -61,6 +61,7 @@ app.prepare().then(() => {
       graphiql: true,
       classicIds: true,
       enableQueryBatching: true,
+      dynamicJson: true,
       pgSettings(req) {
         const claims = {};
         if (
