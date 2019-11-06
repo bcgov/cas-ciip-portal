@@ -1,4 +1,3 @@
-// Import RelayClientSSR from 'react-relay-network-modern-ssr/node8/client';
 import {
   Environment,
   RecordSource,
