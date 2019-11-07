@@ -2,25 +2,10 @@ import {
   RelayNetworkLayer,
   urlMiddleware
 } from 'react-relay-network-modern/node8';
-import {Network, Environment, RecordSource, Store} from 'relay-runtime';
-
-async function fetchQuery(operation, variables) {
-  const response = await fetch('/graphql', {
-    method: 'POST',
-    headers: {
-      // Add authentication and other headers here
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({
-      query: operation.text, // GraphQL text from input
-      variables
-    })
-  });
-
-  return response.json();
-}
+import {Environment, RecordSource, Store} from 'relay-runtime';
 
 export default {
+  // TODO: Not currently used, as SSR is broken. Leaving it in for now.
   initEnvironment: () => {
     const source = new RecordSource();
     const store = new Store(source);
@@ -31,20 +16,27 @@ export default {
         // @ts-ignore
         network: new RelayNetworkLayer([
           urlMiddleware({
-            // TODOx: set $RELAY_ENDPOINT
+            // TODO: set $RELAY_ENDPOINT
             // url: req => process.env.RELAY_ENDPOINT
-            url: _ => 'http://localhost:3004/graphql'
+            url: () => 'http://localhost:3004/grapqhl'
           })
         ])
       })
     };
   },
-  createEnvironment: _ => {
+  createEnvironment: () => {
     const source = new RecordSource();
     const store = new Store(source);
     return new Environment({
       store,
-      network: Network.create(fetchQuery)
+      // @ts-ignore
+      network: new RelayNetworkLayer([
+        urlMiddleware({
+          // TODO: set $RELAY_ENDPOINT
+          // url: req => process.env.RELAY_ENDPOINT
+          url: () => 'http://localhost:3004/grapqhl'
+        })
+      ])
     });
   }
 };

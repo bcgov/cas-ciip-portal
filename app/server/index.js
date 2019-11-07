@@ -60,6 +60,7 @@ app.prepare().then(() => {
       appendPlugins: [PgManyToManyPlugin],
       graphiql: true,
       classicIds: true,
+      enableQueryBatching: true,
       pgSettings(req) {
         const claims = {};
         if (
@@ -70,7 +71,7 @@ app.prepare().then(() => {
         )
           return claims;
 
-        // TODO: actually map jwt realms to postgres roles
+        // TODOx: actually map jwt realms to postgres roles
         // @see https://www.postgresql.org/docs/current/default-roles.html
         // claims['role'] = 'pg_monitor';
         const token = req.kauth.grant.id_token.content;
