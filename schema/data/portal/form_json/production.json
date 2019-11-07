@@ -1,73 +1,43 @@
 {
-  "title": "Production Information",
-  "showCompletedPage": false,
-  "completeText": "Next",
-  "pages": [
-    {
-      "name": "Module Throughput and Emissions",
-      "elements": [
-        {
-          "type": "paneldynamic",
-          "name": "moduleThroughputAndProductionData",
-          "title": "Production Data",
-          "templateElements": [
-            {
-              "type": "dropdown",
-              "name": "product",
-              "title": "Processing Unit Module",
-              "choices": [
-                "Inlet Compression",
-                "Dehydration",
-                "Amine Sweetening",
-                "Fractionation",
-                "Stabilization"
-              ]
-            },
-            {
-              "type": "text",
-              "name": "quantity",
-              "title": "Quantity",
-              "inputType": "number"
-            },
-            {
-              "type": "dropdown",
-              "name": "productUnits",
-              "startWithNewLine": false,
-              "title": "Units",
-              "choices": [
-                {
-                  "value": "m3",
-                  "text": "meters cube"
-                },
-                {
-                  "value": "kl",
-                  "text": "kiloliters"
-                }
-              ]
-            },
-            {
-              "type": "text",
-              "name": "associatedEmissions",
-              "title": "Associated Emission (tCO2e)",
-              "inputType": "number"
-            },
-            {
-              "type": "text",
-              "name": "comments",
-              "title": "Comments"
-            }
-          ],
-          "templateTitle": "Processing Unit Module #{panelIndex}",
-          "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
-          "panelAddText": "Add another unit or product",
-          "panelRemoveText": "Remove unit or product"
+  "schema": {
+    "title": "Production Information",
+    "type": "array",
+    "items": {
+      "$ref": "#/definitions/production"
+    },
+    "definitions" : {
+      "production": {
+        "type": "object",
+        "properties": {
+          "product": {
+            "title": "Processing Unit Module",
+            "type": "string"
+          },
+          "quantity": {
+            "title": "Quantity",
+            "type": "number"
+          },
+          "productUnits": {
+            "title": "Units",
+            "type": "string"
+          },
+          "associatedEmissions": {
+            "title": "Associated Emission (tCO2e)",
+            "type": "number"
+          },
+          "comments": {
+            "title": "comments",
+            "type": "string"
+          }
         }
-      ],
-      "title": "Module Throughput and Emissions",
-      "description": "Please provide cumulative throughput/production amounts for each module as well as allocated emissions: "
+      }
     }
-  ],
-  "showQuestionNumbers": "off"
+  },
+  "uiSchema": {
+    "ui:add-text": "Add a Module",
+    "ui:remove-text": "Remove Module",
+    "items": {
+      "ui:field": "production"
+    }
+  }
 }
