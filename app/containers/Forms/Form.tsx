@@ -3,6 +3,8 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import Alert from 'react-bootstrap/Alert';
 import JsonSchemaForm, {IChangeEvent, ErrorSchema} from 'react-jsonschema-form';
 import {Form_query} from 'Form_query.graphql';
+import FormObjectFieldTemplate from './FormObjectFieldTemplate';
+import FormFieldTemplate from './FormFieldTemplate';
 
 interface FormJson {
   schema: any;
@@ -45,6 +47,8 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       <JsonSchemaForm
         liveValidate
         formData={formResult}
+        ObjectFieldTemplate={FormObjectFieldTemplate}
+        FieldTemplate={FormFieldTemplate}
         onChange={onValueChanged}
         onSubmit={onComplete}
         {...(formJson as FormJson)}
