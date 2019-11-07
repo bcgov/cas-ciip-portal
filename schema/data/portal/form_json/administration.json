@@ -18,7 +18,7 @@
           "duns": {
             "type": "string",
             "title": "DUNS number",
-            "pattern": "\\d{9}"
+            "format": "duns"
           },
           "bcCorporateRegistryNumber": {
             "type": "string",
@@ -152,7 +152,13 @@
       }
     }
   },
-  "customFormats": { "postal-code": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" },
+  "customFormats": {
+    "postal-code": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]",
+    "duns": "^\\d{9}$"
+  },
+  "customFormatsErrorMessages": {
+    "duns": "DUNS number should be nine digits"
+  },
   "uiSchema": {
     "ui:order": ["operator", "operationalRepresentative", "facility"],
     "operator": {

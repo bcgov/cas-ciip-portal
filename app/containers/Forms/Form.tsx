@@ -1,13 +1,21 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import Alert from 'react-bootstrap/Alert';
-import JsonSchemaForm, {IChangeEvent, ErrorSchema} from 'react-jsonschema-form';
+import JsonSchemaForm, {
+  IChangeEvent,
+  ErrorSchema,
+  UiSchema,
+  AjvError
+} from 'react-jsonschema-form';
 import {Form_query} from 'Form_query.graphql';
 import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
 
 interface FormJson {
   schema: any;
+  uiSchema: UiSchema;
+  customFormats: any;
+  customFormatsErrorMessages: Record<string, string>;
 }
 
 interface Props {
@@ -33,6 +41,24 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   } = result || {formJsonByFormId: {}};
   if (!result) return null;
 
+  const {
+    schema,
+    uiSchema,
+    customFormats,
+    customFormatsErrorMessages = {}
+  } = formJson as FormJson;
+
+  const transformErrors = (errors: AjvError[]) => {
+    return errors.map(error => {
+      if (error.name !== 'format') return error;
+      if (!customFormatsErrorMessages[error.params.format]) return error;
+      return {
+        ...error,
+        message: customFormatsErrorMessages[error.params.format]
+      };
+    });
+  };
+
   return (
     <>
       {initialData && Object.keys(initialData).length > 0 && initialDataSource && (
@@ -44,14 +70,19 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         </>
       )}
 
+      {/*
+      //@ts-ignore JsonSchemaForm typedef is missing customFormats prop */}
       <JsonSchemaForm
-        liveValidate
-        formData={formResult}
+        transformErrors={transformErrors}
         ObjectFieldTemplate={FormObjectFieldTemplate}
         FieldTemplate={FormFieldTemplate}
+        formContext={{query}}
+        formData={formResult}
+        uiSchema={uiSchema}
+        customFormats={customFormats}
+        schema={schema}
         onChange={onValueChanged}
         onSubmit={onComplete}
-        {...(formJson as FormJson)}
       />
     </>
   );
