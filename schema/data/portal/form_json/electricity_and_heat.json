@@ -95,8 +95,8 @@
     "electricity": {
       "ui:order": [
         "purchased",
-        "consumedOnSite",
         "sold",
+        "consumedOnSite",
         "generatedOnSite",
         "*"
       ],
@@ -119,8 +119,8 @@
     "heat": {
       "ui:order": [
         "purchased",
-        "consumedOnSite",
         "sold",
+        "consumedOnSite",
         "generatedOnSite",
         "*"
       ],
