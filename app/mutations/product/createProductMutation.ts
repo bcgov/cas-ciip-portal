@@ -15,6 +15,7 @@ const mutation = graphql`
       query {
         ...ProductListContainer_query
       }
+      clientMutationId
     }
   }
 `;
