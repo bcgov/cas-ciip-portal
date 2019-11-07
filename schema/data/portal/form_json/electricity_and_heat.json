@@ -91,20 +91,20 @@
     }
   },
   "uiSchema": {
-    "ui:order": ["electricity, heat"],
+    "ui:order": ["electricity", "heat"],
     "electricity": {
       "ui:order": [
         "purchased",
-        "generatedOnSite",
         "consumedOnSite",
         "sold",
-        "onSiteEmissions"
+        "generatedOnSite",
+        "*"
       ],
       "purchased": {
         "ui:col-md": 4
       },
       "generatedOnSite": {
-        "ui:col-md": 4
+        "ui:col-md": 6
       },
       "consumedOnSite": {
         "ui:col-md": 4
@@ -113,22 +113,22 @@
         "ui:col-md": 4
       },
       "onSiteEmissions": {
-        "ui:col-md": 4
+        "ui:col-md": 6
       }
     },
     "heat": {
       "ui:order": [
         "purchased",
-        "generatedOnSite",
         "consumedOnSite",
         "sold",
-        "onSiteEmissions"
+        "generatedOnSite",
+        "*"
       ],
       "purchased": {
         "ui:col-md": 4
       },
       "generatedOnSite": {
-        "ui:col-md": 4
+        "ui:col-md": 6
       },
       "consumedOnSite": {
         "ui:col-md": 4
@@ -137,7 +137,7 @@
         "ui:col-md": 4
       },
       "onSiteEmissions": {
-        "ui:col-md": 4
+        "ui:col-md": 6
       }
     }
   }
