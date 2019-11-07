@@ -4,6 +4,10 @@ import Alert from 'react-bootstrap/Alert';
 import JsonSchemaForm, {IChangeEvent, ErrorSchema} from 'react-jsonschema-form';
 import {Form_query} from 'Form_query.graphql';
 
+interface FormJson {
+  schema: any;
+}
+
 interface Props {
   query: Form_query;
   initialData?: any;
@@ -37,11 +41,13 @@ export const FormComponent: React.FunctionComponent<Props> = ({
           </Alert>
         </>
       )}
+
       <JsonSchemaForm
-        schema={formJson}
+        liveValidate
         formData={formResult}
         onChange={onValueChanged}
         onSubmit={onComplete}
+        {...(formJson as FormJson)}
       />
     </>
   );

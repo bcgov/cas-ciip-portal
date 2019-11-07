@@ -154,18 +154,18 @@ const ApplicationWizardStep = ({
   const [initialData, setInitialData] = useState(undefined);
 
   // Function: store the form result
-  const storeResult = async formResult => {
+  const storeResult = async result => {
     const {environment} = relay;
     const variables = {
       input: {
         id: formResult.id,
         formResultPatch: {
-          formResult
+          formResult: result
         }
       }
     };
     const response = await updateFormResultMutation(environment, variables);
-    console.log(response);
+    console.log('response', response);
   };
 
   // Change application status to 'pending' on application submit
@@ -193,9 +193,7 @@ const ApplicationWizardStep = ({
   // Define a callback methods on survey complete
   const onComplete = result => {
     const formData = result.data;
-    console.log('form data', formData);
     storeResult(formData);
-    console.log('Complete!', result.data);
     router.query.certificationPage ? submitApplication() : onStepComplete();
   };
 
