@@ -166,6 +166,15 @@
       ],
       "mailingAddress": {
         "ui:order": ["streetAddress", "city", "postalCode", "province"]
+      },
+      "naics": {
+        "ui:col-md": 4
+      },
+      "duns": {
+        "ui:col-md": 4
+      },
+      "bcCorporateRegistryNumber": {
+        "ui:col-md": 4
       }
     },
     "operationalRepresentative": {

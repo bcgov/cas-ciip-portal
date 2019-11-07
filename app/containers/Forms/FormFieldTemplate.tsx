@@ -1,7 +1,8 @@
 import React from 'react';
-import {Col, Row} from 'react-bootstrap';
+import {Col, Form} from 'react-bootstrap';
+import {FieldTemplateProps} from 'react-jsonschema-form';
 
-const FormFieldTemplate = ({
+const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   id,
   label,
   help,
@@ -9,33 +10,38 @@ const FormFieldTemplate = ({
   description,
   errors,
   children,
-  classNames,
-  schema
+  schema,
+  uiSchema
 }) => {
-  const fieldContents = (
-    <>
-      {schema.type !== 'object' && (
-        <label htmlFor={id} className={classNames}>
-          {label}
-          {required ? '*' : null}
-        </label>
-      )}
+  if (schema.type === 'object')
+    return (
+      <Col xs={12}>
+        <Form.Row>
+          {description}
+          {children}
+          {errors}
+          {help}
+        </Form.Row>
+      </Col>
+    );
+
+  const xs = uiSchema['ui:col-xs'] || 12;
+  const sm = uiSchema['ui:col-sm'] || xs;
+  const md = uiSchema['ui:col-md'] || (sm < 6 ? sm : 6);
+  const lg = uiSchema['ui:col-lg'] || md;
+  const xl = uiSchema['ui:col-xl'] || lg;
+
+  return (
+    <Form.Group as={Col} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+      <Form.Label htmlFor={id}>
+        {label}
+        {required ? '*' : null}
+      </Form.Label>
       {description}
       {children}
       {errors}
       {help}
-    </>
-  );
-  if (schema.type === 'object')
-    return (
-      <Col xs={12}>
-        <Row>{fieldContents}</Row>
-      </Col>
-    );
-  return (
-    <Col xs={12} md={6}>
-      {fieldContents}
-    </Col>
+    </Form.Group>
   );
 };
 
