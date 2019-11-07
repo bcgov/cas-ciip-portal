@@ -8,6 +8,7 @@ import JsonSchemaForm, {
   AjvError
 } from 'react-jsonschema-form';
 import {Form_query} from 'Form_query.graphql';
+import {Button} from 'react-bootstrap';
 import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
 
@@ -86,7 +87,11 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         ObjectFieldTemplate={FormObjectFieldTemplate}
         onSubmit={onComplete}
         onChange={onValueChanged}
-      />
+      >
+        <div style={{textAlign: 'right'}}>
+          <Button type="submit">Submit</Button>
+        </div>
+      </JsonSchemaForm>
     </>
   );
 };
