@@ -5,6 +5,7 @@ import {
 import {Environment, RecordSource, Store} from 'relay-runtime';
 
 export default {
+  // TODO: Not currently used, as SSR is broken. Leaving it in for now.
   initEnvironment: () => {
     const source = new RecordSource();
     const store = new Store(source);
@@ -15,15 +16,15 @@ export default {
         // @ts-ignore
         network: new RelayNetworkLayer([
           urlMiddleware({
-            // TODOx: set $RELAY_ENDPOINT
+            // TODO: set $RELAY_ENDPOINT
             // url: req => process.env.RELAY_ENDPOINT
-            url: _ => 'http://localhost:3004/grapqhl'
+            url: () => 'http://localhost:3004/grapqhl'
           })
         ])
       })
     };
   },
-  createEnvironment: _ => {
+  createEnvironment: () => {
     const source = new RecordSource();
     const store = new Store(source);
     return new Environment({
@@ -31,9 +32,9 @@ export default {
       // @ts-ignore
       network: new RelayNetworkLayer([
         urlMiddleware({
-          // TODOx: set $RELAY_ENDPOINT
+          // TODO: set $RELAY_ENDPOINT
           // url: req => process.env.RELAY_ENDPOINT
-          url: _ => 'http://localhost:3004/grapqhl'
+          url: () => 'http://localhost:3004/grapqhl'
         })
       ])
     });

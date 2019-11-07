@@ -1,10 +1,10 @@
 import React from 'react';
-import {QueryRenderer, fetchQuery} from 'react-relay';
+import {QueryRenderer} from 'react-relay';
 import NextApp from 'next/app';
 import {NextRouter} from 'next/router';
 import {CiipPageComponent} from 'next-env';
 import {getRequest} from 'relay-runtime';
-import {initEnvironment, createEnvironment} from '../lib/relay-environment';
+import {createEnvironment} from '../lib/relay-environment';
 import ErrorBoundary from '../lib/error-boundary';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -25,21 +25,6 @@ export default class App extends NextApp<AppProps> {
       ...initialProps.variables,
       ...ctx.query
     };
-    try {
-      if (initEnvironment && Component.query) {
-        const {environment} = initEnvironment();
-        await fetchQuery(environment, Component.query, variables);
-
-        return {
-          pageProps: {
-            variables
-          }
-        };
-      }
-    } catch (error) {
-      console.log(error);
-    }
-
     return {
       pageProps: {variables}
     };

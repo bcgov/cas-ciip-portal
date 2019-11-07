@@ -3,9 +3,7 @@ import {
   RelayNetworkLayer,
   urlMiddleware,
   batchMiddleware,
-  // LegacyBatchMiddleware,
   cacheMiddleware
-  // LoggerMiddleware
 } from 'react-relay-network-modern/node8';
 
 const source = new RecordSource();
@@ -22,17 +20,18 @@ export default {
       network: new RelayNetworkLayer([
         cacheMiddleware({
           size: 100, // Max 100 requests
+          // Number in milliseconds, how long records stay valid in cache (default: 900000, 15 minutes).
+          // TODO: is one minute enough? How long should records stay valid?
           ttl: oneMinute
         }),
         urlMiddleware({
-          url: async _ => Promise.resolve('/graphql')
+          url: async () => Promise.resolve('/graphql')
         }),
         batchMiddleware({
-          batchUrl: async _ => Promise.resolve('/graphql'),
+          batchUrl: async () => Promise.resolve('/graphql'),
           batchTimeout: 10,
           allowMutations: true
         })
-        // LoggerMiddleware(),
       ]),
       store
     });
