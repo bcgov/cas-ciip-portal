@@ -154,18 +154,18 @@ const ApplicationWizardStep = ({
   const [initialData, setInitialData] = useState(undefined);
 
   // Function: store the form result
-  const storeResult = async res => {
+  const storeResult = async result => {
     const {environment} = relay;
     const variables = {
       input: {
         id: formResult.id,
         formResultPatch: {
-          formResult: JSON.stringify(res)
+          formResult: result
         }
       }
     };
     const response = await updateFormResultMutation(environment, variables);
-    console.log(response);
+    console.log('response', response);
   };
 
   // Change application status to 'pending' on application submit
@@ -193,15 +193,12 @@ const ApplicationWizardStep = ({
   // Define a callback methods on survey complete
   const onComplete = result => {
     const formData = result.data;
-    console.log('form data', formData);
     storeResult(formData);
-    console.log('Complete!', result.data);
     router.query.certificationPage ? submitApplication() : onStepComplete();
   };
 
   const onValueChanged = async change => {
-    const formData = change.data;
-    // Console.log('form data', formData);
+    const {formData} = change;
     await storeResult(formData);
   };
 
@@ -209,7 +206,7 @@ const ApplicationWizardStep = ({
     if (!formResult) return;
     const {formJsonByFormId} = formResult;
     if (formResult.formResult !== '{}') {
-      return setInitialData(JSON.parse(formResult.formResult));
+      return setInitialData(formResult.formResult);
     }
 
     if (!formJsonByFormId.prepopulateFromSwrs) return setInitialData(undefined);

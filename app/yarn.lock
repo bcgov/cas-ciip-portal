@@ -1023,6 +1023,14 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime-corejs2@^7.4.5":
+  version "7.7.1"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.7.1.tgz#ae94a96dbb020169344b857f12514e39bc3e3dcb"
+  integrity sha512-nlxajcFXWFyrFOyzOkphfby2izqoB9B4a3+rMqG4dBKMaHZUUS3BkgFBIAbNK6s+VOx0vaGJVgaQL0+3oWnxDQ==
+  dependencies:
+    core-js "^2.6.5"
+    regenerator-runtime "^0.13.2"
+
 "@babel/runtime@7.4.5":
   version "7.4.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
@@ -2203,7 +2211,7 @@
   dependencies:
     "@types/jest-diff" "*"
 
-"@types/json-schema@^7.0.3":
+"@types/json-schema@*", "@types/json-schema@^7.0.3":
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
   integrity sha512-Il2DtDVRGDcqjDtE+rF8iqg1CArehSK84HZJCT7AMITlyXRBpuPhqGLDQMowraqqu1coEaimg4ZOqggt6L6L+A==
@@ -2295,6 +2303,14 @@
   integrity sha512-Oh5DAVr/L2svBvubw6QEFpXGu295Y406BPs4i9t1n2pp7M+q3pmCmhzb9oZV5wncR41KCD3NHl1Yhi7uKnTPsA==
   dependencies:
     "@types/history" "*"
+    "@types/react" "*"
+
+"@types/react-jsonschema-form@^1.6.5":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@types/react-jsonschema-form/-/react-jsonschema-form-1.6.5.tgz#17ae657cce4156f41e878c41e7e6d50b5c031c36"
+  integrity sha512-cE7dHz00jp0OzplQlP4p/3460jJLdXskXh45O0m7thnqqbilxPi77P7fOEeVxmbSHEA4tSRqLK/9cbHuthdhKA==
+  dependencies:
+    "@types/json-schema" "*"
     "@types/react" "*"
 
 "@types/react-relay@^7.0.0":
@@ -2729,7 +2745,7 @@ ajv-keywords@^3.1.0, ajv-keywords@^3.4.1:
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.4.1.tgz#ef916e271c64ac12171fd8384eaae6b2345854da"
   integrity sha512-RO1ibKvd27e6FEShVFfPALuHI3WjSVNeK5FIsmme/LYRNxjKuNj+Dt7bucLa6NdSv3JcVTyMlm9kGR84z1XpaQ==
 
-ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.5.5:
+ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.5.5, ajv@^6.7.0:
   version "6.10.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.10.2.tgz#d3cea04d6b017b2894ad69040fec8b623eb4bd52"
   integrity sha512-TXtUUEYHuaTEbLZWIKUr5pmBuhDLy+8KYtPYdcV8qC+pOZL+NKqYwvWSRrVXHn+ZmRRAu8vJTAznH7Oag6RVRw==
@@ -4455,7 +4471,7 @@ core-js@^1.0.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
-core-js@^2.4.0, core-js@^2.4.1, core-js@^2.6.5:
+core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.7, core-js@^2.6.5:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.10.tgz#8a5b8391f8cc7013da703411ce5b585706300d7f"
   integrity sha512-I39t74+4t+zau64EN1fE5v2W31Adtc/REhzWN+gWRRXg6WH5qAsZm62DHpQ1+Yhe4047T55jvzz7MUqF/dBBlA==
@@ -8630,11 +8646,6 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
-knockout@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/knockout/-/knockout-3.5.0.tgz#6d3e19bf53b1dc4d8de81c97a5ba9672443dc292"
-  integrity sha512-vBUF/IsBDzaejHkNpiquKdc5uPrImXuQ4Mb9lEfNNJ5cyHGI8ThDupR+h3eMFZhfmPE/brfwcIAn/fm0yOvJUg==
-
 latest-version@^5.0.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/latest-version/-/latest-version-5.1.0.tgz#119dfe908fe38d15dfa43ecd13fa12ec8832face"
@@ -9447,6 +9458,11 @@ nan@^2.12.1:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
+
+nanoid@^2.1.0:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.6.tgz#0665418f692e54cf44f34d4010761f3240a03314"
+  integrity sha512-2NDzpiuEy3+H0AVtdt8LoFi7PnqkOnIzYmJQp7xsEU6VexLluHQwKREuiz57XaQC5006seIadPrIZJhyS2n7aw==
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -11147,7 +11163,7 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^3.0.0"
 
-prop-types@15.7.2, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.7.2, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -11521,6 +11537,20 @@ react-is@^16.10.2, react-is@^16.3.2, react-is@^16.7.0, react-is@^16.8.1, react-i
   version "16.11.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.11.0.tgz#b85dfecd48ad1ce469ff558a882ca8e8313928fa"
   integrity sha512-gbBVYR2p8mnriqAwWx9LbuUrShnAuSCNnuPGyc7GJrMVQtPDAh8iLpv7FRuMPFb56KkaVZIYSz1PrjI9q0QPCw==
+
+react-jsonschema-form@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/react-jsonschema-form/-/react-jsonschema-form-1.8.0.tgz#7911d5074628d5300d82c8dccdbb0d66a515713e"
+  integrity sha512-3rZZ1tCG+vtXRXEdX751t5L1c1TUGk1pvSY/4LzBrUo5FlwulnwJpkosE4BqwSRxvfMckP8YoHFQV4KjzaHGgQ==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.4.5"
+    ajv "^6.7.0"
+    core-js "^2.5.7"
+    lodash "^4.17.15"
+    prop-types "^15.5.8"
+    react-is "^16.8.4"
+    react-lifecycles-compat "^3.0.4"
+    shortid "^2.2.14"
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -12510,6 +12540,13 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
+shortid@^2.2.14:
+  version "2.2.15"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.15.tgz#2b902eaa93a69b11120373cd42a1f1fe4437c122"
+  integrity sha512-5EaCy2mx2Jgc/Fdn9uuDuNIIfWBpzY4XIlhoqtXF6qsf+/+SGZ+FxDdX/ZsMZiWupIWNqAEmiNY4RC+LSmCeOw==
+  dependencies:
+    nanoid "^2.1.0"
+
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
@@ -13073,21 +13110,6 @@ supports-hyperlinks@^1.0.1:
   dependencies:
     has-flag "^2.0.0"
     supports-color "^5.0.0"
-
-survey-creator@^1.1.15:
-  version "1.1.17"
-  resolved "https://registry.yarnpkg.com/survey-creator/-/survey-creator-1.1.17.tgz#9cbe8d6fbccf541f5265c914e360497366e83332"
-  integrity sha512-A+9rzy2q/IGeg8ivD7fTMaC8H+oERIIS7tZRVMTxvmJgljt9v1p3ZTMgrjWOxnTlHpodzp6R4O/rWtXuNR66ow==
-  dependencies:
-    knockout "^3.5.0"
-    survey-knockout "^1.1.17"
-
-survey-knockout@^1.1.17:
-  version "1.1.17"
-  resolved "https://registry.yarnpkg.com/survey-knockout/-/survey-knockout-1.1.17.tgz#9daeac650610927c719634f1b2a2aea91da2fb0f"
-  integrity sha512-texJJlaM2Qx7xA7RSDe5ZNHt0vGP8E8frluQfzjAU9SkAAMnkB7tnvOlOS5/Th4YrPYRViVAAy9n97rfnRjBgQ==
-  dependencies:
-    knockout "^3.5.0"
 
 survey-react@^1.1.1:
   version "1.1.17"
