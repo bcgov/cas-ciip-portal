@@ -74,6 +74,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       //@ts-ignore JsonSchemaForm typedef is missing customFormats prop */}
       <JsonSchemaForm
         transformErrors={transformErrors}
+        showErrorList={false}
         ObjectFieldTemplate={FormObjectFieldTemplate}
         FieldTemplate={FormFieldTemplate}
         formContext={{query}}
