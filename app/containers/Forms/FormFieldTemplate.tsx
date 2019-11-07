@@ -13,6 +13,15 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   schema,
   uiSchema
 }) => {
+  if (schema.type === 'array')
+    return (
+      <Col xs={12}>
+        {description}
+        {children}
+        {errors}
+        {help}
+      </Col>
+    );
   if (schema.type === 'object')
     return (
       <Col xs={12}>

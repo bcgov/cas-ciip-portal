@@ -11,6 +11,7 @@ import {Form_query} from 'Form_query.graphql';
 import {Button} from 'react-bootstrap';
 import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
+import FormArrayFieldTemplate from './ArrayFieldTemplate';
 
 interface FormJson {
   schema: any;
@@ -77,6 +78,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         omitExtraData
         liveOmit
         showErrorList={false}
+        ArrayFieldTemplate={FormArrayFieldTemplate}
         FieldTemplate={FormFieldTemplate}
         formContext={{query}}
         formData={formResult}
