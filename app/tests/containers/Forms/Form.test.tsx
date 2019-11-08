@@ -7,11 +7,12 @@ import electricityAndHeatForm from '../../../../schema/data/portal/form_json/ele
 import productionForm from '../../../../schema/data/portal/form_json/production.json';
 
 describe('Form', () => {
-  it.skip('should match the snapshot with the administration form', async () => {
-    // TODO: radio button input name is a random number. Figure out why that is.
-    /** (Dylan): In node_modules/react-jsonSchema-form/lib/components/widgets/RadioWidget there is a 'var name = Math.random().toString();'
+  it('should match the snapshot with the administration form', async () => {
+    /** In node_modules/react-jsonSchema-form/lib/components/widgets/RadioWidget there is a 'var name = Math.random().toString();'
         The comment above this line says: // Generating a unique field name to identify this set of radio buttons.
+        -> This is why we are patching Math.random() to return zero for this test.
     */
+    Math.random = () => 0;
     const r = render(
       <FormComponent
         query={{
