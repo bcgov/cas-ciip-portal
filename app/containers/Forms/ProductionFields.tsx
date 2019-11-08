@@ -11,7 +11,6 @@ interface Props extends FieldProps {
 const ProductionFields: React.FunctionComponent<Props> = ({
   formData,
   query,
-  schema,
   onChange
 }) => {
   const changeField = (event, key) => {
@@ -20,9 +19,6 @@ const ProductionFields: React.FunctionComponent<Props> = ({
       [key]: (event.nativeEvent.target as HTMLInputElement).value
     });
   };
-
-  console.log('QUERY:', query);
-  console.log(schema);
 
   return (
     <>
