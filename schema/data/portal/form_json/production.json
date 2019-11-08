@@ -34,8 +34,8 @@
     }
   },
   "uiSchema": {
-    "ui:add-text": "Add a Module",
-    "ui:remove-text": "Remove Module",
+    "ui:add-text": "Add a Product",
+    "ui:remove-text": "Remove Product",
     "items": {
       "ui:field": "production"
     }
