@@ -1,113 +1,104 @@
 {
-  "title": "Electricity and Heat Information",
-  "showCompletedPage": false,
-  "completeText": "Next",
-  "pages": [
-    {
-      "elements": [
-        {
-          "type": "paneldynamic",
-          "name": "electricityAndHeat",
-          "title": " ",
-          "templateElements": [
-            {
-              "type": "paneldynamic",
-              "name": "electricity",
-              "title": "Electricity (MWh)",
-              "templateElements": [
-                {
-                  "type": "text",
-                  "name": "description",
-                  "startWithNewLine": false,
-                  "title": "Purchased",
-                  "inputType": "number"
-                },
-                {
-                  "type": "text",
-                  "name": "generatedOnsite",
-                  "startWithNewLine": false,
-                  "title": "Generated Onsite",
-                  "inputType": "number"
-                },
-                {
-                  "type": "text",
-                  "name": "consumedOnsite",
-                  "startWithNewLine": false,
-                  "title": "Consumed Onsite",
-                  "inputType": "number"
-                },
-                {
-                  "type": "text",
-                  "name": "sold",
-                  "width": "33.5%",
-                  "title": "Sold",
-                  "inputType": "number"
-                },
-                {
-                  "type": "text",
-                  "name": "quantity",
-                  "width": "66.5%",
-                  "startWithNewLine": false,
-                  "title": "Emissions from onsite generation (tCO2e)",
-                  "inputType": "number"
+  "schema": {
+    "title": "Electricity and Heat Information",
+    "type": "object",
+    "properties": {
+      "electricity": {
+        "title": "Electricity",
+        "$ref": "#/definitions/heatAndElectricity"
+        },
+      "heat": {
+        "title": "Heat",
+        "$ref": "#/definitions/heatAndElectricity"
+      }
+    },
+    "definitions": {
+      "heatAndElectricity": {
+        "type": "object",
+        "properties": {
+          "purchased": {
+            "type": "number",
+            "title": "Purchased"
+          },
+          "generatedOnSite": {
+            "type": "number",
+            "title": "Generated On-Site"
+          },
+          "consumedOnSite": {
+            "type": "number",
+            "title": "Consumed On-Site"
+          },
+          "sold": {
+            "type": "number",
+            "title": "Sold"
+          }
+        },
+        "dependencies": {
+          "generatedOnSite": {
+            "oneOf": [
+              {
+                "properties": {
+                  "generatedOnSite": { "exclusiveMinimum": 0},
+                  "onSiteEmissions": {
+                    "type": "number",
+                    "title": "Emissions from On-Site Generation (tCO2e)"
+                  }
                 }
-              ],
-              "allowAddPanel": false,
-              "allowRemovePanel": false,
-              "panelCount": 1
-            },
-            {
-              "type": "paneldynamic",
-              "name": "heat",
-              "title": "Heat (GJ)",
-              "templateElements": [
-                {
-                  "type": "text",
-                  "name": "description",
-                  "title": "Purchased",
-                  "inputType": "number"
-                },
-                {
-                  "type": "text",
-                  "name": "generatedOnsite",
-                  "startWithNewLine": false,
-                  "title": "Generated Onsite",
-                  "inputType": "number"
-                },
-                {
-                  "type": "text",
-                  "name": "consumedOnsite",
-                  "startWithNewLine": false,
-                  "title": "Consumed Onsite",
-                  "inputType": "number"
-                },
-                {
-                  "type": "text",
-                  "name": "sold",
-                  "width": "33.5%",
-                  "title": "Sold",
-                  "inputType": "number"
-                },
-                {
-                  "type": "text",
-                  "name": "quantity",
-                  "width": "66.5%",
-                  "startWithNewLine": false,
-                  "title": "Emissions from onsite generation (tCO2e)",
-                  "inputType": "number"
+              },
+              {
+                "properties": {
+                    "generatedOnSite": { "const": 0}
                 }
-              ],
-              "allowAddPanel": false,
-              "allowRemovePanel": false,
-              "panelCount": 1
-            }
-          ],
-          "allowAddPanel": false,
-          "allowRemovePanel": false,
-          "panelCount": 1
+              }
+            ]
+          }
         }
-      ]
+      }
     }
-  ],
-  "showQuestionNumbers": "off"
+  },
+  "uiSchema": {
+    "ui:order": ["electricity", "heat"],
+    "electricity": {
+      "ui:order": [
+        "purchased",
+        "sold",
+        "consumedOnSite",
+        "generatedOnSite",
+        "*"
+      ],
+      "purchased": {
+        "ui:col-md": 4
+      },
+      "generatedOnSite": {
+        "ui:col-md": 6
+      },
+      "consumedOnSite": {
+        "ui:col-md": 4
+      },
+      "sold": {
+        "ui:col-md": 4
+      },
+      "onSiteEmissions": {
+        "ui:col-md": 6
+      }
+    },
+    "heat": {
+      "ui:order": [
+        "purchased",
+        "sold",
+        "consumedOnSite",
+        "generatedOnSite",
+        "*"
+      ],
+      "purchased": {
+        "ui:col-md": 4
+      },
+      "consumedOnSite": {
+        "ui:col-md": 4
+      },
+      "sold": {
+        "ui:col-md": 4
+      }
+    }
+  }
 }
