@@ -11,6 +11,8 @@ import {Form_query} from 'Form_query.graphql';
 import {Button} from 'react-bootstrap';
 import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
+import FormArrayFieldTemplate from './FormArrayFieldTemplate';
+import FuelFields from './FuelFields';
 
 interface FormJson {
   schema: any;
@@ -24,8 +26,13 @@ interface Props {
   initialData?: any;
   initialDataSource?: string;
   onComplete?: any;
-  onValueChanged: (e: IChangeEvent<unknown>, es?: ErrorSchema) => any;
+  onValueChanged?: (e: IChangeEvent<unknown>, es?: ErrorSchema) => any;
 }
+
+const CUSTOM_FIELDS = {
+  fuel: props => <FuelFields query={props.formContext.query} {...props} />
+};
+
 // Note: https://github.com/graphile/postgraphile/issues/980
 export const FormComponent: React.FunctionComponent<Props> = ({
   query,
@@ -77,14 +84,16 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         omitExtraData
         liveOmit
         showErrorList={false}
+        ArrayFieldTemplate={FormArrayFieldTemplate}
         FieldTemplate={FormFieldTemplate}
         formContext={{query}}
         formData={formResult}
-        transformErrors={transformErrors}
+        fields={CUSTOM_FIELDS}
         customFormats={customFormats}
         schema={schema}
         uiSchema={uiSchema}
         ObjectFieldTemplate={FormObjectFieldTemplate}
+        transformErrors={transformErrors}
         onSubmit={onComplete}
         onChange={onValueChanged}
       >
@@ -100,8 +109,7 @@ export default createFragmentContainer(FormComponent, {
   query: graphql`
     fragment Form_query on Query
       @argumentDefinitions(formResultId: {type: "ID!"}) {
-      ...FormWithProductUnits_query
-      ...FormWithFuelUnits_query
+      ...FuelFields_query
       result: formResult(id: $formResultId) {
         formResult
         formJsonByFormId {

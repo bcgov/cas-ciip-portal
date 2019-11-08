@@ -1,73 +1,41 @@
 {
-  "title": "Fuel Usage",
-  "showCompletedPage": false,
-  "completeText": "Next",
-  "pages": [
-    {
-      "name": "Fuel Usage",
-      "elements": [
-        {
-          "type": "paneldynamic",
-          "name": "fuels",
-          "title": "Fuels",
-          "templateElements": [
-            {
-              "type": "dropdown",
-              "name": "fuelType",
-              "title": "Fuel Type",
-              "choices": []
-            },
-            {
-              "type": "text",
-              "name": "description",
-              "startWithNewLine": false,
-              "title": "Description"
-            },
-            {
-              "type": "text",
-              "name": "quantity",
-              "title": "Quantity",
-              "inputType": "number"
-            },
-            {
-              "type": "dropdown",
-              "name": "fuelUnits",
-              "startWithNewLine": false,
-              "title": "Units",
-              "choices": []
-            },
-            {
-              "type": "dropdown",
-              "name": "methodology",
-              "startWithNewLine": false,
-              "title": "Methodology",
-              "hasOther": true,
-              "choices": [
-                {
-                  "value": "wci 1.0",
-                  "text": "WCI 1.0"
-                },
-                {
-                  "value": "wci 2.0",
-                  "text": "WCI 2.0"
-                },
-                {
-                  "value": "wci 3.0",
-                  "text": "WCI 3.0"
-                }
-              ]
-            }
-          ],
-          "templateTitle": "Fuel #{panelIndex}",
-          "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "name",
-          "panelAddText": "Add another fuel",
-          "panelRemoveText": "Remove fuel"
+  "schema": {
+    "title": "Fuel Usage",
+    "type": "array",
+    "items": {
+      "$ref": "#/definitions/fuel"
+    },
+    "definitions": {
+      "fuel": {
+        "type": "object",
+        "properties": {
+          "fuelType": {
+            "title": "Fuel Type",
+            "type": "string"
+          },
+          "quantity": {
+            "title": "Quantity",
+            "type": "number"
+          },
+          "fuelUnits": {
+            "title": "Units",
+            "type": "string"
+          },
+          "methodology": {
+            "title": "Methodology",
+            "type": "string",
+            "enum": ["wci 1.0", "wci 2.0", "wci 3.0"],
+            "enumNames": ["WCI 1.0", "WCI 2.0", "WCI 3.0"]
+          }
         }
-      ],
-      "title": "Fuel Usage"
+      }
     }
-  ],
-  "showQuestionNumbers": "off"
+  },
+  "uiSchema": {
+    "ui:add-text": "Add a fuel",
+    "ui:remove-text": "Remove fuel",
+    "items": {
+      "ui:field": "fuel"
+    }
+  }
 }
