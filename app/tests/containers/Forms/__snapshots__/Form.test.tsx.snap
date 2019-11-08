@@ -839,7 +839,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 <label>
                   <span>
                     <input
-                      name="0.28726233486910724"
+                      name="0"
                       type="radio"
                       value="true"
                     />
@@ -855,7 +855,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 <label>
                   <span>
                     <input
-                      name="0.28726233486910724"
+                      name="0"
                       type="radio"
                       value="false"
                     />
@@ -1119,6 +1119,45 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
             type="button"
           >
             Add a fuel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    style="text-align:right"
+  >
+    <button
+      class="btn btn-primary"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;
+
+exports[`Form should match the snapshot with the production form 1`] = `
+<form
+  class="rjsf"
+>
+  <div
+    class="col-12"
+  >
+    <div
+      class="form-row"
+    >
+      <div
+        class="col-12"
+      >
+        <div
+          class="jsx-529402721 add-button-container"
+        >
+          <button
+            class="btn btn-primary"
+            type="button"
+          >
+            Add a Product
           </button>
         </div>
       </div>
