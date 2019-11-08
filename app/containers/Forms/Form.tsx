@@ -13,6 +13,7 @@ import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
 import FormArrayFieldTemplate from './FormArrayFieldTemplate';
 import FuelFields from './FuelFields';
+import ProductionFields from './ProductionFields';
 
 interface FormJson {
   schema: any;
@@ -30,7 +31,10 @@ interface Props {
 }
 
 const CUSTOM_FIELDS = {
-  fuel: props => <FuelFields query={props.formContext.query} {...props} />
+  fuel: props => <FuelFields query={props.formContext.query} {...props} />,
+  production: props => (
+    <ProductionFields query={props.formContext.query} {...props} />
+  )
 };
 
 // Note: https://github.com/graphile/postgraphile/issues/980
@@ -110,6 +114,7 @@ export default createFragmentContainer(FormComponent, {
     fragment Form_query on Query
       @argumentDefinitions(formResultId: {type: "ID!"}) {
       ...FuelFields_query
+      ...ProductionFields_query
       result: formResult(id: $formResultId) {
         formResult
         formJsonByFormId {
