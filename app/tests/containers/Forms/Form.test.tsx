@@ -1,33 +1,22 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {render} from 'enzyme';
 import {FormComponent} from '../../../containers/Forms/Form';
+import adminForm from '../../../../schema/data/portal/form_json/administration.json';
+import fuelForm from '../../../../schema/data/portal/form_json/fuel.json';
+import electricityAndHeatForm from '../../../../schema/data/portal/form_json/electricity_and_heat.json';
 
-describe('Form Loader', () => {
-  const formJson = JSON.stringify({
-    elements: [
-      {
-        name: 'customerName',
-        type: 'text',
-        title: 'What is your name?',
-        isRequired: true
-      }
-    ]
-  });
-  it('should match the snapshot', async () => {
-    const r = shallow(
+describe('Form', () => {
+  it('should match the snapshot with the administration form', async () => {
+    const r = render(
       <FormComponent
         query={{
-          json: {
-            edges: [
-              {
-                node: {
-                  id: 'form-1',
-                  rowId: 1,
-                  name: 'testForm',
-                  formJson
-                }
-              }
-            ]
+          ' $refType': 'Form_query',
+          ' $fragmentRefs': {FuelFields_query: true},
+          result: {
+            formResult: {},
+            formJsonByFormId: {
+              formJson: adminForm
+            }
           }
         }}
       />
@@ -35,23 +24,37 @@ describe('Form Loader', () => {
     expect(r).toMatchSnapshot();
   });
 
-  it('should match the snapshot when it has initial data', async () => {
-    const r = shallow(
+  it('should match the snapshot with the fuel form', async () => {
+    // TODO: figure out how to test fragment container under fuel
+    const TestRenderer = () => (
       <FormComponent
-        initialData={{customerName: 'Morty'}}
-        initialDataSource="the test"
         query={{
-          json: {
-            edges: [
-              {
-                node: {
-                  id: 'form-1',
-                  rowId: 1,
-                  name: 'testForm',
-                  formJson
-                }
-              }
-            ]
+          ' $refType': 'Form_query',
+          ' $fragmentRefs': {FuelFields_query: true},
+          result: {
+            formResult: [],
+            formJsonByFormId: {
+              formJson: fuelForm
+            }
+          }
+        }}
+      />
+    );
+    const r = render(<TestRenderer />);
+    expect(r).toMatchSnapshot();
+  });
+
+  it('should match the snapshot with the electricity and heat form', async () => {
+    const r = render(
+      <FormComponent
+        query={{
+          ' $refType': 'Form_query',
+          ' $fragmentRefs': {FuelFields_query: true},
+          result: {
+            formResult: {},
+            formJsonByFormId: {
+              formJson: electricityAndHeatForm
+            }
           }
         }}
       />

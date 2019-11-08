@@ -26,7 +26,7 @@ interface Props {
   initialData?: any;
   initialDataSource?: string;
   onComplete?: any;
-  onValueChanged: (e: IChangeEvent<unknown>, es?: ErrorSchema) => any;
+  onValueChanged?: (e: IChangeEvent<unknown>, es?: ErrorSchema) => any;
 }
 
 const CUSTOM_FIELDS = {

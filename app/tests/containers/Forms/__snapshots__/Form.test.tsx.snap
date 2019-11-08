@@ -1,5 +1,1138 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form Loader should match the snapshot 1`] = `""`;
+exports[`Form should match the snapshot with the administration form 1`] = `
+<form
+  class="rjsf"
+>
+  <div
+    class="col-12"
+  >
+    <div
+      class="form-row"
+    >
+      <div
+        class="col-12"
+      >
+        <legend>
+          Administrative Information
+        </legend>
+      </div>
+      <div
+        class="col-12"
+      >
+        <div
+          class="form-row"
+        >
+          <div
+            class="col-12"
+          >
+            <legend>
+              Operator Information
+            </legend>
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operator_name"
+            >
+              Legal name
+            </label>
+            <input
+              class="form-control"
+              id="root_operator_name"
+              label="Legal name"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operator_tradeName"
+            >
+              Trade name
+            </label>
+            <input
+              class="form-control"
+              id="root_operator_tradeName"
+              label="Trade name"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operator_naics"
+            >
+              NAICS code
+            </label>
+            <input
+              class="form-control"
+              id="root_operator_naics"
+              label="NAICS code"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operator_bcCorporateRegistryNumber"
+            >
+              BC Corporate Registry number
+            </label>
+            <input
+              class="form-control"
+              id="root_operator_bcCorporateRegistryNumber"
+              label="BC Corporate Registry number"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operator_duns"
+            >
+              DUNS number
+            </label>
+            <input
+              class="form-control"
+              id="root_operator_duns"
+              label="DUNS number"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="col-12"
+          >
+            <div
+              class="form-row"
+            >
+              <div
+                class="col-12"
+              >
+                <legend>
+                  Operator Mailing Address
+                </legend>
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_operator_mailingAddress_streetAddress"
+                >
+                  Street address
+                </label>
+                <input
+                  class="form-control"
+                  id="root_operator_mailingAddress_streetAddress"
+                  label="Street address"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_operator_mailingAddress_city"
+                >
+                  City
+                </label>
+                <input
+                  class="form-control"
+                  id="root_operator_mailingAddress_city"
+                  label="City"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_operator_mailingAddress_postalCode"
+                >
+                  Postal Code
+                </label>
+                <input
+                  class="form-control"
+                  id="root_operator_mailingAddress_postalCode"
+                  label="Postal Code"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_operator_mailingAddress_province"
+                >
+                  Province or Territory
+                </label>
+                <select
+                  class="form-control"
+                  id="root_operator_mailingAddress_province"
+                >
+                  <option
+                    selected=""
+                    value=""
+                  />
+                  <option
+                    value="Alberta"
+                  >
+                    Alberta
+                  </option>
+                  <option
+                    value="British Columbia"
+                  >
+                    British Columbia
+                  </option>
+                  <option
+                    value="Manitoba"
+                  >
+                    Manitoba
+                  </option>
+                  <option
+                    value="New Brunswick"
+                  >
+                    New Brunswick
+                  </option>
+                  <option
+                    value="Newfoundland and Labrador"
+                  >
+                    Newfoundland and Labrador
+                  </option>
+                  <option
+                    value="Northwest Territories"
+                  >
+                    Northwest Territories
+                  </option>
+                  <option
+                    value="Nova Scotia"
+                  >
+                    Nova Scotia
+                  </option>
+                  <option
+                    value="Nunavut"
+                  >
+                    Nunavut
+                  </option>
+                  <option
+                    value="Ontario"
+                  >
+                    Ontario
+                  </option>
+                  <option
+                    value="Prince Edward Island"
+                  >
+                    Prince Edward Island
+                  </option>
+                  <option
+                    value="Quebec"
+                  >
+                    Quebec
+                  </option>
+                  <option
+                    value="Saskatchewan"
+                  >
+                    Saskatchewan
+                  </option>
+                  <option
+                    value="Yukon"
+                  >
+                    Yukon
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-12"
+      >
+        <div
+          class="form-row"
+        >
+          <div
+            class="col-12"
+          >
+            <legend>
+              Operational Representative
+            </legend>
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operationalRepresentative_firstName"
+            >
+              First Name
+            </label>
+            <input
+              class="form-control"
+              id="root_operationalRepresentative_firstName"
+              label="First Name"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operationalRepresentative_lastName"
+            >
+              Last Name
+            </label>
+            <input
+              class="form-control"
+              id="root_operationalRepresentative_lastName"
+              label="Last Name"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operationalRepresentative_position"
+            >
+              Position/Title
+            </label>
+            <input
+              class="form-control"
+              id="root_operationalRepresentative_position"
+              label="Position/Title"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operationalRepresentative_email"
+            >
+              Email Address
+            </label>
+            <input
+              class="form-control"
+              id="root_operationalRepresentative_email"
+              label="Email Address"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operationalRepresentative_phone"
+            >
+              Telephone Number
+            </label>
+            <input
+              class="form-control"
+              id="root_operationalRepresentative_phone"
+              label="Telephone Number"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_operationalRepresentative_fax"
+            >
+              Fax Number
+            </label>
+            <input
+              class="form-control"
+              id="root_operationalRepresentative_fax"
+              label="Fax Number"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="col-12"
+          >
+            <div
+              class="form-row"
+            >
+              <div
+                class="col-12"
+              >
+                <legend>
+                  Operational Representative Mailing Address
+                </legend>
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_operationalRepresentative_mailingAddress_streetAddress"
+                >
+                  Street address
+                </label>
+                <input
+                  class="form-control"
+                  id="root_operationalRepresentative_mailingAddress_streetAddress"
+                  label="Street address"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_operationalRepresentative_mailingAddress_city"
+                >
+                  City
+                </label>
+                <input
+                  class="form-control"
+                  id="root_operationalRepresentative_mailingAddress_city"
+                  label="City"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_operationalRepresentative_mailingAddress_postalCode"
+                >
+                  Postal Code
+                </label>
+                <input
+                  class="form-control"
+                  id="root_operationalRepresentative_mailingAddress_postalCode"
+                  label="Postal Code"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_operationalRepresentative_mailingAddress_province"
+                >
+                  Province or Territory
+                </label>
+                <select
+                  class="form-control"
+                  id="root_operationalRepresentative_mailingAddress_province"
+                >
+                  <option
+                    selected=""
+                    value=""
+                  />
+                  <option
+                    value="Alberta"
+                  >
+                    Alberta
+                  </option>
+                  <option
+                    value="British Columbia"
+                  >
+                    British Columbia
+                  </option>
+                  <option
+                    value="Manitoba"
+                  >
+                    Manitoba
+                  </option>
+                  <option
+                    value="New Brunswick"
+                  >
+                    New Brunswick
+                  </option>
+                  <option
+                    value="Newfoundland and Labrador"
+                  >
+                    Newfoundland and Labrador
+                  </option>
+                  <option
+                    value="Northwest Territories"
+                  >
+                    Northwest Territories
+                  </option>
+                  <option
+                    value="Nova Scotia"
+                  >
+                    Nova Scotia
+                  </option>
+                  <option
+                    value="Nunavut"
+                  >
+                    Nunavut
+                  </option>
+                  <option
+                    value="Ontario"
+                  >
+                    Ontario
+                  </option>
+                  <option
+                    value="Prince Edward Island"
+                  >
+                    Prince Edward Island
+                  </option>
+                  <option
+                    value="Quebec"
+                  >
+                    Quebec
+                  </option>
+                  <option
+                    value="Saskatchewan"
+                  >
+                    Saskatchewan
+                  </option>
+                  <option
+                    value="Yukon"
+                  >
+                    Yukon
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-12"
+      >
+        <div
+          class="form-row"
+        >
+          <div
+            class="col-12"
+          >
+            <legend>
+              Facility Information
+            </legend>
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_facility_facilityName"
+            >
+              Facility Name
+            </label>
+            <input
+              class="form-control"
+              id="root_facility_facilityName"
+              label="Facility Name"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_facility_facilityType"
+            >
+              Facility Type
+            </label>
+            <select
+              class="form-control"
+              id="root_facility_facilityType"
+            >
+              <option
+                selected=""
+                value=""
+              />
+              <option
+                value="IF_a"
+              >
+                IF_a
+              </option>
+              <option
+                value="IF_b"
+              >
+                IF_b
+              </option>
+              <option
+                value="L_c"
+              >
+                L_c
+              </option>
+              <option
+                value="SFO"
+              >
+                SFO
+              </option>
+              <option
+                value="LFO"
+              >
+                LFO
+              </option>
+              <option
+                value="EIO"
+              >
+                EIO
+              </option>
+            </select>
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_facility_bcghgid"
+            >
+              BCGHG ID Number
+            </label>
+            <input
+              class="form-control"
+              id="root_facility_bcghgid"
+              label="BCGHG ID Number"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_facility_naics"
+            >
+              NAICS Code
+            </label>
+            <input
+              class="form-control"
+              id="root_facility_naics"
+              label="NAICS Code"
+              placeholder=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="col-12"
+          >
+            <div
+              class="form-row"
+            >
+              <div
+                class="col-12"
+              >
+                <legend>
+                  Facility Mailing Address
+                </legend>
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_facility_mailingAddress_streetAddress"
+                >
+                  Street address
+                </label>
+                <input
+                  class="form-control"
+                  id="root_facility_mailingAddress_streetAddress"
+                  label="Street address"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_facility_mailingAddress_city"
+                >
+                  City
+                </label>
+                <input
+                  class="form-control"
+                  id="root_facility_mailingAddress_city"
+                  label="City"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_facility_mailingAddress_postalCode"
+                >
+                  Postal Code
+                </label>
+                <input
+                  class="form-control"
+                  id="root_facility_mailingAddress_postalCode"
+                  label="Postal Code"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  class="form-label"
+                  for="root_facility_mailingAddress_province"
+                >
+                  Province or Territory
+                </label>
+                <select
+                  class="form-control"
+                  id="root_facility_mailingAddress_province"
+                >
+                  <option
+                    selected=""
+                    value=""
+                  />
+                  <option
+                    value="Alberta"
+                  >
+                    Alberta
+                  </option>
+                  <option
+                    value="British Columbia"
+                  >
+                    British Columbia
+                  </option>
+                  <option
+                    value="Manitoba"
+                  >
+                    Manitoba
+                  </option>
+                  <option
+                    value="New Brunswick"
+                  >
+                    New Brunswick
+                  </option>
+                  <option
+                    value="Newfoundland and Labrador"
+                  >
+                    Newfoundland and Labrador
+                  </option>
+                  <option
+                    value="Northwest Territories"
+                  >
+                    Northwest Territories
+                  </option>
+                  <option
+                    value="Nova Scotia"
+                  >
+                    Nova Scotia
+                  </option>
+                  <option
+                    value="Nunavut"
+                  >
+                    Nunavut
+                  </option>
+                  <option
+                    value="Ontario"
+                  >
+                    Ontario
+                  </option>
+                  <option
+                    value="Prince Edward Island"
+                  >
+                    Prince Edward Island
+                  </option>
+                  <option
+                    value="Quebec"
+                  >
+                    Quebec
+                  </option>
+                  <option
+                    value="Saskatchewan"
+                  >
+                    Saskatchewan
+                  </option>
+                  <option
+                    value="Yukon"
+                  >
+                    Yukon
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_facility_isFacilityLocationDifferent"
+            >
+              Is the facility location different from the mailing address?
+            </label>
+            <div
+              class="field-radio-group"
+              id="root_facility_isFacilityLocationDifferent"
+            >
+              <div
+                class="radio "
+              >
+                <label>
+                  <span>
+                    <input
+                      name="0.9603823602067589"
+                      type="radio"
+                      value="true"
+                    />
+                    <span>
+                       Yes
+                    </span>
+                  </span>
+                </label>
+              </div>
+              <div
+                class="radio "
+              >
+                <label>
+                  <span>
+                    <input
+                      name="0.9603823602067589"
+                      type="radio"
+                      value="false"
+                    />
+                    <span>
+                       No
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    style="text-align:right"
+  >
+    <button
+      class="btn btn-primary"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;
 
-exports[`Form Loader should match the snapshot when it has initial data 1`] = `""`;
+exports[`Form should match the snapshot with the electricity and heat form 1`] = `
+<form
+  class="rjsf"
+>
+  <div
+    class="col-12"
+  >
+    <div
+      class="form-row"
+    >
+      <div
+        class="col-12"
+      >
+        <legend>
+          Electricity and Heat Information
+        </legend>
+      </div>
+      <div
+        class="col-12"
+      >
+        <div
+          class="form-row"
+        >
+          <div
+            class="col-12"
+          >
+            <legend>
+              Electricity
+            </legend>
+          </div>
+          <div
+            class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_electricity_purchased"
+            >
+              Purchased
+            </label>
+            <input
+              class="form-control"
+              id="root_electricity_purchased"
+              label="Purchased"
+              placeholder=""
+              step="any"
+              type="number"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_electricity_sold"
+            >
+              Sold
+            </label>
+            <input
+              class="form-control"
+              id="root_electricity_sold"
+              label="Sold"
+              placeholder=""
+              step="any"
+              type="number"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_electricity_consumedOnSite"
+            >
+              Consumed On-Site
+            </label>
+            <input
+              class="form-control"
+              id="root_electricity_consumedOnSite"
+              label="Consumed On-Site"
+              placeholder=""
+              step="any"
+              type="number"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_electricity_generatedOnSite"
+            >
+              Generated On-Site
+            </label>
+            <input
+              class="form-control"
+              id="root_electricity_generatedOnSite"
+              label="Generated On-Site"
+              placeholder=""
+              step="any"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-12"
+      >
+        <div
+          class="form-row"
+        >
+          <div
+            class="col-12"
+          >
+            <legend>
+              Heat
+            </legend>
+          </div>
+          <div
+            class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_heat_purchased"
+            >
+              Purchased
+            </label>
+            <input
+              class="form-control"
+              id="root_heat_purchased"
+              label="Purchased"
+              placeholder=""
+              step="any"
+              type="number"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_heat_sold"
+            >
+              Sold
+            </label>
+            <input
+              class="form-control"
+              id="root_heat_sold"
+              label="Sold"
+              placeholder=""
+              step="any"
+              type="number"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_heat_consumedOnSite"
+            >
+              Consumed On-Site
+            </label>
+            <input
+              class="form-control"
+              id="root_heat_consumedOnSite"
+              label="Consumed On-Site"
+              placeholder=""
+              step="any"
+              type="number"
+              value=""
+            />
+          </div>
+          <div
+            class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+          >
+            <label
+              class="form-label"
+              for="root_heat_generatedOnSite"
+            >
+              Generated On-Site
+            </label>
+            <input
+              class="form-control"
+              id="root_heat_generatedOnSite"
+              label="Generated On-Site"
+              placeholder=""
+              step="any"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    style="text-align:right"
+  >
+    <button
+      class="btn btn-primary"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;
+
+exports[`Form should match the snapshot with the fuel form 1`] = `
+<form
+  class="rjsf"
+>
+  <div
+    class="col-12"
+  >
+    <div
+      class="form-row"
+    >
+      <div
+        class="col-12"
+      >
+        <div
+          class="jsx-529402721 add-button-container"
+        >
+          <button
+            class="btn btn-primary"
+            type="button"
+          >
+            Add a fuel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    style="text-align:right"
+  >
+    <button
+      class="btn btn-primary"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;
