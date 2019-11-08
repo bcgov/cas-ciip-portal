@@ -1136,3 +1136,42 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
   </div>
 </form>
 `;
+
+exports[`Form should match the snapshot with the production form 1`] = `
+<form
+  class="rjsf"
+>
+  <div
+    class="col-12"
+  >
+    <div
+      class="form-row"
+    >
+      <div
+        class="col-12"
+      >
+        <div
+          class="jsx-529402721 add-button-container"
+        >
+          <button
+            class="btn btn-primary"
+            type="button"
+          >
+            Add a Product
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    style="text-align:right"
+  >
+    <button
+      class="btn btn-primary"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;
