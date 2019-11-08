@@ -24,9 +24,16 @@ const createProductMutation = async (
   environment: RelayModernEnvironment,
   variables: createProductMutationVariables
 ) => {
+  // Optimistic response
+  const createProductPayload = {
+    createProduct: {
+      product: variables.input.product
+    }
+  };
+
   return new BaseMutation<createProductMutationType>(
     'create-product-mutation'
-  ).performMutation(environment, mutation, variables);
+  ).performMutation(environment, mutation, variables, createProductPayload);
 };
 
 export default createProductMutation;
