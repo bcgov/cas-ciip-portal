@@ -86,7 +86,7 @@ const ProductionFields: React.FunctionComponent<Props> = ({
             onChange={e => {
               onChange({
                 ...formData,
-                quantity: Number(
+                associatedEmissions: Number(
                   (e.nativeEvent.target as HTMLInputElement).value
                 )
               });
@@ -104,9 +104,7 @@ const ProductionFields: React.FunctionComponent<Props> = ({
             onChange={e => {
               onChange({
                 ...formData,
-                quantity: Number(
-                  (e.nativeEvent.target as HTMLInputElement).value
-                )
+                comments: (e.nativeEvent.target as HTMLInputElement).value
               });
             }}
           />
