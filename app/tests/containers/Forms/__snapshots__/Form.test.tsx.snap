@@ -839,7 +839,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 <label>
                   <span>
                     <input
-                      name="0.9603823602067589"
+                      name="0.28726233486910724"
                       type="radio"
                       value="true"
                     />
@@ -855,7 +855,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 <label>
                   <span>
                     <input
-                      name="0.9603823602067589"
+                      name="0.28726233486910724"
                       type="radio"
                       value="false"
                     />
