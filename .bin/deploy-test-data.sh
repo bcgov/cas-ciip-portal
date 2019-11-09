@@ -124,15 +124,15 @@ _psql <<EOF
 begin;
 with rows as (
 insert into ggircs_portal.form_json
-  (id, name, form_json, prepopulate_from_swrs, prepopulate_from_ciip)
+  (id, name, form_json, prepopulate_from_swrs, prepopulate_from_ciip, form_result_init_function)
   overriding system value
 values
-  (1, 'Admin', '$(cat "./data/portal/form_json/administration.json")'::jsonb, true, true),
-  (2, 'Emission', '$(cat "./data/portal/form_json/emission.json")'::jsonb, true, false),
-  (3, 'Fuel', '$(cat "./data/portal/form_json/fuel.json")'::jsonb, true, false),
-  (4, 'Electricity and Heat', '$(cat "./data/portal/form_json/electricity_and_heat.json")'::jsonb, false, false),
-  (5, 'Production', '$(cat "./data/portal/form_json/production.json")'::jsonb, false, false),
-  (6, 'Statement of Certification', '$(cat "./data/portal/form_json/statement_of_certification.json")'::jsonb, false, false)
+  (1, 'Admin', '$(cat "./data/portal/form_json/administration.json")'::jsonb, true, true, 'init_application_administration_form_result'),
+  (2, 'Emission', '$(cat "./data/portal/form_json/emission.json")'::jsonb, true, false, null),
+  (3, 'Fuel', '$(cat "./data/portal/form_json/fuel.json")'::jsonb, true, false, null),
+  (4, 'Electricity and Heat', '$(cat "./data/portal/form_json/electricity_and_heat.json")'::jsonb, false, false, null),
+  (5, 'Production', '$(cat "./data/portal/form_json/production.json")'::jsonb, false, false, null),
+  (6, 'Statement of Certification', '$(cat "./data/portal/form_json/statement_of_certification.json")'::jsonb, false, false, null)
 on conflict(id) do update
 set name=excluded.name, form_json=excluded.form_json,
     prepopulate_from_ciip=excluded.prepopulate_from_ciip,

@@ -46,3 +46,4 @@ function_application_application_status [table_application_status table_applicat
 function_application_ordered_form_results [table_application table_form_result table_ciip_application_wizard] 2019-10-30T22:29:53Z Dylan Leard <dleard@dleard-Aspire-V5-591G> # Function to order form results on an application
 type_jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
 function_session [schema_ggircs_portal type_jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
+function_init_application_administration_form_result 2019-11-08T22:46:02Z Matthieu Foucault <matthieu@button.is> # add function to initialize admin form result
