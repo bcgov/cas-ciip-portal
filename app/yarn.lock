@@ -13116,10 +13116,10 @@ survey-react@^1.1.1:
   resolved "https://registry.yarnpkg.com/survey-react/-/survey-react-1.1.17.tgz#801f66eefaf17dc27a0a941223ae96c532929315"
   integrity sha512-saBUUSBJWl7WuFEbgSke+xzJLq7mUYnZW104pqlnKiC+TqawYraCz5kAOFKeB6VRPDDkIRwlNwCkW+ogP4h8fQ==
 
-surveyjs-widgets@^1.1.17:
-  version "1.1.17"
-  resolved "https://registry.yarnpkg.com/surveyjs-widgets/-/surveyjs-widgets-1.1.17.tgz#9e57a5f4653425ff7fa261edef000ab4810cd24b"
-  integrity sha512-L+lA7gOwoJwP/oX3JG7msBPhh02TZGdog5DSghjbInuqE6XGcW8oZq5uNVemVJ991pHkWqxA97ehE+vTLWNo1A==
+surveyjs-widgets@^1.1.19:
+  version "1.1.19"
+  resolved "https://registry.yarnpkg.com/surveyjs-widgets/-/surveyjs-widgets-1.1.19.tgz#c4d611448fb506dbbe4c85c8c51ded8a5a83e5d3"
+  integrity sha512-rhfisK+cU/mZ4fOgjAZ3i1LIJFxBkc3xzTZ4moR/1Kj7ndDCUbBuaFQUSzf1Jh3JKwxy0apRpLltKCiHvAMPGQ==
   dependencies:
     bootstrap-slider "^10.0.0"
     easy-autocomplete "^1.3.5"
