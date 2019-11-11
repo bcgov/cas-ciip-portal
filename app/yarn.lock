@@ -13111,10 +13111,10 @@ supports-hyperlinks@^1.0.1:
     has-flag "^2.0.0"
     supports-color "^5.0.0"
 
-survey-react@^1.1.1:
-  version "1.1.17"
-  resolved "https://registry.yarnpkg.com/survey-react/-/survey-react-1.1.17.tgz#801f66eefaf17dc27a0a941223ae96c532929315"
-  integrity sha512-saBUUSBJWl7WuFEbgSke+xzJLq7mUYnZW104pqlnKiC+TqawYraCz5kAOFKeB6VRPDDkIRwlNwCkW+ogP4h8fQ==
+survey-react@^1.1.19:
+  version "1.1.19"
+  resolved "https://registry.yarnpkg.com/survey-react/-/survey-react-1.1.19.tgz#554a49971bf0dbc48c81409969f27c5e9149d530"
+  integrity sha512-7u1qydl28FlJ0+hseL5wFiFppTGcvvJYbCP/tSUEI2VhF9rPlv8akxX3Pd7el3WU+AjWSc1xRS9mLLZ2Ui1mwQ==
 
 surveyjs-widgets@^1.1.17:
   version "1.1.17"
