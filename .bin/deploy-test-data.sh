@@ -128,8 +128,8 @@ insert into ggircs_portal.form_json
   overriding system value
 values
   (1, 'Admin', '$(cat "./data/portal/form_json/administration.json")'::jsonb, true, true, 'init_application_administration_form_result'),
-  (2, 'Emission', '$(cat "./data/portal/form_json/emission.json")'::jsonb, true, false, null),
-  (3, 'Fuel', '$(cat "./data/portal/form_json/fuel.json")'::jsonb, true, false, null),
+  (2, 'Emission', '$(cat "./data/portal/form_json/emission.json")'::jsonb, true, false, 'init_application_emission_form_result'),
+  (3, 'Fuel', '$(cat "./data/portal/form_json/fuel.json")'::jsonb, true, false, 'init_application_fuel_form_result'),
   (4, 'Electricity and Heat', '$(cat "./data/portal/form_json/electricity_and_heat.json")'::jsonb, false, false, null),
   (5, 'Production', '$(cat "./data/portal/form_json/production.json")'::jsonb, false, false, null),
   (6, 'Statement of Certification', '$(cat "./data/portal/form_json/statement_of_certification.json")'::jsonb, false, false, null)
