@@ -421,6 +421,7 @@ workflows:
       - test_database:
           requires:
             - tools
+            - schema
       # - test-local-cluster:
       #     context: cas-pipeline
       #     requires:
