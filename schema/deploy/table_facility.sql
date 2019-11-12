@@ -27,6 +27,7 @@ begin;
 
   --Todo: refactor to add address table in CIIP
 
+    comment on table ggircs_portal.facility is 'Table containing information on an facility that has applied for CIIP';
     comment on column ggircs_portal.facility.id is 'unique id for the facility';
     comment on column ggircs_portal.facility.organisation_id is 'the id of the organization responsible for that facility';
     comment on column ggircs_portal.facility.report_id is 'report id from swrs';

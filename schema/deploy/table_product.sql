@@ -18,6 +18,7 @@ create table ggircs_portal.product (
   deleted_by varchar(1000)
 );
 
+comment on table ggircs_portal.product is 'Table containing the information for a CIIP product';
 comment on column ggircs_portal.product.id is 'Unique ID for the product';
 comment on column ggircs_portal.product.name is 'The name of the product';
 comment on column ggircs_portal.product.description is 'The description of the product';

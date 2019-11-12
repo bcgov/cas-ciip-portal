@@ -27,6 +27,7 @@ create trigger _100_timestamps
 create unique index user_email_address_uindex
   on ggircs_portal.user (email_address);
 
+comment on table ggircs_portal.user is 'Table containing the benchmark and eligibility threshold for a product';
 comment on column ggircs_portal.user.id is 'Unique ID for the user';
 comment on column ggircs_portal.user.uuid is 'Universally Unique ID for the user used for auth';
 comment on column ggircs_portal.user.first_name is 'User''s first name';

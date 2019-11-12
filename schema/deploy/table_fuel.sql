@@ -18,6 +18,7 @@ create table ggircs_portal.fuel (
   deleted_by varchar(1000)
 );
 
+comment on table ggircs_portal.fuel is 'Table containing information on fuel';
 comment on column ggircs_portal.fuel.id is 'Unique ID for the fuel';
 comment on column ggircs_portal.fuel.name is 'The name of the fuel';
 comment on column ggircs_portal.fuel.description is 'The description of the fuel';

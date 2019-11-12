@@ -16,6 +16,7 @@ begin;
 
   create unique index user_organisation_user_id_organisation_id_uindex on ggircs_portal.user_organisation(user_id, organisation_id);
 
+  comment on table ggircs_portal.user_organisation is 'Table containing the access rights for a user to report on behalf of an organisation';
   comment on column ggircs_portal.user_organisation.user_id is 'foreign key that references the user table';
   comment on column ggircs_portal.user_organisation.organisation_id is 'foreign key that references the organisation table';
   comment on column ggircs_portal.user_organisation.status is 'the status of user access to the organisation';

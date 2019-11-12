@@ -23,6 +23,7 @@ begin;
 
   --Todo: refactor to add address table in CIIP
 
+  comment on table ggircs_portal.organisation is 'Table containing information on an organisaiton that has applied for CIIP';
   comment on column ggircs_portal.organisation.id is 'unique if for the organisation';
   comment on column ggircs_portal.organisation.report_id is 'report id from swrs';
   comment on column ggircs_portal.organisation.swrs_report_id is 'swrs report id from swrs';

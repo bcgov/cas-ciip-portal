@@ -25,6 +25,7 @@ create trigger _100_timestamps
 create unique index form_json_id_uindex
   on ggircs_portal.form_json (id);
 
+comment on table ggircs_portal.form_json is 'Table containing the structure of each form to be filled out when applying for CIIP';
 comment on column ggircs_portal.form_json.id is 'Unique ID for the form';
 comment on column ggircs_portal.form_json.name is 'Name for the form';
 comment on column ggircs_portal.form_json.form_json is 'The JSON object that creates the form';
