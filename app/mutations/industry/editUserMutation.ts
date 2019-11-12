@@ -1,5 +1,10 @@
 import {graphql} from 'react-relay';
+import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import BaseMutation from '../BaseMutation';
+import {
+  editUserMutation as editUserMutationType,
+  editUserMutationVariables
+} from '../../__generated__/editUserMutation.graphql';
 
 const mutation = graphql`
   mutation editUserMutation($input: UpdateUserByRowIdInput!) {
@@ -7,11 +12,15 @@ const mutation = graphql`
       user {
         rowId
       }
+      clientMutationId
     }
   }
 `;
 
-const editUserMutation = async (environment, variables) => {
+const editUserMutation = async (
+  environment: RelayModernEnvironment,
+  variables: editUserMutationVariables
+) => {
   // Optimistic response
   const updateUserPayload = {
     updateUserByRowId: {
@@ -22,7 +31,7 @@ const editUserMutation = async (environment, variables) => {
     }
   };
 
-  const m = new BaseMutation('edit-user-mutation');
+  const m = new BaseMutation<editUserMutationType>('edit-user-mutation');
   return m.performMutation(environment, mutation, variables, updateUserPayload);
 };
 

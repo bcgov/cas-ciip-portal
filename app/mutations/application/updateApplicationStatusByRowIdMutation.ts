@@ -24,10 +24,24 @@ const updateApplicationStatusByRowIdMutation = async (
   environment: RelayModernEnvironment,
   variables: updateApplicationStatusByRowIdMutationVariables
 ) => {
+  const updateApplicationStatusPayload = {
+    updateApplicationStatus: {
+      applicationStatus: {
+        rowId: variables.input.rowId,
+        ...variables.input.applicationStatusPatch
+      }
+    }
+  };
+
   const m = new BaseMutation<updateApplicationStatusByRowIdMutationType>(
     'update-application-status-by-row-id-mutation'
   );
-  return m.performMutation(environment, mutation, variables);
+  return m.performMutation(
+    environment,
+    mutation,
+    variables,
+    updateApplicationStatusPayload
+  );
 };
 
 export default updateApplicationStatusByRowIdMutation;
