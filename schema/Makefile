@@ -22,7 +22,6 @@ PG_PROVE=pg_prove -h localhost
 test:
 	@@$(MAKE) -s $(MAKEFLAGS) createdb;
 	@@$(MAKE) -s $(MAKEFLAGS) deploy_ggircs;
-	@@$(MAKE) -s $(MAKEFLAGS) deploy;
 	@@$(MAKE) -s $(MAKEFLAGS) revert;
 	@@$(MAKE) -s $(MAKEFLAGS) deploy;
 	@@$(MAKE) -s $(MAKEFLAGS) prove_unit;
@@ -135,6 +134,25 @@ verify_ready:
 
 .PHONY: verify
 verify: verify_installed verify_ready
+
+pgtap:
+	# clone the source for pgTAP
+	@@$(GIT) clone https://github.com/theory/pgtap.git && \
+		pushd pgtap && \
+		$(GIT) checkout v1.0.0;
+
+.PHONY: install_pgtap
+install_pgtap: pgtap
+	$(info install pgTAP into postgres)
+	@@$(MAKE) -C pgtap -s $(MAKEFLAGS)
+	@@$(MAKE) -C pgtap -s $(MAKEFLAGS) installcheck
+
+ifeq (error,$(shell /bin/test -w $(PG_SHAREDIR)/extension || echo error))
+	@@echo "FATAL: The current user does not have permission to write to $(PG_SHAREDIR)/extension and install pgTAP.\
+ It needs to be installed by a user having write access to that directory, e.g. with 'sudo make -C pgtap install'" && exit 1
+else
+	@@$(MAKE) -C pgtap -s $(MAKEFLAGS) install
+endif
 
 .PHONY: install_cpanm
 install_cpanm:
