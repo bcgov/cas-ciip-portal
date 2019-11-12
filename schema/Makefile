@@ -17,6 +17,7 @@ PG_MIN_VERSION=9.1
 PG_ROLE=${shell whoami}
 TEST_DB=ggircs_test
 PG_PROVE=pg_prove -h localhost
+PG_SHAREDIR=$(shell pg_config --sharedir)
 
 .PHONY: test
 test:
@@ -137,9 +138,9 @@ verify: verify_installed verify_ready
 
 pgtap:
 	# clone the source for pgTAP
-	@@$(GIT) clone https://github.com/theory/pgtap.git && \
+	git clone https://github.com/theory/pgtap.git && \
 		pushd pgtap && \
-		$(GIT) checkout v1.0.0;
+		git checkout v1.0.0;
 
 .PHONY: install_pgtap
 install_pgtap: pgtap
