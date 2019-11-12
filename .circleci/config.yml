@@ -339,6 +339,36 @@ jobs:
           command: make build_app
           name: Build image on the remote cluster
 
+  test_database:
+    docker:
+      - image: wenzowski/sqitch:0.9999
+      - image: wenzowski/postgres:11.2
+    steps:
+      - checkout
+      - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
+      - run:
+          name: Create testing db
+          command: |
+            RETRIES=5
+            until psql -h localhost -U postgres -d postgres -c "select 1" > /dev/null 2>&1 || [ $RETRIES -eq 0 ]; do
+              echo "Waiting for postgres server, $((RETRIES--)) remaining attempts..."
+              sleep 1
+            done
+            createuser sqitch  -U postgres -h localhost
+            createdb -O sqitch sqitch -U postgres -h localhost
+            createdb -O sqitch ggircs_test -U postgres -h localhost
+      - run:
+          name: Test database using Make
+          command: |
+            source ~/.bashrc
+            pushd schema
+            make test PSQL="psql -h localhost" CI_NO_PIPELINE=true
+            popd
+
 workflows:
   version: 2
   test:
