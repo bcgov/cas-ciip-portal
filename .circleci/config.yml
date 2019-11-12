@@ -362,6 +362,7 @@ jobs:
           command: |
             source ~/.bashrc
             pushd schema
+            cpan TAP::Parser::SourceHandler::pgTAP
             sudo make install_pgtap
             make test PSQL="psql -h localhost" CI_NO_PIPELINE=true
             popd

@@ -140,12 +140,13 @@ pgtap:
 	# clone the source for pgTAP
 	git clone https://github.com/theory/pgtap.git && \
 		cd pgtap && \
-		git checkout v1.0.0;
+		git checkout v1.0.0 && \
+		cd ..;
 
 .PHONY: install_pgtap
 install_pgtap: pgtap
 	$(info install pgTAP into postgres)
-	@@$(MAKE) -C pgtap -s $(MAKEFLAGS)
+	@@sudo $(MAKE) -C pgtap -s $(MAKEFLAGS)
 	@@$(MAKE) -C pgtap -s $(MAKEFLAGS) installcheck
 
 ifeq (error,$(shell /bin/test -w $(PG_SHAREDIR)/extension || echo error))
