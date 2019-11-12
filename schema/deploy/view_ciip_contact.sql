@@ -14,12 +14,12 @@ begin;
     )
     select
        x.id,
-       x.contact_data ->> 'fax' as fax,
-       x.contact_data ->> 'phone' as phone,
-       x.contact_data ->> 'position' as position,
-       x.contact_data ->> 'lastName' as last_name,
-       x.contact_data ->> 'firstName' as first_name,
-       x.contact_data ->> 'emailAddress' as email_address
+       (x.contact_data ->> 'fax')::varchar(1000) as fax,
+       (x.contact_data ->> 'phone')::varchar(1000) as phone,
+       (x.contact_data ->> 'position')::varchar(1000) as position,
+       (x.contact_data ->> 'lastName')::varchar(1000) as last_name,
+       (x.contact_data ->> 'firstName')::varchar(1000) as first_name,
+       (x.contact_data ->> 'emailAddress')::varchar(1000) as email_address
        -- add contact address to address view
     from x
  );

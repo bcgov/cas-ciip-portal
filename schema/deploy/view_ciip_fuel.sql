@@ -15,11 +15,11 @@ begin;
     select
        x.id,
        (x.fuel_data ->> 'quantity')::numeric as quantity,
-       x.fuel_data ->> 'fuelType' as fuel_type,
-       x.fuel_data ->> 'fuelUnits' as fuel_units,
-       x.fuel_data ->> 'methodology' as methodology,
-       x.fuel_data ->> 'methodology-Comment' as methodology_comment,
-       x.fuel_data ->> 'description' as description
+       (x.fuel_data ->> 'fuelType')::varchar(1000) as fuel_type,
+       (x.fuel_data ->> 'fuelUnits')::varchar(1000) as fuel_units,
+       (x.fuel_data ->> 'methodology')::varchar(1000) as methodology,
+       (x.fuel_data ->> 'methodology-Comment')::varchar(10000) as methodology_comment,
+       (x.fuel_data ->> 'description')::varchar(10000) as description
     from x
  );
 

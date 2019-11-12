@@ -15,13 +15,13 @@ begin;
     )
     select
        x.id,
-       x.certifier_data ->> 'fax' as fax,
-       x.certifier_data ->> 'phone' as phone,
-       x.certifier_data ->> 'position' as position,
-       x.certifier_data ->> 'lastName' as last_name,
-       x.certifier_data ->> 'firstName' as first_name,
-       x.certifier_data ->> 'emailAddress' as email_address,
-       x.certifier_data ->> 'certifierName' as certifier_name,
+       (x.certifier_data ->> 'fax')::varchar(1000) as fax,
+       (x.certifier_data ->> 'phone')::varchar(1000) as phone,
+       (x.certifier_data ->> 'position')::varchar(1000) as position,
+       (x.certifier_data ->> 'lastName')::varchar(1000) as last_name,
+       (x.certifier_data ->> 'firstName')::varchar(1000) as first_name,
+       (x.certifier_data ->> 'emailAddress')::varchar(1000) as email_address,
+       (x.certifier_data ->> 'certifierName')::varchar(1000) as certifier_name,
        (x.certifier_data ->> 'date')::date as certification_date
        -- add certifier address to address view
     from x

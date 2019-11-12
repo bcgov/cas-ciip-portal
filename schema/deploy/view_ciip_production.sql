@@ -26,10 +26,10 @@ begin;
        x.id,
        (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
        (x.production_data ->> 'quantity')::numeric as quantity,
-       x.production_data ->> 'processingUnit' as product,
-       x.production_data ->> 'units' as fuel_units,
-       x.production_data ->> 'comments' as comments,
-       x.production_data ->> 'associatedEmissions' as associated_emissions,
+       (x.production_data ->> 'processingUnit')::varchar(1000) as product,
+       (x.production_data ->> 'units')::varchar(1000) as fuel_units,
+       (x.production_data ->> 'comments')::varchar(10000) as comments,
+       (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions,
        (x.production_data ->> 'attributableFuelPercentage')::numeric as attributable_fuel_percentage
     from x
  );

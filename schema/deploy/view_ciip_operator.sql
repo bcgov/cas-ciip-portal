@@ -17,8 +17,8 @@ create view ggircs_portal.ciip_operator as (
        x.id,
        (x.operator_data ->> 'bcCorporateRegistryNumber')::numeric as bc_corporate_registry_number,
        (x.operator_data ->> 'naicsCode')::numeric as naics_code,
-       x.operator_data ->> 'operatorName' as operator_name,
-       x.operator_data ->> 'operatorTradeName' as operator_trade_name,
+       (x.operator_data ->> 'operatorName')::varchar(1000) as operator_name,
+       (x.operator_data ->> 'operatorTradeName')::varchar(1000) as operator_trade_name,
        (x.operator_data ->> 'dunsNumber')::numeric as duns_number
        -- add operator address to address view
     from x
