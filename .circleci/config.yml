@@ -68,7 +68,7 @@ jobs:
       - run:
           name: Install pgTap
           command: |
-            source ~/.bashrd
+            source ~/.bashrc
             cpan TAP::Parser::SourceHandler::pgTAP
       - save_cache:
           name: Save Cpan Package Cache
