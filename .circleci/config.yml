@@ -358,12 +358,19 @@ jobs:
             pg_ctl start
             createdb `whoami`
       - run:
+          name: Get pgTAP
+          command: |
+            sudo apt-get install parallel libgetopt-declare-perl \
+            && echo yes | sudo cpan App::cpanminus \
+            && echo yes | sudo cpan TAP::Parser::SourceHandler::pgTAP
+      - run:
+          name: Check pgTAP install
+          command: perl -MTAP::Parser::SourceHandler::pgTAP -e 'print;'
+      - run:
           name: Test database using Make
           command: |
             source ~/.bashrc
-            cpan TAP::Parser::SourceHandler::pgTAP
             pushd schema
-            make install_pgtap
             make test PSQL="psql -h localhost" CI_NO_PIPELINE=true
             popd
 
