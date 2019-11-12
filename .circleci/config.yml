@@ -65,11 +65,6 @@ jobs:
             source ~/.bashrc # load perl config (just written by cpan) & asdf
             cat .tool-versions | xargs -n2 asdf global # make this project's versions global
             make install_perl_tools
-      - run:
-          name: Install pgTap
-          command: |
-            source ~/.bashrc
-            sudo cpan TAP::Parser::SourceHandler::pgTAP
       - save_cache:
           name: Save Cpan Package Cache
           key: cpanm-packages-b-{{ checksum "schema/cpanfile" }}
@@ -366,8 +361,8 @@ jobs:
           name: Test database using Make
           command: |
             source ~/.bashrc
-            sudo cpan TAP::Parser::SourceHandler::pgTAP
             pushd schema
+            sudo make install_pg_tap
             make test PSQL="psql -h localhost" CI_NO_PIPELINE=true
             popd
 
