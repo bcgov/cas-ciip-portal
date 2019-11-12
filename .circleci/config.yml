@@ -340,9 +340,9 @@ jobs:
           name: Build image on the remote cluster
 
   test_database:
-    docker:
-      - image: wenzowski/sqitch:0.9999
-      - image: wenzowski/postgres:11.2
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
     steps:
       - checkout
       - run:
@@ -418,7 +418,9 @@ workflows:
           context: cas-pipeline
           requires:
             - pathfinder_configure
-      - test_database
+      - test_database:
+          requires:
+            - tools
       # - test-local-cluster:
       #     context: cas-pipeline
       #     requires:
