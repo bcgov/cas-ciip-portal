@@ -11,10 +11,10 @@ export const UserOrganisationComponent = props => {
   }
 
   const statusBadgeColor = {
-    attention: 'warning',
+    rejected: 'warning',
     pending: 'info',
-    expired: 'danger',
-    active: 'success'
+    // Expired: 'danger',
+    approved: 'success'
   };
 
   /** TODO: INTENDED FOR DEMO ONLY. To be removed */
@@ -24,7 +24,7 @@ export const UserOrganisationComponent = props => {
       input: {
         id,
         userOrganisationPatch: {
-          status: 'active'
+          status: 'approved'.toUpperCase()
         }
       }
     };
@@ -35,7 +35,7 @@ export const UserOrganisationComponent = props => {
     console.log(response);
   };
 
-  if (userOrganisation.status !== 'active') {
+  if (userOrganisation.status !== 'approved') {
     setTimeout(setStatusActive, 4000, userOrganisation.id);
   }
   /** End removal block */
@@ -54,7 +54,7 @@ export const UserOrganisationComponent = props => {
       </td>
       <td>
         {' '}
-        {userOrganisation.status === 'active' ? (
+        {userOrganisation.status === 'APPROVED' ? (
           <Link
             href={{
               pathname: '/user-organisation-facilities',
