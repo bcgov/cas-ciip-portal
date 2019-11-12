@@ -107,7 +107,6 @@
     "graphql": "^14.4.2",
     "graphql-relay": "^0.6.0",
     "isomorphic-fetch": "^2.2.1",
-    "jquery": "^3.4.1",
     "keycloak-connect": "^7.0.0",
     "next": "^9.1.1",
     "pg": "^7.11.0",
@@ -123,9 +122,7 @@
     "react-relay-network-modern": "^4.1.0",
     "react-relay-network-modern-ssr": "^1.2.4",
     "relay-runtime": "^7.0.0",
-    "sinon": "^7.4.1",
-    "survey-react": "^1.1.1",
-    "surveyjs-widgets": "^1.1.17"
+    "sinon": "^7.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
