@@ -360,8 +360,7 @@ jobs:
       - run:
           name: Get pgTAP
           command: |
-            sudo apt-get install parallel libgetopt-declare-perl \
-            && echo yes | sudo cpan App::cpanminus \
+            sudo cpan App::cpanminus \
             && echo yes | sudo cpan TAP::Parser::SourceHandler::pgTAP
       - run:
           name: Check pgTAP install
