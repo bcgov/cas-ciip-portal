@@ -69,7 +69,7 @@ jobs:
           name: Install pgTap
           command: |
             source ~/.bashrc
-            cpan TAP::Parser::SourceHandler::pgTAP
+            sudo cpan TAP::Parser::SourceHandler::pgTAP
       - save_cache:
           name: Save Cpan Package Cache
           key: cpanm-packages-b-{{ checksum "schema/cpanfile" }}
@@ -366,6 +366,7 @@ jobs:
           name: Test database using Make
           command: |
             source ~/.bashrc
+            sudo cpan TAP::Parser::SourceHandler::pgTAP
             pushd schema
             make test PSQL="psql -h localhost" CI_NO_PIPELINE=true
             popd
