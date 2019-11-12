@@ -20,7 +20,7 @@ jobs:
       - restore_cache:
           name: Restore asdf Tools Cache
           keys:
-            - tool-versions-{{ checksum ".tool-versions" }}-v1
+            - tool-versions-{{ checksum ".tool-versions" }}-v2
       - run:
           name: Install tools via asdf
           command: |
@@ -30,9 +30,10 @@ jobs:
             echo -e '\nexport BASH_ENV="~/.asdf/asdf.sh"' >> ~/.bashrc
             source ~/.bashrc
             make install_asdf_tools
+            make -C schema install_pgtap
       - save_cache:
           name: Save asdf Tools Cache
-          key: tool-versions-{{ checksum ".tool-versions" }}-v1
+          key: tool-versions-{{ checksum ".tool-versions" }}-v2
           paths:
             - ~/.asdf
       - restore_cache:
@@ -357,14 +358,6 @@ jobs:
             source ~/.bashrc
             pg_ctl start
             createdb `whoami`
-      - run:
-          name: Get pgTAP
-          command: |
-            sudo cpan App::cpanminus \
-            && echo yes | sudo cpan TAP::Parser::SourceHandler::pgTAP
-      - run:
-          name: Check pgTAP install
-          command: perl -MTAP::Parser::SourceHandler::pgTAP -e 'print;'
       - run:
           name: Test database using Make
           command: |
