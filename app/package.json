@@ -166,7 +166,7 @@
     "jest-raw-loader": "^1.0.1",
     "nock": "^9.6.1",
     "node-fetch": "^2.6.0",
-    "react-test-renderer": "^16.10.2",
+    "react-test-renderer": "^16.11.0",
     "relay-compiler": "^7.0.0",
     "relay-compiler-language-typescript": "^10.1.0",
     "relay-test-utils": "^7.0.0",
