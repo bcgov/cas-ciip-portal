@@ -139,7 +139,7 @@ verify: verify_installed verify_ready
 pgtap:
 	# clone the source for pgTAP
 	git clone https://github.com/theory/pgtap.git && \
-		pushd pgtap && \
+		cd pgtap && \
 		git checkout v1.0.0;
 
 .PHONY: install_pgtap

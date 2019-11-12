@@ -383,6 +383,9 @@ workflows:
       - schema:
           requires:
             - tools
+      - test_database:
+          requires:
+            - tools
       - compile:
           requires:
             - tools
@@ -415,10 +418,6 @@ workflows:
           context: cas-pipeline
           requires:
             - pathfinder_configure
-      - test_database:
-          requires:
-            - tools
-            - schema
       # - test-local-cluster:
       #     context: cas-pipeline
       #     requires:
