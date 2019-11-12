@@ -358,17 +358,6 @@ jobs:
             pg_ctl start
             createdb `whoami`
       - run:
-          name: Create testing db
-          command: |
-            RETRIES=5
-            until psql -h localhost -U postgres -d postgres -c "select 1" > /dev/null 2>&1 || [ $RETRIES -eq 0 ]; do
-              echo "Waiting for postgres server, $((RETRIES--)) remaining attempts..."
-              sleep 1
-            done
-            createuser sqitch  -U postgres -h localhost
-            createdb -O sqitch sqitch -U postgres -h localhost
-            createdb -O sqitch ggircs_test -U postgres -h localhost
-      - run:
           name: Test database using Make
           command: |
             source ~/.bashrc
