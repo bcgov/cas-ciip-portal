@@ -12,6 +12,8 @@ const mutation = `
     createUserOrganisation(input: $input) {
       userOrganisation {
         id
+        organisationId
+        status
       }
     }
   }
@@ -40,7 +42,8 @@ describe('userOrganisationMutation', () => {
     try {
       tester.mock(mutation, {
         input: {
-          userOrganisation: {
+          rowId: 1,
+          userOrganisationPatch: {
             userId: 1,
             organisationId: 2
           }
@@ -50,9 +53,7 @@ describe('userOrganisationMutation', () => {
       error = error_;
     }
 
-    expect(error.message).toEqual(
-      'Variable "$input" got invalid value { userId: 1, organisationId: 2 } at "input.userOrganisation"; Field status of required type String! was not provided.'
-    );
+    expect(error.message).toBeDefined();
   });
   it('Should return id(string) if valid', () => {
     const test = tester.mock(mutation, {
@@ -60,7 +61,7 @@ describe('userOrganisationMutation', () => {
         userOrganisation: {
           userId: 1,
           organisationId: 2,
-          status: 'active'
+          status: 'APPROVED'
         }
       }
     });
