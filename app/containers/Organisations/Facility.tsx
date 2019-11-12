@@ -19,7 +19,9 @@ export const FacilityComponent = ({relay, facility}) => {
     const response = await createApplicationMutation(environment, variables);
     console.log(response);
     router.push({
-      pathname: '/ciip-application',
+      pathname: facility.hasSwrsReport
+        ? '/ciip-application-swrs-import'
+        : '/ciip-application',
       query: {
         applicationId: response.createApplicationMutationChain.application.id
       }
@@ -114,10 +116,7 @@ export default createFragmentContainer(FacilityComponent, {
       facilityProvince
       facilityPostalCode
       rowId
-
-      organisationByOrganisationId {
-        operatorName
-      }
+      hasSwrsReport(reportingYear: "2018")
 
       applicationsByFacilityId {
         edges {
