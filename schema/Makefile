@@ -21,6 +21,7 @@ PG_PROVE=pg_prove -h localhost
 .PHONY: test
 test:
 	@@$(MAKE) -s $(MAKEFLAGS) createdb;
+	@@$(MAKE) -s $(MAKEFLAGS) deploy_ggircs;
 	@@$(MAKE) -s $(MAKEFLAGS) deploy;
 	@@$(MAKE) -s $(MAKEFLAGS) revert;
 	@@$(MAKE) -s $(MAKEFLAGS) deploy;
