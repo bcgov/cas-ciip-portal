@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {OrganisationRequestsTableRow_userOrganisation} from '__generated__/OrganisationRequestsTableRow_userOrganisation.graphql';
 interface Props {
@@ -17,6 +18,12 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<
       <td>{userOrganisation.userByUserId.lastName}</td>
       <td>{userOrganisation.organisationByOrganisationId.operatorName}</td>
       <td>{userOrganisation.status}</td>
+      <td>
+        <Button variant="success">Approve</Button>
+      </td>
+      <td>
+        <Button variant="danger">Reject</Button>
+      </td>
     </tr>
   );
 };

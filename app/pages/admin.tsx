@@ -7,7 +7,7 @@ class Admin extends Component {
   render() {
     return (
       <>
-        <DefaultLayout title="Administrators Dashboard">
+        <DefaultLayout title="Administrator Dashboard">
           <div>
             <ButtonGroup vertical>
               <Link href="/products-benchmarks">
@@ -22,7 +22,7 @@ class Admin extends Component {
               </Link>
               <Link href="/organisation-requests">
                 <Button className="buttons" size="lg">
-                  View Applications
+                  View Access Requests
                 </Button>
               </Link>
             </ButtonGroup>

@@ -20,7 +20,7 @@ interface Props {
   searchValue: string;
   direction: string;
   searchDisplay: string;
-  handleEvent: () => void;
+  handleEvent: (...args: any[]) => void;
   relay: RelayRefetchProp;
 }
 export const OrganisationRequestsTableComponent: React.FunctionComponent<
@@ -55,7 +55,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<
 
   return (
     <>
-      <Container style={{padding: 10, background: '#dee2e6'}}>
+      <Container style={{padding: 20, background: '#dee2e6'}}>
         <Row>
           <Col md={3}>
             <h5>Sort User Requests</h5>
@@ -69,8 +69,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<
           <Col md={2}>
             <Dropdown style={{width: '100%'}}>
               <Dropdown.Toggle
-                style={{width: '100%'}}
-                variant="info"
+                style={{width: '100%', backgroundColor: '#036'}}
                 id="dropdown-sort"
               >
                 {orderByDisplay}
@@ -92,8 +91,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<
           <Col md={1}>
             <Button
               id="toggleDirection"
-              style={{width: '100%'}}
-              variant="info"
+              style={{width: '100%', backgroundColor: '#036'}}
               onClick={event => handleEvent(event)}
             >
               {direction}
@@ -103,8 +101,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<
           <Col md={2}>
             <Dropdown style={{width: '100%'}}>
               <Dropdown.Toggle
-                style={{width: '100%'}}
-                variant="info"
+                style={{width: '100%', backgroundColor: '#036'}}
                 id="dropdown-filter"
               >
                 {searchDisplay}
@@ -133,7 +130,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<
                   <Form.Control type="string" />
                 </Form.Group>
                 <Form.Group as={Col} md={1}>
-                  <Button variant="info" type="submit">
+                  <Button type="submit" style={{backgroundColor: '#036'}}>
                     Filter
                   </Button>
                 </Form.Group>
@@ -144,14 +141,20 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<
       </Container>
       <br />
       <br />
-      <Table striped bordered hover style={{textAlign: 'center'}}>
-        <thead>
+      <Table
+        striped
+        hover
+        style={{textAlign: 'center', border: '1px solid #f5f5f5'}}
+      >
+        <thead style={{backgroundColor: '#036', color: 'white'}}>
           <tr>
             <th>#</th>
-            <th>User Name</th>
-            <th>User Lastname</th>
-            <th>Organisation</th>
+            <th>Name</th>
+            <th>Lastname</th>
+            <th>Operator Requested</th>
             <th>Status</th>
+            <th />
+            <th />
           </tr>
         </thead>
         <tbody>
