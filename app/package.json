@@ -169,7 +169,7 @@
     "react-test-renderer": "^16.10.2",
     "relay-compiler": "^7.0.0",
     "relay-compiler-language-typescript": "^10.1.0",
-    "relay-test-utils": "^7.0.0",
+    "relay-test-utils": "^7.1.0",
     "require-context.macro": "^1.2.2",
     "typescript": "^3.6.4",
     "webpack": "^4.41.0",
