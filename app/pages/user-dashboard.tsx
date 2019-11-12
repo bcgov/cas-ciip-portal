@@ -45,6 +45,7 @@ export default class UserDashBoard extends Component<Props> {
   };
 
   handleOrgConfirm = async environment => {
+    console.log(this.props);
     const response = await userOrganisationMutation(
       environment,
       {
@@ -52,7 +53,7 @@ export default class UserDashBoard extends Component<Props> {
           userOrganisation: {
             userId: Number(this.props.router.query.userId),
             organisationId: this.state.selectedOrg,
-            status: 'pending'
+            status: 'pending'.toUpperCase()
           }
         }
       },

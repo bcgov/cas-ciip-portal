@@ -20,7 +20,7 @@ class Admin extends Component {
                   View Users
                 </Button>
               </Link>
-              <Link href="/applications">
+              <Link href="/organisation-requests">
                 <Button className="buttons" size="lg">
                   View Applications
                 </Button>
