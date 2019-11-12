@@ -344,6 +344,8 @@ jobs:
       image: ubuntu-1604:201903-01
     working_directory: ~/cas-ciip-portal
     steps:
+      - attach_workspace:
+          at: ~/
       - run:
           name: "Pull Submodules"
           command: |
