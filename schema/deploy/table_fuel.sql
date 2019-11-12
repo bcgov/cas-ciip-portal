@@ -21,7 +21,7 @@ create table ggircs_portal.fuel (
 comment on column ggircs_portal.fuel.id is 'Unique ID for the fuel';
 comment on column ggircs_portal.fuel.name is 'The name of the fuel';
 comment on column ggircs_portal.fuel.description is 'The description of the fuel';
-comment on column ggircs_portal.fuel.description is 'The unit of measure for the fuel';
+comment on column ggircs_portal.fuel.units is 'The unit of measure for the fuel';
 comment on column ggircs_portal.fuel.state is 'The current state of the fuel within the lifecycle (created, split, merged, redefined, archived, unarchived)';
 comment on column ggircs_portal.fuel.parent is 'The parent ID(s) (previous state) of the fuel';
 comment on column ggircs_portal.fuel.created_at is 'Creation date of row';

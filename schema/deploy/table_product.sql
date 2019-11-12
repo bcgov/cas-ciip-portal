@@ -21,7 +21,7 @@ create table ggircs_portal.product (
 comment on column ggircs_portal.product.id is 'Unique ID for the product';
 comment on column ggircs_portal.product.name is 'The name of the product';
 comment on column ggircs_portal.product.description is 'The description of the product';
-comment on column ggircs_portal.product.description is 'The unit of measure for the product';
+comment on column ggircs_portal.product.units is 'The unit of measure for the product';
 comment on column ggircs_portal.product.state is 'The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)';
 comment on column ggircs_portal.product.parent is 'The parent ID(s) (previous state) of the product';
 comment on column ggircs_portal.product.created_at is 'Creation date of row';
