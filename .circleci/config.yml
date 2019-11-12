@@ -362,7 +362,7 @@ jobs:
           command: |
             source ~/.bashrc
             pushd schema
-            sudo make install_pg_tap
+            sudo make install_pgtap
             make test PSQL="psql -h localhost" CI_NO_PIPELINE=true
             popd
 
