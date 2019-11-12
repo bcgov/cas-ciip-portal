@@ -11,7 +11,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<
         return (
           <React.Fragment key={element.index}>
             <Form.Row>
-              <Col xs={12} md={10}>
+              <Col xs={12} md={element.hasRemove ? 10 : 12}>
                 {element.children}
               </Col>
 
