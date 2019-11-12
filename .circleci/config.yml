@@ -418,6 +418,7 @@ workflows:
           context: cas-pipeline
           requires:
             - pathfinder_configure
+      - test_databse
       # - test-local-cluster:
       #     context: cas-pipeline
       #     requires:
