@@ -44,3 +44,4 @@ function_session [schema_ggircs_portal type_jwt_token] 2019-10-17T01:02:35Z Alec
 function_init_application_administration_form_result [table_form_result function_get_swrs_organisation_data function_get_swrs_facility_data function_get_swrs_operator_contact_data] 2019-11-08T22:46:02Z Matthieu Foucault <matthieu@button.is> # add function to initialize admin form result
 function_init_application_fuel_form_result [table_form_result function_get_swrs_fuel_data] 2019-11-12T18:00:52Z Matthieu Foucault <matthieu@button.is> # add function to initialize fuel form
 function_init_application_emission_form_result [table_form_result function_get_swrs_emission_data] 2019-11-12T18:01:51Z Matthieu Foucault <matthieu@button.is> # add function to initialize emission form
+function_facility_has_swrs_report [table_facility] 2019-11-12T19:25:09Z Matthieu Foucault <matthieu@button.is> # add function to check if a facility has a swrs report
