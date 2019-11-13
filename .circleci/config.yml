@@ -30,6 +30,7 @@ jobs:
             echo -e '\nexport BASH_ENV="~/.asdf/asdf.sh"' >> ~/.bashrc
             source ~/.bashrc
             make install_asdf_tools
+            pg_ctl start
             make -C schema install_pgtap
       - save_cache:
           name: Save asdf Tools Cache

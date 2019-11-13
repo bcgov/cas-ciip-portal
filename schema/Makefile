@@ -145,9 +145,9 @@ pgtap:
 .PHONY: install_pgtap
 install_pgtap: pgtap
 	$(info install pgTAP into postgres)
-	@@$(MAKE) -C pgtap -s $(MAKEFLAGS)
-	@@$(MAKE) -C pgtap -s $(MAKEFLAGS) installcheck
-	@@$(MAKE) -C pgtap -s $(MAKEFLAGS) install
+	@@$(MAKE) -C pgtap
+	@@$(MAKE) -C pgtap install
+	@@$(MAKE) -C pgtap installcheck
 
 .PHONY: install_cpanm
 install_cpanm:
