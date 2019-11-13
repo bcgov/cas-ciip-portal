@@ -7712,7 +7712,7 @@
             },
             {
               "name": "formResultInitFunction",
-              "description": null,
+              "description": "The name of the function that initializes the form_result with data",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -20401,7 +20401,7 @@
             },
             {
               "name": "formResultInitFunction",
-              "description": null,
+              "description": "The name of the function that initializes the form_result with data",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -25921,7 +25921,7 @@
             },
             {
               "name": "formResultInitFunction",
-              "description": null,
+              "description": "The name of the function that initializes the form_result with data",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",

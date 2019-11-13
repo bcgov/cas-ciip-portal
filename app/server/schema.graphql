@@ -3153,6 +3153,8 @@ type FormJson implements Node {
 
   """The JSON object that creates the form"""
   formJson: JSON!
+
+  """The name of the function that initializes the form_result with data"""
   formResultInitFunction: String
 
   """Reads and enables pagination through a set of `FormResult`."""
@@ -3258,6 +3260,8 @@ input FormJsonInput {
 
   """The JSON object that creates the form"""
   formJson: JSON!
+
+  """The name of the function that initializes the form_result with data"""
   formResultInitFunction: String
 
   """Name for the form"""
@@ -3292,6 +3296,8 @@ input FormJsonPatch {
 
   """The JSON object that creates the form"""
   formJson: JSON
+
+  """The name of the function that initializes the form_result with data"""
   formResultInitFunction: String
 
   """Name for the form"""
