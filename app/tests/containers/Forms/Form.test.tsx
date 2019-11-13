@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from 'enzyme';
 import {FormComponent} from '../../../containers/Forms/Form';
 import adminForm from '../../../../schema/data/portal/form_json/administration.json';
+import emissionForm from '../../../../schema/data/portal/form_json/emission.json';
 import fuelForm from '../../../../schema/data/portal/form_json/fuel.json';
 import electricityAndHeatForm from '../../../../schema/data/portal/form_json/electricity_and_heat.json';
 import productionForm from '../../../../schema/data/portal/form_json/production.json';
@@ -53,6 +54,27 @@ describe('Form', () => {
       />
     );
     const r = render(<TestRenderer />);
+    expect(r).toMatchSnapshot();
+  });
+
+  it('should match the snapshot with the emission form', async () => {
+    const r = render(
+      <FormComponent
+        query={{
+          ' $refType': 'Form_query',
+          ' $fragmentRefs': {
+            FuelFields_query: true,
+            ProductionFields_query: true
+          },
+          result: {
+            formResult: {},
+            formJsonByFormId: {
+              formJson: emissionForm
+            }
+          }
+        }}
+      />
+    );
     expect(r).toMatchSnapshot();
   });
 
