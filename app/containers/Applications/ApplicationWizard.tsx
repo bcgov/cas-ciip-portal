@@ -59,7 +59,7 @@ const ApplicationWizard = ({query}) => {
 
   return (
     <>
-      <ApplicationFormNavbar query={query} />
+      <ApplicationFormNavbar query={query} formResultId={formResultId} />
       <ApplicationWizardStep
         query={query}
         confirmationPage={confirmationPage}
