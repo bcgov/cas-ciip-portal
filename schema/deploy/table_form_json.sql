@@ -35,4 +35,5 @@ comment on column ggircs_portal.form_json.updated_at is 'The date the form was u
 comment on column ggircs_portal.form_json.updated_by is 'The person who updated the form';
 comment on column ggircs_portal.form_json.prepopulate_from_ciip is 'Whether the form is initialized with data submitted in the previous year''s application';
 comment on column ggircs_portal.form_json.prepopulate_from_swrs is 'Whether the form is initialized with data submitted in the previous year''s application';
+comment on column ggircs_portal.form_json.form_result_init_function is 'The name of the function that initializes the form_result with data';
 commit;
