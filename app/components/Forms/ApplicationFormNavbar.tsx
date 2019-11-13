@@ -43,24 +43,6 @@ const ApplicationFormNavbarComponent = props => {
           <Nav.Link>Summary</Nav.Link>
         </Link>
       </Nav.Item>
-      <Nav.Item key="certify">
-        <Link
-          passHref
-          href={{
-            pathname: '/ciip-application',
-            query: {
-              formResultId:
-                application.orderedFormResults.edges[
-                  application.orderedFormResults.edges.length - 1
-                ].node.id,
-              applicationId: application.id,
-              certificationPage: true
-            }
-          }}
-        >
-          <Nav.Link>Statement of Certification</Nav.Link>
-        </Link>
-      </Nav.Item>
     </Nav>
   );
 };
