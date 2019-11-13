@@ -9,13 +9,13 @@ interface Props {
 export const OrganisationRequestsTableRowComponent: React.FunctionComponent<
   Props
 > = props => {
-  console.log(props);
   const {userOrganisation} = props;
   return (
     <tr>
       <td>{userOrganisation.userId}</td>
       <td>{userOrganisation.userByUserId.firstName}</td>
       <td>{userOrganisation.userByUserId.lastName}</td>
+      <td>{userOrganisation.userByUserId.emailAddress}</td>
       <td>{userOrganisation.organisationByOrganisationId.operatorName}</td>
       <td>{userOrganisation.status}</td>
       <td>
@@ -36,6 +36,7 @@ export default createFragmentContainer(OrganisationRequestsTableRowComponent, {
       userByUserId {
         firstName
         lastName
+        emailAddress
       }
       organisationByOrganisationId {
         operatorName

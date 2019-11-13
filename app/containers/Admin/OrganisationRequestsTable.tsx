@@ -149,8 +149,9 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<
         <thead style={{backgroundColor: '#036', color: 'white'}}>
           <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Lastname</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
             <th>Operator Requested</th>
             <th>Status</th>
             <th />
