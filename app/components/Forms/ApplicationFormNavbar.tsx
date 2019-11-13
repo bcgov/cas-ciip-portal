@@ -5,13 +5,9 @@ import Link from 'next/link';
 
 const ApplicationFormNavbarComponent = props => {
   const {application} = props.query;
-  const preSummary = application.orderedFormResults.edges.slice(
-    0,
-    application.orderedFormResults.edges.length - 1
-  );
   return (
     <Nav justify variant="pills" style={{marginBottom: '2rem'}}>
-      {preSummary.map(({node}) => (
+      {application.orderedFormResults.edges.map(({node}) => (
         <Nav.Item key={node.id}>
           <Link
             passHref
