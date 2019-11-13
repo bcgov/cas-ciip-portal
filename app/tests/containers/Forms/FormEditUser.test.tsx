@@ -1,6 +1,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
+import {createMockEnvironment} from 'relay-test-utils';
 import {FormEditUserComponent} from '../../../containers/Forms/FormEditUser';
+
+const environment = createMockEnvironment();
 
 describe('Form Edit User', () => {
   it('should render', () => {
@@ -10,8 +13,13 @@ describe('Form Edit User', () => {
       lastName: 'Test',
       emailAddress: 'Test@test.com'
     };
+    const relay = {
+      environment
+    };
 
-    const wrapper = shallow(<FormEditUserComponent user={user} />);
+    const wrapper = shallow(
+      <FormEditUserComponent relay={relay} user={user} />
+    );
 
     expect(wrapper).toMatchSnapshot();
 
