@@ -16,6 +16,7 @@ create table ggircs_portal.gas (
   deleted_by varchar(1000)
 );
 
+comment on table ggircs_portal.gas is 'Table of gases used in the CIIP program';
 comment on column ggircs_portal.gas.id is 'Unique ID for the gas';
 comment on column ggircs_portal.gas.gas_type is 'The name of the gas';
 comment on column ggircs_portal.gas.gas_description is 'Describe the gas and its use';

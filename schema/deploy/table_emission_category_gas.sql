@@ -15,6 +15,7 @@ create table ggircs_portal.emission_category_gas (
   deleted_by varchar(1000)
 );
 
+comment on table ggircs_portal.gas is 'Table of emission categories used in the CIIP program';
 comment on column ggircs_portal.emission_category_gas.id is 'Unique ID for the emission_category_gas';
 comment on column ggircs_portal.emission_category_gas.gas_id is 'Foreign key to gas';
 comment on column ggircs_portal.emission_category_gas.emission_category is 'The emission category';
