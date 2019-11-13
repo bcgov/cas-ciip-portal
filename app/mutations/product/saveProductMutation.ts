@@ -1,10 +1,10 @@
 import {graphql} from 'react-relay';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
-import BaseMutation from '../BaseMutation';
 import {
   saveProductMutation as saveProductMutationType,
   saveProductMutationVariables
-} from '../../__generated__/saveProductMutation.graphql';
+} from 'saveProductMutation.graphql';
+import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
   mutation saveProductMutation($input: SaveProductMutationChainInput!) {

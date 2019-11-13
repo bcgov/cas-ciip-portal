@@ -3,7 +3,7 @@ import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnviron
 import {
   updateApplicationStatusMutation as updateApplicationStatusMutationType,
   updateApplicationStatusMutationVariables
-} from '../../__generated__/updateApplicationStatusMutation.graphql';
+} from 'updateApplicationStatusMutation.graphql';
 import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`

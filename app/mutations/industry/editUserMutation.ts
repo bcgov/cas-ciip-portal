@@ -1,10 +1,10 @@
 import {graphql} from 'react-relay';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
-import BaseMutation from '../BaseMutation';
 import {
   editUserMutation as editUserMutationType,
   editUserMutationVariables
-} from '../../__generated__/editUserMutation.graphql';
+} from 'editUserMutation.graphql';
+import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
   mutation editUserMutation($input: UpdateUserByRowIdInput!) {

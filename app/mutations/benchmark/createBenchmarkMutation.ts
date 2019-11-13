@@ -3,7 +3,7 @@ import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnviron
 import {
   createBenchmarkMutation as createBenchmarkMutationType,
   createBenchmarkMutationVariables
-} from '../../__generated__/createBenchmarkMutation.graphql';
+} from 'createBenchmarkMutation.graphql';
 import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`

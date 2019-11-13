@@ -1,10 +1,10 @@
 import {graphql} from 'react-relay';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
-import BaseMutation from '../BaseMutation';
 import {
   UpdateUserOrganisationMutation as updateUserOrganisationMutationType,
   UpdateUserOrganisationMutationVariables
-} from '../../__generated__/UpdateUserOrganisationMutation.graphql';
+} from 'UpdateUserOrganisationMutation.graphql';
+import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
   mutation UpdateUserOrganisationMutation(

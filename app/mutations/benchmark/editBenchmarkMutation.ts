@@ -1,10 +1,10 @@
 import {graphql} from 'react-relay';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
-import BaseMutation from '../BaseMutation';
 import {
   editBenchmarkMutation as editBenchmarkMutationType,
   editBenchmarkMutationVariables
-} from '../../__generated__/editBenchmarkMutation.graphql';
+} from 'editBenchmarkMutation.graphql';
+import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
   mutation editBenchmarkMutation($input: UpdateBenchmarkInput!) {
