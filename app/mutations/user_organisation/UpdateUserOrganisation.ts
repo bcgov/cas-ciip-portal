@@ -1,4 +1,9 @@
 import {graphql} from 'react-relay';
+import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import {
+  UpdateUserOrganisationMutation as updateUserOrganisationMutationType,
+  UpdateUserOrganisationMutationVariables
+} from 'UpdateUserOrganisationMutation.graphql';
 import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
@@ -10,14 +15,32 @@ const mutation = graphql`
         id
         status
       }
+      clientMutationId
     }
   }
 `;
 
 export const updateUserOrganisationMutation = async (
-  environment,
-  variables
+  environment: RelayModernEnvironment,
+  variables: UpdateUserOrganisationMutationVariables
 ) => {
-  const m = new BaseMutation('update-user-organisation-mutation');
-  return m.performMutation(environment, mutation, variables);
+  // Optimistic response
+  const updateUserOrganisationPayload = {
+    updateUserOrganisation: {
+      userOrganisation: {
+        id: variables.input.id,
+        status: variables.input.userOrganisationPatch.status
+      }
+    }
+  };
+
+  const m = new BaseMutation<updateUserOrganisationMutationType>(
+    'update-user-organisation-mutation'
+  );
+  return m.performMutation(
+    environment,
+    mutation,
+    variables,
+    updateUserOrganisationPayload
+  );
 };

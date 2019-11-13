@@ -1,27 +1,16 @@
 import React from 'react';
-import {graphql, createFragmentContainer, commitMutation} from 'react-relay';
+import {createFragmentContainer} from 'react-relay';
 import {Form, Button, Col} from 'react-bootstrap';
+import createProductMutation from '../../mutations/product/createProductMutation';
 
 export const ProductCreator = props => {
   const createProductFromRef = React.createRef<Form & HTMLFormElement>();
-  const createProduct = graphql`
-    mutation ProductCreatorContainerMutation($input: CreateProductInput!) {
-      createProduct(input: $input) {
-        product {
-          rowId
-        }
-        query {
-          ...ProductListContainer_query
-        }
-      }
-    }
-  `;
 
-  const saveProduct = event => {
+  const saveProduct = async event => {
     event.preventDefault();
     event.stopPropagation();
     const date = new Date().toUTCString();
-    const saveVariables = {
+    const variables = {
       input: {
         product: {
           name: event.target.product_name.value,
@@ -34,17 +23,9 @@ export const ProductCreator = props => {
       }
     };
 
-    const saveMutation = createProduct;
     const {environment} = props.relay;
-    commitMutation(environment, {
-      mutation: saveMutation,
-      variables: saveVariables,
-      onCompleted: response => {
-        console.log(response);
-        createProductFromRef.current.reset();
-      },
-      onError: err => console.error(err)
-    });
+    await createProductMutation(environment, variables);
+    createProductFromRef.current.reset();
   };
 
   return (

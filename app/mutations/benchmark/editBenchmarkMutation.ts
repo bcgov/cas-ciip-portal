@@ -1,4 +1,9 @@
 import {graphql} from 'react-relay';
+import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import {
+  editBenchmarkMutation as editBenchmarkMutationType,
+  editBenchmarkMutationVariables
+} from 'editBenchmarkMutation.graphql';
 import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
@@ -11,12 +16,30 @@ const mutation = graphql`
   }
 `;
 
-// TODO: abstract clientMutationId into a base class
 // TODO: May want to surface the onCompleted errors to the user (ie not reject, resolve & report)
-// TODO: Add optimistic updates https://relay.dev/docs/en/mutations https://relay.dev/docs/en/relay-store
-const editBenchmarkMutation = async (environment, variables) => {
-  const m = new BaseMutation('edit-benchmark-mutation');
-  return m.performMutation(environment, mutation, variables);
+const editBenchmarkMutation = async (
+  environment: RelayModernEnvironment,
+  variables: editBenchmarkMutationVariables
+) => {
+  // Optimistic response
+  const updateBenchmarkPayload = {
+    updateBenchmark: {
+      benchmark: {
+        id: variables.input.id,
+        ...variables.input.benchmarkPatch
+      }
+    }
+  };
+
+  const m = new BaseMutation<editBenchmarkMutationType>(
+    'edit-benchmark-mutation'
+  );
+  return m.performMutation(
+    environment,
+    mutation,
+    variables,
+    updateBenchmarkPayload
+  );
 };
 
 export default editBenchmarkMutation;

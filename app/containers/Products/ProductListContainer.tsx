@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {ProductListContainer_query} from '__generated__/ProductListContainer_query.graphql';
+import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductRowItemContainer from './ProductRowItemContainer';
 

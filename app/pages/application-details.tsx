@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {applicationDetailsQueryResponse} from '__generated__/applicationDetailsQuery.graphql';
+import {applicationDetailsQueryResponse} from 'applicationDetailsQuery.graphql';
 import {NextRouter} from 'next/router';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
