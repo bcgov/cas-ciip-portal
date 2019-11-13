@@ -1,16 +1,31 @@
-import React from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {Row, Col, Form, Button} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
+import {createFragmentContainer, graphql, commitLocalUpdate} from 'react-relay';
 import updateUserMutation from '../../mutations/user/updateUserMutation';
 import {useInput} from '../../components/Forms/InputHook';
 
 export const FormEditUserComponent = props => {
   const {user, submitAction, submitBtnName} = props;
 
+  // Values needed for throttling the mutation
+  const [inputVal, setInputVal] = useState('');
+  const inputRef = useRef('');
+  const nameRef = useRef('');
+  const makingCall = useRef(false);
+
+  // Function handleChange updates the local store on every keystroke and sets values for updateUserMutation to be called after throttle
   const handleChange = e => {
-    updateUserMutation(props.relay.environment, props.user, {
-      [e.target.name]: e.target.value
-    });
+    // Updater function for commitLocalUpdate
+    const updater = store => {
+      const node = store.get(user.id);
+      node.setValue(e.target.name, e.target.value);
+    };
+
+    // Commit change to local store
+    commitLocalUpdate(props.relay.environment, updater);
+    setInputVal(e.target.value);
+    inputRef.current = e.target.value;
+    nameRef.current = e.target.name;
   };
 
   const {bind: bindFirstName} = useInput(user.firstName, handleChange);
@@ -18,6 +33,21 @@ export const FormEditUserComponent = props => {
   const {bind: bindEmailAddress} = useInput(user.emailAddress, handleChange);
   const {bind: bindPhoneNumber} = useInput(user.phoneNumber, handleChange);
   const {bind: bindOccupation} = useInput(user.occupation, handleChange);
+
+  // This useEffect handles the throttling for calling the updateUserMutation
+  useEffect(() => {
+    // If there's no value or we've already triggered a call
+    // prevent further calls
+    if (!inputVal.trim() || makingCall.current) return;
+    makingCall.current = true;
+    setTimeout(async () => {
+      await updateUserMutation(props.relay.environment, props.user, {
+        [nameRef.current]: inputRef.current
+      });
+      makingCall.current = false;
+      // Only allow one updateUserMutation call per 1s
+    }, 1000);
+  }, [inputVal, props.relay.environment, props.user]);
 
   return (
     <>
