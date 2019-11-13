@@ -5,8 +5,8 @@ begin;
 do $$
   begin
     assert (
-      select true from pg_catalog.pg_type where typname = 'statuses'
-    ), 'type "statuses" is not defined';
+      select true from pg_catalog.pg_type where typname = 'user_organisation_status'
+    ), 'type "user_organisation_status" is not defined';
   end;
 $$;
 

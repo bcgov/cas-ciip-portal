@@ -6553,6 +6553,12 @@
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "SUSPENDED",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "possibleTypes": null
@@ -22022,11 +22028,15 @@
               "description": null,
               "type": {
                 "kind": "ENUM",
+<<<<<<< 9ba980c2dd54c3f76ca16812159d33a6736ad05f
 <<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
                 "name": "UserOrganisationStatus",
 =======
                 "name": "Statuses",
 >>>>>>> added some change requests from PR
+=======
+                "name": "UserOrganisationStatus",
+>>>>>>> updated name of 'statuses' type & added some ui fixes & added a test
                 "ofType": null
               },
               "defaultValue": null

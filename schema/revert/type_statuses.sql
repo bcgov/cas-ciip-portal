@@ -2,6 +2,6 @@
 
 begin;
 
-drop type ggircs_portal.statuses;
+drop type ggircs_portal.user_organisation_status;
 
 commit;

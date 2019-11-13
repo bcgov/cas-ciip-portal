@@ -10,9 +10,8 @@ export const UserOrganisationComponent = props => {
   }
 
   const statusBadgeColor = {
-    REJECTED: 'warning',
+    REJECTED: 'danger',
     PENDING: 'info',
-    // Expired: 'danger',
     APPROVED: 'success'
   };
 

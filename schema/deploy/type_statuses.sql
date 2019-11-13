@@ -3,6 +3,6 @@
 
 begin;
 
-create type ggircs_portal.statuses as enum ('pending', 'approved', 'rejected');
+create type ggircs_portal.user_organisation_status as enum ('pending', 'approved', 'rejected');
 
 commit;

@@ -9,7 +9,7 @@ import {
   Form
 } from 'react-bootstrap';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
-import {OrganisationRequestsTable_query} from '__generated__/OrganisationRequestsTable_query.graphql';
+import {OrganisationRequestsTable_query} from 'OrganisationRequestsTable_query.graphql';
 import DropdownMenuItemComponent from '../../components/DropdownMenuItemComponent';
 import OrganisationRequestsTableRow from './OrganisationRequestsTableRow';
 interface Props {
@@ -39,6 +39,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<
     {eventKey: 'user_id', title: 'User ID'},
     {eventKey: 'first_name', title: 'First Name'},
     {eventKey: 'last_name', title: 'Last Name'},
+    {eventKey: 'email_address', title: 'Email'},
     {eventKey: 'status', title: 'Status'},
     {eventKey: 'operator_name', title: 'Operator'}
   ];
@@ -154,8 +155,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<
             <th>Email</th>
             <th>Operator Requested</th>
             <th>Status</th>
-            <th />
-            <th />
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>

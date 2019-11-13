@@ -2,14 +2,14 @@
 -- requires: schema_ggircs_portal
 -- requires: table_user
 -- requires: table_organisation
--- requires: type_statuses
+-- requires: type_user_organisation_status
 
 begin;
 
   create table ggircs_portal.user_organisation (
       user_id integer not null,
       organisation_id integer not null,
-      status ggircs_portal.statuses,
+      status ggircs_portal.user_organisation_status,
       primary key (user_id, organisation_id),
       foreign key (user_id) references ggircs_portal.user (id),
       foreign key (organisation_id) references ggircs_portal.organisation (id)

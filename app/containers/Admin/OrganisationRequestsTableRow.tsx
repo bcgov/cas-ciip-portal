@@ -1,8 +1,10 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {OrganisationRequestsTableRow_userOrganisation} from '__generated__/OrganisationRequestsTableRow_userOrganisation.graphql';
+import {Button, ButtonGroup, Badge} from 'react-bootstrap';
+import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
+import {OrganisationRequestsTableRow_userOrganisation} from 'OrganisationRequestsTableRow_userOrganisation.graphql';
+import {updateUserOrganisationMutation} from '../../mutations/user_organisation/UpdateUserOrganisation';
 interface Props {
+  relay: RelayProp;
   userOrganisation: OrganisationRequestsTableRow_userOrganisation;
   key: string;
 }
@@ -10,6 +12,30 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<
   Props
 > = props => {
   const {userOrganisation} = props;
+
+  const statusBadgeColor = {
+    REJECTED: 'danger',
+    PENDING: 'info',
+    APPROVED: 'success'
+  };
+
+  const handleStatusChange = async status => {
+    const variables = {
+      input: {
+        id: userOrganisation.id,
+        userOrganisationPatch: {
+          status
+        }
+      }
+    };
+    // @ts-ignore
+    const response = await updateUserOrganisationMutation(
+      props.relay.environment,
+      variables
+    );
+    console.log(response);
+  };
+
   return (
     <tr>
       <td>{userOrganisation.userId}</td>
@@ -17,12 +43,43 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<
       <td>{userOrganisation.userByUserId.lastName}</td>
       <td>{userOrganisation.userByUserId.emailAddress}</td>
       <td>{userOrganisation.organisationByOrganisationId.operatorName}</td>
-      <td>{userOrganisation.status}</td>
       <td>
-        <Button variant="success">Approve</Button>
+        <Badge
+          pill
+          style={{width: '100%', padding: '8px'}}
+          variant={statusBadgeColor[userOrganisation.status]}
+        >
+          {userOrganisation.status}
+        </Badge>
       </td>
       <td>
-        <Button variant="danger">Reject</Button>
+        <ButtonGroup aria-label="Status change">
+          {userOrganisation.status === 'PENDING' ? (
+            <Button
+              variant="success"
+              onClick={async () => handleStatusChange('APPROVED')}
+            >
+              Approve
+            </Button>
+          ) : null}
+          {userOrganisation.status === 'PENDING' ||
+          userOrganisation.status === 'APPROVED' ? (
+            <Button
+              variant="danger"
+              onClick={async () => handleStatusChange('REJECTED')}
+            >
+              Reject
+            </Button>
+          ) : null}
+          {userOrganisation.status === 'REJECTED' ? (
+            <Button
+              variant="info"
+              onClick={async () => handleStatusChange('PENDING')}
+            >
+              Reset
+            </Button>
+          ) : null}
+        </ButtonGroup>
       </td>
     </tr>
   );
@@ -31,6 +88,7 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<
 export default createFragmentContainer(OrganisationRequestsTableRowComponent, {
   userOrganisation: graphql`
     fragment OrganisationRequestsTableRow_userOrganisation on UserOrganisation {
+      id
       status
       userId
       userByUserId {
