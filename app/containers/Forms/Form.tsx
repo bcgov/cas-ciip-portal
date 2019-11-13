@@ -49,13 +49,12 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   onValueChanged
 }) => {
   const {result} = query || {};
-
   const {
     formJsonByFormId: {formJson},
     formResult
   } = result || {formJsonByFormId: {}};
   if (!result) return null;
-
+  console.log('result', result);
   const {
     schema,
     uiSchema,

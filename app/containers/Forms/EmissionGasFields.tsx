@@ -8,13 +8,19 @@ const EmissionGasFields: React.FunctionComponent<Props> = ({
   formData,
   onChange
 }) => {
-  console.log('props', onChange);
-
   return (
     <>
       <Col xs={12} md={12}>
         <Form.Row>
-          <Col md={4}>{formData.gasType}</Col>
+          <Col md={4}>
+            {formData.gasType} <br />
+            <Col
+              md={10}
+              style={{margin: 0, padding: 0, color: '#888', lineHeight: '17px'}}
+            >
+              <small>{formData.gasDescription}</small>
+            </Col>
+          </Col>
           <Col md={3}>
             <Form.Control
               type="number"
@@ -61,26 +67,3 @@ const EmissionGasFields: React.FunctionComponent<Props> = ({
 };
 
 export default EmissionGasFields;
-
-/*
-Todos:
-
-- Define the sourcetype
-  - pass all the fields so they can be saved
-
-top level object: emissions
-  - array of objects of source types
-      - array of objects of gases
-
-- create custom component for source type that renders sourcetype name and heading for tonnes and co2e
-- custom componenent will recieve fragment with sourcetype name
-- Component will render sub component with each gas as row
-
-
-- Create onChange handlers X
-- Create table for source types and gases
-- Create form data from onload data and sourceType table
-- Pass to emission
-
-
- */

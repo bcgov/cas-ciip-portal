@@ -14,7 +14,6 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   classNames,
   uiSchema
 }) => {
-  console.log('cn', classNames);
   if (schema.type === 'array')
     return (
       <Col xs={12}>

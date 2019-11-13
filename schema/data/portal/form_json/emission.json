@@ -59,7 +59,7 @@
     }
   },
   "uiSchema": {
-    "listOfSourceTypes":{
+    "sourceTypes":{
       "ui:options": {
         "addable": false,
         "orderable": false,

@@ -21,6 +21,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
     });
   };
 
+  console.log('queryf', query);
   return (
     <>
       <Col xs={12} md={6}>
