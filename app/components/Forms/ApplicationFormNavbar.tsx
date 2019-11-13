@@ -10,7 +10,7 @@ const ApplicationFormNavbarComponent = props => {
     application.orderedFormResults.edges.length - 1
   );
   return (
-    <Nav justify variant="tabs">
+    <Nav justify variant="pills" style={{marginBottom: '2rem'}}>
       {preSummary.map(({node}) => (
         <Nav.Item key={node.id}>
           <Link
@@ -23,7 +23,9 @@ const ApplicationFormNavbarComponent = props => {
               }
             }}
           >
-            <Nav.Link>{node.formJsonByFormId.name}</Nav.Link>
+            <Nav.Link active={node.id === props.formResultId}>
+              {node.formJsonByFormId.name}
+            </Nav.Link>
           </Link>
         </Nav.Item>
       ))}
