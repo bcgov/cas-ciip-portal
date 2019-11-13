@@ -15,6 +15,66 @@ PSQL_VERSION=${word 3,${shell ${PSQL} --version}}
 PG_SERVER_VERSION=${strip ${shell ${PSQL} -tc 'show server_version;' || echo error}}
 PG_MIN_VERSION=9.1
 PG_ROLE=${shell whoami}
+TEST_DB=ggircs_test
+PG_PROVE=pg_prove -h localhost
+PG_SHAREDIR=$(shell pg_config --sharedir)
+
+.PHONY: test
+test:
+	@@$(MAKE) -s $(MAKEFLAGS) createdb;
+	@@$(MAKE) -s $(MAKEFLAGS) deploy_ggircs;
+	@@$(MAKE) -s $(MAKEFLAGS) revert;
+	@@$(MAKE) -s $(MAKEFLAGS) deploy;
+	@@$(MAKE) -s $(MAKEFLAGS) prove_unit;
+	@@$(MAKE) -s $(MAKEFLAGS) prove_style;
+	@@$(MAKE) -s $(MAKEFLAGS) dropdb;
+
+.PHONY: unit
+unit: dropdb createdb deploy_ggircs deploy prove_unit
+
+.PHONY: deploy_ggircs
+deploy_ggircs:
+	# Deploy all SWRS changes to $(TEST_DB) using sqitch
+	@@cd .cas-ggircs; sqitch deploy ${TEST_DB}; cd ..;
+
+.PHONY: revert_ggircs
+revert_ggircs:
+	# Revert all SWRS changes to $(TEST_DB) using sqitch
+	@@cd .cas-ggircs; sqitch revert -y ${TEST_DB}; cd ..;
+
+.PHONY: deploy
+deploy:
+	# Deploy all CIIP changes to $(TEST_DB) using sqitch
+	@@$(SQITCH) deploy $(TEST_DB);
+
+.PHONY: prove_style
+prove_style:
+	# Run style-related test suite on all objects in db using pg_prove
+	@@$(PG_PROVE) -v -d $(TEST_DB) test/style/*_test.sql
+
+.PHONY: prove_unit
+prove_unit:
+	# Run unit test suite using pg_prove
+	@@$(PG_PROVE) -d $(TEST_DB) test/unit/*_test.sql
+
+.PHONY: revert
+revert:
+	# Revert all CIIP changes to $(TEST_DB) using sqitch
+	@@$(SQITCH) revert -y $(TEST_DB);
+
+.PHONY: createdb
+createdb:
+	# Ensure the $(TEST_DB) database exists
+	-@@$(PSQL) -tc "SELECT 1 FROM pg_database WHERE datname = '$(TEST_DB)'" | \
+		$(GREP) -q 1 || \
+		$(PSQL) -c "CREATE DATABASE $(TEST_DB)";
+
+.PHONY: dropdb
+dropdb:
+	# Drop the $(TEST_DB) database
+	-@@$(PSQL) -tc "SELECT 1 FROM pg_database WHERE datname = '$(TEST_DB)'" | \
+		$(GREP) -q 0 || \
+		$(PSQL) -c "DROP DATABASE $(TEST_DB)";
 
 define check_file_in_path
 	${if ${shell which ${word 1,${1}}},
@@ -75,6 +135,19 @@ verify_ready:
 
 .PHONY: verify
 verify: verify_installed verify_ready
+
+pgtap:
+	# clone the source for pgTAP
+	git clone https://github.com/theory/pgtap.git && \
+		cd pgtap && \
+		git checkout v1.0.0;
+
+.PHONY: install_pgtap
+install_pgtap: pgtap
+	$(info install pgTAP into postgres)
+	@@$(MAKE) -C pgtap
+	@@$(MAKE) -C pgtap install
+	@@$(MAKE) -C pgtap installcheck
 
 .PHONY: install_cpanm
 install_cpanm:

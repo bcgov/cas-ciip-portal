@@ -19,9 +19,9 @@ begin;
        (x.facility_data ->> 'latitude')::numeric as latitude,
        (x.facility_data ->> 'longitude')::numeric as longitude,
        (x.facility_data ->> 'naicsCode')::numeric as naics_code,
-       x.facility_data ->> 'facilityName' as facility_name,
-       x.facility_data ->> 'facilityType' as facility_type,
-       x.facility_data ->> 'facilityDescription' as facility_description
+       (x.facility_data ->> 'facilityName')::varchar(1000) as facility_name,
+       (x.facility_data ->> 'facilityType')::varchar(1000) as facility_type,
+       (x.facility_data ->> 'facilityDescription')::varchar(10000) as facility_description
        -- add facility address to address view
     from x
  );

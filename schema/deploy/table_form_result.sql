@@ -21,8 +21,11 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
+comment on table ggircs_portal.form_result is 'Table containing CIIP application data received from a user';
 comment on column ggircs_portal.form_result.id is 'Unique ID for the form';
 comment on column ggircs_portal.form_result.form_id is 'The Unique ID of the form';
+comment on column ggircs_portal.form_result.application_id is 'The Unique ID of the Application';
+comment on column ggircs_portal.form_result.submission_date is 'The submission date of the Application';
 comment on column ggircs_portal.form_result.form_result is 'JSON dump of form data';
 comment on column ggircs_portal.form_result.created_at is 'The date the form was updated';
 comment on column ggircs_portal.form_result.created_by is 'The person who updated the form';

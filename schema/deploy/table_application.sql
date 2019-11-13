@@ -14,5 +14,6 @@ create table ggircs_portal.application (
 
 comment on table ggircs_portal.application is 'The application data';
 comment on column ggircs_portal.application.id is 'The application id used for reference and join';
+comment on column ggircs_portal.application.facility_id is 'The foreign key to ggircs_portal.facility, references id';
 
 commit;

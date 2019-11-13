@@ -14,4 +14,6 @@ create view ggircs_portal.estimated_carbon_tax_paid as (
   inner join swrs.identifier as idn on ctp.facility_id = idn.facility_bcghgid_id
 );
 
+comment on view ggircs_portal.estimated_carbon_tax_paid is 'The estimated carbon tax paid for a reporting_period_duration';
+
 commit;

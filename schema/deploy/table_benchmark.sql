@@ -23,6 +23,7 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
+comment on table ggircs_portal.benchmark is 'Table containing the benchmark and eligibility threshold for a product';
 comment on column ggircs_portal.benchmark.id is 'Unique ID for the benchmark';
 comment on column ggircs_portal.benchmark.product_id is 'Foreign key to the product';
 comment on column ggircs_portal.benchmark.benchmark is 'The value of the benchmark';

@@ -30,12 +30,12 @@ create view ggircs_portal.ciip_application as (
 
     select
        x.id,
-       x.facility_data ->> 'facilityName' as facility_name,
-       y.operator_data ->> 'operatorName' as operator_name,
+       (x.facility_data ->> 'facilityName')::varchar(1000) as facility_name,
+       (y.operator_data ->> 'operatorName')::varchar(1000) as operator_name,
        x.submission_date as submission_date,
        (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
        x.application_status as application_status,
-       '2018' as reporting_year
+       '2018'::varchar(1000) as reporting_year
 
     from x,y where x.id = y.id
 );

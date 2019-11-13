@@ -22,10 +22,10 @@ begin;
        x.id,
        (x.heat_data ->> 'sold')::numeric as sold,
        (x.heat_data ->> 'quantity')::numeric as quantity,
-       x.heat_data ->> 'description' as description,
-       x.heat_data ->> 'consumedOnsite' as consumed_onsite,
-       x.heat_data ->> 'generatedOnsite' as generated_onsite,
-       'heat' as consumption_type
+       (x.heat_data ->> 'description')::varchar(10000) as description,
+       (x.heat_data ->> 'consumedOnsite')::numeric as consumed_onsite,
+       (x.heat_data ->> 'generatedOnsite')::numeric as generated_onsite,
+       ('heat')::varchar(1000) as consumption_type
        -- add heat address to address view
     from x
     )
@@ -48,10 +48,10 @@ begin;
        x.id,
        (x.electricity_data ->> 'sold')::numeric as sold,
        (x.electricity_data ->> 'quantity')::numeric as quantity,
-       x.electricity_data ->> 'description' as description,
-       x.electricity_data ->> 'consumedOnsite' as consumed_onsite,
-       x.electricity_data ->> 'generatedOnsite' as generated_onsite,
-       'electricity' as consumption_type
+       (x.electricity_data ->> 'description')::varchar(10000) as description,
+       (x.electricity_data ->> 'consumedOnsite')::numeric as consumed_onsite,
+       (x.electricity_data ->> 'generatedOnsite')::numeric as generated_onsite,
+       ('electricity')::varchar(1000) as consumption_type
        -- add heat address to address view
     from x
     )
