@@ -25,7 +25,8 @@ const ApplicationWizard = ({query}) => {
   const {application} = query || {};
 
   const router = useRouter();
-  const {confirmationPage, formResultId} = router.query;
+  const {formResultId} = router.query;
+  const confirmationPage = Boolean(router.query.confirmationPage);
   const orderedFormResults = application.orderedFormResults.edges;
   useEffect(() => {
     if (confirmationPage) return;

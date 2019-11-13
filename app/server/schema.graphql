@@ -92,53 +92,6 @@ type Application implements Node {
 
   """The application id used for reference and join"""
   rowId: Int!
-
-  """Reads and enables pagination through a set of `EmissionDatum`."""
-  swrsEmissionData(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    reportingYear: String
-  ): EmissionDataConnection!
-  swrsFacilityData(reportingYear: String): FacilityDatum
-
-  """Reads and enables pagination through a set of `FuelDatum`."""
-  swrsFuelData(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    reportingYear: String
-  ): FuelDataConnection!
-  swrsOperatorContactData(reportingYear: String): OperatorContactDatum
-  swrsOrganisationData(reportingYear: String): OrganisationDatum
 }
 
 """
@@ -1753,9 +1706,6 @@ type CreateFormResultPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """Reads a single `User` that is related to this `FormResult`."""
-  userByUserId: User
 }
 
 """All input for the create `Fuel` mutation."""
@@ -2326,9 +2276,6 @@ type DeleteFormResultPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """Reads a single `User` that is related to this `FormResult`."""
-  userByUserId: User
 }
 
 """All input for the `deleteFuelByRowId` mutation."""
@@ -2910,6 +2857,7 @@ type Facility implements Node {
 
   """type of facility based on emission quantity"""
   facilityType: String
+  hasSwrsReport(reportingYear: String): Boolean
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -3189,6 +3137,7 @@ type FormJson implements Node {
 
   """The JSON object that creates the form"""
   formJson: JSON!
+  formResultInitFunction: String
 
   """Reads and enables pagination through a set of `FormResult`."""
   formResultsByFormId(
@@ -3261,6 +3210,9 @@ input FormJsonCondition {
   """Checks for equality with the object’s `formJson` field."""
   formJson: JSON
 
+  """Checks for equality with the object’s `formResultInitFunction` field."""
+  formResultInitFunction: String
+
   """Checks for equality with the object’s `name` field."""
   name: String
 
@@ -3290,6 +3242,7 @@ input FormJsonInput {
 
   """The JSON object that creates the form"""
   formJson: JSON!
+  formResultInitFunction: String
 
   """Name for the form"""
   name: String!
@@ -3323,6 +3276,7 @@ input FormJsonPatch {
 
   """The JSON object that creates the form"""
   formJson: JSON
+  formResultInitFunction: String
 
   """Name for the form"""
   name: String
@@ -3378,6 +3332,8 @@ enum FormJsonsOrderBy {
   CREATED_BY_DESC
   FORM_JSON_ASC
   FORM_JSON_DESC
+  FORM_RESULT_INIT_FUNCTION_ASC
+  FORM_RESULT_INIT_FUNCTION_DESC
   ID_ASC
   ID_DESC
   NAME_ASC
@@ -3429,12 +3385,6 @@ type FormResult implements Node {
 
   """The person who updated the form"""
   updatedBy: String
-
-  """Reads a single `User` that is related to this `FormResult`."""
-  userByUserId: User
-
-  """The Unique ID of the Application"""
-  userId: Int!
 }
 
 """
@@ -3468,9 +3418,6 @@ input FormResultCondition {
 
   """Checks for equality with the object’s `updatedBy` field."""
   updatedBy: String
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: Int
 }
 
 """An input for mutations affecting `FormResult`"""
@@ -3495,9 +3442,6 @@ input FormResultInput {
 
   """The person who updated the form"""
   updatedBy: String
-
-  """The Unique ID of the Application"""
-  userId: Int!
 }
 
 """
@@ -3524,9 +3468,6 @@ input FormResultPatch {
 
   """The person who updated the form"""
   updatedBy: String
-
-  """The Unique ID of the Application"""
-  userId: Int
 }
 
 """A connection to a list of `FormResult` values."""
@@ -3578,8 +3519,6 @@ enum FormResultsOrderBy {
   UPDATED_AT_DESC
   UPDATED_BY_ASC
   UPDATED_BY_DESC
-  USER_ID_ASC
-  USER_ID_DESC
 }
 
 type Fuel implements Node {
@@ -3831,6 +3770,84 @@ enum FuelsOrderBy {
   UPDATED_AT_DESC
   UPDATED_BY_ASC
   UPDATED_BY_DESC
+}
+
+"""All input for the `initApplicationAdministrationFormResult` mutation."""
+input InitApplicationAdministrationFormResultInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  facilityId: Int!
+  reportingYear: String!
+}
+
+"""The output of our `initApplicationAdministrationFormResult` mutation."""
+type InitApplicationAdministrationFormResultPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  json: JSON
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `initApplicationEmissionFormResult` mutation."""
+input InitApplicationEmissionFormResultInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  facilityId: Int!
+  reportingYear: String!
+}
+
+"""The output of our `initApplicationEmissionFormResult` mutation."""
+type InitApplicationEmissionFormResultPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  json: JSON
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `initApplicationFuelFormResult` mutation."""
+input InitApplicationFuelFormResultInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  facilityId: Int!
+  reportingYear: String!
+}
+
+"""The output of our `initApplicationFuelFormResult` mutation."""
+type InitApplicationFuelFormResultPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  json: JSON
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
 }
 
 """
@@ -4165,6 +4182,24 @@ type Mutation {
     """
     input: DeleteUserOrganisationByUserIdAndOrganisationIdInput!
   ): DeleteUserOrganisationPayload
+  initApplicationAdministrationFormResult(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: InitApplicationAdministrationFormResultInput!
+  ): InitApplicationAdministrationFormResultPayload
+  initApplicationEmissionFormResult(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: InitApplicationEmissionFormResultInput!
+  ): InitApplicationEmissionFormResultPayload
+  initApplicationFuelFormResult(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: InitApplicationFuelFormResultInput!
+  ): InitApplicationFuelFormResultPayload
   saveProductMutationChain(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -6401,9 +6436,6 @@ type UpdateFormResultPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """Reads a single `User` that is related to this `FormResult`."""
-  userByUserId: User
 }
 
 """All input for the `updateFuelByRowId` mutation."""
@@ -6726,35 +6758,6 @@ type User implements Node {
 
   """User's first name"""
   firstName: String
-
-  """Reads and enables pagination through a set of `FormResult`."""
-  formResultsByUserId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: FormResultCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `FormResult`."""
-    orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): FormResultsConnection!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.

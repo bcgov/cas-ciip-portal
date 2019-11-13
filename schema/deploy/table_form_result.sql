@@ -8,7 +8,6 @@ create table ggircs_portal.form_result (
   id integer primary key generated always as identity,
   form_id int not null references ggircs_portal.form_json(id),
   application_id int not null references ggircs_portal.application(id),
-  user_id int not null references ggircs_portal.user(id),
   submission_date timestamp with time zone default now(),
   form_result jsonb not null,
   created_at timestamp with time zone not null default now(),
@@ -24,8 +23,6 @@ create trigger _100_timestamps
 
 comment on column ggircs_portal.form_result.id is 'Unique ID for the form';
 comment on column ggircs_portal.form_result.form_id is 'The Unique ID of the form';
-comment on column ggircs_portal.form_result.user_id is 'The Unique ID of the User';
-comment on column ggircs_portal.form_result.user_id is 'The Unique ID of the Application';
 comment on column ggircs_portal.form_result.form_result is 'JSON dump of form data';
 comment on column ggircs_portal.form_result.created_at is 'The date the form was updated';
 comment on column ggircs_portal.form_result.created_by is 'The person who updated the form';

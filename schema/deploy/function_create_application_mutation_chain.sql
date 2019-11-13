@@ -11,6 +11,9 @@ declare
   new_id int;
   result ggircs_portal.application;
   temp_row record;
+  form_result jsonb;
+  init_function varchar(1000);
+  query text;
 begin
 
   --Insert new value into application
@@ -24,17 +27,23 @@ begin
   select id, facility_id from ggircs_portal.application where id = new_id into result;
 
   for temp_row in
-
     select form_id from ggircs_portal.ciip_application_wizard
-
-  -- loop over number of forms and create a form_result row for each
   loop
+    form_result = '{}';
+    if (select prepopulate_from_swrs from ggircs_portal.form_json where id = temp_row.form_id) then
+      select form_result_init_function from ggircs_portal.form_json where id = temp_row.form_id into init_function;
+      if (init_function is not null) then
+        query := format('select * from ggircs_portal.%I($1,''2018'');', init_function);
+        execute query
+        using facility_id_input
+        into form_result;
+      end if;
+    end if;
     -- loop over what is in the wizard, not the forms in case some forms get added/disabled etc
-    insert into ggircs_portal.form_result(form_id, user_id, application_id, form_result)
-    values (temp_row.form_id, 2, new_id, '{}');
+    insert into ggircs_portal.form_result(form_id, application_id, form_result)
+    values (temp_row.form_id, new_id, form_result);
 
   end loop;
-
   return result;
 end;
 $function$ language plpgsql strict volatile;

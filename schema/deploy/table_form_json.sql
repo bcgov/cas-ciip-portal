@@ -12,7 +12,8 @@ create table ggircs_portal.form_json (
   updated_at timestamp with time zone not null default now(),
   updated_by varchar(1000),
   prepopulate_from_ciip boolean not null,
-  prepopulate_from_swrs boolean not null
+  prepopulate_from_swrs boolean not null,
+  form_result_init_function varchar(1000)
   --todo: add versioning columns
 );
 

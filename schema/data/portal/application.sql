@@ -3,7 +3,7 @@ begin;
 with rows as (
 insert into ggircs_portal.application(id, facility_id)
 overriding system value
-values (1,2), (2,3)
+values (1,3)
 on conflict(id) do update set facility_id=excluded.facility_id
 returning 1
 ) select 'Inserted ' || count(*) || ' rows into ggircs_portal.application' from rows;
