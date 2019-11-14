@@ -3,6 +3,7 @@ import {graphql} from 'react-relay';
 import {applicationsQueryResponse} from 'applicationsQuery.graphql';
 import DefaultLayout from '../layouts/default-layout';
 import ApplicationListContainer from '../containers/Applications/ApplicationListContainer';
+import SearchTable from '../components/SearchTable';
 
 interface Props {
   query: applicationsQueryResponse['query'];
@@ -34,75 +35,29 @@ class Applications extends Component<Props> {
     }
   `;
 
-  state = {
-    orderByField: 'operator_name',
-    direction: 'ASC',
-    orderByDisplay: 'Operator Name',
-    searchField: null,
-    searchValue: null,
-    searchDisplay: 'No Filter'
-  };
-
   static async getInitialProps() {
     return {
       variables: {
         orderByField: 'operator_name',
-        direction: 'ASC',
-        searchField: null,
-        searchValue: null
+        direction: 'ASC'
       }
     };
   }
-
-  toggleDirection = () => {
-    this.state.direction === 'ASC'
-      ? this.setState({direction: 'DESC'})
-      : this.setState({direction: 'ASC'});
-  };
-
-  sortApplications = (event, eventKey) => {
-    this.setState({
-      orderByField: eventKey,
-      orderByDisplay: event.target.text
-    });
-  };
-
-  applySearchField = (event, eventKey) => {
-    this.setState({
-      searchField: eventKey,
-      searchDisplay: event.target.text,
-      searchValue: null
-    });
-  };
-
-  applySearchValue = event => {
-    if (this.state.searchField !== 'none') {
-      this.setState({searchValue: event.nativeEvent.target[0].value});
-    }
-  };
-
-  handleEvent = (event, eventKey) => {
-    event.preventDefault();
-    event.stopPropagation();
-    event.persist();
-    this[event.target.id](event, eventKey);
-  };
 
   render() {
     const {query} = this.props;
     return (
       <>
         <DefaultLayout title="Applications" session={query.session}>
-          <ApplicationListContainer
+          {/*
+             //@ts-ignore  */}
+          <SearchTable
             query={query}
-            orderByDisplay={this.state.orderByDisplay}
-            searchDisplay={this.state.searchDisplay}
-            direction={this.state.direction}
-            orderByField={this.state.orderByField}
-            searchField={this.state.searchField}
-            searchValue={this.state.searchValue}
-            handleEvent={this.handleEvent}
-          />
+            defaultOrderByField="operator_name"
+            defaultOrderByDisplay="Operator Name"
+          >
+            <ApplicationListContainer />
+          </SearchTable>
         </DefaultLayout>
       </>
     );
