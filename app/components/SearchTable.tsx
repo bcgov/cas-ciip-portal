@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {organisationRequestsQueryResponse} from 'organisationRequestsQuery.graphql';
 
 interface Props {
-  query: organisationRequestsQueryResponse['query'];
+  query;
   defaultOrderByField: string;
   defaultOrderByDisplay: string;
 }
-class OrganisationRequests extends Component<Props> {
+class SearchTableComponent extends Component<Props> {
   state = {
     orderByField: this.props.defaultOrderByField,
     orderByDisplay: this.props.defaultOrderByDisplay,
@@ -68,4 +67,4 @@ class OrganisationRequests extends Component<Props> {
   }
 }
 
-export default OrganisationRequests;
+export default SearchTableComponent;
