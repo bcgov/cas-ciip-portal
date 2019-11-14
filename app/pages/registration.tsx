@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {registrationQueryResponse} from 'registrationQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
-import UserInformationForm from '../containers/User/UserForm';
+import UserForm from '../containers/User/UserForm';
 import DefaultLayout from '../layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
@@ -14,8 +14,11 @@ class Registration extends Component<Props> {
     query registrationQuery {
       query {
         session {
-          ...defaultLayout_session
           sub
+          givenName
+          familyName
+          email
+          ...defaultLayout_session
           userBySub {
             ...UserForm_user
           }
@@ -29,13 +32,17 @@ class Registration extends Component<Props> {
       query: {session},
       router
     } = this.props;
+    const {userBySub, sub, givenName, familyName, email} = session || {};
 
     return (
       <DefaultLayout title="Registration" session={session} needsUser={false}>
         <h4 className="mb-5">Please verify or update your information</h4>
-        <UserInformationForm
-          user={session ? session.userBySub : undefined}
-          sessionSub={session.sub}
+        <UserForm
+          user={userBySub}
+          uuid={sub as string}
+          defaultGivenName={givenName}
+          defaultFamilyName={familyName}
+          defaultEmail={email}
           onSubmit={async () => router.push('/user-dashboard')}
         />
       </DefaultLayout>

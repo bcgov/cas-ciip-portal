@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
@@ -9,47 +9,25 @@ import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 
-const userSchema: JSONSchema6 = {
-  type: 'object',
-  properties: {
-    firstName: {
-      type: 'string',
-      title: 'First Name'
-    },
-    lastName: {
-      type: 'string',
-      title: 'Last Name'
-    },
-    emailAddress: {
-      type: 'string',
-      title: 'Email Address'
-    },
-    phoneNumber: {
-      type: 'string',
-      title: 'Phone Number'
-    },
-    occupation: {
-      type: 'string',
-      title: 'Occupation'
-    }
-  },
-  required: [
-    'firstName',
-    'lastName',
-    'emailAddress',
-    'phoneNumber',
-    'occupation'
-  ]
-};
-
 interface Props {
   user?: UserForm_user;
   relay: RelayProp;
-  sessionSub?: string;
+  uuid?: string;
+  defaultGivenName?: string;
+  defaultFamilyName?: string;
+  defaultEmail?: string;
   onSubmit: () => any;
 }
 
-const UserForm = ({user, relay, sessionSub, onSubmit}) => {
+const UserForm: React.FunctionComponent<Props> = ({
+  user,
+  uuid,
+  defaultGivenName,
+  defaultFamilyName,
+  defaultEmail,
+  relay,
+  onSubmit
+}) => {
   const handleChange = async (e: IChangeEvent) => {
     if (user) await updateUserMutation(relay.environment, user, e.formData);
   };
@@ -59,13 +37,52 @@ const UserForm = ({user, relay, sessionSub, onSubmit}) => {
     else
       await createUserMutation(relay.environment, {
         ...e.formData,
-        uuid: sessionSub
+        uuid
       });
     onSubmit();
   };
 
+  const [userSchema] = useState<JSONSchema6>({
+    type: 'object',
+    properties: {
+      firstName: {
+        type: 'string',
+        title: 'First Name',
+        default: defaultGivenName
+      },
+      lastName: {
+        type: 'string',
+        title: 'Last Name',
+        default: defaultFamilyName
+      },
+      emailAddress: {
+        type: 'string',
+        title: 'Email Address',
+        default: defaultEmail
+      },
+      phoneNumber: {
+        type: 'string',
+        title: 'Phone Number'
+      },
+      occupation: {
+        type: 'string',
+        title: 'Occupation'
+      }
+    },
+    required: [
+      'firstName',
+      'lastName',
+      'emailAddress',
+      'phoneNumber',
+      'occupation'
+    ]
+  });
+
   return (
+    // @ts-ignore JsonSchemaForm typedef is missing some props
     <JsonSchemaForm
+      omitExtraData
+      liveOmit
       schema={userSchema}
       formData={user}
       showErrorList={false}
