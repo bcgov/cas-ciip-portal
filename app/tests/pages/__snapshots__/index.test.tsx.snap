@@ -18,95 +18,27 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={6}
     >
       <h3
-        className="jsx-325561168 blue"
+        className="jsx-473442302 blue"
       >
         What is the CleanBC Industrial Incentive Program?
       </h3>
       <p
-        className="jsx-325561168"
+        className="jsx-473442302"
       >
         In 2018, B.C.’s $30 carbon tax rate was raised to $35, and it is set to increase by $5 every year until 2021. As the price of carbon rises, the CleanBC Program for Industry will support competitiveness and facilitate emission reductions using revenues from the carbon tax that industry pays above $30 per tonne carbon dioxide equivalent (tCO2e).
       </p>
       <p
-        className="jsx-325561168"
+        className="jsx-473442302"
       >
         The CleanBC Industrial Incentive Program (CIIP) is part of the CleanBC Program for Industry, which applies to large industrial operations that report their emissions under the Greenhouse Gas Industrial Reporting and Control Act (GGIRCA).
       </p>
       <p
-        className="jsx-325561168"
+        className="jsx-473442302"
       >
         The CIIP helps cleaner industrial operations across the province by reducing carbon tax costs for facilities near world-leading emissions benchmarks.
       </p>
     </Col>
-    <Col
-      md={
-        Object {
-          "offset": 1,
-          "span": 5,
-        }
-      }
-    >
-      <Card
-        body={false}
-        className="ciip-card"
-        style={
-          Object {
-            "margin": "30px 0",
-            "width": "100%",
-          }
-        }
-      >
-        <CardBody>
-          <CardTitle
-            className="blue"
-          >
-            Apply for CleanBC Industrial Incentive Program (CIIP)
-          </CardTitle>
-          <CardText
-            style={
-              Object {
-                "padding": "10px 0 10px 0",
-              }
-            }
-          >
-            Operators must submit a CIIP application form by June 30, 2019. As part of the application, information about the operation’s energy use, emissions, and production is required.
-          </CardText>
-          <Form
-            action="/login"
-            inline={false}
-            method="post"
-          >
-            <Button
-              active={false}
-              className="full-width"
-              disabled={false}
-              size="lg"
-              style={
-                Object {
-                  "padding": "15px",
-                }
-              }
-              type="submit"
-              variant="primary"
-            >
-              Register and Apply
-            </Button>
-          </Form>
-        </CardBody>
-      </Card>
-      <Form
-        action="/login"
-        inline={false}
-        method="post"
-      >
-        <button
-          className="jsx-325561168 login-link text-center"
-          type="submit"
-        >
-          Already have an account? Click here to login.
-        </button>
-      </Form>
-    </Col>
+    <RegistrationLoginButtons />
   </ForwardRef>
   <ForwardRef
     id="value-props"
@@ -121,7 +53,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={12}
     >
       <h4
-        className="jsx-325561168 blue"
+        className="jsx-473442302 blue"
       >
         How to Apply
       </h4>
@@ -130,19 +62,19 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-325561168 value-prop"
+        className="jsx-473442302 value-prop"
       >
         <img
-          className="jsx-325561168"
+          className="jsx-473442302"
           src="../../static/icons/import.png"
         />
         <h5
-          className="jsx-325561168 blue"
+          className="jsx-473442302 blue"
         >
           1. Register as an Industrial Reporter
         </h5>
         <p
-          className="jsx-325561168"
+          className="jsx-473442302"
         >
           Before you can apply for an operation, you have to register yourself as an industrial reporter.
         </p>
@@ -152,19 +84,19 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-325561168 value-prop"
+        className="jsx-473442302 value-prop"
       >
         <img
-          className="jsx-325561168"
+          className="jsx-473442302"
           src="../../static/icons/production.png"
         />
         <h5
-          className="jsx-325561168 blue"
+          className="jsx-473442302 blue"
         >
           2. Request to apply for an Operation
         </h5>
         <p
-          className="jsx-325561168"
+          className="jsx-473442302"
         >
           Once you’ve registered you can request to apply on behalf one or multiple Operations.
         </p>
@@ -174,19 +106,19 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-325561168 value-prop"
+        className="jsx-473442302 value-prop"
       >
         <img
-          className="jsx-325561168"
+          className="jsx-473442302"
           src="../../static/icons/paid.png"
         />
         <h5
-          className="jsx-325561168 blue"
+          className="jsx-473442302 blue"
         >
           3. Apply on behalf of the Operation
         </h5>
         <p
-          className="jsx-325561168"
+          className="jsx-473442302"
         >
           The CIIP team will verify and approve your request and then you can apply for the program.
         </p>
@@ -209,7 +141,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       }
     >
       <img
-        className="jsx-325561168 with-shadow"
+        className="jsx-473442302 with-shadow"
         src="../../static/what-is-it.jpg"
       />
     </Col>
@@ -222,7 +154,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       }
     >
       <h3
-        className="jsx-325561168 blue"
+        className="jsx-473442302 blue"
       >
         Key Dates
       </h3>
@@ -232,80 +164,80 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         striped={true}
       >
         <thead
-          className="jsx-325561168"
+          className="jsx-473442302"
         >
           <tr
-            className="jsx-325561168"
+            className="jsx-473442302"
           >
             <th
-              className="jsx-325561168"
+              className="jsx-473442302"
             >
               Date
             </th>
             <th
-              className="jsx-325561168"
+              className="jsx-473442302"
             />
           </tr>
         </thead>
         <tbody
-          className="jsx-325561168"
+          className="jsx-473442302"
         >
           <tr
-            className="jsx-325561168"
+            className="jsx-473442302"
           >
             <td
-              className="jsx-325561168"
+              className="jsx-473442302"
             >
               May 1, 2020
             </td>
             <td
-              className="jsx-325561168"
+              className="jsx-473442302"
             >
               CIIP application forms open
             </td>
           </tr>
           <tr
-            className="jsx-325561168"
+            className="jsx-473442302"
           >
             <td
-              className="jsx-325561168"
+              className="jsx-473442302"
             >
               May 16, 2020
             </td>
             <td
-              className="jsx-325561168"
+              className="jsx-473442302"
             >
               Webinar for CIIP
             </td>
           </tr>
           <tr
-            className="jsx-325561168"
+            className="jsx-473442302"
           >
             <td
-              className="jsx-325561168"
+              className="jsx-473442302"
             >
               June 30, 2020
             </td>
             <td
-              className="jsx-325561168"
+              className="jsx-473442302"
             >
               CIIP application form due
             </td>
           </tr>
           <tr
-            className="jsx-325561168"
+            className="jsx-473442302"
           >
             <td
-              className="jsx-325561168"
+              className="jsx-473442302"
             >
               May 31, 2021
             </td>
             <td
-              className="jsx-325561168"
+              className="jsx-473442302"
             >
               CIIP application form due 
               <br
-                className="jsx-325561168"
+                className="jsx-473442302"
               />
               (along with 2019 GHG reporting data)
             </td>
@@ -338,7 +270,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
           >
             Please email us at 
             <strong
-              className="jsx-325561168"
+              className="jsx-473442302"
             >
               GHGRegulator@gov.bc.ca
             </strong>
@@ -347,11 +279,11 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         </CardBody>
       </Card>
       <p
-        className="jsx-325561168"
+        className="jsx-473442302"
       >
         Further information on the CleanBC Industrial Incentive Program is available in this
         <a
-          className="jsx-325561168"
+          className="jsx-473442302"
           href="https://www2.gov.bc.ca/assets/gov/environment/climate-change/ind/cleanbc-program-for-industry/ciip_factsheet_190524_final.pdf?forcedownload=true"
           rel="noopener noreferrer"
           target="_blank"
@@ -381,26 +313,26 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       }
     >
       <h3
-        className="jsx-325561168 blue"
+        className="jsx-473442302 blue"
       >
         Have questions? Get in touch.
       </h3>
       <p
-        className="jsx-325561168"
+        className="jsx-473442302"
       >
         Phone: +1 099 9920 9002
       </p>
       <p
-        className="jsx-325561168"
+        className="jsx-473442302"
       >
         Email: cas@ggircs.com
       </p>
     </Jumbotron>
   </ForwardRef>
   <JSXStyle
-    id="325561168"
+    id="473442302"
   >
-    .value-prop.jsx-325561168{padding-right:30px;}.value-prop.jsx-325561168 img.jsx-325561168{max-width:100px;padding:30px 0;margin:0 auto;}.value-prop.jsx-325561168 h4.jsx-325561168{margin-bottom:20px;}.login-link.jsx-325561168{border:1px solid #666;padding:20px;border-radius:4px;background-color:transparent;width:100%;-webkit-text-decoration:underline;text-decoration:underline;}li.jsx-325561168{list-style:none;}
+    .value-prop.jsx-473442302{padding-right:30px;}.value-prop.jsx-473442302 img.jsx-473442302{max-width:100px;padding:30px 0;margin:0 auto;}.value-prop.jsx-473442302 h4.jsx-473442302{margin-bottom:20px;}li.jsx-473442302{list-style:none;}
   </JSXStyle>
 </Relay(DefaultLayout)>
 `;

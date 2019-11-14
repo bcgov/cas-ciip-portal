@@ -11,7 +11,7 @@ const table = {
   marginBottom: '50px'
 };
 
-export const UserProfile = ({user}) => {
+const UserProfile = ({user}) => {
   const [editMode, setEditMode] = useState(false);
   return (
     <div>
@@ -55,6 +55,7 @@ export const UserProfile = ({user}) => {
   );
 };
 
+export {UserProfile as UserProfileComponent};
 export default createFragmentContainer(UserProfile, {
   user: graphql`
     fragment UserProfile_user on User {
