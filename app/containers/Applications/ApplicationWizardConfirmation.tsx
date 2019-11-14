@@ -8,7 +8,6 @@ import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmati
  */
 export const ApplicationWizardConfirmationComponent = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
-  console.log(formResults);
   // Const resultObject = {};
   // // Create a parsed result object from each formResult page
   // formResults.forEach(result => {

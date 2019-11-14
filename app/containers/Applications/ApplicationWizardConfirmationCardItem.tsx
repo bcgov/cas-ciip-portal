@@ -1,35 +1,36 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import JsonSchemaForm from 'react-jsonschema-form';
 import {FormJson} from 'next-env';
-import FormObjectFieldTemplate from './FormObjectFieldTemplate';
-import FormFieldTemplate from './FormFieldTemplate';
-import FormArrayFieldTemplate from './FormArrayFieldTemplate';
-import FuelFields from './FuelFields';
-import EmissionGasFields from './EmissionGasFields';
-import EmissionSourceFields from './EmissionSourceFields';
-import ProductionFields from './ProductionFields';
+import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
+import FormFieldTemplate from '../Forms/FormFieldTemplate';
+import FuelFields from '../Forms/FuelFields';
+import EmissionGasFields from '../Forms/EmissionGasFields';
+import EmissionSourceFields from '../Forms/EmissionSourceFields';
+import ProductionFields from '../Forms/ProductionFields';
+import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 
 interface Props {
-  formResult: object;
+  formResult;
 }
 
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
  */
-export const ApplicationWizardConfirmationCardItemComponent = props => {
-  const {formResult} = props;
-  console.log(formResult);
-  const {formJson} = formResult.formJsonbyFormId;
+export const ApplicationWizardConfirmationCardItemComponent: React.FunctionComponent<
+  Props
+> = ({formResult}) => {
+  const {formJsonByFormId} = formResult;
+  const query = formResult.formResult;
+  const {formJson} = formJsonByFormId;
   const {
     schema,
     uiSchema,
     customFormats
     // CustomFormatsErrorMessages = {}
   } = formJson as FormJson;
-
+  console.log(formResult);
   const CUSTOM_FIELDS = {
     fuel: props => <FuelFields query={props.formContext.query} {...props} />,
     emissionSource: props => <EmissionSourceFields {...props} />,
@@ -47,25 +48,22 @@ export const ApplicationWizardConfirmationCardItemComponent = props => {
       {/*
       //@ts-ignore JsonSchemaForm typedef is missing customFormats prop */}
       <JsonSchemaForm
+        disabled
         omitExtraData
         liveOmit
         showErrorList={false}
         ArrayFieldTemplate={FormArrayFieldTemplate}
         FieldTemplate={FormFieldTemplate}
-        formContext={{query}}
-        formData={formResult}
+        FormContext={{query}}
+        formData={query}
         fields={CUSTOM_FIELDS}
         customFormats={customFormats}
         schema={schema}
         uiSchema={uiSchema}
         ObjectFieldTemplate={FormObjectFieldTemplate}
-        transformErrors={transformErrors}
-        onSubmit={onComplete}
-      >
-        <div style={{textAlign: 'right'}}>
-          <Button type="submit">Submit</Button>
-        </div>
-      </JsonSchemaForm>
+        // TransformErrors={transformErrors}
+        // onSubmit={onComplete}
+      />
     </>
   );
 };
