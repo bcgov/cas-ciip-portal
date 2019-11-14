@@ -1,7 +1,8 @@
 import React from 'react';
-import {createFragmentContainer, graphql} from 'react-relay';
+import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
+import {UserForm_user} from 'UserForm_user.graphql';
 import createUserMutation from '../../mutations/user/createUserMutation';
 import updateUserMutation from '../../mutations/user/updateUserMutation';
 import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
@@ -41,18 +42,26 @@ const userSchema: JSONSchema6 = {
   ]
 };
 
-const UserForm = ({user, relay, sessionSub}) => {
-  const handleChange = (e: IChangeEvent) => {
-    if (user) updateUserMutation(relay.environment, user, e.formData);
+interface Props {
+  user?: UserForm_user;
+  relay: RelayProp;
+  sessionSub?: string;
+  onSubmit: () => any;
+}
+
+const UserForm = ({user, relay, sessionSub, onSubmit}) => {
+  const handleChange = async (e: IChangeEvent) => {
+    if (user) await updateUserMutation(relay.environment, user, e.formData);
   };
 
-  const handleSubmit = (e: IChangeEvent) => {
-    if (user) handleChange(e);
+  const handleSubmit = async (e: IChangeEvent) => {
+    if (user) await handleChange(e);
     else
-      createUserMutation(relay.environment, {
+      await createUserMutation(relay.environment, {
         ...e.formData,
         uuid: sessionSub
       });
+    onSubmit();
   };
 
   return (

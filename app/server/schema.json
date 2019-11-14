@@ -4625,7 +4625,7 @@
             },
             {
               "name": "facilityId",
-              "description": "The foreign key to ggircs_portal.facility, references id",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -5406,7 +5406,7 @@
         {
           "kind": "OBJECT",
           "name": "Facility",
-          "description": "Table containing information on an facility that has applied for CIIP",
+          "description": null,
           "fields": [
             {
               "name": "applicationsByFacilityId",
@@ -5756,7 +5756,7 @@
             },
             {
               "name": "swrsFacilityId",
-              "description": "swrs facility id from swrs",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -5815,7 +5815,7 @@
         {
           "kind": "OBJECT",
           "name": "Organisation",
-          "description": "Table containing information on an organisaiton that has applied for CIIP",
+          "description": null,
           "fields": [
             {
               "name": "craBusinessNumber",
@@ -7047,7 +7047,7 @@
         {
           "kind": "OBJECT",
           "name": "UserOrganisation",
-          "description": "Table containing the access rights for a user to report on behalf of an organisation",
+          "description": null,
           "fields": [
             {
               "name": "id",
@@ -7148,7 +7148,7 @@
         {
           "kind": "OBJECT",
           "name": "User",
-          "description": "Table containing the benchmark and eligibility threshold for a product",
+          "description": null,
           "fields": [
             {
               "name": "createdAt",
@@ -7232,7 +7232,7 @@
             },
             {
               "name": "occupation",
-              "description": "User's occupation",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7244,7 +7244,7 @@
             },
             {
               "name": "phoneNumber",
-              "description": "User's phone number",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7804,7 +7804,7 @@
         {
           "kind": "OBJECT",
           "name": "FormResult",
-          "description": "Table containing CIIP application data received from a user",
+          "description": null,
           "fields": [
             {
               "name": "applicationByApplicationId",
@@ -7820,7 +7820,7 @@
             },
             {
               "name": "applicationId",
-              "description": "The Unique ID of the Application",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -7940,7 +7940,7 @@
             },
             {
               "name": "submissionDate",
-              "description": "The submission date of the Application",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7993,7 +7993,7 @@
         {
           "kind": "OBJECT",
           "name": "FormJson",
-          "description": "Table containing the structure of each form to be filled out when applying for CIIP",
+          "description": null,
           "fields": [
             {
               "name": "ciipApplicationWizardByFormId",
@@ -9085,7 +9085,7 @@
         {
           "kind": "OBJECT",
           "name": "Benchmark",
-          "description": "Table containing the benchmark and eligibility threshold for a product",
+          "description": null,
           "fields": [
             {
               "name": "benchmark",
@@ -9298,7 +9298,7 @@
         {
           "kind": "OBJECT",
           "name": "Product",
-          "description": "Table containing the information for a CIIP product",
+          "description": null,
           "fields": [
             {
               "name": "benchmarksByProductId",
@@ -9449,7 +9449,7 @@
             },
             {
               "name": "description",
-              "description": "The description of the product",
+              "description": "The unit of measure for the product",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -9537,7 +9537,7 @@
             },
             {
               "name": "units",
-              "description": "The unit of measure for the product",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -10987,7 +10987,7 @@
               "description": "Checks for equality with the object’s `consumedOnsite` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "BigFloat",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -11017,7 +11017,7 @@
               "description": "Checks for equality with the object’s `generatedOnsite` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "BigFloat",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -11303,7 +11303,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "BigFloat",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -11339,7 +11339,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "BigFloat",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -12735,7 +12735,7 @@
               "description": "Checks for equality with the object’s `associatedEmissions` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "BigFloat",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -13073,7 +13073,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "BigFloat",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -14585,7 +14585,7 @@
         {
           "kind": "OBJECT",
           "name": "EstimatedCarbonTaxPaid",
-          "description": "The estimated carbon tax paid for a reporting_period_duration",
+          "description": null,
           "fields": [
             {
               "name": "activityId",
@@ -15636,7 +15636,7 @@
         {
           "kind": "OBJECT",
           "name": "Fuel",
-          "description": "Table containing information on fuel",
+          "description": null,
           "fields": [
             {
               "name": "createdAt",
@@ -15692,7 +15692,7 @@
             },
             {
               "name": "description",
-              "description": "The description of the fuel",
+              "description": "The unit of measure for the fuel",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -15780,7 +15780,7 @@
             },
             {
               "name": "units",
-              "description": "The unit of measure for the fuel",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -20880,7 +20880,7 @@
           "inputFields": [
             {
               "name": "facilityId",
-              "description": "The foreign key to ggircs_portal.facility, references id",
+              "description": null,
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -22334,7 +22334,7 @@
             },
             {
               "name": "swrsFacilityId",
-              "description": "swrs facility id from swrs",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -22730,7 +22730,7 @@
           "inputFields": [
             {
               "name": "applicationId",
-              "description": "The Unique ID of the Application",
+              "description": null,
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -22792,7 +22792,7 @@
             },
             {
               "name": "submissionDate",
-              "description": "The submission date of the Application",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -23010,7 +23010,7 @@
             },
             {
               "name": "description",
-              "description": "The description of the fuel",
+              "description": "The unit of measure for the fuel",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -23058,7 +23058,7 @@
             },
             {
               "name": "units",
-              "description": "The unit of measure for the fuel",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -23720,7 +23720,7 @@
             },
             {
               "name": "description",
-              "description": "The description of the product",
+              "description": "The unit of measure for the product",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -23768,7 +23768,7 @@
             },
             {
               "name": "units",
-              "description": "The unit of measure for the product",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -23972,7 +23972,7 @@
             },
             {
               "name": "occupation",
-              "description": "User's occupation",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -23982,7 +23982,7 @@
             },
             {
               "name": "phoneNumber",
-              "description": "User's phone number",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -27195,7 +27195,7 @@
           "inputFields": [
             {
               "name": "facilityId",
-              "description": "The foreign key to ggircs_portal.facility, references id",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -28630,7 +28630,7 @@
             },
             {
               "name": "swrsFacilityId",
-              "description": "swrs facility id from swrs",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -29136,7 +29136,7 @@
           "inputFields": [
             {
               "name": "applicationId",
-              "description": "The Unique ID of the Application",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -29186,7 +29186,7 @@
             },
             {
               "name": "submissionDate",
-              "description": "The submission date of the Application",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -29467,7 +29467,7 @@
             },
             {
               "name": "description",
-              "description": "The description of the fuel",
+              "description": "The unit of measure for the fuel",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -29511,7 +29511,7 @@
             },
             {
               "name": "units",
-              "description": "The unit of measure for the fuel",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -30362,7 +30362,7 @@
             },
             {
               "name": "description",
-              "description": "The description of the product",
+              "description": "The unit of measure for the product",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -30406,7 +30406,7 @@
             },
             {
               "name": "units",
-              "description": "The unit of measure for the product",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -30673,7 +30673,7 @@
             },
             {
               "name": "occupation",
-              "description": "User's occupation",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -30683,7 +30683,7 @@
             },
             {
               "name": "phoneNumber",
-              "description": "User's phone number",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
