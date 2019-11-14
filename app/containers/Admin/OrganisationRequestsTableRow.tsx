@@ -28,7 +28,7 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<
         }
       }
     };
-    // @ts-ignore
+
     const response = await updateUserOrganisationMutation(
       props.relay.environment,
       variables

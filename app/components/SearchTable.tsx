@@ -4,6 +4,7 @@ interface Props {
   query;
   defaultOrderByField: string;
   defaultOrderByDisplay: string;
+  children;
 }
 class SearchTableComponent extends Component<Props> {
   state = {
@@ -52,7 +53,7 @@ class SearchTableComponent extends Component<Props> {
   render() {
     const {query} = this.props;
     const {children} = this.props;
-    // @ts-ignore
+
     const clone = React.cloneElement(children, {
       query,
       orderByDisplay: this.state.orderByDisplay,
