@@ -33,6 +33,8 @@ type Application implements Node {
 
   """Reads a single `Facility` that is related to this `Application`."""
   facilityByFacilityId: Facility
+
+  """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int!
 
   """Reads and enables pagination through a set of `FormResult`."""
@@ -108,6 +110,7 @@ input ApplicationCondition {
 
 """An input for mutations affecting `Application`"""
 input ApplicationInput {
+  """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int!
 }
 
@@ -115,6 +118,7 @@ input ApplicationInput {
 Represents an update to a `Application`. Fields that are set will be updated.
 """
 input ApplicationPatch {
+  """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int
 }
 
@@ -309,6 +313,7 @@ input ApplicationStatusPatch {
   updatedBy: String
 }
 
+"""Table containing the benchmark and eligibility threshold for a product"""
 type Benchmark implements Node {
   """The value of the benchmark"""
   benchmark: Int!
@@ -907,10 +912,10 @@ enum CiipContactsOrderBy {
 }
 
 type CiipElectricityAndHeat implements Node {
-  consumedOnsite: String
+  consumedOnsite: BigFloat
   consumptionType: String
   description: String
-  generatedOnsite: String
+  generatedOnsite: BigFloat
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -927,7 +932,7 @@ are tested for equality and combined with a logical ‘and.’
 """
 input CiipElectricityAndHeatCondition {
   """Checks for equality with the object’s `consumedOnsite` field."""
-  consumedOnsite: String
+  consumedOnsite: BigFloat
 
   """Checks for equality with the object’s `consumptionType` field."""
   consumptionType: String
@@ -936,7 +941,7 @@ input CiipElectricityAndHeatCondition {
   description: String
 
   """Checks for equality with the object’s `generatedOnsite` field."""
-  generatedOnsite: String
+  generatedOnsite: BigFloat
 
   """Checks for equality with the object’s `quantity` field."""
   quantity: BigFloat
@@ -1267,7 +1272,7 @@ enum CiipOperatorsOrderBy {
 }
 
 type CiipProduction implements Node {
-  associatedEmissions: String
+  associatedEmissions: BigFloat
   attributableFuelPercentage: BigFloat
   bcghgid: BigFloat
   comments: String
@@ -1288,7 +1293,7 @@ tested for equality and combined with a logical ‘and.’
 """
 input CiipProductionCondition {
   """Checks for equality with the object’s `associatedEmissions` field."""
-  associatedEmissions: String
+  associatedEmissions: BigFloat
 
   """
   Checks for equality with the object’s `attributableFuelPercentage` field.
@@ -2947,6 +2952,7 @@ type EmissionDatum {
   reportId: Int
 }
 
+"""The estimated carbon tax paid for a reporting_period_duration"""
 type EstimatedCarbonTaxPaid {
   activityId: Int
   bcghgid: String
@@ -3176,6 +3182,7 @@ enum FacilitiesOrderBy {
   SWRS_REPORT_ID_DESC
 }
 
+"""Table containing information on an facility that has applied for CIIP"""
 type Facility implements Node {
   """Reads and enables pagination through a set of `Application`."""
   applicationsByFacilityId(
@@ -3262,6 +3269,8 @@ type Facility implements Node {
 
   """unique id for the facility"""
   rowId: Int!
+
+  """swrs facility id from swrs"""
   swrsFacilityId: Int
 
   """swrs organisation id"""
@@ -3400,6 +3409,8 @@ input FacilityInput {
 
   """the reporting year"""
   reportingYear: String
+
+  """swrs facility id from swrs"""
   swrsFacilityId: Int
 
   """swrs organisation id"""
@@ -3457,6 +3468,8 @@ input FacilityPatch {
 
   """the reporting year"""
   reportingYear: String
+
+  """swrs facility id from swrs"""
   swrsFacilityId: Int
 
   """swrs organisation id"""
@@ -3466,6 +3479,9 @@ input FacilityPatch {
   swrsReportId: Int
 }
 
+"""
+Table containing the structure of each form to be filled out when applying for CIIP
+"""
 type FormJson implements Node {
   """
   Reads a single `CiipApplicationWizard` that is related to this `FormJson`.
@@ -3729,9 +3745,12 @@ enum FormJsonsOrderBy {
   UPDATED_BY_DESC
 }
 
+"""Table containing CIIP application data received from a user"""
 type FormResult implements Node {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
+
+  """The Unique ID of the Application"""
   applicationId: Int!
 
   """The date the form was updated"""
@@ -3756,6 +3775,8 @@ type FormResult implements Node {
 
   """Unique ID for the form"""
   rowId: Int!
+
+  """The submission date of the Application"""
   submissionDate: Datetime
 
   """The date the form was updated"""
@@ -3800,6 +3821,7 @@ input FormResultCondition {
 
 """An input for mutations affecting `FormResult`"""
 input FormResultInput {
+  """The Unique ID of the Application"""
   applicationId: Int!
 
   """The date the form was updated"""
@@ -3813,6 +3835,8 @@ input FormResultInput {
 
   """JSON dump of form data"""
   formResult: JSON!
+
+  """The submission date of the Application"""
   submissionDate: Datetime
 
   """The date the form was updated"""
@@ -3826,6 +3850,7 @@ input FormResultInput {
 Represents an update to a `FormResult`. Fields that are set will be updated.
 """
 input FormResultPatch {
+  """The Unique ID of the Application"""
   applicationId: Int
 
   """The date the form was updated"""
@@ -3839,6 +3864,8 @@ input FormResultPatch {
 
   """JSON dump of form data"""
   formResult: JSON
+
+  """The submission date of the Application"""
   submissionDate: Datetime
 
   """The date the form was updated"""
@@ -3899,6 +3926,7 @@ enum FormResultsOrderBy {
   UPDATED_BY_DESC
 }
 
+"""Table containing information on fuel"""
 type Fuel implements Node {
   """Creation date of row"""
   createdAt: Datetime!
@@ -3912,7 +3940,7 @@ type Fuel implements Node {
   """The user who deleted the row"""
   deletedBy: String
 
-  """The unit of measure for the fuel"""
+  """The description of the fuel"""
   description: String
 
   """
@@ -3933,6 +3961,8 @@ type Fuel implements Node {
   The current state of the fuel within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+
+  """The unit of measure for the fuel"""
   units: String
 
   """Updated date of row"""
@@ -4035,7 +4065,7 @@ input FuelInput {
   """The user who deleted the row"""
   deletedBy: String
 
-  """The unit of measure for the fuel"""
+  """The description of the fuel"""
   description: String
 
   """The name of the fuel"""
@@ -4048,6 +4078,8 @@ input FuelInput {
   The current state of the fuel within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+
+  """The unit of measure for the fuel"""
   units: String
 
   """Updated date of row"""
@@ -4071,7 +4103,7 @@ input FuelPatch {
   """The user who deleted the row"""
   deletedBy: String
 
-  """The unit of measure for the fuel"""
+  """The description of the fuel"""
   description: String
 
   """The name of the fuel"""
@@ -4084,6 +4116,8 @@ input FuelPatch {
   The current state of the fuel within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+
+  """The unit of measure for the fuel"""
   units: String
 
   """Updated date of row"""
@@ -5116,6 +5150,9 @@ type OperatorContactDatum {
   telephone: String
 }
 
+"""
+Table containing information on an organisaiton that has applied for CIIP
+"""
 type Organisation implements Node {
   """cra business number"""
   craBusinessNumber: String
@@ -5449,6 +5486,7 @@ type PageInfo {
   startCursor: Cursor
 }
 
+"""Table containing the information for a CIIP product"""
 type Product implements Node {
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByProductId(
@@ -5491,7 +5529,7 @@ type Product implements Node {
   """The user who deleted the row"""
   deletedBy: String
 
-  """The unit of measure for the product"""
+  """The description of the product"""
   description: String
 
   """
@@ -5512,6 +5550,8 @@ type Product implements Node {
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+
+  """The unit of measure for the product"""
   units: String
 
   """Updated date of row"""
@@ -5576,7 +5616,7 @@ input ProductInput {
   """The user who deleted the row"""
   deletedBy: String
 
-  """The unit of measure for the product"""
+  """The description of the product"""
   description: String
 
   """The name of the product"""
@@ -5589,6 +5629,8 @@ input ProductInput {
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+
+  """The unit of measure for the product"""
   units: String
 
   """Updated date of row"""
@@ -5614,7 +5656,7 @@ input ProductPatch {
   """The user who deleted the row"""
   deletedBy: String
 
-  """The unit of measure for the product"""
+  """The description of the product"""
   description: String
 
   """The name of the product"""
@@ -5627,6 +5669,8 @@ input ProductPatch {
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+
+  """The unit of measure for the product"""
   units: String
 
   """Updated date of row"""
@@ -7641,6 +7685,7 @@ type UpdateUserPayload {
   ): UsersEdge
 }
 
+"""Table containing the benchmark and eligibility threshold for a product"""
 type User implements Node {
   """The date the user was updated"""
   createdAt: Datetime!
@@ -7661,7 +7706,11 @@ type User implements Node {
 
   """User's last name"""
   lastName: String
+
+  """User's occupation"""
   occupation: String
+
+  """User's phone number"""
   phoneNumber: String
 
   """Unique ID for the user"""
@@ -7760,7 +7809,11 @@ input UserInput {
 
   """User's last name"""
   lastName: String
+
+  """User's occupation"""
   occupation: String
+
+  """User's phone number"""
   phoneNumber: String
 
   """The date the user was updated"""
@@ -7773,6 +7826,9 @@ input UserInput {
   uuid: UUID!
 }
 
+"""
+Table containing the access rights for a user to report on behalf of an organisation
+"""
 type UserOrganisation implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -7895,7 +7951,11 @@ input UserPatch {
 
   """User's last name"""
   lastName: String
+
+  """User's occupation"""
   occupation: String
+
+  """User's phone number"""
   phoneNumber: String
 
   """The date the user was updated"""
