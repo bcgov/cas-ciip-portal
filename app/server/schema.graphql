@@ -2739,6 +2739,9 @@ type EmissionCategoryGas implements Node {
   """The emission category"""
   emissionCategory: String
 
+  """The description of the emission category"""
+  emissionCategoryDescription: String
+
   """Reads a single `Gas` that is related to this `EmissionCategoryGas`."""
   gasByGasId: Gas
 
@@ -2779,6 +2782,11 @@ input EmissionCategoryGasCondition {
 
   """Checks for equality with the object’s `emissionCategory` field."""
   emissionCategory: String
+
+  """
+  Checks for equality with the object’s `emissionCategoryDescription` field.
+  """
+  emissionCategoryDescription: String
 
   """Checks for equality with the object’s `gasId` field."""
   gasId: Int
@@ -2833,6 +2841,8 @@ enum EmissionCategoryGasesOrderBy {
   DELETED_BY_DESC
   EMISSION_CATEGORY_ASC
   EMISSION_CATEGORY_DESC
+  EMISSION_CATEGORY_DESCRIPTION_ASC
+  EMISSION_CATEGORY_DESCRIPTION_DESC
   GAS_ID_ASC
   GAS_ID_DESC
   ID_ASC
@@ -2863,6 +2873,9 @@ input EmissionCategoryGasInput {
   """The emission category"""
   emissionCategory: String
 
+  """The description of the emission category"""
+  emissionCategoryDescription: String
+
   """Foreign key to gas"""
   gasId: Int
 
@@ -2891,6 +2904,9 @@ input EmissionCategoryGasPatch {
 
   """The emission category"""
   emissionCategory: String
+
+  """The description of the emission category"""
+  emissionCategoryDescription: String
 
   """Foreign key to gas"""
   gasId: Int

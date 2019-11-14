@@ -13116,6 +13116,16 @@
               "defaultValue": null
             },
             {
+              "name": "emissionCategoryDescription",
+              "description": "Checks for equality with the object’s `emissionCategoryDescription` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "gasId",
               "description": "Checks for equality with the object’s `gasId` field.",
               "type": {
@@ -13224,6 +13234,18 @@
             },
             {
               "name": "EMISSION_CATEGORY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EMISSION_CATEGORY_DESCRIPTION_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EMISSION_CATEGORY_DESCRIPTION_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -13479,6 +13501,18 @@
             {
               "name": "emissionCategory",
               "description": "The emission category",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "emissionCategoryDescription",
+              "description": "The description of the emission category",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -21833,6 +21867,16 @@
               "defaultValue": null
             },
             {
+              "name": "emissionCategoryDescription",
+              "description": "The description of the emission category",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "gasId",
               "description": "Foreign key to gas",
               "type": {
@@ -28052,6 +28096,16 @@
             {
               "name": "emissionCategory",
               "description": "The emission category",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "emissionCategoryDescription",
+              "description": "The description of the emission category",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
