@@ -12,7 +12,7 @@ class UserProfile extends Component<Props> {
     query userProfileQuery {
       query {
         session {
-          ...Header_session
+          ...defaultLayout_session
           userBySub {
             ...UserDetailContainer_user
           }

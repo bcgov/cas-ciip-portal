@@ -18,7 +18,7 @@ export default class UserDashBoard extends Component<Props> {
       query {
         ...Organisations_query @arguments(id: $id)
         session {
-          ...Header_session
+          ...defaultLayout_session
         }
       }
     }

@@ -7398,9 +7398,13 @@
               "description": "Universally Unique ID for the user used for auth",
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "UUID",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "UUID",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -24010,9 +24014,13 @@
               "name": "uuid",
               "description": "Universally Unique ID for the user used for auth",
               "type": {
-                "kind": "SCALAR",
-                "name": "UUID",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "UUID",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             }

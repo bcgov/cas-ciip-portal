@@ -7752,7 +7752,7 @@ type User implements Node {
   ): UserOrganisationsConnection!
 
   """Universally Unique ID for the user used for auth"""
-  uuid: UUID
+  uuid: UUID!
 }
 
 """
@@ -7823,7 +7823,7 @@ input UserInput {
   updatedBy: String
 
   """Universally Unique ID for the user used for auth"""
-  uuid: UUID
+  uuid: UUID!
 }
 
 """

@@ -6,7 +6,7 @@ begin;
 create table ggircs_portal.user
 (
   id integer primary key generated always as identity,
-  uuid uuid,
+  uuid uuid not null,
   first_name varchar(1000),
   last_name varchar(1000),
   email_address varchar(1000),
@@ -25,7 +25,11 @@ create trigger _100_timestamps
   execute procedure ggircs_portal.update_timestamps();
 
 create unique index user_email_address_uindex
-  on ggircs_portal.user (email_address);
+  on ggircs_portal.user(email_address);
+
+  create unique index user_email_address_uuuid
+  on ggircs_portal.user(uuid);
+
 
 comment on table ggircs_portal.user is 'Table containing the benchmark and eligibility threshold for a product';
 comment on column ggircs_portal.user.id is 'Unique ID for the user';

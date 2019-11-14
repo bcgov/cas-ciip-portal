@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {registrationQueryResponse} from 'registrationQuery.graphql';
-import FormEditUser from '../containers/Forms/FormEditUser';
+import UserInformationForm from '../containers/User/UserForm';
 import DefaultLayout from '../layouts/default-layout';
 
 interface Props {
@@ -13,22 +13,26 @@ class Registration extends Component<Props> {
     query registrationQuery {
       query {
         session {
-          ...Header_session
-        }
-        user(id: "WyJ1c2VycyIsMV0=") {
-          ...FormEditUser_user
+          ...defaultLayout_session
+          sub
+          userBySub {
+            ...UserForm_user
+          }
         }
       }
     }
   `;
 
   render() {
-    const {user, session} = this.props.query;
+    const {session} = this.props.query;
 
     return (
-      <DefaultLayout title="Registration" session={session}>
+      <DefaultLayout title="Registration" session={session} needsUser={false}>
         <h4 className="mb-5">Please verify or update your information</h4>
-        <FormEditUser user={user} />
+        <UserInformationForm
+          user={session ? session.userBySub : undefined}
+          sessionSub={session.sub}
+        />
       </DefaultLayout>
     );
   }

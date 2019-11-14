@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
-import Link from 'next/link';
+import {Button, Row, Col, Card, Jumbotron, Table, Form} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {pagesQueryResponse} from 'pagesQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
@@ -15,7 +14,7 @@ export default class Index extends Component<Props> {
     query pagesQuery {
       query {
         session {
-          ...Header_session
+          ...defaultLayout_session
         }
       }
     }
@@ -25,7 +24,12 @@ export default class Index extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout showSubheader={false} session={session}>
+      <DefaultLayout
+        showSubheader={false}
+        session={session}
+        needsSession={false}
+        needsUser={false}
+      >
         <Row style={{marginTop: '60px'}}>
           <Col md={6}>
             <h3 className="blue">
@@ -65,12 +69,9 @@ export default class Index extends Component<Props> {
                   2019. As part of the application, information about the
                   operation’s energy use, emissions, and production is required.
                 </Card.Text>
-                <Link
-                  href={{
-                    pathname: '/dummy-login'
-                  }}
-                >
+                <Form action="/login" method="post">
                   <Button
+                    type="submit"
                     style={{padding: '15px'}}
                     className="full-width"
                     variant="primary"
@@ -78,21 +79,14 @@ export default class Index extends Component<Props> {
                   >
                     Register and Apply
                   </Button>
-                </Link>
+                </Form>
               </Card.Body>
             </Card>
-            <Link
-              href={{
-                pathname: '/dummy-login'
-              }}
-            >
-              <div
-                className="login-link text-center"
-                style={{textDecoration: 'underline'}}
-              >
-                <a href="#">Already have an account? Click here to login.</a>
-              </div>
-            </Link>
+            <Form action="/login" method="post">
+              <button type="submit" className="login-link text-center">
+                Already have an account? Click here to login.
+              </button>
+            </Form>
           </Col>
         </Row>
 
@@ -226,6 +220,9 @@ export default class Index extends Component<Props> {
             border: 1px solid #666;
             padding: 20px;
             border-radius: 4px;
+            background-color: transparent;
+            width: 100%;
+            text-decoration: underline;
           }
           li {
             list-style: none;
