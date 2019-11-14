@@ -173,7 +173,8 @@
   },
   "resolutions": {
     "@storybook/**/open": "^7.0.0",
-    "xo/open-editor/open": "^7.0.0"
+    "xo/open-editor/open": "^7.0.0",
+    "jest/jest-cli/@jest/core/@jest/reporters/istanbul-reports/handlebars": "^4.5.2"
   },
   "jest": {
     "testMatch": [

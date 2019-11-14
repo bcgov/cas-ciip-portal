@@ -11,6 +11,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   errors,
   children,
   schema,
+  classNames,
   uiSchema
 }) => {
   if (schema.type === 'array')
@@ -41,7 +42,15 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   const xl = uiSchema['ui:col-xl'] || lg;
 
   return (
-    <Form.Group as={Col} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+    <Form.Group
+      as={Col}
+      xs={xs}
+      sm={sm}
+      md={md}
+      lg={lg}
+      xl={xl}
+      className={classNames}
+    >
       <Form.Label htmlFor={id}>
         {label}
         {required ? '*' : null}

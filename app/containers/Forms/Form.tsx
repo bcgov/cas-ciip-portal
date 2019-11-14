@@ -12,6 +12,8 @@ import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
 import FormArrayFieldTemplate from './FormArrayFieldTemplate';
 import FuelFields from './FuelFields';
+import EmissionGasFields from './EmissionGasFields';
+import EmissionSourceFields from './EmissionSourceFields';
 import ProductionFields from './ProductionFields';
 
 interface FormJson {
@@ -29,6 +31,8 @@ interface Props {
 
 const CUSTOM_FIELDS = {
   fuel: props => <FuelFields query={props.formContext.query} {...props} />,
+  emissionSource: EmissionSourceFields,
+  emissionGas: EmissionGasFields,
   production: props => (
     <ProductionFields query={props.formContext.query} {...props} />
   )
@@ -41,13 +45,11 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   onValueChanged
 }) => {
   const {result} = query || {};
-
   const {
     formJsonByFormId: {formJson},
     formResult
   } = result || {formJsonByFormId: {}};
   if (!result) return null;
-
   const {
     schema,
     uiSchema,

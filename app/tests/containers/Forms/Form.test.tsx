@@ -1,7 +1,8 @@
 import React from 'react';
-import {render} from 'enzyme';
+import {render, shallow} from 'enzyme';
 import {FormComponent} from '../../../containers/Forms/Form';
 import adminForm from '../../../../schema/data/portal/form_json/administration.json';
+import emissionForm from '../../../../schema/data/portal/form_json/emission.json';
 import fuelForm from '../../../../schema/data/portal/form_json/fuel.json';
 import electricityAndHeatForm from '../../../../schema/data/portal/form_json/electricity_and_heat.json';
 import productionForm from '../../../../schema/data/portal/form_json/production.json';
@@ -22,7 +23,7 @@ describe('Form', () => {
             ProductionFields_query: true
           },
           result: {
-            formResult: {},
+            formResult: {operator: {name: 'Test operator'}},
             formJsonByFormId: {
               formJson: adminForm
             }
@@ -44,7 +45,14 @@ describe('Form', () => {
             ProductionFields_query: true
           },
           result: {
-            formResult: [],
+            formResult: [
+              {
+                fuelType: 'C/D Waste - Plastic',
+                quantity: 4,
+                fuelUnits: 't',
+                methodology: 'wci 1.0'
+              }
+            ],
             formJsonByFormId: {
               formJson: fuelForm
             }
@@ -52,7 +60,52 @@ describe('Form', () => {
         }}
       />
     );
-    const r = render(<TestRenderer />);
+    // Shallow used as 'render' tries to continue farther down because of the ArrayFieldTemplate
+    const r = shallow(<TestRenderer />);
+    expect(r).toMatchSnapshot();
+  });
+
+  it('should match the snapshot with the emission form', async () => {
+    // Shallow used as 'render' tries to continue farther down because of the ArrayFieldTemplate
+    const r = render(
+      <FormComponent
+        query={{
+          ' $refType': 'Form_query',
+          ' $fragmentRefs': {
+            FuelFields_query: true,
+            ProductionFields_query: true
+          },
+          result: {
+            formResult: {
+              sourceTypes: [
+                {
+                  sourceType: 'Flaring',
+                  gases: [
+                    {
+                      gasType: 'CH4',
+                      GWP: ' x 25 = ',
+                      annualCO2e: 1625,
+                      annualEmission: 65,
+                      gasDescription: 'gassy'
+                    },
+                    {
+                      gasType: 'C02',
+                      GWP: ' x 2 = ',
+                      annualCO2e: 25,
+                      annualEmission: 5,
+                      gasDescription: 'not as gassy'
+                    }
+                  ]
+                }
+              ]
+            },
+            formJsonByFormId: {
+              formJson: emissionForm
+            }
+          }
+        }}
+      />
+    );
     expect(r).toMatchSnapshot();
   });
 
@@ -66,7 +119,7 @@ describe('Form', () => {
             ProductionFields_query: true
           },
           result: {
-            formResult: {},
+            formResult: {heat: {sold: 81}, electricity: {sold: 81}},
             formJsonByFormId: {
               formJson: electricityAndHeatForm
             }
@@ -78,7 +131,8 @@ describe('Form', () => {
   });
 
   it('should match the snapshot with the production form', async () => {
-    const r = render(
+    // Shallow used as 'render' tries to continue farther down the product-units fragment
+    const r = shallow(
       <FormComponent
         query={{
           ' $refType': 'Form_query',
@@ -87,7 +141,15 @@ describe('Form', () => {
             ProductionFields_query: true
           },
           result: {
-            formResult: {},
+            formResult: [
+              {
+                product: 'Dehydration',
+                comments: 'Saepe quis aliquid e',
+                quantity: 84,
+                productUnits: 'kl',
+                associatedEmissions: 42
+              }
+            ],
             formJsonByFormId: {
               formJson: productionForm
             }
