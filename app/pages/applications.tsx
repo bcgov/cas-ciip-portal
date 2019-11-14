@@ -54,7 +54,7 @@ class Applications extends Component<Props> {
             defaultOrderByField="operator_name"
             defaultOrderByDisplay="Operator Name"
           >
-            <ApplicationListContainer />
+            {props => <ApplicationListContainer {...props} />}
           </SearchTable>
         </DefaultLayout>
       </>
