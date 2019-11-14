@@ -1,132 +1,86 @@
-import React, {useState} from 'react';
-import {Card, Table, Collapse} from 'react-bootstrap';
-import {createFragmentContainer} from 'react-relay';
+import React from 'react';
+import {Button} from 'react-bootstrap';
+import {createFragmentContainer, graphql} from 'react-relay';
+import JsonSchemaForm from 'react-jsonschema-form';
+import {FormJson} from 'next-env';
+import FormObjectFieldTemplate from './FormObjectFieldTemplate';
+import FormFieldTemplate from './FormFieldTemplate';
+import FormArrayFieldTemplate from './FormArrayFieldTemplate';
+import FuelFields from './FuelFields';
+import EmissionGasFields from './EmissionGasFields';
+import EmissionSourceFields from './EmissionSourceFields';
+import ProductionFields from './ProductionFields';
+
+interface Props {
+  formResult: object;
+}
 
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
  */
 export const ApplicationWizardConfirmationCardItemComponent = props => {
-  const [open, setOpen] = useState(false);
-  const {resultObject} = props;
-  const capitalRegex = /(?<cap>[A-Z])/g;
+  const {formResult} = props;
+  console.log(formResult);
+  const {formJson} = formResult.formJsonbyFormId;
+  const {
+    schema,
+    uiSchema,
+    customFormats
+    // CustomFormatsErrorMessages = {}
+  } = formJson as FormJson;
 
-  const renderInputs = (
-    formTitle,
-    subTitle,
-    formInput,
-    nest,
-    index?: number
-  ) => {
-    let value;
-    nest
-      ? (value = null)
-      : (value = resultObject[formTitle][subTitle][index][formInput]);
-    // Space out camel cased inputs and Capitalize the input for display
-
-    const prettyInput = formInput.replace(capitalRegex, ' $1').trim();
-
-    // If there are nested values, change the location of the value variable
-    if (nest) value = resultObject[formTitle][subTitle][0][nest][0][formInput];
-    return (
-      <>
-        <td style={{width: '50%'}}>
-          <strong style={{textTransform: 'capitalize'}}>{prettyInput}:</strong>
-        </td>
-        <td style={{width: '50%'}}>{value}</td>
-      </>
-    );
+  const CUSTOM_FIELDS = {
+    fuel: props => <FuelFields query={props.formContext.query} {...props} />,
+    emissionSource: props => <EmissionSourceFields {...props} />,
+    emissionGas: props => <EmissionGasFields {...props} />,
+    production: props => (
+      <ProductionFields query={props.formContext.query} {...props} />
+    )
   };
 
-  const {formTitle, formSubtitle} = props;
-
-  // Space out camel cased titles and capitalize for display
-
-  const prettyTitle = formSubtitle.replace(capitalRegex, ' $1').trim();
-
-  // Fix for undefined / null render problem. Commented out for demo
-  // if (!resultObject[formTitle][formSubtitle][0]) return null;
-  // Get a list of keys for the form inputs
-  const inputs = Object.keys(resultObject[formTitle][formSubtitle][0]);
-
-  const nested = [];
-  // Check for nested values (Electricity & heat have values nested under extra objects)
-  if (Array.isArray(resultObject[formTitle][formSubtitle][0][inputs[0]])) {
-    inputs.forEach(input => {
-      nested.push(input);
-    });
-  }
-
   return (
-    <Card key={`${formTitle} ${formSubtitle}`} style={{marginTop: '10px'}}>
-      <Card.Header
-        as="h5"
-        style={{textTransform: 'capitalize'}}
-        onClick={() => setOpen(!open)}
+    <>
+      {/*
+        //@ts-ignore */}
+      {formResult.formJsonByFormId.name}
+      {/*
+      //@ts-ignore JsonSchemaForm typedef is missing customFormats prop */}
+      <JsonSchemaForm
+        omitExtraData
+        liveOmit
+        showErrorList={false}
+        ArrayFieldTemplate={FormArrayFieldTemplate}
+        FieldTemplate={FormFieldTemplate}
+        formContext={{query}}
+        formData={formResult}
+        fields={CUSTOM_FIELDS}
+        customFormats={customFormats}
+        schema={schema}
+        uiSchema={uiSchema}
+        ObjectFieldTemplate={FormObjectFieldTemplate}
+        transformErrors={transformErrors}
+        onSubmit={onComplete}
       >
-        {prettyTitle} <span style={{float: 'right'}}>{open ? '+' : '-'}</span>
-      </Card.Header>
-      <Collapse in={!open}>
-        <Card.Body>
-          {nested.length > 0 ? (
-            nested.map(nest => (
-              <Table key={nest}>
-                <thead
-                  className="text-center"
-                  style={{
-                    width: '100%',
-                    textTransform: 'capitalize',
-                    textDecoration: 'underline'
-                  }}
-                >
-                  <tr>
-                    <td>
-                      <strong>{nest}</strong>
-                    </td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr />
-
-                  {Object.keys(
-                    resultObject[formTitle][formSubtitle][0][nest][0]
-                  ).map(input => (
-                    <tr
-                      key={`${formTitle}, ${formSubtitle}, ${nest}, ${input}`}
-                    >
-                      {renderInputs(formTitle, formSubtitle, input, nest)}
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            ))
-          ) : (
-            <Table>
-              {resultObject[formTitle][formSubtitle].map((item, index) => (
-                <tbody key={`${formTitle} ${formSubtitle} ${item}`}>
-                  <tr />
-                  {inputs.map(input => (
-                    <tr key={`${formTitle} ${formSubtitle} ${input}`}>
-                      {renderInputs(
-                        formTitle,
-                        formSubtitle,
-                        input,
-                        null,
-                        index
-                      )}
-                    </tr>
-                  ))}
-                </tbody>
-              ))}
-            </Table>
-          )}
-        </Card.Body>
-      </Collapse>
-    </Card>
+        <div style={{textAlign: 'right'}}>
+          <Button type="submit">Submit</Button>
+        </div>
+      </JsonSchemaForm>
+    </>
   );
 };
 
 export default createFragmentContainer(
   ApplicationWizardConfirmationCardItemComponent,
-  {}
+  {
+    formResult: graphql`
+      fragment ApplicationWizardConfirmationCardItem_formResult on FormResult {
+        formResult
+        formJsonByFormId {
+          name
+          formJson
+        }
+      }
+    `
+  }
 );

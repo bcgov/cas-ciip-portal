@@ -3,11 +3,12 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import JsonSchemaForm, {
   IChangeEvent,
   ErrorSchema,
-  UiSchema,
+  // UiSchema,
   AjvError
 } from 'react-jsonschema-form';
 import {Form_query} from 'Form_query.graphql';
 import {Button, Row, Col} from 'react-bootstrap';
+import {FormJson} from 'next-env';
 import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
 import FormArrayFieldTemplate from './FormArrayFieldTemplate';
@@ -15,13 +16,6 @@ import FuelFields from './FuelFields';
 import EmissionGasFields from './EmissionGasFields';
 import EmissionSourceFields from './EmissionSourceFields';
 import ProductionFields from './ProductionFields';
-
-interface FormJson {
-  schema: any;
-  uiSchema: UiSchema;
-  customFormats: any;
-  customFormatsErrorMessages: Record<string, string>;
-}
 
 interface Props {
   query: Form_query;

@@ -1,6 +1,4 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
-import Link from 'next/link';
 import {createFragmentContainer, graphql} from 'react-relay';
 import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmationCardItem';
 
@@ -10,17 +8,17 @@ import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmati
  */
 export const ApplicationWizardConfirmationComponent = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
+  console.log(formResults);
+  // Const resultObject = {};
+  // // Create a parsed result object from each formResult page
+  // formResults.forEach(result => {
+  //   const parsedResult = JSON.parse(result.node.formResult);
+  //   const resultTitle = Object.keys(parsedResult).toString();
 
-  const resultObject = {};
-  // Create a parsed result object from each formResult page
-  formResults.forEach(result => {
-    const parsedResult = JSON.parse(result.node.formResult);
-    const resultTitle = Object.keys(parsedResult).toString();
-
-    resultObject[resultTitle] = parsedResult;
-  });
-  // Create an array of keys to traverse the resultObject
-  const formArray = Object.keys(resultObject);
+  //   resultObject[resultTitle] = parsedResult;
+  // });
+  // // Create an array of keys to traverse the resultObject
+  // const formArray = Object.keys(resultObject);
 
   // Change application status to 'pending' on application submit
 
@@ -31,17 +29,14 @@ export const ApplicationWizardConfirmationComponent = props => {
         Please review the information you have provided before continuing.
       </h5>
       <br />
-      {formArray.map(formTitle =>
-        Object.keys(resultObject[formTitle]).map(formSubtitle => (
-          <ApplicationWizardConfirmationCardItem
-            key={`${formTitle} ${formSubtitle}`}
-            formTitle={formTitle}
-            formSubtitle={formSubtitle}
-            resultObject={resultObject}
-          />
-        ))
-      )}
 
+      {formResults.map(({node}) => (
+        <ApplicationWizardConfirmationCardItem
+          key={node.id}
+          formResult={node}
+        />
+      ))}
+      {/*
       <Link
         passHref
         href={{
@@ -59,7 +54,7 @@ export const ApplicationWizardConfirmationComponent = props => {
         <Button className="float-right" style={{marginTop: '10px'}}>
           Next
         </Button>
-      </Link>
+      </Link> */}
     </>
   );
 };
@@ -73,14 +68,8 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
         formResultsByApplicationId {
           edges {
             node {
-              formResult
-            }
-          }
-        }
-        orderedFormResults {
-          edges {
-            node {
               id
+              ...ApplicationWizardConfirmationCardItem_formResult
             }
           }
         }
