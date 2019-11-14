@@ -15738,8 +15738,6 @@
           "enumValues": [
             {
               "name": "CREATED_AT_ASC",
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-=======
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -15752,147 +15750,78 @@
             },
             {
               "name": "CREATED_BY_ASC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "CREATED_AT_DESC",
-=======
               "name": "CREATED_BY_DESC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "CREATED_BY_ASC",
-=======
               "name": "EMAIL_ADDRESS_ASC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "CREATED_BY_DESC",
-=======
               "name": "EMAIL_ADDRESS_DESC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "EMAIL_ADDRESS_ASC",
-=======
               "name": "FIRST_NAME_ASC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "EMAIL_ADDRESS_DESC",
-=======
               "name": "FIRST_NAME_DESC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "FIRST_NAME_ASC",
-=======
               "name": "ID_ASC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "FIRST_NAME_DESC",
-=======
               "name": "ID_DESC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "ID_ASC",
-=======
               "name": "LAST_NAME_ASC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "ID_DESC",
-=======
               "name": "LAST_NAME_DESC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "LAST_NAME_ASC",
-=======
               "name": "NATURAL",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "LAST_NAME_DESC",
-=======
               "name": "OCCUPATION_ASC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "NATURAL",
-=======
               "name": "OCCUPATION_DESC",
->>>>>>> added some change requests from PR
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "OCCUPATION_ASC",
-=======
-              "name": "PHONE_NUMBER_ASC",
->>>>>>> added some change requests from PR
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
-              "name": "OCCUPATION_DESC",
-=======
-              "name": "PHONE_NUMBER_DESC",
->>>>>>> added some change requests from PR
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -15904,7 +15833,6 @@
               "deprecationReason": null
             },
             {
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
               "name": "PHONE_NUMBER_DESC",
               "description": null,
               "isDeprecated": false,
@@ -15917,8 +15845,6 @@
               "deprecationReason": null
             },
             {
-=======
->>>>>>> added some change requests from PR
               "name": "PRIMARY_KEY_DESC",
               "description": null,
               "isDeprecated": false,
@@ -22022,15 +21948,7 @@
               "description": null,
               "type": {
                 "kind": "ENUM",
-<<<<<<< 9ba980c2dd54c3f76ca16812159d33a6736ad05f
-<<<<<<< eb8b030ca2ed26381db6aa4ffe7740ace7b19359
                 "name": "UserOrganisationStatus",
-=======
-                "name": "Statuses",
->>>>>>> added some change requests from PR
-=======
-                "name": "UserOrganisationStatus",
->>>>>>> updated name of 'statuses' type & added some ui fixes & added a test
                 "ofType": null
               },
               "defaultValue": null

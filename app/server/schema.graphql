@@ -7063,7 +7063,6 @@ enum UserOrganisationStatus {
   APPROVED
   PENDING
   REJECTED
-  SUSPENDED
 }
 
 """Represents an update to a `User`. Fields that are set will be updated."""
