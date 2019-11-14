@@ -43,7 +43,11 @@ class Registration extends Component<Props> {
           defaultGivenName={givenName}
           defaultFamilyName={familyName}
           defaultEmail={email}
-          onSubmit={async () => router.push('/user-dashboard')}
+          onSubmit={async () =>
+            router.push(
+              decodeURI(router.query.redirectTo as string) || '/user-dashboard'
+            )
+          }
         />
       </DefaultLayout>
     );

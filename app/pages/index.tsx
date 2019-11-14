@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Button, Row, Col, Card, Jumbotron, Table, Form} from 'react-bootstrap';
+import {Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {pagesQueryResponse} from 'pagesQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
 import DefaultLayout from '../layouts/default-layout';
+import RegistrationLoginButtons from '../components/RegistrationLoginButtons';
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
@@ -55,39 +56,7 @@ export default class Index extends Component<Props> {
               emissions benchmarks.
             </p>
           </Col>
-          <Col md={{span: 5, offset: 1}}>
-            <Card
-              className="ciip-card"
-              style={{width: '100%', margin: '30px 0'}}
-            >
-              <Card.Body>
-                <Card.Title className="blue">
-                  Apply for CleanBC Industrial Incentive Program (CIIP)
-                </Card.Title>
-                <Card.Text style={{padding: '10px 0 10px 0'}}>
-                  Operators must submit a CIIP application form by June 30,
-                  2019. As part of the application, information about the
-                  operation’s energy use, emissions, and production is required.
-                </Card.Text>
-                <Form action="/login" method="post">
-                  <Button
-                    type="submit"
-                    style={{padding: '15px'}}
-                    className="full-width"
-                    variant="primary"
-                    size="lg"
-                  >
-                    Register and Apply
-                  </Button>
-                </Form>
-              </Card.Body>
-            </Card>
-            <Form action="/login" method="post">
-              <button type="submit" className="login-link text-center">
-                Already have an account? Click here to login.
-              </button>
-            </Form>
-          </Col>
+          <RegistrationLoginButtons />
         </Row>
 
         <Row style={{marginTop: '100px'}} id="value-props">
@@ -215,14 +184,6 @@ export default class Index extends Component<Props> {
           }
           .value-prop h4 {
             margin-bottom: 20px;
-          }
-          .login-link {
-            border: 1px solid #666;
-            padding: 20px;
-            border-radius: 4px;
-            background-color: transparent;
-            width: 100%;
-            text-decoration: underline;
           }
           li {
             list-style: none;

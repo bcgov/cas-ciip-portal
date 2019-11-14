@@ -26,12 +26,22 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   const router = useRouter();
 
   if ((needsSession || needsUser) && !session) {
-    router.push('/login-redirect');
+    router.push({
+      pathname: '/login-redirect',
+      query: {
+        redirectTo: router.route
+      }
+    });
     return null;
   }
 
   if (needsUser && !session.userBySub) {
-    router.push('/registration');
+    router.push({
+      pathname: '/registration',
+      query: {
+        redirectTo: router.route
+      }
+    });
     return null;
   }
 
