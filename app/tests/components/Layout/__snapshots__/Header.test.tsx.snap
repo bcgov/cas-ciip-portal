@@ -2,83 +2,78 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <header
-  className="jsx-2807878339"
+  class="jsx-2807878339"
 >
   <div
-    className="jsx-2807878339 container"
+    class="jsx-2807878339 container"
   >
     <div
-      className="jsx-2807878339 banner"
+      class="jsx-2807878339 banner"
     >
       <div
-        className="jsx-2807878339 header-left"
+        class="jsx-2807878339 header-left"
       >
-        <Link
-          href="/"
-        >
-          <img
-            alt="Go to the Government of British Columbia website"
-            className="jsx-2807878339"
-            src="/static/logo-banner.png"
-          />
-        </Link>
+        <img
+          alt="Go to the Government of British Columbia website"
+          class="jsx-2807878339"
+          src="/static/logo-banner.png"
+        />
         <h1
-          className="jsx-2807878339"
+          class="jsx-2807878339"
         >
           CleanBC Industrial Incentive Program
         </h1>
       </div>
       <div
-        className="jsx-2807878339 login-btns header-right"
+        class="jsx-2807878339 login-btns header-right"
       >
-        <ForwardRef
-          noGutters={false}
+        <div
+          class="row"
         >
-          <Col>
-            <FormRow>
-              <Col>
-                <Form
+          <div
+            class="col"
+          >
+            <div
+              class="form-row"
+            >
+              <div
+                class="col"
+              >
+                <form
                   action="https://www.bceid.ca/register/"
-                  inline={false}
+                  class=""
                   method="get"
                   target="_blank"
                 >
-                  <Button
-                    active={false}
-                    disabled={false}
+                  <button
+                    class="btn btn-outline-light"
                     type="submit"
-                    variant="outline-light"
                   >
                     Register
-                  </Button>
-                </Form>
-              </Col>
-              <Col>
-                <Form
+                  </button>
+                </form>
+              </div>
+              <div
+                class="col"
+              >
+                <form
                   action="/login"
-                  inline={false}
+                  class=""
                   method="post"
                 >
-                  <Button
-                    active={false}
-                    disabled={false}
+                  <button
+                    class="btn btn-outline-light"
                     type="submit"
-                    variant="outline-light"
                   >
                     Login
-                  </Button>
-                </Form>
-              </Col>
-            </FormRow>
-          </Col>
-        </ForwardRef>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <JSXStyle
-    id="2807878339"
-  >
-    header.jsx-2807878339{background-color:#036;border-bottom:2px solid #fcba19;padding:10px 65px;color:#fff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;height:65px;top:0px;width:100%;}header.jsx-2807878339 h1.jsx-2807878339{font-weight:normal;margin:8px 5px 5px 18px;visibility:hidden;}.header-left.jsx-2807878339{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.header-right.jsx-2807878339{margin-right:-25px;}header.jsx-2807878339 .banner.jsx-2807878339{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:0 10px 0 0;}header.jsx-2807878339 .other.jsx-2807878339{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}.buttons.jsx-2807878339{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;}.btn.jsx-2807878339{font-weight:bolder;}.link.jsx-2807878339{color:white;-webkit-text-decoration:none;text-decoration:none;}a.jsx-2807878339:link,a.jsx-2807878339:visited{color:white;}a.jsx-2807878339:hover,a.jsx-2807878339:active{color:white;}@media screen and (min-width:600px) and (max-width:899px){header.jsx-2807878339 h1.jsx-2807878339{font-size:calc(7px + 2.2vw);visibility:visible;}}@media screen and (min-width:900px){header.jsx-2807878339 h1.jsx-2807878339{font-size:1.4em;visibility:visible;}}
-  </JSXStyle>
 </header>
 `;
