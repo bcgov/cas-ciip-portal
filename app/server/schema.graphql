@@ -2722,6 +2722,7 @@ type DeleteUserPayload {
   ): UsersEdge
 }
 
+"""Table of emission categories used in the CIIP program"""
 type EmissionCategoryGas implements Node {
   """Creation date of row"""
   createdAt: Datetime!
@@ -3508,6 +3509,8 @@ type FormJson implements Node {
 
   """The JSON object that creates the form"""
   formJson: JSON!
+
+  """The function used for init"""
   formResultInitFunction: String
 
   """Reads and enables pagination through a set of `FormResult`."""
@@ -3613,6 +3616,8 @@ input FormJsonInput {
 
   """The JSON object that creates the form"""
   formJson: JSON!
+
+  """The function used for init"""
   formResultInitFunction: String
 
   """Name for the form"""
@@ -3647,6 +3652,8 @@ input FormJsonPatch {
 
   """The JSON object that creates the form"""
   formJson: JSON
+
+  """The function used for init"""
   formResultInitFunction: String
 
   """Name for the form"""
@@ -4161,6 +4168,7 @@ enum FuelsOrderBy {
   UPDATED_BY_DESC
 }
 
+"""Table of gases used in the CIIP program"""
 type Gas implements Node {
   """Creation date of row"""
   createdAt: Datetime!

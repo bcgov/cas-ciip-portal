@@ -8012,7 +8012,7 @@
             },
             {
               "name": "formResultInitFunction",
-              "description": null,
+              "description": "The function used for init",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -13422,7 +13422,7 @@
         {
           "kind": "OBJECT",
           "name": "EmissionCategoryGas",
-          "description": null,
+          "description": "Table of emission categories used in the CIIP program",
           "fields": [
             {
               "name": "createdAt",
@@ -13587,7 +13587,7 @@
         {
           "kind": "OBJECT",
           "name": "Gas",
-          "description": null,
+          "description": "Table of gases used in the CIIP program",
           "fields": [
             {
               "name": "createdAt",
@@ -22354,7 +22354,7 @@
             },
             {
               "name": "formResultInitFunction",
-              "description": null,
+              "description": "The function used for init",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -28699,7 +28699,7 @@
             },
             {
               "name": "formResultInitFunction",
-              "description": null,
+              "description": "The function used for init",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
