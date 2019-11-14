@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 
 interface Props {
   query;
   defaultOrderByField: string;
   defaultOrderByDisplay: string;
-  children;
+  children: (props) => JSX.Element;
 }
 class SearchTableComponent extends Component<Props> {
   state = {
@@ -54,7 +54,7 @@ class SearchTableComponent extends Component<Props> {
     const {query} = this.props;
     const {children} = this.props;
 
-    const clone = React.cloneElement(children, {
+    return children({
       query,
       orderByDisplay: this.state.orderByDisplay,
       orderByField: this.state.orderByField,
@@ -64,7 +64,6 @@ class SearchTableComponent extends Component<Props> {
       searchDisplay: this.state.searchDisplay,
       handleEvent: this.handleEvent
     });
-    return <>{clone}</>;
   }
 }
 

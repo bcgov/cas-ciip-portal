@@ -47,9 +47,7 @@ class OrganisationRequests extends Component<Props> {
             defaultOrderByField="status"
             defaultOrderByDisplay="Status"
           >
-            {/*
-             //@ts-ignore  */}
-            <OrganisationRequestsTable />
+            {props => <OrganisationRequestsTable {...props} />}
           </SearchTable>
         </DefaultLayout>
       </>

@@ -6,12 +6,12 @@ import SearchTableLayout from '../../components/SearchTableLayout';
 import OrganisationRequestsTableRow from './OrganisationRequestsTableRow';
 interface Props {
   query: OrganisationRequestsTable_query;
-  orderByField: string;
-  orderByDisplay: string;
-  searchField: string;
-  searchValue: string;
-  direction: string;
-  searchDisplay: string;
+  orderByField?: string;
+  orderByDisplay?: string;
+  searchField?: string;
+  searchValue?: string;
+  direction?: string;
+  searchDisplay?: string;
   handleEvent: (...args: any[]) => void;
   relay: RelayRefetchProp;
 }

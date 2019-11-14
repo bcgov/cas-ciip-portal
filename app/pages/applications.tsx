@@ -49,8 +49,6 @@ class Applications extends Component<Props> {
     return (
       <>
         <DefaultLayout title="Applications" session={query.session}>
-          {/*
-             //@ts-ignore  */}
           <SearchTable
             query={query}
             defaultOrderByField="operator_name"

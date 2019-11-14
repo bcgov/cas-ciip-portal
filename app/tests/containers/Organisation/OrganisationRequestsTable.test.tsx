@@ -1,23 +1,32 @@
 import React from 'react';
 import {shallow} from 'enzyme';
+import {OrganisationRequestsTable_query} from '__generated__/OrganisationRequestsTable_query.graphql';
 import {OrganisationRequestsTableComponent} from '../../../containers/Admin/OrganisationRequestsTable';
 
 describe('Organisations', () => {
   it("should render the user's requested organisations", async () => {
-    const query = {
+    const query: OrganisationRequestsTable_query = {
+      ' $refType': 'OrganisationRequestsTable_query',
       searchUserOrganisation: {
         edges: [
           {
             node: {
-              id: 1,
-              status: 'APPROVED'
+              id: 'abc',
+              ' $fragmentRefs': {
+                OrganisationRequestsTableRow_userOrganisation: true
+              }
             }
           }
         ]
       }
     };
-    // @ts-ignore
-    const r = shallow(<OrganisationRequestsTableComponent query={query} />);
+    const r = shallow(
+      <OrganisationRequestsTableComponent
+        relay={null}
+        handleEvent={jest.fn()}
+        query={query}
+      />
+    );
     expect(r).toMatchSnapshot();
     expect(
       r

@@ -4,7 +4,7 @@
 
 schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a schema for the GGIRCS Industry Portal (GIP)
 function_update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
-type_statuses [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file statuses
+type_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file user_organisation_status
 table_user [schema_ggircs_portal function_update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
 table_product [schema_ggircs_portal function_update_timestamps] 2019-08-06T20:15:37Z Hamza Javed <hamza@button.is> # A table for adding products (for benchmarks)
 table_benchmark [table_product function_update_timestamps] 2019-08-06T20:25:30Z Hamza Javed <hamza@button.is> # A table for Benchmarks and Eligibility Thresholds for products
