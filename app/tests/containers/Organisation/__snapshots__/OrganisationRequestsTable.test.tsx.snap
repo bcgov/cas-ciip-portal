@@ -31,6 +31,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
         },
       ]
     }
+    handleEvent={[MockFunction]}
   />
   <br />
   <br />
@@ -78,11 +79,13 @@ exports[`Organisations should render the user's requested organisations 1`] = `
     </thead>
     <tbody>
       <Relay(OrganisationRequestsTableRowComponent)
-        key="1"
+        key="abc"
         userOrganisation={
           Object {
-            "id": 1,
-            "status": "APPROVED",
+            " $fragmentRefs": Object {
+              "OrganisationRequestsTableRow_userOrganisation": true,
+            },
+            "id": "abc",
           }
         }
       />
