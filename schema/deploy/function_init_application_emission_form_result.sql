@@ -62,8 +62,8 @@ begin
                 from (
                   select
                     gasType as "gasType",
-                    qty as "quantity",
-                    cqty as "calculatedQuantity",
+                    qty as "annualEmission",
+                    cqty as "annualCO2e",
                     map_gwp as "gwp",
                     gas_description as "gasDescription"
                   from x

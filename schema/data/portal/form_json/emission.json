@@ -36,7 +36,7 @@
             "title": "Gas Type",
             "type": "string"
           },
-          "quantity": {
+          "annualEmission": {
             "title": "Tonnes (CO2)",
             "type": "number"
           },
@@ -44,9 +44,12 @@
             "title": "GWP",
             "type": "number"
           },
-          "calculatedQuantity": {
+          "annualCO2e": {
             "title": "Tonnes (CO2 equivalent)",
             "type": "number"
+          },
+          "gasDescription": {
+            "type": "string"
           }
         }
       }

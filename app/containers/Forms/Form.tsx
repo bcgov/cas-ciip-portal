@@ -31,8 +31,8 @@ interface Props {
 
 const CUSTOM_FIELDS = {
   fuel: props => <FuelFields query={props.formContext.query} {...props} />,
-  emissionSource: props => <EmissionSourceFields {...props} />,
-  emissionGas: props => <EmissionGasFields {...props} />,
+  emissionSource: EmissionSourceFields,
+  emissionGas: EmissionGasFields,
   production: props => (
     <ProductionFields query={props.formContext.query} {...props} />
   )

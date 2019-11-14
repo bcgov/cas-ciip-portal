@@ -21,12 +21,13 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
         <Col md={3}>
           <Form.Control
             type="number"
-            value={formData.quantity}
+            value={formData.annualEmission}
             onChange={e => {
               onChange({
                 ...formData,
-                quantity: (e.nativeEvent.target as HTMLInputElement).value,
-                calculatedQuantity:
+                annualEmission: (e.nativeEvent.target as HTMLInputElement)
+                  .value,
+                annualCO2e:
                   Number((e.nativeEvent.target as HTMLInputElement).value) *
                   formData.gwp
               });
@@ -41,11 +42,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
           </ul>
         </Col>
         <Col md={3}>
-          <Form.Control
-            disabled
-            type="number"
-            value={formData.calculatedQuantity}
-          />
+          <Form.Control disabled type="number" value={formData.annualCO2e} />
         </Col>
       </Form.Row>
       <style jsx>{`
