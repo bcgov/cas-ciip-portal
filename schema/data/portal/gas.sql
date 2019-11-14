@@ -12,7 +12,7 @@ values
 (6, 'SF6','Sulfur Hexafluoride', 22800),
 (7, 'CF4','Perfluoromethane', 7390),
 (8, 'C2F6','Perfluoroethane', 12200)
-on conflict(id) do update set gas_type=excluded.gas_type, gwp=excluded.gwp
+on conflict(id) do update set gas_type=excluded.gas_type, gwp=excluded.gwp, gas_description=excluded.gas_description
 returning 1
 ) select 'Inserted ' || count(*) || ' rows into ggircs_portal.gas' from rows;
 

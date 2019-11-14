@@ -1154,9 +1154,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                       <h5
                         class="jsx-2806087631"
                         style="text-align:left"
-                      >
-                        Stationary Combustion
-                      </h5>
+                      />
                     </div>
                     <div
                       class="col-md-3 col-12"
@@ -1211,16 +1209,16 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               <div
                                 class="col-md-4"
                               >
-                                CO2 from non-bio 
+                                 
                                 <br
-                                  class="jsx-4064704399"
+                                  class="jsx-1154833918"
                                 />
                                 <div
                                   class="col-md-10"
                                   style="margin:0;padding:0;color:#888;line-height:17px"
                                 >
                                   <small
-                                    class="jsx-4064704399"
+                                    class="jsx-1154833918"
                                   />
                                 </div>
                               </div>
@@ -1230,7 +1228,6 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                 <input
                                   class="form-control"
                                   type="number"
-                                  value="20"
                                 />
                               </div>
                               <div
@@ -1238,20 +1235,18 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                 style="text-align:center;margin-top:5px"
                               >
                                 <ul
-                                  class="jsx-4064704399 gwp"
+                                  class="jsx-1154833918 gwp"
                                 >
                                   <li
-                                    class="jsx-4064704399"
+                                    class="jsx-1154833918"
                                   >
                                     X
                                   </li>
                                   <li
-                                    class="jsx-4064704399"
-                                  >
-                                    250
-                                  </li>
+                                    class="jsx-1154833918"
+                                  />
                                   <li
-                                    class="jsx-4064704399"
+                                    class="jsx-1154833918"
                                   >
                                     =
                                   </li>
@@ -1264,7 +1259,6 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                   class="form-control"
                                   disabled=""
                                   type="number"
-                                  value="100"
                                 />
                               </div>
                             </div>

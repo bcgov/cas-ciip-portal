@@ -9,7 +9,7 @@ declare
   swrs_facility_id int;
   emission_datum text;
   result text;
-  first_fuel boolean;
+  first_source_type boolean;
   emission_category_var text;
 begin
   select facility.swrs_facility_id from ggircs_portal.facility where id = facility_id into swrs_facility_id;
@@ -19,16 +19,16 @@ begin
       "sourceTypes": [
   $$;
 
-  first_fuel := true;
+  first_source_type := true;
   for emission_datum in (
       select distinct emission_category from ggircs_portal.emission_category_gas
   )
   loop
     emission_category_var := emission_datum;
-    if first_fuel = false then
+    if first_source_type = false then
       result := concat(result, ',');
     end if;
-    first_fuel := false;
+    first_source_type := false;
     result := concat(result,
       (
         -- CTE that returns the emission qty and calc_qty for each emission category by gas type
@@ -41,7 +41,7 @@ begin
              e.calculated_quantity as cqty,
              map.gwp as map_gwp,
              map.gas_description as gas_description
-             from ggircs_portal.get_swrs_emission_data(48166, '2018') as e
+             from ggircs_portal.get_swrs_emission_data(swrs_facility_id, reporting_year) as e
              right join
               (
                 select
@@ -84,8 +84,3 @@ end;
 $function$ language plpgsql strict volatile;
 
 commit;
-
-/*
-select * from ggircs_portal.init_application_fuel_form_result(1, '2018');
-select * from ggircs_portal.init_application_emission_form_result(1, '2018');
-*/

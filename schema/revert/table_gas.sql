@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:gas from pg
 
-BEGIN;
+begin;
 
 drop table ggircs_portal.gas;
 
-COMMIT;
+commit;

@@ -1,7 +1,7 @@
 -- Deploy ggircs-portal:gas to pg
 -- requires: schema_ggircs_portal
 
-BEGIN;
+begin;
 
 create table ggircs_portal.gas (
   id integer primary key generated always as identity,

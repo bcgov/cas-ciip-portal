@@ -16,7 +16,7 @@ values
 (10, 'Venting', 5),
 (11, 'Venting', 6)
 
-on conflict(id) do update set gas_id=excluded.gas_id
+on conflict(id) do update set gas_id=excluded.gas_id, emission_category=excluded.emission_category
 returning 1
 ) select 'Inserted ' || count(*) || ' rows into ggircs_portal.emission_category_gas' from rows;
 

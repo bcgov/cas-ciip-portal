@@ -31,12 +31,8 @@ interface Props {
 
 const CUSTOM_FIELDS = {
   fuel: props => <FuelFields query={props.formContext.query} {...props} />,
-  emissionSource: props => (
-    <EmissionSourceFields query={props.formContext.query} {...props} />
-  ),
-  emissionGas: props => (
-    <EmissionGasFields query={props.formContext.query} {...props} />
-  ),
+  emissionSource: props => <EmissionSourceFields {...props} />,
+  emissionGas: props => <EmissionGasFields {...props} />,
   production: props => (
     <ProductionFields query={props.formContext.query} {...props} />
   )
@@ -54,7 +50,6 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     formResult
   } = result || {formJsonByFormId: {}};
   if (!result) return null;
-  console.log('result', result);
   const {
     schema,
     uiSchema,

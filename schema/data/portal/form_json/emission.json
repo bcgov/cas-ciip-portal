@@ -1,15 +1,14 @@
 {
-  "schema":
-  {
+  "schema": {
     "type": "object",
     "title": "Emissions",
-    "properties":{
-      "sourceTypes":{
+    "properties": {
+      "sourceTypes": {
         "title": "Source Types",
-        "minItems":1,
+        "minItems": 1,
         "type": "array",
-        "items":{
-          "$ref":"#/definitions/sourceType"
+        "items": {
+          "$ref": "#/definitions/sourceType"
         }
       }
     },
@@ -18,56 +17,54 @@
         "type": "object",
         "properties": {
           "sourceTypeName": {
-            "type": "string",
-            "default": "Stationary Combustion"
+            "type": "string"
           },
           "gases": {
             "title": "gases",
             "type": "array",
-            "minItems":1,
-            "items":{
-              "$ref":"#/definitions/gas"
+            "minItems": 1,
+            "items": {
+              "$ref": "#/definitions/gas"
             }
           }
         }
       },
-      "gas" : {
+      "gas": {
         "type": "object",
         "properties": {
           "gasType": {
             "title": "Gas Type",
-            "type": "string",
-            "default": "CO2 from non-bio"
+            "type": "string"
           },
           "quantity": {
             "title": "Tonnes (CO2)",
-            "type": "number",
-            "default": 20
+            "type": "number"
           },
           "gwp": {
             "title": "GWP",
-            "type": "number",
-            "default": 250
+            "type": "number"
           },
           "calculatedQuantity": {
             "title": "Tonnes (CO2 equivalent)",
-            "type": "number",
-            "default": 100
+            "type": "number"
           }
         }
       }
     }
   },
   "uiSchema": {
-    "sourceTypes":{
+    "sourceTypes": {
       "ui:options": {
         "addable": false,
         "orderable": false,
         "removable": false
       },
-      "items":{
-        "ui:order": ["sourceTypeName","gases"],
-        "sourceTypeName":{
+      "items": {
+        "ui:order": [
+          "sourceTypeName",
+          "gases"
+        ],
+        "sourceTypeName": {
           "classNames": "hidden-title",
           "ui:col-md": 12,
           "ui:field": "emissionSource"
