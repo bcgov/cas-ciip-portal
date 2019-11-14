@@ -33,11 +33,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
             }}
           />
         </Col>
-        <Col
-          className="test"
-          md={2}
-          style={{textAlign: 'center', marginTop: '5px'}}
-        >
+        <Col md={2} style={{textAlign: 'center', marginTop: '5px'}}>
           <ul className="gwp">
             <li>X</li>
             <li>{formData.gwp}</li>
