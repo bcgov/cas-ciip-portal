@@ -1,39 +1,73 @@
 import React from 'react';
 import {shallow} from 'enzyme';
+import {Organisations_query} from 'Organisations_query.graphql';
 import {OrganisationsComponent} from '../../../containers/Organisations/Organisations';
 
 describe('Organisations', () => {
   it('should render no organisations if the user has not requested any access', async () => {
-    const query = {
-      user: {
-        id: 'id',
-        userOrganisationsByUserId: {edges: []}
-      },
-      allOrganisations: {edges: []}
-    };
-    const r = shallow(<OrganisationsComponent query={query} />);
-    expect(r).toMatchSnapshot();
-  });
-  it("should render the user's requested organisations", async () => {
-    const query = {
-      user: {
-        id: 'id',
-        userOrganisationsByUserId: {
-          edges: [
-            {
-              node: {
-                id: 'OrgId'
-              }
-            }
-          ]
+    const query: Organisations_query = {
+      ' $refType': 'Organisations_query',
+      session: {
+        userBySub: {
+          id: '',
+          userOrganisationsByUserId: {edges: []}
         }
       },
       allOrganisations: {edges: []}
     };
-    const r = shallow(<OrganisationsComponent query={query} />);
+    const r = shallow(
+      <OrganisationsComponent
+        query={query}
+        relay={null}
+        orgInput={null}
+        selectedOrg={null}
+        confirmOrg={null}
+        handleInputChange={null}
+        handleContextChange={null}
+        handleOrgChange={null}
+        handleOrgConfirm={null}
+      />
+    );
+    expect(r).toMatchSnapshot();
+  });
+  it("should render the user's requested organisations", async () => {
+    const query: Organisations_query = {
+      ' $refType': 'Organisations_query',
+      session: {
+        userBySub: {
+          id: '',
+          userOrganisationsByUserId: {
+            edges: [
+              {
+                node: {
+                  id: 'OrgId',
+                  ' $fragmentRefs': {UserOrganisation_userOrganisation: true}
+                }
+              }
+            ]
+          }
+        }
+      },
+      allOrganisations: {
+        edges: []
+      }
+    };
+    const r = shallow(
+      <OrganisationsComponent
+        query={query}
+        relay={null}
+        orgInput={null}
+        selectedOrg={null}
+        confirmOrg={null}
+        handleInputChange={null}
+        handleContextChange={null}
+        handleOrgChange={null}
+        handleOrgConfirm={null}
+      />
+    );
     expect(r).toMatchSnapshot();
     expect(
       r.find('Relay(UserOrganisationComponent)').prop('userOrganisation')
-    ).toBe(query.user.userOrganisationsByUserId.edges[0].node);
+    ).toBe(query.session.userBySub.userOrganisationsByUserId.edges[0].node);
   });
 });
