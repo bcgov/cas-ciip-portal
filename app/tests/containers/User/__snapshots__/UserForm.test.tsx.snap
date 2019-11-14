@@ -16,7 +16,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
         <legend />
       </div>
       <div
-        class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+        class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
       >
         <label
           class="form-label"
@@ -35,7 +35,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
         />
       </div>
       <div
-        class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+        class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
       >
         <label
           class="form-label"
@@ -54,7 +54,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
         />
       </div>
       <div
-        class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+        class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
       >
         <label
           class="form-label"
@@ -73,7 +73,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
         />
       </div>
       <div
-        class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+        class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
       >
         <label
           class="form-label"
@@ -92,7 +92,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
         />
       </div>
       <div
-        class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+        class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
       >
         <label
           class="form-label"
