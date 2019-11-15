@@ -9,10 +9,20 @@ const environment = createMockEnvironment();
 const query = graphql`
   query AdminTestQuery {
     query {
-      ...ProductListContainer_query
+      session {
+        ...defaultLayout_session
+      }
     }
   }
 `;
+
+const router = {
+  route: '/',
+  pathname: '',
+  query: '',
+  asPath: '',
+  push: jest.fn()
+};
 
 const renderStory = (query, environment, variables = {}) => (
   <QueryRenderer
@@ -29,30 +39,12 @@ const renderStory = (query, environment, variables = {}) => (
         // @ts-ignore
         <Admin
           {...props}
+          router={router}
           query={{
-            active: {
-              edges: [
-                {
-                  node: {
-                    id: 1,
-                    name: 'buddy',
-                    state: 'active',
-                    benchmarksByProductId: {edges: []}
-                  }
-                }
-              ]
-            },
-            archived: {
-              edges: [
-                {
-                  node: {
-                    id: 2,
-                    name: 'holly',
-                    state: 'archived',
-                    benchmarksByProductId: {edges: []}
-                  }
-                }
-              ]
+            session: {
+              userBySub: {
+                id: '42'
+              }
             }
           }}
         />
