@@ -2,6 +2,7 @@ import React from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {Table, Dropdown, Button, Alert} from 'react-bootstrap';
 import {Organisations_query} from 'Organisations_query.graphql';
+import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
@@ -15,7 +16,7 @@ interface Props {
   handleInputChange: (event: any) => void;
   handleContextChange: () => void;
   handleOrgChange: (event: any) => void;
-  handleOrgConfirm: (event: any) => any;
+  handleOrgConfirm: (status: string, env: RelayModernEnvironment) => any;
 }
 
 export const OrganisationsComponent: React.FunctionComponent<Props> = props => {

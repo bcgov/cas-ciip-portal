@@ -17,6 +17,9 @@ class OrganisationRequests extends Component<Props> {
       $searchValue: String
     ) {
       query {
+        session {
+          ...defaultLayout_session
+        }
         ...OrganisationRequestsTable_query
           @arguments(
             orderByField: $orderByField
@@ -41,7 +44,7 @@ class OrganisationRequests extends Component<Props> {
     const {query} = this.props;
     return (
       <>
-        <DefaultLayout title="Organisation Requests">
+        <DefaultLayout session={query.session} title="Organisation Requests">
           <SearchTable
             query={query}
             defaultOrderByField="status"
