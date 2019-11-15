@@ -22,10 +22,10 @@ export const OrganisationsComponent = props => {
     props.handleContextChange();
   };
 
-  const claimOrg = async () => {
+  const claimOrg = async active => {
     props.handleContextChange();
     props.handleInputChange('');
-    await props.handleOrgConfirm(props.relay.environment);
+    await props.handleOrgConfirm(active, props.relay.environment);
     props.handleOrgChange(null);
   };
 
@@ -88,10 +88,20 @@ export const OrganisationsComponent = props => {
         <>
           <h5 className="blue">Requesting access to: </h5>
           <h4 style={{fontWeight: 300, margin: '15px 0'}}>{props.orgInput} </h4>
+          {/* Dev-only button to automatically create approved user-organisation requests */}
+          {process.env.NODE_ENV === 'production' ? null : (
+            <Button
+              style={{marginRight: '15px'}}
+              variant="success"
+              onClick={async () => claimOrg(true)}
+            >
+              Activate Access
+            </Button>
+          )}
           <Button
             style={{marginRight: '15px'}}
             variant="primary"
-            onClick={claimOrg}
+            onClick={async () => claimOrg(false)}
           >
             Request Access
           </Button>

@@ -2,7 +2,6 @@ import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Badge} from 'react-bootstrap';
 import Link from 'next/link';
-import {updateUserOrganisationMutation} from '../../mutations/user_organisation/UpdateUserOrganisation';
 
 export const UserOrganisationComponent = props => {
   const {userOrganisation} = props;
@@ -11,34 +10,10 @@ export const UserOrganisationComponent = props => {
   }
 
   const statusBadgeColor = {
-    attention: 'warning',
-    pending: 'info',
-    expired: 'danger',
-    active: 'success'
+    REJECTED: 'danger',
+    PENDING: 'info',
+    APPROVED: 'success'
   };
-
-  /** TODO: INTENDED FOR DEMO ONLY. To be removed */
-  const setStatusActive = async id => {
-    const {environment} = props.relay;
-    const variables = {
-      input: {
-        id,
-        userOrganisationPatch: {
-          status: 'active'
-        }
-      }
-    };
-    const response = await updateUserOrganisationMutation(
-      environment,
-      variables
-    );
-    console.log(response);
-  };
-
-  if (userOrganisation.status !== 'active') {
-    setTimeout(setStatusActive, 4000, userOrganisation.id);
-  }
-  /** End removal block */
 
   return (
     <tr>
@@ -54,7 +29,7 @@ export const UserOrganisationComponent = props => {
       </td>
       <td>
         {' '}
-        {userOrganisation.status === 'active' ? (
+        {userOrganisation.status === 'APPROVED' ? (
           <Link
             href={{
               pathname: '/user-organisation-facilities',

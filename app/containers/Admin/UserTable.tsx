@@ -1,8 +1,11 @@
 import React from 'react';
 import {Table} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
-
-export const UserTableComponent = props => {
+import {UserTable_query} from '__generated__/UserTable_query.graphql';
+interface Props {
+  query: UserTable_query;
+}
+export const UserTableComponent: React.FunctionComponent<Props> = props => {
   const {query} = props;
   if (!query.allUsers || !query.allUsers.edges) {
     return <div />;

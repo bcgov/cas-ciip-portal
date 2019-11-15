@@ -1,10 +1,12 @@
-import initStoryshots, { Stories2SnapsConverter } from "@storybook/addon-storyshots";
-import { mount } from "enzyme";
-import toJson from "enzyme-to-json";
+import initStoryshots, {
+  Stories2SnapsConverter
+} from '@storybook/addon-storyshots';
+import {mount} from 'enzyme';
+import toJson from 'enzyme-to-json';
 
 // Runner
 initStoryshots({
-  asyncJest: true, // this is the option that activates the async behaviour
+  asyncJest: true, // This is the option that activates the async behaviour
   test: ({
     story,
     context,
@@ -14,10 +16,10 @@ initStoryshots({
     const snapshotFilename = converter.getSnapshotFileName(context);
     const storyElement = story.render();
 
-    // mount the story
+    // Mount the story
     const tree = mount(storyElement);
 
-    // wait until the mount is updated, in our app mostly by Relay
+    // Wait until the mount is updated, in our app mostly by Relay
     // but maybe something else updating the state of the component
     // somewhere
     const waitTime = 1;
@@ -27,7 +29,7 @@ initStoryshots({
       }
 
       done();
-    }, waitTime)
-  },
-  // other options here
+    }, waitTime);
+  }
+  // Other options here
 });

@@ -1,21 +1,41 @@
 import React, {useEffect} from 'react';
-import {graphql, createRefetchContainer} from 'react-relay';
 import {Table} from 'react-bootstrap';
+import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
+import {OrganisationRequestsTable_query} from 'OrganisationRequestsTable_query.graphql';
 import SearchTableLayout from '../../components/SearchTableLayout';
-import ApplicationRowItemContainer from './ApplicationRowItemContainer';
-
-export const ApplicationList = props => {
+import OrganisationRequestsTableRow from './OrganisationRequestsTableRow';
+interface Props {
+  query: OrganisationRequestsTable_query;
+  orderByField?: string;
+  orderByDisplay?: string;
+  searchField?: string;
+  searchValue?: string;
+  direction?: string;
+  searchDisplay?: string;
+  handleEvent: (...args: any[]) => void;
+  relay: RelayRefetchProp;
+}
+export const OrganisationRequestsTableComponent: React.FunctionComponent<
+  Props
+> = props => {
   const {
-    orderByDisplay,
-    searchDisplay,
-    direction,
     orderByField,
+    orderByDisplay,
     searchField,
     searchValue,
+    searchDisplay,
+    direction,
     handleEvent
   } = props;
-  const {edges} = props.query.searchApplicationList;
-
+  const dropdownSortItems = [
+    {eventKey: 'user_id', title: 'User ID'},
+    {eventKey: 'first_name', title: 'First Name'},
+    {eventKey: 'last_name', title: 'Last Name'},
+    {eventKey: 'email_address', title: 'Email'},
+    {eventKey: 'status', title: 'Status'},
+    {eventKey: 'operator_name', title: 'Operator'}
+  ];
+  const {edges} = props.query.searchUserOrganisation;
   useEffect(() => {
     const refetchVariables = {
       searchField,
@@ -25,14 +45,6 @@ export const ApplicationList = props => {
     };
     props.relay.refetch(refetchVariables);
   });
-
-  const dropdownSortItems = [
-    {eventKey: 'id', title: 'Application ID'},
-    {eventKey: 'operator_name', title: 'Operator Name'},
-    {eventKey: 'facility_name', title: 'Facility Name'},
-    {eventKey: 'submission_date', title: 'Submission Date'},
-    {eventKey: 'application_status', title: 'Status'}
-  ];
 
   return (
     <>
@@ -45,22 +57,27 @@ export const ApplicationList = props => {
       />
       <br />
       <br />
-      <Table striped bordered hover style={{textAlign: 'center'}}>
-        <thead>
+      <Table
+        striped
+        hover
+        style={{textAlign: 'center', border: '1px solid #f5f5f5'}}
+      >
+        <thead style={{backgroundColor: '#036', color: 'white'}}>
           <tr>
-            <th>Application ID</th>
-            <th>Operator Name</th>
-            <th>Facility Name</th>
-            <th>Submitted</th>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Operator Requested</th>
             <th>Status</th>
-            <th />
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {edges.map(edge => (
-            <ApplicationRowItemContainer
+            <OrganisationRequestsTableRow
               key={edge.node.id}
-              ciipApplication={edge.node}
+              userOrganisation={edge.node}
             />
           ))}
         </tbody>
@@ -69,22 +86,18 @@ export const ApplicationList = props => {
   );
 };
 
-// TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
-// and also for relay to refetch
-// @see https://facebook.github.io/relay/graphql/objectidentification.htm#sec-Node-Interface
-// TODO: Several entitites do not have graphql ID's because they are views
 export default createRefetchContainer(
-  ApplicationList,
+  OrganisationRequestsTableComponent,
   {
     query: graphql`
-      fragment ApplicationListContainer_query on Query
+      fragment OrganisationRequestsTable_query on Query
         @argumentDefinitions(
           searchField: {type: "String"}
           searchValue: {type: "String"}
           orderByField: {type: "String"}
           direction: {type: "String"}
         ) {
-        searchApplicationList(
+        searchUserOrganisation(
           searchField: $searchField
           searchValue: $searchValue
           orderByField: $orderByField
@@ -93,7 +106,7 @@ export default createRefetchContainer(
           edges {
             node {
               id
-              ...ApplicationRowItemContainer_ciipApplication
+              ...OrganisationRequestsTableRow_userOrganisation
             }
           }
         }
@@ -101,14 +114,14 @@ export default createRefetchContainer(
     `
   },
   graphql`
-    query ApplicationListContainerRefetchQuery(
+    query OrganisationRequestsTableRefetchQuery(
       $searchField: String
       $searchValue: String
       $orderByField: String
       $direction: String
     ) {
       query {
-        ...ApplicationListContainer_query
+        ...OrganisationRequestsTable_query
           @arguments(
             searchField: $searchField
             searchValue: $searchValue

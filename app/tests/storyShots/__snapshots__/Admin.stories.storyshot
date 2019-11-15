@@ -42,7 +42,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
     }
   >
     <DefaultLayout
-      title="Administrators Dashboard"
+      title="Administrator Dashboard"
     >
       <div
         className="jsx-1958721952 page-wrap"
@@ -204,7 +204,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
               <h1
                 className="jsx-1958721952"
               >
-                Administrators Dashboard
+                Administrator Dashboard
               </h1>
             </div>
           </Container>
@@ -277,7 +277,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                     </Button>
                   </Link>
                   <Link
-                    href="/applications"
+                    href="/organisation-requests"
                   >
                     <Button
                       active={false}
@@ -296,7 +296,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                         onMouseEnter={[Function]}
                         type="button"
                       >
-                        View Applications
+                        View Access Requests
                       </button>
                     </Button>
                   </Link>

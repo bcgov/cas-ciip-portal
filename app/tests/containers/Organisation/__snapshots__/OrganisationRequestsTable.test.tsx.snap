@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Organisations should render the user's requested organisations 1`] = `
+<Fragment>
+  <SearchTableLayoutComponent
+    dropdownSortItems={
+      Array [
+        Object {
+          "eventKey": "user_id",
+          "title": "User ID",
+        },
+        Object {
+          "eventKey": "first_name",
+          "title": "First Name",
+        },
+        Object {
+          "eventKey": "last_name",
+          "title": "Last Name",
+        },
+        Object {
+          "eventKey": "email_address",
+          "title": "Email",
+        },
+        Object {
+          "eventKey": "status",
+          "title": "Status",
+        },
+        Object {
+          "eventKey": "operator_name",
+          "title": "Operator",
+        },
+      ]
+    }
+    handleEvent={[MockFunction]}
+  />
+  <br />
+  <br />
+  <Bootstrap(Table)
+    hover={true}
+    striped={true}
+    style={
+      Object {
+        "border": "1px solid #f5f5f5",
+        "textAlign": "center",
+      }
+    }
+  >
+    <thead
+      style={
+        Object {
+          "backgroundColor": "#036",
+          "color": "white",
+        }
+      }
+    >
+      <tr>
+        <th>
+          #
+        </th>
+        <th>
+          First Name
+        </th>
+        <th>
+          Last Name
+        </th>
+        <th>
+          Email
+        </th>
+        <th>
+          Operator Requested
+        </th>
+        <th>
+          Status
+        </th>
+        <th>
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <Relay(OrganisationRequestsTableRowComponent)
+        key="abc"
+        userOrganisation={
+          Object {
+            " $fragmentRefs": Object {
+              "OrganisationRequestsTableRow_userOrganisation": true,
+            },
+            "id": "abc",
+          }
+        }
+      />
+    </tbody>
+  </Bootstrap(Table)>
+</Fragment>
+`;
