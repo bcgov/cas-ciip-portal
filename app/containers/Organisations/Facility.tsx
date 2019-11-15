@@ -28,10 +28,8 @@ export const FacilityComponent = ({relay, facility}) => {
     });
   };
 
-  const {applicationsByFacilityId = {}} = facility;
-  const {edges = []} = applicationsByFacilityId;
-  const {node = {}} = edges[0] || {};
-  const {id: applicationId, applicationStatus} = node;
+  const {edges} = facility?.applicationsByFacilityId || {};
+  const {id: applicationId, applicationStatus} = edges?.[0] || {};
 
   // Conditionall render apply / resume button depending on existence and status of Facility's application
   const applyButton = () => {
