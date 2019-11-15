@@ -38,7 +38,6 @@ const CUSTOM_FIELDS = {
   )
 };
 
-// Note: https://github.com/graphile/postgraphile/issues/980
 export const FormComponent: React.FunctionComponent<Props> = ({
   query,
   onComplete,
@@ -69,31 +68,27 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <>
-      {/*
-      //@ts-ignore JsonSchemaForm typedef is missing customFormats prop */}
-      <JsonSchemaForm
-        omitExtraData
-        liveOmit
-        showErrorList={false}
-        ArrayFieldTemplate={FormArrayFieldTemplate}
-        FieldTemplate={FormFieldTemplate}
-        formContext={{query}}
-        formData={formResult}
-        fields={CUSTOM_FIELDS}
-        customFormats={customFormats}
-        schema={schema}
-        uiSchema={uiSchema}
-        ObjectFieldTemplate={FormObjectFieldTemplate}
-        transformErrors={transformErrors}
-        onSubmit={onComplete}
-        onChange={onValueChanged}
-      >
-        <div style={{textAlign: 'right'}}>
-          <Button type="submit">Submit</Button>
-        </div>
-      </JsonSchemaForm>
-    </>
+    <JsonSchemaForm
+      omitExtraData
+      liveOmit
+      showErrorList={false}
+      ArrayFieldTemplate={FormArrayFieldTemplate}
+      FieldTemplate={FormFieldTemplate}
+      formContext={{query}}
+      formData={formResult}
+      fields={CUSTOM_FIELDS}
+      customFormats={customFormats}
+      schema={schema}
+      uiSchema={uiSchema}
+      ObjectFieldTemplate={FormObjectFieldTemplate}
+      transformErrors={transformErrors}
+      onSubmit={onComplete}
+      onChange={onValueChanged}
+    >
+      <div style={{textAlign: 'right'}}>
+        <Button type="submit">Submit</Button>
+      </div>
+    </JsonSchemaForm>
   );
 };
 

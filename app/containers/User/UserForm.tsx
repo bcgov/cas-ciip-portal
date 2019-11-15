@@ -79,7 +79,6 @@ const UserForm: React.FunctionComponent<Props> = ({
   });
 
   return (
-    // @ts-ignore JsonSchemaForm typedef is missing some props
     <JsonSchemaForm
       omitExtraData
       liveOmit
