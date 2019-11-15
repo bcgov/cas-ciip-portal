@@ -9,9 +9,7 @@ interface Props {
   handleEvent: (...args: any[]) => void;
   dropdownSortItems: any[];
 }
-export const SearchTableLayoutComponent: React.FunctionComponent<
-  Props
-> = props => {
+export const SearchTableLayoutComponent: React.FunctionComponent<Props> = props => {
   const {
     orderByDisplay,
     searchDisplay,
