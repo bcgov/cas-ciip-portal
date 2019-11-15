@@ -21,7 +21,7 @@ class ApplicationDetails extends Component<Props> {
     ) {
       query {
         session {
-          ...Header_session
+          ...defaultLayout_session
         }
         ...ApplicationStatusContainer_query
           @arguments(condition: $applicationStatusCondition)

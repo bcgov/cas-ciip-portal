@@ -160,6 +160,7 @@
     "jest": "^24.9.0",
     "jest-canvas-mock": "^2.1.2",
     "jest-raw-loader": "^1.0.1",
+    "json-schema": "^0.2.5",
     "nock": "^9.6.1",
     "node-fetch": "^2.6.0",
     "react-test-renderer": "^16.10.2",

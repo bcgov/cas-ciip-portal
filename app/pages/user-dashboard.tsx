@@ -14,11 +14,15 @@ interface Props {
 
 export default class UserDashBoard extends Component<Props> {
   static query = graphql`
-    query userDashboardQuery($id: ID!) {
+    query userDashboardQuery {
       query {
-        ...Organisations_query @arguments(id: $id)
+        ...Organisations_query
         session {
-          ...Header_session
+          ...defaultLayout_session
+          userBySub {
+            id
+            rowId
+          }
         }
       }
     }
@@ -45,18 +49,19 @@ export default class UserDashBoard extends Component<Props> {
   };
 
   handleOrgConfirm = async (active, environment) => {
+    const {id: userId, rowId: userRowId} = this.props.query.session.userBySub;
     const response = await userOrganisationMutation(
       environment,
       {
         input: {
           userOrganisation: {
-            userId: Number(this.props.router.query.userId),
+            userId: userRowId,
             organisationId: this.state.selectedOrg,
             status: active ? 'approved'.toUpperCase() : 'pending'.toUpperCase()
           }
         }
       },
-      this.props.router.query.id
+      userId
     );
     console.log(response);
   };
@@ -70,7 +75,6 @@ export default class UserDashBoard extends Component<Props> {
           <Col md={{span: 8}}>
             <Organisations
               query={query}
-              userId={this.props.router.query.id}
               orgInput={this.state.orgInput}
               selectedOrg={this.state.selectedOrg}
               confirmOrg={this.state.confirmOrg}

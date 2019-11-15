@@ -22,7 +22,7 @@ class Applications extends Component<Props> {
     ) {
       query {
         session {
-          ...Header_session
+          ...defaultLayout_session
         }
         ...ApplicationListContainer_query
           @arguments(

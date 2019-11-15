@@ -1,13 +1,27 @@
 import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
+import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {Table, Dropdown, Button, Alert} from 'react-bootstrap';
+import {Organisations_query} from 'Organisations_query.graphql';
+import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
 
-export const OrganisationsComponent = props => {
-  const {user, allOrganisations} = props.query;
-  if (!user) return <LoadingSpinner />;
+interface Props {
+  query: Organisations_query;
+  relay: RelayProp;
+  orgInput: string;
+  selectedOrg: number;
+  confirmOrg: boolean;
+  handleInputChange: (event: any) => void;
+  handleContextChange: () => void;
+  handleOrgChange: (event: any) => void;
+  handleOrgConfirm: (status: string, env: RelayModernEnvironment) => any;
+}
+
+export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
+  const {session, allOrganisations} = props.query;
+  if (!session) return <LoadingSpinner />;
 
   const changeInput = event => {
     event.stopPropagation();
@@ -35,9 +49,10 @@ export const OrganisationsComponent = props => {
     props.handleInputChange('');
   };
 
+  const {edges} = session.userBySub.userOrganisationsByUserId;
   return (
     <>
-      {user.userOrganisationsByUserId.edges.length === 0 ? (
+      {edges.length === 0 ? (
         <>
           <Alert variant="warning">
             You are not registered to apply for any Operator at this time. You
@@ -66,7 +81,7 @@ export const OrganisationsComponent = props => {
               </tr>
             </thead>
             <tbody>
-              {user.userOrganisationsByUserId.edges.map(({node}) => {
+              {edges.map(({node}) => {
                 return (
                   <UserOrganisation key={node.id} userOrganisation={node} />
                 );
@@ -150,16 +165,17 @@ export const OrganisationsComponent = props => {
 
 export default createFragmentContainer(OrganisationsComponent, {
   query: graphql`
-    fragment Organisations_query on Query
-      @argumentDefinitions(id: {type: "ID!"}) {
-      user(id: "WyJ1c2VycyIsMV0=") {
-        id
-        userOrganisationsByUserId(first: 2147483647)
-          @connection(key: "Organisations_userOrganisationsByUserId") {
-          edges {
-            node {
-              id
-              ...UserOrganisation_userOrganisation
+    fragment Organisations_query on Query {
+      session {
+        userBySub {
+          id
+          userOrganisationsByUserId(first: 2147483647)
+            @connection(key: "Organisations_userOrganisationsByUserId") {
+            edges {
+              node {
+                id
+                ...UserOrganisation_userOrganisation
+              }
             }
           }
         }

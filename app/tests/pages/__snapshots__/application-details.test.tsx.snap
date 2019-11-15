@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`It matches the last accepted Snapshot 1`] = `
-<DefaultLayout>
+<Relay(DefaultLayout)>
   <Relay(ApplicationStatus)
     applicationId="1"
   />
@@ -10,5 +10,5 @@ exports[`It matches the last accepted Snapshot 1`] = `
     bcghgid="100"
     reportingYear="2018"
   />
-</DefaultLayout>
+</Relay(DefaultLayout)>
 `;

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserOrganisationFacilities page matches the last accepted Snapshot 1`] = `
-<DefaultLayout
+<Relay(DefaultLayout)
   showSubheader={true}
   title="Facilities for Org "
 >
@@ -14,5 +14,5 @@ exports[`UserOrganisationFacilities page matches the last accepted Snapshot 1`] 
       }
     }
   />
-</DefaultLayout>
+</Relay(DefaultLayout)>
 `;

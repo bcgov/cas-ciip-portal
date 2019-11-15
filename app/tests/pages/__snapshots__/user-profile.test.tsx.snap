@@ -1,3 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`user profile matches snapshot 1`] = `"No session exists, the user should go sign in."`;
+exports[`user profile matches snapshot 1`] = `
+<Relay(DefaultLayout)>
+  <Relay(UserProfile)
+    user={null}
+  />
+</Relay(DefaultLayout)>
+`;

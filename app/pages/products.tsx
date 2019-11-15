@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {productsQueryResponse} from 'productsQuery.graphql';
 import ProductListContainer from '../containers/Products/ProductListContainer';
+import DefaultLayout from '../layouts/default-layout';
 
 interface Props {
   query: productsQueryResponse['query'];
@@ -13,6 +14,9 @@ export default class Products extends Component<Props> {
   static query = graphql`
     query productsQuery {
       query {
+        session {
+          ...defaultLayout_session
+        }
         ...ProductListContainer_query
       }
     }
@@ -21,10 +25,9 @@ export default class Products extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <>
-        <h1>Products</h1>
+      <DefaultLayout title="Products" session={query.session}>
         <ProductListContainer query={query} />
-      </>
+      </DefaultLayout>
     );
   }
 }

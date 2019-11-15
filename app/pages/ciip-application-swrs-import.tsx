@@ -15,7 +15,7 @@ export default class Index extends Component<Props> {
     query ciipApplicationSwrsImportQuery {
       query {
         session {
-          ...Header_session
+          ...defaultLayout_session
         }
       }
     }

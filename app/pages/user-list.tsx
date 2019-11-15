@@ -13,6 +13,9 @@ class UserList extends Component<Props> {
     query userListQuery {
       query {
         ...UserTable_query
+        session {
+          ...defaultLayout_session
+        }
       }
     }
   `;
@@ -20,7 +23,7 @@ class UserList extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout title="User List">
+      <DefaultLayout session={query.session} title="User List">
         <UserTable query={query} />
       </DefaultLayout>
     );

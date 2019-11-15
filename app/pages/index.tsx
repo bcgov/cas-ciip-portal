@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Button, Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
-import Link from 'next/link';
+import {Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {pagesQueryResponse} from 'pagesQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
 import DefaultLayout from '../layouts/default-layout';
+import RegistrationLoginButtons from '../components/RegistrationLoginButtons';
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
@@ -15,7 +15,7 @@ export default class Index extends Component<Props> {
     query pagesQuery {
       query {
         session {
-          ...Header_session
+          ...defaultLayout_session
         }
       }
     }
@@ -25,7 +25,12 @@ export default class Index extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout showSubheader={false} session={session}>
+      <DefaultLayout
+        showSubheader={false}
+        session={session}
+        needsSession={false}
+        needsUser={false}
+      >
         <Row style={{marginTop: '60px'}}>
           <Col md={6}>
             <h3 className="blue">
@@ -51,49 +56,7 @@ export default class Index extends Component<Props> {
               emissions benchmarks.
             </p>
           </Col>
-          <Col md={{span: 5, offset: 1}}>
-            <Card
-              className="ciip-card"
-              style={{width: '100%', margin: '30px 0'}}
-            >
-              <Card.Body>
-                <Card.Title className="blue">
-                  Apply for CleanBC Industrial Incentive Program (CIIP)
-                </Card.Title>
-                <Card.Text style={{padding: '10px 0 10px 0'}}>
-                  Operators must submit a CIIP application form by June 30,
-                  2019. As part of the application, information about the
-                  operation’s energy use, emissions, and production is required.
-                </Card.Text>
-                <Link
-                  href={{
-                    pathname: '/dummy-login'
-                  }}
-                >
-                  <Button
-                    style={{padding: '15px'}}
-                    className="full-width"
-                    variant="primary"
-                    size="lg"
-                  >
-                    Register and Apply
-                  </Button>
-                </Link>
-              </Card.Body>
-            </Card>
-            <Link
-              href={{
-                pathname: '/dummy-login'
-              }}
-            >
-              <div
-                className="login-link text-center"
-                style={{textDecoration: 'underline'}}
-              >
-                <a href="#">Already have an account? Click here to login.</a>
-              </div>
-            </Link>
-          </Col>
+          <RegistrationLoginButtons />
         </Row>
 
         <Row style={{marginTop: '100px'}} id="value-props">
@@ -221,11 +184,6 @@ export default class Index extends Component<Props> {
           }
           .value-prop h4 {
             margin-bottom: 20px;
-          }
-          .login-link {
-            border: 1px solid #666;
-            padding: 20px;
-            border-radius: 4px;
           }
           li {
             list-style: none;

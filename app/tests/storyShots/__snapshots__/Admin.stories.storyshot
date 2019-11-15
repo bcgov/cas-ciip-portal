@@ -10,59 +10,69 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
   <Admin
     query={
       Object {
-        "active": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
-                "benchmarksByProductId": Object {
-                  "edges": Array [],
-                },
-                "id": 1,
-                "name": "buddy",
-                "state": "active",
-              },
-            },
-          ],
-        },
-        "archived": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
-                "benchmarksByProductId": Object {
-                  "edges": Array [],
-                },
-                "id": 2,
-                "name": "holly",
-                "state": "archived",
-              },
-            },
-          ],
+        "session": Object {
+          "userBySub": Object {
+            "id": "42",
+          },
         },
       }
     }
+    router={
+      Object {
+        "asPath": "",
+        "pathname": "",
+        "push": [MockFunction],
+        "query": "",
+        "route": "/",
+      }
+    }
   >
-    <DefaultLayout
+    <Relay(DefaultLayout)
+      session={
+        Object {
+          "userBySub": Object {
+            "id": "42",
+          },
+        }
+      }
       title="Administrator Dashboard"
     >
-      <div
-        className="jsx-1958721952 page-wrap"
+      <Relay(DefaultLayout)
+        __relayContext={
+          Object {
+            "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
+          }
+        }
+        componentRef={null}
+        session={
+          Object {
+            "userBySub": Object {
+              "id": "42",
+            },
+          }
+        }
+        title="Administrator Dashboard"
       >
-        <Relay(HeaderLayout)>
-          <Relay(HeaderLayout)
-            __relayContext={
-              Object {
-                "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
-              }
+        <DefaultLayout
+          relay={
+            Object {
+              "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
             }
-            componentRef={null}
+          }
+          session={
+            Object {
+              "userBySub": Object {
+                "id": "42",
+              },
+            }
+          }
+          title="Administrator Dashboard"
+        >
+          <div
+            className="jsx-887941335 page-wrap"
           >
             <HeaderLayout
-              relay={
-                Object {
-                  "environment": "RelayModernEnvironment(RelayModernMockEnvironment)",
-                }
-              }
-              session={null}
+              isLoggedIn={true}
             >
               <header
                 className="jsx-2807878339"
@@ -115,16 +125,14 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                       className="col"
                                     >
                                       <Form
-                                        action="https://www.bceid.ca/register/"
+                                        action="/user-profile"
                                         inline={false}
                                         method="get"
-                                        target="_blank"
                                       >
                                         <form
-                                          action="https://www.bceid.ca/register/"
+                                          action="/user-profile"
                                           className=""
                                           method="get"
-                                          target="_blank"
                                         >
                                           <Button
                                             active={false}
@@ -137,7 +145,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                               disabled={false}
                                               type="submit"
                                             >
-                                              Register
+                                              Profile
                                             </button>
                                           </Button>
                                         </form>
@@ -149,12 +157,12 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                       className="col"
                                     >
                                       <Form
-                                        action="/login"
+                                        action="/logout"
                                         inline={false}
                                         method="post"
                                       >
                                         <form
-                                          action="/login"
+                                          action="/logout"
                                           className=""
                                           method="post"
                                         >
@@ -169,7 +177,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                               disabled={false}
                                               type="submit"
                                             >
-                                              Login
+                                              Logout
                                             </button>
                                           </Button>
                                         </form>
@@ -190,166 +198,166 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                 />
               </header>
             </HeaderLayout>
-          </Relay(HeaderLayout)>
-        </Relay(HeaderLayout)>
-        <div
-          className="jsx-1958721952 page-title"
-        >
-          <Container
-            fluid={false}
-          >
             <div
-              className="container"
+              className="jsx-887941335 page-title"
             >
-              <h1
-                className="jsx-1958721952"
-              >
-                Administrator Dashboard
-              </h1>
-            </div>
-          </Container>
-        </div>
-        <Container
-          className="content"
-          fluid={false}
-        >
-          <div
-            className="content container"
-          >
-            <div
-              className="jsx-2869890304"
-            >
-              <ButtonGroup
-                role="group"
-                toggle={false}
-                vertical={true}
+              <Container
+                fluid={false}
               >
                 <div
-                  className="btn-group-vertical"
-                  role="group"
+                  className="container"
                 >
-                  <Link
-                    href="/products-benchmarks"
+                  <h1
+                    className="jsx-887941335"
                   >
-                    <Button
-                      active={false}
-                      className="buttons"
-                      disabled={false}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      size="lg"
-                      type="button"
-                      variant="primary"
-                    >
-                      <button
-                        className="buttons btn btn-primary btn-lg"
-                        disabled={false}
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        type="button"
-                      >
-                        View Products and Benchmarks
-                      </button>
-                    </Button>
-                  </Link>
-                  <Link
-                    href="/user-list"
-                  >
-                    <Button
-                      active={false}
-                      className="buttons"
-                      disabled={false}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      size="lg"
-                      type="button"
-                      variant="primary"
-                    >
-                      <button
-                        className="buttons btn btn-primary btn-lg"
-                        disabled={false}
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        type="button"
-                      >
-                        View Users
-                      </button>
-                    </Button>
-                  </Link>
-                  <Link
-                    href="/organisation-requests"
-                  >
-                    <Button
-                      active={false}
-                      className="buttons"
-                      disabled={false}
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                      size="lg"
-                      type="button"
-                      variant="primary"
-                    >
-                      <button
-                        className="buttons btn btn-primary btn-lg"
-                        disabled={false}
-                        onClick={[Function]}
-                        onMouseEnter={[Function]}
-                        type="button"
-                      >
-                        View Access Requests
-                      </button>
-                    </Button>
-                  </Link>
+                    Administrator Dashboard
+                  </h1>
                 </div>
-              </ButtonGroup>
-              <JSXStyle
-                id="2869890304"
-              />
+              </Container>
             </div>
-          </div>
-        </Container>
-        <Footer>
-          <footer
-            className="jsx-2746091499 footer"
-          >
-            <div
-              className="jsx-2746091499 container"
+            <Container
+              className="content"
+              fluid={false}
             >
-              <ul
-                className="jsx-2746091499"
+              <div
+                className="content container"
               >
-                <li
-                  className="jsx-2746091499"
+                <div
+                  className="jsx-548205736"
                 >
-                  <a
-                    className="jsx-2746091499"
-                    href="."
+                  <ButtonGroup
+                    role="group"
+                    toggle={false}
+                    vertical={true}
                   >
-                    Home
-                  </a>
-                </li>
-                <li
-                  className="jsx-2746091499"
+                    <div
+                      className="btn-group-vertical"
+                      role="group"
+                    >
+                      <Link
+                        href="/products-benchmarks"
+                      >
+                        <Button
+                          active={false}
+                          className="buttons"
+                          disabled={false}
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                          size="lg"
+                          type="button"
+                          variant="primary"
+                        >
+                          <button
+                            className="buttons btn btn-primary btn-lg"
+                            disabled={false}
+                            onClick={[Function]}
+                            onMouseEnter={[Function]}
+                            type="button"
+                          >
+                            View Products and Benchmarks
+                          </button>
+                        </Button>
+                      </Link>
+                      <Link
+                        href="/user-list"
+                      >
+                        <Button
+                          active={false}
+                          className="buttons"
+                          disabled={false}
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                          size="lg"
+                          type="button"
+                          variant="primary"
+                        >
+                          <button
+                            className="buttons btn btn-primary btn-lg"
+                            disabled={false}
+                            onClick={[Function]}
+                            onMouseEnter={[Function]}
+                            type="button"
+                          >
+                            View Users
+                          </button>
+                        </Button>
+                      </Link>
+                      <Link
+                        href="/organisation-requests"
+                      >
+                        <Button
+                          active={false}
+                          className="buttons"
+                          disabled={false}
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                          size="lg"
+                          type="button"
+                          variant="primary"
+                        >
+                          <button
+                            className="buttons btn btn-primary btn-lg"
+                            disabled={false}
+                            onClick={[Function]}
+                            onMouseEnter={[Function]}
+                            type="button"
+                          >
+                            View Access Requests
+                          </button>
+                        </Button>
+                      </Link>
+                    </div>
+                  </ButtonGroup>
+                  <JSXStyle
+                    id="548205736"
+                  />
+                </div>
+              </div>
+            </Container>
+            <Footer>
+              <footer
+                className="jsx-2746091499 footer"
+              >
+                <div
+                  className="jsx-2746091499 container"
                 >
-                  <a
+                  <ul
                     className="jsx-2746091499"
-                    href="."
                   >
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
-            </div>
+                    <li
+                      className="jsx-2746091499"
+                    >
+                      <a
+                        className="jsx-2746091499"
+                        href="."
+                      >
+                        Home
+                      </a>
+                    </li>
+                    <li
+                      className="jsx-2746091499"
+                    >
+                      <a
+                        className="jsx-2746091499"
+                        href="."
+                      >
+                        Contact Us
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <JSXStyle
+                  id="2746091499"
+                />
+              </footer>
+            </Footer>
             <JSXStyle
-              id="2746091499"
+              id="887941335"
             />
-          </footer>
-        </Footer>
-        <JSXStyle
-          id="1958721952"
-        />
-      </div>
-    </DefaultLayout>
+          </div>
+        </DefaultLayout>
+      </Relay(DefaultLayout)>
+    </Relay(DefaultLayout)>
   </Admin>
 </ReactRelayQueryRenderer>
 `;

@@ -1,12 +1,32 @@
 import React, {Component} from 'react';
 import Link from 'next/link';
 import {Button} from 'react-bootstrap';
+import {graphql} from 'react-relay';
+import {CiipPageComponentProps} from 'next-env';
+import {completeSubmitQueryResponse} from 'completeSubmitQuery.graphql';
 import DefaultLayout from '../layouts/default-layout';
 
-class CompleteSubmit extends Component {
+interface Props extends CiipPageComponentProps {
+  query: completeSubmitQueryResponse['query'];
+}
+class CompleteSubmit extends Component<Props> {
+  static query = graphql`
+    query completeSubmitQuery {
+      query {
+        session {
+          ...defaultLayout_session
+        }
+      }
+    }
+  `;
+
   render() {
+    const {
+      query: {session}
+    } = this.props;
     return (
       <DefaultLayout
+        session={session}
         title={
           <>
             Thank you for your submission. Your application has been sent and is

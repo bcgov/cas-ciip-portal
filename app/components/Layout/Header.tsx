@@ -1,9 +1,8 @@
 import React from 'react';
 import {Row, Col, Form, Button} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
 import Link from 'next/link';
 
-const HeaderLayout = props => (
+const HeaderLayout = ({isLoggedIn = false}) => (
   <header>
     <div className="container">
       <div className="banner">
@@ -19,7 +18,7 @@ const HeaderLayout = props => (
         <div className="login-btns header-right">
           <Row>
             <Col>
-              {props.session ? (
+              {isLoggedIn ? (
                 <Form.Row>
                   <Col>
                     <Form action="/user-profile" method="get">
@@ -147,11 +146,4 @@ const HeaderLayout = props => (
   </header>
 );
 
-export {HeaderLayout};
-export default createFragmentContainer(HeaderLayout, {
-  session: graphql`
-    fragment Header_session on JwtToken {
-      sub
-    }
-  `
-});
+export default HeaderLayout;

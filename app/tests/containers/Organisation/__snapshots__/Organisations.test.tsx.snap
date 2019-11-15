@@ -131,6 +131,9 @@ exports[`Organisations should render the user's requested organisations 1`] = `
         key="OrgId"
         userOrganisation={
           Object {
+            " $fragmentRefs": Object {
+              "UserOrganisation_userOrganisation": true,
+            },
             "id": "OrgId",
           }
         }

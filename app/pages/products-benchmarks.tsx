@@ -15,6 +15,9 @@ class ProductsBenchmarks extends Component<Props> {
     query productsBenchmarksQuery {
       query {
         ...ProductListContainer_query
+        session {
+          ...defaultLayout_session
+        }
       }
     }
   `;
@@ -59,34 +62,32 @@ class ProductsBenchmarks extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <>
-        <DefaultLayout title="Products and Benchmarks">
-          <Row>
-            <Col>
+      <DefaultLayout session={query.session} title="Products and Benchmarks">
+        <Row>
+          <Col>
+            <br />
+            <Jumbotron>
+              <h4>Create a Product</h4>
               <br />
-              <Jumbotron>
-                <h4>Create a Product</h4>
-                <br />
-                <ProductCreatorContainer />
-              </Jumbotron>
-              <br />
-              <br />
-              <br />
-              <ProductListContainer
-                productRowActions={{
-                  toggleProductMode: this.toggleProductMode,
-                  toggleBenchmarkMode: this.toggleBenchmarkMode,
-                  openConfirmationWindow: this.openConfirmationWindow,
-                  closeConfirmationWindow: this.closeConfirmationWindow
-                }}
-                query={query}
-                mode={this.state.mode}
-                confirmationModalOpen={this.state.confirmationModalOpen}
-              />
-            </Col>
-          </Row>
-        </DefaultLayout>
-      </>
+              <ProductCreatorContainer />
+            </Jumbotron>
+            <br />
+            <br />
+            <br />
+            <ProductListContainer
+              productRowActions={{
+                toggleProductMode: this.toggleProductMode,
+                toggleBenchmarkMode: this.toggleBenchmarkMode,
+                openConfirmationWindow: this.openConfirmationWindow,
+                closeConfirmationWindow: this.closeConfirmationWindow
+              }}
+              query={query}
+              mode={this.state.mode}
+              confirmationModalOpen={this.state.confirmationModalOpen}
+            />
+          </Col>
+        </Row>
+      </DefaultLayout>
     );
   }
 }

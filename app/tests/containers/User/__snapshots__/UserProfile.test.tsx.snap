@@ -2,20 +2,6 @@
 
 exports[`UserDetail matches snapshot 1`] = `
 <div>
-  <Jumbotron
-    fluid={false}
-  >
-    <h1>
-      User Profile
-    </h1>
-    <p>
-      Welcome to Ciip 
-      Hamza
-       
-      Javed
-      !
-    </p>
-  </Jumbotron>
   <Button
     active={false}
     className="button-edit"
@@ -32,7 +18,6 @@ exports[`UserDetail matches snapshot 1`] = `
     Edit
   </Button>
   <p />
-  <div />
   <Bootstrap(Table)
     bordered={true}
     hover={true}

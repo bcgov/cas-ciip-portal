@@ -13,7 +13,7 @@ export default class UserOrganisationFacilities extends Component<Props> {
       query {
         ...OrganisationFacilities_query @arguments(id: $organisationId)
         session {
-          ...Header_session
+          ...defaultLayout_session
         }
         organisation(id: $organisationId) {
           operatorName
