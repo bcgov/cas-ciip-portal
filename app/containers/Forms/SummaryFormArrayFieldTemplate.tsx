@@ -19,7 +19,6 @@ const SummaryFormArrayFieldTemplate: React.FunctionComponent<
             <Form.Row>
               <Col xs={12}>{element.children}</Col>
             </Form.Row>
-            <hr />
           </React.Fragment>
         );
       })}

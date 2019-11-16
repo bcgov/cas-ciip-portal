@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {Button, Card, Collapse} from 'react-bootstrap';
+import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import JsonSchemaForm from 'react-jsonschema-form';
 import {FormJson} from 'next-env';
 import SummaryFormArrayFieldTemplate from '../Forms/SummaryFormArrayFieldTemplate';
 import SummaryFormFieldTemplate from '../Forms/SummaryFormFieldTemplate';
-import EmissionGasFields from '../Forms/EmissionGasFields';
-import EmissionSourceFields from '../Forms/EmissionSourceFields';
+import SummaryEmissionGasFields from '../Forms/SummaryEmissionGasFields';
+import SummaryEmissionSourceFields from '../Forms/SummaryEmissionSourceFields';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 
 interface Props {
@@ -34,24 +34,27 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
 
   const CUSTOM_FIELDS = {
     TitleField: props => (
-      <>
-        <h3>{props.title}</h3>
-
-        <hr />
-      </>
+      <h3>{props.title === formJson.schema.title ? null : props.title}</h3>
     ),
     StringField: props => (
       <>: {props.formData ? props.formData : '[No Data Entered]'}</>
     ),
-    BooleanField: props => <>{props.formData ? 'Yes' : 'No'}</>,
-    emissionSource: props => <EmissionSourceFields {...props} />,
-    emissionGas: props => <EmissionGasFields {...props} />
+    BooleanField: props => <> {props.formData ? 'Yes' : 'No'}</>,
+    emissionSource: props => <SummaryEmissionSourceFields {...props} />,
+    emissionGas: props => <SummaryEmissionGasFields {...props} />
   };
 
   return (
     <Card style={{width: '100%', marginBottom: '10px'}}>
       <Card.Header onClick={() => setIsOpen(!isOpen)}>
-        <Button>{isOpen ? 'Expand' : 'Collapse'}</Button>
+        <Row>
+          <Col md={9}>
+            <h2>{formJson.schema.title}</h2>
+          </Col>
+          <Col md={3} style={{textAlign: 'right'}}>
+            <Button>{isOpen ? 'Expand' : 'Collapse'}</Button>
+          </Col>
+        </Row>
       </Card.Header>
       <Collapse in={!isOpen}>
         <Card.Body>

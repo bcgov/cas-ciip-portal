@@ -1,5 +1,8 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
+import Link from 'next/link';
+import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
 import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmationCardItem';
 
 /*
@@ -8,6 +11,26 @@ import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmati
  */
 export const ApplicationWizardConfirmationComponent = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
+
+  // Change application status to 'pending' on application submit
+  const submitApplication = async () => {
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        id:
+          props.query.application.applicationStatusesByApplicationId.edges[0]
+            .node.id,
+        applicationStatusPatch: {
+          applicationStatus: 'pending'
+        }
+      }
+    };
+    const response = await updateApplicationStatusMutation(
+      environment,
+      variables
+    );
+    console.log(response);
+  };
 
   return (
     <>
@@ -23,6 +46,20 @@ export const ApplicationWizardConfirmationComponent = props => {
           formResult={node}
         />
       ))}
+      <Link
+        passHref
+        href={{
+          pathname: '/complete-submit'
+        }}
+      >
+        <Button
+          className="float-right"
+          style={{marginTop: '10px'}}
+          onClick={submitApplication}
+        >
+          Submit Application
+        </Button>
+      </Link>
     </>
   );
 };
@@ -38,6 +75,13 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
             node {
               id
               ...ApplicationWizardConfirmationCardItem_formResult
+            }
+          }
+        }
+        applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
+          edges {
+            node {
+              id
             }
           }
         }

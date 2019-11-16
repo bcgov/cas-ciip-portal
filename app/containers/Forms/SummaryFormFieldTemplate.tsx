@@ -6,7 +6,6 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   id,
   label,
   help,
-  required,
   description,
   errors,
   children,
@@ -38,7 +37,6 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
     <Form.Group style={{margin: 10}} className={classNames}>
       <Form.Label htmlFor={id}>
         <strong>{label}</strong>
-        {required ? '*' : null}
       </Form.Label>
       {description}
       {children}
