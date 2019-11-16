@@ -7,7 +7,7 @@ describe('ApplicationWizardConfirmationComponent', () => {
     const query = {
       application: {
         formResultsByApplicationId: {
-          edges: [{node: {formResult: '{"id": "form-results"}'}}]
+          edges: [{node: 'result'}]
         },
         orderedFormResults: {
           edges: [{node: {id: 'abc'}}]
@@ -19,7 +19,7 @@ describe('ApplicationWizardConfirmationComponent', () => {
     expect(
       r
         .find('Relay(ApplicationWizardConfirmationCardItemComponent)')
-        .prop('formTitle')
-    ).toBe('id');
+        .prop('formResult')
+    ).toBe('result');
   });
 });

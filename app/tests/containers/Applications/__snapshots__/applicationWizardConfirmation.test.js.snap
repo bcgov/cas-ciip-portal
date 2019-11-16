@@ -10,11 +10,7 @@ exports[`ApplicationWizardConfirmationComponent should render the summary confir
   </h5>
   <br />
   <Relay(ApplicationWizardConfirmationCardItemComponent)
-    formResult={
-      Object {
-        "formResult": "{\\"id\\": \\"form-results\\"}",
-      }
-    }
+    formResult="result"
   />
   <Link
     href={

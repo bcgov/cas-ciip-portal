@@ -8,7 +8,7 @@ describe('ApplicationWizardConfirmationComponentCardItem', () => {
       formResult: {},
       formJsonByFormId: {
         name,
-        formJson: {schema: {title: 'Fuel Usage'}}
+        formJson: {schema: {title: 'Fuel UsageCollapse'}}
       }
     };
     const formTitle = 'facility';
@@ -21,6 +21,6 @@ describe('ApplicationWizardConfirmationComponentCardItem', () => {
       />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('CardHeader').text()).toBe('Fuel Usage');
+    expect(r.find('CardHeader').text()).toContain('Fuel Usage');
   });
 });

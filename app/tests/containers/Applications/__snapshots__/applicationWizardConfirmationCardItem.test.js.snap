@@ -20,7 +20,7 @@ exports[`ApplicationWizardConfirmationComponentCardItem should render the indivi
         md={9}
       >
         <h2>
-          Fuel Usage
+          Fuel UsageCollapse
         </h2>
       </Col>
       <Col
@@ -81,7 +81,7 @@ exports[`ApplicationWizardConfirmationComponentCardItem should render the indivi
         safeRenderCompletion={false}
         schema={
           Object {
-            "title": "Fuel Usage",
+            "title": "Fuel UsageCollapse",
           }
         }
         showErrorList={false}
