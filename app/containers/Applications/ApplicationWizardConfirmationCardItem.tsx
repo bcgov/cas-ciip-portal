@@ -1,10 +1,10 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Button, Card, Collapse} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import JsonSchemaForm from 'react-jsonschema-form';
 import {FormJson} from 'next-env';
-import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
-import FormFieldTemplate from '../Forms/FormFieldTemplate';
+import SummaryFormArrayFieldTemplate from '../Forms/SummaryFormArrayFieldTemplate';
+import SummaryFormFieldTemplate from '../Forms/SummaryFormFieldTemplate';
 import EmissionGasFields from '../Forms/EmissionGasFields';
 import EmissionSourceFields from '../Forms/EmissionSourceFields';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
@@ -29,41 +29,55 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
     customFormats
     // CustomFormatsErrorMessages = {}
   } = formJson as FormJson;
-  console.log(formResult);
+
+  const [isOpen, setIsOpen] = useState(false);
+
   const CUSTOM_FIELDS = {
-    // Fuel: props => <FuelFields query={props.formContext.query} {...props} />,
+    TitleField: props => (
+      <>
+        <h3>{props.title}</h3>
+
+        <hr />
+      </>
+    ),
+    StringField: props => (
+      <>: {props.formData ? props.formData : '[No Data Entered]'}</>
+    ),
+    BooleanField: props => <>{props.formData ? 'Yes' : 'No'}</>,
     emissionSource: props => <EmissionSourceFields {...props} />,
     emissionGas: props => <EmissionGasFields {...props} />
-    // Production: props => (
-    // <ProductionFields query={props.formContext.query} {...props} />
-    // )
   };
 
   return (
-    <>
-      {/*
+    <Card style={{width: '100%', marginBottom: '10px'}}>
+      <Card.Header onClick={() => setIsOpen(!isOpen)}>
+        <Button>{isOpen ? 'Expand' : 'Collapse'}</Button>
+      </Card.Header>
+      <Collapse in={!isOpen}>
+        <Card.Body>
+          {/*
       //@ts-ignore JsonSchemaForm typedef is missing customFormats prop */}
-      <JsonSchemaForm
-        disabled
-        omitExtraData
-        readonly
-        liveOmit
-        ArrayFieldTemplate={FormArrayFieldTemplate}
-        FieldTemplate={FormFieldTemplate}
-        FormContext={{query}}
-        showErrorList={false}
-        fields={CUSTOM_FIELDS}
-        customFormats={customFormats}
-        schema={schema}
-        uiSchema={uiSchema}
-        ObjectFieldTemplate={FormObjectFieldTemplate}
-        formData={query}
-      >
-        <div style={{display: 'none'}}>
-          <Button type="submit">Submit</Button>
-        </div>
-      </JsonSchemaForm>
-    </>
+          <JsonSchemaForm
+            omitExtraData
+            liveOmit
+            ArrayFieldTemplate={SummaryFormArrayFieldTemplate}
+            FieldTemplate={SummaryFormFieldTemplate}
+            FormContext={{query}}
+            showErrorList={false}
+            fields={CUSTOM_FIELDS}
+            customFormats={customFormats}
+            schema={schema}
+            uiSchema={uiSchema}
+            ObjectFieldTemplate={FormObjectFieldTemplate}
+            formData={query}
+          >
+            <div style={{display: 'none'}}>
+              <Button type="submit">Submit</Button>
+            </div>
+          </JsonSchemaForm>
+        </Card.Body>
+      </Collapse>
+    </Card>
   );
 };
 

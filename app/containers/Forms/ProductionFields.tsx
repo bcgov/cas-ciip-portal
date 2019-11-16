@@ -79,7 +79,7 @@ const ProductionFields: React.FunctionComponent<Props> = ({
       </Col>
       <Col xs={12} md={4}>
         <Form.Group controlId="id.associatedEmissions">
-          <Form.Label>Associated Emisisons (tCO2e)</Form.Label>
+          <Form.Label>Associated Emissions (tCO2e)</Form.Label>
           <Form.Control
             type="number"
             defaultValue={formData.associatedEmissions}

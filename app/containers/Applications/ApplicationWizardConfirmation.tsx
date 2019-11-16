@@ -8,18 +8,6 @@ import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmati
  */
 export const ApplicationWizardConfirmationComponent = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
-  // Const resultObject = {};
-  // // Create a parsed result object from each formResult page
-  // formResults.forEach(result => {
-  //   const parsedResult = JSON.parse(result.node.formResult);
-  //   const resultTitle = Object.keys(parsedResult).toString();
-
-  //   resultObject[resultTitle] = parsedResult;
-  // });
-  // // Create an array of keys to traverse the resultObject
-  // const formArray = Object.keys(resultObject);
-
-  // Change application status to 'pending' on application submit
 
   return (
     <>
@@ -35,25 +23,6 @@ export const ApplicationWizardConfirmationComponent = props => {
           formResult={node}
         />
       ))}
-      {/*
-      <Link
-        passHref
-        href={{
-          pathname: '/ciip-application',
-          query: {
-            formResultId:
-              props.query.application.orderedFormResults.edges[
-                props.query.application.orderedFormResults.edges.length - 1
-              ].node.id,
-            applicationId: props.query.application.id,
-            certificationPage: true
-          }
-        }}
-      >
-        <Button className="float-right" style={{marginTop: '10px'}}>
-          Next
-        </Button>
-      </Link> */}
     </>
   );
 };
