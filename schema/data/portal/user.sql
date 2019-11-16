@@ -1,7 +1,7 @@
 begin;
 
 with rows as (
-insert into ggircs_portal.user (id, uuid, first_name, last_name, email_address, occupation, phone_number)
+insert into ggircs_portal.ciip_user (id, uuid, first_name, last_name, email_address, occupation, phone_number)
 overriding system value
 values
   (1, '6c01258f-6ad8-4790-8ccc-485163f122a5' , 'Douglas', 'Fir', 'Douglas.Fir@hhry.xxx', 'Tree', '123456789'),
@@ -14,10 +14,10 @@ on conflict(id) do update set
   occupation=excluded.occupation,
   phone_number=excluded.phone_number
 returning 1
-) select 'Inserted ' || count(*) || ' rows into ggircs_portal.user' from rows;
+) select 'Inserted ' || count(*) || ' rows into ggircs_portal.ciip_user' from rows;
 
 select setval from
-setval('ggircs_portal.user_id_seq', (select max(id) from ggircs_portal.user), true)
+setval('ggircs_portal.ciip_user_id_seq', (select max(id) from ggircs_portal.ciip_user), true)
 where setval = 0;
 
 commit;
