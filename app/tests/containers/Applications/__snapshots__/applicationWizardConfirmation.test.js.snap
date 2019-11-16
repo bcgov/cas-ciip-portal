@@ -10,26 +10,16 @@ exports[`ApplicationWizardConfirmationComponent should render the summary confir
   </h5>
   <br />
   <Relay(ApplicationWizardConfirmationCardItemComponent)
-    formSubtitle="id"
-    formTitle="id"
-    key="id id"
-    resultObject={
+    formResult={
       Object {
-        "id": Object {
-          "id": "form-results",
-        },
+        "formResult": "{\\"id\\": \\"form-results\\"}",
       }
     }
   />
   <Link
     href={
       Object {
-        "pathname": "/ciip-application",
-        "query": Object {
-          "applicationId": undefined,
-          "certificationPage": true,
-          "formResultId": "abc",
-        },
+        "pathname": "/complete-submit",
       }
     }
     passHref={true}
@@ -38,6 +28,7 @@ exports[`ApplicationWizardConfirmationComponent should render the summary confir
       active={false}
       className="float-right"
       disabled={false}
+      onClick={[Function]}
       style={
         Object {
           "marginTop": "10px",
@@ -46,7 +37,7 @@ exports[`ApplicationWizardConfirmationComponent should render the summary confir
       type="button"
       variant="primary"
     >
-      Next
+      Submit Application
     </Button>
   </Link>
 </Fragment>
