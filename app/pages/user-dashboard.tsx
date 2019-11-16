@@ -19,7 +19,7 @@ export default class UserDashBoard extends Component<Props> {
         ...Organisations_query
         session {
           ...defaultLayout_session
-          userBySub {
+          ciipUserBySub {
             id
             rowId
           }
@@ -49,7 +49,10 @@ export default class UserDashBoard extends Component<Props> {
   };
 
   handleOrgConfirm = async (active, environment) => {
-    const {id: userId, rowId: userRowId} = this.props.query.session.userBySub;
+    const {
+      id: userId,
+      rowId: userRowId
+    } = this.props.query.session.ciipUserBySub;
     const response = await userOrganisationMutation(
       environment,
       {

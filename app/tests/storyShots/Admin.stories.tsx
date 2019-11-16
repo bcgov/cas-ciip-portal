@@ -42,7 +42,7 @@ const renderStory = (query, environment, variables = {}) => (
           router={router}
           query={{
             session: {
-              userBySub: {
+              ciipUserBySub: {
                 id: '42'
               }
             }

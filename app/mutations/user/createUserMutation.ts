@@ -2,9 +2,9 @@ import {graphql} from 'react-relay';
 import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
-  mutation createUserMutation($input: CreateUserInput!) {
-    createUser(input: $input) {
-      user {
+  mutation createUserMutation($input: CreateCiipUserInput!) {
+    createCiipUser(input: $input) {
+      ciipUser {
         firstName
         lastName
         emailAddress
@@ -20,7 +20,7 @@ const createUserMutation = async (environment, user) => {
     input: {user}
   };
 
-  return new BaseMutation('create-user-mutation').performMutation(
+  return new BaseMutation('create-ciip-user-mutation').performMutation(
     environment,
     mutation,
     variables

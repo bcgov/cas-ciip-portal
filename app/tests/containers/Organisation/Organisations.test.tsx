@@ -8,9 +8,9 @@ describe('Organisations', () => {
     const query: Organisations_query = {
       ' $refType': 'Organisations_query',
       session: {
-        userBySub: {
+        ciipUserBySub: {
           id: '',
-          userOrganisationsByUserId: {edges: []}
+          ciipUserOrganisationsByUserId: {edges: []}
         }
       },
       allOrganisations: {edges: []}
@@ -34,9 +34,9 @@ describe('Organisations', () => {
     const query: Organisations_query = {
       ' $refType': 'Organisations_query',
       session: {
-        userBySub: {
+        ciipUserBySub: {
           id: '',
-          userOrganisationsByUserId: {
+          ciipUserOrganisationsByUserId: {
             edges: [
               {
                 node: {
@@ -68,6 +68,8 @@ describe('Organisations', () => {
     expect(r).toMatchSnapshot();
     expect(
       r.find('Relay(UserOrganisationComponent)').prop('userOrganisation')
-    ).toBe(query.session.userBySub.userOrganisationsByUserId.edges[0].node);
+    ).toBe(
+      query.session.ciipUserBySub.ciipUserOrganisationsByUserId.edges[0].node
+    );
   });
 });

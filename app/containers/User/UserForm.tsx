@@ -98,7 +98,7 @@ const UserForm: React.FunctionComponent<Props> = ({
 export {UserForm as UserFormComponent};
 export default createFragmentContainer(UserForm, {
   user: graphql`
-    fragment UserForm_user on User {
+    fragment UserForm_user on CiipUser {
       id
       firstName
       lastName

@@ -8,9 +8,9 @@ const schemaCode = fs.readFileSync(
 );
 
 const mutation = `
-  mutation UserOrganisationMutation($input: CreateUserOrganisationInput!) {
-    createUserOrganisation(input: $input) {
-      userOrganisation {
+  mutation UserOrganisationMutation($input: CreateCiipUserOrganisationInput!) {
+    createCiipUserOrganisation(input: $input) {
+      ciipUserOrganisation {
         id
         organisationId
         status
@@ -34,7 +34,7 @@ describe('userOrganisationMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" of required type "CreateUserOrganisationInput!" was not provided.'
+      'Variable "$input" of required type "CreateCiipUserOrganisationInput!" was not provided.'
     );
   });
   it('Should throw an error if a variable is missing', () => {
@@ -43,7 +43,7 @@ describe('userOrganisationMutation', () => {
       tester.mock(mutation, {
         input: {
           rowId: 1,
-          userOrganisationPatch: {
+          ciipUserOrganisationPatch: {
             userId: 1,
             organisationId: 2
           }
@@ -58,7 +58,7 @@ describe('userOrganisationMutation', () => {
   it('Should return id(string) if valid', () => {
     const test = tester.mock(mutation, {
       input: {
-        userOrganisation: {
+        ciipUserOrganisation: {
           userId: 1,
           organisationId: 2,
           status: 'APPROVED'
@@ -67,8 +67,8 @@ describe('userOrganisationMutation', () => {
     });
 
     expect(test).toBeDefined();
-    expect(typeof test.data.createUserOrganisation.userOrganisation.id).toBe(
-      'string'
-    );
+    expect(
+      typeof test.data.createCiipUserOrganisation.ciipUserOrganisation.id
+    ).toBe('string');
   });
 });

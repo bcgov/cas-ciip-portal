@@ -7,7 +7,7 @@ describe('Organisations', () => {
   it("should render the user's requested organisations", async () => {
     const query: OrganisationRequestsTable_query = {
       ' $refType': 'OrganisationRequestsTable_query',
-      searchUserOrganisation: {
+      searchCiipUserOrganisation: {
         edges: [
           {
             node: {
@@ -32,6 +32,6 @@ describe('Organisations', () => {
       r
         .find('Relay(OrganisationRequestsTableRowComponent)')
         .prop('userOrganisation')
-    ).toBe(query.searchUserOrganisation.edges[0].node);
+    ).toBe(query.searchCiipUserOrganisation.edges[0].node);
   });
 });
