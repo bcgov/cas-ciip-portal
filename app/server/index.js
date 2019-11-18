@@ -130,7 +130,9 @@ app.prepare().then(() => {
       : keycloak.protect()
   );
   // Keycloak callbak; do not keycloak.protect() to avoid users being authenticated against their will via XSS attack
-  server.get('/login', (req, res) => res.redirect(302, '/user-dashboard'));
+  server.get('/login', (req, res) =>
+    res.redirect(302, req.query.redirectTo || '/user-dashboard')
+  );
 
   server.get('*', async (req, res) => {
     return handle(req, res);

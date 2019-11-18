@@ -6,15 +6,11 @@ const LoginForm = ({children}) => {
   const router = useRouter();
 
   return (
-    <Form action="/login" method="post">
-      <input
-        hidden
-        readOnly
-        name="redirectTo"
-        value={
-          decodeURI(router.query.redirectTo as string) || '/user-dashboard'
-        }
-      />
+    <Form
+      action={`/login?redirectTo=${decodeURI(router.query
+        .redirectTo as string) || '/user-dashboard'}`}
+      method="post"
+    >
       {children}
     </Form>
   );
