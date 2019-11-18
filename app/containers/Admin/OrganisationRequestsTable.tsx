@@ -15,9 +15,7 @@ interface Props {
   handleEvent: (...args: any[]) => void;
   relay: RelayRefetchProp;
 }
-export const OrganisationRequestsTableComponent: React.FunctionComponent<
-  Props
-> = props => {
+export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> = props => {
   const {
     orderByField,
     orderByDisplay,

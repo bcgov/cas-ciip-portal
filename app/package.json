@@ -125,6 +125,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
     "@storybook/addon-a11y": "^5.2.1",
     "@storybook/addon-storyshots": "^5.2.4",
     "@storybook/addons": "^5.2.1",
@@ -168,13 +170,14 @@
     "relay-compiler-language-typescript": "^10.1.0",
     "relay-test-utils": "^7.0.0",
     "require-context.macro": "^1.2.2",
-    "typescript": "3.6.4",
+    "typescript": "3.7.2",
     "webpack": "^4.41.0",
     "xo": "^0.25.0"
   },
   "resolutions": {
     "@storybook/**/open": "^7.0.0",
     "xo/open-editor/open": "^7.0.0",
+    "xo/prettier": "^1.19.1",
     "jest/jest-cli/@jest/core/@jest/reporters/istanbul-reports/handlebars": "^4.5.2"
   },
   "jest": {

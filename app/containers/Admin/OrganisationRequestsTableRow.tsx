@@ -8,9 +8,7 @@ interface Props {
   userOrganisation: OrganisationRequestsTableRow_userOrganisation;
   key: string;
 }
-export const OrganisationRequestsTableRowComponent: React.FunctionComponent<
-  Props
-> = props => {
+export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Props> = props => {
   const {userOrganisation} = props;
 
   const statusBadgeColor = {

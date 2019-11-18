@@ -1,11 +1,20 @@
 import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
+import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {Button, Badge, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
+import {Facility_facility} from 'Facility_facility.graphql';
 import createApplicationMutation from '../../mutations/application/createApplicationMutation';
 
-export const FacilityComponent = ({relay, facility}) => {
+interface Props {
+  relay: RelayProp;
+  facility: Facility_facility;
+}
+
+export const FacilityComponent: React.FunctionComponent<Props> = ({
+  relay,
+  facility
+}) => {
   const {environment} = relay;
   const router = useRouter();
 
@@ -28,10 +37,8 @@ export const FacilityComponent = ({relay, facility}) => {
     });
   };
 
-  const {applicationsByFacilityId = {}} = facility;
-  const {edges = []} = applicationsByFacilityId;
-  const {node = {}} = edges[0] || {};
-  const {id: applicationId, applicationStatus} = node;
+  const {edges} = facility?.applicationsByFacilityId || {};
+  const {id: applicationId, applicationStatus} = edges?.[0]?.node || {};
 
   // Conditionall render apply / resume button depending on existence and status of Facility's application
   const applyButton = () => {
@@ -85,7 +92,7 @@ export const FacilityComponent = ({relay, facility}) => {
           </ListGroupItem>
           <ListGroupItem>
             <strong>Application Status:</strong> &nbsp;{' '}
-            {edges.length > 0 ? (
+            {applicationStatus ? (
               <>
                 <Badge
                   pill

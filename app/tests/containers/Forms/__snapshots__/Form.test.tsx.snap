@@ -1460,169 +1460,167 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
 `;
 
 exports[`Form should match the snapshot with the production form 1`] = `
-<Fragment>
-  <Form
-    ArrayFieldTemplate={[Function]}
-    ErrorList={[Function]}
-    FieldTemplate={[Function]}
-    ObjectFieldTemplate={[Function]}
-    disabled={false}
-    fields={
-      Object {
-        "emissionGas": [Function],
-        "emissionSource": [Function],
-        "fuel": [Function],
-        "production": [Function],
-      }
+<Form
+  ArrayFieldTemplate={[Function]}
+  ErrorList={[Function]}
+  FieldTemplate={[Function]}
+  ObjectFieldTemplate={[Function]}
+  disabled={false}
+  fields={
+    Object {
+      "emissionGas": [Function],
+      "emissionSource": [Function],
+      "fuel": [Function],
+      "production": [Function],
     }
-    formContext={
-      Object {
-        "query": Object {
-          " $fragmentRefs": Object {
-            "FuelFields_query": true,
-            "ProductionFields_query": true,
-          },
-          " $refType": "Form_query",
-          "result": Object {
-            "formJsonByFormId": Object {
-              "formJson": Object {
-                "schema": Object {
-                  "definitions": Object {
-                    "production": Object {
-                      "properties": Object {
-                        "associatedEmissions": Object {
-                          "title": "Associated Emission (tCO2e)",
-                          "type": "number",
-                        },
-                        "comments": Object {
-                          "title": "comments",
-                          "type": "string",
-                        },
-                        "product": Object {
-                          "title": "Processing Unit Module",
-                          "type": "string",
-                        },
-                        "productUnits": Object {
-                          "title": "Units",
-                          "type": "string",
-                        },
-                        "quantity": Object {
-                          "title": "Quantity",
-                          "type": "number",
-                        },
+  }
+  formContext={
+    Object {
+      "query": Object {
+        " $fragmentRefs": Object {
+          "FuelFields_query": true,
+          "ProductionFields_query": true,
+        },
+        " $refType": "Form_query",
+        "result": Object {
+          "formJsonByFormId": Object {
+            "formJson": Object {
+              "schema": Object {
+                "definitions": Object {
+                  "production": Object {
+                    "properties": Object {
+                      "associatedEmissions": Object {
+                        "title": "Associated Emission (tCO2e)",
+                        "type": "number",
                       },
-                      "type": "object",
+                      "comments": Object {
+                        "title": "comments",
+                        "type": "string",
+                      },
+                      "product": Object {
+                        "title": "Processing Unit Module",
+                        "type": "string",
+                      },
+                      "productUnits": Object {
+                        "title": "Units",
+                        "type": "string",
+                      },
+                      "quantity": Object {
+                        "title": "Quantity",
+                        "type": "number",
+                      },
                     },
+                    "type": "object",
                   },
-                  "items": Object {
-                    "$ref": "#/definitions/production",
-                  },
-                  "title": "Production Information",
-                  "type": "array",
                 },
-                "uiSchema": Object {
-                  "items": Object {
-                    "ui:field": "production",
-                  },
-                  "ui:add-text": "Add a Product",
-                  "ui:remove-text": "Remove Product",
+                "items": Object {
+                  "$ref": "#/definitions/production",
                 },
+                "title": "Production Information",
+                "type": "array",
+              },
+              "uiSchema": Object {
+                "items": Object {
+                  "ui:field": "production",
+                },
+                "ui:add-text": "Add a Product",
+                "ui:remove-text": "Remove Product",
               },
             },
-            "formResult": Array [
-              Object {
-                "associatedEmissions": 42,
-                "comments": "Saepe quis aliquid e",
-                "product": "Dehydration",
-                "productUnits": "kl",
-                "quantity": 84,
-              },
-            ],
           },
-        },
-      }
-    }
-    formData={
-      Array [
-        Object {
-          "associatedEmissions": 42,
-          "comments": "Saepe quis aliquid e",
-          "product": "Dehydration",
-          "productUnits": "kl",
-          "quantity": 84,
-        },
-      ]
-    }
-    liveOmit={true}
-    liveValidate={false}
-    noHtml5Validate={false}
-    noValidate={false}
-    omitExtraData={true}
-    safeRenderCompletion={false}
-    schema={
-      Object {
-        "definitions": Object {
-          "production": Object {
-            "properties": Object {
-              "associatedEmissions": Object {
-                "title": "Associated Emission (tCO2e)",
-                "type": "number",
-              },
-              "comments": Object {
-                "title": "comments",
-                "type": "string",
-              },
-              "product": Object {
-                "title": "Processing Unit Module",
-                "type": "string",
-              },
-              "productUnits": Object {
-                "title": "Units",
-                "type": "string",
-              },
-              "quantity": Object {
-                "title": "Quantity",
-                "type": "number",
-              },
+          "formResult": Array [
+            Object {
+              "associatedEmissions": 42,
+              "comments": "Saepe quis aliquid e",
+              "product": "Dehydration",
+              "productUnits": "kl",
+              "quantity": 84,
             },
-            "type": "object",
-          },
+          ],
         },
-        "items": Object {
-          "$ref": "#/definitions/production",
-        },
-        "title": "Production Information",
-        "type": "array",
-      }
+      },
     }
-    showErrorList={false}
-    transformErrors={[Function]}
-    uiSchema={
+  }
+  formData={
+    Array [
       Object {
-        "items": Object {
-          "ui:field": "production",
+        "associatedEmissions": 42,
+        "comments": "Saepe quis aliquid e",
+        "product": "Dehydration",
+        "productUnits": "kl",
+        "quantity": 84,
+      },
+    ]
+  }
+  liveOmit={true}
+  liveValidate={false}
+  noHtml5Validate={false}
+  noValidate={false}
+  omitExtraData={true}
+  safeRenderCompletion={false}
+  schema={
+    Object {
+      "definitions": Object {
+        "production": Object {
+          "properties": Object {
+            "associatedEmissions": Object {
+              "title": "Associated Emission (tCO2e)",
+              "type": "number",
+            },
+            "comments": Object {
+              "title": "comments",
+              "type": "string",
+            },
+            "product": Object {
+              "title": "Processing Unit Module",
+              "type": "string",
+            },
+            "productUnits": Object {
+              "title": "Units",
+              "type": "string",
+            },
+            "quantity": Object {
+              "title": "Quantity",
+              "type": "number",
+            },
+          },
+          "type": "object",
         },
-        "ui:add-text": "Add a Product",
-        "ui:remove-text": "Remove Product",
+      },
+      "items": Object {
+        "$ref": "#/definitions/production",
+      },
+      "title": "Production Information",
+      "type": "array",
+    }
+  }
+  showErrorList={false}
+  transformErrors={[Function]}
+  uiSchema={
+    Object {
+      "items": Object {
+        "ui:field": "production",
+      },
+      "ui:add-text": "Add a Product",
+      "ui:remove-text": "Remove Product",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "textAlign": "right",
       }
     }
   >
-    <div
-      style={
-        Object {
-          "textAlign": "right",
-        }
-      }
+    <Button
+      active={false}
+      disabled={false}
+      type="submit"
+      variant="primary"
     >
-      <Button
-        active={false}
-        disabled={false}
-        type="submit"
-        variant="primary"
-      >
-        Submit
-      </Button>
-    </div>
-  </Form>
-</Fragment>
+      Submit
+    </Button>
+  </div>
+</Form>
 `;

@@ -2,9 +2,12 @@ import React from 'react';
 import {ArrayFieldTemplateProps} from 'react-jsonschema-form';
 import {Form, Button, Col} from 'react-bootstrap';
 
-const FormArrayFieldTemplate: React.FunctionComponent<
-  ArrayFieldTemplateProps
-> = ({items, canAdd, onAddClick, uiSchema}) => {
+const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> = ({
+  items,
+  canAdd,
+  onAddClick,
+  uiSchema
+}) => {
   return (
     <>
       {items.map(element => {
