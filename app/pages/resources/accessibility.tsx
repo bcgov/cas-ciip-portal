@@ -19,6 +19,7 @@ class Accessibility extends Component<Props> {
     }
   `;
 
+  // TODO: Add content to this empty page
   render() {
     const {query} = this.props;
     const {session} = query || {};
