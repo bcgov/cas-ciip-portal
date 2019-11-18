@@ -29,8 +29,7 @@ begin;
        (x.production_data ->> 'processingUnit')::varchar(1000) as product,
        (x.production_data ->> 'units')::varchar(1000) as fuel_units,
        (x.production_data ->> 'comments')::varchar(10000) as comments,
-       (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions,
-       (x.production_data ->> 'attributableFuelPercentage')::numeric as attributable_fuel_percentage
+       (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions
     from x
  );
 
