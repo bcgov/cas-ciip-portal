@@ -1,4 +1,5 @@
 import {graphql} from 'react-relay';
+import {updateFormResultMutation as updateFormResultMutationType} from 'updateFormResultMutation.graphql';
 import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
@@ -23,7 +24,9 @@ const updateFormResultMutation = async (environment, variables) => {
     }
   };
 
-  const m = new BaseMutation('update-form-result-mutation');
+  const m = new BaseMutation<updateFormResultMutationType>(
+    'update-form-result-mutation'
+  );
   return m.performMutation(
     environment,
     mutation,

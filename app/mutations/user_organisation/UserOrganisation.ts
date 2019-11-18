@@ -1,4 +1,5 @@
 import {graphql, DeclarativeMutationConfig} from 'react-relay';
+import {UserOrganisationMutation} from 'UserOrganisationMutation.graphql';
 import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
@@ -32,6 +33,9 @@ export const userOrganisationMutation = async (
     }
   ];
 
-  const m = new BaseMutation('create-ciip-user-organisation-mutation', configs);
+  const m = new BaseMutation<UserOrganisationMutation>(
+    'create-ciip-user-organisation-mutation',
+    configs
+  );
   return m.performMutation(environment, mutation, variables);
 };
