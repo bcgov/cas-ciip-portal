@@ -8,16 +8,16 @@ const Footer = () => {
         <div className="container">
           <ul>
             <li>
-              <Link href="resources/disclaimer">Disclaimer</Link>
+              <Link href="/resources/disclaimer">Disclaimer</Link>
             </li>
             <li>
-              <Link href="resources/privacy">Privacy</Link>
+              <Link href="/resources/privacy">Privacy</Link>
             </li>
             <li>
-              <Link href="resources/accessibility">Accessibility</Link>
+              <Link href="/resources/accessibility">Accessibility</Link>
             </li>
             <li>
-              <Link href="resources/copyright">Copyright</Link>
+              <Link href="/resources/copyright">Copyright</Link>
             </li>
           </ul>
         </div>
