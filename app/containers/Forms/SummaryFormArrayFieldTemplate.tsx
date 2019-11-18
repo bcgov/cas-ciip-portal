@@ -10,7 +10,9 @@ const SummaryFormArrayFieldTemplate: React.FunctionComponent<
     <>
       <Col xs={12}>
         <TitleField
+          id={null}
           title={title === 'gases' || title === 'Source Types' ? null : title}
+          required={false}
         />
       </Col>
       {items.map(element => {
