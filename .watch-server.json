@@ -11,7 +11,12 @@
       ["match", "app/yarn.lock", "wholename"],
       ["match", ".tool-versions", "wholename"]
     ],
-    "command": ["/usr/bin/env", "bash", "-c", "kill -9 $(cat log/server.pid); pushd app >/dev/null && (node server 1>../log/server.stdout.log 2>../log/server.stderr.log & echo $! > ../log/server.pid); popd >/dev/null"],
+    "command": [
+      "/usr/bin/env",
+      "bash",
+      "-c",
+      "kill -9 $(cat log/server.pid); pushd app >/dev/null && (node server NO_AUTH 1>../log/server.stdout.log 2>../log/server.stderr.log & echo $! > ../log/server.pid); popd >/dev/null"
+    ],
     "append_files": false
   }
 ]
