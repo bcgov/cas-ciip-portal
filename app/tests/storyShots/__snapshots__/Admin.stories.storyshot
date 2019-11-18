@@ -316,38 +316,78 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
             </Container>
             <Footer>
               <footer
-                className="jsx-2746091499 footer"
+                className="jsx-337505255 footer"
               >
                 <div
-                  className="jsx-2746091499 container"
+                  className="jsx-337505255 container"
                 >
                   <ul
-                    className="jsx-2746091499"
+                    className="jsx-337505255"
                   >
                     <li
-                      className="jsx-2746091499"
+                      className="jsx-337505255"
                     >
-                      <a
-                        className="jsx-2746091499"
-                        href="."
+                      <Link
+                        href="#"
                       >
-                        Home
-                      </a>
+                        <a
+                          href="#"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                        >
+                          Disclaimer
+                        </a>
+                      </Link>
                     </li>
                     <li
-                      className="jsx-2746091499"
+                      className="jsx-337505255"
                     >
-                      <a
-                        className="jsx-2746091499"
-                        href="."
+                      <Link
+                        href="#"
                       >
-                        Contact Us
-                      </a>
+                        <a
+                          href="#"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                        >
+                          Privacy
+                        </a>
+                      </Link>
+                    </li>
+                    <li
+                      className="jsx-337505255"
+                    >
+                      <Link
+                        href="#"
+                      >
+                        <a
+                          href="#"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                        >
+                          Accessibility
+                        </a>
+                      </Link>
+                    </li>
+                    <li
+                      className="jsx-337505255"
+                    >
+                      <Link
+                        href="#"
+                      >
+                        <a
+                          href="#"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                        >
+                          Copyright
+                        </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
                 <JSXStyle
-                  id="2746091499"
+                  id="337505255"
                 />
               </footer>
             </Footer>
