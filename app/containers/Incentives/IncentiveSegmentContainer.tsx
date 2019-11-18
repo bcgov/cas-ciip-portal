@@ -86,7 +86,7 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
       product
       fuelUnits
       associatedEmissions
-      attributableFuelPercentage
+      # attributableFuelPercentage
     }
   `
 });
