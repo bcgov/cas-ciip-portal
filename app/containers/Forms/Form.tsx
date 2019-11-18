@@ -3,7 +3,6 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import JsonSchemaForm, {
   IChangeEvent,
   ErrorSchema,
-  // UiSchema,
   AjvError
 } from 'react-jsonschema-form';
 import {Form_query} from 'Form_query.graphql';
