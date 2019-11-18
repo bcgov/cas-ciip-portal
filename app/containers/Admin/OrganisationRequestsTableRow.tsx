@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, ButtonGroup, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {OrganisationRequestsTableRow_userOrganisation} from 'OrganisationRequestsTableRow_userOrganisation.graphql';
-import {updateUserOrganisationMutation} from '../../mutations/user_organisation/UpdateUserOrganisation';
+import {updateUserOrganisationMutation} from '../../mutations/user_organisation/updateUserOrganisation';
 interface Props {
   relay: RelayProp;
   userOrganisation: OrganisationRequestsTableRow_userOrganisation;

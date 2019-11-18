@@ -5,7 +5,7 @@ import {NextRouter} from 'next/router';
 import {userDashboardQueryResponse} from 'userDashboardQuery.graphql';
 import Organisations from '../containers/Organisations/Organisations';
 import DefaultLayout from '../layouts/default-layout';
-import {userOrganisationMutation} from '../mutations/user_organisation/UserOrganisation';
+import {createUserOrganisationMutation} from '../mutations/user_organisation/createUserOrganisation';
 
 interface Props {
   router: NextRouter;
@@ -53,14 +53,14 @@ export default class UserDashBoard extends Component<Props> {
       id: userId,
       rowId: userRowId
     } = this.props.query.session.ciipUserBySub;
-    const response = await userOrganisationMutation(
+    const response = await createUserOrganisationMutation(
       environment,
       {
         input: {
           ciipUserOrganisation: {
             userId: userRowId,
             organisationId: this.state.selectedOrg,
-            status: active ? 'approved'.toUpperCase() : 'pending'.toUpperCase()
+            status: active ? 'APPROVED' : 'PENDING'
           }
         }
       },
