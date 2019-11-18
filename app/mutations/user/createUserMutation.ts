@@ -15,9 +15,9 @@ const mutation = graphql`
   }
 `;
 
-const createUserMutation = async (environment, user) => {
+const createUserMutation = async (environment, ciipUser) => {
   const variables = {
-    input: {user}
+    input: {ciipUser}
   };
 
   return new BaseMutation('create-ciip-user-mutation').performMutation(

@@ -18,12 +18,12 @@ const mutation = graphql`
   }
 `;
 
-const updateUserMutation = async (environment, user, ciipUserPatch) => {
+const updateUserMutation = async (environment, ciipUser, ciipUserPatch) => {
   // Optimistic response
   const updateUserPayload = {
     updateCiipUser: {
       ciipUser: {
-        ...user,
+        ...ciipUser,
         ...ciipUserPatch
       }
     }
