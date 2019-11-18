@@ -10,7 +10,7 @@ interface BaseMutationType {
   variables: {input: any};
 }
 
-export default class BaseMutation<T extends BaseMutationType> {
+export default class BaseMutation<T extends BaseMutationType = never> {
   counter: number;
   mutationName: string;
   configs?: DeclarativeMutationConfig[];
