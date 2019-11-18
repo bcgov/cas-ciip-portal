@@ -56,11 +56,6 @@ exports[`ApplicationWizardConfirmationComponentCardItem should render the indivi
         ArrayFieldTemplate={[Function]}
         ErrorList={[Function]}
         FieldTemplate={[Function]}
-        FormContext={
-          Object {
-            "query": Object {},
-          }
-        }
         ObjectFieldTemplate={[Function]}
         disabled={false}
         fields={
@@ -93,16 +88,7 @@ exports[`ApplicationWizardConfirmationComponentCardItem should render the indivi
               "display": "none",
             }
           }
-        >
-          <Button
-            active={false}
-            disabled={false}
-            type="submit"
-            variant="primary"
-          >
-            Submit
-          </Button>
-        </div>
+        />
       </Form>
     </CardBody>
   </Collapse>
