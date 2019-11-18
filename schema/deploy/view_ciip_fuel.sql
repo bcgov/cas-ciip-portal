@@ -6,7 +6,7 @@ begin;
     with x as (
       select
         form_result.application_id as id,
-        json_array_elements((form_result -> 'fuels')::json) as fuel_data
+        json_array_elements((form_result)::json) as fuel_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -17,9 +17,7 @@ begin;
        (x.fuel_data ->> 'quantity')::numeric as quantity,
        (x.fuel_data ->> 'fuelType')::varchar(1000) as fuel_type,
        (x.fuel_data ->> 'fuelUnits')::varchar(1000) as fuel_units,
-       (x.fuel_data ->> 'methodology')::varchar(1000) as methodology,
-       (x.fuel_data ->> 'methodology-Comment')::varchar(10000) as methodology_comment,
-       (x.fuel_data ->> 'description')::varchar(10000) as description
+       (x.fuel_data ->> 'methodology')::varchar(1000) as methodology
     from x
  );
 
@@ -34,7 +32,5 @@ comment on view ggircs_portal.ciip_fuel is E'@primaryKey id';
 -- comment on column ggircs_portal.ciip_fuel.fuel_units is 'The fuel units';
 -- comment on column ggircs_portal.ciip_fuel.fuel_type is 'The fuel type';
 -- comment on column ggircs_portal.ciip_fuel.methodology is 'The methodology used for reporting';
--- comment on column ggircs_portal.ciip_fuel.methodology_comment is 'The methodology details if other';
--- comment on column ggircs_portal.ciip_fuel.description is 'The description of the fuel used';
 
 commit;
