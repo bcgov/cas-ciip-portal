@@ -22,7 +22,7 @@ create view ggircs_portal.ciip_application as (
     y as (
       select
         form_result.application_id as id,
-        (form_result -> 'reportingOperationInformation')::json as operator_data
+        (form_result -> 'operator')::json as operator_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
