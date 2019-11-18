@@ -58,7 +58,7 @@ const UserProfile = ({user}) => {
 export {UserProfile as UserProfileComponent};
 export default createFragmentContainer(UserProfile, {
   user: graphql`
-    fragment UserProfile_user on User {
+    fragment UserProfile_user on CiipUser {
       ...UserForm_user
       firstName
       lastName

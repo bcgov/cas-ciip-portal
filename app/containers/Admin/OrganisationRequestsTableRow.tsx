@@ -23,7 +23,7 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<
     const variables = {
       input: {
         id: userOrganisation.id,
-        userOrganisationPatch: {
+        ciipUserOrganisationPatch: {
           status
         }
       }
@@ -39,9 +39,9 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<
   return (
     <tr>
       <td>{userOrganisation.userId}</td>
-      <td>{userOrganisation.userByUserId.firstName}</td>
-      <td>{userOrganisation.userByUserId.lastName}</td>
-      <td>{userOrganisation.userByUserId.emailAddress}</td>
+      <td>{userOrganisation.ciipUserByUserId.firstName}</td>
+      <td>{userOrganisation.ciipUserByUserId.lastName}</td>
+      <td>{userOrganisation.ciipUserByUserId.emailAddress}</td>
       <td>{userOrganisation.organisationByOrganisationId.operatorName}</td>
       <td>
         <Badge
@@ -87,11 +87,11 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<
 
 export default createFragmentContainer(OrganisationRequestsTableRowComponent, {
   userOrganisation: graphql`
-    fragment OrganisationRequestsTableRow_userOrganisation on UserOrganisation {
+    fragment OrganisationRequestsTableRow_userOrganisation on CiipUserOrganisation {
       id
       status
       userId
-      userByUserId {
+      ciipUserByUserId {
         firstName
         lastName
         emailAddress

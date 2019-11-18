@@ -45,7 +45,7 @@ it('Redirects the user to the registration page if the session exists but the us
 
   shallow(
     <DefaultLayoutComponent
-      session={{userBySub: null, ' $refType': 'defaultLayout_session'}}
+      session={{ciipUserBySub: null, ' $refType': 'defaultLayout_session'}}
     />
   );
   expect(pushedQuery.pathname).toBe('/registration');

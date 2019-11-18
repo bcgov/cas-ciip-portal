@@ -35,7 +35,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
     return null;
   }
 
-  if (needsUser && !session.userBySub) {
+  if (needsUser && !session.ciipUserBySub) {
     router.push({
       pathname: '/registration',
       query: {
@@ -47,7 +47,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
 
   return (
     <div className="page-wrap">
-      <Header isLoggedIn={Boolean(session && session.userBySub)} />
+      <Header isLoggedIn={Boolean(session && session.ciipUserBySub)} />
       {showSubheader && <Subheader />}
       {title ? (
         <div className="page-title">
@@ -133,7 +133,7 @@ export {DefaultLayout as DefaultLayoutComponent};
 export default createFragmentContainer(DefaultLayout, {
   session: graphql`
     fragment defaultLayout_session on JwtToken {
-      userBySub {
+      ciipUserBySub {
         __typename
       }
     }

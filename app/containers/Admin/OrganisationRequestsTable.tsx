@@ -35,7 +35,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<
     {eventKey: 'status', title: 'Status'},
     {eventKey: 'operator_name', title: 'Operator'}
   ];
-  const {edges} = props.query.searchUserOrganisation;
+  const {edges} = props.query.searchCiipUserOrganisation;
   useEffect(() => {
     const refetchVariables = {
       searchField,
@@ -97,7 +97,7 @@ export default createRefetchContainer(
           orderByField: {type: "String"}
           direction: {type: "String"}
         ) {
-        searchUserOrganisation(
+        searchCiipUserOrganisation(
           searchField: $searchField
           searchValue: $searchValue
           orderByField: $orderByField

@@ -19,7 +19,7 @@ class Registration extends Component<Props> {
           familyName
           email
           ...defaultLayout_session
-          userBySub {
+          ciipUserBySub {
             ...UserForm_user
           }
         }
@@ -32,13 +32,13 @@ class Registration extends Component<Props> {
       query: {session},
       router
     } = this.props;
-    const {userBySub, sub, givenName, familyName, email} = session || {};
+    const {ciipUserBySub, sub, givenName, familyName, email} = session || {};
 
     return (
       <DefaultLayout title="Registration" session={session} needsUser={false}>
         <h4 className="mb-5">Please verify or update your information</h4>
         <UserForm
-          user={userBySub}
+          user={ciipUserBySub}
           uuid={sub as string}
           defaultGivenName={givenName}
           defaultFamilyName={familyName}

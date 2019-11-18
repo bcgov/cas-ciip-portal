@@ -13,7 +13,7 @@ class UserProfile extends Component<Props> {
       query {
         session {
           ...defaultLayout_session
-          userBySub {
+          ciipUserBySub {
             ...UserProfile_user
           }
         }
@@ -26,7 +26,7 @@ class UserProfile extends Component<Props> {
 
     return (
       <DefaultLayout session={session}>
-        <UserProfileContainer user={session ? session.userBySub : null} />
+        <UserProfileContainer user={session ? session.ciipUserBySub : null} />
       </DefaultLayout>
     );
   }

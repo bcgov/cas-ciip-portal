@@ -49,7 +49,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
     props.handleInputChange('');
   };
 
-  const {edges} = session.userBySub.userOrganisationsByUserId;
+  const {edges} = session.ciipUserBySub.ciipUserOrganisationsByUserId;
   return (
     <>
       {edges.length === 0 ? (
@@ -167,10 +167,10 @@ export default createFragmentContainer(OrganisationsComponent, {
   query: graphql`
     fragment Organisations_query on Query {
       session {
-        userBySub {
+        ciipUserBySub {
           id
-          userOrganisationsByUserId(first: 2147483647)
-            @connection(key: "Organisations_userOrganisationsByUserId") {
+          ciipUserOrganisationsByUserId(first: 2147483647)
+            @connection(key: "Organisations_ciipUserOrganisationsByUserId") {
             edges {
               node {
                 id

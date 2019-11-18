@@ -7,7 +7,7 @@ interface Props {
 }
 export const UserTableComponent: React.FunctionComponent<Props> = props => {
   const {query} = props;
-  if (!query.allUsers || !query.allUsers.edges) {
+  if (!query.allCiipUsers || !query.allCiipUsers.edges) {
     return <div />;
   }
 
@@ -25,7 +25,7 @@ export const UserTableComponent: React.FunctionComponent<Props> = props => {
           </tr>
         </thead>
         <tbody>
-          {query.allUsers.edges.map(({node}) => {
+          {query.allCiipUsers.edges.map(({node}) => {
             return (
               <tr key={node.id}>
                 <td>{node.rowId}</td>
@@ -46,7 +46,7 @@ export const UserTableComponent: React.FunctionComponent<Props> = props => {
 export default createFragmentContainer(UserTableComponent, {
   query: graphql`
     fragment UserTable_query on Query {
-      allUsers {
+      allCiipUsers {
         edges {
           node {
             id

@@ -1368,6 +1368,355 @@ enum CiipProductionsOrderBy {
   QUANTITY_DESC
 }
 
+"""Table containing the benchmark and eligibility threshold for a product"""
+type CiipUser implements Node {
+  """Reads and enables pagination through a set of `CiipUserOrganisation`."""
+  ciipUserOrganisationsByUserId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserOrganisationCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUserOrganisation`."""
+    orderBy: [CiipUserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserOrganisationsConnection!
+
+  """The date the user was updated"""
+  createdAt: Datetime!
+
+  """The person who updated the user"""
+  createdBy: String
+
+  """User's email address"""
+  emailAddress: String
+
+  """User's first name"""
+  firstName: String
+
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """User's last name"""
+  lastName: String
+
+  """User's occupation"""
+  occupation: String
+
+  """User's phone number"""
+  phoneNumber: String
+
+  """Unique ID for the user"""
+  rowId: Int!
+
+  """The date the user was updated"""
+  updatedAt: Datetime!
+
+  """The person who updated the user"""
+  updatedBy: String
+
+  """Universally Unique ID for the user used for auth"""
+  uuid: UUID!
+}
+
+"""
+A condition to be used against `CiipUser` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input CiipUserCondition {
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `emailAddress` field."""
+  emailAddress: String
+
+  """Checks for equality with the object’s `firstName` field."""
+  firstName: String
+
+  """Checks for equality with the object’s `lastName` field."""
+  lastName: String
+
+  """Checks for equality with the object’s `occupation` field."""
+  occupation: String
+
+  """Checks for equality with the object’s `phoneNumber` field."""
+  phoneNumber: String
+
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
+
+  """Checks for equality with the object’s `uuid` field."""
+  uuid: UUID
+}
+
+"""An input for mutations affecting `CiipUser`"""
+input CiipUserInput {
+  """The date the user was updated"""
+  createdAt: Datetime
+
+  """The person who updated the user"""
+  createdBy: String
+
+  """User's email address"""
+  emailAddress: String
+
+  """User's first name"""
+  firstName: String
+
+  """User's last name"""
+  lastName: String
+
+  """User's occupation"""
+  occupation: String
+
+  """User's phone number"""
+  phoneNumber: String
+
+  """The date the user was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the user"""
+  updatedBy: String
+
+  """Universally Unique ID for the user used for auth"""
+  uuid: UUID!
+}
+
+"""
+Table containing the access rights for a user to report on behalf of an organisation
+"""
+type CiipUserOrganisation implements Node {
+  """
+  Reads a single `CiipUser` that is related to this `CiipUserOrganisation`.
+  """
+  ciipUserByUserId: CiipUser
+
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """
+  Reads a single `Organisation` that is related to this `CiipUserOrganisation`.
+  """
+  organisationByOrganisationId: Organisation
+
+  """foreign key that references the organisation table"""
+  organisationId: Int!
+
+  """the status of the request to report on behalf of an organisation"""
+  status: CiipUserOrganisationStatus
+
+  """foreign key that references the user table"""
+  userId: Int!
+}
+
+"""
+A condition to be used against `CiipUserOrganisation` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input CiipUserOrganisationCondition {
+  """Checks for equality with the object’s `organisationId` field."""
+  organisationId: Int
+
+  """Checks for equality with the object’s `status` field."""
+  status: CiipUserOrganisationStatus
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: Int
+}
+
+"""An input for mutations affecting `CiipUserOrganisation`"""
+input CiipUserOrganisationInput {
+  """foreign key that references the organisation table"""
+  organisationId: Int!
+
+  """the status of the request to report on behalf of an organisation"""
+  status: CiipUserOrganisationStatus
+
+  """foreign key that references the user table"""
+  userId: Int!
+}
+
+"""
+Represents an update to a `CiipUserOrganisation`. Fields that are set will be updated.
+"""
+input CiipUserOrganisationPatch {
+  """foreign key that references the organisation table"""
+  organisationId: Int
+
+  """the status of the request to report on behalf of an organisation"""
+  status: CiipUserOrganisationStatus
+
+  """foreign key that references the user table"""
+  userId: Int
+}
+
+"""A connection to a list of `CiipUserOrganisation` values."""
+type CiipUserOrganisationsConnection {
+  """
+  A list of edges which contains the `CiipUserOrganisation` and cursor to aid in pagination.
+  """
+  edges: [CiipUserOrganisationsEdge!]!
+
+  """A list of `CiipUserOrganisation` objects."""
+  nodes: [CiipUserOrganisation]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CiipUserOrganisation` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `CiipUserOrganisation` edge in the connection."""
+type CiipUserOrganisationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUserOrganisation` at the end of the edge."""
+  node: CiipUserOrganisation
+}
+
+"""Methods to use when ordering `CiipUserOrganisation`."""
+enum CiipUserOrganisationsOrderBy {
+  NATURAL
+  ORGANISATION_ID_ASC
+  ORGANISATION_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  STATUS_ASC
+  STATUS_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+}
+
+enum CiipUserOrganisationStatus {
+  APPROVED
+  PENDING
+  REJECTED
+}
+
+"""
+Represents an update to a `CiipUser`. Fields that are set will be updated.
+"""
+input CiipUserPatch {
+  """The date the user was updated"""
+  createdAt: Datetime
+
+  """The person who updated the user"""
+  createdBy: String
+
+  """User's email address"""
+  emailAddress: String
+
+  """User's first name"""
+  firstName: String
+
+  """User's last name"""
+  lastName: String
+
+  """User's occupation"""
+  occupation: String
+
+  """User's phone number"""
+  phoneNumber: String
+
+  """The date the user was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the user"""
+  updatedBy: String
+
+  """Universally Unique ID for the user used for auth"""
+  uuid: UUID
+}
+
+"""A connection to a list of `CiipUser` values."""
+type CiipUsersConnection {
+  """
+  A list of edges which contains the `CiipUser` and cursor to aid in pagination.
+  """
+  edges: [CiipUsersEdge!]!
+
+  """A list of `CiipUser` objects."""
+  nodes: [CiipUser]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipUser` edge in the connection."""
+type CiipUsersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipUser` at the end of the edge."""
+  node: CiipUser
+}
+
+"""Methods to use when ordering `CiipUser`."""
+enum CiipUsersOrderBy {
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  EMAIL_ADDRESS_ASC
+  EMAIL_ADDRESS_DESC
+  FIRST_NAME_ASC
+  FIRST_NAME_DESC
+  ID_ASC
+  ID_DESC
+  LAST_NAME_ASC
+  LAST_NAME_DESC
+  NATURAL
+  OCCUPATION_ASC
+  OCCUPATION_DESC
+  PHONE_NUMBER_ASC
+  PHONE_NUMBER_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
+  UUID_ASC
+  UUID_DESC
+}
+
 """All input for the create `Application` mutation."""
 input CreateApplicationInput {
   """The `Application` to be created by this mutation."""
@@ -1592,6 +1941,86 @@ type CreateCiipApplicationWizardPayload {
   Reads a single `FormJson` that is related to this `CiipApplicationWizard`.
   """
   formJsonByFormId: FormJson
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `CiipUser` mutation."""
+input CreateCiipUserInput {
+  """The `CiipUser` to be created by this mutation."""
+  ciipUser: CiipUserInput!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+}
+
+"""All input for the create `CiipUserOrganisation` mutation."""
+input CreateCiipUserOrganisationInput {
+  """The `CiipUserOrganisation` to be created by this mutation."""
+  ciipUserOrganisation: CiipUserOrganisationInput!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+}
+
+"""The output of our create `CiipUserOrganisation` mutation."""
+type CreateCiipUserOrganisationPayload {
+  """
+  Reads a single `CiipUser` that is related to this `CiipUserOrganisation`.
+  """
+  ciipUserByUserId: CiipUser
+
+  """The `CiipUserOrganisation` that was created by this mutation."""
+  ciipUserOrganisation: CiipUserOrganisation
+
+  """An edge for our `CiipUserOrganisation`. May be used by Relay 1."""
+  ciipUserOrganisationEdge(
+    """The method to use when ordering `CiipUserOrganisation`."""
+    orderBy: [CiipUserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserOrganisationsEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Reads a single `Organisation` that is related to this `CiipUserOrganisation`.
+  """
+  organisationByOrganisationId: Organisation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""The output of our create `CiipUser` mutation."""
+type CreateCiipUserPayload {
+  """The `CiipUser` that was created by this mutation."""
+  ciipUser: CiipUser
+
+  """An edge for our `CiipUser`. May be used by Relay 1."""
+  ciipUserEdge(
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUsersEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -1891,84 +2320,6 @@ type CreateProductPayload {
   query: Query
 }
 
-"""All input for the create `User` mutation."""
-input CreateUserInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `User` to be created by this mutation."""
-  user: UserInput!
-}
-
-"""All input for the create `UserOrganisation` mutation."""
-input CreateUserOrganisationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `UserOrganisation` to be created by this mutation."""
-  userOrganisation: UserOrganisationInput!
-}
-
-"""The output of our create `UserOrganisation` mutation."""
-type CreateUserOrganisationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  Reads a single `Organisation` that is related to this `UserOrganisation`.
-  """
-  organisationByOrganisationId: Organisation
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `UserOrganisation`."""
-  userByUserId: User
-
-  """The `UserOrganisation` that was created by this mutation."""
-  userOrganisation: UserOrganisation
-
-  """An edge for our `UserOrganisation`. May be used by Relay 1."""
-  userOrganisationEdge(
-    """The method to use when ordering `UserOrganisation`."""
-    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UserOrganisationsEdge
-}
-
-"""The output of our create `User` mutation."""
-type CreateUserPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """The `User` that was created by this mutation."""
-  user: User
-
-  """An edge for our `User`. May be used by Relay 1."""
-  userEdge(
-    """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UsersEdge
-}
-
 """A location in a connection that can be used for resuming pagination."""
 scalar Cursor
 
@@ -2190,6 +2541,121 @@ type DeleteCiipApplicationWizardPayload {
   Reads a single `FormJson` that is related to this `CiipApplicationWizard`.
   """
   formJsonByFormId: FormJson
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteCiipUserByRowId` mutation."""
+input DeleteCiipUserByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """Unique ID for the user"""
+  rowId: Int!
+}
+
+"""All input for the `deleteCiipUser` mutation."""
+input DeleteCiipUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `CiipUser` to be deleted.
+  """
+  id: ID!
+}
+
+"""
+All input for the `deleteCiipUserOrganisationByUserIdAndOrganisationId` mutation.
+"""
+input DeleteCiipUserOrganisationByUserIdAndOrganisationIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """foreign key that references the organisation table"""
+  organisationId: Int!
+
+  """foreign key that references the user table"""
+  userId: Int!
+}
+
+"""All input for the `deleteCiipUserOrganisation` mutation."""
+input DeleteCiipUserOrganisationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `CiipUserOrganisation` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `CiipUserOrganisation` mutation."""
+type DeleteCiipUserOrganisationPayload {
+  """
+  Reads a single `CiipUser` that is related to this `CiipUserOrganisation`.
+  """
+  ciipUserByUserId: CiipUser
+
+  """The `CiipUserOrganisation` that was deleted by this mutation."""
+  ciipUserOrganisation: CiipUserOrganisation
+
+  """An edge for our `CiipUserOrganisation`. May be used by Relay 1."""
+  ciipUserOrganisationEdge(
+    """The method to use when ordering `CiipUserOrganisation`."""
+    orderBy: [CiipUserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserOrganisationsEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedCiipUserOrganisationId: ID
+
+  """
+  Reads a single `Organisation` that is related to this `CiipUserOrganisation`.
+  """
+  organisationByOrganisationId: Organisation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""The output of our delete `CiipUser` mutation."""
+type DeleteCiipUserPayload {
+  """The `CiipUser` that was deleted by this mutation."""
+  ciipUser: CiipUser
+
+  """An edge for our `CiipUser`. May be used by Relay 1."""
+  ciipUserEdge(
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUsersEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedCiipUserId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -2607,119 +3073,6 @@ type DeleteProductPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-}
-
-"""All input for the `deleteUserByRowId` mutation."""
-input DeleteUserByRowIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """Unique ID for the user"""
-  rowId: Int!
-}
-
-"""All input for the `deleteUser` mutation."""
-input DeleteUserInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `User` to be deleted.
-  """
-  id: ID!
-}
-
-"""
-All input for the `deleteUserOrganisationByUserIdAndOrganisationId` mutation.
-"""
-input DeleteUserOrganisationByUserIdAndOrganisationIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """foreign key that references the organisation table"""
-  organisationId: Int!
-
-  """foreign key that references the user table"""
-  userId: Int!
-}
-
-"""All input for the `deleteUserOrganisation` mutation."""
-input DeleteUserOrganisationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `UserOrganisation` to be deleted.
-  """
-  id: ID!
-}
-
-"""The output of our delete `UserOrganisation` mutation."""
-type DeleteUserOrganisationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-  deletedUserOrganisationId: ID
-
-  """
-  Reads a single `Organisation` that is related to this `UserOrganisation`.
-  """
-  organisationByOrganisationId: Organisation
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `UserOrganisation`."""
-  userByUserId: User
-
-  """The `UserOrganisation` that was deleted by this mutation."""
-  userOrganisation: UserOrganisation
-
-  """An edge for our `UserOrganisation`. May be used by Relay 1."""
-  userOrganisationEdge(
-    """The method to use when ordering `UserOrganisation`."""
-    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UserOrganisationsEdge
-}
-
-"""The output of our delete `User` mutation."""
-type DeleteUserPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-  deletedUserId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """The `User` that was deleted by this mutation."""
-  user: User
-
-  """An edge for our `User`. May be used by Relay 1."""
-  userEdge(
-    """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UsersEdge
 }
 
 """Table of emission categories used in the CIIP program"""
@@ -4487,6 +4840,9 @@ type JwtToken {
   aud: String
   authTime: Int
   azp: String
+
+  """Reads a single `CiipUser` that is related to this `JwtToken`."""
+  ciipUserBySub: CiipUser
   email: String
   emailVerified: Boolean
   exp: Int
@@ -4501,9 +4857,6 @@ type JwtToken {
   sessionState: UUID
   sub: UUID
   typ: String
-
-  """Reads a single `User` that is related to this `JwtToken`."""
-  userBySub: User
 }
 
 """
@@ -4553,6 +4906,22 @@ type Mutation {
     """
     input: CreateCiipApplicationWizardInput!
   ): CreateCiipApplicationWizardPayload
+
+  """Creates a single `CiipUser`."""
+  createCiipUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateCiipUserInput!
+  ): CreateCiipUserPayload
+
+  """Creates a single `CiipUserOrganisation`."""
+  createCiipUserOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateCiipUserOrganisationInput!
+  ): CreateCiipUserOrganisationPayload
 
   """Creates a single `EmissionCategoryGas`."""
   createEmissionCategoryGas(
@@ -4618,22 +4987,6 @@ type Mutation {
     input: CreateProductInput!
   ): CreateProductPayload
 
-  """Creates a single `User`."""
-  createUser(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateUserInput!
-  ): CreateUserPayload
-
-  """Creates a single `UserOrganisation`."""
-  createUserOrganisation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateUserOrganisationInput!
-  ): CreateUserOrganisationPayload
-
   """Deletes a single `Application` using its globally unique id."""
   deleteApplication(
     """
@@ -4697,6 +5050,38 @@ type Mutation {
     """
     input: DeleteCiipApplicationWizardByFormIdInput!
   ): DeleteCiipApplicationWizardPayload
+
+  """Deletes a single `CiipUser` using its globally unique id."""
+  deleteCiipUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCiipUserInput!
+  ): DeleteCiipUserPayload
+
+  """Deletes a single `CiipUser` using a unique key."""
+  deleteCiipUserByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCiipUserByRowIdInput!
+  ): DeleteCiipUserPayload
+
+  """Deletes a single `CiipUserOrganisation` using its globally unique id."""
+  deleteCiipUserOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCiipUserOrganisationInput!
+  ): DeleteCiipUserOrganisationPayload
+
+  """Deletes a single `CiipUserOrganisation` using a unique key."""
+  deleteCiipUserOrganisationByUserIdAndOrganisationId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCiipUserOrganisationByUserIdAndOrganisationIdInput!
+  ): DeleteCiipUserOrganisationPayload
 
   """Deletes a single `EmissionCategoryGas` using its globally unique id."""
   deleteEmissionCategoryGas(
@@ -4825,38 +5210,6 @@ type Mutation {
     """
     input: DeleteProductByRowIdInput!
   ): DeleteProductPayload
-
-  """Deletes a single `User` using its globally unique id."""
-  deleteUser(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteUserInput!
-  ): DeleteUserPayload
-
-  """Deletes a single `User` using a unique key."""
-  deleteUserByRowId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteUserByRowIdInput!
-  ): DeleteUserPayload
-
-  """Deletes a single `UserOrganisation` using its globally unique id."""
-  deleteUserOrganisation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteUserOrganisationInput!
-  ): DeleteUserOrganisationPayload
-
-  """Deletes a single `UserOrganisation` using a unique key."""
-  deleteUserOrganisationByUserIdAndOrganisationId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteUserOrganisationByUserIdAndOrganisationIdInput!
-  ): DeleteUserOrganisationPayload
   initApplicationAdministrationFormResult(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
@@ -4953,6 +5306,42 @@ type Mutation {
     """
     input: UpdateCiipApplicationWizardByFormIdInput!
   ): UpdateCiipApplicationWizardPayload
+
+  """Updates a single `CiipUser` using its globally unique id and a patch."""
+  updateCiipUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateCiipUserInput!
+  ): UpdateCiipUserPayload
+
+  """Updates a single `CiipUser` using a unique key and a patch."""
+  updateCiipUserByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateCiipUserByRowIdInput!
+  ): UpdateCiipUserPayload
+
+  """
+  Updates a single `CiipUserOrganisation` using its globally unique id and a patch.
+  """
+  updateCiipUserOrganisation(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateCiipUserOrganisationInput!
+  ): UpdateCiipUserOrganisationPayload
+
+  """
+  Updates a single `CiipUserOrganisation` using a unique key and a patch.
+  """
+  updateCiipUserOrganisationByUserIdAndOrganisationId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateCiipUserOrganisationByUserIdAndOrganisationIdInput!
+  ): UpdateCiipUserOrganisationPayload
 
   """
   Updates a single `EmissionCategoryGas` using its globally unique id and a patch.
@@ -5087,40 +5476,6 @@ type Mutation {
     """
     input: UpdateProductByRowIdInput!
   ): UpdateProductPayload
-
-  """Updates a single `User` using its globally unique id and a patch."""
-  updateUser(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateUserInput!
-  ): UpdateUserPayload
-
-  """Updates a single `User` using a unique key and a patch."""
-  updateUserByRowId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateUserByRowIdInput!
-  ): UpdateUserPayload
-
-  """
-  Updates a single `UserOrganisation` using its globally unique id and a patch.
-  """
-  updateUserOrganisation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateUserOrganisationInput!
-  ): UpdateUserOrganisationPayload
-
-  """Updates a single `UserOrganisation` using a unique key and a patch."""
-  updateUserOrganisationByUserIdAndOrganisationId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateUserOrganisationByUserIdAndOrganisationIdInput!
-  ): UpdateUserOrganisationPayload
 }
 
 """An object with a globally unique `ID`."""
@@ -5154,6 +5509,35 @@ type OperatorContactDatum {
 Table containing information on an organisaiton that has applied for CIIP
 """
 type Organisation implements Node {
+  """Reads and enables pagination through a set of `CiipUserOrganisation`."""
+  ciipUserOrganisationsByOrganisationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserOrganisationCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUserOrganisation`."""
+    orderBy: [CiipUserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserOrganisationsConnection!
+
   """cra business number"""
   craBusinessNumber: String
 
@@ -5229,35 +5613,6 @@ type Organisation implements Node {
 
   """swrs report id from swrs"""
   swrsReportId: Int
-
-  """Reads and enables pagination through a set of `UserOrganisation`."""
-  userOrganisationsByOrganisationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: UserOrganisationCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `UserOrganisation`."""
-    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UserOrganisationsConnection!
 }
 
 """
@@ -6089,6 +6444,64 @@ type Query implements Node {
     orderBy: [CiipProductionsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipProductionsConnection
 
+  """Reads and enables pagination through a set of `CiipUserOrganisation`."""
+  allCiipUserOrganisations(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserOrganisationCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUserOrganisation`."""
+    orderBy: [CiipUserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserOrganisationsConnection
+
+  """Reads and enables pagination through a set of `CiipUser`."""
+  allCiipUsers(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUsersConnection
+
   """Reads and enables pagination through a set of `EmissionCategoryGas`."""
   allEmissionCategoryGases(
     """Read all values in the set after (below) this cursor."""
@@ -6352,64 +6765,6 @@ type Query implements Node {
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsConnection
 
-  """Reads and enables pagination through a set of `UserOrganisation`."""
-  allUserOrganisations(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: UserOrganisationCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `UserOrganisation`."""
-    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UserOrganisationsConnection
-
-  """Reads and enables pagination through a set of `User`."""
-  allUsers(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: UserCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UsersConnection
-
   """Reads a single `Application` using its globally unique `ID`."""
   application(
     """
@@ -6515,6 +6870,22 @@ type Query implements Node {
     id: ID!
   ): CiipProduction
   ciipProductionByRowId(rowId: Int!): CiipProduction
+
+  """Reads a single `CiipUser` using its globally unique `ID`."""
+  ciipUser(
+    """The globally unique `ID` to be used in selecting a single `CiipUser`."""
+    id: ID!
+  ): CiipUser
+  ciipUserByRowId(rowId: Int!): CiipUser
+
+  """Reads a single `CiipUserOrganisation` using its globally unique `ID`."""
+  ciipUserOrganisation(
+    """
+    The globally unique `ID` to be used in selecting a single `CiipUserOrganisation`.
+    """
+    id: ID!
+  ): CiipUserOrganisation
+  ciipUserOrganisationByUserIdAndOrganisationId(organisationId: Int!, userId: Int!): CiipUserOrganisation
 
   """Reads a single `EmissionCategoryGas` using its globally unique `ID`."""
   emissionCategoryGas(
@@ -6738,8 +7109,8 @@ type Query implements Node {
     searchValue: String
   ): CiipApplicationsConnection!
 
-  """Reads and enables pagination through a set of `UserOrganisation`."""
-  searchUserOrganisation(
+  """Reads and enables pagination through a set of `CiipUserOrganisation`."""
+  searchCiipUserOrganisation(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -6761,24 +7132,8 @@ type Query implements Node {
     orderByField: String
     searchField: String
     searchValue: String
-  ): UserOrganisationsConnection!
+  ): CiipUserOrganisationsConnection!
   session: JwtToken
-
-  """Reads a single `User` using its globally unique `ID`."""
-  user(
-    """The globally unique `ID` to be used in selecting a single `User`."""
-    id: ID!
-  ): User
-  userByRowId(rowId: Int!): User
-
-  """Reads a single `UserOrganisation` using its globally unique `ID`."""
-  userOrganisation(
-    """
-    The globally unique `ID` to be used in selecting a single `UserOrganisation`.
-    """
-    id: ID!
-  ): UserOrganisation
-  userOrganisationByUserIdAndOrganisationId(organisationId: Int!, userId: Int!): UserOrganisation
 }
 
 """All input for the `saveProductMutationChain` mutation."""
@@ -7063,6 +7418,139 @@ type UpdateCiipApplicationWizardPayload {
   Reads a single `FormJson` that is related to this `CiipApplicationWizard`.
   """
   formJsonByFormId: FormJson
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateCiipUserByRowId` mutation."""
+input UpdateCiipUserByRowIdInput {
+  """
+  An object where the defined keys will be set on the `CiipUser` being updated.
+  """
+  ciipUserPatch: CiipUserPatch!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """Unique ID for the user"""
+  rowId: Int!
+}
+
+"""All input for the `updateCiipUser` mutation."""
+input UpdateCiipUserInput {
+  """
+  An object where the defined keys will be set on the `CiipUser` being updated.
+  """
+  ciipUserPatch: CiipUserPatch!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `CiipUser` to be updated.
+  """
+  id: ID!
+}
+
+"""
+All input for the `updateCiipUserOrganisationByUserIdAndOrganisationId` mutation.
+"""
+input UpdateCiipUserOrganisationByUserIdAndOrganisationIdInput {
+  """
+  An object where the defined keys will be set on the `CiipUserOrganisation` being updated.
+  """
+  ciipUserOrganisationPatch: CiipUserOrganisationPatch!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """foreign key that references the organisation table"""
+  organisationId: Int!
+
+  """foreign key that references the user table"""
+  userId: Int!
+}
+
+"""All input for the `updateCiipUserOrganisation` mutation."""
+input UpdateCiipUserOrganisationInput {
+  """
+  An object where the defined keys will be set on the `CiipUserOrganisation` being updated.
+  """
+  ciipUserOrganisationPatch: CiipUserOrganisationPatch!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `CiipUserOrganisation` to be updated.
+  """
+  id: ID!
+}
+
+"""The output of our update `CiipUserOrganisation` mutation."""
+type UpdateCiipUserOrganisationPayload {
+  """
+  Reads a single `CiipUser` that is related to this `CiipUserOrganisation`.
+  """
+  ciipUserByUserId: CiipUser
+
+  """The `CiipUserOrganisation` that was updated by this mutation."""
+  ciipUserOrganisation: CiipUserOrganisation
+
+  """An edge for our `CiipUserOrganisation`. May be used by Relay 1."""
+  ciipUserOrganisationEdge(
+    """The method to use when ordering `CiipUserOrganisation`."""
+    orderBy: [CiipUserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUserOrganisationsEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Reads a single `Organisation` that is related to this `CiipUserOrganisation`.
+  """
+  organisationByOrganisationId: Organisation
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""The output of our update `CiipUser` mutation."""
+type UpdateCiipUserPayload {
+  """The `CiipUser` that was updated by this mutation."""
+  ciipUser: CiipUser
+
+  """An edge for our `CiipUser`. May be used by Relay 1."""
+  ciipUserEdge(
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUsersEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -7552,475 +8040,6 @@ type UpdateProductPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-}
-
-"""All input for the `updateUserByRowId` mutation."""
-input UpdateUserByRowIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """Unique ID for the user"""
-  rowId: Int!
-
-  """
-  An object where the defined keys will be set on the `User` being updated.
-  """
-  userPatch: UserPatch!
-}
-
-"""All input for the `updateUser` mutation."""
-input UpdateUserInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `User` to be updated.
-  """
-  id: ID!
-
-  """
-  An object where the defined keys will be set on the `User` being updated.
-  """
-  userPatch: UserPatch!
-}
-
-"""
-All input for the `updateUserOrganisationByUserIdAndOrganisationId` mutation.
-"""
-input UpdateUserOrganisationByUserIdAndOrganisationIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """foreign key that references the organisation table"""
-  organisationId: Int!
-
-  """foreign key that references the user table"""
-  userId: Int!
-
-  """
-  An object where the defined keys will be set on the `UserOrganisation` being updated.
-  """
-  userOrganisationPatch: UserOrganisationPatch!
-}
-
-"""All input for the `updateUserOrganisation` mutation."""
-input UpdateUserOrganisationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `UserOrganisation` to be updated.
-  """
-  id: ID!
-
-  """
-  An object where the defined keys will be set on the `UserOrganisation` being updated.
-  """
-  userOrganisationPatch: UserOrganisationPatch!
-}
-
-"""The output of our update `UserOrganisation` mutation."""
-type UpdateUserOrganisationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  Reads a single `Organisation` that is related to this `UserOrganisation`.
-  """
-  organisationByOrganisationId: Organisation
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `UserOrganisation`."""
-  userByUserId: User
-
-  """The `UserOrganisation` that was updated by this mutation."""
-  userOrganisation: UserOrganisation
-
-  """An edge for our `UserOrganisation`. May be used by Relay 1."""
-  userOrganisationEdge(
-    """The method to use when ordering `UserOrganisation`."""
-    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UserOrganisationsEdge
-}
-
-"""The output of our update `User` mutation."""
-type UpdateUserPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """The `User` that was updated by this mutation."""
-  user: User
-
-  """An edge for our `User`. May be used by Relay 1."""
-  userEdge(
-    """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UsersEdge
-}
-
-"""Table containing the benchmark and eligibility threshold for a product"""
-type User implements Node {
-  """The date the user was updated"""
-  createdAt: Datetime!
-
-  """The person who updated the user"""
-  createdBy: String
-
-  """User's email address"""
-  emailAddress: String
-
-  """User's first name"""
-  firstName: String
-
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-
-  """User's last name"""
-  lastName: String
-
-  """User's occupation"""
-  occupation: String
-
-  """User's phone number"""
-  phoneNumber: String
-
-  """Unique ID for the user"""
-  rowId: Int!
-
-  """The date the user was updated"""
-  updatedAt: Datetime!
-
-  """The person who updated the user"""
-  updatedBy: String
-
-  """Reads and enables pagination through a set of `UserOrganisation`."""
-  userOrganisationsByUserId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: UserOrganisationCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `UserOrganisation`."""
-    orderBy: [UserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UserOrganisationsConnection!
-
-  """Universally Unique ID for the user used for auth"""
-  uuid: UUID!
-}
-
-"""
-A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input UserCondition {
-  """Checks for equality with the object’s `createdAt` field."""
-  createdAt: Datetime
-
-  """Checks for equality with the object’s `createdBy` field."""
-  createdBy: String
-
-  """Checks for equality with the object’s `emailAddress` field."""
-  emailAddress: String
-
-  """Checks for equality with the object’s `firstName` field."""
-  firstName: String
-
-  """Checks for equality with the object’s `lastName` field."""
-  lastName: String
-
-  """Checks for equality with the object’s `occupation` field."""
-  occupation: String
-
-  """Checks for equality with the object’s `phoneNumber` field."""
-  phoneNumber: String
-
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
-
-  """Checks for equality with the object’s `updatedAt` field."""
-  updatedAt: Datetime
-
-  """Checks for equality with the object’s `updatedBy` field."""
-  updatedBy: String
-
-  """Checks for equality with the object’s `uuid` field."""
-  uuid: UUID
-}
-
-"""An input for mutations affecting `User`"""
-input UserInput {
-  """The date the user was updated"""
-  createdAt: Datetime
-
-  """The person who updated the user"""
-  createdBy: String
-
-  """User's email address"""
-  emailAddress: String
-
-  """User's first name"""
-  firstName: String
-
-  """User's last name"""
-  lastName: String
-
-  """User's occupation"""
-  occupation: String
-
-  """User's phone number"""
-  phoneNumber: String
-
-  """The date the user was updated"""
-  updatedAt: Datetime
-
-  """The person who updated the user"""
-  updatedBy: String
-
-  """Universally Unique ID for the user used for auth"""
-  uuid: UUID!
-}
-
-"""
-Table containing the access rights for a user to report on behalf of an organisation
-"""
-type UserOrganisation implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-
-  """
-  Reads a single `Organisation` that is related to this `UserOrganisation`.
-  """
-  organisationByOrganisationId: Organisation
-
-  """foreign key that references the organisation table"""
-  organisationId: Int!
-  status: UserOrganisationStatus
-
-  """Reads a single `User` that is related to this `UserOrganisation`."""
-  userByUserId: User
-
-  """foreign key that references the user table"""
-  userId: Int!
-}
-
-"""
-A condition to be used against `UserOrganisation` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input UserOrganisationCondition {
-  """Checks for equality with the object’s `organisationId` field."""
-  organisationId: Int
-
-  """Checks for equality with the object’s `status` field."""
-  status: UserOrganisationStatus
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: Int
-}
-
-"""An input for mutations affecting `UserOrganisation`"""
-input UserOrganisationInput {
-  """foreign key that references the organisation table"""
-  organisationId: Int!
-  status: UserOrganisationStatus
-
-  """foreign key that references the user table"""
-  userId: Int!
-}
-
-"""
-Represents an update to a `UserOrganisation`. Fields that are set will be updated.
-"""
-input UserOrganisationPatch {
-  """foreign key that references the organisation table"""
-  organisationId: Int
-  status: UserOrganisationStatus
-
-  """foreign key that references the user table"""
-  userId: Int
-}
-
-"""A connection to a list of `UserOrganisation` values."""
-type UserOrganisationsConnection {
-  """
-  A list of edges which contains the `UserOrganisation` and cursor to aid in pagination.
-  """
-  edges: [UserOrganisationsEdge!]!
-
-  """A list of `UserOrganisation` objects."""
-  nodes: [UserOrganisation]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `UserOrganisation` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""A `UserOrganisation` edge in the connection."""
-type UserOrganisationsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `UserOrganisation` at the end of the edge."""
-  node: UserOrganisation
-}
-
-"""Methods to use when ordering `UserOrganisation`."""
-enum UserOrganisationsOrderBy {
-  NATURAL
-  ORGANISATION_ID_ASC
-  ORGANISATION_ID_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-  STATUS_ASC
-  STATUS_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-}
-
-enum UserOrganisationStatus {
-  APPROVED
-  PENDING
-  REJECTED
-}
-
-"""Represents an update to a `User`. Fields that are set will be updated."""
-input UserPatch {
-  """The date the user was updated"""
-  createdAt: Datetime
-
-  """The person who updated the user"""
-  createdBy: String
-
-  """User's email address"""
-  emailAddress: String
-
-  """User's first name"""
-  firstName: String
-
-  """User's last name"""
-  lastName: String
-
-  """User's occupation"""
-  occupation: String
-
-  """User's phone number"""
-  phoneNumber: String
-
-  """The date the user was updated"""
-  updatedAt: Datetime
-
-  """The person who updated the user"""
-  updatedBy: String
-
-  """Universally Unique ID for the user used for auth"""
-  uuid: UUID
-}
-
-"""A connection to a list of `User` values."""
-type UsersConnection {
-  """
-  A list of edges which contains the `User` and cursor to aid in pagination.
-  """
-  edges: [UsersEdge!]!
-
-  """A list of `User` objects."""
-  nodes: [User]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `User` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `User` edge in the connection."""
-type UsersEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `User` at the end of the edge."""
-  node: User
-}
-
-"""Methods to use when ordering `User`."""
-enum UsersOrderBy {
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  CREATED_BY_ASC
-  CREATED_BY_DESC
-  EMAIL_ADDRESS_ASC
-  EMAIL_ADDRESS_DESC
-  FIRST_NAME_ASC
-  FIRST_NAME_DESC
-  ID_ASC
-  ID_DESC
-  LAST_NAME_ASC
-  LAST_NAME_DESC
-  NATURAL
-  OCCUPATION_ASC
-  OCCUPATION_DESC
-  PHONE_NUMBER_ASC
-  PHONE_NUMBER_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-  UPDATED_AT_ASC
-  UPDATED_AT_DESC
-  UPDATED_BY_ASC
-  UPDATED_BY_DESC
-  UUID_ASC
-  UUID_DESC
 }
 
 """

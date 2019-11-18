@@ -24,7 +24,7 @@ create type ggircs_portal.jwt_token as (
   email text
 );
 
-comment on type ggircs_portal.jwt_token is E'@primaryKey sub\n@foreignKey (sub) references user (uuid)';
+comment on type ggircs_portal.jwt_token is E'@primaryKey sub\n@foreignKey (sub) references ciip_user (uuid)';
 
 -- TODO: should be conformant with https://tools.ietf.org/html/rfc7519
 -- Sample payload from Keycloak via IDIR provider

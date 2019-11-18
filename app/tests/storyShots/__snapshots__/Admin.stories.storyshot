@@ -11,7 +11,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
     query={
       Object {
         "session": Object {
-          "userBySub": Object {
+          "ciipUserBySub": Object {
             "id": "42",
           },
         },
@@ -30,7 +30,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
     <Relay(DefaultLayout)
       session={
         Object {
-          "userBySub": Object {
+          "ciipUserBySub": Object {
             "id": "42",
           },
         }
@@ -46,7 +46,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
         componentRef={null}
         session={
           Object {
-            "userBySub": Object {
+            "ciipUserBySub": Object {
               "id": "42",
             },
           }
@@ -61,7 +61,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
           }
           session={
             Object {
-              "userBySub": Object {
+              "ciipUserBySub": Object {
                 "id": "42",
               },
             }

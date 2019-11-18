@@ -2,6 +2,6 @@
 
 begin;
 
-drop table ggircs_portal.user;
+drop table ggircs_portal.ciip_user;
 
 commit;
