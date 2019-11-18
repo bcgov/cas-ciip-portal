@@ -133,7 +133,7 @@
     "@storybook/react": "^5.2.1",
     "@types/jest": "^24.0.21",
     "@types/react-jsonschema-form": "^1.6.6",
-    "@types/react-relay": "^7.0.0",
+    "@types/react-relay": "^7.0.2",
     "@types/relay-runtime": "^6.0.9",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
