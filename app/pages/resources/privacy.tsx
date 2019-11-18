@@ -22,7 +22,14 @@ class Privacy extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
-    return <DefaultLayout session={session} title="Privacy" />;
+    return (
+      <DefaultLayout
+        session={session}
+        needsSession={false}
+        needsUser={false}
+        title="Privacy"
+      />
+    );
   }
 }
 

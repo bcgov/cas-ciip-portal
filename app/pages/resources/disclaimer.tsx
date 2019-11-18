@@ -22,7 +22,14 @@ class Disclaimer extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
-    return <DefaultLayout session={session} title="Disclaimer" />;
+    return (
+      <DefaultLayout
+        session={session}
+        needsSession={false}
+        needsUser={false}
+        title="Disclaimer"
+      />
+    );
   }
 }
 

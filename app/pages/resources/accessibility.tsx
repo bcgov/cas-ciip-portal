@@ -22,7 +22,14 @@ class Accessibility extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
-    return <DefaultLayout session={session} title="Accessibility" />;
+    return (
+      <DefaultLayout
+        session={session}
+        needsSession={false}
+        needsUser={false}
+        title="Accessibility"
+      />
+    );
   }
 }
 
