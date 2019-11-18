@@ -1,6 +1,7 @@
 -- Deploy ggircs-portal:view_ciip_certifier to pg
 -- requires: table_form_result
 
+-- TODO: This is broken as we don't have a certify form at the moment, either fix it when we do or remove
 begin;
 
   create view ggircs_portal.ciip_certifier as (

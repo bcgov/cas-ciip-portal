@@ -8,11 +8,7 @@ begin;
     with x as (
       select
         form_result.application_id as id,
-        json_array_elements(
-          (json_array_elements(
-            ((form_result -> 'electricityAndHeat'))::json
-           ) -> 'heat')::json
-        ) as heat_data
+            (form_result)::json -> 'heat' as heat_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -21,10 +17,10 @@ begin;
     select
        x.id,
        (x.heat_data ->> 'sold')::numeric as sold,
-       (x.heat_data ->> 'quantity')::numeric as quantity,
-       (x.heat_data ->> 'description')::varchar(10000) as description,
+       (x.heat_data ->> 'purchased')::numeric as purchased,
        (x.heat_data ->> 'consumedOnsite')::numeric as consumed_onsite,
        (x.heat_data ->> 'generatedOnsite')::numeric as generated_onsite,
+       (x.heat_data ->> 'onSiteEmissions')::numeric as onsite_emissions,
        ('heat')::varchar(1000) as consumption_type
        -- add heat address to address view
     from x
@@ -34,11 +30,7 @@ begin;
     with x as (
       select
         form_result.application_id as id,
-        json_array_elements(
-          (json_array_elements(
-            ((form_result -> 'electricityAndHeat'))::json
-           ) -> 'electricity')::json
-        ) as electricity_data
+            (form_result)::json -> 'electricity' as electricity_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -47,10 +39,10 @@ begin;
     select
        x.id,
        (x.electricity_data ->> 'sold')::numeric as sold,
-       (x.electricity_data ->> 'quantity')::numeric as quantity,
-       (x.electricity_data ->> 'description')::varchar(10000) as description,
+       (x.electricity_data ->> 'purchased')::numeric as purchased,
        (x.electricity_data ->> 'consumedOnsite')::numeric as consumed_onsite,
        (x.electricity_data ->> 'generatedOnsite')::numeric as generated_onsite,
+       (x.electricity_data ->> 'onSiteEmissions')::numeric as onsite_emissions,
        ('electricity')::varchar(1000) as consumption_type
        -- add heat address to address view
     from x
@@ -63,9 +55,11 @@ comment on view ggircs_portal.ciip_electricity_and_heat is E'@primaryKey id';
 
 -- TODO(Dylan): Regular comments are interfering with postgraphile smart comments.
 -- comment on view ggircs_portal.ciip_electricity_and_heat is 'The view for electricity and heat data reported in the application';
--- comment on column ggircs_portal.ciip_electricity_and_heat.sold is 'The application id used for reference and join';
--- comment on column ggircs_portal.ciip_electricity_and_heat.quantity is 'The heat quantity';
--- comment on column ggircs_portal.ciip_electricity_and_heat.description is 'The heat position';
--- comment on column ggircs_portal.ciip_electricity_and_heat.generated_onsite is 'The last name of the heat';
+-- comment on column ggircs_portal.ciip_electricity_and_heat.application_id is 'The application id used for reference and join';
+-- comment on column ggircs_portal.ciip_electricity_and_heat.sold is 'The amount of heat/electricity sold';
+-- comment on column ggircs_portal.ciip_electricity_and_heat.purchased is 'The amount of heat/electricity purchased';
+-- comment on column ggircs_portal.ciip_electricity_and_heat.consumed_onsite is 'The heat/electricity used on site';
+-- comment on column ggircs_portal.ciip_electricity_and_heat.generated_onsite is 'The heat/electricity generated on site';
+-- comment on column ggircs_portal.ciip_electricity_and_heat.generated_onsite is 'The quantity of emissions from generating heat/electricity';
 
 commit;
