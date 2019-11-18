@@ -17,18 +17,13 @@ interface Props {
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
  */
-export const ApplicationWizardConfirmationCardItemComponent: React.FunctionComponent<
-  Props
-> = ({formResult}) => {
+export const ApplicationWizardConfirmationCardItemComponent: React.FunctionComponent<Props> = ({
+  formResult
+}) => {
   const {formJsonByFormId} = formResult;
   const query = formResult.formResult;
   const {formJson} = formJsonByFormId;
-  const {
-    schema,
-    uiSchema,
-    customFormats
-    // CustomFormatsErrorMessages = {}
-  } = formJson as FormJson;
+  const {schema, uiSchema, customFormats} = formJson as FormJson;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,7 +32,7 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
       <h3>{props.title === formJson.schema.title ? null : props.title}</h3>
     ),
     StringField: props => (
-      <>: {props.formData ? props.formData : '[No Data Entered]'}</>
+      <>: {props.formData ? props.formData : <i>[No Data Entered]</i>}</>
     ),
     BooleanField: props => <> {props.formData ? 'Yes' : 'No'}</>,
     emissionSource: props => <SummaryEmissionSourceFields {...props} />,

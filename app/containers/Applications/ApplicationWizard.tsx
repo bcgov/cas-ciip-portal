@@ -40,7 +40,7 @@ const ApplicationWizard = ({query}) => {
         // We want to trigger a replace instead of a push in that case
       );
   }, [confirmationPage, formResultId, orderedFormResults, router]);
-  console.log(orderedFormResults);
+
   const onStepComplete = () => {
     for (let i = 0; i < orderedFormResults.length; i++) {
       if (orderedFormResults[i].node.id === formResultId) {

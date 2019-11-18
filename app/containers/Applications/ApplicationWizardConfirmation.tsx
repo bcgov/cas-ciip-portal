@@ -1,7 +1,8 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
-import {createFragmentContainer, graphql} from 'react-relay';
+import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import Link from 'next/link';
+import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
 import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
 import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmationCardItem';
 
@@ -9,7 +10,12 @@ import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmati
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
  */
-export const ApplicationWizardConfirmationComponent = props => {
+
+interface Props {
+  query: ApplicationWizardConfirmation_query;
+  relay: RelayProp;
+}
+export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
 
   // Change application status to 'pending' on application submit
