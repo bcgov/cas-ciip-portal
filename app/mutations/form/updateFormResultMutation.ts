@@ -1,5 +1,9 @@
 import {graphql} from 'react-relay';
-import {updateFormResultMutation as updateFormResultMutationType} from 'updateFormResultMutation.graphql';
+import {
+  updateFormResultMutation as updateFormResultMutationType,
+  updateFormResultMutationVariables
+} from 'updateFormResultMutation.graphql';
+import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
@@ -14,7 +18,10 @@ const mutation = graphql`
   }
 `;
 
-const updateFormResultMutation = async (environment, variables) => {
+const updateFormResultMutation = async (
+  environment: RelayModernEnvironment,
+  variables: updateFormResultMutationVariables
+) => {
   const optimisticResponse = {
     updateFormResult: {
       formResult: {

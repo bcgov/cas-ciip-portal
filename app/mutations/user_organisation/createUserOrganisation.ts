@@ -1,9 +1,15 @@
 import {graphql, DeclarativeMutationConfig} from 'react-relay';
-import {UserOrganisationMutation} from 'UserOrganisationMutation.graphql';
+import {
+  createUserOrganisationMutation as createUserOrganisationMutationType,
+  createUserOrganisationMutationVariables
+} from 'createUserOrganisationMutation.graphql';
+import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import BaseMutation from '../BaseMutation';
 
 const mutation = graphql`
-  mutation UserOrganisationMutation($input: CreateCiipUserOrganisationInput!) {
+  mutation createUserOrganisationMutation(
+    $input: CreateCiipUserOrganisationInput!
+  ) {
     createCiipUserOrganisation(input: $input) {
       ciipUserOrganisationEdge {
         node {
@@ -14,15 +20,15 @@ const mutation = graphql`
   }
 `;
 
-export const userOrganisationMutation = async (
-  environment,
-  variables,
-  user
+export const createUserOrganisationMutation = async (
+  environment: RelayModernEnvironment,
+  variables: createUserOrganisationMutationVariables,
+  userId: string
 ) => {
   const configs: DeclarativeMutationConfig[] = [
     {
       type: 'RANGE_ADD',
-      parentID: user,
+      parentID: userId,
       connectionInfo: [
         {
           key: 'Organisations_ciipUserOrganisationsByCiipUserId',
@@ -33,7 +39,7 @@ export const userOrganisationMutation = async (
     }
   ];
 
-  const m = new BaseMutation<UserOrganisationMutation>(
+  const m = new BaseMutation<createUserOrganisationMutationType>(
     'create-ciip-user-organisation-mutation',
     configs
   );

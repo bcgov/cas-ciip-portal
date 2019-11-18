@@ -29,7 +29,15 @@ const UserForm: React.FunctionComponent<Props> = ({
   onSubmit
 }) => {
   const handleChange = async (e: IChangeEvent) => {
-    if (user) await updateUserMutation(relay.environment, user, e.formData);
+    if (user)
+      await updateUserMutation(relay.environment, {
+        input: {
+          id: user.id,
+          ciipUserPatch: {
+            ...e.formData
+          }
+        }
+      });
   };
 
   const handleSubmit = async (e: IChangeEvent) => {
