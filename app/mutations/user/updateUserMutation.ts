@@ -31,7 +31,7 @@ const updateUserMutation = async (environment, ciipUser, ciipUserPatch) => {
 
   const variables = {
     input: {
-      id: user.id,
+      id: ciipUser.id,
       ciipUserPatch
     }
   };
