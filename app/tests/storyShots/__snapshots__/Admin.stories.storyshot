@@ -328,10 +328,10 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                       className="jsx-337505255"
                     >
                       <Link
-                        href="#"
+                        href="resources/disclaimer"
                       >
                         <a
-                          href="#"
+                          href="resources/disclaimer"
                           onClick={[Function]}
                           onMouseEnter={[Function]}
                         >
@@ -343,10 +343,10 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                       className="jsx-337505255"
                     >
                       <Link
-                        href="#"
+                        href="resources/privacy"
                       >
                         <a
-                          href="#"
+                          href="resources/privacy"
                           onClick={[Function]}
                           onMouseEnter={[Function]}
                         >
@@ -358,10 +358,10 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                       className="jsx-337505255"
                     >
                       <Link
-                        href="#"
+                        href="resources/accessibility"
                       >
                         <a
-                          href="#"
+                          href="resources/accessibility"
                           onClick={[Function]}
                           onMouseEnter={[Function]}
                         >
@@ -373,10 +373,10 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                       className="jsx-337505255"
                     >
                       <Link
-                        href="#"
+                        href="resources/copyright"
                       >
                         <a
-                          href="#"
+                          href="resources/copyright"
                           onClick={[Function]}
                           onMouseEnter={[Function]}
                         >
