@@ -57,7 +57,7 @@ export default class UserDashBoard extends Component<Props> {
       environment,
       {
         input: {
-          userOrganisation: {
+          ciipUserOrganisation: {
             userId: userRowId,
             organisationId: this.state.selectedOrg,
             status: active ? 'approved'.toUpperCase() : 'pending'.toUpperCase()
