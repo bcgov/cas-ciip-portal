@@ -11003,6 +11003,16 @@
               "defaultValue": null
             },
             {
+              "name": "description",
+              "description": "Checks for equality with the object’s `description` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "generatedOnsite",
               "description": "Checks for equality with the object’s `generatedOnsite` field.",
               "type": {
@@ -11013,18 +11023,8 @@
               "defaultValue": null
             },
             {
-              "name": "onsiteEmissions",
-              "description": "Checks for equality with the object’s `onsiteEmissions` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "purchased",
-              "description": "Checks for equality with the object’s `purchased` field.",
+              "name": "quantity",
+              "description": "Checks for equality with the object’s `quantity` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "BigFloat",
@@ -11090,6 +11090,18 @@
               "deprecationReason": null
             },
             {
+              "name": "DESCRIPTION_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DESCRIPTION_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "GENERATED_ONSITE_ASC",
               "description": null,
               "isDeprecated": false,
@@ -11120,18 +11132,6 @@
               "deprecationReason": null
             },
             {
-              "name": "ONSITE_EMISSIONS_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ONSITE_EMISSIONS_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "PRIMARY_KEY_ASC",
               "description": null,
               "isDeprecated": false,
@@ -11144,13 +11144,13 @@
               "deprecationReason": null
             },
             {
-              "name": "PURCHASED_ASC",
+              "name": "QUANTITY_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "PURCHASED_DESC",
+              "name": "QUANTITY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -11322,6 +11322,18 @@
               "deprecationReason": null
             },
             {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "generatedOnsite",
               "description": null,
               "args": [],
@@ -11350,19 +11362,7 @@
               "deprecationReason": null
             },
             {
-              "name": "onsiteEmissions",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "purchased",
+              "name": "quantity",
               "description": null,
               "args": [],
               "type": {
@@ -11425,16 +11425,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "BigFloat",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityDescription",
-              "description": "Checks for equality with the object’s `facilityDescription` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -11520,18 +11510,6 @@
             },
             {
               "name": "BCGHGID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_DESCRIPTION_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_DESCRIPTION_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -11769,18 +11747,6 @@
               "deprecationReason": null
             },
             {
-              "name": "facilityDescription",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "facilityName",
               "description": null,
               "args": [],
@@ -11891,6 +11857,16 @@
           "fields": null,
           "inputFields": [
             {
+              "name": "description",
+              "description": "Checks for equality with the object’s `description` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "fuelType",
               "description": "Checks for equality with the object’s `fuelType` field.",
               "type": {
@@ -11913,6 +11889,16 @@
             {
               "name": "methodology",
               "description": "Checks for equality with the object’s `methodology` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "methodologyComment",
+              "description": "Checks for equality with the object’s `methodologyComment` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -11954,6 +11940,18 @@
           "interfaces": null,
           "enumValues": [
             {
+              "name": "DESCRIPTION_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "DESCRIPTION_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "FUEL_TYPE_ASC",
               "description": null,
               "isDeprecated": false,
@@ -11991,6 +11989,18 @@
             },
             {
               "name": "METHODOLOGY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "METHODOLOGY_COMMENT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "METHODOLOGY_COMMENT_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -12162,6 +12172,18 @@
           "description": null,
           "fields": [
             {
+              "name": "description",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "fuelType",
               "description": null,
               "args": [],
@@ -12203,6 +12225,18 @@
             },
             {
               "name": "methodology",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "methodologyComment",
               "description": null,
               "args": [],
               "type": {
