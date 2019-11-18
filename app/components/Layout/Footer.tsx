@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -7,10 +8,16 @@ const Footer = () => {
         <div className="container">
           <ul>
             <li>
-              <a href=".">Home</a>
+              <Link href="#">Disclaimer</Link>
             </li>
             <li>
-              <a href=".">Contact Us</a>
+              <Link href="#">Privacy</Link>
+            </li>
+            <li>
+              <Link href="#">Accessibility</Link>
+            </li>
+            <li>
+              <Link href="#">Copyright</Link>
             </li>
           </ul>
         </div>
@@ -43,18 +50,13 @@ const Footer = () => {
               height: 100%;
             }
 
-            footer ul li a {
+            footer ul li > :global(a) {
               font-size: 0.813em;
               font-weight: normal; /* 400 */
               color: #fff;
               border-right: 1px solid #4b5e7e;
               padding-left: 5px;
               padding-right: 5px;
-            }
-
-            a:hover {
-              color: #fff;
-              text-decoration: underline;
             }
 
             :focus {
