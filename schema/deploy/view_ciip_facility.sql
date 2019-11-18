@@ -7,7 +7,7 @@ begin;
     with x as (
       select
         form_result.application_id as id,
-        json_array_elements((form_result -> 'facilityInformation')::json) as facility_data
+        ((form_result -> 'facility')::json) as facility_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -18,10 +18,9 @@ begin;
        (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
        (x.facility_data ->> 'latitude')::numeric as latitude,
        (x.facility_data ->> 'longitude')::numeric as longitude,
-       (x.facility_data ->> 'naicsCode')::numeric as naics_code,
+       (x.facility_data ->> 'naics')::numeric as naics_code,
        (x.facility_data ->> 'facilityName')::varchar(1000) as facility_name,
-       (x.facility_data ->> 'facilityType')::varchar(1000) as facility_type,
-       (x.facility_data ->> 'facilityDescription')::varchar(10000) as facility_description
+       (x.facility_data ->> 'facilityType')::varchar(1000) as facility_type
        -- add facility address to address view
     from x
  );

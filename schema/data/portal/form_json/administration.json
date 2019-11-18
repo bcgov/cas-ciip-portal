@@ -38,12 +38,30 @@
         "type": "object",
         "title": "Operational Representative",
         "properties": {
-          "firstName": { "title": "First Name", "type": "string" },
-          "lastName": { "title": "Last Name", "type": "string" },
-          "position": { "title": "Position/Title", "type": "string" },
-          "email": { "title": "Email Address", "type": "string" },
-          "phone": { "title": "Telephone Number", "type": "string" },
-          "fax": { "title": "Fax Number", "type": "string" },
+          "firstName": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "lastName": {
+            "title": "Last Name",
+            "type": "string"
+          },
+          "position": {
+            "title": "Position/Title",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email Address",
+            "type": "string"
+          },
+          "phone": {
+            "title": "Telephone Number",
+            "type": "string"
+          },
+          "fax": {
+            "title": "Fax Number",
+            "type": "string"
+          },
           "mailingAddress": {
             "title": "Operational Representative Mailing Address",
             "$ref": "#/definitions/address"
@@ -54,11 +72,21 @@
         "title": "Facility Information",
         "type": "object",
         "properties": {
-          "facilityName": { "title": "Facility Name", "type": "string" },
+          "facilityName": {
+            "title": "Facility Name",
+            "type": "string"
+          },
           "facilityType": {
             "type": "string",
             "title": "Facility Type",
-            "enum": ["IF_a", "IF_b", "L_c", "SFO", "LFO", "EIO"]
+            "enum": [
+              "IF_a",
+              "IF_b",
+              "L_c",
+              "SFO",
+              "LFO",
+              "EIO"
+            ]
           },
           "bcghgid": {
             "type": "string",
@@ -75,7 +103,10 @@
           "isFacilityLocationDifferent": {
             "title": "Is the facility location different from the mailing address?",
             "type": "boolean",
-            "enumNames": [" Yes", " No"]
+            "enumNames": [
+              " Yes",
+              " No"
+            ]
           }
         },
         "dependencies": {
@@ -83,12 +114,16 @@
             "oneOf": [
               {
                 "properties": {
-                  "isFacilityLocationDifferent": { "const": false }
+                  "isFacilityLocationDifferent": {
+                    "const": false
+                  }
                 }
               },
               {
                 "properties": {
-                  "isFacilityLocationDifferent": { "const": true },
+                  "isFacilityLocationDifferent": {
+                    "const": true
+                  },
                   "facilityLocation": {
                     "type": "object",
                     "title": "Facility Location",
@@ -105,7 +140,7 @@
                         "title": "Latitude",
                         "type": "number"
                       },
-                      "longitute": {
+                      "longitude": {
                         "title": "Longitude",
                         "type": "number"
                       }
@@ -122,8 +157,14 @@
       "address": {
         "type": "object",
         "properties": {
-          "streetAddress": { "title": "Street address", "type": "string" },
-          "city": { "title": "City", "type": "string" },
+          "streetAddress": {
+            "title": "Street address",
+            "type": "string"
+          },
+          "city": {
+            "title": "City",
+            "type": "string"
+          },
           "province": {
             "title": "Province or Territory",
             "type": "string",
@@ -160,7 +201,11 @@
     "duns": "DUNS number should be nine digits"
   },
   "uiSchema": {
-    "ui:order": ["operator", "operationalRepresentative", "facility"],
+    "ui:order": [
+      "operator",
+      "operationalRepresentative",
+      "facility"
+    ],
     "operator": {
       "ui:order": [
         "name",
@@ -171,7 +216,12 @@
         "mailingAddress"
       ],
       "mailingAddress": {
-        "ui:order": ["streetAddress", "city", "postalCode", "province"]
+        "ui:order": [
+          "streetAddress",
+          "city",
+          "postalCode",
+          "province"
+        ]
       },
       "naics": {
         "ui:col-md": 4
@@ -194,7 +244,12 @@
         "mailingAddress"
       ],
       "mailingAddress": {
-        "ui:order": ["streetAddress", "city", "postalCode", "province"]
+        "ui:order": [
+          "streetAddress",
+          "city",
+          "postalCode",
+          "province"
+        ]
       }
     },
     "facility": {
@@ -208,7 +263,12 @@
         "facilityLocation"
       ],
       "mailingAddress": {
-        "ui:order": ["streetAddress", "city", "postalCode", "province"]
+        "ui:order": [
+          "streetAddress",
+          "city",
+          "postalCode",
+          "province"
+        ]
       },
       "isFacilityLocationDifferent": {
         "ui:widget": "radio"
