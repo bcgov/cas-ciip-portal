@@ -7,7 +7,7 @@ create view ggircs_portal.ciip_operator as (
     with x as (
       select
         form_result.application_id as id,
-        json_array_elements((form_result -> 'reportingOperationInformation')::json) as operator_data
+        ((form_result -> 'operator')::json) as operator_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
@@ -16,10 +16,10 @@ create view ggircs_portal.ciip_operator as (
     select
        x.id,
        (x.operator_data ->> 'bcCorporateRegistryNumber')::numeric as bc_corporate_registry_number,
-       (x.operator_data ->> 'naicsCode')::numeric as naics_code,
-       (x.operator_data ->> 'operatorName')::varchar(1000) as operator_name,
-       (x.operator_data ->> 'operatorTradeName')::varchar(1000) as operator_trade_name,
-       (x.operator_data ->> 'dunsNumber')::numeric as duns_number
+       (x.operator_data ->> 'naics')::numeric as naics_code,
+       (x.operator_data ->> 'name')::varchar(1000) as operator_name,
+       (x.operator_data ->> 'tradeName')::varchar(1000) as operator_trade_name,
+       (x.operator_data ->> 'duns')::numeric as duns_number
        -- add operator address to address view
     from x
  );

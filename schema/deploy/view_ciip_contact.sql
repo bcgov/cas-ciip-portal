@@ -6,7 +6,7 @@ begin;
     with x as (
       select
         form_result.application_id as id,
-        json_array_elements((form_result -> 'operationalRepresentativeInformation')::json) as contact_data
+        ((form_result -> 'operationalRepresentative')::json) as contact_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
