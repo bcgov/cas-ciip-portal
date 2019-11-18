@@ -53,14 +53,11 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
       </Card.Header>
       <Collapse in={!isOpen}>
         <Card.Body>
-          {/*
-      //@ts-ignore JsonSchemaForm typedef is missing customFormats prop */}
           <JsonSchemaForm
             omitExtraData
             liveOmit
             ArrayFieldTemplate={SummaryFormArrayFieldTemplate}
             FieldTemplate={SummaryFormFieldTemplate}
-            FormContext={{query}}
             showErrorList={false}
             fields={CUSTOM_FIELDS}
             customFormats={customFormats}
@@ -69,9 +66,8 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
             ObjectFieldTemplate={FormObjectFieldTemplate}
             formData={query}
           >
-            <div style={{display: 'none'}}>
-              <Button type="submit">Submit</Button>
-            </div>
+            {/* Over-ride submit button with a display: none div */}
+            <div style={{display: 'none'}} />
           </JsonSchemaForm>
         </Card.Body>
       </Collapse>
