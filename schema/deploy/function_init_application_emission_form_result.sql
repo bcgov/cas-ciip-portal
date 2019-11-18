@@ -21,7 +21,11 @@ begin
 
   first_source_type := true;
   for emission_datum in (
-      select distinct emission_category from ggircs_portal.emission_category_gas
+    with categories as (
+        select distinct on (emission_category) emission_category, id
+        from ggircs_portal.emission_category_gas
+    )
+    select emission_category from categories order by id
   )
   loop
     emission_category_var := emission_datum;
@@ -33,26 +37,29 @@ begin
       (
         -- CTE that returns the emission qty and calc_qty for each emission category by gas type
         -- for a given facility and a reporting year
-         with x as (
-            select
-             map.emission_category as emissionCategory,
-             map.gas_type as gasType,
-             e.quantity as qty,
-             e.calculated_quantity as cqty,
-             map.gwp as map_gwp,
-             map.gas_description as gas_description
-             from ggircs_portal.get_swrs_emission_data(swrs_facility_id, reporting_year) as e
-             right join
-              (
-                select
-                 ecg.emission_category,
-                 g.gas_type,
-                 g.gas_description,
-                 g.gwp
-                 from ggircs_portal.emission_category_gas ecg
-                inner join ggircs_portal.gas g on ecg.gas_id = g.id
-              ) as map
-             on e.emission_category = map.emission_category and e.gas_type = map.gas_type
+        with x as (
+          select
+            map.emission_category as emissionCategory,
+            map.gas_type as gasType,
+            e.quantity as qty,
+            e.calculated_quantity as cqty,
+            map.gwp as map_gwp,
+            map.gas_description as gas_description,
+            map.id
+            from ggircs_portal.get_swrs_emission_data(swrs_facility_id, reporting_year) as e
+            right join
+            (
+              select
+                ecg.id,
+                ecg.emission_category,
+                g.gas_type,
+                g.gas_description,
+                g.gwp
+                from ggircs_portal.emission_category_gas ecg
+              inner join ggircs_portal.gas g on ecg.gas_id = g.id
+            ) as map
+            on e.emission_category = map.emission_category and e.gas_type = map.gas_type
+            order by map.id
          )
          select row_to_json(t)
          from (
