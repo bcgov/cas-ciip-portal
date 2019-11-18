@@ -1032,8 +1032,6 @@ type CiipFacilitiesEdge {
 enum CiipFacilitiesOrderBy {
   BCGHGID_ASC
   BCGHGID_DESC
-  FACILITY_DESCRIPTION_ASC
-  FACILITY_DESCRIPTION_DESC
   FACILITY_NAME_ASC
   FACILITY_NAME_DESC
   FACILITY_TYPE_ASC
@@ -1053,7 +1051,6 @@ enum CiipFacilitiesOrderBy {
 
 type CiipFacility implements Node {
   bcghgid: BigFloat
-  facilityDescription: String
   facilityName: String
   facilityType: String
 
@@ -1074,9 +1071,6 @@ tested for equality and combined with a logical ‘and.’
 input CiipFacilityCondition {
   """Checks for equality with the object’s `bcghgid` field."""
   bcghgid: BigFloat
-
-  """Checks for equality with the object’s `facilityDescription` field."""
-  facilityDescription: String
 
   """Checks for equality with the object’s `facilityName` field."""
   facilityName: String

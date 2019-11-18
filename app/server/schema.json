@@ -11430,16 +11430,6 @@
               "defaultValue": null
             },
             {
-              "name": "facilityDescription",
-              "description": "Checks for equality with the object’s `facilityDescription` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "facilityName",
               "description": "Checks for equality with the object’s `facilityName` field.",
               "type": {
@@ -11520,18 +11510,6 @@
             },
             {
               "name": "BCGHGID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_DESCRIPTION_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_DESCRIPTION_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -11763,18 +11741,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "BigFloat",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityDescription",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
