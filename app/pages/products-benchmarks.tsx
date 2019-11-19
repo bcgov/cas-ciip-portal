@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {Row, Col, Jumbotron} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import {productsBenchmarksQueryResponse} from 'productsBenchmarksQuery.graphql';
 import DefaultLayout from '../layouts/default-layout';
 import ProductCreatorContainer from '../containers/Products/ProductCreatorContainer';
@@ -25,7 +25,19 @@ class ProductsBenchmarks extends Component<Props> {
   state = {
     formData: {formId: '', formJson: ''},
     mode: 'view',
-    confirmationModalOpen: false
+    confirmationModalOpen: false,
+    expandCreateForm: false,
+    createProductFormKey: Date.now()
+  };
+
+  resetCreateProductForm = () => {
+    this.setState({createProductFormKey: Date.now()});
+  };
+
+  toggleShowCreateForm = () => {
+    const expanded = this.state.expandCreateForm;
+    this.resetCreateProductForm();
+    this.setState({expandCreateForm: !expanded});
   };
 
   /** **  ProductRowItem Actions ** **/
@@ -62,15 +74,22 @@ class ProductsBenchmarks extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout session={query.session} title="Products and Benchmarks">
+      <DefaultLayout session={query.session} title="Manage Products">
+        <div style={{textAlign: 'right'}}>
+          <Button
+            style={{marginTop: '-220px'}}
+            onClick={this.toggleShowCreateForm}
+          >
+            Create a new Product +
+          </Button>
+        </div>
         <Row>
           <Col>
-            <br />
-            <Jumbotron>
-              <h4>Create a Product</h4>
-              <br />
-              <ProductCreatorContainer />
-            </Jumbotron>
+            <ProductCreatorContainer
+              expanded={this.state.expandCreateForm}
+              resetForm={this.resetCreateProductForm}
+              createProductFormKey={this.state.createProductFormKey}
+            />
             <br />
             <br />
             <br />

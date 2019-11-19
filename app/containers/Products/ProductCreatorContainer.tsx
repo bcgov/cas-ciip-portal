@@ -1,51 +1,79 @@
 import React from 'react';
-import {createFragmentContainer} from 'react-relay';
-import {Form, Button, Col} from 'react-bootstrap';
+import {createFragmentContainer, RelayProp} from 'react-relay';
+import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
+import {JSONSchema6} from 'json-schema';
+import {Button, Card, Collapse} from 'react-bootstrap';
+import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
+import FormFieldTemplate from '../Forms/FormFieldTemplate';
+import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 import createProductMutation from '../../mutations/product/createProductMutation';
 
-export const ProductCreator = props => {
-  const createProductFromRef = React.createRef<Form & HTMLFormElement>();
+interface Props {
+  relay: RelayProp;
+  expanded: boolean;
+  resetForm: (...args: any[]) => void;
+  createProductFormKey: number;
+}
 
-  const saveProduct = async event => {
-    event.preventDefault();
-    event.stopPropagation();
-    const date = new Date().toUTCString();
+export const ProductCreator: React.FunctionComponent<Props> = ({
+  relay,
+  expanded,
+  resetForm,
+  createProductFormKey
+}) => {
+  const saveProduct = async (e: IChangeEvent) => {
     const variables = {
       input: {
         product: {
-          name: event.target.product_name.value,
-          description: event.target.product_description.value,
+          name: e.formData.product,
+          description: e.formData.description,
           state: 'active',
-          parent: [null],
-          createdAt: date,
-          createdBy: 'Admin'
+          parent: [null]
         }
       }
     };
-
-    const {environment} = props.relay;
+    resetForm();
+    const {environment} = relay;
     await createProductMutation(environment, variables);
-    createProductFromRef.current.reset();
+  };
+
+  // Schema for JsonSchemaForm component
+  const createProductSchema: JSONSchema6 = {
+    type: 'object',
+    properties: {
+      product: {
+        type: 'string',
+        title: 'Product'
+      },
+      description: {
+        type: 'string',
+        title: 'Description'
+      }
+    },
+    required: ['product']
   };
 
   return (
-    <>
-      <div>
-        <Form ref={createProductFromRef} onSubmit={saveProduct}>
-          <Form.Row>
-            <Form.Group as={Col} md="4" controlId="product_name">
-              <Form.Label>Product Name</Form.Label>
-              <Form.Control required type="text" placeholder="" />
-            </Form.Group>
-            <Form.Group as={Col} md="8" controlId="product_description">
-              <Form.Label>Product Description</Form.Label>
-              <Form.Control required type="textbox" placeholder="" />
-            </Form.Group>
-          </Form.Row>
-          <Button type="submit">Create Product</Button>
-        </Form>
-      </div>
-    </>
+    <Collapse in={expanded}>
+      <Card style={{marginTop: '10px'}}>
+        <Card.Header as="h5">Create a Product</Card.Header>
+        <Card.Body>
+          <JsonSchemaForm
+            key={createProductFormKey}
+            omitExtraData
+            liveOmit
+            schema={createProductSchema}
+            showErrorList={false}
+            ArrayFieldTemplate={FormArrayFieldTemplate}
+            FieldTemplate={FormFieldTemplate}
+            ObjectFieldTemplate={FormObjectFieldTemplate}
+            onSubmit={saveProduct}
+          >
+            <Button type="submit">Add Product</Button>
+          </JsonSchemaForm>
+        </Card.Body>
+      </Card>
+    </Collapse>
   );
 };
 
