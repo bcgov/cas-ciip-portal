@@ -1,6 +1,5 @@
 {
   "schema": {
-    "title": "Production Information",
     "type": "array",
     "items": {
       "$ref": "#/definitions/production"
