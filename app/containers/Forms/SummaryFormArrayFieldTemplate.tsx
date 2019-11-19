@@ -2,9 +2,11 @@ import React from 'react';
 import {ArrayFieldTemplateProps} from 'react-jsonschema-form';
 import {Form, Col} from 'react-bootstrap';
 
-const SummaryFormArrayFieldTemplate: React.FunctionComponent<
-  ArrayFieldTemplateProps
-> = ({TitleField, title, items}) => {
+const SummaryFormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> = ({
+  TitleField,
+  title,
+  items
+}) => {
   console.log(title);
   return (
     <>
