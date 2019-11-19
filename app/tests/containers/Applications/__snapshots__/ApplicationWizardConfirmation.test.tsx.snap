@@ -68,9 +68,7 @@ Array [
             <div
               className="col-12"
             >
-              <h3>
-                Administrative Information
-              </h3>
+              <h3 />
             </div>
             <div
               className="col-12"
@@ -806,9 +804,7 @@ Array [
             <div
               className="col-12"
             >
-              <h3>
-                Emissions
-              </h3>
+              <h3 />
             </div>
             <div
               className="col-12"
@@ -1207,9 +1203,7 @@ Array [
           <div
             className="col-12"
           >
-            <h3>
-              Fuel Usage
-            </h3>
+            <h3 />
           </div>
           <div
             className="form-row"
@@ -1468,9 +1462,7 @@ Array [
             <div
               className="col-12"
             >
-              <h3>
-                Electricity and Heat Information
-              </h3>
+              <h3 />
             </div>
             <div
               className="col-12"
@@ -1753,9 +1745,7 @@ Array [
           <div
             className="col-12"
           >
-            <h3>
-              Production Information
-            </h3>
+            <h3 />
           </div>
           <div
             className="form-row"
