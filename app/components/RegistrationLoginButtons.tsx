@@ -1,6 +1,6 @@
 import React from 'react';
-import {Col, Card, Button} from 'react-bootstrap';
-import LoginForm from './LoginForm';
+import {Col, Card} from 'react-bootstrap';
+import LoginButton from './LoginButton';
 
 const RegistrationLoginButtons = () => {
   return (
@@ -15,30 +15,22 @@ const RegistrationLoginButtons = () => {
             part of the application, information about the operation’s energy
             use, emissions, and production is required.
           </Card.Text>
-          <LoginForm>
-            <Button
-              type="submit"
-              style={{padding: '15px'}}
-              className="full-width"
-              variant="primary"
-              size="lg"
-            >
-              Register and Apply
-            </Button>
-          </LoginForm>
+          <LoginButton
+            style={{padding: '15px'}}
+            className="full-width"
+            variant="primary"
+            size="lg"
+          >
+            Register and Apply
+          </LoginButton>
         </Card.Body>
       </Card>
-      <LoginForm>
-        <button type="submit" className="login-link text-center">
-          Already have an account? Click here to login.
-        </button>
-      </LoginForm>
-      <style jsx>{`
+      <LoginButton className="login-link" variant="outline-dark">
+        Already have an account? Click here to login.
+      </LoginButton>
+      <style jsx global>{`
         .login-link {
-          border: 1px solid #666;
           padding: 20px;
-          border-radius: 4px;
-          background-color: transparent;
           width: 100%;
           text-decoration: underline;
         }

@@ -28,7 +28,7 @@ const UserForm: React.FunctionComponent<Props> = ({
   relay,
   onSubmit
 }) => {
-  const handleChange = async (e: IChangeEvent) => {
+  const handleChange = async (e: IChangeEvent<UserForm_user>) => {
     if (user)
       await updateUserMutation(relay.environment, {
         input: {
@@ -40,7 +40,7 @@ const UserForm: React.FunctionComponent<Props> = ({
       });
   };
 
-  const handleSubmit = async (e: IChangeEvent) => {
+  const handleSubmit = async (e: IChangeEvent<UserForm_user>) => {
     if (user) await handleChange(e);
     else
       await createUserMutation(relay.environment, {
