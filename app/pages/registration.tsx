@@ -45,7 +45,9 @@ class Registration extends Component<Props> {
           defaultEmail={email}
           onSubmit={async () =>
             router.push(
-              decodeURI(router.query.redirectTo as string) || '/user-dashboard'
+              router.query.redirectTo
+                ? decodeURI(router.query.redirectTo as string)
+                : '/user-dashboard'
             )
           }
         />

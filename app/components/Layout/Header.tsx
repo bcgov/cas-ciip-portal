@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Col, Form, Button} from 'react-bootstrap';
 import Link from 'next/link';
-import LoginForm from '../LoginForm';
+import LoginButton from '../LoginButton';
 
 const HeaderLayout = ({isLoggedIn = false}) => (
   <header>
@@ -39,18 +39,14 @@ const HeaderLayout = ({isLoggedIn = false}) => (
               ) : (
                 <Form.Row>
                   <Col>
-                    <LoginForm>
-                      <Button type="submit" variant="outline-light">
-                        Register
-                      </Button>
-                    </LoginForm>
+                    <LoginButton type="submit" variant="outline-light">
+                      Register
+                    </LoginButton>
                   </Col>
                   <Col>
-                    <LoginForm>
-                      <Button type="submit" variant="outline-light">
-                        Login
-                      </Button>
-                    </LoginForm>
+                    <LoginButton type="submit" variant="outline-light">
+                      Login
+                    </LoginButton>
                   </Col>
                 </Form.Row>
               )}
