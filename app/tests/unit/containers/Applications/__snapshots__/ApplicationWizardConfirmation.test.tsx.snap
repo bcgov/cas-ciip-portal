@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationWizardConfirmationComponent should match the snapshot with the ApplicationWizardConfirmation component 1`] = `
+<ReactRelayQueryRenderer
+  environment={"RelayModernEnvironment(RelayModernMockEnvironment)"}
+  query={[Function]}
+  render={[Function]}
+  variables={
+    Object {
+      "applicationId": "2",
+    }
+  }
+/>
+`;

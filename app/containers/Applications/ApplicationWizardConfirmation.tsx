@@ -42,7 +42,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       </h5>
       <br />
 
-      <ApplicationDetailsContainer isAnalyst={false} query={props.query} />
+      <ApplicationDetailsContainer query={props.query} />
       <Link
         passHref
         href={{

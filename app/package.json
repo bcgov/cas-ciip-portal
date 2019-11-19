@@ -78,7 +78,8 @@
         "error",
         "never",
         {
-          "graphql": "always"
+          "graphql": "always",
+          "json": "always"
         }
       ],
       "react/prop-types": 0,
