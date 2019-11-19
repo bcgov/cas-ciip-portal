@@ -2,7 +2,7 @@ Feature: Availability
 
   As an executive
   I want the CIIP portal to be available at all times
-  So that the service design is designed effectively
+  So that the service design is effective
 
   @mvp
   Scenario: working release in production

@@ -1,8 +1,8 @@
 @mvp
 Feature: Products
 
-  As system admin
-  I want to be able to modify critical settings without redeploying the application
+  As an incentive admininistrator
+  I want to be able to modify products without redeploying the application
   So that I can administer the CIIP application system
 
   Scenario: create products

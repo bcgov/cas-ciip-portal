@@ -1,7 +1,7 @@
 @mvp
 Feature: Benchmarks
 
-  As system admin
+  As an incentive admininistrator
   I want to be able to modify benchmarks without redeploying the application
   So that I can administer the CIIP application system
 

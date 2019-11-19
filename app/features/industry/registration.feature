@@ -1,7 +1,7 @@
 @mvp
 Feature: Registration
 
-  As an industry user
+  As an industry reporter
   I want to be able to onboard myself to the CIIP application portal
   So that I can access business confidential information
 

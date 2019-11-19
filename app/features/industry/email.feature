@@ -1,7 +1,7 @@
 @mvp
 Feature: Email
 
-  As an industry user
+  As an industry reporter
   I want to receive notifications by email
   So that I can interact asynchronously
 

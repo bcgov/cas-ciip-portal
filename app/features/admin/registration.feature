@@ -1,7 +1,7 @@
 @mvp
 Feature: Registration
 
-  As system admin
+  As an incentive admininistrator
   I want to be able to be onboarded using my IDIR
   So that I can administer the CIIP application system
 

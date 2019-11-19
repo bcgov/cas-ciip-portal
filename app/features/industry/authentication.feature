@@ -1,7 +1,7 @@
 @mvp
 Feature: Authentication
 
-  As an industry user
+  As an industry reporter
   I want to be able to identify myself to the CIIP application portal
   So that I can access business confidential information
 

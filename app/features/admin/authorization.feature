@@ -1,6 +1,6 @@
 Feature: Authorization
 
-  As system admin
+  As an incentive admininistrator
   I want to be able to authorize specific users using IDIR credentials
   So that I can ensure the integrity of the CIIP application system
 
