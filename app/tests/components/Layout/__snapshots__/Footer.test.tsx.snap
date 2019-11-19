@@ -2,30 +2,64 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <footer
-  class="jsx-2746091499 footer"
+  class="jsx-337505255 footer"
 >
   <div
-    class="jsx-2746091499 container"
+    class="jsx-337505255 container"
   >
     <ul
-      class="jsx-2746091499"
+      class="jsx-337505255"
     >
       <li
-        class="jsx-2746091499"
+        class="jsx-337505255"
       >
         <a
-          class="jsx-2746091499"
-          href="."
+          href="/"
         >
           Home
         </a>
       </li>
       <li
-        class="jsx-2746091499"
+        class="jsx-337505255"
       >
         <a
-          class="jsx-2746091499"
-          href="."
+          href="/resources/disclaimer"
+        >
+          Disclaimer
+        </a>
+      </li>
+      <li
+        class="jsx-337505255"
+      >
+        <a
+          href="/resources/privacy"
+        >
+          Privacy
+        </a>
+      </li>
+      <li
+        class="jsx-337505255"
+      >
+        <a
+          href="/resources/accessibility"
+        >
+          Accessibility
+        </a>
+      </li>
+      <li
+        class="jsx-337505255"
+      >
+        <a
+          href="/resources/copyright"
+        >
+          Copyright
+        </a>
+      </li>
+      <li
+        class="jsx-337505255"
+      >
+        <a
+          href="/resources/contact"
         >
           Contact Us
         </a>
