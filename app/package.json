@@ -25,13 +25,12 @@
       "xo-typescript",
       "xo-react",
       "plugin:jest/recommended",
-      "plugin:shopify/typescript",
-      "plugin:shopify/react",
       "plugin:relay/recommended"
     ],
     "plugins": [
       "jest",
-      "relay"
+      "relay",
+      "shopify"
     ],
     "envs": [
       "node",
@@ -59,6 +58,7 @@
       "@typescript-eslint/explicit-function-return-type": 0,
       "@typescript-eslint/camelcase": 0,
       "react/jsx-uses-vars": 1,
+      "shopify/react-no-multiple-render-methods": 1,
       "unicorn/filename-case": 0,
       "import/no-unassigned-import": 0,
       "@typescript-eslint/quotes": [
