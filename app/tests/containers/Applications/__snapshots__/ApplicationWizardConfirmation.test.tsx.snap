@@ -1,0 +1,2005 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationWizardConfirmationComponent should match the snapshot with the summary component 1`] = `
+Array [
+  <h1>
+    Summary of your application:
+  </h1>,
+  <h5>
+    Please review the information you have provided before continuing.
+  </h5>,
+  <br />,
+  <div
+    className="card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="card-header"
+      onClick={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <h2>
+            Admin
+          </h2>
+        </div>
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            type="button"
+          >
+            Collapse
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={null}
+      className="collapse show card-body"
+    >
+      <form
+        className="rjsf"
+        noValidate={false}
+        onSubmit={[Function]}
+      >
+        <div
+          className="col-12"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <h3 />
+            </div>
+            <div
+              className="col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <h3>
+                    Operator Information
+                  </h3>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operator_name"
+                  >
+                    <strong>
+                      Legal name
+                    </strong>
+                  </label>
+                  : 
+                  TestOperator
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operator_tradeName"
+                  >
+                    <strong>
+                      Trade name
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operator_naics"
+                  >
+                    <strong>
+                      NAICS code
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operator_bcCorporateRegistryNumber"
+                  >
+                    <strong>
+                      BC Corporate Registry number
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operator_duns"
+                  >
+                    <strong>
+                      DUNS number
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="col-12"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col-12"
+                    >
+                      <h3>
+                        Operator Mailing Address
+                      </h3>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_operator_mailingAddress_streetAddress"
+                      >
+                        <strong>
+                          Street address
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_operator_mailingAddress_city"
+                      >
+                        <strong>
+                          City
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_operator_mailingAddress_postalCode"
+                      >
+                        <strong>
+                          Postal Code
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_operator_mailingAddress_province"
+                      >
+                        <strong>
+                          Province or Territory
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <h3>
+                    Operational Representative
+                  </h3>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operationalRepresentative_firstName"
+                  >
+                    <strong>
+                      First Name
+                    </strong>
+                  </label>
+                  : 
+                  DoogieHouser
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operationalRepresentative_lastName"
+                  >
+                    <strong>
+                      Last Name
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operationalRepresentative_position"
+                  >
+                    <strong>
+                      Position/Title
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operationalRepresentative_email"
+                  >
+                    <strong>
+                      Email Address
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operationalRepresentative_phone"
+                  >
+                    <strong>
+                      Telephone Number
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_operationalRepresentative_fax"
+                  >
+                    <strong>
+                      Fax Number
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="col-12"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col-12"
+                    >
+                      <h3>
+                        Operational Representative Mailing Address
+                      </h3>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_operationalRepresentative_mailingAddress_streetAddress"
+                      >
+                        <strong>
+                          Street address
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_operationalRepresentative_mailingAddress_city"
+                      >
+                        <strong>
+                          City
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_operationalRepresentative_mailingAddress_postalCode"
+                      >
+                        <strong>
+                          Postal Code
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_operationalRepresentative_mailingAddress_province"
+                      >
+                        <strong>
+                          Province or Territory
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <h3>
+                    Facility Information
+                  </h3>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_facility_facilityName"
+                  >
+                    <strong>
+                      Facility Name
+                    </strong>
+                  </label>
+                  : 
+                  fac1
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_facility_facilityType"
+                  >
+                    <strong>
+                      Facility Type
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_facility_bcghgid"
+                  >
+                    <strong>
+                      BCGHG ID Number
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="form-group field field-string form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_facility_naics"
+                  >
+                    <strong>
+                      NAICS Code
+                    </strong>
+                  </label>
+                  : 
+                  <i>
+                    [No Data Entered]
+                  </i>
+                </div>
+                <div
+                  className="col-12"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col-12"
+                    >
+                      <h3>
+                        Facility Mailing Address
+                      </h3>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_facility_mailingAddress_streetAddress"
+                      >
+                        <strong>
+                          Street address
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_facility_mailingAddress_city"
+                      >
+                        <strong>
+                          City
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_facility_mailingAddress_postalCode"
+                      >
+                        <strong>
+                          Postal Code
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                    <div
+                      className="form-group field field-string form-group"
+                      style={
+                        Object {
+                          "margin": 10,
+                        }
+                      }
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_facility_mailingAddress_province"
+                      >
+                        <strong>
+                          Province or Territory
+                        </strong>
+                      </label>
+                      : 
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="form-group field field-boolean form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_facility_isFacilityLocationDifferent"
+                  >
+                    <strong>
+                      Is the facility location different from the mailing address?
+                    </strong>
+                  </label>
+                   
+                  No
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <div
+    className="card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="card-header"
+      onClick={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <h2>
+            Emission
+          </h2>
+        </div>
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            type="button"
+          >
+            Collapse
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={null}
+      className="collapse show card-body"
+    >
+      <form
+        className="rjsf"
+        noValidate={false}
+        onSubmit={[Function]}
+      >
+        <div
+          className="col-12"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <h3 />
+            </div>
+            <div
+              className="col-12"
+            >
+              <div
+                className="col-12"
+              >
+                <h3 />
+              </div>
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <div
+                      className="form-row"
+                    >
+                      <div
+                        className="col-12"
+                      >
+                        <h3 />
+                      </div>
+                      <div
+                        className="form-group field field-string  hidden-title form-group"
+                        style={
+                          Object {
+                            "margin": 10,
+                          }
+                        }
+                      >
+                        <label
+                          className="form-label"
+                          htmlFor="root_sourceTypes_0_sourceTypeName"
+                        >
+                          <strong>
+                            sourceTypeName
+                          </strong>
+                        </label>
+                        <h5
+                          className="jsx-2806087631"
+                          style={
+                            Object {
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          Stationary Fuel Combustion
+                        </h5>
+                      </div>
+                      <div
+                        className="col-12"
+                      >
+                        <div
+                          className="col-12"
+                        >
+                          <h3 />
+                        </div>
+                        <div
+                          className="form-row"
+                        >
+                          <div
+                            className="col-12"
+                          >
+                            <div
+                              className="col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      CO2nonbio
+                                       
+                                      <br
+                                        className="jsx-1154833918"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-1154833918"
+                                        >
+                                          gassy
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-1154833918"
+                                      >
+                                        Tonnes:
+                                      </strong>
+                                       
+                                      15
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-1154833918"
+                                      >
+                                        Tonnes(CO2e): 
+                                      </strong>
+                                      12
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="form-row"
+                        >
+                          <div
+                            className="col-12"
+                          >
+                            <div
+                              className="col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      CO2
+                                       
+                                      <br
+                                        className="jsx-1154833918"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-1154833918"
+                                        >
+                                          super gassy
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-1154833918"
+                                      >
+                                        Tonnes:
+                                      </strong>
+                                       
+                                      12
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-1154833918"
+                                      >
+                                        Tonnes(CO2e): 
+                                      </strong>
+                                      1
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <div
+                      className="form-row"
+                    >
+                      <div
+                        className="col-12"
+                      >
+                        <h3 />
+                      </div>
+                      <div
+                        className="form-group field field-string  hidden-title form-group"
+                        style={
+                          Object {
+                            "margin": 10,
+                          }
+                        }
+                      >
+                        <label
+                          className="form-label"
+                          htmlFor="root_sourceTypes_1_sourceTypeName"
+                        >
+                          <strong>
+                            sourceTypeName
+                          </strong>
+                        </label>
+                        <h5
+                          className="jsx-2806087631"
+                          style={
+                            Object {
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          Flaring
+                        </h5>
+                      </div>
+                      <div
+                        className="col-12"
+                      >
+                        <div
+                          className="col-12"
+                        >
+                          <h3 />
+                        </div>
+                        <div
+                          className="form-row"
+                        >
+                          <div
+                            className="col-12"
+                          >
+                            <div
+                              className="col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      Waste
+                                       
+                                      <br
+                                        className="jsx-1154833918"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-1154833918"
+                                        >
+                                          wastey
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-1154833918"
+                                      >
+                                        Tonnes:
+                                      </strong>
+                                       
+                                      151
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-1154833918"
+                                      >
+                                        Tonnes(CO2e): 
+                                      </strong>
+                                      121
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <div
+    className="card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="card-header"
+      onClick={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <h2>
+            Fuel
+          </h2>
+        </div>
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            type="button"
+          >
+            Collapse
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={null}
+      className="collapse show card-body"
+    >
+      <form
+        className="rjsf"
+        noValidate={false}
+        onSubmit={[Function]}
+      >
+        <div
+          className="col-12"
+        >
+          <div
+            className="col-12"
+          >
+            <h3 />
+          </div>
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <div
+                className="col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <h3 />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_fuelType"
+                    >
+                      <strong>
+                        Fuel Type
+                      </strong>
+                    </label>
+                    : 
+                    diesel
+                  </div>
+                  <div
+                    className="form-group field field-number form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_quantity"
+                    >
+                      <strong>
+                        Quantity
+                      </strong>
+                    </label>
+                    : 
+                    123.5
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_fuelUnits"
+                    >
+                      <strong>
+                        Units
+                      </strong>
+                    </label>
+                    : 
+                    kilolitres
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_methodology"
+                    >
+                      <strong>
+                        Methodology
+                      </strong>
+                    </label>
+                    : 
+                    win some lose some
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <div
+                className="col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <h3 />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_fuelType"
+                    >
+                      <strong>
+                        Fuel Type
+                      </strong>
+                    </label>
+                    : 
+                    Natural Gas
+                  </div>
+                  <div
+                    className="form-group field field-number form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_quantity"
+                    >
+                      <strong>
+                        Quantity
+                      </strong>
+                    </label>
+                    : 
+                    320013
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_fuelUnits"
+                    >
+                      <strong>
+                        Units
+                      </strong>
+                    </label>
+                    : 
+                    Sm^3
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_methodology"
+                    >
+                      <strong>
+                        Methodology
+                      </strong>
+                    </label>
+                    : 
+                    WCI 1.0
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <div
+    className="card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="card-header"
+      onClick={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <h2>
+            Electricity and Heat
+          </h2>
+        </div>
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            type="button"
+          >
+            Collapse
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={null}
+      className="collapse show card-body"
+    >
+      <form
+        className="rjsf"
+        noValidate={false}
+        onSubmit={[Function]}
+      >
+        <div
+          className="col-12"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <h3 />
+            </div>
+            <div
+              className="col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <h3>
+                    Electricity
+                  </h3>
+                </div>
+                <div
+                  className="form-group field field-number form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_electricity_purchased"
+                  >
+                    <strong>
+                      Purchased
+                    </strong>
+                  </label>
+                  : 
+                  26
+                </div>
+                <div
+                  className="form-group field field-number form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_electricity_sold"
+                  >
+                    <strong>
+                      Sold
+                    </strong>
+                  </label>
+                  : 
+                  1234
+                </div>
+                <div
+                  className="form-group field field-number form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_electricity_consumedOnSite"
+                  >
+                    <strong>
+                      Consumed On-Site
+                    </strong>
+                  </label>
+                  : 
+                  135
+                </div>
+                <div
+                  className="form-group field field-number form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_electricity_generatedOnSite"
+                  >
+                    <strong>
+                      Generated On-Site
+                    </strong>
+                  </label>
+                  : 
+                  6130
+                </div>
+                <div
+                  className="form-group field field-number form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_electricity_onSiteEmissions"
+                  >
+                    <strong>
+                      Emissions from On-Site Generation (tCO2e)
+                    </strong>
+                  </label>
+                  : 
+                  810
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <h3>
+                    Heat
+                  </h3>
+                </div>
+                <div
+                  className="form-group field field-number form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_heat_purchased"
+                  >
+                    <strong>
+                      Purchased
+                    </strong>
+                  </label>
+                  : 
+                  12
+                </div>
+                <div
+                  className="form-group field field-number form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_heat_sold"
+                  >
+                    <strong>
+                      Sold
+                    </strong>
+                  </label>
+                  : 
+                  1
+                </div>
+                <div
+                  className="form-group field field-number form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_heat_consumedOnSite"
+                  >
+                    <strong>
+                      Consumed On-Site
+                    </strong>
+                  </label>
+                  : 
+                  15
+                </div>
+                <div
+                  className="form-group field field-number form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_heat_generatedOnSite"
+                  >
+                    <strong>
+                      Generated On-Site
+                    </strong>
+                  </label>
+                  : 
+                  60
+                </div>
+                <div
+                  className="form-group field field-number form-group"
+                  style={
+                    Object {
+                      "margin": 10,
+                    }
+                  }
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_heat_onSiteEmissions"
+                  >
+                    <strong>
+                      Emissions from On-Site Generation (tCO2e)
+                    </strong>
+                  </label>
+                  : 
+                  80
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <div
+    className="card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="card-header"
+      onClick={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <h2>
+            Production
+          </h2>
+        </div>
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            type="button"
+          >
+            Collapse
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={null}
+      className="collapse show card-body"
+    >
+      <form
+        className="rjsf"
+        noValidate={false}
+        onSubmit={[Function]}
+      >
+        <div
+          className="col-12"
+        >
+          <div
+            className="col-12"
+          >
+            <h3 />
+          </div>
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <div
+                className="col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <h3 />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_product"
+                    >
+                      <strong>
+                        Processing Unit Module
+                      </strong>
+                    </label>
+                    : 
+                    mayonnaise
+                  </div>
+                  <div
+                    className="form-group field field-number form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_quantity"
+                    >
+                      <strong>
+                        Quantity
+                      </strong>
+                    </label>
+                    : 
+                    12
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_productUnits"
+                    >
+                      <strong>
+                        Units
+                      </strong>
+                    </label>
+                    : 
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
+                  <div
+                    className="form-group field field-number form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_associatedEmissions"
+                    >
+                      <strong>
+                        Associated Emission (tCO2e)
+                      </strong>
+                    </label>
+                    : 
+                    1
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_comments"
+                    >
+                      <strong>
+                        comments
+                      </strong>
+                    </label>
+                    : 
+                    a sandwich isnt a sandwich without it
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <div
+                className="col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <h3 />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_product"
+                    >
+                      <strong>
+                        Processing Unit Module
+                      </strong>
+                    </label>
+                    : 
+                    pickles
+                  </div>
+                  <div
+                    className="form-group field field-number form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_quantity"
+                    >
+                      <strong>
+                        Quantity
+                      </strong>
+                    </label>
+                    : 
+                    121
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_productUnits"
+                    >
+                      <strong>
+                        Units
+                      </strong>
+                    </label>
+                    : 
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
+                  <div
+                    className="form-group field field-number form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_associatedEmissions"
+                    >
+                      <strong>
+                        Associated Emission (tCO2e)
+                      </strong>
+                    </label>
+                    : 
+                    10000
+                  </div>
+                  <div
+                    className="form-group field field-string form-group"
+                    style={
+                      Object {
+                        "margin": 10,
+                      }
+                    }
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_comments"
+                    >
+                      <strong>
+                        comments
+                      </strong>
+                    </label>
+                    : 
+                    pickles are good
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <a
+    className="float-right btn btn-primary"
+    href="/complete-submit"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onMouseEnter={[Function]}
+    style={
+      Object {
+        "marginTop": "10px",
+      }
+    }
+  >
+    Submit Application
+  </a>,
+]
+`;

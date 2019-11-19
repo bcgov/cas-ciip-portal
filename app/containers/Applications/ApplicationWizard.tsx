@@ -44,7 +44,7 @@ const ApplicationWizard = ({query}) => {
   const onStepComplete = () => {
     for (let i = 0; i < orderedFormResults.length; i++) {
       if (orderedFormResults[i].node.id === formResultId) {
-        const goToConfirmation = i === orderedFormResults.length - 2;
+        const goToConfirmation = i === orderedFormResults.length - 1;
         const formResultId = goToConfirmation
           ? undefined
           : orderedFormResults[i + 1].node.id;

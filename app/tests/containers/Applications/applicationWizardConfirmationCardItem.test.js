@@ -4,25 +4,23 @@ import {ApplicationWizardConfirmationCardItemComponent} from '../../../container
 
 describe('ApplicationWizardConfirmationComponentCardItem', () => {
   it('should render the individual summary confirmation card component', () => {
-    const resultObject = {
-      facility: {
-        facility: [
-          {
-            name: 'Jimbo'
-          }
-        ]
+    const formResult = {
+      formResult: {},
+      formJsonByFormId: {
+        name: 'Fuel Usage',
+        formJson: {schema: {title: 'Fuel UsageCollapse'}}
       }
     };
     const formTitle = 'facility';
     const formSubtitle = 'facility';
     const r = shallow(
       <ApplicationWizardConfirmationCardItemComponent
-        resultObject={resultObject}
+        formResult={formResult}
         formTitle={formTitle}
         formSubtitle={formSubtitle}
       />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('CardHeader').text()).toBe('facility -');
+    expect(r.find('CardHeader').text()).toContain('Fuel Usage');
   });
 });

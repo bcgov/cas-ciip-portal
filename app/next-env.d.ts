@@ -17,6 +17,13 @@ interface CiipPageComponentProps {
   router: NextRouter;
 }
 
+interface FormJson {
+  schema: any;
+  uiSchema: UiSchema;
+  customFormats: any;
+  customFormatsErrorMessages: Record<string, string>;
+}
+
 export type CiipPageComponent = NextComponentType<
   NextPageContext,
   CiipPageInitialProps,

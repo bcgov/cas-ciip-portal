@@ -1,28 +1,40 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
+import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import Link from 'next/link';
-import {createFragmentContainer, graphql} from 'react-relay';
+import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
+import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
 import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmationCardItem';
 
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
  */
-export const ApplicationWizardConfirmationComponent = props => {
+
+interface Props {
+  query: ApplicationWizardConfirmation_query;
+  relay: RelayProp;
+}
+export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
 
-  const resultObject = {};
-  // Create a parsed result object from each formResult page
-  formResults.forEach(result => {
-    const parsedResult = JSON.parse(result.node.formResult);
-    const resultTitle = Object.keys(parsedResult).toString();
-
-    resultObject[resultTitle] = parsedResult;
-  });
-  // Create an array of keys to traverse the resultObject
-  const formArray = Object.keys(resultObject);
-
   // Change application status to 'pending' on application submit
+  const submitApplication = async () => {
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        id: props.query.application.applicationStatus.id,
+        applicationStatusPatch: {
+          applicationStatus: 'pending'
+        }
+      }
+    };
+    const response = await updateApplicationStatusMutation(
+      environment,
+      variables
+    );
+    console.log(response);
+  };
 
   return (
     <>
@@ -31,33 +43,25 @@ export const ApplicationWizardConfirmationComponent = props => {
         Please review the information you have provided before continuing.
       </h5>
       <br />
-      {formArray.map(formTitle =>
-        Object.keys(resultObject[formTitle]).map(formSubtitle => (
-          <ApplicationWizardConfirmationCardItem
-            key={`${formTitle} ${formSubtitle}`}
-            formTitle={formTitle}
-            formSubtitle={formSubtitle}
-            resultObject={resultObject}
-          />
-        ))
-      )}
 
+      {formResults.map(({node}) => (
+        <ApplicationWizardConfirmationCardItem
+          key={node.id}
+          formResult={node}
+        />
+      ))}
       <Link
         passHref
         href={{
-          pathname: '/ciip-application',
-          query: {
-            formResultId:
-              props.query.application.orderedFormResults.edges[
-                props.query.application.orderedFormResults.edges.length - 1
-              ].node.id,
-            applicationId: props.query.application.id,
-            certificationPage: true
-          }
+          pathname: '/complete-submit'
         }}
       >
-        <Button className="float-right" style={{marginTop: '10px'}}>
-          Next
+        <Button
+          className="float-right"
+          style={{marginTop: '10px'}}
+          onClick={submitApplication}
+        >
+          Submit Application
         </Button>
       </Link>
     </>
@@ -73,16 +77,13 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
         formResultsByApplicationId {
           edges {
             node {
-              formResult
+              id
+              ...ApplicationWizardConfirmationCardItem_formResult
             }
           }
         }
-        orderedFormResults {
-          edges {
-            node {
-              id
-            }
-          }
+        applicationStatus {
+          id
         }
       }
     }

@@ -44,8 +44,12 @@ const UserForm: React.FunctionComponent<Props> = ({
     if (user) await handleChange(e);
     else
       await createUserMutation(relay.environment, {
-        ...e.formData,
-        uuid
+        input: {
+          ciipUser: {
+            ...e.formData,
+            uuid
+          }
+        }
       });
     onSubmit();
   };

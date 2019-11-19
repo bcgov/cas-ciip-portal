@@ -47,7 +47,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
     const {environment} = relay;
     const variables = {
       input: {
-        id: application.applicationStatusesByApplicationId.edges[0].node.id,
+        id: application.applicationStatus.id,
         applicationStatusPatch: {
           applicationStatus: 'pending'
         }
@@ -106,12 +106,8 @@ export default createFragmentContainer(ApplicationWizardStep, {
         formResult
       }
       application(id: $applicationId) {
-        applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
-          edges {
-            node {
-              id
-            }
-          }
+        applicationStatus {
+          id
         }
       }
     }
