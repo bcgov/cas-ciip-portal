@@ -31,7 +31,7 @@ export const createUserOrganisationMutation = async (
       parentID: userId,
       connectionInfo: [
         {
-          key: 'Organisations_ciipUserOrganisationsByCiipUserId',
+          key: 'Organisations_ciipUserOrganisationsByUserId',
           rangeBehavior: 'append'
         }
       ],
