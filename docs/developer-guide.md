@@ -68,6 +68,10 @@ To easily monitor all of the log files, you can use a program such as [multitail
 Running `make unwatch` will stop both the node app server and the asdf-managed
 local postgres server.
 
+## User Authentication
+
+The application requires users to be authenticated using keycloak. Authentication can be disabled by running `node server NO_AUTH` (or `yarn dev NO_AUTH`), which is the default behavior of `make watch`.
+
 [Watchman]: https://facebook.github.io/watchman/
 [extended json syntax]: https://facebook.github.io/watchman/docs/cmd/trigger.html#extended-syntax
 [multitail]: https://linux.die.net/man/1/multitail

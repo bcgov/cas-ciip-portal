@@ -14,6 +14,9 @@ const cors = require('cors');
 const voyagerMiddleware = require('graphql-voyager/middleware').express;
 
 let databaseURL = 'postgres://';
+
+const NO_AUTH = process.argv.includes('NO_AUTH');
+
 if (process.env.PGUSER) {
   databaseURL += process.env.PGUSER;
   if (process.env.PGPASSWORD) {
@@ -64,6 +67,11 @@ app.prepare().then(() => {
       enableQueryBatching: true,
       dynamicJson: true,
       pgSettings(req) {
+        if (NO_AUTH)
+          return {
+            'jwt.claims.sub': '00000000-0000-0000-0000-000000000000'
+          };
+
         const claims = {};
         if (
           !req.kauth ||
@@ -114,8 +122,12 @@ app.prepare().then(() => {
     })
   );
 
-  server.post('/login', keycloak.protect(), (req, res) =>
-    res.redirect(302, req.body.redirectTo)
+  server.post(
+    '/login',
+    NO_AUTH
+      ? (req, res) =>
+          res.redirect(302, req.query.redirectTo || '/user-dashboard')
+      : keycloak.protect()
   );
   // Keycloak callbak; do not keycloak.protect() to avoid users being authenticated against their will via XSS attack
   server.get('/login', (req, res) => res.redirect(302, '/user-dashboard'));
