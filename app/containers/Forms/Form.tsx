@@ -75,8 +75,6 @@ export const FormComponent: React.FunctionComponent<Props> = ({
           <h1 className="form-title">{name}</h1>
         </Col>
       </Row>
-      {/*
-      //@ts-ignore JsonSchemaForm typedef is missing customFormats prop */}
 
       <JsonSchemaForm
         omitExtraData
