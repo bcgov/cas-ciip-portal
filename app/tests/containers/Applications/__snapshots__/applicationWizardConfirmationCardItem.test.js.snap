@@ -81,15 +81,7 @@ exports[`ApplicationWizardConfirmationComponentCardItem should render the indivi
         }
         showErrorList={false}
         uiSchema={Object {}}
-      >
-        <div
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-        />
-      </Form>
+      />
     </CardBody>
   </Collapse>
 </Card>

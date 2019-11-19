@@ -744,13 +744,6 @@ Array [
             </div>
           </div>
         </div>
-        <div
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-        />
       </form>
     </div>
   </div>,
@@ -1155,13 +1148,6 @@ Array [
             </div>
           </div>
         </div>
-        <div
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-        />
       </form>
     </div>
   </div>,
@@ -1420,13 +1406,6 @@ Array [
             </div>
           </div>
         </div>
-        <div
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-        />
       </form>
     </div>
   </div>,
@@ -1715,13 +1694,6 @@ Array [
             </div>
           </div>
         </div>
-        <div
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-        />
       </form>
     </div>
   </div>,
@@ -2022,13 +1994,6 @@ Array [
             </div>
           </div>
         </div>
-        <div
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-        />
       </form>
     </div>
   </div>,
