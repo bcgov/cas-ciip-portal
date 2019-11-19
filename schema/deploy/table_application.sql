@@ -11,7 +11,7 @@ begin;
 create table ggircs_portal.application (
     id integer primary key generated always as identity,
     facility_id integer not null references ggircs_portal.facility(id),
-    foreign key reporting_year references ggircs_portal.reporting_year(reporting_year)
+    foreign key (reporting_year) references ggircs_portal.reporting_year(reporting_year)
 );
 
 comment on table ggircs_portal.application is 'The application data';
