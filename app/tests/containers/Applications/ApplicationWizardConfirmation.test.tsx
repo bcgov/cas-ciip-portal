@@ -182,13 +182,7 @@ describe('ApplicationWizardConfirmationComponent', () => {
                 ]
               },
               applicationStatusesByApplicationId: {
-                edges: [
-                  {
-                    node: {
-                      id: 'status1'
-                    }
-                  }
-                ]
+                id: 'status1'
               }
             }
           };

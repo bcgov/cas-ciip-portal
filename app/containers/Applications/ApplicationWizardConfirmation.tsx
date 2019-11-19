@@ -23,9 +23,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     const {environment} = props.relay;
     const variables = {
       input: {
-        id:
-          props.query.application.applicationStatusesByApplicationId.edges[0]
-            .node.id,
+        id: props.query.application.applicationStatus.id,
         applicationStatusPatch: {
           applicationStatus: 'pending'
         }
@@ -84,12 +82,8 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
             }
           }
         }
-        applicationStatusesByApplicationId(orderBy: CREATED_AT_DESC) {
-          edges {
-            node {
-              id
-            }
-          }
+        applicationStatus {
+          id
         }
       }
     }

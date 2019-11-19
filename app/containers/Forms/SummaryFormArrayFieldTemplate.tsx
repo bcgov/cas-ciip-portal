@@ -7,7 +7,6 @@ const SummaryFormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateP
   title,
   items
 }) => {
-  console.log(title);
   return (
     <>
       <Col xs={12}>
