@@ -14,6 +14,15 @@ exports[`It matches the last accepted Snapshot 1`] = `
         class="jsx-337505255"
       >
         <a
+          href="/"
+        >
+          Home
+        </a>
+      </li>
+      <li
+        class="jsx-337505255"
+      >
+        <a
           href="/resources/disclaimer"
         >
           Disclaimer
@@ -44,6 +53,15 @@ exports[`It matches the last accepted Snapshot 1`] = `
           href="/resources/copyright"
         >
           Copyright
+        </a>
+      </li>
+      <li
+        class="jsx-337505255"
+      >
+        <a
+          href="/resources/contact"
+        >
+          Contact Us
         </a>
       </li>
     </ul>

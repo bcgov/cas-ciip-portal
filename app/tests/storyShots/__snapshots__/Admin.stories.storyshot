@@ -328,6 +328,21 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                       className="jsx-337505255"
                     >
                       <Link
+                        href="/"
+                      >
+                        <a
+                          href="/"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                        >
+                          Home
+                        </a>
+                      </Link>
+                    </li>
+                    <li
+                      className="jsx-337505255"
+                    >
+                      <Link
                         href="/resources/disclaimer"
                       >
                         <a
@@ -381,6 +396,21 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                           onMouseEnter={[Function]}
                         >
                           Copyright
+                        </a>
+                      </Link>
+                    </li>
+                    <li
+                      className="jsx-337505255"
+                    >
+                      <Link
+                        href="/resources/contact"
+                      >
+                        <a
+                          href="/resources/contact"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
+                        >
+                          Contact Us
                         </a>
                       </Link>
                     </li>
