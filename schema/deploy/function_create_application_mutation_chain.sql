@@ -29,7 +29,11 @@ begin
   for temp_row in
     select form_id from ggircs_portal.ciip_application_wizard
   loop
-    form_result = '{}';
+    if ((select fj.name from ggircs_portal.form_json as fj where temp_row.form_id = fj.id) in ('Production', 'fuel')) then
+      form_result='[{}]';
+    else
+      form_result = '{}';
+    end if;
     if (select prepopulate_from_swrs from ggircs_portal.form_json where id = temp_row.form_id) then
       select form_result_init_function from ggircs_portal.form_json where id = temp_row.form_id into init_function;
       if (init_function is not null) then
