@@ -11,6 +11,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const Keycloak = require('keycloak-connect');
 const cors = require('cors');
+const voyagerMiddleware = require('graphql-voyager/middleware').express;
 
 let databaseURL = 'postgres://';
 if (process.env.PGUSER) {
@@ -102,6 +103,14 @@ app.prepare().then(() => {
 
         return claims;
       }
+    })
+  );
+
+  server.use(
+    '/voyager',
+    voyagerMiddleware({
+      endpointUrl: '/graphql',
+      displayOptions: {hideRoot: true, showLeafFields: false}
     })
   );
 
