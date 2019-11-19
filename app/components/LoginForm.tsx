@@ -7,8 +7,9 @@ const LoginForm = ({children}) => {
 
   return (
     <Form
-      action={`/login?redirectTo=${decodeURI(router.query
-        .redirectTo as string) || '/user-dashboard'}`}
+      action={`/login?redirectTo=${decodeURI(
+        router.query.redirectTo as string
+      ) || '/user-dashboard'}`}
       method="post"
     >
       {children}
