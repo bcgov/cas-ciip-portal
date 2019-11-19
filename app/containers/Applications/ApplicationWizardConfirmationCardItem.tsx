@@ -28,9 +28,7 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
   const [isOpen, setIsOpen] = useState(false);
 
   const CUSTOM_FIELDS = {
-    TitleField: props => (
-      <h3>{props.title === formJson.schema.title ? null : props.title}</h3>
-    ),
+    TitleField: props => <h3>{props.title}</h3>,
     StringField: props => (
       <>: {props.formData ? props.formData : <i>[No Data Entered]</i>}</>
     ),
@@ -44,7 +42,7 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
       <Card.Header onClick={() => setIsOpen(!isOpen)}>
         <Row>
           <Col md={9}>
-            <h2>{formJson.schema.title}</h2>
+            <h2>{formJsonByFormId.name}</h2>
           </Col>
           <Col md={3} style={{textAlign: 'right'}}>
             <Button>{isOpen ? 'Expand' : 'Collapse'}</Button>
