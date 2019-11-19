@@ -37,27 +37,19 @@ exports[`It matches the last accepted Snapshot 1`] = `
           <Col>
             <FormRow>
               <Col>
-                <LoginForm>
-                  <Button
-                    active={false}
-                    disabled={false}
-                    type="submit"
-                    variant="outline-light"
-                  >
-                    Register
-                  </Button>
+                <LoginForm
+                  type="submit"
+                  variant="outline-light"
+                >
+                  Register
                 </LoginForm>
               </Col>
               <Col>
-                <LoginForm>
-                  <Button
-                    active={false}
-                    disabled={false}
-                    type="submit"
-                    variant="outline-light"
-                  >
-                    Login
-                  </Button>
+                <LoginForm
+                  type="submit"
+                  variant="outline-light"
+                >
+                  Login
                 </LoginForm>
               </Col>
             </FormRow>
