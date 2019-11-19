@@ -64,8 +64,8 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
             ObjectFieldTemplate={FormObjectFieldTemplate}
             formData={query}
           >
-            {/* Over-ride submit button with a display: none div */}
-            <div style={{display: 'none'}} />
+            {/* Over-ride submit button for each form with an empty fragment */}
+            <></>
           </JsonSchemaForm>
         </Card.Body>
       </Collapse>

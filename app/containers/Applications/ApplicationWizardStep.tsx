@@ -108,7 +108,6 @@ export default createFragmentContainer(ApplicationWizardStep, {
       application(id: $applicationId) {
         applicationStatus {
           id
-          applicationStatus
         }
       }
     }
