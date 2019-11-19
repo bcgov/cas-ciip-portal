@@ -7,7 +7,7 @@ describe('ApplicationWizardConfirmationComponentCardItem', () => {
     const formResult = {
       formResult: {},
       formJsonByFormId: {
-        name,
+        name: 'Fuel Usage',
         formJson: {schema: {title: 'Fuel UsageCollapse'}}
       }
     };

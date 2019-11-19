@@ -29,7 +29,7 @@ Array [
           className="col-md-9"
         >
           <h2>
-            Administrative Information
+            Admin
           </h2>
         </div>
         <div
@@ -68,7 +68,9 @@ Array [
             <div
               className="col-12"
             >
-              <h3 />
+              <h3>
+                Administrative Information
+              </h3>
             </div>
             <div
               className="col-12"
@@ -772,7 +774,7 @@ Array [
           className="col-md-9"
         >
           <h2>
-            Emissions
+            Emission
           </h2>
         </div>
         <div
@@ -811,7 +813,9 @@ Array [
             <div
               className="col-12"
             >
-              <h3 />
+              <h3>
+                Emissions
+              </h3>
             </div>
             <div
               className="col-12"
@@ -1181,7 +1185,7 @@ Array [
           className="col-md-9"
         >
           <h2>
-            Fuel Usage
+            Fuel
           </h2>
         </div>
         <div
@@ -1217,7 +1221,9 @@ Array [
           <div
             className="col-12"
           >
-            <h3 />
+            <h3>
+              Fuel Usage
+            </h3>
           </div>
           <div
             className="form-row"
@@ -1444,7 +1450,7 @@ Array [
           className="col-md-9"
         >
           <h2>
-            Electricity and Heat Information
+            Electricity and Heat
           </h2>
         </div>
         <div
@@ -1483,7 +1489,9 @@ Array [
             <div
               className="col-12"
             >
-              <h3 />
+              <h3>
+                Electricity and Heat Information
+              </h3>
             </div>
             <div
               className="col-12"
@@ -1737,7 +1745,7 @@ Array [
           className="col-md-9"
         >
           <h2>
-            Production Information
+            Production
           </h2>
         </div>
         <div
@@ -1773,7 +1781,9 @@ Array [
           <div
             className="col-12"
           >
-            <h3 />
+            <h3>
+              Production Information
+            </h3>
           </div>
           <div
             className="form-row"
