@@ -11,11 +11,12 @@ begin;
 create table ggircs_portal.application (
     id integer primary key generated always as identity,
     facility_id integer not null references ggircs_portal.facility(id),
-    foreign key (reporting_year) references ggircs_portal.reporting_year(reporting_year)
+    reporting_year int references ggircs_portal.reporting_year(reporting_year)
 );
 
 comment on table ggircs_portal.application is 'The application data';
 comment on column ggircs_portal.application.id is 'The application id used for reference and join';
 comment on column ggircs_portal.application.facility_id is 'The foreign key to ggircs_portal.facility, references id';
+comment on column ggircs_portal.application.reporting_year is 'The foreign key to ggircs_portal.reporting_year, references reporting_year';
 
 commit;
