@@ -26,7 +26,7 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(formResult);
   const CUSTOM_FIELDS = {
     TitleField: props => (
       <h3>{props.title === formJson.schema.title ? null : props.title}</h3>
