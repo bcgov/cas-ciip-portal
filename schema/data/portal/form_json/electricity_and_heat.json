@@ -1,6 +1,5 @@
 {
   "schema": {
-    "title": "Electricity and Heat Information",
     "type": "object",
     "properties": {
       "electricity": {

@@ -1,6 +1,5 @@
 {
   "schema": {
-    "title": "Fuel Usage",
     "type": "array",
     "items": {
       "$ref": "#/definitions/fuel"

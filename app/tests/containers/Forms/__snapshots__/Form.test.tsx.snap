@@ -1,1129 +1,138 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Form should match the snapshot with the administration form 1`] = `
-<form
-  class="rjsf"
+<div
+  class="jsx-2235865583 "
 >
   <div
-    class="col-12"
+    class="row"
   >
     <div
-      class="form-row"
+      class="col-md-12"
+      style="margin-left:25px"
+    >
+      <h1
+        class="jsx-2235865583 form-title"
+      />
+    </div>
+  </div>
+  <form
+    class="rjsf"
+  >
+    <div
+      class="col-12"
     >
       <div
-        class="col-12"
-      >
-        <legend>
-          Administrative Information
-        </legend>
-      </div>
-      <div
-        class="col-12"
+        class="form-row"
       >
         <div
-          class="form-row"
+          class="col-12"
+        >
+          <legend />
+        </div>
+        <div
+          class="col-12"
         >
           <div
-            class="col-12"
-          >
-            <legend>
-              Operator Information
-            </legend>
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operator_name"
-            >
-              Legal name
-            </label>
-            <input
-              class="form-control"
-              id="root_operator_name"
-              label="Legal name"
-              placeholder=""
-              type="text"
-              value="Test operator"
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operator_tradeName"
-            >
-              Trade name
-            </label>
-            <input
-              class="form-control"
-              id="root_operator_tradeName"
-              label="Trade name"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operator_naics"
-            >
-              NAICS code
-            </label>
-            <input
-              class="form-control"
-              id="root_operator_naics"
-              label="NAICS code"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operator_bcCorporateRegistryNumber"
-            >
-              BC Corporate Registry number
-            </label>
-            <input
-              class="form-control"
-              id="root_operator_bcCorporateRegistryNumber"
-              label="BC Corporate Registry number"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operator_duns"
-            >
-              DUNS number
-            </label>
-            <input
-              class="form-control"
-              id="root_operator_duns"
-              label="DUNS number"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="col-12"
+            class="form-row"
           >
             <div
-              class="form-row"
+              class="col-12"
             >
-              <div
-                class="col-12"
-              >
-                <legend>
-                  Operator Mailing Address
-                </legend>
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_operator_mailingAddress_streetAddress"
-                >
-                  Street address
-                </label>
-                <input
-                  class="form-control"
-                  id="root_operator_mailingAddress_streetAddress"
-                  label="Street address"
-                  placeholder=""
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_operator_mailingAddress_city"
-                >
-                  City
-                </label>
-                <input
-                  class="form-control"
-                  id="root_operator_mailingAddress_city"
-                  label="City"
-                  placeholder=""
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_operator_mailingAddress_postalCode"
-                >
-                  Postal Code
-                </label>
-                <input
-                  class="form-control"
-                  id="root_operator_mailingAddress_postalCode"
-                  label="Postal Code"
-                  placeholder=""
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_operator_mailingAddress_province"
-                >
-                  Province or Territory
-                </label>
-                <select
-                  class="form-control"
-                  id="root_operator_mailingAddress_province"
-                >
-                  <option
-                    selected=""
-                    value=""
-                  />
-                  <option
-                    value="Alberta"
-                  >
-                    Alberta
-                  </option>
-                  <option
-                    value="British Columbia"
-                  >
-                    British Columbia
-                  </option>
-                  <option
-                    value="Manitoba"
-                  >
-                    Manitoba
-                  </option>
-                  <option
-                    value="New Brunswick"
-                  >
-                    New Brunswick
-                  </option>
-                  <option
-                    value="Newfoundland and Labrador"
-                  >
-                    Newfoundland and Labrador
-                  </option>
-                  <option
-                    value="Northwest Territories"
-                  >
-                    Northwest Territories
-                  </option>
-                  <option
-                    value="Nova Scotia"
-                  >
-                    Nova Scotia
-                  </option>
-                  <option
-                    value="Nunavut"
-                  >
-                    Nunavut
-                  </option>
-                  <option
-                    value="Ontario"
-                  >
-                    Ontario
-                  </option>
-                  <option
-                    value="Prince Edward Island"
-                  >
-                    Prince Edward Island
-                  </option>
-                  <option
-                    value="Quebec"
-                  >
-                    Quebec
-                  </option>
-                  <option
-                    value="Saskatchewan"
-                  >
-                    Saskatchewan
-                  </option>
-                  <option
-                    value="Yukon"
-                  >
-                    Yukon
-                  </option>
-                </select>
-              </div>
+              <legend>
+                Operator Information
+              </legend>
             </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="col-12"
-      >
-        <div
-          class="form-row"
-        >
-          <div
-            class="col-12"
-          >
-            <legend>
-              Operational Representative
-            </legend>
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operationalRepresentative_firstName"
-            >
-              First Name
-            </label>
-            <input
-              class="form-control"
-              id="root_operationalRepresentative_firstName"
-              label="First Name"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operationalRepresentative_lastName"
-            >
-              Last Name
-            </label>
-            <input
-              class="form-control"
-              id="root_operationalRepresentative_lastName"
-              label="Last Name"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operationalRepresentative_position"
-            >
-              Position/Title
-            </label>
-            <input
-              class="form-control"
-              id="root_operationalRepresentative_position"
-              label="Position/Title"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operationalRepresentative_email"
-            >
-              Email Address
-            </label>
-            <input
-              class="form-control"
-              id="root_operationalRepresentative_email"
-              label="Email Address"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operationalRepresentative_phone"
-            >
-              Telephone Number
-            </label>
-            <input
-              class="form-control"
-              id="root_operationalRepresentative_phone"
-              label="Telephone Number"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_operationalRepresentative_fax"
-            >
-              Fax Number
-            </label>
-            <input
-              class="form-control"
-              id="root_operationalRepresentative_fax"
-              label="Fax Number"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="col-12"
-          >
             <div
-              class="form-row"
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
             >
-              <div
-                class="col-12"
+              <label
+                class="form-label"
+                for="root_operator_name"
               >
-                <legend>
-                  Operational Representative Mailing Address
-                </legend>
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_operationalRepresentative_mailingAddress_streetAddress"
-                >
-                  Street address
-                </label>
-                <input
-                  class="form-control"
-                  id="root_operationalRepresentative_mailingAddress_streetAddress"
-                  label="Street address"
-                  placeholder=""
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_operationalRepresentative_mailingAddress_city"
-                >
-                  City
-                </label>
-                <input
-                  class="form-control"
-                  id="root_operationalRepresentative_mailingAddress_city"
-                  label="City"
-                  placeholder=""
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_operationalRepresentative_mailingAddress_postalCode"
-                >
-                  Postal Code
-                </label>
-                <input
-                  class="form-control"
-                  id="root_operationalRepresentative_mailingAddress_postalCode"
-                  label="Postal Code"
-                  placeholder=""
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_operationalRepresentative_mailingAddress_province"
-                >
-                  Province or Territory
-                </label>
-                <select
-                  class="form-control"
-                  id="root_operationalRepresentative_mailingAddress_province"
-                >
-                  <option
-                    selected=""
-                    value=""
-                  />
-                  <option
-                    value="Alberta"
-                  >
-                    Alberta
-                  </option>
-                  <option
-                    value="British Columbia"
-                  >
-                    British Columbia
-                  </option>
-                  <option
-                    value="Manitoba"
-                  >
-                    Manitoba
-                  </option>
-                  <option
-                    value="New Brunswick"
-                  >
-                    New Brunswick
-                  </option>
-                  <option
-                    value="Newfoundland and Labrador"
-                  >
-                    Newfoundland and Labrador
-                  </option>
-                  <option
-                    value="Northwest Territories"
-                  >
-                    Northwest Territories
-                  </option>
-                  <option
-                    value="Nova Scotia"
-                  >
-                    Nova Scotia
-                  </option>
-                  <option
-                    value="Nunavut"
-                  >
-                    Nunavut
-                  </option>
-                  <option
-                    value="Ontario"
-                  >
-                    Ontario
-                  </option>
-                  <option
-                    value="Prince Edward Island"
-                  >
-                    Prince Edward Island
-                  </option>
-                  <option
-                    value="Quebec"
-                  >
-                    Quebec
-                  </option>
-                  <option
-                    value="Saskatchewan"
-                  >
-                    Saskatchewan
-                  </option>
-                  <option
-                    value="Yukon"
-                  >
-                    Yukon
-                  </option>
-                </select>
-              </div>
+                Legal name
+              </label>
+              <input
+                class="form-control"
+                id="root_operator_name"
+                label="Legal name"
+                placeholder=""
+                type="text"
+                value="Test operator"
+              />
             </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="col-12"
-      >
-        <div
-          class="form-row"
-        >
-          <div
-            class="col-12"
-          >
-            <legend>
-              Facility Information
-            </legend>
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_facility_facilityName"
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
             >
-              Facility Name
-            </label>
-            <input
-              class="form-control"
-              id="root_facility_facilityName"
-              label="Facility Name"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_facility_facilityType"
-            >
-              Facility Type
-            </label>
-            <select
-              class="form-control"
-              id="root_facility_facilityType"
-            >
-              <option
-                selected=""
+              <label
+                class="form-label"
+                for="root_operator_tradeName"
+              >
+                Trade name
+              </label>
+              <input
+                class="form-control"
+                id="root_operator_tradeName"
+                label="Trade name"
+                placeholder=""
+                type="text"
                 value=""
               />
-              <option
-                value="IF_a"
-              >
-                IF_a
-              </option>
-              <option
-                value="IF_b"
-              >
-                IF_b
-              </option>
-              <option
-                value="L_c"
-              >
-                L_c
-              </option>
-              <option
-                value="SFO"
-              >
-                SFO
-              </option>
-              <option
-                value="LFO"
-              >
-                LFO
-              </option>
-              <option
-                value="EIO"
-              >
-                EIO
-              </option>
-            </select>
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_facility_bcghgid"
-            >
-              BCGHG ID Number
-            </label>
-            <input
-              class="form-control"
-              id="root_facility_bcghgid"
-              label="BCGHG ID Number"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_facility_naics"
-            >
-              NAICS Code
-            </label>
-            <input
-              class="form-control"
-              id="root_facility_naics"
-              label="NAICS Code"
-              placeholder=""
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            class="col-12"
-          >
-            <div
-              class="form-row"
-            >
-              <div
-                class="col-12"
-              >
-                <legend>
-                  Facility Mailing Address
-                </legend>
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_facility_mailingAddress_streetAddress"
-                >
-                  Street address
-                </label>
-                <input
-                  class="form-control"
-                  id="root_facility_mailingAddress_streetAddress"
-                  label="Street address"
-                  placeholder=""
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_facility_mailingAddress_city"
-                >
-                  City
-                </label>
-                <input
-                  class="form-control"
-                  id="root_facility_mailingAddress_city"
-                  label="City"
-                  placeholder=""
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_facility_mailingAddress_postalCode"
-                >
-                  Postal Code
-                </label>
-                <input
-                  class="form-control"
-                  id="root_facility_mailingAddress_postalCode"
-                  label="Postal Code"
-                  placeholder=""
-                  type="text"
-                  value=""
-                />
-              </div>
-              <div
-                class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  class="form-label"
-                  for="root_facility_mailingAddress_province"
-                >
-                  Province or Territory
-                </label>
-                <select
-                  class="form-control"
-                  id="root_facility_mailingAddress_province"
-                >
-                  <option
-                    selected=""
-                    value=""
-                  />
-                  <option
-                    value="Alberta"
-                  >
-                    Alberta
-                  </option>
-                  <option
-                    value="British Columbia"
-                  >
-                    British Columbia
-                  </option>
-                  <option
-                    value="Manitoba"
-                  >
-                    Manitoba
-                  </option>
-                  <option
-                    value="New Brunswick"
-                  >
-                    New Brunswick
-                  </option>
-                  <option
-                    value="Newfoundland and Labrador"
-                  >
-                    Newfoundland and Labrador
-                  </option>
-                  <option
-                    value="Northwest Territories"
-                  >
-                    Northwest Territories
-                  </option>
-                  <option
-                    value="Nova Scotia"
-                  >
-                    Nova Scotia
-                  </option>
-                  <option
-                    value="Nunavut"
-                  >
-                    Nunavut
-                  </option>
-                  <option
-                    value="Ontario"
-                  >
-                    Ontario
-                  </option>
-                  <option
-                    value="Prince Edward Island"
-                  >
-                    Prince Edward Island
-                  </option>
-                  <option
-                    value="Quebec"
-                  >
-                    Quebec
-                  </option>
-                  <option
-                    value="Saskatchewan"
-                  >
-                    Saskatchewan
-                  </option>
-                  <option
-                    value="Yukon"
-                  >
-                    Yukon
-                  </option>
-                </select>
-              </div>
             </div>
-          </div>
-          <div
-            class="form-group field field-boolean form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_facility_isFacilityLocationDifferent"
-            >
-              Is the facility location different from the mailing address?
-            </label>
             <div
-              class="field-radio-group"
-              id="root_facility_isFacilityLocationDifferent"
+              class="form-group field field-string form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
             >
-              <div
-                class="radio "
+              <label
+                class="form-label"
+                for="root_operator_naics"
               >
-                <label>
-                  <span>
-                    <input
-                      name="0"
-                      type="radio"
-                      value="true"
-                    />
-                    <span>
-                       Yes
-                    </span>
-                  </span>
-                </label>
-              </div>
-              <div
-                class="radio "
-              >
-                <label>
-                  <span>
-                    <input
-                      name="0"
-                      type="radio"
-                      value="false"
-                    />
-                    <span>
-                       No
-                    </span>
-                  </span>
-                </label>
-              </div>
+                NAICS code
+              </label>
+              <input
+                class="form-control"
+                id="root_operator_naics"
+                label="NAICS code"
+                placeholder=""
+                type="text"
+                value=""
+              />
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    style="text-align:right"
-  >
-    <button
-      class="btn btn-primary"
-      type="submit"
-    >
-      Submit
-    </button>
-  </div>
-</form>
-`;
-
-exports[`Form should match the snapshot with the electricity and heat form 1`] = `
-<form
-  class="rjsf"
->
-  <div
-    class="col-12"
-  >
-    <div
-      class="form-row"
-    >
-      <div
-        class="col-12"
-      >
-        <legend>
-          Electricity and Heat Information
-        </legend>
-      </div>
-      <div
-        class="col-12"
-      >
-        <div
-          class="form-row"
-        >
-          <div
-            class="col-12"
-          >
-            <legend>
-              Electricity
-            </legend>
-          </div>
-          <div
-            class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_electricity_purchased"
+            <div
+              class="form-group field field-string form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
             >
-              Purchased
-            </label>
-            <input
-              class="form-control"
-              id="root_electricity_purchased"
-              label="Purchased"
-              placeholder=""
-              step="any"
-              type="number"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_electricity_sold"
+              <label
+                class="form-label"
+                for="root_operator_bcCorporateRegistryNumber"
+              >
+                BC Corporate Registry number
+              </label>
+              <input
+                class="form-control"
+                id="root_operator_bcCorporateRegistryNumber"
+                label="BC Corporate Registry number"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
             >
-              Sold
-            </label>
-            <input
-              class="form-control"
-              id="root_electricity_sold"
-              label="Sold"
-              placeholder=""
-              step="any"
-              type="number"
-              value="81"
-            />
-          </div>
-          <div
-            class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_electricity_consumedOnSite"
-            >
-              Consumed On-Site
-            </label>
-            <input
-              class="form-control"
-              id="root_electricity_consumedOnSite"
-              label="Consumed On-Site"
-              placeholder=""
-              step="any"
-              type="number"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_electricity_generatedOnSite"
-            >
-              Generated On-Site
-            </label>
-            <input
-              class="form-control"
-              id="root_electricity_generatedOnSite"
-              label="Generated On-Site"
-              placeholder=""
-              step="any"
-              type="number"
-              value=""
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        class="col-12"
-      >
-        <div
-          class="form-row"
-        >
-          <div
-            class="col-12"
-          >
-            <legend>
-              Heat
-            </legend>
-          </div>
-          <div
-            class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_heat_purchased"
-            >
-              Purchased
-            </label>
-            <input
-              class="form-control"
-              id="root_heat_purchased"
-              label="Purchased"
-              placeholder=""
-              step="any"
-              type="number"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_heat_sold"
-            >
-              Sold
-            </label>
-            <input
-              class="form-control"
-              id="root_heat_sold"
-              label="Sold"
-              placeholder=""
-              step="any"
-              type="number"
-              value="81"
-            />
-          </div>
-          <div
-            class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_heat_consumedOnSite"
-            >
-              Consumed On-Site
-            </label>
-            <input
-              class="form-control"
-              id="root_heat_consumedOnSite"
-              label="Consumed On-Site"
-              placeholder=""
-              step="any"
-              type="number"
-              value=""
-            />
-          </div>
-          <div
-            class="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-          >
-            <label
-              class="form-label"
-              for="root_heat_generatedOnSite"
-            >
-              Generated On-Site
-            </label>
-            <input
-              class="form-control"
-              id="root_heat_generatedOnSite"
-              label="Generated On-Site"
-              placeholder=""
-              step="any"
-              type="number"
-              value=""
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    style="text-align:right"
-  >
-    <button
-      class="btn btn-primary"
-      type="submit"
-    >
-      Submit
-    </button>
-  </div>
-</form>
-`;
-
-exports[`Form should match the snapshot with the emission form 1`] = `
-<form
-  class="rjsf"
->
-  <div
-    class="col-12"
-  >
-    <div
-      class="form-row"
-    >
-      <div
-        class="col-12"
-      >
-        <legend>
-          Emissions
-        </legend>
-      </div>
-      <div
-        class="col-12"
-      >
-        <div
-          class="form-row"
-        >
-          <div
-            class="col-md-12 col-12"
-          >
+              <label
+                class="form-label"
+                for="root_operator_duns"
+              >
+                DUNS number
+              </label>
+              <input
+                class="form-control"
+                id="root_operator_duns"
+                label="DUNS number"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
             <div
               class="col-12"
             >
@@ -1133,58 +142,1034 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                 <div
                   class="col-12"
                 >
-                  <legend />
+                  <legend>
+                    Operator Mailing Address
+                  </legend>
                 </div>
                 <div
-                  class="form-group field field-string  hidden-title form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                 >
                   <label
                     class="form-label"
-                    for="root_sourceTypes_0_sourceTypeName"
+                    for="root_operator_mailingAddress_streetAddress"
                   >
-                    sourceTypeName
+                    Street address
                   </label>
-                  <div
-                    class="row"
-                    style="margin:20px 0 20px 0"
-                  >
-                    <div
-                      class="col-md-4 col-12"
-                    >
-                      <h5
-                        class="jsx-2806087631"
-                        style="text-align:left"
-                      />
-                    </div>
-                    <div
-                      class="col-md-3 col-12"
-                    >
-                      <h6
-                        class="jsx-2806087631"
-                      >
-                        Tonnes
-                      </h6>
-                    </div>
-                    <div
-                      class="col-md-2 col-12"
-                    >
-                      <h6
-                        class="jsx-2806087631"
-                      >
-                        GWP
-                      </h6>
-                    </div>
-                    <div
-                      class="col-md-3 col-12"
-                    >
-                      <h6
-                        class="jsx-2806087631"
-                      >
-                        Tonnes (CO2e)
-                      </h6>
-                    </div>
-                  </div>
+                  <input
+                    class="form-control"
+                    id="root_operator_mailingAddress_streetAddress"
+                    label="Street address"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
                 </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_operator_mailingAddress_city"
+                  >
+                    City
+                  </label>
+                  <input
+                    class="form-control"
+                    id="root_operator_mailingAddress_city"
+                    label="City"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_operator_mailingAddress_postalCode"
+                  >
+                    Postal Code
+                  </label>
+                  <input
+                    class="form-control"
+                    id="root_operator_mailingAddress_postalCode"
+                    label="Postal Code"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_operator_mailingAddress_province"
+                  >
+                    Province or Territory
+                  </label>
+                  <select
+                    class="form-control"
+                    id="root_operator_mailingAddress_province"
+                  >
+                    <option
+                      selected=""
+                      value=""
+                    />
+                    <option
+                      value="Alberta"
+                    >
+                      Alberta
+                    </option>
+                    <option
+                      value="British Columbia"
+                    >
+                      British Columbia
+                    </option>
+                    <option
+                      value="Manitoba"
+                    >
+                      Manitoba
+                    </option>
+                    <option
+                      value="New Brunswick"
+                    >
+                      New Brunswick
+                    </option>
+                    <option
+                      value="Newfoundland and Labrador"
+                    >
+                      Newfoundland and Labrador
+                    </option>
+                    <option
+                      value="Northwest Territories"
+                    >
+                      Northwest Territories
+                    </option>
+                    <option
+                      value="Nova Scotia"
+                    >
+                      Nova Scotia
+                    </option>
+                    <option
+                      value="Nunavut"
+                    >
+                      Nunavut
+                    </option>
+                    <option
+                      value="Ontario"
+                    >
+                      Ontario
+                    </option>
+                    <option
+                      value="Prince Edward Island"
+                    >
+                      Prince Edward Island
+                    </option>
+                    <option
+                      value="Quebec"
+                    >
+                      Quebec
+                    </option>
+                    <option
+                      value="Saskatchewan"
+                    >
+                      Saskatchewan
+                    </option>
+                    <option
+                      value="Yukon"
+                    >
+                      Yukon
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-12"
+        >
+          <div
+            class="form-row"
+          >
+            <div
+              class="col-12"
+            >
+              <legend>
+                Operational Representative
+              </legend>
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_operationalRepresentative_firstName"
+              >
+                First Name
+              </label>
+              <input
+                class="form-control"
+                id="root_operationalRepresentative_firstName"
+                label="First Name"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_operationalRepresentative_lastName"
+              >
+                Last Name
+              </label>
+              <input
+                class="form-control"
+                id="root_operationalRepresentative_lastName"
+                label="Last Name"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_operationalRepresentative_position"
+              >
+                Position/Title
+              </label>
+              <input
+                class="form-control"
+                id="root_operationalRepresentative_position"
+                label="Position/Title"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_operationalRepresentative_email"
+              >
+                Email Address
+              </label>
+              <input
+                class="form-control"
+                id="root_operationalRepresentative_email"
+                label="Email Address"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_operationalRepresentative_phone"
+              >
+                Telephone Number
+              </label>
+              <input
+                class="form-control"
+                id="root_operationalRepresentative_phone"
+                label="Telephone Number"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_operationalRepresentative_fax"
+              >
+                Fax Number
+              </label>
+              <input
+                class="form-control"
+                id="root_operationalRepresentative_fax"
+                label="Fax Number"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="col-12"
+            >
+              <div
+                class="form-row"
+              >
+                <div
+                  class="col-12"
+                >
+                  <legend>
+                    Operational Representative Mailing Address
+                  </legend>
+                </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_operationalRepresentative_mailingAddress_streetAddress"
+                  >
+                    Street address
+                  </label>
+                  <input
+                    class="form-control"
+                    id="root_operationalRepresentative_mailingAddress_streetAddress"
+                    label="Street address"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_operationalRepresentative_mailingAddress_city"
+                  >
+                    City
+                  </label>
+                  <input
+                    class="form-control"
+                    id="root_operationalRepresentative_mailingAddress_city"
+                    label="City"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_operationalRepresentative_mailingAddress_postalCode"
+                  >
+                    Postal Code
+                  </label>
+                  <input
+                    class="form-control"
+                    id="root_operationalRepresentative_mailingAddress_postalCode"
+                    label="Postal Code"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_operationalRepresentative_mailingAddress_province"
+                  >
+                    Province or Territory
+                  </label>
+                  <select
+                    class="form-control"
+                    id="root_operationalRepresentative_mailingAddress_province"
+                  >
+                    <option
+                      selected=""
+                      value=""
+                    />
+                    <option
+                      value="Alberta"
+                    >
+                      Alberta
+                    </option>
+                    <option
+                      value="British Columbia"
+                    >
+                      British Columbia
+                    </option>
+                    <option
+                      value="Manitoba"
+                    >
+                      Manitoba
+                    </option>
+                    <option
+                      value="New Brunswick"
+                    >
+                      New Brunswick
+                    </option>
+                    <option
+                      value="Newfoundland and Labrador"
+                    >
+                      Newfoundland and Labrador
+                    </option>
+                    <option
+                      value="Northwest Territories"
+                    >
+                      Northwest Territories
+                    </option>
+                    <option
+                      value="Nova Scotia"
+                    >
+                      Nova Scotia
+                    </option>
+                    <option
+                      value="Nunavut"
+                    >
+                      Nunavut
+                    </option>
+                    <option
+                      value="Ontario"
+                    >
+                      Ontario
+                    </option>
+                    <option
+                      value="Prince Edward Island"
+                    >
+                      Prince Edward Island
+                    </option>
+                    <option
+                      value="Quebec"
+                    >
+                      Quebec
+                    </option>
+                    <option
+                      value="Saskatchewan"
+                    >
+                      Saskatchewan
+                    </option>
+                    <option
+                      value="Yukon"
+                    >
+                      Yukon
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-12"
+        >
+          <div
+            class="form-row"
+          >
+            <div
+              class="col-12"
+            >
+              <legend>
+                Facility Information
+              </legend>
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_facility_facilityName"
+              >
+                Facility Name
+              </label>
+              <input
+                class="form-control"
+                id="root_facility_facilityName"
+                label="Facility Name"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_facility_facilityType"
+              >
+                Facility Type
+              </label>
+              <select
+                class="form-control"
+                id="root_facility_facilityType"
+              >
+                <option
+                  selected=""
+                  value=""
+                />
+                <option
+                  value="IF_a"
+                >
+                  IF_a
+                </option>
+                <option
+                  value="IF_b"
+                >
+                  IF_b
+                </option>
+                <option
+                  value="L_c"
+                >
+                  L_c
+                </option>
+                <option
+                  value="SFO"
+                >
+                  SFO
+                </option>
+                <option
+                  value="LFO"
+                >
+                  LFO
+                </option>
+                <option
+                  value="EIO"
+                >
+                  EIO
+                </option>
+              </select>
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_facility_bcghgid"
+              >
+                BCGHG ID Number
+              </label>
+              <input
+                class="form-control"
+                id="root_facility_bcghgid"
+                label="BCGHG ID Number"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_facility_naics"
+              >
+                NAICS Code
+              </label>
+              <input
+                class="form-control"
+                id="root_facility_naics"
+                label="NAICS Code"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="col-12"
+            >
+              <div
+                class="form-row"
+              >
+                <div
+                  class="col-12"
+                >
+                  <legend>
+                    Facility Mailing Address
+                  </legend>
+                </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_facility_mailingAddress_streetAddress"
+                  >
+                    Street address
+                  </label>
+                  <input
+                    class="form-control"
+                    id="root_facility_mailingAddress_streetAddress"
+                    label="Street address"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_facility_mailingAddress_city"
+                  >
+                    City
+                  </label>
+                  <input
+                    class="form-control"
+                    id="root_facility_mailingAddress_city"
+                    label="City"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_facility_mailingAddress_postalCode"
+                  >
+                    Postal Code
+                  </label>
+                  <input
+                    class="form-control"
+                    id="root_facility_mailingAddress_postalCode"
+                    label="Postal Code"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+                <div
+                  class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    class="form-label"
+                    for="root_facility_mailingAddress_province"
+                  >
+                    Province or Territory
+                  </label>
+                  <select
+                    class="form-control"
+                    id="root_facility_mailingAddress_province"
+                  >
+                    <option
+                      selected=""
+                      value=""
+                    />
+                    <option
+                      value="Alberta"
+                    >
+                      Alberta
+                    </option>
+                    <option
+                      value="British Columbia"
+                    >
+                      British Columbia
+                    </option>
+                    <option
+                      value="Manitoba"
+                    >
+                      Manitoba
+                    </option>
+                    <option
+                      value="New Brunswick"
+                    >
+                      New Brunswick
+                    </option>
+                    <option
+                      value="Newfoundland and Labrador"
+                    >
+                      Newfoundland and Labrador
+                    </option>
+                    <option
+                      value="Northwest Territories"
+                    >
+                      Northwest Territories
+                    </option>
+                    <option
+                      value="Nova Scotia"
+                    >
+                      Nova Scotia
+                    </option>
+                    <option
+                      value="Nunavut"
+                    >
+                      Nunavut
+                    </option>
+                    <option
+                      value="Ontario"
+                    >
+                      Ontario
+                    </option>
+                    <option
+                      value="Prince Edward Island"
+                    >
+                      Prince Edward Island
+                    </option>
+                    <option
+                      value="Quebec"
+                    >
+                      Quebec
+                    </option>
+                    <option
+                      value="Saskatchewan"
+                    >
+                      Saskatchewan
+                    </option>
+                    <option
+                      value="Yukon"
+                    >
+                      Yukon
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group field field-boolean form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_facility_isFacilityLocationDifferent"
+              >
+                Is the facility location different from the mailing address?
+              </label>
+              <div
+                class="field-radio-group"
+                id="root_facility_isFacilityLocationDifferent"
+              >
+                <div
+                  class="radio "
+                >
+                  <label>
+                    <span>
+                      <input
+                        name="0"
+                        type="radio"
+                        value="true"
+                      />
+                      <span>
+                         Yes
+                      </span>
+                    </span>
+                  </label>
+                </div>
+                <div
+                  class="radio "
+                >
+                  <label>
+                    <span>
+                      <input
+                        name="0"
+                        type="radio"
+                        value="false"
+                      />
+                      <span>
+                         No
+                      </span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="jsx-2235865583 form-submit"
+      style="text-align:right"
+    >
+      <button
+        class="btn btn-primary btn-lg"
+        type="submit"
+      >
+        Continue
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`Form should match the snapshot with the electricity and heat form 1`] = `
+<div
+  class="jsx-2235865583 "
+>
+  <div
+    class="row"
+  >
+    <div
+      class="col-md-12"
+      style="margin-left:25px"
+    >
+      <h1
+        class="jsx-2235865583 form-title"
+      />
+    </div>
+  </div>
+  <form
+    class="rjsf"
+  >
+    <div
+      class="col-12"
+    >
+      <div
+        class="form-row"
+      >
+        <div
+          class="col-12"
+        >
+          <legend />
+        </div>
+        <div
+          class="col-12"
+        >
+          <div
+            class="form-row"
+          >
+            <div
+              class="col-12"
+            >
+              <legend>
+                Electricity
+              </legend>
+            </div>
+            <div
+              class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_electricity_purchased"
+              >
+                Purchased
+              </label>
+              <input
+                class="form-control"
+                id="root_electricity_purchased"
+                label="Purchased"
+                placeholder=""
+                step="any"
+                type="number"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_electricity_sold"
+              >
+                Sold
+              </label>
+              <input
+                class="form-control"
+                id="root_electricity_sold"
+                label="Sold"
+                placeholder=""
+                step="any"
+                type="number"
+                value="81"
+              />
+            </div>
+            <div
+              class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_electricity_consumedOnSite"
+              >
+                Consumed On-Site
+              </label>
+              <input
+                class="form-control"
+                id="root_electricity_consumedOnSite"
+                label="Consumed On-Site"
+                placeholder=""
+                step="any"
+                type="number"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_electricity_generatedOnSite"
+              >
+                Generated On-Site
+              </label>
+              <input
+                class="form-control"
+                id="root_electricity_generatedOnSite"
+                label="Generated On-Site"
+                placeholder=""
+                step="any"
+                type="number"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-12"
+        >
+          <div
+            class="form-row"
+          >
+            <div
+              class="col-12"
+            >
+              <legend>
+                Heat
+              </legend>
+            </div>
+            <div
+              class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_heat_purchased"
+              >
+                Purchased
+              </label>
+              <input
+                class="form-control"
+                id="root_heat_purchased"
+                label="Purchased"
+                placeholder=""
+                step="any"
+                type="number"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_heat_sold"
+              >
+                Sold
+              </label>
+              <input
+                class="form-control"
+                id="root_heat_sold"
+                label="Sold"
+                placeholder=""
+                step="any"
+                type="number"
+                value="81"
+              />
+            </div>
+            <div
+              class="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_heat_consumedOnSite"
+              >
+                Consumed On-Site
+              </label>
+              <input
+                class="form-control"
+                id="root_heat_consumedOnSite"
+                label="Consumed On-Site"
+                placeholder=""
+                step="any"
+                type="number"
+                value=""
+              />
+            </div>
+            <div
+              class="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+            >
+              <label
+                class="form-label"
+                for="root_heat_generatedOnSite"
+              >
+                Generated On-Site
+              </label>
+              <input
+                class="form-control"
+                id="root_heat_generatedOnSite"
+                label="Generated On-Site"
+                placeholder=""
+                step="any"
+                type="number"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="jsx-2235865583 form-submit"
+      style="text-align:right"
+    >
+      <button
+        class="btn btn-primary btn-lg"
+        type="submit"
+      >
+        Continue
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`Form should match the snapshot with the emission form 1`] = `
+<div
+  class="jsx-2235865583 emission-form no-col-padding"
+>
+  <div
+    class="row"
+  >
+    <div
+      class="col-md-12"
+      style="margin-left:25px"
+    >
+      <h1
+        class="jsx-2235865583 form-title"
+      />
+    </div>
+  </div>
+  <form
+    class="rjsf"
+  >
+    <div
+      class="col-12"
+    >
+      <div
+        class="form-row"
+      >
+        <div
+          class="col-12"
+        >
+          <legend />
+        </div>
+        <div
+          class="col-12"
+        >
+          <div
+            class="jsx-529402721 field field-array field-array-of-object"
+          >
+            <div
+              class="form-row"
+            >
+              <div
+                class="col-md-12 col-12"
+              >
                 <div
                   class="col-12"
                 >
@@ -1192,96 +1177,65 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                     class="form-row"
                   >
                     <div
-                      class="col-md-12 col-12"
+                      class="col-12"
                     >
-                      <div
-                        class="col-12"
-                      >
-                        <div
-                          class="form-row"
-                        >
-                          <div
-                            class="col-md-12 col-12"
-                          >
-                            <div
-                              class="form-row"
-                            >
-                              <div
-                                class="col-md-4"
-                              >
-                                CH4 
-                                <br
-                                  class="jsx-1154833918"
-                                />
-                                <div
-                                  class="col-md-10"
-                                  style="margin:0;padding:0;color:#888;line-height:17px"
-                                >
-                                  <small
-                                    class="jsx-1154833918"
-                                  >
-                                    gassy
-                                  </small>
-                                </div>
-                              </div>
-                              <div
-                                class="col-md-3"
-                              >
-                                <input
-                                  class="form-control"
-                                  type="number"
-                                  value="65"
-                                />
-                              </div>
-                              <div
-                                class="col-md-2"
-                                style="text-align:center;margin-top:5px"
-                              >
-                                <ul
-                                  class="jsx-1154833918 gwp"
-                                >
-                                  <li
-                                    class="jsx-1154833918"
-                                  >
-                                    X
-                                  </li>
-                                  <li
-                                    class="jsx-1154833918"
-                                  />
-                                  <li
-                                    class="jsx-1154833918"
-                                  >
-                                    =
-                                  </li>
-                                </ul>
-                              </div>
-                              <div
-                                class="col-md-3"
-                              >
-                                <input
-                                  class="form-control"
-                                  disabled=""
-                                  type="number"
-                                  value="1625"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <legend />
                     </div>
-                  </div>
-                  <hr
-                    class="jsx-529402721"
-                  />
-                  <div
-                    class="form-row"
-                  >
                     <div
-                      class="col-md-12 col-12"
+                      class="form-group field field-string  hidden-title form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                    >
+                      <label
+                        class="form-label"
+                        for="root_sourceTypes_0_sourceTypeName"
+                      >
+                        sourceTypeName
+                      </label>
+                      <div
+                        class="row"
+                        style="margin:20px 0 20px 0"
+                      >
+                        <div
+                          class="col-md-4 col-12"
+                        >
+                          <h5
+                            class="jsx-2806087631"
+                            style="text-align:left"
+                          />
+                        </div>
+                        <div
+                          class="col-md-3 col-12"
+                        >
+                          <h6
+                            class="jsx-2806087631"
+                          >
+                            Tonnes
+                          </h6>
+                        </div>
+                        <div
+                          class="col-md-2 col-12"
+                        >
+                          <h6
+                            class="jsx-2806087631"
+                          >
+                            GWP
+                          </h6>
+                        </div>
+                        <div
+                          class="col-md-3 col-12"
+                        >
+                          <h6
+                            class="jsx-2806087631"
+                          >
+                            Tonnes (CO2e)
+                          </h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="col-12"
                     >
                       <div
-                        class="col-12"
+                        class="jsx-529402721 field field-array field-array-of-object"
                       >
                         <div
                           class="form-row"
@@ -1290,98 +1244,197 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             class="col-md-12 col-12"
                           >
                             <div
-                              class="form-row"
+                              class="col-12"
                             >
                               <div
-                                class="col-md-4"
+                                class="form-row"
                               >
-                                C02 
-                                <br
-                                  class="jsx-1154833918"
-                                />
                                 <div
-                                  class="col-md-10"
-                                  style="margin:0;padding:0;color:#888;line-height:17px"
+                                  class="col-md-12 col-12"
                                 >
-                                  <small
-                                    class="jsx-1154833918"
+                                  <div
+                                    class="form-row"
                                   >
-                                    not as gassy
-                                  </small>
+                                    <div
+                                      class="col-md-4"
+                                    >
+                                      CH4 
+                                      <br
+                                        class="jsx-1154833918"
+                                      />
+                                      <div
+                                        class="col-md-10"
+                                        style="margin:0;padding:0;color:#888;line-height:17px"
+                                      >
+                                        <small
+                                          class="jsx-1154833918"
+                                        >
+                                          gassy
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="col-md-3"
+                                    >
+                                      <input
+                                        class="form-control"
+                                        type="number"
+                                        value="65"
+                                      />
+                                    </div>
+                                    <div
+                                      class="col-md-2"
+                                      style="text-align:center;margin-top:5px"
+                                    >
+                                      <ul
+                                        class="jsx-1154833918 gwp"
+                                      >
+                                        <li
+                                          class="jsx-1154833918"
+                                        >
+                                          X
+                                        </li>
+                                        <li
+                                          class="jsx-1154833918"
+                                        />
+                                        <li
+                                          class="jsx-1154833918"
+                                        >
+                                          =
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div
+                                      class="col-md-3"
+                                    >
+                                      <input
+                                        class="form-control"
+                                        disabled=""
+                                        type="number"
+                                        value="1625"
+                                      />
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                              <div
-                                class="col-md-3"
-                              >
-                                <input
-                                  class="form-control"
-                                  type="number"
-                                  value="5"
-                                />
-                              </div>
-                              <div
-                                class="col-md-2"
-                                style="text-align:center;margin-top:5px"
-                              >
-                                <ul
-                                  class="jsx-1154833918 gwp"
-                                >
-                                  <li
-                                    class="jsx-1154833918"
-                                  >
-                                    X
-                                  </li>
-                                  <li
-                                    class="jsx-1154833918"
-                                  />
-                                  <li
-                                    class="jsx-1154833918"
-                                  >
-                                    =
-                                  </li>
-                                </ul>
-                              </div>
-                              <div
-                                class="col-md-3"
-                              >
-                                <input
-                                  class="form-control"
-                                  disabled=""
-                                  type="number"
-                                  value="25"
-                                />
                               </div>
                             </div>
                           </div>
                         </div>
+                        <hr
+                          class="jsx-529402721"
+                        />
+                        <div
+                          class="form-row"
+                        >
+                          <div
+                            class="col-md-12 col-12"
+                          >
+                            <div
+                              class="col-12"
+                            >
+                              <div
+                                class="form-row"
+                              >
+                                <div
+                                  class="col-md-12 col-12"
+                                >
+                                  <div
+                                    class="form-row"
+                                  >
+                                    <div
+                                      class="col-md-4"
+                                    >
+                                      C02 
+                                      <br
+                                        class="jsx-1154833918"
+                                      />
+                                      <div
+                                        class="col-md-10"
+                                        style="margin:0;padding:0;color:#888;line-height:17px"
+                                      >
+                                        <small
+                                          class="jsx-1154833918"
+                                        >
+                                          not as gassy
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="col-md-3"
+                                    >
+                                      <input
+                                        class="form-control"
+                                        type="number"
+                                        value="5"
+                                      />
+                                    </div>
+                                    <div
+                                      class="col-md-2"
+                                      style="text-align:center;margin-top:5px"
+                                    >
+                                      <ul
+                                        class="jsx-1154833918 gwp"
+                                      >
+                                        <li
+                                          class="jsx-1154833918"
+                                        >
+                                          X
+                                        </li>
+                                        <li
+                                          class="jsx-1154833918"
+                                        />
+                                        <li
+                                          class="jsx-1154833918"
+                                        >
+                                          =
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div
+                                      class="col-md-3"
+                                    >
+                                      <input
+                                        class="form-control"
+                                        disabled=""
+                                        type="number"
+                                        value="25"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr
+                          class="jsx-529402721"
+                        />
                       </div>
                     </div>
                   </div>
-                  <hr
-                    class="jsx-529402721"
-                  />
                 </div>
               </div>
             </div>
+            <hr
+              class="jsx-529402721"
+            />
           </div>
         </div>
-        <hr
-          class="jsx-529402721"
-        />
       </div>
     </div>
-  </div>
-  <div
-    style="text-align:right"
-  >
-    <button
-      class="btn btn-primary"
-      type="submit"
+    <div
+      class="jsx-2235865583 form-submit"
+      style="text-align:right"
     >
-      Submit
-    </button>
-  </div>
-</form>
+      <button
+        class="btn btn-primary btn-lg"
+        type="submit"
+      >
+        Continue
+      </button>
+    </div>
+  </form>
+</div>
 `;
 
 exports[`Form should match the snapshot with the fuel form 1`] = `
@@ -1433,7 +1486,6 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
               "items": Object {
                 "$ref": "#/definitions/fuel",
               },
-              "title": "Fuel Usage",
               "type": "array",
             },
             "uiSchema": Object {
@@ -1460,167 +1512,192 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
 `;
 
 exports[`Form should match the snapshot with the production form 1`] = `
-<Form
-  ArrayFieldTemplate={[Function]}
-  ErrorList={[Function]}
-  FieldTemplate={[Function]}
-  ObjectFieldTemplate={[Function]}
-  disabled={false}
-  fields={
-    Object {
-      "emissionGas": [Function],
-      "emissionSource": [Function],
-      "fuel": [Function],
-      "production": [Function],
-    }
-  }
-  formContext={
-    Object {
-      "query": Object {
-        " $fragmentRefs": Object {
-          "FuelFields_query": true,
-          "ProductionFields_query": true,
-        },
-        " $refType": "Form_query",
-        "result": Object {
-          "formJsonByFormId": Object {
-            "formJson": Object {
-              "schema": Object {
-                "definitions": Object {
-                  "production": Object {
-                    "properties": Object {
-                      "associatedEmissions": Object {
-                        "title": "Associated Emission (tCO2e)",
-                        "type": "number",
-                      },
-                      "comments": Object {
-                        "title": "comments",
-                        "type": "string",
-                      },
-                      "product": Object {
-                        "title": "Processing Unit Module",
-                        "type": "string",
-                      },
-                      "productUnits": Object {
-                        "title": "Units",
-                        "type": "string",
-                      },
-                      "quantity": Object {
-                        "title": "Quantity",
-                        "type": "number",
-                      },
-                    },
-                    "type": "object",
-                  },
-                },
-                "items": Object {
-                  "$ref": "#/definitions/production",
-                },
-                "title": "Production Information",
-                "type": "array",
-              },
-              "uiSchema": Object {
-                "items": Object {
-                  "ui:field": "production",
-                },
-                "ui:add-text": "Add a Product",
-                "ui:remove-text": "Remove Product",
-              },
-            },
-          },
-          "formResult": Array [
-            Object {
-              "associatedEmissions": 42,
-              "comments": "Saepe quis aliquid e",
-              "product": "Dehydration",
-              "productUnits": "kl",
-              "quantity": 84,
-            },
-          ],
-        },
-      },
-    }
-  }
-  formData={
-    Array [
-      Object {
-        "associatedEmissions": 42,
-        "comments": "Saepe quis aliquid e",
-        "product": "Dehydration",
-        "productUnits": "kl",
-        "quantity": 84,
-      },
-    ]
-  }
-  liveOmit={true}
-  liveValidate={false}
-  noHtml5Validate={false}
-  noValidate={false}
-  omitExtraData={true}
-  safeRenderCompletion={false}
-  schema={
-    Object {
-      "definitions": Object {
-        "production": Object {
-          "properties": Object {
-            "associatedEmissions": Object {
-              "title": "Associated Emission (tCO2e)",
-              "type": "number",
-            },
-            "comments": Object {
-              "title": "comments",
-              "type": "string",
-            },
-            "product": Object {
-              "title": "Processing Unit Module",
-              "type": "string",
-            },
-            "productUnits": Object {
-              "title": "Units",
-              "type": "string",
-            },
-            "quantity": Object {
-              "title": "Quantity",
-              "type": "number",
-            },
-          },
-          "type": "object",
-        },
-      },
-      "items": Object {
-        "$ref": "#/definitions/production",
-      },
-      "title": "Production Information",
-      "type": "array",
-    }
-  }
-  showErrorList={false}
-  transformErrors={[Function]}
-  uiSchema={
-    Object {
-      "items": Object {
-        "ui:field": "production",
-      },
-      "ui:add-text": "Add a Product",
-      "ui:remove-text": "Remove Product",
-    }
-  }
+<div
+  className="jsx-2235865583 "
 >
-  <div
-    style={
+  <ForwardRef
+    noGutters={false}
+  >
+    <Col
+      md={12}
+      style={
+        Object {
+          "marginLeft": "25px",
+        }
+      }
+    >
+      <h1
+        className="jsx-2235865583 form-title"
+      />
+    </Col>
+  </ForwardRef>
+  <Form
+    ArrayFieldTemplate={[Function]}
+    ErrorList={[Function]}
+    FieldTemplate={[Function]}
+    ObjectFieldTemplate={[Function]}
+    disabled={false}
+    fields={
       Object {
-        "textAlign": "right",
+        "emissionGas": [Function],
+        "emissionSource": [Function],
+        "fuel": [Function],
+        "production": [Function],
+      }
+    }
+    formContext={
+      Object {
+        "query": Object {
+          " $fragmentRefs": Object {
+            "FuelFields_query": true,
+            "ProductionFields_query": true,
+          },
+          " $refType": "Form_query",
+          "result": Object {
+            "formJsonByFormId": Object {
+              "formJson": Object {
+                "schema": Object {
+                  "definitions": Object {
+                    "production": Object {
+                      "properties": Object {
+                        "associatedEmissions": Object {
+                          "title": "Associated Emission (tCO2e)",
+                          "type": "number",
+                        },
+                        "comments": Object {
+                          "title": "comments",
+                          "type": "string",
+                        },
+                        "product": Object {
+                          "title": "Processing Unit Module",
+                          "type": "string",
+                        },
+                        "productUnits": Object {
+                          "title": "Units",
+                          "type": "string",
+                        },
+                        "quantity": Object {
+                          "title": "Quantity",
+                          "type": "number",
+                        },
+                      },
+                      "type": "object",
+                    },
+                  },
+                  "items": Object {
+                    "$ref": "#/definitions/production",
+                  },
+                  "type": "array",
+                },
+                "uiSchema": Object {
+                  "items": Object {
+                    "ui:field": "production",
+                  },
+                  "ui:add-text": "Add a Product",
+                  "ui:remove-text": "Remove Product",
+                },
+              },
+            },
+            "formResult": Array [
+              Object {
+                "associatedEmissions": 42,
+                "comments": "Saepe quis aliquid e",
+                "product": "Dehydration",
+                "productUnits": "kl",
+                "quantity": 84,
+              },
+            ],
+          },
+        },
+      }
+    }
+    formData={
+      Array [
+        Object {
+          "associatedEmissions": 42,
+          "comments": "Saepe quis aliquid e",
+          "product": "Dehydration",
+          "productUnits": "kl",
+          "quantity": 84,
+        },
+      ]
+    }
+    liveOmit={true}
+    liveValidate={false}
+    noHtml5Validate={false}
+    noValidate={false}
+    omitExtraData={true}
+    safeRenderCompletion={false}
+    schema={
+      Object {
+        "definitions": Object {
+          "production": Object {
+            "properties": Object {
+              "associatedEmissions": Object {
+                "title": "Associated Emission (tCO2e)",
+                "type": "number",
+              },
+              "comments": Object {
+                "title": "comments",
+                "type": "string",
+              },
+              "product": Object {
+                "title": "Processing Unit Module",
+                "type": "string",
+              },
+              "productUnits": Object {
+                "title": "Units",
+                "type": "string",
+              },
+              "quantity": Object {
+                "title": "Quantity",
+                "type": "number",
+              },
+            },
+            "type": "object",
+          },
+        },
+        "items": Object {
+          "$ref": "#/definitions/production",
+        },
+        "type": "array",
+      }
+    }
+    showErrorList={false}
+    transformErrors={[Function]}
+    uiSchema={
+      Object {
+        "items": Object {
+          "ui:field": "production",
+        },
+        "ui:add-text": "Add a Product",
+        "ui:remove-text": "Remove Product",
       }
     }
   >
-    <Button
-      active={false}
-      disabled={false}
-      type="submit"
-      variant="primary"
+    <div
+      className="jsx-2235865583 form-submit"
+      style={
+        Object {
+          "textAlign": "right",
+        }
+      }
     >
-      Submit
-    </Button>
-  </div>
-</Form>
+      <Button
+        active={false}
+        disabled={false}
+        size="lg"
+        type="submit"
+        variant="primary"
+      >
+        Continue
+      </Button>
+    </div>
+  </Form>
+  <JSXStyle
+    id="2235865583"
+  >
+    .rjsf .form-row{margin:20px 0 40px;}.emission-form .rjsf .form-row{margin:0;}.no-col-padding .form-row&gt;.col,.no-col-padding .form-row&gt;[class*='col-']{padding:0;}.form-submit{border:1px solid #bbb;padding:30px;background:#eee;border-radius:6px;}
+  </JSXStyle>
+</div>
 `;

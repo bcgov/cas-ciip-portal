@@ -7,7 +7,7 @@ import JsonSchemaForm, {
   AjvError
 } from 'react-jsonschema-form';
 import {Form_query} from 'Form_query.graphql';
-import {Button} from 'react-bootstrap';
+import {Button, Row, Col} from 'react-bootstrap';
 import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
 import FormArrayFieldTemplate from './FormArrayFieldTemplate';
@@ -45,7 +45,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
 }) => {
   const {result} = query || {};
   const {
-    formJsonByFormId: {formJson},
+    formJsonByFormId: {name, formJson},
     formResult
   } = result || {formJsonByFormId: {}};
   if (!result) return null;
@@ -67,28 +67,59 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     });
   };
 
+  const formClass = uiSchema['ui:className'] || '';
   return (
-    <JsonSchemaForm
-      omitExtraData
-      liveOmit
-      showErrorList={false}
-      ArrayFieldTemplate={FormArrayFieldTemplate}
-      FieldTemplate={FormFieldTemplate}
-      formContext={{query}}
-      formData={formResult}
-      fields={CUSTOM_FIELDS}
-      customFormats={customFormats}
-      schema={schema}
-      uiSchema={uiSchema}
-      ObjectFieldTemplate={FormObjectFieldTemplate}
-      transformErrors={transformErrors}
-      onSubmit={onComplete}
-      onChange={onValueChanged}
-    >
-      <div style={{textAlign: 'right'}}>
-        <Button type="submit">Submit</Button>
-      </div>
-    </JsonSchemaForm>
+    <div className={formClass}>
+      <Row>
+        <Col md={12} style={{marginLeft: '25px'}}>
+          <h1 className="form-title">{name}</h1>
+        </Col>
+      </Row>
+
+      <JsonSchemaForm
+        omitExtraData
+        liveOmit
+        showErrorList={false}
+        ArrayFieldTemplate={FormArrayFieldTemplate}
+        FieldTemplate={FormFieldTemplate}
+        formContext={{query}}
+        formData={formResult}
+        fields={CUSTOM_FIELDS}
+        customFormats={customFormats}
+        schema={schema}
+        uiSchema={uiSchema}
+        ObjectFieldTemplate={FormObjectFieldTemplate}
+        transformErrors={transformErrors}
+        onSubmit={onComplete}
+        onChange={onValueChanged}
+      >
+        <div className="form-submit" style={{textAlign: 'right'}}>
+          <Button size="lg" type="submit">
+            Continue
+          </Button>
+        </div>
+      </JsonSchemaForm>
+      <style jsx global>
+        {`
+          .rjsf .form-row {
+            margin: 20px 0 40px;
+          }
+          .emission-form .rjsf .form-row {
+            margin: 0;
+          }
+          .no-col-padding .form-row > .col,
+          .no-col-padding .form-row > [class*='col-'] {
+            padding: 0;
+          }
+          .form-submit {
+            border: 1px solid #bbb;
+            padding: 30px;
+            background: #eee;
+            border-radius: 6px;
+          }
+        `}
+      </style>
+    </div>
   );
 };
 
@@ -101,6 +132,7 @@ export default createFragmentContainer(FormComponent, {
       result: formResult(id: $formResultId) {
         formResult
         formJsonByFormId {
+          name
           formJson
         }
       }

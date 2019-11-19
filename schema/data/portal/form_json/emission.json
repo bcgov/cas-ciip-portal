@@ -1,7 +1,6 @@
 {
   "schema": {
     "type": "object",
-    "title": "Emissions",
     "properties": {
       "sourceTypes": {
         "title": "Source Types",
@@ -56,6 +55,7 @@
     }
   },
   "uiSchema": {
+    "ui:className": "emission-form no-col-padding",
     "sourceTypes": {
       "ui:options": {
         "addable": false,

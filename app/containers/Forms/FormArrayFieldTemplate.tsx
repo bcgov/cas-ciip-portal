@@ -6,10 +6,11 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
   items,
   canAdd,
   onAddClick,
-  uiSchema
+  uiSchema,
+  className
 }) => {
   return (
-    <>
+    <div className={className}>
       {items.map(element => {
         return (
           <React.Fragment key={element.index}>
@@ -63,7 +64,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
           }
         `}
       </style>
-    </>
+    </div>
   );
 };
 

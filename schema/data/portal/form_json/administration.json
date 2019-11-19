@@ -1,6 +1,5 @@
 {
   "schema": {
-    "title": "Administrative Information",
     "type": "object",
     "properties": {
       "operator": {
