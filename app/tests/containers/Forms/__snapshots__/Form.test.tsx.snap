@@ -18,7 +18,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
       <h1
         className="jsx-2235865583 form-title"
       >
-        &lt;mock-value-for-field-"name"&gt;
+        Admin
       </h1>
     </div>
   </div>
@@ -73,7 +73,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value="TestOperator"
+                value="consequat Ut Duis"
               />
             </div>
             <div
@@ -98,7 +98,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="in qui"
               />
             </div>
             <div
@@ -123,7 +123,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="in qui"
               />
             </div>
             <div
@@ -148,7 +148,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="consequat Ut Duis"
               />
             </div>
             <div
@@ -173,7 +173,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="451234512"
               />
             </div>
             <div
@@ -211,7 +211,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={false}
                     type="text"
-                    value=""
+                    value="in qui"
                   />
                 </div>
                 <div
@@ -236,7 +236,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={false}
                     type="text"
-                    value=""
+                    value="mollit eu esse"
                   />
                 </div>
                 <div
@@ -261,7 +261,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={false}
                     type="text"
-                    value=""
+                    value="F3K 5C2"
                   />
                 </div>
                 <div
@@ -282,7 +282,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onChange={[Function]}
                     onFocus={[Function]}
                     required={false}
-                    value=""
+                    value="Nova Scotia"
                   >
                     <option
                       value=""
@@ -395,7 +395,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="culpa"
               />
             </div>
             <div
@@ -420,7 +420,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="est dolor"
               />
             </div>
             <div
@@ -445,7 +445,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="consequat Ut Duis"
               />
             </div>
             <div
@@ -470,7 +470,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="in qui"
               />
             </div>
             <div
@@ -495,7 +495,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="mollit eu esse"
               />
             </div>
             <div
@@ -520,7 +520,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="culpa"
               />
             </div>
             <div
@@ -558,7 +558,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={false}
                     type="text"
-                    value=""
+                    value="culpa"
                   />
                 </div>
                 <div
@@ -583,7 +583,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={false}
                     type="text"
-                    value=""
+                    value="est dolor"
                   />
                 </div>
                 <div
@@ -608,7 +608,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={false}
                     type="text"
-                    value=""
+                    value="C2H 4N1"
                   />
                 </div>
                 <div
@@ -629,7 +629,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onChange={[Function]}
                     onFocus={[Function]}
                     required={false}
-                    value=""
+                    value="Northwest Territories"
                   >
                     <option
                       value=""
@@ -742,7 +742,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="mollit eu esse"
               />
             </div>
             <div
@@ -763,7 +763,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 onChange={[Function]}
                 onFocus={[Function]}
                 required={false}
-                value=""
+                value="SFO"
               >
                 <option
                   value=""
@@ -824,7 +824,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="est dolor"
               />
             </div>
             <div
@@ -849,7 +849,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="text"
-                value=""
+                value="consequat Ut Duis"
               />
             </div>
             <div
@@ -887,7 +887,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={false}
                     type="text"
-                    value=""
+                    value="consequat Ut Duis"
                   />
                 </div>
                 <div
@@ -912,7 +912,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={false}
                     type="text"
-                    value=""
+                    value="in qui"
                   />
                 </div>
                 <div
@@ -937,7 +937,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={false}
                     type="text"
-                    value=""
+                    value="N1F 3K5"
                   />
                 </div>
                 <div
@@ -958,7 +958,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onChange={[Function]}
                     onFocus={[Function]}
                     required={false}
-                    value=""
+                    value="New Brunswick"
                   >
                     <option
                       value=""
@@ -1056,7 +1056,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                         autoFocus={false}
                         checked={false}
                         disabled={false}
-                        name="0"
+                        name="0.1"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -1077,9 +1077,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     <span>
                       <input
                         autoFocus={false}
-                        checked={false}
+                        checked={true}
                         disabled={false}
-                        name="0"
+                        name="0.1"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -1150,7 +1150,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
       <h1
         className="jsx-2235865583 form-title"
       >
-        &lt;mock-value-for-field-"name"&gt;
+        Electricity And Heat
       </h1>
     </div>
   </div>
@@ -1206,7 +1206,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 required={false}
                 step="any"
                 type="number"
-                value=""
+                value={-60000000}
               />
             </div>
             <div
@@ -1232,7 +1232,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 required={false}
                 step="any"
                 type="number"
-                value={81}
+                value={-80000000}
               />
             </div>
             <div
@@ -1258,7 +1258,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 required={false}
                 step="any"
                 type="number"
-                value=""
+                value={-20000000}
               />
             </div>
             <div
@@ -1284,7 +1284,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 required={false}
                 step="any"
                 type="number"
-                value=""
+                value={-40000000}
               />
             </div>
           </div>
@@ -1325,7 +1325,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 required={false}
                 step="any"
                 type="number"
-                value=""
+                value={-40000000}
               />
             </div>
             <div
@@ -1351,7 +1351,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 required={false}
                 step="any"
                 type="number"
-                value={81}
+                value={-60000000}
               />
             </div>
             <div
@@ -1377,7 +1377,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 required={false}
                 step="any"
                 type="number"
-                value=""
+                value={0}
               />
             </div>
             <div
@@ -1403,7 +1403,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 required={false}
                 step="any"
                 type="number"
-                value=""
+                value={-20000000}
               />
             </div>
           </div>
@@ -1461,7 +1461,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
       <h1
         className="jsx-2235865583 form-title"
       >
-        &lt;mock-value-for-field-"name"&gt;
+        Emission
       </h1>
     </div>
   </div>
@@ -1531,7 +1531,9 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                 "textAlign": "left",
                               }
                             }
-                          />
+                          >
+                            in qui
+                          </h5>
                         </div>
                         <div
                           className="col-md-3 col-12"
@@ -1589,7 +1591,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                     <div
                                       className="col-md-4"
                                     >
-                                      CH4
+                                      consequat Ut Duis
                                        
                                       <br
                                         className="jsx-1154833918"
@@ -1608,7 +1610,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         <small
                                           className="jsx-1154833918"
                                         >
-                                          gassy
+                                          est dolor
                                         </small>
                                       </div>
                                     </div>
@@ -1619,7 +1621,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         className="form-control"
                                         onChange={[Function]}
                                         type="number"
-                                        value={65}
+                                        value={-80000000}
                                       />
                                     </div>
                                     <div
@@ -1641,7 +1643,9 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         </li>
                                         <li
                                           className="jsx-1154833918"
-                                        />
+                                        >
+                                          -40000000
+                                        </li>
                                         <li
                                           className="jsx-1154833918"
                                         >
@@ -1656,7 +1660,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         className="form-control"
                                         disabled={true}
                                         type="number"
-                                        value={1625}
+                                        value={0}
                                       />
                                     </div>
                                   </div>
@@ -1689,7 +1693,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                     <div
                                       className="col-md-4"
                                     >
-                                      C02
+                                      mollit eu esse
                                        
                                       <br
                                         className="jsx-1154833918"
@@ -1708,7 +1712,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         <small
                                           className="jsx-1154833918"
                                         >
-                                          not as gassy
+                                          in qui
                                         </small>
                                       </div>
                                     </div>
@@ -1719,7 +1723,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         className="form-control"
                                         onChange={[Function]}
                                         type="number"
-                                        value={5}
+                                        value={0}
                                       />
                                     </div>
                                     <div
@@ -1741,7 +1745,9 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         </li>
                                         <li
                                           className="jsx-1154833918"
-                                        />
+                                        >
+                                          -60000000
+                                        </li>
                                         <li
                                           className="jsx-1154833918"
                                         >
@@ -1756,7 +1762,201 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         className="form-control"
                                         disabled={true}
                                         type="number"
-                                        value={25}
+                                        value={-20000000}
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr
+                          className="jsx-529402721"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              className="jsx-529402721"
+            />
+            <div
+              className="form-row"
+            >
+              <div
+                className="col-md-12 col-12"
+              >
+                <div
+                  className="col-12"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col-12"
+                    >
+                      <legend />
+                    </div>
+                    <div
+                      className="form-group field field-string  hidden-title form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                    >
+                      <label
+                        className="form-label"
+                        htmlFor="root_sourceTypes_1_sourceTypeName"
+                      >
+                        sourceTypeName
+                      </label>
+                      <div
+                        className="row"
+                        style={
+                          Object {
+                            "margin": "20px 0 20px 0",
+                          }
+                        }
+                      >
+                        <div
+                          className="col-md-4 col-12"
+                        >
+                          <h5
+                            className="jsx-2806087631"
+                            style={
+                              Object {
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                            consequat Ut Duis
+                          </h5>
+                        </div>
+                        <div
+                          className="col-md-3 col-12"
+                        >
+                          <h6
+                            className="jsx-2806087631"
+                          >
+                            Tonnes
+                          </h6>
+                        </div>
+                        <div
+                          className="col-md-2 col-12"
+                        >
+                          <h6
+                            className="jsx-2806087631"
+                          >
+                            GWP
+                          </h6>
+                        </div>
+                        <div
+                          className="col-md-3 col-12"
+                        >
+                          <h6
+                            className="jsx-2806087631"
+                          >
+                            Tonnes (CO2e)
+                          </h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="col-12"
+                    >
+                      <div
+                        className="jsx-529402721 field field-array field-array-of-object"
+                      >
+                        <div
+                          className="form-row"
+                        >
+                          <div
+                            className="col-md-12 col-12"
+                          >
+                            <div
+                              className="col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      est dolor
+                                       
+                                      <br
+                                        className="jsx-1154833918"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-1154833918"
+                                        >
+                                          culpa
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <input
+                                        className="form-control"
+                                        onChange={[Function]}
+                                        type="number"
+                                        value={-20000000}
+                                      />
+                                    </div>
+                                    <div
+                                      className="col-md-2"
+                                      style={
+                                        Object {
+                                          "marginTop": "5px",
+                                          "textAlign": "center",
+                                        }
+                                      }
+                                    >
+                                      <ul
+                                        className="jsx-1154833918 gwp"
+                                      >
+                                        <li
+                                          className="jsx-1154833918"
+                                        >
+                                          X
+                                        </li>
+                                        <li
+                                          className="jsx-1154833918"
+                                        >
+                                          -80000000
+                                        </li>
+                                        <li
+                                          className="jsx-1154833918"
+                                        >
+                                          =
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <input
+                                        className="form-control"
+                                        disabled={true}
+                                        type="number"
+                                        value={-40000000}
                                       />
                                     </div>
                                   </div>
@@ -1839,7 +2039,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
       <h1
         className="jsx-2235865583 form-title"
       >
-        &lt;mock-value-for-field-"name"&gt;
+        Fuel
       </h1>
     </div>
   </div>
@@ -1882,7 +2082,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                       className="form-control"
                       id="id.fuelType"
                       onChange={[Function]}
-                      value="C/D Waste - Plastic"
+                      value="in qui"
                     >
                       <option
                         value=""
@@ -1912,7 +2112,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                     </label>
                     <input
                       className="form-control"
-                      defaultValue={4}
+                      defaultValue={-40000000}
                       id="id.quantity"
                       onChange={[Function]}
                       type="number"
@@ -1935,15 +2135,12 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                       className="form-control"
                       id="id.fuelUnits"
                       onChange={[Function]}
-                      value="t"
+                      value="culpa"
                     >
                       <option
                         value=""
                       >
                         ...
-                      </option>
-                      <option>
-                        t
                       </option>
                     </select>
                   </div>
@@ -2072,7 +2269,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
       <h1
         className="jsx-2235865583 form-title"
       >
-        &lt;mock-value-for-field-"name"&gt;
+        Production
       </h1>
     </div>
   </div>
@@ -2162,7 +2359,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       className="form-control"
                       id="id.product"
                       onChange={[Function]}
-                      value="Dehydration"
+                      value="mollit eu esse"
                     >
                       <option
                         value=""
@@ -2191,7 +2388,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       className="form-control"
                       id="id.productUnits"
                       onChange={[Function]}
-                      value="kL"
+                      value="est dolor"
                     >
                       <option
                         value=""
@@ -2215,7 +2412,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                     </label>
                     <input
                       className="form-control"
-                      defaultValue={84}
+                      defaultValue={0}
                       id="id.quantity"
                       onChange={[Function]}
                       type="number"
@@ -2236,7 +2433,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                     </label>
                     <input
                       className="form-control"
-                      defaultValue={42}
+                      defaultValue={-20000000}
                       id="id.associatedEmissions"
                       onChange={[Function]}
                       type="number"
@@ -2260,7 +2457,160 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       id="id.comments"
                       onChange={[Function]}
                       type="string"
-                      value="Saepe quis aliquid e"
+                      value="in qui"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="col-md-2 col-12"
+          >
+            <div
+              className="jsx-529402721 remove-button-container"
+            >
+              <button
+                className="btn btn-danger"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Remove Product
+              </button>
+            </div>
+          </div>
+        </div>
+        <hr
+          className="jsx-529402721"
+        />
+        <div
+          className="form-row"
+        >
+          <div
+            className="col-md-10 col-12"
+          >
+            <div
+              className="col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-md-6 col-12"
+                >
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="id.product"
+                    >
+                      Product
+                    </label>
+                    <select
+                      className="form-control"
+                      id="id.product"
+                      onChange={[Function]}
+                      value="est dolor"
+                    >
+                      <option
+                        value=""
+                      >
+                        ...
+                      </option>
+                      <option>
+                        &lt;mock-value-for-field-"name"&gt;
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div
+                  className="col-md-2 col-12"
+                >
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="id.productUnits"
+                    >
+                      Units
+                    </label>
+                    <select
+                      className="form-control"
+                      id="id.productUnits"
+                      onChange={[Function]}
+                      value="in qui"
+                    >
+                      <option
+                        value=""
+                      >
+                        ...
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div
+                  className="col-md-6 col-12"
+                >
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="id.quantity"
+                    >
+                      Quantity
+                    </label>
+                    <input
+                      className="form-control"
+                      defaultValue={-20000000}
+                      id="id.quantity"
+                      onChange={[Function]}
+                      type="number"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="col-md-4 col-12"
+                >
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="id.associatedEmissions"
+                    >
+                      Associated Emisisons (tCO2e)
+                    </label>
+                    <input
+                      className="form-control"
+                      defaultValue={-40000000}
+                      id="id.associatedEmissions"
+                      onChange={[Function]}
+                      type="number"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="col-md-12 col-12"
+                >
+                  <div
+                    className="form-group"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="id.comments"
+                    >
+                      Comments
+                    </label>
+                    <textarea
+                      className="form-control"
+                      id="id.comments"
+                      onChange={[Function]}
+                      type="string"
+                      value="culpa"
                     />
                   </div>
                 </div>
