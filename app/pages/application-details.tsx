@@ -5,13 +5,13 @@ import {NextRouter} from 'next/router';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import DefaultLayout from '../layouts/default-layout';
+import ApplicationWizardConfirmation from '../containers/Applications/ApplicationWizardConfirmation';
 
 interface Props {
   query: applicationDetailsQueryResponse['query'];
   router: NextRouter;
 }
 
-// TODO: decide what to show in this page
 class ApplicationDetails extends Component<Props> {
   static query = graphql`
     query applicationDetailsQuery(
@@ -27,6 +27,8 @@ class ApplicationDetails extends Component<Props> {
           @arguments(condition: $applicationStatusCondition)
         ...IncentiveCalculatorContainer_query
           @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
+        ...ApplicationWizardConfirmation_query
+          @arguments(applicationId: "WyJhcHBsaWNhdGlvbnMiLDNd")
       }
     }
   `;
@@ -43,6 +45,7 @@ class ApplicationDetails extends Component<Props> {
 
   render() {
     const {query} = this.props;
+    console.log('query', query);
     const {session} = query || {};
     return (
       <DefaultLayout session={session}>
@@ -51,6 +54,7 @@ class ApplicationDetails extends Component<Props> {
           applicationId={this.props.router.query.applicationId}
         />
         <hr />
+        <ApplicationWizardConfirmation query={query} />
         <IncentiveCalculatorContainer
           query={query}
           bcghgid={this.props.router.query.bcghgid}
