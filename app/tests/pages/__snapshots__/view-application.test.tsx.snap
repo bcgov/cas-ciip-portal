@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It matches the last accepted Snapshot 1`] = `
+<Relay(DefaultLayout)
+  session={null}
+  title="Summary of your application"
+>
+  <Relay(ApplicationWizardConfirmationCardItemComponent)
+    formResult={
+      Object {
+        "id": "form-1",
+      }
+    }
+    key="form-1"
+  />
+  <Link
+    href={
+      Object {
+        "pathname": "/user-dashboard",
+      }
+    }
+  >
+    <Button
+      active={false}
+      disabled={false}
+      type="button"
+      variant="primary"
+    >
+      Back to My Dashboard
+    </Button>
+  </Link>
+</Relay(DefaultLayout)>
+`;
