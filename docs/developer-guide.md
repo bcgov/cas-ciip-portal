@@ -76,6 +76,25 @@ local postgres server.
 
 The application requires users to be authenticated using keycloak. Authentication can be disabled by running `node server NO_AUTH` (or `yarn dev NO_AUTH`), which is the default behavior of `make watch`.
 
+## Unit and Integration Testing
+
+### `react-test-renderer` vs `enzyme`
+
+Depending on whether we're writing integration or unit tests, we use either `react-test-renderer` or `enzyme`, respectively, as our react testing library.
+Here are some key differences between the two, found in [this beautiful post](https://github.com/internetarchive/iaux/issues/226#issue-463893174):
+
+`react-test-renderer`
+- It is a library for rendering React components to pure JavaScript objects, and for asserting the behaviour of our components.
+- Shallow rendering has limitations (no ref support, no calling componentDidMount and componentDidUpdate) and react's own documentation recommends to use enzyme for the same purpose
+
+`enzyme` :
+- Adds some great additional utility methods for rendering a component (or multiple components), finding elements, and interacting with elements.
+- Shallow rendering makes it useful to isolate the component for pure unit testing. It protects against changes or bugs in a child component which may alter the behaviour or output of the component under test. Additionally makes tests run faster.
+- More readable code
+- No need to test as many implementation details
+
+
+
 [Watchman]: https://facebook.github.io/watchman/
 [extended json syntax]: https://facebook.github.io/watchman/docs/cmd/trigger.html#extended-syntax
 [multitail]: https://linux.die.net/man/1/multitail
