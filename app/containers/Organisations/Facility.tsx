@@ -44,7 +44,11 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
   const applyButton = () => {
     if (!applicationId) {
       return (
-        <Button variant="primary" onClick={startApplication}>
+        <Button
+          variant="primary"
+          data-action="apply"
+          onClick={startApplication}
+        >
           Apply for CIIP for this facility
         </Button>
       );
@@ -60,7 +64,26 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
             }
           }}
         >
-          <Button variant="primary">Resume CIIP application</Button>
+          <Button variant="primary" data-action="resume">
+            Resume CIIP application
+          </Button>
+        </Link>
+      );
+    }
+
+    if (applicationId && applicationStatus.applicationStatus === 'pending') {
+      return (
+        <Link
+          href={{
+            pathname: '/view-application',
+            query: {
+              applicationId
+            }
+          }}
+        >
+          <Button variant="primary" data-action="view">
+            View Submitted Application
+          </Button>
         </Link>
       );
     }
