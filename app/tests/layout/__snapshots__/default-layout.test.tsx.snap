@@ -6,6 +6,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
 >
   <HeaderLayout
     isLoggedIn={false}
+    isRegistered={false}
   />
   <Container
     className="content"

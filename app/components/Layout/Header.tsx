@@ -3,7 +3,7 @@ import {Row, Col, Form, Button} from 'react-bootstrap';
 import Link from 'next/link';
 import LoginButton from '../LoginButton';
 
-const HeaderLayout = ({isLoggedIn = false}) => (
+const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
   <header>
     <div className="container">
       <div className="banner">
@@ -21,13 +21,15 @@ const HeaderLayout = ({isLoggedIn = false}) => (
             <Col>
               {isLoggedIn ? (
                 <Form.Row>
-                  <Col>
-                    <Form action="/user-profile" method="get">
-                      <Button type="submit" variant="outline-light">
-                        Profile
-                      </Button>
-                    </Form>
-                  </Col>
+                  {isRegistered && (
+                    <Col>
+                      <Form action="/user-profile" method="get">
+                        <Button type="submit" variant="outline-light">
+                          Profile
+                        </Button>
+                      </Form>
+                    </Col>
+                  )}
                   <Col>
                     <Form action="/logout" method="post">
                       <Button type="submit" variant="outline-light">

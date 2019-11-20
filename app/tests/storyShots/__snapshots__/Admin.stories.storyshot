@@ -73,6 +73,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
           >
             <HeaderLayout
               isLoggedIn={true}
+              isRegistered={true}
             >
               <header
                 className="jsx-2807878339"

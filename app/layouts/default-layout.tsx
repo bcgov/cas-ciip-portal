@@ -47,7 +47,10 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
 
   return (
     <div className="page-wrap">
-      <Header isLoggedIn={Boolean(session && session.ciipUserBySub)} />
+      <Header
+        isLoggedIn={Boolean(session)}
+        isRegistered={Boolean(session && session.ciipUserBySub)}
+      />
       {showSubheader && <Subheader />}
       {title ? (
         <div className="page-title">
