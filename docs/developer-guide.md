@@ -35,7 +35,7 @@ The `linter-xo-2` VSCode add XO support. The following VSCode settings will enab
 ```
 ## Testing
 
-Tests on the database uses pg_prove, make sure pgtap is installed to run them or install with `sudo apt install libtap-parser-sourcehandler-pgtap-perl`.
+Tests on the database uses pg_prove, make sure pgtap is installed to run them or install with `make install pgtap` or `sudo apt install libtap-parser-sourcehandler-pgtap-perl`.
 
 ## Pre-commit hooks
 
