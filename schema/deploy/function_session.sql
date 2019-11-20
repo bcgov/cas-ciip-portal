@@ -7,9 +7,11 @@ begin;
 create or replace function ggircs_portal.session()
     returns ggircs_portal.jwt_token as
 $function$
+declare
+  _sub text := current_setting('jwt.claims.sub', true);
 begin
-    if (current_setting('jwt.claims.sub', true) is null) then
-        return null;
+    if ((coalesce(trim(_sub), '') = '') is not false) then
+        return null; -- ensure null, empty, and whitespace _sub claims are filtered out
     end if;
     return (
         select row (
@@ -19,7 +21,7 @@ begin
                    current_setting('jwt.claims.iat', true),
                    current_setting('jwt.claims.iss', true),
                    current_setting('jwt.claims.aud', true),
-                   current_setting('jwt.claims.sub'), -- subject can never be null
+                   _sub, -- subject can never be null
                    current_setting('jwt.claims.typ', true),
                    current_setting('jwt.claims.azp', true),
                    current_setting('jwt.claims.auth_time', true),
