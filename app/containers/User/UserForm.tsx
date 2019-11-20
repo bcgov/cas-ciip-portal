@@ -94,6 +94,7 @@ const UserForm: React.FunctionComponent<Props> = ({
     <JsonSchemaForm
       omitExtraData
       liveOmit
+      safeRenderCompletion
       schema={userSchema}
       formData={user}
       showErrorList={false}
