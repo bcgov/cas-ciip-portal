@@ -9,6 +9,8 @@ import emissionForm from 'schema/data/portal/form_json/emission.json';
 import fuelForm from 'schema/data/portal/form_json/fuel.json';
 import electricityAndHeatForm from 'schema/data/portal/form_json/electricity_and_heat.json';
 import productionForm from 'schema/data/portal/form_json/production.json';
+import {FormJson} from 'next-env';
+import {generateFakeSchemaData} from '../json-schema-utils';
 
 describe('ApplicationDetailsContainer', () => {
   const environment = createMockEnvironment();
@@ -51,11 +53,7 @@ describe('ApplicationDetailsContainer', () => {
                   {
                     node: {
                       id: 'admin',
-                      formResult: {
-                        operator: {name: 'TestOperator'},
-                        facility: {facilityName: 'fac1'},
-                        operationalRepresentative: {firstName: 'DoogieHouser'}
-                      },
+                      formResult: generateFakeSchemaData(adminForm as FormJson),
                       formJsonByFormId: {
                         name: 'Admin',
                         formJson: adminForm
@@ -65,41 +63,9 @@ describe('ApplicationDetailsContainer', () => {
                   {
                     node: {
                       id: 'emission',
-                      formResult: {
-                        sourceTypes: [
-                          {
-                            sourceTypeName: 'Stationary Fuel Combustion',
-                            gases: [
-                              {
-                                gwp: 1,
-                                gasType: 'CO2nonbio',
-                                annualCO2e: 12,
-                                annualEmission: 15,
-                                gasDescription: 'gassy'
-                              },
-                              {
-                                gwp: 12,
-                                gasType: 'CO2',
-                                annualCO2e: 1,
-                                annualEmission: 12,
-                                gasDescription: 'super gassy'
-                              }
-                            ]
-                          },
-                          {
-                            sourceTypeName: 'Flaring',
-                            gases: [
-                              {
-                                gwp: 1,
-                                gasType: 'Waste',
-                                annualCO2e: 121,
-                                annualEmission: 151,
-                                gasDescription: 'wastey'
-                              }
-                            ]
-                          }
-                        ]
-                      },
+                      formResult: generateFakeSchemaData(
+                        emissionForm as FormJson
+                      ),
                       formJsonByFormId: {
                         name: 'Emission',
                         formJson: emissionForm
@@ -109,20 +75,7 @@ describe('ApplicationDetailsContainer', () => {
                   {
                     node: {
                       id: 'fuel',
-                      formResult: [
-                        {
-                          fuelType: 'diesel',
-                          quantity: 123.5,
-                          fuelUnits: 'kilolitres',
-                          methodology: 'win some lose some'
-                        },
-                        {
-                          fuelType: 'Natural Gas',
-                          quantity: 320013,
-                          fuelUnits: 'Sm^3',
-                          methodology: 'WCI 1.0'
-                        }
-                      ],
+                      formResult: generateFakeSchemaData(fuelForm as FormJson),
                       formJsonByFormId: {
                         name: 'Fuel',
                         formJson: fuelForm
@@ -132,22 +85,9 @@ describe('ApplicationDetailsContainer', () => {
                   {
                     node: {
                       id: 'E&H',
-                      formResult: {
-                        heat: {
-                          purchased: 12,
-                          consumedOnSite: 15,
-                          generatedOnSite: 60,
-                          sold: 1,
-                          onSiteEmissions: 80
-                        },
-                        electricity: {
-                          purchased: 26,
-                          consumedOnSite: 135,
-                          generatedOnSite: 6130,
-                          sold: 1234,
-                          onSiteEmissions: 810
-                        }
-                      },
+                      formResult: generateFakeSchemaData(
+                        electricityAndHeatForm as FormJson
+                      ),
                       formJsonByFormId: {
                         name: 'Electricity and Heat',
                         formJson: electricityAndHeatForm
@@ -157,22 +97,9 @@ describe('ApplicationDetailsContainer', () => {
                   {
                     node: {
                       id: 'Production',
-                      formResult: [
-                        {
-                          product: 'mayonnaise',
-                          quantity: 12,
-                          units: 'kL',
-                          associatedEmissions: '1',
-                          comments: 'a sandwich isnt a sandwich without it'
-                        },
-                        {
-                          product: 'pickles',
-                          quantity: 121,
-                          units: 't',
-                          associatedEmissions: '10000',
-                          comments: 'pickles are good'
-                        }
-                      ],
+                      formResult: generateFakeSchemaData(
+                        productionForm as FormJson
+                      ),
                       formJsonByFormId: {
                         name: 'Production',
                         formJson: productionForm

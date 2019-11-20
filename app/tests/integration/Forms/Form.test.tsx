@@ -3,7 +3,6 @@ import {QueryRenderer, graphql} from 'react-relay';
 import {createMockEnvironment, MockPayloadGenerator} from 'relay-test-utils';
 import {FormTestQuery} from 'FormTestQuery.graphql';
 import {create} from 'react-test-renderer';
-import jsf from 'json-schema-faker';
 import {mockRandom} from 'jest-mock-random';
 import Form from 'containers/Forms/Form';
 import adminForm from 'schema/data/portal/form_json/administration.json';
@@ -11,19 +10,14 @@ import emissionForm from 'schema/data/portal/form_json/emission.json';
 import fuelForm from 'schema/data/portal/form_json/fuel.json';
 import electricityAndHeatForm from 'schema/data/portal/form_json/electricity_and_heat.json';
 import productionForm from 'schema/data/portal/form_json/production.json';
-
-jsf.option({alwaysFakeOptionals: true});
-jsf.format('duns', () => jsf.random.randexp('^\\d{9}$'));
-jsf.format('postal-code', () =>
-  jsf.random.randexp('[A-Z][0-9][A-Z] [0-9][A-Z][0-9]')
-);
+import {FormJson} from 'next-env';
+import {generateFakeSchemaData} from '../json-schema-utils';
 
 describe('Form', () => {
   beforeEach(() => {
     // Mock Math.random() to be deterministic.
     // This is needed by react-jsonschema-form's RadioWidget and by json-schema-faker
     mockRandom([0.1, 0.2, 0.3, 0.4, 0.5]);
-    jsf.option({random: Math.random}); // Use the mocked random
   });
 
   const environment = createMockEnvironment();
@@ -59,7 +53,7 @@ describe('Form', () => {
         Query() {
           return {
             result: {
-              formResult: jsf.generate(adminForm.schema),
+              formResult: generateFakeSchemaData(adminForm as FormJson),
               formJsonByFormId: {
                 name: 'Admin',
                 formJson: adminForm
@@ -79,7 +73,7 @@ describe('Form', () => {
         Query() {
           return {
             result: {
-              formResult: jsf.generate(fuelForm.schema),
+              formResult: generateFakeSchemaData(fuelForm as FormJson),
               formJsonByFormId: {
                 name: 'Fuel',
                 formJson: fuelForm
@@ -110,7 +104,7 @@ describe('Form', () => {
         Query() {
           return {
             result: {
-              formResult: jsf.generate(emissionForm.schema),
+              formResult: generateFakeSchemaData(emissionForm as FormJson),
               formJsonByFormId: {
                 name: 'Emission',
                 formJson: emissionForm
@@ -130,7 +124,9 @@ describe('Form', () => {
         Query() {
           return {
             result: {
-              formResult: jsf.generate(electricityAndHeatForm.schema),
+              formResult: generateFakeSchemaData(
+                electricityAndHeatForm as FormJson
+              ),
               formJsonByFormId: {
                 name: 'Electricity And Heat',
                 formJson: electricityAndHeatForm
@@ -150,7 +146,7 @@ describe('Form', () => {
         Query() {
           return {
             result: {
-              formResult: jsf.generate(productionForm.schema),
+              formResult: generateFakeSchemaData(productionForm as FormJson),
               formJsonByFormId: {
                 name: 'Production',
                 formJson: productionForm
