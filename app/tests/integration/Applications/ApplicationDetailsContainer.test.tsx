@@ -3,6 +3,7 @@ import {QueryRenderer, graphql} from 'react-relay';
 import {createMockEnvironment, MockPayloadGenerator} from 'relay-test-utils';
 import {ApplicationDetailsContainerTestQuery} from 'ApplicationDetailsContainerTestQuery.graphql';
 import {create} from 'react-test-renderer';
+import {mockRandom} from 'jest-mock-random';
 import ApplicationDetailsContainer from 'containers/Applications/ApplicationDetailsContainer';
 import adminForm from 'schema/data/portal/form_json/administration.json';
 import emissionForm from 'schema/data/portal/form_json/emission.json';
@@ -13,6 +14,12 @@ import {FormJson} from 'next-env';
 import {generateFakeSchemaData} from '../json-schema-utils';
 
 describe('ApplicationDetailsContainer', () => {
+  beforeEach(() => {
+    // Mock Math.random() to be deterministic.
+    // This is needed by react-jsonschema-form's RadioWidget and by json-schema-faker
+    mockRandom([0.1, 0.2, 0.3, 0.4, 0.5]);
+  });
+
   const environment = createMockEnvironment();
   const TestRenderer = () => (
     <QueryRenderer<ApplicationDetailsContainerTestQuery>
@@ -20,7 +27,12 @@ describe('ApplicationDetailsContainer', () => {
       query={graphql`
         query ApplicationDetailsContainerTestQuery($applicationId: ID!) {
           query {
-            ...ApplicationWizardConfirmation_query
+            application(id: $applicationId) {
+              applicationStatus {
+                id
+              }
+            }
+            ...ApplicationDetailsContainer_query
               @arguments(applicationId: $applicationId)
           }
         }

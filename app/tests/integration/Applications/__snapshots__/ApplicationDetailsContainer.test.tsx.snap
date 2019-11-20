@@ -1,3 +1,2338 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationDetailsContainer should match the snapshot with the summary component 1`] = `null`;
+exports[`ApplicationDetailsContainer should match the snapshot with the summary component 1`] = `
+Array [
+  <div
+    className="<mock-value-for-field-\\"slug\\"> summary-card card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="card-header"
+      onClick={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <h2>
+            Admin
+          </h2>
+        </div>
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            type="button"
+          >
+            Collapse
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={null}
+      className="collapse show card-body"
+    >
+      <form
+        className="rjsf"
+        noValidate={false}
+        onSubmit={[Function]}
+      >
+        <div
+          className="summary-formrow col-12"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <h3 />
+            </div>
+            <div
+              className="summary-formrow col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <h3>
+                    Operator Information
+                  </h3>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Legal name
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    culpa
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Trade name
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    est dolor
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      NAICS code
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    est dolor
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      BC Corporate Registry number
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    culpa
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      DUNS number
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    512345123
+                  </div>
+                </div>
+                <div
+                  className="summary-formrow col-12"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col-12"
+                    >
+                      <h3>
+                        Operator Mailing Address
+                      </h3>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Street address
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        est dolor
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          City
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        consequat Ut Duis
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Postal Code
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        H4N 1F3
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Province or Territory
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        British Columbia
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="summary-formrow col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <h3>
+                    Operational Representative
+                  </h3>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      First Name
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    in qui
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Last Name
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    mollit eu esse
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Position/Title
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    culpa
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Email Address
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    est dolor
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Telephone Number
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    consequat Ut Duis
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Fax Number
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    in qui
+                  </div>
+                </div>
+                <div
+                  className="summary-formrow col-12"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col-12"
+                    >
+                      <h3>
+                        Operational Representative Mailing Address
+                      </h3>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Street address
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        in qui
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          City
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        mollit eu esse
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Postal Code
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        F3K 5C2
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Province or Territory
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        Nova Scotia
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="summary-formrow col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <h3>
+                    Facility Information
+                  </h3>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Facility Name
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    consequat Ut Duis
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Facility Type
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    IF_a
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      BCGHG ID Number
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    mollit eu esse
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      NAICS Code
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    culpa
+                  </div>
+                </div>
+                <div
+                  className="summary-formrow col-12"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col-12"
+                    >
+                      <h3>
+                        Facility Mailing Address
+                      </h3>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Street address
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        culpa
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          City
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        est dolor
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Postal Code
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        C2H 4N1
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Province or Territory
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        Northwest Territories
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-boolean summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Is the facility location different from the mailing address?
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    No
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <div
+    className="<mock-value-for-field-\\"slug\\"> summary-card card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="card-header"
+      onClick={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <h2>
+            Emission
+          </h2>
+        </div>
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            type="button"
+          >
+            Collapse
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={null}
+      className="collapse show card-body"
+    >
+      <form
+        className="rjsf"
+        noValidate={false}
+        onSubmit={[Function]}
+      >
+        <div
+          className="summary-formrow col-12"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <h3 />
+            </div>
+            <div
+              className="summary-array-col col-12"
+            >
+              <div
+                className="col-12"
+              >
+                <h3 />
+              </div>
+              <div
+                className="summary-array-block form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <div
+                    className="summary-formrow col-12"
+                  >
+                    <div
+                      className="form-row"
+                    >
+                      <div
+                        className="col-12"
+                      >
+                        <h3 />
+                      </div>
+                      <div
+                        className="jsx-1147644460 form-group field field-string  hidden-title summary-formgroup"
+                      >
+                        <div
+                          className="jsx-1147644460 summary-label"
+                        >
+                          <strong
+                            className="jsx-1147644460"
+                          >
+                            sourceTypeName
+                          </strong>
+                        </div>
+                        <div
+                          className="jsx-1147644460 summary-item"
+                        >
+                          <h5
+                            className="jsx-2806087631"
+                            style={
+                              Object {
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                            est dolor
+                          </h5>
+                        </div>
+                      </div>
+                      <div
+                        className="summary-array-col col-12"
+                      >
+                        <div
+                          className="col-12"
+                        >
+                          <h3 />
+                        </div>
+                        <div
+                          className="summary-array-block form-row"
+                        >
+                          <div
+                            className="col-12"
+                          >
+                            <div
+                              className="summary-formrow col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="hidden emission-summary-row col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      culpa
+                                       
+                                      <br
+                                        className="jsx-3466198664"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-3466198664"
+                                        >
+                                          mollit eu esse
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes:
+                                      </strong>
+                                       
+                                      -60000000
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes(CO2e): 
+                                      </strong>
+                                      -80000000
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="summary-array-block form-row"
+                        >
+                          <div
+                            className="col-12"
+                          >
+                            <div
+                              className="summary-formrow col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="hidden emission-summary-row col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      consequat Ut Duis
+                                       
+                                      <br
+                                        className="jsx-3466198664"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-3466198664"
+                                        >
+                                          est dolor
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes:
+                                      </strong>
+                                       
+                                      -80000000
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes(CO2e): 
+                                      </strong>
+                                      0
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="summary-array-block form-row"
+                        >
+                          <div
+                            className="col-12"
+                          >
+                            <div
+                              className="summary-formrow col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="hidden emission-summary-row col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      mollit eu esse
+                                       
+                                      <br
+                                        className="jsx-3466198664"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-3466198664"
+                                        >
+                                          in qui
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes:
+                                      </strong>
+                                       
+                                      0
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes(CO2e): 
+                                      </strong>
+                                      -20000000
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="summary-array-block form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <div
+                    className="summary-formrow col-12"
+                  >
+                    <div
+                      className="form-row"
+                    >
+                      <div
+                        className="col-12"
+                      >
+                        <h3 />
+                      </div>
+                      <div
+                        className="jsx-1147644460 form-group field field-string  hidden-title summary-formgroup"
+                      >
+                        <div
+                          className="jsx-1147644460 summary-label"
+                        >
+                          <strong
+                            className="jsx-1147644460"
+                          >
+                            sourceTypeName
+                          </strong>
+                        </div>
+                        <div
+                          className="jsx-1147644460 summary-item"
+                        >
+                          <h5
+                            className="jsx-2806087631"
+                            style={
+                              Object {
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                            consequat Ut Duis
+                          </h5>
+                        </div>
+                      </div>
+                      <div
+                        className="summary-array-col col-12"
+                      >
+                        <div
+                          className="col-12"
+                        >
+                          <h3 />
+                        </div>
+                        <div
+                          className="summary-array-block form-row"
+                        >
+                          <div
+                            className="col-12"
+                          >
+                            <div
+                              className="summary-formrow col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="hidden emission-summary-row col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      est dolor
+                                       
+                                      <br
+                                        className="jsx-3466198664"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-3466198664"
+                                        >
+                                          culpa
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes:
+                                      </strong>
+                                       
+                                      -20000000
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes(CO2e): 
+                                      </strong>
+                                      -40000000
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="summary-array-block form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <div
+                    className="summary-formrow col-12"
+                  >
+                    <div
+                      className="form-row"
+                    >
+                      <div
+                        className="col-12"
+                      >
+                        <h3 />
+                      </div>
+                      <div
+                        className="jsx-1147644460 form-group field field-string  hidden-title summary-formgroup"
+                      >
+                        <div
+                          className="jsx-1147644460 summary-label"
+                        >
+                          <strong
+                            className="jsx-1147644460"
+                          >
+                            sourceTypeName
+                          </strong>
+                        </div>
+                        <div
+                          className="jsx-1147644460 summary-item"
+                        >
+                          <h5
+                            className="jsx-2806087631"
+                            style={
+                              Object {
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                            mollit eu esse
+                          </h5>
+                        </div>
+                      </div>
+                      <div
+                        className="summary-array-col col-12"
+                      >
+                        <div
+                          className="col-12"
+                        >
+                          <h3 />
+                        </div>
+                        <div
+                          className="summary-array-block form-row"
+                        >
+                          <div
+                            className="col-12"
+                          >
+                            <div
+                              className="summary-formrow col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="hidden emission-summary-row col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      in qui
+                                       
+                                      <br
+                                        className="jsx-3466198664"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-3466198664"
+                                        >
+                                          consequat Ut Duis
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes:
+                                      </strong>
+                                       
+                                      -40000000
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes(CO2e): 
+                                      </strong>
+                                      -60000000
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="summary-array-block form-row"
+                        >
+                          <div
+                            className="col-12"
+                          >
+                            <div
+                              className="summary-formrow col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="hidden emission-summary-row col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      culpa
+                                       
+                                      <br
+                                        className="jsx-3466198664"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-3466198664"
+                                        >
+                                          mollit eu esse
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes:
+                                      </strong>
+                                       
+                                      -60000000
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes(CO2e): 
+                                      </strong>
+                                      -80000000
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="summary-array-block form-row"
+                        >
+                          <div
+                            className="col-12"
+                          >
+                            <div
+                              className="summary-formrow col-12"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="hidden emission-summary-row col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-row"
+                                  >
+                                    <div
+                                      className="col-md-4"
+                                    >
+                                      consequat Ut Duis
+                                       
+                                      <br
+                                        className="jsx-3466198664"
+                                      />
+                                      <div
+                                        className="col-md-10"
+                                        style={
+                                          Object {
+                                            "color": "#888",
+                                            "lineHeight": "17px",
+                                            "margin": 0,
+                                            "padding": 0,
+                                          }
+                                        }
+                                      >
+                                        <small
+                                          className="jsx-3466198664"
+                                        >
+                                          est dolor
+                                        </small>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes:
+                                      </strong>
+                                       
+                                      -80000000
+                                    </div>
+                                    <div
+                                      className="col-md-3"
+                                    >
+                                      <strong
+                                        className="jsx-3466198664"
+                                      >
+                                        Tonnes(CO2e): 
+                                      </strong>
+                                      0
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <div
+    className="<mock-value-for-field-\\"slug\\"> summary-card card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="card-header"
+      onClick={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <h2>
+            Fuel
+          </h2>
+        </div>
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            type="button"
+          >
+            Collapse
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={null}
+      className="collapse show card-body"
+    >
+      <form
+        className="rjsf"
+        noValidate={false}
+        onSubmit={[Function]}
+      >
+        <div
+          className="summary-array-col col-12"
+        >
+          <div
+            className="col-12"
+          >
+            <h3 />
+          </div>
+          <div
+            className="summary-array-block form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <div
+                className="summary-formrow col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <h3 />
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Fuel Type
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      consequat Ut Duis
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Quantity
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      -80000000
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Units
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      mollit eu esse
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Methodology
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      wci 2.0
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="summary-array-block form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <div
+                className="summary-formrow col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <h3 />
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Fuel Type
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      culpa
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Quantity
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      -60000000
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Units
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      consequat Ut Duis
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Methodology
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      wci 1.0
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="summary-array-block form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <div
+                className="summary-formrow col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <h3 />
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Fuel Type
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      in qui
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Quantity
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      -40000000
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Units
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      culpa
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Methodology
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      wci 1.0
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <div
+    className="<mock-value-for-field-\\"slug\\"> summary-card card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="card-header"
+      onClick={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <h2>
+            Electricity and Heat
+          </h2>
+        </div>
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            type="button"
+          >
+            Collapse
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={null}
+      className="collapse show card-body"
+    >
+      <form
+        className="rjsf"
+        noValidate={false}
+        onSubmit={[Function]}
+      >
+        <div
+          className="summary-formrow col-12"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <h3 />
+            </div>
+            <div
+              className="summary-formrow col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <h3>
+                    Electricity
+                  </h3>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Purchased
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Sold
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    -20000000
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Consumed On-Site
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    -60000000
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Generated On-Site
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    -80000000
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="summary-formrow col-12"
+            >
+              <div
+                className="form-row"
+              >
+                <div
+                  className="col-12"
+                >
+                  <h3>
+                    Heat
+                  </h3>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Purchased
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    -80000000
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Sold
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Consumed On-Site
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    -40000000
+                  </div>
+                </div>
+                <div
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
+                >
+                  <div
+                    className="jsx-1147644460 summary-label"
+                  >
+                    <strong
+                      className="jsx-1147644460"
+                    >
+                      Generated On-Site
+                    </strong>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    -60000000
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>,
+  <div
+    className="<mock-value-for-field-\\"slug\\"> summary-card card"
+    style={
+      Object {
+        "marginBottom": "10px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="card-header"
+      onClick={[Function]}
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-9"
+        >
+          <h2>
+            Production
+          </h2>
+        </div>
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            type="button"
+          >
+            Collapse
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-expanded={null}
+      className="collapse show card-body"
+    >
+      <form
+        className="rjsf"
+        noValidate={false}
+        onSubmit={[Function]}
+      >
+        <div
+          className="summary-array-col col-12"
+        >
+          <div
+            className="col-12"
+          >
+            <h3 />
+          </div>
+          <div
+            className="summary-array-block form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <div
+                className="summary-formrow col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <h3 />
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Processing Unit Module
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      mollit eu esse
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Quantity
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Units
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      est dolor
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Associated Emission (tCO2e)
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      -20000000
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        comments
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      in qui
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="summary-array-block form-row"
+          >
+            <div
+              className="col-12"
+            >
+              <div
+                className="summary-formrow col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-12"
+                  >
+                    <h3 />
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Processing Unit Module
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      est dolor
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Quantity
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      -20000000
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Units
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      in qui
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        Associated Emission (tCO2e)
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      -40000000
+                    </div>
+                  </div>
+                  <div
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
+                  >
+                    <div
+                      className="jsx-1147644460 summary-label"
+                    >
+                      <strong
+                        className="jsx-1147644460"
+                      >
+                        comments
+                      </strong>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      culpa
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>,
+]
+`;
