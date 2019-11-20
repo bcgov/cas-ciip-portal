@@ -5,7 +5,7 @@ import ViewApplication from '../../pages/view-application';
 const query = {
   session: null,
   application: {
-    id: "1",
+    id: '1',
     formResultsByApplicationId: {
       edges: [{node: {id: 'form-1'}}]
     }
@@ -14,7 +14,7 @@ const query = {
 
 // It matches the last accepted Snapshot
 it('It matches the last accepted Snapshot', () => {
-  const wrapper = shallow(<ViewApplication query={query}/>);
+  const wrapper = shallow(<ViewApplication query={query} />);
   expect(wrapper).toMatchSnapshot();
 });
 
