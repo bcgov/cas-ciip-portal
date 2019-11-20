@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {Button} from 'react-bootstrap';
+import {Button, Modal, Container, Row, Col} from 'react-bootstrap';
 // Import saveProductMutation from '../../mutations/product/saveProductMutation';
 // import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
 // import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
@@ -203,25 +203,71 @@ export const ProductRowItemComponent = props => {
   // const archiveRestore =
   //   props.product.state === 'archived' ? 'Restore' : 'Archive';
   const {product} = props;
+
+  const [modalShow, setModalShow] = React.useState(false);
+  const editModal = (
+    <Modal
+      centered
+      size="lg"
+      show={modalShow}
+      onHide={() => setModalShow(false)}
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>Edit Product</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Container>
+          <Row>
+            <Col md={6}>Name</Col>
+            <Col md={6}>Description</Col>
+          </Row>
+
+          <Row>
+            <Col xs={6} md={4}>
+              <code>.col-xs-6 .col-md-4</code>
+            </Col>
+            <Col xs={6} md={4}>
+              <code>.col-xs-6 .col-md-4</code>
+            </Col>
+            <Col xs={6} md={4}>
+              <code>.col-xs-6 .col-md-4</code>
+            </Col>
+          </Row>
+        </Container>
+      </Modal.Body>
+      {/* <Modal.Footer>
+        <Button onClick={() => console.log('hi')}>Close</Button>
+      </Modal.Footer> */}
+    </Modal>
+  );
+
   return (
-    <tr>
-      <td>{product.name}</td>
-      <td>{product.units}</td>
-      <td>
-        {product.benchmarksByProductId.edges[0]
-          ? product.benchmarksByProductId.edges[0].node.benchmark
-          : null}
-      </td>
-      <td>
-        {product.benchmarksByProductId.edges[0]
-          ? product.benchmarksByProductId.edges[0].node.eligibilityThreshold
-          : null}
-      </td>
-      <td>{product.state}</td>
-      <td>
-        <Button variant="info">Edit</Button>
-      </td>
-    </tr>
+    <>
+      <tr>
+        <td>{product.name}</td>
+        <td>{product.units}</td>
+        <td>
+          {product.benchmarksByProductId.edges[0]
+            ? product.benchmarksByProductId.edges[0].node.benchmark
+            : null}
+        </td>
+        <td>
+          {product.benchmarksByProductId.edges[0]
+            ? product.benchmarksByProductId.edges[0].node.eligibilityThreshold
+            : null}
+        </td>
+        <td>{product.state}</td>
+        <td>
+          <Button variant="info" onClick={() => setModalShow(true)}>
+            Edit
+          </Button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>{editModal}</td>
+      </tr>
+    </>
   );
 };
 
