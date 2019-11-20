@@ -30,15 +30,18 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
   const CUSTOM_FIELDS = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => (
-      <>: {props.formData ? props.formData : <i>[No Data Entered]</i>}</>
+      <> {props.formData ? props.formData : <i>[No Data Entered]</i>}</>
     ),
     BooleanField: props => <> {props.formData ? 'Yes' : 'No'}</>,
     emissionSource: props => <SummaryEmissionSourceFields {...props} />,
     emissionGas: props => <SummaryEmissionGasFields {...props} />
   };
-
+  const class_name = formJsonByFormId.slug;
   return (
-    <Card style={{width: '100%', marginBottom: '10px'}}>
+    <Card
+      style={{width: '100%', marginBottom: '10px'}}
+      className={`${class_name} summary-card`}
+    >
       <Card.Header onClick={() => setIsOpen(!isOpen)}>
         <Row>
           <Col md={9}>
@@ -81,6 +84,7 @@ export default createFragmentContainer(
         formResult
         formJsonByFormId {
           name
+          slug
           formJson
         }
       }

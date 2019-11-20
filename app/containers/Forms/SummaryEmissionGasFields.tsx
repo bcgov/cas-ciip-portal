@@ -3,8 +3,13 @@ import {FieldProps} from 'react-jsonschema-form';
 import {Form, Col} from 'react-bootstrap';
 
 const EmissionGasFields: React.FunctionComponent<FieldProps> = ({formData}) => {
+  const hide_row =
+    formData.annualEmission && formData.annualEmission > 0
+      ? 'visible'
+      : 'hidden';
+
   return (
-    <Col xs={12} md={12}>
+    <Col xs={12} md={12} className={`${hide_row} emission-summary-row`}>
       <Form.Row>
         <Col md={4}>
           {formData.gasType} <br />
@@ -31,6 +36,14 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({formData}) => {
         }
         .gwp li {
           margin: 0 10px;
+        }
+        .emission-summary-row.hidden:global {
+          display: none;
+        }
+      `}</style>
+      <style jsx global>{`
+        .emission-summary-row.hidden {
+          //display:none
         }
       `}</style>
     </Col>
