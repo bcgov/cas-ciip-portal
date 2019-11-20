@@ -1,6 +1,19 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {Button, Modal, Container, Row, Col} from 'react-bootstrap';
+import {
+  Button,
+  Modal,
+  Container,
+  Row,
+  Col,
+  Card,
+  Collapse
+} from 'react-bootstrap';
+import {JSONSchema6} from 'json-schema';
+import JsonSchemaForm from 'react-jsonschema-form';
+import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
+import FormFieldTemplate from '../Forms/FormFieldTemplate';
+import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 // Import saveProductMutation from '../../mutations/product/saveProductMutation';
 // import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
 // import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
@@ -204,7 +217,32 @@ export const ProductRowItemComponent = props => {
   //   props.product.state === 'archived' ? 'Restore' : 'Archive';
   const {product} = props;
 
+  const ProductSchema: JSONSchema6 = {
+    type: 'object',
+    properties: {
+      product: {
+        type: 'string',
+        title: 'Product'
+      },
+      description: {
+        type: 'string',
+        title: 'Description'
+      }
+    },
+    required: ['product']
+  };
+
+  const productUISchema = {
+    product: {
+      'ui:col-md': 6
+    },
+    description: {
+      'ui:col-md': 6
+    }
+  };
   const [modalShow, setModalShow] = React.useState(false);
+  const [futureBenchmarksOpen, setFutureBenchmarksOpen] = React.useState(false);
+  const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
   const editModal = (
     <Modal
       centered
@@ -217,20 +255,76 @@ export const ProductRowItemComponent = props => {
       </Modal.Header>
       <Modal.Body>
         <Container>
+          <Row>PRODUCT</Row>
+          <JsonSchemaForm
+            // Key={createProductFormKey}
+            omitExtraData
+            liveOmit
+            schema={ProductSchema}
+            uiSchema={productUISchema}
+            showErrorList={false}
+            ArrayFieldTemplate={FormArrayFieldTemplate}
+            FieldTemplate={FormFieldTemplate}
+            ObjectFieldTemplate={FormObjectFieldTemplate}
+            // OnSubmit={saveProduct}
+          >
+            <Button type="submit" variant="primary">
+              Save Product
+            </Button>
+          </JsonSchemaForm>
+          <br />
+          <Row>BENCHMARKS</Row>
+          <br />
+          Current
+          <hr />
           <Row>
-            <Col md={6}>Name</Col>
-            <Col md={6}>Description</Col>
+            <Col md={4}>Benchmark: 100</Col>
+            <Col md={4}>ET: 1000</Col>
+            <Col md={4}>End Date: Monday</Col>
           </Row>
-
+          <br />
           <Row>
-            <Col xs={6} md={4}>
-              <code>.col-xs-6 .col-md-4</code>
+            <Col md={12}>
+              <Card>
+                <Card.Header
+                  onClick={() => setFutureBenchmarksOpen(!futureBenchmarksOpen)}
+                >
+                  Future Benchmarks
+                </Card.Header>
+                <Collapse in={futureBenchmarksOpen}>
+                  <Card.Body>
+                    <Container>
+                      <Row>
+                        <Col md={4}>Benchmark: 100</Col>
+                        <Col md={4}>ET: 1000</Col>
+                        <Col md={4}>End Date: Monday</Col>
+                      </Row>
+                    </Container>
+                  </Card.Body>
+                </Collapse>
+              </Card>
             </Col>
-            <Col xs={6} md={4}>
-              <code>.col-xs-6 .col-md-4</code>
-            </Col>
-            <Col xs={6} md={4}>
-              <code>.col-xs-6 .col-md-4</code>
+          </Row>
+          <Row>
+            <Col md={12}>
+              <Card>
+                <Card.Header
+                  onClick={() => setPastBenchmarksOpen(!pastBenchmarksOpen)}
+                >
+                  Past Benchmarks
+                </Card.Header>
+                <Collapse in={pastBenchmarksOpen}>
+                  <Card.Body>
+                    <Container>
+                      <Row>
+                        <Col md={4}>Benchmark: 100</Col>
+                        <Col md={4}>ET: 1000</Col>
+                        <Col md={4}>End Date: Monday</Col>
+                      </Row>
+                    </Container>
+                  </Card.Body>
+                </Collapse>
+              </Card>
             </Col>
           </Row>
         </Container>
@@ -263,10 +357,7 @@ export const ProductRowItemComponent = props => {
           </Button>
         </td>
       </tr>
-
-      <tr>
-        <td>{editModal}</td>
-      </tr>
+      {editModal}
     </>
   );
 };
