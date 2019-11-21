@@ -34,8 +34,8 @@ export default class Index extends Component<Props> {
     const startDate: Date = new Date(Date.parse(date1));
     const date2: any = query.getReportingYear.applicationEndDate;
     const endDate: Date = new Date(Date.parse(date2));
-    const time1 = startDate.toDateString();
-    const time2 = endDate.toDateString();
+    const parsedStartDate = startDate.toDateString();
+    const parsedEndDate = endDate.toDateString();
     return (
       <DefaultLayout
         showSubheader={false}
@@ -125,7 +125,7 @@ export default class Index extends Component<Props> {
               </thead>
               <tbody>
                 <tr>
-                  <td>{time1}</td>
+                  <td>{parsedStartDate}</td>
                   <td>CIIP application forms open</td>
                 </tr>
                 <tr>
@@ -133,7 +133,7 @@ export default class Index extends Component<Props> {
                   <td>Webinar for CIIP</td>
                 </tr>
                 <tr>
-                  <td>{time2}</td>
+                  <td>{parsedEndDate}</td>
                   <td>CIIP application form due</td>
                 </tr>
                 <tr>
