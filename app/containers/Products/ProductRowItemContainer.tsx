@@ -31,23 +31,23 @@ import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 
 export const ProductRowItemComponent = props => {
   // Get the product's current benchmark
-  // const getCurrentBenchmark = () => {
-  //   let currentBenchmark;
-  //   if (props.product.benchmarksByProductId.edges[0]) {
-  //     props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
-  //       if (
-  //         Date.parse(benchmark.startDate) < Date.now() &&
-  //         (benchmark.endDate === null ||
-  //           Date.parse(benchmark.endDate) > Date.now()) &&
-  //         !benchmark.deletedAt
-  //       ) {
-  //         currentBenchmark = benchmark;
-  //       }
-  //     });
-  //   }
+  const getCurrentBenchmark = () => {
+    let currentBenchmark;
+    if (props.product.benchmarksByProductId.edges[0]) {
+      props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
+        if (
+          Date.parse(benchmark.startDate) < Date.now() &&
+          (benchmark.endDate === null ||
+            Date.parse(benchmark.endDate) > Date.now()) &&
+          !benchmark.deletedAt
+        ) {
+          currentBenchmark = benchmark;
+        }
+      });
+    }
 
-  //   return currentBenchmark;
-  // };
+    return currentBenchmark;
+  };
 
   // // Toggle the 'archived' value of a Product
   // const toggleArchived = async event => {
@@ -243,6 +243,10 @@ export const ProductRowItemComponent = props => {
   const [modalShow, setModalShow] = React.useState(false);
   const [futureBenchmarksOpen, setFutureBenchmarksOpen] = React.useState(false);
   const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
+
+  const currentBenchmark = getCurrentBenchmark();
+  console.log(currentBenchmark);
+
   const editModal = (
     <Modal
       centered
@@ -278,9 +282,24 @@ export const ProductRowItemComponent = props => {
           Current
           <hr />
           <Row>
-            <Col md={4}>Benchmark: 100</Col>
-            <Col md={4}>ET: 1000</Col>
-            <Col md={4}>End Date: Monday</Col>
+            <Col md={4}>
+              Benchmark:{' '}
+              {currentBenchmark && currentBenchmark.benchmark
+                ? currentBenchmark.benchmark
+                : null}
+            </Col>
+            <Col md={4}>
+              ET:{' '}
+              {currentBenchmark && currentBenchmark.eligibilityThreshold
+                ? currentBenchmark.eligibilityThreshold
+                : null}
+            </Col>
+            <Col md={4}>
+              End Date:{' '}
+              {currentBenchmark && currentBenchmark.endDate
+                ? currentBenchmark.endDate
+                : null}
+            </Col>
           </Row>
           <br />
           <Row>
