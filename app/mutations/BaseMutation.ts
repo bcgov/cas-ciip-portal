@@ -5,6 +5,7 @@ import {
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {DeclarativeMutationConfig} from 'relay-runtime';
 import {toast} from 'react-toastify';
+import {dedupeMutation} from '../lib/relay-environment/dedupe-mutations';
 
 interface BaseMutationType {
   response: any;
@@ -26,7 +27,8 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     mutation: GraphQLTaggedNode,
     variables: T['variables'],
     optimisticResponse?: any,
-    updater?: any
+    updater?: any,
+    shouldDedupeMutation = false
   ) {
     const success_message = variables.messages?.success
       ? variables.messages.success
@@ -36,6 +38,14 @@ export default class BaseMutation<T extends BaseMutationType = never> {
       : 'Oops! Seems like something went wrong';
     const clientMutationId = `${this.mutationName}-${this.counter}`;
     variables.input.clientMutationId = clientMutationId;
+
+    if (shouldDedupeMutation) {
+      dedupeMutation(
+        (mutation as any)().default.operation.name,
+        clientMutationId
+      );
+    }
+
     if (optimisticResponse) {
       const key = Object.keys(optimisticResponse)[0];
       optimisticResponse[key].clientMutationId = clientMutationId;

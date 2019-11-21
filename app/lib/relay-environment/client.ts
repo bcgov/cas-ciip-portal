@@ -5,6 +5,7 @@ import {
   batchMiddleware,
   cacheMiddleware
 } from 'react-relay-network-modern/node8';
+import dedupeMutationMiddleware from './dedupe-mutations';
 
 const source = new RecordSource();
 const store = new Store(source);
@@ -29,9 +30,10 @@ export default {
         }),
         batchMiddleware({
           batchUrl: async () => Promise.resolve('/graphql'),
-          batchTimeout: 10,
+          batchTimeout: 1000,
           allowMutations: true
-        })
+        }),
+        dedupeMutationMiddleware()
       ]),
       store
     });
