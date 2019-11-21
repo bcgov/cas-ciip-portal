@@ -16,13 +16,6 @@ const mutation = graphql`
         description
         state
         parent
-        benchmarksByProductId {
-          edges {
-            node {
-              id
-            }
-          }
-        }
       }
     }
   }

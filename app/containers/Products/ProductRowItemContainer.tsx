@@ -118,7 +118,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
       }
     };
-    console.log(variables);
     const response = await saveProductMutation(relay.environment, variables);
     console.log(response);
   };
