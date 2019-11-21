@@ -1,6 +1,6 @@
-import React from 'react';
-import {Table, Button} from 'react-bootstrap';
-import {graphql, createPaginationContainer} from 'react-relay';
+import React, {useEffect} from 'react';
+import {Table} from 'react-bootstrap';
+import {graphql, createRefetchContainer} from 'react-relay';
 import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
 // Import {RelayNetworkLayer} from 'react-relay-network-modern/node8';
 import LoadingSpinner from '../../components/LoadingSpinner';
@@ -8,38 +8,82 @@ import ProductRowItemContainer from './ProductRowItemContainer';
 
 interface Props {
   query: ProductListContainer_query;
+  orderByField?: string;
+  orderByDisplay?: string;
+  searchField?: string;
+  searchValue?: string;
+  direction?: string;
+  searchDisplay?: string;
+  handleEvent: (...args: any[]) => void;
   relay: any;
 }
 
-export const ProductList: React.FunctionComponent<Props> = ({query, relay}) => {
-  if (query && query.allProducts && query.allProducts.edges) {
-    const allProducts = query.allProducts.edges;
-
-    const loadMore = () => {
-      if (!relay.hasMore() || relay.isLoading()) return;
-      relay.loadMore(2);
+export const ProductList: React.FunctionComponent<Props> = ({
+  query,
+  relay,
+  orderByField,
+  searchField,
+  searchValue,
+  // SearchDisplay,
+  direction,
+  handleEvent
+}) => {
+  useEffect(() => {
+    const refetchVariables = {
+      searchField,
+      searchValue,
+      orderByField,
+      direction
     };
+    relay.refetch(refetchVariables);
+  });
 
-    const sort = column => {
-      relay.refetchConnection(
-        2,
-        error => {
-          console.log(error);
-        },
-        {orderBy: column}
-      );
-    };
+  const sort = (event, column) => {
+    // @ts-ignore
+    event.target.id = 'sortApplications';
+    handleEvent(event, column);
+    // @ts-ignore
+    event.target.id = 'toggleDirection';
+    handleEvent(event);
+  };
+
+  if (query && query.searchProducts && query.searchProducts.edges) {
+    const allProducts = query.searchProducts.edges;
 
     return (
       <>
         <Table striped hover>
           <thead style={{color: 'white', background: '#003366'}}>
             <tr>
-              <th onClick={() => sort('NAME_DESC')}>Product</th>
-              <th>Units</th>
-              <th>Benchmark</th>
+              <th
+                onClick={event => {
+                  sort(event, 'name');
+                }}
+              >
+                Product
+              </th>
+              <th
+                onClick={event => {
+                  sort(event, 'units');
+                }}
+              >
+                Units
+              </th>
+              <th
+                onClick={event => {
+                  sort(event, 'units');
+                }}
+              >
+                Benchmark
+              </th>
               <th>Elig. Threshold</th>
-              <th>Status</th>
+              <th
+                onClick={event => {
+                  sort(event, 'state');
+                }}
+              >
+                Status
+              </th>
               <th>Edit</th>
             </tr>
           </thead>
@@ -49,7 +93,7 @@ export const ProductList: React.FunctionComponent<Props> = ({query, relay}) => {
             ))}
           </tbody>
         </Table>
-        <Button onClick={loadMore}>Next</Button>
+        {/* <Button onClick={loadMore}>Next</Button> */}
       </>
     );
   }
@@ -61,18 +105,24 @@ export const ProductList: React.FunctionComponent<Props> = ({query, relay}) => {
 // we need the first two billion edges to force graphql to return the right type
 // @see https://relay.dev/docs/en/pagination-container#connection
 // https://www.prisma.io/blog/relay-moderns-connection-directive-1ecd8322f5c8
-export default createPaginationContainer(
+export default createRefetchContainer(
   ProductList,
   {
     query: graphql`
       fragment ProductListContainer_query on Query
         @argumentDefinitions(
-          count: {type: "Int", defaultValue: 20}
-          cursor: {type: "Cursor"}
-          orderBy: {type: "[ProductsOrderBy!]", defaultValue: [NAME_ASC]}
+          searchField: {type: "String"}
+          searchValue: {type: "String"}
+          orderByField: {type: "String"}
+          direction: {type: "String"}
         ) {
-        allProducts(first: $count, after: $cursor, orderBy: $orderBy)
-          @connection(key: "ProductListContainer_allProducts") {
+        searchProducts(
+          first: 20
+          searchField: $searchField
+          searchValue: $searchValue
+          orderByField: $orderByField
+          direction: $direction
+        ) @connection(key: "ProductListContainer_searchProducts") {
           edges {
             cursor
             node {
@@ -84,38 +134,22 @@ export default createPaginationContainer(
       }
     `
   },
-  {
-    direction: 'forward',
-    getConnectionFromProps(props) {
-      return props.query && props.query.allProducts;
-    },
-    // This is also the default implementation of `getFragmentVariables` if it isn't provided.
-    getFragmentVariables(prevVars, totalCount) {
-      return {
-        ...prevVars,
-        count: totalCount
-      };
-    },
-    getVariables(props, {count, cursor}, fragmentVariables) {
-      return {
-        count,
-        cursor,
-        orderBy: fragmentVariables.orderBy
-      };
-    },
-    query: graphql`
-      # Pagination query to be fetched upon calling 'loadMore'.
-      # Notice that we re-use our fragment, and the shape of this query matches our fragment spec.
-      query ProductListContainerPaginationQuery(
-        $count: Int!
-        $cursor: Cursor!
-        $orderBy: [ProductsOrderBy!]
-      ) {
-        query: query {
-          ...ProductListContainer_query
-            @arguments(count: $count, cursor: $cursor, orderBy: $orderBy)
-        }
+  graphql`
+    query ProductListContainerRefetchQuery(
+      $searchField: String
+      $searchValue: String
+      $orderByField: String
+      $direction: String
+    ) {
+      query {
+        ...ProductListContainer_query
+          @arguments(
+            searchField: $searchField
+            searchValue: $searchValue
+            orderByField: $orderByField
+            direction: $direction
+          )
       }
-    `
-  }
+    }
+  `
 );

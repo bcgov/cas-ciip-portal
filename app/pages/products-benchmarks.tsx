@@ -5,6 +5,7 @@ import {productsBenchmarksQueryResponse} from 'productsBenchmarksQuery.graphql';
 import DefaultLayout from '../layouts/default-layout';
 import ProductCreatorContainer from '../containers/Products/ProductCreatorContainer';
 import ProductListContainer from '../containers/Products/ProductListContainer';
+import SearchTable from '../components/SearchTable';
 
 interface Props {
   query: productsBenchmarksQueryResponse['query'];
@@ -12,9 +13,20 @@ interface Props {
 
 class ProductsBenchmarks extends Component<Props> {
   static query = graphql`
-    query productsBenchmarksQuery {
+    query productsBenchmarksQuery(
+      $orderByField: String
+      $direction: String
+      $searchField: String
+      $searchValue: String
+    ) {
       query {
         ...ProductListContainer_query
+          @arguments(
+            orderByField: $orderByField
+            direction: $direction
+            searchField: $searchField
+            searchValue: $searchValue
+          )
         session {
           ...defaultLayout_session
         }
@@ -29,6 +41,15 @@ class ProductsBenchmarks extends Component<Props> {
     expandCreateForm: false,
     createProductFormKey: Date.now()
   };
+
+  static async getInitialProps() {
+    return {
+      variables: {
+        orderByField: 'name',
+        direction: 'ASC'
+      }
+    };
+  }
 
   resetCreateProductForm = () => {
     this.setState({createProductFormKey: Date.now()});
@@ -93,7 +114,13 @@ class ProductsBenchmarks extends Component<Props> {
             <br />
             <br />
             <br />
-            <ProductListContainer query={query} />
+            <SearchTable
+              query={query}
+              defaultOrderByField="name"
+              defaultOrderByDisplay="Product"
+            >
+              {props => <ProductListContainer {...props} />}
+            </SearchTable>
           </Col>
         </Row>
       </DefaultLayout>

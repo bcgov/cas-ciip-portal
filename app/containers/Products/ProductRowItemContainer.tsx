@@ -57,29 +57,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     return currentBenchmark;
   };
 
-  // // Toggle the 'archived' value of a Product
-  // const toggleArchived = async event => {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   const newState = props.product.state === 'archived' ? 'active' : 'archived';
-  //   const currentBenchmark = getCurrentBenchmark();
-  //   const variables = {
-  //     input: {
-  //       newName: props.product.name,
-  //       newDescription: props.product.description || '',
-  //       newState,
-  //       prevId: props.product.rowId,
-  //       newParent: [props.product.rowId],
-  //       benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
-  //     }
-  //   };
-  //   const response = await saveProductMutation(
-  //     props.relay.environment,
-  //     variables
-  //   );
-  //   console.log(response);
-  // };
-
   // // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation.)
   // // The button is red && says 'Delete'. The value is not deleted, it is archived in the database, but is not recoverable through the UI
   // const toggleBenchmarkDeleted = async event => {
@@ -104,6 +81,24 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   //   );
   //   console.log(response);
   // };
+
+  // Toggle the 'archived' value of a Product
+  const toggleArchived = async () => {
+    const newState = product.state === 'archived' ? 'active' : 'archived';
+    const currentBenchmark = getCurrentBenchmark();
+    const variables = {
+      input: {
+        newName: product.name,
+        newDescription: product.description || '',
+        newState,
+        prevId: product.rowId,
+        newParent: [product.rowId],
+        benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
+      }
+    };
+    const response = await saveProductMutation(relay.environment, variables);
+    console.log(response);
+  };
 
   // Save a product
   const saveProduct = async (e: IChangeEvent) => {
@@ -277,6 +272,15 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             <Button type="submit" variant="primary">
               Save Product
             </Button>
+            {product.state === 'active' ? (
+              <Button variant="warning" onClick={toggleArchived}>
+                Archive Product
+              </Button>
+            ) : (
+              <Button variant="success" onClick={toggleArchived}>
+                Restore Product
+              </Button>
+            )}
           </JsonSchemaForm>
           <br />
           <Row>BENCHMARKS</Row>
