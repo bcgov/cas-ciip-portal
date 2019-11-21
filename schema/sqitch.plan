@@ -50,3 +50,4 @@ function_init_application_fuel_form_result [table_form_result function_get_swrs_
 function_init_application_emission_form_result [table_form_result function_get_swrs_emission_data] 2019-11-12T18:01:51Z Matthieu Foucault <matthieu@button.is> # add function to initialize emission form
 function_facility_has_swrs_report [table_facility] 2019-11-12T19:25:09Z Matthieu Foucault <matthieu@button.is> # add function to check if a facility has a swrs report
 function_search_ciip_user_organisation [table_ciip_user_organisation] 2019-11-06T18:34:19Z Helen Liu <helen@button.is> # Added search function on user organisation table
+function_get_reporting_year [table_reporting_year] 2019-11-20T17:40:29Z Helen Liu <helen@button.is> # added function to return current reporting year

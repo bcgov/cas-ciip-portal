@@ -17,6 +17,10 @@ export default class Index extends Component<Props> {
         session {
           ...defaultLayout_session
         }
+        getReportingYear {
+          applicationOpenDate
+          applicationEndDate
+        }
       }
     }
   `;
@@ -24,6 +28,12 @@ export default class Index extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
+    const date1: any = query.getReportingYear.applicationOpenDate;
+    const startDate: Date = new Date(Date.parse(date1));
+    const date2: any = query.getReportingYear.applicationEndDate;
+    const endDate: Date = new Date(Date.parse(date2));
+    const time1 = startDate.toDateString();
+    const time2 = endDate.toDateString();
     return (
       <DefaultLayout
         showSubheader={false}
@@ -113,7 +123,7 @@ export default class Index extends Component<Props> {
               </thead>
               <tbody>
                 <tr>
-                  <td>May 1, 2020</td>
+                  <td>{time1}</td>
                   <td>CIIP application forms open</td>
                 </tr>
                 <tr>
@@ -121,7 +131,7 @@ export default class Index extends Component<Props> {
                   <td>Webinar for CIIP</td>
                 </tr>
                 <tr>
-                  <td>June 30, 2020</td>
+                  <td>{time2}</td>
                   <td>CIIP application form due</td>
                 </tr>
                 <tr>

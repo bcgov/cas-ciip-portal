@@ -3534,6 +3534,18 @@
               "deprecationReason": null
             },
             {
+              "name": "getReportingYear",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReportingYear",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "getSwrsEmissionData",
               "description": "Reads and enables pagination through a set of `EmissionDatum`.",
               "args": [
