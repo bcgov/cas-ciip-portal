@@ -33,6 +33,10 @@ The `linter-xo-2` VSCode add XO support. The following VSCode settings will enab
     "editor.formatOnSave": true
 }
 ```
+## Testing
+
+Tests on the database uses pg_prove, make sure pgtap is installed to run them or install with `make install pgtap` or `sudo apt install libtap-parser-sourcehandler-pgtap-perl`.
+
 ## Pre-commit hooks
 
 The Yelp [pre-commit](https://pre-commit.com) framework is configured for this project

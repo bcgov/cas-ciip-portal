@@ -11,6 +11,7 @@ table_benchmark [table_product function_update_timestamps] 2019-08-06T20:25:30Z 
 table_organisation [schema_ggircs_portal] 2019-10-11T18:45:40Z Hamza Javed <hamza@button.is> # The organisation data for CIIP
 table_ciip_user_organisation [schema_ggircs_portal table_ciip_user table_organisation] 2019-10-11T18:46:57Z Hamza Javed <hamza@button.is> # Through table for Users and Organisations with a many to many relationship
 table_facility [schema_ggircs_portal table_organisation] 2019-10-11T18:47:49Z Hamza Javed <hamza@button.is> # Facility data for CIIP
+table_reporting_year [schema_ggircs_portal] 2019-11-19T18:06:01Z Helen Liu <helen@button.is> # Added new table with current reporting year, application deadline
 table_application [schema_ggircs_portal function_update_timestamps] 2019-10-11T18:09:42Z Dylan Leard <dylan@button.is> # Application table
 table_form_json [schema_ggircs_portal function_update_timestamps] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
 table_form_result [schema_ggircs_portal function_update_timestamps table_form_json] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
@@ -49,3 +50,4 @@ function_init_application_fuel_form_result [table_form_result function_get_swrs_
 function_init_application_emission_form_result [table_form_result function_get_swrs_emission_data] 2019-11-12T18:01:51Z Matthieu Foucault <matthieu@button.is> # add function to initialize emission form
 function_facility_has_swrs_report [table_facility] 2019-11-12T19:25:09Z Matthieu Foucault <matthieu@button.is> # add function to check if a facility has a swrs report
 function_search_ciip_user_organisation [table_ciip_user_organisation] 2019-11-06T18:34:19Z Helen Liu <helen@button.is> # Added search function on user organisation table
+function_get_reporting_year [table_reporting_year] 2019-11-20T17:40:29Z Helen Liu <helen@button.is> # added function to return current reporting year
