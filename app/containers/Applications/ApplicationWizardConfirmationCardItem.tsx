@@ -36,11 +36,11 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
     emissionSource: props => <SummaryEmissionSourceFields {...props} />,
     emissionGas: props => <SummaryEmissionGasFields {...props} />
   };
-  const class_name = formJsonByFormId.slug;
+  const classTag = formJsonByFormId.slug;
   return (
     <Card
       style={{width: '100%', marginBottom: '10px'}}
-      className={`${class_name} summary-card`}
+      className={`${classTag} summary-card`}
     >
       <Card.Header onClick={() => setIsOpen(!isOpen)}>
         <Row>

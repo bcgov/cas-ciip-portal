@@ -41,11 +41,6 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({formData}) => {
           display: none;
         }
       `}</style>
-      <style jsx global>{`
-        .emission-summary-row.hidden {
-          //display:none
-        }
-      `}</style>
     </Col>
   );
 };

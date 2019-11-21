@@ -5,7 +5,7 @@ import {NextRouter} from 'next/router';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import DefaultLayout from '../layouts/default-layout';
-import ApplicationWizardConfirmation from '../containers/Applications/ApplicationWizardConfirmation';
+import ApplicationDetail from '../containers/Applications/ApplicationWizardConfirmation';
 
 interface Props {
   query: applicationDetailsQueryResponse['query'];
@@ -46,7 +46,6 @@ class ApplicationDetails extends Component<Props> {
 
   render() {
     const {query} = this.props;
-    console.log('query', query);
     const {session} = query || {};
     return (
       <DefaultLayout session={session}>
@@ -56,7 +55,7 @@ class ApplicationDetails extends Component<Props> {
         />
         <hr />
 
-        <ApplicationWizardConfirmation is_analyst query={query} />
+        <ApplicationDetail isAnalyst query={query} />
         <IncentiveCalculatorContainer
           query={query}
           bcghgid={this.props.router.query.bcghgid}

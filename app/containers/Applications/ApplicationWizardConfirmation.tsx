@@ -14,7 +14,7 @@ import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmati
 interface Props {
   query: ApplicationWizardConfirmation_query;
   relay: RelayProp;
-  is_analyst: boolean;
+  isAnalyst: boolean;
 }
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
@@ -58,7 +58,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           pathname: '/complete-submit'
         }}
       >
-        {props.is_analyst ? (
+        {props.isAnalyst ? (
           ''
         ) : (
           <Button

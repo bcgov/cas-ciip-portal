@@ -19,7 +19,6 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
         <div className="login-btns header-right">
           <Row>
             <Col>
-              {' '}
               <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
                   Temporary Links
