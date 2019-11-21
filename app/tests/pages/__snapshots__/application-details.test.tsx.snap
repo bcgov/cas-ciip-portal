@@ -6,6 +6,9 @@ exports[`It matches the last accepted Snapshot 1`] = `
     applicationId="1"
   />
   <hr />
+  <Relay(ApplicationWizardConfirmationComponent)
+    is_analyst={true}
+  />
   <Relay(IncentiveCalculator)
     bcghgid="100"
     reportingYear="2018"

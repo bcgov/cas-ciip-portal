@@ -12,7 +12,7 @@ begin;
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.name = 'Electricity and Heat'
+      and form_json.slug = 'electricity-and-heat'
     )
     select
        x.id,
@@ -34,7 +34,7 @@ begin;
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.name = 'Electricity and Heat'
+      and form_json.slug = 'electricity-and-heat'
     )
     select
        x.id,

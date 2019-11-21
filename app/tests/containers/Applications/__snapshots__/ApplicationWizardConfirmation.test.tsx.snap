@@ -10,7 +10,7 @@ Array [
   </h5>,
   <br />,
   <div
-    className="card"
+    className="<mock-value-for-field-\\"slug\\"> summary-card card"
     style={
       Object {
         "marginBottom": "10px",
@@ -60,7 +60,7 @@ Array [
         onSubmit={[Function]}
       >
         <div
-          className="col-12"
+          className="summary-formrow col-12"
         >
           <div
             className="form-row"
@@ -71,7 +71,7 @@ Array [
               <h3 />
             </div>
             <div
-              className="col-12"
+              className="summary-formrow col-12"
             >
               <div
                 className="form-row"
@@ -84,110 +84,110 @@ Array [
                   </h3>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operator_name"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Legal name
                     </strong>
-                  </label>
-                  : 
-                  TestOperator
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    TestOperator
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operator_tradeName"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Trade name
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operator_naics"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       NAICS code
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operator_bcCorporateRegistryNumber"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       BC Corporate Registry number
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operator_duns"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       DUNS number
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="col-12"
+                  className="summary-formrow col-12"
                 >
                   <div
                     className="form-row"
@@ -200,95 +200,95 @@ Array [
                       </h3>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_operator_mailingAddress_streetAddress"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           Street address
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_operator_mailingAddress_city"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           City
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_operator_mailingAddress_postalCode"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           Postal Code
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_operator_mailingAddress_province"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           Province or Territory
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div
-              className="col-12"
+              className="summary-formrow col-12"
             >
               <div
                 className="form-row"
@@ -301,131 +301,131 @@ Array [
                   </h3>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operationalRepresentative_firstName"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       First Name
                     </strong>
-                  </label>
-                  : 
-                  DoogieHouser
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    DoogieHouser
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operationalRepresentative_lastName"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Last Name
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operationalRepresentative_position"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Position/Title
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operationalRepresentative_email"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Email Address
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operationalRepresentative_phone"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Telephone Number
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_operationalRepresentative_fax"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Fax Number
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="col-12"
+                  className="summary-formrow col-12"
                 >
                   <div
                     className="form-row"
@@ -438,95 +438,95 @@ Array [
                       </h3>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_operationalRepresentative_mailingAddress_streetAddress"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           Street address
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_operationalRepresentative_mailingAddress_city"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           City
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_operationalRepresentative_mailingAddress_postalCode"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           Postal Code
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_operationalRepresentative_mailingAddress_province"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           Province or Territory
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div
-              className="col-12"
+              className="summary-formrow col-12"
             >
               <div
                 className="form-row"
@@ -539,89 +539,89 @@ Array [
                   </h3>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_facilityName"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Facility Name
                     </strong>
-                  </label>
-                  : 
-                  fac1
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    fac1
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_facilityType"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Facility Type
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_bcghgid"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       BCGHG ID Number
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-string form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-string summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_naics"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       NAICS Code
                     </strong>
-                  </label>
-                  : 
-                  <i>
-                    [No Data Entered]
-                  </i>
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    <i>
+                      [No Data Entered]
+                    </i>
+                  </div>
                 </div>
                 <div
-                  className="col-12"
+                  className="summary-formrow col-12"
                 >
                   <div
                     className="form-row"
@@ -634,109 +634,109 @@ Array [
                       </h3>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_facility_mailingAddress_streetAddress"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           Street address
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_facility_mailingAddress_city"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           City
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_facility_mailingAddress_postalCode"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           Postal Code
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                     <div
-                      className="form-group field field-string form-group"
-                      style={
-                        Object {
-                          "margin": 10,
-                        }
-                      }
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
                     >
-                      <label
-                        className="form-label"
-                        htmlFor="root_facility_mailingAddress_province"
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        <strong>
+                        <strong
+                          className="jsx-1147644460"
+                        >
                           Province or Territory
                         </strong>
-                      </label>
-                      : 
-                      <i>
-                        [No Data Entered]
-                      </i>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                         
+                        <i>
+                          [No Data Entered]
+                        </i>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  className="form-group field field-boolean form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-boolean summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_isFacilityLocationDifferent"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Is the facility location different from the mailing address?
                     </strong>
-                  </label>
-                   
-                  No
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    No
+                  </div>
                 </div>
               </div>
             </div>
@@ -746,7 +746,7 @@ Array [
     </div>
   </div>,
   <div
-    className="card"
+    className="<mock-value-for-field-\\"slug\\"> summary-card card"
     style={
       Object {
         "marginBottom": "10px",
@@ -796,7 +796,7 @@ Array [
         onSubmit={[Function]}
       >
         <div
-          className="col-12"
+          className="summary-formrow col-12"
         >
           <div
             className="form-row"
@@ -807,7 +807,7 @@ Array [
               <h3 />
             </div>
             <div
-              className="col-12"
+              className="summary-array-col col-12"
             >
               <div
                 className="col-12"
@@ -815,13 +815,13 @@ Array [
                 <h3 />
               </div>
               <div
-                className="form-row"
+                className="summary-array-block form-row"
               >
                 <div
                   className="col-12"
                 >
                   <div
-                    className="col-12"
+                    className="summary-formrow col-12"
                   >
                     <div
                       className="form-row"
@@ -832,34 +832,34 @@ Array [
                         <h3 />
                       </div>
                       <div
-                        className="form-group field field-string  hidden-title form-group"
-                        style={
-                          Object {
-                            "margin": 10,
-                          }
-                        }
+                        className="jsx-1147644460 form-group field field-string  hidden-title summary-formgroup"
                       >
-                        <label
-                          className="form-label"
-                          htmlFor="root_sourceTypes_0_sourceTypeName"
+                        <div
+                          className="jsx-1147644460 summary-label"
                         >
-                          <strong>
+                          <strong
+                            className="jsx-1147644460"
+                          >
                             sourceTypeName
                           </strong>
-                        </label>
-                        <h5
-                          className="jsx-2806087631"
-                          style={
-                            Object {
-                              "textAlign": "left",
-                            }
-                          }
+                        </div>
+                        <div
+                          className="jsx-1147644460 summary-item"
                         >
-                          Stationary Fuel Combustion
-                        </h5>
+                          <h5
+                            className="jsx-2806087631"
+                            style={
+                              Object {
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                            Stationary Fuel Combustion
+                          </h5>
+                        </div>
                       </div>
                       <div
-                        className="col-12"
+                        className="summary-array-col col-12"
                       >
                         <div
                           className="col-12"
@@ -867,19 +867,19 @@ Array [
                           <h3 />
                         </div>
                         <div
-                          className="form-row"
+                          className="summary-array-block form-row"
                         >
                           <div
                             className="col-12"
                           >
                             <div
-                              className="col-12"
+                              className="summary-formrow col-12"
                             >
                               <div
                                 className="form-row"
                               >
                                 <div
-                                  className="col-md-12 col-12"
+                                  className="visible emission-summary-row col-md-12 col-12"
                                 >
                                   <div
                                     className="form-row"
@@ -890,7 +890,7 @@ Array [
                                       CO2nonbio
                                        
                                       <br
-                                        className="jsx-1154833918"
+                                        className="jsx-742059722"
                                       />
                                       <div
                                         className="col-md-10"
@@ -904,7 +904,7 @@ Array [
                                         }
                                       >
                                         <small
-                                          className="jsx-1154833918"
+                                          className="jsx-742059722"
                                         >
                                           gassy
                                         </small>
@@ -914,7 +914,7 @@ Array [
                                       className="col-md-3"
                                     >
                                       <strong
-                                        className="jsx-1154833918"
+                                        className="jsx-742059722"
                                       >
                                         Tonnes:
                                       </strong>
@@ -925,7 +925,7 @@ Array [
                                       className="col-md-3"
                                     >
                                       <strong
-                                        className="jsx-1154833918"
+                                        className="jsx-742059722"
                                       >
                                         Tonnes(CO2e): 
                                       </strong>
@@ -938,19 +938,19 @@ Array [
                           </div>
                         </div>
                         <div
-                          className="form-row"
+                          className="summary-array-block form-row"
                         >
                           <div
                             className="col-12"
                           >
                             <div
-                              className="col-12"
+                              className="summary-formrow col-12"
                             >
                               <div
                                 className="form-row"
                               >
                                 <div
-                                  className="col-md-12 col-12"
+                                  className="visible emission-summary-row col-md-12 col-12"
                                 >
                                   <div
                                     className="form-row"
@@ -961,7 +961,7 @@ Array [
                                       CO2
                                        
                                       <br
-                                        className="jsx-1154833918"
+                                        className="jsx-742059722"
                                       />
                                       <div
                                         className="col-md-10"
@@ -975,7 +975,7 @@ Array [
                                         }
                                       >
                                         <small
-                                          className="jsx-1154833918"
+                                          className="jsx-742059722"
                                         >
                                           super gassy
                                         </small>
@@ -985,7 +985,7 @@ Array [
                                       className="col-md-3"
                                     >
                                       <strong
-                                        className="jsx-1154833918"
+                                        className="jsx-742059722"
                                       >
                                         Tonnes:
                                       </strong>
@@ -996,7 +996,7 @@ Array [
                                       className="col-md-3"
                                     >
                                       <strong
-                                        className="jsx-1154833918"
+                                        className="jsx-742059722"
                                       >
                                         Tonnes(CO2e): 
                                       </strong>
@@ -1014,13 +1014,13 @@ Array [
                 </div>
               </div>
               <div
-                className="form-row"
+                className="summary-array-block form-row"
               >
                 <div
                   className="col-12"
                 >
                   <div
-                    className="col-12"
+                    className="summary-formrow col-12"
                   >
                     <div
                       className="form-row"
@@ -1031,34 +1031,34 @@ Array [
                         <h3 />
                       </div>
                       <div
-                        className="form-group field field-string  hidden-title form-group"
-                        style={
-                          Object {
-                            "margin": 10,
-                          }
-                        }
+                        className="jsx-1147644460 form-group field field-string  hidden-title summary-formgroup"
                       >
-                        <label
-                          className="form-label"
-                          htmlFor="root_sourceTypes_1_sourceTypeName"
+                        <div
+                          className="jsx-1147644460 summary-label"
                         >
-                          <strong>
+                          <strong
+                            className="jsx-1147644460"
+                          >
                             sourceTypeName
                           </strong>
-                        </label>
-                        <h5
-                          className="jsx-2806087631"
-                          style={
-                            Object {
-                              "textAlign": "left",
-                            }
-                          }
+                        </div>
+                        <div
+                          className="jsx-1147644460 summary-item"
                         >
-                          Flaring
-                        </h5>
+                          <h5
+                            className="jsx-2806087631"
+                            style={
+                              Object {
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                            Flaring
+                          </h5>
+                        </div>
                       </div>
                       <div
-                        className="col-12"
+                        className="summary-array-col col-12"
                       >
                         <div
                           className="col-12"
@@ -1066,19 +1066,19 @@ Array [
                           <h3 />
                         </div>
                         <div
-                          className="form-row"
+                          className="summary-array-block form-row"
                         >
                           <div
                             className="col-12"
                           >
                             <div
-                              className="col-12"
+                              className="summary-formrow col-12"
                             >
                               <div
                                 className="form-row"
                               >
                                 <div
-                                  className="col-md-12 col-12"
+                                  className="visible emission-summary-row col-md-12 col-12"
                                 >
                                   <div
                                     className="form-row"
@@ -1089,7 +1089,7 @@ Array [
                                       Waste
                                        
                                       <br
-                                        className="jsx-1154833918"
+                                        className="jsx-742059722"
                                       />
                                       <div
                                         className="col-md-10"
@@ -1103,7 +1103,7 @@ Array [
                                         }
                                       >
                                         <small
-                                          className="jsx-1154833918"
+                                          className="jsx-742059722"
                                         >
                                           wastey
                                         </small>
@@ -1113,7 +1113,7 @@ Array [
                                       className="col-md-3"
                                     >
                                       <strong
-                                        className="jsx-1154833918"
+                                        className="jsx-742059722"
                                       >
                                         Tonnes:
                                       </strong>
@@ -1124,7 +1124,7 @@ Array [
                                       className="col-md-3"
                                     >
                                       <strong
-                                        className="jsx-1154833918"
+                                        className="jsx-742059722"
                                       >
                                         Tonnes(CO2e): 
                                       </strong>
@@ -1148,7 +1148,7 @@ Array [
     </div>
   </div>,
   <div
-    className="card"
+    className="<mock-value-for-field-\\"slug\\"> summary-card card"
     style={
       Object {
         "marginBottom": "10px",
@@ -1198,7 +1198,7 @@ Array [
         onSubmit={[Function]}
       >
         <div
-          className="col-12"
+          className="summary-array-col col-12"
         >
           <div
             className="col-12"
@@ -1206,13 +1206,13 @@ Array [
             <h3 />
           </div>
           <div
-            className="form-row"
+            className="summary-array-block form-row"
           >
             <div
               className="col-12"
             >
               <div
-                className="col-12"
+                className="summary-formrow col-12"
               >
                 <div
                   className="form-row"
@@ -1223,93 +1223,93 @@ Array [
                     <h3 />
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_0_fuelType"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Fuel Type
                       </strong>
-                    </label>
-                    : 
-                    diesel
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      diesel
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-number form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_0_quantity"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Quantity
                       </strong>
-                    </label>
-                    : 
-                    123.5
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      123.5
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_0_fuelUnits"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Units
                       </strong>
-                    </label>
-                    : 
-                    kilolitres
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      kilolitres
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_0_methodology"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Methodology
                       </strong>
-                    </label>
-                    : 
-                    win some lose some
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      win some lose some
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div
-            className="form-row"
+            className="summary-array-block form-row"
           >
             <div
               className="col-12"
             >
               <div
-                className="col-12"
+                className="summary-formrow col-12"
               >
                 <div
                   className="form-row"
@@ -1320,80 +1320,80 @@ Array [
                     <h3 />
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_1_fuelType"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Fuel Type
                       </strong>
-                    </label>
-                    : 
-                    Natural Gas
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      Natural Gas
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-number form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_1_quantity"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Quantity
                       </strong>
-                    </label>
-                    : 
-                    320013
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      320013
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_1_fuelUnits"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Units
                       </strong>
-                    </label>
-                    : 
-                    Sm^3
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      Sm^3
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_1_methodology"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Methodology
                       </strong>
-                    </label>
-                    : 
-                    WCI 1.0
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      WCI 1.0
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1404,7 +1404,7 @@ Array [
     </div>
   </div>,
   <div
-    className="card"
+    className="<mock-value-for-field-\\"slug\\"> summary-card card"
     style={
       Object {
         "marginBottom": "10px",
@@ -1454,7 +1454,7 @@ Array [
         onSubmit={[Function]}
       >
         <div
-          className="col-12"
+          className="summary-formrow col-12"
         >
           <div
             className="form-row"
@@ -1465,7 +1465,7 @@ Array [
               <h3 />
             </div>
             <div
-              className="col-12"
+              className="summary-formrow col-12"
             >
               <div
                 className="form-row"
@@ -1478,104 +1478,104 @@ Array [
                   </h3>
                 </div>
                 <div
-                  className="form-group field field-number form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_electricity_purchased"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Purchased
                     </strong>
-                  </label>
-                  : 
-                  26
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    26
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-number form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_electricity_sold"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Sold
                     </strong>
-                  </label>
-                  : 
-                  1234
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    1234
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-number form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_electricity_consumedOnSite"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Consumed On-Site
                     </strong>
-                  </label>
-                  : 
-                  135
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    135
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-number form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_electricity_generatedOnSite"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Generated On-Site
                     </strong>
-                  </label>
-                  : 
-                  6130
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    6130
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-number form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_electricity_onSiteEmissions"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Emissions from On-Site Generation (tCO2e)
                     </strong>
-                  </label>
-                  : 
-                  810
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    810
+                  </div>
                 </div>
               </div>
             </div>
             <div
-              className="col-12"
+              className="summary-formrow col-12"
             >
               <div
                 className="form-row"
@@ -1588,99 +1588,99 @@ Array [
                   </h3>
                 </div>
                 <div
-                  className="form-group field field-number form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_heat_purchased"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Purchased
                     </strong>
-                  </label>
-                  : 
-                  12
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    12
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-number form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_heat_sold"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Sold
                     </strong>
-                  </label>
-                  : 
-                  1
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    1
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-number form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_heat_consumedOnSite"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Consumed On-Site
                     </strong>
-                  </label>
-                  : 
-                  15
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    15
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-number form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_heat_generatedOnSite"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Generated On-Site
                     </strong>
-                  </label>
-                  : 
-                  60
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    60
+                  </div>
                 </div>
                 <div
-                  className="form-group field field-number form-group"
-                  style={
-                    Object {
-                      "margin": 10,
-                    }
-                  }
+                  className="jsx-1147644460 form-group field field-number summary-formgroup"
                 >
-                  <label
-                    className="form-label"
-                    htmlFor="root_heat_onSiteEmissions"
+                  <div
+                    className="jsx-1147644460 summary-label"
                   >
-                    <strong>
+                    <strong
+                      className="jsx-1147644460"
+                    >
                       Emissions from On-Site Generation (tCO2e)
                     </strong>
-                  </label>
-                  : 
-                  80
+                  </div>
+                  <div
+                    className="jsx-1147644460 summary-item"
+                  >
+                     
+                    80
+                  </div>
                 </div>
               </div>
             </div>
@@ -1690,7 +1690,7 @@ Array [
     </div>
   </div>,
   <div
-    className="card"
+    className="<mock-value-for-field-\\"slug\\"> summary-card card"
     style={
       Object {
         "marginBottom": "10px",
@@ -1740,7 +1740,7 @@ Array [
         onSubmit={[Function]}
       >
         <div
-          className="col-12"
+          className="summary-array-col col-12"
         >
           <div
             className="col-12"
@@ -1748,13 +1748,13 @@ Array [
             <h3 />
           </div>
           <div
-            className="form-row"
+            className="summary-array-block form-row"
           >
             <div
               className="col-12"
             >
               <div
-                className="col-12"
+                className="summary-formrow col-12"
               >
                 <div
                   className="form-row"
@@ -1765,114 +1765,114 @@ Array [
                     <h3 />
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_0_product"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Processing Unit Module
                       </strong>
-                    </label>
-                    : 
-                    mayonnaise
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      mayonnaise
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-number form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_0_quantity"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Quantity
                       </strong>
-                    </label>
-                    : 
-                    12
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      12
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_0_productUnits"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Units
                       </strong>
-                    </label>
-                    : 
-                    <i>
-                      [No Data Entered]
-                    </i>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-number form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_0_associatedEmissions"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Associated Emission (tCO2e)
                       </strong>
-                    </label>
-                    : 
-                    1
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      1
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_0_comments"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         comments
                       </strong>
-                    </label>
-                    : 
-                    a sandwich isnt a sandwich without it
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      a sandwich isnt a sandwich without it
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div
-            className="form-row"
+            className="summary-array-block form-row"
           >
             <div
               className="col-12"
             >
               <div
-                className="col-12"
+                className="summary-formrow col-12"
               >
                 <div
                   className="form-row"
@@ -1883,101 +1883,101 @@ Array [
                     <h3 />
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_1_product"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Processing Unit Module
                       </strong>
-                    </label>
-                    : 
-                    pickles
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      pickles
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-number form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_1_quantity"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Quantity
                       </strong>
-                    </label>
-                    : 
-                    121
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      121
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_1_productUnits"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Units
                       </strong>
-                    </label>
-                    : 
-                    <i>
-                      [No Data Entered]
-                    </i>
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      <i>
+                        [No Data Entered]
+                      </i>
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-number form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-number summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_1_associatedEmissions"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         Associated Emission (tCO2e)
                       </strong>
-                    </label>
-                    : 
-                    10000
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      10000
+                    </div>
                   </div>
                   <div
-                    className="form-group field field-string form-group"
-                    style={
-                      Object {
-                        "margin": 10,
-                      }
-                    }
+                    className="jsx-1147644460 form-group field field-string summary-formgroup"
                   >
-                    <label
-                      className="form-label"
-                      htmlFor="root_1_comments"
+                    <div
+                      className="jsx-1147644460 summary-label"
                     >
-                      <strong>
+                      <strong
+                        className="jsx-1147644460"
+                      >
                         comments
                       </strong>
-                    </label>
-                    : 
-                    pickles are good
+                    </div>
+                    <div
+                      className="jsx-1147644460 summary-item"
+                    >
+                       
+                      pickles are good
+                    </div>
                   </div>
                 </div>
               </div>

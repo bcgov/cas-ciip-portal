@@ -18,6 +18,7 @@ class ApplicationDetails extends Component<Props> {
       $applicationStatusCondition: ApplicationStatusCondition
       $bcghgidInput: BigFloat
       $reportingYear: String
+      $applicationGUID: ID!
     ) {
       query {
         session {
@@ -28,7 +29,7 @@ class ApplicationDetails extends Component<Props> {
         ...IncentiveCalculatorContainer_query
           @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
         ...ApplicationWizardConfirmation_query
-          @arguments(applicationId: "WyJhcHBsaWNhdGlvbnMiLDNd")
+          @arguments(applicationId: $applicationGUID)
       }
     }
   `;
@@ -54,7 +55,8 @@ class ApplicationDetails extends Component<Props> {
           applicationId={this.props.router.query.applicationId}
         />
         <hr />
-        <ApplicationWizardConfirmation query={query} />
+
+        <ApplicationWizardConfirmation is_analyst query={query} />
         <IncentiveCalculatorContainer
           query={query}
           bcghgid={this.props.router.query.bcghgid}

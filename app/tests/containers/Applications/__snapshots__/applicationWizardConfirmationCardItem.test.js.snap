@@ -3,6 +3,7 @@
 exports[`ApplicationWizardConfirmationComponentCardItem should render the individual summary confirmation card component 1`] = `
 <Card
   body={false}
+  className="undefined summary-card"
   style={
     Object {
       "marginBottom": "10px",

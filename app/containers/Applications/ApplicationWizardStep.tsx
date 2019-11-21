@@ -76,7 +76,8 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
     await storeResult(formData);
   };
 
-  if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
+  if (confirmationPage)
+    return <ApplicationWizardConfirmation is_analyst={false} query={query} />;
   if (!formResult) return null;
 
   if (!application) return null;

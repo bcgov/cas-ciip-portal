@@ -2,7 +2,7 @@
 -- requires: table_form_result
 
 begin;
-  create view ggircs_portal.ciip_production as (
+  create or replace view ggircs_portal.ciip_production as (
     with x as (
       select * from
       (select
@@ -11,7 +11,7 @@ begin;
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.name = 'Production') as A
+      and form_json.slug = 'production') as A
       inner join
       (select
          form_result.application_id as fid,
@@ -19,7 +19,7 @@ begin;
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.name = 'Admin') as B
+      and form_json.slug = 'admin') as B
       on A.id = B.fid
     )
     select

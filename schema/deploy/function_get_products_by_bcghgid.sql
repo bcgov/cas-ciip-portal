@@ -12,3 +12,6 @@ create or replace function ggircs_portal.get_products_by_bcghgid(bcghgid_input n
   $function$ language sql stable;
 
 commit;
+
+
+select * from ggircs_portal.get_products_by_bcghgid(12111100011)

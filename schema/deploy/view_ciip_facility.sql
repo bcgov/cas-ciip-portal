@@ -11,7 +11,7 @@ begin;
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.name = 'Admin'
+      and form_json.slug = 'admin'
     )
     select
        x.id,

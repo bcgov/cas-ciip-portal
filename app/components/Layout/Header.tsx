@@ -26,13 +26,14 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item>
-                    <Link href="/applications">
-                      Applications list for analyst
-                    </Link>
+                    <Link href="/user-dashboard">Industry User: Dashboard</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link href="/applications">Analyst: Applications list</Link>
                   </Dropdown.Item>
                   <Dropdown.Item>
                     <Link href="/products-benchmarks">
-                      Create Products and Benchmarks
+                      Admin: Create Products and Benchmarks
                     </Link>
                   </Dropdown.Item>
                 </Dropdown.Menu>

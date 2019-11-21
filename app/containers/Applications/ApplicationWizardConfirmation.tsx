@@ -14,7 +14,9 @@ import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmati
 interface Props {
   query: ApplicationWizardConfirmation_query;
   relay: RelayProp;
+  is_analyst: boolean;
 }
+
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
 
@@ -56,13 +58,17 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           pathname: '/complete-submit'
         }}
       >
-        <Button
-          className="float-right"
-          style={{marginTop: '10px'}}
-          onClick={submitApplication}
-        >
-          Submit Application
-        </Button>
+        {props.is_analyst ? (
+          ''
+        ) : (
+          <Button
+            className="float-right"
+            style={{marginTop: '10px'}}
+            onClick={submitApplication}
+          >
+            Submit Application
+          </Button>
+        )}
       </Link>
     </>
   );
