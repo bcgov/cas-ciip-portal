@@ -8,6 +8,8 @@ import RegistrationLoginButtons from '../components/RegistrationLoginButtons';
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
+  applicationOpenDate?: string;
+  applicationEndDate?: string;
 }
 
 export default class Index extends Component<Props> {
