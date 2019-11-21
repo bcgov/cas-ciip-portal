@@ -9,7 +9,6 @@ interface Props {
 class SearchTableComponent extends Component<Props> {
   state = {
     orderByField: this.props.defaultOrderByField,
-    orderByDisplay: this.props.defaultOrderByDisplay,
     direction: 'ASC',
     searchField: null,
     searchValue: null,
@@ -22,10 +21,10 @@ class SearchTableComponent extends Component<Props> {
       : this.setState({direction: 'ASC'});
   };
 
-  sortApplications = (event, eventKey) => {
+  sortColumn = column => {
+    this.toggleDirection();
     this.setState({
-      orderByField: eventKey,
-      orderByDisplay: event.target.text
+      orderByField: column
     });
   };
 
@@ -43,11 +42,8 @@ class SearchTableComponent extends Component<Props> {
     }
   };
 
-  handleEvent = (event, eventKey) => {
-    event.preventDefault();
-    event.stopPropagation();
-    event.persist();
-    this[event.target.id](event, eventKey);
+  handleEvent = (action, column, display) => {
+    this[action](column, display);
   };
 
   render() {
@@ -56,7 +52,6 @@ class SearchTableComponent extends Component<Props> {
 
     return children({
       query,
-      orderByDisplay: this.state.orderByDisplay,
       orderByField: this.state.orderByField,
       direction: this.state.direction,
       searchField: this.state.searchField,

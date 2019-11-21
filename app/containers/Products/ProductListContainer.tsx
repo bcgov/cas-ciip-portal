@@ -4,6 +4,7 @@ import {graphql, createRefetchContainer} from 'react-relay';
 import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
 // Import {RelayNetworkLayer} from 'react-relay-network-modern/node8';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import SortableTableHeader from '../../components/SortableTableHeader';
 import ProductRowItemContainer from './ProductRowItemContainer';
 
 interface Props {
@@ -38,52 +39,28 @@ export const ProductList: React.FunctionComponent<Props> = ({
     relay.refetch(refetchVariables);
   });
 
-  const sort = (event, column) => {
-    // @ts-ignore
-    event.target.id = 'sortApplications';
-    handleEvent(event, column);
-    // @ts-ignore
-    event.target.id = 'toggleDirection';
-    handleEvent(event);
-  };
-
   if (query && query.searchProducts && query.searchProducts.edges) {
     const allProducts = query.searchProducts.edges;
+    const tableHeaders = [
+      {columnName: 'name', displayName: 'Product'},
+      {columnName: 'units', displayName: 'Units'},
+      {columnName: 'benchmark', displayName: 'Benchmark'},
+      {columnName: 'eligibilityThreshold', displayName: 'Elig. Threshold'},
+      {columnName: 'state', displayName: 'Status'}
+    ];
 
     return (
       <>
         <Table striped hover>
           <thead style={{color: 'white', background: '#003366'}}>
             <tr>
-              <th
-                onClick={event => {
-                  sort(event, 'name');
-                }}
-              >
-                Product
-              </th>
-              <th
-                onClick={event => {
-                  sort(event, 'units');
-                }}
-              >
-                Units
-              </th>
-              <th
-                onClick={event => {
-                  sort(event, 'units');
-                }}
-              >
-                Benchmark
-              </th>
-              <th>Elig. Threshold</th>
-              <th
-                onClick={event => {
-                  sort(event, 'state');
-                }}
-              >
-                Status
-              </th>
+              {tableHeaders.map(header => (
+                <SortableTableHeader
+                  key={header.columnName}
+                  sort={handleEvent}
+                  headerVariables={header}
+                />
+              ))}
               <th>Edit</th>
             </tr>
           </thead>
