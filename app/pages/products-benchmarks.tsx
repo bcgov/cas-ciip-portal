@@ -93,17 +93,7 @@ class ProductsBenchmarks extends Component<Props> {
             <br />
             <br />
             <br />
-            <ProductListContainer
-              productRowActions={{
-                toggleProductMode: this.toggleProductMode,
-                toggleBenchmarkMode: this.toggleBenchmarkMode,
-                openConfirmationWindow: this.openConfirmationWindow,
-                closeConfirmationWindow: this.closeConfirmationWindow
-              }}
-              query={query}
-              mode={this.state.mode}
-              confirmationModalOpen={this.state.confirmationModalOpen}
-            />
+            <ProductListContainer query={query} />
           </Col>
         </Row>
       </DefaultLayout>

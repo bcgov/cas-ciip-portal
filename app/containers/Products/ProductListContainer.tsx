@@ -8,19 +8,10 @@ import ProductRowItemContainer from './ProductRowItemContainer';
 
 interface Props {
   query: ProductListContainer_query;
-  mode?: string;
-  confirmationModalOpen?: boolean;
-  productRowActions?: any;
   relay: any;
 }
 
-export const ProductList: React.FunctionComponent<Props> = ({
-  query,
-  mode,
-  confirmationModalOpen,
-  productRowActions,
-  relay
-}) => {
+export const ProductList: React.FunctionComponent<Props> = ({query, relay}) => {
   if (query && query.allProducts && query.allProducts.edges) {
     const allProducts = query.allProducts.edges;
 
@@ -54,13 +45,7 @@ export const ProductList: React.FunctionComponent<Props> = ({
           </thead>
           <tbody>
             {allProducts.map(({node}) => (
-              <ProductRowItemContainer
-                key={node.id}
-                product={node}
-                mode={mode}
-                confirmationModalOpen={confirmationModalOpen}
-                productRowActions={productRowActions}
-              />
+              <ProductRowItemContainer key={node.id} product={node} />
             ))}
           </tbody>
         </Table>
@@ -82,7 +67,7 @@ export default createPaginationContainer(
     query: graphql`
       fragment ProductListContainer_query on Query
         @argumentDefinitions(
-          count: {type: "Int", defaultValue: 5}
+          count: {type: "Int", defaultValue: 20}
           cursor: {type: "Cursor"}
           orderBy: {type: "[ProductsOrderBy!]", defaultValue: [NAME_ASC]}
         ) {

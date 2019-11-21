@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
+import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {
   Button,
   Modal,
@@ -10,12 +10,12 @@ import {
   Collapse
 } from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
-import JsonSchemaForm from 'react-jsonschema-form';
+import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
-// Import saveProductMutation from '../../mutations/product/saveProductMutation';
-// import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
+import saveProductMutation from '../../mutations/product/saveProductMutation';
+// Import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
 // import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
 
 // TODO: create conflict logic & alerts:
@@ -29,12 +29,20 @@ import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 // TODO: The UI is a little borked, the edit buttons apply to all items on the page because of where state lives currently
 //       I have purposely left this not fixed as I believe this should be fixed in a separate refactor of this page
 
-export const ProductRowItemComponent = props => {
+interface Props {
+  relay: RelayProp;
+  product: any;
+}
+
+export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
+  relay,
+  product
+}) => {
   // Get the product's current benchmark
   const getCurrentBenchmark = () => {
     let currentBenchmark;
-    if (props.product.benchmarksByProductId.edges[0]) {
-      props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
+    if (product.benchmarksByProductId.edges[0]) {
+      product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
         if (
           Date.parse(benchmark.startDate) < Date.now() &&
           (benchmark.endDate === null ||
@@ -97,32 +105,23 @@ export const ProductRowItemComponent = props => {
   //   console.log(response);
   // };
 
-  // // Save a product
-  // const saveProduct = async event => {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   event.persist();
-
-  //   const productNameTargetIndex = 3;
-  //   const descriptionTargetIndex = 4;
-
-  //   const currentBenchmark = getCurrentBenchmark();
-  //   const variables = {
-  //     input: {
-  //       newName: event.nativeEvent.target[productNameTargetIndex].value,
-  //       newDescription: event.nativeEvent.target[descriptionTargetIndex].value,
-  //       newState: 'active',
-  //       prevId: props.product.rowId,
-  //       newParent: [props.product.rowId],
-  //       benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
-  //     }
-  //   };
-  //   const response = await saveProductMutation(
-  //     props.relay.environment,
-  //     variables
-  //   );
-  //   console.log(response);
-  // };
+  // Save a product
+  const saveProduct = async (e: IChangeEvent) => {
+    const currentBenchmark = getCurrentBenchmark();
+    const variables = {
+      input: {
+        newName: e.formData.product,
+        newDescription: e.formData.description,
+        newState: 'active',
+        prevId: product.rowId,
+        newParent: [product.rowId],
+        benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
+      }
+    };
+    console.log(variables);
+    const response = await saveProductMutation(relay.environment, variables);
+    console.log(response);
+  };
 
   // // Save a new benchmark
   // const saveBenchmark = async event => {
@@ -215,7 +214,6 @@ export const ProductRowItemComponent = props => {
   //   props.product.state === 'archived' ? 'success' : 'warning';
   // const archiveRestore =
   //   props.product.state === 'archived' ? 'Restore' : 'Archive';
-  const {product} = props;
 
   const ProductSchema: JSONSchema6 = {
     type: 'object',
@@ -240,12 +238,17 @@ export const ProductRowItemComponent = props => {
       'ui:col-md': 6
     }
   };
+
+  const productFormData = {
+    product: product.name,
+    description: product.description
+  };
+
   const [modalShow, setModalShow] = React.useState(false);
   const [futureBenchmarksOpen, setFutureBenchmarksOpen] = React.useState(false);
   const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
 
   const currentBenchmark = getCurrentBenchmark();
-  console.log(currentBenchmark);
 
   const editModal = (
     <Modal
@@ -261,16 +264,16 @@ export const ProductRowItemComponent = props => {
         <Container>
           <Row>PRODUCT</Row>
           <JsonSchemaForm
-            // Key={createProductFormKey}
             omitExtraData
             liveOmit
             schema={ProductSchema}
             uiSchema={productUISchema}
+            formData={productFormData}
             showErrorList={false}
             ArrayFieldTemplate={FormArrayFieldTemplate}
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
-            // OnSubmit={saveProduct}
+            onSubmit={saveProduct}
           >
             <Button type="submit" variant="primary">
               Save Product
