@@ -135,7 +135,10 @@ values
 on conflict(id) do update
 set name=excluded.name, form_json=excluded.form_json,
     prepopulate_from_ciip=excluded.prepopulate_from_ciip,
-    prepopulate_from_swrs=excluded.prepopulate_from_swrs
+    prepopulate_from_swrs=excluded.prepopulate_from_swrs,
+    slug=exluded.slug,
+    short_name=excluded.short_name,
+    description=excluded.description
 returning 1
 ) select 'Inserted ' || count(*) || ' rows into ggircs_portal.form_json' from rows;
 
