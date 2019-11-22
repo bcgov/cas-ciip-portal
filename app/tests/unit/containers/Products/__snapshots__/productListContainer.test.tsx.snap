@@ -2,21 +2,116 @@
 
 exports[`ProductList should render the product list 1`] = `
 <Fragment>
-  <Relay(ProductRowItemComponent)
-    key="product-1"
-    product={
-      Object {
-        "id": "product-1",
+  <Container
+    fluid={false}
+  >
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col
+        md={
+          Object {
+            "offset": 6,
+            "span": 12,
+          }
+        }
+      >
+        <SearchBox
+          displayNameToColumnNameMap={
+            Object {
+              "Benchmark": "benchmark",
+              "Elig. Threshold": "eligibility_threshold",
+              "Product": "name",
+              "Status": "state",
+              "Units": "units",
+            }
+          }
+          dropdownSortItems={
+            Array [
+              "Product",
+              "Units",
+              "Benchmark",
+              "Elig. Threshold",
+              "Status",
+            ]
+          }
+        />
+      </Col>
+    </ForwardRef>
+  </Container>
+  <Bootstrap(Table)
+    hover={true}
+    striped={true}
+  >
+    <thead
+      style={
+        Object {
+          "background": "#003366",
+          "color": "white",
+        }
       }
-    }
-  />
-  <Relay(ProductRowItemComponent)
-    key="product-2"
-    product={
-      Object {
-        "id": "product-2",
-      }
-    }
-  />
+    >
+      <tr>
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "name",
+              "displayName": "Product",
+            }
+          }
+          key="name"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "units",
+              "displayName": "Units",
+            }
+          }
+          key="units"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "benchmark",
+              "displayName": "Benchmark",
+            }
+          }
+          key="benchmark"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "eligibility_threshold",
+              "displayName": "Elig. Threshold",
+            }
+          }
+          key="eligibility_threshold"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "state",
+              "displayName": "Status",
+            }
+          }
+          key="state"
+        />
+        <th>
+          Edit
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <Relay(ProductRowItemComponent)
+        key="abc"
+        product={
+          Object {
+            "id": "abc",
+          }
+        }
+      />
+    </tbody>
+  </Bootstrap(Table)>
 </Fragment>
 `;
