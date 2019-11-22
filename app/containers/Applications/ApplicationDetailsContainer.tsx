@@ -4,7 +4,7 @@ import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_que
 import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 
 /*
- * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
+ * The ApplicationDetails renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
  */
 
