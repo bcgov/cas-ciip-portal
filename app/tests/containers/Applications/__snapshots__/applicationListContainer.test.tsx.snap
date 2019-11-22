@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationList should render the application list 1`] = `
+<Fragment>
+  <Container
+    fluid={false}
+  >
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col
+        md={
+          Object {
+            "offset": 6,
+            "span": 12,
+          }
+        }
+      >
+        <SearchBox
+          displayNameToColumnNameMap={
+            Object {
+              "Application Id": "id",
+              "Facility Name": "facility_name",
+              "Operator Name": "operator_name",
+              "Status": "application_status",
+              "Submission Date": "submission_date",
+            }
+          }
+          dropdownSortItems={
+            Array [
+              "Application Id",
+              "Operator Name",
+              "Facility Name",
+              "Submission Date",
+              "Status",
+            ]
+          }
+        />
+      </Col>
+    </ForwardRef>
+  </Container>
+  <Bootstrap(Table)
+    bordered={true}
+    hover={true}
+    striped={true}
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <thead>
+      <tr>
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "id",
+              "displayName": "Application ID",
+            }
+          }
+          key="id"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "operator_name",
+              "displayName": "Operator Name",
+            }
+          }
+          key="operator_name"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "facility_name",
+              "displayName": "Facility Name",
+            }
+          }
+          key="facility_name"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "submission_date",
+              "displayName": "Submission Date",
+            }
+          }
+          key="submission_date"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "application_status",
+              "displayName": "Status",
+            }
+          }
+          key="application_status"
+        />
+        <th />
+      </tr>
+    </thead>
+    <tbody>
+      <Relay(ApplicationRowItem)
+        ciipApplication={
+          Object {
+            "id": "ciip-application-1",
+          }
+        }
+        key="ciip-application-1"
+      />
+    </tbody>
+  </Bootstrap(Table)>
+</Fragment>
+`;

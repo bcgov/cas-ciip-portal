@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApplicationList} from 'containers/Applications/ApplicationListContainer';
+import {ApplicationList} from '../../../containers/Applications/ApplicationListContainer';
 
 describe('ApplicationList', () => {
   it('should render the application list', async () => {
