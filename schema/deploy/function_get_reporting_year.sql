@@ -17,6 +17,6 @@ create or replace function ggircs_portal.get_reporting_year()
     $function$
         language plpgsql stable;
 
-commit;
+comment on function ggircs_portal.get_reporting_year is 'Function returning current reporting year and related dates'
 
---returns current reporting year and related dates
+commit;

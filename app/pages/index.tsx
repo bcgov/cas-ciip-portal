@@ -27,32 +27,13 @@ export default class Index extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ];
+    const options = {month: 'short', day: 'numeric', year: 'numeric'};
     const date1: any = query.getReportingYear.applicationOpenDate;
     const startDate: Date = new Date(Date.parse(date1));
-    const startYear = startDate.getFullYear();
-    const startDay = startDate.getDay();
-    const startMonth = months[startDate.getMonth()];
     const date2: any = query.getReportingYear.applicationEndDate;
     const endDate: Date = new Date(Date.parse(date2));
-    const endYear = endDate.getFullYear();
-    const endDay = endDate.getDay();
-    const endMonth = months[endDate.getMonth()];
-    const parsedStartDate = `${startMonth} ${startDay}, ${startYear}`;
-    const parsedEndDate = `${endMonth} ${endDay}, ${endYear}`;
+    const parsedEndDate = new Intl.DateTimeFormat('en-US', options);
+    const parsedStartDate = new Intl.DateTimeFormat('en-US', options);
     return (
       <DefaultLayout
         showSubheader={false}
@@ -142,7 +123,7 @@ export default class Index extends Component<Props> {
               </thead>
               <tbody>
                 <tr>
-                  <td>{parsedStartDate}</td>
+                  <td>{parsedStartDate.format(startDate)}</td>
                   <td>CIIP application forms open</td>
                 </tr>
                 <tr>
@@ -150,7 +131,7 @@ export default class Index extends Component<Props> {
                   <td>Webinar for CIIP</td>
                 </tr>
                 <tr>
-                  <td>{parsedEndDate}</td>
+                  <td>{parsedEndDate.format(endDate)}</td>
                   <td>CIIP application form due</td>
                 </tr>
                 <tr>
