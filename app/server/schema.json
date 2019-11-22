@@ -1,14 +1,14 @@
 {
-  "data": {
-    "__schema": {
-      "queryType": {
-        "name": "Query"
-      },
-      "mutationType": {
-        "name": "Mutation"
-      },
-      "subscriptionType": null,
-      "types": [
+"data": {
+"__schema": {
+"queryType": {
+"name": "Query"
+},
+"mutationType": {
+"name": "Mutation"
+},
+"subscriptionType": null,
+"types": [
         {
           "kind": "OBJECT",
           "name": "Query",
@@ -2472,6 +2472,8 @@
               "deprecationReason": null
             },
             {
+=======
+>>>>>>> update schema
               "name": "application",
               "description": "Reads a single `Application` using its globally unique `ID`.",
               "args": [
@@ -4488,6 +4490,8 @@
               "deprecationReason": null
             },
             {
+=======
+>>>>>>> update schema
               "name": "searchApplicationList",
               "description": "Reads and enables pagination through a set of `CiipApplication`.",
               "args": [
@@ -4885,11 +4889,6 @@
             },
             {
               "kind": "OBJECT",
-              "name": "CiipApplication",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
               "name": "Facility",
               "ofType": null
             },
@@ -4926,10 +4925,6 @@
             {
               "kind": "OBJECT",
               "name": "ReviewComment",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
               "name": "Benchmark",
               "ofType": null
             },
@@ -4940,10 +4935,14 @@
             },
             {
               "kind": "OBJECT",
-              "name": "CiipCertifier",
+              "name": "CiipApplication",
               "ofType": null
             },
             {
+              "kind": "OBJECT",
+              "name": "CiipCertifier",
+              "ofType": null
+            },
               "kind": "OBJECT",
               "name": "CiipContact",
               "ofType": null
@@ -5077,6 +5076,8 @@
               "defaultValue": null
             },
             {
+=======
+>>>>>>> update schema
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
               "type": {
@@ -5315,6 +5316,8 @@
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
+=======
+>>>>>>> update schema
             }
           ],
           "possibleTypes": null
@@ -5644,6 +5647,12 @@
               "type": {
                 "kind": "ENUM",
                 "name": "ApplicationReviewStatus",
+              "name": "facilityByFacilityId",
+              "description": "Reads a single `Facility` that is related to this `Application`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Facility",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -5652,6 +5661,9 @@
             {
               "name": "rowId",
               "description": "The application_review id used for reference and join",
+=======
+              "name": "facilityId",
+              "description": "The foreign key to ggircs_portal.facility, references id",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -5660,6 +5672,93 @@
                   "kind": "SCALAR",
                   "name": "Int",
                   "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "formResultsByApplicationId",
+              "description": "Reads and enables pagination through a set of `FormResult`.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": "Read all values in the set after (below) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Read all values in the set before (above) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "condition",
+                  "description": "A condition to be used in determining which values should be returned by the collection.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "FormResultCondition",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": "Only read the first `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Only read the last `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "offset",
+                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `FormResult`.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "FormResultsOrderBy",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
+>>>>>>> update schema
                 }
               },
               "isDeprecated": false,
@@ -5673,65 +5772,17 @@
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Datetime",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "updatedBy",
-              "description": "Updator of row",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-            {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
-            }
-          ],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "FormResult",
-          "description": "Table containing CIIP application data received from a user",
-          "fields": [
-            {
-              "name": "applicationByApplicationId",
-              "description": "Reads a single `Application` that is related to this `FormResult`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Application",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "applicationId",
               "description": "The Unique ID of the Application",
+              "name": "id",
+              "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "ID",
                   "ofType": null
                 }
               },
@@ -5753,6 +5804,10 @@
             {
               "name": "applicationReviewsByFormResultId",
               "description": "Reads and enables pagination through a set of `ApplicationReview`.",
+=======
+              "name": "orderedFormResults",
+              "description": "Reads and enables pagination through a set of `FormResult`.",
+>>>>>>> update schema
               "args": [
                 {
                   "name": "after",
@@ -5831,6 +5886,8 @@
                     }
                   },
                   "defaultValue": "[PRIMARY_KEY_ASC]"
+=======
+>>>>>>> update schema
                 }
               ],
               "type": {
@@ -5848,6 +5905,8 @@
             {
               "name": "createdAt",
               "description": "The date the form was updated",
+              "name": "rowId",
+              "description": "The application id used for reference and join",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -5882,6 +5941,8 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
+=======
+>>>>>>> update schema
                   "name": "Int",
                   "ofType": null
                 }
@@ -6487,10 +6548,101 @@
               "name": "applicationByApplicationId",
               "description": "Reads a single `Application` that is related to this `ApplicationStatus`.",
               "args": [],
+          "name": "Facility",
+          "description": "Table containing information on an facility that has applied for CIIP",
+          "fields": [
+            {
+              "name": "applicationsByFacilityId",
+              "description": "Reads and enables pagination through a set of `Application`.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": "Read all values in the set after (below) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Read all values in the set before (above) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "condition",
+                  "description": "A condition to be used in determining which values should be returned by the collection.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ApplicationCondition",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": "Only read the first `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Only read the last `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "offset",
+                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `Application`.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "ApplicationsOrderBy",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
+                }
+              ],
+>>>>>>> update schema
               "type": {
-                "kind": "OBJECT",
-                "name": "Application",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ApplicationsConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -6514,6 +6666,10 @@
             {
               "name": "applicationStatus",
               "description": "The application status",
+=======
+              "name": "bcghgid",
+              "description": "CAS internal identifier",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -6535,13 +6691,8 @@
                   "name": "Datetime",
                   "ofType": null
                 }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "createdBy",
-              "description": "The person who updated the application status",
+              "name": "facilityCity",
+              "description": "facility city",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -6552,17 +6703,27 @@
               "deprecationReason": null
             },
             {
-              "name": "id",
-              "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
+              "name": "createdBy",
+              "description": "The person who updated the application status",
+              "name": "facilityCountry",
+              "description": "facility country",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "facilityMailingAddress",
+              "description": "facility mailing address",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -6570,6 +6731,21 @@
             {
               "name": "rowId",
               "description": "The id used for reference and join",
+              "name": "facilityName",
+              "description": "the facility name",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "facilityPostalCode",
+              "description": "facility postal code",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -6595,6 +6771,14 @@
                   "name": "Datetime",
                   "ofType": null
                 }
+=======
+              "name": "facilityProvince",
+              "description": "facility province",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -6602,6 +6786,8 @@
             {
               "name": "updatedBy",
               "description": "The person who updated the application status",
+              "name": "facilityType",
+              "description": "type of facility based on emission quantity",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -6635,9 +6821,30 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+=======
+            },
+            {
+              "name": "hasSwrsReport",
+              "description": null,
+              "args": [
+                {
+                  "name": "reportingYear",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
-              "defaultValue": null
+              "isDeprecated": false,
+              "deprecationReason": null
             },
             {
               "name": "applicationStatus",
@@ -6646,8 +6853,20 @@
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
+              "name": "id",
+              "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
               },
-              "defaultValue": null
+              "isDeprecated": false,
+              "deprecationReason": null
             },
             {
               "name": "createdAt",
@@ -6655,39 +6874,60 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
+=======
+              "name": "latitude",
+              "description": "facility latitude",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
                 "ofType": null
               },
-              "defaultValue": null
+              "isDeprecated": false,
+              "deprecationReason": null
             },
             {
               "name": "createdBy",
               "description": "Checks for equality with the object’s `createdBy` field.",
+              "name": "longitude",
+              "description": "facility longitude",
+              "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "BigFloat",
                 "ofType": null
               },
-              "defaultValue": null
+              "isDeprecated": false,
+              "deprecationReason": null
             },
             {
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
+=======
+              "name": "naicsClassification",
+              "description": "description of the naics code",
+              "args": [],
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
                 "ofType": null
               },
-              "defaultValue": null
+              "isDeprecated": false,
+              "deprecationReason": null
             },
             {
               "name": "updatedAt",
               "description": "Checks for equality with the object’s `updatedAt` field.",
+              "name": "naicsCode",
+              "description": "The NAICS code / sector",
+              "args": [],
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
                 "ofType": null
               },
-              "defaultValue": null
+              "isDeprecated": false,
+              "deprecationReason": null
             },
             {
               "name": "updatedBy",
@@ -6727,51 +6967,130 @@
             {
               "name": "APPLICATION_STATUS_ASC",
               "description": null,
+=======
+              "name": "organisationByOrganisationId",
+              "description": "Reads a single `Organisation` that is related to this `Facility`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Organisation",
+                "ofType": null
+              },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "APPLICATION_STATUS_DESC",
               "description": null,
+              "name": "organisationId",
+              "description": "the id of the organization responsible for that facility",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "CREATED_AT_ASC",
               "description": null,
+=======
+              "name": "reportId",
+              "description": "report id from swrs",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "CREATED_AT_DESC",
               "description": null,
+              "name": "reportingYear",
+              "description": "the reporting year",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "CREATED_BY_ASC",
               "description": null,
+=======
+              "name": "rowId",
+              "description": "unique id for the facility",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "CREATED_BY_DESC",
               "description": null,
+              "name": "swrsFacilityId",
+              "description": "swrs facility id from swrs",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "ID_ASC",
               "description": null,
+=======
+              "name": "swrsOrganisationId",
+              "description": "swrs organisation id",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "ID_DESC",
               "description": null,
+              "name": "swrsReportId",
+              "description": "swrs report id from swrs",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
               "isDeprecated": false,
               "deprecationReason": null
-            },
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
             {
               "name": "NATURAL",
               "description": null,
@@ -6861,21 +7180,120 @@
                     "name": "ApplicationStatus",
                     "ofType": null
                   }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
+=======
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "BigFloat",
+          "description": "A floating point number that requires more precision than IEEE 754 binary 64",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Organisation",
+          "description": "Table containing information on an organisaiton that has applied for CIIP",
+          "fields": [
             {
-              "name": "pageInfo",
-              "description": "Information to aid in pagination.",
-              "args": [],
+              "name": "ciipUserOrganisationsByOrganisationId",
+              "description": "Reads and enables pagination through a set of `CiipUserOrganisation`.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": "Read all values in the set after (below) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Read all values in the set before (above) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "condition",
+                  "description": "A condition to be used in determining which values should be returned by the collection.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "CiipUserOrganisationCondition",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": "Only read the first `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Only read the last `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "offset",
+                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `CiipUserOrganisation`.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "CiipUserOrganisationsOrderBy",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
+>>>>>>> update schema
+                }
+              ],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "PageInfo",
+                  "name": "CiipUserOrganisationsConnection",
                   "ofType": null
                 }
               },
@@ -6912,10 +7330,14 @@
             {
               "name": "cursor",
               "description": "A cursor for use in pagination.",
+=======
+              "name": "craBusinessNumber",
+              "description": "cra business number",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "Cursor",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6928,6 +7350,12 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "ApplicationStatus",
+              "name": "duns",
+              "description": "duns number",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6960,12 +7388,99 @@
               "name": "hasNextPage",
               "description": "When paginating forwards, are there more items?",
               "args": [],
+=======
+            },
+            {
+              "name": "facilitiesByOrganisationId",
+              "description": "Reads and enables pagination through a set of `Facility`.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": "Read all values in the set after (below) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Read all values in the set before (above) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "condition",
+                  "description": "A condition to be used in determining which values should be returned by the collection.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "FacilityCondition",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": "Only read the first `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Only read the last `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "offset",
+                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `Facility`.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "FacilitiesOrderBy",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
+                }
+              ],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "Boolean",
+                  "kind": "OBJECT",
+                  "name": "FacilitiesConnection",
                   "ofType": null
                 }
               },
@@ -6975,6 +7490,8 @@
             {
               "name": "hasPreviousPage",
               "description": "When paginating backwards, are there more items?",
+              "name": "id",
+              "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -6982,6 +7499,7 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "Boolean",
+                  "name": "ID",
                   "ofType": null
                 }
               },
@@ -6991,6 +7509,10 @@
             {
               "name": "startCursor",
               "description": "When paginating backwards, the cursor to continue.",
+=======
+              "name": "operatorCity",
+              "description": "organisation city",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7024,6 +7546,8 @@
             {
               "name": "applicationByRowId",
               "description": "Reads a single `Application` that is related to this `CiipApplication`.",
+              "name": "operatorCountry",
+              "description": "organisation country",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -7036,6 +7560,10 @@
             {
               "name": "applicationStatus",
               "description": null,
+=======
+              "name": "operatorMailingAddress",
+              "description": "organisation mailing address",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7048,6 +7576,8 @@
             {
               "name": "bcghgid",
               "description": null,
+              "name": "operatorName",
+              "description": "legal name of organisation",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7058,20 +7588,10 @@
               "deprecationReason": null
             },
             {
-              "name": "facilityName",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "id",
               "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
+              "name": "operatorProvince",
+              "description": "organisation province",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -7088,6 +7608,8 @@
             {
               "name": "operatorName",
               "description": null,
+              "name": "operatorTradeName",
+              "description": "trade name of organisation",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7104,6 +7626,25 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+=======
+              "name": "reportId",
+              "description": "report id from swrs",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rowId",
+              "description": null,
+              "name": "reportingYear",
+              "description": "the reporting year",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -7111,7 +7652,8 @@
             },
             {
               "name": "rowId",
-              "description": null,
+              "description": "unique if for the organisation",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -7126,12 +7668,21 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "submissionDate",
               "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
+=======
+              "name": "swrsOrganisationId",
+              "description": "swrs organisation id",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+>>>>>>> update schema
                 "ofType": null
               },
               "isDeprecated": false,
@@ -7176,36 +7727,78 @@
               "defaultValue": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "bcghgid",
               "description": "Checks for equality with the object’s `bcghgid` field.",
+=======
+              "name": "swrsReportId",
+              "description": "swrs report id from swrs",
+              "args": [],
+>>>>>>> update schema
               "type": {
                 "kind": "SCALAR",
-                "name": "BigFloat",
+                "name": "Int",
                 "ofType": null
               },
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "defaultValue": null
             },
             {
               "name": "facilityName",
               "description": "Checks for equality with the object’s `facilityName` field.",
+=======
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CiipUserOrganisationCondition",
+          "description": "A condition to be used against `CiipUserOrganisation` object types. All fields are tested for equality and combined with a logical ‘and.’",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "organisationId",
+              "description": "Checks for equality with the object’s `organisationId` field.",
+>>>>>>> update schema
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "operatorName",
               "description": "Checks for equality with the object’s `operatorName` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+=======
+              "name": "status",
+              "description": "Checks for equality with the object’s `status` field.",
+              "type": {
+                "kind": "ENUM",
+                "name": "CiipUserOrganisationStatus",
+>>>>>>> update schema
                 "ofType": null
               },
               "defaultValue": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "reportingYear",
               "description": "Checks for equality with the object’s `reportingYear` field.",
               "type": {
@@ -7218,12 +7811,17 @@
             {
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
+=======
+              "name": "userId",
+              "description": "Checks for equality with the object’s `userId` field.",
+>>>>>>> update schema
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
             },
             {
               "name": "submissionDate",
@@ -7250,11 +7848,36 @@
           "enumValues": [
             {
               "name": "APPLICATION_STATUS_ASC",
+=======
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CiipUserOrganisationStatus",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "APPROVED",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+              "name": "PENDING",
+>>>>>>> update schema
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "APPLICATION_STATUS_DESC",
               "description": null,
               "isDeprecated": false,
@@ -7346,6 +7969,9 @@
             },
             {
               "name": "SUBMISSION_DATE_DESC",
+=======
+              "name": "REJECTED",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -7354,6 +7980,7 @@
           "possibleTypes": null
         },
         {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
           "kind": "OBJECT",
           "name": "CiipApplicationsConnection",
           "description": "A connection to a list of `CiipApplication` values.",
@@ -7379,10 +8006,23 @@
                   }
                 }
               },
+=======
+          "kind": "ENUM",
+          "name": "CiipUserOrganisationsOrderBy",
+          "description": "Methods to use when ordering `CiipUserOrganisation`.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "NATURAL",
+              "description": null,
+>>>>>>> update schema
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "nodes",
               "description": "A list of `CiipApplication` objects.",
               "args": [],
@@ -7395,6 +8035,182 @@
                   "ofType": {
                     "kind": "OBJECT",
                     "name": "CiipApplication",
+                    "ofType": null
+                  }
+                }
+              },
+=======
+              "name": "ORGANISATION_ID_ASC",
+              "description": null,
+>>>>>>> update schema
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+=======
+              "name": "ORGANISATION_ID_DESC",
+              "description": null,
+>>>>>>> update schema
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "totalCount",
+              "description": "The count of *all* `CiipApplication` you could get from the connection.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+=======
+              "name": "PRIMARY_KEY_ASC",
+              "description": null,
+>>>>>>> update schema
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipApplicationsEdge",
+          "description": "A `CiipApplication` edge in the connection.",
+          "fields": [
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "cursor",
+              "description": "A cursor for use in pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Cursor",
+                "ofType": null
+              },
+=======
+              "name": "PRIMARY_KEY_DESC",
+              "description": null,
+>>>>>>> update schema
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "node",
+              "description": "The `CiipApplication` at the end of the edge.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipApplication",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+=======
+              "name": "STATUS_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "STATUS_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "USER_ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "USER_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+>>>>>>> update schema
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+          "name": "Facility",
+          "description": "Table containing information on an facility that has applied for CIIP",
+          "fields": [
+            {
+              "name": "applicationsByFacilityId",
+              "description": "Reads and enables pagination through a set of `Application`.",
+=======
+          "name": "CiipUserOrganisationsConnection",
+          "description": "A connection to a list of `CiipUserOrganisation` values.",
+          "fields": [
+            {
+              "name": "edges",
+              "description": "A list of edges which contains the `CiipUserOrganisation` and cursor to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "CiipUserOrganisationsEdge",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nodes",
+              "description": "A list of `CiipUserOrganisation` objects.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "CiipUserOrganisation",
                     "ofType": null
                   }
                 }
@@ -7420,7 +8236,7 @@
             },
             {
               "name": "totalCount",
-              "description": "The count of *all* `CiipApplication` you could get from the connection.",
+              "description": "The count of *all* `CiipUserOrganisation` you could get from the connection.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -7442,8 +8258,8 @@
         },
         {
           "kind": "OBJECT",
-          "name": "CiipApplicationsEdge",
-          "description": "A `CiipApplication` edge in the connection.",
+          "name": "CiipUserOrganisationsEdge",
+          "description": "A `CiipUserOrganisation` edge in the connection.",
           "fields": [
             {
               "name": "cursor",
@@ -7459,11 +8275,11 @@
             },
             {
               "name": "node",
-              "description": "The `CiipApplication` at the end of the edge.",
+              "description": "The `CiipUserOrganisation` at the end of the edge.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "CiipApplication",
+                "name": "CiipUserOrganisation",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -7477,12 +8293,114 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Facility",
-          "description": "Table containing information on an facility that has applied for CIIP",
+          "name": "CiipUserOrganisation",
+          "description": "Table containing the access rights for a user to report on behalf of an organisation",
           "fields": [
             {
-              "name": "applicationsByFacilityId",
-              "description": "Reads and enables pagination through a set of `Application`.",
+              "name": "ciipUserByUserId",
+              "description": "Reads a single `CiipUser` that is related to this `CiipUserOrganisation`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipUser",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "id",
+              "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "organisationByOrganisationId",
+              "description": "Reads a single `Organisation` that is related to this `CiipUserOrganisation`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Organisation",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "organisationId",
+              "description": "foreign key that references the organisation table",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "status",
+              "description": "the status of the request to report on behalf of an organisation",
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CiipUserOrganisationStatus",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "userId",
+              "description": "foreign key that references the user table",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipUser",
+          "description": "Table containing the benchmark and eligibility threshold for a product",
+          "fields": [
+            {
+              "name": "ciipUserOrganisationsByUserId",
+              "description": "Reads and enables pagination through a set of `CiipUserOrganisation`.",
+>>>>>>> update schema
               "args": [
                 {
                   "name": "after",
@@ -7576,8 +8494,29 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "bcghgid",
               "description": "CAS internal identifier",
+=======
+              "name": "createdAt",
+              "description": "The date the user was updated",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createdBy",
+              "description": "The person who updated the user",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7588,8 +8527,13 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "facilityCity",
               "description": "facility city",
+=======
+              "name": "emailAddress",
+              "description": "User's email address",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7600,6 +8544,7 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "facilityCountry",
               "description": "facility country",
               "args": [],
@@ -7689,6 +8634,14 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
+=======
+              "name": "firstName",
+              "description": "User's first name",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+>>>>>>> update schema
                 "ofType": null
               },
               "isDeprecated": false,
@@ -7711,6 +8664,7 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "latitude",
               "description": "facility latitude",
               "args": [],
@@ -7737,6 +8691,10 @@
             {
               "name": "naicsClassification",
               "description": "description of the naics code",
+=======
+              "name": "lastName",
+              "description": "User's last name",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7747,8 +8705,13 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "naicsCode",
               "description": "The NAICS code / sector",
+=======
+              "name": "occupation",
+              "description": "User's occupation",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7759,8 +8722,13 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "organisationByOrganisationId",
               "description": "Reads a single `Organisation` that is related to this `Facility`.",
+=======
+              "name": "phoneNumber",
+              "description": "User's phone number",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -7771,8 +8739,13 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "organisationId",
               "description": "the id of the organization responsible for that facility",
+=======
+              "name": "rowId",
+              "description": "Unique ID for the user",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -7787,20 +8760,24 @@
               "deprecationReason": null
             },
             {
-              "name": "reportId",
-              "description": "report id from swrs",
+              "name": "updatedAt",
+              "description": "The date the user was updated",
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "reportingYear",
-              "description": "the reporting year",
+              "name": "updatedBy",
+              "description": "The person who updated the user",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -7811,20 +8788,26 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "rowId",
               "description": "unique id for the facility",
+=======
+              "name": "uuid",
+              "description": "Universally Unique ID for the user used for auth",
+>>>>>>> update schema
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "UUID",
                   "ofType": null
                 }
               },
               "isDeprecated": false,
               "deprecationReason": null
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
             },
             {
               "name": "swrsFacilityId",
@@ -7861,6 +8844,8 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+=======
+>>>>>>> update schema
             }
           ],
           "inputFields": null,
@@ -7875,7 +8860,18 @@
           "possibleTypes": null
         },
         {
+          "kind": "SCALAR",
+          "name": "UUID",
+          "description": "A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "INPUT_OBJECT",
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
           "name": "ApplicationCondition",
           "description": "A condition to be used against `Application` object types. All fields are tested for equality and combined with a logical ‘and.’",
           "fields": null,
@@ -7883,32 +8879,55 @@
             {
               "name": "facilityId",
               "description": "Checks for equality with the object’s `facilityId` field.",
+=======
+          "name": "FacilityCondition",
+          "description": "A condition to be used against `Facility` object types. All fields are tested for equality and combined with a logical ‘and.’",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "bcghgid",
+              "description": "Checks for equality with the object’s `bcghgid` field.",
+>>>>>>> update schema
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "reportingYear",
               "description": "Checks for equality with the object’s `reportingYear` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+=======
+              "name": "facilityCity",
+              "description": "Checks for equality with the object’s `facilityCity` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+>>>>>>> update schema
                 "ofType": null
               },
               "defaultValue": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
+=======
+              "name": "facilityCountry",
+              "description": "Checks for equality with the object’s `facilityCountry` field.",
+>>>>>>> update schema
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
             }
           ],
           "interfaces": null,
@@ -7937,41 +8956,244 @@
             },
             {
               "name": "ID_ASC",
+=======
+            },
+            {
+              "name": "facilityMailingAddress",
+              "description": "Checks for equality with the object’s `facilityMailingAddress` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "facilityName",
+              "description": "Checks for equality with the object’s `facilityName` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "facilityPostalCode",
+              "description": "Checks for equality with the object’s `facilityPostalCode` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "facilityProvince",
+              "description": "Checks for equality with the object’s `facilityProvince` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "facilityType",
+              "description": "Checks for equality with the object’s `facilityType` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "latitude",
+              "description": "Checks for equality with the object’s `latitude` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "longitude",
+              "description": "Checks for equality with the object’s `longitude` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "naicsClassification",
+              "description": "Checks for equality with the object’s `naicsClassification` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "naicsCode",
+              "description": "Checks for equality with the object’s `naicsCode` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "organisationId",
+              "description": "Checks for equality with the object’s `organisationId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "reportId",
+              "description": "Checks for equality with the object’s `reportId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "reportingYear",
+              "description": "Checks for equality with the object’s `reportingYear` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "rowId",
+              "description": "Checks for equality with the object’s `rowId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "swrsFacilityId",
+              "description": "Checks for equality with the object’s `swrsFacilityId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "swrsOrganisationId",
+              "description": "Checks for equality with the object’s `swrsOrganisationId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "swrsReportId",
+              "description": "Checks for equality with the object’s `swrsReportId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "FacilitiesOrderBy",
+          "description": "Methods to use when ordering `Facility`.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "BCGHGID_ASC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "ID_DESC",
+=======
+              "name": "BCGHGID_DESC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "NATURAL",
+=======
+              "name": "FACILITY_CITY_ASC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "PRIMARY_KEY_ASC",
+              "name": "FACILITY_CITY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "PRIMARY_KEY_DESC",
+              "name": "FACILITY_COUNTRY_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "REPORTING_YEAR_ASC",
+=======
+              "name": "FACILITY_COUNTRY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+              "name": "FACILITY_MAILING_ADDRESS_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FACILITY_MAILING_ADDRESS_DESC",
+>>>>>>> update schema
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "REPORTING_YEAR_DESC",
               "description": null,
               "isDeprecated": false,
@@ -8006,10 +9228,21 @@
                   }
                 }
               },
+=======
+              "name": "FACILITY_NAME_ASC",
+              "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+              "name": "FACILITY_NAME_DESC",
+              "description": null,
+>>>>>>> update schema
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "nodes",
               "description": "A list of `Application` objects.",
               "args": [],
@@ -8026,26 +9259,21 @@
                   }
                 }
               },
+=======
+              "name": "FACILITY_POSTAL_CODE_ASC",
+              "description": null,
+>>>>>>> update schema
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "pageInfo",
-              "description": "Information to aid in pagination.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              },
+              "name": "FACILITY_POSTAL_CODE_DESC",
+              "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "totalCount",
               "description": "The count of *all* `Application` you could get from the connection.",
               "args": [],
@@ -9423,6 +10651,8 @@
               "deprecationReason": null
             },
             {
+=======
+>>>>>>> update schema
               "name": "FACILITY_PROVINCE_ASC",
               "description": null,
               "isDeprecated": false,
@@ -9431,6 +10661,7 @@
             {
               "name": "FACILITY_PROVINCE_DESC",
               "description": null,
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -9849,65 +11080,132 @@
             {
               "name": "APPLICATION_ID_DESC",
               "description": null,
+=======
+>>>>>>> update schema
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "CREATED_AT_ASC",
+=======
+              "name": "FACILITY_TYPE_ASC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "CREATED_AT_DESC",
+=======
+              "name": "FACILITY_TYPE_DESC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "CREATED_BY_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "CREATED_BY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FORM_ID_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FORM_ID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FORM_RESULT_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FORM_RESULT_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
+=======
               "name": "ID_ASC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "CREATED_BY_DESC",
+=======
               "name": "ID_DESC",
+>>>>>>> update schema
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "FORM_ID_ASC",
+=======
+              "name": "LATITUDE_ASC",
+>>>>>>> update schema
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "FORM_ID_DESC",
+=======
+              "name": "LATITUDE_DESC",
+>>>>>>> update schema
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "FORM_RESULT_ASC",
+=======
+              "name": "LONGITUDE_ASC",
+>>>>>>> update schema
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "FORM_RESULT_DESC",
+=======
+              "name": "LONGITUDE_DESC",
+>>>>>>> update schema
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "ID_ASC",
+=======
+              "name": "NAICS_CLASSIFICATION_ASC",
+>>>>>>> update schema
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "ID_DESC",
+=======
+              "name": "NAICS_CLASSIFICATION_DESC",
+>>>>>>> update schema
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "NATURAL",
+=======
+              "name": "NAICS_CODE_ASC",
+>>>>>>> update schema
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
+              "name": "PRIMARY_KEY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PRIMARY_KEY_DESC",
+=======
+              "name": "NAICS_CODE_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -9919,48 +11217,70 @@
               "deprecationReason": null
             },
             {
-              "name": "PRIMARY_KEY_ASC",
+              "name": "ORGANISATION_ID_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "PRIMARY_KEY_DESC",
+              "name": "ORGANISATION_ID_DESC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "SUBMISSION_DATE_ASC",
+=======
+              "name": "PRIMARY_KEY_ASC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "SUBMISSION_DATE_DESC",
+=======
+              "name": "PRIMARY_KEY_DESC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "UPDATED_AT_ASC",
+=======
+              "name": "REPORT_ID_ASC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "UPDATED_AT_DESC",
+=======
+              "name": "REPORT_ID_DESC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "UPDATED_BY_ASC",
+=======
+              "name": "REPORTING_YEAR_ASC",
+>>>>>>> update schema
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "UPDATED_BY_DESC",
               "description": null,
               "isDeprecated": false,
@@ -9995,10 +11315,21 @@
                   }
                 }
               },
+=======
+              "name": "REPORTING_YEAR_DESC",
+              "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+              "name": "SWRS_FACILITY_ID_ASC",
+              "description": null,
+>>>>>>> update schema
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "nodes",
               "description": "A list of `FormResult` objects.",
               "args": [],
@@ -10015,26 +11346,21 @@
                   }
                 }
               },
+=======
+              "name": "SWRS_FACILITY_ID_DESC",
+              "description": null,
+>>>>>>> update schema
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "pageInfo",
-              "description": "Information to aid in pagination.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              },
+              "name": "SWRS_ORGANISATION_ID_ASC",
+              "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "totalCount",
               "description": "The count of *all* `FormResult` you could get from the connection.",
               "args": [],
@@ -10061,19 +11387,21 @@
           "name": "FormResultsEdge",
           "description": "A `FormResult` edge in the connection.",
           "fields": [
+=======
+              "name": "SWRS_ORGANISATION_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+>>>>>>> update schema
             {
-              "name": "cursor",
-              "description": "A cursor for use in pagination.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
-              },
+              "name": "SWRS_REPORT_ID_ASC",
+              "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "node",
               "description": "The `FormResult` at the end of the edge.",
               "args": [],
@@ -10082,157 +11410,75 @@
                 "name": "FormResult",
                 "ofType": null
               },
+=======
+              "name": "SWRS_REPORT_ID_DESC",
+              "description": null,
+>>>>>>> update schema
               "isDeprecated": false,
               "deprecationReason": null
             }
           ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
           "possibleTypes": null
         },
         {
           "kind": "OBJECT",
-          "name": "ReportingYear",
-          "description": "Table containing the reporting year and important dates related to the application",
+          "name": "FacilitiesConnection",
+          "description": "A connection to a list of `Facility` values.",
           "fields": [
             {
-              "name": "applicationEndDate",
-              "description": "The date cipp applications close",
+              "name": "edges",
+              "description": "A list of edges which contains the `Facility` and cursor to aid in pagination.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Datetime",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "applicationOpenDate",
-              "description": "The date cipp applications open",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Datetime",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "applicationResponseDate",
-              "description": "The date cipp users can expect a response by",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Datetime",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "applicationsByReportingYear",
-              "description": "Reads and enables pagination through a set of `Application`.",
-              "args": [
-                {
-                  "name": "after",
-                  "description": "Read all values in the set after (below) this cursor.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Cursor",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "before",
-                  "description": "Read all values in the set before (above) this cursor.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Cursor",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "condition",
-                  "description": "A condition to be used in determining which values should be returned by the collection.",
-                  "type": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "ApplicationCondition",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": "Only read the first `n` values of the set.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "last",
-                  "description": "Only read the last `n` values of the set.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "offset",
-                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "orderBy",
-                  "description": "The method to use when ordering `Application`.",
-                  "type": {
-                    "kind": "LIST",
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
                     "name": null,
                     "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "ENUM",
-                        "name": "ApplicationsOrderBy",
-                        "ofType": null
-                      }
+                      "kind": "OBJECT",
+                      "name": "FacilitiesEdge",
+                      "ofType": null
                     }
-                  },
-                  "defaultValue": "[PRIMARY_KEY_ASC]"
+                  }
                 }
-              ],
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nodes",
+              "description": "A list of `Facility` objects.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Facility",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "ApplicationsConnection",
+                  "name": "PageInfo",
                   "ofType": null
                 }
               },
@@ -10240,56 +11486,8 @@
               "deprecationReason": null
             },
             {
-              "name": "id",
-              "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "reportingPeriodEnd",
-              "description": "The date reporting period ends",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Datetime",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "reportingPeriodStart",
-              "description": "The date reporting period starts",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Datetime",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "reportingYear",
-              "description": "The current reporting year",
+              "name": "totalCount",
+              "description": "The count of *all* `Facility` you could get from the connection.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -10305,13 +11503,42 @@
             }
           ],
           "inputFields": null,
-          "interfaces": [
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FacilitiesEdge",
+          "description": "A `Facility` edge in the connection.",
+          "fields": [
             {
-              "kind": "INTERFACE",
-              "name": "Node",
-              "ofType": null
+              "name": "cursor",
+              "description": "A cursor for use in pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Cursor",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "node",
+              "description": "The `Facility` at the end of the edge.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Facility",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
+          "inputFields": null,
+          "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
         },
@@ -11594,6 +12821,1231 @@
         },
         {
           "kind": "INPUT_OBJECT",
+          "name": "FormResultCondition",
+          "description": "A condition to be used against `FormResult` object types. All fields are tested for equality and combined with a logical ‘and.’",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "applicationId",
+              "description": "Checks for equality with the object’s `applicationId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "createdAt",
+              "description": "Checks for equality with the object’s `createdAt` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "createdBy",
+              "description": "Checks for equality with the object’s `createdBy` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "formId",
+              "description": "Checks for equality with the object’s `formId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "formResult",
+              "description": "Checks for equality with the object’s `formResult` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "JSON",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "rowId",
+              "description": "Checks for equality with the object’s `rowId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "submissionDate",
+              "description": "Checks for equality with the object’s `submissionDate` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updatedAt",
+              "description": "Checks for equality with the object’s `updatedAt` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "updatedBy",
+              "description": "Checks for equality with the object’s `updatedBy` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "JSON",
+          "description": "A JavaScript object encoded in the JSON format as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "FormResultsOrderBy",
+          "description": "Methods to use when ordering `FormResult`.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "APPLICATION_ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "APPLICATION_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CREATED_AT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CREATED_AT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CREATED_BY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CREATED_BY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FORM_ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FORM_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FORM_RESULT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FORM_RESULT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "NATURAL",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PRIMARY_KEY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PRIMARY_KEY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBMISSION_DATE_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBMISSION_DATE_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UPDATED_AT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UPDATED_AT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UPDATED_BY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "UPDATED_BY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FormResultsConnection",
+          "description": "A connection to a list of `FormResult` values.",
+          "fields": [
+            {
+              "name": "edges",
+              "description": "A list of edges which contains the `FormResult` and cursor to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "FormResultsEdge",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nodes",
+              "description": "A list of `FormResult` objects.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "FormResult",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "The count of *all* `FormResult` you could get from the connection.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FormResultsEdge",
+          "description": "A `FormResult` edge in the connection.",
+          "fields": [
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Cursor",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "node",
+              "description": "The `FormResult` at the end of the edge.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FormResult",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FormResult",
+          "description": "Table containing CIIP application data received from a user",
+          "fields": [
+            {
+              "name": "applicationByApplicationId",
+              "description": "Reads a single `Application` that is related to this `FormResult`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Application",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "applicationId",
+              "description": "The Unique ID of the Application",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createdAt",
+              "description": "The date the form was updated",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createdBy",
+              "description": "The person who updated the form",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "formId",
+              "description": "The Unique ID of the form",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "formJsonByFormId",
+              "description": "Reads a single `FormJson` that is related to this `FormResult`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FormJson",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "formResult",
+              "description": "JSON dump of form data",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "JSON",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "id",
+              "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rowId",
+              "description": "Unique ID for the form",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "submissionDate",
+              "description": "The submission date of the Application",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updatedAt",
+              "description": "The date the form was updated",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updatedBy",
+              "description": "The person who updated the form",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FormJson",
+          "description": "Table containing the structure of each form to be filled out when applying for CIIP",
+          "fields": [
+            {
+              "name": "ciipApplicationWizardByFormId",
+              "description": "Reads a single `CiipApplicationWizard` that is related to this `FormJson`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipApplicationWizard",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ciipApplicationWizardsByFormId",
+              "description": "Reads and enables pagination through a set of `CiipApplicationWizard`.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": "Read all values in the set after (below) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Read all values in the set before (above) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "condition",
+                  "description": "A condition to be used in determining which values should be returned by the collection.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "CiipApplicationWizardCondition",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": "Only read the first `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Only read the last `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "offset",
+                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `CiipApplicationWizard`.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "CiipApplicationWizardsOrderBy",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CiipApplicationWizardsConnection",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": true,
+              "deprecationReason": "Please use ciipApplicationWizardByFormId instead"
+            },
+            {
+              "name": "createdAt",
+              "description": "The date the form was updated",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createdBy",
+              "description": "The person who updated the form",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "formJson",
+              "description": "The JSON object that creates the form",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "JSON",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "formResultInitFunction",
+              "description": "The function used for init",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "formResultsByFormId",
+              "description": "Reads and enables pagination through a set of `FormResult`.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": "Read all values in the set after (below) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Read all values in the set before (above) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "condition",
+                  "description": "A condition to be used in determining which values should be returned by the collection.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "FormResultCondition",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": "Only read the first `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Only read the last `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "offset",
+                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `FormResult`.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "FormResultsOrderBy",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "FormResultsConnection",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "id",
+              "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": "Name for the form",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "prepopulateFromCiip",
+              "description": "Whether the form is initialized with data submitted in the previous year's application",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "prepopulateFromSwrs",
+              "description": "Whether the form is initialized with data submitted in the previous year's application",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rowId",
+              "description": "Unique ID for the form",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updatedAt",
+              "description": "The date the form was updated",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updatedBy",
+              "description": "The person who updated the form",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipApplicationWizard",
+          "description": "A table defining which forms are in the application wizard and their order",
+          "fields": [
+            {
+              "name": "formId",
+              "description": "The id of the form",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "formJsonByFormId",
+              "description": "Reads a single `FormJson` that is related to this `CiipApplicationWizard`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FormJson",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "formPosition",
+              "description": "The zero-indexed position of the form in the wizard",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "id",
+              "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CiipApplicationWizardCondition",
+          "description": "A condition to be used against `CiipApplicationWizard` object types. All fields are tested for equality and combined with a logical ‘and.’",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "formId",
+              "description": "Checks for equality with the object’s `formId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "formPosition",
+              "description": "Checks for equality with the object’s `formPosition` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CiipApplicationWizardsOrderBy",
+          "description": "Methods to use when ordering `CiipApplicationWizard`.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "FORM_ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FORM_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FORM_POSITION_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FORM_POSITION_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "NATURAL",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PRIMARY_KEY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PRIMARY_KEY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipApplicationWizardsConnection",
+          "description": "A connection to a list of `CiipApplicationWizard` values.",
+          "fields": [
+            {
+              "name": "edges",
+              "description": "A list of edges which contains the `CiipApplicationWizard` and cursor to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "CiipApplicationWizardsEdge",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nodes",
+              "description": "A list of `CiipApplicationWizard` objects.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "CiipApplicationWizard",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "The count of *all* `CiipApplicationWizard` you could get from the connection.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipApplicationWizardsEdge",
+          "description": "A `CiipApplicationWizard` edge in the connection.",
+          "fields": [
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Cursor",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "node",
+              "description": "The `CiipApplicationWizard` at the end of the edge.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipApplicationWizard",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
           "name": "BenchmarkCondition",
           "description": "A condition to be used against `Benchmark` object types. All fields are tested for equality and combined with a logical ‘and.’",
           "fields": null,
@@ -12506,6 +14958,443 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CiipApplicationCondition",
+          "description": "A condition to be used against `CiipApplication` object types. All fields are tested for equality and combined with a logical ‘and.’",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "applicationStatus",
+              "description": "Checks for equality with the object’s `applicationStatus` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "bcghgid",
+              "description": "Checks for equality with the object’s `bcghgid` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "facilityName",
+              "description": "Checks for equality with the object’s `facilityName` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "operatorName",
+              "description": "Checks for equality with the object’s `operatorName` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "reportingYear",
+              "description": "Checks for equality with the object’s `reportingYear` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "rowId",
+              "description": "Checks for equality with the object’s `rowId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "submissionDate",
+              "description": "Checks for equality with the object’s `submissionDate` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CiipApplicationsOrderBy",
+          "description": "Methods to use when ordering `CiipApplication`.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "APPLICATION_STATUS_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "APPLICATION_STATUS_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "BCGHGID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "BCGHGID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FACILITY_NAME_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FACILITY_NAME_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "NATURAL",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "OPERATOR_NAME_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "OPERATOR_NAME_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PRIMARY_KEY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PRIMARY_KEY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REPORTING_YEAR_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REPORTING_YEAR_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBMISSION_DATE_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBMISSION_DATE_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipApplicationsConnection",
+          "description": "A connection to a list of `CiipApplication` values.",
+          "fields": [
+            {
+              "name": "edges",
+              "description": "A list of edges which contains the `CiipApplication` and cursor to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "CiipApplicationsEdge",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nodes",
+              "description": "A list of `CiipApplication` objects.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "CiipApplication",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "The count of *all* `CiipApplication` you could get from the connection.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipApplicationsEdge",
+          "description": "A `CiipApplication` edge in the connection.",
+          "fields": [
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Cursor",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "node",
+              "description": "The `CiipApplication` at the end of the edge.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipApplication",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipApplication",
+          "description": null,
+          "fields": [
+            {
+              "name": "applicationStatus",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "bcghgid",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "facilityName",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "id",
+              "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "operatorName",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "reportingYear",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rowId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "submissionDate",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -18218,16 +21107,6 @@
               "defaultValue": null
             },
             {
-              "name": "description",
-              "description": "Checks for equality with the object’s `description` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "formJson",
               "description": "Checks for equality with the object’s `formJson` field.",
               "type": {
@@ -18288,26 +21167,6 @@
               "defaultValue": null
             },
             {
-              "name": "shortName",
-              "description": "Checks for equality with the object’s `shortName` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "slug",
-              "description": "Checks for equality with the object’s `slug` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "updatedAt",
               "description": "Checks for equality with the object’s `updatedAt` field.",
               "type": {
@@ -18360,18 +21219,6 @@
             },
             {
               "name": "CREATED_BY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "DESCRIPTION_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "DESCRIPTION_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -18462,30 +21309,6 @@
             },
             {
               "name": "PRIMARY_KEY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "SHORT_NAME_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "SHORT_NAME_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "SLUG_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "SLUG_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -20575,300 +23398,6 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Product",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "ReportingYearCondition",
-          "description": "A condition to be used against `ReportingYear` object types. All fields are tested for equality and combined with a logical ‘and.’",
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "applicationEndDate",
-              "description": "Checks for equality with the object’s `applicationEndDate` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Datetime",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "applicationOpenDate",
-              "description": "Checks for equality with the object’s `applicationOpenDate` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Datetime",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "applicationResponseDate",
-              "description": "Checks for equality with the object’s `applicationResponseDate` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Datetime",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "reportingPeriodEnd",
-              "description": "Checks for equality with the object’s `reportingPeriodEnd` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Datetime",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "reportingPeriodStart",
-              "description": "Checks for equality with the object’s `reportingPeriodStart` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Datetime",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "reportingYear",
-              "description": "Checks for equality with the object’s `reportingYear` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "ReportingYearsOrderBy",
-          "description": "Methods to use when ordering `ReportingYear`.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "APPLICATION_END_DATE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "APPLICATION_END_DATE_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "APPLICATION_OPEN_DATE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "APPLICATION_OPEN_DATE_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "APPLICATION_RESPONSE_DATE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "APPLICATION_RESPONSE_DATE_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "NATURAL",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PRIMARY_KEY_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PRIMARY_KEY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "REPORTING_PERIOD_END_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "REPORTING_PERIOD_END_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "REPORTING_PERIOD_START_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "REPORTING_PERIOD_START_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "REPORTING_YEAR_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "REPORTING_YEAR_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "ReportingYearsConnection",
-          "description": "A connection to a list of `ReportingYear` values.",
-          "fields": [
-            {
-              "name": "edges",
-              "description": "A list of edges which contains the `ReportingYear` and cursor to aid in pagination.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "ReportingYearsEdge",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "nodes",
-              "description": "A list of `ReportingYear` objects.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "ReportingYear",
-                    "ofType": null
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "pageInfo",
-              "description": "Information to aid in pagination.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "totalCount",
-              "description": "The count of *all* `ReportingYear` you could get from the connection.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "ReportingYearsEdge",
-          "description": "A `ReportingYear` edge in the connection.",
-          "fields": [
-            {
-              "name": "cursor",
-              "description": "A cursor for use in pagination.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "node",
-              "description": "The `ReportingYear` at the end of the edge.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ReportingYear",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -24008,6 +26537,7 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "updateApplicationReviewByRowId",
               "description": "Updates a single `ApplicationReview` using a unique key and a patch.",
               "args": [
@@ -24037,6 +26567,10 @@
             {
               "name": "updateApplicationStatus",
               "description": "Updates a single `ApplicationStatus` using its globally unique id and a patch.",
+=======
+              "name": "deleteApplication",
+              "description": "Deletes a single `Application` using its globally unique id.",
+>>>>>>> update schema
               "args": [
                 {
                   "name": "input",
@@ -24791,6 +27325,7 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "updateReviewComment",
               "description": "Updates a single `ReviewComment` using its globally unique id and a patch.",
               "args": [
@@ -24940,6 +27475,10 @@
             {
               "name": "applicationEdge",
               "description": "An edge for our `Application`. May be used by Relay 1.",
+=======
+              "name": "initApplicationAdministrationFormResult",
+              "description": null,
+>>>>>>> update schema
               "args": [
                 {
                   "name": "orderBy",
@@ -26095,6 +28634,7 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "benchmarkEdge",
               "description": "An edge for our `Benchmark`. May be used by Relay 1.",
               "args": [
@@ -26144,18 +28684,65 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Product",
+=======
+              "name": "updateProduct",
+              "description": "Updates a single `Product` using its globally unique id and a patch.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "UpdateProductInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UpdateProductPayload",
+>>>>>>> update schema
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "query",
               "description": "Our root query field type. Allows us to run any query from our mutation payload.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
                 "name": "Query",
+=======
+              "name": "updateProductByRowId",
+              "description": "Updates a single `Product` using a unique key and a patch.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "UpdateProductByRowIdInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "UpdateProductPayload",
+>>>>>>> update schema
                 "ofType": null
               },
               "isDeprecated": false,
@@ -26221,6 +28808,7 @@
                 }
               },
               "defaultValue": null
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
             },
             {
               "name": "formPosition",
@@ -26235,6 +28823,8 @@
                 }
               },
               "defaultValue": null
+=======
+>>>>>>> update schema
             }
           ],
           "interfaces": null,
@@ -26324,6 +28914,7 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
             }
           ],
           "inputFields": null,
@@ -26360,6 +28951,8 @@
                 "ofType": null
               },
               "defaultValue": null
+=======
+>>>>>>> update schema
             }
           ],
           "interfaces": null,
@@ -28335,6 +30928,7 @@
               "defaultValue": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "operatorCity",
               "description": "organisation city",
               "type": {
@@ -28347,6 +30941,10 @@
             {
               "name": "operatorCountry",
               "description": "organisation country",
+=======
+              "name": "formJson",
+              "description": "The JSON object that creates the form",
+>>>>>>> update schema
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -28395,6 +30993,7 @@
               "defaultValue": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "operatorTradeName",
               "description": "trade name of organisation",
               "type": {
@@ -28417,6 +31016,10 @@
             {
               "name": "reportingYear",
               "description": "the reporting year",
+=======
+              "name": "updatedAt",
+              "description": "The date the form was updated",
+>>>>>>> update schema
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -29415,11 +32018,16 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
                   "name": "ID",
+=======
+                  "name": "String",
+>>>>>>> update schema
                   "ofType": null
                 }
               },
               "defaultValue": null
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
             }
           ],
           "interfaces": null,
@@ -29478,11 +32086,32 @@
               "name": "clientMutationId",
               "description": "The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations.",
               "args": [],
+=======
+            },
+            {
+              "name": "parent",
+              "description": "The parent ID(s) (previous state) of the product",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "state",
+              "description": "The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)",
+>>>>>>> update schema
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
               },
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -29537,6 +32166,13 @@
             {
               "name": "clientMutationId",
               "description": "An arbitrary string value with no semantic meaning. Will be included in the payload verbatim. May be used to track mutations by the client.",
+=======
+              "defaultValue": null
+            },
+            {
+              "name": "units",
+              "description": "The unit of measure for the product",
+>>>>>>> update schema
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -29545,6 +32181,7 @@
               "defaultValue": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "rowId",
               "description": "The application_review id used for reference and join",
               "type": {
@@ -29575,11 +32212,19 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+=======
+              "name": "updatedAt",
+              "description": "Updated date of row",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+>>>>>>> update schema
                 "ofType": null
               },
               "defaultValue": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "id",
               "description": "The globally unique `ID` which will identify a single `ApplicationStatus` to be deleted.",
               "type": {
@@ -29590,6 +32235,14 @@
                   "name": "ID",
                   "ofType": null
                 }
+=======
+              "name": "updatedBy",
+              "description": "Updator of row",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+>>>>>>> update schema
               },
               "defaultValue": null
             }
@@ -29600,6 +32253,7 @@
         },
         {
           "kind": "OBJECT",
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
           "name": "DeleteApplicationStatusPayload",
           "description": "The output of our delete `ApplicationStatus` mutation.",
           "fields": [
@@ -29610,30 +32264,60 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Application",
+=======
+          "name": "CreateProductPayload",
+          "description": "The output of our create `Product` mutation.",
+          "fields": [
+            {
+              "name": "clientMutationId",
+              "description": "The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+>>>>>>> update schema
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "applicationStatus",
               "description": "The `ApplicationStatus` that was deleted by this mutation.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
                 "name": "ApplicationStatus",
+=======
+              "name": "product",
+              "description": "The `Product` that was created by this mutation.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Product",
+>>>>>>> update schema
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
               "name": "applicationStatusEdge",
               "description": "An edge for our `ApplicationStatus`. May be used by Relay 1.",
               "args": [
                 {
                   "name": "orderBy",
                   "description": "The method to use when ordering `ApplicationStatus`.",
+=======
+              "name": "productEdge",
+              "description": "An edge for our `Product`. May be used by Relay 1.",
+              "args": [
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `Product`.",
+>>>>>>> update schema
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -29642,7 +32326,11 @@
                       "name": null,
                       "ofType": {
                         "kind": "ENUM",
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
                         "name": "ApplicationStatusesOrderBy",
+=======
+                        "name": "ProductsOrderBy",
+>>>>>>> update schema
                         "ofType": null
                       }
                     }
@@ -29652,6 +32340,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
                 "name": "ApplicationStatusesEdge",
                 "ofType": null
               },
@@ -29677,6 +32366,9 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "ID",
+=======
+                "name": "ProductsEdge",
+>>>>>>> update schema
                 "ofType": null
               },
               "isDeprecated": false,
@@ -31927,6 +34619,7 @@
         },
         {
           "kind": "INPUT_OBJECT",
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
           "name": "DeleteReviewCommentInput",
           "description": "All input for the `deleteReviewComment` mutation.",
           "fields": null,
@@ -32099,6 +34792,8 @@
         },
         {
           "kind": "INPUT_OBJECT",
+=======
+>>>>>>> update schema
           "name": "InitApplicationAdministrationFormResultInput",
           "description": "All input for the `initApplicationAdministrationFormResult` mutation.",
           "fields": null,
@@ -32632,16 +35327,6 @@
                 "ofType": null
               },
               "defaultValue": null
-            },
-            {
-              "name": "reportingYear",
-              "description": "The foreign key to ggircs_portal.reporting_year, references reporting_year",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -32727,18 +35412,6 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Query",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "reportingYearByReportingYear",
-              "description": "Reads a single `ReportingYear` that is related to this `Application`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ReportingYear",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -35151,16 +37824,6 @@
               "defaultValue": null
             },
             {
-              "name": "description",
-              "description": "description for the form",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "formJson",
               "description": "The JSON object that creates the form",
               "type": {
@@ -35206,26 +37869,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "shortName",
-              "description": "short name for the form",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "slug",
-              "description": "slug for the use as classname",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -36880,6 +39523,7 @@
           "possibleTypes": null
         },
         {
+<<<<<<< 5402be7d56795d27dca0a4d61c3e35959e18ad9d
           "kind": "INPUT_OBJECT",
           "name": "UpdateReportingYearInput",
           "description": "All input for the `updateReportingYear` mutation.",
@@ -37416,6 +40060,8 @@
           "possibleTypes": null
         },
         {
+=======
+>>>>>>> update schema
           "kind": "OBJECT",
           "name": "__Schema",
           "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
