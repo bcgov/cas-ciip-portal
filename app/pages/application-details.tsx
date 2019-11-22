@@ -5,7 +5,7 @@ import {NextRouter} from 'next/router';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import DefaultLayout from '../layouts/default-layout';
-import ApplicationDetail from '../containers/Applications/ApplicationWizardConfirmation';
+import ApplicationDetail from '../containers/Applications/ApplicationDetailsContainer';
 
 interface Props {
   query: applicationDetailsQueryResponse['query'];
@@ -28,7 +28,7 @@ class ApplicationDetails extends Component<Props> {
           @arguments(condition: $applicationStatusCondition)
         ...IncentiveCalculatorContainer_query
           @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
-        ...ApplicationWizardConfirmation_query
+        ...ApplicationDetailsContainer_query
           @arguments(applicationId: $applicationGUID)
       }
     }
