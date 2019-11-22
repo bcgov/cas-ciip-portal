@@ -19,6 +19,7 @@ import ProductionFields from './ProductionFields';
 interface Props {
   query: Form_query;
   onComplete?: (e: IChangeEvent) => void;
+  onBack?: () => void;
   onValueChanged?: (e: IChangeEvent, es?: ErrorSchema) => void;
 }
 
@@ -34,6 +35,7 @@ const CUSTOM_FIELDS = {
 export const FormComponent: React.FunctionComponent<Props> = ({
   query,
   onComplete,
+  onBack,
   onValueChanged
 }) => {
   const {result} = query || {};
@@ -87,6 +89,15 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         onChange={onValueChanged}
       >
         <div className="form-submit" style={{textAlign: 'right'}}>
+          <Button
+            size="lg"
+            type="button"
+            style={{marginRight: '15px'}}
+            variant="secondary"
+            onClick={onBack}
+          >
+            Back
+          </Button>
           <Button size="lg" type="submit">
             Continue
           </Button>
