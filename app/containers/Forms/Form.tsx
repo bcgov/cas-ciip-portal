@@ -40,7 +40,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
 }) => {
   const {result} = query || {};
   const {
-    formJsonByFormId: {name, formJson},
+    formJsonByFormId: {name, formJson, ciipApplicationWizardByFormId},
     formResult
   } = result || {formJsonByFormId: {}};
   if (!result) return null;
@@ -89,15 +89,17 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         onChange={onValueChanged}
       >
         <div className="form-submit" style={{textAlign: 'right'}}>
-          <Button
-            size="lg"
-            type="button"
-            style={{marginRight: '15px'}}
-            variant="secondary"
-            onClick={onBack}
-          >
-            Back
-          </Button>
+          {ciipApplicationWizardByFormId.formPosition > 0 && (
+            <Button
+              size="lg"
+              type="button"
+              style={{marginRight: '15px'}}
+              variant="secondary"
+              onClick={onBack}
+            >
+              Back
+            </Button>
+          )}
           <Button size="lg" type="submit">
             Continue
           </Button>
@@ -138,6 +140,9 @@ export default createFragmentContainer(FormComponent, {
         formJsonByFormId {
           name
           formJson
+          ciipApplicationWizardByFormId {
+            formPosition
+          }
         }
       }
     }
