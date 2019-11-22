@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
-import {Table} from 'react-bootstrap';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import {OrganisationRequestsTable_query} from 'OrganisationRequestsTable_query.graphql';
-import SearchTableLayout from '../../components/SearchTableLayout';
+import {Table, Container, Row, Col} from 'react-bootstrap';
+import SortableTableHeader from '../../components/SortableTableHeader';
+import SearchBox from '../../components/SearchBox';
 import OrganisationRequestsTableRow from './OrganisationRequestsTableRow';
 interface Props {
   query: OrganisationRequestsTable_query;
@@ -18,21 +19,40 @@ interface Props {
 export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> = props => {
   const {
     orderByField,
-    orderByDisplay,
     searchField,
     searchValue,
     searchDisplay,
     direction,
     handleEvent
   } = props;
-  const dropdownSortItems = [
-    {eventKey: 'user_id', title: 'User ID'},
-    {eventKey: 'first_name', title: 'First Name'},
-    {eventKey: 'last_name', title: 'Last Name'},
-    {eventKey: 'email_address', title: 'Email'},
-    {eventKey: 'status', title: 'Status'},
-    {eventKey: 'operator_name', title: 'Operator'}
+
+  const tableHeaders = [
+    {columnName: 'user_id', displayName: 'User ID'},
+    {columnName: 'first_name', displayName: 'First Name'},
+    {columnName: 'last_name', displayName: 'Last Name'},
+    {columnName: 'email_address', displayName: 'Email'},
+    {columnName: 'status', displayName: 'Status'},
+    {columnName: 'operator_name', displayName: 'Operator'}
   ];
+
+  const dropdownSortItems = [
+    'User ID',
+    'First Name',
+    'Last Name',
+    'Email',
+    'Status',
+    'Operator'
+  ];
+
+  const displayNameToColumnNameMap = {
+    'User ID': 'user_id',
+    'First Name': 'first_name',
+    'Last Name': 'last_name',
+    Email: 'email_address',
+    Status: 'status',
+    Operator: 'operator_name'
+  };
+
   const {edges} = props.query.searchCiipUserOrganisation;
   useEffect(() => {
     const refetchVariables = {
@@ -46,15 +66,18 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
 
   return (
     <>
-      <SearchTableLayout
-        orderByDisplay={orderByDisplay}
-        searchDisplay={searchDisplay}
-        handleEvent={handleEvent}
-        dropdownSortItems={dropdownSortItems}
-        direction={direction}
-      />
-      <br />
-      <br />
+      <Container>
+        <Row>
+          <Col md={{span: 12, offset: 6}}>
+            <SearchBox
+              dropdownSortItems={dropdownSortItems}
+              handleEvent={handleEvent}
+              displayNameToColumnNameMap={displayNameToColumnNameMap}
+              searchDisplay={searchDisplay}
+            />
+          </Col>
+        </Row>
+      </Container>
       <Table
         striped
         hover
@@ -62,13 +85,13 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
       >
         <thead style={{backgroundColor: '#036', color: 'white'}}>
           <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Operator Requested</th>
-            <th>Status</th>
-            <th>Action</th>
+            {tableHeaders.map(header => (
+              <SortableTableHeader
+                key={header.columnName}
+                sort={handleEvent}
+                headerVariables={header}
+              />
+            ))}
           </tr>
         </thead>
         <tbody>
