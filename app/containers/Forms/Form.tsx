@@ -89,17 +89,18 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         onChange={onValueChanged}
       >
         <div className="form-submit" style={{textAlign: 'right'}}>
-          {ciipApplicationWizardByFormId.formPosition > 0 && (
-            <Button
-              size="lg"
-              type="button"
-              style={{marginRight: '15px'}}
-              variant="secondary"
-              onClick={onBack}
-            >
-              Back
-            </Button>
-          )}
+          {ciipApplicationWizardByFormId &&
+            ciipApplicationWizardByFormId.formPosition > 0 && (
+              <Button
+                size="lg"
+                type="button"
+                style={{marginRight: '15px'}}
+                variant="secondary"
+                onClick={onBack}
+              >
+                Back
+              </Button>
+            )}
           <Button size="lg" type="submit">
             Continue
           </Button>
