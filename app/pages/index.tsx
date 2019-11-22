@@ -8,10 +8,7 @@ import RegistrationLoginButtons from '../components/RegistrationLoginButtons';
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
-  applicationOpenDate?: string;
-  applicationEndDate?: string;
 }
-
 export default class Index extends Component<Props> {
   static query = graphql`
     query pagesQuery {
@@ -30,12 +27,32 @@ export default class Index extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
     const date1: any = query.getReportingYear.applicationOpenDate;
     const startDate: Date = new Date(Date.parse(date1));
+    const startYear = startDate.getFullYear();
+    const startDay = startDate.getDay();
+    const startMonth = months[startDate.getMonth()];
     const date2: any = query.getReportingYear.applicationEndDate;
     const endDate: Date = new Date(Date.parse(date2));
-    const parsedStartDate = startDate.toDateString();
-    const parsedEndDate = endDate.toDateString();
+    const endYear = endDate.getFullYear();
+    const endDay = endDate.getDay();
+    const endMonth = months[endDate.getMonth()];
+    const parsedStartDate = `${startMonth} ${startDay}, ${startYear}`;
+    const parsedEndDate = `${endMonth} ${endDay}, ${endYear}`;
     return (
       <DefaultLayout
         showSubheader={false}

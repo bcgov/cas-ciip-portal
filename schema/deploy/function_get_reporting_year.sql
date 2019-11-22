@@ -6,12 +6,17 @@ begin;
 create or replace function ggircs_portal.get_reporting_year()
     returns ggircs_portal.reporting_year
     as $function$
-
-            select *
-            from ggircs_portal.reporting_year
-            where (select CURRENT_TIMESTAMP) between reporting_period_start::timestamp with time zone and reporting_period_end::timestamp with time zone
-
+    declare
+    begin
+        return(
+            select row (_reporting_year.*)
+            from ggircs_portal.reporting_year as _reporting_year
+            where (date_part('year', CURRENT_DATE)) = reporting_year::numeric
+            );
+        end;
     $function$
-        language sql stable;
+        language plpgsql stable;
 
 commit;
+
+--returns current reporting year and related dates
