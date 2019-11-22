@@ -14,10 +14,9 @@ interface Props {
 }
 
 /*
- * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
- * and allows the user to submit their application.
+ * The ApplicationDetails renders a summary of the data submitted in the application
  */
-export const ApplicationWizardConfirmationCardItemComponent: React.FunctionComponent<Props> = ({
+export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult
 }) => {
   const {formJsonByFormId} = formResult;
@@ -76,18 +75,15 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
   );
 };
 
-export default createFragmentContainer(
-  ApplicationWizardConfirmationCardItemComponent,
-  {
-    formResult: graphql`
-      fragment ApplicationWizardConfirmationCardItem_formResult on FormResult {
-        formResult
-        formJsonByFormId {
-          name
-          slug
-          formJson
-        }
+export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
+  formResult: graphql`
+    fragment ApplicationDetailsCardItem_formResult on FormResult {
+      formResult
+      formJsonByFormId {
+        name
+        slug
+        formJson
       }
-    `
-  }
-);
+    }
+  `
+});

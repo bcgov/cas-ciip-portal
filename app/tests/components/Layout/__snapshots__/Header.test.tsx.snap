@@ -35,7 +35,6 @@ exports[`It matches the last accepted Snapshot 1`] = `
           noGutters={false}
         >
           <Col>
-             
             <Dropdown
               navbar={false}
             >

@@ -1,7 +1,7 @@
 import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
-import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmationCardItem';
+import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -20,10 +20,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
   return (
     <>
       {formResults.map(({node}) => (
-        <ApplicationWizardConfirmationCardItem
-          key={node.id}
-          formResult={node}
-        />
+        <ApplicationDetailsCardItem key={node.id} formResult={node} />
       ))}
     </>
   );
@@ -39,7 +36,7 @@ export default createFragmentContainer(ApplicationDetailsComponent, {
           edges {
             node {
               id
-              ...ApplicationWizardConfirmationCardItem_formResult
+              ...ApplicationDetailsCardItem_formResult
             }
           }
         }
