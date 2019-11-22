@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
-import {Table} from 'react-bootstrap';
+import {Table, Col, Container, Row} from 'react-bootstrap';
 import {graphql, createRefetchContainer} from 'react-relay';
 import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
 // Import {RelayNetworkLayer} from 'react-relay-network-modern/node8';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import SortableTableHeader from '../../components/SortableTableHeader';
+import SearchBox from '../../components/SearchBox';
 import ProductRowItemContainer from './ProductRowItemContainer';
 
 interface Props {
@@ -25,7 +26,7 @@ export const ProductList: React.FunctionComponent<Props> = ({
   orderByField,
   searchField,
   searchValue,
-  // SearchDisplay,
+  searchDisplay,
   direction,
   handleEvent
 }) => {
@@ -45,12 +46,39 @@ export const ProductList: React.FunctionComponent<Props> = ({
       {columnName: 'name', displayName: 'Product'},
       {columnName: 'units', displayName: 'Units'},
       {columnName: 'benchmark', displayName: 'Benchmark'},
-      {columnName: 'eligibilityThreshold', displayName: 'Elig. Threshold'},
+      {columnName: 'eligibility_threshold', displayName: 'Elig. Threshold'},
       {columnName: 'state', displayName: 'Status'}
     ];
+    const dropdownSortItems = [
+      'Product',
+      'Units',
+      'Benchmark',
+      'Elig. Threshold',
+      'Status'
+    ];
+
+    const displayNameToColumnNameMap = {
+      Product: 'name',
+      Units: 'units',
+      Benchmark: 'benchmark',
+      'Elig. Threshold': 'eligibility_threshold',
+      Status: 'state'
+    };
 
     return (
       <>
+        <Container>
+          <Row>
+            <Col md={{span: 12, offset: 6}}>
+              <SearchBox
+                dropdownSortItems={dropdownSortItems}
+                handleEvent={handleEvent}
+                displayNameToColumnNameMap={displayNameToColumnNameMap}
+                searchDisplay={searchDisplay}
+              />
+            </Col>
+          </Row>
+        </Container>
         <Table striped hover>
           <thead style={{color: 'white', background: '#003366'}}>
             <tr>

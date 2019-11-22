@@ -12,7 +12,7 @@ class SearchTableComponent extends Component<Props> {
     direction: 'ASC',
     searchField: null,
     searchValue: null,
-    searchDisplay: 'No Filter'
+    searchDisplay: 'Search by: '
   };
 
   toggleDirection = () => {
@@ -28,22 +28,21 @@ class SearchTableComponent extends Component<Props> {
     });
   };
 
-  applySearchField = (event, eventKey) => {
+  applySearchField = column => {
     this.setState({
-      searchField: eventKey,
-      searchDisplay: event.target.text,
+      searchField: column,
       searchValue: null
     });
   };
 
-  applySearchValue = event => {
-    if (this.state.searchField !== 'none') {
-      this.setState({searchValue: event.nativeEvent.target[0].value});
+  applySearchValue = value => {
+    if (this.state.searchField !== undefined) {
+      this.setState({searchValue: value});
     }
   };
 
-  handleEvent = (action, column, display) => {
-    this[action](column, display);
+  handleEvent = (action, value) => {
+    this[action](value);
   };
 
   render() {
