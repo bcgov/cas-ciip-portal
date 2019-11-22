@@ -136,7 +136,7 @@ on conflict(id) do update
 set name=excluded.name, form_json=excluded.form_json,
     prepopulate_from_ciip=excluded.prepopulate_from_ciip,
     prepopulate_from_swrs=excluded.prepopulate_from_swrs,
-    slug=exluded.slug,
+    slug=excluded.slug,
     short_name=excluded.short_name,
     description=excluded.description
 returning 1
