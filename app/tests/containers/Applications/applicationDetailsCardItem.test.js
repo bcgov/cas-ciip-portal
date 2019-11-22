@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApplicationWizardConfirmationCardItemComponent} from '../../../containers/Applications/ApplicationWizardConfirmationCardItem';
+import {ApplicationDetailsCardItemComponent} from '../../../containers/Applications/ApplicationDetailsCardItem';
 
-describe('ApplicationWizardConfirmationComponentCardItem', () => {
+describe('ApplicationDetailsCardItemComponent', () => {
   it('should render the individual summary confirmation card component', () => {
     const formResult = {
       formResult: {},
@@ -14,7 +14,7 @@ describe('ApplicationWizardConfirmationComponentCardItem', () => {
     const formTitle = 'facility';
     const formSubtitle = 'facility';
     const r = shallow(
-      <ApplicationWizardConfirmationCardItemComponent
+      <ApplicationDetailsCardItemComponent
         formResult={formResult}
         formTitle={formTitle}
         formSubtitle={formSubtitle}

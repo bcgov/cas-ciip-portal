@@ -4,11 +4,13 @@ import MathJax from 'react-mathjax2';
 import BenchmarkChart from '../../components/Incentives/BenchmarkChart';
 
 const IncentiveSegmentContainer = props => {
-  const {allProducts, reported, carbonTax} = props;
+  const {allProducts, reported} = props;
+  /*
+  Leaving these here as placeholder for future CT code
   const totalCarbonTax = carbonTax.edges.reduce((total, curr) => {
     return parseFloat(total) + parseFloat(curr.node.calculatedCarbonTax);
   }, 0);
-
+  */
   const productDetails = allProducts.edges.filter(
     ({node: p}) => p.name === reported.product
   );
@@ -19,10 +21,11 @@ const IncentiveSegmentContainer = props => {
 
   if (productDetails.length > 0) {
     const productQuantity = parseFloat(reported.quantity);
-    const attributableFuelPercentage = parseFloat(
+    /*
+   Const attributableFuelPercentage = parseFloat(
       reported.attributableFuelPercentage
     );
-
+   */
     const details =
       productDetails[0].node.benchmarksByProductId.nodes[
         productDetails[0].node.benchmarksByProductId.nodes.length - 1
@@ -37,7 +40,7 @@ const IncentiveSegmentContainer = props => {
         (productQuantity - benchmark) / (eligibilityThreshold - benchmark);
     }
 
-    eligibleFuelValue = (attributableFuelPercentage / 100) * eligibilityValue;
+    eligibleFuelValue = (50 / 100) * eligibilityValue;
   }
 
   const formula = `
@@ -45,9 +48,9 @@ const IncentiveSegmentContainer = props => {
       \\over
       ${eligibilityThreshold} - ${benchmark} \\right)
       \\times
-      ${reported.attributableFuelPercentage}
+      0.5
       \\times
-      ${totalCarbonTax.toFixed(2)}
+      1,200,000
   `;
   console.log('Incentive Segment details', reported.product, formula);
 
@@ -59,7 +62,7 @@ const IncentiveSegmentContainer = props => {
           <MathJax.Node>{formula}</MathJax.Node>
         </MathJax.Context>
       </td>
-      <td>CAD {(eligibleFuelValue * totalCarbonTax).toFixed(2)} </td>
+      <td>CAD {(eligibleFuelValue * 1200000).toFixed(2)} </td>
       <td>
         <BenchmarkChart
           quantity={Number(reported.quantity)}
@@ -89,7 +92,3 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
     }
   `
 });
-
-/*
-Can fuel percentages be reported as null?
- */

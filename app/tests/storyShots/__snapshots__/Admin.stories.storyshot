@@ -117,78 +117,176 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                             <div
                               className="col"
                             >
-                              <FormRow>
-                                <div
-                                  className="form-row"
+                              <Dropdown
+                                navbar={false}
+                              >
+                                <ReactOverlaysDropdown
+                                  itemSelector=".dropdown-item:not(.disabled):not(:disabled)"
+                                  onToggle={[Function]}
                                 >
-                                  <Col>
+                                  <Manager>
                                     <div
-                                      className="col"
+                                      className="dropdown"
+                                      onKeyDown={[Function]}
                                     >
-                                      <Form
-                                        action="/user-profile"
-                                        inline={false}
-                                        method="get"
+                                      <Bootstrap(DropdownToggle)
+                                        id="dropdown-basic"
+                                        variant="primary"
                                       >
-                                        <form
-                                          action="/user-profile"
-                                          className=""
-                                          method="get"
+                                        <DropdownToggle
+                                          as={
+                                            Object {
+                                              "$$typeof": Symbol(react.forward_ref),
+                                              "defaultProps": Object {
+                                                "active": false,
+                                                "disabled": false,
+                                                "type": "button",
+                                                "variant": "primary",
+                                              },
+                                              "displayName": "Button",
+                                              "render": [Function],
+                                            }
+                                          }
+                                          bsPrefix="dropdown-toggle"
+                                          id="dropdown-basic"
+                                          variant="primary"
                                         >
-                                          <Button
-                                            active={false}
-                                            disabled={false}
-                                            type="submit"
-                                            variant="outline-light"
-                                          >
-                                            <button
-                                              className="btn btn-outline-light"
+                                          <ReactOverlaysDropdownToggle>
+                                            <Button
+                                              active={false}
+                                              aria-expanded={false}
+                                              aria-haspopup={true}
+                                              className="dropdown-toggle"
                                               disabled={false}
-                                              type="submit"
+                                              id="dropdown-basic"
+                                              onClick={[Function]}
+                                              type="button"
+                                              variant="primary"
                                             >
-                                              Profile
-                                            </button>
-                                          </Button>
-                                        </form>
-                                      </Form>
-                                    </div>
-                                  </Col>
-                                  <Col>
-                                    <div
-                                      className="col"
-                                    >
-                                      <Form
-                                        action="/logout"
-                                        inline={false}
-                                        method="post"
+                                              <button
+                                                aria-expanded={false}
+                                                aria-haspopup={true}
+                                                className="dropdown-toggle btn btn-primary"
+                                                disabled={false}
+                                                id="dropdown-basic"
+                                                onClick={[Function]}
+                                                type="button"
+                                              >
+                                                Temporary Links
+                                              </button>
+                                            </Button>
+                                          </ReactOverlaysDropdownToggle>
+                                        </DropdownToggle>
+                                      </Bootstrap(DropdownToggle)>
+                                      <DropdownMenu
+                                        alignRight={false}
+                                        flip={true}
                                       >
-                                        <form
-                                          action="/logout"
-                                          className=""
-                                          method="post"
+                                        <ForwardRef(ContextTransform(DropdownMenu))
+                                          alignEnd={false}
+                                          flip={true}
+                                          usePopper={true}
                                         >
-                                          <Button
-                                            active={false}
-                                            disabled={false}
-                                            type="submit"
-                                            variant="outline-light"
-                                          >
-                                            <button
-                                              className="btn btn-outline-light"
-                                              disabled={false}
-                                              type="submit"
-                                            >
-                                              Logout
-                                            </button>
-                                          </Button>
-                                        </form>
-                                      </Form>
+                                          <ReactOverlaysDropdownMenu
+                                            alignEnd={false}
+                                            flip={true}
+                                            menuRef={[Function]}
+                                            onToggle={[Function]}
+                                            toggleNode={
+                                              <button
+                                                aria-expanded="false"
+                                                aria-haspopup="true"
+                                                class="dropdown-toggle btn btn-primary"
+                                                id="dropdown-basic"
+                                                type="button"
+                                              >
+                                                Temporary Links
+                                              </button>
+                                            }
+                                            usePopper={true}
+                                          />
+                                        </ForwardRef(ContextTransform(DropdownMenu))>
+                                      </DropdownMenu>
                                     </div>
-                                  </Col>
-                                </div>
-                              </FormRow>
+                                  </Manager>
+                                </ReactOverlaysDropdown>
+                              </Dropdown>
                             </div>
                           </Col>
+                          <div
+                            className="jsx-2807878339"
+                          >
+                            <FormRow>
+                              <div
+                                className="form-row"
+                              >
+                                <Col>
+                                  <div
+                                    className="col"
+                                  >
+                                    <Form
+                                      action="/user-profile"
+                                      inline={false}
+                                      method="get"
+                                    >
+                                      <form
+                                        action="/user-profile"
+                                        className=""
+                                        method="get"
+                                      >
+                                        <Button
+                                          active={false}
+                                          disabled={false}
+                                          type="submit"
+                                          variant="outline-light"
+                                        >
+                                          <button
+                                            className="btn btn-outline-light"
+                                            disabled={false}
+                                            type="submit"
+                                          >
+                                            Profile
+                                          </button>
+                                        </Button>
+                                      </form>
+                                    </Form>
+                                  </div>
+                                </Col>
+                                <Col>
+                                  <div
+                                    className="col"
+                                  >
+                                    <Form
+                                      action="/logout"
+                                      inline={false}
+                                      method="post"
+                                    >
+                                      <form
+                                        action="/logout"
+                                        className=""
+                                        method="post"
+                                      >
+                                        <Button
+                                          active={false}
+                                          disabled={false}
+                                          type="submit"
+                                          variant="outline-light"
+                                        >
+                                          <button
+                                            className="btn btn-outline-light"
+                                            disabled={false}
+                                            type="submit"
+                                          >
+                                            Logout
+                                          </button>
+                                        </Button>
+                                      </form>
+                                    </Form>
+                                  </div>
+                                </Col>
+                              </div>
+                            </FormRow>
+                          </div>
                         </div>
                       </ForwardRef>
                     </div>

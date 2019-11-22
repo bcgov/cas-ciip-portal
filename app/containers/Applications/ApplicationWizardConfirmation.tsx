@@ -4,8 +4,7 @@ import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import Link from 'next/link';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
 import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
-import ApplicationWizardConfirmationCardItem from './ApplicationWizardConfirmationCardItem';
-
+import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
@@ -15,9 +14,8 @@ interface Props {
   query: ApplicationWizardConfirmation_query;
   relay: RelayProp;
 }
-export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
-  const formResults = props.query.application.formResultsByApplicationId.edges;
 
+export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
   // Change application status to 'pending' on application submit
   const submitApplication = async () => {
     const {environment} = props.relay;
@@ -44,12 +42,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       </h5>
       <br />
 
-      {formResults.map(({node}) => (
-        <ApplicationWizardConfirmationCardItem
-          key={node.id}
-          formResult={node}
-        />
-      ))}
+      <ApplicationDetailsContainer isAnalyst={false} query={props.query} />
       <Link
         passHref
         href={{
@@ -73,19 +66,12 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
     fragment ApplicationWizardConfirmation_query on Query
       @argumentDefinitions(applicationId: {type: "ID!"}) {
       application(id: $applicationId) {
-        id
-        formResultsByApplicationId {
-          edges {
-            node {
-              id
-              ...ApplicationWizardConfirmationCardItem_formResult
-            }
-          }
-        }
         applicationStatus {
           id
         }
       }
+      ...ApplicationDetailsContainer_query
+        @arguments(applicationId: $applicationId)
     }
   `
 });

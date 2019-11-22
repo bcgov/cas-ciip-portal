@@ -35,6 +35,73 @@ exports[`It matches the last accepted Snapshot 1`] = `
           noGutters={false}
         >
           <Col>
+            <Dropdown
+              navbar={false}
+            >
+              <Bootstrap(DropdownToggle)
+                id="dropdown-basic"
+                variant="primary"
+              >
+                Temporary Links
+              </Bootstrap(DropdownToggle)>
+              <DropdownMenu
+                alignRight={false}
+                flip={true}
+              >
+                <DropdownItem
+                  as={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "displayName": "SafeAnchor",
+                      "render": [Function],
+                    }
+                  }
+                  disabled={false}
+                >
+                  <Link
+                    href="/user-dashboard"
+                  >
+                    Industry User: Dashboard
+                  </Link>
+                </DropdownItem>
+                <DropdownItem
+                  as={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "displayName": "SafeAnchor",
+                      "render": [Function],
+                    }
+                  }
+                  disabled={false}
+                >
+                  <Link
+                    href="/applications"
+                  >
+                    Analyst: Applications list
+                  </Link>
+                </DropdownItem>
+                <DropdownItem
+                  as={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "displayName": "SafeAnchor",
+                      "render": [Function],
+                    }
+                  }
+                  disabled={false}
+                >
+                  <Link
+                    href="/products-benchmarks"
+                  >
+                    Admin: Create Products and Benchmarks
+                  </Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </Col>
+          <div
+            className="jsx-2807878339"
+          >
             <FormRow>
               <Col>
                 <LoginForm
@@ -53,7 +120,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
                 </LoginForm>
               </Col>
             </FormRow>
-          </Col>
+          </div>
         </ForwardRef>
       </div>
     </div>

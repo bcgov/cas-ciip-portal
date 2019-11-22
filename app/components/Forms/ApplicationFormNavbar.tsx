@@ -101,7 +101,7 @@ export default createFragmentContainer(ApplicationFormNavbarComponent, {
           }
         }
       }
-      ...ApplicationWizardConfirmation_query
+      ...ApplicationDetailsContainer_query
         @arguments(applicationId: $applicationId)
     }
   `

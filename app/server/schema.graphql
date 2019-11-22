@@ -31,6 +31,40 @@ type Application implements Node {
     orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationStatusesConnection!
 
+  """
+  Reads a single `CiipApplication` that is related to this `Application`.
+  """
+  ciipApplicationByRowId: CiipApplication
+
+  """Reads and enables pagination through a set of `CiipApplication`."""
+  ciipApplicationsByRowId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipApplicationCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipApplication`."""
+    orderBy: [CiipApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipApplicationsConnection! @deprecated(reason: "Please use ciipApplicationByRowId instead")
+
   """Reads a single `Facility` that is related to this `Application`."""
   facilityByFacilityId: Facility
 
@@ -562,6 +596,10 @@ A floating point number that requires more precision than IEEE 754 binary 64
 scalar BigFloat
 
 type CiipApplication implements Node {
+  """
+  Reads a single `Application` that is related to this `CiipApplication`.
+  """
+  applicationByRowId: Application
   applicationStatus: String
   bcghgid: BigFloat
   facilityName: String
@@ -3967,6 +4005,9 @@ type FormJson implements Node {
   """The person who updated the form"""
   createdBy: String
 
+  """description for the form"""
+  description: String!
+
   """The JSON object that creates the form"""
   formJson: JSON!
 
@@ -4023,6 +4064,12 @@ type FormJson implements Node {
   """Unique ID for the form"""
   rowId: Int!
 
+  """short name for the form"""
+  shortName: String!
+
+  """slug for the use as classname"""
+  slug: String!
+
   """The date the form was updated"""
   updatedAt: Datetime!
 
@@ -4040,6 +4087,9 @@ input FormJsonCondition {
 
   """Checks for equality with the object’s `createdBy` field."""
   createdBy: String
+
+  """Checks for equality with the object’s `description` field."""
+  description: String
 
   """Checks for equality with the object’s `formJson` field."""
   formJson: JSON
@@ -4059,6 +4109,12 @@ input FormJsonCondition {
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 
+  """Checks for equality with the object’s `shortName` field."""
+  shortName: String
+
+  """Checks for equality with the object’s `slug` field."""
+  slug: String
+
   """Checks for equality with the object’s `updatedAt` field."""
   updatedAt: Datetime
 
@@ -4073,6 +4129,9 @@ input FormJsonInput {
 
   """The person who updated the form"""
   createdBy: String
+
+  """description for the form"""
+  description: String!
 
   """The JSON object that creates the form"""
   formJson: JSON!
@@ -4093,6 +4152,12 @@ input FormJsonInput {
   """
   prepopulateFromSwrs: Boolean!
 
+  """short name for the form"""
+  shortName: String!
+
+  """slug for the use as classname"""
+  slug: String!
+
   """The date the form was updated"""
   updatedAt: Datetime
 
@@ -4109,6 +4174,9 @@ input FormJsonPatch {
 
   """The person who updated the form"""
   createdBy: String
+
+  """description for the form"""
+  description: String
 
   """The JSON object that creates the form"""
   formJson: JSON
@@ -4128,6 +4196,12 @@ input FormJsonPatch {
   Whether the form is initialized with data submitted in the previous year's application
   """
   prepopulateFromSwrs: Boolean
+
+  """short name for the form"""
+  shortName: String
+
+  """slug for the use as classname"""
+  slug: String
 
   """The date the form was updated"""
   updatedAt: Datetime
@@ -4168,6 +4242,8 @@ enum FormJsonsOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
+  DESCRIPTION_ASC
+  DESCRIPTION_DESC
   FORM_JSON_ASC
   FORM_JSON_DESC
   FORM_RESULT_INIT_FUNCTION_ASC
@@ -4183,6 +4259,10 @@ enum FormJsonsOrderBy {
   PREPOPULATE_FROM_SWRS_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
+  SHORT_NAME_ASC
+  SHORT_NAME_DESC
+  SLUG_ASC
+  SLUG_DESC
   UPDATED_AT_ASC
   UPDATED_AT_DESC
   UPDATED_BY_ASC

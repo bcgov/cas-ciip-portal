@@ -2,7 +2,9 @@
 
 exports[`ApplicationRowItem should render the application 1`] = `
 <tr>
-  <td />
+  <td>
+    9
+  </td>
   <td>
     operator1
   </td>
@@ -31,7 +33,8 @@ exports[`ApplicationRowItem should render the application 1`] = `
         Object {
           "pathname": "/application-details",
           "query": Object {
-            "applicationId": undefined,
+            "applicationGUID": "ABC",
+            "applicationId": "9",
             "bcghgid": undefined,
             "reportingYear": undefined,
           },

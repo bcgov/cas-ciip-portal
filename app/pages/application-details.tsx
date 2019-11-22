@@ -5,19 +5,20 @@ import {NextRouter} from 'next/router';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import DefaultLayout from '../layouts/default-layout';
+import ApplicationDetail from '../containers/Applications/ApplicationDetailsContainer';
 
 interface Props {
   query: applicationDetailsQueryResponse['query'];
   router: NextRouter;
 }
 
-// TODO: decide what to show in this page
 class ApplicationDetails extends Component<Props> {
   static query = graphql`
     query applicationDetailsQuery(
       $applicationStatusCondition: ApplicationStatusCondition
       $bcghgidInput: BigFloat
       $reportingYear: String
+      $applicationGUID: ID!
     ) {
       query {
         session {
@@ -27,6 +28,8 @@ class ApplicationDetails extends Component<Props> {
           @arguments(condition: $applicationStatusCondition)
         ...IncentiveCalculatorContainer_query
           @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
+        ...ApplicationDetailsContainer_query
+          @arguments(applicationId: $applicationGUID)
       }
     }
   `;
@@ -51,6 +54,8 @@ class ApplicationDetails extends Component<Props> {
           applicationId={this.props.router.query.applicationId}
         />
         <hr />
+
+        <ApplicationDetail isAnalyst query={query} />
         <IncentiveCalculatorContainer
           query={query}
           bcghgid={this.props.router.query.bcghgid}

@@ -6,6 +6,9 @@ begin;
 create table ggircs_portal.form_json (
   id integer primary key generated always as identity,
   name varchar(1000) not null,
+  slug varchar(1000) not null,
+  short_name varchar(1000) not null,
+  description varchar(10000) not null,
   form_json jsonb not null,
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
@@ -28,6 +31,9 @@ create unique index form_json_id_uindex
 comment on table ggircs_portal.form_json is 'Table containing the structure of each form to be filled out when applying for CIIP';
 comment on column ggircs_portal.form_json.id is 'Unique ID for the form';
 comment on column ggircs_portal.form_json.name is 'Name for the form';
+comment on column ggircs_portal.form_json.slug is 'slug for the use as classname';
+comment on column ggircs_portal.form_json.short_name is 'short name for the form';
+comment on column ggircs_portal.form_json.description is 'description for the form';
 comment on column ggircs_portal.form_json.form_json is 'The JSON object that creates the form';
 comment on column ggircs_portal.form_json.created_at is 'The date the form was updated';
 comment on column ggircs_portal.form_json.created_by is 'The person who updated the form';

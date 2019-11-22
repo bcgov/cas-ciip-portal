@@ -33,6 +33,7 @@ export const ApplicationRowItem = props => {
             pathname: '/application-details',
             query: {
               applicationId: ciipApplication.rowId,
+              applicationGUID: ciipApplication.applicationByRowId.id,
               reportingYear: ciipApplication.reportingYear,
               bcghgid: ciipApplication.bcghgid
             }
@@ -48,6 +49,7 @@ export const ApplicationRowItem = props => {
 export default createFragmentContainer(ApplicationRowItem, {
   ciipApplication: graphql`
     fragment ApplicationRowItemContainer_ciipApplication on CiipApplication {
+      id
       rowId
       facilityName
       operatorName
@@ -55,6 +57,9 @@ export default createFragmentContainer(ApplicationRowItem, {
       submissionDate
       reportingYear
       bcghgid
+      applicationByRowId {
+        id
+      }
     }
   `
 });

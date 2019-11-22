@@ -5,7 +5,8 @@ import {ApplicationRowItem} from '../../../containers/Applications/ApplicationRo
 describe('ApplicationRowItem', () => {
   it('should render the application', () => {
     const ciipApplication = {
-      applicationId: '9',
+      rowId: '9',
+      applicationByRowId: {id: 'ABC'},
       applicationStatus: 'pending',
       facilityName: 'facility1',
       operatorName: 'operator1',

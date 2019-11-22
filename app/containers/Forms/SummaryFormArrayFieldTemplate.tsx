@@ -19,7 +19,7 @@ const SummaryFormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateP
       {items.map(element => {
         return (
           <React.Fragment key={element.index}>
-            <Form.Row>
+            <Form.Row className="summary-array-block">
               <Col xs={12}>{element.children}</Col>
             </Form.Row>
           </React.Fragment>

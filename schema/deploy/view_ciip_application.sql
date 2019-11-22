@@ -4,12 +4,11 @@
 
 begin;
 
-create view ggircs_portal.ciip_application as (
+create or replace view ggircs_portal.ciip_application as (
     with x as (
       select
         form_result.application_id as id,
         (form_result -> 'facility')::json as facility_data,
-
         submission_date,
         application_status
       from ggircs_portal.form_result
@@ -17,7 +16,7 @@ create view ggircs_portal.ciip_application as (
       on form_result.application_id = application_status.application_id
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.name = 'Admin'
+      and form_json.slug = 'admin'
     ),
     y as (
       select
@@ -26,7 +25,7 @@ create view ggircs_portal.ciip_application as (
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.name = 'Admin')
+      and form_json.slug = 'admin')
 
     select
        x.id,
@@ -41,6 +40,7 @@ create view ggircs_portal.ciip_application as (
 );
 -- Postgraphile smart-comments: These comments allow Postgraphile to infer relations between views
 -- as though they were tables (ie faking a primary key in order to create an ID! type)
-comment on view ggircs_portal.ciip_application is E'@primaryKey id';
+comment on view ggircs_portal.ciip_application is E'@primaryKey id\n@foreignKey (id) references ggircs_portal.application (id)';
+
 
 commit;

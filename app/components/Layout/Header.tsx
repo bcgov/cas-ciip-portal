@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Form, Button} from 'react-bootstrap';
+import {Row, Col, Form, Button, Dropdown} from 'react-bootstrap';
 import Link from 'next/link';
 import LoginButton from '../LoginButton';
 
@@ -19,6 +19,26 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
         <div className="login-btns header-right">
           <Row>
             <Col>
+              <Dropdown>
+                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                  Temporary Links
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <Link href="/user-dashboard">Industry User: Dashboard</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link href="/applications">Analyst: Applications list</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link href="/products-benchmarks">
+                      Admin: Create Products and Benchmarks
+                    </Link>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+            <div>
               {isLoggedIn ? (
                 <Form.Row>
                   {isRegistered && (
@@ -52,7 +72,7 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
                   </Col>
                 </Form.Row>
               )}
-            </Col>
+            </div>
           </Row>
         </div>
       </div>

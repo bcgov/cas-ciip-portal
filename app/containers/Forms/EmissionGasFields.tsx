@@ -6,8 +6,9 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   formData,
   onChange
 }) => {
+  const hideRow = formData.annualEmission > 0 ? 'hidden' : 'visible';
   return (
-    <Col xs={12} md={12}>
+    <Col xs={12} md={12} className={`${hideRow} emission-row`}>
       <Form.Row>
         <Col md={4}>
           {formData.gasType} <br />

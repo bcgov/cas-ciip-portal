@@ -14,10 +14,9 @@ interface Props {
 }
 
 /*
- * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
- * and allows the user to submit their application.
+ * The ApplicationDetails renders a summary of the data submitted in the application
  */
-export const ApplicationWizardConfirmationCardItemComponent: React.FunctionComponent<Props> = ({
+export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult
 }) => {
   const {formJsonByFormId} = formResult;
@@ -30,15 +29,18 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
   const CUSTOM_FIELDS = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => (
-      <>: {props.formData ? props.formData : <i>[No Data Entered]</i>}</>
+      <> {props.formData ? props.formData : <i>[No Data Entered]</i>}</>
     ),
     BooleanField: props => <> {props.formData ? 'Yes' : 'No'}</>,
     emissionSource: props => <SummaryEmissionSourceFields {...props} />,
     emissionGas: props => <SummaryEmissionGasFields {...props} />
   };
-
+  const classTag = formJsonByFormId.slug;
   return (
-    <Card style={{width: '100%', marginBottom: '10px'}}>
+    <Card
+      style={{width: '100%', marginBottom: '10px'}}
+      className={`${classTag} summary-card`}
+    >
       <Card.Header onClick={() => setIsOpen(!isOpen)}>
         <Row>
           <Col md={9}>
@@ -73,17 +75,15 @@ export const ApplicationWizardConfirmationCardItemComponent: React.FunctionCompo
   );
 };
 
-export default createFragmentContainer(
-  ApplicationWizardConfirmationCardItemComponent,
-  {
-    formResult: graphql`
-      fragment ApplicationWizardConfirmationCardItem_formResult on FormResult {
-        formResult
-        formJsonByFormId {
-          name
-          formJson
-        }
+export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
+  formResult: graphql`
+    fragment ApplicationDetailsCardItem_formResult on FormResult {
+      formResult
+      formJsonByFormId {
+        name
+        slug
+        formJson
       }
-    `
-  }
-);
+    }
+  `
+});
