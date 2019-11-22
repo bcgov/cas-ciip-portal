@@ -7,6 +7,7 @@ import JsonSchemaForm, {
 } from 'react-jsonschema-form';
 import {Form_query} from 'Form_query.graphql';
 import {Button, Row, Col} from 'react-bootstrap';
+import Link from 'next/link';
 import {FormJson} from 'next-env';
 import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
@@ -88,22 +89,35 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         onSubmit={onComplete}
         onChange={onValueChanged}
       >
-        <div className="form-submit" style={{textAlign: 'right'}}>
-          {ciipApplicationWizardByFormId &&
-            ciipApplicationWizardByFormId.formPosition > 0 && (
-              <Button
-                size="lg"
-                type="button"
-                style={{marginRight: '15px'}}
-                variant="secondary"
-                onClick={onBack}
+        <div className="form-submit">
+          <Row>
+            <Col md={3} style={{lineHeight: '48px'}}>
+              <Link
+                href={{
+                  pathname: '/user-dashboard'
+                }}
               >
-                Back
+                Save & Exit
+              </Link>
+            </Col>
+            <Col md={9} style={{textAlign: 'right'}}>
+              {ciipApplicationWizardByFormId &&
+                ciipApplicationWizardByFormId.formPosition > 0 && (
+                  <Button
+                    size="lg"
+                    type="button"
+                    style={{marginRight: '10px'}}
+                    variant="secondary"
+                    onClick={onBack}
+                  >
+                    Back
+                  </Button>
+                )}
+              <Button size="lg" type="submit">
+                Continue
               </Button>
-            )}
-          <Button size="lg" type="submit">
-            Continue
-          </Button>
+            </Col>
+          </Row>
         </div>
       </JsonSchemaForm>
       <style jsx global>
