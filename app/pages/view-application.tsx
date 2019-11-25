@@ -4,7 +4,7 @@ import {graphql} from 'react-relay';
 import Link from 'next/link';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 import DefaultLayout from '../layouts/default-layout';
-import ApplicationDetailsCardItem from '../containers/Applications/ApplicationDetailsCardItem';
+import ApplicationDetails from '../containers/Applications/ApplicationDetailsContainer';
 
 /*
  * ViewApplication renders a summary of the data submitted in the application.
@@ -21,29 +21,19 @@ class ViewApplication extends Component<Props> {
         session {
           ...defaultLayout_session
         }
-        application(id: $applicationId) {
-          id
-          formResultsByApplicationId {
-            edges {
-              node {
-                id
-                ...ApplicationDetailsCardItem_formResult
-              }
-            }
-          }
-        }
+        ...ApplicationDetailsContainer_query
+          @arguments(applicationId: $applicationId)
       }
     }
   `;
 
   render() {
-    const {session, application} = this.props.query;
+    const {session} = this.props.query;
+    const {query} = this.props;
 
     return (
       <DefaultLayout session={session} title="Summary of your application">
-        {application.formResultsByApplicationId.edges.map(({node}) => (
-          <ApplicationDetailsCardItem key={node.id} formResult={node} />
-        ))}
+        <ApplicationDetails isAnalyst={false} query={query} />
         <Link
           href={{
             pathname: '/user-dashboard'

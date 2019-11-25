@@ -4,6 +4,7 @@ import ViewApplication from '../../pages/view-application';
 
 const query = {
   session: null,
+  isAnalyst: false,
   application: {
     id: '1',
     formResultsByApplicationId: {
@@ -18,12 +19,12 @@ it('It matches the last accepted Snapshot', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-it('It passes a query to the ApplicationDetailsCardItemComponent component', () => {
+it('It passes a query to the ApplicationDetailsComponent component', () => {
   const wrapper = shallow(<ViewApplication query={query} />);
   expect(
     wrapper
-      .find('Relay(ApplicationDetailsCardItemComponent)')
+      .find('Relay(ApplicationDetailsComponent)')
       .first()
-      .prop('formResult')
-  ).toBe(query.application.formResultsByApplicationId.edges[0].node);
+      .prop('query')
+  ).toBe(query);
 });

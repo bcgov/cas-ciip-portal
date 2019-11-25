@@ -5,13 +5,26 @@ exports[`It matches the last accepted Snapshot 1`] = `
   session={null}
   title="Summary of your application"
 >
-  <Relay(ApplicationDetailsCardItemComponent)
-    formResult={
+  <Relay(ApplicationDetailsComponent)
+    isAnalyst={false}
+    query={
       Object {
-        "id": "form-1",
+        "application": Object {
+          "formResultsByApplicationId": Object {
+            "edges": Array [
+              Object {
+                "node": Object {
+                  "id": "form-1",
+                },
+              },
+            ],
+          },
+          "id": "1",
+        },
+        "isAnalyst": false,
+        "session": null,
       }
     }
-    key="form-1"
   />
   <Link
     href={
