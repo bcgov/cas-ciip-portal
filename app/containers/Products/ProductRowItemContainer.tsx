@@ -15,8 +15,8 @@ import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 import saveProductMutation from '../../mutations/product/saveProductMutation';
-// Import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
-// import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
+import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
+// Import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
 
 // TODO: create conflict logic & alerts:
 // Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
@@ -114,6 +114,23 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
+    console.log(response);
+  };
+
+  const updateCurrentBenchmark = async (e: IChangeEvent) => {
+    const currentBenchmark = getCurrentBenchmark();
+    const variables = {
+      input: {
+        id: currentBenchmark.id,
+        benchmarkPatch: {
+          benchmark: e.formData.benchmark,
+          eligibilityThreshold: e.formData.eligibilityThreshold,
+          startDate: e.formData.startDate,
+          endDate: e.formData.endDate
+        }
+      }
+    };
+    const response = await editBenchmarkMutation(relay.environment, variables);
     console.log(response);
   };
 
@@ -238,6 +255,64 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     description: product.description
   };
 
+  const benchmarkSchema: JSONSchema6 = {
+    type: 'object',
+    properties: {
+      benchmark: {
+        type: 'number',
+        title: 'Benchmark'
+      },
+      eligibilityThreshold: {
+        type: 'number',
+        title: 'ET'
+      },
+      startDate: {
+        type: 'string',
+        title: 'Start Date'
+      },
+      endDate: {
+        type: 'string',
+        title: 'End Date'
+      }
+    }
+  };
+
+  const benchmarkUISchema = {
+    benchmark: {
+      'ui:col-md': 6
+    },
+    description: {
+      'ui:col-md': 6
+    },
+    startDate: {
+      'ui:col-md': 6
+    },
+    endDate: {
+      'ui:col-md': 6
+    }
+  };
+
+  const currentBenchmark = getCurrentBenchmark();
+
+  const currentBenchmarkFormData = {
+    benchmark:
+      currentBenchmark && currentBenchmark.benchmark
+        ? currentBenchmark.benchmark
+        : null,
+    eligibilityThreshold:
+      currentBenchmark && currentBenchmark.eligibilityThreshold
+        ? currentBenchmark.eligibilityThreshold
+        : null,
+    startDate:
+      currentBenchmark && currentBenchmark.startDate
+        ? currentBenchmark.startDate
+        : null,
+    endDate:
+      currentBenchmark && currentBenchmark.endDate
+        ? currentBenchmark.endDate
+        : null
+  };
+
   const [modalShow, setModalShow] = React.useState(false);
   const [futureBenchmarksOpen, setFutureBenchmarksOpen] = React.useState(false);
   const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
@@ -307,6 +382,21 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                 : null}
             </Col>
           </Row>
+=======
+          <JsonSchemaForm
+            omitExtraData
+            liveOmit
+            schema={benchmarkSchema}
+            uiSchema={benchmarkUISchema}
+            formData={currentBenchmarkFormData}
+            showErrorList={false}
+            ArrayFieldTemplate={FormArrayFieldTemplate}
+            FieldTemplate={FormFieldTemplate}
+            ObjectFieldTemplate={FormObjectFieldTemplate}
+            onSubmit={updateCurrentBenchmark}
+          >
+            <Button type="submit">Save</Button>
+          </JsonSchemaForm>
           <br />
           <Row>
             <Col md={12}>
