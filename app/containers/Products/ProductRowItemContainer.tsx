@@ -266,6 +266,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const [modalShow, setModalShow] = React.useState(false);
   const [futureBenchmarksOpen, setFutureBenchmarksOpen] = React.useState(false);
   const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
+  const [addBenchmarkOpen, setAddBenchmarkOpen] = React.useState(false);
 
   const currentBenchmark = getCurrentBenchmark();
 
@@ -396,6 +397,39 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
               </Card>
             </Col>
           </Row>
+          <Button
+            style={{marginTop: '10px'}}
+            variant="success"
+            onClick={() => setAddBenchmarkOpen(!addBenchmarkOpen)}
+          >
+            Add Benchmark +
+          </Button>
+          <Collapse in={addBenchmarkOpen}>
+            <Card>
+              <Card.Header>Add Benchmark</Card.Header>
+              <Card.Body>
+                <JsonSchemaForm
+                  omitExtraData
+                  liveOmit
+                  schema={benchmarkSchema}
+                  uiSchema={benchmarkUISchema}
+                  showErrorList={false}
+                  ArrayFieldTemplate={FormArrayFieldTemplate}
+                  FieldTemplate={FormFieldTemplate}
+                  ObjectFieldTemplate={FormObjectFieldTemplate}
+                  // OnSubmit={updateCurrentBenchmark}
+                >
+                  <Button type="submit">Save</Button>
+                  <Button
+                    variant="warning"
+                    onClick={() => setAddBenchmarkOpen(!addBenchmarkOpen)}
+                  >
+                    Cancel
+                  </Button>
+                </JsonSchemaForm>
+              </Card.Body>
+            </Card>
+          </Collapse>
         </Container>
       </Modal.Body>
     </Modal>
