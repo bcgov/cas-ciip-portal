@@ -25,13 +25,19 @@ describe('Form', () => {
           result: {
             formResult: {operator: {name: 'Test operator'}},
             formJsonByFormId: {
-              formJson: adminForm
+              formJson: adminForm,
+              ciipApplicationWizardByFormId: {
+                formPosition: 0
+              }
             }
           }
         }}
       />
     );
     expect(r).toMatchSnapshot();
+    expect(r.find('.form-submit a').length).toBe(1);
+    expect(r.find('Button').length).toBe(1);
+    expect(r.find('Button').text()).toBe('Continue');
   });
 
   it('should match the snapshot with the fuel form', async () => {
@@ -100,13 +106,19 @@ describe('Form', () => {
               ]
             },
             formJsonByFormId: {
-              formJson: emissionForm
+              formJson: emissionForm,
+              ciipApplicationWizardByFormId: {
+                formPosition: 1
+              }
             }
           }
         }}
       />
     );
     expect(r).toMatchSnapshot();
+    expect(r.find('.form-submit a').length).toBe(1);
+    expect(r.find('Button').length).toBe(2);
+    expect(r.find('Button.btn-secondary').text()).toBe('Back');
   });
 
   it('should match the snapshot with the electricity and heat form', async () => {

@@ -19,8 +19,8 @@ import ProductionFields from './ProductionFields';
 
 interface Props {
   query: Form_query;
-  onComplete?: (e: IChangeEvent) => void;
-  onBack?: () => void;
+  onComplete: (e: IChangeEvent) => void;
+  onBack: () => void;
   onValueChanged?: (e: IChangeEvent, es?: ErrorSchema) => void;
 }
 
