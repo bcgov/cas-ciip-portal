@@ -886,14 +886,32 @@ exports[`Form should match the snapshot with the administration form 1`] = `
     </div>
     <div
       class="jsx-2235865583 form-submit"
-      style="text-align:right"
     >
-      <button
-        class="btn btn-primary btn-lg"
-        type="submit"
+      <div
+        class="row"
       >
-        Continue
-      </button>
+        <div
+          class="col-md-3"
+          style="line-height:48px"
+        >
+          <a
+            href="/user-dashboard"
+          >
+            Save & Exit
+          </a>
+        </div>
+        <div
+          class="col-md-9"
+          style="text-align:right"
+        >
+          <button
+            class="btn btn-primary btn-lg"
+            type="submit"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
     </div>
   </form>
 </div>
@@ -1115,14 +1133,32 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
     </div>
     <div
       class="jsx-2235865583 form-submit"
-      style="text-align:right"
     >
-      <button
-        class="btn btn-primary btn-lg"
-        type="submit"
+      <div
+        class="row"
       >
-        Continue
-      </button>
+        <div
+          class="col-md-3"
+          style="line-height:48px"
+        >
+          <a
+            href="/user-dashboard"
+          >
+            Save & Exit
+          </a>
+        </div>
+        <div
+          class="col-md-9"
+          style="text-align:right"
+        >
+          <button
+            class="btn btn-primary btn-lg"
+            type="submit"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
     </div>
   </form>
 </div>
@@ -1424,14 +1460,39 @@ exports[`Form should match the snapshot with the emission form 1`] = `
     </div>
     <div
       class="jsx-2235865583 form-submit"
-      style="text-align:right"
     >
-      <button
-        class="btn btn-primary btn-lg"
-        type="submit"
+      <div
+        class="row"
       >
-        Continue
-      </button>
+        <div
+          class="col-md-3"
+          style="line-height:48px"
+        >
+          <a
+            href="/user-dashboard"
+          >
+            Save & Exit
+          </a>
+        </div>
+        <div
+          class="col-md-9"
+          style="text-align:right"
+        >
+          <button
+            class="btn btn-secondary btn-lg"
+            style="margin-right:10px"
+            type="button"
+          >
+            Back
+          </button>
+          <button
+            class="btn btn-primary btn-lg"
+            type="submit"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
     </div>
   </form>
 </div>
@@ -1677,21 +1738,47 @@ exports[`Form should match the snapshot with the production form 1`] = `
   >
     <div
       className="jsx-2235865583 form-submit"
-      style={
-        Object {
-          "textAlign": "right",
-        }
-      }
     >
-      <Button
-        active={false}
-        disabled={false}
-        size="lg"
-        type="submit"
-        variant="primary"
+      <ForwardRef
+        noGutters={false}
       >
-        Continue
-      </Button>
+        <Col
+          md={3}
+          style={
+            Object {
+              "lineHeight": "48px",
+            }
+          }
+        >
+          <Link
+            href={
+              Object {
+                "pathname": "/user-dashboard",
+              }
+            }
+          >
+            Save & Exit
+          </Link>
+        </Col>
+        <Col
+          md={9}
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <Button
+            active={false}
+            disabled={false}
+            size="lg"
+            type="submit"
+            variant="primary"
+          >
+            Continue
+          </Button>
+        </Col>
+      </ForwardRef>
     </div>
   </Form>
   <JSXStyle
