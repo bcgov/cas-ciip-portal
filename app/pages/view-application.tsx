@@ -4,7 +4,7 @@ import {graphql} from 'react-relay';
 import Link from 'next/link';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 import DefaultLayout from '../layouts/default-layout';
-import ApplicationWizardConfirmationCardItem from '../containers/Applications/ApplicationWizardConfirmationCardItem';
+import ApplicationDetailsCardItem from '../containers/Applications/ApplicationDetailsCardItem';
 
 /*
  * ViewApplication renders a summary of the data submitted in the application.
@@ -27,7 +27,7 @@ class ViewApplication extends Component<Props> {
             edges {
               node {
                 id
-                ...ApplicationWizardConfirmationCardItem_formResult
+                ...ApplicationDetailsCardItem_formResult
               }
             }
           }
@@ -42,10 +42,7 @@ class ViewApplication extends Component<Props> {
     return (
       <DefaultLayout session={session} title="Summary of your application">
         {application.formResultsByApplicationId.edges.map(({node}) => (
-          <ApplicationWizardConfirmationCardItem
-            key={node.id}
-            formResult={node}
-          />
+          <ApplicationDetailsCardItem key={node.id} formResult={node} />
         ))}
         <Link
           href={{

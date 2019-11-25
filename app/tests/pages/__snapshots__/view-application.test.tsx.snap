@@ -5,7 +5,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
   session={null}
   title="Summary of your application"
 >
-  <Relay(ApplicationWizardConfirmationCardItemComponent)
+  <Relay(ApplicationDetailsCardItemComponent)
     formResult={
       Object {
         "id": "form-1",

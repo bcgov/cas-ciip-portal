@@ -18,11 +18,11 @@ it('It matches the last accepted Snapshot', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-it('It passes a query to the ApplicationWizardConfirmationCardItemComponent component', () => {
+it('It passes a query to the ApplicationDetailsCardItemComponent component', () => {
   const wrapper = shallow(<ViewApplication query={query} />);
   expect(
     wrapper
-      .find('Relay(ApplicationWizardConfirmationCardItemComponent)')
+      .find('Relay(ApplicationDetailsCardItemComponent)')
       .first()
       .prop('formResult')
   ).toBe(query.application.formResultsByApplicationId.edges[0].node);
