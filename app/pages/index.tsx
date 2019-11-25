@@ -9,6 +9,8 @@ import RegistrationLoginButtons from '../components/RegistrationLoginButtons';
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
 }
+const options = {month: 'short', day: 'numeric', year: 'numeric'};
+const dataFormatter = new Intl.DateTimeFormat('en-US', options);
 export default class Index extends Component<Props> {
   static query = graphql`
     query pagesQuery {
@@ -27,13 +29,11 @@ export default class Index extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
-    const options = {month: 'short', day: 'numeric', year: 'numeric'};
+
     const date1: any = query.getReportingYear.applicationOpenDate;
-    const startDate: Date = new Date(Date.parse(date1));
+    const startDate = new Date(Date.parse(date1));
     const date2: any = query.getReportingYear.applicationEndDate;
-    const endDate: Date = new Date(Date.parse(date2));
-    const parsedEndDate = new Intl.DateTimeFormat('en-US', options);
-    const parsedStartDate = new Intl.DateTimeFormat('en-US', options);
+    const endDate = new Date(Date.parse(date2));
     return (
       <DefaultLayout
         showSubheader={false}
@@ -123,7 +123,7 @@ export default class Index extends Component<Props> {
               </thead>
               <tbody>
                 <tr>
-                  <td>{parsedStartDate.format(startDate)}</td>
+                  <td>{dataFormatter.format(startDate)}</td>
                   <td>CIIP application forms open</td>
                 </tr>
                 <tr>
@@ -131,7 +131,7 @@ export default class Index extends Component<Props> {
                   <td>Webinar for CIIP</td>
                 </tr>
                 <tr>
-                  <td>{parsedEndDate.format(endDate)}</td>
+                  <td>{dataFormatter.format(endDate)}</td>
                   <td>CIIP application form due</td>
                 </tr>
                 <tr>

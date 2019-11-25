@@ -11,7 +11,7 @@ create or replace function ggircs_portal.get_reporting_year()
         return(
             select row (_reporting_year.*)
             from ggircs_portal.reporting_year as _reporting_year
-            where (date_part('year', CURRENT_DATE)) = reporting_year::numeric
+            where (date_part('year', CURRENT_DATE)) = reporting_year
             );
         end;
     $function$
