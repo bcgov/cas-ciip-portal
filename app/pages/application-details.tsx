@@ -55,7 +55,7 @@ class ApplicationDetails extends Component<Props> {
         />
         <hr />
 
-        <ApplicationDetail isAnalyst query={query} />
+        <ApplicationDetail query={query} />
         <IncentiveCalculatorContainer
           query={query}
           bcghgid={this.props.router.query.bcghgid}
