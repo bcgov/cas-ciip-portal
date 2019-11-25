@@ -1688,7 +1688,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
     noHtml5Validate={false}
     noValidate={false}
     omitExtraData={true}
-    safeRenderCompletion={false}
+    safeRenderCompletion={true}
     schema={
       Object {
         "definitions": Object {

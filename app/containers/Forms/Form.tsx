@@ -75,6 +75,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       <JsonSchemaForm
         omitExtraData
         liveOmit
+        safeRenderCompletion
         showErrorList={false}
         ArrayFieldTemplate={FormArrayFieldTemplate}
         FieldTemplate={FormFieldTemplate}
