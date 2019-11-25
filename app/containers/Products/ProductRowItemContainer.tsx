@@ -7,27 +7,18 @@ import {
   Row,
   Col,
   Card,
-  Collapse
+  Collapse,
+  Table
 } from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
+
 import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 import saveProductMutation from '../../mutations/product/saveProductMutation';
 import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
 // Import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
-
-// TODO: create conflict logic & alerts:
-// Example Scenario: If a product has a current benchmark attached to it (not archived and current date falls within start and end dates),
-//                   and an admin attempts to add another benchmark that will be considered current, do not create the benchmark and alert the user.
-//                   This should probably include checks on all benchmarks (including future benchmarks that have been defined)
-
-// TODO: Make the benchmark management system better. Currently the UI only shows the current benchmark, there is no way to view benchmarks
-//       that have been created for the future (to supplant the current one), or to see past benchmarks. This can currently only be done in the database
-
-// TODO: The UI is a little borked, the edit buttons apply to all items on the page because of where state lives currently
-//       I have purposely left this not fixed as I believe this should be fixed in a separate refactor of this page
 
 interface Props {
   relay: RelayProp;
@@ -57,35 +48,24 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     return currentBenchmark;
   };
 
-  // // Toggle the 'archived' value of a Benchmark (unlike Product, this is a one way operation.)
-  // // The button is red && says 'Delete'. The value is not deleted, it is archived in the database, but is not recoverable through the UI
-  // const toggleBenchmarkDeleted = async event => {
-  //   // This.setState({confirmationModalOpen: false});
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   const currentBenchmark = getCurrentBenchmark();
-  //   const benchmarkPatch = {
-  //     deletedAt: new Date().toUTCString(),
-  //     deletedBy: 'Admin'
-  //   };
-  //   const variables = {
-  //     input: {
-  //       id: currentBenchmark.id,
-  //       benchmarkPatch
-  //     }
-  //   };
-
-  //   const response = await editBenchmarkMutation(
-  //     props.relay.environment,
-  //     variables
-  //   );
-  //   console.log(response);
-  // };
+  const currentBenchmark = getCurrentBenchmark();
+  const pastBenchmarks = [];
+  const futureBenchmarks = [];
+  if (product.benchmarksByProductId.edges[0]) {
+    product.benchmarksByProductId.edges.forEach(edge => {
+      if (
+        edge.node.endDate !== null &&
+        Date.parse(edge.node.endDate) < Date.now()
+      )
+        pastBenchmarks.push(edge.node);
+      else if (Date.parse(edge.node.startDate) > Date.now())
+        futureBenchmarks.push(edge.node);
+    });
+  }
 
   // Toggle the 'archived' value of a Product
   const toggleArchived = async () => {
     const newState = product.state === 'archived' ? 'active' : 'archived';
-    const currentBenchmark = getCurrentBenchmark();
     const variables = {
       input: {
         newName: product.name,
@@ -102,7 +82,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   // Save a product
   const saveProduct = async (e: IChangeEvent) => {
-    const currentBenchmark = getCurrentBenchmark();
     const variables = {
       input: {
         newName: e.formData.product,
@@ -118,7 +97,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   };
 
   const updateCurrentBenchmark = async (e: IChangeEvent) => {
-    const currentBenchmark = getCurrentBenchmark();
     const variables = {
       input: {
         id: currentBenchmark.id,
@@ -134,70 +112,44 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  // // Save a new benchmark
-  // const saveBenchmark = async event => {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   event.persist();
-  //   // Current-_date for updatedAt field
-  //   const currentDate = new Date().toUTCString();
-  //   // StartDate received from user, defined in UI
-  //   const startDate = new Date(event.nativeEvent.target[5].value).toUTCString();
-  //   // Set the current benchmark (if one has been set)
-  //   const currentBenchmark = getCurrentBenchmark();
+  const displayFutureBenchmark = benchmark => {
+    const formData = {
+      benchmark: benchmark.benchmark,
+      eligibilityThreshold: benchmark.eligibilityThreshold,
+      startDate: benchmark.startDate,
+      endDate: benchmark.endDate
+    };
+    return (
+      <>
+        <JsonSchemaForm
+          omitExtraData
+          liveOmit
+          schema={benchmarkSchema}
+          uiSchema={benchmarkUISchema}
+          formData={formData}
+          showErrorList={false}
+          ArrayFieldTemplate={FormArrayFieldTemplate}
+          FieldTemplate={FormFieldTemplate}
+          ObjectFieldTemplate={FormObjectFieldTemplate}
+          // OnSubmit={updateCurrentBenchmark}
+        >
+          <Button type="submit">Save</Button>
+        </JsonSchemaForm>
+        <hr />
+      </>
+    );
+  };
 
-  //   // Conflict handling
-  //   if (
-  //     currentBenchmark &&
-  //     Date.parse(startDate) < Date.parse(currentBenchmark.startDate)
-  //   ) {
-  //     console.error(
-  //       'Start date of new benchmark is less than the start date of the current benchmark'
-  //     );
-  //     return;
-  //   }
-
-  //   const validBenchmarks = [];
-  //   props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
-  //     if (
-  //       benchmark.endDate === null ||
-  //       Date.parse(benchmark.endDate) > Date.parse(currentDate)
-  //     ) {
-  //       validBenchmarks.push(benchmark);
-  //     }
-  //   });
-
-  //   if (validBenchmarks.length > 1) {
-  //     console.error(
-  //       'Too many benchmarks already created, only one active benchmark and one upcoming benchmark can be defined at one time'
-  //     );
-  //     return;
-  //   }
-
-  //   const benchmarkTargetIndex = 3;
-  //   const eligibilityThresholdTargetIndex = 4;
-  //   const newVariables = {
-  //     input: {
-  //       productIdInput: props.product.rowId,
-  //       benchmarkInput: parseFloat(
-  //         event.nativeEvent.target[benchmarkTargetIndex].value
-  //       ),
-  //       eligibilityThresholdInput: parseFloat(
-  //         event.nativeEvent.target[eligibilityThresholdTargetIndex].value
-  //       ),
-  //       startDateInput: startDate,
-  //       prevBenchmarkIdInput: currentBenchmark ? currentBenchmark.rowId : null
-  //     }
-  //   };
-  //   const response = await createBenchmarkMutation(
-  //     props.relay.environment,
-  //     newVariables
-  //   );
-  //   console.log(response);
-  // };
-
-  // /** Mutations & functions above */
-  // /** Code for Rendering Below */
+  const displayPastBenchmark = benchmark => {
+    return (
+      <tr>
+        <td>{benchmark.benchmark}</td>
+        <td>{benchmark.eligibilityThreshold}</td>
+        <td>{benchmark.startDate}</td>
+        <td>{benchmark.endDate}</td>
+      </tr>
+    );
+  };
 
   // // Get the current benchmark for the product
   // let benchmarks;
@@ -292,8 +244,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     }
   };
 
-  const currentBenchmark = getCurrentBenchmark();
-
   const currentBenchmarkFormData = {
     benchmark:
       currentBenchmark && currentBenchmark.benchmark
@@ -322,7 +272,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const editModal = (
     <Modal
       centered
-      size="lg"
+      size="xl"
       show={modalShow}
       onHide={() => setModalShow(false)}
     >
@@ -409,11 +359,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                 <Collapse in={futureBenchmarksOpen}>
                   <Card.Body>
                     <Container>
-                      <Row>
-                        <Col md={4}>Benchmark: 100</Col>
-                        <Col md={4}>ET: 1000</Col>
-                        <Col md={4}>End Date: Monday</Col>
-                      </Row>
+                      {futureBenchmarks.map(benchmark => {
+                        return displayFutureBenchmark(benchmark);
+                      })}
                     </Container>
                   </Card.Body>
                 </Collapse>
@@ -430,13 +378,19 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                 </Card.Header>
                 <Collapse in={pastBenchmarksOpen}>
                   <Card.Body>
-                    <Container>
-                      <Row>
-                        <Col md={4}>Benchmark: 100</Col>
-                        <Col md={4}>ET: 1000</Col>
-                        <Col md={4}>End Date: Monday</Col>
-                      </Row>
-                    </Container>
+                    <Table>
+                      <thead>
+                        <th>Benchmark</th>
+                        <th>Eligibility Threshold</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                      </thead>
+                      <tbody>
+                        {pastBenchmarks.map(benchmark => {
+                          return displayPastBenchmark(benchmark);
+                        })}
+                      </tbody>
+                    </Table>
                   </Card.Body>
                 </Collapse>
               </Card>
@@ -444,9 +398,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           </Row>
         </Container>
       </Modal.Body>
-      {/* <Modal.Footer>
-        <Button onClick={() => console.log('hi')}>Close</Button>
-      </Modal.Footer> */}
     </Modal>
   );
 
@@ -455,15 +406,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       <tr>
         <td>{product.name}</td>
         <td>{product.units}</td>
+        <td>{currentBenchmark ? currentBenchmark.benchmark : null}</td>
         <td>
-          {product.benchmarksByProductId.edges[0]
-            ? product.benchmarksByProductId.edges[0].node.benchmark
-            : null}
-        </td>
-        <td>
-          {product.benchmarksByProductId.edges[0]
-            ? product.benchmarksByProductId.edges[0].node.eligibilityThreshold
-            : null}
+          {currentBenchmark ? currentBenchmark.eligibilityThreshold : null}
         </td>
         <td>{product.state}</td>
         <td>
