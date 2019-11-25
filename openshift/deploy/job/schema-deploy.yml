@@ -64,7 +64,7 @@ objects:
           - name: PGPORT
             value: "5432"
           - name: PGHOST
-            value: ${PREFIX}ggircs-postgres
+            value: ${PREFIX}postgres-master
           - name: SQITCH_FULLNAME
             value: OpenShift Deployer
           - name: SQITCH_EMAIL

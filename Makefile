@@ -62,11 +62,11 @@ install: whoami
 install:
 	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-schema)
 	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-app)
-	$(call oc_wait_for_deploy,$(PROJECT_PREFIX)postgres)
+	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)postgres)
 	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
 	$(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-deploy)
 	$(call oc_deploy)
-	$(call oc_wait_for_deploy,$(PROJECT_PREFIX)ciip-portal-app)
+	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)ciip-portal-app)
 
 .PHONY: install_test
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)
