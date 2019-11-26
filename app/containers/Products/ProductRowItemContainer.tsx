@@ -96,6 +96,23 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
+  const createBenchmark = async (e: IChangeEvent) => {
+    const variables = {
+      input: {
+        benchmarkInput: e.formData.benchmark,
+        eligibilityThresholdInput: e.formData.eligibilityThreshold,
+        productIdInput: product.id,
+        startDateInput: e.formData.startDate,
+        endDateInput: e.formData.endDate
+      }
+    };
+    const response = await createBenchmarkMutation(
+      relay.environment,
+      variables
+    );
+    console.log(response);
+  };
+
   const updateCurrentBenchmark = async (e: IChangeEvent) => {
     const variables = {
       input: {
@@ -364,6 +381,13 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                         return displayFutureBenchmark(benchmark);
                       })}
                     </Container>
+                    {futureBenchmarks.map(benchmark => (
+                      <FutureBenchmarks
+                        key={benchmark.id}
+                        benchmark={benchmark}
+                        environment={relay.environment}
+                      />
+                    ))}
                   </Card.Body>
                 </Collapse>
               </Card>
