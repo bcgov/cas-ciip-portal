@@ -32,9 +32,11 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
         }
       }
     };
+    console.log(variables);
     resetForm();
     const {environment} = relay;
-    await createProductMutation(environment, variables);
+    const response = await createProductMutation(environment, variables);
+    console.log(response);
   };
 
   // Schema for JsonSchemaForm component

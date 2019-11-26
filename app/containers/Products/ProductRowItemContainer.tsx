@@ -13,6 +13,7 @@ import {
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 
+import moment from 'moment';
 import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
@@ -35,9 +36,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     if (product.benchmarksByProductId.edges[0]) {
       product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
         if (
-          Date.parse(benchmark.startDate) < Date.now() &&
+          moment(benchmark.startDate) < moment() &&
           (benchmark.endDate === null ||
-            Date.parse(benchmark.endDate) > Date.now()) &&
+            moment(benchmark.endDate) > moment()) &&
           !benchmark.deletedAt
         ) {
           currentBenchmark = benchmark;
@@ -101,11 +102,20 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       input: {
         benchmarkInput: e.formData.benchmark,
         eligibilityThresholdInput: e.formData.eligibilityThreshold,
-        productIdInput: product.id,
-        startDateInput: e.formData.startDate,
+        productIdInput: product.rowId,
+        startDateInput: moment(
+          e.formData.startDate.concat('T', '00:00:00'),
+          'DD-MM-YYYYTHH:mm:ss'
+        ).format('YYYY-MM-DDTHH:mm:ss'),
         endDateInput: e.formData.endDate
+          ? moment(
+              e.formData.endDate.concat('T', '00:00:00'),
+              'DD-MM-YYYYTHH:mm:ss'
+            ).format('YYYY-MM-DDTHH:mm:ss')
+          : null
       }
     };
+
     const response = await createBenchmarkMutation(
       relay.environment,
       variables
@@ -162,8 +172,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       <tr>
         <td>{benchmark.benchmark}</td>
         <td>{benchmark.eligibilityThreshold}</td>
-        <td>{benchmark.startDate}</td>
-        <td>{benchmark.endDate}</td>
+        <td>{moment(benchmark.startDate).format('DD-MM-YYYY')}</td>
+        <td>{moment(benchmark.endDate).format('DD-MM-YYYY')}</td>
       </tr>
     );
   };
@@ -272,11 +282,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         : null,
     startDate:
       currentBenchmark && currentBenchmark.startDate
-        ? currentBenchmark.startDate
+        ? moment(currentBenchmark.startDate).format('DD-MM-YYYY')
         : null,
     endDate:
       currentBenchmark && currentBenchmark.endDate
-        ? currentBenchmark.endDate
+        ? moment(currentBenchmark.endDate).format('DD-MM-YYYY')
         : null
   };
 
@@ -409,6 +419,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                         <th>Eligibility Threshold</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        <tr>
+                          <th>Benchmark</th>
+                          <th>Eligibility Threshold</th>
+                          <th>Start Date (DD-MM-YYYY)</th>
+                          <th>End Date (DD_MM-YYYY)</th>
+                        </tr>
                       </thead>
                       <tbody>
                         {pastBenchmarks.map(benchmark => {

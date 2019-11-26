@@ -14,8 +14,8 @@ declare
 begin
 
   --Insert new value into product table and update current benchmark to point to that product
-  insert into ggircs_portal.product(name, description, state, parent)
-  values (new_name, new_description, new_state, new_parent) returning id into new_id;
+  insert into ggircs_portal.product(name, description, units, state, parent)
+  values (new_name, new_description, new_units, new_state, new_parent) returning id into new_id;
 
   if benchmark_id is not null then
   update ggircs_portal.benchmark

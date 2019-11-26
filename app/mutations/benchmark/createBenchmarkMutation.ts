@@ -13,10 +13,13 @@ const mutation = graphql`
       benchmark {
         id
         rowId
+        productId
         benchmark
         eligibilityThreshold
         startDate
         endDate
+        createdAt
+        updatedAt
       }
     }
   }

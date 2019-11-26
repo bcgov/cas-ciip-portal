@@ -2,6 +2,7 @@ import React from 'react';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import {Button, Container} from 'react-bootstrap';
+import moment from 'moment';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 
@@ -39,8 +40,8 @@ const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
   const formData = {
     benchmark: benchmark.benchmark,
     eligibilityThreshold: benchmark.eligibilityThreshold,
-    startDate: benchmark.startDate,
-    endDate: benchmark.endDate
+    startDate: moment(benchmark.startDate).format('DD-MM-YYYY'),
+    endDate: moment(benchmark.endDate).format('DD-MM-YYYY')
   };
   return (
     <Container>
