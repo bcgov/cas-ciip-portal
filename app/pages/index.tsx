@@ -30,9 +30,9 @@ export default class Index extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
 
-    const date1: any = query.getReportingYear.applicationOpenDate;
+    const date1 = query.getReportingYear.applicationOpenDate;
     const startDate = new Date(Date.parse(date1));
-    const date2: any = query.getReportingYear.applicationEndDate;
+    const date2 = query.getReportingYear.applicationEndDate;
     const endDate = new Date(Date.parse(date2));
     return (
       <DefaultLayout
