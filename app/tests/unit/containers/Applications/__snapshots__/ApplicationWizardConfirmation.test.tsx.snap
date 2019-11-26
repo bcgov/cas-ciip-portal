@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationWizardConfirmationComponent should match the snapshot with the ApplicationWizardConfirmation component 1`] = `
+<Fragment>
+  <h1>
+    Summary of your application:
+  </h1>
+  <h5>
+    Please review the information you have provided before continuing.
+  </h5>
+  <br />
+  <Relay(ApplicationDetailsComponent)
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_query": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_query",
+        "application": Object {
+          "applicationStatus": Object {
+            "id": "42",
+          },
+        },
+      }
+    }
+  />
+  <Link
+    href={
+      Object {
+        "pathname": "/complete-submit",
+      }
+    }
+    passHref={true}
+  >
+    <Button
+      active={false}
+      className="float-right"
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginTop": "10px",
+        }
+      }
+      type="button"
+      variant="primary"
+    >
+      Submit Application
+    </Button>
+  </Link>
+</Fragment>
+`;
