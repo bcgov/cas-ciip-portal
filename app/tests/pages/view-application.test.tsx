@@ -4,7 +4,6 @@ import ViewApplication from '../../pages/view-application';
 
 const query = {
   session: null,
-  isAnalyst: false,
   application: {
     id: '1',
     formResultsByApplicationId: {

@@ -6,7 +6,6 @@ exports[`It matches the last accepted Snapshot 1`] = `
   title="Summary of your application"
 >
   <Relay(ApplicationDetailsComponent)
-    isAnalyst={false}
     query={
       Object {
         "application": Object {
@@ -21,7 +20,6 @@ exports[`It matches the last accepted Snapshot 1`] = `
           },
           "id": "1",
         },
-        "isAnalyst": false,
         "session": null,
       }
     }

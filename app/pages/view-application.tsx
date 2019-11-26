@@ -33,7 +33,7 @@ class ViewApplication extends Component<Props> {
 
     return (
       <DefaultLayout session={session} title="Summary of your application">
-        <ApplicationDetails isAnalyst={false} query={query} />
+        <ApplicationDetails query={query} />
         <Link
           href={{
             pathname: '/user-dashboard'
