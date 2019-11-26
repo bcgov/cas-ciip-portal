@@ -3,8 +3,8 @@ import {Button} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import Link from 'next/link';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
-import DefaultLayout from '../layouts/default-layout';
-import ApplicationDetails from '../containers/Applications/ApplicationDetailsContainer';
+import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
+import DefaultLayout from 'layouts/default-layout';
 
 /*
  * ViewApplication renders a summary of the data submitted in the application.

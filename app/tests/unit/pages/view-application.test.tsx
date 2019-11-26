@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ViewApplication from '../../pages/view-application';
+import ViewApplication from 'pages/view-application';
 
 const query = {
   session: null,
