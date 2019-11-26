@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Form Component should match the snapshot 1`] = `
+<div
+  className="jsx-2235865583 "
+>
+  <ForwardRef
+    noGutters={false}
+  >
+    <Col
+      md={12}
+      style={
+        Object {
+          "marginLeft": "25px",
+        }
+      }
+    >
+      <h1
+        className="jsx-2235865583 form-title"
+      >
+        Foo
+      </h1>
+    </Col>
+  </ForwardRef>
+  <Form
+    ArrayFieldTemplate={[Function]}
+    ErrorList={[Function]}
+    FieldTemplate={[Function]}
+    ObjectFieldTemplate={[Function]}
+    disabled={false}
+    fields={
+      Object {
+        "emissionGas": [Function],
+        "emissionSource": [Function],
+        "fuel": [Function],
+        "production": [Function],
+      }
+    }
+    formContext={
+      Object {
+        "query": Object {
+          " $fragmentRefs": Object {
+            "FuelFields_query": true,
+            "ProductionFields_query": true,
+          },
+          " $refType": "Form_query",
+          "result": Object {
+            "formJsonByFormId": Object {
+              "ciipApplicationWizardByFormId": Object {
+                "formPosition": 1,
+              },
+              "formJson": Object {},
+              "name": "Foo",
+            },
+            "formResult": Object {},
+          },
+        },
+      }
+    }
+    formData={Object {}}
+    liveOmit={true}
+    liveValidate={false}
+    noHtml5Validate={false}
+    noValidate={false}
+    omitExtraData={true}
+    onSubmit={[MockFunction]}
+    safeRenderCompletion={true}
+    showErrorList={false}
+    transformErrors={[Function]}
+    uiSchema={Object {}}
+  >
+    <div
+      className="jsx-2235865583 form-submit"
+    >
+      <ForwardRef
+        noGutters={false}
+      >
+        <Col
+          md={3}
+          style={
+            Object {
+              "lineHeight": "48px",
+            }
+          }
+        >
+          <Link
+            href={
+              Object {
+                "pathname": "/user-dashboard",
+              }
+            }
+          >
+            Save & Exit
+          </Link>
+        </Col>
+        <Col
+          md={9}
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <Button
+            active={false}
+            disabled={false}
+            onClick={[MockFunction]}
+            size="lg"
+            style={
+              Object {
+                "marginRight": "10px",
+              }
+            }
+            type="button"
+            variant="secondary"
+          >
+            Back
+          </Button>
+          <Button
+            active={false}
+            disabled={false}
+            size="lg"
+            type="submit"
+            variant="primary"
+          >
+            Continue
+          </Button>
+        </Col>
+      </ForwardRef>
+    </div>
+  </Form>
+  <JSXStyle
+    id="2235865583"
+  >
+    .rjsf .form-row{margin:20px 0 40px;}.emission-form .rjsf .form-row{margin:0;}.no-col-padding .form-row&gt;.col,.no-col-padding .form-row&gt;[class*='col-']{padding:0;}.form-submit{border:1px solid #bbb;padding:30px;background:#eee;border-radius:6px;}
+  </JSXStyle>
+</div>
+`;

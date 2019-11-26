@@ -63,7 +63,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     });
   };
 
-  const formClass = uiSchema['ui:className'] || '';
+  const formClass = uiSchema?.['ui:className'] || '';
   return (
     <div className={formClass}>
       <Row>
