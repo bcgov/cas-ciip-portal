@@ -9,6 +9,7 @@ Feature: Availability
   @mvp
   Scenario: release status dashboard
 
+  # all 3 to be scheduled after MVP
   Scenario: high availability assessment
   Scenario: availability monitoring
   Scenario: out-of-band availability notification
