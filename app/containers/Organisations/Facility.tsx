@@ -44,11 +44,7 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
   const applyButton = () => {
     if (!applicationId) {
       return (
-        <Button
-          variant="primary"
-          data-action="apply"
-          onClick={startApplication}
-        >
+        <Button variant="primary" onClick={startApplication}>
           Apply for CIIP for this facility
         </Button>
       );
@@ -64,9 +60,7 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
             }
           }}
         >
-          <Button variant="primary" data-action="resume">
-            Resume CIIP application
-          </Button>
+          <Button variant="primary">Resume CIIP application</Button>
         </Link>
       );
     }
@@ -81,9 +75,7 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
             }
           }}
         >
-          <Button variant="primary" data-action="view">
-            View Submitted Application
-          </Button>
+          <Button variant="primary">View Submitted Application</Button>
         </Link>
       );
     }

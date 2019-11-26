@@ -69,7 +69,6 @@ exports[`Facility should render a Facility 1`] = `
       >
         <Button
           active={false}
-          data-action="view"
           disabled={false}
           type="button"
           variant="primary"
@@ -151,7 +150,6 @@ exports[`Facility should render a Resume Application button if an applicationID 
       >
         <Button
           active={false}
-          data-action="resume"
           disabled={false}
           type="button"
           variant="primary"
@@ -233,7 +231,6 @@ exports[`Facility should render a View Submitted App button if an applicationID 
       >
         <Button
           active={false}
-          data-action="view"
           disabled={false}
           type="button"
           variant="primary"
@@ -300,7 +297,6 @@ exports[`Facility should render an Apply For CIIP button if no applicationID exi
     <CardBody>
       <Button
         active={false}
-        data-action="apply"
         disabled={false}
         onClick={[Function]}
         type="button"
