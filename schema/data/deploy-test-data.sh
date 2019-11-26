@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-dev_db=ggircs_dev
+database=${PGDATABASE:-ggircs_dev}
 
 # =============================================================================
 # Usage:
@@ -10,14 +10,14 @@ usage() {
     cat << EOF
 $0 [-d] [-p] [-s] [-h]
 
-Upserts test data in the $dev_db database, and deploys the schemas using sqitch if needed.
+Upserts test data in the $database database, and deploys the schemas using sqitch if needed.
 If run without the corresponding options, this script will deploy the swrs and portal schemas
 if they do not exist, and then insert the portal test data.
 
 Options
 
   -d, --drop-db
-    Drops the $dev_db database before deploying
+    Drops the $database database before deploying
   -s, --deploy-swrs-schema
     Redeploys the swrs schema and inserts the swrs test reports. This requires the .cas-ggircs submodule to be initialized
   -p, --deploy-portal-schema
@@ -38,17 +38,21 @@ __dirname="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 pushd "$__dirname" > /dev/null
 
 _psql() {
-  psql -d $dev_db -qtA --set ON_ERROR_STOP=1 "$@" 2>&1
+  user=${PGUSER:-$(whoami)}
+  database=${PGDATABASE:-$database}
+  host=${PGHOST:-localhost}
+  port=${PGPORT:-5432}
+  psql -d "$database" -h "$host" -p "$port" -U "$user" -qtA --set ON_ERROR_STOP=1 "$@" 2>&1
 }
 
 dropdb() {
-  echo "Drop the $dev_db database if it exists"
-  psql -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$dev_db'" | grep -q 1 && psql -d postgres -c "DROP DATABASE $dev_db";
+  echo "Drop the $database database if it exists"
+  psql -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$database'" | grep -q 1 && psql -d postgres -c "DROP DATABASE $database";
 }
 
 createdb() {
-  echo "Create the $dev_db database if it does not exist"
-  psql -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$dev_db'" | grep -q 1 || psql -d postgres -c "CREATE DATABASE $dev_db";
+  echo "Create the $database database if it does not exist"
+  psql -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$database'" | grep -q 1 || psql -d postgres -c "CREATE DATABASE $database";
 }
 
 actions=()
@@ -59,7 +63,7 @@ sqitch_revert() {
 }
 
 deploySwrs() {
-  echo "Deploying the swrs schema to $dev_db"
+  echo "Deploying the swrs schema to $database"
   if [ ! -f ../.cas-ggircs/sqitch.plan ]; then
     echo "Could not find sqitch plan in schema/.cas-ggircs."
     echo "Did you forget to init and/or update the submodule?"
@@ -88,7 +92,7 @@ deploySwrsIfNotExists() {
 
 deployPortal() {
   deploySwrsIfNotExists
-  echo "Deploying the portal schema to $dev_db"
+  echo "Deploying the portal schema to $database"
   pushd ..
   sqitch_revert
   sqitch deploy

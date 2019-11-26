@@ -41,8 +41,7 @@ objects:
           - /usr/bin/env
           - bash
           - -c
-          - |
-            sqitch deploy;
+          - sqitch deploy && ./data/deploy-test-data.sh
           env:
           - name: SQITCH_TARGET
             value: "db:pg:"
