@@ -256,6 +256,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         <td>{moment(benchmark.endDate).format('DD-MM-YYYY')}</td>
       </tr>
     );
+  // This fuction does not 'DELETE' from the database, but sets the deleted at / deleted by values. This action is not recoverable through the UI
   const deleteBenchmark = async benchmark => {
     if (!benchmark) return;
     const variables = {
