@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
+import {mount} from 'enzyme';
 import {ProductCreator} from 'containers/Products/ProductCreatorContainer';
 
 describe('ProductCreator', () => {
