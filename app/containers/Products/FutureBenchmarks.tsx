@@ -43,6 +43,7 @@ const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
     startDate: moment(benchmark.startDate).format('DD-MM-YYYY'),
     endDate: moment(benchmark.endDate).format('DD-MM-YYYY')
   };
+  console.log(benchmark.endDate);
   return (
     <Container>
       <JsonSchemaForm

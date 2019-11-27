@@ -18,8 +18,6 @@ const mutation = graphql`
         eligibilityThreshold
         startDate
         endDate
-        createdAt
-        updatedAt
       }
     }
   }

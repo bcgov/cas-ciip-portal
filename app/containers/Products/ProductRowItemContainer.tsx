@@ -74,7 +74,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newState,
         prevId: product.rowId,
         newParent: [product.rowId],
-        benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
+        newUnits: product.units
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -90,7 +90,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newState: 'active',
         prevId: product.rowId,
         newParent: [product.rowId],
-        benchmarkId: currentBenchmark ? currentBenchmark.rowId : null
+        newUnits: product.units
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -109,12 +109,14 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         ).format('YYYY-MM-DDTHH:mm:ss'),
         endDateInput: e.formData.endDate
           ? moment(
-              e.formData.endDate.concat('T', '00:00:00'),
+              e.formData.endDate.concat('T', '23:59:59'),
               'DD-MM-YYYYTHH:mm:ss'
             ).format('YYYY-MM-DDTHH:mm:ss')
-          : null
+          : null,
+        prevBenchmarkIdInput: null
       }
     };
+    console.log(variables);
 
     const response = await createBenchmarkMutation(
       relay.environment,
@@ -371,7 +373,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             ArrayFieldTemplate={FormArrayFieldTemplate}
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
-            onSubmit={updateCurrentBenchmark}
+            onSubmit={
+              currentBenchmark ? updateCurrentBenchmark : createBenchmark
+            }
           >
             <Button type="submit">Save</Button>
           </JsonSchemaForm>

@@ -29162,6 +29162,7 @@
               "name": "ciipUserOrganisation",
               "description": "The `CiipUserOrganisation` to be created by this mutation.",
               "type": {
+<<<<<<< c5c622c50724481247d231567a11c30a5cffa628
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
@@ -29169,6 +29170,11 @@
                   "name": "CiipUserOrganisationInput",
                   "ofType": null
                 }
+=======
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+>>>>>>> fixed some sql errors, removed/added necessary columns
               },
               "defaultValue": null
             },
@@ -29197,13 +29203,9 @@
               "name": "organisationId",
               "description": "foreign key that references the organisation table",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "defaultValue": null
             },
@@ -29221,15 +29223,24 @@
               "name": "userId",
               "description": "foreign key that references the user table",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "defaultValue": null
+<<<<<<< c5c622c50724481247d231567a11c30a5cffa628
+=======
+            },
+            {
+              "name": "startDateInput",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+>>>>>>> fixed some sql errors, removed/added necessary columns
             }
           ],
           "interfaces": null,
@@ -35087,16 +35098,6 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "benchmarkId",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "clientMutationId",
               "description": "An arbitrary string value with no semantic meaning. Will be included in the payload verbatim. May be used to track mutations by the client.",
               "type": {
@@ -35110,13 +35111,9 @@
               "name": "newDescription",
               "description": null,
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "defaultValue": null
             },
@@ -35124,13 +35121,9 @@
               "name": "newName",
               "description": null,
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "defaultValue": null
             },
@@ -35138,16 +35131,12 @@
               "name": "newParent",
               "description": null,
               "type": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
                 }
               },
               "defaultValue": null
@@ -35156,27 +35145,32 @@
               "name": "newState",
               "description": null,
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "defaultValue": null
             },
             {
+<<<<<<< c5c622c50724481247d231567a11c30a5cffa628
+=======
+              "name": "newUnits",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+>>>>>>> fixed some sql errors, removed/added necessary columns
               "name": "prevId",
               "description": null,
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
               },
               "defaultValue": null
             }
