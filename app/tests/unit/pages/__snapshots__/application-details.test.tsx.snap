@@ -1,15 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`It matches the last accepted Snapshot 1`] = `
-<Relay(DefaultLayout)>
+<Relay(DefaultLayout)
+  width="wide"
+>
   <Relay(ApplicationStatus)
     applicationId="1"
   />
-  <hr />
-  <Relay(ApplicationDetailsComponent) />
-  <Relay(IncentiveCalculator)
-    bcghgid="100"
-    reportingYear="2018"
+  <hr
+    className="jsx-1070550671"
   />
+  <ForwardRef
+    className="application-container"
+    noGutters={false}
+  >
+    <Col
+      className="application-body"
+      md={8}
+    >
+      <Relay(ApplicationDetailsComponent)
+        isAnalyst={true}
+      />
+      <Relay(IncentiveCalculator)
+        bcghgid="100"
+        reportingYear="2018"
+      />
+    </Col>
+    <Col
+      className="application-comments"
+      md={4}
+    >
+      <Relay(ApplicationCommentsComponent) />
+    </Col>
+  </ForwardRef>
+  <JSXStyle
+    id="1070550671"
+  >
+    .container.jsx-1070550671{display:none;}
+  </JSXStyle>
 </Relay(DefaultLayout)>
 `;

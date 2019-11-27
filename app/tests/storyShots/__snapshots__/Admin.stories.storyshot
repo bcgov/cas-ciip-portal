@@ -69,7 +69,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
           title="Administrator Dashboard"
         >
           <div
-            className="jsx-887941335 page-wrap"
+            className="jsx-1486801185 page-wrap"
           >
             <HeaderLayout
               isLoggedIn={true}
@@ -298,16 +298,17 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
               </header>
             </HeaderLayout>
             <div
-              className="jsx-887941335 page-title"
+              className="jsx-1486801185 page-title"
             >
               <Container
+                className="narrow"
                 fluid={false}
               >
                 <div
-                  className="container"
+                  className="narrow container"
                 >
                   <h1
-                    className="jsx-887941335"
+                    className="jsx-1486801185"
                   >
                     Administrator Dashboard
                   </h1>
@@ -315,11 +316,11 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
               </Container>
             </div>
             <Container
-              className="content"
+              className="content narrow"
               fluid={false}
             >
               <div
-                className="content container"
+                className="content narrow container"
               >
                 <div
                   className="jsx-548205736"
@@ -521,7 +522,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
               </footer>
             </Footer>
             <JSXStyle
-              id="887941335"
+              id="1486801185"
             />
           </div>
         </DefaultLayout>
