@@ -15,11 +15,13 @@ import {
 interface Props {
   benchmark: any;
   environment: RelayModernEnvironment;
+  deleteBenchmark: (...args: any[]) => void;
 }
 
 const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
   benchmark,
-  environment
+  environment,
+  deleteBenchmark
 }) => {
   const updateBenchmark = async (e: IChangeEvent) => {
     const variables = {
@@ -58,6 +60,12 @@ const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
         onSubmit={updateBenchmark}
       >
         <Button type="submit">Save</Button>
+        <Button
+          variant="danger"
+          onClick={async () => deleteBenchmark(benchmark)}
+        >
+          Delete
+        </Button>
       </JsonSchemaForm>
       <hr />
     </Container>

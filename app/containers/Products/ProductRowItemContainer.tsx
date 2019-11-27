@@ -34,6 +34,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   relay,
   product
 }) => {
+  /**
+   * Stand-in validation variables & functions
+   */
   const dateRegexFormat = /\d{2}-\d{2}-\d{4}/;
   const timeRangeOverlap = (newStart, currentStart, newEnd, currentEnd) => {
     const e1 = newEnd
@@ -48,15 +51,20 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     return false;
   };
 
+  /**
+   * Assistance functions
+   */
+
   // Get the product's current benchmark
   const getCurrentBenchmark = () => {
     let currentBenchmark;
     if (product.benchmarksByProductId.edges[0]) {
       product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
         if (
+          !benchmark.deletedAt &&
           moment(benchmark.startDate) < moment() &&
           (benchmark.endDate === null ||
-            moment(benchmark.endDate) > moment()) &&
+            (!benchmark.deletedAt && moment(benchmark.endDate) > moment())) &&
           !benchmark.deletedAt
         ) {
           currentBenchmark = benchmark;
@@ -72,12 +80,31 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const futureBenchmarks = [];
   if (product.benchmarksByProductId.edges[0]) {
     product.benchmarksByProductId.edges.forEach(edge => {
-      if (edge.node.endDate !== null && moment(edge.node.endDate) < moment())
+      if (
+        !edge.node.deletedAt &&
+        edge.node.endDate !== null &&
+        moment(edge.node.endDate) < moment()
+      )
         pastBenchmarks.push(edge.node);
-      else if (moment(edge.node.startDate) > moment())
+      else if (!edge.node.deletedAt && moment(edge.node.startDate) > moment())
         futureBenchmarks.push(edge.node);
     });
   }
+
+  const displayPastBenchmark = benchmark => {
+    return (
+      <tr key={benchmark.id}>
+        <td>{benchmark.benchmark}</td>
+        <td>{benchmark.eligibilityThreshold}</td>
+        <td>{moment(benchmark.startDate).format('DD-MM-YYYY')}</td>
+        <td>{moment(benchmark.endDate).format('DD-MM-YYYY')}</td>
+      </tr>
+    );
+  };
+
+  /**
+   * Mutation functions
+   */
 
   // Toggle the 'archived' value of a Product
   const toggleArchived = async () => {
@@ -229,6 +256,19 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         <td>{moment(benchmark.endDate).format('DD-MM-YYYY')}</td>
       </tr>
     );
+  const deleteBenchmark = async benchmark => {
+    if (!benchmark) return;
+    const variables = {
+      input: {
+        id: currentBenchmark.id,
+        benchmarkPatch: {
+          deletedAt: moment(),
+          deletedBy: 'Admin'
+        }
+      }
+    };
+    const response = await editBenchmarkMutation(relay.environment, variables);
+    console.log(response);
   };
 
   // // Get the current benchmark for the product
@@ -429,6 +469,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             }
           >
             <Button type="submit">Save</Button>
+            <Button
+              variant="danger"
+              onClick={async () => deleteBenchmark(currentBenchmark)}
+            >
+              Delete
+            </Button>
           </JsonSchemaForm>
           <br />
           <Row>
@@ -451,6 +497,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                         key={benchmark.id}
                         benchmark={benchmark}
                         environment={relay.environment}
+                        deleteBenchmark={deleteBenchmark}
                       />
                     ))}
                   </Card.Body>
