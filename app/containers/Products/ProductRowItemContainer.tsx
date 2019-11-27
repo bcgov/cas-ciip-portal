@@ -26,11 +26,27 @@ interface Props {
   product: any;
 }
 
+/**  Note: There is some placeholder validation done on the front end here (dateRegexFormat, timeRangeOverlap, etc) that should be revisited
+ *         when we have had a design / constraint brainstorming session for benchmarks.
+ * */
+
 export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   relay,
   product
 }) => {
   const dateRegexFormat = /\d{2}-\d{2}-\d{4}/;
+  const timeRangeOverlap = (newStart, currentStart, newEnd, currentEnd) => {
+    const e1 = newEnd
+      ? moment(newEnd, 'DD-MM-YYYY')
+      : moment('12-12-9999', 'DD-MM-YYYY');
+    const e2 = currentEnd
+      ? moment(currentEnd)
+      : moment('12-12-9999', 'DD-MM-YYYY');
+    const s1 = moment(newStart, 'DD-MM-YYYY');
+    const s2 = moment(currentStart);
+    if ((s1 >= s2 && s1 <= e2) || (s2 >= s1 && s2 <= e1)) return true;
+    return false;
+  };
 
   // Get the product's current benchmark
   const getCurrentBenchmark = () => {
@@ -105,6 +121,19 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       return;
     }
 
+    if (
+      currentBenchmark &&
+      timeRangeOverlap(
+        e.formData.startDate,
+        currentBenchmark.startDate,
+        e.formData.endDate,
+        currentBenchmark.endDate
+      )
+    ) {
+      console.log('error: OVERLAPS CURRENT BENCHMARK');
+      return;
+    }
+
     const variables = {
       input: {
         benchmarkInput: e.formData.benchmark,
@@ -123,7 +152,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         prevBenchmarkIdInput: null
       }
     };
-    console.log(variables);
 
     const response = await createBenchmarkMutation(
       relay.environment,
