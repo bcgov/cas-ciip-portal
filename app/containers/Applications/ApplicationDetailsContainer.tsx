@@ -19,7 +19,11 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
   return (
     <>
       {formResults.map(({node}) => (
-        <ApplicationDetailsCardItem key={node.id} formResult={node} />
+        <ApplicationDetailsCardItem
+          key={node.id}
+          isAnalyst={props.isAnalyst}
+          formResult={node}
+        />
       ))}
     </>
   );
@@ -38,9 +42,6 @@ export default createFragmentContainer(ApplicationDetailsComponent, {
               ...ApplicationDetailsCardItem_formResult
             }
           }
-        }
-        applicationStatus {
-          id
         }
       }
     }

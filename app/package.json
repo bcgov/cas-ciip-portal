@@ -123,6 +123,7 @@
     "react-jsonschema-form": "^1.8.0",
     "react-mathjax": "^1.0.1",
     "react-mathjax2": "^0.0.2",
+    "react-moment": "^0.9.6",
     "react-relay": "^7.0.0",
     "react-relay-network-modern": "^4.1.0",
     "react-relay-network-modern-ssr": "^1.2.4",

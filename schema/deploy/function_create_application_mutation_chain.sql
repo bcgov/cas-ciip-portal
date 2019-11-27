@@ -9,6 +9,7 @@ returns ggircs_portal.application
 as $function$
 declare
   new_id int;
+  form_result_id int;
   result ggircs_portal.application;
   temp_row record;
   form_result jsonb;
@@ -43,9 +44,14 @@ begin
         into form_result;
       end if;
     end if;
+
     -- loop over what is in the wizard, not the forms in case some forms get added/disabled etc
     insert into ggircs_portal.form_result(form_id, application_id, form_result)
-    values (temp_row.form_id, new_id, form_result);
+    values (temp_row.form_id, new_id, form_result) returning id into form_result_id;
+
+    -- Create review statuses
+    insert into ggircs_portal.application_review(form_result_id, review_status)
+    values (form_result_id, 'pending');
 
   end loop;
   return result;
