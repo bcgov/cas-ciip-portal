@@ -230,6 +230,19 @@ jobs:
             source ~/.bashrc
             ./.bin/deploy-test-data.sh
 
+  acceptance:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal/app
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Cucumber Acceptance Test
+          command: |
+            source ~/.asdf/asdf.sh
+            yarn cucumber:pretty || true
+
   test-local-cluster:
     executor: redhat-openshift/machine-for-local-cluster
     steps:
@@ -388,6 +401,9 @@ workflows:
           requires:
             - tools
       - compile:
+          requires:
+            - tools
+      - acceptance:
           requires:
             - tools
       - deploy-test-data:
