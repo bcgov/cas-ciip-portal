@@ -45,7 +45,7 @@ describe('createBenchmarkMutation', () => {
           productIdInput: 1,
           benchmarkInput: 2,
           eligibilityThresholdInput: 3,
-          prevBenchmarkIdInput: 1
+          boop: 123
         }
       });
     } catch (error_) {
@@ -53,7 +53,7 @@ describe('createBenchmarkMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { productIdInput: 1, benchmarkInput: 2, eligibilityThresholdInput: 3, prevBenchmarkIdInput: 1 }; Field startDateInput of required type Datetime! was not provided.'
+      'Variable "$input" got invalid value { productIdInput: 1, benchmarkInput: 2, eligibilityThresholdInput: 3, boop: 123 }; Field "boop" is not defined by type CreateBenchmarkMutationChainInput.'
     );
   });
   it('Should return id(string) if valid', () => {
