@@ -30,6 +30,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   relay,
   product
 }) => {
+  const dateRegexFormat = /\d{2}-\d{2}-\d{4}/;
+
   // Get the product's current benchmark
   const getCurrentBenchmark = () => {
     let currentBenchmark;
@@ -54,12 +56,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const futureBenchmarks = [];
   if (product.benchmarksByProductId.edges[0]) {
     product.benchmarksByProductId.edges.forEach(edge => {
-      if (
-        edge.node.endDate !== null &&
-        Date.parse(edge.node.endDate) < Date.now()
-      )
+      if (edge.node.endDate !== null && moment(edge.node.endDate) < moment())
         pastBenchmarks.push(edge.node);
-      else if (Date.parse(edge.node.startDate) > Date.now())
+      else if (moment(edge.node.startDate) > moment())
         futureBenchmarks.push(edge.node);
     });
   }
@@ -98,6 +97,14 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   };
 
   const createBenchmark = async (e: IChangeEvent) => {
+    if (
+      !dateRegexFormat.test(e.formData.startDate) ||
+      !dateRegexFormat.test(e.formData.endDate)
+    ) {
+      console.log('BAD BAD DATE');
+      return;
+    }
+
     const variables = {
       input: {
         benchmarkInput: e.formData.benchmark,
@@ -126,14 +133,30 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   };
 
   const updateCurrentBenchmark = async (e: IChangeEvent) => {
+    if (
+      !dateRegexFormat.test(e.formData.startDate) ||
+      !dateRegexFormat.test(e.formData.endDate)
+    ) {
+      console.log('BAD BAD DATE');
+      return;
+    }
+
     const variables = {
       input: {
         id: currentBenchmark.id,
         benchmarkPatch: {
           benchmark: e.formData.benchmark,
           eligibilityThreshold: e.formData.eligibilityThreshold,
-          startDate: e.formData.startDate,
+          startDate: moment(
+            e.formData.startDate.concat('T', '00:00:00'),
+            'DD-MM-YYYYTHH:mm:ss'
+          ).format('YYYY-MM-DDTHH:mm:ss'),
           endDate: e.formData.endDate
+            ? moment(
+                e.formData.endDate.concat('T', '23:59:59'),
+                'DD-MM-YYYYTHH:mm:ss'
+              ).format('YYYY-MM-DDTHH:mm:ss')
+            : null
         }
       }
     };
