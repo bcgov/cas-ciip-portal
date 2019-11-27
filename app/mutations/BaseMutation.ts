@@ -5,7 +5,7 @@ import {
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {DeclarativeMutationConfig} from 'relay-runtime';
 import {toast} from 'react-toastify';
-import {dedupeMutation} from '../lib/relay-environment/dedupe-mutations';
+import {debounceMutation} from '../lib/relay-environment/debounce-mutations';
 
 interface BaseMutationType {
   response: any;
@@ -28,7 +28,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     variables: T['variables'],
     optimisticResponse?: any,
     updater?: any,
-    shouldDedupeMutation = false
+    shouldDebounceMutation = false
   ) {
     const success_message = variables.messages?.success
       ? variables.messages.success
@@ -39,11 +39,8 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     const clientMutationId = `${this.mutationName}-${this.counter}`;
     variables.input.clientMutationId = clientMutationId;
 
-    if (shouldDedupeMutation) {
-      dedupeMutation(
-        (mutation as any)().default.operation.name,
-        clientMutationId
-      );
+    if (shouldDebounceMutation) {
+      debounceMutation(this.mutationName, clientMutationId);
     }
 
     if (optimisticResponse) {
