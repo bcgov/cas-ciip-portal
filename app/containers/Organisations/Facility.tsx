@@ -4,7 +4,7 @@ import {Button, Badge, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 import {Facility_facility} from 'Facility_facility.graphql';
-import createApplicationMutation from '../../mutations/application/createApplicationMutation';
+import createApplicationMutation from 'mutations/application/createApplicationMutation';
 
 interface Props {
   relay: RelayProp;
@@ -61,6 +61,21 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
           }}
         >
           <Button variant="primary">Resume CIIP application</Button>
+        </Link>
+      );
+    }
+
+    if (applicationId && applicationStatus.applicationStatus === 'pending') {
+      return (
+        <Link
+          href={{
+            pathname: '/view-application',
+            query: {
+              applicationId
+            }
+          }}
+        >
+          <Button variant="primary">View Submitted Application</Button>
         </Link>
       );
     }

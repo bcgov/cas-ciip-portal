@@ -40,12 +40,28 @@ describe('Facility', () => {
     expect(r.find('CardHeader').text()).toMatch(/Facility Name/);
   });
 
-  it('should not render a Button if an applicationID exists and is not in draft status', async () => {
+  it('should render a View Submitted App button if an applicationID exists and is not in draft status', async () => {
     const r = shallow(
       <FacilityComponent relay={{environment: {}}} facility={facility} />
     );
     expect(r).toMatchSnapshot();
-    expect(r.exists('Button')).toEqual(false);
+    expect(r.exists('Button')).toEqual(true);
+
+    expect(
+      r
+        .find('Button')
+        .parent()
+        .is('Link')
+    ).toBe(true);
+    expect(
+      r
+        .find('Button')
+        .parent()
+        .prop('href')
+    ).toMatchObject({
+      pathname: '/view-application',
+      query: {applicationId: 'id'}
+    });
   });
 
   it('should render a Resume Application button if an applicationID exists && has a draft status', async () => {
@@ -55,7 +71,22 @@ describe('Facility', () => {
       <FacilityComponent relay={{environment: {}}} facility={facility} />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('Button').text()).toBe('Resume CIIP application');
+    expect(
+      r
+        .find('Button')
+        .parent()
+        .is('Link')
+    ).toBe(true);
+
+    expect(
+      r
+        .find('Button')
+        .parent()
+        .prop('href')
+    ).toMatchObject({
+      pathname: '/ciip-application',
+      query: {applicationId: 'id'}
+    });
   });
 
   it('should render an Apply For CIIP button if no applicationID exists', async () => {
@@ -64,6 +95,7 @@ describe('Facility', () => {
       <FacilityComponent relay={{environment: {}}} facility={facility} />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('Button').text()).toBe('Apply for CIIP for this facility');
+    expect(r.exists('Button')).toBe(true);
+    expect(r.find('Button').text()).toContain('Apply');
   });
 });

@@ -1,66 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Facility should not render a Button if an applicationID exists and is not in draft status 1`] = `
-<Fragment>
-  <Card
-    body={false}
-    style={
-      Object {
-        "maxWidth": "400px",
-      }
-    }
-  >
-    <CardHeader>
-      <strong>
-        Facility Name: 
-      </strong>
-      f
-    </CardHeader>
-    <ListGroup
-      className="list-group-flush"
-      variant={null}
-    >
-      <ListGroupItem
-        active={false}
-        disabled={false}
-        variant={null}
-      >
-        <strong>
-          Address: 
-        </strong>
-         
-        <br />
-        123
-         
-        123abc
-        <br />
-        Vic
-        , 
-        BC
-      </ListGroupItem>
-      <ListGroupItem
-        active={false}
-        disabled={false}
-        variant={null}
-      >
-        <strong>
-          Application Status:
-        </strong>
-          
-         
-        <Badge
-          pill={true}
-          variant="info"
-        >
-          pending
-        </Badge>
-      </ListGroupItem>
-    </ListGroup>
-    <CardBody />
-  </Card>
-</Fragment>
-`;
-
 exports[`Facility should render a Facility 1`] = `
 <Fragment>
   <Card
@@ -117,7 +56,27 @@ exports[`Facility should render a Facility 1`] = `
         </Badge>
       </ListGroupItem>
     </ListGroup>
-    <CardBody />
+    <CardBody>
+      <Link
+        href={
+          Object {
+            "pathname": "/view-application",
+            "query": Object {
+              "applicationId": "id",
+            },
+          }
+        }
+      >
+        <Button
+          active={false}
+          disabled={false}
+          type="button"
+          variant="primary"
+        >
+          View Submitted Application
+        </Button>
+      </Link>
+    </CardBody>
   </Card>
 </Fragment>
 `;
@@ -196,6 +155,87 @@ exports[`Facility should render a Resume Application button if an applicationID 
           variant="primary"
         >
           Resume CIIP application
+        </Button>
+      </Link>
+    </CardBody>
+  </Card>
+</Fragment>
+`;
+
+exports[`Facility should render a View Submitted App button if an applicationID exists and is not in draft status 1`] = `
+<Fragment>
+  <Card
+    body={false}
+    style={
+      Object {
+        "maxWidth": "400px",
+      }
+    }
+  >
+    <CardHeader>
+      <strong>
+        Facility Name: 
+      </strong>
+      f
+    </CardHeader>
+    <ListGroup
+      className="list-group-flush"
+      variant={null}
+    >
+      <ListGroupItem
+        active={false}
+        disabled={false}
+        variant={null}
+      >
+        <strong>
+          Address: 
+        </strong>
+         
+        <br />
+        123
+         
+        123abc
+        <br />
+        Vic
+        , 
+        BC
+      </ListGroupItem>
+      <ListGroupItem
+        active={false}
+        disabled={false}
+        variant={null}
+      >
+        <strong>
+          Application Status:
+        </strong>
+          
+         
+        <Badge
+          pill={true}
+          variant="info"
+        >
+          pending
+        </Badge>
+      </ListGroupItem>
+    </ListGroup>
+    <CardBody>
+      <Link
+        href={
+          Object {
+            "pathname": "/view-application",
+            "query": Object {
+              "applicationId": "id",
+            },
+          }
+        }
+      >
+        <Button
+          active={false}
+          disabled={false}
+          type="button"
+          variant="primary"
+        >
+          View Submitted Application
         </Button>
       </Link>
     </CardBody>
