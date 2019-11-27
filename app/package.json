@@ -5,6 +5,7 @@
   "scripts": {
     "pretest": "npm run build:relay",
     "test": "jest",
+    "cucumber:pretty": "cucumber-js --format node_modules/cucumber-pretty --format-options '{\"descriptionEnabled\":true}'",
     "predev": "npm run build:schema && npm run build:relay",
     "dev": "node server",
     "build": "npm run build:schema && npm run build:relay && npm run build:next",
@@ -148,6 +149,8 @@
     "babel-plugin-macros": "^2.6.1",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-relay": "^7.0.0",
+    "cucumber": "^6.0.3",
+    "cucumber-pretty": "^6.0.0",
     "dotenv": "^8.1.0",
     "dotenv-webpack": "^1.5.4",
     "easygraphql-tester": "^5.1.6",
