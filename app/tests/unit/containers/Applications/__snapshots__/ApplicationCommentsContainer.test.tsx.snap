@@ -34,7 +34,7 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
         <small
           className="jsx-4053736480"
         >
-          Nov 28th 2019, 11:49:19 am
+          Nov 28th 2019, 12:00:00 am
         </small>
       </div>
       <ul
@@ -55,7 +55,7 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
             <small
               className="jsx-4053736480"
             >
-              Nov 28th 2019, 11:49:19 am
+              Nov 28th 2019, 12:00:00 am
             </small>
           </div>
         </li>
