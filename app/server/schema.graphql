@@ -7878,8 +7878,6 @@ type Query implements Node {
     """
     offset: Int
   ): CiipProductionsConnection!
-
-  """Function returning current reporting year and related dates"""
   getReportingYear: ReportingYear
 
   """Reads and enables pagination through a set of `EmissionDatum`."""
