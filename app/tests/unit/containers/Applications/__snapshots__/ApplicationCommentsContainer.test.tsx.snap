@@ -34,27 +34,7 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
         <small
           className="jsx-4053736480"
         >
-          (
-          <t
-            ago={false}
-            calendar={false}
-            date="2019-11-28T14:49:19.550107-05:00"
-            decimal={false}
-            element={null}
-            filter={[Function]}
-            format="D MMM YYYY H:m"
-            fromNow={false}
-            interval={60000}
-            local={false}
-            onChange={[Function]}
-            titleFormat=""
-            toNow={false}
-            unit={null}
-            unix={false}
-            utc={false}
-            withTitle={false}
-          />
-          )
+          Nov 28th 2019, 11:49:19 am
         </small>
       </div>
       <ul
@@ -75,25 +55,7 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
             <small
               className="jsx-4053736480"
             >
-              <t
-                ago={false}
-                calendar={false}
-                date="2019-11-28T14:49:19.550107-05:00"
-                decimal={false}
-                element={null}
-                filter={[Function]}
-                format="D MMM YYYY H:m"
-                fromNow={false}
-                interval={60000}
-                local={false}
-                onChange={[Function]}
-                titleFormat=""
-                toNow={false}
-                unit={null}
-                unix={false}
-                utc={false}
-                withTitle={false}
-              />
+              Nov 28th 2019, 11:49:19 am
             </small>
           </div>
         </li>

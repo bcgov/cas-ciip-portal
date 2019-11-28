@@ -15,9 +15,9 @@ interface Props {
   isAnalyst: boolean;
 }
 
-class ApplicationDetails extends Component<Props> {
+class ApplicationReview extends Component<Props> {
   static query = graphql`
-    query applicationDetailsQuery(
+    query applicationReviewQuery(
       $applicationStatusCondition: ApplicationStatusCondition
       $bcghgidInput: BigFloat
       $reportingYear: String
@@ -82,4 +82,9 @@ class ApplicationDetails extends Component<Props> {
   }
 }
 
-export default ApplicationDetails;
+export default ApplicationReview;
+
+/*
+TODO: Instead on conditionally rendering the ApplicationDetail,
+ the page component should pass a renderItemHeaderContent function
+ */

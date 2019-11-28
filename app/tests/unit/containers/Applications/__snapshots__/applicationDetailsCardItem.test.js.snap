@@ -34,7 +34,9 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
       >
         <Button
           active={false}
+          aria-label="toggle-card-open"
           disabled={false}
+          title="expand or collapse the card"
           type="button"
           variant="outline-dark"
         >

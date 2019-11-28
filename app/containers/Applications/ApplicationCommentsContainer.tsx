@@ -1,7 +1,7 @@
 import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationCommentsContainer_query} from 'ApplicationCommentsContainer_query.graphql';
-import Moment from 'react-moment';
+import moment from 'moment';
 
 /*
  * The ApplicationComments renders all the comments on the various sections of the application
@@ -33,12 +33,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                     Set to <strong>{node.reviewStatus}</strong>
                     &nbsp;
                     <small>
-                      (
-                      <Moment
-                        format="D MMM YYYY H:m"
-                        date={node.createdAt as Date}
-                      />
-                      )
+                      {moment(node.createdAt).format('MMM Do YYYY, h:mm:ss a')}
                     </small>
                   </div>
                   <ul className="comment-box">
@@ -47,10 +42,9 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                         <div>{node.description}</div>
                         <div>
                           <small>
-                            <Moment
-                              format="D MMM YYYY H:m"
-                              date={node.createdAt as Date}
-                            />
+                            {moment(node.createdAt).format(
+                              'MMM Do YYYY, h:mm:ss a'
+                            )}
                           </small>
                         </div>
                       </li>

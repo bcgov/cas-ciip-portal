@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import {Button, Modal, Form, Row, Col} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {ApplicationReviewStatus} from 'ApplicationReviewContainer_applicationReview.graphql';
+import {
+  ApplicationReviewStatus,
+  ApplicationReviewContainer_applicationReview
+} from 'ApplicationReviewContainer_applicationReview.graphql';
 import createApplicationReviewMutation from '../../mutations/application/createApplicationReviewMutation';
 
 interface Props {
   relay: RelayProp;
-  applicationReview: any;
+  applicationReview: ApplicationReviewContainer_applicationReview;
   formName: string;
 }
 

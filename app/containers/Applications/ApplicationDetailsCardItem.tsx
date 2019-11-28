@@ -60,7 +60,13 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             ''
           )}
           <Col md={1} style={{textAlign: 'right'}}>
-            <Button variant="outline-dark">{isOpen ? '+' : '-'}</Button>
+            <Button
+              aria-label="toggle-card-open"
+              title="expand or collapse the card"
+              variant="outline-dark"
+            >
+              {isOpen ? '+' : '-'}
+            </Button>
           </Col>
         </Row>
       </Card.Header>
@@ -103,3 +109,8 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
     }
   `
 });
+
+/*
+TODO: Instead on conditionally rendering the ApplicationReviewContainer,
+ the page component should pass a renderItemHeaderContent function
+ */

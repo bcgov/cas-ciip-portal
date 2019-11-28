@@ -35,8 +35,10 @@ Array [
           }
         >
           <button
+            aria-label="toggle-card-open"
             className="btn btn-outline-dark"
             disabled={false}
+            title="expand or collapse the card"
             type="button"
           >
             -
@@ -724,8 +726,10 @@ Array [
           }
         >
           <button
+            aria-label="toggle-card-open"
             className="btn btn-outline-dark"
             disabled={false}
+            title="expand or collapse the card"
             type="button"
           >
             -
@@ -1468,8 +1472,10 @@ Array [
           }
         >
           <button
+            aria-label="toggle-card-open"
             className="btn btn-outline-dark"
             disabled={false}
+            title="expand or collapse the card"
             type="button"
           >
             -
@@ -1822,8 +1828,10 @@ Array [
           }
         >
           <button
+            aria-label="toggle-card-open"
             className="btn btn-outline-dark"
             disabled={false}
+            title="expand or collapse the card"
             type="button"
           >
             -
@@ -2075,8 +2083,10 @@ Array [
           }
         >
           <button
+            aria-label="toggle-card-open"
             className="btn btn-outline-dark"
             disabled={false}
+            title="expand or collapse the card"
             type="button"
           >
             -
