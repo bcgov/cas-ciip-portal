@@ -59,7 +59,7 @@ describe('editBenchmark', () => {
         id: 'abc',
         benchmarkPatch: {
           deletedAt: '2017-01-01',
-          deletedBy: 'Dylan'
+          deletedBy: 1
         }
       }
     });

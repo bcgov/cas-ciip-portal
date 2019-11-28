@@ -110,6 +110,7 @@ exports[`ProductList should render the product list 1`] = `
             "id": "abc",
           }
         }
+        userRowId={1}
       />
     </tbody>
   </Bootstrap(Table)>

@@ -14,6 +14,11 @@ describe('ProductList', () => {
             }
           }
         ]
+      },
+      session: {
+        ciipUserBySub: {
+          rowId: 1
+        }
       }
     };
     // @ts-ignore
