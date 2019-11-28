@@ -24,7 +24,7 @@ describe('ApplicationCommentsComponent', () => {
                           node: {
                             id: 'WyJhcHBsaWNhdGlvbl9yZXZpZXdzIiwxMV0=',
                             reviewStatus: 'REQUESTED_CHANGES',
-                            createdAt: '2019-11-28T14:49:19.550107-05:00',
+                            createdAt: '2019-11-28',
                             reviewCommentsByApplicationReviewId: {
                               edges: [
                                 {
@@ -32,8 +32,7 @@ describe('ApplicationCommentsComponent', () => {
                                     id: 'WyJyZXZpZXdfY29tbWVudHMiLDFd',
                                     description:
                                       'Legal name is wrong. Change it to ARBUTUS',
-                                    createdAt:
-                                      '2019-11-28T14:49:19.550107-05:00'
+                                    createdAt: '2019-11-28'
                                   }
                                 }
                               ]
