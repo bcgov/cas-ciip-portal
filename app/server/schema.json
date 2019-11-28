@@ -3771,7 +3771,7 @@
             },
             {
               "name": "getReportingYear",
-              "description": null,
+              "description": "Function returning current reporting year and related dates",
               "args": [],
               "type": {
                 "kind": "OBJECT",
