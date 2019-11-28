@@ -4,4 +4,4 @@ begin;
 
 drop view ggircs_portal.ciip_carbon_tax_calculation;
 
-commit:
+commit;
