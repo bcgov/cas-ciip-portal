@@ -814,6 +814,42 @@ A floating point number that requires more precision than IEEE 754 binary 64
 """
 scalar BigFloat
 
+"""A connection to a list of `CarbonTaxDatum` values."""
+type CarbonTaxDataConnection {
+  """
+  A list of edges which contains the `CarbonTaxDatum` and cursor to aid in pagination.
+  """
+  edges: [CarbonTaxDataEdge!]!
+
+  """A list of `CarbonTaxDatum` objects."""
+  nodes: [CarbonTaxDatum]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CarbonTaxDatum` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CarbonTaxDatum` edge in the connection."""
+type CarbonTaxDataEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CarbonTaxDatum` at the end of the edge."""
+  node: CarbonTaxDatum
+}
+
+type CarbonTaxDatum {
+  carbonTaxed: Boolean
+  ctaRateUnits: String
+  fuelCharge: BigFloat
+  fuelMappingId: Int
+  rateEndDate: Date
+  rateStartDate: Date
+  unitConversionFactor: Int
+}
+
 type CiipApplication implements Node {
   """
   Reads a single `Application` that is related to this `CiipApplication`.
@@ -999,6 +1035,126 @@ enum CiipApplicationWizardsOrderBy {
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
+}
+
+type CiipCarbonTaxCalculation {
+  applicationId: Int
+  calculatedCarbonTax: BigFloat
+  carbonTaxed: Boolean
+  ctaRateUnits: String
+  fuelCharge: BigFloat
+  fuelMappingId: Int
+  fuelType: String
+  quantity: BigFloat
+  rateEndDate: Date
+  rateStartDate: Date
+  reportingYear: Int
+  unitConversionFactor: Int
+  units: String
+}
+
+"""
+A condition to be used against `CiipCarbonTaxCalculation` object types. All
+fields are tested for equality and combined with a logical ‘and.’
+"""
+input CiipCarbonTaxCalculationCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `calculatedCarbonTax` field."""
+  calculatedCarbonTax: BigFloat
+
+  """Checks for equality with the object’s `carbonTaxed` field."""
+  carbonTaxed: Boolean
+
+  """Checks for equality with the object’s `ctaRateUnits` field."""
+  ctaRateUnits: String
+
+  """Checks for equality with the object’s `fuelCharge` field."""
+  fuelCharge: BigFloat
+
+  """Checks for equality with the object’s `fuelMappingId` field."""
+  fuelMappingId: Int
+
+  """Checks for equality with the object’s `fuelType` field."""
+  fuelType: String
+
+  """Checks for equality with the object’s `quantity` field."""
+  quantity: BigFloat
+
+  """Checks for equality with the object’s `rateEndDate` field."""
+  rateEndDate: Date
+
+  """Checks for equality with the object’s `rateStartDate` field."""
+  rateStartDate: Date
+
+  """Checks for equality with the object’s `reportingYear` field."""
+  reportingYear: Int
+
+  """Checks for equality with the object’s `unitConversionFactor` field."""
+  unitConversionFactor: Int
+
+  """Checks for equality with the object’s `units` field."""
+  units: String
+}
+
+"""A connection to a list of `CiipCarbonTaxCalculation` values."""
+type CiipCarbonTaxCalculationsConnection {
+  """
+  A list of edges which contains the `CiipCarbonTaxCalculation` and cursor to aid in pagination.
+  """
+  edges: [CiipCarbonTaxCalculationsEdge!]!
+
+  """A list of `CiipCarbonTaxCalculation` objects."""
+  nodes: [CiipCarbonTaxCalculation]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CiipCarbonTaxCalculation` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `CiipCarbonTaxCalculation` edge in the connection."""
+type CiipCarbonTaxCalculationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipCarbonTaxCalculation` at the end of the edge."""
+  node: CiipCarbonTaxCalculation
+}
+
+"""Methods to use when ordering `CiipCarbonTaxCalculation`."""
+enum CiipCarbonTaxCalculationsOrderBy {
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  CALCULATED_CARBON_TAX_ASC
+  CALCULATED_CARBON_TAX_DESC
+  CARBON_TAXED_ASC
+  CARBON_TAXED_DESC
+  CTA_RATE_UNITS_ASC
+  CTA_RATE_UNITS_DESC
+  FUEL_CHARGE_ASC
+  FUEL_CHARGE_DESC
+  FUEL_MAPPING_ID_ASC
+  FUEL_MAPPING_ID_DESC
+  FUEL_TYPE_ASC
+  FUEL_TYPE_DESC
+  NATURAL
+  QUANTITY_ASC
+  QUANTITY_DESC
+  RATE_END_DATE_ASC
+  RATE_END_DATE_DESC
+  RATE_START_DATE_ASC
+  RATE_START_DATE_DESC
+  REPORTING_YEAR_ASC
+  REPORTING_YEAR_DESC
+  UNIT_CONVERSION_FACTOR_ASC
+  UNIT_CONVERSION_FACTOR_DESC
+  UNITS_ASC
+  UNITS_DESC
 }
 
 type CiipCertifier implements Node {
@@ -2183,18 +2339,17 @@ input CreateBenchmarkInput {
 
 """All input for the `createBenchmarkMutationChain` mutation."""
 input CreateBenchmarkMutationChainInput {
-  benchmarkInput: Int
+  benchmarkInput: Int!
 
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  eligibilityThresholdInput: Int
-  endDateInput: Datetime
+  eligibilityThresholdInput: Int!
   prevBenchmarkIdInput: Int
-  productIdInput: Int
-  startDateInput: Datetime
+  productIdInput: Int!
+  startDateInput: Datetime!
 }
 
 """The output of our `createBenchmarkMutationChain` mutation."""
@@ -4964,6 +5119,7 @@ type Fuel implements Node {
   The current state of the fuel within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+  swrsFuelMappingId: Int!
 
   """The unit of measure for the fuel"""
   units: String
@@ -5005,6 +5161,9 @@ input FuelCondition {
 
   """Checks for equality with the object’s `state` field."""
   state: String
+
+  """Checks for equality with the object’s `swrsFuelMappingId` field."""
+  swrsFuelMappingId: Int
 
   """Checks for equality with the object’s `units` field."""
   units: String
@@ -5081,6 +5240,7 @@ input FuelInput {
   The current state of the fuel within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+  swrsFuelMappingId: Int!
 
   """The unit of measure for the fuel"""
   units: String
@@ -5119,6 +5279,7 @@ input FuelPatch {
   The current state of the fuel within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+  swrsFuelMappingId: Int
 
   """The unit of measure for the fuel"""
   units: String
@@ -5179,6 +5340,8 @@ enum FuelsOrderBy {
   PRIMARY_KEY_DESC
   STATE_ASC
   STATE_DESC
+  SWRS_FUEL_MAPPING_ID_ASC
+  SWRS_FUEL_MAPPING_ID_DESC
   UNITS_ASC
   UNITS_DESC
   UPDATED_AT_ASC
@@ -7050,6 +7213,37 @@ type Query implements Node {
     orderBy: [CiipApplicationWizardsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipApplicationWizardsConnection
 
+  """
+  Reads and enables pagination through a set of `CiipCarbonTaxCalculation`.
+  """
+  allCiipCarbonTaxCalculations(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipCarbonTaxCalculationCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipCarbonTaxCalculation`."""
+    orderBy: [CiipCarbonTaxCalculationsOrderBy!] = [NATURAL]
+  ): CiipCarbonTaxCalculationsConnection
+
   """Reads and enables pagination through a set of `CiipCertifier`."""
   allCiipCertifiers(
     """Read all values in the set after (below) this cursor."""
@@ -7836,6 +8030,27 @@ type Query implements Node {
     reportingYear: String
   ): EstimatedCarbonTaxPaidsConnection!
 
+  """Reads and enables pagination through a set of `CarbonTaxDatum`."""
+  getCarbonTaxData(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): CarbonTaxDataConnection!
+
   """Reads and enables pagination through a set of `CiipProduction`."""
   getProductsByApplicationId(
     """Read all values in the set after (below) this cursor."""
@@ -8032,31 +8247,6 @@ type Query implements Node {
     searchField: String
     searchValue: String
   ): CiipUserOrganisationsConnection!
-
-  """Reads and enables pagination through a set of `Product`."""
-  searchProducts(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-    direction: String
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    orderByField: String
-    searchField: String
-    searchValue: String
-  ): ProductsConnection!
   session: JwtToken
 }
 
@@ -8426,17 +8616,18 @@ enum ReviewCommentsOrderBy {
 
 """All input for the `saveProductMutationChain` mutation."""
 input SaveProductMutationChainInput {
+  benchmarkId: Int
+
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  newDescription: String
-  newName: String
-  newParent: [Int]
-  newState: String
-  newUnits: String
-  prevId: Int
+  newDescription: String!
+  newName: String!
+  newParent: [Int]!
+  newState: String!
+  prevId: Int!
 }
 
 """The output of our `saveProductMutationChain` mutation."""
