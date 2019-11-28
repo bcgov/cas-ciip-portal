@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApplicationCommentsComponent} from '../../../../containers/Applications/ApplicationCommentsContainer';
+import {ApplicationCommentsComponent} from 'containers/Applications/ApplicationCommentsContainer';
 
 describe('ApplicationCommentsComponent', () => {
   it('should match the snapshot with the ApplicationCommentsComponent component', async () => {
