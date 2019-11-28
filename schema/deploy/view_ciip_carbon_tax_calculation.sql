@@ -25,4 +25,6 @@ begin;
       and concat((a.reporting_year - 1):: text, '-12-31')::date between ct_details.rate_start_date and ct_details.rate_end_date
  );
 
+comment on view ggircs_portal.ciip_carbon_tax_calculation is 'The view for calculating carbon tax based on ciip data';
+
 commit;
