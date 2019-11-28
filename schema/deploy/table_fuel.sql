@@ -10,6 +10,7 @@ create table ggircs_portal.fuel (
   units varchar(1000),
   state varchar(1000),
   parent integer ARRAY,
+  swrs_fuel_mapping_id int not null,
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
   updated_at timestamp with time zone not null default now(),
