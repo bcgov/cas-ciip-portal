@@ -3,14 +3,13 @@ import {Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {pagesQueryResponse} from 'pagesQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
+import moment from 'moment';
 import DefaultLayout from '../layouts/default-layout';
 import RegistrationLoginButtons from '../components/RegistrationLoginButtons';
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
 }
-const options = {month: 'short', day: 'numeric', year: 'numeric'};
-const dataFormatter = new Intl.DateTimeFormat('en-US', options);
 export default class Index extends Component<Props> {
   static query = graphql`
     query pagesQuery {
@@ -30,10 +29,12 @@ export default class Index extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
 
-    const date1 = query.getReportingYear.applicationOpenDate;
-    const startDate = new Date(Date.parse(date1));
-    const date2 = query.getReportingYear.applicationEndDate;
-    const endDate = new Date(Date.parse(date2));
+    const startDate = moment(query.getReportingYear.applicationOpenDate).format(
+      'MMM D, YYYY'
+    );
+    const endDate = moment(query.getReportingYear.applicationEndDate).format(
+      'MMM D, YYYY'
+    );
     return (
       <DefaultLayout
         showSubheader={false}
@@ -123,7 +124,7 @@ export default class Index extends Component<Props> {
               </thead>
               <tbody>
                 <tr>
-                  <td>{dataFormatter.format(startDate)}</td>
+                  <td>{startDate}</td>
                   <td>CIIP application forms open</td>
                 </tr>
                 <tr>
@@ -131,7 +132,7 @@ export default class Index extends Component<Props> {
                   <td>Webinar for CIIP</td>
                 </tr>
                 <tr>
-                  <td>{dataFormatter.format(endDate)}</td>
+                  <td>{endDate}</td>
                   <td>CIIP application form due</td>
                 </tr>
                 <tr>
