@@ -3,7 +3,7 @@
     "next/babel"
   ],
   "plugins": [
-    ["relay", { "artifactDirectory": "./__generated__" }],
+    ["relay"],
     ["module-resolver", {"root": [".", ".."], "extensions": [".js", ".jsx",".ts", ".tsx"]}],
     "macros",
     "@babel/plugin-proposal-optional-chaining",

@@ -3,15 +3,13 @@ import {Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {pagesQueryResponse} from 'pagesQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
+import moment from 'moment';
 import DefaultLayout from '../layouts/default-layout';
 import RegistrationLoginButtons from '../components/RegistrationLoginButtons';
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
-  applicationOpenDate?: string;
-  applicationEndDate?: string;
 }
-
 export default class Index extends Component<Props> {
   static query = graphql`
     query pagesQuery {
@@ -30,12 +28,13 @@ export default class Index extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
-    const date1: any = query.getReportingYear.applicationOpenDate;
-    const startDate: Date = new Date(Date.parse(date1));
-    const date2: any = query.getReportingYear.applicationEndDate;
-    const endDate: Date = new Date(Date.parse(date2));
-    const parsedStartDate = startDate.toDateString();
-    const parsedEndDate = endDate.toDateString();
+
+    const startDate = moment(query.getReportingYear.applicationOpenDate).format(
+      'MMM D, YYYY'
+    );
+    const endDate = moment(query.getReportingYear.applicationEndDate).format(
+      'MMM D, YYYY'
+    );
     return (
       <DefaultLayout
         showSubheader={false}
@@ -125,7 +124,7 @@ export default class Index extends Component<Props> {
               </thead>
               <tbody>
                 <tr>
-                  <td>{parsedStartDate}</td>
+                  <td>{startDate}</td>
                   <td>CIIP application forms open</td>
                 </tr>
                 <tr>
@@ -133,7 +132,7 @@ export default class Index extends Component<Props> {
                   <td>Webinar for CIIP</td>
                 </tr>
                 <tr>
-                  <td>{parsedEndDate}</td>
+                  <td>{endDate}</td>
                   <td>CIIP application form due</td>
                 </tr>
                 <tr>
