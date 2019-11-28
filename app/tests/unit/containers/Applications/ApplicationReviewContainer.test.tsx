@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApplicationReview} from '../../../../containers/Applications/ApplicationReviewContainer';
+import {ApplicationReview} from 'containers/Applications/ApplicationReviewContainer';
 
 describe('ApplicationReviewContainer', () => {
   it('should match the snapshot with the ApplicationReviewContainer component', async () => {
