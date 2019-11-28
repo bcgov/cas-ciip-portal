@@ -13,7 +13,7 @@ interface Props {
   session: defaultLayout_session;
   needsUser?: boolean;
   needsSession?: boolean;
-  width?: string;
+  width?: 'narrow' | 'wide';
 }
 
 const DefaultLayout: React.FunctionComponent<Props> = ({
