@@ -24,6 +24,7 @@ import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutati
 interface Props {
   relay: RelayProp;
   product: any;
+  userRowId: number;
 }
 
 /**  Note: There is some placeholder validation done on the front end here (dateRegexFormat, timeRangeOverlap, etc) that should be revisited
@@ -32,7 +33,8 @@ interface Props {
 
 export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   relay,
-  product
+  product,
+  userRowId
 }) => {
   /**
    * Stand-in validation variables & functions
@@ -264,7 +266,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         id: currentBenchmark.id,
         benchmarkPatch: {
           deletedAt: moment(),
-          deletedBy: 'Admin'
+          deletedBy: userRowId
         }
       }
     };
@@ -363,25 +365,19 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     endDate: {
       'ui:col-md': 6
     }
+  const handleDeleteBenchmark = async benchmark => {
+    await deleteBenchmark(benchmark);
   };
 
   const currentBenchmarkFormData = {
-    benchmark:
-      currentBenchmark && currentBenchmark.benchmark
-        ? currentBenchmark.benchmark
-        : null,
-    eligibilityThreshold:
-      currentBenchmark && currentBenchmark.eligibilityThreshold
-        ? currentBenchmark.eligibilityThreshold
-        : null,
-    startDate:
-      currentBenchmark && currentBenchmark.startDate
-        ? moment(currentBenchmark.startDate).format('DD-MM-YYYY')
-        : null,
-    endDate:
-      currentBenchmark && currentBenchmark.endDate
-        ? moment(currentBenchmark.endDate).format('DD-MM-YYYY')
-        : null
+    benchmark: currentBenchmark?.benchmark ?? null,
+    eligibilityThreshold: currentBenchmark?.eligibilityThreshold ?? null,
+    startDate: currentBenchmark?.startDate
+      ? moment(currentBenchmark.startDate).format('DD-MM-YYYY')
+      : null,
+    endDate: currentBenchmark?.endDate
+      ? moment(currentBenchmark.endDate).format('DD-MM-YYYY')
+      : null
   };
 
   const [modalShow, setModalShow] = React.useState(false);
@@ -498,7 +494,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                         key={benchmark.id}
                         benchmark={benchmark}
                         environment={relay.environment}
-                        deleteBenchmark={deleteBenchmark}
+                        handleDeleteBenchmark={handleDeleteBenchmark}
                       />
                     ))}
                   </Card.Body>

@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
 import {Table, Container, Row, Col} from 'react-bootstrap';
-import SortableTableHeader from '../../components/SortableTableHeader';
-import SearchBox from '../../components/SearchBox';
+import SortableTableHeader from 'components/SortableTableHeader';
+import SearchBox from 'components/SearchBox';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
 export const ApplicationList = props => {

@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {Table, Col, Container, Row} from 'react-bootstrap';
 import {graphql, createRefetchContainer} from 'react-relay';
 import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
-// Import {RelayNetworkLayer} from 'react-relay-network-modern/node8';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import SortableTableHeader from '../../components/SortableTableHeader';
 import SearchBox from '../../components/SearchBox';
@@ -94,11 +93,14 @@ export const ProductList: React.FunctionComponent<Props> = ({
           </thead>
           <tbody>
             {allProducts.map(({node}) => (
-              <ProductRowItemContainer key={node.id} product={node} />
+              <ProductRowItemContainer
+                key={node.id}
+                product={node}
+                userRowId={query.session.ciipUserBySub.rowId}
+              />
             ))}
           </tbody>
         </Table>
-        {/* <Button onClick={loadMore}>Next</Button> */}
       </>
     );
   }
@@ -121,6 +123,11 @@ export default createRefetchContainer(
           orderByField: {type: "String"}
           direction: {type: "String"}
         ) {
+        session {
+          ciipUserBySub {
+            rowId
+          }
+        }
         searchProducts(
           first: 20
           searchField: $searchField

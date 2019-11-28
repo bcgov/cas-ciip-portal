@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import {OrganisationRequestsTable_query} from 'OrganisationRequestsTable_query.graphql';
 import {Table, Container, Row, Col} from 'react-bootstrap';
-import SortableTableHeader from '../../components/SortableTableHeader';
-import SearchBox from '../../components/SearchBox';
+import SortableTableHeader from 'components/SortableTableHeader';
+import SearchBox from 'components/SearchBox';
 import OrganisationRequestsTableRow from './OrganisationRequestsTableRow';
 interface Props {
   query: OrganisationRequestsTable_query;

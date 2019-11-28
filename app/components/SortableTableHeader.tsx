@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Props {
-  sort: (...args: any[]) => void;
+  sort: (action: string, columnName: string) => void;
   headerVariables: {
     columnName: string;
     displayName: string;

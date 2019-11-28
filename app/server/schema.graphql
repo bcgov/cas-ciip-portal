@@ -537,6 +537,9 @@ type Benchmark implements Node {
   """The value of the benchmark"""
   benchmark: Int!
 
+  """Reads a single `CiipUser` that is related to this `Benchmark`."""
+  ciipUserByDeletedBy: CiipUser
+
   """Creation date of row"""
   createdAt: Datetime!
 
@@ -547,7 +550,7 @@ type Benchmark implements Node {
   deletedAt: Datetime
 
   """The user who deleted the row"""
-  deletedBy: String
+  deletedBy: Int
 
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int!
@@ -597,7 +600,7 @@ input BenchmarkCondition {
   deletedAt: Datetime
 
   """Checks for equality with the object’s `deletedBy` field."""
-  deletedBy: String
+  deletedBy: Int
 
   """Checks for equality with the object’s `eligibilityThreshold` field."""
   eligibilityThreshold: Int
@@ -636,7 +639,7 @@ input BenchmarkInput {
   deletedAt: Datetime
 
   """The user who deleted the row"""
-  deletedBy: String
+  deletedBy: Int
 
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int!
@@ -674,7 +677,7 @@ input BenchmarkPatch {
   deletedAt: Datetime
 
   """The user who deleted the row"""
-  deletedBy: String
+  deletedBy: Int
 
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int
@@ -1720,6 +1723,35 @@ enum CiipProductionsOrderBy {
 
 """Table containing the benchmark and eligibility threshold for a product"""
 type CiipUser implements Node {
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksConnection!
+
   """Reads and enables pagination through a set of `CiipUserOrganisation`."""
   ciipUserOrganisationsByUserId(
     """Read all values in the set after (below) this cursor."""
@@ -2197,6 +2229,22 @@ input CreateBenchmarkMutationChainInput {
   startDateInput: Datetime
 }
 
+<<<<<<< 3c1037d640553ff741b6a81ee20b11ad16ae7728
+=======
+"""The output of our `createBenchmarkMutationChain` mutation."""
+type CreateBenchmarkMutationChainPayload {
+  benchmark: Benchmark
+
+  """An edge for our `Benchmark`. May be used by Relay 1."""
+  benchmarkEdge(
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksEdge
+
+  """Reads a single `CiipUser` that is related to this `Benchmark`."""
+  ciipUserByDeletedBy: CiipUser
+
+>>>>>>> updates from PR review
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
@@ -2307,6 +2355,9 @@ type CreateBenchmarkMutationChainPayload {
     """The method to use when ordering `Benchmark`."""
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksEdge
+
+  """Reads a single `CiipUser` that is related to this `Benchmark`."""
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -3047,6 +3098,9 @@ type DeleteBenchmarkPayload {
     """The method to use when ordering `Benchmark`."""
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksEdge
+
+  """Reads a single `CiipUser` that is related to this `Benchmark`."""
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -8829,6 +8883,9 @@ type UpdateBenchmarkPayload {
     """The method to use when ordering `Benchmark`."""
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksEdge
+
+  """Reads a single `CiipUser` that is related to this `Benchmark`."""
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,

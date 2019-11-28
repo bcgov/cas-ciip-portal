@@ -6,7 +6,7 @@ import FormFieldTemplate from '../containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
-  handleEvent: (...args: any[]) => void;
+  handleEvent: (action: string, value?: string) => void;
   dropdownSortItems: string[];
   displayNameToColumnNameMap: object;
   searchDisplay: string;
@@ -37,12 +37,10 @@ const SearchBox: React.FunctionComponent<Props> = ({
     properties: {
       searchField: {
         type: 'string',
-        title: '  ',
         enum: dropdownSortItems
       },
       searchValue: {
-        type: 'string',
-        title: '  '
+        type: 'string'
       }
     }
   };
@@ -50,10 +48,12 @@ const SearchBox: React.FunctionComponent<Props> = ({
   const uiSchema = {
     searchField: {
       'ui:placeholder': 'Search By: ',
-      'ui:col-md': 2
+      'ui:col-md': 2,
+      classNames: 'hide-title'
     },
     searchValue: {
-      'ui:col-md': 3
+      'ui:col-md': 3,
+      classNames: 'hide-title'
     }
   };
 
@@ -80,6 +80,14 @@ const SearchBox: React.FunctionComponent<Props> = ({
           </ButtonGroup>
         </Col>
       </JsonSchemaForm>
+      {/* Hide searchField / searchValue JsonSchemaForm titles  */}
+      <style jsx global>
+        {`
+          .hide-title label.form-label {
+            display: none;
+          }
+        `}
+      </style>
 
       <br />
     </>

@@ -1,12 +1,12 @@
 import React from 'react';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
-import {Button, Container} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import moment from 'moment';
+import editBenchmarkMutation from 'mutations/benchmark/editBenchmarkMutation';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 
-import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
 import {
   benchmarkSchema,
   benchmarkUISchema
@@ -15,13 +15,13 @@ import {
 interface Props {
   benchmark: any;
   environment: RelayModernEnvironment;
-  deleteBenchmark: (...args: any[]) => void;
+  handleDeleteBenchmark: (benchmark: any) => void;
 }
 
 const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
   benchmark,
   environment,
-  deleteBenchmark
+  handleDeleteBenchmark
 }) => {
   const updateBenchmark = async (e: IChangeEvent) => {
     const variables = {
@@ -47,7 +47,7 @@ const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <Container>
+    <>
       <JsonSchemaForm
         omitExtraData
         liveOmit
@@ -62,13 +62,13 @@ const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
         <Button type="submit">Save</Button>
         <Button
           variant="danger"
-          onClick={async () => deleteBenchmark(benchmark)}
+          onClick={async () => handleDeleteBenchmark(benchmark)}
         >
           Delete
         </Button>
       </JsonSchemaForm>
       <hr />
-    </Container>
+    </>
   );
 };
 
