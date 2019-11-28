@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {applicationDetailsQueryResponse} from 'applicationDetailsQuery.graphql';
+import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 import {NextRouter} from 'next/router';
 import {Row, Col} from 'react-bootstrap';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
@@ -10,7 +10,7 @@ import ApplicationDetail from '../containers/Applications/ApplicationDetailsCont
 import ApplicationComments from '../containers/Applications/ApplicationCommentsContainer';
 
 interface Props {
-  query: applicationDetailsQueryResponse['query'];
+  query: applicationReviewQueryResponse['query'];
   router: NextRouter;
   isAnalyst: boolean;
 }
