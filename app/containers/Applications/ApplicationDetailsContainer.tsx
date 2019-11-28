@@ -11,6 +11,7 @@ import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 interface Props {
   query: ApplicationDetailsContainer_query;
   relay: RelayProp;
+  isAnalyst: boolean;
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {

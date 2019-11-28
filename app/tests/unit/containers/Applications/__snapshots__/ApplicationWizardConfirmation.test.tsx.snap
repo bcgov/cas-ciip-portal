@@ -10,6 +10,7 @@ exports[`ApplicationWizardConfirmationComponent should match the snapshot with t
   </h5>
   <br />
   <Relay(ApplicationDetailsComponent)
+    isAnalyst={false}
     query={
       Object {
         " $fragmentRefs": Object {

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationDetailsComponent should match the snapshot with the ApplicationDetails component 1`] = `
+<Fragment>
+  <Relay(ApplicationDetailsCardItemComponent)
+    formResult={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsCardItem_formResult": true,
+        },
+        "id": "WyJmb3JtX3Jlc3VsdHMiLDExXQ==",
+      }
+    }
+    isAnalyst={true}
+    key="WyJmb3JtX3Jlc3VsdHMiLDExXQ=="
+  />
+</Fragment>
+`;

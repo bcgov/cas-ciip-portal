@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationCommentsComponent should match the snapshot with the ApplicationCommentsComponent component 1`] = `
+<Fragment>
+  <div
+    className="jsx-4053736480 form-result-box"
+    key="WyJmb3JtX3Jlc3VsdHMiLDExXQ=="
+  >
+    <div
+      className="jsx-4053736480"
+    >
+      <h5
+        className="jsx-4053736480"
+      >
+         
+        Administration Data
+         
+      </h5>
+    </div>
+    <div
+      className="jsx-4053736480 review-box"
+      key="WyJhcHBsaWNhdGlvbl9yZXZpZXdzIiwxMV0="
+    >
+      <div
+        className="jsx-4053736480"
+      >
+        Set to 
+        <strong
+          className="jsx-4053736480"
+        >
+          REQUESTED_CHANGES
+        </strong>
+         
+        <small
+          className="jsx-4053736480"
+        >
+          (
+          <t
+            ago={false}
+            calendar={false}
+            date="2019-11-28T14:49:19.550107-05:00"
+            decimal={false}
+            element={null}
+            filter={[Function]}
+            format="D MMM YYYY H:m"
+            fromNow={false}
+            interval={60000}
+            local={false}
+            onChange={[Function]}
+            titleFormat=""
+            toNow={false}
+            unit={null}
+            unix={false}
+            utc={false}
+            withTitle={false}
+          />
+          )
+        </small>
+      </div>
+      <ul
+        className="jsx-4053736480 comment-box"
+      >
+        <li
+          className="jsx-4053736480 comments"
+          key="WyJyZXZpZXdfY29tbWVudHMiLDFd"
+        >
+          <div
+            className="jsx-4053736480"
+          >
+            Legal name is wrong. Change it to ARBUTUS
+          </div>
+          <div
+            className="jsx-4053736480"
+          >
+            <small
+              className="jsx-4053736480"
+            >
+              <t
+                ago={false}
+                calendar={false}
+                date="2019-11-28T14:49:19.550107-05:00"
+                decimal={false}
+                element={null}
+                filter={[Function]}
+                format="D MMM YYYY H:m"
+                fromNow={false}
+                interval={60000}
+                local={false}
+                onChange={[Function]}
+                titleFormat=""
+                toNow={false}
+                unit={null}
+                unix={false}
+                utc={false}
+                withTitle={false}
+              />
+            </small>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <JSXStyle
+    id="4053736480"
+  >
+    .form-result-box.jsx-4053736480{padding:25px;margin-bottom:20px;border:1px solid #ff713a;border-radius:5px;background-color:#fff4dcab;font-size:14px;}.form-result-box.jsx-4053736480 h5.jsx-4053736480{border-bottom:1px solid #888;padding-bottom:10px;margin-bottom:20px;}.form-result-box.jsx-4053736480 .review-box.jsx-4053736480{border-bottom:1px solid #d2d2d2;margin-bottom:20px;}
+  </JSXStyle>
+</Fragment>
+`;

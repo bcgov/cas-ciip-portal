@@ -12,6 +12,7 @@ import ApplicationComments from '../containers/Applications/ApplicationCommentsC
 interface Props {
   query: applicationDetailsQueryResponse['query'];
   router: NextRouter;
+  isAnalyst: boolean;
 }
 
 class ApplicationDetails extends Component<Props> {
