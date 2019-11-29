@@ -44,7 +44,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       style={{width: '100%', marginBottom: '10px'}}
       className={`${classTag} summary-card`}
     >
-      <Card.Header onClick={() => setIsOpen(!isOpen)}>
+      <Card.Header>
         <Row>
           <Col md={6}>
             <h4>{formJsonByFormId.name}</h4>
@@ -64,6 +64,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
               aria-label="toggle-card-open"
               title="expand or collapse the card"
               variant="outline-dark"
+              onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? '+' : '-'}
             </Button>

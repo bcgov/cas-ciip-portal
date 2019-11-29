@@ -13,7 +13,6 @@ Array [
   >
     <div
       className="card-header"
-      onClick={[Function]}
     >
       <div
         className="row"
@@ -38,6 +37,7 @@ Array [
             aria-label="toggle-card-open"
             className="btn btn-outline-dark"
             disabled={false}
+            onClick={[Function]}
             title="expand or collapse the card"
             type="button"
           >
@@ -704,7 +704,6 @@ Array [
   >
     <div
       className="card-header"
-      onClick={[Function]}
     >
       <div
         className="row"
@@ -729,6 +728,7 @@ Array [
             aria-label="toggle-card-open"
             className="btn btn-outline-dark"
             disabled={false}
+            onClick={[Function]}
             title="expand or collapse the card"
             type="button"
           >
@@ -1450,7 +1450,6 @@ Array [
   >
     <div
       className="card-header"
-      onClick={[Function]}
     >
       <div
         className="row"
@@ -1475,6 +1474,7 @@ Array [
             aria-label="toggle-card-open"
             className="btn btn-outline-dark"
             disabled={false}
+            onClick={[Function]}
             title="expand or collapse the card"
             type="button"
           >
@@ -1806,7 +1806,6 @@ Array [
   >
     <div
       className="card-header"
-      onClick={[Function]}
     >
       <div
         className="row"
@@ -1831,6 +1830,7 @@ Array [
             aria-label="toggle-card-open"
             className="btn btn-outline-dark"
             disabled={false}
+            onClick={[Function]}
             title="expand or collapse the card"
             type="button"
           >
@@ -2061,7 +2061,6 @@ Array [
   >
     <div
       className="card-header"
-      onClick={[Function]}
     >
       <div
         className="row"
@@ -2086,6 +2085,7 @@ Array [
             aria-label="toggle-card-open"
             className="btn btn-outline-dark"
             disabled={false}
+            onClick={[Function]}
             title="expand or collapse the card"
             type="button"
           >

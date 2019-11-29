@@ -11,9 +11,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
     }
   }
 >
-  <CardHeader
-    onClick={[Function]}
-  >
+  <CardHeader>
     <ForwardRef
       noGutters={false}
     >
@@ -36,6 +34,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
           active={false}
           aria-label="toggle-card-open"
           disabled={false}
+          onClick={[Function]}
           title="expand or collapse the card"
           type="button"
           variant="outline-dark"
