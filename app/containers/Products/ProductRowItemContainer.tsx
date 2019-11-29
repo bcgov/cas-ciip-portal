@@ -226,34 +226,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  const displayFutureBenchmark = benchmark => {
-    const formData = {
-      benchmark: benchmark.benchmark,
-      eligibilityThreshold: benchmark.eligibilityThreshold,
-      startDate: benchmark.startDate,
-      endDate: benchmark.endDate
-    };
-    return (
-      <>
-        <JsonSchemaForm
-          omitExtraData
-          liveOmit
-          schema={benchmarkSchema}
-          uiSchema={benchmarkUISchema}
-          formData={formData}
-          showErrorList={false}
-          ArrayFieldTemplate={FormArrayFieldTemplate}
-          FieldTemplate={FormFieldTemplate}
-          ObjectFieldTemplate={FormObjectFieldTemplate}
-          // OnSubmit={updateCurrentBenchmark}
-        >
-          <Button type="submit">Save</Button>
-        </JsonSchemaForm>
-        <hr />
-      </>
-    );
-  };
-
   // This fuction does not 'DELETE' from the database, but sets the deleted at / deleted by values. This action is not recoverable through the UI
   const deleteBenchmark = async benchmark => {
     if (!benchmark) return;
@@ -391,11 +363,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                 </Card.Header>
                 <Collapse in={futureBenchmarksOpen}>
                   <Card.Body>
-                    <Container>
-                      {futureBenchmarks.map(benchmark => {
-                        return displayFutureBenchmark(benchmark);
-                      })}
-                    </Container>
                     {futureBenchmarks.map(benchmark => (
                       <FutureBenchmarks
                         key={benchmark.id}
@@ -421,10 +388,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                   <Card.Body>
                     <Table>
                       <thead>
-                        <th>Benchmark</th>
-                        <th>Eligibility Threshold</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
                         <tr>
                           <th>Benchmark</th>
                           <th>Eligibility Threshold</th>
