@@ -45,7 +45,7 @@ comment on column ggircs_portal.ciip_user.created_at is 'The date the user was u
 comment on column ggircs_portal.ciip_user.created_by is 'The person who updated the user';
 comment on column ggircs_portal.ciip_user.updated_at is 'The date the user was updated';
 comment on column ggircs_portal.ciip_user.updated_by is 'The person who updated the user';
-comment on column ggircs_portal.ciip_user is 'The date the user was deleted';
-comment on column ggircs_portal.ciip_user is 'The person who deleted the user';
+comment on column ggircs_portal.ciip_user.deleted_at is 'The date the user was deleted';
+comment on column ggircs_portal.ciip_user.deleted_by is 'The person who deleted the user';
 
 commit;
