@@ -6,10 +6,10 @@ import Link from 'next/link';
 export const ApplicationRowItem = props => {
   const {ciipApplication = {}} = props;
   const statusBadgeColor = {
-    attention: 'warning',
-    pending: 'info',
-    declined: 'danger',
-    approved: 'success'
+    DRAFT: 'warning',
+    PENDING: 'info',
+    REJECTED: 'danger',
+    APPROVED: 'success'
   };
 
   return (
@@ -53,10 +53,10 @@ export default createFragmentContainer(ApplicationRowItem, {
       rowId
       facilityName
       operatorName
-      applicationStatus
       submissionDate
       reportingYear
       bcghgid
+      applicationStatus
       applicationByRowId {
         id
       }

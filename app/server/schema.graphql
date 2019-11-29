@@ -446,7 +446,7 @@ type ApplicationStatus implements Node {
   applicationId: Int!
 
   """The application status"""
-  applicationStatus: String
+  applicationStatus: CiipApplicationStatus
 
   """Reads a single `CiipUser` that is related to this `ApplicationStatus`."""
   ciipUserByDeletedBy: CiipUser
@@ -487,7 +487,7 @@ input ApplicationStatusCondition {
   applicationId: Int
 
   """Checks for equality with the object’s `applicationStatus` field."""
-  applicationStatus: String
+  applicationStatus: CiipApplicationStatus
 
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
@@ -570,7 +570,7 @@ input ApplicationStatusInput {
   applicationId: Int!
 
   """The application status"""
-  applicationStatus: String
+  applicationStatus: CiipApplicationStatus
 
   """The date the application status was updated"""
   createdAt: Datetime
@@ -599,7 +599,7 @@ input ApplicationStatusPatch {
   applicationId: Int
 
   """The application status"""
-  applicationStatus: String
+  applicationStatus: CiipApplicationStatus
 
   """The date the application status was updated"""
   createdAt: Datetime
@@ -889,7 +889,7 @@ type CiipApplication implements Node {
   Reads a single `Application` that is related to this `CiipApplication`.
   """
   applicationByRowId: Application
-  applicationStatus: String
+  applicationStatus: CiipApplicationStatus
   bcghgid: BigFloat
   facilityName: String
 
@@ -909,7 +909,7 @@ tested for equality and combined with a logical ‘and.’
 """
 input CiipApplicationCondition {
   """Checks for equality with the object’s `applicationStatus` field."""
-  applicationStatus: String
+  applicationStatus: CiipApplicationStatus
 
   """Checks for equality with the object’s `bcghgid` field."""
   bcghgid: BigFloat
@@ -977,6 +977,13 @@ enum CiipApplicationsOrderBy {
   REPORTING_YEAR_DESC
   SUBMISSION_DATE_ASC
   SUBMISSION_DATE_DESC
+}
+
+enum CiipApplicationStatus {
+  APPROVED
+  DRAFT
+  PENDING
+  REJECTED
 }
 
 """
