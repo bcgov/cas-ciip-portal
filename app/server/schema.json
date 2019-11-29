@@ -19087,7 +19087,7 @@
             },
             {
               "name": "parent",
-              "description": "The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)",
+              "description": "The parent ID(s) (previous state) of the fuel",
               "args": [],
               "type": {
                 "kind": "LIST",
@@ -19131,7 +19131,7 @@
             },
             {
               "name": "swrsFuelMappingId",
-              "description": null,
+              "description": "The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -27803,7 +27803,7 @@
             },
             {
               "name": "parent",
-              "description": "The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)",
+              "description": "The parent ID(s) (previous state) of the fuel",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -27827,7 +27827,7 @@
             },
             {
               "name": "swrsFuelMappingId",
-              "description": null,
+              "description": "The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -35683,7 +35683,7 @@
             },
             {
               "name": "parent",
-              "description": "The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)",
+              "description": "The parent ID(s) (previous state) of the fuel",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -35707,7 +35707,7 @@
             },
             {
               "name": "swrsFuelMappingId",
-              "description": null,
+              "description": "The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",

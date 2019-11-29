@@ -5110,9 +5110,7 @@ type Fuel implements Node {
   """The name of the fuel"""
   name: String!
 
-  """
-  The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)
-  """
+  """The parent ID(s) (previous state) of the fuel"""
   parent: [Int]
 
   """Unique ID for the fuel"""
@@ -5122,6 +5120,10 @@ type Fuel implements Node {
   The current state of the fuel within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+
+  """
+  The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)
+  """
   swrsFuelMappingId: Int!
 
   """The unit of measure for the fuel"""
@@ -5236,15 +5238,17 @@ input FuelInput {
   """The name of the fuel"""
   name: String!
 
-  """
-  The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)
-  """
+  """The parent ID(s) (previous state) of the fuel"""
   parent: [Int]
 
   """
   The current state of the fuel within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+
+  """
+  The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)
+  """
   swrsFuelMappingId: Int!
 
   """The unit of measure for the fuel"""
@@ -5277,15 +5281,17 @@ input FuelPatch {
   """The name of the fuel"""
   name: String
 
-  """
-  The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)
-  """
+  """The parent ID(s) (previous state) of the fuel"""
   parent: [Int]
 
   """
   The current state of the fuel within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
+
+  """
+  The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)
+  """
   swrsFuelMappingId: Int
 
   """The unit of measure for the fuel"""
