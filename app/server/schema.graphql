@@ -1037,6 +1037,7 @@ enum CiipApplicationWizardsOrderBy {
   PRIMARY_KEY_DESC
 }
 
+"""The view for calculating carbon tax based on ciip data"""
 type CiipCarbonTaxCalculation {
   applicationId: Int
   calculatedCarbonTax: BigFloat
@@ -5109,7 +5110,9 @@ type Fuel implements Node {
   """The name of the fuel"""
   name: String!
 
-  """The parent ID(s) (previous state) of the fuel"""
+  """
+  The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)
+  """
   parent: [Int]
 
   """Unique ID for the fuel"""
@@ -5233,7 +5236,9 @@ input FuelInput {
   """The name of the fuel"""
   name: String!
 
-  """The parent ID(s) (previous state) of the fuel"""
+  """
+  The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)
+  """
   parent: [Int]
 
   """
@@ -5272,7 +5277,9 @@ input FuelPatch {
   """The name of the fuel"""
   name: String
 
-  """The parent ID(s) (previous state) of the fuel"""
+  """
+  The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)
+  """
   parent: [Int]
 
   """

@@ -12865,7 +12865,7 @@
         {
           "kind": "OBJECT",
           "name": "CiipCarbonTaxCalculation",
-          "description": null,
+          "description": "The view for calculating carbon tax based on ciip data",
           "fields": [
             {
               "name": "applicationId",
@@ -19087,7 +19087,7 @@
             },
             {
               "name": "parent",
-              "description": "The parent ID(s) (previous state) of the fuel",
+              "description": "The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)",
               "args": [],
               "type": {
                 "kind": "LIST",
@@ -27803,7 +27803,7 @@
             },
             {
               "name": "parent",
-              "description": "The parent ID(s) (previous state) of the fuel",
+              "description": "The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)",
               "type": {
                 "kind": "LIST",
                 "name": null,
@@ -35683,7 +35683,7 @@
             },
             {
               "name": "parent",
-              "description": "The parent ID(s) (previous state) of the fuel",
+              "description": "The foreign key to the fuel_mapping table in swrs (used for carbon tax calculation)",
               "type": {
                 "kind": "LIST",
                 "name": null,
