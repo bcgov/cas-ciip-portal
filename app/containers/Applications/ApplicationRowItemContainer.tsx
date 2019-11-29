@@ -30,7 +30,7 @@ export const ApplicationRowItem = props => {
       <td>
         <Link
           href={{
-            pathname: '/application-details',
+            pathname: '/application-review',
             query: {
               applicationId: ciipApplication.rowId,
               applicationGUID: ciipApplication.applicationByRowId.id,

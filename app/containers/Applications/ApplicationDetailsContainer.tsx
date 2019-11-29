@@ -11,6 +11,7 @@ import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 interface Props {
   query: ApplicationDetailsContainer_query;
   relay: RelayProp;
+  isAnalyst: boolean;
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
@@ -19,7 +20,11 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
   return (
     <>
       {formResults.map(({node}) => (
-        <ApplicationDetailsCardItem key={node.id} formResult={node} />
+        <ApplicationDetailsCardItem
+          key={node.id}
+          isAnalyst={props.isAnalyst}
+          formResult={node}
+        />
       ))}
     </>
   );
@@ -38,9 +43,6 @@ export default createFragmentContainer(ApplicationDetailsComponent, {
               ...ApplicationDetailsCardItem_formResult
             }
           }
-        }
-        applicationStatus {
-          id
         }
       }
     }

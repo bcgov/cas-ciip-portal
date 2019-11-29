@@ -13,6 +13,7 @@ interface Props {
   session: defaultLayout_session;
   needsUser?: boolean;
   needsSession?: boolean;
+  width?: 'narrow' | 'wide';
 }
 
 const DefaultLayout: React.FunctionComponent<Props> = ({
@@ -20,6 +21,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   title,
   showSubheader,
   session,
+  width = 'narrow',
   needsUser = true,
   needsSession = true
 }) => {
@@ -54,12 +56,12 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       {showSubheader && <Subheader />}
       {title ? (
         <div className="page-title">
-          <Container>
+          <Container className={width}>
             <h1>{title}</h1>
           </Container>
         </div>
       ) : null}
-      <Container className="content">{children}</Container>
+      <Container className={`content ${width}`}>{children}</Container>
       <Footer />
       <style jsx global>
         {`
@@ -125,6 +127,9 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           }
           .accordion .card-body {
             font-size: 15px;
+          }
+          .container.wide {
+            max-width: 1600px;
           }
         `}
       </style>

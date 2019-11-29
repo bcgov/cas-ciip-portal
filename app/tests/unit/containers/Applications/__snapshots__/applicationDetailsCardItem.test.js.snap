@@ -11,21 +11,19 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
     }
   }
 >
-  <CardHeader
-    onClick={[Function]}
-  >
+  <CardHeader>
     <ForwardRef
       noGutters={false}
     >
       <Col
-        md={9}
+        md={6}
       >
-        <h2>
+        <h4>
           Fuel Usage
-        </h2>
+        </h4>
       </Col>
       <Col
-        md={3}
+        md={1}
         style={
           Object {
             "textAlign": "right",
@@ -34,11 +32,14 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
       >
         <Button
           active={false}
+          aria-label="toggle-card-open"
           disabled={false}
+          onClick={[Function]}
+          title="expand or collapse the card"
           type="button"
-          variant="primary"
+          variant="outline-dark"
         >
-          Collapse
+          -
         </Button>
       </Col>
     </ForwardRef>

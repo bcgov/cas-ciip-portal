@@ -13,20 +13,20 @@ Array [
   >
     <div
       className="card-header"
-      onClick={[Function]}
     >
       <div
         className="row"
       >
         <div
-          className="col-md-9"
+          className="col-md-6"
         >
-          <h2>
+          <h4>
             Admin
-          </h2>
+          </h4>
         </div>
+        
         <div
-          className="col-md-3"
+          className="col-md-1"
           style={
             Object {
               "textAlign": "right",
@@ -34,11 +34,14 @@ Array [
           }
         >
           <button
-            className="btn btn-primary"
+            aria-label="toggle-card-open"
+            className="btn btn-outline-dark"
             disabled={false}
+            onClick={[Function]}
+            title="expand or collapse the card"
             type="button"
           >
-            Collapse
+            -
           </button>
         </div>
       </div>
@@ -701,20 +704,20 @@ Array [
   >
     <div
       className="card-header"
-      onClick={[Function]}
     >
       <div
         className="row"
       >
         <div
-          className="col-md-9"
+          className="col-md-6"
         >
-          <h2>
+          <h4>
             Emission
-          </h2>
+          </h4>
         </div>
+        
         <div
-          className="col-md-3"
+          className="col-md-1"
           style={
             Object {
               "textAlign": "right",
@@ -722,11 +725,14 @@ Array [
           }
         >
           <button
-            className="btn btn-primary"
+            aria-label="toggle-card-open"
+            className="btn btn-outline-dark"
             disabled={false}
+            onClick={[Function]}
+            title="expand or collapse the card"
             type="button"
           >
-            Collapse
+            -
           </button>
         </div>
       </div>
@@ -1444,20 +1450,20 @@ Array [
   >
     <div
       className="card-header"
-      onClick={[Function]}
     >
       <div
         className="row"
       >
         <div
-          className="col-md-9"
+          className="col-md-6"
         >
-          <h2>
+          <h4>
             Fuel
-          </h2>
+          </h4>
         </div>
+        
         <div
-          className="col-md-3"
+          className="col-md-1"
           style={
             Object {
               "textAlign": "right",
@@ -1465,11 +1471,14 @@ Array [
           }
         >
           <button
-            className="btn btn-primary"
+            aria-label="toggle-card-open"
+            className="btn btn-outline-dark"
             disabled={false}
+            onClick={[Function]}
+            title="expand or collapse the card"
             type="button"
           >
-            Collapse
+            -
           </button>
         </div>
       </div>
@@ -1797,20 +1806,20 @@ Array [
   >
     <div
       className="card-header"
-      onClick={[Function]}
     >
       <div
         className="row"
       >
         <div
-          className="col-md-9"
+          className="col-md-6"
         >
-          <h2>
+          <h4>
             Electricity and Heat
-          </h2>
+          </h4>
         </div>
+        
         <div
-          className="col-md-3"
+          className="col-md-1"
           style={
             Object {
               "textAlign": "right",
@@ -1818,11 +1827,14 @@ Array [
           }
         >
           <button
-            className="btn btn-primary"
+            aria-label="toggle-card-open"
+            className="btn btn-outline-dark"
             disabled={false}
+            onClick={[Function]}
+            title="expand or collapse the card"
             type="button"
           >
-            Collapse
+            -
           </button>
         </div>
       </div>
@@ -2049,20 +2061,20 @@ Array [
   >
     <div
       className="card-header"
-      onClick={[Function]}
     >
       <div
         className="row"
       >
         <div
-          className="col-md-9"
+          className="col-md-6"
         >
-          <h2>
+          <h4>
             Production
-          </h2>
+          </h4>
         </div>
+        
         <div
-          className="col-md-3"
+          className="col-md-1"
           style={
             Object {
               "textAlign": "right",
@@ -2070,11 +2082,14 @@ Array [
           }
         >
           <button
-            className="btn btn-primary"
+            aria-label="toggle-card-open"
+            className="btn btn-outline-dark"
             disabled={false}
+            onClick={[Function]}
+            title="expand or collapse the card"
             type="button"
           >
-            Collapse
+            -
           </button>
         </div>
       </div>

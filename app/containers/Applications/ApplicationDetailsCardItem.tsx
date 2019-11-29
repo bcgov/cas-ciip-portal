@@ -8,18 +8,21 @@ import SummaryFormFieldTemplate from '../Forms/SummaryFormFieldTemplate';
 import SummaryEmissionGasFields from '../Forms/SummaryEmissionGasFields';
 import SummaryEmissionSourceFields from '../Forms/SummaryEmissionSourceFields';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
+import ApplicationReviewContainer from './ApplicationReviewContainer';
 
 interface Props {
   formResult;
+  isAnalyst: boolean;
 }
 
 /*
  * The ApplicationDetails renders a summary of the data submitted in the application
  */
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
-  formResult
+  formResult,
+  isAnalyst
 }) => {
-  const {formJsonByFormId} = formResult;
+  const {formJsonByFormId, applicationReview} = formResult;
   const query = formResult.formResult;
   const {formJson} = formJsonByFormId;
   const {schema, uiSchema, customFormats} = formJson as FormJson;
@@ -41,13 +44,30 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       style={{width: '100%', marginBottom: '10px'}}
       className={`${classTag} summary-card`}
     >
-      <Card.Header onClick={() => setIsOpen(!isOpen)}>
+      <Card.Header>
         <Row>
-          <Col md={9}>
-            <h2>{formJsonByFormId.name}</h2>
+          <Col md={6}>
+            <h4>{formJsonByFormId.name}</h4>
           </Col>
-          <Col md={3} style={{textAlign: 'right'}}>
-            <Button>{isOpen ? 'Expand' : 'Collapse'}</Button>
+          {isAnalyst ? (
+            <Col style={{textAlign: 'right'}}>
+              <ApplicationReviewContainer
+                applicationReview={applicationReview}
+                formName={formJsonByFormId.name}
+              />
+            </Col>
+          ) : (
+            ''
+          )}
+          <Col md={1} style={{textAlign: 'right'}}>
+            <Button
+              aria-label="toggle-card-open"
+              title="expand or collapse the card"
+              variant="outline-dark"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? '+' : '-'}
+            </Button>
           </Col>
         </Row>
       </Card.Header>
@@ -78,6 +98,9 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
   formResult: graphql`
     fragment ApplicationDetailsCardItem_formResult on FormResult {
+      applicationReview {
+        ...ApplicationReviewContainer_applicationReview
+      }
       formResult
       formJsonByFormId {
         name
@@ -87,3 +110,8 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
     }
   `
 });
+
+/*
+TODO: Instead on conditionally rendering the ApplicationReviewContainer,
+ the page component should pass a renderItemHeaderContent function
+ */

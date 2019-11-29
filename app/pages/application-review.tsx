@@ -1,20 +1,23 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {applicationDetailsQueryResponse} from 'applicationDetailsQuery.graphql';
+import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 import {NextRouter} from 'next/router';
+import {Row, Col} from 'react-bootstrap';
 import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import DefaultLayout from '../layouts/default-layout';
 import ApplicationDetail from '../containers/Applications/ApplicationDetailsContainer';
+import ApplicationComments from '../containers/Applications/ApplicationCommentsContainer';
 
 interface Props {
-  query: applicationDetailsQueryResponse['query'];
+  query: applicationReviewQueryResponse['query'];
   router: NextRouter;
+  isAnalyst: boolean;
 }
 
-class ApplicationDetails extends Component<Props> {
+class ApplicationReview extends Component<Props> {
   static query = graphql`
-    query applicationDetailsQuery(
+    query applicationReviewQuery(
       $applicationStatusCondition: ApplicationStatusCondition
       $bcghgidInput: BigFloat
       $reportingYear: String
@@ -29,6 +32,8 @@ class ApplicationDetails extends Component<Props> {
         ...IncentiveCalculatorContainer_query
           @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
         ...ApplicationDetailsContainer_query
+          @arguments(applicationId: $applicationGUID)
+        ...ApplicationCommentsContainer_query
           @arguments(applicationId: $applicationGUID)
       }
     }
@@ -48,22 +53,38 @@ class ApplicationDetails extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout session={session}>
+      <DefaultLayout session={session} width="wide">
         <ApplicationStatusContainer
           query={query}
           applicationId={this.props.router.query.applicationId}
         />
         <hr />
-
-        <ApplicationDetail query={query} />
-        <IncentiveCalculatorContainer
-          query={query}
-          bcghgid={this.props.router.query.bcghgid}
-          reportingYear={this.props.router.query.reportingYear}
-        />
+        <Row className="application-container">
+          <Col md={8} className="application-body">
+            <ApplicationDetail isAnalyst query={query} />
+            <IncentiveCalculatorContainer
+              query={query}
+              bcghgid={this.props.router.query.bcghgid}
+              reportingYear={this.props.router.query.reportingYear}
+            />
+          </Col>
+          <Col md={4} className="application-comments">
+            <ApplicationComments query={query} />
+          </Col>
+        </Row>
+        <style jsx>{`
+          .container {
+            display: none;
+          }
+        `}</style>
       </DefaultLayout>
     );
   }
 }
 
-export default ApplicationDetails;
+export default ApplicationReview;
+
+/*
+TODO: Instead on conditionally rendering the ApplicationDetail,
+ the page component should pass a renderItemHeaderContent function
+ */
