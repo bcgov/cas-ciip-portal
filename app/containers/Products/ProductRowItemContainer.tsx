@@ -10,16 +10,21 @@ import {
   Collapse,
   Table
 } from 'react-bootstrap';
-import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
-
 import moment from 'moment';
 import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 import saveProductMutation from '../../mutations/product/saveProductMutation';
 import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
-// Import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
+import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
+import {
+  productSchema,
+  productUISchema,
+  benchmarkSchema,
+  benchmarkUISchema
+} from './ProductBenchmarkJsonSchemas';
+import FutureBenchmarks from './FutureBenchmarks';
 
 interface Props {
   relay: RelayProp;
@@ -249,15 +254,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     );
   };
 
-  const displayPastBenchmark = benchmark => {
-    return (
-      <tr>
-        <td>{benchmark.benchmark}</td>
-        <td>{benchmark.eligibilityThreshold}</td>
-        <td>{moment(benchmark.startDate).format('DD-MM-YYYY')}</td>
-        <td>{moment(benchmark.endDate).format('DD-MM-YYYY')}</td>
-      </tr>
-    );
   // This fuction does not 'DELETE' from the database, but sets the deleted at / deleted by values. This action is not recoverable through the UI
   const deleteBenchmark = async benchmark => {
     if (!benchmark) return;
@@ -265,7 +261,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       input: {
         id: currentBenchmark.id,
         benchmarkPatch: {
-          deletedAt: moment(),
+          deletedAt: moment().format('YYYY-MM-DDTHH:mm:ss'),
           deletedBy: userRowId
         }
       }
@@ -274,97 +270,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  // // Get the current benchmark for the product
-  // let benchmarks;
-  // if (props.product.benchmarksByProductId.edges[0]) {
-  //   props.product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
-  //     if (
-  //       Date.parse(benchmark.startDate) < Date.now() &&
-  //       (benchmark.endDate === null ||
-  //         Date.parse(benchmark.endDate) > Date.now()) &&
-  //       !benchmark.deletedAt
-  //     ) {
-  //       benchmarks = benchmark;
-  //     }
-  //   });
-  //   if (!benchmarks) {
-  //     benchmarks = {benchmark: '', eligibilityThreshold: ''};
-  //   }
-  // } else {
-  //   benchmarks = {benchmark: '', eligibilityThreshold: ''};
-  // }
-
-  // // Archived logic to determine display values
-  // const background = props.product.state === 'archived' ? 'lightGrey' : '';
-  // const buttonVariant =
-  //   props.product.state === 'archived' ? 'success' : 'warning';
-  // const archiveRestore =
-  //   props.product.state === 'archived' ? 'Restore' : 'Archive';
-
-  const ProductSchema: JSONSchema6 = {
-    type: 'object',
-    properties: {
-      product: {
-        type: 'string',
-        title: 'Product'
-      },
-      description: {
-        type: 'string',
-        title: 'Description'
-      }
-    },
-    required: ['product']
-  };
-
-  const productUISchema = {
-    product: {
-      'ui:col-md': 6
-    },
-    description: {
-      'ui:col-md': 6
-    }
-  };
-
   const productFormData = {
     product: product.name,
     description: product.description
   };
 
-  const benchmarkSchema: JSONSchema6 = {
-    type: 'object',
-    properties: {
-      benchmark: {
-        type: 'number',
-        title: 'Benchmark'
-      },
-      eligibilityThreshold: {
-        type: 'number',
-        title: 'ET'
-      },
-      startDate: {
-        type: 'string',
-        title: 'Start Date'
-      },
-      endDate: {
-        type: 'string',
-        title: 'End Date'
-      }
-    }
-  };
-
-  const benchmarkUISchema = {
-    benchmark: {
-      'ui:col-md': 6
-    },
-    description: {
-      'ui:col-md': 6
-    },
-    startDate: {
-      'ui:col-md': 6
-    },
-    endDate: {
-      'ui:col-md': 6
-    }
   const handleDeleteBenchmark = async benchmark => {
     await deleteBenchmark(benchmark);
   };
@@ -385,8 +295,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
   const [addBenchmarkOpen, setAddBenchmarkOpen] = React.useState(false);
 
-  const currentBenchmark = getCurrentBenchmark();
-
   const editModal = (
     <Modal
       centered
@@ -403,7 +311,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           <JsonSchemaForm
             omitExtraData
             liveOmit
-            schema={ProductSchema}
+            schema={productSchema}
             uiSchema={productUISchema}
             formData={productFormData}
             showErrorList={false}
@@ -450,7 +358,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                 : null}
             </Col>
           </Row>
-=======
           <JsonSchemaForm
             omitExtraData
             liveOmit
