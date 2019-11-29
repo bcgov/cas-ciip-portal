@@ -15,7 +15,9 @@ create table ggircs_portal.ciip_user
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
   updated_at timestamp with time zone not null default now(),
-  updated_by varchar(1000)
+  updated_by varchar(1000),
+  deleted_at timestamp with time zone,
+  deleted_by int references ggircs_portal.ciip_user
 
 );
 
@@ -43,5 +45,7 @@ comment on column ggircs_portal.ciip_user.created_at is 'The date the user was u
 comment on column ggircs_portal.ciip_user.created_by is 'The person who updated the user';
 comment on column ggircs_portal.ciip_user.updated_at is 'The date the user was updated';
 comment on column ggircs_portal.ciip_user.updated_by is 'The person who updated the user';
+comment on column ggircs_portal.ciip_user.deleted_at is 'The date the user was deleted';
+comment on column ggircs_portal.ciip_user.deleted_by is 'The person who deleted the user';
 
 commit;

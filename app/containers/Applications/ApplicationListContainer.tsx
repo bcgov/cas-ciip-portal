@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
-import {Table} from 'react-bootstrap';
-import SearchTableLayout from '../../components/SearchTableLayout';
+import {Table, Container, Row, Col} from 'react-bootstrap';
+import SortableTableHeader from 'components/SortableTableHeader';
+import SearchBox from 'components/SearchBox';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
 export const ApplicationList = props => {
   const {
-    orderByDisplay,
     searchDisplay,
     direction,
     orderByField,
@@ -26,33 +26,55 @@ export const ApplicationList = props => {
     props.relay.refetch(refetchVariables);
   });
 
-  const dropdownSortItems = [
-    {eventKey: 'id', title: 'Application ID'},
-    {eventKey: 'operator_name', title: 'Operator Name'},
-    {eventKey: 'facility_name', title: 'Facility Name'},
-    {eventKey: 'submission_date', title: 'Submission Date'},
-    {eventKey: 'application_status', title: 'Status'}
+  const tableHeaders = [
+    {columnName: 'id', displayName: 'Application ID'},
+    {columnName: 'operator_name', displayName: 'Operator Name'},
+    {columnName: 'facility_name', displayName: 'Facility Name'},
+    {columnName: 'submission_date', displayName: 'Submission Date'},
+    {columnName: 'application_status', displayName: 'Status'}
   ];
+
+  const dropdownSortItems = [
+    'Application Id',
+    'Operator Name',
+    'Facility Name',
+    'Submission Date',
+    'Status'
+  ];
+
+  const displayNameToColumnNameMap = {
+    'Application Id': 'id',
+    'Operator Name': 'operator_name',
+    'Facility Name': 'facility_name',
+    'Submission Date': 'submission_date',
+    Status: 'application_status'
+  };
 
   return (
     <>
-      <SearchTableLayout
-        orderByDisplay={orderByDisplay}
-        searchDisplay={searchDisplay}
-        handleEvent={handleEvent}
-        dropdownSortItems={dropdownSortItems}
-        direction={direction}
-      />
-      <br />
-      <br />
+      <Container>
+        <Row>
+          <Col md={{span: 12, offset: 6}}>
+            <SearchBox
+              dropdownSortItems={dropdownSortItems}
+              handleEvent={handleEvent}
+              displayNameToColumnNameMap={displayNameToColumnNameMap}
+              searchDisplay={searchDisplay}
+            />
+          </Col>
+        </Row>
+      </Container>
+
       <Table striped bordered hover style={{textAlign: 'center'}}>
         <thead>
           <tr>
-            <th>Application ID</th>
-            <th>Operator Name</th>
-            <th>Facility Name</th>
-            <th>Submitted</th>
-            <th>Status</th>
+            {tableHeaders.map(header => (
+              <SortableTableHeader
+                key={header.columnName}
+                sort={handleEvent}
+                headerVariables={header}
+              />
+            ))}
             <th />
           </tr>
         </thead>

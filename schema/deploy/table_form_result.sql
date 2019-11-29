@@ -13,7 +13,9 @@ create table ggircs_portal.form_result (
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
   updated_at timestamp with time zone not null default now(),
-  updated_by varchar(1000)
+  updated_by varchar(1000),
+  deleted_at timestamp with time zone,
+  deleted_by int references ggircs_portal.ciip_user
 );
 
 create trigger _100_timestamps
@@ -31,5 +33,7 @@ comment on column ggircs_portal.form_result.created_at is 'The date the form was
 comment on column ggircs_portal.form_result.created_by is 'The person who updated the form';
 comment on column ggircs_portal.form_result.updated_at is 'The date the form was updated';
 comment on column ggircs_portal.form_result.updated_by is 'The person who updated the form';
+comment on column ggircs_portal.form_result.deleted_at is 'The date the form was deleted';
+comment on column ggircs_portal.form_result.deleted_by is 'The person who deleted the form';
 
 commit;

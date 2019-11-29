@@ -448,11 +448,20 @@ type ApplicationStatus implements Node {
   """The application status"""
   applicationStatus: String
 
+  """Reads a single `CiipUser` that is related to this `ApplicationStatus`."""
+  ciipUserByDeletedBy: CiipUser
+
   """The date the application status was updated"""
   createdAt: Datetime!
 
   """The person who updated the application status"""
   createdBy: String
+
+  """The date the application status was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the application status"""
+  deletedBy: Int
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -485,6 +494,12 @@ input ApplicationStatusCondition {
 
   """Checks for equality with the object’s `createdBy` field."""
   createdBy: String
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: Int
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
@@ -534,6 +549,10 @@ enum ApplicationStatusesOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
   ID_ASC
   ID_DESC
   NATURAL
@@ -559,6 +578,12 @@ input ApplicationStatusInput {
   """The person who updated the application status"""
   createdBy: String
 
+  """The date the application status was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the application status"""
+  deletedBy: Int
+
   """The date the application status was updated"""
   updatedAt: Datetime
 
@@ -582,6 +607,12 @@ input ApplicationStatusPatch {
   """The person who updated the application status"""
   createdBy: String
 
+  """The date the application status was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the application status"""
+  deletedBy: Int
+
   """The date the application status was updated"""
   updatedAt: Datetime
 
@@ -594,6 +625,9 @@ type Benchmark implements Node {
   """The value of the benchmark"""
   benchmark: Int!
 
+  """Reads a single `CiipUser` that is related to this `Benchmark`."""
+  ciipUserByDeletedBy: CiipUser
+
   """Creation date of row"""
   createdAt: Datetime!
 
@@ -604,7 +638,7 @@ type Benchmark implements Node {
   deletedAt: Datetime
 
   """The user who deleted the row"""
-  deletedBy: String
+  deletedBy: Int
 
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int!
@@ -654,7 +688,7 @@ input BenchmarkCondition {
   deletedAt: Datetime
 
   """Checks for equality with the object’s `deletedBy` field."""
-  deletedBy: String
+  deletedBy: Int
 
   """Checks for equality with the object’s `eligibilityThreshold` field."""
   eligibilityThreshold: Int
@@ -693,7 +727,7 @@ input BenchmarkInput {
   deletedAt: Datetime
 
   """The user who deleted the row"""
-  deletedBy: String
+  deletedBy: Int
 
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int!
@@ -731,7 +765,7 @@ input BenchmarkPatch {
   deletedAt: Datetime
 
   """The user who deleted the row"""
-  deletedBy: String
+  deletedBy: Int
 
   """The value of eligibility_threshold"""
   eligibilityThreshold: Int
@@ -1781,6 +1815,67 @@ enum CiipProductionsOrderBy {
 
 """Table containing the benchmark and eligibility threshold for a product"""
 type CiipUser implements Node {
+  """Reads and enables pagination through a set of `ApplicationStatus`."""
+  applicationStatusesByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationStatusCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ApplicationStatus`."""
+    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationStatusesConnection!
+
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksConnection!
+
+  """Reads a single `CiipUser` that is related to this `CiipUser`."""
+  ciipUserByDeletedBy: CiipUser
+
   """Reads and enables pagination through a set of `CiipUserOrganisation`."""
   ciipUserOrganisationsByUserId(
     """Read all values in the set after (below) this cursor."""
@@ -1810,17 +1905,110 @@ type CiipUser implements Node {
     orderBy: [CiipUserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipUserOrganisationsConnection!
 
+  """Reads and enables pagination through a set of `CiipUser`."""
+  ciipUsersByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipUserCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipUser`."""
+    orderBy: [CiipUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipUsersConnection!
+
   """The date the user was updated"""
   createdAt: Datetime!
 
   """The person who updated the user"""
   createdBy: String
 
+  """The date the user was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the user"""
+  deletedBy: Int
+
   """User's email address"""
   emailAddress: String
 
   """User's first name"""
   firstName: String
+
+  """Reads and enables pagination through a set of `FormJson`."""
+  formJsonsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FormJsonCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `FormJson`."""
+    orderBy: [FormJsonsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FormJsonsConnection!
+
+  """Reads and enables pagination through a set of `FormResult`."""
+  formResultsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FormResultCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `FormResult`."""
+    orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FormResultsConnection!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -1860,6 +2048,12 @@ input CiipUserCondition {
   """Checks for equality with the object’s `createdBy` field."""
   createdBy: String
 
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: Int
+
   """Checks for equality with the object’s `emailAddress` field."""
   emailAddress: String
 
@@ -1895,6 +2089,12 @@ input CiipUserInput {
 
   """The person who updated the user"""
   createdBy: String
+
+  """The date the user was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the user"""
+  deletedBy: Int
 
   """User's email address"""
   emailAddress: String
@@ -2048,6 +2248,12 @@ input CiipUserPatch {
   """The person who updated the user"""
   createdBy: String
 
+  """The date the user was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the user"""
+  deletedBy: Int
+
   """User's email address"""
   emailAddress: String
 
@@ -2105,6 +2311,10 @@ enum CiipUsersOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
   EMAIL_ADDRESS_ASC
   EMAIL_ADDRESS_DESC
   FIRST_NAME_ASC
@@ -2314,6 +2524,9 @@ type CreateApplicationStatusPayload {
     orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationStatusesEdge
 
+  """Reads a single `CiipUser` that is related to this `ApplicationStatus`."""
+  ciipUserByDeletedBy: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -2340,17 +2553,18 @@ input CreateBenchmarkInput {
 
 """All input for the `createBenchmarkMutationChain` mutation."""
 input CreateBenchmarkMutationChainInput {
-  benchmarkInput: Int!
+  benchmarkInput: Int
 
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  eligibilityThresholdInput: Int!
+  eligibilityThresholdInput: Int
+  endDateInput: Datetime
   prevBenchmarkIdInput: Int
-  productIdInput: Int!
-  startDateInput: Datetime!
+  productIdInput: Int
+  startDateInput: Datetime
 }
 
 """The output of our `createBenchmarkMutationChain` mutation."""
@@ -2362,6 +2576,9 @@ type CreateBenchmarkMutationChainPayload {
     """The method to use when ordering `Benchmark`."""
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksEdge
+
+  """Reads a single `CiipUser` that is related to this `Benchmark`."""
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -2388,6 +2605,9 @@ type CreateBenchmarkPayload {
     """The method to use when ordering `Benchmark`."""
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksEdge
+
+  """Reads a single `CiipUser` that is related to this `Benchmark`."""
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -2506,6 +2726,9 @@ type CreateCiipUserPayload {
   """The `CiipUser` that was created by this mutation."""
   ciipUser: CiipUser
 
+  """Reads a single `CiipUser` that is related to this `CiipUser`."""
+  ciipUserByDeletedBy: CiipUser
+
   """An edge for our `CiipUser`. May be used by Relay 1."""
   ciipUserEdge(
     """The method to use when ordering `CiipUser`."""
@@ -2614,6 +2837,9 @@ input CreateFormJsonInput {
 
 """The output of our create `FormJson` mutation."""
 type CreateFormJsonPayload {
+  """Reads a single `CiipUser` that is related to this `FormJson`."""
+  ciipUserByDeletedBy: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -2651,6 +2877,9 @@ input CreateFormResultInput {
 type CreateFormResultPayload {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
+
+  """Reads a single `CiipUser` that is related to this `FormResult`."""
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -3056,6 +3285,9 @@ type DeleteApplicationStatusPayload {
     orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationStatusesEdge
 
+  """Reads a single `CiipUser` that is related to this `ApplicationStatus`."""
+  ciipUserByDeletedBy: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -3105,6 +3337,9 @@ type DeleteBenchmarkPayload {
     """The method to use when ordering `Benchmark`."""
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksEdge
+
+  """Reads a single `CiipUser` that is related to this `Benchmark`."""
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -3273,6 +3508,9 @@ type DeleteCiipUserPayload {
   """The `CiipUser` that was deleted by this mutation."""
   ciipUser: CiipUser
 
+  """Reads a single `CiipUser` that is related to this `CiipUser`."""
+  ciipUserByDeletedBy: CiipUser
+
   """An edge for our `CiipUser`. May be used by Relay 1."""
   ciipUserEdge(
     """The method to use when ordering `CiipUser`."""
@@ -3426,6 +3664,9 @@ input DeleteFormJsonInput {
 
 """The output of our delete `FormJson` mutation."""
 type DeleteFormJsonPayload {
+  """Reads a single `CiipUser` that is related to this `FormJson`."""
+  ciipUserByDeletedBy: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -3478,6 +3719,9 @@ input DeleteFormResultInput {
 type DeleteFormResultPayload {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
+
+  """Reads a single `CiipUser` that is related to this `FormResult`."""
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -4604,11 +4848,20 @@ type FormJson implements Node {
     orderBy: [CiipApplicationWizardsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipApplicationWizardsConnection! @deprecated(reason: "Please use ciipApplicationWizardByFormId instead")
 
+  """Reads a single `CiipUser` that is related to this `FormJson`."""
+  ciipUserByDeletedBy: CiipUser
+
   """The date the form was updated"""
   createdAt: Datetime!
 
   """The person who updated the form"""
   createdBy: String
+
+  """The date the form was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the form"""
+  deletedBy: Int
 
   """description for the form"""
   description: String!
@@ -4693,6 +4946,12 @@ input FormJsonCondition {
   """Checks for equality with the object’s `createdBy` field."""
   createdBy: String
 
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: Int
+
   """Checks for equality with the object’s `description` field."""
   description: String
 
@@ -4734,6 +4993,12 @@ input FormJsonInput {
 
   """The person who updated the form"""
   createdBy: String
+
+  """The date the form was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the form"""
+  deletedBy: Int
 
   """description for the form"""
   description: String!
@@ -4779,6 +5044,12 @@ input FormJsonPatch {
 
   """The person who updated the form"""
   createdBy: String
+
+  """The date the form was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the form"""
+  deletedBy: Int
 
   """description for the form"""
   description: String
@@ -4847,6 +5118,10 @@ enum FormJsonsOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
   DESCRIPTION_ASC
   DESCRIPTION_DESC
   FORM_JSON_ASC
@@ -4912,11 +5187,20 @@ type FormResult implements Node {
     orderBy: [ApplicationReviewsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationReviewsConnection!
 
+  """Reads a single `CiipUser` that is related to this `FormResult`."""
+  ciipUserByDeletedBy: CiipUser
+
   """The date the form was updated"""
   createdAt: Datetime!
 
   """The person who updated the form"""
   createdBy: String
+
+  """The date the form was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the form"""
+  deletedBy: Int
 
   """The Unique ID of the form"""
   formId: Int!
@@ -4959,6 +5243,12 @@ input FormResultCondition {
   """Checks for equality with the object’s `createdBy` field."""
   createdBy: String
 
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: Int
+
   """Checks for equality with the object’s `formId` field."""
   formId: Int
 
@@ -4989,6 +5279,12 @@ input FormResultInput {
   """The person who updated the form"""
   createdBy: String
 
+  """The date the form was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the form"""
+  deletedBy: Int
+
   """The Unique ID of the form"""
   formId: Int!
 
@@ -5017,6 +5313,12 @@ input FormResultPatch {
 
   """The person who updated the form"""
   createdBy: String
+
+  """The date the form was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the form"""
+  deletedBy: Int
 
   """The Unique ID of the form"""
   formId: Int
@@ -5068,6 +5370,10 @@ enum FormResultsOrderBy {
   CREATED_AT_DESC
   CREATED_BY_ASC
   CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
   FORM_ID_ASC
   FORM_ID_DESC
   FORM_RESULT_ASC
@@ -8260,6 +8566,31 @@ type Query implements Node {
     searchField: String
     searchValue: String
   ): CiipUserOrganisationsConnection!
+
+  """Reads and enables pagination through a set of `Product`."""
+  searchProducts(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+    direction: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+    orderByField: String
+    searchField: String
+    searchValue: String
+  ): ProductsConnection!
   session: JwtToken
 }
 
@@ -8629,18 +8960,17 @@ enum ReviewCommentsOrderBy {
 
 """All input for the `saveProductMutationChain` mutation."""
 input SaveProductMutationChainInput {
-  benchmarkId: Int
-
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  newDescription: String!
-  newName: String!
-  newParent: [Int]!
-  newState: String!
-  prevId: Int!
+  newDescription: String
+  newName: String
+  newParent: [Int]
+  newState: String
+  newUnits: String
+  prevId: Int
 }
 
 """The output of our `saveProductMutationChain` mutation."""
@@ -8845,6 +9175,9 @@ type UpdateApplicationStatusPayload {
     orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationStatusesEdge
 
+  """Reads a single `CiipUser` that is related to this `ApplicationStatus`."""
+  ciipUserByDeletedBy: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -8903,6 +9236,9 @@ type UpdateBenchmarkPayload {
     """The method to use when ordering `Benchmark`."""
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksEdge
+
+  """Reads a single `CiipUser` that is related to this `Benchmark`."""
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -9098,6 +9434,9 @@ type UpdateCiipUserPayload {
   """The `CiipUser` that was updated by this mutation."""
   ciipUser: CiipUser
 
+  """Reads a single `CiipUser` that is related to this `CiipUser`."""
+  ciipUserByDeletedBy: CiipUser
+
   """An edge for our `CiipUser`. May be used by Relay 1."""
   ciipUserEdge(
     """The method to use when ordering `CiipUser`."""
@@ -9278,6 +9617,9 @@ input UpdateFormJsonInput {
 
 """The output of our update `FormJson` mutation."""
 type UpdateFormJsonPayload {
+  """Reads a single `CiipUser` that is related to this `FormJson`."""
+  ciipUserByDeletedBy: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -9339,6 +9681,9 @@ input UpdateFormResultInput {
 type UpdateFormResultPayload {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
+
+  """Reads a single `CiipUser` that is related to this `FormResult`."""
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,

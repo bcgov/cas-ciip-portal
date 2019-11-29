@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {Row, Col, Jumbotron} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import {productsBenchmarksQueryResponse} from 'productsBenchmarksQuery.graphql';
 import DefaultLayout from '../layouts/default-layout';
 import ProductCreatorContainer from '../containers/Products/ProductCreatorContainer';
 import ProductListContainer from '../containers/Products/ProductListContainer';
+import SearchTable from '../components/SearchTable';
 
 interface Props {
   query: productsBenchmarksQueryResponse['query'];
@@ -12,9 +13,20 @@ interface Props {
 
 class ProductsBenchmarks extends Component<Props> {
   static query = graphql`
-    query productsBenchmarksQuery {
+    query productsBenchmarksQuery(
+      $orderByField: String
+      $direction: String
+      $searchField: String
+      $searchValue: String
+    ) {
       query {
         ...ProductListContainer_query
+          @arguments(
+            orderByField: $orderByField
+            direction: $direction
+            searchField: $searchField
+            searchValue: $searchValue
+          )
         session {
           ...defaultLayout_session
         }
@@ -25,7 +37,28 @@ class ProductsBenchmarks extends Component<Props> {
   state = {
     formData: {formId: '', formJson: ''},
     mode: 'view',
-    confirmationModalOpen: false
+    confirmationModalOpen: false,
+    expandCreateForm: false,
+    createProductFormKey: Date.now()
+  };
+
+  static async getInitialProps() {
+    return {
+      variables: {
+        orderByField: 'name',
+        direction: 'ASC'
+      }
+    };
+  }
+
+  resetCreateProductForm = () => {
+    this.setState({createProductFormKey: Date.now()});
+  };
+
+  toggleShowCreateForm = () => {
+    const expanded = this.state.expandCreateForm;
+    this.resetCreateProductForm();
+    this.setState({expandCreateForm: !expanded});
   };
 
   /** **  ProductRowItem Actions ** **/
@@ -62,29 +95,32 @@ class ProductsBenchmarks extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout session={query.session} title="Products and Benchmarks">
+      <DefaultLayout session={query.session} title="Manage Products">
+        <div style={{textAlign: 'right'}}>
+          <Button
+            style={{marginTop: '-220px'}}
+            onClick={this.toggleShowCreateForm}
+          >
+            Create a new Product +
+          </Button>
+        </div>
         <Row>
           <Col>
-            <br />
-            <Jumbotron>
-              <h4>Create a Product</h4>
-              <br />
-              <ProductCreatorContainer />
-            </Jumbotron>
-            <br />
-            <br />
-            <br />
-            <ProductListContainer
-              productRowActions={{
-                toggleProductMode: this.toggleProductMode,
-                toggleBenchmarkMode: this.toggleBenchmarkMode,
-                openConfirmationWindow: this.openConfirmationWindow,
-                closeConfirmationWindow: this.closeConfirmationWindow
-              }}
-              query={query}
-              mode={this.state.mode}
-              confirmationModalOpen={this.state.confirmationModalOpen}
+            <ProductCreatorContainer
+              expanded={this.state.expandCreateForm}
+              resetForm={this.resetCreateProductForm}
+              createProductFormKey={this.state.createProductFormKey}
             />
+            <br />
+            <br />
+            <br />
+            <SearchTable
+              query={query}
+              defaultOrderByField="name"
+              defaultOrderByDisplay="Product"
+            >
+              {props => <ProductListContainer {...props} />}
+            </SearchTable>
           </Col>
         </Row>
       </DefaultLayout>

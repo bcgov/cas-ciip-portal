@@ -12,9 +12,6 @@ const mutation = graphql`
       product {
         rowId
       }
-      query {
-        ...ProductListContainer_query
-      }
       clientMutationId
     }
   }

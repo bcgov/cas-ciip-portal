@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProductList should render the product list 1`] = `
+exports[`ApplicationList should render the application list 1`] = `
 <Fragment>
   <Container
     fluid={false}
@@ -19,19 +19,19 @@ exports[`ProductList should render the product list 1`] = `
         <SearchBox
           displayNameToColumnNameMap={
             Object {
-              "Benchmark": "benchmark",
-              "Elig. Threshold": "eligibility_threshold",
-              "Product": "name",
-              "Status": "state",
-              "Units": "units",
+              "Application Id": "id",
+              "Facility Name": "facility_name",
+              "Operator Name": "operator_name",
+              "Status": "application_status",
+              "Submission Date": "submission_date",
             }
           }
           dropdownSortItems={
             Array [
-              "Product",
-              "Units",
-              "Benchmark",
-              "Elig. Threshold",
+              "Application Id",
+              "Operator Name",
+              "Facility Name",
+              "Submission Date",
               "Status",
             ]
           }
@@ -40,77 +40,73 @@ exports[`ProductList should render the product list 1`] = `
     </ForwardRef>
   </Container>
   <Bootstrap(Table)
+    bordered={true}
     hover={true}
     striped={true}
-  >
-    <thead
-      style={
-        Object {
-          "background": "#003366",
-          "color": "white",
-        }
+    style={
+      Object {
+        "textAlign": "center",
       }
-    >
+    }
+  >
+    <thead>
       <tr>
         <SortableTableHeader
           headerVariables={
             Object {
-              "columnName": "name",
-              "displayName": "Product",
+              "columnName": "id",
+              "displayName": "Application ID",
             }
           }
-          key="name"
+          key="id"
         />
         <SortableTableHeader
           headerVariables={
             Object {
-              "columnName": "units",
-              "displayName": "Units",
+              "columnName": "operator_name",
+              "displayName": "Operator Name",
             }
           }
-          key="units"
+          key="operator_name"
         />
         <SortableTableHeader
           headerVariables={
             Object {
-              "columnName": "benchmark",
-              "displayName": "Benchmark",
+              "columnName": "facility_name",
+              "displayName": "Facility Name",
             }
           }
-          key="benchmark"
+          key="facility_name"
         />
         <SortableTableHeader
           headerVariables={
             Object {
-              "columnName": "eligibility_threshold",
-              "displayName": "Elig. Threshold",
+              "columnName": "submission_date",
+              "displayName": "Submission Date",
             }
           }
-          key="eligibility_threshold"
+          key="submission_date"
         />
         <SortableTableHeader
           headerVariables={
             Object {
-              "columnName": "state",
+              "columnName": "application_status",
               "displayName": "Status",
             }
           }
-          key="state"
+          key="application_status"
         />
-        <th>
-          Edit
-        </th>
+        <th />
       </tr>
     </thead>
     <tbody>
-      <Relay(ProductRowItemComponent)
-        key="abc"
-        product={
+      <Relay(ApplicationRowItem)
+        ciipApplication={
           Object {
-            "id": "abc",
+            "id": "ciip-application-1",
           }
         }
-        userRowId={1}
+        key="ciip-application-1"
       />
     </tbody>
   </Bootstrap(Table)>

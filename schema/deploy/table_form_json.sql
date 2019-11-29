@@ -14,6 +14,8 @@ create table ggircs_portal.form_json (
   created_by varchar(1000),
   updated_at timestamp with time zone not null default now(),
   updated_by varchar(1000),
+  deleted_at timestamp with time zone,
+  deleted_by int references ggircs_portal.ciip_user,
   prepopulate_from_ciip boolean not null,
   prepopulate_from_swrs boolean not null,
   form_result_init_function varchar(1000)
@@ -42,5 +44,7 @@ comment on column ggircs_portal.form_json.updated_by is 'The person who updated 
 comment on column ggircs_portal.form_json.prepopulate_from_ciip is 'Whether the form is initialized with data submitted in the previous year''s application';
 comment on column ggircs_portal.form_json.prepopulate_from_swrs is 'Whether the form is initialized with data submitted in the previous year''s application';
 comment on column ggircs_portal.form_json.form_result_init_function is 'The function used for init';
+comment on column ggircs_portal.form_json.deleted_at is 'The date the form was deleted';
+comment on column ggircs_portal.form_json.deleted_by is 'The person who deleted the form';
 
 commit;

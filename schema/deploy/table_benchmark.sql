@@ -15,7 +15,7 @@ create table ggircs_portal.benchmark (
   updated_at timestamp with time zone not null default now(),
   updated_by varchar(1000),
   deleted_at timestamp with time zone,
-  deleted_by varchar(1000)
+  deleted_by int references ggircs_portal.ciip_user
 );
 
 create trigger _100_timestamps

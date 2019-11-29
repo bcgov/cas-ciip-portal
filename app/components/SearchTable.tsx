@@ -9,11 +9,10 @@ interface Props {
 class SearchTableComponent extends Component<Props> {
   state = {
     orderByField: this.props.defaultOrderByField,
-    orderByDisplay: this.props.defaultOrderByDisplay,
     direction: 'ASC',
     searchField: null,
     searchValue: null,
-    searchDisplay: 'No Filter'
+    searchDisplay: 'Search by: '
   };
 
   toggleDirection = () => {
@@ -22,32 +21,28 @@ class SearchTableComponent extends Component<Props> {
       : this.setState({direction: 'ASC'});
   };
 
-  sortApplications = (event, eventKey) => {
+  sortColumn = column => {
+    this.toggleDirection();
     this.setState({
-      orderByField: eventKey,
-      orderByDisplay: event.target.text
+      orderByField: column
     });
   };
 
-  applySearchField = (event, eventKey) => {
+  applySearchField = column => {
     this.setState({
-      searchField: eventKey,
-      searchDisplay: event.target.text,
+      searchField: column,
       searchValue: null
     });
   };
 
-  applySearchValue = event => {
-    if (this.state.searchField !== 'none') {
-      this.setState({searchValue: event.nativeEvent.target[0].value});
+  applySearchValue = value => {
+    if (this.state.searchField !== undefined) {
+      this.setState({searchValue: value});
     }
   };
 
-  handleEvent = (event, eventKey) => {
-    event.preventDefault();
-    event.stopPropagation();
-    event.persist();
-    this[event.target.id](event, eventKey);
+  handleEvent = (action, value) => {
+    this[action](value);
   };
 
   render() {
@@ -56,7 +51,6 @@ class SearchTableComponent extends Component<Props> {
 
     return children({
       query,
-      orderByDisplay: this.state.orderByDisplay,
       orderByField: this.state.orderByField,
       direction: this.state.direction,
       searchField: this.state.searchField,

@@ -1,39 +1,106 @@
-import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
+import React, {useEffect} from 'react';
+import {Table, Col, Container, Row} from 'react-bootstrap';
+import {graphql, createRefetchContainer} from 'react-relay';
 import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import SortableTableHeader from '../../components/SortableTableHeader';
+import SearchBox from '../../components/SearchBox';
 import ProductRowItemContainer from './ProductRowItemContainer';
 
 interface Props {
   query: ProductListContainer_query;
-  mode?: string;
-  confirmationModalOpen?: boolean;
-  productRowActions?: any;
+  orderByField?: string;
+  orderByDisplay?: string;
+  searchField?: string;
+  searchValue?: string;
+  direction?: string;
+  searchDisplay?: string;
+  handleEvent: (...args: any[]) => void;
+  relay: any;
 }
 
 export const ProductList: React.FunctionComponent<Props> = ({
   query,
-  mode,
-  confirmationModalOpen,
-  productRowActions
+  relay,
+  orderByField,
+  searchField,
+  searchValue,
+  searchDisplay,
+  direction,
+  handleEvent
 }) => {
-  if (
-    query &&
-    (query.active || query.archived) &&
-    (query.active.edges || query.archived.edges)
-  ) {
-    const allProducts = [...query.active.edges, ...query.archived.edges];
+  useEffect(() => {
+    const refetchVariables = {
+      searchField,
+      searchValue,
+      orderByField,
+      direction
+    };
+    relay.refetch(refetchVariables);
+  });
+
+  if (query && query.searchProducts && query.searchProducts.edges) {
+    const allProducts = query.searchProducts.edges;
+    const tableHeaders = [
+      {columnName: 'name', displayName: 'Product'},
+      {columnName: 'units', displayName: 'Units'},
+      {columnName: 'benchmark', displayName: 'Benchmark'},
+      {columnName: 'eligibility_threshold', displayName: 'Elig. Threshold'},
+      {columnName: 'state', displayName: 'Status'}
+    ];
+    const dropdownSortItems = [
+      'Product',
+      'Units',
+      'Benchmark',
+      'Elig. Threshold',
+      'Status'
+    ];
+
+    const displayNameToColumnNameMap = {
+      Product: 'name',
+      Units: 'units',
+      Benchmark: 'benchmark',
+      'Elig. Threshold': 'eligibility_threshold',
+      Status: 'state'
+    };
+
     return (
       <>
-        {allProducts.map(({node}) => (
-          <ProductRowItemContainer
-            key={node.id}
-            product={node}
-            mode={mode}
-            confirmationModalOpen={confirmationModalOpen}
-            productRowActions={productRowActions}
-          />
-        ))}
+        <Container>
+          <Row>
+            <Col md={{span: 12, offset: 6}}>
+              <SearchBox
+                dropdownSortItems={dropdownSortItems}
+                handleEvent={handleEvent}
+                displayNameToColumnNameMap={displayNameToColumnNameMap}
+                searchDisplay={searchDisplay}
+              />
+            </Col>
+          </Row>
+        </Container>
+        <Table striped hover>
+          <thead style={{color: 'white', background: '#003366'}}>
+            <tr>
+              {tableHeaders.map(header => (
+                <SortableTableHeader
+                  key={header.columnName}
+                  sort={handleEvent}
+                  headerVariables={header}
+                />
+              ))}
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allProducts.map(({node}) => (
+              <ProductRowItemContainer
+                key={node.id}
+                product={node}
+                userRowId={query.session.ciipUserBySub.rowId}
+              />
+            ))}
+          </tbody>
+        </Table>
       </>
     );
   }
@@ -45,33 +112,56 @@ export const ProductList: React.FunctionComponent<Props> = ({
 // we need the first two billion edges to force graphql to return the right type
 // @see https://relay.dev/docs/en/pagination-container#connection
 // https://www.prisma.io/blog/relay-moderns-connection-directive-1ecd8322f5c8
-export default createFragmentContainer(ProductList, {
-  query: graphql`
-    fragment ProductListContainer_query on Query {
-      active: allProducts(first: 2147483647, condition: {state: "active"})
-        @connection(
-          key: "ProductListContainer_active"
-          filters: ["condition"]
+export default createRefetchContainer(
+  ProductList,
+  {
+    query: graphql`
+      fragment ProductListContainer_query on Query
+        @argumentDefinitions(
+          searchField: {type: "String"}
+          searchValue: {type: "String"}
+          orderByField: {type: "String"}
+          direction: {type: "String"}
         ) {
-        edges {
-          node {
-            id
-            ...ProductRowItemContainer_product
+        session {
+          ciipUserBySub {
+            rowId
+          }
+        }
+        searchProducts(
+          first: 20
+          searchField: $searchField
+          searchValue: $searchValue
+          orderByField: $orderByField
+          direction: $direction
+        ) @connection(key: "ProductListContainer_searchProducts") {
+          edges {
+            cursor
+            node {
+              id
+              ...ProductRowItemContainer_product
+            }
           }
         }
       }
-      archived: allProducts(first: 2147483647, condition: {state: "archived"})
-        @connection(
-          key: "ProductListContainer_archived"
-          filters: ["condition"]
-        ) {
-        edges {
-          node {
-            id
-            ...ProductRowItemContainer_product
-          }
-        }
+    `
+  },
+  graphql`
+    query ProductListContainerRefetchQuery(
+      $searchField: String
+      $searchValue: String
+      $orderByField: String
+      $direction: String
+    ) {
+      query {
+        ...ProductListContainer_query
+          @arguments(
+            searchField: $searchField
+            searchValue: $searchValue
+            orderByField: $orderByField
+            direction: $direction
+          )
       }
     }
   `
-});
+);

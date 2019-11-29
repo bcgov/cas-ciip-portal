@@ -58,3 +58,4 @@ function_create_application_review_mutation_chain [table_application table_appli
 function_form_result_application_review [table_application_review table_form_result] 2019-11-26T21:07:01Z Hamza Javed <hamza@button.is> # Computed column that returns the latest application review for a given form result
 function_get_carbon_tax_data [schema_ggircs_portal] 2019-11-28T18:45:57Z Dylan Leard <dylan@button.is> # Function retrieves carbon tax data for CIIP carbon tax calculator
 view_ciip_carbon_tax_calculation [function_get_carbon_tax_data view_ciip_fuel table_application] 2019-11-28T19:23:39Z Dylan Leard <dylan@button.is> # Calculates carbon tax based on ciip fuel data
+function_search_products [table_product] 2019-11-21T19:48:58Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Custom search function for products

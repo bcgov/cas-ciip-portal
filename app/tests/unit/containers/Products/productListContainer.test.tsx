@@ -5,13 +5,23 @@ import {ProductList} from 'containers/Products/ProductListContainer';
 describe('ProductList', () => {
   it('should render the product list', async () => {
     const query = {
-      active: {
-        edges: [{node: {id: 'product-1'}}]
+      ' $refType': 'ProductListContainer_query',
+      searchProducts: {
+        edges: [
+          {
+            node: {
+              id: 'abc'
+            }
+          }
+        ]
       },
-      archived: {
-        edges: [{node: {id: 'product-2'}}]
+      session: {
+        ciipUserBySub: {
+          rowId: 1
+        }
       }
     };
+    // @ts-ignore
     const r = shallow(<ProductList query={query} />);
     expect(r).toMatchSnapshot();
     expect(
@@ -19,12 +29,6 @@ describe('ProductList', () => {
         .find('Relay(ProductRowItemComponent)')
         .first()
         .prop('product')
-    ).toBe(query.active.edges[0].node);
-    expect(
-      r
-        .find('Relay(ProductRowItemComponent)')
-        .last()
-        .prop('product')
-    ).toBe(query.archived.edges[0].node);
+    ).toBe(query.searchProducts.edges[0].node);
   });
 });

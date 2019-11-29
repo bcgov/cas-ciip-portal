@@ -37,7 +37,7 @@ describe('saveProductMutation', () => {
       'Variable "$input" of required type "SaveProductMutationChainInput!" was not provided.'
     );
   });
-  it('Should throw an error if a variable is missing', () => {
+  it('Should throw an error if passed incorrect variables', () => {
     let error;
     try {
       tester.mock(mutation, {
@@ -46,7 +46,8 @@ describe('saveProductMutation', () => {
           newDescription: 'Sidekick',
           newState: 'active',
           newParent: [1],
-          benchmarkId: 1
+          newUnits: 'm3',
+          boop: 123
         }
       });
     } catch (error_) {
@@ -54,7 +55,7 @@ describe('saveProductMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { newName: "Morty", newDescription: "Sidekick", newState: "active", newParent: [1], benchmarkId: 1 }; Field prevId of required type Int! was not provided.'
+      'Variable "$input" got invalid value { newName: "Morty", newDescription: "Sidekick", newState: "active", newParent: [1], newUnits: "m3", boop: 123 }; Field "boop" is not defined by type SaveProductMutationChainInput.'
     );
   });
   it('Should return id(string) if valid', () => {
@@ -65,7 +66,7 @@ describe('saveProductMutation', () => {
         newDescription: 'Sidekick',
         newState: 'active',
         newParent: [1],
-        benchmarkId: 1
+        newUnits: 'm3'
       }
     });
 

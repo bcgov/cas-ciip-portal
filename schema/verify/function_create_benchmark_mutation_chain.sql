@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.create_benchmark_mutation_chain(int, int, int, timestamptz, int)'::regprocedure);
+select pg_get_functiondef('ggircs_portal.create_benchmark_mutation_chain(int, int, int, timestamptz, timestamptz, int)'::regprocedure);
 
 rollback;
