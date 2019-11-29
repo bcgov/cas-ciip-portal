@@ -11,7 +11,9 @@ create table ggircs_portal.application_status (
     created_at timestamp with time zone not null default now(),
     created_by varchar(1000),
     updated_at timestamp with time zone not null default now(),
-    updated_by varchar(1000)
+    updated_by varchar(1000),
+    deleted_at timestamp with time zone,
+    deleted_by int references ggircs_portal.ciip_user
 );
 
 create trigger _100_timestamps
@@ -27,5 +29,7 @@ comment on column ggircs_portal.application_status.created_at is 'The date the a
 comment on column ggircs_portal.application_status.created_by is 'The person who updated the application status';
 comment on column ggircs_portal.application_status.updated_at is 'The date the application status was updated';
 comment on column ggircs_portal.application_status.updated_by is 'The person who updated the application status';
+comment on column ggircs_portal.application_status.deleted_at is 'The date the application status was deleted';
+comment on column ggircs_portal.application_status.deleted_by is 'The person who deleted the application status';
 
 commit;

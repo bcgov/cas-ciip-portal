@@ -9,11 +9,13 @@ begin
   if tg_op = 'INSERT' then
     new.created_at = now();
     new.updated_at = now();
-  elsif tg_op = 'UPDATE' and exists (select deleted_by from old) and old.deleted_by is distinct from new.deleted_by then
-    new.deleted_at = now();
   elsif tg_op = 'UPDATE' then
-    new.created_at = old.created_at;
-    new.updated_at = greatest(now(), old.updated_at + interval '1 millisecond');
+    if old.deleted_by is distinct from new.deleted_by then
+      new.deleted_at = now();
+    else
+      new.created_at = old.created_at;
+      new.updated_at = greatest(now(), old.updated_at + interval '1 millisecond');
+    end if;
   end if;
   return new;
 end;
