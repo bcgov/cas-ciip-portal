@@ -39,7 +39,6 @@ begin;
         and    table_name = 'fuel_charge'
       )
       then
-      raise notice 'boop';
       return query (
         select fm.id as fuel_mapping_id,
                ctd.carbon_taxed, ctd.cta_rate_units, ctd.unit_conversion_factor,
