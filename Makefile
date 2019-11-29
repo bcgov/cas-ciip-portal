@@ -1,6 +1,7 @@
 SHELL := /usr/bin/env bash
-ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),whoami lint configure build_app build_schema install install_test))
+ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build install install_test))
 include .pipeline/oc.mk
+include .pipeline/make.mk
 endif
 
 PATHFINDER_PREFIX := wksv3k
@@ -52,8 +53,7 @@ build_app: whoami
 
 .PHONY: build
 build: $(call make_help,build,Builds the source into an image in the tools project namespace)
-build: build_schema
-build: build_app
+build: build_schema build_app
 
 PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)ciip-portal-schema-deploy --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
 
@@ -62,11 +62,11 @@ install: whoami
 install:
 	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-schema)
 	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-app)
-	$(call oc_wait_for_deploy,$(PROJECT_PREFIX)postgres)
+	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)postgres-master)
 	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
 	$(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-deploy)
 	$(call oc_deploy)
-	$(call oc_wait_for_deploy,$(PROJECT_PREFIX)ciip-portal-app)
+	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)ciip-portal-app)
 
 .PHONY: install_test
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)

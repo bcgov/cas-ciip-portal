@@ -59,7 +59,7 @@ objects:
           - name: PGPORT
             value: "5432"
           - name: PGHOST
-            value: ${PREFIX}ggircs-postgres
+            value: ${PREFIX}postgres-master
           - name: PORT
             value: "3000"
           image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}ciip-portal-app:${GIT_SHA1}
