@@ -11,5 +11,6 @@ module.exports = {
     '**/__generated__/**',
     '**/server/**'
   ],
-  schema: './server/schema.graphql'
+  schema: './server/schema.graphql',
+  noFutureProofEnums: true
 };

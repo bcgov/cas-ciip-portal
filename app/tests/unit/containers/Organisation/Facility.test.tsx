@@ -24,7 +24,7 @@ describe('Facility', () => {
               id: 'id',
               applicationStatus: {
                 id: 'ids',
-                applicationStatus: 'pending'
+                applicationStatus: 'PENDING'
               }
             }
           }
@@ -66,7 +66,7 @@ describe('Facility', () => {
 
   it('should render a Resume Application button if an applicationID exists && has a draft status', async () => {
     facility.applicationsByFacilityId.edges[0].node.applicationStatus.applicationStatus =
-      'draft';
+      'DRAFT';
     const r = shallow(
       <FacilityComponent relay={{environment: {}}} facility={facility} />
     );

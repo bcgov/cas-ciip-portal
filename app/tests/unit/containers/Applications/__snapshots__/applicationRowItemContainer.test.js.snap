@@ -22,7 +22,6 @@ exports[`ApplicationRowItem should render the application 1`] = `
           "width": "100%",
         }
       }
-      variant="info"
     >
       pending
     </Badge>
