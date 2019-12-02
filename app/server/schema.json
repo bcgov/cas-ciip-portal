@@ -8933,24 +8933,24 @@
               "deprecationReason": null
             },
             {
-              "name": "productForm",
-              "description": "The id of the product form definition, for products that require more complex calculation",
+              "name": "productFormByProductFormId",
+              "description": "Reads a single `ProductForm` that is related to this `Product`.",
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
+                "kind": "OBJECT",
+                "name": "ProductForm",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "productFormByProductForm",
-              "description": "Reads a single `ProductForm` that is related to this `Product`.",
+              "name": "productFormId",
+              "description": "The id of the product form definition, for products that require more complex calculation",
               "args": [],
               "type": {
-                "kind": "OBJECT",
-                "name": "ProductForm",
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -9102,7 +9102,7 @@
               "deprecationReason": null
             },
             {
-              "name": "productsByProductForm",
+              "name": "productsByProductFormId",
               "description": "Reads and enables pagination through a set of `Product`.",
               "args": [
                 {
@@ -9315,8 +9315,8 @@
               "defaultValue": null
             },
             {
-              "name": "productForm",
-              "description": "Checks for equality with the object’s `productForm` field.",
+              "name": "productFormId",
+              "description": "Checks for equality with the object’s `productFormId` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -9502,13 +9502,13 @@
               "deprecationReason": null
             },
             {
-              "name": "PRODUCT_FORM_ASC",
+              "name": "PRODUCT_FORM_ID_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "PRODUCT_FORM_DESC",
+              "name": "PRODUCT_FORM_ID_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -30369,7 +30369,7 @@
               "defaultValue": null
             },
             {
-              "name": "productForm",
+              "name": "productFormId",
               "description": "The id of the product form definition, for products that require more complex calculation",
               "type": {
                 "kind": "SCALAR",
@@ -30484,7 +30484,7 @@
               "deprecationReason": null
             },
             {
-              "name": "productFormByProductForm",
+              "name": "productFormByProductFormId",
               "description": "Reads a single `ProductForm` that is related to this `Product`.",
               "args": [],
               "type": {
@@ -33679,7 +33679,7 @@
               "deprecationReason": null
             },
             {
-              "name": "productFormByProductForm",
+              "name": "productFormByProductFormId",
               "description": "Reads a single `ProductForm` that is related to this `Product`.",
               "args": [],
               "type": {
@@ -34669,7 +34669,7 @@
               "deprecationReason": null
             },
             {
-              "name": "productFormByProductForm",
+              "name": "productFormByProductFormId",
               "description": "Reads a single `ProductForm` that is related to this `Product`.",
               "args": [],
               "type": {
@@ -38978,7 +38978,7 @@
               "defaultValue": null
             },
             {
-              "name": "productForm",
+              "name": "productFormId",
               "description": "The id of the product form definition, for products that require more complex calculation",
               "type": {
                 "kind": "SCALAR",
@@ -39093,7 +39093,7 @@
               "deprecationReason": null
             },
             {
-              "name": "productFormByProductForm",
+              "name": "productFormByProductFormId",
               "description": "Reads a single `ProductForm` that is related to this `Product`.",
               "args": [],
               "type": {

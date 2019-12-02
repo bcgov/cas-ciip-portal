@@ -3075,7 +3075,7 @@ type CreateProductPayload {
   ): ProductsEdge
 
   """Reads a single `ProductForm` that is related to this `Product`."""
-  productFormByProductForm: ProductForm
+  productFormByProductFormId: ProductForm
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -4031,7 +4031,7 @@ type DeleteProductPayload {
   ): ProductsEdge
 
   """Reads a single `ProductForm` that is related to this `Product`."""
-  productFormByProductForm: ProductForm
+  productFormByProductFormId: ProductForm
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -7295,13 +7295,13 @@ type Product implements Node {
   """The parent ID(s) (previous state) of the product"""
   parent: [Int]
 
+  """Reads a single `ProductForm` that is related to this `Product`."""
+  productFormByProductFormId: ProductForm
+
   """
   The id of the product form definition, for products that require more complex calculation
   """
-  productForm: Int
-
-  """Reads a single `ProductForm` that is related to this `Product`."""
-  productFormByProductForm: ProductForm
+  productFormId: Int
 
   """Unique ID for the product"""
   rowId: Int!
@@ -7346,8 +7346,8 @@ input ProductCondition {
   """Checks for equality with the object’s `parent` field."""
   parent: [Int]
 
-  """Checks for equality with the object’s `productForm` field."""
-  productForm: Int
+  """Checks for equality with the object’s `productFormId` field."""
+  productFormId: Int
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
@@ -7386,7 +7386,7 @@ type ProductForm implements Node {
   productionCalculationFormula: String!
 
   """Reads and enables pagination through a set of `Product`."""
-  productsByProductForm(
+  productsByProductFormId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -7535,7 +7535,7 @@ input ProductInput {
   """
   The id of the product form definition, for products that require more complex calculation
   """
-  productForm: Int
+  productFormId: Int
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -7580,7 +7580,7 @@ input ProductPatch {
   """
   The id of the product form definition, for products that require more complex calculation
   """
-  productForm: Int
+  productFormId: Int
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -7644,8 +7644,8 @@ enum ProductsOrderBy {
   PARENT_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
-  PRODUCT_FORM_ASC
-  PRODUCT_FORM_DESC
+  PRODUCT_FORM_ID_ASC
+  PRODUCT_FORM_ID_DESC
   STATE_ASC
   STATE_DESC
   UNITS_ASC
@@ -9327,7 +9327,7 @@ type SaveProductMutationChainPayload {
   ): ProductsEdge
 
   """Reads a single `ProductForm` that is related to this `Product`."""
-  productFormByProductForm: ProductForm
+  productFormByProductFormId: ProductForm
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -10340,7 +10340,7 @@ type UpdateProductPayload {
   ): ProductsEdge
 
   """Reads a single `ProductForm` that is related to this `Product`."""
-  productFormByProductForm: ProductForm
+  productFormByProductFormId: ProductForm
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
