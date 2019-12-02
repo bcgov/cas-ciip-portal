@@ -42,16 +42,6 @@ class ApplicationReview extends Component<Props> {
     }
   `;
 
-  // Static getInitialProps() {
-  //   return {
-  //     variables: {
-  //       condition: {
-  //         rowId: null
-  //       }
-  //     }
-  //   };
-  // }
-
   render() {
     const {query} = this.props;
     const {session} = query || {};

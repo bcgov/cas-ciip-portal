@@ -1,8 +1,14 @@
 import React from 'react';
 import {Row, Col, Dropdown} from 'react-bootstrap';
-import {graphql, createFragmentContainer} from 'react-relay';
+import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import createApplicationStatusMutation from 'mutations/application/createApplicationStatusMutation';
+
+interface Props {
+  applicationStatus;
+  applicationRowId;
+  relay: RelayProp;
+}
 
 const statusBadgeColor = {
   PENDING: 'info',
@@ -11,7 +17,7 @@ const statusBadgeColor = {
   APPROVED: 'success'
 };
 
-export const ApplicationStatusComponent = props => {
+export const ApplicationStatusComponent: React.FunctionComponent<Props> = props => {
   // Save Application status to database
   const setApplicationStatus = (eventKey, event) => {
     event.preventDefault();
