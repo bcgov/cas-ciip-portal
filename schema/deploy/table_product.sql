@@ -10,6 +10,7 @@ create table ggircs_portal.product (
   units varchar(1000),
   state varchar(1000),
   parent integer ARRAY,
+  product_form integer references ggircs_portal.product_form(id),
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
   updated_at timestamp with time zone not null default now(),
@@ -23,6 +24,7 @@ comment on column ggircs_portal.product.id is 'Unique ID for the product';
 comment on column ggircs_portal.product.name is 'The name of the product';
 comment on column ggircs_portal.product.description is 'The description of the product';
 comment on column ggircs_portal.product.units is 'The unit of measure for the product';
+comment on column ggircs_portal.product.product_form is 'The id of the product form definition, for products that require more complex calculation';
 comment on column ggircs_portal.product.state is 'The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)';
 comment on column ggircs_portal.product.parent is 'The parent ID(s) (previous state) of the product';
 comment on column ggircs_portal.product.created_at is 'Creation date of row';
