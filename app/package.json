@@ -127,6 +127,7 @@
     "react-relay": "^7.0.0",
     "react-relay-network-modern": "^4.1.0",
     "react-relay-network-modern-ssr": "^1.2.4",
+    "react-signature-canvas": "^1.0.3",
     "relay-runtime": "^7.0.0",
     "sinon": "^7.4.1",
     "uuid": "^3.3.3"

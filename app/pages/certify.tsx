@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {certifyQueryResponse} from 'certifyQuery.graphql';
-import uuidv4 from 'uuid/v4';
+import CertificationPage from 'containers/Forms/CertificationPage';
+import CertificationSignature from 'containers/Forms/CertificationSignature';
 import DefaultLayout from '../layouts/default-layout';
 
 interface Props {
@@ -9,22 +10,37 @@ interface Props {
   router: any;
 }
 
-class Applications extends Component<Props> {
+class Certify extends Component<Props> {
   static query = graphql`
-    query certifyQuery {
+    query certifyQuery($rowId: UUID!) {
       query {
         session {
           ...defaultLayout_session
+        }
+        certificationUrlByRowId(rowId: $rowId) {
+          id
+          rowId
+          applicationByApplicationId {
+            ...CertificationPage_application
+            #   id
+            #   formResultsByApplicationId {
+            #     edges {
+            #       node {
+            #         id
+            #         formResult
+            #       }
+            #     }
+            #   }
+          }
         }
       }
     }
   `;
 
   render() {
-    const {query, router} = this.props;
-    const uuid = uuidv4();
+    const {query} = this.props;
     console.log(this.props);
-    console.log(uuid);
+    const certificationUrl = query?.certificationUrlByRowId?.rowId;
     return (
       <>
         <DefaultLayout
@@ -33,11 +49,30 @@ class Applications extends Component<Props> {
           needsUser={false}
           needsSession={false}
         >
-          {router.query.url ? router.query.url : 'Nothing to see here'}
+          {certificationUrl ? certificationUrl : 'Nothing to see here'}
+          <CertificationPage
+            application={
+              query.certificationUrlByRowId.applicationByApplicationId
+            }
+            isAnalyst={false}
+          />
+          <CertificationSignature />
         </DefaultLayout>
+        <style jsx global>
+          {`
+            .signatureCanvas {
+              border: 1px solid #bbb;
+              padding: 30px;
+              width: 80%;
+              background: #eee;
+              border-radius: 6px;
+              margin-bottom: 60px;
+            }
+          `}
+        </style>
       </>
     );
   }
 }
 
-export default Applications;
+export default Certify;

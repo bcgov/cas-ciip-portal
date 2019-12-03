@@ -2908,7 +2908,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "SCALAR",
-                      "name": "Int",
+                      "name": "UUID",
                       "ofType": null
                     }
                   },
@@ -10090,16 +10090,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationUrlString",
-              "description": "Checks for equality with the object’s `certificationUrlString` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "createdAt",
               "description": "Checks for equality with the object’s `createdAt` field.",
               "type": {
@@ -10144,7 +10134,7 @@
               "description": "Checks for equality with the object’s `rowId` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "UUID",
                 "ofType": null
               },
               "defaultValue": null
@@ -10175,6 +10165,16 @@
           "possibleTypes": null
         },
         {
+          "kind": "SCALAR",
+          "name": "UUID",
+          "description": "A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "ENUM",
           "name": "CertificationUrlsOrderBy",
           "description": "Methods to use when ordering `CertificationUrl`.",
@@ -10190,18 +10190,6 @@
             },
             {
               "name": "APPLICATION_ID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "CERTIFICATION_URL_STRING_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "CERTIFICATION_URL_STRING_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -10467,22 +10455,6 @@
               "deprecationReason": null
             },
             {
-              "name": "certificationUrlString",
-              "description": "The value of the certification_url",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "ciipUserByDeletedBy",
               "description": "Reads a single `CiipUser` that is related to this `CertificationUrl`.",
               "args": [],
@@ -10571,7 +10543,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "UUID",
                   "ofType": null
                 }
               },
@@ -12725,16 +12697,6 @@
               "defaultValue": null
             }
           ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "UUID",
-          "description": "A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).",
-          "fields": null,
-          "inputFields": null,
           "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
@@ -28916,20 +28878,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationUrlString",
-              "description": "The value of the certification_url",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
               "name": "createdAt",
               "description": "Creation date of row",
               "type": {
@@ -28966,6 +28914,20 @@
                 "kind": "SCALAR",
                 "name": "Int",
                 "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "rowId",
+              "description": "Unique ID for the certification_url",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "UUID",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             },
@@ -33313,7 +33275,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "UUID",
                   "ofType": null
                 }
               },
@@ -37373,16 +37335,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationUrlString",
-              "description": "The value of the certification_url",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "createdAt",
               "description": "Creation date of row",
               "type": {
@@ -37418,6 +37370,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "rowId",
+              "description": "Unique ID for the certification_url",
+              "type": {
+                "kind": "SCALAR",
+                "name": "UUID",
                 "ofType": null
               },
               "defaultValue": null
@@ -37587,7 +37549,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "UUID",
                   "ofType": null
                 }
               },

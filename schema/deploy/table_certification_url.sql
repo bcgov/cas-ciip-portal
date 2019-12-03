@@ -4,9 +4,8 @@
 begin;
 
 create table ggircs_portal.certification_url (
-  id integer primary key generated always as identity,
+  id uuid primary key,
   application_id int not null references ggircs_portal.application(id),
-  certification_url_string varchar(1000) not null,
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
   updated_at timestamp with time zone not null default now(),
@@ -23,7 +22,6 @@ create trigger _100_timestamps
 comment on table ggircs_portal.certification_url is 'Table containing the certification_url for an application';
 comment on column ggircs_portal.certification_url.id is 'Unique ID for the certification_url';
 comment on column ggircs_portal.certification_url.application_id is 'Foreign key to the application';
-comment on column ggircs_portal.certification_url.certification_url_string is 'The value of the certification_url';
 comment on column ggircs_portal.certification_url.created_at is 'Creation date of row';
 comment on column ggircs_portal.certification_url.created_by is 'Creator of row';
 comment on column ggircs_portal.certification_url.updated_at is 'Last update date of row';

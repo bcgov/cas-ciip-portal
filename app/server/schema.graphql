@@ -923,9 +923,6 @@ type CertificationUrl implements Node {
   """Foreign key to the application"""
   applicationId: Int!
 
-  """The value of the certification_url"""
-  certificationUrlString: String!
-
   """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
   ciipUserByDeletedBy: CiipUser
 
@@ -947,7 +944,7 @@ type CertificationUrl implements Node {
   id: ID!
 
   """Unique ID for the certification_url"""
-  rowId: Int!
+  rowId: UUID!
 
   """Last update date of row"""
   updatedAt: Datetime!
@@ -964,9 +961,6 @@ input CertificationUrlCondition {
   """Checks for equality with the object’s `applicationId` field."""
   applicationId: Int
 
-  """Checks for equality with the object’s `certificationUrlString` field."""
-  certificationUrlString: String
-
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -980,7 +974,7 @@ input CertificationUrlCondition {
   deletedBy: Int
 
   """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
+  rowId: UUID
 
   """Checks for equality with the object’s `updatedAt` field."""
   updatedAt: Datetime
@@ -994,9 +988,6 @@ input CertificationUrlInput {
   """Foreign key to the application"""
   applicationId: Int!
 
-  """The value of the certification_url"""
-  certificationUrlString: String!
-
   """Creation date of row"""
   createdAt: Datetime
 
@@ -1008,6 +999,9 @@ input CertificationUrlInput {
 
   """The user who deleted the row"""
   deletedBy: Int
+
+  """Unique ID for the certification_url"""
+  rowId: UUID!
 
   """Last update date of row"""
   updatedAt: Datetime
@@ -1023,9 +1017,6 @@ input CertificationUrlPatch {
   """Foreign key to the application"""
   applicationId: Int
 
-  """The value of the certification_url"""
-  certificationUrlString: String
-
   """Creation date of row"""
   createdAt: Datetime
 
@@ -1037,6 +1028,9 @@ input CertificationUrlPatch {
 
   """The user who deleted the row"""
   deletedBy: Int
+
+  """Unique ID for the certification_url"""
+  rowId: UUID
 
   """Last update date of row"""
   updatedAt: Datetime
@@ -1077,8 +1071,6 @@ type CertificationUrlsEdge {
 enum CertificationUrlsOrderBy {
   APPLICATION_ID_ASC
   APPLICATION_ID_DESC
-  CERTIFICATION_URL_STRING_ASC
-  CERTIFICATION_URL_STRING_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
@@ -3699,7 +3691,7 @@ input DeleteCertificationUrlByRowIdInput {
   clientMutationId: String
 
   """Unique ID for the certification_url"""
-  rowId: Int!
+  rowId: UUID!
 }
 
 """All input for the `deleteCertificationUrl` mutation."""
@@ -8941,7 +8933,7 @@ type Query implements Node {
     """
     id: ID!
   ): CertificationUrl
-  certificationUrlByRowId(rowId: Int!): CertificationUrl
+  certificationUrlByRowId(rowId: UUID!): CertificationUrl
 
   """Reads a single `CiipApplication` using its globally unique `ID`."""
   ciipApplication(
@@ -10043,7 +10035,7 @@ input UpdateCertificationUrlByRowIdInput {
   clientMutationId: String
 
   """Unique ID for the certification_url"""
-  rowId: Int!
+  rowId: UUID!
 }
 
 """All input for the `updateCertificationUrl` mutation."""
