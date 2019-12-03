@@ -30,16 +30,19 @@ const FuelFields: React.FunctionComponent<Props> = ({
           <SearchDropdown
             placeholder="Select fuel or type to filter..."
             defaultInputValue={formData.fuelType}
-            options={{
-              items: query.allFuels.edges.map(({node}) => node.name),
-              id: 'fuelId'
-            }}
-            onChange={options => {
-              onChange({
-                ...formData,
-                fuelType: options[0],
-                fuelUnits: undefined
-              });
+            options={query.allFuels.edges.map(({node}) => ({
+              id: node.rowId,
+              name: node.name
+            }))}
+            inputProps={{id: 'id.fuelType'}}
+            onChange={(items: any[]) => {
+              if (items.length > 0) {
+                onChange({
+                  ...formData,
+                  fuelType: items[0].label,
+                  fuelUnits: undefined
+                });
+              }
             }}
           />
         </Form.Group>
@@ -107,6 +110,7 @@ export default createFragmentContainer(FuelFields, {
           node {
             name
             units
+            rowId
           }
         }
       }

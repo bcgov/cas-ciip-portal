@@ -4,7 +4,8 @@ import {Typeahead} from 'react-bootstrap-typeahead';
 interface Props {
   placeholder?: string;
   defaultInputValue: string;
-  options: {items: string[] | object[]; id: string};
+  options: Array<{id: number; name: string}>;
+  inputProps: object;
   onChange: (items?: string[]) => void;
 }
 
@@ -12,6 +13,7 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
   placeholder,
   defaultInputValue,
   options,
+  inputProps,
   onChange
 }) => {
   return (
@@ -23,12 +25,13 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
         }
 
         // Filter by input
-        return option.toLowerCase().includes(props.text.toLowerCase());
+        return option.name.toLowerCase().includes(props.text.toLowerCase());
       }}
       placeholder={placeholder || 'Search...'}
       defaultInputValue={defaultInputValue}
-      options={options.items}
-      id={options.id}
+      options={options}
+      inputProps={inputProps}
+      labelKey="name"
       onChange={items => onChange(items)}
     />
   );
