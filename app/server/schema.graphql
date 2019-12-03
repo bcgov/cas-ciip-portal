@@ -31,6 +31,35 @@ type Application implements Node {
     orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationStatusesConnection!
 
+  """Reads and enables pagination through a set of `CertificationUrl`."""
+  certificationUrlsByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CertificationUrlCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsConnection!
+
   """
   Reads a single `CiipApplication` that is related to this `Application`.
   """
@@ -882,6 +911,191 @@ type CarbonTaxDatum {
   rateEndDate: Date
   rateStartDate: Date
   unitConversionFactor: Int
+}
+
+"""Table containing the certification_url for an application"""
+type CertificationUrl implements Node {
+  """
+  Reads a single `Application` that is related to this `CertificationUrl`.
+  """
+  applicationByApplicationId: Application
+
+  """Foreign key to the application"""
+  applicationId: Int!
+
+  """The value of the certification_url"""
+  certificationUrlString: String!
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Creation date of row"""
+  createdAt: Datetime!
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """Unique ID for the certification_url"""
+  rowId: Int!
+
+  """Last update date of row"""
+  updatedAt: Datetime!
+
+  """The user who last updated the row"""
+  updatedBy: String
+}
+
+"""
+A condition to be used against `CertificationUrl` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CertificationUrlCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `certificationUrlString` field."""
+  certificationUrlString: String
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: Int
+
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
+}
+
+"""An input for mutations affecting `CertificationUrl`"""
+input CertificationUrlInput {
+  """Foreign key to the application"""
+  applicationId: Int!
+
+  """The value of the certification_url"""
+  certificationUrlString: String!
+
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+
+  """Last update date of row"""
+  updatedAt: Datetime
+
+  """The user who last updated the row"""
+  updatedBy: String
+}
+
+"""
+Represents an update to a `CertificationUrl`. Fields that are set will be updated.
+"""
+input CertificationUrlPatch {
+  """Foreign key to the application"""
+  applicationId: Int
+
+  """The value of the certification_url"""
+  certificationUrlString: String
+
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+
+  """Last update date of row"""
+  updatedAt: Datetime
+
+  """The user who last updated the row"""
+  updatedBy: String
+}
+
+"""A connection to a list of `CertificationUrl` values."""
+type CertificationUrlsConnection {
+  """
+  A list of edges which contains the `CertificationUrl` and cursor to aid in pagination.
+  """
+  edges: [CertificationUrlsEdge!]!
+
+  """A list of `CertificationUrl` objects."""
+  nodes: [CertificationUrl]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CertificationUrl` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `CertificationUrl` edge in the connection."""
+type CertificationUrlsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CertificationUrl` at the end of the edge."""
+  node: CertificationUrl
+}
+
+"""Methods to use when ordering `CertificationUrl`."""
+enum CertificationUrlsOrderBy {
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  CERTIFICATION_URL_STRING_ASC
+  CERTIFICATION_URL_STRING_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
+  ID_ASC
+  ID_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
 }
 
 type CiipApplication implements Node {
@@ -1882,6 +2096,35 @@ type CiipUser implements Node {
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksConnection!
 
+  """Reads and enables pagination through a set of `CertificationUrl`."""
+  certificationUrlsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CertificationUrlCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsConnection!
+
   """Reads a single `CiipUser` that is related to this `CiipUser`."""
   ciipUserByDeletedBy: CiipUser
 
@@ -2633,6 +2876,49 @@ type CreateBenchmarkPayload {
   query: Query
 }
 
+"""All input for the create `CertificationUrl` mutation."""
+input CreateCertificationUrlInput {
+  """The `CertificationUrl` to be created by this mutation."""
+  certificationUrl: CertificationUrlInput!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+}
+
+"""The output of our create `CertificationUrl` mutation."""
+type CreateCertificationUrlPayload {
+  """
+  Reads a single `Application` that is related to this `CertificationUrl`.
+  """
+  applicationByApplicationId: Application
+
+  """The `CertificationUrl` that was created by this mutation."""
+  certificationUrl: CertificationUrl
+
+  """An edge for our `CertificationUrl`. May be used by Relay 1."""
+  certificationUrlEdge(
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsEdge
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
 """All input for the create `CiipApplicationWizard` mutation."""
 input CreateCiipApplicationWizardInput {
   """The `CiipApplicationWizard` to be created by this mutation."""
@@ -3019,6 +3305,41 @@ type CreateOrganisationPayload {
   query: Query
 }
 
+"""All input for the create `ProductForm` mutation."""
+input CreateProductFormInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `ProductForm` to be created by this mutation."""
+  productForm: ProductFormInput!
+}
+
+"""The output of our create `ProductForm` mutation."""
+type CreateProductFormPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ProductForm` that was created by this mutation."""
+  productForm: ProductForm
+
+  """An edge for our `ProductForm`. May be used by Relay 1."""
+  productFormEdge(
+    """The method to use when ordering `ProductForm`."""
+    orderBy: [ProductFormsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProductFormsEdge
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
 """All input for the create `Product` mutation."""
 input CreateProductInput {
   """
@@ -3047,6 +3368,9 @@ type CreateProductPayload {
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsEdge
+
+  """Reads a single `ProductForm` that is related to this `Product`."""
+  productFormByProductFormId: ProductForm
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -3359,6 +3683,64 @@ type DeleteBenchmarkPayload {
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteCertificationUrlByRowId` mutation."""
+input DeleteCertificationUrlByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """Unique ID for the certification_url"""
+  rowId: Int!
+}
+
+"""All input for the `deleteCertificationUrl` mutation."""
+input DeleteCertificationUrlInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `CertificationUrl` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `CertificationUrl` mutation."""
+type DeleteCertificationUrlPayload {
+  """
+  Reads a single `Application` that is related to this `CertificationUrl`.
+  """
+  applicationByApplicationId: Application
+
+  """The `CertificationUrl` that was deleted by this mutation."""
+  certificationUrl: CertificationUrl
+
+  """An edge for our `CertificationUrl`. May be used by Relay 1."""
+  certificationUrlEdge(
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsEdge
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedCertificationUrlId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -3919,6 +4301,56 @@ input DeleteProductByRowIdInput {
   rowId: Int!
 }
 
+"""All input for the `deleteProductFormByRowId` mutation."""
+input DeleteProductFormByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """A generated primary key id for the row"""
+  rowId: Int!
+}
+
+"""All input for the `deleteProductForm` mutation."""
+input DeleteProductFormInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ProductForm` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `ProductForm` mutation."""
+type DeleteProductFormPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedProductFormId: ID
+
+  """The `ProductForm` that was deleted by this mutation."""
+  productForm: ProductForm
+
+  """An edge for our `ProductForm`. May be used by Relay 1."""
+  productFormEdge(
+    """The method to use when ordering `ProductForm`."""
+    orderBy: [ProductFormsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProductFormsEdge
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
 """All input for the `deleteProduct` mutation."""
 input DeleteProductInput {
   """
@@ -3950,6 +4382,9 @@ type DeleteProductPayload {
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsEdge
+
+  """Reads a single `ProductForm` that is related to this `Product`."""
+  productFormByProductFormId: ProductForm
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -6054,6 +6489,14 @@ type Mutation {
     input: CreateBenchmarkMutationChainInput!
   ): CreateBenchmarkMutationChainPayload
 
+  """Creates a single `CertificationUrl`."""
+  createCertificationUrl(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateCertificationUrlInput!
+  ): CreateCertificationUrlPayload
+
   """Creates a single `CiipApplicationWizard`."""
   createCiipApplicationWizard(
     """
@@ -6142,6 +6585,14 @@ type Mutation {
     input: CreateProductInput!
   ): CreateProductPayload
 
+  """Creates a single `ProductForm`."""
+  createProductForm(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateProductFormInput!
+  ): CreateProductFormPayload
+
   """Creates a single `ReportingYear`."""
   createReportingYear(
     """
@@ -6221,6 +6672,22 @@ type Mutation {
     """
     input: DeleteBenchmarkByRowIdInput!
   ): DeleteBenchmarkPayload
+
+  """Deletes a single `CertificationUrl` using its globally unique id."""
+  deleteCertificationUrl(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCertificationUrlInput!
+  ): DeleteCertificationUrlPayload
+
+  """Deletes a single `CertificationUrl` using a unique key."""
+  deleteCertificationUrlByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCertificationUrlByRowIdInput!
+  ): DeleteCertificationUrlPayload
 
   """Deletes a single `CiipApplicationWizard` using its globally unique id."""
   deleteCiipApplicationWizard(
@@ -6398,6 +6865,22 @@ type Mutation {
     input: DeleteProductByRowIdInput!
   ): DeleteProductPayload
 
+  """Deletes a single `ProductForm` using its globally unique id."""
+  deleteProductForm(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteProductFormInput!
+  ): DeleteProductFormPayload
+
+  """Deletes a single `ProductForm` using a unique key."""
+  deleteProductFormByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteProductFormByRowIdInput!
+  ): DeleteProductFormPayload
+
   """Deletes a single `ReportingYear` using its globally unique id."""
   deleteReportingYear(
     """
@@ -6523,6 +7006,24 @@ type Mutation {
     """
     input: UpdateBenchmarkByRowIdInput!
   ): UpdateBenchmarkPayload
+
+  """
+  Updates a single `CertificationUrl` using its globally unique id and a patch.
+  """
+  updateCertificationUrl(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateCertificationUrlInput!
+  ): UpdateCertificationUrlPayload
+
+  """Updates a single `CertificationUrl` using a unique key and a patch."""
+  updateCertificationUrlByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateCertificationUrlByRowIdInput!
+  ): UpdateCertificationUrlPayload
 
   """
   Updates a single `CiipApplicationWizard` using its globally unique id and a patch.
@@ -6713,6 +7214,24 @@ type Mutation {
     """
     input: UpdateProductByRowIdInput!
   ): UpdateProductPayload
+
+  """
+  Updates a single `ProductForm` using its globally unique id and a patch.
+  """
+  updateProductForm(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateProductFormInput!
+  ): UpdateProductFormPayload
+
+  """Updates a single `ProductForm` using a unique key and a patch."""
+  updateProductFormByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateProductFormByRowIdInput!
+  ): UpdateProductFormPayload
 
   """
   Updates a single `ReportingYear` using its globally unique id and a patch.
@@ -7171,6 +7690,14 @@ type Product implements Node {
   """The parent ID(s) (previous state) of the product"""
   parent: [Int]
 
+  """Reads a single `ProductForm` that is related to this `Product`."""
+  productFormByProductFormId: ProductForm
+
+  """
+  The id of the product form definition, for products that require more complex calculation
+  """
+  productFormId: Int
+
   """Unique ID for the product"""
   rowId: Int!
 
@@ -7214,6 +7741,9 @@ input ProductCondition {
   """Checks for equality with the object’s `parent` field."""
   parent: [Int]
 
+  """Checks for equality with the object’s `productFormId` field."""
+  productFormId: Int
+
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 
@@ -7228,6 +7758,150 @@ input ProductCondition {
 
   """Checks for equality with the object’s `updatedBy` field."""
   updatedBy: String
+}
+
+"""
+The table that holds the custom form schemas and calculation formulas for complex products
+"""
+type ProductForm implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """The description of the custom form schema"""
+  productFormDescription: String
+
+  """The json schema used to render the form"""
+  productFormSchema: JSON!
+
+  """
+  The formula used to calculate the procuction value from the form inputs
+  """
+  productionCalculationFormula: String!
+
+  """Reads and enables pagination through a set of `Product`."""
+  productsByProductFormId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ProductCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Product`."""
+    orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProductsConnection!
+
+  """A generated primary key id for the row"""
+  rowId: Int!
+}
+
+"""
+A condition to be used against `ProductForm` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input ProductFormCondition {
+  """Checks for equality with the object’s `productFormDescription` field."""
+  productFormDescription: String
+
+  """Checks for equality with the object’s `productFormSchema` field."""
+  productFormSchema: JSON
+
+  """
+  Checks for equality with the object’s `productionCalculationFormula` field.
+  """
+  productionCalculationFormula: String
+
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+}
+
+"""An input for mutations affecting `ProductForm`"""
+input ProductFormInput {
+  """The description of the custom form schema"""
+  productFormDescription: String
+
+  """The json schema used to render the form"""
+  productFormSchema: JSON!
+
+  """
+  The formula used to calculate the procuction value from the form inputs
+  """
+  productionCalculationFormula: String!
+}
+
+"""
+Represents an update to a `ProductForm`. Fields that are set will be updated.
+"""
+input ProductFormPatch {
+  """The description of the custom form schema"""
+  productFormDescription: String
+
+  """The json schema used to render the form"""
+  productFormSchema: JSON
+
+  """
+  The formula used to calculate the procuction value from the form inputs
+  """
+  productionCalculationFormula: String
+}
+
+"""A connection to a list of `ProductForm` values."""
+type ProductFormsConnection {
+  """
+  A list of edges which contains the `ProductForm` and cursor to aid in pagination.
+  """
+  edges: [ProductFormsEdge!]!
+
+  """A list of `ProductForm` objects."""
+  nodes: [ProductForm]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `ProductForm` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `ProductForm` edge in the connection."""
+type ProductFormsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ProductForm` at the end of the edge."""
+  node: ProductForm
+}
+
+"""Methods to use when ordering `ProductForm`."""
+enum ProductFormsOrderBy {
+  ID_ASC
+  ID_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  PRODUCT_FORM_DESCRIPTION_ASC
+  PRODUCT_FORM_DESCRIPTION_DESC
+  PRODUCT_FORM_SCHEMA_ASC
+  PRODUCT_FORM_SCHEMA_DESC
+  PRODUCTION_CALCULATION_FORMULA_ASC
+  PRODUCTION_CALCULATION_FORMULA_DESC
 }
 
 """An input for mutations affecting `Product`"""
@@ -7252,6 +7926,11 @@ input ProductInput {
 
   """The parent ID(s) (previous state) of the product"""
   parent: [Int]
+
+  """
+  The id of the product form definition, for products that require more complex calculation
+  """
+  productFormId: Int
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -7292,6 +7971,11 @@ input ProductPatch {
 
   """The parent ID(s) (previous state) of the product"""
   parent: [Int]
+
+  """
+  The id of the product form definition, for products that require more complex calculation
+  """
+  productFormId: Int
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -7355,6 +8039,8 @@ enum ProductsOrderBy {
   PARENT_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
+  PRODUCT_FORM_ID_ASC
+  PRODUCT_FORM_ID_DESC
   STATE_ASC
   STATE_DESC
   UNITS_ASC
@@ -7482,6 +8168,35 @@ type Query implements Node {
     """The method to use when ordering `Benchmark`."""
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksConnection
+
+  """Reads and enables pagination through a set of `CertificationUrl`."""
+  allCertificationUrls(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CertificationUrlCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsConnection
 
   """Reads and enables pagination through a set of `CiipApplication`."""
   allCiipApplications(
@@ -8069,6 +8784,35 @@ type Query implements Node {
     orderBy: [OrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): OrganisationsConnection
 
+  """Reads and enables pagination through a set of `ProductForm`."""
+  allProductForms(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ProductFormCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ProductForm`."""
+    orderBy: [ProductFormsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProductFormsConnection
+
   """Reads and enables pagination through a set of `Product`."""
   allProducts(
     """Read all values in the set after (below) this cursor."""
@@ -8189,6 +8933,15 @@ type Query implements Node {
     id: ID!
   ): Benchmark
   benchmarkByRowId(rowId: Int!): Benchmark
+
+  """Reads a single `CertificationUrl` using its globally unique `ID`."""
+  certificationUrl(
+    """
+    The globally unique `ID` to be used in selecting a single `CertificationUrl`.
+    """
+    id: ID!
+  ): CertificationUrl
+  certificationUrlByRowId(rowId: Int!): CertificationUrl
 
   """Reads a single `CiipApplication` using its globally unique `ID`."""
   ciipApplication(
@@ -8501,6 +9254,15 @@ type Query implements Node {
     id: ID!
   ): Product
   productByRowId(rowId: Int!): Product
+
+  """Reads a single `ProductForm` using its globally unique `ID`."""
+  productForm(
+    """
+    The globally unique `ID` to be used in selecting a single `ProductForm`.
+    """
+    id: ID!
+  ): ProductForm
+  productFormByRowId(rowId: Int!): ProductForm
 
   """
   Exposes the root query type nested one level down. This is helpful for Relay 1
@@ -8997,6 +9759,9 @@ type SaveProductMutationChainPayload {
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsEdge
 
+  """Reads a single `ProductForm` that is related to this `Product`."""
+  productFormByProductFormId: ProductForm
+
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
@@ -9257,6 +10022,73 @@ type UpdateBenchmarkPayload {
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateCertificationUrlByRowId` mutation."""
+input UpdateCertificationUrlByRowIdInput {
+  """
+  An object where the defined keys will be set on the `CertificationUrl` being updated.
+  """
+  certificationUrlPatch: CertificationUrlPatch!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """Unique ID for the certification_url"""
+  rowId: Int!
+}
+
+"""All input for the `updateCertificationUrl` mutation."""
+input UpdateCertificationUrlInput {
+  """
+  An object where the defined keys will be set on the `CertificationUrl` being updated.
+  """
+  certificationUrlPatch: CertificationUrlPatch!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `CertificationUrl` to be updated.
+  """
+  id: ID!
+}
+
+"""The output of our update `CertificationUrl` mutation."""
+type UpdateCertificationUrlPayload {
+  """
+  Reads a single `Application` that is related to this `CertificationUrl`.
+  """
+  applicationByApplicationId: Application
+
+  """The `CertificationUrl` that was updated by this mutation."""
+  certificationUrl: CertificationUrl
+
+  """An edge for our `CertificationUrl`. May be used by Relay 1."""
+  certificationUrlEdge(
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsEdge
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -9912,6 +10744,65 @@ input UpdateProductByRowIdInput {
   rowId: Int!
 }
 
+"""All input for the `updateProductFormByRowId` mutation."""
+input UpdateProductFormByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `ProductForm` being updated.
+  """
+  productFormPatch: ProductFormPatch!
+
+  """A generated primary key id for the row"""
+  rowId: Int!
+}
+
+"""All input for the `updateProductForm` mutation."""
+input UpdateProductFormInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ProductForm` to be updated.
+  """
+  id: ID!
+
+  """
+  An object where the defined keys will be set on the `ProductForm` being updated.
+  """
+  productFormPatch: ProductFormPatch!
+}
+
+"""The output of our update `ProductForm` mutation."""
+type UpdateProductFormPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ProductForm` that was updated by this mutation."""
+  productForm: ProductForm
+
+  """An edge for our `ProductForm`. May be used by Relay 1."""
+  productFormEdge(
+    """The method to use when ordering `ProductForm`."""
+    orderBy: [ProductFormsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProductFormsEdge
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
 """All input for the `updateProduct` mutation."""
 input UpdateProductInput {
   """
@@ -9947,6 +10838,9 @@ type UpdateProductPayload {
     """The method to use when ordering `Product`."""
     orderBy: [ProductsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ProductsEdge
+
+  """Reads a single `ProductForm` that is related to this `Product`."""
+  productFormByProductFormId: ProductForm
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.

@@ -61,3 +61,4 @@ function_form_result_application_review [table_application_review table_form_res
 function_get_carbon_tax_data [schema_ggircs_portal] 2019-11-28T18:45:57Z Dylan Leard <dylan@button.is> # Function retrieves carbon tax data for CIIP carbon tax calculator
 view_ciip_carbon_tax_calculation [function_get_carbon_tax_data view_ciip_fuel table_application] 2019-11-28T19:23:39Z Dylan Leard <dylan@button.is> # Calculates carbon tax based on ciip fuel data
 function_search_products [table_product] 2019-11-21T19:48:58Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Custom search function for products
+table_certification_url [table_application] 2019-12-03T19:58:18Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Table containing the unique certification URL for an application and related data.
