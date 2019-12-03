@@ -4,8 +4,13 @@ exports[`It matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
   width="wide"
 >
-  <Relay(ApplicationStatus)
-    applicationId="1"
+  <Relay(ApplicationStatusComponent)
+    applicationRowId={1}
+    applicationStatus={
+      Object {
+        "applicationStatus": "pending",
+      }
+    }
   />
   <hr
     className="jsx-1070550671"
@@ -20,9 +25,29 @@ exports[`It matches the last accepted Snapshot 1`] = `
     >
       <Relay(ApplicationDetailsComponent)
         isAnalyst={true}
+        query={
+          Object {
+            "application": Object {
+              "applicationStatus": Object {
+                "applicationStatus": "pending",
+              },
+              "rowId": 1,
+            },
+          }
+        }
       />
       <Relay(IncentiveCalculator)
         bcghgid="100"
+        query={
+          Object {
+            "application": Object {
+              "applicationStatus": Object {
+                "applicationStatus": "pending",
+              },
+              "rowId": 1,
+            },
+          }
+        }
         reportingYear="2018"
       />
     </Col>
@@ -30,7 +55,18 @@ exports[`It matches the last accepted Snapshot 1`] = `
       className="application-comments"
       md={4}
     >
-      <Relay(ApplicationCommentsComponent) />
+      <Relay(ApplicationCommentsComponent)
+        query={
+          Object {
+            "application": Object {
+              "applicationStatus": Object {
+                "applicationStatus": "pending",
+              },
+              "rowId": 1,
+            },
+          }
+        }
+      />
     </Col>
   </ForwardRef>
   <JSXStyle

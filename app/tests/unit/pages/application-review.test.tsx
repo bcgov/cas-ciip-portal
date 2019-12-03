@@ -10,26 +10,21 @@ const router: Partial<NextRouter> = {
   query: {
     applicationId: '1',
     reportingYear: '2018',
-    bcghgid: '100',
-    application: {rowId: 1, applicationStatus: {applicationStatus}}
+    bcghgid: '100'
   }
 };
-
+const query = {
+  application: {rowId: 1, applicationStatus: {applicationStatus}}
+};
 it('It matches the last accepted Snapshot', () => {
   // @ts-ignore
-  const wrapper = shallow(<ApplicationReview router={router} />);
+  const wrapper = shallow(<ApplicationReview router={router} query={query} />);
   expect(wrapper).toMatchSnapshot();
 });
 
 it('It receives the props for app_id, bcghgid and reporting year', () => {
   // @ts-ignore
-  const wrapper = shallow(<ApplicationReview router={router} />);
-  expect(
-    wrapper
-      .find('Relay(ApplicationStatus)')
-      .first()
-      .prop('applicationId')
-  ).toBe(router.query.applicationId);
+  const wrapper = shallow(<ApplicationReview router={router} query={query} />);
   expect(
     wrapper
       .find('Relay(IncentiveCalculator)')
