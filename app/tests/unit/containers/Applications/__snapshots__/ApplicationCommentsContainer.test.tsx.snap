@@ -17,50 +17,27 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
          
       </h5>
     </div>
-    <div
-      className="jsx-4053736480 review-box"
+    <Relay(ApplicationCommentsByForm)
+      applicationReview={
+        Object {
+          "createdAt": "2019-11-28",
+          "id": "WyJhcHBsaWNhdGlvbl9yZXZpZXdzIiwxMV0=",
+          "reviewCommentsByApplicationReviewId": Object {
+            "edges": Array [
+              Object {
+                "node": Object {
+                  "createdAt": "2019-11-28",
+                  "description": "Legal name is wrong. Change it to ARBUTUS",
+                  "id": "WyJyZXZpZXdfY29tbWVudHMiLDFd",
+                },
+              },
+            ],
+          },
+          "reviewStatus": "REQUESTED_CHANGES",
+        }
+      }
       key="WyJhcHBsaWNhdGlvbl9yZXZpZXdzIiwxMV0="
-    >
-      <div
-        className="jsx-4053736480"
-      >
-        Set to 
-        <strong
-          className="jsx-4053736480"
-        >
-          REQUESTED_CHANGES
-        </strong>
-         
-        <small
-          className="jsx-4053736480"
-        >
-          Nov 28th 2019, 12:00:00 am
-        </small>
-      </div>
-      <ul
-        className="jsx-4053736480 comment-box"
-      >
-        <li
-          className="jsx-4053736480 comments"
-          key="WyJyZXZpZXdfY29tbWVudHMiLDFd"
-        >
-          <div
-            className="jsx-4053736480"
-          >
-            Legal name is wrong. Change it to ARBUTUS
-          </div>
-          <div
-            className="jsx-4053736480"
-          >
-            <small
-              className="jsx-4053736480"
-            >
-              Nov 28th 2019, 12:00:00 am
-            </small>
-          </div>
-        </li>
-      </ul>
-    </div>
+    />
   </div>
   <JSXStyle
     id="4053736480"

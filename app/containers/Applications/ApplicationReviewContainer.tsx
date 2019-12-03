@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Modal, Form, Row, Col} from 'react-bootstrap';
+import {Button, Modal, Form, Row, Col, Toast} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {
   ApplicationReviewStatus,
@@ -15,8 +15,10 @@ interface Props {
 
 export const ApplicationReview: React.FunctionComponent<Props> = props => {
   const [show, setShow] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const toggleToast = () => setShowToast(true);
 
   const submitReview = async event => {
     event.stopPropagation();
@@ -40,6 +42,8 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
       variables
     );
     console.log(response);
+    handleClose();
+    toggleToast();
   };
 
   const reviewStatuses: Record<string, ApplicationReviewStatus> = {
@@ -50,6 +54,15 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
 
   return (
     <>
+      <Toast
+        autohide
+        className="onSubmitMessage"
+        show={showToast}
+        delay={5000}
+        onClose={() => setShowToast(false)}
+      >
+        <Toast.Body>Review saved.</Toast.Body>
+      </Toast>
       <Button variant="outline-primary" onClick={handleShow}>
         {props.applicationReview.reviewStatus.replace('_', ' ')}
       </Button>
@@ -142,6 +155,12 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
           .review-status .description span {
             font-size: 14px;
             color: #666;
+          }
+          .onSubmitMessage {
+            position: fixed;
+            top: 60px;
+            right: 10px;
+            z-index: 100000;
           }
         `}
       </style>
