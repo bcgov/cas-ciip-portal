@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import SignaturePad from 'react-signature-canvas';
-import {Button} from 'react-bootstrap';
+import {Button, Container, Row, Col} from 'react-bootstrap';
 
 const CertificationSignature: React.FunctionComponent = () => {
   const sigCanvas: any = useRef({});
@@ -19,16 +19,29 @@ const CertificationSignature: React.FunctionComponent = () => {
   const clear = () => sigCanvas.current.clear();
   const save = () =>
     console.log(sigCanvas.current.getTrimmedCanvas().toDataURL('image/png'));
+
   return (
-    <>
+    <Container>
       <h3>Certifier Signature:</h3>
-      <SignaturePad
-        ref={sigCanvas}
-        canvasProps={{className: 'signatureCanvas'}}
-      />
-      <Button onClick={save}>Save</Button>
-      <Button onClick={clear}>Clear</Button>
-      <input type="file" onChange={e => uploadImage(e)} />
+      <Row>
+        <Col md={12}>
+          <SignaturePad
+            ref={sigCanvas}
+            canvasProps={{className: 'signatureCanvas'}}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col md={6}>
+          <input type="file" onChange={e => uploadImage(e)} />
+        </Col>
+        <Col md={{span: 3, offset: 2}}>
+          <Button style={{marginRight: '5px'}} onClick={save}>
+            Save
+          </Button>
+          <Button onClick={clear}>Clear</Button>
+        </Col>
+      </Row>
       <style jsx global>
         {`
           .signatureCanvas {
@@ -41,7 +54,7 @@ const CertificationSignature: React.FunctionComponent = () => {
           }
         `}
       </style>
-    </>
+    </Container>
   );
 };
 
