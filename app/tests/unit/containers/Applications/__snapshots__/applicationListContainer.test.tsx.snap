@@ -22,6 +22,7 @@ exports[`ApplicationList should render the application list 1`] = `
               "Application Id": "id",
               "Facility Name": "facility_name",
               "Operator Name": "operator_name",
+              "Reporting Year": "reporting_year",
               "Status": "application_status",
               "Submission Date": "submission_date",
             }
@@ -31,6 +32,7 @@ exports[`ApplicationList should render the application list 1`] = `
               "Application Id",
               "Operator Name",
               "Facility Name",
+              "Reporting Year",
               "Submission Date",
               "Status",
             ]
@@ -77,6 +79,15 @@ exports[`ApplicationList should render the application list 1`] = `
             }
           }
           key="facility_name"
+        />
+        <SortableTableHeader
+          headerVariables={
+            Object {
+              "columnName": "reporting_year",
+              "displayName": "Reporting Year",
+            }
+          }
+          key="reporting_year"
         />
         <SortableTableHeader
           headerVariables={
