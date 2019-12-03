@@ -2,14 +2,14 @@
   "schema": {
     "type": "array",
     "items": {
-      "$ref": "#/definitions/production"
+      "$ref": "#/definitions/product"
     },
-    "definitions" : {
-      "production": {
+    "definitions": {
+      "product": {
         "type": "object",
         "properties": {
           "product": {
-            "title": "Processing Unit Module",
+            "title": "Product or Service",
             "type": "string"
           },
           "quantity": {
@@ -24,9 +24,8 @@
             "title": "Associated Emission (tCO2e)",
             "type": "number"
           },
-          "comments": {
-            "title": "comments",
-            "type": "string"
+          "additionalData": {
+            "type": "object"
           }
         }
       }

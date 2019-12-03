@@ -157,6 +157,7 @@ EOF
 
 _psql -f "./portal/ciip_application_wizard.sql"
 _psql -f "./portal/fuel.sql"
+_psql -f "./portal/product_form.sql"
 _psql -f "./portal/product.sql"
 _psql -f "./portal/user.sql"
 _psql -f "./portal/benchmark.sql"
