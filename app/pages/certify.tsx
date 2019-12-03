@@ -22,15 +22,6 @@ class Certify extends Component<Props> {
           rowId
           applicationByApplicationId {
             ...CertificationPage_application
-            #   id
-            #   formResultsByApplicationId {
-            #     edges {
-            #       node {
-            #         id
-            #         formResult
-            #       }
-            #     }
-            #   }
           }
         }
       }
@@ -49,14 +40,19 @@ class Certify extends Component<Props> {
           needsUser={false}
           needsSession={false}
         >
-          {certificationUrl ? certificationUrl : 'Nothing to see here'}
-          <CertificationPage
-            application={
-              query.certificationUrlByRowId.applicationByApplicationId
-            }
-            isAnalyst={false}
-          />
-          <CertificationSignature />
+          {certificationUrl ? (
+            <>
+              <CertificationPage
+                application={
+                  query.certificationUrlByRowId.applicationByApplicationId
+                }
+                isAnalyst={false}
+              />
+              <CertificationSignature />
+            </>
+          ) : (
+            'Move along, Nothing to see here'
+          )}
         </DefaultLayout>
         <style jsx global>
           {`
