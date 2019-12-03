@@ -15,6 +15,29 @@ const mutation = graphql`
         id
         formResultId
         reviewStatus
+        formResultByFormResultId {
+          applicationReviewsByFormResultId {
+            edges {
+              node {
+                id
+                reviewStatus
+                reviewCommentsByApplicationReviewId {
+                  edges {
+                    node {
+                      id
+                      description
+                      createdAt
+                    }
+                  }
+                }
+              }
+            }
+          }
+          applicationReview {
+            formResultId
+            reviewStatus
+          }
+        }
       }
     }
   }
