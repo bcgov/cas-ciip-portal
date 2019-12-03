@@ -37,23 +37,35 @@ values
 }','Directly reported from Petrinex (input) + ethylene plant or sulhpur plant included + gas composition'),
 (3, 'Product form for Compression', '{
  "schema": {
-    "type": "array",
-    "items" : {
-      "type": "object",
-      "properties": {
-        "powerRating": {
-          "type": "number",
-          "title": "Power Rating"
-        },
-        "loadingFactor": {
-          "type": "number",
-          "title": "Loading Factor"
-        },
-        "runtimeHours": {
-          "type": "number",
-          "title": "Runtime Hours"
+    "type": "object",
+    "title": "Compression Equipment",
+    "properties": {
+      "equipment": {
+        "type": "array",
+        "items" : {
+          "type": "object",
+          "properties": {
+            "powerRating": {
+              "type": "number",
+              "title": "Power Rating"
+            },
+            "loadingFactor": {
+              "type": "number",
+              "title": "Loading Factor"
+            },
+            "runtimeHours": {
+              "type": "number",
+              "title": "Runtime Hours"
+            }
+          }
         }
       }
+    }
+  },
+  "uiSchema": {
+    "equipment": {
+      "ui:add-text": "Add Equipment",
+      "ui:remove-text": "Remove Equipment"
     }
   }
 }',''),

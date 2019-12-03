@@ -15,12 +15,12 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
         return (
           <React.Fragment key={element.index}>
             <Form.Row>
-              <Col xs={12} md={element.hasRemove ? 10 : 12}>
+              <Col xs={12} md={element.hasRemove ? 11 : 12}>
                 {element.children}
               </Col>
 
               {element.hasRemove && (
-                <Col xs={12} md={2}>
+                <Col xs={12} md={1}>
                   <div className="remove-button-container">
                     <Button
                       type="button"

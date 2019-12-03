@@ -50,6 +50,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
 
   const onValueChanged = async change => {
     const {formData} = change;
+    console.log(formData);
     await storeResult(formData);
   };
 

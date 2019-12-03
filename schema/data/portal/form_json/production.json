@@ -25,7 +25,8 @@
             "type": "number"
           },
           "additionalData": {
-            "type": "object"
+            "type": "object",
+            "additionalProperties": true
           }
         }
       }

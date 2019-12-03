@@ -12,8 +12,7 @@ values
 (6, 'Rich Sour Gas Plants', 'Cubic meters of oil equivalent (m3OE)', 'active', 2),
 (7, 'Reciprocating Compression', 'Energy required (MWh)', 'active', 3),
 (8, 'Centrifugal Compression', 'Energy required (MWh)', 'active', 3),
-(9, 'Centrifugal Compression', 'Energy required (MWh)', 'active', 3),
-(10, 'Petroleum Refining', 'Canadian Complexity Weighted Barrel (CAN - CWB)', 'active', 4)
+(9, 'Petroleum Refining', 'Canadian Complexity Weighted Barrel (CAN - CWB)', 'active', 4)
 on conflict(id) do update
 set
 name=excluded.name,

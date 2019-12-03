@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {FieldProps} from 'react-jsonschema-form';
 import {createFragmentContainer, graphql} from 'react-relay';
-import {Form, Col} from 'react-bootstrap';
+import {Form, Col, FormControlProps} from 'react-bootstrap';
 import {ProductionFields_query} from 'ProductionFields_query.graphql';
+import {FormJson} from 'next-env';
 
 interface Props extends FieldProps {
   query: ProductionFields_query;
@@ -11,70 +12,64 @@ interface Props extends FieldProps {
 const ProductionFields: React.FunctionComponent<Props> = ({
   formData,
   query,
-  onChange
+  onChange,
+  registry,
+  autofocus,
+  idSchema,
+  errorSchema,
+  formContext,
+  disabled,
+  readonly
 }) => {
-  const changeField = (event, key) => {
+  const handleProductChange: FormControlProps['onChange'] = e => {
+    const product = (e.nativeEvent.target as HTMLSelectElement).value;
     onChange({
       ...formData,
-      [key]: (event.nativeEvent.target as HTMLInputElement).value
+      product,
+      productUnits: query.allProducts.edges.find(
+        ({node}) => node.name === product
+      )?.node.units,
+      additionalData: undefined
     });
   };
 
+  const handleAdditionalFieldsChange = (additionalData: any) => {
+    console.log({
+      ...formData,
+      additionalData
+    });
+    // TODO: execute formula here.
+    onChange({
+      ...formData,
+      additionalData
+    });
+  };
+
+  const [additionalDataSchema, setAdditionalDataSchema] = useState<FormJson>();
+  useEffect(() => {
+    const product = query.allProducts.edges.find(
+      ({node}) => node.name === formData.product
+    )?.node;
+    setAdditionalDataSchema(
+      product?.productFormByProductFormId?.productFormSchema
+    );
+  }, [query.allProducts.edges, formData.product]);
+
   return (
     <>
-      <Col xs={12} md={6}>
+      <Col xs={12} md={8}>
         <Form.Group controlId="id.product">
-          <Form.Label>Product</Form.Label>
+          <Form.Label>Product or Service</Form.Label>
           <Form.Control
             as="select"
             value={formData.product}
-            onChange={e => {
-              onChange({
-                ...formData,
-                product: (e.nativeEvent.target as HTMLInputElement).value,
-                productUnits: undefined
-              });
-            }}
+            onChange={handleProductChange}
           >
             <option value="">...</option>
             {query.allProducts.edges.map(({node}) => (
               <option key={node.name}>{node.name}</option>
             ))}
           </Form.Control>
-        </Form.Group>
-      </Col>
-      <Col xs={12} md={2}>
-        <Form.Group controlId="id.productUnits">
-          <Form.Label>Units</Form.Label>
-          <Form.Control
-            as="select"
-            value={formData.productUnits}
-            onChange={e => changeField(e, 'productUnits')}
-          >
-            <option value="">...</option>
-            {query.allProducts.edges
-              .filter(({node}) => node.name === formData.product)
-              .map(({node}) => (
-                <option key={node.name}>{node.units}</option>
-              ))}
-          </Form.Control>
-        </Form.Group>
-      </Col>
-      <Col xs={12} md={6}>
-        <Form.Group controlId="id.quantity">
-          <Form.Label>Quantity</Form.Label>
-          <Form.Control
-            type="number"
-            defaultValue={formData.quantity}
-            onChange={e => {
-              onChange({
-                ...formData,
-                quantity: Number(
-                  (e.nativeEvent.target as HTMLInputElement).value
-                )
-              });
-            }}
-          />
         </Form.Group>
       </Col>
       <Col xs={12} md={4}>
@@ -94,22 +89,49 @@ const ProductionFields: React.FunctionComponent<Props> = ({
           />
         </Form.Group>
       </Col>
-      <Col xs={12} md={12}>
-        <Form.Group controlId="id.comments">
-          <Form.Label>Comments</Form.Label>
-          <Form.Control
-            as="textarea"
-            type="string"
-            value={formData.comments}
-            onChange={e => {
-              onChange({
-                ...formData,
-                comments: (e.nativeEvent.target as HTMLInputElement).value
-              });
-            }}
+      {!additionalDataSchema && (
+        <>
+          <Col xs={12} md={6}>
+            <Form.Group controlId="id.quantity">
+              <Form.Label>Quantity</Form.Label>
+              <Form.Control
+                type="number"
+                defaultValue={formData.quantity}
+                onChange={e => {
+                  onChange({
+                    ...formData,
+                    quantity: Number(
+                      (e.nativeEvent.target as HTMLInputElement).value
+                    )
+                  });
+                }}
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={12} md={2}>
+            &nbsp;{formData.productUnits}
+          </Col>
+        </>
+      )}
+      {additionalDataSchema && (
+        <Col xs={12} md={12}>
+          <registry.fields.SchemaField
+            required
+            schema={additionalDataSchema.schema}
+            uiSchema={additionalDataSchema.uiSchema}
+            formData={formData.additionalData}
+            autofocus={autofocus}
+            idSchema={idSchema}
+            registry={registry}
+            errorSchema={errorSchema}
+            formContext={formContext}
+            disabled={disabled}
+            readonly={readonly}
+            name=""
+            onChange={handleAdditionalFieldsChange}
           />
-        </Form.Group>
-      </Col>
+        </Col>
+      )}
     </>
   );
 };
@@ -117,11 +139,14 @@ const ProductionFields: React.FunctionComponent<Props> = ({
 export default createFragmentContainer(ProductionFields, {
   query: graphql`
     fragment ProductionFields_query on Query {
-      allProducts {
+      allProducts(condition: {state: "active"}) {
         edges {
           node {
             name
             units
+            productFormByProductFormId {
+              productFormSchema
+            }
           }
         }
       }
