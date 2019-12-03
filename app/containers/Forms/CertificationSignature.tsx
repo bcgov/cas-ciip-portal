@@ -33,20 +33,21 @@ const CertificationSignature: React.FunctionComponent = () => {
       </Row>
       <Row>
         <Col md={6}>
-          <input type="file" onChange={e => uploadImage(e)} />
+          <input accept="image/*" type="file" onChange={e => uploadImage(e)} />
         </Col>
         <Col md={{span: 3, offset: 2}}>
-          <Button style={{marginRight: '5px'}} onClick={save}>
-            Save
+          <Button variant="success" style={{marginRight: '5px'}} onClick={save}>
+            Sign
           </Button>
-          <Button onClick={clear}>Clear</Button>
+          <Button variant="danger" onClick={clear}>
+            Clear
+          </Button>
         </Col>
       </Row>
       <style jsx global>
         {`
           .signatureCanvas {
             border: 1px solid #bbb;
-            padding: 30px;
             width: 80%;
             background: #eee;
             border-radius: 6px;
