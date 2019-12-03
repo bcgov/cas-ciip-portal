@@ -1,8 +1,12 @@
 import React from 'react';
 import {Button, ButtonGroup, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {OrganisationRequestsTableRow_userOrganisation} from 'OrganisationRequestsTableRow_userOrganisation.graphql';
+import {
+  OrganisationRequestsTableRow_userOrganisation,
+  CiipUserOrganisationStatus
+} from 'OrganisationRequestsTableRow_userOrganisation.graphql';
 import {updateUserOrganisationMutation} from '../../mutations/user_organisation/updateUserOrganisation';
+
 interface Props {
   relay: RelayProp;
   userOrganisation: OrganisationRequestsTableRow_userOrganisation;
@@ -11,7 +15,10 @@ interface Props {
 export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Props> = props => {
   const {userOrganisation} = props;
 
-  const statusBadgeColor = {
+  const statusBadgeColor: Record<
+    CiipUserOrganisationStatus,
+    'danger' | 'info' | 'success'
+  > = {
     REJECTED: 'danger',
     PENDING: 'info',
     APPROVED: 'success'
