@@ -57,10 +57,11 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   if (!formResult) return null;
 
   if (!application) return null;
-
+  // Save Application status to database
   return (
-    <Form
-      query={query}
+    // Save Application status to database
+    <Form // Save Application status to database
+      query={query} // Save Application status to database
       onComplete={onComplete}
       onValueChanged={onValueChanged}
       onBack={onStepBack}
@@ -82,6 +83,11 @@ export default createFragmentContainer(ApplicationWizardStep, {
       formResult(id: $formResultId) {
         id
         formResult
+      }
+      application(id: $applicationId) {
+        applicationStatus {
+          id
+        }
       }
     }
   `
