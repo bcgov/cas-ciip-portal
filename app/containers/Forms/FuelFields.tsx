@@ -29,7 +29,11 @@ const FuelFields: React.FunctionComponent<Props> = ({
           <Form.Label>Fuel Type</Form.Label>
           <SearchDropdown
             placeholder="Select fuel or type to filter..."
-            options={query.allFuels.edges.map(({node}) => node.name)}
+            defaultInputValue={formData.fuelType}
+            options={{
+              items: query.allFuels.edges.map(({node}) => node.name),
+              id: 'fuelId'
+            }}
             onChange={options => {
               onChange({
                 ...formData,
