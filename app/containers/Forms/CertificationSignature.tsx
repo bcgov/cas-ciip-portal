@@ -7,7 +7,6 @@ const CertificationSignature: React.FunctionComponent = () => {
 
   const uploadImage = e => {
     e.persist();
-    console.log(e.target.files[0]);
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
