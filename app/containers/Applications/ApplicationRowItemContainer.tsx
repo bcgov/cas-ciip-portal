@@ -17,6 +17,7 @@ export const ApplicationRowItem = props => {
       <td>{ciipApplication.rowId}</td>
       <td>{ciipApplication.operatorName}</td>
       <td>{ciipApplication.facilityName}</td>
+      <td>{ciipApplication.reportingYear}</td>
       <td>{ciipApplication.submissionDate}</td>
       <td>
         <Badge
