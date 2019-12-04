@@ -19,6 +19,23 @@ interface Props {
 }
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
+  // Change application status to 'pending' on application submit
+  const submitApplication = async () => {
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        id: props.query.application.applicationStatus.id,
+        applicationStatusPatch: {
+          applicationStatus: 'pending'
+        }
+      }
+    };
+    const response = await updateApplicationStatusMutation(
+      environment,
+      variables
+    );
+    console.log(response);
+  };
 
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState();
@@ -46,10 +63,11 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       variables
     );
     console.log(response);
-
-    setUrl(
-      `localhost:3004/certify?rowId=${response?.createCertificationUrl?.certificationUrl?.rowId}`
-    );
+    if (window) {
+      setUrl(
+        `${window.location.host}/certify?rowId=${response?.createCertificationUrl?.certificationUrl?.rowId}`
+      );
+    } else console.log('No window location found');
   };
 
   return (
@@ -62,26 +80,40 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 
       <ApplicationDetailsContainer isAnalyst={false} query={props.query} />
       <br />
-      <h5>
-        Thank you for reviewing the application information. You may now
-        generate a Certification page to be signed prior to submission.
-      </h5>
-      <br />
-      <Row>
-        <Button onClick={createCertificationUrl}>
-          Generate Certification Page
-        </Button>
-      </Row>
-      <br />
-      <Row>
-        <input
-          ref={copyArea}
-          style={{width: '50%', marginRight: '10px'}}
-          value={url}
-        />
-        <Button onClick={copyToClipboard}>Copy to Clipboard</Button>
-        <span style={{color: 'green'}}>{copySuccess}</span>
-      </Row>
+      {props.query.application.certificationSignature ? (
+        <>
+          <h5>
+            Thank you for reviewing the application information. The Certifier
+            has signed off on this application. You may now submit the
+            application.
+          </h5>
+          <br />
+          <Button onClick={submitApplication}>Submit Application</Button>
+        </>
+      ) : (
+        <>
+          <h5>
+            Thank you for reviewing the application information. You may now
+            generate a Certification page to be signed prior to submission.
+          </h5>
+          <br />
+          <Row>
+            <Button onClick={createCertificationUrl}>
+              Generate Certification Page
+            </Button>
+          </Row>
+          <br />
+          <Row>
+            <input
+              ref={copyArea}
+              style={{width: '50%', marginRight: '10px'}}
+              value={url}
+            />
+            <Button onClick={copyToClipboard}>Copy to Clipboard</Button>
+            <span style={{color: 'green'}}>{copySuccess}</span>
+          </Row>{' '}
+        </>
+      )}
     </>
   );
 };
@@ -92,6 +124,10 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
       @argumentDefinitions(applicationId: {type: "ID!"}) {
       application(id: $applicationId) {
         rowId
+        certificationSignature
+        applicationStatus {
+          id
+        }
       }
       ...ApplicationDetailsContainer_query
         @arguments(applicationId: $applicationId)
