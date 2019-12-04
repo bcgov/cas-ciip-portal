@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {Button, Row} from 'react-bootstrap';
+import Link from 'next/link';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
@@ -88,7 +89,20 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             application.
           </h5>
           <br />
-          <Button onClick={submitApplication}>Submit Application</Button>
+          <Link
+            passHref
+            href={{
+              pathname: '/complete-submit'
+            }}
+          >
+            <Button
+              className="float-right"
+              style={{marginTop: '10px'}}
+              onClick={submitApplication}
+            >
+              Submit Application
+            </Button>
+          </Link>
         </>
       ) : (
         <>
