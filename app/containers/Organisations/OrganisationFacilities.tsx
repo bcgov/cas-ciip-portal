@@ -1,10 +1,41 @@
 import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {CardDeck} from 'react-bootstrap';
+// Import SortableTableHeader from 'components/SortableTableHeader';
+// import SearchBox from 'components/SearchBox';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Facility from './Facility';
 
 export const OrganisationFacilitiesComponent = props => {
+  // Const {
+  //   searchDisplay,
+  //   direction,
+  //   orderByField,
+  //   searchField,
+  //   searchValue,
+  //   handleEvent
+  // } = props;
+  // useEffect(() => {
+  //   const refetchVariables = {
+  //     searchField,
+  //     searchValue,
+  //     orderByField,
+  //     direction
+  //   };
+  //   props.relay.refetch(refetchVariables);
+  // });
+  // const tableHeaders = [
+  //   {columnName: 'facility_name', displayName: 'Facility Name'},
+  //   {columnName: 'address', displayName: 'Address'},
+  //   {columnName: 'application_status', displayName: 'Status'}
+  // ];
+  // const dropdownSortItems = ['Facility Name', 'Address', 'Status'];
+  // const displayNameToColumnNameMap = {
+  //   'Facility Name': 'facility_name',
+  //   Address: 'address',
+  //   Status: 'application_status'
+  // };
+
   const {organisation} = props.query;
   if (!organisation) return <LoadingSpinner />;
 

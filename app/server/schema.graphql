@@ -9412,6 +9412,32 @@ type Query implements Node {
     searchValue: String
   ): CiipUserOrganisationsConnection!
 
+  """Reads and enables pagination through a set of `Facility`."""
+  searchOrganisationFacilities(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+    direction: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+    orderByField: String
+    organisationId: Int
+    searchField: String
+    searchValue: String
+  ): FacilitiesConnection!
+
   """Reads and enables pagination through a set of `Product`."""
   searchProducts(
     """Read all values in the set after (below) this cursor."""
