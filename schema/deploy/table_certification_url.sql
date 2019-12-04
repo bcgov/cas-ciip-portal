@@ -4,7 +4,7 @@
 begin;
 
 create table ggircs_portal.certification_url (
-  id uuid primary key,
+  id varchar(1000) primary key,
   application_id int not null references ggircs_portal.application(id),
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),

@@ -12,7 +12,7 @@ interface Props {
 
 class Certify extends Component<Props> {
   static query = graphql`
-    query certifyQuery($rowId: UUID!) {
+    query certifyQuery($rowId: String!) {
       query {
         session {
           ...defaultLayout_session
@@ -30,7 +30,6 @@ class Certify extends Component<Props> {
 
   render() {
     const {query} = this.props;
-    console.log(this.props);
     const certificationUrl = query?.certificationUrlByRowId?.rowId;
     return (
       <>

@@ -944,7 +944,7 @@ type CertificationUrl implements Node {
   id: ID!
 
   """Unique ID for the certification_url"""
-  rowId: UUID!
+  rowId: String!
 
   """Last update date of row"""
   updatedAt: Datetime!
@@ -974,7 +974,7 @@ input CertificationUrlCondition {
   deletedBy: Int
 
   """Checks for equality with the object’s `rowId` field."""
-  rowId: UUID
+  rowId: String
 
   """Checks for equality with the object’s `updatedAt` field."""
   updatedAt: Datetime
@@ -1001,7 +1001,7 @@ input CertificationUrlInput {
   deletedBy: Int
 
   """Unique ID for the certification_url"""
-  rowId: UUID!
+  rowId: String!
 
   """Last update date of row"""
   updatedAt: Datetime
@@ -1030,7 +1030,7 @@ input CertificationUrlPatch {
   deletedBy: Int
 
   """Unique ID for the certification_url"""
-  rowId: UUID
+  rowId: String
 
   """Last update date of row"""
   updatedAt: Datetime
@@ -3691,7 +3691,7 @@ input DeleteCertificationUrlByRowIdInput {
   clientMutationId: String
 
   """Unique ID for the certification_url"""
-  rowId: UUID!
+  rowId: String!
 }
 
 """All input for the `deleteCertificationUrl` mutation."""
@@ -8933,7 +8933,7 @@ type Query implements Node {
     """
     id: ID!
   ): CertificationUrl
-  certificationUrlByRowId(rowId: UUID!): CertificationUrl
+  certificationUrlByRowId(rowId: String!): CertificationUrl
 
   """Reads a single `CiipApplication` using its globally unique `ID`."""
   ciipApplication(
@@ -10035,7 +10035,7 @@ input UpdateCertificationUrlByRowIdInput {
   clientMutationId: String
 
   """Unique ID for the certification_url"""
-  rowId: UUID!
+  rowId: String!
 }
 
 """All input for the `updateCertificationUrl` mutation."""

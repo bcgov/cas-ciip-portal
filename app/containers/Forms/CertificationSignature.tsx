@@ -48,7 +48,6 @@ const CertificationSignature: React.FunctionComponent = () => {
         {`
           .signatureCanvas {
             border: 1px solid #bbb;
-            width: 80%;
             background: #eee;
             border-radius: 6px;
             margin-bottom: 60px;
