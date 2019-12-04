@@ -6450,6 +6450,18 @@
               "deprecationReason": null
             },
             {
+              "name": "certificationSignature",
+              "description": "The base64 representation of the certifier's signature",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "certificationUrlsByApplicationId",
               "description": "Reads and enables pagination through a set of `CertificationUrl`.",
               "args": [
@@ -12329,6 +12341,16 @@
           "fields": null,
           "inputFields": [
             {
+              "name": "certificationSignature",
+              "description": "Checks for equality with the object’s `certificationSignature` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "facilityId",
               "description": "Checks for equality with the object’s `facilityId` field.",
               "type": {
@@ -12371,6 +12393,18 @@
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
+            {
+              "name": "CERTIFICATION_SIGNATURE_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFICATION_SIGNATURE_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
             {
               "name": "FACILITY_ID_ASC",
               "description": null,
@@ -27497,6 +27531,16 @@
           "fields": null,
           "inputFields": [
             {
+              "name": "certificationSignature",
+              "description": "The base64 representation of the certifier's signature",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "facilityId",
               "description": "The foreign key to ggircs_portal.facility, references id",
               "type": {
@@ -36202,6 +36246,16 @@
           "description": "Represents an update to a `Application`. Fields that are set will be updated.",
           "fields": null,
           "inputFields": [
+            {
+              "name": "certificationSignature",
+              "description": "The base64 representation of the certifier's signature",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
             {
               "name": "facilityId",
               "description": "The foreign key to ggircs_portal.facility, references id",

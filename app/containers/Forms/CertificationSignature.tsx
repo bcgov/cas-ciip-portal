@@ -1,8 +1,16 @@
 import React, {useRef} from 'react';
+import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SignaturePad from 'react-signature-canvas';
 import {Button, Container, Row, Col} from 'react-bootstrap';
+import updateApplicationMutation from 'mutations/application/updateApplicationMutation';
+import {CertificationSignature_application} from 'CertificationSignature_application.graphql';
 
-const CertificationSignature: React.FunctionComponent = () => {
+interface Props {
+  application: CertificationSignature_application;
+  relay: RelayProp;
+}
+
+const CertificationSignature: React.FunctionComponent<Props> = props => {
   const sigCanvas: any = useRef({});
 
   const uploadImage = e => {
@@ -17,8 +25,22 @@ const CertificationSignature: React.FunctionComponent = () => {
   };
 
   const clear = () => sigCanvas.current.clear();
-  const save = () =>
-    console.log(sigCanvas.current.getTrimmedCanvas().toDataURL('image/png'));
+  const saveSignature = async () => {
+    const signature = sigCanvas.current
+      .getTrimmedCanvas()
+      .toDataURL('image/png');
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        id: props.application.id,
+        applicationPatch: {
+          certificationSignature: signature
+        }
+      }
+    };
+    const response = await updateApplicationMutation(environment, variables);
+    console.log(response);
+  };
 
   return (
     <Container>
@@ -36,12 +58,22 @@ const CertificationSignature: React.FunctionComponent = () => {
           <input accept="image/*" type="file" onChange={e => uploadImage(e)} />
         </Col>
         <Col md={{span: 3, offset: 2}}>
-          <Button variant="success" style={{marginRight: '5px'}} onClick={save}>
-            Sign
-          </Button>
-          <Button variant="danger" onClick={clear}>
-            Clear
-          </Button>
+          {props.application.certificationSignature ? (
+            <Button>Submit</Button>
+          ) : (
+            <>
+              <Button
+                variant="success"
+                style={{marginRight: '5px'}}
+                onClick={saveSignature}
+              >
+                Sign
+              </Button>
+              <Button variant="danger" onClick={clear}>
+                Clear
+              </Button>
+            </>
+          )}
         </Col>
       </Row>
       <style jsx global>
@@ -58,4 +90,11 @@ const CertificationSignature: React.FunctionComponent = () => {
   );
 };
 
-export default CertificationSignature;
+export default createFragmentContainer(CertificationSignature, {
+  application: graphql`
+    fragment CertificationSignature_application on Application {
+      id
+      certificationSignature
+    }
+  `
+});

@@ -34,6 +34,7 @@ export default createFragmentContainer(CertificationPageComponent, {
   application: graphql`
     fragment CertificationPage_application on Application {
       id
+      certificationSignature
       formResultsByApplicationId {
         edges {
           node {

@@ -52,7 +52,6 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     );
   };
 
-  console.log(props.query);
   return (
     <>
       <h1>Summary of your application:</h1>
@@ -62,6 +61,12 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       <br />
 
       <ApplicationDetailsContainer isAnalyst={false} query={props.query} />
+      <br />
+      <h5>
+        Thank you for reviewing the application information. You may now
+        generate a Certification page to be signed prior to submission.
+      </h5>
+      <br />
       <Row>
         <Button onClick={createCertificationUrl}>
           Generate Certification Page
@@ -69,7 +74,11 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       </Row>
       <br />
       <Row>
-        <input ref={copyArea} style={{width: '50%'}} value={url} />
+        <input
+          ref={copyArea}
+          style={{width: '50%', marginRight: '10px'}}
+          value={url}
+        />
         <Button onClick={copyToClipboard}>Copy to Clipboard</Button>
         <span style={{color: 'green'}}>{copySuccess}</span>
       </Row>

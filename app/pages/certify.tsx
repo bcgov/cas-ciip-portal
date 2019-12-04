@@ -24,6 +24,7 @@ class Certify extends Component<Props> {
           createdAt
           applicationByApplicationId {
             ...CertificationPage_application
+            ...CertificationSignature_application
           }
         }
       }
@@ -39,7 +40,7 @@ class Certify extends Component<Props> {
     // TODO(Dylan): handle expiry of url validation on the back end
     // Sets an expiry of 7 days for the certification URL
     const isValid =
-      currentMoment.format('x') < createdAtMoment.add(7, 'days').format('x');
+      currentMoment.format('x') < createdAtMoment?.add(7, 'days').format('x');
     const certificationUrl = query?.certificationUrlByRowId?.rowId && isValid;
     return (
       <>
@@ -57,7 +58,11 @@ class Certify extends Component<Props> {
                 }
                 isAnalyst={false}
               />
-              <CertificationSignature />
+              <CertificationSignature
+                application={
+                  query.certificationUrlByRowId.applicationByApplicationId
+                }
+              />
             </>
           ) : (
             'Move along, Nothing to see here'

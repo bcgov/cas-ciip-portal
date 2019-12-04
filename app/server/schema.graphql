@@ -31,6 +31,9 @@ type Application implements Node {
     orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationStatusesConnection!
 
+  """The base64 representation of the certifier's signature"""
+  certificationSignature: String
+
   """Reads and enables pagination through a set of `CertificationUrl`."""
   certificationUrlsByApplicationId(
     """Read all values in the set after (below) this cursor."""
@@ -172,6 +175,9 @@ A condition to be used against `Application` object types. All fields are tested
 for equality and combined with a logical ‘and.’
 """
 input ApplicationCondition {
+  """Checks for equality with the object’s `certificationSignature` field."""
+  certificationSignature: String
+
   """Checks for equality with the object’s `facilityId` field."""
   facilityId: Int
 
@@ -184,6 +190,9 @@ input ApplicationCondition {
 
 """An input for mutations affecting `Application`"""
 input ApplicationInput {
+  """The base64 representation of the certifier's signature"""
+  certificationSignature: String
+
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int!
 
@@ -197,6 +206,9 @@ input ApplicationInput {
 Represents an update to a `Application`. Fields that are set will be updated.
 """
 input ApplicationPatch {
+  """The base64 representation of the certifier's signature"""
+  certificationSignature: String
+
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int
 
@@ -453,6 +465,8 @@ type ApplicationsEdge {
 
 """Methods to use when ordering `Application`."""
 enum ApplicationsOrderBy {
+  CERTIFICATION_SIGNATURE_ASC
+  CERTIFICATION_SIGNATURE_DESC
   FACILITY_ID_ASC
   FACILITY_ID_DESC
   ID_ASC
