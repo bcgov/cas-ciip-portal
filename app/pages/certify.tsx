@@ -3,6 +3,7 @@ import {graphql} from 'react-relay';
 import {certifyQueryResponse} from 'certifyQuery.graphql';
 import CertificationPage from 'containers/Forms/CertificationPage';
 import CertificationSignature from 'containers/Forms/CertificationSignature';
+import moment from 'moment';
 import DefaultLayout from '../layouts/default-layout';
 
 interface Props {
@@ -20,6 +21,7 @@ class Certify extends Component<Props> {
         certificationUrlByRowId(rowId: $rowId) {
           id
           rowId
+          createdAt
           applicationByApplicationId {
             ...CertificationPage_application
           }
@@ -30,7 +32,15 @@ class Certify extends Component<Props> {
 
   render() {
     const {query} = this.props;
-    const certificationUrl = query?.certificationUrlByRowId?.rowId;
+    const createdAtMoment = query?.certificationUrlByRowId?.createdAt
+      ? moment(query?.certificationUrlByRowId?.createdAt)
+      : null;
+    const currentMoment = moment();
+    // TODO(Dylan): handle expiry of url validation on the back end
+    // Sets an expiry of 7 days for the certification URL
+    const isValid =
+      currentMoment.format('x') < createdAtMoment.add(7, 'days').format('x');
+    const certificationUrl = query?.certificationUrlByRowId?.rowId && isValid;
     return (
       <>
         <DefaultLayout

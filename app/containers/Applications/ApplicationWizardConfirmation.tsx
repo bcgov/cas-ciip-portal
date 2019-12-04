@@ -1,11 +1,12 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
+import React, {useRef, useState} from 'react';
+import {Button, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
 import {CiipApplicationStatus} from 'createApplicationStatusMutation.graphql';
 import createApplicationStatusMutation from 'mutations/application/createApplicationStatusMutation';
+import createCertificationUrlMutation from '../../mutations/form/createCertificationUrl';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -18,31 +19,40 @@ interface Props {
 }
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
-  const router = useRouter();
-  // Change application status to 'pending' on application submit
-  const submitApplication = async () => {
+
+  const [copySuccess, setCopySuccess] = useState('');
+  const [url, setUrl] = useState();
+  const copyArea = useRef(url);
+
+  const copyToClipboard = () => {
+    const el = copyArea;
+    el.current.select();
+    document.execCommand('copy');
+    setCopySuccess('Copied!');
+  };
+
+  const createCertificationUrl = async () => {
     const {environment} = props.relay;
-    const date = new Date().toUTCString();
-    // TODO: created_at should be set by a trigger
     const variables = {
       input: {
-        applicationStatus: {
-          applicationId: props.query.application.rowId,
-          applicationStatus: 'PENDING' as CiipApplicationStatus,
-          createdAt: date,
-          createdBy: 'Admin'
+        certificationUrl: {
+          rowId: 'abc',
+          applicationId: Number(props.query.application.rowId)
         }
       }
     };
-    const response = await createApplicationStatusMutation(
+    const response = await createCertificationUrlMutation(
       environment,
       variables
     );
     console.log(response);
-    // TODO: check response
-    router.push('/complete-submit');
+
+    setUrl(
+      `localhost:3004/certify?rowId=${response?.createCertificationUrl?.certificationUrl?.rowId}`
+    );
   };
 
+  console.log(props.query);
   return (
     <>
       <h1>Summary of your application:</h1>
@@ -52,21 +62,17 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       <br />
 
       <ApplicationDetailsContainer isAnalyst={false} query={props.query} />
-
-      <Link
-        passHref
-        href={{
-          pathname: '/complete-submit'
-        }}
-      >
-        <Button
-          className="float-right"
-          style={{marginTop: '10px'}}
-          onClick={submitApplication}
-        >
-          Submit Application
+      <Row>
+        <Button onClick={createCertificationUrl}>
+          Generate Certification Page
         </Button>
-      </Link>
+      </Row>
+      <br />
+      <Row>
+        <input ref={copyArea} style={{width: '50%'}} value={url} />
+        <Button onClick={copyToClipboard}>Copy to Clipboard</Button>
+        <span style={{color: 'green'}}>{copySuccess}</span>
+      </Row>
     </>
   );
 };
