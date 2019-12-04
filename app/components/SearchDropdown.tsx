@@ -3,9 +3,9 @@ import {Typeahead} from 'react-bootstrap-typeahead';
 
 interface Props {
   placeholder?: string;
-  defaultInputValue: string;
-  options: Array<{id: number; name: string}>;
-  inputProps: object;
+  defaultInputValue?: string;
+  options: Array<{id: string | number; name: string}>;
+  inputProps: {id: string};
   onChange: (items?: string[]) => void;
 }
 
