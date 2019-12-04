@@ -4,6 +4,7 @@ import {createFragmentContainer, graphql} from 'react-relay';
 import {Form, Col, FormControlProps} from 'react-bootstrap';
 import {ProductionFields_query} from 'ProductionFields_query.graphql';
 import {FormJson} from 'next-env';
+import {JSONSchema6} from 'json-schema';
 
 interface Props extends FieldProps {
   query: ProductionFields_query;
@@ -19,8 +20,17 @@ const ProductionFields: React.FunctionComponent<Props> = ({
   errorSchema,
   formContext,
   disabled,
-  readonly
+  readonly,
+  schema,
+  uiSchema
 }) => {
+  const {
+    FieldTemplate
+  }: {
+    FieldTemplate: React.FunctionComponent<any>;
+  } = registry as any;
+  // Not using the types definded in @types/react-jsonschema-form as they are out of date
+
   const handleProductChange: FormControlProps['onChange'] = e => {
     const product = (e.nativeEvent.target as HTMLSelectElement).value;
     const productUnits = query.allProducts.edges.find(
@@ -73,23 +83,37 @@ const ProductionFields: React.FunctionComponent<Props> = ({
           </Form.Control>
         </Form.Group>
       </Col>
-      <Col xs={12} md={4}>
-        <Form.Group controlId="id.associatedEmissions">
-          <Form.Label>Product Allocation Factor</Form.Label>
-          <Form.Control
-            type="number"
-            defaultValue={formData.allocationFactor}
-            onChange={e => {
-              onChange({
-                ...formData,
-                associatedEmissions: Number(
-                  (e.nativeEvent.target as HTMLInputElement).value
-                )
-              });
-            }}
-          />
-        </Form.Group>
-      </Col>
+      <FieldTemplate
+        required
+        hidden={false}
+        id="product.allocationFactor"
+        classNames=""
+        label={(schema.properties.allocationFactor as JSONSchema6).title}
+        schema={schema.properties.allocationFactor as JSONSchema6}
+        uiSchema={uiSchema.allocationFactor || {}}
+        formContext={formContext}
+      >
+        <registry.fields.NumberField
+          required
+          schema={schema.properties.allocationFactor as JSONSchema6}
+          uiSchema={uiSchema.allocationFactor}
+          formData={formData.allocationFactor}
+          autofocus={autofocus}
+          idSchema={idSchema}
+          registry={registry}
+          errorSchema={errorSchema}
+          formContext={formContext}
+          disabled={disabled}
+          readonly={readonly}
+          name="allocationFactor"
+          onChange={allocationFactor => {
+            onChange({
+              ...formData,
+              allocationFactor
+            });
+          }}
+        />
+      </FieldTemplate>
       {!additionalDataSchema && (
         <>
           <Col xs={12} md={6}>
@@ -109,29 +133,50 @@ const ProductionFields: React.FunctionComponent<Props> = ({
               />
             </Form.Group>
           </Col>
-          <Col xs={12} md={2}>
-            &nbsp;{formData.productUnits}
-          </Col>
+          <FieldTemplate
+            required={false}
+            hidden={false}
+            id="product.productUnits"
+            classNames=""
+            label={(schema.properties.productUnits as JSONSchema6).title}
+            schema={schema.properties.productUnits as JSONSchema6}
+            uiSchema={uiSchema.productUnits || {}}
+            formContext={formContext}
+          >
+            <registry.fields.StringField
+              disabled
+              readonly
+              required={false}
+              schema={schema.properties.productUnits as JSONSchema6}
+              uiSchema={uiSchema.productUnits}
+              formData={formData.productUnits}
+              autofocus={autofocus}
+              idSchema={idSchema}
+              registry={registry}
+              errorSchema={errorSchema}
+              formContext={formContext}
+              name="units"
+              onChange={null}
+            />
+          </FieldTemplate>
         </>
       )}
       {additionalDataSchema && (
-        <Col xs={12} md={12}>
-          <registry.fields.SchemaField
-            required
-            schema={additionalDataSchema.schema}
-            uiSchema={additionalDataSchema.uiSchema}
-            formData={formData.additionalData}
-            autofocus={autofocus}
-            idSchema={idSchema}
-            registry={registry}
-            errorSchema={errorSchema}
-            formContext={formContext}
-            disabled={disabled}
-            readonly={readonly}
-            name=""
-            onChange={handleAdditionalFieldsChange}
-          />
-        </Col>
+        <registry.fields.ObjectField
+          required
+          schema={additionalDataSchema.schema}
+          uiSchema={additionalDataSchema.uiSchema}
+          formData={formData.additionalData}
+          autofocus={autofocus}
+          idSchema={idSchema}
+          registry={registry}
+          errorSchema={errorSchema}
+          formContext={formContext}
+          disabled={disabled}
+          readonly={readonly}
+          name={null}
+          onChange={handleAdditionalFieldsChange}
+        />
       )}
     </>
   );

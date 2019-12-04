@@ -36,7 +36,10 @@
     "ui:add-text": "Add a Product",
     "ui:remove-text": "Remove Product",
     "items": {
-      "ui:field": "production"
+      "ui:field": "production",
+      "allocationFactor": {
+        "ui:col-md": 4
+      }
     }
   }
 }

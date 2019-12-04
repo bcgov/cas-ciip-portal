@@ -9,9 +9,11 @@ const FormObjectFieldTemplate = ({
 }) => {
   return (
     <>
-      <Col xs={12}>
-        <TitleField title={title} />
-      </Col>
+      {title && (
+        <Col xs={12}>
+          <TitleField title={title} />
+        </Col>
+      )}
       {properties.map(prop => (
         <React.Fragment key={prop.content.key}>{prop.content}</React.Fragment>
       ))}
