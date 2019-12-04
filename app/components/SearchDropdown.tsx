@@ -17,23 +17,33 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
   onChange
 }) => {
   return (
-    <Typeahead
-      filterBy={(option, props) => {
-        if (props.selected.length > 0 || defaultInputValue) {
-          // Display all the options if there's a selection
-          return true;
-        }
+    <>
+      <Typeahead
+        filterBy={(option, props) => {
+          if (props.selected.length > 0 || defaultInputValue) {
+            // Display all the options if there's a selection
+            return true;
+          }
 
-        // Filter by input
-        return option.name.toLowerCase().includes(props.text.toLowerCase());
-      }}
-      placeholder={placeholder || 'Search...'}
-      defaultInputValue={defaultInputValue}
-      options={options}
-      inputProps={inputProps}
-      labelKey="name"
-      onChange={items => onChange(items)}
-    />
+          // Filter by input
+          return option.name.toLowerCase().includes(props.text.toLowerCase());
+        }}
+        placeholder={placeholder || 'Search...'}
+        defaultInputValue={defaultInputValue}
+        options={options}
+        inputProps={{...inputProps, ...{className: 'typeahead-input'}}}
+        labelKey="name"
+        onChange={items => onChange(items)}
+      />
+      <style jsx global>
+        {`
+          .typeahead-input {
+            -webkit-appearance: menulist;
+            -moz-appearance: menulist;
+          }
+        `}
+      </style>
+    </>
   );
 };
 
