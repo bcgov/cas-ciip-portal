@@ -14,13 +14,26 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   classNames,
   uiSchema
 }) => {
+  const helpText = uiSchema['ui:helplink'] ? (
+    <a
+      className="font-italic"
+      href={uiSchema['ui:helplink']}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {help}
+    </a>
+  ) : (
+    <span className="font-italic text-muted">{help}</span>
+  );
+
   if (schema.type === 'array')
     return (
       <Col xs={12}>
         {description}
         {children}
         {errors}
-        {help}
+        {helpText}
       </Col>
     );
   if (schema.type === 'object')
@@ -30,7 +43,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
           {description}
           {children}
           {errors}
-          {help}
+          {helpText}
         </Form.Row>
       </Col>
     );
@@ -53,12 +66,12 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
     >
       <Form.Label htmlFor={id}>
         {label}
-        {required ? '*' : null}
+        {required ? ' *' : null}
       </Form.Label>
       {description}
       {children}
       {errors}
-      {help}
+      {helpText}
     </Form.Group>
   );
 };

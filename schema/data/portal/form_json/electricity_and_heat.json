@@ -4,49 +4,125 @@
     "properties": {
       "electricity": {
         "title": "Electricity",
-        "$ref": "#/definitions/heatAndElectricity"
-        },
-      "heat": {
-        "title": "Heat",
-        "$ref": "#/definitions/heatAndElectricity"
-      }
-    },
-    "definitions": {
-      "heatAndElectricity": {
         "type": "object",
         "properties": {
           "purchased": {
             "type": "number",
-            "title": "Purchased"
+            "title": "Purchased (MWh)"
           },
           "generatedOnSite": {
             "type": "number",
-            "title": "Generated On-Site"
+            "title": "Generated On Site (MWh)"
           },
           "consumedOnSite": {
             "type": "number",
-            "title": "Consumed On-Site"
+            "title": "Consumed On Site (MWh)"
           },
           "sold": {
             "type": "number",
-            "title": "Sold"
+            "title": "Sold (MWh)"
           }
         },
+        "required": ["purchased", "generatedOnSite", "consumedOnSite", "sold"],
         "dependencies": {
           "generatedOnSite": {
             "oneOf": [
               {
                 "properties": {
-                  "generatedOnSite": { "exclusiveMinimum": 0},
+                  "generatedOnSite": { "exclusiveMinimum": 0 },
                   "onSiteEmissions": {
                     "type": "number",
                     "title": "Emissions from On-Site Generation (tCO2e)"
                   }
-                }
+                },
+                "required": ["onSiteEmissions"]
               },
               {
                 "properties": {
-                    "generatedOnSite": { "const": 0}
+                  "generatedOnSite": { "const": 0 }
+                }
+              }
+            ]
+          },
+          "purchased": {
+            "oneOf": [
+              {
+                "properties": {
+                  "purchased": { "exclusiveMinimum": 0 },
+                  "purchasedEmissionFactor": {
+                    "type": "number",
+                    "title": "Purchased Electricity Emission Factor (tCO2e/MWh)"
+                  }
+                },
+                "required": ["purchasedEmissionFactor"]
+              },
+              {
+                "properties": {
+                  "purchased": { "const": 0 }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "heat": {
+        "title": "Heat",
+        "type": "object",
+        "properties": {
+          "purchased": {
+            "type": "number",
+            "title": "Purchased (GJ)"
+          },
+          "generatedOnSite": {
+            "type": "number",
+            "title": "Generated On Site (GJ)"
+          },
+          "consumedOnSite": {
+            "type": "number",
+            "title": "Consumed On Site (GJ)"
+          },
+          "sold": {
+            "type": "number",
+            "title": "Sold (GJ)"
+          }
+        },
+        "required": ["purchased", "generatedOnSite", "consumedOnSite", "sold"],
+        "dependencies": {
+          "generatedOnSite": {
+            "oneOf": [
+              {
+                "properties": {
+                  "generatedOnSite": { "exclusiveMinimum": 0 },
+                  "onSiteEmissions": {
+                    "type": "number",
+                    "title": "Emissions from On-Site Generation (tCO2e)"
+                  }
+                },
+                "required": ["onSiteEmissions"]
+              },
+              {
+                "properties": {
+                  "generatedOnSite": { "const": 0 }
+                }
+              }
+            ]
+          },
+          "purchased": {
+            "oneOf": [
+              {
+                "properties": {
+                  "purchased": { "exclusiveMinimum": 0 },
+                  "purchasedEmissionFactor": {
+                    "type": "number",
+                    "title": "Purchased Heat Emission Factor (tCO2e/GJ)",
+                    "default": 0.063
+                  }
+                },
+                "required": ["purchasedEmissionFactor"]
+              },
+              {
+                "properties": {
+                  "purchased": { "const": 0 }
                 }
               }
             ]
@@ -60,43 +136,50 @@
     "electricity": {
       "ui:order": [
         "purchased",
-        "sold",
-        "consumedOnSite",
         "generatedOnSite",
+        "consumedOnSite",
+        "sold",
         "*"
       ],
       "purchased": {
-        "ui:col-md": 4
+        "ui:col-md": 3
       },
       "generatedOnSite": {
-        "ui:col-md": 6
+        "ui:col-md": 3
       },
       "consumedOnSite": {
-        "ui:col-md": 4
+        "ui:col-md": 3
       },
       "sold": {
-        "ui:col-md": 4
+        "ui:col-md": 3
       },
-      "onSiteEmissions": {
-        "ui:col-md": 6
+      "purchasedEmissionFactor": {
+        "ui:help": "Find your Grid Emission Factor here (and apply necessary conversion)",
+        "ui:helplink": "https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/reporting/quantify/electricity"
       }
     },
     "heat": {
       "ui:order": [
         "purchased",
-        "sold",
-        "consumedOnSite",
         "generatedOnSite",
+        "consumedOnSite",
+        "sold",
         "*"
       ],
       "purchased": {
-        "ui:col-md": 4
+        "ui:col-md": 3
       },
       "consumedOnSite": {
-        "ui:col-md": 4
+        "ui:col-md": 3
       },
       "sold": {
-        "ui:col-md": 4
+        "ui:col-md": 3
+      },
+      "generatedOnSite": {
+        "ui:col-md": 3
+      },
+      "purchasedEmissionFactor": {
+        "ui:help": "Computed using natural gas emissions from the WCI methodology, assuming 80% efficiency"
       }
     }
   }
