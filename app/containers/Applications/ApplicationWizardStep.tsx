@@ -59,9 +59,8 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   if (!application) return null;
   // Save Application status to database
   return (
-    // Save Application status to database
-    <Form // Save Application status to database
-      query={query} // Save Application status to database
+    <Form
+      query={query}
       onComplete={onComplete}
       onValueChanged={onValueChanged}
       onBack={onStepBack}

@@ -981,9 +981,11 @@ enum CiipApplicationsOrderBy {
 
 enum CiipApplicationStatus {
   APPROVED
+  CHANGES_SUBMITTED
   DRAFT
   PENDING
   REJECTED
+  REQUESTED_CHANGES
 }
 
 """

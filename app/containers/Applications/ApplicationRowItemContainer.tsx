@@ -1,16 +1,22 @@
 import React from 'react';
 import {Button, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
+import {CiipApplicationStatus} from 'ApplicationRowItemContainer_ciipApplication.graphql';
 import Link from 'next/link';
 
+const statusBadgeColor: Record<
+  CiipApplicationStatus,
+  'info' | 'danger' | 'success' | 'warning' | 'primary' | 'secondary'
+> = {
+  DRAFT: 'warning',
+  PENDING: 'info',
+  REJECTED: 'danger',
+  APPROVED: 'success',
+  CHANGES_SUBMITTED: 'primary',
+  REQUESTED_CHANGES: 'secondary'
+};
 export const ApplicationRowItem = props => {
   const {ciipApplication = {}} = props;
-  const statusBadgeColor = {
-    DRAFT: 'warning',
-    PENDING: 'info',
-    REJECTED: 'danger',
-    APPROVED: 'success'
-  };
 
   return (
     <tr>

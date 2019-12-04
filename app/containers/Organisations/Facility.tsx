@@ -88,13 +88,15 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
 
   const statusBadgeColor: Record<
     CiipApplicationStatus,
-    'info' | 'danger' | 'success' | 'dark'
+    'info' | 'danger' | 'success' | 'dark' | 'primary' | 'secondary'
   > = {
     // Attention: 'warning',
     PENDING: 'info',
     REJECTED: 'danger',
     APPROVED: 'success',
-    DRAFT: 'dark'
+    DRAFT: 'dark',
+    CHANGES_SUBMITTED: 'primary',
+    REQUESTED_CHANGES: 'secondary'
   };
 
   return (

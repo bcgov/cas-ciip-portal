@@ -15,6 +15,13 @@ const mutation = graphql`
       applicationStatus {
         id
       }
+      applicationByApplicationId {
+        id
+        applicationStatus {
+          id
+          applicationStatus
+        }
+      }
     }
   }
 `;

@@ -40,11 +40,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     );
     console.log(response);
     // TODO: check response
-    const newUrl = {
-      pathname: '/complete-submit'
-    };
-    router.push(newUrl, newUrl, {shallow: true});
-    // TODO: do we need shallow?
+    router.push('/complete-submit');
   };
 
   return (
