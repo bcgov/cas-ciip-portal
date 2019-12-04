@@ -1,8 +1,10 @@
 import React, {useRef} from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SignaturePad from 'react-signature-canvas';
+import Link from 'next/link';
 import {Button, Container, Row, Col} from 'react-bootstrap';
 import updateApplicationMutation from 'mutations/application/updateApplicationMutation';
+import updateApplicationStatusMutation from 'mutations/application/updateApplicationStatusMutation';
 import {CertificationSignature_application} from 'CertificationSignature_application.graphql';
 
 interface Props {
@@ -42,6 +44,23 @@ const CertificationSignature: React.FunctionComponent<Props> = props => {
     console.log(response);
   };
 
+  const submitApplication = async () => {
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        id: props.application.applicationStatus.id,
+        applicationStatusPatch: {
+          applicationStatus: 'pending'
+        }
+      }
+    };
+    const response = await updateApplicationStatusMutation(
+      environment,
+      variables
+    );
+    console.log(response);
+  };
+
   return (
     <Container>
       <h3>Certifier Signature:</h3>
@@ -55,11 +74,32 @@ const CertificationSignature: React.FunctionComponent<Props> = props => {
       </Row>
       <Row>
         <Col md={6}>
-          <input accept="image/*" type="file" onChange={e => uploadImage(e)} />
+          {props.application.certificationSignature ? (
+            <span style={{color: 'green'}}>Signed Successfully!</span>
+          ) : (
+            <input
+              accept="image/*"
+              type="file"
+              onChange={e => uploadImage(e)}
+            />
+          )}
         </Col>
         <Col md={{span: 3, offset: 2}}>
           {props.application.certificationSignature ? (
-            <Button>Submit</Button>
+            <Link
+              passHref
+              href={{
+                pathname: '/complete-submit'
+              }}
+            >
+              <Button
+                className="float-right"
+                style={{marginTop: '10px'}}
+                onClick={submitApplication}
+              >
+                Submit Application
+              </Button>
+            </Link>
           ) : (
             <>
               <Button
@@ -95,6 +135,9 @@ export default createFragmentContainer(CertificationSignature, {
     fragment CertificationSignature_application on Application {
       id
       certificationSignature
+      applicationStatus {
+        id
+      }
     }
   `
 });

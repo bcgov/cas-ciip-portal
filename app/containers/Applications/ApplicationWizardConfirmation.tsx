@@ -92,9 +92,6 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
       @argumentDefinitions(applicationId: {type: "ID!"}) {
       application(id: $applicationId) {
         rowId
-        applicationStatus {
-          id
-        }
       }
       ...ApplicationDetailsContainer_query
         @arguments(applicationId: $applicationId)
