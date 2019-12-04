@@ -50,11 +50,6 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
           padding-bottom: 10px;
           margin-bottom: 20px;
         }
-
-        .form-result-box .review-box {
-          border-bottom: 1px solid #d2d2d2;
-          margin-bottom: 20px;
-        }
       `}</style>
     </>
   );

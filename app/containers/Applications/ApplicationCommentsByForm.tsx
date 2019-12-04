@@ -42,21 +42,6 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
       </div>
 
       <style jsx>{`
-        .form-result-box {
-          padding: 25px;
-          margin-bottom: 20px;
-          border: 1px solid #ff713a;
-          border-radius: 5px;
-          background-color: #fff4dcab;
-          font-size: 14px;
-        }
-
-        .form-result-box h5 {
-          border-bottom: 1px solid #888;
-          padding-bottom: 10px;
-          margin-bottom: 20px;
-        }
-
         .form-result-box .review-box {
           border-bottom: 1px solid #d2d2d2;
           margin-bottom: 20px;
@@ -71,8 +56,12 @@ export default createFragmentContainer(ApplicationCommentsByForm, {
     fragment ApplicationCommentsByForm_applicationReview on ApplicationReview {
       id
       reviewStatus
+      formResultId
       createdAt
-      reviewCommentsByApplicationReviewId {
+      reviewCommentsByApplicationReviewId(first: 2147483647)
+        @connection(
+          key: "ApplicationCommentsByFrom_reviewCommentsByApplicationReviewId"
+        ) {
         edges {
           node {
             id
