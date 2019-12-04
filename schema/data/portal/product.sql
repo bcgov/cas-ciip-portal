@@ -4,8 +4,8 @@ with rows as (
 insert into ggircs_portal.product(id, name, units, state, product_form_id)
 overriding system value
 values
-(1, 'Cannabis flowers', 'kg', 'active', null),
-(2, 'Lumber', 'Thousand Board Feet', 'active', 1),
+(1, 'Cannabis flowers', 't', 'active', null),
+(2, 'Lumber', 'm3', 'active', 1),
 (3, 'Lean Sweet Gas Plants', 'Cubic meters of oil equivalent (m3OE)', 'active', 2),
 (4, 'Lean Sour Gas Plants', 'Cubic meters of oil equivalent (m3OE)', 'active', 2),
 (5, 'Rich Sweet Gas Plants', 'Cubic meters of oil equivalent (m3OE)', 'active', 2),

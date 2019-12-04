@@ -20,8 +20,8 @@
             "title": "Units",
             "type": "string"
           },
-          "associatedEmissions": {
-            "title": "Associated Emission (tCO2e)",
+          "allocationFactor": {
+            "title": "Product allocation factor",
             "type": "number"
           },
           "additionalData": {

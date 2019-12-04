@@ -10,8 +10,18 @@ values
     "properties" : {
       "reportedProduction": {
         "type": "number",
-        "title" : "Annual Production Amount"
+        "title" : "Annual Amount"
+      },
+      "productUnits": {
+        "type": "string",
+        "title": "Units"
       }
+    }
+  },
+  "uiSchema": {
+    "ui:order": [ "reportedProduction", "productUnits" ],
+    "productUnits": {
+      "ui:disabled": true
     }
   }
 }','((facility non-biogenic emissions + energy import/export balance emissions)* product allocation factor)/ directly reported production'),
@@ -45,6 +55,10 @@ values
         "items" : {
           "type": "object",
           "properties": {
+            "id": {
+              "type": "string",
+              "title": "Equipment identifier"
+            },
             "powerRating": {
               "type": "number",
               "title": "Power Rating"

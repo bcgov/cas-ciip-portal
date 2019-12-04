@@ -23,13 +23,14 @@ const ProductionFields: React.FunctionComponent<Props> = ({
 }) => {
   const handleProductChange: FormControlProps['onChange'] = e => {
     const product = (e.nativeEvent.target as HTMLSelectElement).value;
+    const productUnits = query.allProducts.edges.find(
+      ({node}) => node.name === product
+    )?.node.units;
     onChange({
       ...formData,
       product,
-      productUnits: query.allProducts.edges.find(
-        ({node}) => node.name === product
-      )?.node.units,
-      additionalData: undefined
+      productUnits,
+      additionalData: {productUnits}
     });
   };
 
@@ -74,10 +75,10 @@ const ProductionFields: React.FunctionComponent<Props> = ({
       </Col>
       <Col xs={12} md={4}>
         <Form.Group controlId="id.associatedEmissions">
-          <Form.Label>Associated Emissions (tCO2e)</Form.Label>
+          <Form.Label>Product Allocation Factor</Form.Label>
           <Form.Control
             type="number"
-            defaultValue={formData.associatedEmissions}
+            defaultValue={formData.allocationFactor}
             onChange={e => {
               onChange({
                 ...formData,
