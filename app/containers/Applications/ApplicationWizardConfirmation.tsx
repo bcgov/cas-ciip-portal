@@ -66,7 +66,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     console.log(response);
     if (window) {
       setUrl(
-        `${window.location.host}/certify?rowId=${response?.createCertificationUrl?.certificationUrl?.rowId}`
+        `${window.location.host}/certification-redirect?rowId=${response?.createCertificationUrl?.certificationUrl?.rowId}?id=${props.query.application.id}`
       );
     } else console.log('No window location found');
   };
@@ -137,6 +137,7 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
     fragment ApplicationWizardConfirmation_query on Query
       @argumentDefinitions(applicationId: {type: "ID!"}) {
       application(id: $applicationId) {
+        id
         rowId
         certificationSignature
         applicationStatus {
