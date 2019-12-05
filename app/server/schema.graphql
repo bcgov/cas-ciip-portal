@@ -9419,7 +9419,6 @@ type Query implements Node {
 
     """Read all values in the set before (above) this cursor."""
     before: Cursor
-    direction: String
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -9433,7 +9432,7 @@ type Query implements Node {
     """
     offset: Int
     orderByField: String
-    organisationId: Int
+    organisationRowId: String
     searchField: String
     searchValue: String
   ): FacilitiesConnection!

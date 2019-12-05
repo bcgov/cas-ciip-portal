@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {Button, Badge, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Button, Badge} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 import {
@@ -18,6 +18,9 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
   relay,
   facility
 }) => {
+  const {edges} = facility?.applicationsByFacilityId || {};
+  const {id: applicationId, applicationStatus} = edges?.[0]?.node || {};
+
   const {environment} = relay;
   const router = useRouter();
 
@@ -39,9 +42,6 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
       }
     });
   };
-
-  const {edges} = facility?.applicationsByFacilityId || {};
-  const {id: applicationId, applicationStatus} = edges?.[0]?.node || {};
 
   // Conditionall render apply / resume button depending on existence and status of Facility's application
   const applyButton = () => {
@@ -102,7 +102,7 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
 
   return (
     <>
-      <Card style={{maxWidth: '400px'}}>
+      {/* <Card style={{maxWidth: '400px'}}>
         <Card.Header>
           <strong>Facility Name: </strong>
           {facility.facilityName}
@@ -133,7 +133,31 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
           </ListGroupItem>
         </ListGroup>
         <Card.Body>{applyButton()}</Card.Body>
-      </Card>
+      </Card> */}
+      <tr>
+        <td>{facility.facilityName}</td>
+        <td>
+          {facility.facilityMailingAddress} {facility.facilityPostalCode}
+          <br />
+          {facility.facilityCity}, {facility.facilityProvince}
+        </td>
+        <td>
+          {' '}
+          {applicationStatus ? (
+            <>
+              <Badge
+                pill
+                variant={statusBadgeColor[applicationStatus.applicationStatus]}
+              >
+                {applicationStatus.applicationStatus}
+              </Badge>
+            </>
+          ) : (
+            <>Application not started</>
+          )}
+        </td>
+        <td>{applyButton()}</td>
+      </tr>
     </>
   );
 };
@@ -148,7 +172,6 @@ export default createFragmentContainer(FacilityComponent, {
       facilityPostalCode
       rowId
       hasSwrsReport(reportingYear: "2018")
-
       applicationsByFacilityId {
         edges {
           node {

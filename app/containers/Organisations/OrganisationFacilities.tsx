@@ -1,63 +1,114 @@
-import React from 'react';
-import {graphql, createFragmentContainer} from 'react-relay';
-import {CardDeck} from 'react-bootstrap';
-// Import SortableTableHeader from 'components/SortableTableHeader';
-// import SearchBox from 'components/SearchBox';
+import React, {useEffect} from 'react';
+import {graphql, createRefetchContainer} from 'react-relay';
+import {Table, Container, Row, Col} from 'react-bootstrap';
+import SortableTableHeader from 'components/SortableTableHeader';
+import SearchBox from 'components/SearchBox';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Facility from './Facility';
 
 export const OrganisationFacilitiesComponent = props => {
-  // Const {
-  //   searchDisplay,
-  //   direction,
-  //   orderByField,
-  //   searchField,
-  //   searchValue,
-  //   handleEvent
-  // } = props;
-  // useEffect(() => {
-  //   const refetchVariables = {
-  //     searchField,
-  //     searchValue,
-  //     orderByField,
-  //     direction
-  //   };
-  //   props.relay.refetch(refetchVariables);
-  // });
-  // const tableHeaders = [
-  //   {columnName: 'facility_name', displayName: 'Facility Name'},
-  //   {columnName: 'address', displayName: 'Address'},
-  //   {columnName: 'application_status', displayName: 'Status'}
-  // ];
-  // const dropdownSortItems = ['Facility Name', 'Address', 'Status'];
-  // const displayNameToColumnNameMap = {
-  //   'Facility Name': 'facility_name',
-  //   Address: 'address',
-  //   Status: 'application_status'
-  // };
+  const {
+    organisationRowId,
+    searchDisplay,
+    direction,
+    orderByField,
+    searchField,
+    searchValue,
+    handleEvent
+  } = props;
+  const {edges} = props.query.searchOrganisationFacilities;
+  console.log(organisationRowId);
 
-  const {organisation} = props.query;
-  if (!organisation) return <LoadingSpinner />;
+  useEffect(() => {
+    const refetchVariables = {
+      organisationRowId,
+      searchField,
+      searchValue,
+      orderByField,
+      direction
+    };
+    props.relay.refetch(refetchVariables);
+  });
+
+  const tableHeaders = [
+    {columnName: 'facility_name', displayName: 'Facility Name'},
+    {columnName: 'address', displayName: 'Address'},
+    {columnName: 'application_status', displayName: 'Status'}
+  ];
+
+  const dropdownSortItems = ['Facility Name', 'Address', 'Status'];
+
+  const displayNameToColumnNameMap = {
+    'Facility Name': 'facility_name',
+    Address: 'address',
+    Status: 'application_status'
+  };
+
+  const facilities = props.query.searchOrganisationFacilities;
+  if (!facilities) return <LoadingSpinner />;
 
   return (
     <>
-      <CardDeck>
+      {/* <CardDeck>
         {organisation.facilitiesByOrganisationId.edges.map(({node}) => {
           return <Facility key={node.id} facility={node} />;
         })}
-      </CardDeck>
+      </CardDeck> */}
+      <Container>
+        <Row>
+          <Col md={{span: 12, offset: 6}}>
+            <SearchBox
+              dropdownSortItems={dropdownSortItems}
+              handleEvent={handleEvent}
+              displayNameToColumnNameMap={displayNameToColumnNameMap}
+              searchDisplay={searchDisplay}
+            />
+          </Col>
+        </Row>
+      </Container>
+
+      <Table striped bordered hover style={{textAlign: 'center'}}>
+        <thead>
+          <tr>
+            {tableHeaders.map(header => (
+              <SortableTableHeader
+                key={header.columnName}
+                sort={handleEvent}
+                headerVariables={header}
+              />
+            ))}
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {edges.map(edge => (
+            <Facility key={edge.node.id} facility={edge.node} />
+          ))}
+        </tbody>
+      </Table>
     </>
   );
 };
 
-export default createFragmentContainer(OrganisationFacilitiesComponent, {
-  query: graphql`
-    fragment OrganisationFacilities_query on Query
-      @argumentDefinitions(id: {type: "ID!"}) {
-      organisation(id: $organisationId) {
-        id
-        facilitiesByOrganisationId(first: 2147483647)
-          @connection(key: "organisation_facilitiesByOrganisationId") {
+export default createRefetchContainer(
+  OrganisationFacilitiesComponent,
+  {
+    query: graphql`
+      fragment OrganisationFacilities_query on Query
+        @argumentDefinitions(
+          organisationRowId: {type: "String!"}
+          searchField: {type: "String"}
+          searchValue: {type: "String"}
+          orderByField: {type: "String"}
+          direction: {type: "String"}
+        ) {
+        searchOrganisationFacilities(
+          organisationRowId: $organisationRowId
+          searchField: $searchField
+          searchValue: $searchValue
+          orderByField: $orderByField
+          direction: $direction
+        ) {
           edges {
             node {
               id
@@ -66,6 +117,26 @@ export default createFragmentContainer(OrganisationFacilitiesComponent, {
           }
         }
       }
+    `
+  },
+  graphql`
+    query OrganisationFacilitiesRefetchQuery(
+      $organisationRowId: String!
+      $searchField: String
+      $searchValue: String
+      $orderByField: String
+      $direction: String
+    ) {
+      query {
+        ...OrganisationFacilities_query
+          @arguments(
+            organisationRowId: $organisationRowId
+            orderByField: $orderByField
+            direction: $direction
+            searchField: $searchField
+            searchValue: $searchValue
+          )
+      }
     }
   `
-});
+);

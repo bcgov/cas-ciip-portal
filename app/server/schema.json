@@ -5016,16 +5016,6 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "direction",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
                   "name": "first",
                   "description": "Only read the first `n` values of the set.",
                   "type": {
@@ -5066,11 +5056,11 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "organisationId",
+                  "name": "organisationRowId",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   },
                   "defaultValue": null

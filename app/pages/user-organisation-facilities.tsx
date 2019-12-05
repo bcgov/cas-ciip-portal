@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {userOrganisationFacilitiesQueryResponse} from 'userOrganisationFacilitiesQuery.graphql';
+import SearchTable from '../components/SearchTable';
 import DefaultLayout from '../layouts/default-layout';
 import OrganisationFacilities from '../containers/Organisations/OrganisationFacilities';
 
@@ -9,9 +10,23 @@ interface Props {
 }
 export default class UserOrganisationFacilities extends Component<Props> {
   static query = graphql`
-    query userOrganisationFacilitiesQuery($organisationId: ID!) {
+    query userOrganisationFacilitiesQuery(
+      $organisationId: ID!
+      $organisationRowId: String
+      $orderByField: String
+      $direction: String
+      $searchField: String
+      $searchValue: String
+    ) {
       query {
-        ...OrganisationFacilities_query @arguments(id: $organisationId)
+        ...OrganisationFacilities_query
+          @arguments(
+            organisationRowId: $organisationRowId
+            orderByField: $orderByField
+            direction: $direction
+            searchField: $searchField
+            searchValue: $searchValue
+          )
         session {
           ...defaultLayout_session
         }
@@ -22,12 +37,27 @@ export default class UserOrganisationFacilities extends Component<Props> {
     }
   `;
 
+  static async getInitialProps() {
+    return {
+      variables: {
+        orderByField: 'operator_name',
+        direction: 'ASC'
+      }
+    };
+  }
+
   render() {
     const {organisation, session} = this.props.query;
     const orgTitle = `Facilities for ${organisation.operatorName} `;
     return (
       <DefaultLayout showSubheader session={session} title={orgTitle}>
-        <OrganisationFacilities query={this.props.query} />
+        <SearchTable
+          query={this.props.query}
+          defaultOrderByField="facility_name"
+          defaultOrderByDisplay="Facility Name"
+        >
+          {props => <OrganisationFacilities {...props} />}
+        </SearchTable>
       </DefaultLayout>
     );
   }

@@ -14,6 +14,7 @@ export const UserOrganisationComponent = props => {
     PENDING: 'info',
     APPROVED: 'success'
   };
+  console.log(typeof userOrganisation.organisationByOrganisationId.rowId);
 
   return (
     <tr>
@@ -34,7 +35,10 @@ export const UserOrganisationComponent = props => {
             href={{
               pathname: '/user-organisation-facilities',
               query: {
-                organisationId: userOrganisation.organisationByOrganisationId.id
+                organisationId:
+                  userOrganisation.organisationByOrganisationId.id,
+                organisationRowId:
+                  userOrganisation.organisationByOrganisationId.rowId
               }
             }}
           >
@@ -62,6 +66,7 @@ export default createFragmentContainer(UserOrganisationComponent, {
       status
       organisationByOrganisationId {
         id
+        rowId
         operatorName
       }
     }
