@@ -24,6 +24,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
           key={node.id}
           isAnalyst={props.isAnalyst}
           formResult={node}
+          query={props.query.query}
         />
       ))}
     </>
@@ -34,6 +35,9 @@ export default createFragmentContainer(ApplicationDetailsComponent, {
   query: graphql`
     fragment ApplicationDetailsContainer_query on Query
       @argumentDefinitions(applicationId: {type: "ID!"}) {
+      query {
+        ...ApplicationDetailsCardItem_query
+      }
       application(id: $applicationId) {
         id
         formResultsByApplicationId {
