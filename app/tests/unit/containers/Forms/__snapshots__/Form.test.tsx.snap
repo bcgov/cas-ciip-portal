@@ -58,11 +58,10 @@ exports[`The Form Component should match the snapshot 1`] = `
       }
     }
     formData={Object {}}
-    liveOmit={true}
     liveValidate={false}
     noHtml5Validate={false}
     noValidate={false}
-    omitExtraData={true}
+    omitExtraData={false}
     onSubmit={[MockFunction]}
     safeRenderCompletion={true}
     showErrorList={false}

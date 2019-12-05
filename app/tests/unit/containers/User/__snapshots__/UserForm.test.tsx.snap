@@ -11,18 +11,13 @@ exports[`Form Edit User should render the snapshot 1`] = `
       class="form-row"
     >
       <div
-        class="col-12"
-      >
-        <legend />
-      </div>
-      <div
         class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
       >
         <label
           class="form-label"
           for="root_firstName"
         >
-          First Name*
+          First Name *
         </label>
         <input
           class="form-control"
@@ -33,6 +28,9 @@ exports[`Form Edit User should render the snapshot 1`] = `
           type="text"
           value="Test"
         />
+        <span
+          class="font-italic text-muted"
+        />
       </div>
       <div
         class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -41,7 +39,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           class="form-label"
           for="root_lastName"
         >
-          Last Name*
+          Last Name *
         </label>
         <input
           class="form-control"
@@ -52,6 +50,9 @@ exports[`Form Edit User should render the snapshot 1`] = `
           type="text"
           value="Test"
         />
+        <span
+          class="font-italic text-muted"
+        />
       </div>
       <div
         class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -60,7 +61,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           class="form-label"
           for="root_emailAddress"
         >
-          Email Address*
+          Email Address *
         </label>
         <input
           class="form-control"
@@ -71,6 +72,9 @@ exports[`Form Edit User should render the snapshot 1`] = `
           type="text"
           value="Test@test.com"
         />
+        <span
+          class="font-italic text-muted"
+        />
       </div>
       <div
         class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -79,7 +83,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           class="form-label"
           for="root_phoneNumber"
         >
-          Phone Number*
+          Phone Number *
         </label>
         <input
           class="form-control"
@@ -90,6 +94,9 @@ exports[`Form Edit User should render the snapshot 1`] = `
           type="text"
           value=""
         />
+        <span
+          class="font-italic text-muted"
+        />
       </div>
       <div
         class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -98,7 +105,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
           class="form-label"
           for="root_occupation"
         >
-          Occupation*
+          Occupation *
         </label>
         <input
           class="form-control"
@@ -109,7 +116,13 @@ exports[`Form Edit User should render the snapshot 1`] = `
           type="text"
           value=""
         />
+        <span
+          class="font-italic text-muted"
+        />
       </div>
+      <span
+        class="font-italic text-muted"
+      />
     </div>
   </div>
   <div>

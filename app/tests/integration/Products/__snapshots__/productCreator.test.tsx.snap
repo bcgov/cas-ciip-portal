@@ -49,15 +49,6 @@ exports[`ProductCreator render() should match the last usable snapshot 1`] = `
                   className="form-row"
                 >
                   Array [
-                    <Col
-                      xs={12}
-                    >
-                      <div
-                        className="col-12"
-                      >
-                        <legend />
-                      </div>
-                    </Col>,
                     <FormGroup
                       as={
                         Object {
@@ -94,7 +85,7 @@ exports[`ProductCreator render() should match the last usable snapshot 1`] = `
                               htmlFor="root_product"
                             >
                               Product
-                              *
+                               *
                             </label>
                           </FormLabel>
                           <input
@@ -111,6 +102,9 @@ exports[`ProductCreator render() should match the last usable snapshot 1`] = `
                             required={true}
                             type="text"
                             value=""
+                          />
+                          <span
+                            className="font-italic text-muted"
                           />
                         </div>
                       </Col>
@@ -168,10 +162,16 @@ exports[`ProductCreator render() should match the last usable snapshot 1`] = `
                             type="text"
                             value=""
                           />
+                          <span
+                            className="font-italic text-muted"
+                          />
                         </div>
                       </Col>
                     </FormGroup>,
                   ]
+                  <span
+                    className="font-italic text-muted"
+                  />
                 </div>
               </FormRow>
             </div>

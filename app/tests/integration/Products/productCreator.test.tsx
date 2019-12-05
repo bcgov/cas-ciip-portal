@@ -27,7 +27,7 @@ describe('ProductCreator', () => {
           .find('label')
           .filter('[htmlFor="root_product"]')
           .text()
-      ).toBe('Product*');
+      ).toBe('Product *');
     });
 
     it('should render the product desc field', async () => {
