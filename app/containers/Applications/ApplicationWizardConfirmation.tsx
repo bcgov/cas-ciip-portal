@@ -66,7 +66,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     console.log(response);
     if (window) {
       setUrl(
-        `${window.location.host}/certification-redirect?rowId=${response?.createCertificationUrl?.certificationUrl?.rowId}?id=${props.query.application.id}`
+        `${window.location.host}/certification-redirect?rowId=${response?.createCertificationUrl?.certificationUrl?.rowId}&id=${props.query.application.id}`
       );
     } else console.log('No window location found');
   };

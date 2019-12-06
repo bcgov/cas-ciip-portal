@@ -7,6 +7,7 @@ import DefaultLayout from '../layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: registrationQueryResponse['query'];
+  router: any;
 }
 
 class Registration extends Component<Props> {
@@ -33,6 +34,10 @@ class Registration extends Component<Props> {
       router
     } = this.props;
     const {ciipUserBySub, sub, givenName, familyName, email} = session || {};
+    let redirectURI = router.query.redirectTo;
+    // The redirectTo loses the query string information, which is needed when redirecting a certifier. The query string is still stored in pageProps
+    if (router?.components?.['/certify'])
+      redirectURI = `${router.query.redirectTo}?applicationId=${router.components['/certify'].props.pageProps.variables.applicationId}`;
 
     return (
       <DefaultLayout title="Registration" session={session} needsUser={false}>
@@ -46,7 +51,7 @@ class Registration extends Component<Props> {
           onSubmit={async () =>
             router.push(
               router.query.redirectTo
-                ? decodeURI(router.query.redirectTo as string)
+                ? decodeURI(redirectURI as string)
                 : '/user-dashboard'
             )
           }

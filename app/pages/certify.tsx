@@ -29,12 +29,7 @@ class Certify extends Component<Props> {
     const {query} = this.props;
     return (
       <>
-        <DefaultLayout
-          title="Submission Certification"
-          session={query.session}
-          needsUser={false}
-          needsSession={false}
-        >
+        <DefaultLayout title="Submission Certification" session={query.session}>
           <>
             <CertificationPage
               application={query.application}
