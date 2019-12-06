@@ -1,9 +1,7 @@
 import React from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {useRouter} from 'next/router';
 import {ApplicationWizardStep_query} from 'ApplicationWizardStep_query.graphql';
 import Form from '../Forms/Form';
-import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
 import updateFormResultMutation from '../../mutations/form/updateFormResultMutation';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 
@@ -26,7 +24,6 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   confirmationPage,
   relay
 }) => {
-  const router = useRouter();
   const {application, formResult} = query;
 
   // Function: store the form result
@@ -44,33 +41,11 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
     console.log('response', response);
   };
 
-  // Change application status to 'pending' on application submit
-  const submitApplication = async () => {
-    const {environment} = relay;
-    const variables = {
-      input: {
-        id: application.applicationStatus.id,
-        applicationStatusPatch: {
-          applicationStatus: 'pending'
-        }
-      }
-    };
-    const response = await updateApplicationStatusMutation(
-      environment,
-      variables
-    );
-    console.log(response);
-    const newUrl = {
-      pathname: '/complete-submit'
-    };
-    router.replace(newUrl, newUrl, {shallow: true});
-  };
-
   // Define a callback methods on survey complete
   const onComplete = result => {
     const formData = result.data;
     storeResult(formData);
-    router.query.certificationPage ? submitApplication() : onStepComplete();
+    onStepComplete();
   };
 
   const onValueChanged = async change => {
@@ -82,7 +57,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   if (!formResult) return null;
 
   if (!application) return null;
-
+  // Save Application status to database
   return (
     <Form
       query={query}

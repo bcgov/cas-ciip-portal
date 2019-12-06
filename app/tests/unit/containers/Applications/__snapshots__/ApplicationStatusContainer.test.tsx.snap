@@ -31,7 +31,6 @@ exports[`ApplicationStatusItem should render the application status 1`] = `
               "width": "100%",
             }
           }
-          variant="info"
         >
           pending
         </Bootstrap(DropdownToggle)>
@@ -45,28 +44,28 @@ exports[`ApplicationStatusItem should render the application status 1`] = `
           }
         >
           <DropdownMenuItemComponent
-            itemEventKey="pending"
-            itemFunc={[MockFunction]}
-            itemTitle="pending"
-            key="pending"
+            itemEventKey="PENDING"
+            itemFunc={[Function]}
+            itemTitle="PENDING"
+            key="PENDING"
           />
           <DropdownMenuItemComponent
-            itemEventKey="attention"
-            itemFunc={[MockFunction]}
-            itemTitle="attention"
-            key="attention"
+            itemEventKey="DRAFT"
+            itemFunc={[Function]}
+            itemTitle="DRAFT"
+            key="DRAFT"
           />
           <DropdownMenuItemComponent
-            itemEventKey="declined"
-            itemFunc={[MockFunction]}
-            itemTitle="declined"
-            key="declined"
+            itemEventKey="REJECTED"
+            itemFunc={[Function]}
+            itemTitle="REJECTED"
+            key="REJECTED"
           />
           <DropdownMenuItemComponent
-            itemEventKey="approved"
-            itemFunc={[MockFunction]}
-            itemTitle="approved"
-            key="approved"
+            itemEventKey="APPROVED"
+            itemFunc={[Function]}
+            itemTitle="APPROVED"
+            key="APPROVED"
           />
         </DropdownMenu>
       </Dropdown>

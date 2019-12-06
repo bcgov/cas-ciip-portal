@@ -1,13 +1,14 @@
 -- Deploy ggircs-portal:table_application to pg
 -- requires: schema_ggircs_portal
 -- requires: table_form_result
+-- requires: type_ciip_application_status
 
 begin;
 
 create table ggircs_portal.application_status (
     id integer primary key generated always as identity,
     application_id int not null references ggircs_portal.application(id),
-    application_status varchar(1000),
+    application_status ggircs_portal.ciip_application_status,
     created_at timestamp with time zone not null default now(),
     created_by varchar(1000),
     updated_at timestamp with time zone not null default now(),

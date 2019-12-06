@@ -3,7 +3,10 @@ import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {Button, Badge, Card, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
-import {Facility_facility} from 'Facility_facility.graphql';
+import {
+  Facility_facility,
+  CiipApplicationStatus
+} from 'Facility_facility.graphql';
 import createApplicationMutation from 'mutations/application/createApplicationMutation';
 
 interface Props {
@@ -50,7 +53,7 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
       );
     }
 
-    if (applicationId && applicationStatus.applicationStatus === 'draft') {
+    if (applicationId && applicationStatus.applicationStatus === 'DRAFT') {
       return (
         <Link
           href={{
@@ -65,7 +68,7 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
       );
     }
 
-    if (applicationId && applicationStatus.applicationStatus === 'pending') {
+    if (applicationId && applicationStatus.applicationStatus === 'PENDING') {
       return (
         <Link
           href={{
@@ -83,12 +86,17 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
     return null;
   };
 
-  const statusBadgeColor = {
-    attention: 'warning',
-    pending: 'info',
-    declined: 'danger',
-    approved: 'success',
-    draft: 'dark'
+  const statusBadgeColor: Record<
+    CiipApplicationStatus,
+    'info' | 'danger' | 'success' | 'dark' | 'primary' | 'secondary'
+  > = {
+    // Attention: 'warning',
+    PENDING: 'info',
+    REJECTED: 'danger',
+    APPROVED: 'success',
+    DRAFT: 'dark',
+    CHANGES_SUBMITTED: 'primary',
+    REQUESTED_CHANGES: 'secondary'
   };
 
   return (

@@ -2,8 +2,10 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import Link from 'next/link';
+import {useRouter} from 'next/router';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
-import updateApplicationStatusMutation from '../../mutations/application/updateApplicationStatusMutation';
+import {CiipApplicationStatus} from 'createApplicationStatusMutation.graphql';
+import createApplicationStatusMutation from 'mutations/application/createApplicationStatusMutation';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -16,22 +18,29 @@ interface Props {
 }
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
+  const router = useRouter();
   // Change application status to 'pending' on application submit
   const submitApplication = async () => {
     const {environment} = props.relay;
+    const date = new Date().toUTCString();
+    // TODO: created_at should be set by a trigger
     const variables = {
       input: {
-        id: props.query.application.applicationStatus.id,
-        applicationStatusPatch: {
-          applicationStatus: 'pending'
+        applicationStatus: {
+          applicationId: props.query.application.rowId,
+          applicationStatus: 'PENDING' as CiipApplicationStatus,
+          createdAt: date,
+          createdBy: 'Admin'
         }
       }
     };
-    const response = await updateApplicationStatusMutation(
+    const response = await createApplicationStatusMutation(
       environment,
       variables
     );
     console.log(response);
+    // TODO: check response
+    router.push('/complete-submit');
   };
 
   return (
@@ -67,6 +76,7 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
     fragment ApplicationWizardConfirmation_query on Query
       @argumentDefinitions(applicationId: {type: "ID!"}) {
       application(id: $applicationId) {
+        rowId
         applicationStatus {
           id
         }

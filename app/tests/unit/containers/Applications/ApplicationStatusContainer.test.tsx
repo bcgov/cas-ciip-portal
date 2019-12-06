@@ -1,17 +1,18 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApplicationStatusItem} from 'containers/Applications/ApplicationStatusItemContainer';
+import {ApplicationStatusComponent} from 'containers/Applications/ApplicationStatusContainer';
 
 describe('ApplicationStatusItem', () => {
   it('should render the application status', async () => {
     const applicationStatus = {
-      applicationId: '123',
       applicationStatus: 'pending'
     };
+    const applicationRowId = 1;
     const r = shallow(
-      <ApplicationStatusItem
+      <ApplicationStatusComponent
+        relay={null}
         applicationStatus={applicationStatus}
-        setApplicationStatus={jest.fn()}
+        applicationRowId={applicationRowId}
       />
     );
     expect(r).toMatchSnapshot();

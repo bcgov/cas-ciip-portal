@@ -30,6 +30,7 @@ export const ApplicationList = props => {
     {columnName: 'id', displayName: 'Application ID'},
     {columnName: 'operator_name', displayName: 'Operator Name'},
     {columnName: 'facility_name', displayName: 'Facility Name'},
+    {columnName: 'reporting_year', displayName: 'Reporting Year'},
     {columnName: 'submission_date', displayName: 'Submission Date'},
     {columnName: 'application_status', displayName: 'Status'}
   ];
@@ -38,6 +39,7 @@ export const ApplicationList = props => {
     'Application Id',
     'Operator Name',
     'Facility Name',
+    'Reporting Year',
     'Submission Date',
     'Status'
   ];
@@ -46,6 +48,7 @@ export const ApplicationList = props => {
     'Application Id': 'id',
     'Operator Name': 'operator_name',
     'Facility Name': 'facility_name',
+    'Reporting Year': 'reporting_year',
     'Submission Date': 'submission_date',
     Status: 'application_status'
   };

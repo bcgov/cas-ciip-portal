@@ -18,7 +18,6 @@ interface Props {
 class ApplicationReview extends Component<Props> {
   static query = graphql`
     query applicationReviewQuery(
-      $applicationStatusCondition: ApplicationStatusCondition
       $bcghgidInput: BigFloat
       $reportingYear: String
       $applicationGUID: ID!
@@ -27,8 +26,12 @@ class ApplicationReview extends Component<Props> {
         session {
           ...defaultLayout_session
         }
-        ...ApplicationStatusContainer_query
-          @arguments(condition: $applicationStatusCondition)
+        application(id: $applicationGUID) {
+          rowId
+          applicationStatus {
+            ...ApplicationStatusContainer_applicationStatus
+          }
+        }
         ...IncentiveCalculatorContainer_query
           @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
         ...ApplicationDetailsContainer_query
@@ -39,24 +42,14 @@ class ApplicationReview extends Component<Props> {
     }
   `;
 
-  static getInitialProps() {
-    return {
-      variables: {
-        condition: {
-          rowId: null
-        }
-      }
-    };
-  }
-
   render() {
     const {query} = this.props;
     const {session} = query || {};
     return (
       <DefaultLayout session={session} width="wide">
         <ApplicationStatusContainer
-          query={query}
-          applicationId={this.props.router.query.applicationId}
+          applicationStatus={query.application.applicationStatus}
+          applicationRowId={query.application.rowId}
         />
         <hr />
         <Row className="application-container">

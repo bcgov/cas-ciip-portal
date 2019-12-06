@@ -52,7 +52,7 @@ exports[`Facility should render a Facility 1`] = `
           pill={true}
           variant="info"
         >
-          pending
+          PENDING
         </Badge>
       </ListGroupItem>
     </ListGroup>
@@ -133,7 +133,7 @@ exports[`Facility should render a Resume Application button if an applicationID 
           pill={true}
           variant="dark"
         >
-          draft
+          DRAFT
         </Badge>
       </ListGroupItem>
     </ListGroup>
@@ -214,7 +214,7 @@ exports[`Facility should render a View Submitted App button if an applicationID 
           pill={true}
           variant="info"
         >
-          pending
+          PENDING
         </Badge>
       </ListGroupItem>
     </ListGroup>
