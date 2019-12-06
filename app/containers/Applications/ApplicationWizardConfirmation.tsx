@@ -125,6 +125,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           <Row>
             <input
               ref={copyArea}
+              readOnly
               style={{width: '50%', marginRight: '10px'}}
               value={url}
             />
