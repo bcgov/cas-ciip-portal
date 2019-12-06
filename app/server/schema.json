@@ -8160,8 +8160,8 @@
               "name": "certificationSignature",
               "description": "Checks for equality with the object’s `certificationSignature` field.",
               "type": {
-                "kind": "ENUM",
-                "name": "CiipApplicationStatus",
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -8519,8 +8519,8 @@
               "name": "applicationStatus",
               "description": "Checks for equality with the object’s `applicationStatus` field.",
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "ENUM",
+                "name": "CiipApplicationStatus",
                 "ofType": null
               },
               "defaultValue": null

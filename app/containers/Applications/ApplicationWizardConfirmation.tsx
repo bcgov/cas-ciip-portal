@@ -2,7 +2,6 @@ import React, {useRef, useState} from 'react';
 import {Button, Row} from 'react-bootstrap';
 import Link from 'next/link';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
 import {CiipApplicationStatus} from 'createApplicationStatusMutation.graphql';
@@ -21,21 +20,25 @@ interface Props {
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
   // Change application status to 'pending' on application submit
+  const router = useRouter();
+  // Change application status to 'pending' on application submit	  // Change application status to 'pending' on application submit
   const submitApplication = async () => {
     const {environment} = props.relay;
     const variables = {
       input: {
-        id: props.query.application.applicationStatus.id,
-        applicationStatusPatch: {
-          applicationStatus: 'pending'
+        applicationStatus: {
+          applicationId: props.query.application.rowId,
+          applicationStatus: 'PENDING' as CiipApplicationStatus
         }
       }
     };
-    const response = await updateApplicationStatusMutation(
+    const response = await createApplicationStatusMutation(
       environment,
       variables
     );
     console.log(response);
+    // TODO: check response
+    router.push('/complete-submit');
   };
 
   const [copySuccess, setCopySuccess] = useState('');

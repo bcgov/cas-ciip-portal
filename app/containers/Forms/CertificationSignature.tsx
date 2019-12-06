@@ -1,10 +1,12 @@
 import React, {useRef} from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
+import {useRouter} from 'next/router';
 import SignaturePad from 'react-signature-canvas';
 import Link from 'next/link';
 import {Button, Container, Row, Col} from 'react-bootstrap';
 import updateApplicationMutation from 'mutations/application/updateApplicationMutation';
-import updateApplicationStatusMutation from 'mutations/application/updateApplicationStatusMutation';
+import {CiipApplicationStatus} from 'createApplicationStatusMutation.graphql';
+import createApplicationStatusMutation from 'mutations/application/createApplicationStatusMutation';
 import {CertificationSignature_application} from 'CertificationSignature_application.graphql';
 
 interface Props {
@@ -46,21 +48,25 @@ const CertificationSignature: React.FunctionComponent<Props> = props => {
     console.log(response);
   };
 
+  const router = useRouter();
+  // Change application status to 'pending' on application submit	  // Change application status to 'pending' on application submit
   const submitApplication = async () => {
     const {environment} = props.relay;
     const variables = {
       input: {
-        id: props.application.applicationStatus.id,
-        applicationStatusPatch: {
-          applicationStatus: 'pending'
+        applicationStatus: {
+          applicationId: props.application.rowId,
+          applicationStatus: 'PENDING' as CiipApplicationStatus
         }
       }
     };
-    const response = await updateApplicationStatusMutation(
+    const response = await createApplicationStatusMutation(
       environment,
       variables
     );
     console.log(response);
+    // TODO: check response
+    router.push('/complete-submit');
   };
 
   return (
@@ -136,6 +142,7 @@ export default createFragmentContainer(CertificationSignature, {
   application: graphql`
     fragment CertificationSignature_application on Application {
       id
+      rowId
       certificationSignature
       applicationStatus {
         id
