@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {Row, Col, Button, Form} from 'react-bootstrap';
 import {graphql} from 'react-relay';
+import {NextRouter} from 'next/router';
 import moment from 'moment';
+import {CiipPageComponentProps} from 'next-env';
 import {certificationRedirectQueryResponse} from 'certificationRedirectQuery.graphql';
 import DefaultLayout from '../layouts/default-layout';
 
-interface Props {
+interface Props extends CiipPageComponentProps {
   query: certificationRedirectQueryResponse['query'];
-  router: any;
+  router: NextRouter;
 }
 
 class CertificationRedirect extends Component<Props> {

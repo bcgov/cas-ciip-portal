@@ -60,7 +60,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           /**  The rowId in ggircs_portal.certification_url is the primary key (thus required in the relay variables)
                but the actual rowId is generated on the postgres level with a trigger, so a placeholder rowId is set here */
           rowId: 'placeholder',
-          applicationId: Number(props.query.application.rowId)
+          applicationId: props.query.application.rowId
         }
       }
     };
@@ -71,7 +71,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     console.log(response);
     if (window) {
       setUrl(
-        `${window.location.host}/certification-redirect?rowId=${response?.createCertificationUrl?.certificationUrl?.rowId}&id=${props.query.application.id}`
+        `${window.location.host}/certification-redirect?rowId=${response.createCertificationUrl.certificationUrl.rowId}&id=${props.query.application.id}`
       );
     } else console.log('No window location found');
   };
