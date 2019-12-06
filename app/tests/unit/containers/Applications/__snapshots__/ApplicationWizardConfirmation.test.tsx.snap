@@ -48,6 +48,7 @@ exports[`ApplicationWizardConfirmationComponent should match the snapshot with t
     noGutters={false}
   >
     <input
+      readOnly={true}
       style={
         Object {
           "marginRight": "10px",
