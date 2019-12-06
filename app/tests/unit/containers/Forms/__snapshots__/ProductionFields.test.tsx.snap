@@ -1,0 +1,575 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ProductionFields Component should match the snapshot when rendering a product without additional data 1`] = `
+<Fragment>
+  <FormFieldTemplate
+    classNames="form-group field field-string"
+    formContext={Object {}}
+    hidden={false}
+    id="product.product"
+    label="Product or Service"
+    required={true}
+    schema={
+      Object {
+        "enum": Array [
+          "foo",
+          "simpleFoo",
+        ],
+        "title": "Product or Service",
+        "type": "string",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <StringField
+      autofocus={false}
+      disabled={false}
+      errorSchema={null}
+      formContext={Object {}}
+      formData="simpleFoo"
+      idSchema={null}
+      name="product"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={true}
+      schema={
+        Object {
+          "enum": Array [
+            "foo",
+            "simpleFoo",
+          ],
+          "title": "Product or Service",
+          "type": "string",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-number"
+    formContext={Object {}}
+    hidden={false}
+    id="product.allocationFactor"
+    label="Product allocation factor"
+    required={true}
+    schema={
+      Object {
+        "title": "Product allocation factor",
+        "type": "number",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <NumberField
+      autofocus={false}
+      disabled={false}
+      errorSchema={null}
+      formContext={Object {}}
+      idSchema={null}
+      name="allocationFactor"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={true}
+      schema={
+        Object {
+          "title": "Product allocation factor",
+          "type": "number",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-number"
+    formContext={Object {}}
+    hidden={false}
+    id="product.quantity"
+    label="Quantity"
+    required={true}
+    schema={
+      Object {
+        "title": "Quantity",
+        "type": "number",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <NumberField
+      autofocus={false}
+      disabled={false}
+      errorSchema={null}
+      formContext={Object {}}
+      idSchema={null}
+      name="quantity"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={true}
+      schema={
+        Object {
+          "title": "Quantity",
+          "type": "number",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-string"
+    formContext={Object {}}
+    hidden={false}
+    id="product.productUnits"
+    label="Units"
+    required={false}
+    schema={
+      Object {
+        "title": "Units",
+        "type": "string",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <StringField
+      autofocus={false}
+      disabled={true}
+      errorSchema={null}
+      formContext={Object {}}
+      formData="baz"
+      idSchema={null}
+      name="units"
+      onChange={[Function]}
+      readonly={true}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={false}
+      schema={
+        Object {
+          "title": "Units",
+          "type": "string",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+</Fragment>
+`;
+
+exports[`The ProductionFields Component should match the snapshot when rendering additional data 1`] = `
+<Fragment>
+  <FormFieldTemplate
+    classNames="form-group field field-string"
+    formContext={Object {}}
+    hidden={false}
+    id="product.product"
+    label="Product or Service"
+    required={true}
+    schema={
+      Object {
+        "enum": Array [
+          "foo",
+          "simpleFoo",
+        ],
+        "title": "Product or Service",
+        "type": "string",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <StringField
+      autofocus={false}
+      disabled={false}
+      errorSchema={null}
+      formContext={Object {}}
+      formData="foo"
+      idSchema={null}
+      name="product"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={true}
+      schema={
+        Object {
+          "enum": Array [
+            "foo",
+            "simpleFoo",
+          ],
+          "title": "Product or Service",
+          "type": "string",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-number"
+    formContext={Object {}}
+    hidden={false}
+    id="product.allocationFactor"
+    label="Product allocation factor"
+    required={true}
+    schema={
+      Object {
+        "title": "Product allocation factor",
+        "type": "number",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <NumberField
+      autofocus={false}
+      disabled={false}
+      errorSchema={null}
+      formContext={Object {}}
+      idSchema={null}
+      name="allocationFactor"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={true}
+      schema={
+        Object {
+          "title": "Product allocation factor",
+          "type": "number",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <ObjectField
+    autofocus={false}
+    disabled={false}
+    errorSchema={null}
+    formContext={Object {}}
+    formData={
+      Object {
+        "additionalFoo": "foofoo",
+      }
+    }
+    idSchema={null}
+    name={null}
+    onChange={[Function]}
+    readonly={false}
+    registry={
+      Object {
+        "ArrayFieldTemplate": [Function],
+        "FieldTemplate": [Function],
+        "ObjectFieldTemplate": [Function],
+        "definitions": Object {},
+        "fields": Object {
+          "AnyOfField": [Function],
+          "ArrayField": [Function],
+          "BooleanField": [Function],
+          "DescriptionField": [Function],
+          "NullField": [Function],
+          "NumberField": [Function],
+          "ObjectField": [Function],
+          "OneOfField": [Function],
+          "SchemaField": [Function],
+          "StringField": [Function],
+          "TitleField": [Function],
+          "UnsupportedField": [Function],
+        },
+        "formContext": Object {},
+        "widgets": Object {
+          "AltDateTimeWidget": [Function],
+          "AltDateWidget": [Function],
+          "BaseInput": [Function],
+          "CheckboxWidget": [Function],
+          "CheckboxesWidget": [Function],
+          "ColorWidget": [Function],
+          "DateTimeWidget": [Function],
+          "DateWidget": [Function],
+          "EmailWidget": [Function],
+          "FileWidget": [Function],
+          "HiddenWidget": [Function],
+          "PasswordWidget": [Function],
+          "RadioWidget": [Function],
+          "RangeWidget": [Function],
+          "SelectWidget": [Function],
+          "TextWidget": [Function],
+          "TextareaWidget": [Function],
+          "URLWidget": [Function],
+          "UpDownWidget": [Function],
+        },
+      }
+    }
+    required={true}
+    schema={
+      Object {
+        "properties": Object {
+          "additionalFoo": Object {
+            "type": "string",
+          },
+        },
+        "type": "object",
+      }
+    }
+    uiSchema={
+      Object {
+        "additionalFoo": Object {
+          "ui:col-md": 12,
+        },
+      }
+    }
+  />
+</Fragment>
+`;

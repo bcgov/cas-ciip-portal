@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useCallback} from 'react';
 import {FieldProps} from 'react-jsonschema-form';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductionFields_query} from 'ProductionFields_query.graphql';
-import {FormJson} from 'next-env';
 import {JSONSchema6} from 'json-schema';
+import {FormJson} from 'next-env';
 
 interface Props extends FieldProps {
   query: ProductionFields_query;
 }
 
-const ProductionFields: React.FunctionComponent<Props> = ({
+export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
   formData,
   query,
   onChange,
@@ -54,15 +54,11 @@ const ProductionFields: React.FunctionComponent<Props> = ({
     });
   };
 
-  const [additionalDataSchema, setAdditionalDataSchema] = useState<FormJson>();
-  useEffect(() => {
-    const product = query.allProducts.edges.find(
+  const getAdditionalDataSchema = useCallback(() => {
+    return query.allProducts.edges.find(
       ({node}) => node.name === formData.product
-    )?.node;
-    setAdditionalDataSchema(
-      product?.productFormByProductFormId?.productFormSchema
-    );
-  }, [query.allProducts.edges, formData.product]);
+    )?.node?.productFormByProductFormId?.productFormSchema as FormJson;
+  }, [formData.product, query.allProducts.edges]);
 
   const [productFieldSchema] = useState<JSONSchema6>({
     ...(schema.properties.product as JSONSchema6),
@@ -128,7 +124,7 @@ const ProductionFields: React.FunctionComponent<Props> = ({
           }}
         />
       </FieldTemplate>
-      {!additionalDataSchema && (
+      {!getAdditionalDataSchema() && (
         <>
           <FieldTemplate
             required
@@ -184,16 +180,18 @@ const ProductionFields: React.FunctionComponent<Props> = ({
               errorSchema={errorSchema}
               formContext={formContext}
               name="units"
-              onChange={null}
+              onChange={() => {
+                console.error("don't change me");
+              }}
             />
           </FieldTemplate>
         </>
       )}
-      {additionalDataSchema && (
+      {getAdditionalDataSchema() && (
         <registry.fields.ObjectField
           required
-          schema={additionalDataSchema.schema}
-          uiSchema={additionalDataSchema.uiSchema}
+          schema={getAdditionalDataSchema().schema}
+          uiSchema={getAdditionalDataSchema().uiSchema}
           formData={formData.additionalData}
           autofocus={autofocus}
           idSchema={idSchema}
@@ -210,7 +208,7 @@ const ProductionFields: React.FunctionComponent<Props> = ({
   );
 };
 
-export default createFragmentContainer(ProductionFields, {
+export default createFragmentContainer(ProductionFieldsComponent, {
   query: graphql`
     fragment ProductionFields_query on Query {
       allProducts(condition: {state: "active"}) {
