@@ -2,32 +2,6 @@ import React from 'react';
 import {QueryRenderer} from 'react-relay';
 import {createMockEnvironment, MockPayloadGenerator} from 'relay-test-utils';
 import {withA11y} from '@storybook/addon-a11y';
-import './mockNextRouter';
-
-const render = Component => {
-  const {query} = Component;
-  const environment = createMockEnvironment();
-  environment.mock.queueOperationResolver(operation => {
-    const payload = MockPayloadGenerator.generate(operation);
-    // Console.log('mock', operation, payload);
-    return payload;
-  });
-  return (
-    <QueryRenderer
-      environment={environment}
-      query={query}
-      render={({props, error}) => {
-        if (error) {
-          console.error(error);
-          return 'Error';
-        }
-
-        // Console.log(Component.name, 'props', props);
-        return <Component {...props} router={{query: ''}} />;
-      }}
-    />
-  );
-};
 
 import Admin from 'pages/admin';
 // Import ApplicationReview from 'pages/application-review';
@@ -45,6 +19,35 @@ import UserList from 'pages/user-list';
 // Import UserOrganisationFacilities from 'pages/user-organisation-facilities';
 import UserProfile from 'pages/user-profile';
 // Import ViewApplication from 'pages/view-application';
+
+import {Router} from './mockNextRouter';
+
+const render = Component => {
+  const {query} = Component;
+  const environment = createMockEnvironment();
+  const variables = {...Router.router.query};
+  environment.mock.queueOperationResolver(operation => {
+    const payload = MockPayloadGenerator.generate(operation);
+    // Console.log('mock', operation, payload);
+    return payload;
+  });
+  return (
+    <QueryRenderer
+      environment={environment}
+      query={query}
+      variables={variables}
+      render={({props, error}) => {
+        if (error) {
+          console.error(error);
+          return 'Error';
+        }
+
+        // Console.log(Component.name, 'props', props);
+        return <Component {...props} router={{query: ''}} />;
+      }}
+    />
+  );
+};
 
 export default {
   title: 'Pages',
