@@ -1,7 +1,9 @@
+const path = require('path');
+
 module.exports = {
-  src: './',
+  src: path.resolve(__dirname, '../'),
   language: 'typescript',
-  artifactDirectory: './__generated__',
+  artifactDirectory: path.resolve(__dirname, './__generated__'),
   customScalars: {
     Datetime: 'String'
   },
@@ -11,5 +13,5 @@ module.exports = {
     '**/__generated__/**',
     '**/server/**'
   ],
-  schema: './server/schema.graphql'
+  schema: path.resolve(__dirname, './server/schema.graphql')
 };

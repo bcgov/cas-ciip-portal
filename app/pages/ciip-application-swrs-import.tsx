@@ -10,7 +10,7 @@ interface Props extends CiipPageComponentProps {
   query: ciipApplicationSwrsImportQueryResponse['query'];
 }
 
-export default class Index extends Component<Props> {
+export default class CiipApplicationSWRSImport extends Component<Props> {
   static query = graphql`
     query ciipApplicationSwrsImportQuery {
       query {

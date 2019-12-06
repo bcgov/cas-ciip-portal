@@ -1,0 +1,7 @@
+{
+ "extends": "../app/tsconfig",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["stories"]
+}

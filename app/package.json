@@ -1,6 +1,6 @@
 {
-  "name": "ggircs-industry-ciip-portal",
-  "version": "1.0.0",
+  "name": "cas-ciip-portal-app",
+  "version": "0.0.1",
   "description": "The online portal for Industry to apply and track their CIIP applications",
   "scripts": {
     "pretest": "npm run build:relay",
@@ -15,7 +15,8 @@
     "start": "NODE_ENV=production node server",
     "format": "xo --fix",
     "lint": "xo",
-    "storybook": "start-storybook"
+    "prestorybook": "npm run build:relay",
+    "storybook": "start-storybook -s ./"
   },
   "xo": {
     "ignores": [
@@ -135,10 +136,14 @@
     "@babel/core": "^7.6.2",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
-    "@storybook/addon-a11y": "^5.2.1",
-    "@storybook/addon-storyshots": "^5.2.4",
-    "@storybook/addons": "^5.2.1",
-    "@storybook/react": "^5.2.1",
+    "@storybook/addon-a11y": "^5.2.8",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-info": "^5.2.8",
+    "@storybook/addon-jest": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addon-storyshots": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.23",
     "@types/react-jsonschema-form": "^1.6.6",
@@ -166,8 +171,10 @@
     "eslint-plugin-react-hooks": "^2.3.0",
     "eslint-plugin-relay": "^1.4.1",
     "eslint-plugin-shopify": "^32.0.0",
+    "graphql-import": "^0.7.1",
     "graphql-query-test-mock": "^0.12.0",
     "graphql-tag-pluck": "^0.8.5",
+    "graphql-tools": "^4.0.6",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
     "jest-canvas-mock": "^2.1.2",
@@ -177,6 +184,7 @@
     "json-schema-faker": "^0.5.0-rc23",
     "nock": "^9.6.1",
     "node-fetch": "^2.6.0",
+    "react-docgen-typescript-loader": "^3.6.0",
     "react-test-renderer": "^16.10.2",
     "relay-compiler": "^7.0.0",
     "relay-compiler-language-typescript": "^10.1.0",
