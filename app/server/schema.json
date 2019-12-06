@@ -6270,6 +6270,18 @@
               "deprecationReason": null
             },
             {
+              "name": "requestedChanges",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ApplicationReview",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "rowId",
               "description": "Unique ID for the form",
               "args": [],

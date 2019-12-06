@@ -13,8 +13,10 @@ interface Props {
 
 export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props => {
   const {applicationReview} = props;
-  const reviewComments =
-    applicationReview.reviewCommentsByApplicationReviewId.edges;
+  const reviewComments = applicationReview
+    ? applicationReview.reviewCommentsByApplicationReviewId.edges
+    : null;
+
   return (
     <>
       <div key={applicationReview.id} className="review-box">

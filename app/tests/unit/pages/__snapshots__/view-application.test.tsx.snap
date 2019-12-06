@@ -5,26 +5,57 @@ exports[`It matches the last accepted Snapshot 1`] = `
   session={null}
   title="Summary of your application"
 >
-  <Relay(ApplicationDetailsComponent)
-    isAnalyst={false}
-    query={
-      Object {
-        "application": Object {
-          "formResultsByApplicationId": Object {
-            "edges": Array [
-              Object {
-                "node": Object {
-                  "id": "form-1",
-                },
+  <ForwardRef
+    noGutters={false}
+  >
+    <Col
+      md={8}
+    >
+      <Relay(ApplicationDetailsComponent)
+        isAnalyst={false}
+        query={
+          Object {
+            "application": Object {
+              "formResultsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "id": "form-1",
+                    },
+                  },
+                ],
               },
-            ],
-          },
-          "id": "1",
-        },
-        "session": null,
-      }
-    }
-  />
+              "id": "1",
+            },
+            "session": null,
+          }
+        }
+      />
+    </Col>
+    <Col
+      md={4}
+    >
+      <Relay(RequestedChangesByFormResult)
+        query={
+          Object {
+            "application": Object {
+              "formResultsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      "id": "form-1",
+                    },
+                  },
+                ],
+              },
+              "id": "1",
+            },
+            "session": null,
+          }
+        }
+      />
+    </Col>
+  </ForwardRef>
   <Link
     href={
       Object {
