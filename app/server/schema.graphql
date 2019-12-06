@@ -63,6 +63,9 @@ type Application implements Node {
     orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CertificationUrlsConnection!
 
+  """The certifier's user id, references ciip_user"""
+  certifiedByUser: Int
+
   """
   Reads a single `CiipApplication` that is related to this `Application`.
   """
@@ -96,6 +99,9 @@ type Application implements Node {
     """The method to use when ordering `CiipApplication`."""
     orderBy: [CiipApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipApplicationsConnection! @deprecated(reason: "Please use ciipApplicationByRowId instead")
+
+  """Reads a single `CiipUser` that is related to this `Application`."""
+  ciipUserByCertifiedByUser: CiipUser
 
   """Reads a single `Facility` that is related to this `Application`."""
   facilityByFacilityId: Facility
@@ -178,6 +184,9 @@ input ApplicationCondition {
   """Checks for equality with the object’s `certificationSignature` field."""
   certificationSignature: String
 
+  """Checks for equality with the object’s `certifiedByUser` field."""
+  certifiedByUser: Int
+
   """Checks for equality with the object’s `facilityId` field."""
   facilityId: Int
 
@@ -192,6 +201,9 @@ input ApplicationCondition {
 input ApplicationInput {
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
+
+  """The certifier's user id, references ciip_user"""
+  certifiedByUser: Int
 
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int!
@@ -208,6 +220,9 @@ Represents an update to a `Application`. Fields that are set will be updated.
 input ApplicationPatch {
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
+
+  """The certifier's user id, references ciip_user"""
+  certifiedByUser: Int
 
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int
@@ -467,6 +482,8 @@ type ApplicationsEdge {
 enum ApplicationsOrderBy {
   CERTIFICATION_SIGNATURE_ASC
   CERTIFICATION_SIGNATURE_DESC
+  CERTIFIED_BY_USER_ASC
+  CERTIFIED_BY_USER_DESC
   FACILITY_ID_ASC
   FACILITY_ID_DESC
   ID_ASC
@@ -2044,6 +2061,35 @@ enum CiipProductionsOrderBy {
 
 """Table containing the benchmark and eligibility threshold for a product"""
 type CiipUser implements Node {
+  """Reads and enables pagination through a set of `Application`."""
+  applicationsByCertifiedByUser(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationsConnection!
+
   """Reads and enables pagination through a set of `ApplicationStatus`."""
   applicationStatusesByDeletedBy(
     """Read all values in the set after (below) this cursor."""
@@ -2628,6 +2674,9 @@ type CreateApplicationMutationChainPayload {
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsEdge
 
+  """Reads a single `CiipUser` that is related to this `Application`."""
+  ciipUserByCertifiedByUser: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -2656,6 +2705,9 @@ type CreateApplicationPayload {
     """The method to use when ordering `Application`."""
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsEdge
+
+  """Reads a single `CiipUser` that is related to this `Application`."""
+  ciipUserByCertifiedByUser: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -3507,6 +3559,9 @@ type DeleteApplicationPayload {
     """The method to use when ordering `Application`."""
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsEdge
+
+  """Reads a single `CiipUser` that is related to this `Application`."""
+  ciipUserByCertifiedByUser: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -9820,6 +9875,9 @@ type UpdateApplicationPayload {
     """The method to use when ordering `Application`."""
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsEdge
+
+  """Reads a single `CiipUser` that is related to this `Application`."""
+  ciipUserByCertifiedByUser: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,

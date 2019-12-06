@@ -9,6 +9,7 @@ import {CertificationSignature_application} from 'CertificationSignature_applica
 
 interface Props {
   application: CertificationSignature_application;
+  user: number;
   relay: RelayProp;
 }
 
@@ -36,7 +37,8 @@ const CertificationSignature: React.FunctionComponent<Props> = props => {
       input: {
         id: props.application.id,
         applicationPatch: {
-          certificationSignature: signature
+          certificationSignature: signature,
+          certifiedByUser: props.user
         }
       }
     };
