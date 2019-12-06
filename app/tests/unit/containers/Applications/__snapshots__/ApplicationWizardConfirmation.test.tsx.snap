@@ -25,29 +25,53 @@ exports[`ApplicationWizardConfirmationComponent should match the snapshot with t
       }
     }
   />
-  <Link
-    href={
-      Object {
-        "pathname": "/complete-submit",
-      }
-    }
-    passHref={true}
+  <br />
+  <h5>
+    Thank you for reviewing the application information. You may now generate a Certification page to be signed prior to submission.
+  </h5>
+  <br />
+  <ForwardRef
+    noGutters={false}
   >
     <Button
       active={false}
-      className="float-right"
       disabled={false}
       onClick={[Function]}
-      style={
-        Object {
-          "marginTop": "10px",
-        }
-      }
       type="button"
       variant="primary"
     >
-      Submit Application
+      Generate Certification Page
     </Button>
-  </Link>
+  </ForwardRef>
+  <br />
+  <ForwardRef
+    noGutters={false}
+  >
+    <input
+      style={
+        Object {
+          "marginRight": "10px",
+          "width": "50%",
+        }
+      }
+    />
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+      variant="primary"
+    >
+      Copy to Clipboard
+    </Button>
+    <span
+      style={
+        Object {
+          "color": "green",
+        }
+      }
+    />
+  </ForwardRef>
+   
 </Fragment>
 `;
