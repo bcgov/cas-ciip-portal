@@ -200,6 +200,7 @@
   },
   "resolutions": {
     "@storybook/**/open": "^7.0.0",
+    "@storybook/**/marked": ">=0.7.0",
     "xo/open-editor/open": "^7.0.0",
     "xo/prettier": "^1.19.1",
     "relay-compiler/yargs/os-locale/mem": "^4.0.0",
