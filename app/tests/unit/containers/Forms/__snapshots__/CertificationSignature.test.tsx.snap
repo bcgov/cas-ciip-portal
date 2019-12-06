@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Confirmation Component matches the snapshot 1`] = `
+<Container
+  fluid={false}
+>
+  <h3
+    className="jsx-4143358337"
+  >
+    Certifier Signature:
+  </h3>
+  <ForwardRef
+    noGutters={false}
+  >
+    <Col
+      md={12}
+    >
+      <t
+        canvasProps={
+          Object {
+            "className": "signatureCanvas",
+          }
+        }
+        clearOnResize={true}
+      />
+    </Col>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+  >
+    <Col
+      md={6}
+    >
+      <input
+        accept="image/*"
+        className="jsx-4143358337"
+        onChange={[Function]}
+        type="file"
+      />
+    </Col>
+    <Col
+      md={
+        Object {
+          "offset": 2,
+          "span": 3,
+        }
+      }
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginRight": "5px",
+          }
+        }
+        type="button"
+        variant="success"
+      >
+        Sign
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="danger"
+      >
+        Clear
+      </Button>
+    </Col>
+  </ForwardRef>
+  <JSXStyle
+    id="4143358337"
+  >
+    .signatureCanvas{border:1px solid #bbb;background:#eee;border-radius:6px;margin-bottom:60px;}
+  </JSXStyle>
+</Container>
+`;

@@ -15,7 +15,7 @@ interface Props {
   relay: RelayProp;
 }
 
-const CertificationSignature: React.FunctionComponent<Props> = props => {
+export const CertificationSignatureComponent: React.FunctionComponent<Props> = props => {
   const sigCanvas: any = useRef({});
 
   const uploadImage = e => {
@@ -138,7 +138,7 @@ const CertificationSignature: React.FunctionComponent<Props> = props => {
   );
 };
 
-export default createFragmentContainer(CertificationSignature, {
+export default createFragmentContainer(CertificationSignatureComponent, {
   application: graphql`
     fragment CertificationSignature_application on Application {
       id

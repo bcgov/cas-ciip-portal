@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationWizardConfirmationComponent should match the snapshot with the ApplicationWizardConfirmation component 1`] = `
+exports[`The Confirmation Component match the snapshot 1`] = `
 <Fragment>
   <h1>
     Summary of your application:
@@ -19,8 +19,11 @@ exports[`ApplicationWizardConfirmationComponent should match the snapshot with t
         " $refType": "ApplicationWizardConfirmation_query",
         "application": Object {
           "applicationStatus": Object {
-            "id": "42",
+            "id": "def",
           },
+          "certificationSignature": undefined,
+          "id": "abc",
+          "rowId": 1,
         },
       }
     }
