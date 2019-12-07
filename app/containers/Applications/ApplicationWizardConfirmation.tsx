@@ -19,9 +19,8 @@ interface Props {
 }
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
-  // Change application status to 'pending' on application submit
   const router = useRouter();
-  // Change application status to 'pending' on application submit	  // Change application status to 'pending' on application submit
+  // Change application status to 'pending' on application submit
   const submitApplication = async () => {
     const {environment} = props.relay;
     const variables = {
