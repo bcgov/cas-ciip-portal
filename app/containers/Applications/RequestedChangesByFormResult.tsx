@@ -3,10 +3,6 @@ import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {RequestedChangesByFormResult_query} from 'RequestedChangesByFormResult_query.graphql';
 import ApplicationCommentsBox from './ApplicationCommentsByForm';
 
-/*
- * The ApplicationComments renders all the comments on the various sections of the application
- */
-
 interface Props {
   query: RequestedChangesByFormResult_query;
   relay: RelayProp;
@@ -14,22 +10,24 @@ interface Props {
 
 export const RequestedChangesByFormResult: React.FunctionComponent<Props> = props => {
   const formResults = props.query.application.formResultsByApplicationId.edges;
-
   return (
     <>
       {formResults.map(({node}) => {
-        const applicationReview = node.requestedChanges;
-        if (!applicationReview) return <></>;
+        const applicationReviews = node.requestedChanges.edges;
+        if (applicationReviews.length === 0) return <></>;
         return (
           <div key={node.id} className="form-result-box">
             <div>
               <h5> {node.formJsonByFormId.name} </h5>
             </div>
-
-            <ApplicationCommentsBox
-              key={node.id}
-              applicationReview={applicationReview}
-            />
+            {applicationReviews.map(({node}) => {
+              return (
+                <ApplicationCommentsBox
+                  key={node.id}
+                  applicationReview={node}
+                />
+              );
+            })}
           </div>
         );
       })}
@@ -66,7 +64,12 @@ export default createFragmentContainer(RequestedChangesByFormResult, {
                 name
               }
               requestedChanges {
-                ...ApplicationCommentsByForm_applicationReview
+                edges {
+                  node {
+                    id
+                    ...ApplicationCommentsByForm_applicationReview
+                  }
+                }
               }
             }
           }
