@@ -86,7 +86,7 @@ class CertificationRedirect extends Component<Props> {
                     action={`/login?redirectTo=${decodeURI(redirectURI)}`}
                     method="post"
                   >
-                    <Button type="submit">GOGOGO</Button>
+                    <Button type="submit">Continue</Button>
                   </Form>
                 </Col>
               </Col>
