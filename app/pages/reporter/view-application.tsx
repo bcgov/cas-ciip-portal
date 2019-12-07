@@ -3,10 +3,13 @@ import {Row, Col} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
+import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
 import DefaultLayout from 'layouts/default-layout';
+import {PDFDownloadLink} from '@react-pdf/renderer';
+import ApplicationDetailsPdfCardItem from 'containers/Applications/ApplicationDetailsPdfCardItem';
 
 /*
  * ViewApplication renders a summary of the data submitted in the application.
@@ -41,6 +44,20 @@ class ViewApplication extends Component<Props> {
 
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
+        }
+      }
+      application(id: $applicationId) {
+        formResultsByApplicationId {
+          edges {
+            node {
+              formResult
+              formJsonByFormId {
+                name
+                slug
+                formJson
+              }
+            }
+          }
         }
       }
     }
