@@ -9,6 +9,12 @@ interface Props extends FieldProps {
   query: ProductionFields_query;
 }
 
+/**
+ * Displays the information related to a product, and loads the additional data schema for products that need it.
+ * By using the registry (which contains, for instance, the form's FieldTemplate and StringField)
+ * this allows for this component to be reused in both the Form and the ApplicationDetailsCardItem components.
+ * It will either render inputs or the values based on what is defined in the current jsonschema form registry.
+ */
 export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
   formData,
   query,
@@ -30,13 +36,13 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
   } = registry as any;
   // Not using the types definded in @types/react-jsonschema-form as they are out of date
 
-  const handleProductChange = (product: string) => {
+  const handleProductChange = (productRowId: number) => {
     const productUnits = query.allProducts.edges.find(
-      ({node}) => node.name === product
+      ({node}) => node.rowId === productRowId
     )?.node.units;
     onChange({
       ...formData,
-      product,
+      product: productRowId,
       productUnits,
       additionalData: {productUnits}
     });
@@ -56,13 +62,14 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
 
   const getAdditionalDataSchema = useCallback(() => {
     return query.allProducts.edges.find(
-      ({node}) => node.name === formData.product
+      ({node}) => node.rowId === formData.product
     )?.node?.productFormByProductFormId?.productFormSchema as FormJson;
   }, [formData.product, query.allProducts.edges]);
 
-  const [productFieldSchema] = useState<JSONSchema6>({
+  const [productFieldSchema] = useState({
     ...(schema.properties.product as JSONSchema6),
-    enum: query.allProducts.edges.map(({node}) => node.name)
+    enum: query.allProducts.edges.map(({node}) => node.rowId),
+    enumNames: query.allProducts.edges.map(({node}) => node.name)
   });
 
   return (
@@ -214,6 +221,7 @@ export default createFragmentContainer(ProductionFieldsComponent, {
       allProducts(condition: {state: "active"}) {
         edges {
           node {
+            rowId
             name
             units
             productFormByProductFormId {
