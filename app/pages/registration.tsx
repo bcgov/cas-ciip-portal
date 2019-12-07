@@ -7,7 +7,6 @@ import DefaultLayout from '../layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: registrationQueryResponse['query'];
-  router: any;
 }
 
 class Registration extends Component<Props> {
