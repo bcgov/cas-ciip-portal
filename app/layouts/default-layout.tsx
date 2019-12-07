@@ -31,7 +31,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
     router.push({
       pathname: '/login-redirect',
       query: {
-        redirectTo: router.route
+        redirectTo: router.asPath
       }
     });
     return null;
@@ -41,7 +41,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
     router.push({
       pathname: '/registration',
       query: {
-        redirectTo: router.route
+        redirectTo: router.asPath
       }
     });
     return null;

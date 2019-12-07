@@ -40,7 +40,7 @@ class Certify extends Component<Props> {
             />
             <CertificationSignature
               application={query.application}
-              user={query.session.ciipUserBySub.rowId}
+              user={query?.session?.ciipUserBySub?.rowId}
             />
           </>
         </DefaultLayout>
