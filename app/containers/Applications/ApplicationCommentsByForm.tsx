@@ -60,7 +60,7 @@ export default createFragmentContainer(ApplicationCommentsByForm, {
       createdAt
       reviewCommentsByApplicationReviewId(first: 2147483647)
         @connection(
-          key: "ApplicationCommentsByFrom_reviewCommentsByApplicationReviewId"
+          key: "ApplicationCommentsByForm_reviewCommentsByApplicationReviewId"
         ) {
         edges {
           node {
