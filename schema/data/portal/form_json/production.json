@@ -40,6 +40,9 @@
     "ui:remove-text": "Remove Product",
     "items": {
       "ui:field": "production",
+      "productRowId": {
+        "ui:widget": "SearchWidget"
+      },
       "allocationFactor": {
         "ui:col-md": 4,
         "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service"

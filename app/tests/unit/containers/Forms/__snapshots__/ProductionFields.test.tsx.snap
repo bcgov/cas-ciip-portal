@@ -6,17 +6,21 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     classNames="form-group field field-string"
     formContext={Object {}}
     hidden={false}
-    id="product.product"
+    id="product.productRowId"
     label="Product or Service"
     required={true}
     schema={
       Object {
         "enum": Array [
+          undefined,
+          undefined,
+        ],
+        "enumNames": Array [
           "foo",
           "simpleFoo",
         ],
         "title": "Product or Service",
-        "type": "string",
+        "type": "integer",
       }
     }
     uiSchema={Object {}}
@@ -26,7 +30,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       disabled={false}
       errorSchema={null}
       formContext={Object {}}
-      formData="simpleFoo"
       idSchema={null}
       name="product"
       onChange={[Function]}
@@ -79,11 +82,15 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       schema={
         Object {
           "enum": Array [
+            undefined,
+            undefined,
+          ],
+          "enumNames": Array [
             "foo",
             "simpleFoo",
           ],
           "title": "Product or Service",
-          "type": "string",
+          "type": "integer",
         }
       }
       uiSchema={Object {}}
@@ -91,15 +98,18 @@ exports[`The ProductionFields Component should match the snapshot when rendering
   </FormFieldTemplate>
   <FormFieldTemplate
     classNames="form-group field field-number"
+    errors={<ErrorList />}
     formContext={Object {}}
     hidden={false}
     id="product.allocationFactor"
-    label="Product allocation factor"
+    label="Product allocation factor (%)"
     required={true}
     schema={
       Object {
-        "title": "Product allocation factor",
-        "type": "number",
+        "exclusiveMinimum": 0,
+        "maximum": 100,
+        "title": "Product allocation factor (%)",
+        "type": "integer",
       }
     }
     uiSchema={Object {}}
@@ -107,7 +117,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     <NumberField
       autofocus={false}
       disabled={false}
-      errorSchema={null}
       formContext={Object {}}
       idSchema={null}
       name="allocationFactor"
@@ -160,170 +169,88 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       required={true}
       schema={
         Object {
-          "title": "Product allocation factor",
-          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 100,
+          "title": "Product allocation factor (%)",
+          "type": "integer",
         }
       }
       uiSchema={Object {}}
     />
   </FormFieldTemplate>
-  <FormFieldTemplate
-    classNames="form-group field field-number"
+  <ObjectField
+    autofocus={false}
+    disabled={false}
+    errorSchema={Object {}}
     formContext={Object {}}
-    hidden={false}
-    id="product.quantity"
-    label="Quantity"
+    formData={Object {}}
+    idSchema={null}
+    name={null}
+    onChange={[Function]}
+    readonly={false}
+    registry={
+      Object {
+        "ArrayFieldTemplate": [Function],
+        "FieldTemplate": [Function],
+        "ObjectFieldTemplate": [Function],
+        "definitions": Object {},
+        "fields": Object {
+          "AnyOfField": [Function],
+          "ArrayField": [Function],
+          "BooleanField": [Function],
+          "DescriptionField": [Function],
+          "NullField": [Function],
+          "NumberField": [Function],
+          "ObjectField": [Function],
+          "OneOfField": [Function],
+          "SchemaField": [Function],
+          "StringField": [Function],
+          "TitleField": [Function],
+          "UnsupportedField": [Function],
+        },
+        "formContext": Object {},
+        "widgets": Object {
+          "AltDateTimeWidget": [Function],
+          "AltDateWidget": [Function],
+          "BaseInput": [Function],
+          "CheckboxWidget": [Function],
+          "CheckboxesWidget": [Function],
+          "ColorWidget": [Function],
+          "DateTimeWidget": [Function],
+          "DateWidget": [Function],
+          "EmailWidget": [Function],
+          "FileWidget": [Function],
+          "HiddenWidget": [Function],
+          "PasswordWidget": [Function],
+          "RadioWidget": [Function],
+          "RangeWidget": [Function],
+          "SelectWidget": [Function],
+          "TextWidget": [Function],
+          "TextareaWidget": [Function],
+          "URLWidget": [Function],
+          "UpDownWidget": [Function],
+        },
+      }
+    }
     required={true}
     schema={
       Object {
-        "title": "Quantity",
-        "type": "number",
+        "properties": Object {
+          "additionalFoo": Object {
+            "type": "string",
+          },
+        },
+        "type": "object",
       }
     }
-    uiSchema={Object {}}
-  >
-    <NumberField
-      autofocus={false}
-      disabled={false}
-      errorSchema={null}
-      formContext={Object {}}
-      idSchema={null}
-      name="quantity"
-      onChange={[Function]}
-      readonly={false}
-      registry={
-        Object {
-          "ArrayFieldTemplate": [Function],
-          "FieldTemplate": [Function],
-          "ObjectFieldTemplate": [Function],
-          "definitions": Object {},
-          "fields": Object {
-            "AnyOfField": [Function],
-            "ArrayField": [Function],
-            "BooleanField": [Function],
-            "DescriptionField": [Function],
-            "NullField": [Function],
-            "NumberField": [Function],
-            "ObjectField": [Function],
-            "OneOfField": [Function],
-            "SchemaField": [Function],
-            "StringField": [Function],
-            "TitleField": [Function],
-            "UnsupportedField": [Function],
-          },
-          "formContext": Object {},
-          "widgets": Object {
-            "AltDateTimeWidget": [Function],
-            "AltDateWidget": [Function],
-            "BaseInput": [Function],
-            "CheckboxWidget": [Function],
-            "CheckboxesWidget": [Function],
-            "ColorWidget": [Function],
-            "DateTimeWidget": [Function],
-            "DateWidget": [Function],
-            "EmailWidget": [Function],
-            "FileWidget": [Function],
-            "HiddenWidget": [Function],
-            "PasswordWidget": [Function],
-            "RadioWidget": [Function],
-            "RangeWidget": [Function],
-            "SelectWidget": [Function],
-            "TextWidget": [Function],
-            "TextareaWidget": [Function],
-            "URLWidget": [Function],
-            "UpDownWidget": [Function],
-          },
-        }
-      }
-      required={true}
-      schema={
-        Object {
-          "title": "Quantity",
-          "type": "number",
-        }
-      }
-      uiSchema={Object {}}
-    />
-  </FormFieldTemplate>
-  <FormFieldTemplate
-    classNames="form-group field field-string"
-    formContext={Object {}}
-    hidden={false}
-    id="product.productUnits"
-    label="Units"
-    required={false}
-    schema={
+    uiSchema={
       Object {
-        "title": "Units",
-        "type": "string",
+        "additionalFoo": Object {
+          "ui:col-md": 12,
+        },
       }
     }
-    uiSchema={Object {}}
-  >
-    <StringField
-      autofocus={false}
-      disabled={true}
-      errorSchema={null}
-      formContext={Object {}}
-      formData="baz"
-      idSchema={null}
-      name="units"
-      onChange={[Function]}
-      readonly={true}
-      registry={
-        Object {
-          "ArrayFieldTemplate": [Function],
-          "FieldTemplate": [Function],
-          "ObjectFieldTemplate": [Function],
-          "definitions": Object {},
-          "fields": Object {
-            "AnyOfField": [Function],
-            "ArrayField": [Function],
-            "BooleanField": [Function],
-            "DescriptionField": [Function],
-            "NullField": [Function],
-            "NumberField": [Function],
-            "ObjectField": [Function],
-            "OneOfField": [Function],
-            "SchemaField": [Function],
-            "StringField": [Function],
-            "TitleField": [Function],
-            "UnsupportedField": [Function],
-          },
-          "formContext": Object {},
-          "widgets": Object {
-            "AltDateTimeWidget": [Function],
-            "AltDateWidget": [Function],
-            "BaseInput": [Function],
-            "CheckboxWidget": [Function],
-            "CheckboxesWidget": [Function],
-            "ColorWidget": [Function],
-            "DateTimeWidget": [Function],
-            "DateWidget": [Function],
-            "EmailWidget": [Function],
-            "FileWidget": [Function],
-            "HiddenWidget": [Function],
-            "PasswordWidget": [Function],
-            "RadioWidget": [Function],
-            "RangeWidget": [Function],
-            "SelectWidget": [Function],
-            "TextWidget": [Function],
-            "TextareaWidget": [Function],
-            "URLWidget": [Function],
-            "UpDownWidget": [Function],
-          },
-        }
-      }
-      required={false}
-      schema={
-        Object {
-          "title": "Units",
-          "type": "string",
-        }
-      }
-      uiSchema={Object {}}
-    />
-  </FormFieldTemplate>
+  />
 </Fragment>
 `;
 
@@ -333,17 +260,21 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     classNames="form-group field field-string"
     formContext={Object {}}
     hidden={false}
-    id="product.product"
+    id="product.productRowId"
     label="Product or Service"
     required={true}
     schema={
       Object {
         "enum": Array [
+          undefined,
+          undefined,
+        ],
+        "enumNames": Array [
           "foo",
           "simpleFoo",
         ],
         "title": "Product or Service",
-        "type": "string",
+        "type": "integer",
       }
     }
     uiSchema={Object {}}
@@ -353,7 +284,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       disabled={false}
       errorSchema={null}
       formContext={Object {}}
-      formData="foo"
       idSchema={null}
       name="product"
       onChange={[Function]}
@@ -406,11 +336,15 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       schema={
         Object {
           "enum": Array [
+            undefined,
+            undefined,
+          ],
+          "enumNames": Array [
             "foo",
             "simpleFoo",
           ],
           "title": "Product or Service",
-          "type": "string",
+          "type": "integer",
         }
       }
       uiSchema={Object {}}
@@ -418,15 +352,18 @@ exports[`The ProductionFields Component should match the snapshot when rendering
   </FormFieldTemplate>
   <FormFieldTemplate
     classNames="form-group field field-number"
+    errors={<ErrorList />}
     formContext={Object {}}
     hidden={false}
     id="product.allocationFactor"
-    label="Product allocation factor"
+    label="Product allocation factor (%)"
     required={true}
     schema={
       Object {
-        "title": "Product allocation factor",
-        "type": "number",
+        "exclusiveMinimum": 0,
+        "maximum": 100,
+        "title": "Product allocation factor (%)",
+        "type": "integer",
       }
     }
     uiSchema={Object {}}
@@ -434,7 +371,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     <NumberField
       autofocus={false}
       disabled={false}
-      errorSchema={null}
       formContext={Object {}}
       idSchema={null}
       name="allocationFactor"
@@ -487,8 +423,10 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       required={true}
       schema={
         Object {
-          "title": "Product allocation factor",
-          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 100,
+          "title": "Product allocation factor (%)",
+          "type": "integer",
         }
       }
       uiSchema={Object {}}
@@ -497,7 +435,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
   <ObjectField
     autofocus={false}
     disabled={false}
-    errorSchema={null}
+    errorSchema={Object {}}
     formContext={Object {}}
     formData={
       Object {

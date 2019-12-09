@@ -48,6 +48,9 @@ exports[`ProductCreator render() should match the last usable snapshot 1`] = `
                 <div
                   className="form-row"
                 >
+                  <span
+                    className="font-italic text-muted"
+                  />
                   Array [
                     <FormGroup
                       as={
@@ -169,9 +172,6 @@ exports[`ProductCreator render() should match the last usable snapshot 1`] = `
                       </Col>
                     </FormGroup>,
                   ]
-                  <span
-                    className="font-italic text-muted"
-                  />
                 </div>
               </FormRow>
             </div>
