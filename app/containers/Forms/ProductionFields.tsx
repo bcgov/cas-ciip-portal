@@ -1,11 +1,20 @@
 import React, {useState, useCallback} from 'react';
 import {FieldProps} from 'react-jsonschema-form';
+import ErrorList from 'components/Forms/ErrorList';
+
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductionFields_query} from 'ProductionFields_query.graphql';
 import {JSONSchema6} from 'json-schema';
 import {FormJson} from 'next-env';
 
 interface Props extends FieldProps {
+  formData: {
+    productRowId?: number;
+    quantity?: number;
+    productUnits?: string;
+    allocationFactor?: number;
+    additionalData?: any;
+  };
   query: ProductionFields_query;
 }
 
@@ -42,7 +51,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     )?.node.units;
     onChange({
       ...formData,
-      product: productRowId,
+      productRowId,
       productUnits,
       additionalData: {productUnits}
     });
@@ -62,12 +71,12 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
 
   const getAdditionalDataSchema = useCallback(() => {
     return query.allProducts.edges.find(
-      ({node}) => node.rowId === formData.product
+      ({node}) => node.rowId === formData.productRowId
     )?.node?.productFormByProductFormId?.productFormSchema as FormJson;
-  }, [formData.product, query.allProducts.edges]);
+  }, [formData.productRowId, query.allProducts.edges]);
 
   const [productFieldSchema] = useState({
-    ...(schema.properties.product as JSONSchema6),
+    ...(schema.properties.productRowId as JSONSchema6),
     enum: query.allProducts.edges.map(({node}) => node.rowId),
     enumNames: query.allProducts.edges.map(({node}) => node.name)
   });
@@ -77,7 +86,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
       <FieldTemplate
         required
         hidden={false}
-        id="product.product"
+        id="product.productRowId"
         classNames="form-group field field-string"
         label={productFieldSchema.title}
         schema={productFieldSchema}
@@ -89,8 +98,8 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           disabled={false}
           readonly={false}
           schema={productFieldSchema}
-          uiSchema={uiSchema.product}
-          formData={formData.product}
+          uiSchema={uiSchema.productRowId}
+          formData={formData.productRowId}
           autofocus={autofocus}
           idSchema={idSchema}
           registry={registry}
@@ -109,6 +118,10 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
         schema={schema.properties.allocationFactor as JSONSchema6}
         uiSchema={uiSchema.allocationFactor || {}}
         formContext={formContext}
+        help={uiSchema.allocationFactor?.['ui:help']}
+        errors={
+          <ErrorList errors={errorSchema?.allocationFactor?.__errors as any} />
+        }
       >
         <registry.fields.NumberField
           required
@@ -118,7 +131,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           autofocus={autofocus}
           idSchema={idSchema}
           registry={registry}
-          errorSchema={errorSchema}
+          errorSchema={errorSchema?.allocationFactor}
           formContext={formContext}
           disabled={disabled}
           readonly={readonly}
@@ -151,7 +164,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
               autofocus={autofocus}
               idSchema={idSchema}
               registry={registry}
-              errorSchema={errorSchema}
+              errorSchema={errorSchema?.quantity}
               formContext={formContext}
               disabled={disabled}
               readonly={readonly}
@@ -203,7 +216,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           autofocus={autofocus}
           idSchema={idSchema}
           registry={registry}
-          errorSchema={errorSchema}
+          errorSchema={errorSchema?.additionalData}
           formContext={formContext}
           disabled={disabled}
           readonly={readonly}

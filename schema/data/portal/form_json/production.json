@@ -8,9 +8,9 @@
       "product": {
         "type": "object",
         "properties": {
-          "product": {
+          "productRowId": {
             "title": "Product or Service",
-            "type": "string"
+            "type": "integer"
           },
           "quantity": {
             "title": "Quantity",
@@ -21,14 +21,17 @@
             "type": "string"
           },
           "allocationFactor": {
-            "title": "Product allocation factor",
-            "type": "number"
+            "title": "Product allocation factor (%)",
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 100
           },
           "additionalData": {
             "type": "object",
             "additionalProperties": true
           }
-        }
+        },
+        "required": ["productRowId", "allocationFactor"]
       }
     }
   },
@@ -38,7 +41,8 @@
     "items": {
       "ui:field": "production",
       "allocationFactor": {
-        "ui:col-md": 4
+        "ui:col-md": 4,
+        "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service"
       }
     }
   }

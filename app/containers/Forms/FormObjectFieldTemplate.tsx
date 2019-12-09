@@ -14,10 +14,14 @@ const FormObjectFieldTemplate = ({
           <TitleField title={title} />
         </Col>
       )}
+      {description && (
+        <Col xs={12}>
+          <span className="font-italic">{description}</span>
+        </Col>
+      )}
       {properties.map(prop => (
         <React.Fragment key={prop.content.key}>{prop.content}</React.Fragment>
       ))}
-      {description}
     </>
   );
 };

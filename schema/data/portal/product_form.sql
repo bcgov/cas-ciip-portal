@@ -49,9 +49,11 @@ values
  "schema": {
     "type": "object",
     "title": "Compression Equipment",
+    "description":"Please include all compression equipment on site",
     "properties": {
       "equipment": {
         "type": "array",
+        "minItems": 1,
         "items" : {
           "type": "object",
           "properties": {
@@ -59,19 +61,25 @@ values
               "type": "string",
               "title": "Equipment identifier"
             },
+            "energySource": {
+              "type": "string",
+              "title": "Energy Source",
+              "enum": ["Electric - Self-Generated", "Electric - From Integrated Grid", "Gas-driven"]
+            },
             "powerRating": {
               "type": "number",
-              "title": "Power Rating"
+              "title": "Power Rating (MW)"
             },
             "loadingFactor": {
               "type": "number",
-              "title": "Loading Factor"
+              "title": "Loading Factor (%)"
             },
             "runtimeHours": {
               "type": "number",
               "title": "Runtime Hours"
             }
-          }
+          },
+          "required": ["id", "energySource", "powerRating", "loadingFactor", "runtimeHours"]
         }
       }
     }
@@ -79,7 +87,24 @@ values
   "uiSchema": {
     "equipment": {
       "ui:add-text": "Add Equipment",
-      "ui:remove-text": "Remove Equipment"
+      "ui:remove-text": "Remove Equipment",
+      "items" : {
+        "ui:order": [
+          "id", "energySource", "powerRating", "runtimeHours", "loadingFactor"
+        ],
+        "id": {
+          "ui:help": "ID/name of the unit"
+        },
+        "loadingFactor": {
+          "ui:help": "Actual annual average load fraction for equipment. If load is unavailable, the fraction is determined by the actual annual average seed during operation in revolutions per minute (rpm) divided by the maximum rated speed of equipment in revolutions per minute (rpm)"
+        },
+        "powerRating": {
+          "ui:help": "Equipment''s maximum rated power, expressed in megawatts"
+        },
+        "runtimeHours": {
+          "ui:help": "Annual total hours the equipment was operating"
+        }
+      }
     }
   }
 }',''),

@@ -31,9 +31,9 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
     return (
       <Col xs={12}>
         {description}
-        {children}
-        {errors}
         {helpText}
+        {errors}
+        {children}
       </Col>
     );
   if (schema.type === 'object')
@@ -41,9 +41,9 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
       <Col xs={12}>
         <Form.Row>
           {description}
-          {children}
           {errors}
           {helpText}
+          {children}
         </Form.Row>
       </Col>
     );
