@@ -119,7 +119,7 @@
     "pg": "^7.11.0",
     "popper.js": "^1.15.0",
     "postgraphile": "^4.4.4",
-    "react": "^16.9.0",
+    "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.9",
     "react-bootstrap-typeahead": "^3.4.7",
     "react-dom": "^16.9.0",
