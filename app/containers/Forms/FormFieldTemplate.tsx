@@ -66,7 +66,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
     >
       <Form.Label htmlFor={id}>
         {label}
-        {required ? ' *' : null}
+        {required ? <>&nbsp;*</> : null}
       </Form.Label>
       {description}
       {children}
