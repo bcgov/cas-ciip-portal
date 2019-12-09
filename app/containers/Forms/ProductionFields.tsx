@@ -57,6 +57,20 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     });
   };
 
+  const handleQuantityChange = quantity => {
+    onChange({
+      ...formData,
+      quantity
+    });
+  };
+
+  const handleAllocationFactorChange = allocationFactor => {
+    onChange({
+      ...formData,
+      allocationFactor
+    });
+  };
+
   const handleAdditionalFieldsChange = (additionalData: any) => {
     console.log({
       ...formData,
@@ -67,6 +81,10 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
       ...formData,
       additionalData
     });
+  };
+
+  const handleProductUnitsChange = () => {
+    throw new Error('Product units cannot be changed');
   };
 
   const getAdditionalDataSchema = useCallback(() => {
@@ -139,12 +157,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           disabled={disabled}
           readonly={readonly}
           name="allocationFactor"
-          onChange={allocationFactor => {
-            onChange({
-              ...formData,
-              allocationFactor
-            });
-          }}
+          onChange={handleAllocationFactorChange}
         />
       </FieldTemplate>
       {!getAdditionalDataSchema() && (
@@ -175,12 +188,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
               disabled={disabled}
               readonly={readonly}
               name="quantity"
-              onChange={quantity => {
-                onChange({
-                  ...formData,
-                  quantity
-                });
-              }}
+              onChange={handleQuantityChange}
             />
           </FieldTemplate>
           <FieldTemplate
@@ -208,10 +216,8 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
               registry={registry}
               errorSchema={errorSchema}
               formContext={formContext}
-              name="units"
-              onChange={() => {
-                console.error("don't change me");
-              }}
+              name="productUnits"
+              onChange={handleProductUnitsChange}
             />
           </FieldTemplate>
         </>
