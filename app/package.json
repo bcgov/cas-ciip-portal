@@ -135,7 +135,7 @@
     "@babel/core": "^7.6.2",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
-    "@storybook/addon-a11y": "^5.2.1",
+    "@storybook/addon-a11y": "^5.2.8",
     "@storybook/addon-storyshots": "^5.2.4",
     "@storybook/addons": "^5.2.1",
     "@storybook/react": "^5.2.1",
