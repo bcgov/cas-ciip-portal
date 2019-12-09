@@ -17,6 +17,9 @@ class CertificationRedirect extends Component<Props> {
     query certificationRedirectQuery($rowId: String!) {
       query {
         session {
+          ciipUserBySub {
+            id
+          }
           ...defaultLayout_session
         }
         certificationUrlByRowId(rowId: $rowId) {
@@ -38,7 +41,8 @@ class CertificationRedirect extends Component<Props> {
   `;
 
   render() {
-    const {query} = this.props;
+    const {query, router} = this.props;
+    const {session} = query;
     const facility =
       query?.certificationUrlByRowId?.applicationByApplicationId
         ?.facilityByFacilityId;
@@ -75,20 +79,34 @@ class CertificationRedirect extends Component<Props> {
                   please certify the information reported in the application is
                   correct.
                 </p>
-                <p>
-                  Please log in or register in order to access this page.
-                  <br />
-                  You will be redirected to the certification page after doing
-                  so.
-                </p>
-                <Col md={{span: 5, offset: 1}}>
-                  <Form
-                    action={`/login?redirectTo=${decodeURI(redirectURI)}`}
-                    method="post"
-                  >
-                    <Button type="submit">Continue</Button>
-                  </Form>
-                </Col>
+                {session?.ciipUserBySub ? (
+                  <>
+                    <p>Please continue to the certification page</p>
+                    <Col md={{span: 5, offset: 1}}>
+                      <Button onClick={async () => router.push(redirectURI)}>
+                        Continue
+                      </Button>
+                    </Col>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      Please log in or register in order to access this page.
+                      <br />
+                      You will be redirected to the certification page after
+                      doing so.
+                    </p>
+
+                    <Col md={{span: 5, offset: 1}}>
+                      <Form
+                        action={`/login?redirectTo=${decodeURI(redirectURI)}`}
+                        method="post"
+                      >
+                        <Button type="submit">Continue</Button>
+                      </Form>
+                    </Col>
+                  </>
+                )}
               </Col>
             </Row>
           ) : (

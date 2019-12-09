@@ -1,11 +1,8 @@
 import React, {useRef, useState} from 'react';
 import {Button, Row} from 'react-bootstrap';
-import Link from 'next/link';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {useRouter} from 'next/router';
+import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
-import {CiipApplicationStatus} from 'createApplicationStatusMutation.graphql';
-import createApplicationStatusMutation from 'mutations/application/createApplicationStatusMutation';
 import createCertificationUrlMutation from '../../mutations/form/createCertificationUrl';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
@@ -19,27 +16,6 @@ interface Props {
 }
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
-  const router = useRouter();
-  // Change application status to 'pending' on application submit
-  const submitApplication = async () => {
-    const {environment} = props.relay;
-    const variables = {
-      input: {
-        applicationStatus: {
-          applicationId: props.query.application.rowId,
-          applicationStatus: 'PENDING' as CiipApplicationStatus
-        }
-      }
-    };
-    const response = await createApplicationStatusMutation(
-      environment,
-      variables
-    );
-    console.log(response);
-    // TODO: check response
-    router.push('/complete-submit');
-  };
-
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState();
   const copyArea = useRef(url);
@@ -93,20 +69,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             application.
           </h5>
           <br />
-          <Link
-            passHref
-            href={{
-              pathname: '/complete-submit'
-            }}
-          >
-            <Button
-              className="float-right"
-              style={{marginTop: '10px'}}
-              onClick={submitApplication}
-            >
-              Submit Application
-            </Button>
-          </Link>
+          <SubmitApplication application={props.query.application} />
         </>
       ) : (
         <>
@@ -148,6 +111,7 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
         applicationStatus {
           id
         }
+        ...SubmitApplication_application
       }
       ...ApplicationDetailsContainer_query
         @arguments(applicationId: $applicationId)

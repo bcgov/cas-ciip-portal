@@ -1,12 +1,8 @@
 import React, {useRef} from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {useRouter} from 'next/router';
 import SignaturePad from 'react-signature-canvas';
-import Link from 'next/link';
 import {Button, Container, Row, Col} from 'react-bootstrap';
 import updateApplicationMutation from 'mutations/application/updateApplicationMutation';
-import {CiipApplicationStatus} from 'createApplicationStatusMutation.graphql';
-import createApplicationStatusMutation from 'mutations/application/createApplicationStatusMutation';
 import {CertificationSignature_application} from 'CertificationSignature_application.graphql';
 
 interface Props {
@@ -48,27 +44,6 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
     console.log(response);
   };
 
-  const router = useRouter();
-  // Change application status to 'pending' on application submit
-  const submitApplication = async () => {
-    const {environment} = props.relay;
-    const variables = {
-      input: {
-        applicationStatus: {
-          applicationId: props.application.rowId,
-          applicationStatus: 'PENDING' as CiipApplicationStatus
-        }
-      }
-    };
-    const response = await createApplicationStatusMutation(
-      environment,
-      variables
-    );
-    console.log(response);
-    // TODO: check response
-    router.push('/complete-submit');
-  };
-
   return (
     <Container>
       <h3>Certifier Signature:</h3>
@@ -94,20 +69,7 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
         </Col>
         <Col md={{span: 3, offset: 2}}>
           {props.application.certificationSignature ? (
-            <Link
-              passHref
-              href={{
-                pathname: '/complete-submit'
-              }}
-            >
-              <Button
-                className="float-right"
-                style={{marginTop: '10px'}}
-                onClick={submitApplication}
-              >
-                Submit Application
-              </Button>
-            </Link>
+            <></>
           ) : (
             <>
               <Button
@@ -142,7 +104,6 @@ export default createFragmentContainer(CertificationSignatureComponent, {
   application: graphql`
     fragment CertificationSignature_application on Application {
       id
-      rowId
       certificationSignature
       applicationStatus {
         id
