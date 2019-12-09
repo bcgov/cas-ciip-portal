@@ -9,7 +9,6 @@ describe('The Confirmation Component', () => {
         application={{
           ' $refType': 'CertificationSignature_application',
           id: 'abc',
-          rowId: 1,
           certificationSignature: undefined,
           applicationStatus: {
             id: 'def'
@@ -28,7 +27,6 @@ describe('The Confirmation Component', () => {
         application={{
           ' $refType': 'CertificationSignature_application',
           id: 'abc',
-          rowId: 1,
           certificationSignature: undefined,
           applicationStatus: {
             id: 'def'
@@ -46,13 +44,12 @@ describe('The Confirmation Component', () => {
     ).toBe('Sign');
   });
 
-  it('allows the certifier to submit if the application has been signed', () => {
+  it('displays a success message if the application has been signed', () => {
     const wrapper = shallow(
       <CertificationSignatureComponent
         application={{
           ' $refType': 'CertificationSignature_application',
           id: 'abc',
-          rowId: 1,
           certificationSignature: 'signed',
           applicationStatus: {
             id: 'def'
@@ -62,11 +59,6 @@ describe('The Confirmation Component', () => {
         user={1}
       />
     );
-    expect(
-      wrapper
-        .find('Button')
-        .at(0)
-        .text()
-    ).toBe('Submit Application');
+    expect(wrapper.find('span').text()).toBe('Signed Successfully!');
   });
 });

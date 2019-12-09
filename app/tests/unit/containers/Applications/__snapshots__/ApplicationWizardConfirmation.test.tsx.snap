@@ -18,6 +18,9 @@ exports[`The Confirmation Component match the snapshot 1`] = `
         },
         " $refType": "ApplicationWizardConfirmation_query",
         "application": Object {
+          " $fragmentRefs": Object {
+            "SubmitApplication_application": true,
+          },
           "applicationStatus": Object {
             "id": "def",
           },

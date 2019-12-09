@@ -12,6 +12,9 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query',
           application: {
+            ' $fragmentRefs': {
+              SubmitApplication_application: true
+            },
             id: 'abc',
             rowId: 1,
             certificationSignature: undefined,
@@ -35,6 +38,9 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query',
           application: {
+            ' $fragmentRefs': {
+              SubmitApplication_application: true
+            },
             id: 'abc',
             rowId: 1,
             certificationSignature: undefined,
@@ -71,6 +77,9 @@ describe('The Confirmation Component', () => {
           },
           ' $refType': 'ApplicationWizardConfirmation_query',
           application: {
+            ' $fragmentRefs': {
+              SubmitApplication_application: true
+            },
             id: 'abc',
             rowId: 1,
             certificationSignature: 'signed',
@@ -82,19 +91,8 @@ describe('The Confirmation Component', () => {
         relay={null}
       />
     );
-    expect(
-      wrapper
-        .find('h5')
-        .at(1)
-        .text()
-    ).toBe(
-      'Thank you for reviewing the application information. The Certifier has signed off on this application. You may now submit the application.'
+    expect(wrapper.find('Relay(SubmitApplicationComponent)').exists()).toBe(
+      true
     );
-    expect(
-      wrapper
-        .find('Button')
-        .at(0)
-        .text()
-    ).toBe('Submit Application');
   });
 });
