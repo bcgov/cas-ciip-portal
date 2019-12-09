@@ -2,6 +2,32 @@
 
 exports[`ApplicationReviewContainer should match the snapshot with the ApplicationReviewContainer component 1`] = `
 <Fragment>
+  <Toast
+    animation={true}
+    autohide={true}
+    className="onSubmitMessage"
+    delay={5000}
+    onClose={[Function]}
+    show={false}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+  >
+    <ToastBody>
+      Review saved.
+    </ToastBody>
+  </Toast>
   <Button
     active={false}
     disabled={false}
@@ -53,72 +79,72 @@ exports[`ApplicationReviewContainer should match the snapshot with the Applicati
             sm={12}
           >
             <div
-              className="jsx-1106837452 radio"
+              className="jsx-3422310608 radio"
             >
               <input
-                className="jsx-1106837452"
+                className="jsx-3422310608"
                 name="reviewStatus"
                 type="radio"
                 value="IN_REVIEW"
               />
               <div
-                className="jsx-1106837452 description"
+                className="jsx-3422310608 description"
               >
                 <h6
-                  className="jsx-1106837452"
+                  className="jsx-3422310608"
                 >
                   Comment
                 </h6>
                 <span
-                  className="jsx-1106837452"
+                  className="jsx-3422310608"
                 >
                   Submit general feedback without explicit approval
                 </span>
               </div>
             </div>
             <div
-              className="jsx-1106837452 radio"
+              className="jsx-3422310608 radio"
             >
               <input
-                className="jsx-1106837452"
+                className="jsx-3422310608"
                 name="reviewStatus"
                 type="radio"
                 value="APPROVED"
               />
               <div
-                className="jsx-1106837452 description"
+                className="jsx-3422310608 description"
               >
                 <h6
-                  className="jsx-1106837452"
+                  className="jsx-3422310608"
                 >
                   Approve
                 </h6>
                 <span
-                  className="jsx-1106837452"
+                  className="jsx-3422310608"
                 >
                   Approve this section. Leaving a comment is optional
                 </span>
               </div>
             </div>
             <div
-              className="jsx-1106837452 radio"
+              className="jsx-3422310608 radio"
             >
               <input
-                className="jsx-1106837452"
+                className="jsx-3422310608"
                 name="reviewStatus"
                 type="radio"
                 value="REQUESTED_CHANGES"
               />
               <div
-                className="jsx-1106837452 description"
+                className="jsx-3422310608 description"
               >
                 <h6
-                  className="jsx-1106837452"
+                  className="jsx-3422310608"
                 >
                   Request Changes
                 </h6>
                 <span
-                  className="jsx-1106837452"
+                  className="jsx-3422310608"
                 >
                   Request changes from the applicant before this can be approved
                 </span>
@@ -127,7 +153,7 @@ exports[`ApplicationReviewContainer should match the snapshot with the Applicati
           </Col>
         </ForwardRef>
         <br
-          className="jsx-1106837452"
+          className="jsx-3422310608"
         />
         <Button
           active={false}
@@ -152,9 +178,9 @@ exports[`ApplicationReviewContainer should match the snapshot with the Applicati
     </ModalFooter>
   </Bootstrap(Modal)>
   <JSXStyle
-    id="1106837452"
+    id="3422310608"
   >
-    .review-status .radio{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin-top:20px;}.review-status input{margin-right:10px;}.review-status .description h6{margin-bottom:0;}.review-status .description span{font-size:14px;color:#666;}
+    .review-status .radio{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin-top:20px;}.review-status input{margin-right:10px;}.review-status .description h6{margin-bottom:0;}.review-status .description span{font-size:14px;color:#666;}.onSubmitMessage{position:fixed;top:60px;right:10px;z-index:100000;}
   </JSXStyle>
 </Fragment>
 `;

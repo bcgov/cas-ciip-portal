@@ -12,9 +12,20 @@ const mutation = graphql`
   ) {
     createApplicationReviewMutationChain(input: $input) {
       applicationReview {
-        id
-        formResultId
-        reviewStatus
+        ...ApplicationReviewContainer_applicationReview
+        ...ApplicationCommentsByForm_applicationReview
+        formResultByFormResultId {
+          applicationReviewsByFormResultId {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+          applicationReview {
+            id
+          }
+        }
       }
     }
   }
