@@ -92,6 +92,9 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
         schema={productFieldSchema}
         uiSchema={uiSchema.product || {}}
         formContext={formContext}
+        errors={
+          <ErrorList errors={errorSchema?.productRowId?.__errors as any} />
+        }
       >
         <registry.fields.StringField
           required
@@ -155,6 +158,9 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
             schema={schema.properties.quantity as JSONSchema6}
             uiSchema={uiSchema.quantity || {}}
             formContext={formContext}
+            errors={
+              <ErrorList errors={errorSchema?.quantity?.__errors as any} />
+            }
           >
             <registry.fields.NumberField
               required
@@ -186,6 +192,9 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
             schema={schema.properties.productUnits as JSONSchema6}
             uiSchema={uiSchema.productUnits || {}}
             formContext={formContext}
+            errors={
+              <ErrorList errors={errorSchema?.productUnits?.__errors as any} />
+            }
           >
             <registry.fields.StringField
               disabled

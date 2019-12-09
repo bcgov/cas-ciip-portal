@@ -4,6 +4,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
 <Fragment>
   <FormFieldTemplate
     classNames="form-group field field-string"
+    errors={<ErrorList />}
     formContext={Object {}}
     hidden={false}
     id="product.productRowId"
@@ -258,6 +259,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
 <Fragment>
   <FormFieldTemplate
     classNames="form-group field field-string"
+    errors={<ErrorList />}
     formContext={Object {}}
     hidden={false}
     id="product.productRowId"
