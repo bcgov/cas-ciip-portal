@@ -3,6 +3,7 @@ import {FieldProps} from 'react-jsonschema-form';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {Form, Col} from 'react-bootstrap';
 import {FuelFields_query} from 'FuelFields_query.graphql';
+import SearchDropdown from 'components/SearchDropdown';
 
 interface Props extends FieldProps {
   query: FuelFields_query;
@@ -26,22 +27,24 @@ const FuelFields: React.FunctionComponent<Props> = ({
       <Col xs={12} md={6}>
         <Form.Group controlId="id.fuelType">
           <Form.Label>Fuel Type</Form.Label>
-          <Form.Control
-            as="select"
-            value={formData.fuelType}
-            onChange={e => {
-              onChange({
-                ...formData,
-                fuelType: (e.nativeEvent.target as HTMLInputElement).value,
-                fuelUnits: undefined
-              });
+          <SearchDropdown
+            placeholder="Select fuel or type to filter..."
+            defaultInputValue={formData.fuelType}
+            options={query.allFuels.edges.map(({node}) => ({
+              id: node.rowId,
+              name: node.name
+            }))}
+            inputProps={{id: 'id.fuelType'}}
+            onChange={(items: any[]) => {
+              if (items.length > 0) {
+                onChange({
+                  ...formData,
+                  fuelType: items[0].label,
+                  fuelUnits: undefined
+                });
+              }
             }}
-          >
-            <option value="">...</option>
-            {query.allFuels.edges.map(({node}) => (
-              <option key={node.name}>{node.name}</option>
-            ))}
-          </Form.Control>
+          />
         </Form.Group>
       </Col>
       <Col xs={12} md={4}>
@@ -107,6 +110,7 @@ export default createFragmentContainer(FuelFields, {
           node {
             name
             units
+            rowId
           }
         }
       }

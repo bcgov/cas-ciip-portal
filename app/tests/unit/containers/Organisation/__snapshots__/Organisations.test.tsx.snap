@@ -29,7 +29,6 @@ exports[`Organisations should render no organisations if the user has not reques
     navbar={false}
   >
     <h5
-      className="jsx-14601785"
       style={
         Object {
           "marginBottom": 0,
@@ -39,7 +38,6 @@ exports[`Organisations should render no organisations if the user has not reques
       Request access to an Operator:
     </h5>
     <small
-      className="jsx-14601785"
       style={
         Object {
           "display": "block",
@@ -50,19 +48,21 @@ exports[`Organisations should render no organisations if the user has not reques
       (You can search to narrow the results in the dropdown)
     </small>
     <Bootstrap(DropdownToggle)
-      as="input"
-      onChange={[Function]}
-      placeholder="Search..."
-    />
+      className="search-toggle"
+      id="org-dropdown"
+    >
+      Select Operator
+    </Bootstrap(DropdownToggle)>
     <DropdownMenu
       alignRight={false}
       flip={true}
-    />
-    <JSXStyle
-      id="14601785"
     >
-      .dropdown-toggle{padding:8px 16px;width:300px;border-radius:3px;border:1px solid #999;}
-    </JSXStyle>
+      <FormControl
+        className="mx-3 my-2 w-auto"
+        onChange={[Function]}
+        placeholder="Search..."
+      />
+    </DropdownMenu>
   </Dropdown>
 </Fragment>
 `;
@@ -150,7 +150,6 @@ exports[`Organisations should render the user's requested organisations 1`] = `
     navbar={false}
   >
     <h5
-      className="jsx-14601785"
       style={
         Object {
           "marginBottom": 0,
@@ -160,7 +159,6 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       Request access to an Operator:
     </h5>
     <small
-      className="jsx-14601785"
       style={
         Object {
           "display": "block",
@@ -171,19 +169,21 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       (You can search to narrow the results in the dropdown)
     </small>
     <Bootstrap(DropdownToggle)
-      as="input"
-      onChange={[Function]}
-      placeholder="Search..."
-    />
+      className="search-toggle"
+      id="org-dropdown"
+    >
+      Select Operator
+    </Bootstrap(DropdownToggle)>
     <DropdownMenu
       alignRight={false}
       flip={true}
-    />
-    <JSXStyle
-      id="14601785"
     >
-      .dropdown-toggle{padding:8px 16px;width:300px;border-radius:3px;border:1px solid #999;}
-    </JSXStyle>
+      <FormControl
+        className="mx-3 my-2 w-auto"
+        onChange={[Function]}
+        placeholder="Search..."
+      />
+    </DropdownMenu>
   </Dropdown>
 </Fragment>
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {Table, Dropdown, Button, Alert} from 'react-bootstrap';
+import {Table, Dropdown, Button, Alert, FormControl} from 'react-bootstrap';
 import {Organisations_query} from 'Organisations_query.graphql';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import LoadingSpinner from '../../components/LoadingSpinner';
@@ -130,13 +130,15 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
           <small style={{display: 'block', marginBottom: '20px'}}>
             (You can search to narrow the results in the dropdown)
           </small>
-          <Dropdown.Toggle
-            // @ts-ignore
-            as="input"
-            placeholder="Search..."
-            onChange={changeInput}
-          ></Dropdown.Toggle>
+          <Dropdown.Toggle id="org-dropdown" className="search-toggle">
+            Select Operator
+          </Dropdown.Toggle>
           <Dropdown.Menu>
+            <FormControl
+              placeholder="Search..."
+              className="mx-3 my-2 w-auto"
+              onChange={changeInput}
+            />
             {allOrganisations.edges.map(({node}) => {
               return (
                 <Organisation
@@ -149,14 +151,6 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
               );
             })}
           </Dropdown.Menu>
-          <style jsx global>{`
-            .dropdown-toggle {
-              padding: 8px 16px;
-              width: 300px;
-              border-radius: 3px;
-              border: 1px solid #999;
-            }
-          `}</style>
         </Dropdown>
       )}
     </>
