@@ -1315,7 +1315,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 htmlFor="root_electricity_purchased"
               >
                 Purchased (MWh)
-                 *
+                 *
               </label>
               <input
                 autoFocus={false}
@@ -1345,7 +1345,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 htmlFor="root_electricity_generatedOnSite"
               >
                 Generated On Site (MWh)
-                 *
+                 *
               </label>
               <input
                 autoFocus={false}
@@ -1375,7 +1375,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 htmlFor="root_electricity_consumedOnSite"
               >
                 Consumed On Site (MWh)
-                 *
+                 *
               </label>
               <input
                 autoFocus={false}
@@ -1405,7 +1405,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 htmlFor="root_electricity_sold"
               >
                 Sold (MWh)
-                 *
+                 *
               </label>
               <input
                 autoFocus={false}
@@ -1453,7 +1453,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 htmlFor="root_heat_purchased"
               >
                 Purchased (GJ)
-                 *
+                 *
               </label>
               <input
                 autoFocus={false}
@@ -1483,7 +1483,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 htmlFor="root_heat_generatedOnSite"
               >
                 Generated On Site (GJ)
-                 *
+                 *
               </label>
               <input
                 autoFocus={false}
@@ -1513,7 +1513,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 htmlFor="root_heat_consumedOnSite"
               >
                 Consumed On Site (GJ)
-                 *
+                 *
               </label>
               <input
                 autoFocus={false}
@@ -1543,7 +1543,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 htmlFor="root_heat_sold"
               >
                 Sold (GJ)
-                 *
+                 *
               </label>
               <input
                 autoFocus={false}
