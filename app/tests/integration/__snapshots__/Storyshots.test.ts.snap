@@ -661,11 +661,9 @@ Array [
             <div
               className="form-row"
             >
-              <div
-                className="col-12"
-              >
-                <legend />
-              </div>
+              <span
+                className="font-italic text-muted"
+              />
               <div
                 className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
               >
@@ -674,7 +672,7 @@ Array [
                   htmlFor="root_firstName"
                 >
                   First Name
-                  *
+                   *
                 </label>
                 <input
                   autoFocus={false}
@@ -691,6 +689,9 @@ Array [
                   type="text"
                   value="<mock-value-for-field-\\"firstName\\">"
                 />
+                <span
+                  className="font-italic text-muted"
+                />
               </div>
               <div
                 className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -700,7 +701,7 @@ Array [
                   htmlFor="root_lastName"
                 >
                   Last Name
-                  *
+                   *
                 </label>
                 <input
                   autoFocus={false}
@@ -717,6 +718,9 @@ Array [
                   type="text"
                   value="<mock-value-for-field-\\"lastName\\">"
                 />
+                <span
+                  className="font-italic text-muted"
+                />
               </div>
               <div
                 className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -726,7 +730,7 @@ Array [
                   htmlFor="root_emailAddress"
                 >
                   Email Address
-                  *
+                   *
                 </label>
                 <input
                   autoFocus={false}
@@ -743,6 +747,9 @@ Array [
                   type="text"
                   value="<mock-value-for-field-\\"emailAddress\\">"
                 />
+                <span
+                  className="font-italic text-muted"
+                />
               </div>
               <div
                 className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -752,7 +759,7 @@ Array [
                   htmlFor="root_phoneNumber"
                 >
                   Phone Number
-                  *
+                   *
                 </label>
                 <input
                   autoFocus={false}
@@ -769,6 +776,9 @@ Array [
                   type="text"
                   value="<mock-value-for-field-\\"phoneNumber\\">"
                 />
+                <span
+                  className="font-italic text-muted"
+                />
               </div>
               <div
                 className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -778,7 +788,7 @@ Array [
                   htmlFor="root_occupation"
                 >
                   Occupation
-                  *
+                   *
                 </label>
                 <input
                   autoFocus={false}
@@ -794,6 +804,9 @@ Array [
                   required={true}
                   type="text"
                   value="<mock-value-for-field-\\"occupation\\">"
+                />
+                <span
+                  className="font-italic text-muted"
                 />
               </div>
             </div>
@@ -1163,7 +1176,6 @@ Array [
               onKeyDown={[Function]}
             >
               <h5
-                className="jsx-14601785"
                 style={
                   Object {
                     "marginBottom": 0,
@@ -1173,7 +1185,6 @@ Array [
                 Request access to an Operator:
               </h5>
               <small
-                className="jsx-14601785"
                 style={
                   Object {
                     "display": "block",
@@ -1183,14 +1194,17 @@ Array [
               >
                 (You can search to narrow the results in the dropdown)
               </small>
-              <input
+              <button
                 aria-expanded={false}
                 aria-haspopup={true}
-                className="dropdown-toggle"
-                onChange={[Function]}
+                className="search-toggle dropdown-toggle btn btn-primary"
+                disabled={false}
+                id="org-dropdown"
                 onClick={[Function]}
-                placeholder="Search..."
-              />
+                type="button"
+              >
+                Select Operator
+              </button>
             </div>
           </div>
           <div
