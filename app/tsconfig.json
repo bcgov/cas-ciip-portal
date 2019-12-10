@@ -27,6 +27,11 @@
     "allowJs": true
   },
   "exclude": [
-    "node_modules"
+    ".next",
+    ".s2i",
+    ".storybook",
+    "node_modules",
+    "static",
+    "stories"
   ]
 }
