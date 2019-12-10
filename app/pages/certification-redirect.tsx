@@ -99,7 +99,9 @@ class CertificationRedirect extends Component<Props> {
 
                     <Col md={{span: 5, offset: 1}}>
                       <Form
-                        action={`/login?redirectTo=${decodeURI(redirectURI)}`}
+                        action={`/login?redirectTo=${encodeURIComponent(
+                          redirectURI
+                        )}`}
                         method="post"
                       >
                         <Button type="submit">Continue</Button>

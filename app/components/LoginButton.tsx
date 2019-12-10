@@ -10,7 +10,7 @@ const LoginForm: React.FunctionComponent<React.ComponentPropsWithoutRef<
   let loginURI = '/login';
 
   if (router.query.redirectTo)
-    loginURI += `?redirectTo=${decodeURI(router.query.redirectTo as string)}`;
+    loginURI += `?redirectTo=${router.query.redirectTo as string}`;
 
   return (
     <Form action={loginURI} method="post">
