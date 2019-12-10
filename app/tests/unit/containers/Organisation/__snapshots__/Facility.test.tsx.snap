@@ -18,6 +18,7 @@ exports[`Facility should render a Facility 1`] = `
     </CardHeader>
     <ListGroup
       className="list-group-flush"
+      horizontal={null}
       variant={null}
     >
       <ListGroupItem
@@ -99,6 +100,7 @@ exports[`Facility should render a Resume Application button if an applicationID 
     </CardHeader>
     <ListGroup
       className="list-group-flush"
+      horizontal={null}
       variant={null}
     >
       <ListGroupItem
@@ -180,6 +182,7 @@ exports[`Facility should render a View Submitted App button if an applicationID 
     </CardHeader>
     <ListGroup
       className="list-group-flush"
+      horizontal={null}
       variant={null}
     >
       <ListGroupItem
@@ -261,6 +264,7 @@ exports[`Facility should render an Apply For CIIP button if no applicationID exi
     </CardHeader>
     <ListGroup
       className="list-group-flush"
+      horizontal={null}
       variant={null}
     >
       <ListGroupItem

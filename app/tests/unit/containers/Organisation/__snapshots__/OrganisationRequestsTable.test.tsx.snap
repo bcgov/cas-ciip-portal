@@ -42,7 +42,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       </Col>
     </ForwardRef>
   </Container>
-  <Bootstrap(Table)
+  <ForwardRef
     hover={true}
     striped={true}
     style={
@@ -136,6 +136,6 @@ exports[`Organisations should render the user's requested organisations 1`] = `
         }
       />
     </tbody>
-  </Bootstrap(Table)>
+  </ForwardRef>
 </Fragment>
 `;

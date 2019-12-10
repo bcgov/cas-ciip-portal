@@ -124,91 +124,43 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                                   itemSelector=".dropdown-item:not(.disabled):not(:disabled)"
                                   onToggle={[Function]}
                                 >
-                                  <Manager>
-                                    <div
-                                      className="dropdown"
-                                      onKeyDown={[Function]}
+                                  <div
+                                    className="dropdown"
+                                    onKeyDown={[Function]}
+                                  >
+                                    <DropdownToggle
+                                      id="dropdown-basic"
+                                      variant="primary"
                                     >
-                                      <Bootstrap(DropdownToggle)
+                                      <Button
+                                        active={false}
+                                        aria-expanded={false}
+                                        aria-haspopup={true}
+                                        className="dropdown-toggle"
+                                        disabled={false}
                                         id="dropdown-basic"
+                                        onClick={[Function]}
+                                        type="button"
                                         variant="primary"
                                       >
-                                        <DropdownToggle
-                                          as={
-                                            Object {
-                                              "$$typeof": Symbol(react.forward_ref),
-                                              "defaultProps": Object {
-                                                "active": false,
-                                                "disabled": false,
-                                                "type": "button",
-                                                "variant": "primary",
-                                              },
-                                              "displayName": "Button",
-                                              "render": [Function],
-                                            }
-                                          }
-                                          bsPrefix="dropdown-toggle"
+                                        <button
+                                          aria-expanded={false}
+                                          aria-haspopup={true}
+                                          className="dropdown-toggle btn btn-primary"
+                                          disabled={false}
                                           id="dropdown-basic"
-                                          variant="primary"
+                                          onClick={[Function]}
+                                          type="button"
                                         >
-                                          <ReactOverlaysDropdownToggle>
-                                            <Button
-                                              active={false}
-                                              aria-expanded={false}
-                                              aria-haspopup={true}
-                                              className="dropdown-toggle"
-                                              disabled={false}
-                                              id="dropdown-basic"
-                                              onClick={[Function]}
-                                              type="button"
-                                              variant="primary"
-                                            >
-                                              <button
-                                                aria-expanded={false}
-                                                aria-haspopup={true}
-                                                className="dropdown-toggle btn btn-primary"
-                                                disabled={false}
-                                                id="dropdown-basic"
-                                                onClick={[Function]}
-                                                type="button"
-                                              >
-                                                Temporary Links
-                                              </button>
-                                            </Button>
-                                          </ReactOverlaysDropdownToggle>
-                                        </DropdownToggle>
-                                      </Bootstrap(DropdownToggle)>
-                                      <DropdownMenu
-                                        alignRight={false}
-                                        flip={true}
-                                      >
-                                        <ForwardRef(ContextTransform(DropdownMenu))
-                                          alignEnd={false}
-                                          flip={true}
-                                          usePopper={true}
-                                        >
-                                          <ReactOverlaysDropdownMenu
-                                            alignEnd={false}
-                                            flip={true}
-                                            menuRef={[Function]}
-                                            onToggle={[Function]}
-                                            toggleNode={
-                                              <button
-                                                aria-expanded="false"
-                                                aria-haspopup="true"
-                                                class="dropdown-toggle btn btn-primary"
-                                                id="dropdown-basic"
-                                                type="button"
-                                              >
-                                                Temporary Links
-                                              </button>
-                                            }
-                                            usePopper={true}
-                                          />
-                                        </ForwardRef(ContextTransform(DropdownMenu))>
-                                      </DropdownMenu>
-                                    </div>
-                                  </Manager>
+                                          Temporary Links
+                                        </button>
+                                      </Button>
+                                    </DropdownToggle>
+                                    <DropdownMenu
+                                      alignRight={false}
+                                      flip={true}
+                                    />
+                                  </div>
                                 </ReactOverlaysDropdown>
                               </Dropdown>
                             </div>
