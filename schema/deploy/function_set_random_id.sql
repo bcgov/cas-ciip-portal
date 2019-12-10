@@ -9,16 +9,18 @@ create function ggircs_portal.set_random_id()
 declare
   new_id varchar(1000);
 begin
-  while new_id in (select id from ggircs_portal.certification_url) or new_id is null loop
-    if new_id in (select id from ggircs_portal.certification_url) then
-      raise warning 'ggircs_portal.set_random_id() experienced hash collision on %s - rerunning hash function & generating new id', new_id;
-    end if;
+  loop
     -- Securely generate a psuedo-random hash and re-encode it as a base64 string.
-    new_id := encode(gen_random_bytes(32), 'base64');
+    new_id := encode(gen_random_bytes(64), 'base64');
     -- Base64 encoding contains 2 URL unsafe characters by default.
     -- The URL-safe version has these replacements.
     new_id := replace(new_id, '/', '_'); -- url safe replacement
     new_id := replace(new_id, '+', '-'); -- url safe replacement
+    if new_id in (select id from ggircs_portal.certification_url) then
+      raise warning 'ggircs_portal.set_random_id() experienced hash collision on %s - rerunning hash function & generating new id', new_id;
+    else
+      exit;
+    end if;
   end loop;
 
   new.id = new_id;

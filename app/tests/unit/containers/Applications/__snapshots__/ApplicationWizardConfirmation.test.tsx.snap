@@ -39,46 +39,54 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   <ForwardRef
     noGutters={false}
   >
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-      variant="primary"
-    >
-      Generate Certification Page
-    </Button>
+    <Col>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="primary"
+      >
+        Generate Certification Page
+      </Button>
+    </Col>
   </ForwardRef>
   <br />
   <ForwardRef
     noGutters={false}
   >
-    <input
-      readOnly={true}
-      style={
-        Object {
-          "marginRight": "10px",
-          "width": "50%",
-        }
-      }
-    />
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-      variant="primary"
+    <Col
+      md={6}
     >
-      Copy to Clipboard
-    </Button>
-    <span
-      style={
-        Object {
-          "color": "green",
+      <input
+        readOnly={true}
+        style={
+          Object {
+            "width": "100%",
+          }
         }
-      }
-    />
+      />
+    </Col>
+    <Col
+      md={2}
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="primary"
+      >
+        Copy Link
+      </Button>
+      <span
+        style={
+          Object {
+            "color": "green",
+          }
+        }
+      />
+    </Col>
   </ForwardRef>
-   
 </Fragment>
 `;

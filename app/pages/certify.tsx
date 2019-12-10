@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {certifyQueryResponse} from 'certifyQuery.graphql';
-import CertificationPage from 'containers/Forms/CertificationPage';
+import ApplicationDetailsContainer from 'containers/Applications/ApplicationDetailsContainer';
 import CertificationSignature from 'containers/Forms/CertificationSignature';
 import DefaultLayout from '../layouts/default-layout';
 
@@ -20,8 +20,9 @@ class Certify extends Component<Props> {
           }
           ...defaultLayout_session
         }
+        ...ApplicationDetailsContainer_query
+          @arguments(applicationId: $applicationId)
         application(id: $applicationId) {
-          ...CertificationPage_application
           ...CertificationSignature_application
         }
       }
@@ -34,10 +35,7 @@ class Certify extends Component<Props> {
       <>
         <DefaultLayout title="Submission Certification" session={query.session}>
           <>
-            <CertificationPage
-              application={query.application}
-              isAnalyst={false}
-            />
+            <ApplicationDetailsContainer query={query} isAnalyst={false} />
             <CertificationSignature
               application={query.application}
               user={query?.session?.ciipUserBySub?.rowId}

@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {Button, Row} from 'react-bootstrap';
+import {Button, Row, Col} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
@@ -23,11 +23,13 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const copyToClipboard = () => {
     const el = copyArea;
     el.current.select();
-    document.execCommand('copy');
-    setCopySuccess('Copied!');
+    // TODO(Dylan): execCommand copy is deprecated. Look into a replacement
+    const success = document.execCommand('copy');
+    if (success) return setCopySuccess('Copied!');
+    throw new Error('document.execCommand(`copy`) failed');
   };
 
-  const createCertificationUrl = async () => {
+  const handleClickGenerateCertificationUrl = async () => {
     const {environment} = props.relay;
     const variables = {
       input: {
@@ -44,11 +46,17 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       variables
     );
     console.log(response);
-    if (window) {
+    try {
       setUrl(
-        `${window.location.host}/certification-redirect?rowId=${response.createCertificationUrl.certificationUrl.rowId}&id=${props.query.application.id}`
+        `${
+          window.location.host
+        }/certification-redirect?rowId=${encodeURIComponent(
+          response.createCertificationUrl.certificationUrl.rowId
+        )}&id=${encodeURIComponent(props.query.application.id)}`
       );
-    } else console.log('No window location found');
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   return (
@@ -79,21 +87,27 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           </h5>
           <br />
           <Row>
-            <Button onClick={createCertificationUrl}>
-              Generate Certification Page
-            </Button>
+            <Col>
+              <Button onClick={handleClickGenerateCertificationUrl}>
+                Generate Certification Page
+              </Button>
+            </Col>
           </Row>
           <br />
           <Row>
-            <input
-              ref={copyArea}
-              readOnly
-              style={{width: '50%', marginRight: '10px'}}
-              value={url}
-            />
-            <Button onClick={copyToClipboard}>Copy to Clipboard</Button>
-            <span style={{color: 'green'}}>{copySuccess}</span>
-          </Row>{' '}
+            <Col md={6}>
+              <input
+                ref={copyArea}
+                readOnly
+                value={url}
+                style={{width: '100%'}}
+              />
+            </Col>
+            <Col md={2}>
+              <Button onClick={copyToClipboard}>Copy Link</Button>
+              <span style={{color: 'green'}}>{copySuccess}</span>
+            </Col>
+          </Row>
         </>
       )}
     </>
