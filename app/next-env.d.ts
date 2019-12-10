@@ -40,6 +40,7 @@ declare module 'react-jsonschema-form' {
     omitExtraData?: boolean;
     liveOmit?: boolean;
     customFormats?: Record<string, any>;
+    tagName?: any;
   }
 }
 

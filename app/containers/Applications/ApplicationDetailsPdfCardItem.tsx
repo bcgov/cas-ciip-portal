@@ -2,16 +2,32 @@ import React from 'react';
 import {Document, Page, Text, View} from '@react-pdf/renderer';
 import JsonSchemaForm from 'react-jsonschema-form';
 
-const CUSTOM_FIELDS = {
-  TitleField: props => <Text>{props.title}</Text>
+const objectFieldTemplate = props => {
+  return (
+    <>
+      {props.properties.map(prop => (
+        <View key={prop.content.key}>{prop.content}</View>
+      ))}
+    </>
+  );
 };
 
-const fieldTemplate = () => {
+const fieldTemplate = props => {
   return (
-    <View>
-      <Text>Section #1</Text>
-    </View>
+    <>
+      <Text>{props.label}</Text>
+      {props.children}
+    </>
   );
+};
+
+const CUSTOM_FIELDS = {
+  TitleField: props => <Text>{props.title}</Text>,
+  StringField: props => <Text>{props.formData}</Text>
+};
+
+const customWidget = {
+  RadioWidget: props => props.value
 };
 
 const ApplicationDetailsPdfCardItem = props => {
@@ -23,19 +39,20 @@ const ApplicationDetailsPdfCardItem = props => {
 
   return (
     <Document>
-      <Page>
-        <JsonSchemaForm
-          // ArrayFieldTemplate={SummaryFormArrayFieldTemplate}
-          FieldTemplate={fieldTemplate}
-          showErrorList={false}
-          fields={CUSTOM_FIELDS}
-          // CustomFormats={customFormats}
-          schema={schema}
-          uiSchema={uiSchema}
-          //   ObjectFieldTemplate={FormObjectFieldTemplate}
-          formData={formResult}
-        />
-      </Page>
+      <JsonSchemaForm
+        // ArrayFieldTemplate={fieldTemplate}
+        FieldTemplate={fieldTemplate}
+        ObjectFieldTemplate={objectFieldTemplate}
+        showErrorList={false}
+        fields={CUSTOM_FIELDS}
+        schema={schema}
+        uiSchema={uiSchema}
+        formData={formResult}
+        tagName={Page}
+        widgets={customWidget}
+      >
+        <View />
+      </JsonSchemaForm>
     </Document>
   );
 };
