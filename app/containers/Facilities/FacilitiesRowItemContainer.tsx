@@ -1,8 +1,10 @@
 import React from 'react';
-import {Badge} from 'react-bootstrap';
+import {Badge, Button} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {CiipApplicationStatus} from 'FacilitiesRowItemContainer_facility.graphql';
-// Import Link from 'next/link';
+import {useRouter} from 'next/router';
+import Link from 'next/link';
+import createApplicationMutation from 'mutations/application/createApplicationMutation';
 
 const statusBadgeColor: Record<
   CiipApplicationStatus,
@@ -18,7 +20,69 @@ const statusBadgeColor: Record<
 export const FacilitiesRowItem = props => {
   const {facility = {}} = props;
   const {edges} = facility?.applicationsByFacilityId || {};
-  const {applicationStatus} = edges?.[0]?.node || {};
+  const {id: applicationId, applicationStatus} = edges?.[0]?.node || {};
+  console.log(props);
+  const {environment} = props.relay;
+  const router = useRouter();
+  const startApplication = async () => {
+    const variables = {
+      input: {
+        facilityIdInput: facility.rowId
+      }
+    };
+    const response = await createApplicationMutation(environment, variables);
+    console.log(response);
+    router.push({
+      pathname: facility.hasSwrsReport
+        ? '/ciip-application-swrs-import'
+        : '/ciip-application',
+      query: {
+        applicationId: response.createApplicationMutationChain.application.id
+      }
+    });
+  };
+
+  const applyButton = () => {
+    if (!applicationId) {
+      return (
+        <Button variant="primary" onClick={startApplication}>
+          Apply for CIIP for this facility
+        </Button>
+      );
+    }
+
+    if (applicationId && applicationStatus.applicationStatus === 'DRAFT') {
+      return (
+        <Link
+          href={{
+            pathname: '/ciip-application',
+            query: {
+              applicationId
+            }
+          }}
+        >
+          <Button variant="primary">Resume CIIP application</Button>
+        </Link>
+      );
+    }
+
+    if (applicationId && applicationStatus.applicationStatus === 'PENDING') {
+      return (
+        <Link
+          href={{
+            pathname: '/view-application',
+            query: {
+              applicationId
+            }
+          }}
+        >
+          <Button variant="primary">View Submitted Application</Button>
+        </Link>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <tr>
@@ -28,14 +92,22 @@ export const FacilitiesRowItem = props => {
       <td>{facility.facilityCity}</td>
       <td>{facility.facilityProvince}</td>
       <td>
-        <Badge
-          pill
-          style={{width: '100%'}}
-          variant={statusBadgeColor[applicationStatus.applicationStatus]}
-        >
-          {applicationStatus.applicationStatus}
-        </Badge>
+        {' '}
+        {applicationStatus ? (
+          <>
+            <Badge
+              pill
+              style={{width: '100%'}}
+              variant={statusBadgeColor[applicationStatus?.applicationStatus]}
+            >
+              {applicationStatus?.applicationStatus}
+            </Badge>
+          </>
+        ) : (
+          <>Application not started</>
+        )}
       </td>
+      <td>{applyButton()}</td>
     </tr>
   );
 };
@@ -48,8 +120,9 @@ export default createFragmentContainer(FacilitiesRowItem, {
       facilityCity
       facilityProvince
       facilityPostalCode
+      rowId
       hasSwrsReport(reportingYear: "2018")
-      applicationsByFacilityId {
+      applicationsByFacilityId(condition: {reportingYear: 2018}) {
         edges {
           node {
             id

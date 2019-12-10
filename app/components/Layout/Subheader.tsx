@@ -17,7 +17,7 @@ const Subheader = () => (
             </Link>
           </li>
           <li>
-            <a href="#">My Applications</a>
+            <a href="/facilities-list">My Applications</a>
           </li>
         </ul>
       </div>

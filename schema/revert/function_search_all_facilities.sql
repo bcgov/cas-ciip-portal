@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.function_search_all_facilities;
+drop function ggircs_portal.search_all_facilities;
 
 commit;

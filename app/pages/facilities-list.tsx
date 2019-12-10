@@ -42,8 +42,6 @@ class FacilitiesList extends Component<Props> {
 
   render() {
     const {session} = this.props.query;
-    console.log(this.props.query);
-    console.log(this.props);
     return (
       <>
         <DefaultLayout showSubheader session={session} title="Facilities">
