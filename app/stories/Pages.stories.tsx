@@ -3,6 +3,7 @@ import {QueryRenderer} from 'react-relay';
 import {createMockEnvironment, MockPayloadGenerator} from 'relay-test-utils';
 import {withA11y} from '@storybook/addon-a11y';
 
+// Commented out imports are pages to be tested in a subsequent PR
 import Admin from 'pages/admin';
 // Import ApplicationReview from 'pages/application-review';
 // import Applications from 'pages/applications';
@@ -28,7 +29,6 @@ const render = Component => {
   const variables = {...Router.router.query};
   environment.mock.queueOperationResolver(operation => {
     const payload = MockPayloadGenerator.generate(operation);
-    // Console.log('mock', operation, payload);
     return payload;
   });
   return (
@@ -42,7 +42,6 @@ const render = Component => {
           return 'Error';
         }
 
-        // Console.log(Component.name, 'props', props);
         return <Component {...props} router={{query: ''}} />;
       }}
     />
