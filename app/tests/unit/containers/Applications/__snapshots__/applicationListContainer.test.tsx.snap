@@ -41,7 +41,7 @@ exports[`ApplicationList should render the application list 1`] = `
       </Col>
     </ForwardRef>
   </Container>
-  <Bootstrap(Table)
+  <ForwardRef
     bordered={true}
     hover={true}
     striped={true}
@@ -120,6 +120,6 @@ exports[`ApplicationList should render the application list 1`] = `
         key="ciip-application-1"
       />
     </tbody>
-  </Bootstrap(Table)>
+  </ForwardRef>
 </Fragment>
 `;
