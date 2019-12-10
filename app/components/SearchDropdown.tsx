@@ -2,23 +2,28 @@ import React from 'react';
 import {Typeahead} from 'react-bootstrap-typeahead';
 
 interface Props {
+  id?: string;
   placeholder?: string;
   defaultInputValue?: string;
   options: Array<{id: string | number; name: string}>;
   inputProps: {id: string};
-  onChange: (items?: string[]) => void;
+  onChange: (items: Array<{id: string | number; name: string}>) => void;
+  selected?: Array<{id: string | number; name: string}>;
 }
 
 const SearchDropdown: React.FunctionComponent<Props> = ({
+  id,
   placeholder,
   defaultInputValue,
   options,
+  selected,
   inputProps,
   onChange
 }) => {
   return (
     <>
       <Typeahead
+        id={id}
         filterBy={(option, props) => {
           if (props.selected.length > 0 || defaultInputValue) {
             // Display all the options if there's a selection
@@ -33,6 +38,7 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
         options={options}
         inputProps={{...inputProps, ...{className: 'typeahead-input'}}}
         labelKey="name"
+        selected={selected}
         onChange={items => onChange(items)}
       />
       <style jsx global>

@@ -67,6 +67,12 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
             "TitleField": [Function],
             "emissionGas": [Function],
             "emissionSource": [Function],
+            "production": [Function],
+          }
+        }
+        formContext={
+          Object {
+            "query": undefined,
           }
         }
         formData={Object {}}

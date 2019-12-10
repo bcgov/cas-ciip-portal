@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
-import JsonSchemaForm from 'react-jsonschema-form';
+import JsonSchemaForm, {FieldProps} from 'react-jsonschema-form';
 import {FormJson} from 'next-env';
+import ProductionFields from 'containers/Forms/ProductionFields';
+import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
+import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
 import SummaryFormArrayFieldTemplate from '../Forms/SummaryFormArrayFieldTemplate';
 import SummaryFormFieldTemplate from '../Forms/SummaryFormFieldTemplate';
 import SummaryEmissionGasFields from '../Forms/SummaryEmissionGasFields';
@@ -11,8 +14,9 @@ import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 import ApplicationReviewContainer from './ApplicationReviewContainer';
 
 interface Props {
-  formResult;
+  formResult: ApplicationDetailsCardItem_formResult;
   isAnalyst: boolean;
+  query: ApplicationDetailsCardItem_query;
 }
 
 /*
@@ -20,23 +24,36 @@ interface Props {
  */
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult,
-  isAnalyst
+  isAnalyst,
+  query
 }) => {
   const {formJsonByFormId, applicationReview} = formResult;
-  const query = formResult.formResult;
   const {formJson} = formJsonByFormId;
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const CUSTOM_FIELDS = {
+  const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
-    StringField: props => (
-      <> {props.formData ? props.formData : <i>[No Data Entered]</i>}</>
-    ),
+    StringField: ({formData, schema}) => {
+      if (formData === null || formData === undefined)
+        return <i>[No Data Entered]</i>;
+
+      if (schema.enum && (schema as any).enumNames) {
+        // TODO: needs a fix on jsonschema types (missing enumNames)
+        const enumIndex = schema.enum.indexOf(formData);
+        if (enumIndex === -1) return formData;
+        return (schema as any).enumNames[enumIndex];
+      }
+
+      return formData;
+    },
     BooleanField: props => <> {props.formData ? 'Yes' : 'No'}</>,
     emissionSource: props => <SummaryEmissionSourceFields {...props} />,
-    emissionGas: props => <SummaryEmissionGasFields {...props} />
+    emissionGas: props => <SummaryEmissionGasFields {...props} />,
+    production: props => (
+      <ProductionFields query={props.formContext.query} {...props} />
+    )
   };
   const classTag = formJsonByFormId.slug;
   return (
@@ -84,7 +101,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             schema={schema}
             uiSchema={uiSchema}
             ObjectFieldTemplate={FormObjectFieldTemplate}
-            formData={query}
+            formData={formResult.formResult}
+            formContext={{query}}
           >
             {/* Over-ride submit button for each form with an empty fragment */}
             <></>
@@ -107,6 +125,11 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
         slug
         formJson
       }
+    }
+  `,
+  query: graphql`
+    fragment ApplicationDetailsCardItem_query on Query {
+      ...ProductionFields_query
     }
   `
 });

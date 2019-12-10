@@ -58,16 +58,20 @@ exports[`The Form Component should match the snapshot 1`] = `
       }
     }
     formData={Object {}}
-    liveOmit={true}
     liveValidate={false}
     noHtml5Validate={false}
     noValidate={false}
-    omitExtraData={true}
+    omitExtraData={false}
     onSubmit={[MockFunction]}
     safeRenderCompletion={true}
     showErrorList={false}
     transformErrors={[Function]}
     uiSchema={Object {}}
+    widgets={
+      Object {
+        "SearchWidget": [Function],
+      }
+    }
   >
     <div
       className="jsx-2235865583 form-submit"

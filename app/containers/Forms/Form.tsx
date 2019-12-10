@@ -9,6 +9,7 @@ import {Form_query} from 'Form_query.graphql';
 import {Button, Row, Col} from 'react-bootstrap';
 import Link from 'next/link';
 import {FormJson} from 'next-env';
+import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
 import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
 import FormArrayFieldTemplate from './FormArrayFieldTemplate';
@@ -73,8 +74,6 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       </Row>
 
       <JsonSchemaForm
-        omitExtraData
-        liveOmit
         safeRenderCompletion
         showErrorList={false}
         ArrayFieldTemplate={FormArrayFieldTemplate}
@@ -82,6 +81,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         formContext={{query}}
         formData={formResult}
         fields={CUSTOM_FIELDS}
+        widgets={{SearchWidget: SearchDropdownWidget}}
         customFormats={customFormats}
         schema={schema}
         uiSchema={uiSchema}

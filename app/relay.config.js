@@ -3,7 +3,8 @@ module.exports = {
   language: 'typescript',
   artifactDirectory: './__generated__',
   customScalars: {
-    Datetime: 'String'
+    Datetime: 'String',
+    JSON: 'any'
   },
   exclude: [
     '**/.next/**',

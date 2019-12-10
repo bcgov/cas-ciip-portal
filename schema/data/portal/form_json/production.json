@@ -2,15 +2,15 @@
   "schema": {
     "type": "array",
     "items": {
-      "$ref": "#/definitions/production"
+      "$ref": "#/definitions/product"
     },
-    "definitions" : {
-      "production": {
+    "definitions": {
+      "product": {
         "type": "object",
         "properties": {
-          "product": {
-            "title": "Processing Unit Module",
-            "type": "string"
+          "productRowId": {
+            "title": "Product or Service",
+            "type": "integer"
           },
           "quantity": {
             "title": "Quantity",
@@ -20,15 +20,18 @@
             "title": "Units",
             "type": "string"
           },
-          "associatedEmissions": {
-            "title": "Associated Emission (tCO2e)",
-            "type": "number"
+          "allocationFactor": {
+            "title": "Product allocation factor (%)",
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 100
           },
-          "comments": {
-            "title": "comments",
-            "type": "string"
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": true
           }
-        }
+        },
+        "required": ["productRowId", "allocationFactor"]
       }
     }
   },
@@ -36,7 +39,14 @@
     "ui:add-text": "Add a Product",
     "ui:remove-text": "Remove Product",
     "items": {
-      "ui:field": "production"
+      "ui:field": "production",
+      "productRowId": {
+        "ui:widget": "SearchWidget"
+      },
+      "allocationFactor": {
+        "ui:col-md": 4,
+        "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service"
+      }
     }
   }
 }

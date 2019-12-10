@@ -4,7 +4,6 @@ import {FieldTemplateProps} from 'react-jsonschema-form';
 
 const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   label,
-  help,
   description,
   errors,
   children,
@@ -17,7 +16,6 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
         {description}
         {children}
         {errors}
-        {help}
       </Col>
     );
   if (schema.type === 'object')
@@ -27,7 +25,6 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
           {description}
           {children}
           {errors}
-          {help}
         </Form.Row>
       </Col>
     );
@@ -41,7 +38,6 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
         {description}
         {children}
         {errors}
-        {help}
       </div>
       <style jsx global>{`
         .summary-formgroup.form-group.field {

@@ -33,17 +33,18 @@ exports[`Form should match the snapshot with the administration form 1`] = `
       <div
         className="form-row"
       >
-        <div
-          className="col-12"
-        >
-          <legend />
-        </div>
+        <span
+          className="font-italic text-muted"
+        />
         <div
           className="col-12"
         >
           <div
             className="form-row"
           >
+            <span
+              className="font-italic text-muted"
+            />
             <div
               className="col-12"
             >
@@ -75,6 +76,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 type="text"
                 value="consequat Ut Duis"
               />
+              <span
+                className="font-italic text-muted"
+              />
             </div>
             <div
               className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -99,6 +103,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 required={false}
                 type="text"
                 value="in qui"
+              />
+              <span
+                className="font-italic text-muted"
               />
             </div>
             <div
@@ -125,6 +132,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 type="text"
                 value="in qui"
               />
+              <span
+                className="font-italic text-muted"
+              />
             </div>
             <div
               className="form-group field field-string form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
@@ -149,6 +159,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 required={false}
                 type="text"
                 value="consequat Ut Duis"
+              />
+              <span
+                className="font-italic text-muted"
               />
             </div>
             <div
@@ -175,6 +188,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 type="text"
                 value="451234512"
               />
+              <span
+                className="font-italic text-muted"
+              />
             </div>
             <div
               className="col-12"
@@ -182,6 +198,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
               <div
                 className="form-row"
               >
+                <span
+                  className="font-italic text-muted"
+                />
                 <div
                   className="col-12"
                 >
@@ -213,6 +232,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     type="text"
                     value="in qui"
                   />
+                  <span
+                    className="font-italic text-muted"
+                  />
                 </div>
                 <div
                   className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -238,6 +260,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     type="text"
                     value="mollit eu esse"
                   />
+                  <span
+                    className="font-italic text-muted"
+                  />
                 </div>
                 <div
                   className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -262,6 +287,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     required={false}
                     type="text"
                     value="F3K 5C2"
+                  />
+                  <span
+                    className="font-italic text-muted"
                   />
                 </div>
                 <div
@@ -355,6 +383,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                       Yukon
                     </option>
                   </select>
+                  <span
+                    className="font-italic text-muted"
+                  />
                 </div>
               </div>
             </div>
@@ -366,6 +397,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
           <div
             className="form-row"
           >
+            <span
+              className="font-italic text-muted"
+            />
             <div
               className="col-12"
             >
@@ -397,6 +431,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 type="text"
                 value="culpa"
               />
+              <span
+                className="font-italic text-muted"
+              />
             </div>
             <div
               className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -421,6 +458,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 required={false}
                 type="text"
                 value="est dolor"
+              />
+              <span
+                className="font-italic text-muted"
               />
             </div>
             <div
@@ -447,6 +487,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 type="text"
                 value="consequat Ut Duis"
               />
+              <span
+                className="font-italic text-muted"
+              />
             </div>
             <div
               className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -471,6 +514,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 required={false}
                 type="text"
                 value="in qui"
+              />
+              <span
+                className="font-italic text-muted"
               />
             </div>
             <div
@@ -497,6 +543,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 type="text"
                 value="mollit eu esse"
               />
+              <span
+                className="font-italic text-muted"
+              />
             </div>
             <div
               className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -522,6 +571,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 type="text"
                 value="culpa"
               />
+              <span
+                className="font-italic text-muted"
+              />
             </div>
             <div
               className="col-12"
@@ -529,6 +581,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
               <div
                 className="form-row"
               >
+                <span
+                  className="font-italic text-muted"
+                />
                 <div
                   className="col-12"
                 >
@@ -560,6 +615,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     type="text"
                     value="culpa"
                   />
+                  <span
+                    className="font-italic text-muted"
+                  />
                 </div>
                 <div
                   className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -585,6 +643,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     type="text"
                     value="est dolor"
                   />
+                  <span
+                    className="font-italic text-muted"
+                  />
                 </div>
                 <div
                   className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -609,6 +670,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     required={false}
                     type="text"
                     value="C2H 4N1"
+                  />
+                  <span
+                    className="font-italic text-muted"
                   />
                 </div>
                 <div
@@ -702,6 +766,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                       Yukon
                     </option>
                   </select>
+                  <span
+                    className="font-italic text-muted"
+                  />
                 </div>
               </div>
             </div>
@@ -713,6 +780,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
           <div
             className="form-row"
           >
+            <span
+              className="font-italic text-muted"
+            />
             <div
               className="col-12"
             >
@@ -743,6 +813,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 required={false}
                 type="text"
                 value="mollit eu esse"
+              />
+              <span
+                className="font-italic text-muted"
               />
             </div>
             <div
@@ -801,6 +874,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                   EIO
                 </option>
               </select>
+              <span
+                className="font-italic text-muted"
+              />
             </div>
             <div
               className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -825,6 +901,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 required={false}
                 type="text"
                 value="est dolor"
+              />
+              <span
+                className="font-italic text-muted"
               />
             </div>
             <div
@@ -851,6 +930,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 type="text"
                 value="consequat Ut Duis"
               />
+              <span
+                className="font-italic text-muted"
+              />
             </div>
             <div
               className="col-12"
@@ -858,6 +940,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
               <div
                 className="form-row"
               >
+                <span
+                  className="font-italic text-muted"
+                />
                 <div
                   className="col-12"
                 >
@@ -889,6 +974,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     type="text"
                     value="consequat Ut Duis"
                   />
+                  <span
+                    className="font-italic text-muted"
+                  />
                 </div>
                 <div
                   className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -914,6 +1002,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     type="text"
                     value="in qui"
                   />
+                  <span
+                    className="font-italic text-muted"
+                  />
                 </div>
                 <div
                   className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
@@ -938,6 +1029,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     required={false}
                     type="text"
                     value="N1F 3K5"
+                  />
+                  <span
+                    className="font-italic text-muted"
                   />
                 </div>
                 <div
@@ -1031,6 +1125,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                       Yukon
                     </option>
                   </select>
+                  <span
+                    className="font-italic text-muted"
+                  />
                 </div>
               </div>
             </div>
@@ -1094,6 +1191,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                   </label>
                 </div>
               </div>
+              <span
+                className="font-italic text-muted"
+              />
             </div>
           </div>
         </div>
@@ -1188,17 +1288,18 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
       <div
         className="form-row"
       >
-        <div
-          className="col-12"
-        >
-          <legend />
-        </div>
+        <span
+          className="font-italic text-muted"
+        />
         <div
           className="col-12"
         >
           <div
             className="form-row"
           >
+            <span
+              className="font-italic text-muted"
+            />
             <div
               className="col-12"
             >
@@ -1207,107 +1308,123 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
               </legend>
             </div>
             <div
-              className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+              className="form-group field field-number form-group col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"
             >
               <label
                 className="form-label"
                 htmlFor="root_electricity_purchased"
               >
-                Purchased
+                Purchased (MWh)
+                 *
               </label>
               <input
                 autoFocus={false}
                 className="form-control"
                 disabled={false}
                 id="root_electricity_purchased"
-                label="Purchased"
+                label="Purchased (MWh)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
                 placeholder=""
                 readOnly={false}
-                required={false}
+                required={true}
                 step="any"
                 type="number"
-                value={-60000000}
+                value={-40000000}
+              />
+              <span
+                className="font-italic text-muted"
               />
             </div>
             <div
-              className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-            >
-              <label
-                className="form-label"
-                htmlFor="root_electricity_sold"
-              >
-                Sold
-              </label>
-              <input
-                autoFocus={false}
-                className="form-control"
-                disabled={false}
-                id="root_electricity_sold"
-                label="Sold"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={false}
-                step="any"
-                type="number"
-                value={-80000000}
-              />
-            </div>
-            <div
-              className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-            >
-              <label
-                className="form-label"
-                htmlFor="root_electricity_consumedOnSite"
-              >
-                Consumed On-Site
-              </label>
-              <input
-                autoFocus={false}
-                className="form-control"
-                disabled={false}
-                id="root_electricity_consumedOnSite"
-                label="Consumed On-Site"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={false}
-                step="any"
-                type="number"
-                value={-20000000}
-              />
-            </div>
-            <div
-              className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              className="form-group field field-number form-group col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"
             >
               <label
                 className="form-label"
                 htmlFor="root_electricity_generatedOnSite"
               >
-                Generated On-Site
+                Generated On Site (MWh)
+                 *
               </label>
               <input
                 autoFocus={false}
                 className="form-control"
                 disabled={false}
                 id="root_electricity_generatedOnSite"
-                label="Generated On-Site"
+                label="Generated On Site (MWh)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
                 placeholder=""
                 readOnly={false}
-                required={false}
+                required={true}
                 step="any"
                 type="number"
-                value={-40000000}
+                value={0}
+              />
+              <span
+                className="font-italic text-muted"
+              />
+            </div>
+            <div
+              className="form-group field field-number form-group col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"
+            >
+              <label
+                className="form-label"
+                htmlFor="root_electricity_consumedOnSite"
+              >
+                Consumed On Site (MWh)
+                 *
+              </label>
+              <input
+                autoFocus={false}
+                className="form-control"
+                disabled={false}
+                id="root_electricity_consumedOnSite"
+                label="Consumed On Site (MWh)"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                placeholder=""
+                readOnly={false}
+                required={true}
+                step="any"
+                type="number"
+                value={-60000000}
+              />
+              <span
+                className="font-italic text-muted"
+              />
+            </div>
+            <div
+              className="form-group field field-number form-group col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"
+            >
+              <label
+                className="form-label"
+                htmlFor="root_electricity_sold"
+              >
+                Sold (MWh)
+                 *
+              </label>
+              <input
+                autoFocus={false}
+                className="form-control"
+                disabled={false}
+                id="root_electricity_sold"
+                label="Sold (MWh)"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                placeholder=""
+                readOnly={false}
+                required={true}
+                step="any"
+                type="number"
+                value={-20000000}
+              />
+              <span
+                className="font-italic text-muted"
               />
             </div>
           </div>
@@ -1318,6 +1435,9 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
           <div
             className="form-row"
           >
+            <span
+              className="font-italic text-muted"
+            />
             <div
               className="col-12"
             >
@@ -1326,107 +1446,123 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
               </legend>
             </div>
             <div
-              className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+              className="form-group field field-number form-group col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"
             >
               <label
                 className="form-label"
                 htmlFor="root_heat_purchased"
               >
-                Purchased
+                Purchased (GJ)
+                 *
               </label>
               <input
                 autoFocus={false}
                 className="form-control"
                 disabled={false}
                 id="root_heat_purchased"
-                label="Purchased"
+                label="Purchased (GJ)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
                 placeholder=""
                 readOnly={false}
-                required={false}
+                required={true}
                 step="any"
                 type="number"
                 value={-40000000}
               />
-            </div>
-            <div
-              className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-            >
-              <label
-                className="form-label"
-                htmlFor="root_heat_sold"
-              >
-                Sold
-              </label>
-              <input
-                autoFocus={false}
-                className="form-control"
-                disabled={false}
-                id="root_heat_sold"
-                label="Sold"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={false}
-                step="any"
-                type="number"
-                value={-60000000}
+              <span
+                className="font-italic text-muted"
               />
             </div>
             <div
-              className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-            >
-              <label
-                className="form-label"
-                htmlFor="root_heat_consumedOnSite"
-              >
-                Consumed On-Site
-              </label>
-              <input
-                autoFocus={false}
-                className="form-control"
-                disabled={false}
-                id="root_heat_consumedOnSite"
-                label="Consumed On-Site"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={false}
-                step="any"
-                type="number"
-                value={0}
-              />
-            </div>
-            <div
-              className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              className="form-group field field-number form-group col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"
             >
               <label
                 className="form-label"
                 htmlFor="root_heat_generatedOnSite"
               >
-                Generated On-Site
+                Generated On Site (GJ)
+                 *
               </label>
               <input
                 autoFocus={false}
                 className="form-control"
                 disabled={false}
                 id="root_heat_generatedOnSite"
-                label="Generated On-Site"
+                label="Generated On Site (GJ)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
                 placeholder=""
                 readOnly={false}
-                required={false}
+                required={true}
+                step="any"
+                type="number"
+                value={0}
+              />
+              <span
+                className="font-italic text-muted"
+              />
+            </div>
+            <div
+              className="form-group field field-number form-group col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"
+            >
+              <label
+                className="form-label"
+                htmlFor="root_heat_consumedOnSite"
+              >
+                Consumed On Site (GJ)
+                 *
+              </label>
+              <input
+                autoFocus={false}
+                className="form-control"
+                disabled={false}
+                id="root_heat_consumedOnSite"
+                label="Consumed On Site (GJ)"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                placeholder=""
+                readOnly={false}
+                required={true}
+                step="any"
+                type="number"
+                value={-60000000}
+              />
+              <span
+                className="font-italic text-muted"
+              />
+            </div>
+            <div
+              className="form-group field field-number form-group col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"
+            >
+              <label
+                className="form-label"
+                htmlFor="root_heat_sold"
+              >
+                Sold (GJ)
+                 *
+              </label>
+              <input
+                autoFocus={false}
+                className="form-control"
+                disabled={false}
+                id="root_heat_sold"
+                label="Sold (GJ)"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                placeholder=""
+                readOnly={false}
+                required={true}
                 step="any"
                 type="number"
                 value={-20000000}
+              />
+              <span
+                className="font-italic text-muted"
               />
             </div>
           </div>
@@ -1522,14 +1658,15 @@ exports[`Form should match the snapshot with the emission form 1`] = `
       <div
         className="form-row"
       >
+        <span
+          className="font-italic text-muted"
+        />
         <div
           className="col-12"
         >
-          <legend />
-        </div>
-        <div
-          className="col-12"
-        >
+          <span
+            className="font-italic text-muted"
+          />
           <div
             className="jsx-529402721 field field-array field-array-of-object"
           >
@@ -1545,11 +1682,9 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                   <div
                     className="form-row"
                   >
-                    <div
-                      className="col-12"
-                    >
-                      <legend />
-                    </div>
+                    <span
+                      className="font-italic text-muted"
+                    />
                     <div
                       className="form-group field field-string  hidden-title form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
                     >
@@ -1609,10 +1744,16 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                           </h6>
                         </div>
                       </div>
+                      <span
+                        className="font-italic text-muted"
+                      />
                     </div>
                     <div
                       className="col-12"
                     >
+                      <span
+                        className="font-italic text-muted"
+                      />
                       <div
                         className="jsx-529402721 field field-array field-array-of-object"
                       >
@@ -1628,6 +1769,9 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               <div
                                 className="form-row"
                               >
+                                <span
+                                  className="font-italic text-muted"
+                                />
                                 <div
                                   className="visible emission-row col-md-12 col-12"
                                 >
@@ -1730,6 +1874,9 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               <div
                                 className="form-row"
                               >
+                                <span
+                                  className="font-italic text-muted"
+                                />
                                 <div
                                   className="visible emission-row col-md-12 col-12"
                                 >
@@ -1841,11 +1988,9 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                   <div
                     className="form-row"
                   >
-                    <div
-                      className="col-12"
-                    >
-                      <legend />
-                    </div>
+                    <span
+                      className="font-italic text-muted"
+                    />
                     <div
                       className="form-group field field-string  hidden-title form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
                     >
@@ -1905,10 +2050,16 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                           </h6>
                         </div>
                       </div>
+                      <span
+                        className="font-italic text-muted"
+                      />
                     </div>
                     <div
                       className="col-12"
                     >
+                      <span
+                        className="font-italic text-muted"
+                      />
                       <div
                         className="jsx-529402721 field field-array field-array-of-object"
                       >
@@ -1924,6 +2075,9 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               <div
                                 className="form-row"
                               >
+                                <span
+                                  className="font-italic text-muted"
+                                />
                                 <div
                                   className="visible emission-row col-md-12 col-12"
                                 >
@@ -2085,419 +2239,4 @@ exports[`Form should match the snapshot with the emission form 1`] = `
 
 exports[`Form should match the snapshot with the fuel form 1`] = `"Cannot read property 'style' of null"`;
 
-exports[`Form should match the snapshot with the production form 1`] = `
-<div
-  className="jsx-2235865583 "
->
-  <div
-    className="row"
-  >
-    <div
-      className="col-md-12"
-      style={
-        Object {
-          "marginLeft": "25px",
-        }
-      }
-    >
-      <h1
-        className="jsx-2235865583 form-title"
-      >
-        Production
-      </h1>
-    </div>
-  </div>
-  <form
-    className="rjsf"
-    noValidate={false}
-    onSubmit={[Function]}
-  >
-    <div
-      className="col-12"
-    >
-      <div
-        className="jsx-529402721 field field-array field-array-of-object"
-      >
-        <div
-          className="form-row"
-        >
-          <div
-            className="col-md-10 col-12"
-          >
-            <div
-              className="col-12"
-            >
-              <div
-                className="form-row"
-              >
-                <div
-                  className="col-md-6 col-12"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="id.product"
-                    >
-                      Product
-                    </label>
-                    <select
-                      className="form-control"
-                      id="id.product"
-                      onChange={[Function]}
-                      value="mollit eu esse"
-                    >
-                      <option
-                        value=""
-                      >
-                        ...
-                      </option>
-                      <option>
-                        &lt;mock-value-for-field-"name"&gt;
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div
-                  className="col-md-2 col-12"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="id.productUnits"
-                    >
-                      Units
-                    </label>
-                    <select
-                      className="form-control"
-                      id="id.productUnits"
-                      onChange={[Function]}
-                      value="est dolor"
-                    >
-                      <option
-                        value=""
-                      >
-                        ...
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-12"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="id.quantity"
-                    >
-                      Quantity
-                    </label>
-                    <input
-                      className="form-control"
-                      defaultValue={0}
-                      id="id.quantity"
-                      onChange={[Function]}
-                      type="number"
-                    />
-                  </div>
-                </div>
-                <div
-                  className="col-md-4 col-12"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="id.associatedEmissions"
-                    >
-                      Associated Emissions (tCO2e)
-                    </label>
-                    <input
-                      className="form-control"
-                      defaultValue={-20000000}
-                      id="id.associatedEmissions"
-                      onChange={[Function]}
-                      type="number"
-                    />
-                  </div>
-                </div>
-                <div
-                  className="col-md-12 col-12"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="id.comments"
-                    >
-                      Comments
-                    </label>
-                    <textarea
-                      className="form-control"
-                      id="id.comments"
-                      onChange={[Function]}
-                      type="string"
-                      value="in qui"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="col-md-2 col-12"
-          >
-            <div
-              className="jsx-529402721 remove-button-container"
-            >
-              <button
-                className="btn btn-danger"
-                disabled={false}
-                onClick={[Function]}
-                type="button"
-              >
-                Remove Product
-              </button>
-            </div>
-          </div>
-        </div>
-        <hr
-          className="jsx-529402721"
-        />
-        <div
-          className="form-row"
-        >
-          <div
-            className="col-md-10 col-12"
-          >
-            <div
-              className="col-12"
-            >
-              <div
-                className="form-row"
-              >
-                <div
-                  className="col-md-6 col-12"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="id.product"
-                    >
-                      Product
-                    </label>
-                    <select
-                      className="form-control"
-                      id="id.product"
-                      onChange={[Function]}
-                      value="est dolor"
-                    >
-                      <option
-                        value=""
-                      >
-                        ...
-                      </option>
-                      <option>
-                        &lt;mock-value-for-field-"name"&gt;
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div
-                  className="col-md-2 col-12"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="id.productUnits"
-                    >
-                      Units
-                    </label>
-                    <select
-                      className="form-control"
-                      id="id.productUnits"
-                      onChange={[Function]}
-                      value="in qui"
-                    >
-                      <option
-                        value=""
-                      >
-                        ...
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-12"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="id.quantity"
-                    >
-                      Quantity
-                    </label>
-                    <input
-                      className="form-control"
-                      defaultValue={-20000000}
-                      id="id.quantity"
-                      onChange={[Function]}
-                      type="number"
-                    />
-                  </div>
-                </div>
-                <div
-                  className="col-md-4 col-12"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="id.associatedEmissions"
-                    >
-                      Associated Emissions (tCO2e)
-                    </label>
-                    <input
-                      className="form-control"
-                      defaultValue={-40000000}
-                      id="id.associatedEmissions"
-                      onChange={[Function]}
-                      type="number"
-                    />
-                  </div>
-                </div>
-                <div
-                  className="col-md-12 col-12"
-                >
-                  <div
-                    className="form-group"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="id.comments"
-                    >
-                      Comments
-                    </label>
-                    <textarea
-                      className="form-control"
-                      id="id.comments"
-                      onChange={[Function]}
-                      type="string"
-                      value="culpa"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="col-md-2 col-12"
-          >
-            <div
-              className="jsx-529402721 remove-button-container"
-            >
-              <button
-                className="btn btn-danger"
-                disabled={false}
-                onClick={[Function]}
-                type="button"
-              >
-                Remove Product
-              </button>
-            </div>
-          </div>
-        </div>
-        <hr
-          className="jsx-529402721"
-        />
-        <div
-          className="form-row"
-        >
-          <div
-            className="col-12"
-          >
-            <div
-              className="jsx-529402721 add-button-container"
-            >
-              <button
-                className="btn btn-primary"
-                disabled={false}
-                onClick={[Function]}
-                type="button"
-              >
-                Add a Product
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="jsx-2235865583 form-submit"
-    >
-      <div
-        className="row"
-      >
-        <div
-          className="col-md-3"
-          style={
-            Object {
-              "lineHeight": "48px",
-            }
-          }
-        >
-          <a
-            href="/user-dashboard"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-          >
-            Save & Exit
-          </a>
-        </div>
-        <div
-          className="col-md-9"
-          style={
-            Object {
-              "textAlign": "right",
-            }
-          }
-        >
-          <button
-            className="btn btn-secondary btn-lg"
-            disabled={false}
-            style={
-              Object {
-                "marginRight": "10px",
-              }
-            }
-            type="button"
-          >
-            Back
-          </button>
-          <button
-            className="btn btn-primary btn-lg"
-            disabled={false}
-            type="submit"
-          >
-            Continue
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
-</div>
-`;
+exports[`Form should match the snapshot with the production form 1`] = `"One or more options does not have a valid label string. Check the \`labelKey\` prop to ensure that it matches the correct option key and provides a string for filtering and display."`;

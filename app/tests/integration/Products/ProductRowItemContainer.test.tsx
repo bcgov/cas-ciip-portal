@@ -46,7 +46,7 @@ describe('ProductListContainer', () => {
         Query() {
           return {
             product: {
-              id: 'abc',
+              id: 'productabc',
               rowId: 1,
               name: 'boop',
               description: 'boopy',
@@ -57,7 +57,7 @@ describe('ProductListContainer', () => {
                 edges: [
                   {
                     node: {
-                      id: 'abc',
+                      id: 'benchmarkabc',
                       rowId: 1,
                       benchmark: 50,
                       eligibilityThreshold: 500,
