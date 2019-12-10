@@ -969,6 +969,9 @@ type CertificationUrl implements Node {
   """The user who deleted the row"""
   deletedBy: Int
 
+  """The expiry date for the row"""
+  expiresAt: Datetime!
+
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
@@ -1004,6 +1007,9 @@ input CertificationUrlCondition {
   """Checks for equality with the object’s `deletedBy` field."""
   deletedBy: Int
 
+  """Checks for equality with the object’s `expiresAt` field."""
+  expiresAt: Datetime
+
   """Checks for equality with the object’s `rowId` field."""
   rowId: String
 
@@ -1030,6 +1036,9 @@ input CertificationUrlInput {
 
   """The user who deleted the row"""
   deletedBy: Int
+
+  """The expiry date for the row"""
+  expiresAt: Datetime
 
   """Unique ID for the certification_url"""
   rowId: String!
@@ -1059,6 +1068,9 @@ input CertificationUrlPatch {
 
   """The user who deleted the row"""
   deletedBy: Int
+
+  """The expiry date for the row"""
+  expiresAt: Datetime
 
   """Unique ID for the certification_url"""
   rowId: String
@@ -1110,6 +1122,8 @@ enum CertificationUrlsOrderBy {
   DELETED_AT_DESC
   DELETED_BY_ASC
   DELETED_BY_DESC
+  EXPIRES_AT_ASC
+  EXPIRES_AT_DESC
   ID_ASC
   ID_DESC
   NATURAL

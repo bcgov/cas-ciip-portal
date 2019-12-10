@@ -25,7 +25,7 @@ class CertificationRedirect extends Component<Props> {
         certificationUrlByRowId(rowId: $rowId) {
           id
           rowId
-          createdAt
+          expiresAt
           applicationByApplicationId {
             id
             facilityByFacilityId {
@@ -52,15 +52,14 @@ class CertificationRedirect extends Component<Props> {
     const applicationId = this.props.router.query.id;
     const redirectURI = `/certify?applicationId=${applicationId}`;
 
-    const createdAtMoment = query?.certificationUrlByRowId?.createdAt
-      ? moment(query?.certificationUrlByRowId?.createdAt)
+    const expiresAtMoment = query?.certificationUrlByRowId?.expiresAt
+      ? moment(query?.certificationUrlByRowId?.expiresAt)
       : null;
     const currentMoment = moment();
     // TODO(Dylan): handle expiry of url validation on the back end
     // Sets an expiry of 7 days for the certification URL
-    const isValid =
-      currentMoment.format('x') < createdAtMoment?.add(7, 'days').format('x');
-    const certificationUrl = query?.certificationUrlByRowId?.rowId && isValid;
+    const expired = currentMoment.format('x') > expiresAtMoment.format('x');
+    const certificationUrl = query?.certificationUrlByRowId?.rowId && !expired;
     return (
       <>
         <DefaultLayout
@@ -111,6 +110,8 @@ class CertificationRedirect extends Component<Props> {
                 )}
               </Col>
             </Row>
+          ) : expired ? (
+            'Certification URL expired'
           ) : (
             'Invalid certification URL'
           )}

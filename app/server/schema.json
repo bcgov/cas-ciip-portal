@@ -10533,6 +10533,16 @@
               "defaultValue": null
             },
             {
+              "name": "expiresAt",
+              "description": "Checks for equality with the object’s `expiresAt` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
               "type": {
@@ -10631,6 +10641,18 @@
             },
             {
               "name": "DELETED_BY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EXPIRES_AT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EXPIRES_AT_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -10907,6 +10929,22 @@
                 "kind": "SCALAR",
                 "name": "Int",
                 "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "expiresAt",
+              "description": "The expiry date for the row",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -29137,6 +29175,16 @@
               "defaultValue": null
             },
             {
+              "name": "expiresAt",
+              "description": "The expiry date for the row",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "rowId",
               "description": "Unique ID for the certification_url",
               "type": {
@@ -37633,6 +37681,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "expiresAt",
+              "description": "The expiry date for the row",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
                 "ofType": null
               },
               "defaultValue": null

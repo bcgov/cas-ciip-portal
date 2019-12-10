@@ -13,7 +13,8 @@ create table ggircs_portal.certification_url (
   deleted_at timestamp with time zone,
   deleted_by int references ggircs_portal.ciip_user,
   -- TODO(Dylan): revisit expiry / deprecation of generated URLs in the context of Authorization
-  expires_at timestamp with time zone not null
+  -- Should we allow creation of multiple URLs, should the previous ones be deprecated in that case?...etc
+  expires_at timestamp with time zone not null default now()
 );
 
 create trigger _random_id
