@@ -6,9 +6,12 @@ schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a 
 function_update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
 function_set_random_id [schema_ggircs_portal] 2019-12-04T00:34:07Z Dylan Leard <dylan@button.is> # Trigger function to generate a random string and set it to id
 function_set_expiry [schema_ggircs_portal] 2019-12-10T19:13:27Z Dylan Leard <dylan@button.is> # Function sets row expiry
+type_jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
 type_ciip_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file ciip_user_organisation_status
 type_ciip_application_status [schema_ggircs_portal] 2019-11-26T18:39:57Z Helen Liu <helen@button.is> # Added ciip application status type
 table_ciip_user [schema_ggircs_portal function_update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
+function_session [schema_ggircs_portal type_jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
+function_set_user_id [function_session table_ciip_user] 2019-12-10T20:02:31Z Dylan Leard <dylan@button.is> # Trigger function updates the user_id field
 table_product_form [schema_ggircs_portal] 2019-12-02T17:53:31Z Matthieu Foucault <matthieu@button.is> # Add a table that contains a json schema specific to a product type
 table_product [schema_ggircs_portal table_product_form function_update_timestamps] 2019-08-06T20:15:37Z Hamza Javed <hamza@button.is> # A table for adding products (for benchmarks)
 table_benchmark [table_product function_update_timestamps] 2019-08-06T20:25:30Z Hamza Javed <hamza@button.is> # A table for Benchmarks and Eligibility Thresholds for products
@@ -45,10 +48,8 @@ table_fuel [schema_ggircs_portal] 2019-10-16T18:17:17Z Matthieu Foucault <matthi
 function_create_application_mutation_chain [table_application table_application_status] 2019-10-25T18:24:34Z Dylan Leard <dylan@button.is> # Mutation chain to create an application and create a pending application status
 function_application_application_status [table_application_status table_application] 2019-10-30T23:57:31Z Helen Liu <helen@button.is> # Added new column application status to application
 function_application_ordered_form_results [table_application table_form_result table_ciip_application_wizard] 2019-10-30T22:29:53Z Dylan Leard <dleard@dleard-Aspire-V5-591G> # Function to order form results on an application
-type_jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
 table_gas [schema_ggircs_portal] 2019-11-13T18:37:12Z Hamza Javed <hamza@button.is> # Add a table for gases
 table_emission_category_gas [schema_ggircs_portal table_gas] 2019-11-12T22:24:51Z Hamza Javed <hamza@button.is> # Table for mapping emission category to all its gases and GWP values for the json form schema
-function_session [schema_ggircs_portal type_jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
 function_init_application_administration_form_result [table_form_result function_get_swrs_organisation_data function_get_swrs_facility_data function_get_swrs_operator_contact_data] 2019-11-08T22:46:02Z Matthieu Foucault <matthieu@button.is> # add function to initialize admin form result
 function_init_application_fuel_form_result [table_form_result function_get_swrs_fuel_data] 2019-11-12T18:00:52Z Matthieu Foucault <matthieu@button.is> # add function to initialize fuel form
 function_init_application_emission_form_result [table_form_result function_get_swrs_emission_data] 2019-11-12T18:01:51Z Matthieu Foucault <matthieu@button.is> # add function to initialize emission form

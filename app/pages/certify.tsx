@@ -15,9 +15,6 @@ class Certify extends Component<Props> {
     query certifyQuery($applicationId: ID!) {
       query {
         session {
-          ciipUserBySub {
-            rowId
-          }
           ...defaultLayout_session
         }
         ...ApplicationDetailsContainer_query
@@ -36,10 +33,7 @@ class Certify extends Component<Props> {
         <DefaultLayout title="Submission Certification" session={query.session}>
           <>
             <ApplicationDetailsContainer query={query} isAnalyst={false} />
-            <CertificationSignature
-              application={query.application}
-              user={query?.session?.ciipUserBySub?.rowId}
-            />
+            <CertificationSignature application={query.application} />
           </>
         </DefaultLayout>
         <style jsx global>

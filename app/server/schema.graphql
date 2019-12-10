@@ -63,9 +63,6 @@ type Application implements Node {
     orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CertificationUrlsConnection!
 
-  """The certifier's user id, references ciip_user"""
-  certifiedByUser: Int
-
   """
   Reads a single `CiipApplication` that is related to this `Application`.
   """
@@ -101,7 +98,7 @@ type Application implements Node {
   ): CiipApplicationsConnection! @deprecated(reason: "Please use ciipApplicationByRowId instead")
 
   """Reads a single `CiipUser` that is related to this `Application`."""
-  ciipUserByCertifiedByUser: CiipUser
+  ciipUserByUserId: CiipUser
 
   """Reads a single `Facility` that is related to this `Application`."""
   facilityByFacilityId: Facility
@@ -174,6 +171,9 @@ type Application implements Node {
 
   """The application id used for reference and join"""
   rowId: Int!
+
+  """The certifier's user id, references ciip_user"""
+  userId: Int
 }
 
 """
@@ -184,9 +184,6 @@ input ApplicationCondition {
   """Checks for equality with the object’s `certificationSignature` field."""
   certificationSignature: String
 
-  """Checks for equality with the object’s `certifiedByUser` field."""
-  certifiedByUser: Int
-
   """Checks for equality with the object’s `facilityId` field."""
   facilityId: Int
 
@@ -195,15 +192,15 @@ input ApplicationCondition {
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: Int
 }
 
 """An input for mutations affecting `Application`"""
 input ApplicationInput {
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
-
-  """The certifier's user id, references ciip_user"""
-  certifiedByUser: Int
 
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int!
@@ -212,6 +209,9 @@ input ApplicationInput {
   The foreign key to ggircs_portal.reporting_year, references reporting_year
   """
   reportingYear: Int
+
+  """The certifier's user id, references ciip_user"""
+  userId: Int
 }
 
 """
@@ -221,9 +221,6 @@ input ApplicationPatch {
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
 
-  """The certifier's user id, references ciip_user"""
-  certifiedByUser: Int
-
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int
 
@@ -231,6 +228,9 @@ input ApplicationPatch {
   The foreign key to ggircs_portal.reporting_year, references reporting_year
   """
   reportingYear: Int
+
+  """The certifier's user id, references ciip_user"""
+  userId: Int
 }
 
 """The application review done by analyst"""
@@ -482,8 +482,6 @@ type ApplicationsEdge {
 enum ApplicationsOrderBy {
   CERTIFICATION_SIGNATURE_ASC
   CERTIFICATION_SIGNATURE_DESC
-  CERTIFIED_BY_USER_ASC
-  CERTIFIED_BY_USER_DESC
   FACILITY_ID_ASC
   FACILITY_ID_DESC
   ID_ASC
@@ -493,6 +491,8 @@ enum ApplicationsOrderBy {
   PRIMARY_KEY_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
+  USER_ID_ASC
+  USER_ID_DESC
 }
 
 """The application status data"""
@@ -2076,7 +2076,7 @@ enum CiipProductionsOrderBy {
 """Table containing the benchmark and eligibility threshold for a product"""
 type CiipUser implements Node {
   """Reads and enables pagination through a set of `Application`."""
-  applicationsByCertifiedByUser(
+  applicationsByUserId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -2689,7 +2689,7 @@ type CreateApplicationMutationChainPayload {
   ): ApplicationsEdge
 
   """Reads a single `CiipUser` that is related to this `Application`."""
-  ciipUserByCertifiedByUser: CiipUser
+  ciipUserByUserId: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -2721,7 +2721,7 @@ type CreateApplicationPayload {
   ): ApplicationsEdge
 
   """Reads a single `CiipUser` that is related to this `Application`."""
-  ciipUserByCertifiedByUser: CiipUser
+  ciipUserByUserId: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -3575,7 +3575,7 @@ type DeleteApplicationPayload {
   ): ApplicationsEdge
 
   """Reads a single `CiipUser` that is related to this `Application`."""
-  ciipUserByCertifiedByUser: CiipUser
+  ciipUserByUserId: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -9891,7 +9891,7 @@ type UpdateApplicationPayload {
   ): ApplicationsEdge
 
   """Reads a single `CiipUser` that is related to this `Application`."""
-  ciipUserByCertifiedByUser: CiipUser
+  ciipUserByUserId: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,

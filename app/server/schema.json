@@ -6557,18 +6557,6 @@
               "deprecationReason": null
             },
             {
-              "name": "certifiedByUser",
-              "description": "The certifier's user id, references ciip_user",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "ciipApplicationByRowId",
               "description": "Reads a single `CiipApplication` that is related to this `Application`.",
               "args": [],
@@ -6676,7 +6664,7 @@
               "deprecationReason": "Please use ciipApplicationByRowId instead"
             },
             {
-              "name": "ciipUserByCertifiedByUser",
+              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `Application`.",
               "args": [],
               "type": {
@@ -6932,6 +6920,18 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "userId",
+              "description": "The certifier's user id, references ciip_user",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -7179,7 +7179,7 @@
           "description": "Table containing the benchmark and eligibility threshold for a product",
           "fields": [
             {
-              "name": "applicationsByCertifiedByUser",
+              "name": "applicationsByUserId",
               "description": "Reads and enables pagination through a set of `Application`.",
               "args": [
                 {
@@ -8167,16 +8167,6 @@
               "defaultValue": null
             },
             {
-              "name": "certifiedByUser",
-              "description": "Checks for equality with the object’s `certifiedByUser` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "facilityId",
               "description": "Checks for equality with the object’s `facilityId` field.",
               "type": {
@@ -8205,6 +8195,16 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "userId",
+              "description": "Checks for equality with the object’s `userId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -8227,18 +8227,6 @@
             },
             {
               "name": "CERTIFICATION_SIGNATURE_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "CERTIFIED_BY_USER_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "CERTIFIED_BY_USER_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -8293,6 +8281,18 @@
             },
             {
               "name": "REPORTING_YEAR_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "USER_ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "USER_ID_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -27720,16 +27720,6 @@
               "defaultValue": null
             },
             {
-              "name": "certifiedByUser",
-              "description": "The certifier's user id, references ciip_user",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "facilityId",
               "description": "The foreign key to ggircs_portal.facility, references id",
               "type": {
@@ -27746,6 +27736,16 @@
             {
               "name": "reportingYear",
               "description": "The foreign key to ggircs_portal.reporting_year, references reporting_year",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "userId",
+              "description": "The certifier's user id, references ciip_user",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -27807,7 +27807,7 @@
               "deprecationReason": null
             },
             {
-              "name": "ciipUserByCertifiedByUser",
+              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `Application`.",
               "args": [],
               "type": {
@@ -27956,7 +27956,7 @@
               "deprecationReason": null
             },
             {
-              "name": "ciipUserByCertifiedByUser",
+              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `Application`.",
               "args": [],
               "type": {
@@ -32729,7 +32729,7 @@
               "deprecationReason": null
             },
             {
-              "name": "ciipUserByCertifiedByUser",
+              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `Application`.",
               "args": [],
               "type": {
@@ -36492,16 +36492,6 @@
               "defaultValue": null
             },
             {
-              "name": "certifiedByUser",
-              "description": "The certifier's user id, references ciip_user",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "facilityId",
               "description": "The foreign key to ggircs_portal.facility, references id",
               "type": {
@@ -36514,6 +36504,16 @@
             {
               "name": "reportingYear",
               "description": "The foreign key to ggircs_portal.reporting_year, references reporting_year",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "userId",
+              "description": "The certifier's user id, references ciip_user",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -36575,7 +36575,7 @@
               "deprecationReason": null
             },
             {
-              "name": "ciipUserByCertifiedByUser",
+              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `Application`.",
               "args": [],
               "type": {
