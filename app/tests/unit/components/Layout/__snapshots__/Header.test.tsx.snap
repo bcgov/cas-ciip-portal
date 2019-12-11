@@ -38,12 +38,12 @@ exports[`It matches the last accepted Snapshot 1`] = `
             <Dropdown
               navbar={false}
             >
-              <DropdownToggle
+              <Bootstrap(DropdownToggle)
                 id="dropdown-basic"
                 variant="primary"
               >
                 Temporary Links
-              </DropdownToggle>
+              </Bootstrap(DropdownToggle)>
               <DropdownMenu
                 alignRight={false}
                 flip={true}

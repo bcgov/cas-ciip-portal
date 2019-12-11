@@ -39,7 +39,7 @@ exports[`ProductList should render the product list 1`] = `
       </Col>
     </ForwardRef>
   </Container>
-  <ForwardRef
+  <Bootstrap(Table)
     hover={true}
     striped={true}
   >
@@ -113,6 +113,6 @@ exports[`ProductList should render the product list 1`] = `
         userRowId={1}
       />
     </tbody>
-  </ForwardRef>
+  </Bootstrap(Table)>
 </Fragment>
 `;

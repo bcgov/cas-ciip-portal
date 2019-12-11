@@ -23,7 +23,7 @@ exports[`ApplicationStatusItem should render the application status 1`] = `
           }
         }
       >
-        <DropdownToggle
+        <Bootstrap(DropdownToggle)
           id="dropdown"
           style={
             Object {
@@ -33,7 +33,7 @@ exports[`ApplicationStatusItem should render the application status 1`] = `
           }
         >
           pending
-        </DropdownToggle>
+        </Bootstrap(DropdownToggle)>
         <DropdownMenu
           alignRight={false}
           flip={true}

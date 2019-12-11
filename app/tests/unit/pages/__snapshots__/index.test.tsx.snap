@@ -158,7 +158,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       >
         Key Dates
       </h3>
-      <ForwardRef
+      <Bootstrap(Table)
         bordered={true}
         hover={true}
         striped={true}
@@ -243,7 +243,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
             </td>
           </tr>
         </tbody>
-      </ForwardRef>
+      </Bootstrap(Table)>
       <Card
         body={false}
         className="ciip-card"

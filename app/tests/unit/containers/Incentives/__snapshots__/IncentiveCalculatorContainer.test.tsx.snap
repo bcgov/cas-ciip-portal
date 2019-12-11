@@ -27,7 +27,7 @@ exports[`IncentiveCalculator should render the page 1`] = `
   <div
     className="incentive-breakdown"
   >
-    <ForwardRef
+    <Bootstrap(Table)
       bordered={true}
       hover={true}
       responsive="lg"
@@ -61,7 +61,7 @@ exports[`IncentiveCalculator should render the page 1`] = `
           <td />
         </tr>
       </tbody>
-    </ForwardRef>
+    </Bootstrap(Table)>
   </div>
 </Fragment>
 `;

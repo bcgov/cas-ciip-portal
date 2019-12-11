@@ -18,7 +18,7 @@ exports[`UserDetail matches snapshot 1`] = `
     Edit
   </Button>
   <p />
-  <ForwardRef
+  <Bootstrap(Table)
     bordered={true}
     hover={true}
     striped={true}
@@ -71,6 +71,6 @@ exports[`UserDetail matches snapshot 1`] = `
         </td>
       </tr>
     </tbody>
-  </ForwardRef>
+  </Bootstrap(Table)>
 </div>
 `;
