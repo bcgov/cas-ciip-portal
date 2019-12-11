@@ -3,7 +3,7 @@ import {graphql} from 'react-relay';
 import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 import {NextRouter} from 'next/router';
 import {Row, Col} from 'react-bootstrap';
-import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
+// Import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import DefaultLayout from '../layouts/default-layout';
 import ApplicationDetail from '../containers/Applications/ApplicationDetailsContainer';
@@ -31,11 +31,11 @@ class ApplicationReview extends Component<Props> {
           applicationStatus {
             ...ApplicationStatusContainer_applicationStatus
           }
+          ...ApplicationDetailsContainer_application
         }
         ...IncentiveCalculatorContainer_query
           @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
         ...ApplicationDetailsContainer_query
-          @arguments(applicationId: $applicationGUID)
         ...ApplicationCommentsContainer_query
           @arguments(applicationId: $applicationGUID)
       }
@@ -54,12 +54,17 @@ class ApplicationReview extends Component<Props> {
         <hr />
         <Row className="application-container">
           <Col md={8} className="application-body">
-            <ApplicationDetail isAnalyst query={query} />
-            <IncentiveCalculatorContainer
+            <ApplicationDetail
+              isAnalyst
+              query={query}
+              application={query.application}
+            />
+            {/* TODO: Fix this container. it is borked */}
+            {/* <IncentiveCalculatorContainer
               query={query}
               bcghgid={this.props.router.query.bcghgid}
               reportingYear={this.props.router.query.reportingYear}
-            />
+            /> */}
           </Col>
           <Col md={4} className="application-comments">
             <ApplicationComments query={query} />

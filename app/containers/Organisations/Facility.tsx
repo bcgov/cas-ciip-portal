@@ -45,6 +45,7 @@ export const FacilityComponent: React.FunctionComponent<Props> = ({
 
   // Conditionall render apply / resume button depending on existence and status of Facility's application
   const applyButton = () => {
+    // TODO: use switch with no default here. Take care of all possible values for the status enum
     if (!applicationId) {
       return (
         <Button variant="primary" onClick={startApplication}>

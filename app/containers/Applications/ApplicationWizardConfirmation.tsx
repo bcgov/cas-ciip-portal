@@ -3,6 +3,7 @@ import {Button, Row, Col} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
+import {ApplicationWizardConfirmation_application} from 'ApplicationWizardConfirmation_application.graphql';
 import createCertificationUrlMutation from '../../mutations/form/createCertificationUrl';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
@@ -12,6 +13,7 @@ import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 
 interface Props {
   query: ApplicationWizardConfirmation_query;
+  application: ApplicationWizardConfirmation_application;
   relay: RelayProp;
 }
 
@@ -37,7 +39,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           /**  The rowId in ggircs_portal.certification_url is the primary key (thus required in the relay variables)
                but the actual rowId is generated on the postgres level with a trigger, so a placeholder rowId is set here */
           rowId: 'placeholder',
-          applicationId: props.query.application.rowId
+          applicationId: props.application.rowId
         }
       }
     };
@@ -52,7 +54,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           window.location.host
         }/certification-redirect?rowId=${encodeURIComponent(
           response.createCertificationUrl.certificationUrl.rowId
-        )}&id=${encodeURIComponent(props.query.application.id)}`
+        )}&id=${encodeURIComponent(props.application.id)}`
       );
     } catch (error) {
       throw new Error(error);
@@ -67,9 +69,13 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       </h5>
       <br />
 
-      <ApplicationDetailsContainer isAnalyst={false} query={props.query} />
+      <ApplicationDetailsContainer
+        isAnalyst={false}
+        query={props.query}
+        application={props.application}
+      />
       <br />
-      {props.query.application.certificationSignature ? (
+      {props.application.certificationSignature ? (
         <>
           <h5>
             Thank you for reviewing the application information. The Certifier
@@ -77,7 +83,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             application.
           </h5>
           <br />
-          <SubmitApplication application={props.query.application} />
+          <SubmitApplication application={props.application} />
         </>
       ) : (
         <>
@@ -115,20 +121,18 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 };
 
 export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
+  application: graphql`
+    fragment ApplicationWizardConfirmation_application on Application {
+      id
+      rowId
+      certificationSignature
+      ...SubmitApplication_application
+      ...ApplicationDetailsContainer_application
+    }
+  `,
   query: graphql`
-    fragment ApplicationWizardConfirmation_query on Query
-      @argumentDefinitions(applicationId: {type: "ID!"}) {
-      application(id: $applicationId) {
-        id
-        rowId
-        certificationSignature
-        applicationStatus {
-          id
-        }
-        ...SubmitApplication_application
-      }
+    fragment ApplicationWizardConfirmation_query on Query {
       ...ApplicationDetailsContainer_query
-        @arguments(applicationId: $applicationId)
     }
   `
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
+import {ApplicationDetailsContainer_application} from 'ApplicationDetailsContainer_application.graphql';
 import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 
 /*
@@ -10,12 +11,13 @@ import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 
 interface Props {
   query: ApplicationDetailsContainer_query;
+  application: ApplicationDetailsContainer_application;
   relay: RelayProp;
   isAnalyst: boolean;
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
-  const formResults = props.query.application.formResultsByApplicationId.edges;
+  const formResults = props.application.formResultsByApplicationId.edges;
 
   return (
     <>
@@ -33,19 +35,20 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
 
 export default createFragmentContainer(ApplicationDetailsComponent, {
   query: graphql`
-    fragment ApplicationDetailsContainer_query on Query
-      @argumentDefinitions(applicationId: {type: "ID!"}) {
+    fragment ApplicationDetailsContainer_query on Query {
       query {
         ...ApplicationDetailsCardItem_query
       }
-      application(id: $applicationId) {
-        id
-        formResultsByApplicationId {
-          edges {
-            node {
-              id
-              ...ApplicationDetailsCardItem_formResult
-            }
+    }
+  `,
+  application: graphql`
+    fragment ApplicationDetailsContainer_application on Application {
+      id
+      formResultsByApplicationId {
+        edges {
+          node {
+            id
+            ...ApplicationDetailsCardItem_formResult
           }
         }
       }

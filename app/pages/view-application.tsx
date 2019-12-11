@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Button} from 'react-bootstrap';
+import {Row, Col, Button} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import Link from 'next/link';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
+import RequestedChanges from 'containers/Applications/RequestedChangesByFormResult';
 import DefaultLayout from 'layouts/default-layout';
 
 /*
@@ -22,7 +23,10 @@ class ViewApplication extends Component<Props> {
           ...defaultLayout_session
         }
         ...ApplicationDetailsContainer_query
-          @arguments(applicationId: $applicationId)
+        application(id: $applicationId) {
+          ...RequestedChangesByFormResult_application
+          ...ApplicationDetailsContainer_application
+        }
       }
     }
   `;
@@ -33,7 +37,18 @@ class ViewApplication extends Component<Props> {
 
     return (
       <DefaultLayout session={session} title="Summary of your application">
-        <ApplicationDetails isAnalyst={false} query={query} />
+        <Row>
+          <Col md={8}>
+            <ApplicationDetails
+              isAnalyst={false}
+              query={query}
+              application={query.application}
+            />
+          </Col>
+          <Col md={4}>
+            <RequestedChanges application={query.application} />
+          </Col>
+        </Row>
         <Link
           href={{
             pathname: '/user-dashboard'

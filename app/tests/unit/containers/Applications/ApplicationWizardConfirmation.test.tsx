@@ -10,18 +10,17 @@ describe('The Confirmation Component', () => {
           ' $fragmentRefs': {
             ApplicationDetailsContainer_query: true
           },
-          ' $refType': 'ApplicationWizardConfirmation_query',
-          application: {
-            ' $fragmentRefs': {
-              SubmitApplication_application: true
-            },
-            id: 'abc',
-            rowId: 1,
-            certificationSignature: undefined,
-            applicationStatus: {
-              id: 'def'
-            }
-          }
+          ' $refType': 'ApplicationWizardConfirmation_query'
+        }}
+        application={{
+          ' $refType': 'ApplicationWizardConfirmation_application',
+          ' $fragmentRefs': {
+            SubmitApplication_application: true,
+            ApplicationDetailsContainer_application: true
+          },
+          id: 'abc',
+          rowId: 1,
+          certificationSignature: undefined
         }}
         relay={null}
       />
@@ -36,18 +35,17 @@ describe('The Confirmation Component', () => {
           ' $fragmentRefs': {
             ApplicationDetailsContainer_query: true
           },
-          ' $refType': 'ApplicationWizardConfirmation_query',
-          application: {
-            ' $fragmentRefs': {
-              SubmitApplication_application: true
-            },
-            id: 'abc',
-            rowId: 1,
-            certificationSignature: undefined,
-            applicationStatus: {
-              id: 'def'
-            }
-          }
+          ' $refType': 'ApplicationWizardConfirmation_query'
+        }}
+        application={{
+          ' $refType': 'ApplicationWizardConfirmation_application',
+          ' $fragmentRefs': {
+            SubmitApplication_application: true,
+            ApplicationDetailsContainer_application: true
+          },
+          id: 'abc',
+          rowId: 1,
+          certificationSignature: undefined
         }}
         relay={null}
       />
@@ -75,18 +73,17 @@ describe('The Confirmation Component', () => {
           ' $fragmentRefs': {
             ApplicationDetailsContainer_query: true
           },
-          ' $refType': 'ApplicationWizardConfirmation_query',
-          application: {
-            ' $fragmentRefs': {
-              SubmitApplication_application: true
-            },
-            id: 'abc',
-            rowId: 1,
-            certificationSignature: 'signed',
-            applicationStatus: {
-              id: 'def'
-            }
-          }
+          ' $refType': 'ApplicationWizardConfirmation_query'
+        }}
+        application={{
+          ' $refType': 'ApplicationWizardConfirmation_application',
+          ' $fragmentRefs': {
+            SubmitApplication_application: true,
+            ApplicationDetailsContainer_application: true
+          },
+          id: 'abc',
+          rowId: 1,
+          certificationSignature: 'signed'
         }}
         relay={null}
       />

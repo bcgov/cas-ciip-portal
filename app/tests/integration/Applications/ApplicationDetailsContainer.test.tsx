@@ -31,16 +31,22 @@ describe('ApplicationDetailsContainer', () => {
               applicationStatus {
                 id
               }
+              ...ApplicationDetailsContainer_application
             }
             ...ApplicationDetailsContainer_query
-              @arguments(applicationId: $applicationId)
           }
         }
       `}
       variables={{applicationId: '2'}}
       render={({error, props}) => {
         if (props) {
-          return <ApplicationDetailsContainer query={props.query} />;
+          return (
+            <ApplicationDetailsContainer
+              isAnalyst={false}
+              query={props.query}
+              application={props.query.application}
+            />
+          );
         }
 
         if (error) {

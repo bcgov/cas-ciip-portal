@@ -2,9 +2,16 @@ import React from 'react';
 import {Nav} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import Link from 'next/link';
+import {ApplicationFormNavbar_application} from 'ApplicationFormNavbar_application.graphql';
 
-const ApplicationFormNavbarComponent = props => {
-  const {application} = props.query;
+interface Props {
+  application: ApplicationFormNavbar_application;
+  formResultId: string;
+  confirmationPage: boolean;
+}
+
+const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => {
+  const {application} = props;
   return (
     <div className="nav-guide-container">
       <Nav justify className="nav-guide" variant="pills">
@@ -82,27 +89,20 @@ const ApplicationFormNavbarComponent = props => {
 };
 
 export default createFragmentContainer(ApplicationFormNavbarComponent, {
-  query: graphql`
-    fragment ApplicationFormNavbar_query on Query
-      @argumentDefinitions(
-        formResultId: {type: "ID!"}
-        applicationId: {type: "ID!"}
-      ) {
-      application(id: $applicationId) {
-        id
-        orderedFormResults {
-          edges {
-            node {
-              id
-              formJsonByFormId {
-                name
-              }
+  application: graphql`
+    fragment ApplicationFormNavbar_application on Application {
+      id
+      orderedFormResults {
+        edges {
+          node {
+            id
+            formJsonByFormId {
+              name
             }
           }
         }
       }
-      ...ApplicationDetailsContainer_query
-        @arguments(applicationId: $applicationId)
+      ...ApplicationDetailsContainer_application
     }
   `
 });
