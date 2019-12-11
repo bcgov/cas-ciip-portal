@@ -3,7 +3,7 @@ import {graphql} from 'react-relay';
 import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 import {NextRouter} from 'next/router';
 import {Row, Col} from 'react-bootstrap';
-import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
+// Import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
 import DefaultLayout from '../layouts/default-layout';
 import ApplicationDetail from '../containers/Applications/ApplicationDetailsContainer';
@@ -59,11 +59,12 @@ class ApplicationReview extends Component<Props> {
               query={query}
               application={query.application}
             />
-            <IncentiveCalculatorContainer
+            {/* TODO: Fix this container. it is borked */}
+            {/* <IncentiveCalculatorContainer
               query={query}
               bcghgid={this.props.router.query.bcghgid}
               reportingYear={this.props.router.query.reportingYear}
-            />
+            /> */}
           </Col>
           <Col md={4} className="application-comments">
             <ApplicationComments query={query} />
