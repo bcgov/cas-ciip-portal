@@ -174,6 +174,9 @@ type Application implements Node {
 
   """The certifier's user id, references ciip_user"""
   userId: Int
+
+  """The version of the application"""
+  version: Int!
 }
 
 """
@@ -195,6 +198,9 @@ input ApplicationCondition {
 
   """Checks for equality with the object’s `userId` field."""
   userId: Int
+
+  """Checks for equality with the object’s `version` field."""
+  version: Int
 }
 
 """An input for mutations affecting `Application`"""
@@ -212,6 +218,9 @@ input ApplicationInput {
 
   """The certifier's user id, references ciip_user"""
   userId: Int
+
+  """The version of the application"""
+  version: Int
 }
 
 """
@@ -231,6 +240,9 @@ input ApplicationPatch {
 
   """The certifier's user id, references ciip_user"""
   userId: Int
+
+  """The version of the application"""
+  version: Int
 }
 
 """The application review done by analyst"""
@@ -493,6 +505,8 @@ enum ApplicationsOrderBy {
   REPORTING_YEAR_DESC
   USER_ID_ASC
   USER_ID_DESC
+  VERSION_ASC
+  VERSION_DESC
 }
 
 """The application status data"""

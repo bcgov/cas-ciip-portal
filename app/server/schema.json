@@ -7223,6 +7223,22 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "version",
+              "description": "The version of the application",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -8496,6 +8512,16 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "version",
+              "description": "Checks for equality with the object’s `version` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -8584,6 +8610,18 @@
             },
             {
               "name": "USER_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "VERSION_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "VERSION_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -28227,6 +28265,16 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "version",
+              "description": "The version of the application",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -36840,6 +36888,16 @@
             {
               "name": "prevId",
               "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "version",
+              "description": "The version of the application",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",

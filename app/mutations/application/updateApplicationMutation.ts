@@ -12,7 +12,12 @@ const mutation = graphql`
       clientMutationId
       application {
         id
+        rowId
+        facilityId
+        reportingYear
         certificationSignature
+        userId
+        version
       }
     }
   }
@@ -26,8 +31,7 @@ const updateApplicationMutation = async (
     updateApplication: {
       application: {
         id: variables.input.id,
-        certificationSignature:
-          variables.input.applicationPatch.certificationSignature
+        ...variables.input.applicationPatch
       }
     }
   };
