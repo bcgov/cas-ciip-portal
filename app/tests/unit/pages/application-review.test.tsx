@@ -22,7 +22,7 @@ it('It matches the last accepted Snapshot', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-it('It receives the props for app_id, bcghgid and reporting year', () => {
+it.skip('It receives the props for app_id, bcghgid and reporting year', () => {
   // @ts-ignore
   const wrapper = shallow(<ApplicationReview router={router} query={query} />);
   expect(
