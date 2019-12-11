@@ -29,9 +29,7 @@
   "exclude": [
     ".next",
     ".s2i",
-    ".storybook",
     "node_modules",
-    "static",
-    "stories"
+    "static"
   ]
 }
