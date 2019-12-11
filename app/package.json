@@ -20,10 +20,6 @@
     "storybook": "start-storybook -s ."
   },
   "xo": {
-    "ignores": [
-      "./static/survey-creator.css",
-      "./static/bootstrap.min.css"
-    ],
     "extends": [
       "xo-typescript",
       "xo-react",
