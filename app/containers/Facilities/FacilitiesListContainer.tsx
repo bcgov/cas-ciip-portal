@@ -28,7 +28,7 @@ export const FacilitiesList = props => {
 
   const tableHeaders = [
     {columnName: 'facility_name', displayName: 'Facility Name'},
-    {columnName: 'mailing_address', displayName: 'Address'},
+    {columnName: 'facility_mailing_address', displayName: 'Address'},
     {columnName: 'facility_postal_code', displayName: 'Postal Code'},
     {columnName: 'facility_city', displayName: 'City'},
     {columnName: 'facility_province', displayName: 'Province'},
@@ -46,7 +46,7 @@ export const FacilitiesList = props => {
 
   const displayNameToColumnNameMap = {
     'Facility Name': 'facility_name',
-    Address: 'address',
+    Address: 'facility_mailing_address',
     'Postal Code': 'facility_postal_code',
     City: 'facility_city',
     Province: 'facility_province',
@@ -81,6 +81,7 @@ export const FacilitiesList = props => {
             <th />
           </tr>
         </thead>
+        {/* filter will not work if there's duplicate facilities in the table, bc the key is not unique */}
         <tbody>
           {edges.map(edge => (
             <FacilitiesRowItemContainer

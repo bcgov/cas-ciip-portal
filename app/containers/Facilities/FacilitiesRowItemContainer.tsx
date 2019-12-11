@@ -122,7 +122,7 @@ export default createFragmentContainer(FacilitiesRowItem, {
       facilityPostalCode
       rowId
       hasSwrsReport(reportingYear: "2018")
-      applicationsByFacilityId(condition: {reportingYear: 2018}) {
+      applicationsByFacilityId {
         edges {
           node {
             id
