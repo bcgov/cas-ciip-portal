@@ -51,6 +51,10 @@ values
     "title": "Compression Equipment",
     "description":"Please include all compression equipment on site",
     "properties": {
+      "calculatedProduction" : {
+        "type": "number",
+        "title": "Total Consumed Energy (MWh)"
+      },
       "equipment": {
         "type": "array",
         "minItems": 1,
@@ -77,6 +81,10 @@ values
             "runtimeHours": {
               "type": "number",
               "title": "Runtime Hours"
+            },
+            "consumedEnergy": {
+              "type":"number",
+              "title": "Consumed Energy (MWh)"
             }
           },
           "required": ["id", "energySource", "powerRating", "loadingFactor", "runtimeHours"]
@@ -85,12 +93,22 @@ values
     }
   },
   "uiSchema": {
+    "ui:formulae": {
+      "calculatedProduction": {
+        "items": "equipment",
+        "reduceFunction": "sum",
+        "itemFormula": "powerRating * loadingFactor/100 * runtimeHours"
+      }
+    },
+    "calculatedProduction": {
+      "ui:disabled": true
+    },
     "equipment": {
       "ui:add-text": "Add Equipment",
       "ui:remove-text": "Remove Equipment",
       "items" : {
         "ui:order": [
-          "id", "energySource", "powerRating", "runtimeHours", "loadingFactor"
+          "id", "energySource", "powerRating", "runtimeHours", "loadingFactor", "consumedEnergy"
         ],
         "id": {
           "ui:help": "ID/name of the unit"
@@ -103,6 +121,12 @@ values
         },
         "runtimeHours": {
           "ui:help": "Annual total hours the equipment was operating"
+        },
+        "ui:formulae" : {
+          "consumedEnergy": "powerRating * loadingFactor/100 * runtimeHours"
+        },
+        "consumedEnergy": {
+          "ui:disabled": true
         }
       }
     }

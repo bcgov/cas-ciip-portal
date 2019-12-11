@@ -41,6 +41,7 @@
     "items": {
       "ui:field": "production",
       "productRowId": {
+        "ui:col-md": 8,
         "ui:widget": "SearchWidget"
       },
       "allocationFactor": {
