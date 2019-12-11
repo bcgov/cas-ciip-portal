@@ -14,11 +14,11 @@ export const RequestedChangesByFormResult: React.FunctionComponent<Props> = prop
     <>
       {formResults.map(({node}) => {
         const applicationReviews = node.requestedChanges.edges;
-        if (applicationReviews.length === 0) return <></>;
+        if (applicationReviews.length === 0) return null;
         return (
           <div key={node.id} className="form-result-box">
             <div>
-              <h5> {node.formJsonByFormId.name} </h5>
+              <h5>{node.formJsonByFormId.name}</h5>
             </div>
             {applicationReviews.map(({node}) => {
               return (

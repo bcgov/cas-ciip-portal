@@ -13,9 +13,8 @@ interface Props {
 
 export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props => {
   const {applicationReview} = props;
-  const reviewComments = applicationReview
-    ? applicationReview.reviewCommentsByApplicationReviewId.edges
-    : null;
+  const reviewComments =
+    applicationReview?.reviewCommentsByApplicationReviewId?.edges;
 
   return (
     <>
