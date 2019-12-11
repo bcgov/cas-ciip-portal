@@ -10,6 +10,18 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   </h5>
   <br />
   <Relay(ApplicationDetailsComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "certificationSignature": undefined,
+        "id": "abc",
+        "rowId": 1,
+      }
+    }
     isAnalyst={false}
     query={
       Object {
@@ -17,17 +29,6 @@ exports[`The Confirmation Component match the snapshot 1`] = `
           "ApplicationDetailsContainer_query": true,
         },
         " $refType": "ApplicationWizardConfirmation_query",
-        "application": Object {
-          " $fragmentRefs": Object {
-            "SubmitApplication_application": true,
-          },
-          "applicationStatus": Object {
-            "id": "def",
-          },
-          "certificationSignature": undefined,
-          "id": "abc",
-          "rowId": 1,
-        },
       }
     }
   />

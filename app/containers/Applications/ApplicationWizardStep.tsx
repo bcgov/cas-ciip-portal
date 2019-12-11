@@ -54,7 +54,13 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
     await storeResult(formData);
   };
 
-  if (confirmationPage) return <ApplicationWizardConfirmation query={query} />;
+  if (confirmationPage)
+    return (
+      <ApplicationWizardConfirmation
+        query={query}
+        application={query.application}
+      />
+    );
   if (!formResult) return null;
 
   if (!application) return null;
@@ -78,16 +84,13 @@ export default createFragmentContainer(ApplicationWizardStep, {
       ) {
       ...Form_query @arguments(formResultId: $formResultId)
       ...ApplicationWizardConfirmation_query
-        @arguments(applicationId: $applicationId)
 
       formResult(id: $formResultId) {
         id
         formResult
       }
       application(id: $applicationId) {
-        applicationStatus {
-          id
-        }
+        ...ApplicationWizardConfirmation_application
       }
     }
   `

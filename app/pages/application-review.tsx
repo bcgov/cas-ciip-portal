@@ -31,11 +31,11 @@ class ApplicationReview extends Component<Props> {
           applicationStatus {
             ...ApplicationStatusContainer_applicationStatus
           }
+          ...ApplicationDetailsContainer_application
         }
         ...IncentiveCalculatorContainer_query
           @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
         ...ApplicationDetailsContainer_query
-          @arguments(applicationId: $applicationGUID)
         ...ApplicationCommentsContainer_query
           @arguments(applicationId: $applicationGUID)
       }
@@ -54,7 +54,11 @@ class ApplicationReview extends Component<Props> {
         <hr />
         <Row className="application-container">
           <Col md={8} className="application-body">
-            <ApplicationDetail isAnalyst query={query} />
+            <ApplicationDetail
+              isAnalyst
+              query={query}
+              application={query.application}
+            />
             <IncentiveCalculatorContainer
               query={query}
               bcghgid={this.props.router.query.bcghgid}

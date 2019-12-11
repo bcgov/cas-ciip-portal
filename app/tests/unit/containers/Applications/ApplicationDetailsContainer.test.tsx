@@ -10,20 +10,22 @@ describe('ApplicationDetailsComponent', () => {
         relay={null}
         query={{
           ' $refType': 'ApplicationDetailsContainer_query',
-          application: {
-            id: 'abc',
-            formResultsByApplicationId: {
-              edges: [
-                {
-                  node: {
-                    id: 'WyJmb3JtX3Jlc3VsdHMiLDExXQ==',
-                    ' $fragmentRefs': {
-                      ApplicationDetailsCardItem_formResult: true
-                    }
+          query: null
+        }}
+        application={{
+          ' $refType': 'ApplicationDetailsContainer_application',
+          id: 'abc',
+          formResultsByApplicationId: {
+            edges: [
+              {
+                node: {
+                  id: 'WyJmb3JtX3Jlc3VsdHMiLDExXQ==',
+                  ' $fragmentRefs': {
+                    ApplicationDetailsCardItem_formResult: true
                   }
                 }
-              ]
-            }
+              }
+            ]
           }
         }}
       />

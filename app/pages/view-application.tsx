@@ -23,9 +23,10 @@ class ViewApplication extends Component<Props> {
           ...defaultLayout_session
         }
         ...ApplicationDetailsContainer_query
-          @arguments(applicationId: $applicationId)
-        ...RequestedChangesByFormResult_query
-          @arguments(applicationId: $applicationId)
+        application(id: $applicationId) {
+          ...RequestedChangesByFormResult_application
+          ...ApplicationDetailsContainer_application
+        }
       }
     }
   `;
@@ -38,10 +39,14 @@ class ViewApplication extends Component<Props> {
       <DefaultLayout session={session} title="Summary of your application">
         <Row>
           <Col md={8}>
-            <ApplicationDetails isAnalyst={false} query={query} />
+            <ApplicationDetails
+              isAnalyst={false}
+              query={query}
+              application={query.application}
+            />
           </Col>
           <Col md={4}>
-            <RequestedChanges query={query} />
+            <RequestedChanges application={query.application} />
           </Col>
         </Row>
         <Link

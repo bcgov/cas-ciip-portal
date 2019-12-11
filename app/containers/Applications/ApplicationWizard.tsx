@@ -72,8 +72,8 @@ const ApplicationWizard = ({query}) => {
   return (
     <>
       <ApplicationFormNavbar
-        query={query}
-        formResultId={formResultId}
+        application={query.application}
+        formResultId={formResultId as string}
         confirmationPage={confirmationPage}
       />
       <ApplicationWizardStep
@@ -102,9 +102,8 @@ export default createFragmentContainer(ApplicationWizard, {
             }
           }
         }
+        ...ApplicationFormNavbar_application
       }
-      ...ApplicationFormNavbar_query
-        @arguments(formResultId: $formResultId, applicationId: $applicationId)
       ...ApplicationWizardStep_query
         @arguments(formResultId: $formResultId, applicationId: $applicationId)
     }

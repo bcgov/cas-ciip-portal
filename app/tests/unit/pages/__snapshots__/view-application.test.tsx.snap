@@ -12,6 +12,20 @@ exports[`It matches the last accepted Snapshot 1`] = `
       md={8}
     >
       <Relay(ApplicationDetailsComponent)
+        application={
+          Object {
+            "formResultsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "id": "form-1",
+                  },
+                },
+              ],
+            },
+            "id": "1",
+          }
+        }
         isAnalyst={false}
         query={
           Object {
@@ -36,21 +50,18 @@ exports[`It matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <Relay(RequestedChangesByFormResult)
-        query={
+        application={
           Object {
-            "application": Object {
-              "formResultsByApplicationId": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "id": "form-1",
-                    },
+            "formResultsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "id": "form-1",
                   },
-                ],
-              },
-              "id": "1",
+                },
+              ],
             },
-            "session": null,
+            "id": "1",
           }
         }
       />

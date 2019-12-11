@@ -13,6 +13,7 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
     }
     isAnalyst={true}
     key="WyJmb3JtX3Jlc3VsdHMiLDExXQ=="
+    query={null}
   />
 </Fragment>
 `;
