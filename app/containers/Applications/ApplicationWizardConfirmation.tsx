@@ -1,11 +1,9 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
+import React, {useRef, useState} from 'react';
+import {Button, Row, Col} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import Link from 'next/link';
-import {useRouter} from 'next/router';
+import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
-import {CiipApplicationStatus} from 'createApplicationStatusMutation.graphql';
-import createApplicationStatusMutation from 'mutations/application/createApplicationStatusMutation';
+import createCertificationUrlMutation from '../../mutations/form/createCertificationUrl';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -18,29 +16,47 @@ interface Props {
 }
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
-  const router = useRouter();
-  // Change application status to 'pending' on application submit
-  const submitApplication = async () => {
+  const [copySuccess, setCopySuccess] = useState('');
+  const [url, setUrl] = useState();
+  const copyArea = useRef(url);
+
+  const copyToClipboard = () => {
+    const el = copyArea;
+    el.current.select();
+    // TODO(Dylan): execCommand copy is deprecated. Look into a replacement
+    const success = document.execCommand('copy');
+    if (success) return setCopySuccess('Copied!');
+    throw new Error('document.execCommand(`copy`) failed');
+  };
+
+  const handleClickGenerateCertificationUrl = async () => {
     const {environment} = props.relay;
-    const date = new Date().toUTCString();
-    // TODO: created_at should be set by a trigger
     const variables = {
       input: {
-        applicationStatus: {
-          applicationId: props.query.application.rowId,
-          applicationStatus: 'PENDING' as CiipApplicationStatus,
-          createdAt: date,
-          createdBy: 'Admin'
+        certificationUrl: {
+          /**  The rowId in ggircs_portal.certification_url is the primary key (thus required in the relay variables)
+               but the actual rowId is generated on the postgres level with a trigger, so a placeholder rowId is set here */
+          rowId: 'placeholder',
+          applicationId: props.query.application.rowId
         }
       }
     };
-    const response = await createApplicationStatusMutation(
+    const response = await createCertificationUrlMutation(
       environment,
       variables
     );
     console.log(response);
-    // TODO: check response
-    router.push('/complete-submit');
+    try {
+      setUrl(
+        `${
+          window.location.host
+        }/certification-redirect?rowId=${encodeURIComponent(
+          response.createCertificationUrl.certificationUrl.rowId
+        )}&id=${encodeURIComponent(props.query.application.id)}`
+      );
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   return (
@@ -52,21 +68,48 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       <br />
 
       <ApplicationDetailsContainer isAnalyst={false} query={props.query} />
-
-      <Link
-        passHref
-        href={{
-          pathname: '/complete-submit'
-        }}
-      >
-        <Button
-          className="float-right"
-          style={{marginTop: '10px'}}
-          onClick={submitApplication}
-        >
-          Submit Application
-        </Button>
-      </Link>
+      <br />
+      {props.query.application.certificationSignature ? (
+        <>
+          <h5>
+            Thank you for reviewing the application information. The Certifier
+            has signed off on this application. You may now submit the
+            application.
+          </h5>
+          <br />
+          <SubmitApplication application={props.query.application} />
+        </>
+      ) : (
+        <>
+          <h5>
+            Thank you for reviewing the application information. You may now
+            generate a Certification page to be signed prior to submission.
+          </h5>
+          <br />
+          <Row>
+            <Col>
+              <Button onClick={handleClickGenerateCertificationUrl}>
+                Generate Certification Page
+              </Button>
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col md={6}>
+              <input
+                ref={copyArea}
+                readOnly
+                value={url}
+                style={{width: '100%'}}
+              />
+            </Col>
+            <Col md={2}>
+              <Button onClick={copyToClipboard}>Copy Link</Button>
+              <span style={{color: 'green'}}>{copySuccess}</span>
+            </Col>
+          </Row>
+        </>
+      )}
     </>
   );
 };
@@ -76,10 +119,13 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
     fragment ApplicationWizardConfirmation_query on Query
       @argumentDefinitions(applicationId: {type: "ID!"}) {
       application(id: $applicationId) {
+        id
         rowId
+        certificationSignature
         applicationStatus {
           id
         }
+        ...SubmitApplication_application
       }
       ...ApplicationDetailsContainer_query
         @arguments(applicationId: $applicationId)

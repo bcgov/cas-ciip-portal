@@ -31,6 +31,38 @@ type Application implements Node {
     orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationStatusesConnection!
 
+  """The base64 representation of the certifier's signature"""
+  certificationSignature: String
+
+  """Reads and enables pagination through a set of `CertificationUrl`."""
+  certificationUrlsByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CertificationUrlCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsConnection!
+
   """
   Reads a single `CiipApplication` that is related to this `Application`.
   """
@@ -64,6 +96,9 @@ type Application implements Node {
     """The method to use when ordering `CiipApplication`."""
     orderBy: [CiipApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipApplicationsConnection! @deprecated(reason: "Please use ciipApplicationByRowId instead")
+
+  """Reads a single `CiipUser` that is related to this `Application`."""
+  ciipUserByUserId: CiipUser
 
   """Reads a single `Facility` that is related to this `Application`."""
   facilityByFacilityId: Facility
@@ -136,6 +171,9 @@ type Application implements Node {
 
   """The application id used for reference and join"""
   rowId: Int!
+
+  """The certifier's user id, references ciip_user"""
+  userId: Int
 }
 
 """
@@ -143,6 +181,9 @@ A condition to be used against `Application` object types. All fields are tested
 for equality and combined with a logical ‘and.’
 """
 input ApplicationCondition {
+  """Checks for equality with the object’s `certificationSignature` field."""
+  certificationSignature: String
+
   """Checks for equality with the object’s `facilityId` field."""
   facilityId: Int
 
@@ -151,10 +192,16 @@ input ApplicationCondition {
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: Int
 }
 
 """An input for mutations affecting `Application`"""
 input ApplicationInput {
+  """The base64 representation of the certifier's signature"""
+  certificationSignature: String
+
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int!
 
@@ -162,12 +209,18 @@ input ApplicationInput {
   The foreign key to ggircs_portal.reporting_year, references reporting_year
   """
   reportingYear: Int
+
+  """The certifier's user id, references ciip_user"""
+  userId: Int
 }
 
 """
 Represents an update to a `Application`. Fields that are set will be updated.
 """
 input ApplicationPatch {
+  """The base64 representation of the certifier's signature"""
+  certificationSignature: String
+
   """The foreign key to ggircs_portal.facility, references id"""
   facilityId: Int
 
@@ -175,6 +228,9 @@ input ApplicationPatch {
   The foreign key to ggircs_portal.reporting_year, references reporting_year
   """
   reportingYear: Int
+
+  """The certifier's user id, references ciip_user"""
+  userId: Int
 }
 
 """The application review done by analyst"""
@@ -424,6 +480,8 @@ type ApplicationsEdge {
 
 """Methods to use when ordering `Application`."""
 enum ApplicationsOrderBy {
+  CERTIFICATION_SIGNATURE_ASC
+  CERTIFICATION_SIGNATURE_DESC
   FACILITY_ID_ASC
   FACILITY_ID_DESC
   ID_ASC
@@ -433,6 +491,8 @@ enum ApplicationsOrderBy {
   PRIMARY_KEY_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
+  USER_ID_ASC
+  USER_ID_DESC
 }
 
 """The application status data"""
@@ -882,6 +942,197 @@ type CarbonTaxDatum {
   rateEndDate: Date
   rateStartDate: Date
   unitConversionFactor: Int
+}
+
+"""Table containing the certification_url for an application"""
+type CertificationUrl implements Node {
+  """
+  Reads a single `Application` that is related to this `CertificationUrl`.
+  """
+  applicationByApplicationId: Application
+
+  """Foreign key to the application"""
+  applicationId: Int!
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Creation date of row"""
+  createdAt: Datetime!
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+
+  """The expiry date for the row"""
+  expiresAt: Datetime!
+
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """Unique ID for the certification_url"""
+  rowId: String!
+
+  """Last update date of row"""
+  updatedAt: Datetime!
+
+  """The user who last updated the row"""
+  updatedBy: String
+}
+
+"""
+A condition to be used against `CertificationUrl` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CertificationUrlCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: Int
+
+  """Checks for equality with the object’s `expiresAt` field."""
+  expiresAt: Datetime
+
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: String
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
+}
+
+"""An input for mutations affecting `CertificationUrl`"""
+input CertificationUrlInput {
+  """Foreign key to the application"""
+  applicationId: Int!
+
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+
+  """The expiry date for the row"""
+  expiresAt: Datetime
+
+  """Unique ID for the certification_url"""
+  rowId: String!
+
+  """Last update date of row"""
+  updatedAt: Datetime
+
+  """The user who last updated the row"""
+  updatedBy: String
+}
+
+"""
+Represents an update to a `CertificationUrl`. Fields that are set will be updated.
+"""
+input CertificationUrlPatch {
+  """Foreign key to the application"""
+  applicationId: Int
+
+  """Creation date of row"""
+  createdAt: Datetime
+
+  """Creator of row"""
+  createdBy: String
+
+  """Deletion date of row"""
+  deletedAt: Datetime
+
+  """The user who deleted the row"""
+  deletedBy: Int
+
+  """The expiry date for the row"""
+  expiresAt: Datetime
+
+  """Unique ID for the certification_url"""
+  rowId: String
+
+  """Last update date of row"""
+  updatedAt: Datetime
+
+  """The user who last updated the row"""
+  updatedBy: String
+}
+
+"""A connection to a list of `CertificationUrl` values."""
+type CertificationUrlsConnection {
+  """
+  A list of edges which contains the `CertificationUrl` and cursor to aid in pagination.
+  """
+  edges: [CertificationUrlsEdge!]!
+
+  """A list of `CertificationUrl` objects."""
+  nodes: [CertificationUrl]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CertificationUrl` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `CertificationUrl` edge in the connection."""
+type CertificationUrlsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CertificationUrl` at the end of the edge."""
+  node: CertificationUrl
+}
+
+"""Methods to use when ordering `CertificationUrl`."""
+enum CertificationUrlsOrderBy {
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
+  EXPIRES_AT_ASC
+  EXPIRES_AT_DESC
+  ID_ASC
+  ID_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
 }
 
 type CiipApplication implements Node {
@@ -1824,6 +2075,35 @@ enum CiipProductionsOrderBy {
 
 """Table containing the benchmark and eligibility threshold for a product"""
 type CiipUser implements Node {
+  """Reads and enables pagination through a set of `Application`."""
+  applicationsByUserId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Application`."""
+    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationsConnection!
+
   """Reads and enables pagination through a set of `ApplicationStatus`."""
   applicationStatusesByDeletedBy(
     """Read all values in the set after (below) this cursor."""
@@ -1881,6 +2161,35 @@ type CiipUser implements Node {
     """The method to use when ordering `Benchmark`."""
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksConnection!
+
+  """Reads and enables pagination through a set of `CertificationUrl`."""
+  certificationUrlsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CertificationUrlCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsConnection!
 
   """Reads a single `CiipUser` that is related to this `CiipUser`."""
   ciipUserByDeletedBy: CiipUser
@@ -2379,6 +2688,9 @@ type CreateApplicationMutationChainPayload {
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsEdge
 
+  """Reads a single `CiipUser` that is related to this `Application`."""
+  ciipUserByUserId: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -2407,6 +2719,9 @@ type CreateApplicationPayload {
     """The method to use when ordering `Application`."""
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsEdge
+
+  """Reads a single `CiipUser` that is related to this `Application`."""
+  ciipUserByUserId: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -2626,6 +2941,49 @@ type CreateBenchmarkPayload {
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `CertificationUrl` mutation."""
+input CreateCertificationUrlInput {
+  """The `CertificationUrl` to be created by this mutation."""
+  certificationUrl: CertificationUrlInput!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+}
+
+"""The output of our create `CertificationUrl` mutation."""
+type CreateCertificationUrlPayload {
+  """
+  Reads a single `Application` that is related to this `CertificationUrl`.
+  """
+  applicationByApplicationId: Application
+
+  """The `CertificationUrl` that was created by this mutation."""
+  certificationUrl: CertificationUrl
+
+  """An edge for our `CertificationUrl`. May be used by Relay 1."""
+  certificationUrlEdge(
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsEdge
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -3216,6 +3574,9 @@ type DeleteApplicationPayload {
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsEdge
 
+  """Reads a single `CiipUser` that is related to this `Application`."""
+  ciipUserByUserId: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -3397,6 +3758,64 @@ type DeleteBenchmarkPayload {
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteCertificationUrlByRowId` mutation."""
+input DeleteCertificationUrlByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """Unique ID for the certification_url"""
+  rowId: String!
+}
+
+"""All input for the `deleteCertificationUrl` mutation."""
+input DeleteCertificationUrlInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `CertificationUrl` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `CertificationUrl` mutation."""
+type DeleteCertificationUrlPayload {
+  """
+  Reads a single `Application` that is related to this `CertificationUrl`.
+  """
+  applicationByApplicationId: Application
+
+  """The `CertificationUrl` that was deleted by this mutation."""
+  certificationUrl: CertificationUrl
+
+  """An edge for our `CertificationUrl`. May be used by Relay 1."""
+  certificationUrlEdge(
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsEdge
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedCertificationUrlId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -6145,6 +6564,14 @@ type Mutation {
     input: CreateBenchmarkMutationChainInput!
   ): CreateBenchmarkMutationChainPayload
 
+  """Creates a single `CertificationUrl`."""
+  createCertificationUrl(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateCertificationUrlInput!
+  ): CreateCertificationUrlPayload
+
   """Creates a single `CiipApplicationWizard`."""
   createCiipApplicationWizard(
     """
@@ -6320,6 +6747,22 @@ type Mutation {
     """
     input: DeleteBenchmarkByRowIdInput!
   ): DeleteBenchmarkPayload
+
+  """Deletes a single `CertificationUrl` using its globally unique id."""
+  deleteCertificationUrl(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCertificationUrlInput!
+  ): DeleteCertificationUrlPayload
+
+  """Deletes a single `CertificationUrl` using a unique key."""
+  deleteCertificationUrlByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCertificationUrlByRowIdInput!
+  ): DeleteCertificationUrlPayload
 
   """Deletes a single `CiipApplicationWizard` using its globally unique id."""
   deleteCiipApplicationWizard(
@@ -6638,6 +7081,24 @@ type Mutation {
     """
     input: UpdateBenchmarkByRowIdInput!
   ): UpdateBenchmarkPayload
+
+  """
+  Updates a single `CertificationUrl` using its globally unique id and a patch.
+  """
+  updateCertificationUrl(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateCertificationUrlInput!
+  ): UpdateCertificationUrlPayload
+
+  """Updates a single `CertificationUrl` using a unique key and a patch."""
+  updateCertificationUrlByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateCertificationUrlByRowIdInput!
+  ): UpdateCertificationUrlPayload
 
   """
   Updates a single `CiipApplicationWizard` using its globally unique id and a patch.
@@ -7783,6 +8244,35 @@ type Query implements Node {
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksConnection
 
+  """Reads and enables pagination through a set of `CertificationUrl`."""
+  allCertificationUrls(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CertificationUrlCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsConnection
+
   """Reads and enables pagination through a set of `CiipApplication`."""
   allCiipApplications(
     """Read all values in the set after (below) this cursor."""
@@ -8518,6 +9008,15 @@ type Query implements Node {
     id: ID!
   ): Benchmark
   benchmarkByRowId(rowId: Int!): Benchmark
+
+  """Reads a single `CertificationUrl` using its globally unique `ID`."""
+  certificationUrl(
+    """
+    The globally unique `ID` to be used in selecting a single `CertificationUrl`.
+    """
+    id: ID!
+  ): CertificationUrl
+  certificationUrlByRowId(rowId: String!): CertificationUrl
 
   """Reads a single `CiipApplication` using its globally unique `ID`."""
   ciipApplication(
@@ -9391,6 +9890,9 @@ type UpdateApplicationPayload {
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsEdge
 
+  """Reads a single `CiipUser` that is related to this `Application`."""
+  ciipUserByUserId: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
@@ -9598,6 +10100,73 @@ type UpdateBenchmarkPayload {
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateCertificationUrlByRowId` mutation."""
+input UpdateCertificationUrlByRowIdInput {
+  """
+  An object where the defined keys will be set on the `CertificationUrl` being updated.
+  """
+  certificationUrlPatch: CertificationUrlPatch!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """Unique ID for the certification_url"""
+  rowId: String!
+}
+
+"""All input for the `updateCertificationUrl` mutation."""
+input UpdateCertificationUrlInput {
+  """
+  An object where the defined keys will be set on the `CertificationUrl` being updated.
+  """
+  certificationUrlPatch: CertificationUrlPatch!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `CertificationUrl` to be updated.
+  """
+  id: ID!
+}
+
+"""The output of our update `CertificationUrl` mutation."""
+type UpdateCertificationUrlPayload {
+  """
+  Reads a single `Application` that is related to this `CertificationUrl`.
+  """
+  applicationByApplicationId: Application
+
+  """The `CertificationUrl` that was updated by this mutation."""
+  certificationUrl: CertificationUrl
+
+  """An edge for our `CertificationUrl`. May be used by Relay 1."""
+  certificationUrlEdge(
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsEdge
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.

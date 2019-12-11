@@ -37,7 +37,7 @@ const ApplicationFormNavbarComponent = props => {
               }
             }}
           >
-            <Nav.Link>Summary</Nav.Link>
+            <Nav.Link active={props.confirmationPage}>Summary</Nav.Link>
           </Link>
         </Nav.Item>
         <style jsx global>{`
