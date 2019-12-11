@@ -41,6 +41,7 @@ yarn install --frozen-lockfile --production=false
 echo "---> Building"
 yarn build:relay
 yarn build:next
+yarn build:storybook
 
 yarn install --frozen-lockfile --production=true
 yarn cache clean

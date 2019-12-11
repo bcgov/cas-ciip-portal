@@ -27,6 +27,9 @@
     "allowJs": true
   },
   "exclude": [
-    "node_modules"
+    ".next",
+    ".s2i",
+    "node_modules",
+    "static"
   ]
 }

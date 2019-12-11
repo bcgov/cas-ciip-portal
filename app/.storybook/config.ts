@@ -1,11 +1,20 @@
-import { configure } from '@storybook/react';
+import {configure, addDecorator, addParameters} from '@storybook/react';
+import {withInfo} from '@storybook/addon-info';
+import {withCssResources} from '@storybook/addon-cssresources';
 import requireContext from 'require-context.macro';
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
 
-const req = requireContext('../tests', true, /\.stories\.tsx?$/);
+addDecorator(withInfo);
+addDecorator(withCssResources);
+addParameters({
+  cssresources: [
+    {
+      id: 'bootstrap',
+      code:
+        '<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css"></link>',
+      picked: true
+    }
+  ]
+});
 
-function loadStories() {
-  req.keys().forEach(filename => req(filename));
-}
-
-configure(loadStories, module);
+// Automatically import all files ending in *.stories.js
+configure(requireContext('../stories', true, /\.stories\.tsx?$/), module);
