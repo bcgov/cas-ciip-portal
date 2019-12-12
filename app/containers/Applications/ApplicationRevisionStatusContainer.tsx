@@ -2,10 +2,10 @@ import React from 'react';
 import {Row, Col, Dropdown} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
-import createApplicationStatusMutation from 'mutations/application/createApplicationStatusMutation';
+import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
 
 interface Props {
-  applicationStatus;
+  applicationRevisionStatus;
   applicationRowId;
   relay: RelayProp;
 }
@@ -17,9 +17,9 @@ const statusBadgeColor = {
   APPROVED: 'success'
 };
 
-export const ApplicationStatusComponent: React.FunctionComponent<Props> = props => {
+export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> = props => {
   // Save Application status to database
-  const setApplicationStatus = (eventKey, event) => {
+  const setApplicationRevisionStatus = (eventKey, event) => {
     event.preventDefault();
     event.stopPropagation();
     event.persist();
@@ -28,15 +28,15 @@ export const ApplicationStatusComponent: React.FunctionComponent<Props> = props 
 
     const variables = {
       input: {
-        applicationStatus: {
+        applicationRevisionStatus: {
           applicationId: props.applicationRowId,
-          applicationStatus: eventKey,
+          applicationRevisionStatus: eventKey,
           createdAt: date,
           createdBy: 'Admin'
         }
       }
     };
-    createApplicationStatusMutation(props.relay.environment, variables);
+    createApplicationRevisionStatusMutation(props.relay.environment, variables);
   };
 
   return (
@@ -50,18 +50,20 @@ export const ApplicationStatusComponent: React.FunctionComponent<Props> = props 
             <Dropdown.Toggle
               style={{width: '100%', textTransform: 'capitalize'}}
               variant={
-                statusBadgeColor[props.applicationStatus.applicationStatus]
+                statusBadgeColor[
+                  props.applicationRevisionStatus.applicationRevisionStatus
+                ]
               }
               id="dropdown"
             >
-              {props.applicationStatus.applicationStatus}
+              {props.applicationRevisionStatus.applicationRevisionStatus}
             </Dropdown.Toggle>
             <Dropdown.Menu style={{width: '100%'}}>
               {Object.keys(statusBadgeColor).map(status => (
                 <DropdownMenuItemComponent
                   key={status}
                   itemEventKey={status}
-                  itemFunc={setApplicationStatus}
+                  itemFunc={setApplicationRevisionStatus}
                   itemTitle={status}
                 />
               ))}
@@ -73,10 +75,10 @@ export const ApplicationStatusComponent: React.FunctionComponent<Props> = props 
   );
 };
 
-export default createFragmentContainer(ApplicationStatusComponent, {
-  applicationStatus: graphql`
-    fragment ApplicationStatusContainer_applicationStatus on ApplicationStatus {
-      applicationStatus
+export default createFragmentContainer(ApplicationRevisionStatusComponent, {
+  applicationRevisionStatus: graphql`
+    fragment ApplicationRevisionStatusContainer_applicationRevisionStatus on ApplicationRevisionStatus {
+      applicationRevisionStatus
     }
   `
 });

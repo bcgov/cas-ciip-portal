@@ -4,7 +4,7 @@ import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 import {NextRouter} from 'next/router';
 import {Row, Col} from 'react-bootstrap';
 // Import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
-import ApplicationStatusContainer from '../containers/Applications/ApplicationStatusContainer';
+import ApplicationRevisionStatusContainer from '../containers/Applications/ApplicationRevisionStatusContainer';
 import DefaultLayout from '../layouts/default-layout';
 import ApplicationDetail from '../containers/Applications/ApplicationDetailsContainer';
 import ApplicationComments from '../containers/Applications/ApplicationCommentsContainer';
@@ -28,8 +28,8 @@ class ApplicationReview extends Component<Props> {
         }
         application(id: $applicationGUID) {
           rowId
-          applicationStatus {
-            ...ApplicationStatusContainer_applicationStatus
+          applicationRevisionStatus {
+            ...ApplicationRevisionStatusContainer_applicationRevisionStatus
           }
           ...ApplicationDetailsContainer_application
         }
@@ -47,8 +47,10 @@ class ApplicationReview extends Component<Props> {
     const {session} = query || {};
     return (
       <DefaultLayout session={session} width="wide">
-        <ApplicationStatusContainer
-          applicationStatus={query.application.applicationStatus}
+        <ApplicationRevisionStatusContainer
+          applicationRevisionStatus={
+            query.application.applicationRevisionStatus
+          }
           applicationRowId={query.application.rowId}
         />
         <hr />

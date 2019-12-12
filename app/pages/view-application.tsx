@@ -26,8 +26,8 @@ class ViewApplication extends Component<Props> {
         }
         ...ApplicationDetailsContainer_query
         application(id: $applicationId) {
-          applicationStatus {
-            applicationStatus
+          applicationRevisionStatus {
+            applicationRevisionStatus
           }
           ...ReviseApplicationButtonContainer_application
           ...RequestedChangesByFormResult_application
@@ -60,8 +60,8 @@ class ViewApplication extends Component<Props> {
           </Col>
         </Row>
         <Row>
-          {query?.application?.applicationStatus?.applicationStatus ===
-          'REQUESTED_CHANGES' ? (
+          {query?.application?.applicationRevisionStatus
+            ?.applicationRevisionStatus === 'REQUESTED_CHANGES' ? (
             <ReviseApplicationButton application={query.application} />
           ) : null}
         </Row>

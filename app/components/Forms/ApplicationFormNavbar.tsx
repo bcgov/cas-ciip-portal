@@ -8,10 +8,12 @@ interface Props {
   application: ApplicationFormNavbar_application;
   formResultId: string;
   confirmationPage: boolean;
+  version: string;
 }
 
 const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => {
   const {application} = props;
+  console.log(application);
   return (
     <div className="nav-guide-container">
       <Nav justify className="nav-guide" variant="pills">
@@ -23,7 +25,8 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => 
                 pathname: '/ciip-application',
                 query: {
                   formResultId: node.id,
-                  applicationId: application.id
+                  applicationId: application.id,
+                  version: props.version
                 }
               }}
             >
@@ -44,7 +47,8 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => 
               pathname: '/ciip-application',
               query: {
                 applicationId: application.id,
-                confirmationPage: true
+                confirmationPage: true,
+                version: props.version
               }
             }}
           >
@@ -96,7 +100,7 @@ export default createFragmentContainer(ApplicationFormNavbarComponent, {
   application: graphql`
     fragment ApplicationFormNavbar_application on Application {
       id
-      orderedFormResults {
+      orderedFormResults(versionNumberInput: $version) {
         edges {
           node {
             id
@@ -106,7 +110,6 @@ export default createFragmentContainer(ApplicationFormNavbarComponent, {
           }
         }
       }
-      ...ApplicationDetailsContainer_application
     }
   `
 });

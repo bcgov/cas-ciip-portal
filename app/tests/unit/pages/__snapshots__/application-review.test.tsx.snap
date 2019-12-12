@@ -4,11 +4,11 @@ exports[`It matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
   width="wide"
 >
-  <Relay(ApplicationStatusComponent)
+  <Relay(ApplicationRevisionStatusComponent)
     applicationRowId={1}
-    applicationStatus={
+    applicationRevisionStatus={
       Object {
-        "applicationStatus": "pending",
+        "applicationRevisionStatus": "pending",
       }
     }
   />
@@ -26,8 +26,8 @@ exports[`It matches the last accepted Snapshot 1`] = `
       <Relay(ApplicationDetailsComponent)
         application={
           Object {
-            "applicationStatus": Object {
-              "applicationStatus": "pending",
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "pending",
             },
             "rowId": 1,
           }
@@ -36,8 +36,8 @@ exports[`It matches the last accepted Snapshot 1`] = `
         query={
           Object {
             "application": Object {
-              "applicationStatus": Object {
-                "applicationStatus": "pending",
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "pending",
               },
               "rowId": 1,
             },
@@ -53,8 +53,8 @@ exports[`It matches the last accepted Snapshot 1`] = `
         query={
           Object {
             "application": Object {
-              "applicationStatus": Object {
-                "applicationStatus": "pending",
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "pending",
               },
               "rowId": 1,
             },

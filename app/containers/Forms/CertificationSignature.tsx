@@ -103,7 +103,7 @@ export default createFragmentContainer(CertificationSignatureComponent, {
     fragment CertificationSignature_application on Application {
       id
       certificationSignature
-      applicationStatus {
+      applicationRevisionStatus {
         id
       }
     }

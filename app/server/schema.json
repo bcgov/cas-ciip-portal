@@ -5045,7 +5045,7 @@
             },
             {
               "name": "searchApplicationList",
-              "description": "Reads and enables pagination through a set of `CiipApplication`.",
+              "description": "Reads and enables pagination through a set of `Application`.",
               "args": [
                 {
                   "name": "after",
@@ -5143,7 +5143,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "CiipApplicationsConnection",
+                  "name": "ApplicationsConnection",
                   "ofType": null
                 }
               },
@@ -7364,11 +7364,11 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "versionNumber",
+                  "name": "versionNumberInput",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "Int",
+                    "name": "String",
                     "ofType": null
                   },
                   "defaultValue": null

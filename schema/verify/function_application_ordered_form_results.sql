@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.application_ordered_form_results(ggircs_portal.application, integer)'::regprocedure);
+select pg_get_functiondef('ggircs_portal.application_ordered_form_results(ggircs_portal.application, text)'::regprocedure);
 
 rollback;

@@ -160,7 +160,7 @@ type Application implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
-    versionNumber: Int
+    versionNumberInput: String
   ): FormResultsConnection!
 
   """
@@ -9956,6 +9956,7 @@ type Query implements Node {
   ): ReviewComment
   reviewCommentByRowId(rowId: Int!): ReviewComment
 
+<<<<<<< 3daba91a0e7f6e820f02bb5d389ed23ae17e4dd2
   """Reads and enables pagination through a set of `FacilitySearchResult`."""
   searchAllFacilities(
     """Read all values in the set after (below) this cursor."""
@@ -9982,6 +9983,9 @@ type Query implements Node {
   ): FacilitySearchResultsConnection!
 
   """Reads and enables pagination through a set of `CiipApplication`."""
+=======
+  """Reads and enables pagination through a set of `Application`."""
+>>>>>>> refactor fragments after change to intermediary table 'ApplicationRevision'
   searchApplicationList(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -10004,7 +10008,7 @@ type Query implements Node {
     orderByField: String
     searchField: String
     searchValue: String
-  ): CiipApplicationsConnection!
+  ): ApplicationsConnection!
 
   """Reads and enables pagination through a set of `CiipUserOrganisation`."""
   searchCiipUserOrganisation(

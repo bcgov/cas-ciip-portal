@@ -67,13 +67,13 @@ const ApplicationWizard = ({query}) => {
   };
 
   if (!application) return <>This is not the application you are looking for</>;
-
   return (
     <>
       <ApplicationFormNavbar
         application={query.application}
         formResultId={formResultId as string}
         confirmationPage={confirmationPage}
+        version={router.query.version as string}
       />
       <ApplicationWizardStep
         query={query}
@@ -91,11 +91,11 @@ export default createFragmentContainer(ApplicationWizard, {
       @argumentDefinitions(
         formResultId: {type: "ID!"}
         applicationId: {type: "ID!"}
+        version: {type: "String!"}
       ) {
       application(id: $applicationId) {
         id
-        version
-        orderedFormResults {
+        orderedFormResults(versionNumberInput: $version) {
           edges {
             node {
               id

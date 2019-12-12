@@ -75,7 +75,7 @@ export default createRefetchContainer(
           edges {
             node {
               id
-              ...ApplicationRowItemContainer_ciipApplication
+              ...ApplicationRowItemContainer_application
             }
           }
         }

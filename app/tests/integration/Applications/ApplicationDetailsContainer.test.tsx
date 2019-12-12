@@ -28,7 +28,7 @@ describe('ApplicationDetailsContainer', () => {
         query ApplicationDetailsContainerTestQuery($applicationId: ID!) {
           query {
             application(id: $applicationId) {
-              applicationStatus {
+              applicationRevisionStatus {
                 id
               }
               ...ApplicationDetailsContainer_application
@@ -126,7 +126,7 @@ describe('ApplicationDetailsContainer', () => {
                   }
                 ]
               },
-              applicationStatusesByApplicationId: {
+              applicationRevisionStatusesByApplicationId: {
                 id: 'status1'
               }
             }

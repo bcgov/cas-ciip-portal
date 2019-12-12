@@ -17,7 +17,6 @@ const mutation = graphql`
         reportingYear
         certificationSignature
         userId
-        version
       }
     }
   }

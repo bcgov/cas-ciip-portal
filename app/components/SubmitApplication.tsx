@@ -3,8 +3,8 @@ import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 import {Button} from 'react-bootstrap';
-import {CiipApplicationStatus} from 'createApplicationStatusMutation.graphql';
-import createApplicationStatusMutation from 'mutations/application/createApplicationStatusMutation';
+import {CiipApplicationRevisionStatus} from 'createApplicationRevisionStatusMutation.graphql';
+import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
 import {SubmitApplication_application} from 'SubmitApplication_application.graphql';
 
 interface Props {
@@ -19,13 +19,14 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = props 
     const {environment} = props.relay;
     const variables = {
       input: {
-        applicationStatus: {
+        applicationRevisionStatus: {
           applicationId: props.application.rowId,
-          applicationStatus: 'PENDING' as CiipApplicationStatus
+          versionNumber: props.application.latestDraftVersionNumber,
+          applicationRevisionStatus: 'PENDING' as CiipApplicationRevisionStatus
         }
       }
     };
-    const response = await createApplicationStatusMutation(
+    const response = await createApplicationRevisionStatusMutation(
       environment,
       variables
     );
@@ -56,6 +57,7 @@ export default createFragmentContainer(SubmitApplicationComponent, {
   application: graphql`
     fragment SubmitApplication_application on Application {
       rowId
+      latestDraftVersionNumber
     }
   `
 });

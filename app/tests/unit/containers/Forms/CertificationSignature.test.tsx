@@ -10,7 +10,7 @@ describe('The Confirmation Component', () => {
           ' $refType': 'CertificationSignature_application',
           id: 'abc',
           certificationSignature: undefined,
-          applicationStatus: {
+          applicationRevisionStatus: {
             id: 'def'
           }
         }}
@@ -28,7 +28,7 @@ describe('The Confirmation Component', () => {
           ' $refType': 'CertificationSignature_application',
           id: 'abc',
           certificationSignature: undefined,
-          applicationStatus: {
+          applicationRevisionStatus: {
             id: 'def'
           }
         }}
@@ -51,7 +51,7 @@ describe('The Confirmation Component', () => {
           ' $refType': 'CertificationSignature_application',
           id: 'abc',
           certificationSignature: 'signed',
-          applicationStatus: {
+          applicationRevisionStatus: {
             id: 'def'
           }
         }}
