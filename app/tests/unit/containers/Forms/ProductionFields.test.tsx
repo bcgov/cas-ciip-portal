@@ -32,6 +32,7 @@ describe('The ProductionFields Component', () => {
         edges: [
           {
             node: {
+              rowId: 1,
               name: 'foo',
               units: 'bar',
               productFormByProductFormId: {
@@ -53,6 +54,7 @@ describe('The ProductionFields Component', () => {
           },
           {
             node: {
+              rowId: 2,
               name: 'simpleFoo',
               units: 'baz',
               productFormByProductFormId: undefined
@@ -62,7 +64,7 @@ describe('The ProductionFields Component', () => {
       }
     },
     formData: {
-      product: 'foo',
+      productRowId: 1,
       productUnits: 'bar',
       additionalData: {
         additionalFoo: 'foofoo'
@@ -80,7 +82,7 @@ describe('The ProductionFields Component', () => {
     const wrapper = shallow(
       <ProductionFieldsComponent
         {...props}
-        formData={{product: 'simpleFoo', productUnits: 'baz'}}
+        formData={{productRowId: 1, productUnits: 'baz'}}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -100,4 +102,28 @@ describe('The ProductionFields Component', () => {
         .productFormSchema.uiSchema
     );
   });
+
+  it.todo(
+    'should render a quantity input if the product does not define an additionalDataSchema'
+  );
+
+  it.todo(
+    'should render a quantity input if the product defines an additionalDataSchema that does not have a calculatedQuantity property'
+  );
+
+  it.todo(
+    'should not render a quantity input if the product defines an additionalDataSchema with calculatedQuantity property'
+  );
+
+  it.todo(
+    'should render a productionAllocationFactor input if the product does not define an additionalDataSchema'
+  );
+
+  it.todo(
+    'should render a productionAllocationFactor input if the product defines an additionalDataSchema that does not have a calculatedProductionAllocationFactor property'
+  );
+
+  it.todo(
+    'should not render a productionAllocationFactor input if the product defines an additionalDataSchema with calculatedProductionAllocationFactor property'
+  );
 });

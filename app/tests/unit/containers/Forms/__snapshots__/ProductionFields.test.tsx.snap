@@ -13,8 +13,8 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     schema={
       Object {
         "enum": Array [
-          undefined,
-          undefined,
+          1,
+          2,
         ],
         "enumNames": Array [
           "foo",
@@ -31,6 +31,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       disabled={false}
       errorSchema={null}
       formContext={Object {}}
+      formData={1}
       idSchema={null}
       name="product"
       onChange={[Function]}
@@ -83,8 +84,8 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       schema={
         Object {
           "enum": Array [
-            undefined,
-            undefined,
+            1,
+            2,
           ],
           "enumNames": Array [
             "foo",
@@ -102,7 +103,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     errors={<ErrorList />}
     formContext={Object {}}
     hidden={false}
-    id="product.allocationFactor"
+    id="product.productionAllocationFactor"
     label="Product allocation factor (%)"
     required={true}
     schema={
@@ -174,6 +175,164 @@ exports[`The ProductionFields Component should match the snapshot when rendering
           "maximum": 100,
           "title": "Product allocation factor (%)",
           "type": "integer",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-number"
+    errors={<ErrorList />}
+    formContext={Object {}}
+    hidden={false}
+    id="product.quantity"
+    label="Annual Production Amount"
+    required={true}
+    schema={
+      Object {
+        "title": "Annual Production Amount",
+        "type": "number",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <NumberField
+      autofocus={false}
+      disabled={false}
+      formContext={Object {}}
+      idSchema={null}
+      name="quantity"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={true}
+      schema={
+        Object {
+          "title": "Annual Production Amount",
+          "type": "number",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-string"
+    errors={<ErrorList />}
+    formContext={Object {}}
+    hidden={false}
+    id="product.productUnits"
+    label="Units"
+    required={false}
+    schema={
+      Object {
+        "title": "Units",
+        "type": "string",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <StringField
+      autofocus={false}
+      disabled={true}
+      errorSchema={null}
+      formContext={Object {}}
+      formData="baz"
+      idSchema={null}
+      name="productUnits"
+      onChange={[Function]}
+      readonly={true}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={false}
+      schema={
+        Object {
+          "title": "Units",
+          "type": "string",
         }
       }
       uiSchema={Object {}}
@@ -268,8 +427,8 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     schema={
       Object {
         "enum": Array [
-          undefined,
-          undefined,
+          1,
+          2,
         ],
         "enumNames": Array [
           "foo",
@@ -286,6 +445,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       disabled={false}
       errorSchema={null}
       formContext={Object {}}
+      formData={1}
       idSchema={null}
       name="product"
       onChange={[Function]}
@@ -338,8 +498,8 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       schema={
         Object {
           "enum": Array [
-            undefined,
-            undefined,
+            1,
+            2,
           ],
           "enumNames": Array [
             "foo",
@@ -357,7 +517,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     errors={<ErrorList />}
     formContext={Object {}}
     hidden={false}
-    id="product.allocationFactor"
+    id="product.productionAllocationFactor"
     label="Product allocation factor (%)"
     required={true}
     schema={
@@ -429,6 +589,164 @@ exports[`The ProductionFields Component should match the snapshot when rendering
           "maximum": 100,
           "title": "Product allocation factor (%)",
           "type": "integer",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-number"
+    errors={<ErrorList />}
+    formContext={Object {}}
+    hidden={false}
+    id="product.quantity"
+    label="Annual Production Amount"
+    required={true}
+    schema={
+      Object {
+        "title": "Annual Production Amount",
+        "type": "number",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <NumberField
+      autofocus={false}
+      disabled={false}
+      formContext={Object {}}
+      idSchema={null}
+      name="quantity"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={true}
+      schema={
+        Object {
+          "title": "Annual Production Amount",
+          "type": "number",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-string"
+    errors={<ErrorList />}
+    formContext={Object {}}
+    hidden={false}
+    id="product.productUnits"
+    label="Units"
+    required={false}
+    schema={
+      Object {
+        "title": "Units",
+        "type": "string",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <StringField
+      autofocus={false}
+      disabled={true}
+      errorSchema={null}
+      formContext={Object {}}
+      formData="bar"
+      idSchema={null}
+      name="productUnits"
+      onChange={[Function]}
+      readonly={true}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={false}
+      schema={
+        Object {
+          "title": "Units",
+          "type": "string",
         }
       }
       uiSchema={Object {}}

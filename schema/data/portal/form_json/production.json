@@ -13,14 +13,20 @@
             "type": "integer"
           },
           "quantity": {
-            "title": "Quantity",
+            "title": "Annual Production Amount",
             "type": "number"
           },
           "productUnits": {
             "title": "Units",
             "type": "string"
           },
-          "allocationFactor": {
+          "productionAllocationFactor": {
+            "title": "Product allocation factor (%)",
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 100
+          },
+          "paymentAllocationFactor": {
             "title": "Product allocation factor (%)",
             "type": "integer",
             "exclusiveMinimum": 0,
@@ -31,7 +37,13 @@
             "additionalProperties": true
           }
         },
-        "required": ["productRowId", "allocationFactor"]
+        "required": [
+          "productRowId",
+          "quantity",
+          "productUnits",
+          "productionAllocationFactor",
+          "paymentAllocationFactor"
+        ]
       }
     }
   },
@@ -44,7 +56,7 @@
         "ui:col-md": 8,
         "ui:widget": "SearchWidget"
       },
-      "allocationFactor": {
+      "productionAllocationFactor": {
         "ui:col-md": 4,
         "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service"
       }

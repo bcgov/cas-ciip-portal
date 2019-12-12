@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useMemo} from 'react';
 import {FieldProps} from 'react-jsonschema-form';
 import ErrorList from 'components/Forms/ErrorList';
 
@@ -7,14 +7,16 @@ import {ProductionFields_query} from 'ProductionFields_query.graphql';
 import {JSONSchema6} from 'json-schema';
 import {FormJson} from 'next-env';
 
-interface Props extends FieldProps {
-  formData: {
-    productRowId?: number;
-    quantity?: number;
-    productUnits?: string;
-    allocationFactor?: number;
-    additionalData?: any;
-  };
+interface FormData {
+  productRowId?: number;
+  quantity?: number;
+  productUnits?: string;
+  productionAllocationFactor?: number;
+  paymentAllocationFactor?: number;
+  additionalData?: any;
+}
+
+interface Props extends FieldProps<FormData> {
   query: ProductionFields_query;
 }
 
@@ -43,8 +45,15 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
   }: {
     FieldTemplate: React.FunctionComponent<any>;
   } = registry as any;
-  // Not using the types definded in @types/react-jsonschema-form as they are out of date
+  // Not using the types defined in @types/react-jsonschema-form as they are out of date
 
+  const {
+    properties: {
+      productionAllocationFactor: productionAllocationFactorSchema,
+      quantity: quantitySchema,
+      productUnits: productUnitsSchema
+    }
+  } = schema as {properties: Record<string, JSONSchema6>};
   const handleProductChange = (productRowId: number) => {
     const productUnits = query.allProducts.edges.find(
       ({node}) => node.rowId === productRowId
@@ -64,40 +73,92 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     });
   };
 
-  const handleAllocationFactorChange = allocationFactor => {
+  /**
+   * Updates the product's productionAllocationFactor.
+   * Unless the product has an additional data schema that defines a calculatedPayementAllocationFactor,
+   * sets the paymentAllocationFactor to be the same value
+   * @param productionAllocationFactor
+   */
+  const handleProductionAllocationFactorChange = productionAllocationFactor => {
+    const paymentAllocationFactor = additionalDataSchema?.schema.properties
+      .calculatedPaymentAllocationFactor
+      ? formData.paymentAllocationFactor
+      : productionAllocationFactor;
     onChange({
       ...formData,
-      allocationFactor
+      productionAllocationFactor,
+      paymentAllocationFactor
     });
   };
 
+  /**
+   * Updates the product's additional data. In addition:
+   *  - if the additionalDataSchema defines a calculatedQuantity property,
+   *    the product's quantity is set to match that value;
+   *  - if the additionalDataSchema defines a calculatedProductionAllocationFactor property,
+   *    the product's productionAllocationFactor is set to match that value;
+   *  - if the additionalDataSchema defines a calculatedPaymentAllocationFactor property,
+   *    the product's paymentAllocationFactor is set to match that value,
+   *    otherwise it is set to match the productionAllocationFactor.
+   * @param additionalData
+   */
   const handleAdditionalFieldsChange = (additionalData: any) => {
-    console.log({
+    const data = {
       ...formData,
       additionalData
-    });
-    // TODO: execute formula here.
-    onChange({
-      ...formData,
-      additionalData
-    });
+    };
+
+    if (additionalDataSchema.schema.properties.calculatedQuantity) {
+      data.quantity = additionalData.calculatedQuantity;
+    }
+
+    if (
+      additionalDataSchema.schema.properties
+        .calculatedProductionAllocationFactor
+    ) {
+      data.productionAllocationFactor =
+        additionalData.calculatedProductionAllocationFactor;
+    }
+
+    if (
+      additionalDataSchema.schema.properties.calculatedPaymentAllocationFactor
+    ) {
+      data.paymentAllocationFactor =
+        additionalData.calculatedPaymentAllocationFactor;
+    } else {
+      data.paymentAllocationFactor = data.productionAllocationFactor;
+    }
+
+    onChange(data);
   };
 
   const handleProductUnitsChange = () => {
     throw new Error('Product units cannot be changed');
   };
 
-  const getAdditionalDataSchema = useCallback(() => {
+  const additionalDataSchema = useMemo(() => {
     return query.allProducts.edges.find(
       ({node}) => node.rowId === formData.productRowId
     )?.node?.productFormByProductFormId?.productFormSchema as FormJson;
   }, [formData.productRowId, query.allProducts.edges]);
 
-  const [productFieldSchema] = useState({
-    ...(schema.properties.productRowId as JSONSchema6),
-    enum: query.allProducts.edges.map(({node}) => node.rowId),
-    enumNames: query.allProducts.edges.map(({node}) => node.name)
-  });
+  const productRowIdSchema = useMemo(
+    () => ({
+      ...(schema.properties.productRowId as JSONSchema6),
+      enum: query.allProducts.edges.map(({node}) => node.rowId),
+      enumNames: query.allProducts.edges.map(({node}) => node.name)
+    }),
+    [query.allProducts.edges, schema.properties.productRowId]
+  );
+
+  const renderQuantity =
+    !additionalDataSchema ||
+    !additionalDataSchema.schema.properties.calculatedQuantity;
+
+  const renderProductionAllocationFactor =
+    !additionalDataSchema ||
+    !additionalDataSchema.schema.properties
+      .calculatedProductionAllocationFactor;
 
   return (
     <>
@@ -106,8 +167,8 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
         hidden={false}
         id="product.productRowId"
         classNames="form-group field field-string"
-        label={productFieldSchema.title}
-        schema={productFieldSchema}
+        label={productRowIdSchema.title}
+        schema={productRowIdSchema}
         uiSchema={uiSchema.productRowId || {}}
         formContext={formContext}
         errors={
@@ -118,7 +179,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           required
           disabled={false}
           readonly={false}
-          schema={productFieldSchema}
+          schema={productRowIdSchema}
           uiSchema={uiSchema.productRowId}
           formData={formData.productRowId}
           autofocus={autofocus}
@@ -130,45 +191,49 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           onChange={handleProductChange}
         />
       </FieldTemplate>
-      <FieldTemplate
-        required
-        hidden={false}
-        id="product.allocationFactor"
-        classNames="form-group field field-number"
-        label={(schema.properties.allocationFactor as JSONSchema6).title}
-        schema={schema.properties.allocationFactor as JSONSchema6}
-        uiSchema={uiSchema.allocationFactor || {}}
-        formContext={formContext}
-        help={uiSchema.allocationFactor?.['ui:help']}
-        errors={
-          <ErrorList errors={errorSchema?.allocationFactor?.__errors as any} />
-        }
-      >
-        <registry.fields.NumberField
+      {renderProductionAllocationFactor && (
+        <FieldTemplate
           required
-          schema={schema.properties.allocationFactor as JSONSchema6}
-          uiSchema={uiSchema.allocationFactor}
-          formData={formData.allocationFactor}
-          autofocus={autofocus}
-          idSchema={idSchema}
-          registry={registry}
-          errorSchema={errorSchema?.allocationFactor}
+          hidden={false}
+          id="product.productionAllocationFactor"
+          classNames="form-group field field-number"
+          label={productionAllocationFactorSchema.title}
+          schema={productionAllocationFactorSchema}
+          uiSchema={uiSchema.productionAllocationFactor || {}}
           formContext={formContext}
-          disabled={disabled}
-          readonly={readonly}
-          name="allocationFactor"
-          onChange={handleAllocationFactorChange}
-        />
-      </FieldTemplate>
-      {!getAdditionalDataSchema() && (
+          help={uiSchema.productionAllocationFactor?.['ui:help']}
+          errors={
+            <ErrorList
+              errors={errorSchema?.productionAllocationFactor?.__errors as any}
+            />
+          }
+        >
+          <registry.fields.NumberField
+            required
+            schema={productionAllocationFactorSchema}
+            uiSchema={uiSchema.productionAllocationFactor}
+            formData={formData.productionAllocationFactor}
+            autofocus={autofocus}
+            idSchema={idSchema}
+            registry={registry}
+            errorSchema={errorSchema?.productionAllocationFactor}
+            formContext={formContext}
+            disabled={disabled}
+            readonly={readonly}
+            name="allocationFactor"
+            onChange={handleProductionAllocationFactorChange}
+          />
+        </FieldTemplate>
+      )}
+      {renderQuantity && (
         <>
           <FieldTemplate
             required
             hidden={false}
             id="product.quantity"
             classNames="form-group field field-number"
-            label={(schema.properties.quantity as JSONSchema6).title}
-            schema={schema.properties.quantity as JSONSchema6}
+            label={quantitySchema.title}
+            schema={quantitySchema}
             uiSchema={uiSchema.quantity || {}}
             formContext={formContext}
             errors={
@@ -177,7 +242,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           >
             <registry.fields.NumberField
               required
-              schema={schema.properties.quantity as JSONSchema6}
+              schema={quantitySchema}
               uiSchema={uiSchema.quantity}
               formData={formData.quantity}
               autofocus={autofocus}
@@ -196,8 +261,8 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
             hidden={false}
             id="product.productUnits"
             classNames="form-group field field-string"
-            label={(schema.properties.productUnits as JSONSchema6).title}
-            schema={schema.properties.productUnits as JSONSchema6}
+            label={productUnitsSchema.title}
+            schema={productUnitsSchema}
             uiSchema={uiSchema.productUnits || {}}
             formContext={formContext}
             errors={
@@ -208,7 +273,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
               disabled
               readonly
               required={false}
-              schema={schema.properties.productUnits as JSONSchema6}
+              schema={productUnitsSchema}
               uiSchema={uiSchema.productUnits}
               formData={formData.productUnits}
               autofocus={autofocus}
@@ -222,11 +287,11 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           </FieldTemplate>
         </>
       )}
-      {getAdditionalDataSchema() && (
+      {additionalDataSchema && (
         <registry.fields.ObjectField
           required
-          schema={getAdditionalDataSchema().schema}
-          uiSchema={getAdditionalDataSchema().uiSchema}
+          schema={additionalDataSchema.schema}
+          uiSchema={additionalDataSchema.uiSchema}
           formData={formData.additionalData}
           autofocus={autofocus}
           idSchema={idSchema}

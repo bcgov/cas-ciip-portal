@@ -51,7 +51,7 @@ values
     "title": "Compression Equipment",
     "description":"Please include all compression equipment on site",
     "properties": {
-      "calculatedProduction" : {
+      "calculatedQuantity" : {
         "type": "number",
         "title": "Total Consumed Energy (MWh)"
       },
@@ -94,13 +94,13 @@ values
   },
   "uiSchema": {
     "ui:formulae": {
-      "calculatedProduction": {
+      "calculatedQuantity": {
         "items": "equipment",
         "reduceFunction": "sum",
-        "itemFormula": "powerRating * loadingFactor/100 * runtimeHours"
+        "itemFormula": "consumedEnergy"
       }
     },
-    "calculatedProduction": {
+    "calculatedQuantity": {
       "ui:disabled": true
     },
     "equipment": {
