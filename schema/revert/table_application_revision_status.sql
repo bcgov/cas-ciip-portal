@@ -2,6 +2,6 @@
 
 begin;
 
-drop table ggircs_portal.application_status;
+drop table ggircs_portal.application_revision_status;
 
 commit;

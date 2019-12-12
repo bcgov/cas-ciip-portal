@@ -1,8 +1,5 @@
 -- Deploy ggircs-portal:table_application to pg
 -- requires: schema_ggircs_portal
-
--- Deploy ggircs-portal:table_application to pg
--- requires: schema_ggircs_portal
 -- requires: table_form_result
 -- requires: table_reporting_year
 

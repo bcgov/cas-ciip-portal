@@ -2,6 +2,6 @@
 
 begin;
 
-drop type ggircs_portal.ciip_application_status;
+drop type ggircs_portal.ciip_application_revision_status;
 
 commit;
