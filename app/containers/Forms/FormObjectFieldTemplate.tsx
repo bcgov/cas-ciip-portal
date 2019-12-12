@@ -1,7 +1,10 @@
 import React from 'react';
 import {Col} from 'react-bootstrap';
+import {ObjectFieldTemplateProps} from 'react-jsonschema-form';
 
-const FormObjectFieldTemplate = ({
+const FormObjectFieldTemplate: React.FunctionComponent<ObjectFieldTemplateProps> = ({
+  idSchema,
+  required,
   TitleField,
   properties,
   title,
@@ -11,7 +14,11 @@ const FormObjectFieldTemplate = ({
     <>
       {title && (
         <Col xs={12}>
-          <TitleField title={title} />
+          <TitleField
+            title={title}
+            required={required}
+            id={`${idSchema.$id}__title`}
+          />
         </Col>
       )}
       {description && (

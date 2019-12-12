@@ -126,35 +126,7 @@ createdb
 [[ " ${actions[*]} " =~ " deployPortal " ]] && deployPortal
 deployPortalIfNotExists
 
-_psql <<EOF
-begin;
-with rows as (
-insert into ggircs_portal.form_json
-  (id, name, slug, short_name, description, form_json, prepopulate_from_swrs, prepopulate_from_ciip, form_result_init_function)
-  overriding system value
-values
-  (1, 'Administration Data', 'admin', 'Admin data', 'Admin description', '$(cat "./portal/form_json/administration.json")'::jsonb, true, true, 'init_application_administration_form_result'),
-  (2, 'Emission', 'emission', 'Emission', 'Emission description', '$(cat "./portal/form_json/emission.json")'::jsonb, true, false, 'init_application_emission_form_result'),
-  (3, 'Fuel','fuel', 'Fuel', 'Fuel description',  '$(cat "./portal/form_json/fuel.json")'::jsonb, true, false, 'init_application_fuel_form_result'),
-  (4, 'Electricity and Heat', 'electricity-and-heat', 'Electricity and Heat', 'Electricity and Heat description', '$(cat "./portal/form_json/electricity_and_heat.json")'::jsonb, false, false, null),
-  (5, 'Production', 'production', 'Production', 'Production description',  '$(cat "./portal/form_json/production.json")'::jsonb, false, false, null)
-on conflict(id) do update
-set name=excluded.name, form_json=excluded.form_json,
-    prepopulate_from_ciip=excluded.prepopulate_from_ciip,
-    prepopulate_from_swrs=excluded.prepopulate_from_swrs,
-    slug=excluded.slug,
-    short_name=excluded.short_name,
-    description=excluded.description
-returning 1
-) select 'Inserted ' || count(*) || ' rows into ggircs_portal.form_json' from rows;
-
-select setval from
-setval('ggircs_portal.form_json_id_seq', (select max(id) from ggircs_portal.form_json), true)
-where setval = 0;
-
-commit;
-EOF
-
+_psql -f "./portal/form_json.sql"
 _psql -f "./portal/ciip_application_wizard.sql"
 _psql -f "./portal/fuel.sql"
 _psql -f "./portal/product_form.sql"

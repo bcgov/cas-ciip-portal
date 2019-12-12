@@ -301,6 +301,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           disabled={disabled}
           readonly={readonly}
           name={null}
+          help={additionalDataSchema.uiSchema?.['ui:help']}
           onChange={handleAdditionalFieldsChange}
         />
       )}

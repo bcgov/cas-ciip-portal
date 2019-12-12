@@ -1,0 +1,110 @@
+{
+  "schema": {
+    "type": "object",
+    "title": "Centrifugal Compression Equipment",
+    "description": "Please include all reciprocating compression equipment on site",
+    "properties": {
+      "calculatedQuantity": {
+        "type": "number",
+        "title": "Total Consumed Energy (MWh)"
+      },
+      "equipment": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "title": "Equipment identifier"
+            },
+            "compressorType": {
+              "type": "string",
+              "title": "Compressor Type",
+              "enum": ["Centrifugal", "Reciprocating"],
+              "pattern": "Reciprocating"
+            },
+            "energySource": {
+              "type": "string",
+              "title": "Energy Source",
+              "enum": [
+                "Electric - Self-Generated",
+                "Electric - From Integrated Grid",
+                "Gas-driven"
+              ]
+            },
+            "powerRating": {
+              "type": "number",
+              "title": "Power Rating (MW)"
+            },
+            "loadingFactor": {
+              "type": "number",
+              "title": "Loading Factor (%)"
+            },
+            "runtimeHours": {
+              "type": "number",
+              "title": "Runtime Hours"
+            },
+            "consumedEnergy": {
+              "type": "number",
+              "title": "Consumed Energy (MWh)"
+            }
+          },
+          "required": [
+            "id",
+            "energySource",
+            "powerRating",
+            "loadingFactor",
+            "runtimeHours",
+            "compressorType"
+          ]
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "ui:formulae": {
+      "calculatedQuantity": {
+        "items": "equipment",
+        "reduceFunction": "sum",
+        "itemFormula": "consumedEnergy"
+      }
+    },
+    "calculatedQuantity": {
+      "ui:disabled": true
+    },
+    "equipment": {
+      "ui:add-text": "Add Equipment",
+      "ui:remove-text": "Remove Equipment",
+      "items": {
+        "ui:order": [
+          "id",
+          "compressorType",
+          "energySource",
+          "powerRating",
+          "runtimeHours",
+          "loadingFactor",
+          "consumedEnergy"
+        ],
+        "id": {
+          "ui:help": "ID/name of the unit"
+        },
+        "loadingFactor": {
+          "ui:help": "Actual annual average load fraction for equipment. If load is unavailable, the fraction is determined by the actual annual average seed during operation in revolutions per minute (rpm) divided by the maximum rated speed of equipment in revolutions per minute (rpm)"
+        },
+        "powerRating": {
+          "ui:help": "Equipment''s maximum rated power, expressed in megawatts"
+        },
+        "runtimeHours": {
+          "ui:help": "Annual total hours the equipment was operating"
+        },
+        "ui:formulae": {
+          "consumedEnergy": "powerRating * loadingFactor/100 * runtimeHours"
+        },
+        "consumedEnergy": {
+          "ui:disabled": true
+        }
+      }
+    }
+  }
+}

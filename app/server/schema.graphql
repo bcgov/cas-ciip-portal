@@ -7871,11 +7871,6 @@ type ProductForm implements Node {
   """The json schema used to render the form"""
   productFormSchema: JSON!
 
-  """
-  The formula used to calculate the procuction value from the form inputs
-  """
-  productionCalculationFormula: String!
-
   """Reads and enables pagination through a set of `Product`."""
   productsByProductFormId(
     """Read all values in the set after (below) this cursor."""
@@ -7920,11 +7915,6 @@ input ProductFormCondition {
   """Checks for equality with the object’s `productFormSchema` field."""
   productFormSchema: JSON
 
-  """
-  Checks for equality with the object’s `productionCalculationFormula` field.
-  """
-  productionCalculationFormula: String
-
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 }
@@ -7936,11 +7926,6 @@ input ProductFormInput {
 
   """The json schema used to render the form"""
   productFormSchema: JSON!
-
-  """
-  The formula used to calculate the procuction value from the form inputs
-  """
-  productionCalculationFormula: String!
 }
 
 """
@@ -7952,11 +7937,6 @@ input ProductFormPatch {
 
   """The json schema used to render the form"""
   productFormSchema: JSON
-
-  """
-  The formula used to calculate the procuction value from the form inputs
-  """
-  productionCalculationFormula: String
 }
 
 """A connection to a list of `ProductForm` values."""
@@ -7996,8 +7976,6 @@ enum ProductFormsOrderBy {
   PRODUCT_FORM_DESCRIPTION_DESC
   PRODUCT_FORM_SCHEMA_ASC
   PRODUCT_FORM_SCHEMA_DESC
-  PRODUCTION_CALCULATION_FORMULA_ASC
-  PRODUCTION_CALCULATION_FORMULA_DESC
 }
 
 """An input for mutations affecting `Product`"""
