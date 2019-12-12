@@ -9943,22 +9943,6 @@
               "deprecationReason": null
             },
             {
-              "name": "productionCalculationFormula",
-              "description": "The formula used to calculate the procuction value from the form inputs",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "productsByProductFormId",
               "description": "Reads and enables pagination through a set of `Product`.",
               "args": [
@@ -22978,16 +22962,6 @@
               "defaultValue": null
             },
             {
-              "name": "productionCalculationFormula",
-              "description": "Checks for equality with the object’s `productionCalculationFormula` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
               "type": {
@@ -23060,18 +23034,6 @@
             },
             {
               "name": "PRODUCT_FORM_SCHEMA_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PRODUCTION_CALCULATION_FORMULA_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PRODUCTION_CALCULATION_FORMULA_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -32172,20 +32134,6 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "JSON",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "productionCalculationFormula",
-              "description": "The formula used to calculate the procuction value from the form inputs",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
                   "ofType": null
                 }
               },
@@ -41370,16 +41318,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "JSON",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "productionCalculationFormula",
-              "description": "The formula used to calculate the procuction value from the form inputs",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               },
               "defaultValue": null

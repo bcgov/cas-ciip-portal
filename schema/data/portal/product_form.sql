@@ -1,129 +1,33 @@
 begin;
 
+create temporary table centrifugal_compression(json_data jsonb);
+\copy centrifugal_compression(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/product_form/centrifugal_compression.json | tr -d ''\n''';
+
+create temporary table reciprocating_compression(json_data jsonb);
+\copy reciprocating_compression(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/product_form/reciprocating_compression.json | tr -d ''\n''';
+
+create temporary table rich_sour_gas_plant(json_data jsonb);
+\copy rich_sour_gas_plant(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/product_form/rich_sour_gas_plant.json | tr -d ''\n''';
+
+create temporary table rich_sweet_gas_plant(json_data jsonb);
+\copy rich_sweet_gas_plant(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/product_form/rich_sweet_gas_plant.json | tr -d ''\n''';
+
+create temporary table aluminum_smelting(json_data jsonb);
+\copy aluminum_smelting(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/product_form/aluminum_smelting.json | tr -d ''\n''';
+
 with rows as (
-insert into ggircs_portal.product_form(id, product_form_description, product_form_schema, production_calculation_formula)
+insert into ggircs_portal.product_form(id, product_form_description, product_form_schema)
 overriding system value
 values
-(1, 'Product form for Wood/Pulp and paper products', '{
- "schema": {
-    "type": "object",
-    "properties" : {
-      "reportedProduction": {
-        "type": "number",
-        "title" : "Annual Amount"
-      },
-      "productUnits": {
-        "type": "string",
-        "title": "Units"
-      }
-    }
-  },
-  "uiSchema": {
-    "ui:order": [ "reportedProduction", "productUnits" ],
-    "productUnits": {
-      "ui:disabled": true
-    }
-  }
-}','((facility non-biogenic emissions + energy import/export balance emissions)* product allocation factor)/ directly reported production'),
-(2, 'Product form for gas plants', '{
- "schema": {
-    "type": "object",
-    "properties" : {
-      "reportedProduction": {
-        "type": "number",
-        "title" : "Annual Production Amount Reported in Petrinex"
-      },
-      "ethylenePlantIncluded": {
-        "type": "boolean"
-      },
-      "sulphurPlantIncluded": {
-        "type": "boolean"
-      },
-      "gasComposition" : {
-        "type": "string"
-      }
-    }
-  }
-}','Directly reported from Petrinex (input) + ethylene plant or sulhpur plant included + gas composition'),
-(3, 'Product form for Compression', '{
- "schema": {
-    "type": "object",
-    "title": "Compression Equipment",
-    "description":"Please include all compression equipment on site",
-    "properties": {
-      "equipment": {
-        "type": "array",
-        "minItems": 1,
-        "items" : {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string",
-              "title": "Equipment identifier"
-            },
-            "energySource": {
-              "type": "string",
-              "title": "Energy Source",
-              "enum": ["Electric - Self-Generated", "Electric - From Integrated Grid", "Gas-driven"]
-            },
-            "powerRating": {
-              "type": "number",
-              "title": "Power Rating (MW)"
-            },
-            "loadingFactor": {
-              "type": "number",
-              "title": "Loading Factor (%)"
-            },
-            "runtimeHours": {
-              "type": "number",
-              "title": "Runtime Hours"
-            }
-          },
-          "required": ["id", "energySource", "powerRating", "loadingFactor", "runtimeHours"]
-        }
-      }
-    }
-  },
-  "uiSchema": {
-    "equipment": {
-      "ui:add-text": "Add Equipment",
-      "ui:remove-text": "Remove Equipment",
-      "items" : {
-        "ui:order": [
-          "id", "energySource", "powerRating", "runtimeHours", "loadingFactor"
-        ],
-        "id": {
-          "ui:help": "ID/name of the unit"
-        },
-        "loadingFactor": {
-          "ui:help": "Actual annual average load fraction for equipment. If load is unavailable, the fraction is determined by the actual annual average seed during operation in revolutions per minute (rpm) divided by the maximum rated speed of equipment in revolutions per minute (rpm)"
-        },
-        "powerRating": {
-          "ui:help": "Equipment''s maximum rated power, expressed in megawatts"
-        },
-        "runtimeHours": {
-          "ui:help": "Annual total hours the equipment was operating"
-        }
-      }
-    }
-  }
-}',''),
-(4, 'Product form for Petroleum Refining', '{
- "schema": {
-    "type": "object",
-    "properties" : {
-      "reportedProduction": {
-        "type": "number",
-        "title" : "Annual Production Amount"
-      }
-    }
-  }
-}','')
+(1, 'Product form for Centrifugal Compression', (select json_data from centrifugal_compression)),
+(2, 'Product form for Reciprocating Compression', (select json_data from reciprocating_compression)),
+(3, 'Product form for Rich Sour Gas Plants', (select json_data from rich_sour_gas_plant)),
+(4, 'Product form for Rich Sweet Gas Plants', (select json_data from rich_sweet_gas_plant)),
+(5, 'Product form for Aluminum Smelting', (select json_data from aluminum_smelting))
 on conflict(id) do update
 set
 product_form_description=excluded.product_form_description,
-product_form_schema=excluded.product_form_schema,
-production_calculation_formula=excluded.production_calculation_formula
+product_form_schema=excluded.product_form_schema
 returning 1
 ) select 'Inserted ' || count(*) || ' rows into ggircs_portal.product_form' from rows;
 

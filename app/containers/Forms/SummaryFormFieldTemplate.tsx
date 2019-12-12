@@ -8,8 +8,11 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   errors,
   children,
   schema,
-  classNames
+  classNames,
+  hidden
 }) => {
+  if (hidden) return null;
+
   if (schema.type === 'array')
     return (
       <Col xs={12} className="summary-array-col">

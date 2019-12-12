@@ -48,7 +48,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
             <div
               className="col-12"
             >
-              <legend>
+              <legend
+                id="root_operator__title"
+              >
                 Operator Information
               </legend>
             </div>
@@ -204,7 +206,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 <div
                   className="col-12"
                 >
-                  <legend>
+                  <legend
+                    id="root_operator_mailingAddress__title"
+                  >
                     Operator Mailing Address
                   </legend>
                 </div>
@@ -403,7 +407,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
             <div
               className="col-12"
             >
-              <legend>
+              <legend
+                id="root_operationalRepresentative__title"
+              >
                 Operational Representative
               </legend>
             </div>
@@ -587,7 +593,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 <div
                   className="col-12"
                 >
-                  <legend>
+                  <legend
+                    id="root_operationalRepresentative_mailingAddress__title"
+                  >
                     Operational Representative Mailing Address
                   </legend>
                 </div>
@@ -786,7 +794,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
             <div
               className="col-12"
             >
-              <legend>
+              <legend
+                id="root_facility__title"
+              >
                 Facility Information
               </legend>
             </div>
@@ -946,7 +956,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 <div
                   className="col-12"
                 >
-                  <legend>
+                  <legend
+                    id="root_facility_mailingAddress__title"
+                  >
                     Facility Mailing Address
                   </legend>
                 </div>
@@ -1303,7 +1315,9 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
             <div
               className="col-12"
             >
-              <legend>
+              <legend
+                id="root_electricity__title"
+              >
                 Electricity
               </legend>
             </div>
@@ -1441,7 +1455,9 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
             <div
               className="col-12"
             >
-              <legend>
+              <legend
+                id="root_heat__title"
+              >
                 Heat
               </legend>
             </div>
@@ -1668,7 +1684,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
             className="font-italic text-muted"
           />
           <div
-            className="jsx-529402721 field field-array field-array-of-object"
+            className="jsx-4148384647 field field-array field-array-of-object"
           >
             <div
               className="form-row"
@@ -1755,7 +1771,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                         className="font-italic text-muted"
                       />
                       <div
-                        className="jsx-529402721 field field-array field-array-of-object"
+                        className="jsx-4148384647 field field-array field-array-of-object"
                       >
                         <div
                           className="form-row"
@@ -1860,7 +1876,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                           </div>
                         </div>
                         <hr
-                          className="jsx-529402721"
+                          className="jsx-4148384647"
                         />
                         <div
                           className="form-row"
@@ -1965,7 +1981,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                           </div>
                         </div>
                         <hr
-                          className="jsx-529402721"
+                          className="jsx-4148384647"
                         />
                       </div>
                     </div>
@@ -1974,7 +1990,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
               </div>
             </div>
             <hr
-              className="jsx-529402721"
+              className="jsx-4148384647"
             />
             <div
               className="form-row"
@@ -2061,7 +2077,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                         className="font-italic text-muted"
                       />
                       <div
-                        className="jsx-529402721 field field-array field-array-of-object"
+                        className="jsx-4148384647 field field-array field-array-of-object"
                       >
                         <div
                           className="form-row"
@@ -2166,7 +2182,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                           </div>
                         </div>
                         <hr
-                          className="jsx-529402721"
+                          className="jsx-4148384647"
                         />
                       </div>
                     </div>
@@ -2175,7 +2191,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
               </div>
             </div>
             <hr
-              className="jsx-529402721"
+              className="jsx-4148384647"
             />
           </div>
         </div>

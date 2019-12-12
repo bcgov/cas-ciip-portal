@@ -54,7 +54,8 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
             height: 100%;
             display: flex;
             justify-content: space-around;
-            align-items: center;
+            align-items: flex-start;
+            margin-top: 40px;
           }
           .add-button-container {
             height: 100%;

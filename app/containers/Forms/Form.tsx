@@ -17,6 +17,7 @@ import FuelFields from './FuelFields';
 import EmissionGasFields from './EmissionGasFields';
 import EmissionSourceFields from './EmissionSourceFields';
 import ProductionFields from './ProductionFields';
+import ObjectField from './FormObjectField';
 
 interface Props {
   query: Form_query;
@@ -31,7 +32,8 @@ const CUSTOM_FIELDS = {
   emissionGas: EmissionGasFields,
   production: props => (
     <ProductionFields query={props.formContext.query} {...props} />
-  )
+  ),
+  ObjectField
 };
 
 export const FormComponent: React.FunctionComponent<Props> = ({
