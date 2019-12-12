@@ -12,8 +12,11 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   children,
   schema,
   classNames,
-  uiSchema
+  uiSchema,
+  hidden
 }) => {
+  if (hidden) return <div className="hidden">{children}</div>;
+
   const helpText = uiSchema['ui:helplink'] ? (
     <a
       className="font-italic"

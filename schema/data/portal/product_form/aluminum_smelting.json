@@ -1,0 +1,53 @@
+{
+  "schema": {
+    "type": "object",
+    "properties": {
+      "anodeReductionAllocationFactor": {
+        "title": "Allocation of Facility Emissions to Anode Reduction (%)",
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 100
+      },
+      "cokeCalcinationAllocationFactor": {
+        "title": "Allocation of Facility Emissions to Green Coke Calcination (%)",
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 100
+      },
+      "anodeProductionAllocationFactor": {
+        "title": "Allocation of Facility Emissions to Anode Production (%)",
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 100
+      },
+      "calculatedProductionAllocationFactor": {
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 100
+      },
+      "calculatedPaymentAllocationFactor": {
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 100
+      }
+    }
+  },
+  "uiSchema": {
+    "ui:formulae": {
+      "calculatedProductionAllocationFactor": "anodeReductionAllocationFactor",
+      "calculatedPaymentAllocationFactor": "anodeReductionAllocationFactor + cokeCalcinationAllocationFactor + anodeProductionAllocationFactor"
+    },
+    "calculatedProductionAllocationFactor": {
+      "ui:widget": "hidden"
+    },
+    "calculatedPaymentAllocationFactor": {
+      "ui:widget": "hidden"
+    },
+    "ui:order": [
+      "anodeReductionAllocationFactor",
+      "cokeCalcinationAllocationFactor",
+      "anodeProductionAllocationFactor",
+      "*"
+    ]
+  }
+}

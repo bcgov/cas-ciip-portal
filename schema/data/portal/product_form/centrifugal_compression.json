@@ -93,7 +93,7 @@
           "ui:help": "Actual annual average load fraction for equipment. If load is unavailable, the fraction is determined by the actual annual average seed during operation in revolutions per minute (rpm) divided by the maximum rated speed of equipment in revolutions per minute (rpm)"
         },
         "powerRating": {
-          "ui:help": "Equipment''s maximum rated power, expressed in megawatts"
+          "ui:help": "Equipment's maximum rated power, expressed in megawatts"
         },
         "runtimeHours": {
           "ui:help": "Annual total hours the equipment was operating"

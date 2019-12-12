@@ -29,7 +29,7 @@ values
 (23,'Lead-Zinc Smelting','t','active',null),
 (24,'Grinding media (<3.5")','t','active',null),
 (25,'Grinding media (>4")','t','active',null),
-(26,'Aluminum Smelted','t','active',null),
+(26,'Aluminum Smelting','t','active',5),
 (27,'Metallurgical Coal','t','active',null),
 (28,'Gold Equivalent','t','active',null),
 (29,'Centrifugal Compression ','MWh','active',1),
