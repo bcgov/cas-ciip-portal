@@ -23,7 +23,6 @@ const setRouterQueryParam = (router, key, value, replace = false) => {
  */
 const ApplicationWizard = ({query}) => {
   const {application} = query || {};
-
   const router = useRouter();
   const {formResultId} = router.query;
   const confirmationPage = Boolean(router.query.confirmationPage);
@@ -95,6 +94,7 @@ export default createFragmentContainer(ApplicationWizard, {
       ) {
       application(id: $applicationId) {
         id
+        version
         orderedFormResults {
           edges {
             node {

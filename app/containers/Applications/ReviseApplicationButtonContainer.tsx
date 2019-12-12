@@ -14,12 +14,12 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = props => 
   const {application, relay} = props;
   const router = useRouter();
   const reviseApplication = async () => {
-    let previousVersionIndex = application.version;
+    const previousVersionIndex = application.version;
     const variables = {
       input: {
         id: application.id,
         applicationPatch: {
-          version: previousVersionIndex++
+          version: Number(previousVersionIndex) + 1
         }
       }
     };

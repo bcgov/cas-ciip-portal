@@ -27,7 +27,11 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => 
                 }
               }}
             >
-              <Nav.Link active={node.id === props.formResultId}>
+              <Nav.Link
+                active={
+                  node.id === props.formResultId && !props.confirmationPage
+                }
+              >
                 {node.formJsonByFormId.name}
               </Nav.Link>
             </Link>
