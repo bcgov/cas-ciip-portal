@@ -16,7 +16,7 @@ create table ggircs_portal.application_revision (
 );
 
 create unique index ggircs_portal_application_revision_primary_key on ggircs_portal.application_revision (application_id, version_number);
-create index ggircs_portal_application_revision_foreign_key on ggircs_portal.application_revision(application_id);
+create index ggircs_portal_application_revision_application_foreign_key on ggircs_portal.application_revision(application_id);
 
 create trigger _100_timestamps
   before insert or update on ggircs_portal.application_revision
