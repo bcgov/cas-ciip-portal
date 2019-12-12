@@ -19,7 +19,7 @@ create table ggircs_portal.application_revision_status (
     foreign key (application_id, version_number) references ggircs_portal.application_revision(application_id, version_number)
 );
 
-create index ggircs_portal_application_revision_status_application_revision_foreign_key on ggircs_portal.application_revision_status(application_id, version_number);
+create index ggircs_portal_application_revision_status_foreign_key on ggircs_portal.application_revision_status(application_id, version_number);
 
 create trigger _100_timestamps
   before insert or update on ggircs_portal.application_revision_status

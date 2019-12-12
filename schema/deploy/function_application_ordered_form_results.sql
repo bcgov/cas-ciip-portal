@@ -6,7 +6,7 @@
 begin;
 
   create or replace function ggircs_portal.application_ordered_form_results(
-    application ggircs_portal.application
+    application ggircs_portal.application, version_number integer
   )
   returns setof ggircs_portal.form_result
   as
@@ -15,7 +15,7 @@ begin;
     begin
         return query (
           with application_results as (select * from ggircs_portal.form_result
-          where form_result.application_id = application.id)
+          where form_result.application_id = application.id and form_result.version_number = version_number)
             select application_results.* from application_results
               join ggircs_portal.ciip_application_wizard as wizard
               on wizard.form_id = application_results.form_id

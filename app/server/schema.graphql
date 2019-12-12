@@ -1,9 +1,7 @@
 """The application data"""
 type Application implements Node {
-  applicationStatus: ApplicationStatus
-
-  """Reads and enables pagination through a set of `ApplicationStatus`."""
-  applicationStatusesByApplicationId(
+  """Reads and enables pagination through a set of `ApplicationRevision`."""
+  applicationRevisionsByApplicationId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -13,7 +11,7 @@ type Application implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: ApplicationStatusCondition
+    condition: ApplicationRevisionCondition
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -27,9 +25,10 @@ type Application implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `ApplicationStatus`."""
-    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationStatusesConnection!
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsConnection!
+  applicationRevisionStatus: ApplicationRevisionStatus
 
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
@@ -139,6 +138,8 @@ type Application implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+  latestDraftVersionNumber: Int
+  latestSubmittedVersionNumber: Int
 
   """Reads and enables pagination through a set of `FormResult`."""
   orderedFormResults(
@@ -159,6 +160,7 @@ type Application implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
+    versionNumber: Int
   ): FormResultsConnection!
 
   """
@@ -174,9 +176,6 @@ type Application implements Node {
 
   """The certifier's user id, references ciip_user"""
   userId: Int
-
-  """The version of the application"""
-  version: Int!
 }
 
 """
@@ -198,9 +197,6 @@ input ApplicationCondition {
 
   """Checks for equality with the object’s `userId` field."""
   userId: Int
-
-  """Checks for equality with the object’s `version` field."""
-  version: Int
 }
 
 """An input for mutations affecting `Application`"""
@@ -218,9 +214,6 @@ input ApplicationInput {
 
   """The certifier's user id, references ciip_user"""
   userId: Int
-
-  """The version of the application"""
-  version: Int
 }
 
 """
@@ -240,9 +233,6 @@ input ApplicationPatch {
 
   """The certifier's user id, references ciip_user"""
   userId: Int
-
-  """The version of the application"""
-  version: Int
 }
 
 """The application review done by analyst"""
@@ -464,6 +454,454 @@ enum ApplicationReviewStatus {
   REQUESTED_CHANGES
 }
 
+"""The application revision data"""
+type ApplicationRevision implements Node {
+  """
+  Reads a single `Application` that is related to this `ApplicationRevision`.
+  """
+  applicationByApplicationId: Application
+
+  """
+  The foreign key to the ciip application, also part of the composite primary key with version number
+  """
+  applicationId: Int!
+
+  """
+  Reads and enables pagination through a set of `ApplicationRevisionStatus`.
+  """
+  applicationRevisionStatusesByApplicationIdAndVersionNumber(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationRevisionStatusCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ApplicationRevisionStatus`."""
+    orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionStatusesConnection!
+
+  """
+  Reads a single `CiipUser` that is related to this `ApplicationRevision`.
+  """
+  ciipUserByDeletedBy: CiipUser
+
+  """The date the application revision status was updated"""
+  createdAt: Datetime!
+
+  """The person who updated the application revision status"""
+  createdBy: String
+
+  """The date the application revision status was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the application revision status"""
+  deletedBy: Int
+
+  """Reads and enables pagination through a set of `FormResult`."""
+  formResultsByApplicationIdAndVersionNumber(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FormResultCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `FormResult`."""
+    orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FormResultsConnection!
+
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """The date the application revision status was updated"""
+  updatedAt: Datetime!
+
+  """The person who updated the application revision status"""
+  updatedBy: String
+
+  """
+  The version number of the revision, also part of the composite primary key with application_id
+  """
+  versionNumber: Int!
+}
+
+"""
+A condition to be used against `ApplicationRevision` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input ApplicationRevisionCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: Int
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
+
+  """Checks for equality with the object’s `versionNumber` field."""
+  versionNumber: Int
+}
+
+"""An input for mutations affecting `ApplicationRevision`"""
+input ApplicationRevisionInput {
+  """
+  The foreign key to the ciip application, also part of the composite primary key with version number
+  """
+  applicationId: Int!
+
+  """The date the application revision status was updated"""
+  createdAt: Datetime
+
+  """The person who updated the application revision status"""
+  createdBy: String
+
+  """The date the application revision status was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the application revision status"""
+  deletedBy: Int
+
+  """The date the application revision status was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the application revision status"""
+  updatedBy: String
+
+  """
+  The version number of the revision, also part of the composite primary key with application_id
+  """
+  versionNumber: Int!
+}
+
+"""
+Represents an update to a `ApplicationRevision`. Fields that are set will be updated.
+"""
+input ApplicationRevisionPatch {
+  """
+  The foreign key to the ciip application, also part of the composite primary key with version number
+  """
+  applicationId: Int
+
+  """The date the application revision status was updated"""
+  createdAt: Datetime
+
+  """The person who updated the application revision status"""
+  createdBy: String
+
+  """The date the application revision status was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the application revision status"""
+  deletedBy: Int
+
+  """The date the application revision status was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the application revision status"""
+  updatedBy: String
+
+  """
+  The version number of the revision, also part of the composite primary key with application_id
+  """
+  versionNumber: Int
+}
+
+"""A connection to a list of `ApplicationRevision` values."""
+type ApplicationRevisionsConnection {
+  """
+  A list of edges which contains the `ApplicationRevision` and cursor to aid in pagination.
+  """
+  edges: [ApplicationRevisionsEdge!]!
+
+  """A list of `ApplicationRevision` objects."""
+  nodes: [ApplicationRevision]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `ApplicationRevision` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `ApplicationRevision` edge in the connection."""
+type ApplicationRevisionsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ApplicationRevision` at the end of the edge."""
+  node: ApplicationRevision
+}
+
+"""Methods to use when ordering `ApplicationRevision`."""
+enum ApplicationRevisionsOrderBy {
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
+  VERSION_NUMBER_ASC
+  VERSION_NUMBER_DESC
+}
+
+"""The application revision status data"""
+type ApplicationRevisionStatus implements Node {
+  """The foreign key to application used for reference and join"""
+  applicationId: Int!
+
+  """
+  Reads a single `ApplicationRevision` that is related to this `ApplicationRevisionStatus`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
+
+  """The application revision status"""
+  applicationRevisionStatus: CiipApplicationRevisionStatus
+
+  """
+  Reads a single `CiipUser` that is related to this `ApplicationRevisionStatus`.
+  """
+  ciipUserByDeletedBy: CiipUser
+
+  """The date the application revision status was updated"""
+  createdAt: Datetime!
+
+  """The person who updated the application revision status"""
+  createdBy: String
+
+  """The date the application revision status was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the application revision status"""
+  deletedBy: Int
+
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  id: ID!
+
+  """The id used for reference and join"""
+  rowId: Int!
+
+  """The date the application revision status was updated"""
+  updatedAt: Datetime!
+
+  """The person who updated the application revision status"""
+  updatedBy: String
+  versionNumber: Int!
+}
+
+"""
+A condition to be used against `ApplicationRevisionStatus` object types. All
+fields are tested for equality and combined with a logical ‘and.’
+"""
+input ApplicationRevisionStatusCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """
+  Checks for equality with the object’s `applicationRevisionStatus` field.
+  """
+  applicationRevisionStatus: CiipApplicationRevisionStatus
+
+  """Checks for equality with the object’s `createdAt` field."""
+  createdAt: Datetime
+
+  """Checks for equality with the object’s `createdBy` field."""
+  createdBy: String
+
+  """Checks for equality with the object’s `deletedAt` field."""
+  deletedAt: Datetime
+
+  """Checks for equality with the object’s `deletedBy` field."""
+  deletedBy: Int
+
+  """Checks for equality with the object’s `rowId` field."""
+  rowId: Int
+
+  """Checks for equality with the object’s `updatedAt` field."""
+  updatedAt: Datetime
+
+  """Checks for equality with the object’s `updatedBy` field."""
+  updatedBy: String
+
+  """Checks for equality with the object’s `versionNumber` field."""
+  versionNumber: Int
+}
+
+"""A connection to a list of `ApplicationRevisionStatus` values."""
+type ApplicationRevisionStatusesConnection {
+  """
+  A list of edges which contains the `ApplicationRevisionStatus` and cursor to aid in pagination.
+  """
+  edges: [ApplicationRevisionStatusesEdge!]!
+
+  """A list of `ApplicationRevisionStatus` objects."""
+  nodes: [ApplicationRevisionStatus]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `ApplicationRevisionStatus` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `ApplicationRevisionStatus` edge in the connection."""
+type ApplicationRevisionStatusesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ApplicationRevisionStatus` at the end of the edge."""
+  node: ApplicationRevisionStatus
+}
+
+"""Methods to use when ordering `ApplicationRevisionStatus`."""
+enum ApplicationRevisionStatusesOrderBy {
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  APPLICATION_REVISION_STATUS_ASC
+  APPLICATION_REVISION_STATUS_DESC
+  CREATED_AT_ASC
+  CREATED_AT_DESC
+  CREATED_BY_ASC
+  CREATED_BY_DESC
+  DELETED_AT_ASC
+  DELETED_AT_DESC
+  DELETED_BY_ASC
+  DELETED_BY_DESC
+  ID_ASC
+  ID_DESC
+  NATURAL
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  UPDATED_AT_ASC
+  UPDATED_AT_DESC
+  UPDATED_BY_ASC
+  UPDATED_BY_DESC
+  VERSION_NUMBER_ASC
+  VERSION_NUMBER_DESC
+}
+
+"""An input for mutations affecting `ApplicationRevisionStatus`"""
+input ApplicationRevisionStatusInput {
+  """The foreign key to application used for reference and join"""
+  applicationId: Int!
+
+  """The application revision status"""
+  applicationRevisionStatus: CiipApplicationRevisionStatus
+
+  """The date the application revision status was updated"""
+  createdAt: Datetime
+
+  """The person who updated the application revision status"""
+  createdBy: String
+
+  """The date the application revision status was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the application revision status"""
+  deletedBy: Int
+
+  """The date the application revision status was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the application revision status"""
+  updatedBy: String
+  versionNumber: Int!
+}
+
+"""
+Represents an update to a `ApplicationRevisionStatus`. Fields that are set will be updated.
+"""
+input ApplicationRevisionStatusPatch {
+  """The foreign key to application used for reference and join"""
+  applicationId: Int
+
+  """The application revision status"""
+  applicationRevisionStatus: CiipApplicationRevisionStatus
+
+  """The date the application revision status was updated"""
+  createdAt: Datetime
+
+  """The person who updated the application revision status"""
+  createdBy: String
+
+  """The date the application revision status was deleted"""
+  deletedAt: Datetime
+
+  """The person who deleted the application revision status"""
+  deletedBy: Int
+
+  """The date the application revision status was updated"""
+  updatedAt: Datetime
+
+  """The person who updated the application revision status"""
+  updatedBy: String
+  versionNumber: Int
+}
+
 """A connection to a list of `Application` values."""
 type ApplicationsConnection {
   """
@@ -505,193 +943,6 @@ enum ApplicationsOrderBy {
   REPORTING_YEAR_DESC
   USER_ID_ASC
   USER_ID_DESC
-  VERSION_ASC
-  VERSION_DESC
-}
-
-"""The application status data"""
-type ApplicationStatus implements Node {
-  """
-  Reads a single `Application` that is related to this `ApplicationStatus`.
-  """
-  applicationByApplicationId: Application
-
-  """The foreign key to application used for reference and join"""
-  applicationId: Int!
-
-  """The application status"""
-  applicationStatus: CiipApplicationStatus
-
-  """Reads a single `CiipUser` that is related to this `ApplicationStatus`."""
-  ciipUserByDeletedBy: CiipUser
-
-  """The date the application status was updated"""
-  createdAt: Datetime!
-
-  """The person who updated the application status"""
-  createdBy: String
-
-  """The date the application status was deleted"""
-  deletedAt: Datetime
-
-  """The person who deleted the application status"""
-  deletedBy: Int
-
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-
-  """The id used for reference and join"""
-  rowId: Int!
-
-  """The date the application status was updated"""
-  updatedAt: Datetime!
-
-  """The person who updated the application status"""
-  updatedBy: String
-}
-
-"""
-A condition to be used against `ApplicationStatus` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input ApplicationStatusCondition {
-  """Checks for equality with the object’s `applicationId` field."""
-  applicationId: Int
-
-  """Checks for equality with the object’s `applicationStatus` field."""
-  applicationStatus: CiipApplicationStatus
-
-  """Checks for equality with the object’s `createdAt` field."""
-  createdAt: Datetime
-
-  """Checks for equality with the object’s `createdBy` field."""
-  createdBy: String
-
-  """Checks for equality with the object’s `deletedAt` field."""
-  deletedAt: Datetime
-
-  """Checks for equality with the object’s `deletedBy` field."""
-  deletedBy: Int
-
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
-
-  """Checks for equality with the object’s `updatedAt` field."""
-  updatedAt: Datetime
-
-  """Checks for equality with the object’s `updatedBy` field."""
-  updatedBy: String
-}
-
-"""A connection to a list of `ApplicationStatus` values."""
-type ApplicationStatusesConnection {
-  """
-  A list of edges which contains the `ApplicationStatus` and cursor to aid in pagination.
-  """
-  edges: [ApplicationStatusesEdge!]!
-
-  """A list of `ApplicationStatus` objects."""
-  nodes: [ApplicationStatus]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `ApplicationStatus` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""A `ApplicationStatus` edge in the connection."""
-type ApplicationStatusesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `ApplicationStatus` at the end of the edge."""
-  node: ApplicationStatus
-}
-
-"""Methods to use when ordering `ApplicationStatus`."""
-enum ApplicationStatusesOrderBy {
-  APPLICATION_ID_ASC
-  APPLICATION_ID_DESC
-  APPLICATION_STATUS_ASC
-  APPLICATION_STATUS_DESC
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  CREATED_BY_ASC
-  CREATED_BY_DESC
-  DELETED_AT_ASC
-  DELETED_AT_DESC
-  DELETED_BY_ASC
-  DELETED_BY_DESC
-  ID_ASC
-  ID_DESC
-  NATURAL
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-  UPDATED_AT_ASC
-  UPDATED_AT_DESC
-  UPDATED_BY_ASC
-  UPDATED_BY_DESC
-}
-
-"""An input for mutations affecting `ApplicationStatus`"""
-input ApplicationStatusInput {
-  """The foreign key to application used for reference and join"""
-  applicationId: Int!
-
-  """The application status"""
-  applicationStatus: CiipApplicationStatus
-
-  """The date the application status was updated"""
-  createdAt: Datetime
-
-  """The person who updated the application status"""
-  createdBy: String
-
-  """The date the application status was deleted"""
-  deletedAt: Datetime
-
-  """The person who deleted the application status"""
-  deletedBy: Int
-
-  """The date the application status was updated"""
-  updatedAt: Datetime
-
-  """The person who updated the application status"""
-  updatedBy: String
-}
-
-"""
-Represents an update to a `ApplicationStatus`. Fields that are set will be updated.
-"""
-input ApplicationStatusPatch {
-  """The foreign key to application used for reference and join"""
-  applicationId: Int
-
-  """The application status"""
-  applicationStatus: CiipApplicationStatus
-
-  """The date the application status was updated"""
-  createdAt: Datetime
-
-  """The person who updated the application status"""
-  createdBy: String
-
-  """The date the application status was deleted"""
-  deletedAt: Datetime
-
-  """The person who deleted the application status"""
-  deletedBy: Int
-
-  """The date the application status was updated"""
-  updatedAt: Datetime
-
-  """The person who updated the application status"""
-  updatedBy: String
 }
 
 """Table containing the benchmark and eligibility threshold for a product"""
@@ -1154,18 +1405,12 @@ type CiipApplication implements Node {
   Reads a single `Application` that is related to this `CiipApplication`.
   """
   applicationByRowId: Application
-  applicationStatus: CiipApplicationStatus
-  bcghgid: BigFloat
-  facilityName: String
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
-  operatorName: String
-  reportingYear: String
   rowId: Int!
-  submissionDate: Datetime
 }
 
 """
@@ -1173,26 +1418,17 @@ A condition to be used against `CiipApplication` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
 input CiipApplicationCondition {
-  """Checks for equality with the object’s `applicationStatus` field."""
-  applicationStatus: CiipApplicationStatus
-
-  """Checks for equality with the object’s `bcghgid` field."""
-  bcghgid: BigFloat
-
-  """Checks for equality with the object’s `facilityName` field."""
-  facilityName: String
-
-  """Checks for equality with the object’s `operatorName` field."""
-  operatorName: String
-
-  """Checks for equality with the object’s `reportingYear` field."""
-  reportingYear: String
-
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
+}
 
-  """Checks for equality with the object’s `submissionDate` field."""
-  submissionDate: Datetime
+enum CiipApplicationRevisionStatus {
+  APPROVED
+  CHANGES_SUBMITTED
+  DRAFT
+  PENDING
+  REJECTED
+  REQUESTED_CHANGES
 }
 
 """A connection to a list of `CiipApplication` values."""
@@ -1225,32 +1461,11 @@ type CiipApplicationsEdge {
 
 """Methods to use when ordering `CiipApplication`."""
 enum CiipApplicationsOrderBy {
-  APPLICATION_STATUS_ASC
-  APPLICATION_STATUS_DESC
-  BCGHGID_ASC
-  BCGHGID_DESC
-  FACILITY_NAME_ASC
-  FACILITY_NAME_DESC
   ID_ASC
   ID_DESC
   NATURAL
-  OPERATOR_NAME_ASC
-  OPERATOR_NAME_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
-  REPORTING_YEAR_ASC
-  REPORTING_YEAR_DESC
-  SUBMISSION_DATE_ASC
-  SUBMISSION_DATE_DESC
-}
-
-enum CiipApplicationStatus {
-  APPROVED
-  CHANGES_SUBMITTED
-  DRAFT
-  PENDING
-  REJECTED
-  REQUESTED_CHANGES
 }
 
 """
@@ -2089,6 +2304,66 @@ enum CiipProductionsOrderBy {
 
 """Table containing the benchmark and eligibility threshold for a product"""
 type CiipUser implements Node {
+  """Reads and enables pagination through a set of `ApplicationRevision`."""
+  applicationRevisionsByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationRevisionCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsConnection!
+
+  """
+  Reads and enables pagination through a set of `ApplicationRevisionStatus`.
+  """
+  applicationRevisionStatusesByDeletedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationRevisionStatusCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ApplicationRevisionStatus`."""
+    orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionStatusesConnection!
+
   """Reads and enables pagination through a set of `Application`."""
   applicationsByUserId(
     """Read all values in the set after (below) this cursor."""
@@ -2117,35 +2392,6 @@ type CiipUser implements Node {
     """The method to use when ordering `Application`."""
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsConnection!
-
-  """Reads and enables pagination through a set of `ApplicationStatus`."""
-  applicationStatusesByDeletedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationStatusCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ApplicationStatus`."""
-    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationStatusesConnection!
 
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByDeletedBy(
@@ -2834,10 +3080,10 @@ type CreateApplicationReviewPayload {
   query: Query
 }
 
-"""All input for the create `ApplicationStatus` mutation."""
-input CreateApplicationStatusInput {
-  """The `ApplicationStatus` to be created by this mutation."""
-  applicationStatus: ApplicationStatusInput!
+"""All input for the create `ApplicationRevision` mutation."""
+input CreateApplicationRevisionInput {
+  """The `ApplicationRevision` to be created by this mutation."""
+  applicationRevision: ApplicationRevisionInput!
 
   """
   An arbitrary string value with no semantic meaning. Will be included in the
@@ -2846,23 +3092,70 @@ input CreateApplicationStatusInput {
   clientMutationId: String
 }
 
-"""The output of our create `ApplicationStatus` mutation."""
-type CreateApplicationStatusPayload {
+"""The output of our create `ApplicationRevision` mutation."""
+type CreateApplicationRevisionPayload {
   """
-  Reads a single `Application` that is related to this `ApplicationStatus`.
+  Reads a single `Application` that is related to this `ApplicationRevision`.
   """
   applicationByApplicationId: Application
 
-  """The `ApplicationStatus` that was created by this mutation."""
-  applicationStatus: ApplicationStatus
+  """The `ApplicationRevision` that was created by this mutation."""
+  applicationRevision: ApplicationRevision
 
-  """An edge for our `ApplicationStatus`. May be used by Relay 1."""
-  applicationStatusEdge(
-    """The method to use when ordering `ApplicationStatus`."""
-    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationStatusesEdge
+  """An edge for our `ApplicationRevision`. May be used by Relay 1."""
+  applicationRevisionEdge(
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsEdge
 
-  """Reads a single `CiipUser` that is related to this `ApplicationStatus`."""
+  """
+  Reads a single `CiipUser` that is related to this `ApplicationRevision`.
+  """
+  ciipUserByDeletedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `ApplicationRevisionStatus` mutation."""
+input CreateApplicationRevisionStatusInput {
+  """The `ApplicationRevisionStatus` to be created by this mutation."""
+  applicationRevisionStatus: ApplicationRevisionStatusInput!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+}
+
+"""The output of our create `ApplicationRevisionStatus` mutation."""
+type CreateApplicationRevisionStatusPayload {
+  """
+  Reads a single `ApplicationRevision` that is related to this `ApplicationRevisionStatus`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
+
+  """The `ApplicationRevisionStatus` that was created by this mutation."""
+  applicationRevisionStatus: ApplicationRevisionStatus
+
+  """An edge for our `ApplicationRevisionStatus`. May be used by Relay 1."""
+  applicationRevisionStatusEdge(
+    """The method to use when ordering `ApplicationRevisionStatus`."""
+    orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionStatusesEdge
+
+  """
+  Reads a single `CiipUser` that is related to this `ApplicationRevisionStatus`.
+  """
   ciipUserByDeletedBy: CiipUser
 
   """
@@ -3258,6 +3551,11 @@ input CreateFormResultInput {
 type CreateFormResultPayload {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
+
+  """
+  Reads a single `ApplicationRevision` that is related to this `FormResult`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
 
   """Reads a single `CiipUser` that is related to this `FormResult`."""
   ciipUserByDeletedBy: CiipUser
@@ -3665,8 +3963,77 @@ type DeleteApplicationReviewPayload {
   query: Query
 }
 
-"""All input for the `deleteApplicationStatusByRowId` mutation."""
-input DeleteApplicationStatusByRowIdInput {
+"""
+All input for the `deleteApplicationRevisionByApplicationIdAndVersionNumber` mutation.
+"""
+input DeleteApplicationRevisionByApplicationIdAndVersionNumberInput {
+  """
+  The foreign key to the ciip application, also part of the composite primary key with version number
+  """
+  applicationId: Int!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The version number of the revision, also part of the composite primary key with application_id
+  """
+  versionNumber: Int!
+}
+
+"""All input for the `deleteApplicationRevision` mutation."""
+input DeleteApplicationRevisionInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ApplicationRevision` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `ApplicationRevision` mutation."""
+type DeleteApplicationRevisionPayload {
+  """
+  Reads a single `Application` that is related to this `ApplicationRevision`.
+  """
+  applicationByApplicationId: Application
+
+  """The `ApplicationRevision` that was deleted by this mutation."""
+  applicationRevision: ApplicationRevision
+
+  """An edge for our `ApplicationRevision`. May be used by Relay 1."""
+  applicationRevisionEdge(
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsEdge
+
+  """
+  Reads a single `CiipUser` that is related to this `ApplicationRevision`.
+  """
+  ciipUserByDeletedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedApplicationRevisionId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteApplicationRevisionStatusByRowId` mutation."""
+input DeleteApplicationRevisionStatusByRowIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -3677,8 +4044,8 @@ input DeleteApplicationStatusByRowIdInput {
   rowId: Int!
 }
 
-"""All input for the `deleteApplicationStatus` mutation."""
-input DeleteApplicationStatusInput {
+"""All input for the `deleteApplicationRevisionStatus` mutation."""
+input DeleteApplicationRevisionStatusInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -3686,28 +4053,30 @@ input DeleteApplicationStatusInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `ApplicationStatus` to be deleted.
+  The globally unique `ID` which will identify a single `ApplicationRevisionStatus` to be deleted.
   """
   id: ID!
 }
 
-"""The output of our delete `ApplicationStatus` mutation."""
-type DeleteApplicationStatusPayload {
+"""The output of our delete `ApplicationRevisionStatus` mutation."""
+type DeleteApplicationRevisionStatusPayload {
   """
-  Reads a single `Application` that is related to this `ApplicationStatus`.
+  Reads a single `ApplicationRevision` that is related to this `ApplicationRevisionStatus`.
   """
-  applicationByApplicationId: Application
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
 
-  """The `ApplicationStatus` that was deleted by this mutation."""
-  applicationStatus: ApplicationStatus
+  """The `ApplicationRevisionStatus` that was deleted by this mutation."""
+  applicationRevisionStatus: ApplicationRevisionStatus
 
-  """An edge for our `ApplicationStatus`. May be used by Relay 1."""
-  applicationStatusEdge(
-    """The method to use when ordering `ApplicationStatus`."""
-    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationStatusesEdge
+  """An edge for our `ApplicationRevisionStatus`. May be used by Relay 1."""
+  applicationRevisionStatusEdge(
+    """The method to use when ordering `ApplicationRevisionStatus`."""
+    orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionStatusesEdge
 
-  """Reads a single `CiipUser` that is related to this `ApplicationStatus`."""
+  """
+  Reads a single `CiipUser` that is related to this `ApplicationRevisionStatus`.
+  """
   ciipUserByDeletedBy: CiipUser
 
   """
@@ -3715,7 +4084,7 @@ type DeleteApplicationStatusPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-  deletedApplicationStatusId: ID
+  deletedApplicationRevisionStatusId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -3830,6 +4199,59 @@ type DeleteCertificationUrlPayload {
   """
   clientMutationId: String
   deletedCertificationUrlId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteCiipApplicationByRowId` mutation."""
+input DeleteCiipApplicationByRowIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  rowId: Int!
+}
+
+"""All input for the `deleteCiipApplication` mutation."""
+input DeleteCiipApplicationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `CiipApplication` to be deleted.
+  """
+  id: ID!
+}
+
+"""The output of our delete `CiipApplication` mutation."""
+type DeleteCiipApplicationPayload {
+  """
+  Reads a single `Application` that is related to this `CiipApplication`.
+  """
+  applicationByRowId: Application
+
+  """The `CiipApplication` that was deleted by this mutation."""
+  ciipApplication: CiipApplication
+
+  """An edge for our `CiipApplication`. May be used by Relay 1."""
+  ciipApplicationEdge(
+    """The method to use when ordering `CiipApplication`."""
+    orderBy: [CiipApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipApplicationsEdge
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  deletedCiipApplicationId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -4199,6 +4621,11 @@ input DeleteFormResultInput {
 type DeleteFormResultPayload {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
+
+  """
+  Reads a single `ApplicationRevision` that is related to this `FormResult`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
 
   """Reads a single `CiipUser` that is related to this `FormResult`."""
   ciipUserByDeletedBy: CiipUser
@@ -5770,6 +6197,11 @@ type FormResult implements Node {
     orderBy: [ApplicationReviewsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationReviewsConnection!
 
+  """
+  Reads a single `ApplicationRevision` that is related to this `FormResult`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
+
   """Reads a single `CiipUser` that is related to this `FormResult`."""
   ciipUserByDeletedBy: CiipUser
 
@@ -5823,14 +6255,12 @@ type FormResult implements Node {
   """Unique ID for the form"""
   rowId: Int!
 
-  """The submission date of the Application"""
-  submissionDate: Datetime
-
   """The date the form was updated"""
   updatedAt: Datetime!
 
   """The person who updated the form"""
   updatedBy: String
+  versionNumber: Int!
 }
 
 """
@@ -5862,14 +6292,14 @@ input FormResultCondition {
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 
-  """Checks for equality with the object’s `submissionDate` field."""
-  submissionDate: Datetime
-
   """Checks for equality with the object’s `updatedAt` field."""
   updatedAt: Datetime
 
   """Checks for equality with the object’s `updatedBy` field."""
   updatedBy: String
+
+  """Checks for equality with the object’s `versionNumber` field."""
+  versionNumber: Int
 }
 
 """An input for mutations affecting `FormResult`"""
@@ -5895,14 +6325,12 @@ input FormResultInput {
   """JSON dump of form data"""
   formResult: JSON!
 
-  """The submission date of the Application"""
-  submissionDate: Datetime
-
   """The date the form was updated"""
   updatedAt: Datetime
 
   """The person who updated the form"""
   updatedBy: String
+  versionNumber: Int
 }
 
 """
@@ -5930,14 +6358,12 @@ input FormResultPatch {
   """JSON dump of form data"""
   formResult: JSON
 
-  """The submission date of the Application"""
-  submissionDate: Datetime
-
   """The date the form was updated"""
   updatedAt: Datetime
 
   """The person who updated the form"""
   updatedBy: String
+  versionNumber: Int
 }
 
 """A connection to a list of `FormResult` values."""
@@ -5987,12 +6413,12 @@ enum FormResultsOrderBy {
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
-  SUBMISSION_DATE_ASC
-  SUBMISSION_DATE_DESC
   UPDATED_AT_ASC
   UPDATED_AT_DESC
   UPDATED_BY_ASC
   UPDATED_BY_DESC
+  VERSION_NUMBER_ASC
+  VERSION_NUMBER_DESC
 }
 
 """Table containing information on fuel"""
@@ -6627,13 +7053,21 @@ type Mutation {
     input: CreateApplicationReviewMutationChainInput!
   ): CreateApplicationReviewMutationChainPayload
 
-  """Creates a single `ApplicationStatus`."""
-  createApplicationStatus(
+  """Creates a single `ApplicationRevision`."""
+  createApplicationRevision(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateApplicationStatusInput!
-  ): CreateApplicationStatusPayload
+    input: CreateApplicationRevisionInput!
+  ): CreateApplicationRevisionPayload
+
+  """Creates a single `ApplicationRevisionStatus`."""
+  createApplicationRevisionStatus(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateApplicationRevisionStatusInput!
+  ): CreateApplicationRevisionStatusPayload
 
   """Creates a single `Benchmark`."""
   createBenchmark(
@@ -6801,21 +7235,39 @@ type Mutation {
     input: DeleteApplicationReviewByRowIdInput!
   ): DeleteApplicationReviewPayload
 
-  """Deletes a single `ApplicationStatus` using its globally unique id."""
-  deleteApplicationStatus(
+  """Deletes a single `ApplicationRevision` using its globally unique id."""
+  deleteApplicationRevision(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteApplicationStatusInput!
-  ): DeleteApplicationStatusPayload
+    input: DeleteApplicationRevisionInput!
+  ): DeleteApplicationRevisionPayload
 
-  """Deletes a single `ApplicationStatus` using a unique key."""
-  deleteApplicationStatusByRowId(
+  """Deletes a single `ApplicationRevision` using a unique key."""
+  deleteApplicationRevisionByApplicationIdAndVersionNumber(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteApplicationStatusByRowIdInput!
-  ): DeleteApplicationStatusPayload
+    input: DeleteApplicationRevisionByApplicationIdAndVersionNumberInput!
+  ): DeleteApplicationRevisionPayload
+
+  """
+  Deletes a single `ApplicationRevisionStatus` using its globally unique id.
+  """
+  deleteApplicationRevisionStatus(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteApplicationRevisionStatusInput!
+  ): DeleteApplicationRevisionStatusPayload
+
+  """Deletes a single `ApplicationRevisionStatus` using a unique key."""
+  deleteApplicationRevisionStatusByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteApplicationRevisionStatusByRowIdInput!
+  ): DeleteApplicationRevisionStatusPayload
 
   """Deletes a single `Benchmark` using its globally unique id."""
   deleteBenchmark(
@@ -6848,6 +7300,22 @@ type Mutation {
     """
     input: DeleteCertificationUrlByRowIdInput!
   ): DeleteCertificationUrlPayload
+
+  """Deletes a single `CiipApplication` using its globally unique id."""
+  deleteCiipApplication(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCiipApplicationInput!
+  ): DeleteCiipApplicationPayload
+
+  """Deletes a single `CiipApplication` using a unique key."""
+  deleteCiipApplicationByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteCiipApplicationByRowIdInput!
+  ): DeleteCiipApplicationPayload
 
   """Deletes a single `CiipApplicationWizard` using its globally unique id."""
   deleteCiipApplicationWizard(
@@ -7134,22 +7602,42 @@ type Mutation {
   ): UpdateApplicationReviewPayload
 
   """
-  Updates a single `ApplicationStatus` using its globally unique id and a patch.
+  Updates a single `ApplicationRevision` using its globally unique id and a patch.
   """
-  updateApplicationStatus(
+  updateApplicationRevision(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateApplicationStatusInput!
-  ): UpdateApplicationStatusPayload
+    input: UpdateApplicationRevisionInput!
+  ): UpdateApplicationRevisionPayload
 
-  """Updates a single `ApplicationStatus` using a unique key and a patch."""
-  updateApplicationStatusByRowId(
+  """Updates a single `ApplicationRevision` using a unique key and a patch."""
+  updateApplicationRevisionByApplicationIdAndVersionNumber(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateApplicationStatusByRowIdInput!
-  ): UpdateApplicationStatusPayload
+    input: UpdateApplicationRevisionByApplicationIdAndVersionNumberInput!
+  ): UpdateApplicationRevisionPayload
+
+  """
+  Updates a single `ApplicationRevisionStatus` using its globally unique id and a patch.
+  """
+  updateApplicationRevisionStatus(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateApplicationRevisionStatusInput!
+  ): UpdateApplicationRevisionStatusPayload
+
+  """
+  Updates a single `ApplicationRevisionStatus` using a unique key and a patch.
+  """
+  updateApplicationRevisionStatusByRowId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateApplicationRevisionStatusByRowIdInput!
+  ): UpdateApplicationRevisionStatusPayload
 
   """Updates a single `Benchmark` using its globally unique id and a patch."""
   updateBenchmark(
@@ -8220,6 +8708,66 @@ type Query implements Node {
     orderBy: [ApplicationReviewsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationReviewsConnection
 
+  """Reads and enables pagination through a set of `ApplicationRevision`."""
+  allApplicationRevisions(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationRevisionCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsConnection
+
+  """
+  Reads and enables pagination through a set of `ApplicationRevisionStatus`.
+  """
+  allApplicationRevisionStatuses(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ApplicationRevisionStatusCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `ApplicationRevisionStatus`."""
+    orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionStatusesConnection
+
   """Reads and enables pagination through a set of `Application`."""
   allApplications(
     """Read all values in the set after (below) this cursor."""
@@ -8248,35 +8796,6 @@ type Query implements Node {
     """The method to use when ordering `Application`."""
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsConnection
-
-  """Reads and enables pagination through a set of `ApplicationStatus`."""
-  allApplicationStatuses(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationStatusCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ApplicationStatus`."""
-    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationStatusesConnection
 
   """Reads and enables pagination through a set of `Benchmark`."""
   allBenchmarks(
@@ -9056,14 +9575,25 @@ type Query implements Node {
   ): ApplicationReview
   applicationReviewByRowId(rowId: Int!): ApplicationReview
 
-  """Reads a single `ApplicationStatus` using its globally unique `ID`."""
-  applicationStatus(
+  """Reads a single `ApplicationRevision` using its globally unique `ID`."""
+  applicationRevision(
     """
-    The globally unique `ID` to be used in selecting a single `ApplicationStatus`.
+    The globally unique `ID` to be used in selecting a single `ApplicationRevision`.
     """
     id: ID!
-  ): ApplicationStatus
-  applicationStatusByRowId(rowId: Int!): ApplicationStatus
+  ): ApplicationRevision
+  applicationRevisionByApplicationIdAndVersionNumber(applicationId: Int!, versionNumber: Int!): ApplicationRevision
+
+  """
+  Reads a single `ApplicationRevisionStatus` using its globally unique `ID`.
+  """
+  applicationRevisionStatus(
+    """
+    The globally unique `ID` to be used in selecting a single `ApplicationRevisionStatus`.
+    """
+    id: ID!
+  ): ApplicationRevisionStatus
+  applicationRevisionStatusByRowId(rowId: Int!): ApplicationRevisionStatus
 
   """Reads a single `Benchmark` using its globally unique `ID`."""
   benchmark(
@@ -10089,12 +10619,90 @@ type UpdateApplicationReviewPayload {
   query: Query
 }
 
-"""All input for the `updateApplicationStatusByRowId` mutation."""
-input UpdateApplicationStatusByRowIdInput {
+"""
+All input for the `updateApplicationRevisionByApplicationIdAndVersionNumber` mutation.
+"""
+input UpdateApplicationRevisionByApplicationIdAndVersionNumberInput {
   """
-  An object where the defined keys will be set on the `ApplicationStatus` being updated.
+  The foreign key to the ciip application, also part of the composite primary key with version number
   """
-  applicationStatusPatch: ApplicationStatusPatch!
+  applicationId: Int!
+
+  """
+  An object where the defined keys will be set on the `ApplicationRevision` being updated.
+  """
+  applicationRevisionPatch: ApplicationRevisionPatch!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The version number of the revision, also part of the composite primary key with application_id
+  """
+  versionNumber: Int!
+}
+
+"""All input for the `updateApplicationRevision` mutation."""
+input UpdateApplicationRevisionInput {
+  """
+  An object where the defined keys will be set on the `ApplicationRevision` being updated.
+  """
+  applicationRevisionPatch: ApplicationRevisionPatch!
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ApplicationRevision` to be updated.
+  """
+  id: ID!
+}
+
+"""The output of our update `ApplicationRevision` mutation."""
+type UpdateApplicationRevisionPayload {
+  """
+  Reads a single `Application` that is related to this `ApplicationRevision`.
+  """
+  applicationByApplicationId: Application
+
+  """The `ApplicationRevision` that was updated by this mutation."""
+  applicationRevision: ApplicationRevision
+
+  """An edge for our `ApplicationRevision`. May be used by Relay 1."""
+  applicationRevisionEdge(
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsEdge
+
+  """
+  Reads a single `CiipUser` that is related to this `ApplicationRevision`.
+  """
+  ciipUserByDeletedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateApplicationRevisionStatusByRowId` mutation."""
+input UpdateApplicationRevisionStatusByRowIdInput {
+  """
+  An object where the defined keys will be set on the `ApplicationRevisionStatus` being updated.
+  """
+  applicationRevisionStatusPatch: ApplicationRevisionStatusPatch!
 
   """
   An arbitrary string value with no semantic meaning. Will be included in the
@@ -10106,12 +10714,12 @@ input UpdateApplicationStatusByRowIdInput {
   rowId: Int!
 }
 
-"""All input for the `updateApplicationStatus` mutation."""
-input UpdateApplicationStatusInput {
+"""All input for the `updateApplicationRevisionStatus` mutation."""
+input UpdateApplicationRevisionStatusInput {
   """
-  An object where the defined keys will be set on the `ApplicationStatus` being updated.
+  An object where the defined keys will be set on the `ApplicationRevisionStatus` being updated.
   """
-  applicationStatusPatch: ApplicationStatusPatch!
+  applicationRevisionStatusPatch: ApplicationRevisionStatusPatch!
 
   """
   An arbitrary string value with no semantic meaning. Will be included in the
@@ -10120,28 +10728,30 @@ input UpdateApplicationStatusInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `ApplicationStatus` to be updated.
+  The globally unique `ID` which will identify a single `ApplicationRevisionStatus` to be updated.
   """
   id: ID!
 }
 
-"""The output of our update `ApplicationStatus` mutation."""
-type UpdateApplicationStatusPayload {
+"""The output of our update `ApplicationRevisionStatus` mutation."""
+type UpdateApplicationRevisionStatusPayload {
   """
-  Reads a single `Application` that is related to this `ApplicationStatus`.
+  Reads a single `ApplicationRevision` that is related to this `ApplicationRevisionStatus`.
   """
-  applicationByApplicationId: Application
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
 
-  """The `ApplicationStatus` that was updated by this mutation."""
-  applicationStatus: ApplicationStatus
+  """The `ApplicationRevisionStatus` that was updated by this mutation."""
+  applicationRevisionStatus: ApplicationRevisionStatus
 
-  """An edge for our `ApplicationStatus`. May be used by Relay 1."""
-  applicationStatusEdge(
-    """The method to use when ordering `ApplicationStatus`."""
-    orderBy: [ApplicationStatusesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationStatusesEdge
+  """An edge for our `ApplicationRevisionStatus`. May be used by Relay 1."""
+  applicationRevisionStatusEdge(
+    """The method to use when ordering `ApplicationRevisionStatus`."""
+    orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionStatusesEdge
 
-  """Reads a single `CiipUser` that is related to this `ApplicationStatus`."""
+  """
+  Reads a single `CiipUser` that is related to this `ApplicationRevisionStatus`.
+  """
   ciipUserByDeletedBy: CiipUser
 
   """
@@ -10714,6 +11324,11 @@ input UpdateFormResultInput {
 type UpdateFormResultPayload {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
+
+  """
+  Reads a single `ApplicationRevision` that is related to this `FormResult`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
 
   """Reads a single `CiipUser` that is related to this `FormResult`."""
   ciipUserByDeletedBy: CiipUser

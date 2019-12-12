@@ -5,7 +5,7 @@
 begin;
 
 create or replace view ggircs_portal.ciip_application as (
-    select 1 from ggircs_portal.application
+    select 1 as id from ggircs_portal.application
 );
 -- Postgraphile smart-comments: These comments allow Postgraphile to infer relations between views
 -- as though they were tables (ie faking a primary key in order to create an ID! type)

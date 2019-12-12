@@ -70,3 +70,5 @@ table_certification_url [table_application function_set_random_id] 2019-12-03T19
 function_form_result_requested_changes [table_application table_application_review table_review_comment] 2019-12-06T04:24:27Z Hamza Javed <hamza@button.is> # Function that returns requested changes for a given application
 function_search_organisation_facilities [table_facility] 2019-12-04T18:42:11Z Helen Liu <helen@button.is> # added search filter for applications of facilities
 function_search_all_facilities [table_facility] 2019-12-06T00:27:16Z Helen Liu <helen@button.is> # added search function for all facilities
+function_application_latest_submitted_version_number [table_application_revision_status] 2019-12-12T18:40:39Z Dylan Leard <dylan@button.is> # Function to add computed column latest_submitted_version_number to ggircs_portal.application
+function_application_latest_draft_version_number [table_application_revision_status] 2019-12-12T18:41:24Z Dylan Leard <dylan@button.is> # Function to add computed column latest_draft_version_number to ggircs_portal.application
