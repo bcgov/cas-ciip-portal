@@ -29,6 +29,7 @@ create trigger _100_timestamps
 comment on table ggircs_portal.application_revision_status is 'The application revision status data';
 comment on column ggircs_portal.application_revision_status.id is 'The id used for reference and join';
 comment on column ggircs_portal.application_revision_status.application_id is 'The foreign key to application used for reference and join';
+comment on column ggircs_portal.application_revision_status.version_number is 'The application version this status is attached to';
 comment on column ggircs_portal.application_revision_status.application_revision_status is 'The application revision status';
 comment on column ggircs_portal.application_revision_status.created_at is 'The date the application revision status was updated';
 comment on column ggircs_portal.application_revision_status.created_by is 'The person who updated the application revision status';
