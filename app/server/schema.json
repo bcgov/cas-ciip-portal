@@ -8273,19 +8273,7 @@
               "deprecationReason": null
             },
             {
-              "name": "CHANGES_SUBMITTED",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "DRAFT",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PENDING",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -8298,6 +8286,12 @@
             },
             {
               "name": "REQUESTED_CHANGES",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBMITTED",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -26123,6 +26117,30 @@
           "description": "",
           "fields": [
             {
+              "name": "applicationByApplicationId",
+              "description": "Reads a single `Application` that is related to this `ApplicationSearchResult`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Application",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "applicationId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "applicationRevisionStatus",
               "description": null,
               "args": [],
@@ -26183,12 +26201,12 @@
               "deprecationReason": null
             },
             {
-              "name": "rowId",
+              "name": "submissionDate",
               "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "Datetime",
                 "ofType": null
               },
               "isDeprecated": false,

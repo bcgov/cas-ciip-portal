@@ -3,6 +3,7 @@ import {Row, Col, Dropdown} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
+import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_applicationSearchResult.graphql';
 
 interface Props {
   applicationRevisionStatus;
@@ -10,11 +11,15 @@ interface Props {
   relay: RelayProp;
 }
 
-const statusBadgeColor = {
-  PENDING: 'info',
+const statusBadgeColor: Record<
+  CiipApplicationRevisionStatus,
+  'info' | 'danger' | 'success' | 'warning' | 'primary' | 'secondary'
+> = {
   DRAFT: 'warning',
+  SUBMITTED: 'info',
   REJECTED: 'danger',
-  APPROVED: 'success'
+  APPROVED: 'success',
+  REQUESTED_CHANGES: 'secondary'
 };
 
 export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> = props => {
@@ -32,7 +37,8 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
           applicationId: props.applicationRowId,
           applicationRevisionStatus: eventKey,
           createdAt: date,
-          createdBy: 'Admin'
+          createdBy: 'Admin',
+          versionNumber: props.applicationRevisionStatus.version_number
         }
       }
     };
@@ -79,6 +85,7 @@ export default createFragmentContainer(ApplicationRevisionStatusComponent, {
   applicationRevisionStatus: graphql`
     fragment ApplicationRevisionStatusContainer_applicationRevisionStatus on ApplicationRevisionStatus {
       applicationRevisionStatus
+      versionNumber
     }
   `
 });

@@ -3,6 +3,6 @@
 
 begin;
 
-create type ggircs_portal.ciip_application_revision_status as enum ('pending', 'approved', 'rejected', 'draft', 'requested changes', 'changes submitted');
+create type ggircs_portal.ciip_application_revision_status as enum ('submitted', 'approved', 'rejected', 'draft', 'requested changes');
 
 commit;

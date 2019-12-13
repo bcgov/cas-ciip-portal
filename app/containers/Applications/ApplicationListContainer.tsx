@@ -72,7 +72,7 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
-              rowId
+              applicationId
               ...ApplicationRowItemContainer_applicationSearchResult
             }
           }

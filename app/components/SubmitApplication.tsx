@@ -14,7 +14,7 @@ interface Props {
 
 export const SubmitApplicationComponent: React.FunctionComponent<Props> = props => {
   const router = useRouter();
-  // Change application status to 'pending' on application submit
+  // Change application status to 'submitted' on application submit
   const submitApplication = async () => {
     const {environment} = props.relay;
     const variables = {
@@ -22,7 +22,7 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = props 
         applicationRevisionStatus: {
           applicationId: props.application.rowId,
           versionNumber: props.application.latestDraftVersionNumber,
-          applicationRevisionStatus: 'PENDING' as CiipApplicationRevisionStatus
+          applicationRevisionStatus: 'SUBMITTED' as CiipApplicationRevisionStatus
         }
       }
     };
