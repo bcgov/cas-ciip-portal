@@ -25,19 +25,23 @@ describe('ApplicationDetailsContainer', () => {
     <QueryRenderer<ApplicationDetailsContainerTestQuery>
       environment={environment}
       query={graphql`
-        query ApplicationDetailsContainerTestQuery($applicationId: ID!) {
+        query ApplicationDetailsContainerTestQuery(
+          $applicationId: ID!
+          $version: String!
+        ) @relay_test_operation {
           query {
             application(id: $applicationId) {
               applicationRevisionStatus {
                 id
               }
               ...ApplicationDetailsContainer_application
+                @arguments(version: $version)
             }
             ...ApplicationDetailsContainer_query
           }
         }
       `}
-      variables={{applicationId: '2'}}
+      variables={{applicationId: '2', version: '1'}}
       render={({error, props}) => {
         if (props) {
           return (

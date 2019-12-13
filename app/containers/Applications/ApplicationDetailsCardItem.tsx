@@ -56,6 +56,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     )
   };
   const classTag = formJsonByFormId.slug;
+  if (!applicationReview) return <>No Review</>;
   return (
     <Card
       style={{width: '100%', marginBottom: '10px'}}
@@ -117,6 +118,7 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
   formResult: graphql`
     fragment ApplicationDetailsCardItem_formResult on FormResult {
       applicationReview {
+        id
         ...ApplicationReviewContainer_applicationReview
       }
       formResult

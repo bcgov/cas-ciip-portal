@@ -43,7 +43,10 @@ export const ApplicationRowItem = props => {
               applicationGUID:
                 applicationSearchResult.applicationByApplicationId.id,
               reportingYear: applicationSearchResult.reportingYear,
-              bcghgid: applicationSearchResult.bcghgid
+              bcghgid: applicationSearchResult.bcghgid,
+              version:
+                applicationSearchResult.applicationByApplicationId
+                  .latestSubmittedVersionNumber
             }
           }}
         >
@@ -67,6 +70,7 @@ export default createFragmentContainer(ApplicationRowItem, {
       submissionDate
       applicationByApplicationId {
         id
+        latestSubmittedVersionNumber
       }
     }
   `

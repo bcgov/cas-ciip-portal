@@ -12,7 +12,7 @@ interface Props {
 
 class Certify extends Component<Props> {
   static query = graphql`
-    query certifyQuery($applicationId: ID!) {
+    query certifyQuery($applicationId: ID!, $version: String!) {
       query {
         session {
           ...defaultLayout_session
@@ -21,6 +21,7 @@ class Certify extends Component<Props> {
         application(id: $applicationId) {
           ...CertificationSignature_application
           ...ApplicationDetailsContainer_application
+            @arguments(version: $version)
         }
       }
     }

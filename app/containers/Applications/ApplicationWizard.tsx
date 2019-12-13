@@ -105,7 +105,11 @@ export default createFragmentContainer(ApplicationWizard, {
         ...ApplicationFormNavbar_application
       }
       ...ApplicationWizardStep_query
-        @arguments(formResultId: $formResultId, applicationId: $applicationId)
+        @arguments(
+          formResultId: $formResultId
+          applicationId: $applicationId
+          version: $version
+        )
     }
   `
 });

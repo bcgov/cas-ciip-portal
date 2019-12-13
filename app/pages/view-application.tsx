@@ -33,6 +33,7 @@ class ViewApplication extends Component<Props> {
           ...RequestedChangesByFormResult_application
             @arguments(version: $version)
           ...ApplicationDetailsContainer_application
+            @arguments(version: $version)
         }
       }
     }

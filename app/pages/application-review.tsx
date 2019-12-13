@@ -21,6 +21,7 @@ class ApplicationReview extends Component<Props> {
       $bcghgidInput: BigFloat
       $reportingYear: String
       $applicationGUID: ID!
+      $version: String!
     ) {
       query {
         session {
@@ -32,6 +33,7 @@ class ApplicationReview extends Component<Props> {
             ...ApplicationRevisionStatusContainer_applicationRevisionStatus
           }
           ...ApplicationDetailsContainer_application
+            @arguments(version: $version)
         }
         ...IncentiveCalculatorContainer_query
           @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
