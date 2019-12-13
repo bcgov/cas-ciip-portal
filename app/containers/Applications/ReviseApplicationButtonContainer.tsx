@@ -51,6 +51,7 @@ export default createFragmentContainer(ReviseApplicationButton, {
   application: graphql`
     fragment ReviseApplicationButtonContainer_application on Application {
       id
+      latestSubmittedVersionNumber
     }
   `
 });

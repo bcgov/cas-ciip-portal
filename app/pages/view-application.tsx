@@ -19,7 +19,7 @@ interface Props extends CiipPageComponentProps {
 
 class ViewApplication extends Component<Props> {
   static query = graphql`
-    query viewApplicationQuery($applicationId: ID!) {
+    query viewApplicationQuery($applicationId: ID!, $version: String!) {
       query {
         session {
           ...defaultLayout_session
@@ -31,6 +31,7 @@ class ViewApplication extends Component<Props> {
           }
           ...ReviseApplicationButtonContainer_application
           ...RequestedChangesByFormResult_application
+            @arguments(version: $version)
           ...ApplicationDetailsContainer_application
         }
       }
