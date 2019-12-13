@@ -25,6 +25,12 @@ class ViewApplication extends Component<Props> {
       query {
         session {
           ...defaultLayout_session
+          ciipUserBySub {
+            firstName
+            lastName
+            emailAddress
+            phoneNumber
+          }
         }
         ...ApplicationDetailsContainer_query
 
@@ -51,6 +57,7 @@ class ViewApplication extends Component<Props> {
           edges {
             node {
               formResult
+              submissionDate
               formJsonByFormId {
                 name
                 slug
