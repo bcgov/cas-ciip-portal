@@ -5,19 +5,17 @@ const Subheader = () => (
     <nav className="navigation-main" id="navbar">
       <div className="container">
         <ul>
-          <li>
+          <li className="active">
             <Link
               href={{
                 pathname: '/user-dashboard'
               }}
             >
-              <a href="#" className="active">
-                My Dashboard
-              </a>
+              My Dashboard
             </Link>
           </li>
           <li>
-            <a href="/facilities-list">My Applications</a>
+            <Link href={{pathname: '/facilities-list'}}>My Applications</Link>
           </li>
         </ul>
       </div>

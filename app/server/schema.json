@@ -8490,16 +8490,6 @@
               "defaultValue": null
             },
             {
-              "name": "facility",
-              "description": "Checks for equality with the object’s `facility` field.",
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "FacilityApplicationStatusInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
               "type": {
@@ -8512,117 +8502,6 @@
             {
               "name": "userId",
               "description": "Checks for equality with the object’s `userId` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "FacilityApplicationStatusInput",
-          "description": "An input for mutations affecting `FacilityApplicationStatus`",
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "applicationId",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "applicationStatus",
-              "description": null,
-              "type": {
-                "kind": "ENUM",
-                "name": "CiipApplicationStatus",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityCity",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityId",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityMailingAddress",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityPostalCode",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "organisationName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "reportingYear",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "rowId",
-              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -8663,18 +8542,6 @@
             },
             {
               "name": "FACILITY_ID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -9002,6 +8869,16 @@
               "defaultValue": null
             },
             {
+              "name": "facility",
+              "description": "Checks for equality with the object’s `facility` field.",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "FacilityApplicationStatusInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
               "type": {
@@ -9027,6 +8904,117 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "FacilityApplicationStatusInput",
+          "description": "An input for mutations affecting `FacilityApplicationStatus`",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "applicationId",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "applicationStatus",
+              "description": null,
+              "type": {
+                "kind": "ENUM",
+                "name": "CiipApplicationStatus",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "facilityCity",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "facilityId",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "facilityMailingAddress",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "facilityName",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "facilityPostalCode",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "organisationName",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "reportingYear",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "rowId",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
@@ -9112,6 +9100,18 @@
             },
             {
               "name": "DELETED_BY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FACILITY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FACILITY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -37755,6 +37755,16 @@
               "defaultValue": null
             },
             {
+              "name": "facility",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "FacilityApplicationStatusInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "updatedAt",
               "description": "The date the application status was updated",
               "type": {
@@ -38071,11 +38081,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
-              "name": "facility",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "FacilityApplicationStatusInput",
                 "ofType": null
               },
               "defaultValue": null

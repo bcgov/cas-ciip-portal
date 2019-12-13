@@ -15,11 +15,10 @@ exports[`It matches the last accepted Snapshot 1`] = `
         class="jsx-775259080"
       >
         <li
-          class="jsx-775259080"
+          class="jsx-775259080 active"
         >
           <a
-            class="jsx-775259080 active"
-            href="#"
+            href="/user-dashboard"
           >
             My Dashboard
           </a>
@@ -28,7 +27,6 @@ exports[`It matches the last accepted Snapshot 1`] = `
           class="jsx-775259080"
         >
           <a
-            class="jsx-775259080"
             href="/facilities-list"
           >
             My Applications

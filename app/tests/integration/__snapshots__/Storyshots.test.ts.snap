@@ -1052,11 +1052,10 @@ Array [
               className="jsx-775259080"
             >
               <li
-                className="jsx-775259080"
+                className="jsx-775259080 active"
               >
                 <a
-                  className="jsx-775259080 active"
-                  href="#"
+                  href="/user-dashboard"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -1067,8 +1066,9 @@ Array [
                 className="jsx-775259080"
               >
                 <a
-                  className="jsx-775259080"
-                  href="#"
+                  href="/facilities-list"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
                 >
                   My Applications
                 </a>
