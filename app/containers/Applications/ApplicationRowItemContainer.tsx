@@ -16,7 +16,6 @@ const statusBadgeColor: Record<
 };
 export const ApplicationRowItem = props => {
   const {applicationSearchResult = {}} = props;
-  console.log(applicationSearchResult);
   return (
     <tr>
       <td>{applicationSearchResult.applicationId}</td>
@@ -58,6 +57,7 @@ export const ApplicationRowItem = props => {
 export default createFragmentContainer(ApplicationRowItem, {
   applicationSearchResult: graphql`
     fragment ApplicationRowItemContainer_applicationSearchResult on ApplicationSearchResult {
+      rowId
       applicationId
       operatorName
       facilityName

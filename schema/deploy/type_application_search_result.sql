@@ -4,6 +4,7 @@
 begin;
 
 create type ggircs_portal.application_search_result as (
+  id bigint,
   application_id int,
   operator_name varchar(1000),
   facility_name varchar(1000),

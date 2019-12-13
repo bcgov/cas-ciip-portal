@@ -6782,7 +6782,7 @@
             },
             {
               "name": "versionNumber",
-              "description": null,
+              "description": "The application version this form result is attached to",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -8741,7 +8741,7 @@
             },
             {
               "name": "versionNumber",
-              "description": null,
+              "description": "The application version this status is attached to",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -26201,6 +26201,18 @@
               "deprecationReason": null
             },
             {
+              "name": "rowId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigInt",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "submissionDate",
               "description": null,
               "args": [],
@@ -26215,6 +26227,16 @@
           ],
           "inputFields": null,
           "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "BigInt",
+          "description": "A signed eight-byte integer. The upper big integer values are greater than the max value for a JavaScript number. Therefore all big integers will be output as strings and not numbers.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -30757,7 +30779,7 @@
             },
             {
               "name": "versionNumber",
-              "description": null,
+              "description": "The application version this status is attached to",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -33180,7 +33202,7 @@
             },
             {
               "name": "versionNumber",
-              "description": null,
+              "description": "The application version this form result is attached to",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -40079,7 +40101,7 @@
             },
             {
               "name": "versionNumber",
-              "description": null,
+              "description": "The application version this status is attached to",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -42812,7 +42834,7 @@
             },
             {
               "name": "versionNumber",
-              "description": null,
+              "description": "The application version this form result is attached to",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",

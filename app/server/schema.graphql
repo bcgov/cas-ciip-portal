@@ -748,6 +748,8 @@ type ApplicationRevisionStatus implements Node {
 
   """The person who updated the application revision status"""
   updatedBy: String
+
+  """The application version this status is attached to"""
   versionNumber: Int!
 }
 
@@ -869,6 +871,8 @@ input ApplicationRevisionStatusInput {
 
   """The person who updated the application revision status"""
   updatedBy: String
+
+  """The application version this status is attached to"""
   versionNumber: Int!
 }
 
@@ -899,6 +903,8 @@ input ApplicationRevisionStatusPatch {
 
   """The person who updated the application revision status"""
   updatedBy: String
+
+  """The application version this status is attached to"""
   versionNumber: Int
 }
 
@@ -930,6 +936,7 @@ type ApplicationSearchResult {
   facilityName: String
   operatorName: String
   reportingYear: Int
+  rowId: BigInt
   submissionDate: Datetime
 }
 
@@ -1214,6 +1221,13 @@ enum BenchmarksOrderBy {
 A floating point number that requires more precision than IEEE 754 binary 64
 """
 scalar BigFloat
+
+"""
+A signed eight-byte integer. The upper big integer values are greater than the
+max value for a JavaScript number. Therefore all big integers will be output as
+strings and not numbers.
+"""
+scalar BigInt
 
 """A connection to a list of `CarbonTaxDatum` values."""
 type CarbonTaxDataConnection {
@@ -6301,6 +6315,8 @@ type FormResult implements Node {
 
   """The person who updated the form"""
   updatedBy: String
+
+  """The application version this form result is attached to"""
   versionNumber: Int!
 }
 
@@ -6371,6 +6387,8 @@ input FormResultInput {
 
   """The person who updated the form"""
   updatedBy: String
+
+  """The application version this form result is attached to"""
   versionNumber: Int
 }
 
@@ -6404,6 +6422,8 @@ input FormResultPatch {
 
   """The person who updated the form"""
   updatedBy: String
+
+  """The application version this form result is attached to"""
   versionNumber: Int
 }
 
