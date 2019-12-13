@@ -24,7 +24,7 @@ const statusBadgeColor: Record<
 
 export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> = props => {
   // Save Application status to database
-  const setApplicationRevisionStatus = (eventKey, event) => {
+  const setApplicationRevisionStatus = async (eventKey, event) => {
     event.preventDefault();
     event.stopPropagation();
     event.persist();
@@ -38,11 +38,15 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
           applicationRevisionStatus: eventKey,
           createdAt: date,
           createdBy: 'Admin',
-          versionNumber: props.applicationRevisionStatus.version_number
+          versionNumber: props.applicationRevisionStatus.versionNumber
         }
       }
     };
-    createApplicationRevisionStatusMutation(props.relay.environment, variables);
+    const response = await createApplicationRevisionStatusMutation(
+      props.relay.environment,
+      variables
+    );
+    console.log(response);
   };
 
   return (

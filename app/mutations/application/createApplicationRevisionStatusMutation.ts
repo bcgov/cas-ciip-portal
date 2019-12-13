@@ -14,14 +14,17 @@ const mutation = graphql`
       clientMutationId
       applicationRevisionStatus {
         id
+        versionNumber
+        applicationRevisionByApplicationIdAndVersionNumber {
+          applicationByApplicationId {
+            id
+            applicationRevisionStatus {
+              id
+              applicationRevisionStatus
+            }
+          }
+        }
       }
-      # applicationByApplicationId {
-      #   id
-      #   applicationRevisionStatus {
-      #     id
-      #     applicationRevisionStatus
-      #   }
-      # }
     }
   }
 `;
