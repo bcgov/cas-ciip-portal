@@ -47,12 +47,12 @@ exports[`Organisations should render no organisations if the user has not reques
     >
       (You can search to narrow the results in the dropdown)
     </small>
-    <Bootstrap(DropdownToggle)
+    <DropdownToggle
       className="search-toggle"
       id="org-dropdown"
     >
       Select Operator
-    </Bootstrap(DropdownToggle)>
+    </DropdownToggle>
     <DropdownMenu
       alignRight={false}
       flip={true}
@@ -90,7 +90,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
   >
     Once your access to the requested operators is approved you can view their facilities and apply for CIIP for each.
   </Alert>
-  <Bootstrap(Table)
+  <ForwardRef
     bordered={true}
     hover={true}
     striped={true}
@@ -144,7 +144,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
     >
       th.jsx-130150550{padding:20px;font-weight:500;}
     </JSXStyle>
-  </Bootstrap(Table)>
+  </ForwardRef>
   <Dropdown
     className="search-dropdown"
     navbar={false}
@@ -168,12 +168,12 @@ exports[`Organisations should render the user's requested organisations 1`] = `
     >
       (You can search to narrow the results in the dropdown)
     </small>
-    <Bootstrap(DropdownToggle)
+    <DropdownToggle
       className="search-toggle"
       id="org-dropdown"
     >
       Select Operator
-    </Bootstrap(DropdownToggle)>
+    </DropdownToggle>
     <DropdownMenu
       alignRight={false}
       flip={true}

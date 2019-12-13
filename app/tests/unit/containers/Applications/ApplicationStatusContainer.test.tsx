@@ -16,6 +16,5 @@ describe('ApplicationStatusItem', () => {
       />
     );
     expect(r).toMatchSnapshot();
-    expect(r.find('DropdownToggle').text()).toBe('pending');
   });
 });

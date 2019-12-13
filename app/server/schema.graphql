@@ -522,6 +522,7 @@ type ApplicationStatus implements Node {
 
   """The person who deleted the application status"""
   deletedBy: Int
+  facility: FacilityApplicationStatus
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -560,6 +561,9 @@ input ApplicationStatusCondition {
 
   """Checks for equality with the object’s `deletedBy` field."""
   deletedBy: Int
+
+  """Checks for equality with the object’s `facility` field."""
+  facility: FacilityApplicationStatusInput
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
@@ -613,6 +617,8 @@ enum ApplicationStatusesOrderBy {
   DELETED_AT_DESC
   DELETED_BY_ASC
   DELETED_BY_DESC
+  FACILITY_ASC
+  FACILITY_DESC
   ID_ASC
   ID_DESC
   NATURAL
@@ -643,6 +649,7 @@ input ApplicationStatusInput {
 
   """The person who deleted the application status"""
   deletedBy: Int
+  facility: FacilityApplicationStatusInput
 
   """The date the application status was updated"""
   updatedAt: Datetime
@@ -672,6 +679,7 @@ input ApplicationStatusPatch {
 
   """The person who deleted the application status"""
   deletedBy: Int
+  facility: FacilityApplicationStatusInput
 
   """The date the application status was updated"""
   updatedAt: Datetime
@@ -5130,6 +5138,70 @@ type Facility implements Node {
   swrsReportId: Int
 }
 
+type FacilityApplicationStatus {
+  """
+  Reads a single `Application` that is related to this `FacilityApplicationStatus`.
+  """
+  applicationByApplicationId: Application
+  applicationId: Int
+  applicationStatus: CiipApplicationStatus
+
+  """
+  Reads a single `Facility` that is related to this `FacilityApplicationStatus`.
+  """
+  facilityByFacilityId: Facility
+  facilityCity: String
+  facilityId: Int
+  facilityMailingAddress: String
+  facilityName: String
+  facilityPostalCode: String
+  organisationName: String
+  reportingYear: String
+  rowId: Int
+}
+
+"""A connection to a list of `FacilityApplicationStatus` values."""
+type FacilityApplicationStatusesConnection {
+  """
+  A list of edges which contains the `FacilityApplicationStatus` and cursor to aid in pagination.
+  """
+  edges: [FacilityApplicationStatusesEdge!]!
+
+  """A list of `FacilityApplicationStatus` objects."""
+  nodes: [FacilityApplicationStatus]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `FacilityApplicationStatus` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `FacilityApplicationStatus` edge in the connection."""
+type FacilityApplicationStatusesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FacilityApplicationStatus` at the end of the edge."""
+  node: FacilityApplicationStatus
+}
+
+"""An input for mutations affecting `FacilityApplicationStatus`"""
+input FacilityApplicationStatusInput {
+  applicationId: Int
+  applicationStatus: CiipApplicationStatus
+  facilityCity: String
+  facilityId: Int
+  facilityMailingAddress: String
+  facilityName: String
+  facilityPostalCode: String
+  organisationName: String
+  reportingYear: String
+  rowId: Int
+}
+
 """
 A condition to be used against `Facility` object types. All fields are tested
 for equality and combined with a logical ‘and.’
@@ -9362,7 +9434,9 @@ type Query implements Node {
   ): ReviewComment
   reviewCommentByRowId(rowId: Int!): ReviewComment
 
-  """Reads and enables pagination through a set of `Facility`."""
+  """
+  Reads and enables pagination through a set of `FacilityApplicationStatus`.
+  """
   searchAllFacilities(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -9385,7 +9459,7 @@ type Query implements Node {
     orderByField: String
     searchField: String
     searchValue: String
-  ): FacilitiesConnection!
+  ): FacilityApplicationStatusesConnection!
 
   """Reads and enables pagination through a set of `CiipApplication`."""
   searchApplicationList(

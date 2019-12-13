@@ -41,6 +41,7 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
         className="how-to-apply"
       >
         <ListGroup
+          horizontal={null}
           variant={null}
         >
           <ListGroupItem

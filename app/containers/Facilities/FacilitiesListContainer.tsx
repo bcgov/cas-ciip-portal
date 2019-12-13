@@ -15,7 +15,7 @@ export const FacilitiesList = props => {
     handleEvent
   } = props;
   const {edges} = props.query.searchAllFacilities;
-
+  console.log(edges);
   useEffect(() => {
     const refetchVariables = {
       searchField,
@@ -27,29 +27,29 @@ export const FacilitiesList = props => {
   });
 
   const tableHeaders = [
+    {columnName: 'organisation_name', displayName: 'Organisation Name'},
     {columnName: 'facility_name', displayName: 'Facility Name'},
     {columnName: 'facility_mailing_address', displayName: 'Address'},
     {columnName: 'facility_postal_code', displayName: 'Postal Code'},
     {columnName: 'facility_city', displayName: 'City'},
-    {columnName: 'facility_province', displayName: 'Province'},
     {columnName: 'application_status', displayName: 'Status'}
   ];
 
   const dropdownSortItems = [
+    'Organisation Name',
     'Facility Name',
     'Address',
     'Postal Code',
     'City',
-    'Province',
     'Status'
   ];
 
   const displayNameToColumnNameMap = {
+    'Organisation Name': 'organisation_name',
     'Facility Name': 'facility_name',
     Address: 'facility_mailing_address',
     'Postal Code': 'facility_postal_code',
     City: 'facility_city',
-    Province: 'facility_province',
     Status: 'application_status'
   };
 
@@ -85,8 +85,8 @@ export const FacilitiesList = props => {
         <tbody>
           {edges.map(edge => (
             <FacilitiesRowItemContainer
-              key={edge.node.id}
-              facility={edge.node}
+              key={edge.node.rowId}
+              facilityApplicationStatus={edge.node}
             />
           ))}
         </tbody>
@@ -114,8 +114,8 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
-              id
-              ...FacilitiesRowItemContainer_facility
+              rowId
+              ...FacilitiesRowItemContainer_facilityApplicationStatus
             }
           }
         }

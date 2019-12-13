@@ -1,7 +1,7 @@
 import React from 'react';
 import {Badge, Button} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {CiipApplicationStatus} from 'FacilitiesRowItemContainer_facility.graphql';
+import {CiipApplicationStatus} from 'FacilitiesRowItemContainer_facilityApplicationStatus.graphql';
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 import createApplicationMutation from 'mutations/application/createApplicationMutation';
@@ -18,22 +18,26 @@ const statusBadgeColor: Record<
   REQUESTED_CHANGES: 'secondary'
 };
 export const FacilitiesRowItem = props => {
-  const {facility = {}} = props;
-  const {edges} = facility?.applicationsByFacilityId || {};
-  const {id: applicationId, applicationStatus} = edges?.[0]?.node || {};
   console.log(props);
+  const {facilityApplicationStatus} = props;
+  const {facilityByFacilityId} =
+    facilityApplicationStatus?.facilityByFacilityId || {};
+  const {hasSwrsReport} = facilityByFacilityId?.hasSwrsReport || {};
+  const {rowId} = facilityByFacilityId?.rowId || {};
   const {environment} = props.relay;
   const router = useRouter();
+  const {applicationId} = facilityApplicationStatus;
+  const {applicationStatus} = facilityApplicationStatus;
   const startApplication = async () => {
     const variables = {
       input: {
-        facilityIdInput: facility.rowId
+        facilityIdInput: rowId
       }
     };
     const response = await createApplicationMutation(environment, variables);
     console.log(response);
     router.push({
-      pathname: facility.hasSwrsReport
+      pathname: hasSwrsReport
         ? '/ciip-application-swrs-import'
         : '/ciip-application',
       query: {
@@ -51,7 +55,10 @@ export const FacilitiesRowItem = props => {
       );
     }
 
-    if (applicationId && applicationStatus.applicationStatus === 'DRAFT') {
+    if (
+      applicationId &&
+      facilityApplicationStatus.applicationStatus === 'DRAFT'
+    ) {
       return (
         <Link
           href={{
@@ -66,7 +73,10 @@ export const FacilitiesRowItem = props => {
       );
     }
 
-    if (applicationId && applicationStatus.applicationStatus === 'PENDING') {
+    if (
+      applicationId &&
+      facilityApplicationStatus.applicationStatus === 'PENDING'
+    ) {
       return (
         <Link
           href={{
@@ -86,11 +96,11 @@ export const FacilitiesRowItem = props => {
 
   return (
     <tr>
-      <td>{facility.facilityName}</td>
-      <td>{facility.facilityMailingAddress}</td>
-      <td>{facility.facilityPostalCode}</td>
-      <td>{facility.facilityCity}</td>
-      <td>{facility.facilityProvince}</td>
+      <td>{facilityApplicationStatus.organisationName}</td>
+      <td>{facilityApplicationStatus.facilityName}</td>
+      <td>{facilityApplicationStatus.facilityMailingAddress}</td>
+      <td>{facilityApplicationStatus.facilityPostalCode}</td>
+      <td>{facilityApplicationStatus.facilityCity}</td>
       <td>
         {' '}
         {applicationStatus ? (
@@ -98,9 +108,9 @@ export const FacilitiesRowItem = props => {
             <Badge
               pill
               style={{width: '100%'}}
-              variant={statusBadgeColor[applicationStatus?.applicationStatus]}
+              variant={statusBadgeColor[applicationStatus]}
             >
-              {applicationStatus?.applicationStatus}
+              {applicationStatus}
             </Badge>
           </>
         ) : (
@@ -113,25 +123,19 @@ export const FacilitiesRowItem = props => {
 };
 
 export default createFragmentContainer(FacilitiesRowItem, {
-  facility: graphql`
-    fragment FacilitiesRowItemContainer_facility on Facility {
+  facilityApplicationStatus: graphql`
+    fragment FacilitiesRowItemContainer_facilityApplicationStatus on FacilityApplicationStatus {
+      applicationId
+      facilityId
       facilityName
       facilityMailingAddress
       facilityCity
-      facilityProvince
       facilityPostalCode
-      rowId
-      hasSwrsReport(reportingYear: "2018")
-      applicationsByFacilityId {
-        edges {
-          node {
-            id
-            applicationStatus {
-              id
-              applicationStatus
-            }
-          }
-        }
+      applicationStatus
+      organisationName
+      facilityByFacilityId {
+        rowId
+        hasSwrsReport(reportingYear: "2018")
       }
     }
   `
