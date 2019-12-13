@@ -47,9 +47,7 @@ export const ApplicationList = props => {
       body={body}
       displayNameToColumnNameMap={displayNameToColumnNameMap}
       handleEvent={handleEvent}
-    />
-  );
-};
+)};
 
 // TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
 // and also for relay to refetch
@@ -74,8 +72,8 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
-              id
-              ...ApplicationRowItemContainer_application
+              rowId
+              ...ApplicationRowItemContainer_applicationSearchResult
             }
           }
         }

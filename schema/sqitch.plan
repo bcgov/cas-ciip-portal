@@ -9,6 +9,7 @@ function_set_expiry [schema_ggircs_portal] 2019-12-10T19:13:27Z Dylan Leard <dyl
 type_jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
 type_ciip_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file ciip_user_organisation_status
 type_ciip_application_revision_status [schema_ggircs_portal] 2019-11-26T18:39:57Z Helen Liu <helen@button.is> # Added ciip application status type
+type_application_search_result [schema_ggircs_portal type_ciip_application_revision_status] 2019-12-12T23:22:59Z Dylan Leard <dylan@button.is> # Return type for searching and listing applications
 table_ciip_user [schema_ggircs_portal function_update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
 function_session [schema_ggircs_portal type_jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
 function_set_user_id [function_session table_ciip_user] 2019-12-10T20:02:31Z Dylan Leard <dylan@button.is> # Trigger function updates the user_id field
@@ -37,7 +38,7 @@ function_get_products_by_application_id [schema_ggircs_portal view_ciip_producti
 view_estimated_carbon_tax_paid 2019-08-29T21:37:02Z Hamza Javed <hamza@button.is> # Add a carbon tax paid view from the SWRS schema
 function_get_carbon_tax_by_organisation 2019-08-29T22:14:28Z Hamza Javed <hamza@button.is> # Get carbon tax paid by organisation and reporting year
 function_get_products_by_bcghgid 2019-08-30T18:49:23Z Hamza Javed <hamza@button.is> # Get production data by bcghgid
-function_search_application_list [view_ciip_application] 2019-09-03T20:40:05Z Dylan Leard <dylan@button.is> # add function for searching the list of applications
+function_search_application_list [table_application_revision_status type_application_search_result] 2019-09-03T20:40:05Z Dylan Leard <dylan@button.is> # add function for searching the list of applications
 function_get_swrs_organisation_data [schema_ggircs_portal] 2019-10-01T20:51:53Z Hamza Javed <hamza@button.is> # Function that imports information from swrs based on parameters
 table_ciip_application_wizard [table_form_json] 2019-10-09T17:18:33Z Matthieu Foucault <matthieu@button.is> # Add table_ciip_application_wizard
 function_get_swrs_facility_data 2019-10-07T21:25:50Z Hamza Javed <hamza@button.is> # Function to import facility data from swrs

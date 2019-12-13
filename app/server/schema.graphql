@@ -919,6 +919,43 @@ type ApplicationsConnection {
   totalCount: Int!
 }
 
+type ApplicationSearchResult {
+  applicationRevisionStatus: CiipApplicationRevisionStatus
+  bcghgid: String
+  facilityName: String
+  operatorName: String
+  reportingYear: Int
+  rowId: Int
+}
+
+"""A connection to a list of `ApplicationSearchResult` values."""
+type ApplicationSearchResultsConnection {
+  """
+  A list of edges which contains the `ApplicationSearchResult` and cursor to aid in pagination.
+  """
+  edges: [ApplicationSearchResultsEdge!]!
+
+  """A list of `ApplicationSearchResult` objects."""
+  nodes: [ApplicationSearchResult]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `ApplicationSearchResult` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `ApplicationSearchResult` edge in the connection."""
+type ApplicationSearchResultsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ApplicationSearchResult` at the end of the edge."""
+  node: ApplicationSearchResult
+}
+
 """A `Application` edge in the connection."""
 type ApplicationsEdge {
   """A cursor for use in pagination."""
@@ -9956,6 +9993,7 @@ type Query implements Node {
   ): ReviewComment
   reviewCommentByRowId(rowId: Int!): ReviewComment
 
+<<<<<<< 55ba6f89c556e149fe03e599030c05bf675005ac
 <<<<<<< 3daba91a0e7f6e820f02bb5d389ed23ae17e4dd2
   """Reads and enables pagination through a set of `FacilitySearchResult`."""
   searchAllFacilities(
@@ -9986,6 +10024,11 @@ type Query implements Node {
 =======
   """Reads and enables pagination through a set of `Application`."""
 >>>>>>> refactor fragments after change to intermediary table 'ApplicationRevision'
+=======
+  """
+  Reads and enables pagination through a set of `ApplicationSearchResult`.
+  """
+>>>>>>> refactor application search function
   searchApplicationList(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -10008,7 +10051,7 @@ type Query implements Node {
     orderByField: String
     searchField: String
     searchValue: String
-  ): ApplicationsConnection!
+  ): ApplicationSearchResultsConnection!
 
   """Reads and enables pagination through a set of `CiipUserOrganisation`."""
   searchCiipUserOrganisation(
