@@ -73,3 +73,4 @@ function_search_organisation_facilities [table_facility] 2019-12-04T18:42:11Z He
 function_search_all_facilities [table_facility] 2019-12-06T00:27:16Z Helen Liu <helen@button.is> # added search function for all facilities
 function_application_latest_submitted_version_number [table_application_revision_status] 2019-12-12T18:40:39Z Dylan Leard <dylan@button.is> # Function to add computed column latest_submitted_version_number to ggircs_portal.application
 function_application_latest_draft_version_number [table_application_revision_status] 2019-12-12T18:41:24Z Dylan Leard <dylan@button.is> # Function to add computed column latest_draft_version_number to ggircs_portal.application
+function_create_application_revision_mutation_chain [table_application_revision_status] 2019-12-13T23:52:16Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Stored procedure to create an application revision and all dependent tables

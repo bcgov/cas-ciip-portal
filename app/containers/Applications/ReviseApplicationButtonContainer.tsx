@@ -1,7 +1,7 @@
 import React from 'react';
 import {useRouter} from 'next/router';
 import {Button, Col} from 'react-bootstrap';
-import updateApplicationMutation from 'mutations/application/updateApplicationMutation';
+import createApplicationRevisionMutation from 'mutations/application/createApplicationRevisionMutation';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ReviseApplicationButtonContainer_application} from 'ReviseApplicationButtonContainer_application.graphql';
 
@@ -11,28 +11,35 @@ interface Props {
 }
 
 export const ReviseApplicationButton: React.FunctionComponent<Props> = props => {
-  console.log(props);
   const {application, relay} = props;
   const router = useRouter();
   const reviseApplication = async () => {
     const variables = {
       input: {
-        id: application.id,
-        applicationPatch: {
-          version: Number(application.latestSubmittedVersionNumber) + 1
-        }
+        applicationIdInput: application.id,
+        last_revision_id_input: application.latestSubmittedVersionNumber
       }
     };
 
-    const response = await updateApplicationMutation(
+    const response = await createApplicationRevisionMutation(
       relay.environment,
       variables
     );
     console.log(response);
+
+    const newVersion =
+      response.applicationRevision.applicationByApplicationId
+        .latestDraftVersionNumber;
+    const lastSubmittedVersion =
+      response.applicationRevision.applicationByApplicationId
+        .latestSubmittedVersionNumber;
+
     router.push({
       pathname: '/ciip-application',
       query: {
-        applicationId: application.id
+        applicationId: application.id,
+        version: newVersion,
+        previousVersion: lastSubmittedVersion
       }
     });
   };
