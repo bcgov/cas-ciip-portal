@@ -3161,16 +3161,22 @@ input CreateApplicationRevisionMutationChainInput {
 
 """The output of our `createApplicationRevisionMutationChain` mutation."""
 type CreateApplicationRevisionMutationChainPayload {
-  application: Application
+  """
+  Reads a single `Application` that is related to this `ApplicationRevision`.
+  """
+  applicationByApplicationId: Application
+  applicationRevision: ApplicationRevision
 
-  """An edge for our `Application`. May be used by Relay 1."""
-  applicationEdge(
-    """The method to use when ordering `Application`."""
-    orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationsEdge
+  """An edge for our `ApplicationRevision`. May be used by Relay 1."""
+  applicationRevisionEdge(
+    """The method to use when ordering `ApplicationRevision`."""
+    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ApplicationRevisionsEdge
 
-  """Reads a single `CiipUser` that is related to this `Application`."""
-  ciipUserByUserId: CiipUser
+  """
+  Reads a single `CiipUser` that is related to this `ApplicationRevision`.
+  """
+  ciipUserByDeletedBy: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -3178,16 +3184,10 @@ type CreateApplicationRevisionMutationChainPayload {
   """
   clientMutationId: String
 
-  """Reads a single `Facility` that is related to this `Application`."""
-  facilityByFacilityId: Facility
-
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """Reads a single `ReportingYear` that is related to this `Application`."""
-  reportingYearByReportingYear: ReportingYear
 }
 
 """The output of our create `ApplicationRevision` mutation."""

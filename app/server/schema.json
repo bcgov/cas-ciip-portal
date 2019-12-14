@@ -29964,12 +29964,24 @@
               "deprecationReason": null
             },
             {
-              "name": "applicationEdge",
-              "description": "An edge for our `Application`. May be used by Relay 1.",
+              "name": "applicationRevision",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ApplicationRevision",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "applicationRevisionEdge",
+              "description": "An edge for our `ApplicationRevision`. May be used by Relay 1.",
               "args": [
                 {
                   "name": "orderBy",
-                  "description": "The method to use when ordering `Application`.",
+                  "description": "The method to use when ordering `ApplicationRevision`.",
                   "type": {
                     "kind": "LIST",
                     "name": null,
@@ -29978,7 +29990,7 @@
                       "name": null,
                       "ofType": {
                         "kind": "ENUM",
-                        "name": "ApplicationsOrderBy",
+                        "name": "ApplicationRevisionsOrderBy",
                         "ofType": null
                       }
                     }
@@ -29988,15 +30000,15 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "ApplicationsEdge",
+                "name": "ApplicationRevisionsEdge",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "ciipUserByUserId",
-              "description": "Reads a single `CiipUser` that is related to this `Application`.",
+              "name": "ciipUserByDeletedBy",
+              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -30019,36 +30031,12 @@
               "deprecationReason": null
             },
             {
-              "name": "facilityByFacilityId",
-              "description": "Reads a single `Facility` that is related to this `Application`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Facility",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "query",
               "description": "Our root query field type. Allows us to run any query from our mutation payload.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
                 "name": "Query",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "reportingYearByReportingYear",
-              "description": "Reads a single `ReportingYear` that is related to this `Application`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ReportingYear",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -30737,8 +30725,8 @@
           "description": "The output of our `createApplicationRevisionMutationChain` mutation.",
           "fields": [
             {
-              "name": "application",
-              "description": null,
+              "name": "applicationByApplicationId",
+              "description": "Reads a single `Application` that is related to this `ApplicationRevision`.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
