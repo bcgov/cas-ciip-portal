@@ -14,7 +14,6 @@ export const UserOrganisationComponent = props => {
     PENDING: 'info',
     APPROVED: 'success'
   };
-  console.log(typeof userOrganisation.organisationByOrganisationId.rowId);
 
   return (
     <tr>

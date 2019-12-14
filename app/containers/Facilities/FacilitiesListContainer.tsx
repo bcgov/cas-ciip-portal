@@ -81,7 +81,6 @@ export const FacilitiesList = props => {
             <th />
           </tr>
         </thead>
-        {/* filter will not work if there's duplicate facilities in the table, bc the key is not unique */}
         <tbody>
           {edges.map(edge => (
             <FacilitiesRowItemContainer
