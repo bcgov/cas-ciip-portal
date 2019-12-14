@@ -1,12 +1,30 @@
 import React from 'react';
-import {Document, Page, Text, View, StyleSheet} from '@react-pdf/renderer';
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  Image,
+  StyleSheet
+} from '@react-pdf/renderer';
 import JsonSchemaForm from 'react-jsonschema-form';
-import {Header, Body, Form} from 'components/Layout/Pdf';
+import {
+  Header,
+  Row,
+  Title,
+  Body,
+  FormFields,
+  Column,
+  Hr
+} from 'components/Layout/Pdf';
 
 const styles = StyleSheet.create({
-  label: {fontWeight: 700, fontSize: 15},
+  label: {fontWeight: 700, fontSize: 12, border: 1},
+  appInfo: {
+    fontSize: 12,
+    margin: '10px 0'
+  },
   applicant: {
-    fontWeight: 900,
     fontSize: 13,
     lineHeight: 1.3
   },
@@ -29,10 +47,13 @@ const fieldTemplate = props => {
   return (
     <>
       {props.label && (
-        <Text style={styles.label}>
-          {'\n'}
-          {props.label}:
-        </Text>
+        <>
+          <Text style={styles.label}>
+            {'\n'}
+            {props.label}:
+          </Text>
+          {/* <View style={{borderBottomColor: 'black', borderBottomWidth: 1}} /> */}
+        </>
       )}
       <Text style={styles.fields}>{props.children}</Text>
     </>
@@ -56,6 +77,8 @@ const ApplicationDetailsPdfCardItem = props => {
   const {application} = props;
   const {user} = props;
 
+  const facility = application.facilityByFacilityId;
+
   const {node} = application.formResultsByApplicationId.edges[0];
   const {schema, uiSchema} = node.formJsonByFormId.formJson;
   const {formResult, submissionDate} = node;
@@ -64,17 +87,71 @@ const ApplicationDetailsPdfCardItem = props => {
     <Document>
       <Page size="A4">
         <Header>
-          <Text>CleanBC Industrial Incentive Program</Text>
+          <Row>
+            <Column>
+              <Image src="/static/logo-banner.png" style={{width: 200}} />
+            </Column>
+            <Column>
+              <Text style={{textAlign: 'right'}}>
+                CleanBC Industrial Incentive Program
+              </Text>
+            </Column>
+          </Row>
         </Header>
         <Body>
-          <View style={styles.applicant}>
-            <Text>
-              {user.firstName} {user.lastName}
-            </Text>
-            <Text>{user.emailAddress}</Text>
-            <Text>{user.phoneNumber}</Text>
-            <Text>{submissionDate}</Text>
-          </View>
+          <Title>Incentive Program Application</Title>
+          <Text style={styles.appInfo}>
+            Submitted: {submissionDate.slice(0, 10)} Status:{' '}
+            {application.applicationStatus.applicationStatus}
+          </Text>
+          <Row>
+            <Column>
+              <Text
+                style={{
+                  fontSize: 12,
+                  lineHeight: 1.5,
+                  borderBottom: 1,
+                  marginBottom: 10
+                }}
+              >
+                Applicant
+              </Text>
+              <View style={styles.applicant}>
+                <Text>
+                  {user.firstName} {user.lastName}
+                </Text>
+                <Text>{user.occupation}</Text>
+                <Text>{user.emailAddress}</Text>
+                <Text>{user.phoneNumber}</Text>
+              </View>
+            </Column>
+            <Column>
+              <Text
+                style={{
+                  fontSize: 12,
+                  lineHeight: 1.5,
+                  borderBottom: 1,
+                  marginBottom: 10
+                }}
+              >
+                Facility
+              </Text>
+              <View style={styles.applicant}>
+                <Text>{facility.facilityName}</Text>
+                <Text>
+                  {facility.facilityMailingAddress}
+                  {'\n'}
+                  {facility.facilityCity}, {facility.facilityProvince},{' '}
+                  {facility.facilityCountry}
+                  {'\n'}
+                  {facility.facilityPostalCode}
+                </Text>
+              </View>
+            </Column>
+          </Row>
+
+          <Hr />
+
           <JsonSchemaForm
             FieldTemplate={fieldTemplate}
             ObjectFieldTemplate={objectFieldTemplate}
@@ -83,7 +160,7 @@ const ApplicationDetailsPdfCardItem = props => {
             schema={schema}
             uiSchema={uiSchema}
             formData={formResult}
-            tagName={Form}
+            tagName={FormFields}
             widgets={customWidget}
           >
             <View />
