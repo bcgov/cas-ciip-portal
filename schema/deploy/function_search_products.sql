@@ -3,7 +3,12 @@
 
 begin;
 
-create or replace function ggircs_portal.search_products(search_field text, search_value text, order_by_field text, direction text)
+create or replace function ggircs_portal.search_products(
+  search_field text,
+  search_value text,
+  order_by_field text default 'id',
+  direction text default 'asc'
+)
 
 returns setof ggircs_portal.product as
         $function$
