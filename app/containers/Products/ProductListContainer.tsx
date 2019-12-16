@@ -1,10 +1,8 @@
 import React, {useEffect} from 'react';
-import {Table, Col, Container, Row} from 'react-bootstrap';
 import {graphql, createRefetchContainer} from 'react-relay';
 import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
+import SearchTableLayout from 'components/SearchTableLayout';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import SortableTableHeader from '../../components/SortableTableHeader';
-import SearchBox from '../../components/SearchBox';
 import ProductRowItemContainer from './ProductRowItemContainer';
 
 interface Props {
@@ -14,7 +12,7 @@ interface Props {
   searchField?: string;
   searchValue?: string;
   direction?: string;
-  searchDisplay?: string;
+
   handleEvent: (...args: any[]) => void;
   relay: any;
 }
@@ -25,7 +23,6 @@ export const ProductList: React.FunctionComponent<Props> = ({
   orderByField,
   searchField,
   searchValue,
-  searchDisplay,
   direction,
   handleEvent
 }) => {
@@ -41,20 +38,6 @@ export const ProductList: React.FunctionComponent<Props> = ({
 
   if (query && query.searchProducts && query.searchProducts.edges) {
     const allProducts = query.searchProducts.edges;
-    const tableHeaders = [
-      {columnName: 'name', displayName: 'Product'},
-      {columnName: 'units', displayName: 'Units'},
-      {columnName: 'benchmark', displayName: 'Benchmark'},
-      {columnName: 'eligibility_threshold', displayName: 'Elig. Threshold'},
-      {columnName: 'state', displayName: 'Status'}
-    ];
-    const dropdownSortItems = [
-      'Product',
-      'Units',
-      'Benchmark',
-      'Elig. Threshold',
-      'Status'
-    ];
 
     const displayNameToColumnNameMap = {
       Product: 'name',
@@ -63,45 +46,23 @@ export const ProductList: React.FunctionComponent<Props> = ({
       'Elig. Threshold': 'eligibility_threshold',
       Status: 'state'
     };
-
+    const body = (
+      <tbody>
+        {allProducts.map(({node}) => (
+          <ProductRowItemContainer
+            key={node.id}
+            product={node}
+            userRowId={query.session.ciipUserBySub.rowId}
+          />
+        ))}
+      </tbody>
+    );
     return (
-      <>
-        <Container>
-          <Row>
-            <Col md={{span: 12, offset: 6}}>
-              <SearchBox
-                dropdownSortItems={dropdownSortItems}
-                handleEvent={handleEvent}
-                displayNameToColumnNameMap={displayNameToColumnNameMap}
-                searchDisplay={searchDisplay}
-              />
-            </Col>
-          </Row>
-        </Container>
-        <Table striped hover>
-          <thead style={{color: 'white', background: '#003366'}}>
-            <tr>
-              {tableHeaders.map(header => (
-                <SortableTableHeader
-                  key={header.columnName}
-                  sort={handleEvent}
-                  headerVariables={header}
-                />
-              ))}
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allProducts.map(({node}) => (
-              <ProductRowItemContainer
-                key={node.id}
-                product={node}
-                userRowId={query.session.ciipUserBySub.rowId}
-              />
-            ))}
-          </tbody>
-        </Table>
-      </>
+      <SearchTableLayout
+        body={body}
+        displayNameToColumnNameMap={displayNameToColumnNameMap}
+        handleEvent={handleEvent}
+      />
     );
   }
 
