@@ -36,7 +36,7 @@ export const FacilitiesList = props => {
       {edges.map(edge => (
         <FacilitiesRowItemContainer
           key={edge.node.rowId}
-          facilityApplicationStatus={edge.node}
+          facilitySearchResult={edge.node}
         />
       ))}
     </tbody>
@@ -71,7 +71,7 @@ export default createRefetchContainer(
           edges {
             node {
               rowId
-              ...FacilitiesRowItemContainer_facilityApplicationStatus
+              ...FacilitiesRowItemContainer_facilitySearchResult
             }
           }
         }

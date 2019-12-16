@@ -1,4 +1,4 @@
--- Deploy ggircs-portal:type_facility_application_status to pg
+-- Deploy ggircs-portal:type_facility_search_result to pg
 -- requires: schema_ggircs_portal
 -- requires: table_facility
 -- requires: table_application
@@ -6,7 +6,7 @@
 
 begin;
 
-create type ggircs_portal.facility_application_status as (
+create type ggircs_portal.facility_search_result as (
     id integer,
     application_id integer,
     facility_id integer,
@@ -19,7 +19,7 @@ create type ggircs_portal.facility_application_status as (
     organisation_name varchar(1000)
 );
 
-comment on type ggircs_portal.facility_application_status is '@primaryKey (facility_id, application_id)
+comment on type ggircs_portal.facility_search_result is '@primaryKey (facility_id, application_id)
 @foreignKey (application_id) references ggircs_portal.application(id)
 @foreignKey (facility_id) references ggircs_portal.facility(id)';
 commit;

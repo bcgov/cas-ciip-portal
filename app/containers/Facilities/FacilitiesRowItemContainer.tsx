@@ -3,12 +3,12 @@ import {Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {
   CiipApplicationStatus,
-  FacilitiesRowItemContainer_facilityApplicationStatus
-} from 'FacilitiesRowItemContainer_facilityApplicationStatus.graphql';
+  FacilitiesRowItemContainer_facilitySearchResult
+} from 'FacilitiesRowItemContainer_facilitySearchResult.graphql';
 import ApplyButton from '../../components/ApplyButton';
 interface Props {
   relay: RelayProp;
-  facilityApplicationStatus: FacilitiesRowItemContainer_facilityApplicationStatus;
+  facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult;
   key: number;
 }
 const statusBadgeColor: Record<
@@ -23,16 +23,16 @@ const statusBadgeColor: Record<
   REQUESTED_CHANGES: 'secondary'
 };
 export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = props => {
-  const {facilityApplicationStatus} = props;
-  const {applicationStatus} = facilityApplicationStatus;
+  const {facilitySearchResult} = props;
+  const {applicationStatus} = facilitySearchResult;
 
   return (
     <tr>
-      <td>{facilityApplicationStatus.organisationName}</td>
-      <td>{facilityApplicationStatus.facilityName}</td>
-      <td>{facilityApplicationStatus.facilityMailingAddress}</td>
-      <td>{facilityApplicationStatus.facilityPostalCode}</td>
-      <td>{facilityApplicationStatus.facilityCity}</td>
+      <td>{facilitySearchResult.organisationName}</td>
+      <td>{facilitySearchResult.facilityName}</td>
+      <td>{facilitySearchResult.facilityMailingAddress}</td>
+      <td>{facilitySearchResult.facilityPostalCode}</td>
+      <td>{facilitySearchResult.facilityCity}</td>
       <td>
         {' '}
         {applicationStatus ? (
@@ -50,15 +50,15 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = props 
         )}
       </td>
       <td>
-        <ApplyButton applyButtonDetails={props.facilityApplicationStatus} />
+        <ApplyButton applyButtonDetails={props.facilitySearchResult} />
       </td>
     </tr>
   );
 };
 
 export default createFragmentContainer(FacilitiesRowItemComponent, {
-  facilityApplicationStatus: graphql`
-    fragment FacilitiesRowItemContainer_facilityApplicationStatus on FacilityApplicationStatus {
+  facilitySearchResult: graphql`
+    fragment FacilitiesRowItemContainer_facilitySearchResult on FacilitySearchResult {
       ...ApplyButton_applyButtonDetails
       facilityName
       facilityMailingAddress

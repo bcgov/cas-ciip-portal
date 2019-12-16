@@ -24,11 +24,6 @@ describe('ProductList', () => {
     // @ts-ignore
     const r = shallow(<ProductList query={query} />);
     expect(r).toMatchSnapshot();
-    expect(
-      r
-        .find('Relay(ProductRowItemComponent)')
-        .first()
-        .prop('product')
-    ).toBe(query.searchProducts.edges[0].node);
+    expect(r.exists('SearchTableLayoutComponent')).toBe(true);
   });
 });

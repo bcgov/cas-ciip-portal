@@ -22,7 +22,7 @@ table_reporting_year [schema_ggircs_portal] 2019-11-19T18:06:01Z Helen Liu <hele
 table_application [schema_ggircs_portal function_update_timestamps] 2019-10-11T18:09:42Z Dylan Leard <dylan@button.is> # Application table
 table_form_json [schema_ggircs_portal function_update_timestamps] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
 table_form_result [schema_ggircs_portal function_update_timestamps table_form_json] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
-type_facility_application_status [schema_ggircs_portal] 2019-12-11T21:41:41Z Helen Liu <helen@button.is> # added return type for search all facilities function
+type_facility_search_result [schema_ggircs_portal] 2019-12-11T21:41:41Z Helen Liu <helen@button.is> # added return type for search all facilities function
 table_application_status [schema_ggircs_portal function_update_timestamps] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application_status to schema ggircs_portal
 view_ciip_contact [table_form_result] 2019-08-19T21:59:40Z Hamza Javed <hamza@button.is> # Add view for contact details of applicant
 view_ciip_fuel [table_form_result] 2019-08-19T22:26:15Z Hamza Javed <hamza@button.is> # View for fuels reported in CIIP application

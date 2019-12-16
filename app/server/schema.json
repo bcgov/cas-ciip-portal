@@ -4779,7 +4779,7 @@
             },
             {
               "name": "searchAllFacilities",
-              "description": "Reads and enables pagination through a set of `FacilityApplicationStatus`.",
+              "description": "Reads and enables pagination through a set of `FacilitySearchResult`.",
               "args": [
                 {
                   "name": "after",
@@ -4877,7 +4877,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "FacilityApplicationStatusesConnection",
+                  "name": "FacilitySearchResultsConnection",
                   "ofType": null
                 }
               },
@@ -7346,18 +7346,6 @@
               "deprecationReason": null
             },
             {
-              "name": "facility",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "FacilityApplicationStatus",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "id",
               "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
               "args": [],
@@ -8869,16 +8857,6 @@
               "defaultValue": null
             },
             {
-              "name": "facility",
-              "description": "Checks for equality with the object’s `facility` field.",
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "FacilityApplicationStatusInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
               "type": {
@@ -8904,117 +8882,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "FacilityApplicationStatusInput",
-          "description": "An input for mutations affecting `FacilityApplicationStatus`",
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "applicationId",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "applicationStatus",
-              "description": null,
-              "type": {
-                "kind": "ENUM",
-                "name": "CiipApplicationStatus",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityCity",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityId",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityMailingAddress",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityPostalCode",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "organisationName",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "reportingYear",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "rowId",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
@@ -9100,18 +8967,6 @@
             },
             {
               "name": "DELETED_BY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -15276,161 +15131,6 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "FormResult",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "FacilityApplicationStatus",
-          "description": "",
-          "fields": [
-            {
-              "name": "applicationByApplicationId",
-              "description": "Reads a single `Application` that is related to this `FacilityApplicationStatus`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Application",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "applicationId",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "applicationStatus",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "ENUM",
-                "name": "CiipApplicationStatus",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityByFacilityId",
-              "description": "Reads a single `Facility` that is related to this `FacilityApplicationStatus`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Facility",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityCity",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityId",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityMailingAddress",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityName",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityPostalCode",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "organisationName",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "reportingYear",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "rowId",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -25219,12 +24919,12 @@
         },
         {
           "kind": "OBJECT",
-          "name": "FacilityApplicationStatusesConnection",
-          "description": "A connection to a list of `FacilityApplicationStatus` values.",
+          "name": "FacilitySearchResultsConnection",
+          "description": "A connection to a list of `FacilitySearchResult` values.",
           "fields": [
             {
               "name": "edges",
-              "description": "A list of edges which contains the `FacilityApplicationStatus` and cursor to aid in pagination.",
+              "description": "A list of edges which contains the `FacilitySearchResult` and cursor to aid in pagination.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -25237,7 +24937,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "OBJECT",
-                      "name": "FacilityApplicationStatusesEdge",
+                      "name": "FacilitySearchResultsEdge",
                       "ofType": null
                     }
                   }
@@ -25248,7 +24948,7 @@
             },
             {
               "name": "nodes",
-              "description": "A list of `FacilityApplicationStatus` objects.",
+              "description": "A list of `FacilitySearchResult` objects.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -25258,7 +24958,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "FacilityApplicationStatus",
+                    "name": "FacilitySearchResult",
                     "ofType": null
                   }
                 }
@@ -25284,7 +24984,7 @@
             },
             {
               "name": "totalCount",
-              "description": "The count of *all* `FacilityApplicationStatus` you could get from the connection.",
+              "description": "The count of *all* `FacilitySearchResult` you could get from the connection.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -25306,8 +25006,8 @@
         },
         {
           "kind": "OBJECT",
-          "name": "FacilityApplicationStatusesEdge",
-          "description": "A `FacilityApplicationStatus` edge in the connection.",
+          "name": "FacilitySearchResultsEdge",
+          "description": "A `FacilitySearchResult` edge in the connection.",
           "fields": [
             {
               "name": "cursor",
@@ -25323,11 +25023,166 @@
             },
             {
               "name": "node",
-              "description": "The `FacilityApplicationStatus` at the end of the edge.",
+              "description": "The `FacilitySearchResult` at the end of the edge.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "FacilityApplicationStatus",
+                "name": "FacilitySearchResult",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "FacilitySearchResult",
+          "description": "",
+          "fields": [
+            {
+              "name": "applicationByApplicationId",
+              "description": "Reads a single `Application` that is related to this `FacilitySearchResult`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Application",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "applicationId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "applicationStatus",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "CiipApplicationStatus",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "facilityByFacilityId",
+              "description": "Reads a single `Facility` that is related to this `FacilitySearchResult`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Facility",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "facilityCity",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "facilityId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "facilityMailingAddress",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "facilityName",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "facilityPostalCode",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "organisationName",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "reportingYear",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rowId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -29170,16 +29025,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facility",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "FacilityApplicationStatusInput",
                 "ofType": null
               },
               "defaultValue": null
@@ -37750,16 +37595,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facility",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "FacilityApplicationStatusInput",
                 "ofType": null
               },
               "defaultValue": null

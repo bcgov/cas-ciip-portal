@@ -80,7 +80,7 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
 
 export default createFragmentContainer(ApplyButton, {
   applyButtonDetails: graphql`
-    fragment ApplyButton_applyButtonDetails on FacilityApplicationStatus {
+    fragment ApplyButton_applyButtonDetails on FacilitySearchResult {
       applicationId
       applicationStatus
       facilityByFacilityId {

@@ -1,12 +1,12 @@
 -- Deploy ggircs-portal:function_search_all_facilities to pg
--- requires: type_facility_application_status
+-- requires: type_facility_search_result
 -- requires: view_ciip_application
 
 begin;
 
 create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text)
 
-    returns setof ggircs_portal.facility_application_status as
+    returns setof ggircs_portal.facility_search_result as
         $function$
             begin
                 if search_field is null or search_value is null
