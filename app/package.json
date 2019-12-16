@@ -156,7 +156,7 @@
     "babel-plugin-macros": "^2.8.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-relay": "^7.0.0",
-    "cucumber": "^6.0.3",
+    "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
