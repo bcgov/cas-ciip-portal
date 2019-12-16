@@ -1016,6 +1016,97 @@
               "deprecationReason": null
             },
             {
+              "name": "allCiipEmissions",
+              "description": "Reads and enables pagination through a set of `CiipEmission`.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": "Read all values in the set after (below) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Read all values in the set before (above) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "condition",
+                  "description": "A condition to be used in determining which values should be returned by the collection.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "CiipEmissionCondition",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": "Only read the first `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Only read the last `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "offset",
+                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `CiipEmission`.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "CiipEmissionsOrderBy",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": "[NATURAL]"
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipEmissionsConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "allCiipFacilities",
               "description": "Reads and enables pagination through a set of `CiipFacility`.",
               "args": [
@@ -9724,7 +9815,7 @@
               "description": "Checks for equality with the object’s `benchmark` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -9774,7 +9865,7 @@
               "description": "Checks for equality with the object’s `eligibilityThreshold` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -9785,6 +9876,26 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "excludesExportedEnergy",
+              "description": "Checks for equality with the object’s `excludesExportedEnergy` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "incentiveMultiplier",
+              "description": "Checks for equality with the object’s `incentiveMultiplier` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -9840,6 +9951,16 @@
               "defaultValue": null
             }
           ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "BigFloat",
+          "description": "A floating point number that requires more precision than IEEE 754 binary 64",
+          "fields": null,
+          "inputFields": null,
           "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
@@ -9937,6 +10058,18 @@
               "deprecationReason": null
             },
             {
+              "name": "EXCLUDES_EXPORTED_ENERGY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EXCLUDES_EXPORTED_ENERGY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "ID_ASC",
               "description": null,
               "isDeprecated": false,
@@ -9944,6 +10077,18 @@
             },
             {
               "name": "ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCENTIVE_MULTIPLIER_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCENTIVE_MULTIPLIER_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -10146,14 +10291,14 @@
           "fields": [
             {
               "name": "benchmark",
-              "description": "The value of the benchmark",
+              "description": "The benchmark for a product, i.e. the emission intensity that would return a 100% incentive",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -10226,14 +10371,14 @@
             },
             {
               "name": "eligibilityThreshold",
-              "description": "The value of eligibility_threshold",
+              "description": "The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -10242,12 +10387,28 @@
             },
             {
               "name": "endDate",
-              "description": "The date when this benchmark became/becomes inactive",
+              "description": "The date when this benchmark becomes inactive",
               "args": [],
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
                 "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "excludesExportedEnergy",
+              "description": "Whether the emissions from exported energy were excluded in the benchmark calculation",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -10262,6 +10423,22 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "incentiveMultiplier",
+              "description": "The multiplier applied to the incentive amounts under this product",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -10314,7 +10491,7 @@
             },
             {
               "name": "startDate",
-              "description": "The date when this benchmark became/becomes active",
+              "description": "The date when this benchmark becomes active",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -12809,16 +12986,6 @@
               "defaultValue": null
             }
           ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "BigFloat",
-          "description": "A floating point number that requires more precision than IEEE 754 binary 64",
-          "fields": null,
-          "inputFields": null,
           "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
@@ -18709,6 +18876,405 @@
               "ofType": null
             }
           ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CiipEmissionCondition",
+          "description": "A condition to be used against `CiipEmission` object types. All fields are tested for equality and combined with a logical ‘and.’",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "annualCo2E",
+              "description": "Checks for equality with the object’s `annualCo2E` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "annualEmission",
+              "description": "Checks for equality with the object’s `annualEmission` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "applicationId",
+              "description": "Checks for equality with the object’s `applicationId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "gasDescription",
+              "description": "Checks for equality with the object’s `gasDescription` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "gasType",
+              "description": "Checks for equality with the object’s `gasType` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "gwp",
+              "description": "Checks for equality with the object’s `gwp` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "sourceTypeName",
+              "description": "Checks for equality with the object’s `sourceTypeName` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CiipEmissionsOrderBy",
+          "description": "Methods to use when ordering `CiipEmission`.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "ANNUAL_CO2E_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ANNUAL_CO2E_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ANNUAL_EMISSION_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ANNUAL_EMISSION_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "APPLICATION_ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "APPLICATION_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "GAS_DESCRIPTION_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "GAS_DESCRIPTION_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "GAS_TYPE_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "GAS_TYPE_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "GWP_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "GWP_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "NATURAL",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SOURCE_TYPE_NAME_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SOURCE_TYPE_NAME_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipEmissionsConnection",
+          "description": "A connection to a list of `CiipEmission` values.",
+          "fields": [
+            {
+              "name": "edges",
+              "description": "A list of edges which contains the `CiipEmission` and cursor to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "CiipEmissionsEdge",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nodes",
+              "description": "A list of `CiipEmission` objects.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "CiipEmission",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "The count of *all* `CiipEmission` you could get from the connection.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipEmissionsEdge",
+          "description": "A `CiipEmission` edge in the connection.",
+          "fields": [
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Cursor",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "node",
+              "description": "The `CiipEmission` at the end of the edge.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipEmission",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipEmission",
+          "description": null,
+          "fields": [
+            {
+              "name": "annualCo2E",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "annualEmission",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "applicationId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "gasDescription",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "gasType",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "gwp",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sourceTypeName",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
         },
@@ -30355,13 +30921,13 @@
           "inputFields": [
             {
               "name": "benchmark",
-              "description": "The value of the benchmark",
+              "description": "The benchmark for a product, i.e. the emission intensity that would return a 100% incentive",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -30409,13 +30975,13 @@
             },
             {
               "name": "eligibilityThreshold",
-              "description": "The value of eligibility_threshold",
+              "description": "The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Int",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -30423,10 +30989,30 @@
             },
             {
               "name": "endDate",
-              "description": "The date when this benchmark became/becomes inactive",
+              "description": "The date when this benchmark becomes inactive",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "excludesExportedEnergy",
+              "description": "Whether the emissions from exported energy were excluded in the benchmark calculation",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "incentiveMultiplier",
+              "description": "The multiplier applied to the incentive amounts under this product",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -30447,7 +31033,7 @@
             },
             {
               "name": "startDate",
-              "description": "The date when this benchmark became/becomes active",
+              "description": "The date when this benchmark becomes active",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -39515,10 +40101,10 @@
           "inputFields": [
             {
               "name": "benchmark",
-              "description": "The value of the benchmark",
+              "description": "The benchmark for a product, i.e. the emission intensity that would return a 100% incentive",
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -39565,20 +40151,40 @@
             },
             {
               "name": "eligibilityThreshold",
-              "description": "The value of eligibility_threshold",
+              "description": "The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive",
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
             },
             {
               "name": "endDate",
-              "description": "The date when this benchmark became/becomes inactive",
+              "description": "The date when this benchmark becomes inactive",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "excludesExportedEnergy",
+              "description": "Whether the emissions from exported energy were excluded in the benchmark calculation",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "incentiveMultiplier",
+              "description": "The multiplier applied to the incentive amounts under this product",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -39595,7 +40201,7 @@
             },
             {
               "name": "startDate",
-              "description": "The date when this benchmark became/becomes active",
+              "description": "The date when this benchmark becomes active",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",

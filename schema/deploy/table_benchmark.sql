@@ -9,6 +9,7 @@ create table ggircs_portal.benchmark (
   benchmark numeric not null,
   eligibility_threshold numeric not null,
   incentive_multiplier numeric not null default 1,
+  excludes_exported_energy boolean not null default true,
   start_date timestamp with time zone,
   end_date timestamp with time zone,
   created_at timestamp with time zone not null default now(),
@@ -30,6 +31,7 @@ comment on column ggircs_portal.benchmark.product_id is 'Foreign key to the prod
 comment on column ggircs_portal.benchmark.benchmark is 'The benchmark for a product, i.e. the emission intensity that would return a 100% incentive';
 comment on column ggircs_portal.benchmark.eligibility_threshold is 'The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive';
 comment on column ggircs_portal.benchmark.incentive_multiplier is 'The multiplier applied to the incentive amounts under this product';
+comment on column ggircs_portal.benchmark.excludes_exported_energy is 'Whether the emissions from exported energy were excluded in the benchmark calculation';
 comment on column ggircs_portal.benchmark.start_date is 'The date when this benchmark becomes active';
 comment on column ggircs_portal.benchmark.end_date is 'The date when this benchmark becomes inactive';
 comment on column ggircs_portal.benchmark.created_at is 'Creation date of row';

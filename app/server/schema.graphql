@@ -965,8 +965,10 @@ enum ApplicationsOrderBy {
 
 """Table containing the benchmark and eligibility threshold for a product"""
 type Benchmark implements Node {
-  """The value of the benchmark"""
-  benchmark: Int!
+  """
+  The benchmark for a product, i.e. the emission intensity that would return a 100% incentive
+  """
+  benchmark: BigFloat!
 
   """Reads a single `CiipUser` that is related to this `Benchmark`."""
   ciipUserByDeletedBy: CiipUser
@@ -983,16 +985,26 @@ type Benchmark implements Node {
   """The user who deleted the row"""
   deletedBy: Int
 
-  """The value of eligibility_threshold"""
-  eligibilityThreshold: Int!
+  """
+  The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive
+  """
+  eligibilityThreshold: BigFloat!
 
-  """The date when this benchmark became/becomes inactive"""
+  """The date when this benchmark becomes inactive"""
   endDate: Datetime
+
+  """
+  Whether the emissions from exported energy were excluded in the benchmark calculation
+  """
+  excludesExportedEnergy: Boolean!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+
+  """The multiplier applied to the incentive amounts under this product"""
+  incentiveMultiplier: BigFloat!
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
@@ -1003,7 +1015,7 @@ type Benchmark implements Node {
   """Unique ID for the benchmark"""
   rowId: Int!
 
-  """The date when this benchmark became/becomes active"""
+  """The date when this benchmark becomes active"""
   startDate: Datetime
 
   """Last update date of row"""
@@ -1019,7 +1031,7 @@ for equality and combined with a logical ‘and.’
 """
 input BenchmarkCondition {
   """Checks for equality with the object’s `benchmark` field."""
-  benchmark: Int
+  benchmark: BigFloat
 
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
@@ -1034,10 +1046,16 @@ input BenchmarkCondition {
   deletedBy: Int
 
   """Checks for equality with the object’s `eligibilityThreshold` field."""
-  eligibilityThreshold: Int
+  eligibilityThreshold: BigFloat
 
   """Checks for equality with the object’s `endDate` field."""
   endDate: Datetime
+
+  """Checks for equality with the object’s `excludesExportedEnergy` field."""
+  excludesExportedEnergy: Boolean
+
+  """Checks for equality with the object’s `incentiveMultiplier` field."""
+  incentiveMultiplier: BigFloat
 
   """Checks for equality with the object’s `productId` field."""
   productId: Int
@@ -1057,8 +1075,10 @@ input BenchmarkCondition {
 
 """An input for mutations affecting `Benchmark`"""
 input BenchmarkInput {
-  """The value of the benchmark"""
-  benchmark: Int!
+  """
+  The benchmark for a product, i.e. the emission intensity that would return a 100% incentive
+  """
+  benchmark: BigFloat!
 
   """Creation date of row"""
   createdAt: Datetime
@@ -1072,16 +1092,26 @@ input BenchmarkInput {
   """The user who deleted the row"""
   deletedBy: Int
 
-  """The value of eligibility_threshold"""
-  eligibilityThreshold: Int!
+  """
+  The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive
+  """
+  eligibilityThreshold: BigFloat!
 
-  """The date when this benchmark became/becomes inactive"""
+  """The date when this benchmark becomes inactive"""
   endDate: Datetime
+
+  """
+  Whether the emissions from exported energy were excluded in the benchmark calculation
+  """
+  excludesExportedEnergy: Boolean
+
+  """The multiplier applied to the incentive amounts under this product"""
+  incentiveMultiplier: BigFloat
 
   """Foreign key to the product"""
   productId: Int!
 
-  """The date when this benchmark became/becomes active"""
+  """The date when this benchmark becomes active"""
   startDate: Datetime
 
   """Last update date of row"""
@@ -1095,8 +1125,10 @@ input BenchmarkInput {
 Represents an update to a `Benchmark`. Fields that are set will be updated.
 """
 input BenchmarkPatch {
-  """The value of the benchmark"""
-  benchmark: Int
+  """
+  The benchmark for a product, i.e. the emission intensity that would return a 100% incentive
+  """
+  benchmark: BigFloat
 
   """Creation date of row"""
   createdAt: Datetime
@@ -1110,16 +1142,26 @@ input BenchmarkPatch {
   """The user who deleted the row"""
   deletedBy: Int
 
-  """The value of eligibility_threshold"""
-  eligibilityThreshold: Int
+  """
+  The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive
+  """
+  eligibilityThreshold: BigFloat
 
-  """The date when this benchmark became/becomes inactive"""
+  """The date when this benchmark becomes inactive"""
   endDate: Datetime
+
+  """
+  Whether the emissions from exported energy were excluded in the benchmark calculation
+  """
+  excludesExportedEnergy: Boolean
+
+  """The multiplier applied to the incentive amounts under this product"""
+  incentiveMultiplier: BigFloat
 
   """Foreign key to the product"""
   productId: Int
 
-  """The date when this benchmark became/becomes active"""
+  """The date when this benchmark becomes active"""
   startDate: Datetime
 
   """Last update date of row"""
@@ -1171,8 +1213,12 @@ enum BenchmarksOrderBy {
   ELIGIBILITY_THRESHOLD_DESC
   END_DATE_ASC
   END_DATE_DESC
+  EXCLUDES_EXPORTED_ENERGY_ASC
+  EXCLUDES_EXPORTED_ENERGY_DESC
   ID_ASC
   ID_DESC
+  INCENTIVE_MULTIPLIER_ASC
+  INCENTIVE_MULTIPLIER_DESC
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
@@ -1925,6 +1971,88 @@ enum CiipElectricityAndHeatsOrderBy {
   PURCHASED_DESC
   SOLD_ASC
   SOLD_DESC
+}
+
+type CiipEmission {
+  annualCo2E: BigFloat
+  annualEmission: BigFloat
+  applicationId: Int
+  gasDescription: String
+  gasType: String
+  gwp: String
+  sourceTypeName: String
+}
+
+"""
+A condition to be used against `CiipEmission` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input CiipEmissionCondition {
+  """Checks for equality with the object’s `annualCo2E` field."""
+  annualCo2E: BigFloat
+
+  """Checks for equality with the object’s `annualEmission` field."""
+  annualEmission: BigFloat
+
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
+  """Checks for equality with the object’s `gasDescription` field."""
+  gasDescription: String
+
+  """Checks for equality with the object’s `gasType` field."""
+  gasType: String
+
+  """Checks for equality with the object’s `gwp` field."""
+  gwp: String
+
+  """Checks for equality with the object’s `sourceTypeName` field."""
+  sourceTypeName: String
+}
+
+"""A connection to a list of `CiipEmission` values."""
+type CiipEmissionsConnection {
+  """
+  A list of edges which contains the `CiipEmission` and cursor to aid in pagination.
+  """
+  edges: [CiipEmissionsEdge!]!
+
+  """A list of `CiipEmission` objects."""
+  nodes: [CiipEmission]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `CiipEmission` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `CiipEmission` edge in the connection."""
+type CiipEmissionsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipEmission` at the end of the edge."""
+  node: CiipEmission
+}
+
+"""Methods to use when ordering `CiipEmission`."""
+enum CiipEmissionsOrderBy {
+  ANNUAL_CO2E_ASC
+  ANNUAL_CO2E_DESC
+  ANNUAL_EMISSION_ASC
+  ANNUAL_EMISSION_DESC
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  GAS_DESCRIPTION_ASC
+  GAS_DESCRIPTION_DESC
+  GAS_TYPE_ASC
+  GAS_TYPE_DESC
+  GWP_ASC
+  GWP_DESC
+  NATURAL
+  SOURCE_TYPE_NAME_ASC
+  SOURCE_TYPE_NAME_DESC
 }
 
 """A connection to a list of `CiipFacility` values."""
@@ -8960,6 +9088,35 @@ type Query implements Node {
     """The method to use when ordering `CiipElectricityAndHeat`."""
     orderBy: [CiipElectricityAndHeatsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CiipElectricityAndHeatsConnection
+
+  """Reads and enables pagination through a set of `CiipEmission`."""
+  allCiipEmissions(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipEmissionCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipEmission`."""
+    orderBy: [CiipEmissionsOrderBy!] = [NATURAL]
+  ): CiipEmissionsConnection
 
   """Reads and enables pagination through a set of `CiipFacility`."""
   allCiipFacilities(
