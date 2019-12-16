@@ -51,10 +51,10 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
                         left join applicationDetails as ad on f.id = ad.facility_id ),
 
                         organisationInfo as (
-                            select t.application_id::int, t.id::int as facility_id, t.facility_name, t.facility_mailing_address, t.facility_city, t.facility_postal_code, t.reporting_year, t.application_status, o.operator_name as organisation_name
-                            from tempTable as t join ggircs_portal.organisation as o on t.organisation_id = o.id::int
-                        where '|| search_field || '::text ilike ''%' || search_value || '%'' order by '|| order_by_field || ' ' || direction || ')
-                        select * from organisationInfo';
+                            select row_number() over()::int as id, t.application_id::int, t.id::int as facility_id, t.facility_name, t.facility_mailing_address, t.facility_city, t.facility_postal_code, t.reporting_year, t.application_status, o.operator_name as organisation_name
+                            from tempTable as t join ggircs_portal.organisation as o on t.organisation_id = o.id::int)
+                        select * from organisationInfo
+                        where '|| search_field || '::text ilike ''%' || search_value || '%'' order by '|| order_by_field || ' ' || direction;
                         -- where reporting_year::int =
                         -- (date_part(''year'', CURRENT_DATE))';
                 end if;

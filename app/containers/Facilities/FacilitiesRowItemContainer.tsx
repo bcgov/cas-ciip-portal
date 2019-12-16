@@ -5,9 +5,6 @@ import {
   CiipApplicationStatus,
   FacilitiesRowItemContainer_facilityApplicationStatus
 } from 'FacilitiesRowItemContainer_facilityApplicationStatus.graphql';
-// Import {useRouter} from 'next/router';
-// import Link from 'next/link';
-// import createApplicationMutation from 'mutations/application/createApplicationMutation';
 import ApplyButton from '../../components/ApplyButton';
 interface Props {
   relay: RelayProp;
@@ -27,78 +24,7 @@ const statusBadgeColor: Record<
 };
 export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = props => {
   const {facilityApplicationStatus} = props;
-  // Const {facilityByFacilityId} = facilityApplicationStatus;
-  // const {hasSwrsReport} = facilityByFacilityId;
-  // const {rowId} = facilityByFacilityId;
-  // const {environment} = props.relay;
-  // const router = useRouter();
-  // const {applicationId} = facilityApplicationStatus;
   const {applicationStatus} = facilityApplicationStatus;
-  // Const startApplication = async () => {
-  //   const variables = {
-  //     input: {
-  //       facilityIdInput: rowId
-  //     }
-  //   };
-  //   const response = await createApplicationMutation(environment, variables);
-  //   console.log(response);
-  //   router.push({
-  //     pathname: hasSwrsReport
-  //       ? '/ciip-application-swrs-import'
-  //       : '/ciip-application',
-  //     query: {
-  //       applicationId: response.createApplicationMutationChain.application.id
-  //     }
-  //   });
-  // };
-
-  // const applyButton = () => {
-  //   if (!applicationId) {
-  //     return (
-  //       <Button variant="primary" onClick={startApplication}>
-  //         Apply for CIIP for this facility
-  //       </Button>
-  //     );
-  //   }
-
-  //   if (
-  //     applicationId &&
-  //     facilityApplicationStatus.applicationStatus === 'DRAFT'
-  //   ) {
-  //     return (
-  //       <Link
-  //         href={{
-  //           pathname: '/ciip-application',
-  //           query: {
-  //             applicationId
-  //           }
-  //         }}
-  //       >
-  //         <Button variant="primary">Resume CIIP application</Button>
-  //       </Link>
-  //     );
-  //   }
-
-  //   if (
-  //     applicationId &&
-  //     facilityApplicationStatus.applicationStatus === 'PENDING'
-  //   ) {
-  //     return (
-  //       <Link
-  //         href={{
-  //           pathname: '/view-application',
-  //           query: {
-  //             applicationId
-  //           }
-  //         }}
-  //       >
-  //         <Button variant="primary">View Submitted Application</Button>
-  //       </Link>
-  //     );
-  //   }
-
-  //   return null;
-  // };
 
   return (
     <tr>

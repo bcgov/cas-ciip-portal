@@ -1,13 +1,10 @@
 import React, {useEffect} from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
-import {Table, Container, Row, Col} from 'react-bootstrap';
-import SortableTableHeader from 'components/SortableTableHeader';
-import SearchBox from 'components/SearchBox';
+import SearchTableLayout from 'components/SearchTableLayout';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
 
 export const FacilitiesList = props => {
   const {
-    searchDisplay,
     direction,
     orderByField,
     searchField,
@@ -15,7 +12,6 @@ export const FacilitiesList = props => {
     handleEvent
   } = props;
   const {edges} = props.query.searchAllFacilities;
-  console.log(edges);
   useEffect(() => {
     const refetchVariables = {
       searchField,
@@ -26,24 +22,6 @@ export const FacilitiesList = props => {
     props.relay.refetch(refetchVariables);
   });
 
-  const tableHeaders = [
-    {columnName: 'organisation_name', displayName: 'Organisation Name'},
-    {columnName: 'facility_name', displayName: 'Facility Name'},
-    {columnName: 'facility_mailing_address', displayName: 'Address'},
-    {columnName: 'facility_postal_code', displayName: 'Postal Code'},
-    {columnName: 'facility_city', displayName: 'City'},
-    {columnName: 'application_status', displayName: 'Status'}
-  ];
-
-  const dropdownSortItems = [
-    'Organisation Name',
-    'Facility Name',
-    'Address',
-    'Postal Code',
-    'City',
-    'Status'
-  ];
-
   const displayNameToColumnNameMap = {
     'Organisation Name': 'organisation_name',
     'Facility Name': 'facility_name',
@@ -53,44 +31,23 @@ export const FacilitiesList = props => {
     Status: 'application_status'
   };
 
-  return (
-    <>
-      <Container>
-        <Row>
-          <Col md={{span: 12, offset: 6}}>
-            <SearchBox
-              dropdownSortItems={dropdownSortItems}
-              handleEvent={handleEvent}
-              displayNameToColumnNameMap={displayNameToColumnNameMap}
-              searchDisplay={searchDisplay}
-            />
-          </Col>
-        </Row>
-      </Container>
+  const body = (
+    <tbody>
+      {edges.map(edge => (
+        <FacilitiesRowItemContainer
+          key={edge.node.rowId}
+          facilityApplicationStatus={edge.node}
+        />
+      ))}
+    </tbody>
+  );
 
-      <Table striped bordered hover style={{textAlign: 'center'}}>
-        <thead>
-          <tr>
-            {tableHeaders.map(header => (
-              <SortableTableHeader
-                key={header.columnName}
-                sort={handleEvent}
-                headerVariables={header}
-              />
-            ))}
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {edges.map(edge => (
-            <FacilitiesRowItemContainer
-              key={edge.node.rowId}
-              facilityApplicationStatus={edge.node}
-            />
-          ))}
-        </tbody>
-      </Table>
-    </>
+  return (
+    <SearchTableLayout
+      body={body}
+      displayNameToColumnNameMap={displayNameToColumnNameMap}
+      handleEvent={handleEvent}
+    />
   );
 };
 
