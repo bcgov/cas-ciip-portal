@@ -32,7 +32,7 @@ export const UserOrganisationComponent = props => {
         {userOrganisation.status === 'APPROVED' ? (
           <Link
             href={{
-              pathname: '/user-organisation-facilities',
+              pathname: '/facilities-list',
               query: {
                 organisationId:
                   userOrganisation.organisationByOrganisationId.id,
