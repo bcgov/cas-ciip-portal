@@ -13,7 +13,8 @@ declare
   form_result jsonb;
   init_function varchar(1000);
   query text;
-  result ggircs_portal.application;
+  result ggircs_portal.application_revision;
+  facility_id_input int;
 begin
 
   new_version_number := last_revision_id_input + 1;
@@ -25,6 +26,8 @@ begin
   -- Insert new value with application_id fk and version 1 into application_revision_status
   insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
   values (application_id_input, new_version_number, 'draft');
+
+  select facility_id from ggircs_portal.application where id = application_id_input into facility_id_input;
 
   for temp_row in
     select form_id from ggircs_portal.ciip_application_wizard
@@ -48,9 +51,13 @@ begin
     insert into ggircs_portal.form_result(form_id, application_id, version_number, form_result)
     values (temp_row.form_id, application_id_input, new_version_number, form_result) returning id into form_result_id;
 
+    -- Create review statuses
+    insert into ggircs_portal.application_review(form_result_id, review_status)
+    values (form_result_id, 'pending');
+
   end loop;
 
-  select * from ggircs_portal.application_revision where id = application_id_input and version_number = new_version_number into result;
+  select * from ggircs_portal.application_revision where application_id = application_id_input and version_number = new_version_number into result;
   return result;
 end;
 $function$ language plpgsql strict volatile;
