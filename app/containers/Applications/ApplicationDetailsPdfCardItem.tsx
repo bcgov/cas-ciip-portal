@@ -33,11 +33,23 @@ const styles = StyleSheet.create({
   }
 });
 
+const arrayFieldTemplate = props => {
+  return (
+    <>
+      <Text>{props.title}</Text>
+      {/* {props.items.map(item => {
+        debugger;
+        return <View key={item.index}>{item.children}</View>;
+      })} */}
+    </>
+  );
+};
+
 const objectFieldTemplate = props => {
   return (
     <>
       {props.properties.map(
-        prop => prop.content && <View>{prop.content}</View>
+        prop => prop.content && <View key={prop.index}>{prop.content}</View>
       )}
     </>
   );
@@ -79,9 +91,11 @@ const ApplicationDetailsPdfCardItem = props => {
 
   const facility = application.facilityByFacilityId;
 
-  const {node} = application.formResultsByApplicationId.edges[0];
-  const {schema, uiSchema} = node.formJsonByFormId.formJson;
-  const {formResult, submissionDate} = node;
+  const formResults = application.formResultsByApplicationId.edges;
+
+  // Const {node} = application.formResultsByApplicationId.edges[0];
+  // const {schema, uiSchema} = node.formJsonByFormId.formJson as FormJson;
+  // const {formResult, submissionDate} = node;
 
   return (
     <Document>
@@ -101,7 +115,7 @@ const ApplicationDetailsPdfCardItem = props => {
         <Body>
           <Title>Incentive Program Application</Title>
           <Text style={styles.appInfo}>
-            Submitted: {submissionDate.slice(0, 10)} Status:{' '}
+            {/* Submitted: {submissionDate.slice(0, 10)} Status:{' '} */}
             {application.applicationStatus.applicationStatus}
           </Text>
           <Row>
@@ -152,19 +166,26 @@ const ApplicationDetailsPdfCardItem = props => {
 
           <Hr />
 
-          <JsonSchemaForm
-            FieldTemplate={fieldTemplate}
-            ObjectFieldTemplate={objectFieldTemplate}
-            showErrorList={false}
-            fields={CUSTOM_FIELDS}
-            schema={schema}
-            uiSchema={uiSchema}
-            formData={formResult}
-            tagName={FormFields}
-            widgets={customWidget}
-          >
-            <View />
-          </JsonSchemaForm>
+          {formResults.map(({node}) => (
+            <View key={node.formJsonByFormId.id}>
+              <Text>{node.formJsonByFormId.id}</Text>
+              <JsonSchemaForm
+                omitExtraData
+                ArrayFieldTemplate={arrayFieldTemplate}
+                FieldTemplate={fieldTemplate}
+                ObjectFieldTemplate={objectFieldTemplate}
+                showErrorList={false}
+                fields={CUSTOM_FIELDS}
+                schema={node.formJsonByFormId.formJson.schema}
+                uiSchema={node.formJsonByFormId.formJson.uiSchema}
+                formData={node.formResult}
+                tagName={FormFields}
+                widgets={customWidget}
+              >
+                <View />
+              </JsonSchemaForm>
+            </View>
+          ))}
         </Body>
       </Page>
     </Document>
