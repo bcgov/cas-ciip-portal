@@ -4,7 +4,7 @@ with rows as (
 insert into ggircs_portal.application_revision_status
 (id, application_id, version_number, application_revision_status, created_at)
 overriding system value
-values (1, 1, 1, 'submitted', '2019-09-17 14:49:54.191757-07'), (2, 2, 1, 'draft', '2019-09-10 14:49:54.191757-07')
+values (1, 1, 1, 'submitted', '2019-09-17 14:49:54.191757-07')
 on conflict(id)
 do update
 set

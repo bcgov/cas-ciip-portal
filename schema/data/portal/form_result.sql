@@ -23,6 +23,5 @@ setval('ggircs_portal.form_result_id_seq', (select max(id) from ggircs_portal.fo
 where setval = 0;
 
 -- TODO: create_application_mutation_chain should automatically create a reporting year
-update ggircs_portal.application set reporting_year = 2019 where id = 2;
 
 commit;
