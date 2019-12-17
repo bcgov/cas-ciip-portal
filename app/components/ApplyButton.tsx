@@ -15,7 +15,8 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
   const {hasSwrsReport} = facilityByFacilityId;
   const {rowId} = facilityByFacilityId;
   const {environment} = props.relay;
-  const {applicationId} = applyButtonDetails;
+  const applicationId = applyButtonDetails?.applicationByApplicationId?.id;
+
   const {applicationRevisionStatus} = applyButtonDetails;
   const router = useRouter();
 
@@ -45,13 +46,19 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
     );
   }
 
+  const {
+    latestDraftVersionNumber,
+    latestSubmittedVersionNumber
+  } = applyButtonDetails.applicationByApplicationId;
+
   if (applicationId && applicationRevisionStatus === 'DRAFT') {
     return (
       <Link
         href={{
           pathname: '/ciip-application',
           query: {
-            applicationId
+            applicationId,
+            version: latestDraftVersionNumber
           }
         }}
       >
@@ -66,7 +73,8 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
         href={{
           pathname: '/view-application',
           query: {
-            applicationId
+            applicationId,
+            version: latestSubmittedVersionNumber
           }
         }}
       >
@@ -81,7 +89,11 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
 export default createFragmentContainer(ApplyButton, {
   applyButtonDetails: graphql`
     fragment ApplyButton_applyButtonDetails on FacilitySearchResult {
-      applicationId
+      applicationByApplicationId {
+        id
+        latestDraftVersionNumber
+        latestSubmittedVersionNumber
+      }
       applicationRevisionStatus
       facilityByFacilityId {
         rowId
