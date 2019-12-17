@@ -40,8 +40,7 @@ export const ApplicationRowItem = props => {
           href={{
             pathname: '/application-review',
             query: {
-              applicationId: applicationSearchResult.rowId,
-              applicationGUID:
+              applicationId:
                 applicationSearchResult.applicationByApplicationId.id,
               reportingYear: applicationSearchResult.reportingYear,
               bcghgid: applicationSearchResult.bcghgid,

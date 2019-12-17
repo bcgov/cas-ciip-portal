@@ -33,7 +33,8 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
         ? '/ciip-application-swrs-import'
         : '/ciip-application',
       query: {
-        applicationId: response.createApplicationMutationChain.application.id
+        applicationId: response.createApplicationMutationChain.application.id,
+        version: 1
       }
     });
   };

@@ -36,7 +36,7 @@ export const ApplicationList = props => {
       {edges.map(edge => (
         <ApplicationRowItemContainer
           key={edge.node.rowId}
-          ciipApplication={edge.node}
+          applicationSearchResult={edge.node}
         />
       ))}
     </tbody>

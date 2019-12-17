@@ -20,14 +20,14 @@ class ApplicationReview extends Component<Props> {
     query applicationReviewQuery(
       $bcghgidInput: BigFloat
       $reportingYear: String
-      $applicationGUID: ID!
+      $applicationId: ID!
       $version: String!
     ) {
       query {
         session {
           ...defaultLayout_session
         }
-        application(id: $applicationGUID) {
+        application(id: $applicationId) {
           rowId
           applicationRevisionStatus {
             ...ApplicationRevisionStatusContainer_applicationRevisionStatus
@@ -39,7 +39,7 @@ class ApplicationReview extends Component<Props> {
           @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
         ...ApplicationDetailsContainer_query
         ...ApplicationCommentsContainer_query
-          @arguments(applicationId: $applicationGUID)
+          @arguments(applicationId: $applicationId)
       }
     }
   `;
