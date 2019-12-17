@@ -1,6 +1,6 @@
 -- Deploy ggircs-portal:function_create_application_mutation_chain to pg
 -- requires: table_application
--- requires: table_application_status
+-- requires: table_application_revision_status
 
 begin;
 

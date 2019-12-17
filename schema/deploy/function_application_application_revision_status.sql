@@ -1,5 +1,5 @@
--- Deploy ggircs-portal:function_application_application_status to pg
--- requires: table_application_status
+-- Deploy ggircs-portal:function_application_application_revision_status to pg
+-- requires: table_application_revision_status
 -- requires: table_application
 
 begin;

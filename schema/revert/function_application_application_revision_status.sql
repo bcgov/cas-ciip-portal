@@ -1,4 +1,4 @@
--- Revert ggircs-portal:function_application_application_status from pg
+-- Revert ggircs-portal:function_application_application_revision_status from pg
 
 begin;
 

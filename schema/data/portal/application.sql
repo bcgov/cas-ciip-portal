@@ -12,4 +12,6 @@ select setval from
 setval('ggircs_portal.application_id_seq', (select max(id) from ggircs_portal.application), true)
 where setval = 0;
 
+select ggircs_portal.create_application_mutation_chain(2);
+
 commit;
