@@ -16,7 +16,7 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
   const {rowId} = facilityByFacilityId;
   const {environment} = props.relay;
   const {applicationId} = applyButtonDetails;
-  const {applicationStatus} = applyButtonDetails;
+  const {applicationRevisionStatus} = applyButtonDetails;
   const router = useRouter();
 
   const startApplication = async () => {
@@ -45,7 +45,7 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
     );
   }
 
-  if (applicationId && applicationStatus === 'DRAFT') {
+  if (applicationId && applicationRevisionStatus === 'DRAFT') {
     return (
       <Link
         href={{
@@ -60,7 +60,7 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
     );
   }
 
-  if (applicationId && applicationStatus === 'PENDING') {
+  if (applicationId && applicationRevisionStatus === 'PENDING') {
     return (
       <Link
         href={{
@@ -82,7 +82,7 @@ export default createFragmentContainer(ApplyButton, {
   applyButtonDetails: graphql`
     fragment ApplyButton_applyButtonDetails on FacilitySearchResult {
       applicationId
-      applicationStatus
+      applicationRevisionStatus
       facilityByFacilityId {
         rowId
         hasSwrsReport(reportingYear: "2018")

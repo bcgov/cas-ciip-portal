@@ -62,40 +62,6 @@ type Application implements Node {
     orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CertificationUrlsConnection!
 
-  """
-  Reads a single `CiipApplication` that is related to this `Application`.
-  """
-  ciipApplicationByRowId: CiipApplication
-
-  """Reads and enables pagination through a set of `CiipApplication`."""
-  ciipApplicationsByRowId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipApplicationCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipApplication`."""
-    orderBy: [CiipApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipApplicationsConnection! @deprecated(reason: "Please use ciipApplicationByRowId instead")
-
   """Reads a single `CiipUser` that is related to this `Application`."""
   ciipUserByUserId: CiipUser
 
@@ -1456,71 +1422,12 @@ enum CertificationUrlsOrderBy {
   UPDATED_BY_DESC
 }
 
-type CiipApplication implements Node {
-  """
-  Reads a single `Application` that is related to this `CiipApplication`.
-  """
-  applicationByRowId: Application
-
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-  rowId: Int!
-}
-
-"""
-A condition to be used against `CiipApplication` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input CiipApplicationCondition {
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
-}
-
 enum CiipApplicationRevisionStatus {
   APPROVED
   DRAFT
   REJECTED
   REQUESTED_CHANGES
   SUBMITTED
-}
-
-"""A connection to a list of `CiipApplication` values."""
-type CiipApplicationsConnection {
-  """
-  A list of edges which contains the `CiipApplication` and cursor to aid in pagination.
-  """
-  edges: [CiipApplicationsEdge!]!
-
-  """A list of `CiipApplication` objects."""
-  nodes: [CiipApplication]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `CiipApplication` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""A `CiipApplication` edge in the connection."""
-type CiipApplicationsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipApplication` at the end of the edge."""
-  node: CiipApplication
-}
-
-"""Methods to use when ordering `CiipApplication`."""
-enum CiipApplicationsOrderBy {
-  ID_ASC
-  ID_DESC
-  NATURAL
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
 }
 
 """
@@ -4304,59 +4211,6 @@ type DeleteCertificationUrlPayload {
   query: Query
 }
 
-"""All input for the `deleteCiipApplicationByRowId` mutation."""
-input DeleteCiipApplicationByRowIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  rowId: Int!
-}
-
-"""All input for the `deleteCiipApplication` mutation."""
-input DeleteCiipApplicationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `CiipApplication` to be deleted.
-  """
-  id: ID!
-}
-
-"""The output of our delete `CiipApplication` mutation."""
-type DeleteCiipApplicationPayload {
-  """
-  Reads a single `Application` that is related to this `CiipApplication`.
-  """
-  applicationByRowId: Application
-
-  """The `CiipApplication` that was deleted by this mutation."""
-  ciipApplication: CiipApplication
-
-  """An edge for our `CiipApplication`. May be used by Relay 1."""
-  ciipApplicationEdge(
-    """The method to use when ordering `CiipApplication`."""
-    orderBy: [CiipApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipApplicationsEdge
-
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-  deletedCiipApplicationId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
 """All input for the `deleteCiipApplicationWizardByFormId` mutation."""
 input DeleteCiipApplicationWizardByFormIdInput {
   """
@@ -5874,7 +5728,7 @@ type FacilitySearchResult {
   """
   applicationByApplicationId: Application
   applicationId: Int
-  applicationStatus: CiipApplicationStatus
+  applicationRevisionStatus: CiipApplicationRevisionStatus
 
   """
   Reads a single `Facility` that is related to this `FacilitySearchResult`.
@@ -7410,22 +7264,6 @@ type Mutation {
     """
     input: DeleteCertificationUrlByRowIdInput!
   ): DeleteCertificationUrlPayload
-
-  """Deletes a single `CiipApplication` using its globally unique id."""
-  deleteCiipApplication(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteCiipApplicationInput!
-  ): DeleteCiipApplicationPayload
-
-  """Deletes a single `CiipApplication` using a unique key."""
-  deleteCiipApplicationByRowId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteCiipApplicationByRowIdInput!
-  ): DeleteCiipApplicationPayload
 
   """Deletes a single `CiipApplicationWizard` using its globally unique id."""
   deleteCiipApplicationWizard(
@@ -8965,35 +8803,6 @@ type Query implements Node {
     orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CertificationUrlsConnection
 
-  """Reads and enables pagination through a set of `CiipApplication`."""
-  allCiipApplications(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipApplicationCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipApplication`."""
-    orderBy: [CiipApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipApplicationsConnection
-
   """Reads and enables pagination through a set of `CiipApplicationWizard`."""
   allCiipApplicationWizards(
     """Read all values in the set after (below) this cursor."""
@@ -9721,15 +9530,6 @@ type Query implements Node {
   ): CertificationUrl
   certificationUrlByRowId(rowId: String!): CertificationUrl
 
-  """Reads a single `CiipApplication` using its globally unique `ID`."""
-  ciipApplication(
-    """
-    The globally unique `ID` to be used in selecting a single `CiipApplication`.
-    """
-    id: ID!
-  ): CiipApplication
-  ciipApplicationByRowId(rowId: Int!): CiipApplication
-
   """Reads a single `CiipApplicationWizard` using its globally unique `ID`."""
   ciipApplicationWizard(
     """
@@ -10066,8 +9866,6 @@ type Query implements Node {
   ): ReviewComment
   reviewCommentByRowId(rowId: Int!): ReviewComment
 
-<<<<<<< 55ba6f89c556e149fe03e599030c05bf675005ac
-<<<<<<< 3daba91a0e7f6e820f02bb5d389ed23ae17e4dd2
   """Reads and enables pagination through a set of `FacilitySearchResult`."""
   searchAllFacilities(
     """Read all values in the set after (below) this cursor."""
@@ -10093,15 +9891,9 @@ type Query implements Node {
     searchValue: String
   ): FacilitySearchResultsConnection!
 
-  """Reads and enables pagination through a set of `CiipApplication`."""
-=======
-  """Reads and enables pagination through a set of `Application`."""
->>>>>>> refactor fragments after change to intermediary table 'ApplicationRevision'
-=======
   """
   Reads and enables pagination through a set of `ApplicationSearchResult`.
   """
->>>>>>> refactor application search function
   searchApplicationList(
     """Read all values in the set after (below) this cursor."""
     after: Cursor

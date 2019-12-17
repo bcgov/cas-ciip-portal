@@ -24,7 +24,7 @@ const statusBadgeColor: Record<
 };
 export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = props => {
   const {facilitySearchResult} = props;
-  const {applicationStatus} = facilitySearchResult;
+  const {applicationRevisionStatus} = facilitySearchResult;
 
   return (
     <tr>
@@ -35,14 +35,14 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = props 
       <td>{facilitySearchResult.facilityCity}</td>
       <td>
         {' '}
-        {applicationStatus ? (
+        {applicationRevisionStatus ? (
           <>
             <Badge
               pill
               style={{width: '100%'}}
-              variant={statusBadgeColor[applicationStatus]}
+              variant={statusBadgeColor[applicationRevisionStatus]}
             >
-              {applicationStatus}
+              {applicationRevisionStatus}
             </Badge>
           </>
         ) : (
@@ -64,7 +64,7 @@ export default createFragmentContainer(FacilitiesRowItemComponent, {
       facilityMailingAddress
       facilityCity
       facilityPostalCode
-      applicationStatus
+      applicationRevisionStatus
       organisationName
     }
   `

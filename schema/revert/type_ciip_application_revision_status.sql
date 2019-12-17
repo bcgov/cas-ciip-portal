@@ -1,4 +1,4 @@
--- Revert ggircs-portal:type_ciip_application_status from pg
+-- Revert ggircs-portal:type_ciip_application_revision_status from pg
 
 begin;
 
