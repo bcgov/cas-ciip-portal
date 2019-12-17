@@ -2,7 +2,7 @@ import React from 'react';
 import {Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {
-  CiipApplicationStatus,
+  CiipApplicationRevisionStatus,
   FacilitiesRowItemContainer_facilitySearchResult
 } from 'FacilitiesRowItemContainer_facilitySearchResult.graphql';
 import ApplyButton from '../../components/ApplyButton';
@@ -12,14 +12,13 @@ interface Props {
   key: number;
 }
 const statusBadgeColor: Record<
-  CiipApplicationStatus,
+  CiipApplicationRevisionStatus,
   'info' | 'danger' | 'success' | 'warning' | 'primary' | 'secondary'
 > = {
   DRAFT: 'warning',
-  PENDING: 'info',
+  SUBMITTED: 'info',
   REJECTED: 'danger',
   APPROVED: 'success',
-  CHANGES_SUBMITTED: 'primary',
   REQUESTED_CHANGES: 'secondary'
 };
 export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = props => {
