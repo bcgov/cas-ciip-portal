@@ -2,7 +2,6 @@
 -- requires: schema_ggircs_portal
 -- requires: table_form_result
 -- requires: type_ciip_application_status
-
 begin;
 
 create table ggircs_portal.application_status (

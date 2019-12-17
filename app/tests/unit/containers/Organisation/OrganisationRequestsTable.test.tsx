@@ -28,10 +28,6 @@ describe('Organisations', () => {
       />
     );
     expect(r).toMatchSnapshot();
-    expect(
-      r
-        .find('Relay(OrganisationRequestsTableRowComponent)')
-        .prop('userOrganisation')
-    ).toBe(query.searchCiipUserOrganisation.edges[0].node);
+    expect(r.exists('SearchTableLayoutComponent')).toBe(true);
   });
 });

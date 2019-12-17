@@ -5329,6 +5329,56 @@ input FacilityPatch {
   swrsReportId: Int
 }
 
+type FacilitySearchResult {
+  """
+  Reads a single `Application` that is related to this `FacilitySearchResult`.
+  """
+  applicationByApplicationId: Application
+  applicationId: Int
+  applicationStatus: CiipApplicationStatus
+
+  """
+  Reads a single `Facility` that is related to this `FacilitySearchResult`.
+  """
+  facilityByFacilityId: Facility
+  facilityCity: String
+  facilityId: Int
+  facilityMailingAddress: String
+  facilityName: String
+  facilityPostalCode: String
+  organisationName: String
+  reportingYear: String
+  rowId: Int
+}
+
+"""A connection to a list of `FacilitySearchResult` values."""
+type FacilitySearchResultsConnection {
+  """
+  A list of edges which contains the `FacilitySearchResult` and cursor to aid in pagination.
+  """
+  edges: [FacilitySearchResultsEdge!]!
+
+  """A list of `FacilitySearchResult` objects."""
+  nodes: [FacilitySearchResult]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `FacilitySearchResult` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `FacilitySearchResult` edge in the connection."""
+type FacilitySearchResultsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `FacilitySearchResult` at the end of the edge."""
+  node: FacilitySearchResult
+}
+
 """
 Table containing the structure of each form to be filled out when applying for CIIP
 """
@@ -9362,6 +9412,31 @@ type Query implements Node {
   ): ReviewComment
   reviewCommentByRowId(rowId: Int!): ReviewComment
 
+  """Reads and enables pagination through a set of `FacilitySearchResult`."""
+  searchAllFacilities(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+    direction: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+    orderByField: String
+    searchField: String
+    searchValue: String
+  ): FacilitySearchResultsConnection!
+
   """Reads and enables pagination through a set of `CiipApplication`."""
   searchApplicationList(
     """Read all values in the set after (below) this cursor."""
@@ -9411,6 +9486,32 @@ type Query implements Node {
     searchField: String
     searchValue: String
   ): CiipUserOrganisationsConnection!
+
+  """Reads and enables pagination through a set of `Facility`."""
+  searchOrganisationFacilities(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+    direction: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+    orderByField: String
+    organisationRowId: String
+    searchField: String
+    searchValue: String
+  ): FacilitiesConnection!
 
   """Reads and enables pagination through a set of `Product`."""
   searchProducts(

@@ -1,110 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ProductList should render the product list 1`] = `
-<Fragment>
-  <Container
-    fluid={false}
-  >
-    <ForwardRef
-      noGutters={false}
-    >
-      <Col
-        md={
-          Object {
-            "offset": 6,
-            "span": 12,
-          }
-        }
-      >
-        <SearchBox
-          displayNameToColumnNameMap={
-            Object {
-              "Benchmark": "benchmark",
-              "Elig. Threshold": "eligibility_threshold",
-              "Product": "name",
-              "Status": "state",
-              "Units": "units",
-            }
-          }
-          dropdownSortItems={
-            Array [
-              "Product",
-              "Units",
-              "Benchmark",
-              "Elig. Threshold",
-              "Status",
-            ]
-          }
-        />
-      </Col>
-    </ForwardRef>
-  </Container>
-  <ForwardRef
-    hover={true}
-    striped={true}
-  >
-    <thead
-      style={
-        Object {
-          "background": "#003366",
-          "color": "white",
-        }
-      }
-    >
-      <tr>
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "name",
-              "displayName": "Product",
-            }
-          }
-          key="name"
-        />
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "units",
-              "displayName": "Units",
-            }
-          }
-          key="units"
-        />
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "benchmark",
-              "displayName": "Benchmark",
-            }
-          }
-          key="benchmark"
-        />
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "eligibility_threshold",
-              "displayName": "Elig. Threshold",
-            }
-          }
-          key="eligibility_threshold"
-        />
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "state",
-              "displayName": "Status",
-            }
-          }
-          key="state"
-        />
-        <th>
-          Edit
-        </th>
-      </tr>
-    </thead>
+<SearchTableLayoutComponent
+  body={
     <tbody>
-      <Relay(ProductRowItemComponent)
-        key="abc"
+      <ForwardRef(Relay(ProductRowItemComponent))
         product={
           Object {
             "id": "abc",
@@ -113,6 +13,15 @@ exports[`ProductList should render the product list 1`] = `
         userRowId={1}
       />
     </tbody>
-  </ForwardRef>
-</Fragment>
+  }
+  displayNameToColumnNameMap={
+    Object {
+      "Benchmark": "benchmark",
+      "Elig. Threshold": "eligibility_threshold",
+      "Product": "name",
+      "Status": "state",
+      "Units": "units",
+    }
+  }
+/>
 `;

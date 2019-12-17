@@ -9,7 +9,6 @@ interface Props {
   handleEvent: (action: string, value?: string) => void;
   dropdownSortItems: string[];
   displayNameToColumnNameMap: object;
-  searchDisplay: string;
 }
 
 const SearchBox: React.FunctionComponent<Props> = ({

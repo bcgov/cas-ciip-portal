@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
-import ApplicationRowItemContainer from './ApplicationRowItemContainer';
+import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
 
-export const ApplicationList = props => {
+export const FacilitiesList = props => {
   const {
     direction,
     orderByField,
@@ -11,8 +11,7 @@ export const ApplicationList = props => {
     searchValue,
     handleEvent
   } = props;
-  const {edges} = props.query.searchApplicationList;
-
+  const {edges} = props.query.searchAllFacilities;
   useEffect(() => {
     const refetchVariables = {
       searchField,
@@ -24,19 +23,20 @@ export const ApplicationList = props => {
   });
 
   const displayNameToColumnNameMap = {
-    'Application Id': 'id',
-    'Operator Name': 'operator_name',
+    'Organisation Name': 'organisation_name',
     'Facility Name': 'facility_name',
-    'Reporting Year': 'reporting_year',
-    'Submission Date': 'submission_date',
+    Address: 'facility_mailing_address',
+    'Postal Code': 'facility_postal_code',
+    City: 'facility_city',
     Status: 'application_status'
   };
+
   const body = (
     <tbody>
       {edges.map(edge => (
-        <ApplicationRowItemContainer
-          key={edge.node.id}
-          ciipApplication={edge.node}
+        <FacilitiesRowItemContainer
+          key={edge.node.rowId}
+          facilitySearchResult={edge.node}
         />
       ))}
     </tbody>
@@ -51,22 +51,18 @@ export const ApplicationList = props => {
   );
 };
 
-// TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
-// and also for relay to refetch
-// @see https://facebook.github.io/relay/graphql/objectidentification.htm#sec-Node-Interface
-// TODO: Several entitites do not have graphql ID's because they are views
 export default createRefetchContainer(
-  ApplicationList,
+  FacilitiesList,
   {
     query: graphql`
-      fragment ApplicationListContainer_query on Query
+      fragment FacilitiesListContainer_query on Query
         @argumentDefinitions(
           searchField: {type: "String"}
           searchValue: {type: "String"}
           orderByField: {type: "String"}
           direction: {type: "String"}
         ) {
-        searchApplicationList(
+        searchAllFacilities(
           searchField: $searchField
           searchValue: $searchValue
           orderByField: $orderByField
@@ -74,8 +70,8 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
-              id
-              ...ApplicationRowItemContainer_ciipApplication
+              rowId
+              ...FacilitiesRowItemContainer_facilitySearchResult
             }
           }
         }
@@ -83,19 +79,19 @@ export default createRefetchContainer(
     `
   },
   graphql`
-    query ApplicationListContainerRefetchQuery(
+    query FacilitiesListContainerRefetchQuery(
       $searchField: String
       $searchValue: String
       $orderByField: String
       $direction: String
     ) {
       query {
-        ...ApplicationListContainer_query
+        ...FacilitiesListContainer_query
           @arguments(
-            searchField: $searchField
-            searchValue: $searchValue
             orderByField: $orderByField
             direction: $direction
+            searchField: $searchField
+            searchValue: $searchValue
           )
       }
     }

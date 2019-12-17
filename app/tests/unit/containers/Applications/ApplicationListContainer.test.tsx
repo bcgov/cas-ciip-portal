@@ -11,8 +11,6 @@ describe('ApplicationList', () => {
     };
     const r = shallow(<ApplicationList query={query} />);
     expect(r).toMatchSnapshot();
-    expect(r.find('Relay(ApplicationRowItem)').prop('ciipApplication')).toBe(
-      query.searchApplicationList.edges[0].node
-    );
+    expect(r.exists('SearchTableLayoutComponent')).toBe(true);
   });
 });

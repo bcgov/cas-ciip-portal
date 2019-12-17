@@ -1,131 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Organisations should render the user's requested organisations 1`] = `
-<Fragment>
-  <Container
-    fluid={false}
-  >
-    <ForwardRef
-      noGutters={false}
-    >
-      <Col
-        md={
-          Object {
-            "offset": 6,
-            "span": 12,
-          }
-        }
-      >
-        <SearchBox
-          displayNameToColumnNameMap={
-            Object {
-              "Email": "email_address",
-              "First Name": "first_name",
-              "Last Name": "last_name",
-              "Operator": "operator_name",
-              "Status": "status",
-              "User ID": "user_id",
-            }
-          }
-          dropdownSortItems={
-            Array [
-              "User ID",
-              "First Name",
-              "Last Name",
-              "Email",
-              "Status",
-              "Operator",
-            ]
-          }
-          handleEvent={[MockFunction]}
-        />
-      </Col>
-    </ForwardRef>
-  </Container>
-  <ForwardRef
-    hover={true}
-    striped={true}
-    style={
-      Object {
-        "border": "1px solid #f5f5f5",
-        "textAlign": "center",
-      }
-    }
-  >
-    <thead
-      style={
-        Object {
-          "backgroundColor": "#036",
-          "color": "white",
-        }
-      }
-    >
-      <tr>
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "user_id",
-              "displayName": "User ID",
-            }
-          }
-          key="user_id"
-          sort={[MockFunction]}
-        />
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "first_name",
-              "displayName": "First Name",
-            }
-          }
-          key="first_name"
-          sort={[MockFunction]}
-        />
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "last_name",
-              "displayName": "Last Name",
-            }
-          }
-          key="last_name"
-          sort={[MockFunction]}
-        />
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "email_address",
-              "displayName": "Email",
-            }
-          }
-          key="email_address"
-          sort={[MockFunction]}
-        />
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "status",
-              "displayName": "Status",
-            }
-          }
-          key="status"
-          sort={[MockFunction]}
-        />
-        <SortableTableHeader
-          headerVariables={
-            Object {
-              "columnName": "operator_name",
-              "displayName": "Operator",
-            }
-          }
-          key="operator_name"
-          sort={[MockFunction]}
-        />
-      </tr>
-    </thead>
+<SearchTableLayoutComponent
+  body={
     <tbody>
-      <Relay(OrganisationRequestsTableRowComponent)
-        key="abc"
+      <ForwardRef(Relay(OrganisationRequestsTableRowComponent))
         userOrganisation={
           Object {
             " $fragmentRefs": Object {
@@ -136,6 +15,17 @@ exports[`Organisations should render the user's requested organisations 1`] = `
         }
       />
     </tbody>
-  </ForwardRef>
-</Fragment>
+  }
+  displayNameToColumnNameMap={
+    Object {
+      "Email": "email_address",
+      "First Name": "first_name",
+      "Last Name": "last_name",
+      "Operator": "operator_name",
+      "Status": "status",
+      "User ID": "user_id",
+    }
+  }
+  handleEvent={[MockFunction]}
+/>
 `;

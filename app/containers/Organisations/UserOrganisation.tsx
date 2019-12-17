@@ -32,9 +32,12 @@ export const UserOrganisationComponent = props => {
         {userOrganisation.status === 'APPROVED' ? (
           <Link
             href={{
-              pathname: '/user-organisation-facilities',
+              pathname: '/facilities-list',
               query: {
-                organisationId: userOrganisation.organisationByOrganisationId.id
+                organisationId:
+                  userOrganisation.organisationByOrganisationId.id,
+                organisationRowId:
+                  userOrganisation.organisationByOrganisationId.rowId
               }
             }}
           >
@@ -62,6 +65,7 @@ export default createFragmentContainer(UserOrganisationComponent, {
       status
       organisationByOrganisationId {
         id
+        rowId
         operatorName
       }
     }
