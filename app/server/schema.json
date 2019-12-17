@@ -7029,24 +7029,24 @@
               "deprecationReason": null
             },
             {
-              "name": "latestDraftVersionNumber",
+              "name": "latestDraftRevision",
               "description": null,
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
+                "kind": "OBJECT",
+                "name": "ApplicationRevision",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "latestSubmittedVersionNumber",
+              "name": "latestSubmittedRevision",
               "description": null,
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
+                "kind": "OBJECT",
+                "name": "ApplicationRevision",
                 "ofType": null
               },
               "isDeprecated": false,

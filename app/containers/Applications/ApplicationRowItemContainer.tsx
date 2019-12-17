@@ -46,7 +46,7 @@ export const ApplicationRowItem = props => {
               bcghgid: applicationSearchResult.bcghgid,
               version:
                 applicationSearchResult.applicationByApplicationId
-                  .latestSubmittedVersionNumber
+                  .latestSubmittedRevision.versionNumber
             }
           }}
         >
@@ -70,7 +70,9 @@ export default createFragmentContainer(ApplicationRowItem, {
       submissionDate
       applicationByApplicationId {
         id
-        latestSubmittedVersionNumber
+        latestSubmittedRevision {
+          versionNumber
+        }
       }
     }
   `

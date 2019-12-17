@@ -28,7 +28,9 @@ class CertificationRedirect extends Component<Props> {
           expiresAt
           applicationByApplicationId {
             id
-            latestDraftVersionNumber
+            latestDraftRevision {
+              versionNumber
+            }
             facilityByFacilityId {
               facilityName
               organisationByOrganisationId {
@@ -53,7 +55,7 @@ class CertificationRedirect extends Component<Props> {
     const applicationId = this.props.router.query.id;
     const version =
       query?.certificationUrlByRowId?.applicationByApplicationId
-        .latestDraftVersionNumber;
+        .latestDraftRevision.versionNumber;
     const redirectURI = `/certify?applicationId=${applicationId}&version=${version}`;
 
     const expiresAtMoment = query?.certificationUrlByRowId?.expiresAt

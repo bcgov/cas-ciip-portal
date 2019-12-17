@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.application_latest_submitted_version_number;
+drop function ggircs_portal.application_latest_submitted_revision;
 
 commit;

@@ -47,10 +47,12 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
     );
   }
 
-  const {
-    latestDraftVersionNumber,
-    latestSubmittedVersionNumber
-  } = applyButtonDetails.applicationByApplicationId;
+  const latestSubmittedVersionNumber =
+    applyButtonDetails.applicationByApplicationId?.latestSubmittedRevision
+      ?.versionNumber;
+  const latestDraftVersionNumber =
+    applyButtonDetails.applicationByApplicationId?.latestDraftRevision
+      ?.versionNumber;
 
   if (applicationId && applicationRevisionStatus === 'DRAFT') {
     return (
@@ -59,6 +61,9 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
           pathname: '/ciip-application',
           query: {
             applicationId,
+            revisionId:
+              applyButtonDetails.applicationByApplicationId.latestDraftRevision
+                .id,
             version: latestDraftVersionNumber
           }
         }}
@@ -79,6 +84,9 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
           pathname: '/view-application',
           query: {
             applicationId,
+            revisionId:
+              applyButtonDetails.applicationByApplicationId
+                .latestSubmittedRevision.id,
             version: latestSubmittedVersionNumber
           }
         }}
@@ -96,8 +104,14 @@ export default createFragmentContainer(ApplyButton, {
     fragment ApplyButton_applyButtonDetails on FacilitySearchResult {
       applicationByApplicationId {
         id
-        latestDraftVersionNumber
-        latestSubmittedVersionNumber
+        latestDraftRevision {
+          id
+          versionNumber
+        }
+        latestSubmittedRevision {
+          id
+          versionNumber
+        }
       }
       applicationRevisionStatus
       facilityByFacilityId {

@@ -17,7 +17,7 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = props => 
     const variables = {
       input: {
         applicationIdInput: application.rowId,
-        lastRevisionIdInput: application.latestSubmittedVersionNumber
+        lastRevisionIdInput: application.latestSubmittedRevision.versionNumber
       }
     };
 
@@ -29,10 +29,10 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = props => 
 
     const newVersion =
       response.createApplicationRevisionMutationChain.applicationRevision
-        .applicationByApplicationId.latestDraftVersionNumber;
+        .applicationByApplicationId.latestDraftRevision.versionNumber;
     const lastSubmittedVersion =
       response.createApplicationRevisionMutationChain.applicationRevision
-        .applicationByApplicationId.latestSubmittedVersionNumber;
+        .applicationByApplicationId.latestSubmittedRevision.versionNumber;
 
     router.push({
       pathname: '/ciip-application',
@@ -58,7 +58,9 @@ export default createFragmentContainer(ReviseApplicationButton, {
     fragment ReviseApplicationButtonContainer_application on Application {
       id
       rowId
-      latestSubmittedVersionNumber
+      latestSubmittedRevision {
+        versionNumber
+      }
     }
   `
 });

@@ -15,8 +15,12 @@ const mutation = graphql`
         id
         applicationByApplicationId {
           id
-          latestDraftVersionNumber
-          latestSubmittedVersionNumber
+          latestDraftRevision {
+            versionNumber
+          }
+          latestSubmittedRevision {
+            versionNumber
+          }
         }
       }
     }

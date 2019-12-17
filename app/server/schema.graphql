@@ -104,8 +104,8 @@ type Application implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
-  latestDraftVersionNumber: Int
-  latestSubmittedVersionNumber: Int
+  latestDraftRevision: ApplicationRevision
+  latestSubmittedRevision: ApplicationRevision
 
   """Reads and enables pagination through a set of `FormResult`."""
   orderedFormResults(

@@ -21,7 +21,7 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = props 
       input: {
         applicationRevisionStatus: {
           applicationId: props.application.rowId,
-          versionNumber: props.application.latestDraftVersionNumber,
+          versionNumber: props.application.latestDraftRevision.versionNumber,
           applicationRevisionStatus: 'SUBMITTED' as CiipApplicationRevisionStatus
         }
       }
@@ -57,7 +57,9 @@ export default createFragmentContainer(SubmitApplicationComponent, {
   application: graphql`
     fragment SubmitApplication_application on Application {
       rowId
-      latestDraftVersionNumber
+      latestDraftRevision {
+        versionNumber
+      }
     }
   `
 });
