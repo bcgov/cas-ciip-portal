@@ -4,32 +4,22 @@
 begin;
   create or replace view ggircs_portal.ciip_production as (
     with x as (
-      select * from
-      (select
-         form_result.application_id as id,
+      select
+         form_result.application_id,
          json_array_elements((form_result)::json) as production_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.slug = 'production') as A
-      inner join
-      (select
-         form_result.application_id as fid,
-         (form_result -> 'facility')::json as facility_data
-      from ggircs_portal.form_result
-      join ggircs_portal.form_json
-      on form_result.form_id = form_json.id
-      and form_json.slug = 'admin') as B
-      on A.id = B.fid
+      and form_json.slug = 'production'
     )
     select
-       x.id,
-       (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
+       x.application_id,
        (x.production_data ->> 'quantity')::numeric as quantity,
-       (x.production_data ->> 'product')::varchar(1000) as product,
-       (x.production_data ->> 'productUnits')::varchar(1000) as fuel_units,
-       (x.production_data ->> 'comments')::varchar(10000) as comments,
-       (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions
+       (x.production_data ->> 'productRowId')::integer as product_id,
+       (x.production_data ->> 'productUnits')::varchar(1000) as product_units,
+       (x.production_data ->> 'productionAllocationFactor')::numeric as production_allocation_factor,
+       (x.production_data ->> 'paymentAllocationFactor')::numeric as payment_allocation_factor,
+       (x.production_data ->> 'additionalData')::jsonb as additional_data
     from x
  );
 

@@ -14,4 +14,6 @@ select has_function(
 select is((select count(*) from ggircs_portal.search_products(null, null))::integer, 0,
   'The search_products function should return an empty response when there are no products');
 
+select finish();
+
 rollback;
