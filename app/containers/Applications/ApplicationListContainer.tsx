@@ -35,7 +35,7 @@ export const ApplicationList = props => {
     <tbody>
       {edges.map(edge => (
         <ApplicationRowItemContainer
-          key={edge.node.id}
+          key={edge.node.rowId}
           ciipApplication={edge.node}
         />
       ))}
@@ -47,7 +47,9 @@ export const ApplicationList = props => {
       body={body}
       displayNameToColumnNameMap={displayNameToColumnNameMap}
       handleEvent={handleEvent}
-)};
+    />
+  );
+};
 
 // TODO(wenzowski): each search result node needs an ID both for react dom diffing as list key
 // and also for relay to refetch
