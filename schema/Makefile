@@ -30,7 +30,12 @@ test:
 	@@$(MAKE) -s $(MAKEFLAGS) dropdb;
 
 .PHONY: unit
-unit: dropdb createdb deploy_ggircs deploy prove_unit
+unit: deploy_test_data prove_unit
+
+.PHONY: deploy_test_data
+deploy_test_data:
+	# Deploy data in $(TEST_DB)
+	@@PGDATABASE=$(TEST_DB) ./data/deploy-test-data.sh -d
 
 .PHONY: deploy_ggircs
 deploy_ggircs:
