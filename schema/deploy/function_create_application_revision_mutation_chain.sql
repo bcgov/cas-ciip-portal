@@ -32,18 +32,28 @@ begin
   for temp_row in
     select form_id from ggircs_portal.ciip_application_wizard
   loop
-    if ((select fj.name from ggircs_portal.form_json as fj where temp_row.form_id = fj.id) in ('Production', 'fuel')) then
-      form_result='[{}]';
+    -- Populate new revision of form_results with data from previous result on new revision creation
+    if last_revision_id_input > 0 then
+      select fr.form_result from ggircs_portal.form_result fr
+      where fr.form_id = temp_row.form_id
+      and fr.application_id = application_id_input
+      and fr.version_number=last_revision_id_input
+      into form_result;
     else
-      form_result = '{}';
-    end if;
-    if (select prepopulate_from_swrs from ggircs_portal.form_json where id = temp_row.form_id) then
-      select form_result_init_function from ggircs_portal.form_json where id = temp_row.form_id into init_function;
-      if (init_function is not null) then
-        query := format('select * from ggircs_portal.%I($1,''2018'');', init_function);
-        execute query
-        using facility_id_input
-        into form_result;
+      -- Populate initial version of application form results with data from swrs or empty results
+      if ((select fj.name from ggircs_portal.form_json as fj where temp_row.form_id = fj.id) in ('Production', 'fuel')) then
+        form_result='[{}]';
+      else
+        form_result = '{}';
+      end if;
+      if (select prepopulate_from_swrs from ggircs_portal.form_json where id = temp_row.form_id) then
+        select form_result_init_function from ggircs_portal.form_json where id = temp_row.form_id into init_function;
+        if (init_function is not null) then
+          query := format('select * from ggircs_portal.%I($1,''2018'');', init_function);
+          execute query
+          using facility_id_input
+          into form_result;
+        end if;
       end if;
     end if;
 
