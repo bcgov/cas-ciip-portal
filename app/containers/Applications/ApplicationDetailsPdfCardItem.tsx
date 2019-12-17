@@ -36,11 +36,14 @@ const styles = StyleSheet.create({
 const arrayFieldTemplate = props => {
   return (
     <>
-      <Text>{props.title}</Text>
-      {/* {props.items.map(item => {
-        debugger;
-        return <View key={item.index}>{item.children}</View>;
-      })} */}
+      <Text>
+        {props.title === 'gases' || props.title === 'Source Types'
+          ? null
+          : props.title}
+      </Text>
+      {props.items.map(item => {
+        return <Text key={item.index}>{item.children}</Text>;
+      })}
     </>
   );
 };
@@ -49,7 +52,13 @@ const objectFieldTemplate = props => {
   return (
     <>
       {props.properties.map(
-        prop => prop.content && <View key={prop.index}>{prop.content}</View>
+        prop =>
+          prop.content && (
+            <View key={prop.index} style={{border: '1px solid #666'}}>
+              {prop.content}
+              <Text />
+            </View>
+          )
       )}
     </>
   );
@@ -59,15 +68,25 @@ const fieldTemplate = props => {
   return (
     <>
       {props.label && (
-        <>
-          <Text style={styles.label}>
-            {'\n'}
-            {props.label}:
-          </Text>
-          {/* <View style={{borderBottomColor: 'black', borderBottomWidth: 1}} /> */}
-        </>
+        <Text style={styles.label}>
+          {'\n'}
+          {props.label === 'gases' || props.label === 'sourceTypeName'
+            ? null
+            : `${props.label}: `}
+        </Text>
       )}
       <Text style={styles.fields}>{props.children}</Text>
+    </>
+  );
+};
+
+const emissionGasTemplate = props => {
+  return (
+    <>
+      <Text>{props.gasType} | </Text>
+      <Text>Tonnes: {props.annualEmission} | </Text>
+      <Text>Tonnes (CO2e): {props.annualCO2e}</Text>
+      <Text>{'\n'}</Text>
     </>
   );
 };
@@ -77,8 +96,10 @@ const CUSTOM_FIELDS = {
     <Text>{props.title ? props.title : '[Not Entered]'}</Text>
   ),
   StringField: props => (
-    <Text> {props.formData ? props.formData : '[Not Entered]'}</Text>
-  )
+    <Text>{props.formData ? props.formData : '[Not Entered]'}</Text>
+  ),
+  emissionSource: props => <Text>{props.formData}</Text>,
+  emissionGas: props => emissionGasTemplate(props.formData)
 };
 
 const customWidget = {
@@ -93,8 +114,8 @@ const ApplicationDetailsPdfCardItem = props => {
 
   const formResults = application.formResultsByApplicationId.edges;
 
-  // Const {node} = application.formResultsByApplicationId.edges[0];
-  // const {schema, uiSchema} = node.formJsonByFormId.formJson as FormJson;
+  // Const {node} = application.formResultsByApplicationId.edges[1];
+  // const {schema, uiSchema} = node.formJsonByFormId.formJson;
   // const {formResult, submissionDate} = node;
 
   return (
@@ -164,11 +185,24 @@ const ApplicationDetailsPdfCardItem = props => {
             </Column>
           </Row>
 
-          <Hr />
+          {/* <JsonSchemaForm
+            omitExtraData
+            ArrayFieldTemplate={arrayFieldTemplate}
+            FieldTemplate={fieldTemplate}
+            ObjectFieldTemplate={objectFieldTemplate}
+            showErrorList={false}
+            fields={CUSTOM_FIELDS}
+            schema={schema}
+            uiSchema={uiSchema}
+            formData={formResult}
+            tagName={FormFields}
+            widgets={customWidget}
+          >
+            <View />
+          </JsonSchemaForm> */}
 
           {formResults.map(({node}) => (
             <View key={node.formJsonByFormId.id}>
-              <Text>{node.formJsonByFormId.id}</Text>
               <JsonSchemaForm
                 omitExtraData
                 ArrayFieldTemplate={arrayFieldTemplate}

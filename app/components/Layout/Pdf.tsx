@@ -38,8 +38,7 @@ const Column = styled.View`
 `;
 
 const Hr = styled.View`
-  border-bottom: 1px solid black;
-  width: 100%;
+  border-bottom: 1px solid #000;
 `;
 
 export {Header, Title, Body, FormFields, Row, Column, Hr};
