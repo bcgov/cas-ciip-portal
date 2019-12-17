@@ -39,7 +39,6 @@ pushd "$__dirname" > /dev/null
 
 _psql() {
   user=${PGUSER:-$(whoami)}
-  database=${PGDATABASE:-$database}
   host=${PGHOST:-localhost}
   port=${PGPORT:-5432}
   psql -d "$database" -h "$host" -p "$port" -U "$user" -qtA --set ON_ERROR_STOP=1 "$@" 2>&1
@@ -58,7 +57,7 @@ createdb() {
 actions=()
 
 sqitch_revert() {
-  _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1 && sqitch revert -y
+  _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1 && sqitch revert -y "$database"
   return 0
 }
 
@@ -71,7 +70,7 @@ deploySwrs() {
   fi
   pushd ../.cas-ggircs
   sqitch_revert
-  sqitch deploy
+  sqitch deploy "$database"
   popd
   _psql <<EOF
   insert into
@@ -95,7 +94,7 @@ deployPortal() {
   echo "Deploying the portal schema to $database"
   pushd ..
   sqitch_revert
-  sqitch deploy
+  sqitch deploy "$database"
   popd
 }
 
