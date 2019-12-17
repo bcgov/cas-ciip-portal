@@ -68,7 +68,11 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
     );
   }
 
-  if (applicationId && applicationRevisionStatus === 'SUBMITTED') {
+  if (
+    applicationId &&
+    (applicationRevisionStatus === 'SUBMITTED' ||
+      applicationRevisionStatus === 'REQUESTED_CHANGES')
+  ) {
     return (
       <Link
         href={{
