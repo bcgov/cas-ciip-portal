@@ -8,6 +8,7 @@ begin;
     with x as (
       select
         form_result.application_id,
+        form_result.version_number,
             (form_result)::json -> 'heat' as heat_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
@@ -16,6 +17,7 @@ begin;
     )
     select
        x.application_id,
+       x.version_number,
        (x.heat_data ->> 'sold')::numeric as sold,
        (x.heat_data ->> 'purchased')::numeric as purchased,
        (x.heat_data ->> 'consumedOnsite')::numeric as consumed_onsite,
@@ -31,6 +33,7 @@ begin;
     with x as (
       select
         form_result.application_id,
+        form_result.version_number,
             (form_result)::json -> 'electricity' as electricity_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
@@ -39,6 +42,7 @@ begin;
     )
     select
        x.application_id,
+       x.version_number,
        (x.electricity_data ->> 'sold')::numeric as sold,
        (x.electricity_data ->> 'purchased')::numeric as purchased,
        (x.electricity_data ->> 'consumedOnsite')::numeric as consumed_onsite,

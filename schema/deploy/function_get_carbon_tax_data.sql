@@ -15,7 +15,7 @@ begin;
       fuel_charge numeric,
       rate_start_date date,
       rate_end_date date,
-      carbon_tax_rate int
+      carbon_tax_rate numeric
   );
 
   create or replace function ggircs_portal.get_carbon_tax_data()

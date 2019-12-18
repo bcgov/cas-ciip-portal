@@ -8,18 +8,22 @@ begin;
   create view ggircs_portal.ciip_carbon_tax_calculation as (
     with ct_details as (select  * from ggircs_portal.get_carbon_tax_data())
     select
-      a.id as application_id,
+      cf.application_id,
+      cf.version_number,
       a.reporting_year,
       cf.fuel_type,
       f.units,
       quantity,
       ct_details.*,
-      round((cf.quantity * ct_details.unit_conversion_factor * ct_details.fuel_charge), 2) as calculated_carbon_tax
+      round((cf.quantity * ct_details.unit_conversion_factor * ct_details.fuel_charge), 2) as calculated_carbon_tax,
+      round(
+        ((cf.quantity * ct_details.unit_conversion_factor * ct_details.fuel_charge) / ct_details.carbon_tax_rate)
+        * (ct_details.carbon_tax_rate - 30), 2) as carbon_tax_applicable_to_ciip
     from ggircs_portal.ciip_fuel as cf
     join ggircs_portal.fuel as f
       on cf.fuel_type = f.name
     join ggircs_portal.application as a
-      on cf.id = a.id
+      on cf.application_id = a.id
     join ct_details
       on f.swrs_fuel_mapping_id = ct_details.fuel_mapping_id
       and concat((a.reporting_year - 1):: text, '-12-31')::date between ct_details.rate_start_date and ct_details.rate_end_date

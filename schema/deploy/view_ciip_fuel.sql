@@ -5,7 +5,8 @@ begin;
   create view ggircs_portal.ciip_fuel as (
     with x as (
       select
-        form_result.application_id as id,
+        form_result.application_id,
+        form_result.version_number,
         json_array_elements((form_result)::json) as fuel_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
@@ -13,7 +14,8 @@ begin;
       and form_json.slug = 'fuel'
     )
     select
-       x.id,
+       x.application_id,
+       x.version_number,
        (x.fuel_data ->> 'quantity')::numeric as quantity,
        (x.fuel_data ->> 'fuelType')::varchar(1000) as fuel_type,
        (x.fuel_data ->> 'fuelUnits')::varchar(1000) as fuel_units,
@@ -21,16 +23,11 @@ begin;
     from x
  );
 
--- Postgraphile smart-comments: These comments allow Postgraphile to infer relations between views
--- as though they were tables (ie faking a primary key in order to create an ID! type)
-comment on view ggircs_portal.ciip_fuel is E'@primaryKey id';
-
--- TODO(Dylan): Regular comments are interfering with postgraphile smart comments.
--- comment on view ggircs_portal.ciip_fuel is 'The view for fuel data reported in the application';
--- comment on column ggircs_portal.ciip_fuel.application_id is 'The application id used for reference and join';
--- comment on column ggircs_portal.ciip_fuel.quantity is 'The fuel quantity';
--- comment on column ggircs_portal.ciip_fuel.fuel_units is 'The fuel units';
--- comment on column ggircs_portal.ciip_fuel.fuel_type is 'The fuel type';
--- comment on column ggircs_portal.ciip_fuel.methodology is 'The methodology used for reporting';
+comment on view ggircs_portal.ciip_fuel is 'The view for fuel data reported in the application';
+comment on column ggircs_portal.ciip_fuel.application_id is 'The application id used for reference and join';
+comment on column ggircs_portal.ciip_fuel.quantity is 'The fuel quantity';
+comment on column ggircs_portal.ciip_fuel.fuel_units is 'The fuel units';
+comment on column ggircs_portal.ciip_fuel.fuel_type is 'The fuel type';
+comment on column ggircs_portal.ciip_fuel.methodology is 'The methodology used for reporting';
 
 commit;
