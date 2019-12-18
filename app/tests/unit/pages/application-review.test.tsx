@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {NextRouter} from 'next/router';
 import ApplicationReview from 'pages/application-review';
-const applicationRevisionStatus = 'pending';
+const applicationRevisionStatus = 'SUBMITTED';
 const router: Partial<NextRouter> = {
   asPath: '/application-review?application_id=1&reportingyear=2018&bcghgid=100',
   route: '/application-review',

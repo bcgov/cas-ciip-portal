@@ -9,7 +9,7 @@ const query = {
   session: null,
   application: {
     applicationRevisionStatus: {
-      applicationRevisionStatus: 'PENDING'
+      applicationRevisionStatus: 'SUBMITTED'
     },
     ' $fragmentRefs': {
       ApplicationDetailsContainer_query: true,

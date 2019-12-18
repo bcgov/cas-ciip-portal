@@ -22,7 +22,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
               "ReviseApplicationButtonContainer_application": true,
             },
             "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "PENDING",
+              "applicationRevisionStatus": "SUBMITTED",
             },
           }
         }
@@ -40,7 +40,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationRevisionStatus": Object {
-                "applicationRevisionStatus": "PENDING",
+                "applicationRevisionStatus": "SUBMITTED",
               },
             },
             "session": null,
@@ -61,7 +61,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
               "ReviseApplicationButtonContainer_application": true,
             },
             "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "PENDING",
+              "applicationRevisionStatus": "SUBMITTED",
             },
           }
         }

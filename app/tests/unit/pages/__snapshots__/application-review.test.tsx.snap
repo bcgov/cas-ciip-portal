@@ -7,7 +7,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
   <Relay(ApplicationRevisionStatusComponent)
     applicationRevisionStatus={
       Object {
-        "applicationRevisionStatus": "pending",
+        "applicationRevisionStatus": "SUBMITTED",
       }
     }
     applicationRowId={1}
@@ -27,7 +27,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
         application={
           Object {
             "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "pending",
+              "applicationRevisionStatus": "SUBMITTED",
             },
             "rowId": 1,
           }
@@ -37,7 +37,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
           Object {
             "application": Object {
               "applicationRevisionStatus": Object {
-                "applicationRevisionStatus": "pending",
+                "applicationRevisionStatus": "SUBMITTED",
               },
               "rowId": 1,
             },
@@ -54,7 +54,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
           Object {
             "application": Object {
               "applicationRevisionStatus": Object {
-                "applicationRevisionStatus": "pending",
+                "applicationRevisionStatus": "SUBMITTED",
               },
               "rowId": 1,
             },
