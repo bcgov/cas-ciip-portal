@@ -24,8 +24,9 @@ begin;
     from x
  );
 
-comment on view ggircs_portal.ciip_production is 'The view for production data reported in the application';
-comment on column ggircs_portal.ciip_production.application_id is 'The application id used for reference and join';
+comment on view ggircs_portal.ciip_production is E'@omit\n The view for production data reported in the application';
+comment on column ggircs_portal.ciip_production.application_id is 'The application id';
+comment on column ggircs_portal.ciip_production.version_number is 'The application revision number';
 comment on column ggircs_portal.ciip_production.quantity is 'The production quantity';
 comment on column ggircs_portal.ciip_production.product_id is 'The id of the product';
 comment on column ggircs_portal.ciip_production.product_units is 'The units for the quantity';

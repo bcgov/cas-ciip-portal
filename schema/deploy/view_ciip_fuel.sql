@@ -23,8 +23,9 @@ begin;
     from x
  );
 
-comment on view ggircs_portal.ciip_fuel is 'The view for fuel data reported in the application';
-comment on column ggircs_portal.ciip_fuel.application_id is 'The application id used for reference and join';
+comment on view ggircs_portal.ciip_fuel is E'@omit\n The view for fuel data reported in the application';
+comment on column ggircs_portal.ciip_fuel.application_id is 'The application id';
+comment on column ggircs_portal.ciip_fuel.version_number is 'The application revision number';
 comment on column ggircs_portal.ciip_fuel.quantity is 'The fuel quantity';
 comment on column ggircs_portal.ciip_fuel.fuel_units is 'The fuel units';
 comment on column ggircs_portal.ciip_fuel.fuel_type is 'The fuel type';

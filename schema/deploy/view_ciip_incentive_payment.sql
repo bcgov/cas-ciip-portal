@@ -68,4 +68,16 @@ create or replace view ggircs_portal.ciip_incentive_payment as (
   join product_efficiency on ciip_production.application_id = product_efficiency.application_id and ciip_production.product_id = product_efficiency.product_id
 
 );
+
+comment on view ggircs_portal.ciip_incentive_payment is '
+@primaryKey application_id, version_number, product_id
+@foreignKey (application_id, version_number) references ggircs_portal.application_revision (application_id, version_number)
+@foreignKey (product_id) references ggircs_portal.product (id)
+The view that calculates the estimated incentive payment for each product of an application revision';
+comment on column ggircs_portal.ciip_incentive_payment.application_id is 'The application id';
+comment on column ggircs_portal.ciip_incentive_payment.version_number is 'The revision version number';
+comment on column ggircs_portal.ciip_incentive_payment.product_id is 'The id of the product';
+comment on column ggircs_portal.ciip_incentive_payment.production_efficiency is 'The production efficiency for this product, measured in tonnes of CO2 equivalent per unit of production';
+comment on column ggircs_portal.ciip_incentive_payment.incentive_amount is 'The amount, in canadian dollars, of incentive to be payed back for this product';
+
 commit;

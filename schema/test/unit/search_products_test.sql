@@ -11,8 +11,10 @@ select has_function(
   'Function search_products should exist'
 );
 
-select is((select count(*) from ggircs_portal.search_products(null, null))::integer, 0,
-  'The search_products function should return an empty response when there are no products');
+select is(
+  (select count(*) from ggircs_portal.search_products(null, null)),
+  (select count(*) from ggircs_portal.product),
+  'The search_products function should return all the products if there is no filter');
 
 select finish();
 

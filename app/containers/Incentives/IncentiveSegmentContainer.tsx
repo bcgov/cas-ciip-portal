@@ -82,13 +82,10 @@ const IncentiveSegmentContainer = props => {
 };
 
 export default createFragmentContainer(IncentiveSegmentContainer, {
-  reported: graphql`
-    fragment IncentiveSegmentContainer_reported on CiipProduction {
-      rowId
-      quantity
-      product
-      fuelUnits
-      associatedEmissions
+  incentivePayment: graphql`
+    fragment IncentiveSegmentContainer_incentivePayment on CiipIncentivePayment {
+      id
+      incentiveAmount
     }
   `
 });

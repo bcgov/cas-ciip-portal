@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {graphql, createRefetchContainer} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
 import IncentiveSegmentFormula from '../../components/Incentives/IncentiveSegmentFormula';
 import LoadingSpinner from '../../components/LoadingSpinner';
@@ -69,64 +69,12 @@ export const IncentiveCalculator = props => {
   );
 };
 
-export default createRefetchContainer(
-  IncentiveCalculator,
-  {
-    query: graphql`
-      fragment IncentiveCalculatorContainer_query on Query
-        @argumentDefinitions(
-          bcghgidInput: {type: "BigFloat"}
-          reportingYear: {type: "String"}
-        ) {
-        allProducts: allProducts {
-          edges {
-            node {
-              id
-              rowId
-              name
-              description
-              benchmarksByProductId {
-                nodes {
-                  benchmark
-                  eligibilityThreshold
-                }
-              }
-            }
-          }
-        }
-        bcghgidProducts: getProductsByBcghgid(bcghgidInput: $bcghgidInput) {
-          edges {
-            node {
-              id
-              ...IncentiveSegmentContainer_reported
-            }
-          }
-        }
-        carbonTax: getCarbonTaxByBcghgid(
-          bcghgidInput: $bcghgidInput
-          reportingYear: $reportingYear
-        ) {
-          edges {
-            node {
-              reportId
-              organisationId
-              fuelType
-              calculatedCarbonTax
-            }
-          }
-        }
-      }
-    `
-  },
-  graphql`
-    query IncentiveCalculatorContainerRefetchQuery(
-      $bcghgidInput: BigFloat
-      $reportingYear: String
-    ) {
-      query {
-        ...IncentiveCalculatorContainer_query
-          @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
+export default createFragmentContainer(IncentiveCalculator, {
+  applicationRevision: graphql`
+    fragment IncentiveCalculatorContainer_applicationRevision on ApplicationRevision {
+      ciipIncentivePaymentByApplicationIdAndVersionNumber {
+        ...IncentiveSegmentContainer_incentivePayment
       }
     }
   `
-);
+});

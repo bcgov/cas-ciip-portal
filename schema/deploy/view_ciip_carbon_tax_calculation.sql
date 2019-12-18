@@ -14,7 +14,12 @@ begin;
       cf.fuel_type,
       f.units,
       quantity,
-      ct_details.*,
+      ct_details.carbon_tax_rate,
+      ct_details.fuel_charge,
+      ct_details.cta_rate_units,
+      ct_details.fuel_mapping_id,
+      ct_details.unit_conversion_factor,
+      ct_details.carbon_taxed,
       round((cf.quantity * ct_details.unit_conversion_factor * ct_details.fuel_charge), 2) as calculated_carbon_tax,
       round(
         ((cf.quantity * ct_details.unit_conversion_factor * ct_details.fuel_charge) / ct_details.carbon_tax_rate)
@@ -30,5 +35,19 @@ begin;
  );
 
 comment on view ggircs_portal.ciip_carbon_tax_calculation is 'The view for calculating carbon tax based on ciip data';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.application_id is 'The application id';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.version_number is 'The application revision number';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.fuel_type is 'The name of the fuel this carbon tax applied to';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.reporting_year is 'The application''s reporting year';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.carbon_tax_rate is 'The carbon tax rate applicable to the reporting year';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.fuel_mapping_id is 'The SWRS fuel mapping id for the fuel';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.fuel_charge is 'The amount charged for the fuel';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.cta_rate_units is 'The units for the fuel charge';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.quantity is 'The quantity of fuel consumed in the reporting period';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.units is 'The fuel quantity units';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.unit_conversion_factor is 'The conversion factor applied to the fuel quantity';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.carbon_taxed is 'Whether this fuel has a tax';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.calculated_carbon_tax is 'The carbon tax applicable to this fuel (assuming a flat carbon tax rate for the reporting year)';
+comment on column ggircs_portal.ciip_carbon_tax_calculation.carbon_tax_applicable_to_ciip is 'The amount of carbon tax payed eligible for an incentive';
 
 commit;

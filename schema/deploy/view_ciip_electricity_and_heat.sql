@@ -55,12 +55,15 @@ begin;
     )
  );
 
-comment on view ggircs_portal.ciip_electricity_and_heat is 'The view for electricity and heat data reported in the application';
-comment on column ggircs_portal.ciip_electricity_and_heat.application_id is 'The application id used for reference and join';
+comment on view ggircs_portal.ciip_electricity_and_heat is E'@omit\n The view for electricity and heat data reported in the application';
+comment on column ggircs_portal.ciip_electricity_and_heat.application_id is 'The application id ';
+comment on column ggircs_portal.ciip_electricity_and_heat.version_number is 'The application revision number';
+comment on column ggircs_portal.ciip_electricity_and_heat.energy_type is 'The energy type (electricity or heat)';
 comment on column ggircs_portal.ciip_electricity_and_heat.sold is 'The amount of heat/electricity sold';
 comment on column ggircs_portal.ciip_electricity_and_heat.purchased is 'The amount of heat/electricity purchased';
 comment on column ggircs_portal.ciip_electricity_and_heat.consumed_onsite is 'The heat/electricity used on site';
 comment on column ggircs_portal.ciip_electricity_and_heat.generated_onsite is 'The heat/electricity generated on site';
-comment on column ggircs_portal.ciip_electricity_and_heat.generated_onsite is 'The quantity of emissions from generating heat/electricity';
+comment on column ggircs_portal.ciip_electricity_and_heat.onsite_emissions is 'The emissions (in tonnes of CO2e) from generated heat/electricity';
+comment on column ggircs_portal.ciip_electricity_and_heat.purchased_emission_factor is 'The emission factor for the purchased heat/electricity';
 
 commit;

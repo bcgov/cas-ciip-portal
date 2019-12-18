@@ -17,12 +17,7 @@ interface Props {
 
 class ApplicationReview extends Component<Props> {
   static query = graphql`
-    query applicationReviewQuery(
-      $bcghgidInput: BigFloat
-      $reportingYear: String
-      $applicationId: ID!
-      $version: String!
-    ) {
+    query applicationReviewQuery($applicationId: ID!, $version: String!) {
       query {
         session {
           ...defaultLayout_session
@@ -35,8 +30,6 @@ class ApplicationReview extends Component<Props> {
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
         }
-        ...IncentiveCalculatorContainer_query
-          @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
         ...ApplicationDetailsContainer_query
         ...ApplicationCommentsContainer_query
           @arguments(applicationId: $applicationId)
