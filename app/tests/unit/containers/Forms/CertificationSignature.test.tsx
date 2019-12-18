@@ -9,13 +9,15 @@ describe('The Confirmation Component', () => {
         application={{
           ' $refType': 'CertificationSignature_application',
           id: 'abc',
-          certificationSignature: undefined,
-          applicationStatus: {
+          latestDraftRevision: {
+            id: 'abc',
+            certificationSignature: undefined
+          },
+          applicationRevisionStatus: {
             id: 'def'
           }
         }}
         relay={null}
-        user={1}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -27,13 +29,15 @@ describe('The Confirmation Component', () => {
         application={{
           ' $refType': 'CertificationSignature_application',
           id: 'abc',
-          certificationSignature: undefined,
-          applicationStatus: {
+          latestDraftRevision: {
+            id: 'abc',
+            certificationSignature: undefined
+          },
+          applicationRevisionStatus: {
             id: 'def'
           }
         }}
         relay={null}
-        user={1}
       />
     );
     expect(
@@ -50,13 +54,15 @@ describe('The Confirmation Component', () => {
         application={{
           ' $refType': 'CertificationSignature_application',
           id: 'abc',
-          certificationSignature: 'signed',
-          applicationStatus: {
+          latestDraftRevision: {
+            id: 'abc',
+            certificationSignature: 'signed'
+          },
+          applicationRevisionStatus: {
             id: 'def'
           }
         }}
         relay={null}
-        user={1}
       />
     );
     expect(wrapper.find('span').text()).toBe('Signed Successfully!');

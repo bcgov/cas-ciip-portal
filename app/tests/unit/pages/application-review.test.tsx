@@ -2,7 +2,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {NextRouter} from 'next/router';
 import ApplicationReview from 'pages/application-review';
-const applicationStatus = 'pending';
+const applicationRevisionStatus = 'SUBMITTED';
 const router: Partial<NextRouter> = {
   asPath: '/application-review?application_id=1&reportingyear=2018&bcghgid=100',
   route: '/application-review',
@@ -14,7 +14,10 @@ const router: Partial<NextRouter> = {
   }
 };
 const query = {
-  application: {rowId: 1, applicationStatus: {applicationStatus}}
+  application: {
+    rowId: 1,
+    applicationRevisionStatus: {applicationRevisionStatus}
+  }
 };
 it('It matches the last accepted Snapshot', () => {
   // @ts-ignore

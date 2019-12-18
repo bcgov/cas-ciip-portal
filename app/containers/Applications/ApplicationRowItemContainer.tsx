@@ -1,37 +1,38 @@
 import React from 'react';
 import {Button, Badge} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
-import {CiipApplicationStatus} from 'ApplicationRowItemContainer_ciipApplication.graphql';
+import {CiipApplicationRevisionStatus} from 'ApplicationRowItemContainer_applicationSearchResult.graphql';
 import Link from 'next/link';
 
 const statusBadgeColor: Record<
-  CiipApplicationStatus,
+  CiipApplicationRevisionStatus,
   'info' | 'danger' | 'success' | 'warning' | 'primary' | 'secondary'
 > = {
   DRAFT: 'warning',
-  PENDING: 'info',
+  SUBMITTED: 'info',
   REJECTED: 'danger',
   APPROVED: 'success',
-  CHANGES_SUBMITTED: 'primary',
   REQUESTED_CHANGES: 'secondary'
 };
-export const ApplicationRowItem = props => {
-  const {ciipApplication = {}} = props;
 
+export const ApplicationRowItem = props => {
+  const {applicationSearchResult = {}} = props;
   return (
     <tr>
-      <td>{ciipApplication.rowId}</td>
-      <td>{ciipApplication.operatorName}</td>
-      <td>{ciipApplication.facilityName}</td>
-      <td>{ciipApplication.reportingYear}</td>
-      <td>{ciipApplication.submissionDate}</td>
+      <td>{applicationSearchResult.applicationId}</td>
+      <td>{applicationSearchResult.operatorName}</td>
+      <td>{applicationSearchResult.facilityName}</td>
+      <td>{applicationSearchResult.reportingYear}</td>
+      <td>{applicationSearchResult.submissionDate}</td>
       <td>
         <Badge
           pill
           style={{width: '100%'}}
-          variant={statusBadgeColor[ciipApplication.applicationStatus]}
+          variant={
+            statusBadgeColor[applicationSearchResult.applicationRevisionStatus]
+          }
         >
-          {ciipApplication.applicationStatus}
+          {applicationSearchResult.applicationRevisionStatus}
         </Badge>
       </td>
       <td>
@@ -39,10 +40,13 @@ export const ApplicationRowItem = props => {
           href={{
             pathname: '/application-review',
             query: {
-              applicationId: ciipApplication.rowId,
-              applicationGUID: ciipApplication.applicationByRowId.id,
-              reportingYear: ciipApplication.reportingYear,
-              bcghgid: ciipApplication.bcghgid
+              applicationId:
+                applicationSearchResult.applicationByApplicationId.id,
+              reportingYear: applicationSearchResult.reportingYear,
+              bcghgid: applicationSearchResult.bcghgid,
+              version:
+                applicationSearchResult.applicationByApplicationId
+                  .latestSubmittedRevision.versionNumber
             }
           }}
         >
@@ -54,18 +58,21 @@ export const ApplicationRowItem = props => {
 };
 
 export default createFragmentContainer(ApplicationRowItem, {
-  ciipApplication: graphql`
-    fragment ApplicationRowItemContainer_ciipApplication on CiipApplication {
-      id
+  applicationSearchResult: graphql`
+    fragment ApplicationRowItemContainer_applicationSearchResult on ApplicationSearchResult {
       rowId
-      facilityName
+      applicationId
       operatorName
-      submissionDate
+      facilityName
+      applicationRevisionStatus
       reportingYear
       bcghgid
-      applicationStatus
-      applicationByRowId {
+      submissionDate
+      applicationByApplicationId {
         id
+        latestSubmittedRevision {
+          versionNumber
+        }
       }
     }
   `

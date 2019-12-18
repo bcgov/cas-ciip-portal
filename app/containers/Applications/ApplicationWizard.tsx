@@ -23,7 +23,6 @@ const setRouterQueryParam = (router, key, value, replace = false) => {
  */
 const ApplicationWizard = ({query}) => {
   const {application} = query || {};
-
   const router = useRouter();
   const {formResultId} = router.query;
   const confirmationPage = Boolean(router.query.confirmationPage);
@@ -49,8 +48,10 @@ const ApplicationWizard = ({query}) => {
           ? undefined
           : orderedFormResults[i + 1].node.id;
         setRouterQueryParam(router, 'formResultId', formResultId);
-        if (goToConfirmation)
+        if (goToConfirmation) {
+          router.query.formResultId = formResultId;
           setRouterQueryParam(router, 'confirmationPage', true);
+        }
       }
     }
   };
@@ -68,13 +69,13 @@ const ApplicationWizard = ({query}) => {
   };
 
   if (!application) return <>This is not the application you are looking for</>;
-
   return (
     <>
       <ApplicationFormNavbar
         application={query.application}
         formResultId={formResultId as string}
         confirmationPage={confirmationPage}
+        version={router.query.version as string}
       />
       <ApplicationWizardStep
         query={query}
@@ -92,10 +93,11 @@ export default createFragmentContainer(ApplicationWizard, {
       @argumentDefinitions(
         formResultId: {type: "ID!"}
         applicationId: {type: "ID!"}
+        version: {type: "String!"}
       ) {
       application(id: $applicationId) {
         id
-        orderedFormResults {
+        orderedFormResults(versionNumberInput: $version) {
           edges {
             node {
               id
@@ -105,7 +107,11 @@ export default createFragmentContainer(ApplicationWizard, {
         ...ApplicationFormNavbar_application
       }
       ...ApplicationWizardStep_query
-        @arguments(formResultId: $formResultId, applicationId: $applicationId)
+        @arguments(
+          formResultId: $formResultId
+          applicationId: $applicationId
+          version: $version
+        )
     }
   `
 });

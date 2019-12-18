@@ -3,11 +3,19 @@ import {shallow} from 'enzyme';
 import ViewApplication from 'pages/view-application';
 
 const query = {
+  ' $fragmentRefs': {
+    defaultLayout_session: true
+  },
   session: null,
   application: {
-    id: '1',
-    formResultsByApplicationId: {
-      edges: [{node: {id: 'form-1'}}]
+    applicationRevisionStatus: {
+      applicationRevisionStatus: 'SUBMITTED'
+    },
+    ' $fragmentRefs': {
+      ApplicationDetailsContainer_query: true,
+      ReviseApplicationButtonContainer_application: true,
+      RequestedChangesByFormResult_application: true,
+      ApplicationDetailsContainer_application: true
     }
   }
 };

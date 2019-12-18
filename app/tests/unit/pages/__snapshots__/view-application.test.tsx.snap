@@ -3,6 +3,7 @@
 exports[`It matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
   session={null}
+  showSubheader={true}
   title="Summary of your application"
 >
   <ForwardRef
@@ -14,32 +15,33 @@ exports[`It matches the last accepted Snapshot 1`] = `
       <Relay(ApplicationDetailsComponent)
         application={
           Object {
-            "formResultsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "id": "form-1",
-                  },
-                },
-              ],
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_application": true,
+              "ApplicationDetailsContainer_query": true,
+              "RequestedChangesByFormResult_application": true,
+              "ReviseApplicationButtonContainer_application": true,
             },
-            "id": "1",
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "SUBMITTED",
+            },
           }
         }
         isAnalyst={false}
         query={
           Object {
+            " $fragmentRefs": Object {
+              "defaultLayout_session": true,
+            },
             "application": Object {
-              "formResultsByApplicationId": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "id": "form-1",
-                    },
-                  },
-                ],
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+                "ApplicationDetailsContainer_query": true,
+                "RequestedChangesByFormResult_application": true,
+                "ReviseApplicationButtonContainer_application": true,
               },
-              "id": "1",
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "SUBMITTED",
+              },
             },
             "session": null,
           }
@@ -52,36 +54,22 @@ exports[`It matches the last accepted Snapshot 1`] = `
       <Relay(RequestedChangesByFormResult)
         application={
           Object {
-            "formResultsByApplicationId": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "id": "form-1",
-                  },
-                },
-              ],
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_application": true,
+              "ApplicationDetailsContainer_query": true,
+              "RequestedChangesByFormResult_application": true,
+              "ReviseApplicationButtonContainer_application": true,
             },
-            "id": "1",
+            "applicationRevisionStatus": Object {
+              "applicationRevisionStatus": "SUBMITTED",
+            },
           }
         }
       />
     </Col>
   </ForwardRef>
-  <Link
-    href={
-      Object {
-        "pathname": "/user-dashboard",
-      }
-    }
-  >
-    <Button
-      active={false}
-      disabled={false}
-      type="button"
-      variant="primary"
-    >
-      Back to My Dashboard
-    </Button>
-  </Link>
+  <ForwardRef
+    noGutters={false}
+  />
 </Relay(DefaultLayout)>
 `;

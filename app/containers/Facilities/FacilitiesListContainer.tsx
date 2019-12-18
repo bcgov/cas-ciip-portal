@@ -28,7 +28,7 @@ export const FacilitiesList = props => {
     Address: 'facility_mailing_address',
     'Postal Code': 'facility_postal_code',
     City: 'facility_city',
-    Status: 'application_status'
+    Status: 'application_revision_status'
   };
 
   const body = (

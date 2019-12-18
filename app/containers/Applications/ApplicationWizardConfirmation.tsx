@@ -75,7 +75,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         application={props.application}
       />
       <br />
-      {props.application.certificationSignature ? (
+      {props.application.latestDraftRevision.certificationSignature ? (
         <>
           <h5>
             Thank you for reviewing the application information. The Certifier
@@ -122,12 +122,15 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 
 export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
   application: graphql`
-    fragment ApplicationWizardConfirmation_application on Application {
+    fragment ApplicationWizardConfirmation_application on Application
+      @argumentDefinitions(version: {type: "String!"}) {
       id
       rowId
-      certificationSignature
       ...SubmitApplication_application
-      ...ApplicationDetailsContainer_application
+      ...ApplicationDetailsContainer_application @arguments(version: $version)
+      latestDraftRevision {
+        certificationSignature
+      }
     }
   `,
   query: graphql`

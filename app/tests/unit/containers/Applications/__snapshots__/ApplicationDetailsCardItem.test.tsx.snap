@@ -3,7 +3,7 @@
 exports[`ApplicationDetailsCardItemComponent should render the individual summary confirmation card component 1`] = `
 <Card
   body={false}
-  className="undefined summary-card"
+  className="fuel summary-card"
   style={
     Object {
       "marginBottom": "10px",
@@ -72,7 +72,12 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         }
         formContext={
           Object {
-            "query": undefined,
+            "query": Object {
+              " $fragmentRefs": Object {
+                " $refType": "ProductionFields_query",
+                "ApplicationReviewContainer_applicationReview": true,
+              },
+            },
           }
         }
         formData={Object {}}

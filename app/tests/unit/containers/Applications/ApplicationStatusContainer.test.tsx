@@ -1,17 +1,17 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApplicationStatusComponent} from 'containers/Applications/ApplicationStatusContainer';
+import {ApplicationRevisionStatusComponent} from 'containers/Applications/ApplicationRevisionStatusContainer';
 
-describe('ApplicationStatusItem', () => {
+describe('ApplicationRevisionStatusItem', () => {
   it('should render the application status', async () => {
-    const applicationStatus = {
-      applicationStatus: 'pending'
+    const applicationRevisionStatus = {
+      applicationRevisionStatus: 'SUBMITTED'
     };
     const applicationRowId = 1;
     const r = shallow(
-      <ApplicationStatusComponent
+      <ApplicationRevisionStatusComponent
         relay={null}
-        applicationStatus={applicationStatus}
+        applicationRevisionStatus={applicationRevisionStatus}
         applicationRowId={applicationRowId}
       />
     );

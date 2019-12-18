@@ -2,7 +2,7 @@
 -- requires: schema_ggircs_portal
 -- requires: table_facility
 -- requires: table_application
--- requires: type_ciip_application_status
+-- requires: type_ciip_application_revision_status
 
 begin;
 
@@ -15,7 +15,7 @@ create type ggircs_portal.facility_search_result as (
     facility_city varchar(1000),
     facility_postal_code varchar(1000),
     reporting_year varchar(1000),
-    application_status ggircs_portal.ciip_application_status,
+    application_revision_status ggircs_portal.ciip_application_revision_status,
     organisation_name varchar(1000)
 );
 

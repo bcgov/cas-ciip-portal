@@ -15,7 +15,7 @@ describe('ApplicationDetailsComponent', () => {
         application={{
           ' $refType': 'ApplicationDetailsContainer_application',
           id: 'abc',
-          formResultsByApplicationId: {
+          orderedFormResults: {
             edges: [
               {
                 node: {

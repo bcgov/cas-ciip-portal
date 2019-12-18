@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
-  const formResults = props.application.formResultsByApplicationId.edges;
+  const formResults = props.application.orderedFormResults.edges;
 
   return (
     <>
@@ -42,9 +42,10 @@ export default createFragmentContainer(ApplicationDetailsComponent, {
     }
   `,
   application: graphql`
-    fragment ApplicationDetailsContainer_application on Application {
+    fragment ApplicationDetailsContainer_application on Application
+      @argumentDefinitions(version: {type: "String!"}) {
       id
-      formResultsByApplicationId {
+      orderedFormResults(versionNumberInput: $version) {
         edges {
           node {
             id

@@ -10,13 +10,21 @@ interface Props extends CiipPageComponentProps {
 }
 class CiipApplication extends Component<Props> {
   static query = graphql`
-    query ciipApplicationQuery($formResultId: ID!, $applicationId: ID!) {
+    query ciipApplicationQuery(
+      $formResultId: ID!
+      $applicationId: ID!
+      $version: String!
+    ) {
       query {
         session {
           ...defaultLayout_session
         }
         ...ApplicationWizard_query
-          @arguments(formResultId: $formResultId, applicationId: $applicationId)
+          @arguments(
+            formResultId: $formResultId
+            applicationId: $applicationId
+            version: $version
+          )
       }
     }
   `;
@@ -24,7 +32,8 @@ class CiipApplication extends Component<Props> {
   static getInitialProps = () => ({
     variables: {
       formResultId: '',
-      applicationId: ''
+      applicationId: '',
+      version: ''
     }
   });
 

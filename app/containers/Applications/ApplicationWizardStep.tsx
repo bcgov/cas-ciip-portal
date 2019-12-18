@@ -81,6 +81,7 @@ export default createFragmentContainer(ApplicationWizardStep, {
       @argumentDefinitions(
         formResultId: {type: "ID!"}
         applicationId: {type: "ID!"}
+        version: {type: "String!"}
       ) {
       ...Form_query @arguments(formResultId: $formResultId)
       ...ApplicationWizardConfirmation_query
@@ -91,6 +92,7 @@ export default createFragmentContainer(ApplicationWizardStep, {
       }
       application(id: $applicationId) {
         ...ApplicationWizardConfirmation_application
+          @arguments(version: $version)
       }
     }
   `

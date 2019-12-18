@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {applicationsQueryResponse} from 'applicationsQuery.graphql';
+import ApplicationListContainer from 'containers/Applications/ApplicationListContainer';
 import DefaultLayout from '../layouts/default-layout';
-import ApplicationListContainer from '../containers/Applications/ApplicationListContainer';
 import SearchTable from '../components/SearchTable';
 
 interface Props {

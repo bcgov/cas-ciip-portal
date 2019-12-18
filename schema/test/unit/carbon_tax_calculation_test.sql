@@ -41,12 +41,16 @@ overriding system value
 values
 (1, 'a', 'fuel', 'a', 'a', '{}', 'false', 'false');
 
+-- Populate Application Revision table
+insert into ggircs_portal.application_revision(application_id, version_number, created_at) overriding system value
+values (1,1, '2019-09-17 14:49:54.191757-07');
+
 -- Populate form result table
 insert into ggircs_portal.form_result
-  (id, form_id, application_id, submission_date, form_result)
+  (id, form_id, version_number, application_id, form_result)
 overriding system value
 values
-  (1,1,1, '2019-09-17 14:49:54.191757-07', '[{"fuelType": "C/D Waste - Plastic", "quantity": 4, "fuelUnits": "t", "methodology": "wci 1.0"}, {"fuelType": "Butane", "quantity": 400, "fuelUnits": "kL", "methodology": "wci 1.0"}]');
+  (1,1,1,1, '[{"fuelType": "C/D Waste - Plastic", "quantity": 4, "fuelUnits": "t", "methodology": "wci 1.0"}, {"fuelType": "Butane", "quantity": 400, "fuelUnits": "kL", "methodology": "wci 1.0"}]');
 
 -- Populate needed fuel_mapping values
 INSERT INTO swrs.fuel_mapping (id, fuel_type, fuel_carbon_tax_details_id) overriding system value values (1,'Acetylene', 1);

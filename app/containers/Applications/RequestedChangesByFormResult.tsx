@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const RequestedChangesByFormResult: React.FunctionComponent<Props> = props => {
-  const formResults = props.application.formResultsByApplicationId.edges;
+  const formResults = props.application.orderedFormResults.edges;
   return (
     <>
       {formResults.map(({node}) => {
@@ -53,8 +53,9 @@ export const RequestedChangesByFormResult: React.FunctionComponent<Props> = prop
 
 export default createFragmentContainer(RequestedChangesByFormResult, {
   application: graphql`
-    fragment RequestedChangesByFormResult_application on Application {
-      formResultsByApplicationId {
+    fragment RequestedChangesByFormResult_application on Application
+      @argumentDefinitions(version: {type: "String!"}) {
+      orderedFormResults(versionNumberInput: $version) {
         edges {
           node {
             id

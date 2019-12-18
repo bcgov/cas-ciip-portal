@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationStatusItem should render the application status 1`] = `
+exports[`ApplicationRevisionStatusItem should render the application status 1`] = `
 <Fragment>
   <ForwardRef
     noGutters={false}
@@ -31,8 +31,9 @@ exports[`ApplicationStatusItem should render the application status 1`] = `
               "width": "100%",
             }
           }
+          variant="info"
         >
-          pending
+          SUBMITTED
         </DropdownToggle>
         <DropdownMenu
           alignRight={false}
@@ -44,16 +45,16 @@ exports[`ApplicationStatusItem should render the application status 1`] = `
           }
         >
           <DropdownMenuItemComponent
-            itemEventKey="PENDING"
-            itemFunc={[Function]}
-            itemTitle="PENDING"
-            key="PENDING"
-          />
-          <DropdownMenuItemComponent
             itemEventKey="DRAFT"
             itemFunc={[Function]}
             itemTitle="DRAFT"
             key="DRAFT"
+          />
+          <DropdownMenuItemComponent
+            itemEventKey="SUBMITTED"
+            itemFunc={[Function]}
+            itemTitle="SUBMITTED"
+            key="SUBMITTED"
           />
           <DropdownMenuItemComponent
             itemEventKey="REJECTED"
@@ -66,6 +67,12 @@ exports[`ApplicationStatusItem should render the application status 1`] = `
             itemFunc={[Function]}
             itemTitle="APPROVED"
             key="APPROVED"
+          />
+          <DropdownMenuItemComponent
+            itemEventKey="REQUESTED_CHANGES"
+            itemFunc={[Function]}
+            itemTitle="REQUESTED_CHANGES"
+            key="REQUESTED_CHANGES"
           />
         </DropdownMenu>
       </Dropdown>

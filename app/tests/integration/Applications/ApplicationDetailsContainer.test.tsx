@@ -25,19 +25,23 @@ describe('ApplicationDetailsContainer', () => {
     <QueryRenderer<ApplicationDetailsContainerTestQuery>
       environment={environment}
       query={graphql`
-        query ApplicationDetailsContainerTestQuery($applicationId: ID!) {
+        query ApplicationDetailsContainerTestQuery(
+          $applicationId: ID!
+          $version: String!
+        ) @relay_test_operation {
           query {
             application(id: $applicationId) {
-              applicationStatus {
+              applicationRevisionStatus {
                 id
               }
               ...ApplicationDetailsContainer_application
+                @arguments(version: $version)
             }
             ...ApplicationDetailsContainer_query
           }
         }
       `}
-      variables={{applicationId: '2'}}
+      variables={{applicationId: '2', version: '1'}}
       render={({error, props}) => {
         if (props) {
           return (
@@ -66,7 +70,7 @@ describe('ApplicationDetailsContainer', () => {
           return {
             application: {
               id: '2',
-              formResultsByApplicationId: {
+              orderedFormResults: {
                 edges: [
                   {
                     node: {
@@ -126,7 +130,7 @@ describe('ApplicationDetailsContainer', () => {
                   }
                 ]
               },
-              applicationStatusesByApplicationId: {
+              applicationRevisionStatusesByApplicationId: {
                 id: 'status1'
               }
             }

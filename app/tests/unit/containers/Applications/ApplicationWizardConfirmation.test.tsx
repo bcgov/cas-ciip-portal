@@ -20,7 +20,9 @@ describe('The Confirmation Component', () => {
           },
           id: 'abc',
           rowId: 1,
-          certificationSignature: undefined
+          latestDraftRevision: {
+            certificationSignature: undefined
+          }
         }}
         relay={null}
       />
@@ -45,7 +47,9 @@ describe('The Confirmation Component', () => {
           },
           id: 'abc',
           rowId: 1,
-          certificationSignature: undefined
+          latestDraftRevision: {
+            certificationSignature: undefined
+          }
         }}
         relay={null}
       />
@@ -83,7 +87,9 @@ describe('The Confirmation Component', () => {
           },
           id: 'abc',
           rowId: 1,
-          certificationSignature: 'signed'
+          latestDraftRevision: {
+            certificationSignature: 'signed'
+          }
         }}
         relay={null}
       />

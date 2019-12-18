@@ -29,14 +29,14 @@ export const ApplicationList = props => {
     'Facility Name': 'facility_name',
     'Reporting Year': 'reporting_year',
     'Submission Date': 'submission_date',
-    Status: 'application_status'
+    Status: 'application_revision_status'
   };
   const body = (
     <tbody>
       {edges.map(edge => (
         <ApplicationRowItemContainer
-          key={edge.node.id}
-          ciipApplication={edge.node}
+          key={edge.node.rowId}
+          applicationSearchResult={edge.node}
         />
       ))}
     </tbody>
@@ -74,8 +74,8 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
-              id
-              ...ApplicationRowItemContainer_ciipApplication
+              rowId
+              ...ApplicationRowItemContainer_applicationSearchResult
             }
           }
         }
