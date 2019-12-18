@@ -5,7 +5,7 @@ import {ApplicationRevisionStatusComponent} from 'containers/Applications/Applic
 describe('ApplicationRevisionStatusItem', () => {
   it('should render the application status', async () => {
     const applicationRevisionStatus = {
-      applicationRevisionStatus: 'pending'
+      applicationRevisionStatus: 'SUBMITTED'
     };
     const applicationRowId = 1;
     const r = shallow(

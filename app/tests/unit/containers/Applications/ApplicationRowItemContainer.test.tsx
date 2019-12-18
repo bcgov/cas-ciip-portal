@@ -9,7 +9,7 @@ describe('ApplicationRowItem', () => {
       applicationId: 'abc',
       operatorName: 'blah',
       facilityName: 'foo',
-      applicationRevisionStatus: 'PENDING',
+      applicationRevisionStatus: 'SUBMITTED',
       reportingYear: 2018,
       bcghgid: 123456789,
       submissionDate: 'Monday',

@@ -36,7 +36,7 @@ const updateApplicationRevisionMutation = async (
     }
   };
   const m = new BaseMutation<updateApplicationRevisionMutationType>(
-    'update-application-mutation'
+    'update-application-revision-mutation'
   );
   return m.performMutation(
     environment,

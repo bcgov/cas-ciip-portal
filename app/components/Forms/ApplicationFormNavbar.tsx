@@ -13,7 +13,6 @@ interface Props {
 
 const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => {
   const {application} = props;
-  console.log(application);
   return (
     <div className="nav-guide-container">
       <Nav justify className="nav-guide" variant="pills">

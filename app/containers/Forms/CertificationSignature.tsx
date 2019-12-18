@@ -105,9 +105,6 @@ export default createFragmentContainer(CertificationSignatureComponent, {
   application: graphql`
     fragment CertificationSignature_application on Application {
       id
-      applicationRevisionStatus {
-        id
-      }
       latestDraftRevision {
         id
         certificationSignature
