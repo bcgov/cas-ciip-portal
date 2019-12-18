@@ -11,34 +11,34 @@ values
   (4,4,1,1, '2019-09-17 14:49:54.191757-07', '{"heat": {"sold": 81, "quantity": 96, "purchased": 29, "consumedOnsite": 54, "generatedOnsite": 44}, "electricity": {"sold": 57, "quantity": 28, "purchased": 22, "consumedOnsite": 87, "generatedOnsite": 66}}'),
   (5,5,1,1, '2019-09-17 14:49:54.191757-07', '[
     {
-      "quantity": 1000,
+      "quantity": 8760000,
       "productRowId": 29,
       "productUnits": "MWh",
       "additionalData": {
         "equipment": [
           {
             "id": "Compressor 1",
-            "powerRating": 8,
+            "powerRating": 800,
             "energySource": "Electric - Self-Generated",
-            "runtimeHours": 100,
+            "runtimeHours": 8760,
             "loadingFactor": 100,
-            "compressorType": "Centrifugal", "consumedEnergy": 800
+            "compressorType": "Centrifugal", "consumedEnergy": 7008000
           }, {
             "id": "Compressor 2",
-            "powerRating": 2,
+            "powerRating": 200,
             "energySource": "Electric - Self-Generated",
-            "runtimeHours": 100,
+            "runtimeHours": 8760,
             "loadingFactor": 100,
             "compressorType": "Centrifugal",
-            "consumedEnergy": 200
+            "consumedEnergy": 1752000
           }
         ],
-        "calculatedQuantity": 1000
+        "calculatedQuantity": 8760000
       },
-      "paymentAllocationFactor": 50,
-      "productionAllocationFactor": 50
+      "paymentAllocationFactor": 59,
+      "productionAllocationFactor": 59
     }, {
-      "quantity": 5678,
+      "quantity": 12000,
       "productRowId": 26,
       "productUnits": "t",
       "additionalData": {

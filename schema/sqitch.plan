@@ -68,6 +68,7 @@ function_form_result_requested_changes [table_application table_application_revi
 view_ciip_emission [table_application] 2019-12-13T00:12:13Z Matthieu Foucault <matthieu@button.is> # Add a view that calculates the total of non-biogenic emissions for an application
 function_search_organisation_facilities [table_facility] 2019-12-04T18:42:11Z Helen Liu <helen@button.is> # added search filter for applications of facilities
 function_search_all_facilities [table_facility] 2019-12-06T00:27:16Z Helen Liu <helen@button.is> # added search function for all facilities
+view_ciip_incentive_payment [view_ciip_production view_ciip_emission table_benchmark] 2019-12-17T20:40:18Z Matthieu Foucault <matthieu@button.is> # Add view calculating the incentive payment
 function_application_latest_submitted_revision [table_application_revision_status] 2019-12-12T18:40:39Z Dylan Leard <dylan@button.is> # Function to add computed column latest_submitted_revision to ggircs_portal.application
 function_application_latest_draft_revision [table_application_revision_status] 2019-12-12T18:41:24Z Dylan Leard <dylan@button.is> # Function to add computed column latest_draft_revision to ggircs_portal.application
 function_create_application_revision_mutation_chain [table_application_revision_status] 2019-12-13T23:52:16Z Dylan Leard <dylan@button.is> # Stored procedure to create an application revision and all dependent tables
