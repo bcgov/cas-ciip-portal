@@ -49,16 +49,14 @@ export default class UserDashBoard extends Component<Props> {
   };
 
   handleOrgConfirm = async (active, environment) => {
-    const {
-      id: userId,
-      rowId: userRowId
-    } = this.props.query.session.ciipUserBySub;
+    const {id: userId} = this.props.query.session.ciipUserBySub;
     const response = await createUserOrganisationMutation(
       environment,
       {
         input: {
           ciipUserOrganisation: {
-            userId: userRowId,
+            // Relay requires a value here because it is set to not null, but the userId value is set via a trigger on insert
+            userId: 1,
             organisationId: this.state.selectedOrg,
             status: active ? 'APPROVED' : 'PENDING'
           }
