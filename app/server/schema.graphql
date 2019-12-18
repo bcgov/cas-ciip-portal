@@ -431,6 +431,7 @@ type ApplicationRevision implements Node {
   The foreign key to the ciip application, also part of the composite primary key with version number
   """
   applicationId: Int!
+  applicationRevisionStatus: ApplicationRevisionStatus
 
   """
   Reads and enables pagination through a set of `ApplicationRevisionStatus`.
