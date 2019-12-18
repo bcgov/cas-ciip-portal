@@ -30,10 +30,10 @@ export default class Index extends Component<Props> {
     const {session} = query || {};
 
     const startDate = moment
-      .tz(query.getReportingYear.applicationOpenDate, 'America/Los_Angeles')
+      .tz(query.getReportingYear.applicationOpenDate, 'America/Vancouver')
       .format('MMM D, YYYY');
     const endDate = moment
-      .tz(query.getReportingYear.applicationEndDate, 'America/Los_Angeles')
+      .tz(query.getReportingYear.applicationEndDate, 'America/Vancouver')
       .format('MMM D, YYYY');
     return (
       <DefaultLayout

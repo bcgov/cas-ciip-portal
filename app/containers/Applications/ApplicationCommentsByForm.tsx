@@ -24,8 +24,8 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
           &nbsp;
           <small>
             {moment
-              .tz(applicationReview.createdAt, 'America/Los_Angeles')
-              .format('MMM Do YYYY, h:mm:ss a')}
+              .tz(applicationReview.createdAt, 'America/Vancouver')
+              .format('MMM Do YYYY, h:mm:ss a z')}
           </small>
         </div>
         <ul className="comment-box">
@@ -35,8 +35,8 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
               <div>
                 <small>
                   {moment
-                    .tz(node.createdAt, 'America/Los_Angeles')
-                    .format('MMM Do YYYY, h:mm:ss a')}
+                    .tz(node.createdAt, 'America/Vancouver')
+                    .format('MMM Do YYYY, h:mm:ss a z')}
                 </small>
               </div>
             </li>

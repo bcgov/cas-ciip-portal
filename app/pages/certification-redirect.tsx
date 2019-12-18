@@ -61,10 +61,10 @@ class CertificationRedirect extends Component<Props> {
     const expiresAtMoment = query?.certificationUrlByRowId?.expiresAt
       ? moment.tz(
           query?.certificationUrlByRowId?.expiresAt,
-          'America/Los_Angeles'
+          'America/Vancouver'
         )
       : null;
-    const currentMoment = moment();
+    const currentMoment = moment.tz('America/Vancouver');
     // TODO(Dylan): handle expiry of url validation on the back end
     // Sets an expiry of 7 days for the certification URL
     const expired = currentMoment.format('x') > expiresAtMoment.format('x');

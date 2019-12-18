@@ -47,13 +47,13 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const dateRegexFormat = /\d{2}-\d{2}-\d{4}/;
   const timeRangeOverlap = (newStart, currentStart, newEnd, currentEnd) => {
     const e1 = newEnd
-      ? moment.tz(newEnd, 'DD-MM-YYYY', 'America/Los_Angeles')
-      : moment.tz('12-12-9999', 'DD-MM-YYYY', 'America/Los_Angeles');
+      ? moment.tz(newEnd, 'DD-MM-YYYY', 'America/Vancouver')
+      : moment.tz('12-12-9999', 'DD-MM-YYYY', 'America/Vancouver');
     const e2 = currentEnd
-      ? moment.tz(currentEnd, 'America/Los_Angeles')
-      : moment.tz('12-12-9999', 'DD-MM-YYYY', 'America/Los_Angeles');
-    const s1 = moment.tz(newStart, 'DD-MM-YYYY', 'America/Los_Angeles');
-    const s2 = moment.tz(currentStart, 'America/Los_Angeles');
+      ? moment.tz(currentEnd, 'America/Vancouver')
+      : moment.tz('12-12-9999', 'DD-MM-YYYY', 'America/Vancouver');
+    const s1 = moment.tz(newStart, 'DD-MM-YYYY', 'America/Vancouver');
+    const s2 = moment.tz(currentStart, 'America/Vancouver');
     if ((s1 >= s2 && s1 <= e2) || (s2 >= s1 && s2 <= e1)) return true;
     return false;
   };
@@ -69,11 +69,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
         if (
           !benchmark.deletedAt &&
-          moment.tz(benchmark.startDate, 'America/Los_Angeles') < moment() &&
+          moment.tz(benchmark.startDate, 'America/Vancouver') < moment() &&
           (benchmark.endDate === null ||
             (!benchmark.deletedAt &&
-              moment.tz(benchmark.endDate, 'America/Los_Angeles') >
-                moment.tz('America/Los_Angeles'))) &&
+              moment.tz(benchmark.endDate, 'America/Vancouver') >
+                moment.tz('America/Vancouver'))) &&
           !benchmark.deletedAt
         ) {
           currentBenchmark = benchmark;
@@ -179,7 +179,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           .tz(
             e.formData.startDate.concat('T', '00:00:00'),
             'DD-MM-YYYYTHH:mm:ss',
-            'America/Los_Angeles'
+            'America/Vancouver'
           )
           .format('YYYY-MM-DDTHH:mm:ss'),
         endDateInput: e.formData.endDate
@@ -187,7 +187,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
               .tz(
                 e.formData.endDate.concat('T', '23:59:59'),
                 'DD-MM-YYYYTHH:mm:ss',
-                'America/Los_Angeles'
+                'America/Vancouver'
               )
               .format('YYYY-MM-DDTHH:mm:ss')
           : null,
@@ -221,7 +221,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             .tz(
               e.formData.startDate.concat('T', '00:00:00'),
               'DD-MM-YYYYTHH:mm:ss',
-              'America/Los_Angeles'
+              'America/Vancouver'
             )
             .format('YYYY-MM-DDTHH:mm:ss'),
           endDate: e.formData.endDate
@@ -229,7 +229,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                 .tz(
                   e.formData.endDate.concat('T', '23:59:59'),
                   'DD-MM-YYYYTHH:mm:ss',
-                  'America/Los_Angeles'
+                  'America/Vancouver'
                 )
                 .format('YYYY-MM-DDTHH:mm:ss')
             : null
@@ -248,7 +248,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         id: currentBenchmark.id,
         benchmarkPatch: {
           deletedAt: moment
-            .tz('America/Los_Angeles')
+            .tz('America/Vancouver')
             .format('YYYY-MM-DDTHH:mm:ss'),
           deletedBy: userRowId
         }
@@ -272,12 +272,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     eligibilityThreshold: currentBenchmark?.eligibilityThreshold ?? null,
     startDate: currentBenchmark?.startDate
       ? moment
-          .tz(currentBenchmark.startDate, 'America/Los_Angeles')
+          .tz(currentBenchmark.startDate, 'America/Vancouver')
           .format('DD-MM-YYYY')
       : null,
     endDate: currentBenchmark?.endDate
       ? moment
-          .tz(currentBenchmark.endDate, 'America/Los_Angeles')
+          .tz(currentBenchmark.endDate, 'America/Vancouver')
           .format('DD-MM-YYYY')
       : null
   };

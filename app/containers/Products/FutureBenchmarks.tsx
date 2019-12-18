@@ -43,10 +43,10 @@ const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
     benchmark: benchmark.benchmark,
     eligibilityThreshold: benchmark.eligibilityThreshold,
     startDate: moment
-      .tz(benchmark.startDate, 'America/Los_Angeles')
+      .tz(benchmark.startDate, 'America/Vancouver')
       .format('DD-MM-YYYY'),
     endDate: moment
-      .tz(benchmark.endDate, 'America/Los_Angeles')
+      .tz(benchmark.endDate, 'America/Vancouver')
       .format('DD-MM-YYYY')
   };
 
