@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Row, Col, Button, Form} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {NextRouter} from 'next/router';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import {CiipPageComponentProps} from 'next-env';
 import {certificationRedirectQueryResponse} from 'certificationRedirectQuery.graphql';
 import DefaultLayout from '../layouts/default-layout';
@@ -59,9 +59,12 @@ class CertificationRedirect extends Component<Props> {
     const redirectURI = `/certify?applicationId=${applicationId}&version=${version}`;
 
     const expiresAtMoment = query?.certificationUrlByRowId?.expiresAt
-      ? moment(query?.certificationUrlByRowId?.expiresAt)
+      ? moment.tz(
+          query?.certificationUrlByRowId?.expiresAt,
+          'America/Vancouver'
+        )
       : null;
-    const currentMoment = moment();
+    const currentMoment = moment.tz('America/Vancouver');
     // TODO(Dylan): handle expiry of url validation on the back end
     // Sets an expiry of 7 days for the certification URL
     const expired = currentMoment.format('x') > expiresAtMoment.format('x');
