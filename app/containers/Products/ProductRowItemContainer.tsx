@@ -11,7 +11,7 @@ import {
   Table
 } from 'react-bootstrap';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
@@ -47,13 +47,13 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const dateRegexFormat = /\d{2}-\d{2}-\d{4}/;
   const timeRangeOverlap = (newStart, currentStart, newEnd, currentEnd) => {
     const e1 = newEnd
-      ? moment(newEnd, 'DD-MM-YYYY')
-      : moment('12-12-9999', 'DD-MM-YYYY');
+      ? moment.tz(newEnd, 'DD-MM-YYYY', 'America/Los_Angeles')
+      : moment.tz('12-12-9999', 'DD-MM-YYYY', 'America/Los_Angeles');
     const e2 = currentEnd
-      ? moment(currentEnd)
-      : moment('12-12-9999', 'DD-MM-YYYY');
-    const s1 = moment(newStart, 'DD-MM-YYYY');
-    const s2 = moment(currentStart);
+      ? moment.tz(currentEnd, 'America/Los_Angeles')
+      : moment.tz('12-12-9999', 'DD-MM-YYYY', 'America/Los_Angeles');
+    const s1 = moment.tz(newStart, 'DD-MM-YYYY', 'America/Los_Angeles');
+    const s2 = moment.tz(currentStart, 'America/Los_Angeles');
     if ((s1 >= s2 && s1 <= e2) || (s2 >= s1 && s2 <= e1)) return true;
     return false;
   };
@@ -69,9 +69,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
         if (
           !benchmark.deletedAt &&
-          moment(benchmark.startDate) < moment() &&
+          moment.tz(benchmark.startDate, 'America/Los_Angeles') < moment() &&
           (benchmark.endDate === null ||
-            (!benchmark.deletedAt && moment(benchmark.endDate) > moment())) &&
+            (!benchmark.deletedAt &&
+              moment.tz(benchmark.endDate, 'America/Los_Angeles') >
+                moment.tz('America/Los_Angeles'))) &&
           !benchmark.deletedAt
         ) {
           currentBenchmark = benchmark;
@@ -103,8 +105,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       <tr key={benchmark.id}>
         <td>{benchmark.benchmark}</td>
         <td>{benchmark.eligibilityThreshold}</td>
-        <td>{moment(benchmark.startDate).format('DD-MM-YYYY')}</td>
-        <td>{moment(benchmark.endDate).format('DD-MM-YYYY')}</td>
+        <td>{moment.tz(benchmark.startDate).format('DD-MM-YYYY')}</td>
+        <td>{moment.tz(benchmark.endDate).format('DD-MM-YYYY')}</td>
       </tr>
     );
   };
@@ -173,15 +175,21 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         benchmarkInput: e.formData.benchmark,
         eligibilityThresholdInput: e.formData.eligibilityThreshold,
         productIdInput: product.rowId,
-        startDateInput: moment(
-          e.formData.startDate.concat('T', '00:00:00'),
-          'DD-MM-YYYYTHH:mm:ss'
-        ).format('YYYY-MM-DDTHH:mm:ss'),
+        startDateInput: moment
+          .tz(
+            e.formData.startDate.concat('T', '00:00:00'),
+            'DD-MM-YYYYTHH:mm:ss',
+            'America/Los_Angeles'
+          )
+          .format('YYYY-MM-DDTHH:mm:ss'),
         endDateInput: e.formData.endDate
-          ? moment(
-              e.formData.endDate.concat('T', '23:59:59'),
-              'DD-MM-YYYYTHH:mm:ss'
-            ).format('YYYY-MM-DDTHH:mm:ss')
+          ? moment
+              .tz(
+                e.formData.endDate.concat('T', '23:59:59'),
+                'DD-MM-YYYYTHH:mm:ss',
+                'America/Los_Angeles'
+              )
+              .format('YYYY-MM-DDTHH:mm:ss')
           : null,
         prevBenchmarkIdInput: null
       }
@@ -209,15 +217,21 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         benchmarkPatch: {
           benchmark: e.formData.benchmark,
           eligibilityThreshold: e.formData.eligibilityThreshold,
-          startDate: moment(
-            e.formData.startDate.concat('T', '00:00:00'),
-            'DD-MM-YYYYTHH:mm:ss'
-          ).format('YYYY-MM-DDTHH:mm:ss'),
+          startDate: moment
+            .tz(
+              e.formData.startDate.concat('T', '00:00:00'),
+              'DD-MM-YYYYTHH:mm:ss',
+              'America/Los_Angeles'
+            )
+            .format('YYYY-MM-DDTHH:mm:ss'),
           endDate: e.formData.endDate
-            ? moment(
-                e.formData.endDate.concat('T', '23:59:59'),
-                'DD-MM-YYYYTHH:mm:ss'
-              ).format('YYYY-MM-DDTHH:mm:ss')
+            ? moment
+                .tz(
+                  e.formData.endDate.concat('T', '23:59:59'),
+                  'DD-MM-YYYYTHH:mm:ss',
+                  'America/Los_Angeles'
+                )
+                .format('YYYY-MM-DDTHH:mm:ss')
             : null
         }
       }
@@ -233,7 +247,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       input: {
         id: currentBenchmark.id,
         benchmarkPatch: {
-          deletedAt: moment().format('YYYY-MM-DDTHH:mm:ss'),
+          deletedAt: moment
+            .tz('America/Los_Angeles')
+            .format('YYYY-MM-DDTHH:mm:ss'),
           deletedBy: userRowId
         }
       }
@@ -255,10 +271,14 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     benchmark: currentBenchmark?.benchmark ?? null,
     eligibilityThreshold: currentBenchmark?.eligibilityThreshold ?? null,
     startDate: currentBenchmark?.startDate
-      ? moment(currentBenchmark.startDate).format('DD-MM-YYYY')
+      ? moment
+          .tz(currentBenchmark.startDate, 'America/Los_Angeles')
+          .format('DD-MM-YYYY')
       : null,
     endDate: currentBenchmark?.endDate
-      ? moment(currentBenchmark.endDate).format('DD-MM-YYYY')
+      ? moment
+          .tz(currentBenchmark.endDate, 'America/Los_Angeles')
+          .format('DD-MM-YYYY')
       : null
   };
 
@@ -426,7 +446,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                   ArrayFieldTemplate={FormArrayFieldTemplate}
                   FieldTemplate={FormFieldTemplate}
                   ObjectFieldTemplate={FormObjectFieldTemplate}
-                  // OnSubmit={updateCurrentBenchmark}
+                  onSubmit={createBenchmark}
                 >
                   <Button type="submit">Save</Button>
                   <Button

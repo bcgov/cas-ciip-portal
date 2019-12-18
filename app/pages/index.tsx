@@ -3,7 +3,7 @@ import {Row, Col, Card, Jumbotron, Table} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {pagesQueryResponse} from 'pagesQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import DefaultLayout from '../layouts/default-layout';
 import RegistrationLoginButtons from '../components/RegistrationLoginButtons';
 
@@ -29,12 +29,12 @@ export default class Index extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
 
-    const startDate = moment(query.getReportingYear.applicationOpenDate).format(
-      'MMM D, YYYY'
-    );
-    const endDate = moment(query.getReportingYear.applicationEndDate).format(
-      'MMM D, YYYY'
-    );
+    const startDate = moment
+      .tz(query.getReportingYear.applicationOpenDate, 'America/Los_Angeles')
+      .format('MMM D, YYYY');
+    const endDate = moment
+      .tz(query.getReportingYear.applicationEndDate, 'America/Los_Angeles')
+      .format('MMM D, YYYY');
     return (
       <DefaultLayout
         showSubheader={false}

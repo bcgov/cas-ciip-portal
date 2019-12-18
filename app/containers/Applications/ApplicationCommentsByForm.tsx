@@ -1,6 +1,6 @@
 import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 /*
  * The ApplicationComments renders all the comments on the various sections of the application
@@ -23,9 +23,9 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
           Set to <strong>{applicationReview.reviewStatus}</strong>
           &nbsp;
           <small>
-            {moment(applicationReview.createdAt).format(
-              'MMM Do YYYY, h:mm:ss a'
-            )}
+            {moment
+              .tz(applicationReview.createdAt, 'America/Los_Angeles')
+              .format('MMM Do YYYY, h:mm:ss a')}
           </small>
         </div>
         <ul className="comment-box">
@@ -34,7 +34,9 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
               <div>{node.description}</div>
               <div>
                 <small>
-                  {moment(node.createdAt).format('MMM Do YYYY, h:mm:ss a')}
+                  {moment
+                    .tz(node.createdAt, 'America/Los_Angeles')
+                    .format('MMM Do YYYY, h:mm:ss a')}
                 </small>
               </div>
             </li>
