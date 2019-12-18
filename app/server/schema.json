@@ -32620,9 +32620,13 @@
               "name": "versionNumber",
               "description": "The application version this form result is attached to",
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             }

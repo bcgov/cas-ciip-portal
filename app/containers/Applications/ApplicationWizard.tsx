@@ -48,8 +48,10 @@ const ApplicationWizard = ({query}) => {
           ? undefined
           : orderedFormResults[i + 1].node.id;
         setRouterQueryParam(router, 'formResultId', formResultId);
-        if (goToConfirmation)
+        if (goToConfirmation) {
+          router.query.formResultId = formResultId;
           setRouterQueryParam(router, 'confirmationPage', true);
+        }
       }
     }
   };

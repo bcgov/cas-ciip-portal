@@ -6295,7 +6295,7 @@ input FormResultInput {
   updatedBy: String
 
   """The application version this form result is attached to"""
-  versionNumber: Int
+  versionNumber: Int!
 }
 
 """

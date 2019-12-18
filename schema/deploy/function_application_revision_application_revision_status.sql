@@ -13,8 +13,7 @@ begin
         select row(_application_revision_status.*)
         from ggircs_portal.application_revision_status as _application_revision_status
         where _application_revision_status.application_id = application_revision.application_id
-        and _application_revision_status.version_number = (select max(version_number) from ggircs_portal.application_revision as _application_revision
-          where _application_revision.application_id = application_revision.application_id)
+        and _application_revision_status.version_number = application_revision.version_number
         order by _application_revision_status.created_at desc
         limit 1
     );

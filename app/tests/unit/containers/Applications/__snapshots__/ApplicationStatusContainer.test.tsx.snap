@@ -31,8 +31,9 @@ exports[`ApplicationRevisionStatusItem should render the application status 1`] 
               "width": "100%",
             }
           }
+          variant="info"
         >
-          pending
+          SUBMITTED
         </DropdownToggle>
         <DropdownMenu
           alignRight={false}

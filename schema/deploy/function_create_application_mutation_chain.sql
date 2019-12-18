@@ -13,6 +13,7 @@ declare
 begin
 
   --Insert new value into application
+  -- TODO: use a current_reporting_year function (which should raise an exception if we are not in the reporting window)
   insert into ggircs_portal.application(facility_id, reporting_year)
   values (facility_id_input, (select to_char(now(), 'YYYY')::int)) returning id into new_id;
 
