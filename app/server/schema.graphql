@@ -2419,6 +2419,11 @@ type CiipUser implements Node {
   """Reads a single `CiipUser` that is related to this `CiipUser`."""
   ciipUserByDeletedBy: CiipUser
 
+  """
+  Reads a single `CiipUserOrganisation` that is related to this `CiipUser`.
+  """
+  ciipUserOrganisationByUserId: CiipUserOrganisation
+
   """Reads and enables pagination through a set of `CiipUserOrganisation`."""
   ciipUserOrganisationsByUserId(
     """Read all values in the set after (below) this cursor."""
@@ -2446,7 +2451,7 @@ type CiipUser implements Node {
 
     """The method to use when ordering `CiipUserOrganisation`."""
     orderBy: [CiipUserOrganisationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipUserOrganisationsConnection!
+  ): CiipUserOrganisationsConnection! @deprecated(reason: "Please use ciipUserOrganisationByUserId instead")
 
   """Reads and enables pagination through a set of `CiipUser`."""
   ciipUsersByDeletedBy(
@@ -4301,18 +4306,13 @@ input DeleteCiipUserInput {
   id: ID!
 }
 
-"""
-All input for the `deleteCiipUserOrganisationByUserIdAndOrganisationId` mutation.
-"""
-input DeleteCiipUserOrganisationByUserIdAndOrganisationIdInput {
+"""All input for the `deleteCiipUserOrganisationByUserId` mutation."""
+input DeleteCiipUserOrganisationByUserIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-
-  """foreign key that references the organisation table"""
-  organisationId: Int!
 
   """foreign key that references the user table"""
   userId: Int!
@@ -7315,11 +7315,11 @@ type Mutation {
   ): DeleteCiipUserOrganisationPayload
 
   """Deletes a single `CiipUserOrganisation` using a unique key."""
-  deleteCiipUserOrganisationByUserIdAndOrganisationId(
+  deleteCiipUserOrganisationByUserId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteCiipUserOrganisationByUserIdAndOrganisationIdInput!
+    input: DeleteCiipUserOrganisationByUserIdInput!
   ): DeleteCiipUserOrganisationPayload
 
   """Deletes a single `EmissionCategoryGas` using its globally unique id."""
@@ -7679,11 +7679,11 @@ type Mutation {
   """
   Updates a single `CiipUserOrganisation` using a unique key and a patch.
   """
-  updateCiipUserOrganisationByUserIdAndOrganisationId(
+  updateCiipUserOrganisationByUserId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateCiipUserOrganisationByUserIdAndOrganisationIdInput!
+    input: UpdateCiipUserOrganisationByUserIdInput!
   ): UpdateCiipUserOrganisationPayload
 
   """
@@ -9625,7 +9625,7 @@ type Query implements Node {
     """
     id: ID!
   ): CiipUserOrganisation
-  ciipUserOrganisationByUserIdAndOrganisationId(organisationId: Int!, userId: Int!): CiipUserOrganisation
+  ciipUserOrganisationByUserId(userId: Int!): CiipUserOrganisation
 
   """Reads a single `EmissionCategoryGas` using its globally unique `ID`."""
   emissionCategoryGas(
@@ -10921,10 +10921,8 @@ input UpdateCiipUserInput {
   id: ID!
 }
 
-"""
-All input for the `updateCiipUserOrganisationByUserIdAndOrganisationId` mutation.
-"""
-input UpdateCiipUserOrganisationByUserIdAndOrganisationIdInput {
+"""All input for the `updateCiipUserOrganisationByUserId` mutation."""
+input UpdateCiipUserOrganisationByUserIdInput {
   """
   An object where the defined keys will be set on the `CiipUserOrganisation` being updated.
   """
@@ -10935,9 +10933,6 @@ input UpdateCiipUserOrganisationByUserIdAndOrganisationIdInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-
-  """foreign key that references the organisation table"""
-  organisationId: Int!
 
   """foreign key that references the user table"""
   userId: Int!
