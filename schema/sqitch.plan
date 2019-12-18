@@ -26,15 +26,10 @@ table_form_json [schema_ggircs_portal function_update_timestamps] 2019-07-24T20:
 table_form_result [schema_ggircs_portal function_update_timestamps table_form_json] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
 type_facility_search_result [schema_ggircs_portal] 2019-12-11T21:41:41Z Helen Liu <helen@button.is> # added return type for search all facilities function
 table_application_revision_status [schema_ggircs_portal function_update_timestamps table_application_revision] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application_revision_status to schema ggircs_portal
-view_ciip_contact [table_form_result] 2019-08-19T21:59:40Z Hamza Javed <hamza@button.is> # Add view for contact details of applicant
 view_ciip_fuel [table_form_result] 2019-08-19T22:26:15Z Hamza Javed <hamza@button.is> # View for fuels reported in CIIP application
-view_ciip_facility [table_form_result] 2019-08-19T23:34:33Z Hamza Javed <hamza@button.is> # View for facility
-view_ciip_operator [table_form_result] 2019-08-19T23:42:39Z Hamza Javed <hamza@button.is> # View for the operator in the ciip application
-view_ciip_certifier [table_form_result] 2019-08-20T22:33:11Z Hamza Javed <hamza@button.is> # Certifier Details
 view_ciip_electricity_and_heat [table_form_result] 2019-08-20T22:40:48Z Hamza Javed <hamza@button.is> # Electricity and Heat consumption reported for the ciip application
 view_ciip_production [table_form_result] 2019-08-20T23:22:31Z Hamza Javed <hamza@button.is> # Module throughput and production data reported in the ciip application
 function_search_application_list [table_application_revision_status type_application_search_result] 2019-09-03T20:40:05Z Dylan Leard <dylan@button.is> # add function for searching the list of applications
-function_get_carbon_tax_by_organisation 2019-08-29T22:14:28Z Hamza Javed <hamza@button.is> # Get carbon tax paid by organisation and reporting year
 function_get_swrs_organisation_data [schema_ggircs_portal] 2019-10-01T20:51:53Z Hamza Javed <hamza@button.is> # Function that imports information from swrs based on parameters
 table_ciip_application_wizard [table_form_json] 2019-10-09T17:18:33Z Matthieu Foucault <matthieu@button.is> # Add table_ciip_application_wizard
 function_get_swrs_facility_data 2019-10-07T21:25:50Z Hamza Javed <hamza@button.is> # Function to import facility data from swrs
