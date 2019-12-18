@@ -19,7 +19,7 @@ import {
 } from 'components/Layout/Pdf';
 
 const styles = StyleSheet.create({
-  label: {fontWeight: 700, fontSize: 12, border: 1},
+  label: {fontSize: 12},
   appInfo: {
     fontSize: 12,
     margin: '10px 0'
@@ -52,13 +52,7 @@ const objectFieldTemplate = props => {
   return (
     <>
       {props.properties.map(
-        prop =>
-          prop.content && (
-            <View key={prop.index} style={{border: '1px solid #666'}}>
-              {prop.content}
-              <Text />
-            </View>
-          )
+        prop => prop.content && <View key={prop.index}>{prop.content}</View>
       )}
     </>
   );
@@ -92,9 +86,9 @@ const emissionGasTemplate = props => {
 };
 
 const CUSTOM_FIELDS = {
-  TitleField: props => (
-    <Text>{props.title ? props.title : '[Not Entered]'}</Text>
-  ),
+  // TitleField: props => (
+  //   <Text>{props.title ? props.title : '[Not Entered]'}</Text>
+  // ),
   StringField: props => (
     <Text>{props.formData ? props.formData : '[Not Entered]'}</Text>
   ),
@@ -103,7 +97,8 @@ const CUSTOM_FIELDS = {
 };
 
 const customWidget = {
-  RadioWidget: props => props.value
+  RadioWidget: props =>
+    props.value === true ? <Text>Yes</Text> : <Text>No</Text>
 };
 
 const ApplicationDetailsPdfCardItem = props => {
