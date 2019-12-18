@@ -5,7 +5,7 @@ exports[`ApplicationList should render the application list 1`] = `
   body={
     <tbody>
       <ForwardRef(Relay(ApplicationRowItem))
-        ciipApplication={
+        applicationSearchResult={
           Object {
             "id": "ciip-application-1",
           }

@@ -70,7 +70,7 @@ describe('ApplicationDetailsContainer', () => {
           return {
             application: {
               id: '2',
-              formResultsByApplicationId: {
+              orderedFormResults: {
                 edges: [
                   {
                     node: {

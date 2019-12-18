@@ -5,12 +5,12 @@ exports[`It matches the last accepted Snapshot 1`] = `
   width="wide"
 >
   <Relay(ApplicationRevisionStatusComponent)
-    applicationRowId={1}
     applicationRevisionStatus={
       Object {
         "applicationRevisionStatus": "pending",
       }
     }
+    applicationRowId={1}
   />
   <hr
     className="jsx-1070550671"

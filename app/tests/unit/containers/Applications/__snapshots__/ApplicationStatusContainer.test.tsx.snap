@@ -9,7 +9,7 @@ exports[`ApplicationRevisionStatusItem should render the application status 1`] 
       md={3}
     >
       <h3>
-        Application Status:
+        Application Status: 
       </h3>
     </Col>
     <Col
@@ -44,16 +44,16 @@ exports[`ApplicationRevisionStatusItem should render the application status 1`] 
           }
         >
           <DropdownMenuItemComponent
-            itemEventKey="PENDING"
-            itemFunc={[Function]}
-            itemTitle="PENDING"
-            key="PENDING"
-          />
-          <DropdownMenuItemComponent
             itemEventKey="DRAFT"
             itemFunc={[Function]}
             itemTitle="DRAFT"
             key="DRAFT"
+          />
+          <DropdownMenuItemComponent
+            itemEventKey="SUBMITTED"
+            itemFunc={[Function]}
+            itemTitle="SUBMITTED"
+            key="SUBMITTED"
           />
           <DropdownMenuItemComponent
             itemEventKey="REJECTED"
@@ -66,6 +66,12 @@ exports[`ApplicationRevisionStatusItem should render the application status 1`] 
             itemFunc={[Function]}
             itemTitle="APPROVED"
             key="APPROVED"
+          />
+          <DropdownMenuItemComponent
+            itemEventKey="REQUESTED_CHANGES"
+            itemFunc={[Function]}
+            itemTitle="REQUESTED_CHANGES"
+            key="REQUESTED_CHANGES"
           />
         </DropdownMenu>
       </Dropdown>

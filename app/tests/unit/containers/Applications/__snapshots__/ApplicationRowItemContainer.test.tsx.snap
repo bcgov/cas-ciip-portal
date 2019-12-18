@@ -3,17 +3,19 @@
 exports[`ApplicationRowItem should render the application 1`] = `
 <tr>
   <td>
-    9
+    abc
   </td>
   <td>
-    operator1
+    blah
   </td>
   <td>
-    facility1
+    foo
   </td>
-  <td />
   <td>
-    Sun, 17 Dec 1995 03:24:00 GMT
+    2018
+  </td>
+  <td>
+    Monday
   </td>
   <td>
     <Badge
@@ -24,7 +26,7 @@ exports[`ApplicationRowItem should render the application 1`] = `
         }
       }
     >
-      pending
+      PENDING
     </Badge>
   </td>
   <td>
@@ -33,10 +35,10 @@ exports[`ApplicationRowItem should render the application 1`] = `
         Object {
           "pathname": "/application-review",
           "query": Object {
-            "applicationGUID": "ABC",
-            "applicationId": "9",
-            "bcghgid": undefined,
-            "reportingYear": undefined,
+            "applicationId": "abc",
+            "bcghgid": 123456789,
+            "reportingYear": 2018,
+            "version": 1,
           },
         }
       }

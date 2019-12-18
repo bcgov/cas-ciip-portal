@@ -4,16 +4,24 @@ import {ApplicationRowItem} from 'containers/Applications/ApplicationRowItemCont
 
 describe('ApplicationRowItem', () => {
   it('should render the application', () => {
-    const ciipApplication = {
-      rowId: '9',
-      applicationByRowId: {id: 'ABC'},
-      applicationRevisionStatus: 'pending',
-      facilityName: 'facility1',
-      operatorName: 'operator1',
-      submissionDate: 'Sun, 17 Dec 1995 03:24:00 GMT'
+    const applicationSearchResult = {
+      rowId: 1,
+      applicationId: 'abc',
+      operatorName: 'blah',
+      facilityName: 'foo',
+      applicationRevisionStatus: 'PENDING',
+      reportingYear: 2018,
+      bcghgid: 123456789,
+      submissionDate: 'Monday',
+      applicationByApplicationId: {
+        id: 'abc',
+        latestSubmittedRevision: {
+          versionNumber: 1
+        }
+      }
     };
     const render = shallow(
-      <ApplicationRowItem ciipApplication={ciipApplication} />
+      <ApplicationRowItem applicationSearchResult={applicationSearchResult} />
     );
     expect(render).toMatchSnapshot();
   });
