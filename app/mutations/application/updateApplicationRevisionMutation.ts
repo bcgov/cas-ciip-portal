@@ -16,8 +16,8 @@ const mutation = graphql`
         id
         applicationId
         versionNumber
-        # certificationSignature
-        # userId
+        certificationSignature
+        userId
       }
     }
   }

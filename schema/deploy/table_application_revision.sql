@@ -6,6 +6,8 @@ begin;
 create table ggircs_portal.application_revision (
     application_id int not null references ggircs_portal.application(id),
     version_number int not null,
+    certification_signature bytea,
+    user_id integer references ggircs_portal.ciip_user(id),
     created_at timestamp with time zone not null default now(),
     created_by varchar(1000),
     updated_at timestamp with time zone not null default now(),
@@ -23,10 +25,18 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
+-- Sets user id by session on update of certification_signature
+create trigger _set_user_id
+    before update of certification_signature on ggircs_portal.application_revision
+    for each row
+    execute procedure ggircs_portal.set_user_id();
+
 comment on table ggircs_portal.application_revision is 'The application revision data';
 
 comment on column ggircs_portal.application_revision.application_id is 'The foreign key to the ciip application, also part of the composite primary key with version number';
 comment on column ggircs_portal.application_revision.version_number is 'The version number of the revision, also part of the composite primary key with application_id';
+comment on column ggircs_portal.application_revision.certification_signature is 'The base64 representation of the certifier''s signature';
+comment on column ggircs_portal.application_revision.user_id is 'The certifier''s user id, references ciip_user';
 comment on column ggircs_portal.application_revision.created_at is 'The date the application revision status was updated';
 comment on column ggircs_portal.application_revision.created_by is 'The person who updated the application revision status';
 comment on column ggircs_portal.application_revision.updated_at is 'The date the application revision status was updated';

@@ -15,8 +15,6 @@ const mutation = graphql`
         rowId
         facilityId
         reportingYear
-        certificationSignature
-        userId
       }
     }
   }
