@@ -101,15 +101,17 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                 })}
               </tbody>
             </Table>
-            <JsonSchemaForm
-              schema={schema}
-              uiSchema={uiSchema}
-              FieldTemplate={CustomFieldTemplate}
-              showErrorList={false}
-              onSubmit={addComment}
-            >
-              <Button type="submit">+ Add Comment</Button>
-            </JsonSchemaForm>
+            {review ? (
+              <JsonSchemaForm
+                schema={schema}
+                uiSchema={uiSchema}
+                FieldTemplate={CustomFieldTemplate}
+                showErrorList={false}
+                onSubmit={addComment}
+              >
+                <Button type="submit">+ Add Comment</Button>
+              </JsonSchemaForm>
+            ) : null}
             {showResolved ? (
               <a href="#" onClick={() => toggleShowResolved(!showResolved)}>
                 Hide Resolved
@@ -122,7 +124,6 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
           </div>
         </Collapse>
       </div>
-      );
       <style jsx global>{`
         .form-result-box {
           padding: 25px;

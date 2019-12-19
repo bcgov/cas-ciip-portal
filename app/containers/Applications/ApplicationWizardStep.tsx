@@ -1,6 +1,8 @@
 import React from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ApplicationWizardStep_query} from 'ApplicationWizardStep_query.graphql';
+import {Row, Col} from 'react-bootstrap';
+import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import Form from '../Forms/Form';
 import updateFormResultMutation from '../../mutations/form/updateFormResultMutation';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
@@ -64,7 +66,23 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   if (!formResult) return null;
 
   if (!application) return null;
-  // Save Application status to database
+
+  if (formResult.hasUnresolvedComments)
+    return (
+      <Row>
+        <Col md={8}>
+          <Form
+            query={query}
+            onComplete={onComplete}
+            onValueChanged={onValueChanged}
+            onBack={onStepBack}
+          />
+        </Col>
+        <Col md={4}>
+          <ApplicationComments formResult={formResult} review={false} />
+        </Col>
+      </Row>
+    );
   return (
     <Form
       query={query}
@@ -89,6 +107,8 @@ export default createFragmentContainer(ApplicationWizardStep, {
       formResult(id: $formResultId) {
         id
         formResult
+        hasUnresolvedComments
+        ...ApplicationCommentsContainer_formResult
       }
       application(id: $applicationId) {
         ...ApplicationWizardConfirmation_application
