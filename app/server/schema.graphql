@@ -5649,6 +5649,27 @@ type FormResult implements Node {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
 
+  """Reads and enables pagination through a set of `ReviewComment`."""
+  applicationComments(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): ReviewCommentsConnection!
+
   """The Unique ID of the Application"""
   applicationId: Int!
   applicationReview: ApplicationReview
@@ -9458,6 +9479,8 @@ enum ReportingYearsOrderBy {
 
 """Table containing the information for a CIIP review_comment"""
 type ReviewComment implements Node {
+  applicationId: Int
+
   """
   Reads a single `ApplicationReview` that is related to this `ReviewComment`.
   """
@@ -9480,6 +9503,7 @@ type ReviewComment implements Node {
 
   """The comment on the review_comment"""
   description: String
+  formId: Int
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -9504,6 +9528,9 @@ A condition to be used against `ReviewComment` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
 input ReviewCommentCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
+
   """Checks for equality with the object’s `applicationReviewId` field."""
   applicationReviewId: Int
 
@@ -9522,6 +9549,9 @@ input ReviewCommentCondition {
   """Checks for equality with the object’s `description` field."""
   description: String
 
+  """Checks for equality with the object’s `formId` field."""
+  formId: Int
+
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 
@@ -9537,6 +9567,8 @@ input ReviewCommentCondition {
 
 """An input for mutations affecting `ReviewComment`"""
 input ReviewCommentInput {
+  applicationId: Int
+
   """FK to application review"""
   applicationReviewId: Int!
 
@@ -9554,6 +9586,7 @@ input ReviewCommentInput {
 
   """The comment on the review_comment"""
   description: String
+  formId: Int
 
   """The status on the review_comment"""
   status: String
@@ -9569,6 +9602,8 @@ input ReviewCommentInput {
 Represents an update to a `ReviewComment`. Fields that are set will be updated.
 """
 input ReviewCommentPatch {
+  applicationId: Int
+
   """FK to application review"""
   applicationReviewId: Int
 
@@ -9586,6 +9621,7 @@ input ReviewCommentPatch {
 
   """The comment on the review_comment"""
   description: String
+  formId: Int
 
   """The status on the review_comment"""
   status: String
@@ -9625,6 +9661,8 @@ type ReviewCommentsEdge {
 
 """Methods to use when ordering `ReviewComment`."""
 enum ReviewCommentsOrderBy {
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
   APPLICATION_REVIEW_ID_ASC
   APPLICATION_REVIEW_ID_DESC
   CREATED_AT_ASC
@@ -9637,6 +9675,8 @@ enum ReviewCommentsOrderBy {
   DELETED_BY_DESC
   DESCRIPTION_ASC
   DESCRIPTION_DESC
+  FORM_ID_ASC
+  FORM_ID_DESC
   ID_ASC
   ID_DESC
   NATURAL

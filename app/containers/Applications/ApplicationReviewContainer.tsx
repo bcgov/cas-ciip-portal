@@ -76,6 +76,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
           <Modal.Title>Reviewing {props.formName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {/* TODO: Use JsonSchema instead? */}
           <Form className="review-box" onSubmit={submitReview}>
             <Form.Group>
               <Form.Label>Comment</Form.Label>

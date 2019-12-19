@@ -6,8 +6,10 @@ begin;
 create table ggircs_portal.review_comment (
   id integer primary key generated always as identity,
   application_review_id int not null references ggircs_portal.application_review(id),
+  application_id integer,
+  form_id integer,
   description varchar(100000),
-  status varchar(1000),
+  resolved boolean,
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
   updated_at timestamp with time zone not null default now(),
@@ -20,7 +22,7 @@ comment on table ggircs_portal.review_comment is 'Table containing the informati
 comment on column ggircs_portal.review_comment.id is 'Unique ID for the review_comment';
 comment on column ggircs_portal.review_comment.application_review_id is 'FK to application review';
 comment on column ggircs_portal.review_comment.description is 'The comment on the review_comment';
-comment on column ggircs_portal.review_comment.status is 'The status on the review_comment';
+comment on column ggircs_portal.review_comment.resolved is 'The resolved status on the review_comment';
 comment on column ggircs_portal.review_comment.created_at is 'Creation date of row';
 comment on column ggircs_portal.review_comment.created_by is 'Creator of row';
 comment on column ggircs_portal.review_comment.updated_at is 'Updated date of row';
