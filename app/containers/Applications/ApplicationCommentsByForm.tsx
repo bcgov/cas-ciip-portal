@@ -1,8 +1,9 @@
 import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import moment from 'moment-timezone';
-import {Button} from 'react-bootstrap';
+import {Form} from 'react-bootstrap';
 import {ApplicationCommentsByForm_reviewComment} from 'ApplicationCommentsByForm_reviewComment.graphql';
+import updateReviewCommentMutation from 'mutations/application/updateReviewCommentMutation';
 
 /*
  * The ApplicationComments renders all the comments on the various sections of the application
@@ -16,19 +17,38 @@ interface Props {
 export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props => {
   const {reviewComment} = props;
 
+  const resolveComment = async () => {
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        id: reviewComment.id,
+        reviewCommentPatch: {
+          description: reviewComment.description,
+          resolved: !reviewComment.resolved,
+          createdAt: reviewComment.createdAt
+        }
+      }
+    };
+
+    const response = await updateReviewCommentMutation(environment, variables);
+    console.log(response);
+  };
+
   return (
     <>
       <tr>
         <td>{reviewComment.description}</td>
         <td style={{textAlign: 'center'}}>
-          <Button variant="success">&#10003;</Button>
+          <Form.Check
+            checked={reviewComment.resolved}
+            type="checkbox"
+            onChange={resolveComment}
+          />
         </td>
       </tr>
       <tr>
         <small>
-          {moment
-            .tz(reviewComment.createdAt)
-            .format('MMM Do YYYY, h:mm:ss a z', 'America/Vancouver')}
+          {moment(reviewComment.createdAt).format('MMM Do YYYY, h:mm:ss a')}
         </small>
       </tr>
     </>

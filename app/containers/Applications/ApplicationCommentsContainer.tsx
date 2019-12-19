@@ -3,6 +3,8 @@ import {Collapse, Table, Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationCommentsContainer_formResult} from 'ApplicationCommentsContainer_formResult.graphql';
 import createReviewCommentMutation from 'mutations/application/createReviewCommentMutation';
+import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
+import {JSONSchema6} from 'json-schema';
 import ApplicationCommentsBox from './ApplicationCommentsByForm';
 
 /*
@@ -17,15 +19,17 @@ interface Props {
 export const ApplicationCommentsComponent: React.FunctionComponent<Props> = props => {
   const {formResult} = props;
   const [isOpen, setIsOpen] = useState(false);
+  const [showResolved, toggleShowResolved] = useState(false);
 
-  const addComment = async () => {
+  const addComment = async (e: IChangeEvent) => {
+    if (!e.formData.commentInput) return null;
     const {environment} = props.relay;
     const variables = {
       input: {
         reviewComment: {
           applicationId: formResult.applicationByApplicationId.rowId,
           formId: formResult.formJsonByFormId.rowId,
-          description: 'boo',
+          description: e.formData.commentInput,
           resolved: false
         }
       }
@@ -39,6 +43,34 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
     );
     console.log(response);
   };
+
+  const schema: JSONSchema6 = {
+    type: 'object',
+    properties: {
+      commentInput: {
+        type: 'string'
+      }
+    }
+  };
+
+  const uiSchema = {
+    commentInput: {
+      'ui:widget': 'textarea',
+      classNames: 'hide-title'
+    }
+  };
+
+  function CustomFieldTemplate(props) {
+    const {classNames, help, description, errors, children} = props;
+    return (
+      <div className={classNames}>
+        {description}
+        {children}
+        {errors}
+        {help}
+      </div>
+    );
+  }
 
   return (
     <>
@@ -57,6 +89,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
               </thead>
               <tbody>
                 {formResult.applicationComments.edges.map(({node}) => {
+                  if (node.resolved && !showResolved) return null;
                   return (
                     <ApplicationCommentsBox
                       key={node.id}
@@ -66,12 +99,29 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                 })}
               </tbody>
             </Table>
-            <Button onClick={addComment}>+ Add Comment</Button>
+            <JsonSchemaForm
+              schema={schema}
+              uiSchema={uiSchema}
+              FieldTemplate={CustomFieldTemplate}
+              showErrorList={false}
+              onSubmit={addComment}
+            >
+              <Button type="submit">+ Add Comment</Button>
+            </JsonSchemaForm>
+            {showResolved ? (
+              <a href="#" onClick={() => toggleShowResolved(!showResolved)}>
+                Hide Resolved
+              </a>
+            ) : (
+              <a href="#" onClick={() => toggleShowResolved(!showResolved)}>
+                Show Resolved
+              </a>
+            )}
           </div>
         </Collapse>
       </div>
       );
-      <style jsx>{`
+      <style jsx global>{`
         .form-result-box {
           padding: 25px;
           margin-bottom: 20px;
@@ -85,6 +135,10 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
           border-bottom: 1px solid #888;
           padding-bottom: 10px;
           margin-bottom: 20px;
+        }
+
+        .hide-title label.form-label {
+          display: none;
         }
       `}</style>
     </>
@@ -108,6 +162,7 @@ export default createFragmentContainer(ApplicationCommentsComponent, {
         edges {
           node {
             id
+            resolved
             ...ApplicationCommentsByForm_reviewComment
           }
         }
