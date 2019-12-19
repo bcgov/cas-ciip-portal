@@ -12,10 +12,11 @@ import updateReviewCommentMutation from 'mutations/application/updateReviewComme
 interface Props {
   reviewComment: ApplicationCommentsByForm_reviewComment;
   relay: RelayProp;
+  review: boolean;
 }
 
 export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props => {
-  const {reviewComment} = props;
+  const {reviewComment, review} = props;
 
   const resolveComment = async () => {
     const {environment} = props.relay;
@@ -34,17 +35,20 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
     console.log(response);
   };
 
+  console.log(review);
   return (
     <>
       <tr>
         <td>{reviewComment.description}</td>
-        <td style={{textAlign: 'center'}}>
-          <Form.Check
-            checked={reviewComment.resolved}
-            type="checkbox"
-            onChange={resolveComment}
-          />
-        </td>
+        {review ? (
+          <td style={{textAlign: 'center'}}>
+            <Form.Check
+              checked={reviewComment.resolved}
+              type="checkbox"
+              onChange={resolveComment}
+            />
+          </td>
+        ) : null}
       </tr>
       <tr>
         <small>

@@ -14,10 +14,11 @@ import ApplicationCommentsBox from './ApplicationCommentsByForm';
 interface Props {
   formResult: ApplicationCommentsContainer_formResult;
   relay: RelayProp;
+  review: boolean;
 }
 
 export const ApplicationCommentsComponent: React.FunctionComponent<Props> = props => {
-  const {formResult} = props;
+  const {formResult, review} = props;
   const [isOpen, setIsOpen] = useState(false);
   const [showResolved, toggleShowResolved] = useState(false);
 
@@ -84,7 +85,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
               <thead style={{textAlign: 'center'}}>
                 <tr>
                   <th>Comment</th>
-                  <th>Resolve</th>
+                  {review ? <th>Resolve</th> : null}
                 </tr>
               </thead>
               <tbody>
@@ -93,6 +94,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                   return (
                     <ApplicationCommentsBox
                       key={node.id}
+                      review={review}
                       reviewComment={node}
                     />
                   );

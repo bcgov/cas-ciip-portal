@@ -74,7 +74,7 @@ class ApplicationReview extends Component<Props> {
           </Col>
           <Col md={4} className="application-comments">
             {formResults.map(({node}) => (
-              <ApplicationComments key={node.id} formResult={node} />
+              <ApplicationComments key={node.id} review formResult={node} />
             ))}
           </Col>
         </Row>
