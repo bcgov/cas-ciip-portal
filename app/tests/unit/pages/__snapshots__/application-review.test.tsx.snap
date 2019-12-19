@@ -43,6 +43,18 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
                 "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
               },
             },
+            "formResultsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ApplicationCommentsContainer_formResult": true,
+                    },
+                    "id": "abc",
+                  },
+                },
+              ],
+            },
             "rowId": 1,
           }
         }
@@ -61,6 +73,18 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
                 " $fragmentRefs": Object {
                   "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
                 },
+              },
+              "formResultsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
               },
               "rowId": 1,
             },
@@ -92,9 +116,10 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
       md={4}
     >
       <Relay(ApplicationCommentsComponent)
-        query={
+        formResult={
           Object {
             " $fragmentRefs": Object {
+<<<<<<< 14250c606613e4e7eff85dcdf53df7eb46c08d32
               "ApplicationCommentsContainer_query": true,
               "ApplicationDetailsContainer_query": true,
             },
@@ -119,8 +144,15 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
                 "defaultLayout_session": true,
               },
             },
+=======
+              "ApplicationCommentsContainer_formResult": true,
+            },
+            "id": "abc",
+>>>>>>> update tests
           }
         }
+        key="abc"
+        review={true}
       />
     </Col>
   </ForwardRef>

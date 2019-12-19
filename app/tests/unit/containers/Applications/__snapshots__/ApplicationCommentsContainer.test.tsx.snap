@@ -3,46 +3,88 @@
 exports[`ApplicationCommentsComponent should match the snapshot with the ApplicationCommentsComponent component 1`] = `
 <Fragment>
   <div
-    className="jsx-1647986285 form-result-box"
-    key="WyJmb3JtX3Jlc3VsdHMiLDExXQ=="
+    className="jsx-2020872473 form-result-box"
+    key="abc"
   >
     <div
-      className="jsx-1647986285"
+      className="jsx-2020872473"
+      onClick={[Function]}
     >
       <h5
-        className="jsx-1647986285"
+        className="jsx-2020872473"
       >
          
-        Administration Data
+        ddd
          
       </h5>
     </div>
-    <Relay(ApplicationCommentsByForm)
-      applicationReview={
-        Object {
-          "createdAt": "2019-11-28",
-          "id": "WyJhcHBsaWNhdGlvbl9yZXZpZXdzIiwxMV0=",
-          "reviewCommentsByApplicationReviewId": Object {
-            "edges": Array [
+    <Collapse
+      appear={false}
+      dimension="height"
+      getDimensionValue={[Function]}
+      in={true}
+      mountOnEnter={false}
+      timeout={300}
+      unmountOnExit={false}
+    >
+      <div
+        className="jsx-2020872473"
+      >
+        <ForwardRef
+          bordered={true}
+          hover={true}
+          striped={true}
+        >
+          <thead
+            className="jsx-2020872473"
+            style={
               Object {
-                "node": Object {
-                  "createdAt": "2019-11-28",
-                  "description": "Legal name is wrong. Change it to ARBUTUS",
-                  "id": "WyJyZXZpZXdfY29tbWVudHMiLDFd",
-                },
-              },
-            ],
-          },
-          "reviewStatus": "REQUESTED_CHANGES",
-        }
-      }
-      key="WyJhcHBsaWNhdGlvbl9yZXZpZXdzIiwxMV0="
-    />
+                "textAlign": "center",
+              }
+            }
+          >
+            <tr
+              className="jsx-2020872473"
+            >
+              <th
+                className="jsx-2020872473"
+              >
+                Comment
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            className="jsx-2020872473"
+          >
+            <Relay(ApplicationCommentsByForm)
+              key="abc"
+              review={false}
+              reviewComment={
+                Object {
+                  " $fragmentRefs": Object {
+                    "ApplicationCommentsByForm_reviewComment": true,
+                  },
+                  "id": "abc",
+                  "resolved": false,
+                }
+              }
+            />
+          </tbody>
+        </ForwardRef>
+        <a
+          className="jsx-2020872473"
+          href="#"
+          onClick={[Function]}
+        >
+          Show Resolved
+        </a>
+      </div>
+    </Collapse>
   </div>
   <JSXStyle
-    id="1647986285"
+    id="2020872473"
   >
-    .form-result-box.jsx-1647986285{padding:25px;margin-bottom:20px;border:1px solid #ff713a;border-radius:5px;background-color:#fff4dcab;font-size:14px;}.form-result-box.jsx-1647986285 h5.jsx-1647986285{border-bottom:1px solid #888;padding-bottom:10px;margin-bottom:20px;}
+    .form-result-box{padding:25px;margin-bottom:20px;border:1px solid #ff713a;border-radius:5px;background-color:#fff4dcab;font-size:14px;}.form-result-box h5{border-bottom:1px solid #888;padding-bottom:10px;margin-bottom:20px;}.hide-title label.form-label{display:none;}
   </JSXStyle>
 </Fragment>
 `;

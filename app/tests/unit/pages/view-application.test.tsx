@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import ViewApplication from 'pages/view-application';
-
+const applicationRevisionStatus = 'SUBMITTED';
 const query = {
   ' $fragmentRefs': {
     defaultLayout_session: true
@@ -9,13 +9,25 @@ const query = {
   session: null,
   application: {
     applicationRevisionStatus: {
-      applicationRevisionStatus: 'SUBMITTED'
+      applicationRevisionStatus: {applicationRevisionStatus}
     },
     ' $fragmentRefs': {
       ApplicationDetailsContainer_query: true,
       ReviseApplicationButtonContainer_application: true,
       RequestedChangesByFormResult_application: true,
       ApplicationDetailsContainer_application: true
+    },
+    formResultsByApplicationId: {
+      edges: [
+        {
+          node: {
+            id: 'abc',
+            ' $fragmentRefs': {
+              ApplicationCommentsContainer_formResult: true
+            }
+          }
+        }
+      ]
     }
   }
 };

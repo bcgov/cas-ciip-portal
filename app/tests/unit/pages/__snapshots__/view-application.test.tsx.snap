@@ -22,7 +22,21 @@ exports[`It matches the last accepted Snapshot 1`] = `
               "ReviseApplicationButtonContainer_application": true,
             },
             "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "SUBMITTED",
+              "applicationRevisionStatus": Object {
+                "applicationRevisionStatus": "SUBMITTED",
+              },
+            },
+            "formResultsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ApplicationCommentsContainer_formResult": true,
+                    },
+                    "id": "abc",
+                  },
+                },
+              ],
             },
           }
         }
@@ -40,7 +54,21 @@ exports[`It matches the last accepted Snapshot 1`] = `
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationRevisionStatus": Object {
-                "applicationRevisionStatus": "SUBMITTED",
+                "applicationRevisionStatus": Object {
+                  "applicationRevisionStatus": "SUBMITTED",
+                },
+              },
+              "formResultsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
               },
             },
             "session": null,
@@ -51,20 +79,17 @@ exports[`It matches the last accepted Snapshot 1`] = `
     <Col
       md={4}
     >
-      <Relay(RequestedChangesByFormResult)
-        application={
+      <Relay(ApplicationCommentsComponent)
+        formResult={
           Object {
             " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
-              "ApplicationDetailsContainer_query": true,
-              "RequestedChangesByFormResult_application": true,
-              "ReviseApplicationButtonContainer_application": true,
+              "ApplicationCommentsContainer_formResult": true,
             },
-            "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": "SUBMITTED",
-            },
+            "id": "abc",
           }
         }
+        key="abc"
+        review={false}
       />
     </Col>
   </ForwardRef>

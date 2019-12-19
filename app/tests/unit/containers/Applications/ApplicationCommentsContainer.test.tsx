@@ -7,44 +7,30 @@ describe('ApplicationCommentsComponent', () => {
     const renderer = shallow(
       <ApplicationCommentsComponent
         relay={null}
-        query={{
-          ' $refType': 'ApplicationCommentsContainer_query',
-          application: {
-            formResultsByApplicationId: {
-              edges: [
-                {
-                  node: {
-                    id: 'WyJmb3JtX3Jlc3VsdHMiLDExXQ==',
-                    formJsonByFormId: {
-                      name: 'Administration Data'
-                    },
-                    applicationReviewsByFormResultId: {
-                      edges: [
-                        {
-                          node: {
-                            id: 'WyJhcHBsaWNhdGlvbl9yZXZpZXdzIiwxMV0=',
-                            reviewStatus: 'REQUESTED_CHANGES',
-                            createdAt: '2019-11-28',
-                            reviewCommentsByApplicationReviewId: {
-                              edges: [
-                                {
-                                  node: {
-                                    id: 'WyJyZXZpZXdfY29tbWVudHMiLDFd',
-                                    description:
-                                      'Legal name is wrong. Change it to ARBUTUS',
-                                    createdAt: '2019-11-28'
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        }
-                      ]
-                    }
+        review={false}
+        formResult={{
+          ' $refType': 'ApplicationCommentsContainer_formResult',
+          id: 'abc',
+          applicationByApplicationId: {
+            id: 'abc',
+            rowId: 1
+          },
+          formJsonByFormId: {
+            rowId: 1,
+            name: 'ddd'
+          },
+          applicationComments: {
+            edges: [
+              {
+                node: {
+                  id: 'abc',
+                  resolved: false,
+                  ' $fragmentRefs': {
+                    ApplicationCommentsByForm_reviewComment: true
                   }
                 }
-              ]
-            }
+              }
+            ]
           }
         }}
       />
