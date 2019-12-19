@@ -27,19 +27,14 @@ describe('ApplicationDetailsContainer', () => {
       query={graphql`
         query ApplicationDetailsContainerTestQuery(
           $applicationId: ID!
-          $revisionId: ID!
           $version: String!
         ) @relay_test_operation {
           query {
             application(id: $applicationId) {
-              applicationRevisionStatus {
-                id
-              }
               ...ApplicationDetailsContainer_application
                 @arguments(version: $version)
             }
             ...ApplicationDetailsContainer_query
-              @arguments(revisionId: $revisionId)
           }
         }
       `}

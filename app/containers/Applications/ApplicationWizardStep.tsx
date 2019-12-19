@@ -81,11 +81,10 @@ export default createFragmentContainer(ApplicationWizardStep, {
       @argumentDefinitions(
         formResultId: {type: "ID!"}
         applicationId: {type: "ID!"}
-        revisionId: {type: "ID!"}
         version: {type: "String!"}
       ) {
       ...Form_query @arguments(formResultId: $formResultId)
-      ...ApplicationWizardConfirmation_query @arguments(revisionId: $revisionId)
+      ...ApplicationWizardConfirmation_query
 
       formResult(id: $formResultId) {
         id

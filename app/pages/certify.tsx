@@ -12,16 +12,12 @@ interface Props {
 
 class Certify extends Component<Props> {
   static query = graphql`
-    query certifyQuery(
-      $applicationId: ID!
-      $revisionId: ID!
-      $version: String!
-    ) {
+    query certifyQuery($applicationId: ID!, $version: String!) {
       query {
         session {
           ...defaultLayout_session
         }
-        ...ApplicationDetailsContainer_query @arguments(revisionId: $revisionId)
+        ...ApplicationDetailsContainer_query
 
         application(id: $applicationId) {
           ...CertificationSignature_application
@@ -37,14 +33,12 @@ class Certify extends Component<Props> {
     return (
       <>
         <DefaultLayout title="Submission Certification" session={query.session}>
-          <>
-            <ApplicationDetailsContainer
-              query={query}
-              isAnalyst={false}
-              application={query.application}
-            />
-            <CertificationSignature application={query.application} />
-          </>
+          <ApplicationDetailsContainer
+            query={query}
+            isAnalyst={false}
+            application={query.application}
+          />
+          <CertificationSignature application={query.application} />
         </DefaultLayout>
         <style jsx global>
           {`

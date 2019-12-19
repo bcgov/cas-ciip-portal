@@ -93,7 +93,6 @@ export default createFragmentContainer(ApplicationWizard, {
       @argumentDefinitions(
         formResultId: {type: "ID!"}
         applicationId: {type: "ID!"}
-        revisionId: {type: "ID!"}
         version: {type: "String!"}
       ) {
       application(id: $applicationId) {
@@ -111,7 +110,6 @@ export default createFragmentContainer(ApplicationWizard, {
         @arguments(
           formResultId: $formResultId
           applicationId: $applicationId
-          revisionId: $revisionId
           version: $version
         )
     }

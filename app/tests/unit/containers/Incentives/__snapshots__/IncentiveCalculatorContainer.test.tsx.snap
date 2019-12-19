@@ -24,44 +24,52 @@ exports[`IncentiveCalculator should render the page 1`] = `
     </div>
     <IncentiveSegmentFormula />
   </Jumbotron>
-  <div
-    className="incentive-breakdown"
+  <ForwardRef
+    bordered={true}
+    hover={true}
+    responsive="lg"
+    striped={true}
   >
-    <ForwardRef
-      bordered={true}
-      hover={true}
-      responsive="lg"
-      striped={true}
-    >
-      <thead>
-        <tr>
-          <th>
-            Product
-          </th>
-          <th>
-            Calculation Breakdown
-          </th>
-          <th>
-            Incentive for product
-          </th>
-          <th>
-            Chart
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            colSpan={2}
-          >
-            <strong>
-              Total Incentive
-            </strong>
-          </td>
-          <td />
-        </tr>
-      </tbody>
-    </ForwardRef>
-  </div>
+    <thead>
+      <tr>
+        <th>
+          Product
+        </th>
+        <th>
+          Calculation Breakdown
+        </th>
+        <th>
+          Incentive for product
+        </th>
+        <th>
+          Chart
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <Relay(IncentiveSegmentContainer)
+        incentivePayment={
+          Object {
+            " $fragmentRefs": Object {
+              "IncentiveSegmentContainer_incentivePayment": true,
+            },
+            "id": "foo",
+          }
+        }
+        key="foo"
+      />
+      <Relay(IncentiveSegmentContainer)
+        incentivePayment={
+          Object {
+            " $fragmentRefs": Object {
+              "IncentiveSegmentContainer_incentivePayment": true,
+            },
+            "id": "bar",
+          }
+        }
+        key="bar"
+      />
+    </tbody>
+  </ForwardRef>
 </Fragment>
 `;

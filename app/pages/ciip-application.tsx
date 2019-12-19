@@ -13,7 +13,6 @@ class CiipApplication extends Component<Props> {
     query ciipApplicationQuery(
       $formResultId: ID!
       $applicationId: ID!
-      $revisionId: ID!
       $version: String!
     ) {
       query {
@@ -24,7 +23,6 @@ class CiipApplication extends Component<Props> {
           @arguments(
             formResultId: $formResultId
             applicationId: $applicationId
-            revisionId: $revisionId
             version: $version
           )
       }
@@ -35,7 +33,6 @@ class CiipApplication extends Component<Props> {
     variables: {
       formResultId: '',
       applicationId: '',
-      revisionId: '',
       version: ''
     }
   });

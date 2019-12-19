@@ -2,12 +2,19 @@ import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
 import IncentiveSegmentFormula from 'components/Incentives/IncentiveSegmentFormula';
+import {IncentiveCalculatorContainer_applicationRevision} from 'IncentiveCalculatorContainer_applicationRevision.graphql';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
 
-export const IncentiveCalculator = props => {
+interface Props {
+  applicationRevision: IncentiveCalculatorContainer_applicationRevision;
+}
+
+export const IncentiveCalculator: React.FunctionComponent<Props> = ({
+  applicationRevision
+}) => {
   const {
     edges = []
-  } = props.applicationRevision.ciipIncentivePaymentsByApplicationIdAndVersionNumber;
+  } = applicationRevision.ciipIncentivePaymentsByApplicationIdAndVersionNumber;
   return (
     <>
       <Jumbotron>

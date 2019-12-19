@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationDetailsComponent should match the snapshot with the ApplicationDetails component 1`] = `
-<Fragment>
+<div>
   <Relay(ApplicationDetailsCardItemComponent)
     formResult={
       Object {
@@ -15,5 +15,5 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
     key="WyJmb3JtX3Jlc3VsdHMiLDExXQ=="
     query={null}
   />
-</Fragment>
+</div>
 `;

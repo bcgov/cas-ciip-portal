@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationDetailsContainer should match the snapshot with the summary component 1`] = `
-Array [
+<div>
   <div
     className="<mock-value-for-field-\\"slug\\"> summary-card card"
     style={
@@ -689,7 +689,7 @@ Array [
         </div>
       </form>
     </div>
-  </div>,
+  </div>
   <div
     className="<mock-value-for-field-\\"slug\\"> summary-card card"
     style={
@@ -1413,7 +1413,7 @@ Array [
         </div>
       </form>
     </div>
-  </div>,
+  </div>
   <div
     className="<mock-value-for-field-\\"slug\\"> summary-card card"
     style={
@@ -1743,7 +1743,7 @@ Array [
         </div>
       </form>
     </div>
-  </div>,
+  </div>
   <div
     className="<mock-value-for-field-\\"slug\\"> summary-card card"
     style={
@@ -1981,7 +1981,7 @@ Array [
         </div>
       </form>
     </div>
-  </div>,
+  </div>
   <div
     className="<mock-value-for-field-\\"slug\\"> summary-card card"
     style={
@@ -2311,6 +2311,6 @@ Array [
         </div>
       </form>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;
