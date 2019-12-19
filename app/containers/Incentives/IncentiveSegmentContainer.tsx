@@ -1,8 +1,8 @@
 import React from 'react';
 import {createFragmentContainer, graphql} from 'react-relay';
-// Import MathJax from 'react-mathjax2';
+import MathJax from 'react-mathjax2';
 import {IncentiveSegmentContainer_incentivePayment} from 'IncentiveSegmentContainer_incentivePayment.graphql';
-// Import BenchmarkChart from 'components/Incentives/BenchmarkChart';
+import BenchmarkChart from 'components/Incentives/BenchmarkChart';
 
 interface Props {
   incentivePayment: IncentiveSegmentContainer_incentivePayment;
@@ -11,21 +11,32 @@ interface Props {
 const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
   incentivePayment
 }) => {
+  const {
+    benchmark,
+    eligibilityThreshold
+  } = incentivePayment.benchmarkByBenchmarkId;
+
+  const formula = `
+  1 - \\left({ ${incentivePayment.emissionIntensity} - ${benchmark}
+    \\over
+    ${eligibilityThreshold} - ${benchmark}
+  }\\right) \\times ${incentivePayment.carbonTaxEligible}`;
+
   return (
     <tr>
       <td>{incentivePayment.productByProductId.name}</td>
       <td>
-        {/* <MathJax.Context input="tex">
+        <MathJax.Context input="tex">
           <MathJax.Node>{formula}</MathJax.Node>
-        </MathJax.Context> */}
+        </MathJax.Context>
       </td>
       <td>CAD {incentivePayment.incentiveAmount} </td>
       <td>
-        {/* <BenchmarkChart
-          quantity={Number(reported.quantity)}
+        <BenchmarkChart
+          emissionIntensity={incentivePayment.emissionIntensity}
           benchmark={benchmark}
           eligibilityThreshold={eligibilityThreshold}
-        /> */}
+        />
       </td>
       <style jsx>
         {`
@@ -44,9 +55,14 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
       id
       incentiveAmount
       emissionIntensity
+      carbonTaxEligible
       productByProductId {
         name
         units
+      }
+      benchmarkByBenchmarkId {
+        benchmark
+        eligibilityThreshold
       }
     }
   `

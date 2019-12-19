@@ -999,6 +999,35 @@ type Benchmark implements Node {
   """
   benchmark: BigFloat!
 
+  """Reads and enables pagination through a set of `CiipIncentivePayment`."""
+  ciipIncentivePaymentsByBenchmarkId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipIncentivePaymentCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipIncentivePayment`."""
+    orderBy: [CiipIncentivePaymentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipIncentivePaymentsConnection!
+
   """Reads a single `CiipUser` that is related to this `Benchmark`."""
   ciipUserByDeletedBy: CiipUser
 
@@ -1772,6 +1801,19 @@ type CiipIncentivePayment implements Node {
   applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
 
   """
+  Reads a single `Benchmark` that is related to this `CiipIncentivePayment`.
+  """
+  benchmarkByBenchmarkId: Benchmark
+
+  """The id of the benchmark"""
+  benchmarkId: Int
+
+  """
+  The amount, in canadian dollars, of carbon tax eligible for incentive for this product
+  """
+  carbonTaxEligible: BigFloat
+
+  """
   The emission intensity for this product, measured in tonnes of CO2 equivalent per unit of production
   """
   emissionIntensity: BigFloat
@@ -1805,6 +1847,12 @@ are tested for equality and combined with a logical ‘and.’
 input CiipIncentivePaymentCondition {
   """Checks for equality with the object’s `applicationId` field."""
   applicationId: Int
+
+  """Checks for equality with the object’s `benchmarkId` field."""
+  benchmarkId: Int
+
+  """Checks for equality with the object’s `carbonTaxEligible` field."""
+  carbonTaxEligible: BigFloat
 
   """Checks for equality with the object’s `emissionIntensity` field."""
   emissionIntensity: BigFloat
@@ -1851,6 +1899,10 @@ type CiipIncentivePaymentsEdge {
 enum CiipIncentivePaymentsOrderBy {
   APPLICATION_ID_ASC
   APPLICATION_ID_DESC
+  BENCHMARK_ID_ASC
+  BENCHMARK_ID_DESC
+  CARBON_TAX_ELIGIBLE_ASC
+  CARBON_TAX_ELIGIBLE_DESC
   EMISSION_INTENSITY_ASC
   EMISSION_INTENSITY_DESC
   INCENTIVE_AMOUNT_ASC

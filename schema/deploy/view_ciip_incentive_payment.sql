@@ -56,10 +56,12 @@ create or replace view ggircs_portal.ciip_incentive_payment as (
     ciip_production.application_id,
     ciip_production.version_number,
     ciip_production.product_id,
-    emission_intensity.emission_intensity,
-  round(((
-    greatest(0, least(1, 1 - (emission_intensity.emission_intensity - benchmark.benchmark))) / (benchmark.eligibility_threshold - benchmark.benchmark)
-  ) * benchmark.incentive_multiplier * (ciip_production.payment_allocation_factor/100) * facility_carbon_tax.carbon_tax_applicable_to_ciip), 2) as incentive_amount
+    round(emission_intensity.emission_intensity, 6) as emission_intensity,
+    benchmark.id as benchmark_id,
+    round((ciip_production.payment_allocation_factor/100) * facility_carbon_tax.carbon_tax_applicable_to_ciip, 2) as carbon_tax_eligible,
+    round(((
+      greatest(0, least(1, 1 - (emission_intensity.emission_intensity - benchmark.benchmark))) / (benchmark.eligibility_threshold - benchmark.benchmark)
+    ) * benchmark.incentive_multiplier * (ciip_production.payment_allocation_factor/100) * facility_carbon_tax.carbon_tax_applicable_to_ciip), 2) as incentive_amount
   from ggircs_portal.ciip_production
   join facility_carbon_tax on
     ciip_production.application_id = facility_carbon_tax.application_id and
@@ -73,11 +75,14 @@ comment on view ggircs_portal.ciip_incentive_payment is '
 @primaryKey application_id, version_number, product_id
 @foreignKey (application_id, version_number) references ggircs_portal.application_revision (application_id, version_number)
 @foreignKey (product_id) references ggircs_portal.product (id)
+@foreignKey (benchmark_id) references ggircs_portal.benchmark (id)
 The view that calculates the estimated incentive payment for each product of an application revision';
 comment on column ggircs_portal.ciip_incentive_payment.application_id is 'The application id';
 comment on column ggircs_portal.ciip_incentive_payment.version_number is 'The revision version number';
 comment on column ggircs_portal.ciip_incentive_payment.product_id is 'The id of the product';
+comment on column ggircs_portal.ciip_incentive_payment.benchmark_id is 'The id of the benchmark';
 comment on column ggircs_portal.ciip_incentive_payment.emission_intensity is 'The emission intensity for this product, measured in tonnes of CO2 equivalent per unit of production';
+comment on column ggircs_portal.ciip_incentive_payment.carbon_tax_eligible is 'The amount, in canadian dollars, of carbon tax eligible for incentive for this product';
 comment on column ggircs_portal.ciip_incentive_payment.incentive_amount is 'The amount, in canadian dollars, of incentive to be payed back for this product';
 
 commit;

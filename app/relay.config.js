@@ -4,7 +4,8 @@ module.exports = {
   artifactDirectory: './__generated__',
   customScalars: {
     Datetime: 'String',
-    JSON: 'any'
+    JSON: 'any',
+    BigFloat: 'number'
   },
   exclude: [
     '**/.next/**',
