@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Collapse, Table, Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {ApplicationCommentsContainer_query} from 'ApplicationCommentsContainer_query.graphql';
+import {ApplicationCommentsContainer_formResult} from 'ApplicationCommentsContainer_formResult.graphql';
 import ApplicationCommentsBox from './ApplicationCommentsByForm';
 
 /*
@@ -9,48 +9,46 @@ import ApplicationCommentsBox from './ApplicationCommentsByForm';
  */
 
 interface Props {
-  query: ApplicationCommentsContainer_query;
+  formResult: ApplicationCommentsContainer_formResult;
   relay: RelayProp;
 }
 
 export const ApplicationCommentsComponent: React.FunctionComponent<Props> = props => {
-  const formResults = props.query.application.formResultsByApplicationId.edges;
+  const {formResult} = props;
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      {formResults.map(({node}) => {
-        const applicationComments = node.applicationComments.edges;
-        return (
-          <div key={node.id} className="form-result-box">
-            <div onClick={() => setIsOpen(!isOpen)}>
-              <h5> {node.formJsonByFormId.name} </h5>
-            </div>
-            <Collapse in={!isOpen}>
-              <div>
-                <Table striped bordered hover>
-                  <thead style={{textAlign: 'center'}}>
-                    <tr>
-                      <th>Comment</th>
-                      <th>Resolve</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {applicationComments.map(({node}) => {
-                      return (
-                        <ApplicationCommentsBox
-                          key={node.id}
-                          reviewComment={node}
-                        />
-                      );
-                    })}
-                  </tbody>
-                </Table>
-                <Button>+ Add Comment</Button>
-              </div>
-            </Collapse>
+      <div key={formResult.id} className="form-result-box">
+        <div onClick={() => setIsOpen(!isOpen)}>
+          <h5> {formResult.formJsonByFormId.name} </h5>
+        </div>
+        <Collapse in={!isOpen}>
+          <div>
+            <Table striped bordered hover>
+              <thead style={{textAlign: 'center'}}>
+                <tr>
+                  <th>Comment</th>
+                  <th>Resolve</th>
+                </tr>
+              </thead>
+              <tbody>
+                {formResult.applicationComments.edges.map(({node}) => {
+                  return (
+                    <ApplicationCommentsBox
+                      key={node.id}
+                      reviewComment={node}
+                    />
+                  );
+                })}
+              </tbody>
+            </Table>
+            <Button onClick={() => console.log('ADD COMMENT')}>
+              + Add Comment
+            </Button>
           </div>
-        );
-      })}
+        </Collapse>
+      </div>
+      );
       <style jsx>{`
         .form-result-box {
           padding: 25px;
@@ -72,22 +70,17 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
 };
 
 export default createFragmentContainer(ApplicationCommentsComponent, {
-  query: graphql`
-    fragment ApplicationCommentsContainer_query on Query
-      @argumentDefinitions(applicationId: {type: "ID!"}) {
-      application(id: $applicationId) {
-        formResultsByApplicationId {
-          edges {
-            node {
-              id
-              formJsonByFormId {
-                name
-              }
-              applicationComments {
-                id
-                ...ApplicationCommentsByForm_reviewComment
-              }
-            }
+  formResult: graphql`
+    fragment ApplicationCommentsContainer_formResult on FormResult {
+      id
+      formJsonByFormId {
+        name
+      }
+      applicationComments {
+        edges {
+          node {
+            id
+            ...ApplicationCommentsByForm_reviewComment
           }
         }
       }

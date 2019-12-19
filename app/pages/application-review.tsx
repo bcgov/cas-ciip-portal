@@ -31,13 +31,19 @@ class ApplicationReview extends Component<Props> {
           }
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
+          formResultsByApplicationId {
+            edges {
+              node {
+                id
+                ...ApplicationCommentsContainer_formResult
+              }
+            }
+          }
         }
         applicationRevision(id: $revisionId) {
           ...IncentiveCalculatorContainer_applicationRevision
         }
         ...ApplicationDetailsContainer_query
-        ...ApplicationCommentsContainer_query
-          @arguments(applicationId: $applicationId)
       }
     }
   `;
@@ -45,6 +51,7 @@ class ApplicationReview extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
+    const formResults = query.application.formResultsByApplicationId.edges;
     return (
       <DefaultLayout session={session} width="wide">
         <ApplicationRevisionStatusContainer
@@ -66,7 +73,9 @@ class ApplicationReview extends Component<Props> {
             />
           </Col>
           <Col md={4} className="application-comments">
-            <ApplicationComments query={query} />
+            {formResults.map(({node}) => (
+              <ApplicationComments key={node.id} formResult={node} />
+            ))}
           </Col>
         </Row>
         <style jsx>{`

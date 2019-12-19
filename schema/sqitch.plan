@@ -50,16 +50,11 @@ function_init_application_emission_form_result [table_form_result function_get_s
 function_facility_has_swrs_report [table_facility] 2019-11-12T19:25:09Z Matthieu Foucault <matthieu@button.is> # add function to check if a facility has a swrs report
 function_search_ciip_user_organisation [table_ciip_user_organisation] 2019-11-06T18:34:19Z Helen Liu <helen@button.is> # Added search function on user organisation table
 function_get_reporting_year [table_reporting_year] 2019-11-20T17:40:29Z Helen Liu <helen@button.is> # added function to return current reporting year
-type_application_review_status 2019-11-26T21:37:44Z Hamza Javed <hamza@button.is> # Enum type for application review statuses
-table_application_review [table_application type_application_review_status schema_ggircs_portal] 2019-11-22T21:52:22Z Hamza Javed <hamza@button.is> # Table for review status of each section in a submitted report
-table_review_comment [table_application_review] 2019-11-25T23:54:50Z Hamza Javed <hamza@button.is> # General comment table with polymorphic ids`
-function_create_application_review_mutation_chain [table_application table_application_review table_review_comment] 2019-11-26T18:46:22Z Hamza Javed <hamza@button.is> # Muation chain to add new review status and insert the associated comment in one transaction
-function_form_result_application_review [table_application_review table_form_result] 2019-11-26T21:07:01Z Hamza Javed <hamza@button.is> # Computed column that returns the latest application review for a given form result
+table_review_comment [table_application table_form_json] 2019-11-25T23:54:50Z Hamza Javed <hamza@button.is> # General comment table with polymorphic ids`
 function_get_carbon_tax_data [schema_ggircs_portal] 2019-11-28T18:45:57Z Dylan Leard <dylan@button.is> # Function retrieves carbon tax data for CIIP carbon tax calculator
 view_ciip_carbon_tax_calculation [function_get_carbon_tax_data view_ciip_fuel table_application] 2019-11-28T19:23:39Z Dylan Leard <dylan@button.is> # Calculates carbon tax based on ciip fuel data
 function_search_products [table_product] 2019-11-21T19:48:58Z Dylan Leard <dylan@button.is> # Custom search function for products
 table_certification_url [table_application function_set_random_id] 2019-12-03T19:58:18Z Dylan Leard <dylan@button.is> # Table containing the unique certification URL for an application and related data.
-function_form_result_requested_changes [table_application table_application_review table_review_comment] 2019-12-06T04:24:27Z Hamza Javed <hamza@button.is> # Function that returns requested changes for a given application
 view_ciip_emission [table_application] 2019-12-13T00:12:13Z Matthieu Foucault <matthieu@button.is> # Add a view that calculates the total of non-biogenic emissions for an application
 function_search_organisation_facilities [table_facility] 2019-12-04T18:42:11Z Helen Liu <helen@button.is> # added search filter for applications of facilities
 function_search_all_facilities [table_facility] 2019-12-06T00:27:16Z Helen Liu <helen@button.is> # added search function for all facilities

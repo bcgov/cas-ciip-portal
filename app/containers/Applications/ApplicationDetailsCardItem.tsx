@@ -11,7 +11,6 @@ import SummaryFormFieldTemplate from '../Forms/SummaryFormFieldTemplate';
 import SummaryEmissionGasFields from '../Forms/SummaryEmissionGasFields';
 import SummaryEmissionSourceFields from '../Forms/SummaryEmissionSourceFields';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
-import ApplicationReviewContainer from './ApplicationReviewContainer';
 
 interface Props {
   formResult: ApplicationDetailsCardItem_formResult;
@@ -24,10 +23,10 @@ interface Props {
  */
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult,
-  isAnalyst,
+  // IsAnalyst,
   query
 }) => {
-  const {formJsonByFormId, applicationReview} = formResult;
+  const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
@@ -56,7 +55,6 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     )
   };
   const classTag = formJsonByFormId.slug;
-  if (!applicationReview) return <>No Review</>;
   return (
     <Card
       style={{width: '100%', marginBottom: '10px'}}
@@ -67,16 +65,6 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           <Col md={6}>
             <h4>{formJsonByFormId.name}</h4>
           </Col>
-          {isAnalyst ? (
-            <Col style={{textAlign: 'right'}}>
-              <ApplicationReviewContainer
-                applicationReview={applicationReview}
-                formName={formJsonByFormId.name}
-              />
-            </Col>
-          ) : (
-            ''
-          )}
           <Col md={1} style={{textAlign: 'right'}}>
             <Button
               aria-label="toggle-card-open"
@@ -117,10 +105,6 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
   formResult: graphql`
     fragment ApplicationDetailsCardItem_formResult on FormResult {
-      applicationReview {
-        id
-        ...ApplicationReviewContainer_applicationReview
-      }
       formResult
       formJsonByFormId {
         name
@@ -135,8 +119,3 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
     }
   `
 });
-
-/*
-TODO: Instead on conditionally rendering the ApplicationReviewContainer,
- the page component should pass a renderItemHeaderContent function
- */

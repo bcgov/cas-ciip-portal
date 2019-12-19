@@ -4,7 +4,7 @@ import {graphql, RelayProp} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
-import RequestedChanges from 'containers/Applications/RequestedChangesByFormResult';
+import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
 import DefaultLayout from 'layouts/default-layout';
 
@@ -30,9 +30,16 @@ class ViewApplication extends Component<Props> {
           applicationRevisionStatus {
             applicationRevisionStatus
           }
+          formResultsByApplicationId {
+            edges {
+              node {
+                id
+                ...ApplicationCommentsContainer_formResult
+              }
+            }
+          }
           ...ReviseApplicationButtonContainer_application
-          ...RequestedChangesByFormResult_application
-            @arguments(version: $version)
+
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
         }
@@ -43,6 +50,7 @@ class ViewApplication extends Component<Props> {
   render() {
     const {session} = this.props.query;
     const {query} = this.props;
+    const formResults = query.application.formResultsByApplicationId.edges;
 
     return (
       <DefaultLayout
@@ -59,7 +67,9 @@ class ViewApplication extends Component<Props> {
             />
           </Col>
           <Col md={4}>
-            <RequestedChanges application={query.application} />
+            {formResults.map(({node}) => (
+              <ApplicationComments key={node.id} formResult={node.formResult} />
+            ))}
           </Col>
         </Row>
         <Row>

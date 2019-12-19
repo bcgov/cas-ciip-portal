@@ -12,8 +12,8 @@ const mutation = graphql`
       clientMutationId
       reviewComment {
         id
-        status
         description
+        createdAt
       }
     }
   }
