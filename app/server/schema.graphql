@@ -1636,27 +1636,26 @@ type CiipCarbonTaxCalculation {
   applicationId: Int
 
   """
-  The carbon tax applicable to this fuel (assuming a flat carbon tax rate for the reporting year)
+  The amount of carbon tax payed eligible for an incentive (assuming a flat carbon tax rate for the reporting year)
   """
-  calculatedCarbonTax: BigFloat
+  carbonTaxEligibleForCiipFlat: BigFloat
 
   """The amount of carbon tax payed eligible for an incentive"""
-  carbonTaxApplicableToCiip: BigFloat
+  carbonTaxEligibleForCiipProRated: BigFloat
 
-  """Whether this fuel has a tax"""
-  carbonTaxed: Boolean
+  """
+  The carbon tax applicable to this fuel (assuming a flat carbon tax rate for the reporting year)
+  """
+  carbonTaxFlat: BigFloat
 
-  """The carbon tax rate applicable to the reporting year"""
-  carbonTaxRate: BigFloat
+  """The carbon tax applicable to this fuel"""
+  carbonTaxProRated: BigFloat
 
-  """The units for the fuel charge"""
-  ctaRateUnits: String
+  """The carbon tax rate applicable at the end of the reporting period"""
+  carbonTaxRateEnd: BigFloat
 
-  """The amount charged for the fuel"""
-  fuelCharge: BigFloat
-
-  """The SWRS fuel mapping id for the fuel"""
-  fuelMappingId: Int
+  """The carbon tax rate applicable at the start of the reporting period"""
+  carbonTaxRateStart: BigFloat
 
   """The name of the fuel this carbon tax applied to"""
   fuelType: String
@@ -1666,9 +1665,6 @@ type CiipCarbonTaxCalculation {
 
   """The application's reporting year"""
   reportingYear: Int
-
-  """The conversion factor applied to the fuel quantity"""
-  unitConversionFactor: Int
 
   """The fuel quantity units"""
   units: String
@@ -1685,28 +1681,27 @@ input CiipCarbonTaxCalculationCondition {
   """Checks for equality with the object’s `applicationId` field."""
   applicationId: Int
 
-  """Checks for equality with the object’s `calculatedCarbonTax` field."""
-  calculatedCarbonTax: BigFloat
+  """
+  Checks for equality with the object’s `carbonTaxEligibleForCiipFlat` field.
+  """
+  carbonTaxEligibleForCiipFlat: BigFloat
 
   """
-  Checks for equality with the object’s `carbonTaxApplicableToCiip` field.
+  Checks for equality with the object’s `carbonTaxEligibleForCiipProRated` field.
   """
-  carbonTaxApplicableToCiip: BigFloat
+  carbonTaxEligibleForCiipProRated: BigFloat
 
-  """Checks for equality with the object’s `carbonTaxed` field."""
-  carbonTaxed: Boolean
+  """Checks for equality with the object’s `carbonTaxFlat` field."""
+  carbonTaxFlat: BigFloat
 
-  """Checks for equality with the object’s `carbonTaxRate` field."""
-  carbonTaxRate: BigFloat
+  """Checks for equality with the object’s `carbonTaxProRated` field."""
+  carbonTaxProRated: BigFloat
 
-  """Checks for equality with the object’s `ctaRateUnits` field."""
-  ctaRateUnits: String
+  """Checks for equality with the object’s `carbonTaxRateEnd` field."""
+  carbonTaxRateEnd: BigFloat
 
-  """Checks for equality with the object’s `fuelCharge` field."""
-  fuelCharge: BigFloat
-
-  """Checks for equality with the object’s `fuelMappingId` field."""
-  fuelMappingId: Int
+  """Checks for equality with the object’s `carbonTaxRateStart` field."""
+  carbonTaxRateStart: BigFloat
 
   """Checks for equality with the object’s `fuelType` field."""
   fuelType: String
@@ -1716,9 +1711,6 @@ input CiipCarbonTaxCalculationCondition {
 
   """Checks for equality with the object’s `reportingYear` field."""
   reportingYear: Int
-
-  """Checks for equality with the object’s `unitConversionFactor` field."""
-  unitConversionFactor: Int
 
   """Checks for equality with the object’s `units` field."""
   units: String
@@ -1759,20 +1751,18 @@ type CiipCarbonTaxCalculationsEdge {
 enum CiipCarbonTaxCalculationsOrderBy {
   APPLICATION_ID_ASC
   APPLICATION_ID_DESC
-  CALCULATED_CARBON_TAX_ASC
-  CALCULATED_CARBON_TAX_DESC
-  CARBON_TAX_APPLICABLE_TO_CIIP_ASC
-  CARBON_TAX_APPLICABLE_TO_CIIP_DESC
-  CARBON_TAX_RATE_ASC
-  CARBON_TAX_RATE_DESC
-  CARBON_TAXED_ASC
-  CARBON_TAXED_DESC
-  CTA_RATE_UNITS_ASC
-  CTA_RATE_UNITS_DESC
-  FUEL_CHARGE_ASC
-  FUEL_CHARGE_DESC
-  FUEL_MAPPING_ID_ASC
-  FUEL_MAPPING_ID_DESC
+  CARBON_TAX_ELIGIBLE_FOR_CIIP_FLAT_ASC
+  CARBON_TAX_ELIGIBLE_FOR_CIIP_FLAT_DESC
+  CARBON_TAX_ELIGIBLE_FOR_CIIP_PRO_RATED_ASC
+  CARBON_TAX_ELIGIBLE_FOR_CIIP_PRO_RATED_DESC
+  CARBON_TAX_FLAT_ASC
+  CARBON_TAX_FLAT_DESC
+  CARBON_TAX_PRO_RATED_ASC
+  CARBON_TAX_PRO_RATED_DESC
+  CARBON_TAX_RATE_END_ASC
+  CARBON_TAX_RATE_END_DESC
+  CARBON_TAX_RATE_START_ASC
+  CARBON_TAX_RATE_START_DESC
   FUEL_TYPE_ASC
   FUEL_TYPE_DESC
   NATURAL
@@ -1780,8 +1770,6 @@ enum CiipCarbonTaxCalculationsOrderBy {
   QUANTITY_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
-  UNIT_CONVERSION_FACTOR_ASC
-  UNIT_CONVERSION_FACTOR_DESC
   UNITS_ASC
   UNITS_DESC
   VERSION_NUMBER_ASC
@@ -1809,9 +1797,14 @@ type CiipIncentivePayment implements Node {
   benchmarkId: Int
 
   """
+  The amount, in canadian dollars, of carbon tax eligible for incentive for this product (assuming a flat CT rate)
+  """
+  carbonTaxEligibleFlat: BigFloat
+
+  """
   The amount, in canadian dollars, of carbon tax eligible for incentive for this product
   """
-  carbonTaxEligible: BigFloat
+  carbonTaxEligibleProRated: BigFloat
 
   """
   The emission intensity for this product, measured in tonnes of CO2 equivalent per unit of production
@@ -1824,9 +1817,14 @@ type CiipIncentivePayment implements Node {
   id: ID!
 
   """
+  The amount, in canadian dollars, of incentive to be payed back for this product (assuming a flat CT rate)
+  """
+  incentiveAmountFlat: BigFloat
+
+  """
   The amount, in canadian dollars, of incentive to be payed back for this product
   """
-  incentiveAmount: BigFloat
+  incentiveAmountProRated: BigFloat
 
   """
   Reads a single `Product` that is related to this `CiipIncentivePayment`.
@@ -1851,14 +1849,22 @@ input CiipIncentivePaymentCondition {
   """Checks for equality with the object’s `benchmarkId` field."""
   benchmarkId: Int
 
-  """Checks for equality with the object’s `carbonTaxEligible` field."""
-  carbonTaxEligible: BigFloat
+  """Checks for equality with the object’s `carbonTaxEligibleFlat` field."""
+  carbonTaxEligibleFlat: BigFloat
+
+  """
+  Checks for equality with the object’s `carbonTaxEligibleProRated` field.
+  """
+  carbonTaxEligibleProRated: BigFloat
 
   """Checks for equality with the object’s `emissionIntensity` field."""
   emissionIntensity: BigFloat
 
-  """Checks for equality with the object’s `incentiveAmount` field."""
-  incentiveAmount: BigFloat
+  """Checks for equality with the object’s `incentiveAmountFlat` field."""
+  incentiveAmountFlat: BigFloat
+
+  """Checks for equality with the object’s `incentiveAmountProRated` field."""
+  incentiveAmountProRated: BigFloat
 
   """Checks for equality with the object’s `productId` field."""
   productId: Int
@@ -1901,12 +1907,16 @@ enum CiipIncentivePaymentsOrderBy {
   APPLICATION_ID_DESC
   BENCHMARK_ID_ASC
   BENCHMARK_ID_DESC
-  CARBON_TAX_ELIGIBLE_ASC
-  CARBON_TAX_ELIGIBLE_DESC
+  CARBON_TAX_ELIGIBLE_FLAT_ASC
+  CARBON_TAX_ELIGIBLE_FLAT_DESC
+  CARBON_TAX_ELIGIBLE_PRO_RATED_ASC
+  CARBON_TAX_ELIGIBLE_PRO_RATED_DESC
   EMISSION_INTENSITY_ASC
   EMISSION_INTENSITY_DESC
-  INCENTIVE_AMOUNT_ASC
-  INCENTIVE_AMOUNT_DESC
+  INCENTIVE_AMOUNT_FLAT_ASC
+  INCENTIVE_AMOUNT_FLAT_DESC
+  INCENTIVE_AMOUNT_PRO_RATED_ASC
+  INCENTIVE_AMOUNT_PRO_RATED_DESC
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC

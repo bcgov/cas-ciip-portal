@@ -14,7 +14,7 @@ select has_view(
 
 -- Carbon tax calculator calculates correct tax for Butane
 select is(
-  (select calculated_carbon_tax from ggircs_portal.ciip_carbon_tax_calculation where
+  (select carbon_tax_flat from ggircs_portal.ciip_carbon_tax_calculation where
     application_id = 1 and version_number = 1 and fuel_type = 'Butane'),
   24640.00,
   'Carbon tax calculator calculates correct tax for Butane'

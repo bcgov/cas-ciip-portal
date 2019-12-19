@@ -20,7 +20,7 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
   1 - \\left({ ${incentivePayment.emissionIntensity} - ${benchmark}
     \\over
     ${eligibilityThreshold} - ${benchmark}
-  }\\right) \\times ${incentivePayment.carbonTaxEligible}`;
+  }\\right) \\times ${incentivePayment.carbonTaxEligibleFlat}`;
 
   return (
     <tr>
@@ -30,7 +30,8 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
           <MathJax.Node>{formula}</MathJax.Node>
         </MathJax.Context>
       </td>
-      <td>CAD {incentivePayment.incentiveAmount} </td>
+      <td>CAD {incentivePayment.incentiveAmountProRated} </td>
+      <td>CAD {incentivePayment.incentiveAmountFlat} </td>
       <td>
         <BenchmarkChart
           emissionIntensity={incentivePayment.emissionIntensity}
@@ -53,9 +54,10 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
   incentivePayment: graphql`
     fragment IncentiveSegmentContainer_incentivePayment on CiipIncentivePayment {
       id
-      incentiveAmount
+      incentiveAmountFlat
+      incentiveAmountProRated
       emissionIntensity
-      carbonTaxEligible
+      carbonTaxEligibleFlat
       productByProductId {
         name
         units

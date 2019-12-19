@@ -35,8 +35,9 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
         <thead>
           <tr>
             <th>Product</th>
-            <th>Calculation Breakdown</th>
-            <th>Incentive for product</th>
+            <th>Calculation Breakdown (flat rate)</th>
+            <th>Incentive for product (pro-rated rate)</th>
+            <th>Incentive for product (flat rate)</th>
             <th>Chart</th>
           </tr>
         </thead>

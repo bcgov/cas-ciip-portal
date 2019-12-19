@@ -36,10 +36,13 @@ exports[`IncentiveCalculator should render the page 1`] = `
           Product
         </th>
         <th>
-          Calculation Breakdown
+          Calculation Breakdown (flat rate)
         </th>
         <th>
-          Incentive for product
+          Incentive for product (pro-rated rate)
+        </th>
+        <th>
+          Incentive for product (flat rate)
         </th>
         <th>
           Chart

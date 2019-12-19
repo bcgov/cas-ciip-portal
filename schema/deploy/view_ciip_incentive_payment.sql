@@ -34,7 +34,10 @@ create or replace view ggircs_portal.ciip_incentive_payment as (
       heat.energy_type = 'heat'
   ),
   facility_carbon_tax as (
-    select application_id, version_number, sum(carbon_tax_applicable_to_ciip) as carbon_tax_applicable_to_ciip
+    select
+      application_id, version_number,
+      sum(carbon_tax_eligible_for_ciip_flat) as carbon_tax_eligible_for_ciip_flat,
+      sum(carbon_tax_eligible_for_ciip_pro_rated) as carbon_tax_eligible_for_ciip_pro_rated
     from ggircs_portal.ciip_carbon_tax_calculation
     group by application_id, version_number
   ),
@@ -58,10 +61,14 @@ create or replace view ggircs_portal.ciip_incentive_payment as (
     ciip_production.product_id,
     round(emission_intensity.emission_intensity, 6) as emission_intensity,
     benchmark.id as benchmark_id,
-    round((ciip_production.payment_allocation_factor/100) * facility_carbon_tax.carbon_tax_applicable_to_ciip, 2) as carbon_tax_eligible,
+    round((ciip_production.payment_allocation_factor/100) * facility_carbon_tax.carbon_tax_eligible_for_ciip_flat, 2) as carbon_tax_eligible_flat,
+    round((ciip_production.payment_allocation_factor/100) * facility_carbon_tax.carbon_tax_eligible_for_ciip_pro_rated, 2) as carbon_tax_eligible_pro_rated,
     round(((
       greatest(0, least(1, 1 - (emission_intensity.emission_intensity - benchmark.benchmark))) / (benchmark.eligibility_threshold - benchmark.benchmark)
-    ) * benchmark.incentive_multiplier * (ciip_production.payment_allocation_factor/100) * facility_carbon_tax.carbon_tax_applicable_to_ciip), 2) as incentive_amount
+    ) * benchmark.incentive_multiplier * (ciip_production.payment_allocation_factor/100) * facility_carbon_tax.carbon_tax_eligible_for_ciip_flat), 2) as incentive_amount_flat,
+     round(((
+      greatest(0, least(1, 1 - (emission_intensity.emission_intensity - benchmark.benchmark))) / (benchmark.eligibility_threshold - benchmark.benchmark)
+    ) * benchmark.incentive_multiplier * (ciip_production.payment_allocation_factor/100) * facility_carbon_tax.carbon_tax_eligible_for_ciip_pro_rated), 2) as incentive_amount_pro_rated
   from ggircs_portal.ciip_production
   join facility_carbon_tax on
     ciip_production.application_id = facility_carbon_tax.application_id and
@@ -82,7 +89,9 @@ comment on column ggircs_portal.ciip_incentive_payment.version_number is 'The re
 comment on column ggircs_portal.ciip_incentive_payment.product_id is 'The id of the product';
 comment on column ggircs_portal.ciip_incentive_payment.benchmark_id is 'The id of the benchmark';
 comment on column ggircs_portal.ciip_incentive_payment.emission_intensity is 'The emission intensity for this product, measured in tonnes of CO2 equivalent per unit of production';
-comment on column ggircs_portal.ciip_incentive_payment.carbon_tax_eligible is 'The amount, in canadian dollars, of carbon tax eligible for incentive for this product';
-comment on column ggircs_portal.ciip_incentive_payment.incentive_amount is 'The amount, in canadian dollars, of incentive to be payed back for this product';
+comment on column ggircs_portal.ciip_incentive_payment.carbon_tax_eligible_flat is 'The amount, in canadian dollars, of carbon tax eligible for incentive for this product (assuming a flat CT rate)';
+comment on column ggircs_portal.ciip_incentive_payment.incentive_amount_flat is 'The amount, in canadian dollars, of incentive to be payed back for this product (assuming a flat CT rate)';
+comment on column ggircs_portal.ciip_incentive_payment.carbon_tax_eligible_pro_rated is 'The amount, in canadian dollars, of carbon tax eligible for incentive for this product';
+comment on column ggircs_portal.ciip_incentive_payment.incentive_amount_pro_rated is 'The amount, in canadian dollars, of incentive to be payed back for this product';
 
 commit;

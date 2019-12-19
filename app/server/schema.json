@@ -9463,8 +9463,18 @@
               "defaultValue": null
             },
             {
-              "name": "carbonTaxEligible",
-              "description": "Checks for equality with the object’s `carbonTaxEligible` field.",
+              "name": "carbonTaxEligibleFlat",
+              "description": "Checks for equality with the object’s `carbonTaxEligibleFlat` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "carbonTaxEligibleProRated",
+              "description": "Checks for equality with the object’s `carbonTaxEligibleProRated` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "BigFloat",
@@ -9483,8 +9493,18 @@
               "defaultValue": null
             },
             {
-              "name": "incentiveAmount",
-              "description": "Checks for equality with the object’s `incentiveAmount` field.",
+              "name": "incentiveAmountFlat",
+              "description": "Checks for equality with the object’s `incentiveAmountFlat` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "incentiveAmountProRated",
+              "description": "Checks for equality with the object’s `incentiveAmountProRated` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "BigFloat",
@@ -9550,13 +9570,25 @@
               "deprecationReason": null
             },
             {
-              "name": "CARBON_TAX_ELIGIBLE_ASC",
+              "name": "CARBON_TAX_ELIGIBLE_FLAT_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "CARBON_TAX_ELIGIBLE_DESC",
+              "name": "CARBON_TAX_ELIGIBLE_FLAT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CARBON_TAX_ELIGIBLE_PRO_RATED_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CARBON_TAX_ELIGIBLE_PRO_RATED_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -9574,13 +9606,25 @@
               "deprecationReason": null
             },
             {
-              "name": "INCENTIVE_AMOUNT_ASC",
+              "name": "INCENTIVE_AMOUNT_FLAT_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "INCENTIVE_AMOUNT_DESC",
+              "name": "INCENTIVE_AMOUNT_FLAT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCENTIVE_AMOUNT_PRO_RATED_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCENTIVE_AMOUNT_PRO_RATED_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -9810,7 +9854,19 @@
               "deprecationReason": null
             },
             {
-              "name": "carbonTaxEligible",
+              "name": "carbonTaxEligibleFlat",
+              "description": "The amount, in canadian dollars, of carbon tax eligible for incentive for this product (assuming a flat CT rate)",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "carbonTaxEligibleProRated",
               "description": "The amount, in canadian dollars, of carbon tax eligible for incentive for this product",
               "args": [],
               "type": {
@@ -9850,7 +9906,19 @@
               "deprecationReason": null
             },
             {
-              "name": "incentiveAmount",
+              "name": "incentiveAmountFlat",
+              "description": "The amount, in canadian dollars, of incentive to be payed back for this product (assuming a flat CT rate)",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "incentiveAmountProRated",
               "description": "The amount, in canadian dollars, of incentive to be payed back for this product",
               "args": [],
               "type": {
@@ -16375,8 +16443,8 @@
               "defaultValue": null
             },
             {
-              "name": "calculatedCarbonTax",
-              "description": "Checks for equality with the object’s `calculatedCarbonTax` field.",
+              "name": "carbonTaxEligibleForCiipFlat",
+              "description": "Checks for equality with the object’s `carbonTaxEligibleForCiipFlat` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "BigFloat",
@@ -16385,8 +16453,8 @@
               "defaultValue": null
             },
             {
-              "name": "carbonTaxApplicableToCiip",
-              "description": "Checks for equality with the object’s `carbonTaxApplicableToCiip` field.",
+              "name": "carbonTaxEligibleForCiipProRated",
+              "description": "Checks for equality with the object’s `carbonTaxEligibleForCiipProRated` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "BigFloat",
@@ -16395,18 +16463,8 @@
               "defaultValue": null
             },
             {
-              "name": "carbonTaxed",
-              "description": "Checks for equality with the object’s `carbonTaxed` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "carbonTaxRate",
-              "description": "Checks for equality with the object’s `carbonTaxRate` field.",
+              "name": "carbonTaxFlat",
+              "description": "Checks for equality with the object’s `carbonTaxFlat` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "BigFloat",
@@ -16415,18 +16473,8 @@
               "defaultValue": null
             },
             {
-              "name": "ctaRateUnits",
-              "description": "Checks for equality with the object’s `ctaRateUnits` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "fuelCharge",
-              "description": "Checks for equality with the object’s `fuelCharge` field.",
+              "name": "carbonTaxProRated",
+              "description": "Checks for equality with the object’s `carbonTaxProRated` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "BigFloat",
@@ -16435,11 +16483,21 @@
               "defaultValue": null
             },
             {
-              "name": "fuelMappingId",
-              "description": "Checks for equality with the object’s `fuelMappingId` field.",
+              "name": "carbonTaxRateEnd",
+              "description": "Checks for equality with the object’s `carbonTaxRateEnd` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "carbonTaxRateStart",
+              "description": "Checks for equality with the object’s `carbonTaxRateStart` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -16467,16 +16525,6 @@
             {
               "name": "reportingYear",
               "description": "Checks for equality with the object’s `reportingYear` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "unitConversionFactor",
-              "description": "Checks for equality with the object’s `unitConversionFactor` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -16530,85 +16578,73 @@
               "deprecationReason": null
             },
             {
-              "name": "CALCULATED_CARBON_TAX_ASC",
+              "name": "CARBON_TAX_ELIGIBLE_FOR_CIIP_FLAT_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "CALCULATED_CARBON_TAX_DESC",
+              "name": "CARBON_TAX_ELIGIBLE_FOR_CIIP_FLAT_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "CARBON_TAX_APPLICABLE_TO_CIIP_ASC",
+              "name": "CARBON_TAX_ELIGIBLE_FOR_CIIP_PRO_RATED_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "CARBON_TAX_APPLICABLE_TO_CIIP_DESC",
+              "name": "CARBON_TAX_ELIGIBLE_FOR_CIIP_PRO_RATED_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "CARBON_TAX_RATE_ASC",
+              "name": "CARBON_TAX_FLAT_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "CARBON_TAX_RATE_DESC",
+              "name": "CARBON_TAX_FLAT_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "CARBON_TAXED_ASC",
+              "name": "CARBON_TAX_PRO_RATED_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "CARBON_TAXED_DESC",
+              "name": "CARBON_TAX_PRO_RATED_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "CTA_RATE_UNITS_ASC",
+              "name": "CARBON_TAX_RATE_END_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "CTA_RATE_UNITS_DESC",
+              "name": "CARBON_TAX_RATE_END_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "FUEL_CHARGE_ASC",
+              "name": "CARBON_TAX_RATE_START_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "FUEL_CHARGE_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FUEL_MAPPING_ID_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FUEL_MAPPING_ID_DESC",
+              "name": "CARBON_TAX_RATE_START_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -16651,18 +16687,6 @@
             },
             {
               "name": "REPORTING_YEAR_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "UNIT_CONVERSION_FACTOR_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "UNIT_CONVERSION_FACTOR_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -16834,8 +16858,8 @@
               "deprecationReason": null
             },
             {
-              "name": "calculatedCarbonTax",
-              "description": "The carbon tax applicable to this fuel (assuming a flat carbon tax rate for the reporting year)",
+              "name": "carbonTaxEligibleForCiipFlat",
+              "description": "The amount of carbon tax payed eligible for an incentive (assuming a flat carbon tax rate for the reporting year)",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -16846,7 +16870,7 @@
               "deprecationReason": null
             },
             {
-              "name": "carbonTaxApplicableToCiip",
+              "name": "carbonTaxEligibleForCiipProRated",
               "description": "The amount of carbon tax payed eligible for an incentive",
               "args": [],
               "type": {
@@ -16858,20 +16882,8 @@
               "deprecationReason": null
             },
             {
-              "name": "carbonTaxed",
-              "description": "Whether this fuel has a tax",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "carbonTaxRate",
-              "description": "The carbon tax rate applicable to the reporting year",
+              "name": "carbonTaxFlat",
+              "description": "The carbon tax applicable to this fuel (assuming a flat carbon tax rate for the reporting year)",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -16882,20 +16894,8 @@
               "deprecationReason": null
             },
             {
-              "name": "ctaRateUnits",
-              "description": "The units for the fuel charge",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "fuelCharge",
-              "description": "The amount charged for the fuel",
+              "name": "carbonTaxProRated",
+              "description": "The carbon tax applicable to this fuel",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -16906,12 +16906,24 @@
               "deprecationReason": null
             },
             {
-              "name": "fuelMappingId",
-              "description": "The SWRS fuel mapping id for the fuel",
+              "name": "carbonTaxRateEnd",
+              "description": "The carbon tax rate applicable at the end of the reporting period",
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "carbonTaxRateStart",
+              "description": "The carbon tax rate applicable at the start of the reporting period",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -16944,18 +16956,6 @@
             {
               "name": "reportingYear",
               "description": "The application's reporting year",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "unitConversionFactor",
-              "description": "The conversion factor applied to the fuel quantity",
               "args": [],
               "type": {
                 "kind": "SCALAR",
