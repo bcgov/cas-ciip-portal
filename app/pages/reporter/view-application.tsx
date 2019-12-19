@@ -8,9 +8,8 @@ import ApplicationDetails from 'containers/Applications/ApplicationDetailsContai
 import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
 import DefaultLayout from 'layouts/default-layout';
-import {PDFDownloadLink, PDFViewer, StyleSheet} from '@react-pdf/renderer';
+import {PDFDownloadLink} from '@react-pdf/renderer';
 import ApplicationDetailsPdfCardItem from 'containers/Applications/ApplicationDetailsPdfCardItem';
-import {simplifyParsedResolveInfoFragmentWithType} from 'graphql-parse-resolve-info';
 
 /*
  * ViewApplication renders a summary of the data submitted in the application.
@@ -52,29 +51,23 @@ class ViewApplication extends Component<Props> {
 
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
-        }
-      }
-      application(id: $applicationId) {
-        applicationStatus {
-          applicationStatus
-        }
-        facilityByFacilityId {
-          facilityName
-          facilityMailingAddress
-          facilityCity
-          facilityCountry
-          facilityProvince
-          facilityPostalCode
-        }
-        formResultsByApplicationId {
-          edges {
-            node {
-              formResult
-              submissionDate
-              formJsonByFormId {
-                name
-                slug
-                formJson
+          reportingYear
+          facilityByFacilityId {
+            facilityName
+            facilityMailingAddress
+            facilityCity
+            facilityCountry
+            facilityProvince
+            facilityPostalCode
+          }
+          formResultsByApplicationId {
+            edges {
+              node {
+                formResult
+                formJsonByFormId {
+                  name
+                  formJson
+                }
               }
             }
           }
@@ -88,12 +81,7 @@ class ViewApplication extends Component<Props> {
     const {query} = this.props;
     const formResults = query.application.orderedFormResults.edges;
 
-    const styles = StyleSheet.create({
-      page: {
-        width: '100%',
-        height: 1000
-      }
-    });
+    const pdfFilename = `CIIP_Application_${application.facilityByFacilityId.facilityName}_${application.reportingYear}.pdf`;
 
     return (
       <DefaultLayout
@@ -124,6 +112,17 @@ class ViewApplication extends Component<Props> {
             ?.applicationRevisionStatus === 'REQUESTED_CHANGES' ? (
             <ReviseApplicationButton application={query.application} />
           ) : null}
+        </Row>
+        <Row>
+          <PDFDownloadLink
+            document={pdfDocument}
+            fileName={pdfFilename}
+            className="btn btn-primary"
+          >
+            {({loading}) =>
+              loading ? 'Generating pdf...' : 'Download Application'
+            }
+          </PDFDownloadLink>
         </Row>
       </DefaultLayout>
     );

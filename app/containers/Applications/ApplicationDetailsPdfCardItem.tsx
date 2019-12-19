@@ -8,28 +8,32 @@ import {
   StyleSheet
 } from '@react-pdf/renderer';
 import JsonSchemaForm from 'react-jsonschema-form';
-import {
-  Header,
-  Row,
-  Title,
-  Body,
-  FormFields,
-  Column,
-  Hr
-} from 'components/Layout/Pdf';
+import {Header, Row, Body, FormFields, Column} from 'components/Layout/Pdf';
 
 const styles = StyleSheet.create({
+  page: {
+    paddingTop: 20,
+    paddingBottom: 40
+  },
   label: {fontSize: 12},
   appInfo: {
     fontSize: 12,
-    margin: '10px 0'
+    margin: '10px 0 20px'
   },
   applicant: {
-    fontSize: 13,
+    fontSize: 12,
     lineHeight: 1.3
   },
   fields: {
     lineHeight: 1.5
+  },
+  pageNumbers: {
+    fontSize: 12,
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    textAlign: 'center'
   }
 });
 
@@ -52,8 +56,10 @@ const objectFieldTemplate = props => {
   return (
     <>
       {props.properties.map(
-        prop => prop.content && <View key={prop.index}>{prop.content}</View>
+        prop =>
+          prop.content && <View key={prop.content.key}>{prop.content}</View>
       )}
+      {!props.properties && '\n'}
     </>
   );
 };
@@ -62,25 +68,52 @@ const fieldTemplate = props => {
   return (
     <>
       {props.label && (
-        <Text style={styles.label}>
-          {'\n'}
-          {props.label === 'gases' || props.label === 'sourceTypeName'
-            ? null
-            : `${props.label}: `}
-        </Text>
+        <View style={styles.label}>
+          {props.label === 'gases' ||
+          props.label === 'sourceTypeName' ? null : props.classNames.includes(
+              'field-object'
+            ) ? (
+            <Text style={{fontSize: 15, letterSpacing: 2}}>
+              {`\n\n${props.label}: `}
+            </Text>
+          ) : (
+            <Text>{`\n${props.label}: `}</Text>
+          )}
+        </View>
       )}
-      <Text style={styles.fields}>{props.children}</Text>
+      {props.children && <Text style={styles.fields}>{props.children}</Text>}
     </>
   );
 };
 
-const emissionGasTemplate = props => {
+const emissionGasFieldTemplate = props => {
+  return (
+    <Text>
+      {'\n'}
+      {props.gasType} - Tonnes: {props.annualEmission} - Tonnes (CO2e):{' '}
+      {props.annualCO2e}
+    </Text>
+  );
+};
+
+const productionFieldTemplate = props => {
   return (
     <>
-      <Text>{props.gasType} | </Text>
-      <Text>Tonnes: {props.annualEmission} | </Text>
-      <Text>Tonnes (CO2e): {props.annualCO2e}</Text>
-      <Text>{'\n'}</Text>
+      <Text style={{fontSize: 15, letterSpacing: 2}}>
+        {'\n'}Production:{'\n'}
+      </Text>
+      <Text>
+        Product allocation factor (%): {props.productionAllocationFactor}
+        {'\n'}
+      </Text>
+      <Text>
+        Annual Production Amount: {props.productUnits}
+        {'\n'}
+      </Text>
+      <Text>
+        Units: {props.quantity}
+        {'\n'}
+      </Text>
     </>
   );
 };
@@ -92,8 +125,14 @@ const CUSTOM_FIELDS = {
   StringField: props => (
     <Text>{props.formData ? props.formData : '[Not Entered]'}</Text>
   ),
-  emissionSource: props => <Text>{props.formData}</Text>,
-  emissionGas: props => emissionGasTemplate(props.formData)
+  emissionSource: props => (
+    <Text style={{fontSize: 13}}>
+      {'\n\n'}
+      {props.formData}
+    </Text>
+  ),
+  emissionGas: props => emissionGasFieldTemplate(props.formData),
+  production: props => productionFieldTemplate(props.formData)
 };
 
 const customWidget = {
@@ -102,51 +141,46 @@ const customWidget = {
 };
 
 const ApplicationDetailsPdfCardItem = props => {
-  const {application} = props;
-  const {user} = props;
-
+  const {application, user} = props;
   const facility = application.facilityByFacilityId;
-
   const formResults = application.formResultsByApplicationId.edges;
-
-  // Const {node} = application.formResultsByApplicationId.edges[1];
-  // const {schema, uiSchema} = node.formJsonByFormId.formJson;
-  // const {formResult, submissionDate} = node;
 
   return (
     <Document>
-      <Page size="A4">
+      <Page wrap size="A4" style={styles.page}>
         <Header>
+          <Image src="/static/bcid.png" style={{width: 150, margin: 'auto'}} />
+          <Text>Application for CleanBC Industrial Incentive Program</Text>
+        </Header>
+        <Body>
           <Row>
             <Column>
-              <Image src="/static/logo-banner.png" style={{width: 200}} />
+              <Text style={styles.appInfo}>
+                Reporting Year: {application.reportingYear}
+              </Text>
             </Column>
             <Column>
-              <Text style={{textAlign: 'right'}}>
-                CleanBC Industrial Incentive Program
+              <Text style={styles.appInfo}>
+                Status:{' '}
+                {
+                  application.applicationRevisionStatus
+                    .applicationRevisionStatus
+                }
               </Text>
             </Column>
           </Row>
-        </Header>
-        <Body>
-          <Title>Incentive Program Application</Title>
-          <Text style={styles.appInfo}>
-            {/* Submitted: {submissionDate.slice(0, 10)} Status:{' '} */}
-            {application.applicationStatus.applicationStatus}
-          </Text>
           <Row>
             <Column>
-              <Text
-                style={{
-                  fontSize: 12,
-                  lineHeight: 1.5,
-                  borderBottom: 1,
-                  marginBottom: 10
-                }}
-              >
-                Applicant
-              </Text>
               <View style={styles.applicant}>
+                <Text
+                  style={{
+                    lineHeight: 1.5,
+                    borderBottom: 1,
+                    marginBottom: 10
+                  }}
+                >
+                  Applicant
+                </Text>
                 <Text>
                   {user.firstName} {user.lastName}
                 </Text>
@@ -156,17 +190,16 @@ const ApplicationDetailsPdfCardItem = props => {
               </View>
             </Column>
             <Column>
-              <Text
-                style={{
-                  fontSize: 12,
-                  lineHeight: 1.5,
-                  borderBottom: 1,
-                  marginBottom: 10
-                }}
-              >
-                Facility
-              </Text>
               <View style={styles.applicant}>
+                <Text
+                  style={{
+                    lineHeight: 1.5,
+                    borderBottom: 1,
+                    marginBottom: 10
+                  }}
+                >
+                  Facility
+                </Text>
                 <Text>{facility.facilityName}</Text>
                 <Text>
                   {facility.facilityMailingAddress}
@@ -179,22 +212,6 @@ const ApplicationDetailsPdfCardItem = props => {
               </View>
             </Column>
           </Row>
-
-          {/* <JsonSchemaForm
-            omitExtraData
-            ArrayFieldTemplate={arrayFieldTemplate}
-            FieldTemplate={fieldTemplate}
-            ObjectFieldTemplate={objectFieldTemplate}
-            showErrorList={false}
-            fields={CUSTOM_FIELDS}
-            schema={schema}
-            uiSchema={uiSchema}
-            formData={formResult}
-            tagName={FormFields}
-            widgets={customWidget}
-          >
-            <View />
-          </JsonSchemaForm> */}
 
           {formResults.map(({node}) => (
             <View key={node.formJsonByFormId.id}>
@@ -216,6 +233,13 @@ const ApplicationDetailsPdfCardItem = props => {
             </View>
           ))}
         </Body>
+        <Text
+          fixed
+          render={({pageNumber, totalPages}) =>
+            `Page ${pageNumber} of ${totalPages}`
+          }
+          style={styles.pageNumbers}
+        />
       </Page>
     </Document>
   );

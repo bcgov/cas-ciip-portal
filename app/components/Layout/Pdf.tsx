@@ -1,16 +1,9 @@
 import styled from '@react-pdf/styled-components';
 
-const Header = styled.Text`
-  margin: 0;
-  font-size: 15px;
-  font-family: 'Helvetica';
-  padding: 10px 30px;
-`;
-
-const Title = styled.Text`
-  font-size: 15px;
-  font-weight: bold;
-  // padding: 20px 0;
+const Header = styled.View`
+  font-size: 16px;
+  padding-bottom: 10px;
+  text-align: center;
 `;
 
 const Body = styled.View`
@@ -37,8 +30,4 @@ const Column = styled.View`
   margin: 0 10px;
 `;
 
-const Hr = styled.View`
-  border-bottom: 1px solid #000;
-`;
-
-export {Header, Title, Body, FormFields, Row, Column, Hr};
+export {Header, Body, FormFields, Row, Column};
