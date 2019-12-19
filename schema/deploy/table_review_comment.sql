@@ -6,8 +6,8 @@ begin;
 
 create table ggircs_portal.review_comment (
   id integer primary key generated always as identity,
-  application_id integer references ggircs_portal.application(id),
-  form_id integer references ggircs_portal.form_json(id),
+  application_id integer not null references ggircs_portal.application(id),
+  form_id integer not null references ggircs_portal.form_json(id),
   description varchar(100000),
   resolved boolean,
   created_at timestamp with time zone not null default now(),

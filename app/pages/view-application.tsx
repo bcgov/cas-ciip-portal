@@ -68,7 +68,7 @@ class ViewApplication extends Component<Props> {
           </Col>
           <Col md={4}>
             {formResults.map(({node}) => (
-              <ApplicationComments key={node.id} formResult={node.formResult} />
+              <ApplicationComments key={node.id} formResult={node} />
             ))}
           </Col>
         </Row>

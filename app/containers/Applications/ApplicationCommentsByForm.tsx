@@ -26,7 +26,9 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
       </tr>
       <tr>
         <small>
-          {moment(reviewComment.createdAt).format('MMM Do YYYY, h:mm:ss a')}
+          {moment
+            .tz(reviewComment.createdAt)
+            .format('MMM Do YYYY, h:mm:ss a z', 'America/Vancouver')}
         </small>
       </tr>
     </>
@@ -39,6 +41,7 @@ export default createFragmentContainer(ApplicationCommentsByForm, {
       id
       description
       createdAt
+      resolved
     }
   `
 });

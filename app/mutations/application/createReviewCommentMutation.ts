@@ -1,4 +1,4 @@
-import {graphql} from 'react-relay';
+import {graphql, DeclarativeMutationConfig} from 'react-relay';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
   createReviewCommentMutationVariables,
@@ -10,10 +10,13 @@ const mutation = graphql`
   mutation createReviewCommentMutation($input: CreateReviewCommentInput!) {
     createReviewComment(input: $input) {
       clientMutationId
-      reviewComment {
-        id
-        description
-        createdAt
+      reviewCommentEdge {
+        node {
+          id
+          description
+          createdAt
+          resolved
+        }
       }
     }
   }
@@ -21,10 +24,25 @@ const mutation = graphql`
 
 const createReviewCommentMutation = async (
   environment: RelayModernEnvironment,
-  variables: createReviewCommentMutationVariables
+  variables: createReviewCommentMutationVariables,
+  formResultId: string
 ) => {
+  const configs: DeclarativeMutationConfig[] = [
+    {
+      type: 'RANGE_ADD',
+      parentID: formResultId,
+      connectionInfo: [
+        {
+          key: 'ApplicationCommentsContainer_applicationComments',
+          rangeBehavior: 'append'
+        }
+      ],
+      edgeName: 'reviewCommentEdge'
+    }
+  ];
   const m = new BaseMutation<createReviewCommentMutationType>(
-    'create-review-comment-mutation'
+    'create-review-comment-mutation',
+    configs
   );
   return m.performMutation(environment, mutation, variables);
 };

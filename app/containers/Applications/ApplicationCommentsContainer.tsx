@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Collapse, Table, Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationCommentsContainer_formResult} from 'ApplicationCommentsContainer_formResult.graphql';
+import createReviewCommentMutation from 'mutations/application/createReviewCommentMutation';
 import ApplicationCommentsBox from './ApplicationCommentsByForm';
 
 /*
@@ -16,6 +17,29 @@ interface Props {
 export const ApplicationCommentsComponent: React.FunctionComponent<Props> = props => {
   const {formResult} = props;
   const [isOpen, setIsOpen] = useState(false);
+
+  const addComment = async () => {
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        reviewComment: {
+          applicationId: formResult.applicationByApplicationId.rowId,
+          formId: formResult.formJsonByFormId.rowId,
+          description: 'boo',
+          resolved: false
+        }
+      }
+    };
+    const formResultId = formResult.id;
+
+    const response = await createReviewCommentMutation(
+      environment,
+      variables,
+      formResultId
+    );
+    console.log(response);
+  };
+
   return (
     <>
       <div key={formResult.id} className="form-result-box">
@@ -42,9 +66,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                 })}
               </tbody>
             </Table>
-            <Button onClick={() => console.log('ADD COMMENT')}>
-              + Add Comment
-            </Button>
+            <Button onClick={addComment}>+ Add Comment</Button>
           </div>
         </Collapse>
       </div>
@@ -73,10 +95,16 @@ export default createFragmentContainer(ApplicationCommentsComponent, {
   formResult: graphql`
     fragment ApplicationCommentsContainer_formResult on FormResult {
       id
+      applicationByApplicationId {
+        id
+        rowId
+      }
       formJsonByFormId {
+        rowId
         name
       }
-      applicationComments {
+      applicationComments(first: 2147483647)
+        @connection(key: "ApplicationCommentsContainer_applicationComments") {
         edges {
           node {
             id
