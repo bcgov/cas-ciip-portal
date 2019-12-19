@@ -16,6 +16,9 @@ const query: viewApplicationQueryResponse['query'] = {
     applicationRevisionStatus: {
       applicationRevisionStatus: 'SUBMITTED'
     },
+    facilityByFacilityId: {
+      facilityName: 'Forest Floor'
+    },
     ' $fragmentRefs': {
       ReviseApplicationButtonContainer_application: true,
       ApplicationDetailsContainer_application: true
