@@ -29,9 +29,18 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => 
                 }
               }}
             >
-              <Nav.Link active={node.id === props.formResultId}>
-                {node.formJsonByFormId.name}
-              </Nav.Link>
+              {node.hasUnresolvedComments ? (
+                <Nav.Link
+                  active={node.id === props.formResultId}
+                  style={{color: 'red'}}
+                >
+                  !! {node.formJsonByFormId.name} !!{' '}
+                </Nav.Link>
+              ) : (
+                <Nav.Link active={node.id === props.formResultId}>
+                  {node.formJsonByFormId.name}{' '}
+                </Nav.Link>
+              )}
             </Link>
           </Nav.Item>
         ))}
@@ -99,6 +108,7 @@ export default createFragmentContainer(ApplicationFormNavbarComponent, {
         edges {
           node {
             id
+            hasUnresolvedComments
             formJsonByFormId {
               name
             }
