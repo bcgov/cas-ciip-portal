@@ -34,6 +34,9 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
         : '/ciip-application',
       query: {
         applicationId: response.createApplicationMutationChain.application.id,
+        revisionId:
+          response.createApplicationMutationChain.application
+            .latestDraftRevision.id,
         version: 1
       }
     });

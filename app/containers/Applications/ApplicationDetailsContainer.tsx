@@ -2,6 +2,7 @@ import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
 import {ApplicationDetailsContainer_application} from 'ApplicationDetailsContainer_application.graphql';
+import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
 import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 
 /*
@@ -20,7 +21,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
   const formResults = props.application.orderedFormResults.edges;
 
   return (
-    <>
+    <div>
       {formResults.map(({node}) => (
         <ApplicationDetailsCardItem
           key={node.id}
@@ -29,15 +30,22 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
           query={props.query.query}
         />
       ))}
-    </>
+      <IncentiveCalculatorContainer
+        applicationRevision={props.query.query.applicationRevision}
+      />
+    </div>
   );
 };
 
 export default createFragmentContainer(ApplicationDetailsComponent, {
   query: graphql`
-    fragment ApplicationDetailsContainer_query on Query {
+    fragment ApplicationDetailsContainer_query on Query
+      @argumentDefinitions(revisionId: {type: "ID!"}) {
       query {
         ...ApplicationDetailsCardItem_query
+        applicationRevision(id: $revisionId) {
+          ...IncentiveCalculatorContainer_applicationRevision
+        }
       }
     }
   `,

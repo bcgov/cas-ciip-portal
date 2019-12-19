@@ -9769,6 +9769,16 @@
               "defaultValue": null
             },
             {
+              "name": "emissionIntensity",
+              "description": "Checks for equality with the object’s `emissionIntensity` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "incentiveAmount",
               "description": "Checks for equality with the object’s `incentiveAmount` field.",
               "type": {
@@ -9784,16 +9794,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "productionEfficiency",
-              "description": "Checks for equality with the object’s `productionEfficiency` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -9829,6 +9829,18 @@
             },
             {
               "name": "APPLICATION_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EMISSION_INTENSITY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EMISSION_INTENSITY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -9871,18 +9883,6 @@
             },
             {
               "name": "PRODUCT_ID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PRODUCTION_EFFICIENCY_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PRODUCTION_EFFICIENCY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -10058,6 +10058,18 @@
               "deprecationReason": null
             },
             {
+              "name": "emissionIntensity",
+              "description": "The emission intensity for this product, measured in tonnes of CO2 equivalent per unit of production",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "id",
               "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
               "args": [],
@@ -10109,18 +10121,6 @@
                   "name": "Int",
                   "ofType": null
                 }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "productionEfficiency",
-              "description": "The production efficiency for this product, measured in tonnes of CO2 equivalent per unit of production",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -16290,26 +16290,6 @@
               "defaultValue": null
             },
             {
-              "name": "rateEndDate",
-              "description": "Checks for equality with the object’s `rateEndDate` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "rateStartDate",
-              "description": "Checks for equality with the object’s `rateStartDate` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "reportingYear",
               "description": "Checks for equality with the object’s `reportingYear` field.",
               "type": {
@@ -16350,16 +16330,6 @@
               "defaultValue": null
             }
           ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "Date",
-          "description": "The day, does not include a time.",
-          "fields": null,
-          "inputFields": null,
           "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
@@ -16494,30 +16464,6 @@
             },
             {
               "name": "QUANTITY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "RATE_END_DATE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "RATE_END_DATE_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "RATE_START_DATE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "RATE_START_DATE_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -16714,7 +16660,7 @@
             },
             {
               "name": "calculatedCarbonTax",
-              "description": null,
+              "description": "The carbon tax applicable to this fuel (assuming a flat carbon tax rate for the reporting year)",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -16738,7 +16684,7 @@
             },
             {
               "name": "carbonTaxed",
-              "description": null,
+              "description": "Whether this fuel has a tax",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -16762,7 +16708,7 @@
             },
             {
               "name": "ctaRateUnits",
-              "description": "The units for the carbon tax rate",
+              "description": "The units for the fuel charge",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -16774,7 +16720,7 @@
             },
             {
               "name": "fuelCharge",
-              "description": null,
+              "description": "The amount charged for the fuel",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -16810,35 +16756,11 @@
             },
             {
               "name": "quantity",
-              "description": null,
+              "description": "The quantity of fuel consumed in the reporting period",
               "args": [],
               "type": {
                 "kind": "SCALAR",
                 "name": "BigFloat",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "rateEndDate",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "rateStartDate",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Date",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -16858,7 +16780,7 @@
             },
             {
               "name": "unitConversionFactor",
-              "description": null,
+              "description": "The conversion factor applied to the fuel quantity",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -16870,7 +16792,7 @@
             },
             {
               "name": "units",
-              "description": null,
+              "description": "The fuel quantity units",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -19982,6 +19904,16 @@
           ],
           "inputFields": null,
           "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Date",
+          "description": "The day, does not include a time.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },

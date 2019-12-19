@@ -1,25 +1,20 @@
 import React from 'react';
 import MathJax from 'react-mathjax2';
+
 import {Row, Col} from 'react-bootstrap';
 
 const IncentiveSegmentFormula = () => {
-  const formula = `
-            \\left(Quantity - Benchmark
-            \\over
-            Eligibility Threshold - Benchmark \\right)
-            \\times
-           Attributable Fuel Percentage
-            \\times
-           Estimated Carbon Tax Paid
-
-        `;
+  const formula = String.raw`
+    1 - \left({
+      Emission Intensity - Benchmark
+      \over
+      Eligibility Threshold - Benchmark
+    }\right) \times Carbon Tax Payed Eligible for Incentive`;
   return (
     <Row>
       <Col md={12}>
         <MathJax.Context input="tex">
-          <div>
-            <MathJax.Node>{formula}</MathJax.Node>
-          </div>
+          <MathJax.Node>{formula}</MathJax.Node>
         </MathJax.Context>
       </Col>
     </Row>

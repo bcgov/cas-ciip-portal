@@ -13,12 +13,15 @@ const mutation = graphql`
     createApplicationRevisionMutationChain(input: $input) {
       applicationRevision {
         id
+        versionNumber
         applicationByApplicationId {
           id
           latestDraftRevision {
+            id
             versionNumber
           }
           latestSubmittedRevision {
+            id
             versionNumber
           }
         }

@@ -1,20 +1,13 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
-import IncentiveSegmentFormula from '../../components/Incentives/IncentiveSegmentFormula';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import IncentiveSegmentFormula from 'components/Incentives/IncentiveSegmentFormula';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
 
 export const IncentiveCalculator = props => {
-  useEffect(() => {
-    const refetchVariables = {
-      bcghgidInput: Number(props.bcghgid),
-      reportingYear: props.reportingYear
-    };
-    props.relay.refetch(refetchVariables);
-  });
-
-  const {allProducts, bcghgidProducts, carbonTax} = props.query;
+  const {
+    edges = []
+  } = props.applicationRevision.ciipIncentivePaymentsByApplicationIdAndVersionNumber;
   return (
     <>
       <Jumbotron>
@@ -31,40 +24,21 @@ export const IncentiveCalculator = props => {
         <IncentiveSegmentFormula />
       </Jumbotron>
 
-      <div className="incentive-breakdown">
-        <Table striped bordered hover responsive="lg">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Calculation Breakdown</th>
-              <th>Incentive for product</th>
-              <th>Chart</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props ? (
-              bcghgidProducts.edges.map(edge => (
-                <IncentiveSegmentContainer
-                  key={edge.node.id}
-                  reported={edge.node}
-                  allProducts={allProducts}
-                  carbonTax={carbonTax}
-                />
-              ))
-            ) : (
-              <LoadingSpinner />
-            )}
-            <tr>
-              <td colSpan={2}>
-                <strong>Total Incentive</strong>
-              </td>
-              <td>
-                {/* <strong>CAD {props.totalCarbonIncentive.toFixed(2)}</strong> */}
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-      </div>
+      <Table striped bordered hover responsive="lg">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Calculation Breakdown</th>
+            <th>Incentive for product</th>
+            <th>Chart</th>
+          </tr>
+        </thead>
+        <tbody>
+          {edges.map(({node}) => (
+            <IncentiveSegmentContainer key={node.id} incentivePayment={node} />
+          ))}
+        </tbody>
+      </Table>
     </>
   );
 };
@@ -72,8 +46,13 @@ export const IncentiveCalculator = props => {
 export default createFragmentContainer(IncentiveCalculator, {
   applicationRevision: graphql`
     fragment IncentiveCalculatorContainer_applicationRevision on ApplicationRevision {
-      ciipIncentivePaymentByApplicationIdAndVersionNumber {
-        ...IncentiveSegmentContainer_incentivePayment
+      ciipIncentivePaymentsByApplicationIdAndVersionNumber {
+        edges {
+          node {
+            id
+            ...IncentiveSegmentContainer_incentivePayment
+          }
+        }
       }
     }
   `

@@ -1605,17 +1605,25 @@ enum CiipApplicationWizardsOrderBy {
 type CiipCarbonTaxCalculation {
   """The application id"""
   applicationId: Int
+
+  """
+  The carbon tax applicable to this fuel (assuming a flat carbon tax rate for the reporting year)
+  """
   calculatedCarbonTax: BigFloat
 
   """The amount of carbon tax payed eligible for an incentive"""
   carbonTaxApplicableToCiip: BigFloat
+
+  """Whether this fuel has a tax"""
   carbonTaxed: Boolean
 
   """The carbon tax rate applicable to the reporting year"""
   carbonTaxRate: BigFloat
 
-  """The units for the carbon tax rate"""
+  """The units for the fuel charge"""
   ctaRateUnits: String
+
+  """The amount charged for the fuel"""
   fuelCharge: BigFloat
 
   """The SWRS fuel mapping id for the fuel"""
@@ -1623,13 +1631,17 @@ type CiipCarbonTaxCalculation {
 
   """The name of the fuel this carbon tax applied to"""
   fuelType: String
+
+  """The quantity of fuel consumed in the reporting period"""
   quantity: BigFloat
-  rateEndDate: Date
-  rateStartDate: Date
 
   """The application's reporting year"""
   reportingYear: Int
+
+  """The conversion factor applied to the fuel quantity"""
   unitConversionFactor: Int
+
+  """The fuel quantity units"""
   units: String
 
   """The application revision number"""
@@ -1672,12 +1684,6 @@ input CiipCarbonTaxCalculationCondition {
 
   """Checks for equality with the object’s `quantity` field."""
   quantity: BigFloat
-
-  """Checks for equality with the object’s `rateEndDate` field."""
-  rateEndDate: Date
-
-  """Checks for equality with the object’s `rateStartDate` field."""
-  rateStartDate: Date
 
   """Checks for equality with the object’s `reportingYear` field."""
   reportingYear: Int
@@ -1743,10 +1749,6 @@ enum CiipCarbonTaxCalculationsOrderBy {
   NATURAL
   QUANTITY_ASC
   QUANTITY_DESC
-  RATE_END_DATE_ASC
-  RATE_END_DATE_DESC
-  RATE_START_DATE_ASC
-  RATE_START_DATE_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
   UNIT_CONVERSION_FACTOR_ASC
@@ -1770,6 +1772,11 @@ type CiipIncentivePayment implements Node {
   applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
 
   """
+  The emission intensity for this product, measured in tonnes of CO2 equivalent per unit of production
+  """
+  emissionIntensity: BigFloat
+
+  """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
@@ -1787,11 +1794,6 @@ type CiipIncentivePayment implements Node {
   """The id of the product"""
   productId: Int!
 
-  """
-  The production efficiency for this product, measured in tonnes of CO2 equivalent per unit of production
-  """
-  productionEfficiency: BigFloat
-
   """The revision version number"""
   versionNumber: Int!
 }
@@ -1804,14 +1806,14 @@ input CiipIncentivePaymentCondition {
   """Checks for equality with the object’s `applicationId` field."""
   applicationId: Int
 
+  """Checks for equality with the object’s `emissionIntensity` field."""
+  emissionIntensity: BigFloat
+
   """Checks for equality with the object’s `incentiveAmount` field."""
   incentiveAmount: BigFloat
 
   """Checks for equality with the object’s `productId` field."""
   productId: Int
-
-  """Checks for equality with the object’s `productionEfficiency` field."""
-  productionEfficiency: BigFloat
 
   """Checks for equality with the object’s `versionNumber` field."""
   versionNumber: Int
@@ -1849,6 +1851,8 @@ type CiipIncentivePaymentsEdge {
 enum CiipIncentivePaymentsOrderBy {
   APPLICATION_ID_ASC
   APPLICATION_ID_DESC
+  EMISSION_INTENSITY_ASC
+  EMISSION_INTENSITY_DESC
   INCENTIVE_AMOUNT_ASC
   INCENTIVE_AMOUNT_DESC
   NATURAL
@@ -1856,8 +1860,6 @@ enum CiipIncentivePaymentsOrderBy {
   PRIMARY_KEY_DESC
   PRODUCT_ID_ASC
   PRODUCT_ID_DESC
-  PRODUCTION_EFFICIENCY_ASC
-  PRODUCTION_EFFICIENCY_DESC
   VERSION_NUMBER_ASC
   VERSION_NUMBER_DESC
 }

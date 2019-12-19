@@ -38,16 +38,16 @@ create or replace view ggircs_portal.ciip_incentive_payment as (
     from ggircs_portal.ciip_carbon_tax_calculation
     group by application_id, version_number
   ),
-  product_efficiency as (
+  emission_intensity as (
     select ciip_production.application_id, ciip_production.version_number, ciip_production.product_id,
-    ((ciip_non_bio_emission.annual_co2e + energy_balance.electricity_balance + energy_balance.heat_balance) * (ciip_production.production_allocation_factor / 100) / ciip_production.quantity) as production_efficiency
+    ((ciip_non_bio_emission.annual_co2e + energy_balance.electricity_balance + energy_balance.heat_balance) * (ciip_production.production_allocation_factor / 100) / ciip_production.quantity) as emission_intensity
     from ggircs_portal.ciip_production
     join ggircs_portal.benchmark on ciip_production.product_id = benchmark.product_id and benchmark.excludes_exported_energy = true
     join ciip_non_bio_emission on ciip_production.application_id = ciip_non_bio_emission.application_id
     join energy_balance on ciip_production.application_id = energy_balance.application_id
   union
     select ciip_production.application_id, ciip_production.version_number, ciip_production.product_id,
-    (ciip_non_bio_emission.annual_co2e * (ciip_production.production_allocation_factor / 100) / ciip_production.quantity) as production_efficiency
+    (ciip_non_bio_emission.annual_co2e * (ciip_production.production_allocation_factor / 100) / ciip_production.quantity) as emission_intensity
     from ggircs_portal.ciip_production
     join ggircs_portal.benchmark on ciip_production.product_id = benchmark.product_id and benchmark.excludes_exported_energy = false
     join ciip_non_bio_emission on ciip_production.application_id = ciip_non_bio_emission.application_id
@@ -56,16 +56,16 @@ create or replace view ggircs_portal.ciip_incentive_payment as (
     ciip_production.application_id,
     ciip_production.version_number,
     ciip_production.product_id,
-    product_efficiency.production_efficiency,
+    emission_intensity.emission_intensity,
   round(((
-    greatest(0, least(1, 1 - (product_efficiency.production_efficiency - benchmark.benchmark))) / (benchmark.eligibility_threshold - benchmark.benchmark)
+    greatest(0, least(1, 1 - (emission_intensity.emission_intensity - benchmark.benchmark))) / (benchmark.eligibility_threshold - benchmark.benchmark)
   ) * benchmark.incentive_multiplier * (ciip_production.payment_allocation_factor/100) * facility_carbon_tax.carbon_tax_applicable_to_ciip), 2) as incentive_amount
   from ggircs_portal.ciip_production
   join facility_carbon_tax on
     ciip_production.application_id = facility_carbon_tax.application_id and
     ciip_production.version_number = facility_carbon_tax.version_number
   join ggircs_portal.benchmark on ciip_production.product_id = benchmark.product_id -- TODO: handle benchmark history
-  join product_efficiency on ciip_production.application_id = product_efficiency.application_id and ciip_production.product_id = product_efficiency.product_id
+  join emission_intensity on ciip_production.application_id = emission_intensity.application_id and ciip_production.product_id = emission_intensity.product_id
 
 );
 
@@ -77,7 +77,7 @@ The view that calculates the estimated incentive payment for each product of an 
 comment on column ggircs_portal.ciip_incentive_payment.application_id is 'The application id';
 comment on column ggircs_portal.ciip_incentive_payment.version_number is 'The revision version number';
 comment on column ggircs_portal.ciip_incentive_payment.product_id is 'The id of the product';
-comment on column ggircs_portal.ciip_incentive_payment.production_efficiency is 'The production efficiency for this product, measured in tonnes of CO2 equivalent per unit of production';
+comment on column ggircs_portal.ciip_incentive_payment.emission_intensity is 'The emission intensity for this product, measured in tonnes of CO2 equivalent per unit of production';
 comment on column ggircs_portal.ciip_incentive_payment.incentive_amount is 'The amount, in canadian dollars, of incentive to be payed back for this product';
 
 commit;

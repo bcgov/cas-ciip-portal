@@ -17,7 +17,11 @@ interface Props {
 
 class ApplicationReview extends Component<Props> {
   static query = graphql`
-    query applicationReviewQuery($applicationId: ID!, $version: String!) {
+    query applicationReviewQuery(
+      $applicationId: ID!
+      $revisionId: ID!
+      $version: String!
+    ) {
       query {
         session {
           ...defaultLayout_session
@@ -30,7 +34,7 @@ class ApplicationReview extends Component<Props> {
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
         }
-        ...ApplicationDetailsContainer_query
+        ...ApplicationDetailsContainer_query @arguments(revisionId: $revisionId)
         ...ApplicationCommentsContainer_query
           @arguments(applicationId: $applicationId)
       }

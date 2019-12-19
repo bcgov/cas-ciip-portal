@@ -29,7 +29,7 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = props => 
 
     const newVersion =
       response.createApplicationRevisionMutationChain.applicationRevision
-        .applicationByApplicationId.latestDraftRevision.versionNumber;
+        .versionNumber;
     const lastSubmittedVersion =
       response.createApplicationRevisionMutationChain.applicationRevision
         .applicationByApplicationId.latestSubmittedRevision.versionNumber;
@@ -38,6 +38,9 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = props => 
       pathname: '/ciip-application',
       query: {
         applicationId: application.id,
+        revisionId:
+          response.createApplicationRevisionMutationChain.applicationRevision
+            .id,
         version: newVersion,
         previousVersion: lastSubmittedVersion
       }
