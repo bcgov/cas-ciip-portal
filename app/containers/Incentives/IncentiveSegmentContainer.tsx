@@ -53,14 +53,12 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
 export default createFragmentContainer(IncentiveSegmentContainer, {
   incentivePayment: graphql`
     fragment IncentiveSegmentContainer_incentivePayment on CiipIncentivePayment {
-      id
       incentiveAmountFlat
       incentiveAmountProRated
       emissionIntensity
       carbonTaxEligibleFlat
       productByProductId {
         name
-        units
       }
       benchmarkByBenchmarkId {
         benchmark
