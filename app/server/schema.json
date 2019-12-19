@@ -16880,6 +16880,7 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 77d43a7d0b053d9658c3f4ae427aacf56163a30e
               "name": "benchmarksByEndReportingYear",
               "description": "Reads and enables pagination through a set of `Benchmark`.",
               "args": [
@@ -17065,6 +17066,15 @@
                   "name": "BenchmarksConnection",
                   "ofType": null
                 }
+=======
+              "name": "hasUnresolvedComments",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+>>>>>>> create computed column 'has_unresolved_comments
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -17267,9 +17277,13 @@
               "description": "Foreign Key to application",
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
               },
 >>>>>>> remove application_review table & related psql functions
               "isDeprecated": false,
@@ -17350,6 +17364,7 @@
                 "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
+<<<<<<< 77d43a7d0b053d9658c3f4ae427aacf56163a30e
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
@@ -17357,6 +17372,11 @@
                     "name": "Application",
                     "ofType": null
                   }
+=======
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+>>>>>>> create computed column 'has_unresolved_comments
                 }
               },
               "isDeprecated": false,
@@ -35945,9 +35965,13 @@
               "name": "applicationId",
               "description": "Foreign Key to application",
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             },
@@ -36005,9 +36029,13 @@
               "name": "formId",
               "description": "Foreign key to form_json",
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             },

@@ -5408,6 +5408,7 @@ type FormResult implements Node {
 
   """JSON dump of form data"""
   formResult: JSON!
+  hasUnresolvedComments: Boolean
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -9205,7 +9206,7 @@ type ReviewComment implements Node {
   applicationByApplicationId: Application
 
   """Foreign Key to application"""
-  applicationId: Int
+  applicationId: Int!
 
   """Creation date of row"""
   createdAt: Datetime!
@@ -9223,7 +9224,7 @@ type ReviewComment implements Node {
   description: String
 
   """Foreign key to form_json"""
-  formId: Int
+  formId: Int!
 
   """Reads a single `FormJson` that is related to this `ReviewComment`."""
   formJsonByFormId: FormJson
@@ -9288,7 +9289,7 @@ input ReviewCommentCondition {
 """An input for mutations affecting `ReviewComment`"""
 input ReviewCommentInput {
   """Foreign Key to application"""
-  applicationId: Int
+  applicationId: Int!
 
   """Creation date of row"""
   createdAt: Datetime
@@ -9306,7 +9307,7 @@ input ReviewCommentInput {
   description: String
 
   """Foreign key to form_json"""
-  formId: Int
+  formId: Int!
 
   """The resolved status on the review_comment"""
   resolved: Boolean
