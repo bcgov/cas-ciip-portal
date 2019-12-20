@@ -23,7 +23,12 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         </h4>
       </Col>
       <Col
-        md={1}
+        md={
+          Object {
+            "offset": 5,
+            "span": 1,
+          }
+        }
         style={
           Object {
             "textAlign": "right",

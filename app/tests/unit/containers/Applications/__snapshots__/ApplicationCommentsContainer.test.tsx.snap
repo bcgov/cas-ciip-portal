@@ -6,18 +6,45 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
     className="jsx-2020872473 form-result-box"
     key="abc"
   >
-    <div
-      className="jsx-2020872473"
-      onClick={[Function]}
+    <ForwardRef
+      noGutters={false}
     >
-      <h5
-        className="jsx-2020872473"
+      <Col
+        md={10}
       >
-         
-        ddd
-         
-      </h5>
-    </div>
+        <h5
+          className="jsx-2020872473"
+        >
+           
+          ddd
+           
+        </h5>
+      </Col>
+      <Col
+        md={
+          Object {
+            "span": 1,
+          }
+        }
+        style={
+          Object {
+            "textAlign": "right",
+          }
+        }
+      >
+        <Button
+          active={false}
+          aria-label="toggle-card-open"
+          disabled={false}
+          onClick={[Function]}
+          title="expand or collapse the card"
+          type="button"
+          variant="outline-dark"
+        >
+          -
+        </Button>
+      </Col>
+    </ForwardRef>
     <Collapse
       appear={false}
       dimension="height"

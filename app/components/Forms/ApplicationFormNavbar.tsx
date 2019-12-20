@@ -34,7 +34,7 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => 
                   active={node.id === props.formResultId}
                   style={{color: 'red'}}
                 >
-                  !! {node.formJsonByFormId.name} !!{' '}
+                  {node.formJsonByFormId.name} !{' '}
                 </Nav.Link>
               ) : (
                 <Nav.Link active={node.id === props.formResultId}>

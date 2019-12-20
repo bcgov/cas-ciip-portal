@@ -37,4 +37,38 @@ describe('ApplicationCommentsComponent', () => {
     );
     expect(renderer).toMatchSnapshot();
   });
+  it('should render the ApplicationCommentsByForm component', async () => {
+    const renderer = shallow(
+      <ApplicationCommentsComponent
+        relay={null}
+        review={false}
+        formResult={{
+          ' $refType': 'ApplicationCommentsContainer_formResult',
+          id: 'abc',
+          applicationByApplicationId: {
+            id: 'abc',
+            rowId: 1
+          },
+          formJsonByFormId: {
+            rowId: 1,
+            name: 'ddd'
+          },
+          applicationComments: {
+            edges: [
+              {
+                node: {
+                  id: 'abc',
+                  resolved: false,
+                  ' $fragmentRefs': {
+                    ApplicationCommentsByForm_reviewComment: true
+                  }
+                }
+              }
+            ]
+          }
+        }}
+      />
+    );
+    expect(renderer.exists('Relay(ApplicationCommentsByForm)')).toBe(true);
+  });
 });
