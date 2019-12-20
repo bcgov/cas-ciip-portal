@@ -35,7 +35,6 @@ class Certify extends Component<Props> {
         <DefaultLayout title="Submission Certification" session={query.session}>
           <ApplicationDetailsContainer
             query={query}
-            isAnalyst={false}
             application={query.application}
           />
           <CertificationSignature application={query.application} />

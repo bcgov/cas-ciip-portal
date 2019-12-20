@@ -61,10 +61,6 @@ begin
     insert into ggircs_portal.form_result(form_id, application_id, version_number, form_result)
     values (temp_row.form_id, application_id_input, new_version_number, form_result) returning id into form_result_id;
 
-    -- Create review statuses
-    insert into ggircs_portal.application_review(form_result_id, review_status)
-    values (form_result_id, 'pending');
-
   end loop;
 
   select * from ggircs_portal.application_revision where application_id = application_id_input and version_number = new_version_number into result;

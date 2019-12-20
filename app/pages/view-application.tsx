@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Row, Col} from 'react-bootstrap';
-import {graphql, RelayProp} from 'react-relay';
+import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
-import RequestedChanges from 'containers/Applications/RequestedChangesByFormResult';
+import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
 import DefaultLayout from 'layouts/default-layout';
 
@@ -14,7 +14,6 @@ import DefaultLayout from 'layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: viewApplicationQueryResponse['query'];
-  relay: RelayProp;
 }
 
 class ViewApplication extends Component<Props> {
@@ -30,9 +29,16 @@ class ViewApplication extends Component<Props> {
           applicationRevisionStatus {
             applicationRevisionStatus
           }
+          formResultsByApplicationId {
+            edges {
+              node {
+                id
+                ...ApplicationCommentsContainer_formResult
+              }
+            }
+          }
           ...ReviseApplicationButtonContainer_application
-          ...RequestedChangesByFormResult_application
-            @arguments(version: $version)
+
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
         }
@@ -43,6 +49,7 @@ class ViewApplication extends Component<Props> {
   render() {
     const {session} = this.props.query;
     const {query} = this.props;
+    const formResults = query.application.formResultsByApplicationId.edges;
 
     return (
       <DefaultLayout
@@ -52,14 +59,16 @@ class ViewApplication extends Component<Props> {
       >
         <Row>
           <Col md={8}>
-            <ApplicationDetails
-              isAnalyst={false}
-              query={query}
-              application={query.application}
-            />
+            <ApplicationDetails query={query} application={query.application} />
           </Col>
           <Col md={4}>
-            <RequestedChanges application={query.application} />
+            {formResults.map(({node}) => (
+              <ApplicationComments
+                key={node.id}
+                formResult={node}
+                review={false}
+              />
+            ))}
           </Col>
         </Row>
         <Row>

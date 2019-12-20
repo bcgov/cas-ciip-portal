@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationCommentsComponent should match the snapshot with the ApplicationCommentsByForm component 1`] = `
+<Fragment>
+  <tr>
+    <td>
+      fix it
+    </td>
+  </tr>
+  <tr>
+    <small>
+      Dec 12th 2019, 12:00:00 am
+    </small>
+  </tr>
+</Fragment>
+`;

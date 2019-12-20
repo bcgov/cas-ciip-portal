@@ -24,9 +24,8 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
             Admin
           </h4>
         </div>
-        
         <div
-          className="col-md-1"
+          className="col-md-1 offset-md-5"
           style={
             Object {
               "textAlign": "right",
@@ -712,9 +711,8 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
             Emission
           </h4>
         </div>
-        
         <div
-          className="col-md-1"
+          className="col-md-1 offset-md-5"
           style={
             Object {
               "textAlign": "right",
@@ -1436,9 +1434,8 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
             Fuel
           </h4>
         </div>
-        
         <div
-          className="col-md-1"
+          className="col-md-1 offset-md-5"
           style={
             Object {
               "textAlign": "right",
@@ -1766,9 +1763,8 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
             Electricity and Heat
           </h4>
         </div>
-        
         <div
-          className="col-md-1"
+          className="col-md-1 offset-md-5"
           style={
             Object {
               "textAlign": "right",
@@ -2004,9 +2000,8 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
             Production
           </h4>
         </div>
-        
         <div
-          className="col-md-1"
+          className="col-md-1 offset-md-5"
           style={
             Object {
               "textAlign": "right",

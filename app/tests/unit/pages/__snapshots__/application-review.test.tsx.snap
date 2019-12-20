@@ -43,14 +43,24 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
                 "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
               },
             },
+            "formResultsByApplicationId": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    " $fragmentRefs": Object {
+                      "ApplicationCommentsContainer_formResult": true,
+                    },
+                    "id": "abc",
+                  },
+                },
+              ],
+            },
             "rowId": 1,
           }
         }
-        isAnalyst={true}
         query={
           Object {
             " $fragmentRefs": Object {
-              "ApplicationCommentsContainer_query": true,
               "ApplicationDetailsContainer_query": true,
             },
             "application": Object {
@@ -61,6 +71,18 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
                 " $fragmentRefs": Object {
                   "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
                 },
+              },
+              "formResultsByApplicationId": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
               },
               "rowId": 1,
             },
@@ -92,35 +114,16 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
       md={4}
     >
       <Relay(ApplicationCommentsComponent)
-        query={
+        formResult={
           Object {
             " $fragmentRefs": Object {
-              "ApplicationCommentsContainer_query": true,
-              "ApplicationDetailsContainer_query": true,
+              "ApplicationCommentsContainer_formResult": true,
             },
-            "application": Object {
-              " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
-              },
-              "applicationRevisionStatus": Object {
-                " $fragmentRefs": Object {
-                  "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
-                },
-              },
-              "rowId": 1,
-            },
-            "applicationRevision": Object {
-              " $fragmentRefs": Object {
-                "IncentiveCalculatorContainer_applicationRevision": true,
-              },
-            },
-            "session": Object {
-              " $fragmentRefs": Object {
-                "defaultLayout_session": true,
-              },
-            },
+            "id": "abc",
           }
         }
+        key="abc"
+        review={true}
       />
     </Col>
   </ForwardRef>

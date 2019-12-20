@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Collapse, Table, Button, Row, Col} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
-import {ApplicationCommentsContainer_query} from 'ApplicationCommentsContainer_query.graphql';
+import {ApplicationCommentsContainer_formResult} from 'ApplicationCommentsContainer_formResult.graphql';
+import createReviewCommentMutation from 'mutations/application/createReviewCommentMutation';
+import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
+import {JSONSchema6} from 'json-schema';
 import ApplicationCommentsBox from './ApplicationCommentsByForm';
 
 /*
@@ -8,34 +12,131 @@ import ApplicationCommentsBox from './ApplicationCommentsByForm';
  */
 
 interface Props {
-  query: ApplicationCommentsContainer_query;
+  formResult: ApplicationCommentsContainer_formResult;
   relay: RelayProp;
+  review: boolean;
 }
 
 export const ApplicationCommentsComponent: React.FunctionComponent<Props> = props => {
-  const formResults = props.query.application.formResultsByApplicationId.edges;
+  const {formResult, review} = props;
+  const [isOpen, setIsOpen] = useState(false);
+  const [showResolved, toggleShowResolved] = useState(false);
+
+  const addComment = async (e: IChangeEvent) => {
+    if (!e.formData.commentInput) return null;
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        reviewComment: {
+          applicationId: formResult.applicationByApplicationId.rowId,
+          formId: formResult.formJsonByFormId.rowId,
+          description: e.formData.commentInput,
+          resolved: false
+        }
+      }
+    };
+    const formResultId = formResult.id;
+
+    const response = await createReviewCommentMutation(
+      environment,
+      variables,
+      formResultId
+    );
+    console.log(response);
+  };
+
+  const schema: JSONSchema6 = {
+    type: 'object',
+    properties: {
+      commentInput: {
+        type: 'string'
+      }
+    }
+  };
+
+  const uiSchema = {
+    commentInput: {
+      'ui:widget': 'textarea',
+      classNames: 'hide-title'
+    }
+  };
+
+  function CustomFieldTemplate(props) {
+    const {classNames, help, description, errors, children} = props;
+    return (
+      <div className={classNames}>
+        {description}
+        {children}
+        {errors}
+        {help}
+      </div>
+    );
+  }
 
   return (
     <>
-      {formResults.map(({node}) => {
-        const applicationReviews = node.applicationReviewsByFormResultId.edges;
-        return (
-          <div key={node.id} className="form-result-box">
-            <div>
-              <h5> {node.formJsonByFormId.name} </h5>
-            </div>
-            {applicationReviews.map(({node}) => {
-              return (
-                <ApplicationCommentsBox
-                  key={node.id}
-                  applicationReview={node}
-                />
-              );
-            })}
+      <div key={formResult.id} className="form-result-box">
+        <Row>
+          <Col md={10}>
+            <h5> {formResult.formJsonByFormId.name} </h5>
+          </Col>
+          <Col md={{span: 1}} style={{textAlign: 'right'}}>
+            <Button
+              aria-label="toggle-card-open"
+              title="expand or collapse the card"
+              variant="outline-dark"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? '+' : '-'}
+            </Button>
+          </Col>
+        </Row>
+        <Collapse in={!isOpen}>
+          <div>
+            <Table striped bordered hover>
+              <thead style={{textAlign: 'center'}}>
+                <tr>
+                  <th>Comment</th>
+                  {review ? <th>Resolve</th> : null}
+                </tr>
+              </thead>
+              <tbody>
+                {formResult.applicationComments.edges.map(({node}) => {
+                  if (node.resolved && !showResolved) return null;
+                  return (
+                    <ApplicationCommentsBox
+                      key={node.id}
+                      review={review}
+                      reviewComment={node}
+                    />
+                  );
+                })}
+              </tbody>
+            </Table>
+            {review ? (
+              <JsonSchemaForm
+                schema={schema}
+                uiSchema={uiSchema}
+                FieldTemplate={CustomFieldTemplate}
+                showErrorList={false}
+                onSubmit={addComment}
+              >
+                <Button type="submit">+ Add Comment</Button>
+              </JsonSchemaForm>
+            ) : null}
+            {showResolved ? (
+              <a href="#" onClick={() => toggleShowResolved(!showResolved)}>
+                Hide Resolved
+              </a>
+            ) : (
+              <a href="#" onClick={() => toggleShowResolved(!showResolved)}>
+                Show Resolved
+              </a>
+            )}
           </div>
-        );
-      })}
-      <style jsx>{`
+        </Collapse>
+      </div>
+      <style jsx global>{`
         .form-result-box {
           padding: 25px;
           margin-bottom: 20px;
@@ -50,32 +151,34 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
           padding-bottom: 10px;
           margin-bottom: 20px;
         }
+
+        .hide-title label.form-label {
+          display: none;
+        }
       `}</style>
     </>
   );
 };
 
 export default createFragmentContainer(ApplicationCommentsComponent, {
-  query: graphql`
-    fragment ApplicationCommentsContainer_query on Query
-      @argumentDefinitions(applicationId: {type: "ID!"}) {
-      application(id: $applicationId) {
-        formResultsByApplicationId {
-          edges {
-            node {
-              id
-              formJsonByFormId {
-                name
-              }
-              applicationReviewsByFormResultId {
-                edges {
-                  node {
-                    id
-                    ...ApplicationCommentsByForm_applicationReview
-                  }
-                }
-              }
-            }
+  formResult: graphql`
+    fragment ApplicationCommentsContainer_formResult on FormResult {
+      id
+      applicationByApplicationId {
+        id
+        rowId
+      }
+      formJsonByFormId {
+        rowId
+        name
+      }
+      applicationComments(first: 2147483647)
+        @connection(key: "ApplicationCommentsContainer_applicationComments") {
+        edges {
+          node {
+            id
+            resolved
+            ...ApplicationCommentsByForm_reviewComment
           }
         }
       }

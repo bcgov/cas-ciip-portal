@@ -13,7 +13,6 @@ interface Props {
   query: ApplicationDetailsContainer_query;
   application: ApplicationDetailsContainer_application;
   relay: RelayProp;
-  isAnalyst: boolean;
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
@@ -24,7 +23,6 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
       {formResults.map(({node}) => (
         <ApplicationDetailsCardItem
           key={node.id}
-          isAnalyst={props.isAnalyst}
           formResult={node}
           query={props.query.query}
         />

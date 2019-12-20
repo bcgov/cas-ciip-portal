@@ -19,6 +19,18 @@ describe('The application-review page', () => {
         ' $fragmentRefs': {
           ApplicationRevisionStatusContainer_applicationRevisionStatus: true
         }
+      },
+      formResultsByApplicationId: {
+        edges: [
+          {
+            node: {
+              id: 'abc',
+              ' $fragmentRefs': {
+                ApplicationCommentsContainer_formResult: true
+              }
+            }
+          }
+        ]
       }
     },
     applicationRevision: {
@@ -27,7 +39,6 @@ describe('The application-review page', () => {
       }
     },
     ' $fragmentRefs': {
-      ApplicationCommentsContainer_query: true,
       ApplicationDetailsContainer_query: true
     }
   };

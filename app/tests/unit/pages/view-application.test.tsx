@@ -1,33 +1,48 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import ViewApplication from 'pages/view-application';
+import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 
-const query = {
+const query: viewApplicationQueryResponse['query'] = {
   ' $fragmentRefs': {
-    defaultLayout_session: true
+    ApplicationDetailsContainer_query: true
   },
-  session: null,
+  session: {
+    ' $fragmentRefs': {
+      defaultLayout_session: true
+    }
+  },
   application: {
     applicationRevisionStatus: {
       applicationRevisionStatus: 'SUBMITTED'
     },
     ' $fragmentRefs': {
-      ApplicationDetailsContainer_query: true,
       ReviseApplicationButtonContainer_application: true,
-      RequestedChangesByFormResult_application: true,
       ApplicationDetailsContainer_application: true
+    },
+    formResultsByApplicationId: {
+      edges: [
+        {
+          node: {
+            id: 'abc',
+            ' $fragmentRefs': {
+              ApplicationCommentsContainer_formResult: true
+            }
+          }
+        }
+      ]
     }
   }
 };
 
 // It matches the last accepted Snapshot
 it('It matches the last accepted Snapshot', () => {
-  const wrapper = shallow(<ViewApplication query={query} />);
+  const wrapper = shallow(<ViewApplication query={query} router={null} />);
   expect(wrapper).toMatchSnapshot();
 });
 
 it('It passes a query to the ApplicationDetailsComponent component', () => {
-  const wrapper = shallow(<ViewApplication query={query} />);
+  const wrapper = shallow(<ViewApplication query={query} router={null} />);
   expect(
     wrapper
       .find('Relay(ApplicationDetailsComponent)')
