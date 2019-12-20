@@ -30,20 +30,20 @@ select is_empty(
 
 -- Get all view columns within schema ggircs_portal that do not have a comment
 -- TODO: find out why regular comments interfere with Postgraphile magic comments & un-comment this test
--- prepare null_view_comment as select FORMAT('Violation(view, column): %s, %s', c.relname, a.attname)
---     from pg_class as c
---     inner join pg_attribute as a on c.oid = a.attrelid
---     left join pg_namespace n on n.oid = c.relnamespace
---     left join pg_tablespace t on t.oid = c.reltablespace
---     left join pg_description as d on (d.objoid = c.oid and d.objsubid = a.attnum)
---     where  c.relkind in('v')
---       and  n.nspname = 'ggircs_portal'
---       and a.attnum > 0
---       and d.description is null;
--- -- Test that there are no results on the above query for null comments
--- select is_empty(
---                'null_view_comment', 'view columns have descriptions'
---            );
+prepare null_view_comment as select FORMAT('Violation(view, column): %s, %s', c.relname, a.attname)
+    from pg_class as c
+    inner join pg_attribute as a on c.oid = a.attrelid
+    left join pg_namespace n on n.oid = c.relnamespace
+    left join pg_tablespace t on t.oid = c.reltablespace
+    left join pg_description as d on (d.objoid = c.oid and d.objsubid = a.attnum)
+    where  c.relkind in('v')
+      and  n.nspname = 'ggircs_portal'
+      and a.attnum > 0
+      and d.description is null;
+-- Test that there are no results on the above query for null comments
+select is_empty(
+    'null_view_comment', 'view columns have descriptions'
+);
 
 -- Get all materialized view columns in schema ggrics_swrs that do not have a comment
 prepare null_mv_comment as select FORMAT('Violation(materialized view, column): %s, %s', c.relname, a.attname)

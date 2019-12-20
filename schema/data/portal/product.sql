@@ -12,8 +12,8 @@ values
 (6, 'Veneer', 'm3', 'active', null),
 (7, 'Plywood', 'm3', 'active', null),
 (8, 'Panels (MDF, OSB)', 'm3','active', null),
-(9, 'Chemical Pulp', 'Air-dried tonnes','active', null),
-(10, 'Other Pulp - Mechanical pulp mills', 'Air-dried tonnes','active', null),
+(9, 'Other Pulp - Mechanical pulp mills', 'Air-dried tonnes','active', null),
+(10, 'Chemical Pulp', 'Air-dried tonnes','active', null),
 (11, 'Other Pulp - Paper (except newsprint) mills', 'Air-dried tonnes','active', null),
 (12, 'Other Pulp - Newsprint mills', 'Air-dried tonnes','active', null),
 (13, 'Wood pellets (potentially hog fuel)', 'bone dry tonnes?','active', null),
@@ -37,12 +37,12 @@ values
 (31,'Silver Equivalent','t','active',null),
 (32,'Copper Equivalent - Underground','t','active',null),
 (33,'Copper Equivalent - Open Pit','t','active',null),
-(34,'Lean Sweet Gas Plants ','m3OE','active',null),
-(35,'Lean Sour Gas Plants ','m3OE','active',null),
-(36,'Lean Sour with Sulphur recovery Gas Plants ','m3OE','active',null),
-(37,'Rich Sweet Gas Plants ','m3OE','active',4),
-(38,'Rich Sour Gas Plants ','m3OE','active',3),
-(39,'Petroleum Refining ','CAN - CWB','active',null)
+(34,'Lean Sweet Gas Plants','m3OE','active',null),
+(35,'Lean Sour Gas Plants','m3OE','active',null),
+(36,'Lean Sour with Sulphur recovery Gas Plants','m3OE','active',null),
+(37,'Rich Sweet Gas Plants','m3OE','active',4),
+(38,'Rich Sour Gas Plants','m3OE','active',3),
+(39,'Petroleum Refining','CAN - CWB','active',null)
 on conflict(id) do update
 set
 name=excluded.name,

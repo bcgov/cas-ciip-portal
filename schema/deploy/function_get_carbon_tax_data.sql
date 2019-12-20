@@ -14,7 +14,8 @@ begin;
       unit_conversion_factor int,
       fuel_charge numeric,
       rate_start_date date,
-      rate_end_date date
+      rate_end_date date,
+      carbon_tax_rate numeric
   );
 
   create or replace function ggircs_portal.get_carbon_tax_data()
@@ -42,12 +43,14 @@ begin;
       return query (
         select fm.id as fuel_mapping_id,
                ctd.carbon_taxed, ctd.cta_rate_units, ctd.unit_conversion_factor,
-               fc.fuel_charge, fc.start_date as rate_state_date, fc.end_date as rate_end_date
+               fc.fuel_charge, fc.start_date as rate_state_date, fc.end_date as rate_end_date,
+               carbon_tax_rate_mapping.carbon_tax_rate
         from swrs.fuel_mapping as fm
           join swrs.fuel_carbon_tax_details as ctd
           on fm.fuel_carbon_tax_details_id = ctd.id
           join swrs.fuel_charge as fc
           on fc.fuel_mapping_id = fm.id
+          join swrs.carbon_tax_rate_mapping on fc.start_date = carbon_tax_rate_mapping.rate_start_date
       );
       end if;
     end;

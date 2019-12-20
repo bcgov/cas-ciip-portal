@@ -20,7 +20,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
   const formResults = props.application.orderedFormResults.edges;
 
   return (
-    <>
+    <div>
       {formResults.map(({node}) => (
         <ApplicationDetailsCardItem
           key={node.id}
@@ -29,7 +29,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
           query={props.query.query}
         />
       ))}
-    </>
+    </div>
   );
 };
 

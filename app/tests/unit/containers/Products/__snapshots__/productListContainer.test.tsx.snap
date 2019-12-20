@@ -10,14 +10,33 @@ exports[`ProductList should render the product list 1`] = `
             "id": "abc",
           }
         }
-        userRowId={1}
+        query={
+          Object {
+            " $refType": "ProductListContainer_query",
+            "searchProducts": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "id": "abc",
+                  },
+                },
+              ],
+            },
+            "session": Object {
+              "ciipUserBySub": Object {
+                "rowId": 1,
+              },
+            },
+          }
+        }
       />
     </tbody>
   }
   displayNameToColumnNameMap={
     Object {
-      "Benchmark": "benchmark",
-      "Elig. Threshold": "eligibility_threshold",
+      "Benchmark (tCO2e/product units)": "benchmark",
+      "Elig. Threshold (tCO2e/product units)": "eligibility_threshold",
+      "Incentive Multiplier": "incentive_multiplier",
       "Product": "name",
       "Status": "state",
       "Units": "units",

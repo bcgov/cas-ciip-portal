@@ -31,9 +31,6 @@ describe('ApplicationDetailsContainer', () => {
         ) @relay_test_operation {
           query {
             application(id: $applicationId) {
-              applicationRevisionStatus {
-                id
-              }
               ...ApplicationDetailsContainer_application
                 @arguments(version: $version)
             }

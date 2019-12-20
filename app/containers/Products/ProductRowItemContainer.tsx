@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {
   Button,
@@ -10,27 +10,43 @@ import {
   Collapse,
   Table
 } from 'react-bootstrap';
+import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import moment from 'moment-timezone';
+import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
+import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
+import saveProductMutation from 'mutations/product/saveProductMutation';
+import editBenchmarkMutation from 'mutations/benchmark/editBenchmarkMutation';
+import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
 import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
-import saveProductMutation from '../../mutations/product/saveProductMutation';
-import editBenchmarkMutation from '../../mutations/benchmark/editBenchmarkMutation';
-import createBenchmarkMutation from '../../mutations/benchmark/createBenchmarkMutation';
-import {
-  productSchema,
-  productUISchema,
-  benchmarkSchema,
-  benchmarkUISchema
-} from './ProductBenchmarkJsonSchemas';
+import {productSchema, productUISchema} from './ProductBenchmarkJsonSchemas';
 import FutureBenchmarks from './FutureBenchmarks';
 
 interface Props {
   relay: RelayProp;
-  product: any;
-  userRowId: number;
+  product: ProductRowItemContainer_product;
+  query: ProductRowItemContainer_query;
 }
+
+// Schema for ProductRowItemContainer
+const benchmarkUISchema = {
+  benchmark: {
+    'ui:col-md': 6
+  },
+  description: {
+    'ui:col-md': 6
+  },
+  startReportingYear: {
+    'ui:col-md': 6,
+    'ui:help': 'The first reporting year where this benchmark is used'
+  },
+  endReportingYear: {
+    'ui:col-md': 6,
+    'ui:help': 'The last reporting year where this benchmark is used'
+  }
+};
 
 /**  Note: There is some placeholder validation done on the front end here (dateRegexFormat, timeRangeOverlap, etc) that should be revisited
  *         when we have had a design / constraint brainstorming session for benchmarks.
@@ -39,74 +55,85 @@ interface Props {
 export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   relay,
   product,
-  userRowId
+  query
 }) => {
-  /**
-   * Stand-in validation variables & functions
-   */
-  const dateRegexFormat = /\d{2}-\d{2}-\d{4}/;
-  const timeRangeOverlap = (newStart, currentStart, newEnd, currentEnd) => {
-    const e1 = newEnd
-      ? moment.tz(newEnd, 'DD-MM-YYYY', 'America/Vancouver')
-      : moment.tz('12-12-9999', 'DD-MM-YYYY', 'America/Vancouver');
-    const e2 = currentEnd
-      ? moment.tz(currentEnd, 'America/Vancouver')
-      : moment.tz('12-12-9999', 'DD-MM-YYYY', 'America/Vancouver');
-    const s1 = moment.tz(newStart, 'DD-MM-YYYY', 'America/Vancouver');
-    const s2 = moment.tz(currentStart, 'America/Vancouver');
-    if ((s1 >= s2 && s1 <= e2) || (s2 >= s1 && s2 <= e1)) return true;
-    return false;
-  };
+  const {reportingYear: currentReportingYear} = query.getReportingYear;
 
-  /**
-   * Assistance functions
-   */
+  const currentBenchmark = useMemo(() => {
+    return product.benchmarksByProductId.edges.find(({node: benchmark}) => {
+      return (
+        !benchmark.deletedAt &&
+        benchmark.startReportingYear <= currentReportingYear &&
+        benchmark.endReportingYear >= currentReportingYear
+      );
+    })?.node;
+  }, [product.benchmarksByProductId.edges, currentReportingYear]);
 
-  // Get the product's current benchmark
-  const getCurrentBenchmark = () => {
-    let currentBenchmark;
-    if (product.benchmarksByProductId.edges[0]) {
-      product.benchmarksByProductId.edges.forEach(({node: benchmark}) => {
-        if (
-          !benchmark.deletedAt &&
-          moment.tz(benchmark.startDate, 'America/Vancouver') < moment() &&
-          (benchmark.endDate === null ||
-            (!benchmark.deletedAt &&
-              moment.tz(benchmark.endDate, 'America/Vancouver') >
-                moment.tz('America/Vancouver'))) &&
-          !benchmark.deletedAt
-        ) {
-          currentBenchmark = benchmark;
+  const pastBenchmarks = useMemo(
+    () =>
+      product.benchmarksByProductId.edges
+        .filter(
+          ({node}) =>
+            !node.deletedAt && node.endReportingYear < currentReportingYear
+        )
+        .map(({node}) => node),
+    [currentReportingYear, product.benchmarksByProductId.edges]
+  );
+
+  const futureBenchmarks = useMemo(
+    () =>
+      product.benchmarksByProductId.edges
+        .filter(
+          ({node}) =>
+            !node.deletedAt && node.startReportingYear > currentReportingYear
+        )
+        .map(({node}) => node),
+    [currentReportingYear, product.benchmarksByProductId.edges]
+  );
+
+  // Schema for ProductRowItemContainer
+  const benchmarkSchema = useMemo<JSONSchema6>(() => {
+    const reportingYears = query.allReportingYears.edges
+      .filter(({node}) => node.reportingYear >= currentReportingYear)
+      .map(({node}) => node.reportingYear);
+    return {
+      type: 'object',
+      properties: {
+        benchmark: {
+          type: 'number',
+          title: 'Benchmark'
+        },
+        eligibilityThreshold: {
+          type: 'number',
+          title: 'Eligibility Threshold'
+        },
+        incentiveMultiplier: {
+          type: 'number',
+          title: 'Incentive Multiplier',
+          defaultValue: 1
+        },
+        startReportingYear: {
+          type: 'number',
+          title: 'Start Reporting Year',
+          enum: reportingYears
+        },
+        endReportingYear: {
+          type: 'number',
+          title: 'End Reporting Year',
+          enum: reportingYears
         }
-      });
-    }
-
-    return currentBenchmark;
-  };
-
-  const currentBenchmark = getCurrentBenchmark();
-  const pastBenchmarks = [];
-  const futureBenchmarks = [];
-  if (product.benchmarksByProductId.edges[0]) {
-    product.benchmarksByProductId.edges.forEach(edge => {
-      if (
-        !edge.node.deletedAt &&
-        edge.node.endDate !== null &&
-        moment(edge.node.endDate) < moment()
-      )
-        pastBenchmarks.push(edge.node);
-      else if (!edge.node.deletedAt && moment(edge.node.startDate) > moment())
-        futureBenchmarks.push(edge.node);
-    });
-  }
+      }
+    };
+  }, [currentReportingYear, query.allReportingYears]);
 
   const displayPastBenchmark = benchmark => {
     return (
       <tr key={benchmark.id}>
         <td>{benchmark.benchmark}</td>
         <td>{benchmark.eligibilityThreshold}</td>
-        <td>{moment.tz(benchmark.startDate).format('DD-MM-YYYY')}</td>
-        <td>{moment.tz(benchmark.endDate).format('DD-MM-YYYY')}</td>
+        <td>{benchmark.incentiveMultiplier}</td>
+        <td>{benchmark.startReportingYear}</td>
+        <td>{benchmark.endReportingYear}</td>
       </tr>
     );
   };
@@ -148,50 +175,15 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  const createBenchmark = async (e: IChangeEvent) => {
-    if (
-      !dateRegexFormat.test(e.formData.startDate) ||
-      !dateRegexFormat.test(e.formData.endDate)
-    ) {
-      console.log('BAD BAD DATE');
-      return;
-    }
-
-    if (
-      currentBenchmark &&
-      timeRangeOverlap(
-        e.formData.startDate,
-        currentBenchmark.startDate,
-        e.formData.endDate,
-        currentBenchmark.endDate
-      )
-    ) {
-      console.log('error: OVERLAPS CURRENT BENCHMARK');
-      return;
-    }
-
+  const createBenchmark = async ({formData}: IChangeEvent) => {
     const variables = {
       input: {
-        benchmarkInput: e.formData.benchmark,
-        eligibilityThresholdInput: e.formData.eligibilityThreshold,
+        benchmarkInput: formData.benchmark,
+        eligibilityThresholdInput: formData.eligibilityThreshold,
+        incentiveMultiplierInput: formData.incentiveMultiplier,
         productIdInput: product.rowId,
-        startDateInput: moment
-          .tz(
-            e.formData.startDate.concat('T', '00:00:00'),
-            'DD-MM-YYYYTHH:mm:ss',
-            'America/Vancouver'
-          )
-          .format('YYYY-MM-DDTHH:mm:ss'),
-        endDateInput: e.formData.endDate
-          ? moment
-              .tz(
-                e.formData.endDate.concat('T', '23:59:59'),
-                'DD-MM-YYYYTHH:mm:ss',
-                'America/Vancouver'
-              )
-              .format('YYYY-MM-DDTHH:mm:ss')
-          : null,
-        prevBenchmarkIdInput: null
+        startReportingYearInput: formData.startReportingYear,
+        endDateInput: formData.endReportingYear
       }
     };
 
@@ -202,37 +194,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  const updateCurrentBenchmark = async (e: IChangeEvent) => {
-    if (
-      !dateRegexFormat.test(e.formData.startDate) ||
-      !dateRegexFormat.test(e.formData.endDate)
-    ) {
-      console.log('BAD BAD DATE');
-      return;
-    }
-
+  const updateCurrentBenchmark = async ({formData}: IChangeEvent) => {
     const variables = {
       input: {
         id: currentBenchmark.id,
         benchmarkPatch: {
-          benchmark: e.formData.benchmark,
-          eligibilityThreshold: e.formData.eligibilityThreshold,
-          startDate: moment
-            .tz(
-              e.formData.startDate.concat('T', '00:00:00'),
-              'DD-MM-YYYYTHH:mm:ss',
-              'America/Vancouver'
-            )
-            .format('YYYY-MM-DDTHH:mm:ss'),
-          endDate: e.formData.endDate
-            ? moment
-                .tz(
-                  e.formData.endDate.concat('T', '23:59:59'),
-                  'DD-MM-YYYYTHH:mm:ss',
-                  'America/Vancouver'
-                )
-                .format('YYYY-MM-DDTHH:mm:ss')
-            : null
+          ...formData
         }
       }
     };
@@ -249,8 +216,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         benchmarkPatch: {
           deletedAt: moment
             .tz('America/Vancouver')
-            .format('YYYY-MM-DDTHH:mm:ss'),
-          deletedBy: userRowId
+            .format('YYYY-MM-DDTHH:mm:ss')
         }
       }
     };
@@ -265,21 +231,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   const handleDeleteBenchmark = async benchmark => {
     await deleteBenchmark(benchmark);
-  };
-
-  const currentBenchmarkFormData = {
-    benchmark: currentBenchmark?.benchmark ?? null,
-    eligibilityThreshold: currentBenchmark?.eligibilityThreshold ?? null,
-    startDate: currentBenchmark?.startDate
-      ? moment
-          .tz(currentBenchmark.startDate, 'America/Vancouver')
-          .format('DD-MM-YYYY')
-      : null,
-    endDate: currentBenchmark?.endDate
-      ? moment
-          .tz(currentBenchmark.endDate, 'America/Vancouver')
-          .format('DD-MM-YYYY')
-      : null
   };
 
   const [modalShow, setModalShow] = React.useState(false);
@@ -331,23 +282,15 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           Current
           <hr />
           <Row>
+            <Col md={4}>Benchmark: {currentBenchmark?.benchmark ?? null}</Col>
             <Col md={4}>
-              Benchmark:{' '}
-              {currentBenchmark && currentBenchmark.benchmark
-                ? currentBenchmark.benchmark
-                : null}
+              ET: {currentBenchmark?.eligibilityThreshold ?? null}
             </Col>
             <Col md={4}>
-              ET:{' '}
-              {currentBenchmark && currentBenchmark.eligibilityThreshold
-                ? currentBenchmark.eligibilityThreshold
-                : null}
+              Multiplier: {currentBenchmark?.incentiveMultiplier ?? null}
             </Col>
             <Col md={4}>
-              End Date:{' '}
-              {currentBenchmark && currentBenchmark.endDate
-                ? currentBenchmark.endDate
-                : null}
+              Last Reporting Year: {currentBenchmark?.endReportingYear ?? null}
             </Col>
           </Row>
           <JsonSchemaForm
@@ -355,7 +298,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             liveOmit
             schema={benchmarkSchema}
             uiSchema={benchmarkUISchema}
-            formData={currentBenchmarkFormData}
+            formData={currentBenchmark}
             showErrorList={false}
             ArrayFieldTemplate={FormArrayFieldTemplate}
             FieldTemplate={FormFieldTemplate}
@@ -389,6 +332,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                         benchmark={benchmark}
                         environment={relay.environment}
                         handleDeleteBenchmark={handleDeleteBenchmark}
+                        benchmarkSchema={benchmarkSchema}
+                        benchmarkUISchema={benchmarkUISchema}
                       />
                     ))}
                   </Card.Body>
@@ -411,8 +356,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                         <tr>
                           <th>Benchmark</th>
                           <th>Eligibility Threshold</th>
-                          <th>Start Date (DD-MM-YYYY)</th>
-                          <th>End Date (DD_MM-YYYY)</th>
+                          <th>Incentive Multiplier</th>
+                          <th>Start Reporting Year</th>
+                          <th>End Reporting Year</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -469,10 +415,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       <tr>
         <td>{product.name}</td>
         <td>{product.units}</td>
-        <td>{currentBenchmark ? currentBenchmark.benchmark : null}</td>
-        <td>
-          {currentBenchmark ? currentBenchmark.eligibilityThreshold : null}
-        </td>
+        <td>{currentBenchmark?.benchmark ?? null}</td>
+        <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
+        <td>{currentBenchmark?.incentiveMultiplier ?? null}</td>
         <td>{product.state}</td>
         <td>
           <Button variant="info" onClick={() => setModalShow(true)}>
@@ -492,7 +437,6 @@ export default createFragmentContainer(ProductRowItemComponent, {
       name
       description
       state
-      parent
       units
       benchmarksByProductId {
         edges {
@@ -501,9 +445,24 @@ export default createFragmentContainer(ProductRowItemComponent, {
             rowId
             benchmark
             eligibilityThreshold
-            startDate
-            endDate
+            incentiveMultiplier
+            startReportingYear
+            endReportingYear
             deletedAt
+          }
+        }
+      }
+    }
+  `,
+  query: graphql`
+    fragment ProductRowItemContainer_query on Query {
+      getReportingYear {
+        reportingYear
+      }
+      allReportingYears {
+        edges {
+          node {
+            reportingYear
           }
         }
       }

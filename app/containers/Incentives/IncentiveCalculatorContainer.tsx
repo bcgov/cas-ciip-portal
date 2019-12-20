@@ -1,20 +1,20 @@
-import React, {useEffect} from 'react';
-import {graphql, createRefetchContainer} from 'react-relay';
+import React from 'react';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
-import IncentiveSegmentFormula from '../../components/Incentives/IncentiveSegmentFormula';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import IncentiveSegmentFormula from 'components/Incentives/IncentiveSegmentFormula';
+import {IncentiveCalculatorContainer_applicationRevision} from 'IncentiveCalculatorContainer_applicationRevision.graphql';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
 
-export const IncentiveCalculator = props => {
-  useEffect(() => {
-    const refetchVariables = {
-      bcghgidInput: Number(props.bcghgid),
-      reportingYear: props.reportingYear
-    };
-    props.relay.refetch(refetchVariables);
-  });
+interface Props {
+  applicationRevision: IncentiveCalculatorContainer_applicationRevision;
+}
 
-  const {allProducts, bcghgidProducts, carbonTax} = props.query;
+export const IncentiveCalculator: React.FunctionComponent<Props> = ({
+  applicationRevision
+}) => {
+  const {
+    edges = []
+  } = applicationRevision.ciipIncentivePaymentsByApplicationIdAndVersionNumber;
   return (
     <>
       <Jumbotron>
@@ -31,102 +31,37 @@ export const IncentiveCalculator = props => {
         <IncentiveSegmentFormula />
       </Jumbotron>
 
-      <div className="incentive-breakdown">
-        <Table striped bordered hover responsive="lg">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Calculation Breakdown</th>
-              <th>Incentive for product</th>
-              <th>Chart</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props ? (
-              bcghgidProducts.edges.map(edge => (
-                <IncentiveSegmentContainer
-                  key={edge.node.id}
-                  reported={edge.node}
-                  allProducts={allProducts}
-                  carbonTax={carbonTax}
-                />
-              ))
-            ) : (
-              <LoadingSpinner />
-            )}
-            <tr>
-              <td colSpan={2}>
-                <strong>Total Incentive</strong>
-              </td>
-              <td>
-                {/* <strong>CAD {props.totalCarbonIncentive.toFixed(2)}</strong> */}
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-      </div>
+      <Table striped bordered hover responsive="lg">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Calculation Breakdown (flat rate)</th>
+            <th>Incentive for product (pro-rated rate)</th>
+            <th>Incentive for product (flat rate)</th>
+            <th>Chart</th>
+          </tr>
+        </thead>
+        <tbody>
+          {edges.map(({node}) => (
+            <IncentiveSegmentContainer key={node.id} incentivePayment={node} />
+          ))}
+        </tbody>
+      </Table>
     </>
   );
 };
 
-export default createRefetchContainer(
-  IncentiveCalculator,
-  {
-    query: graphql`
-      fragment IncentiveCalculatorContainer_query on Query
-        @argumentDefinitions(
-          bcghgidInput: {type: "BigFloat"}
-          reportingYear: {type: "String"}
-        ) {
-        allProducts: allProducts {
-          edges {
-            node {
-              id
-              rowId
-              name
-              description
-              benchmarksByProductId {
-                nodes {
-                  benchmark
-                  eligibilityThreshold
-                }
-              }
-            }
+export default createFragmentContainer(IncentiveCalculator, {
+  applicationRevision: graphql`
+    fragment IncentiveCalculatorContainer_applicationRevision on ApplicationRevision {
+      ciipIncentivePaymentsByApplicationIdAndVersionNumber {
+        edges {
+          node {
+            id
+            ...IncentiveSegmentContainer_incentivePayment
           }
         }
-        bcghgidProducts: getProductsByBcghgid(bcghgidInput: $bcghgidInput) {
-          edges {
-            node {
-              id
-              ...IncentiveSegmentContainer_reported
-            }
-          }
-        }
-        carbonTax: getCarbonTaxByBcghgid(
-          bcghgidInput: $bcghgidInput
-          reportingYear: $reportingYear
-        ) {
-          edges {
-            node {
-              reportId
-              organisationId
-              fuelType
-              calculatedCarbonTax
-            }
-          }
-        }
-      }
-    `
-  },
-  graphql`
-    query IncentiveCalculatorContainerRefetchQuery(
-      $bcghgidInput: BigFloat
-      $reportingYear: String
-    ) {
-      query {
-        ...IncentiveCalculatorContainer_query
-          @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
       }
     }
   `
-);
+});

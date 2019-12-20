@@ -1,26 +1,23 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
-import {NextRouter} from 'next/router';
 import {Row, Col} from 'react-bootstrap';
-// Import IncentiveCalculatorContainer from '../containers/Incentives/IncentiveCalculatorContainer';
-import ApplicationRevisionStatusContainer from '../containers/Applications/ApplicationRevisionStatusContainer';
-import DefaultLayout from '../layouts/default-layout';
-import ApplicationDetail from '../containers/Applications/ApplicationDetailsContainer';
-import ApplicationComments from '../containers/Applications/ApplicationCommentsContainer';
+import IncentiveCalculatorContainer from 'containers/Incentives/IncentiveCalculatorContainer';
+import ApplicationRevisionStatusContainer from 'containers/Applications/ApplicationRevisionStatusContainer';
+import DefaultLayout from 'layouts/default-layout';
+import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
+import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
+import {CiipPageComponentProps} from 'next-env';
 
-interface Props {
+interface Props extends CiipPageComponentProps {
   query: applicationReviewQueryResponse['query'];
-  router: NextRouter;
-  isAnalyst: boolean;
 }
 
 class ApplicationReview extends Component<Props> {
   static query = graphql`
     query applicationReviewQuery(
-      $bcghgidInput: BigFloat
-      $reportingYear: String
       $applicationId: ID!
+      $revisionId: ID!
       $version: String!
     ) {
       query {
@@ -35,8 +32,9 @@ class ApplicationReview extends Component<Props> {
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
         }
-        ...IncentiveCalculatorContainer_query
-          @arguments(bcghgidInput: $bcghgidInput, reportingYear: $reportingYear)
+        applicationRevision(id: $revisionId) {
+          ...IncentiveCalculatorContainer_applicationRevision
+        }
         ...ApplicationDetailsContainer_query
         ...ApplicationCommentsContainer_query
           @arguments(applicationId: $applicationId)
@@ -58,17 +56,14 @@ class ApplicationReview extends Component<Props> {
         <hr />
         <Row className="application-container">
           <Col md={8} className="application-body">
-            <ApplicationDetail
+            <ApplicationDetails
               isAnalyst
               query={query}
               application={query.application}
             />
-            {/* TODO: Fix this container. it is borked */}
-            {/* <IncentiveCalculatorContainer
-              query={query}
-              bcghgid={this.props.router.query.bcghgid}
-              reportingYear={this.props.router.query.reportingYear}
-            /> */}
+            <IncentiveCalculatorContainer
+              applicationRevision={query.applicationRevision}
+            />
           </Col>
           <Col md={4} className="application-comments">
             <ApplicationComments query={query} />

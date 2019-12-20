@@ -25,6 +25,7 @@ class ViewApplication extends Component<Props> {
           ...defaultLayout_session
         }
         ...ApplicationDetailsContainer_query
+
         application(id: $applicationId) {
           applicationRevisionStatus {
             applicationRevisionStatus

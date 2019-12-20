@@ -39,7 +39,6 @@ pushd "$__dirname" > /dev/null
 
 _psql() {
   user=${PGUSER:-$(whoami)}
-  database=${PGDATABASE:-$database}
   host=${PGHOST:-localhost}
   port=${PGPORT:-5432}
   psql -d "$database" -h "$host" -p "$port" -U "$user" -qtA --set ON_ERROR_STOP=1 "$@" 2>&1
@@ -58,7 +57,7 @@ createdb() {
 actions=()
 
 sqitch_revert() {
-  _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1 && sqitch revert -y
+  _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1 && sqitch revert -y "$database"
   return 0
 }
 
@@ -71,7 +70,7 @@ deploySwrs() {
   fi
   pushd ../.cas-ggircs
   sqitch_revert
-  sqitch deploy
+  sqitch deploy "$database"
   popd
   _psql <<EOF
   insert into
@@ -95,7 +94,7 @@ deployPortal() {
   echo "Deploying the portal schema to $database"
   pushd ..
   sqitch_revert
-  sqitch deploy
+  sqitch deploy "$database"
   popd
 }
 
@@ -126,6 +125,7 @@ createdb
 [[ " ${actions[*]} " =~ " deployPortal " ]] && deployPortal
 deployPortalIfNotExists
 
+_psql -f "./portal/reporting_year.sql"
 _psql -f "./portal/form_json.sql"
 _psql -f "./portal/ciip_application_wizard.sql"
 _psql -f "./portal/fuel.sql"
@@ -135,11 +135,11 @@ _psql -f "./portal/user.sql"
 _psql -f "./portal/benchmark.sql"
 _psql -f "./portal/organisation.sql"
 _psql -f "./portal/facility.sql"
-_psql -f "./portal/reporting_year.sql"
+_psql -f "./portal/gas.sql"
+_psql -f "./portal/emission_gas.sql"
 _psql -f "./portal/application.sql"
 _psql -f "./portal/certification_url.sql"
 _psql -f "./portal/application_revision.sql"
 _psql -f "./portal/application_revision_status.sql"
 _psql -f "./portal/form_result.sql"
-_psql -f "./portal/gas.sql"
-_psql -f "./portal/emission_gas.sql"
+_psql -f "./portal/application_review.sql"

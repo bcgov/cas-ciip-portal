@@ -14,6 +14,9 @@ const mutation = graphql`
       clientMutationId
       application {
         id
+        latestDraftRevision {
+          id
+        }
       }
     }
   }

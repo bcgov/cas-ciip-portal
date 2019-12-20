@@ -6,10 +6,12 @@ begin;
 create table ggircs_portal.benchmark (
   id integer primary key generated always as identity,
   product_id int not null references ggircs_portal.product(id),
-  benchmark int not null,
-  eligibility_threshold int not null,
-  start_date timestamp with time zone,
-  end_date timestamp with time zone,
+  benchmark real not null,
+  eligibility_threshold real not null,
+  incentive_multiplier real not null default 1,
+  excludes_exported_energy boolean not null default true,
+  start_reporting_year integer not null references ggircs_portal.reporting_year(reporting_year),
+  end_reporting_year integer not null references ggircs_portal.reporting_year(reporting_year),
   created_at timestamp with time zone not null default now(),
   created_by varchar(1000),
   updated_at timestamp with time zone not null default now(),
@@ -26,10 +28,12 @@ create trigger _100_timestamps
 comment on table ggircs_portal.benchmark is 'Table containing the benchmark and eligibility threshold for a product';
 comment on column ggircs_portal.benchmark.id is 'Unique ID for the benchmark';
 comment on column ggircs_portal.benchmark.product_id is 'Foreign key to the product';
-comment on column ggircs_portal.benchmark.benchmark is 'The value of the benchmark';
-comment on column ggircs_portal.benchmark.eligibility_threshold is 'The value of eligibility_threshold';
-comment on column ggircs_portal.benchmark.start_date is 'The date when this benchmark became/becomes active';
-comment on column ggircs_portal.benchmark.end_date is 'The date when this benchmark became/becomes inactive';
+comment on column ggircs_portal.benchmark.benchmark is 'The benchmark for a product, i.e. the emission intensity that would return a 100% incentive';
+comment on column ggircs_portal.benchmark.eligibility_threshold is 'The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive';
+comment on column ggircs_portal.benchmark.incentive_multiplier is 'The multiplier applied to the incentive amounts under this product';
+comment on column ggircs_portal.benchmark.excludes_exported_energy is 'Whether the emissions from exported energy were excluded in the benchmark calculation';
+comment on column ggircs_portal.benchmark.start_reporting_year is 'The reporting year where this benchmark becomes active';
+comment on column ggircs_portal.benchmark.end_reporting_year is 'The last reporting year where this benchmark is active';
 comment on column ggircs_portal.benchmark.created_at is 'Creation date of row';
 comment on column ggircs_portal.benchmark.created_by is 'Creator of row';
 comment on column ggircs_portal.benchmark.updated_at is 'Last update date of row';

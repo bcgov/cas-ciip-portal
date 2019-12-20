@@ -42,18 +42,15 @@ export const ProductList: React.FunctionComponent<Props> = ({
     const displayNameToColumnNameMap = {
       Product: 'name',
       Units: 'units',
-      Benchmark: 'benchmark',
-      'Elig. Threshold': 'eligibility_threshold',
+      'Benchmark (tCO2e/product units)': 'benchmark',
+      'Elig. Threshold (tCO2e/product units)': 'eligibility_threshold',
+      'Incentive Multiplier': 'incentive_multiplier',
       Status: 'state'
     };
     const body = (
       <tbody>
         {allProducts.map(({node}) => (
-          <ProductRowItemContainer
-            key={node.id}
-            product={node}
-            userRowId={query.session.ciipUserBySub.rowId}
-          />
+          <ProductRowItemContainer key={node.id} product={node} query={query} />
         ))}
       </tbody>
     );
@@ -84,11 +81,7 @@ export default createRefetchContainer(
           orderByField: {type: "String"}
           direction: {type: "String"}
         ) {
-        session {
-          ciipUserBySub {
-            rowId
-          }
-        }
+        ...ProductRowItemContainer_query
         searchProducts(
           first: 20
           searchField: $searchField
@@ -97,7 +90,6 @@ export default createRefetchContainer(
           direction: $direction
         ) @connection(key: "ProductListContainer_searchProducts") {
           edges {
-            cursor
             node {
               id
               ...ProductRowItemContainer_product

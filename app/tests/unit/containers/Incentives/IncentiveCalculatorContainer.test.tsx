@@ -1,36 +1,53 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {IncentiveCalculator} from 'containers/Incentives/IncentiveCalculatorContainer';
+import {IncentiveCalculatorContainer_applicationRevision} from '__generated__/IncentiveCalculatorContainer_applicationRevision.graphql';
 
 describe('IncentiveCalculator', () => {
+  const applicationRevision: IncentiveCalculatorContainer_applicationRevision = {
+    ' $refType': 'IncentiveCalculatorContainer_applicationRevision',
+    ciipIncentivePaymentsByApplicationIdAndVersionNumber: {
+      edges: [
+        {
+          node: {
+            id: 'foo',
+            ' $fragmentRefs': {
+              IncentiveSegmentContainer_incentivePayment: true
+            }
+          }
+        },
+        {
+          node: {
+            id: 'bar',
+            ' $fragmentRefs': {
+              IncentiveSegmentContainer_incentivePayment: true
+            }
+          }
+        }
+      ]
+    }
+  };
+
   it('should render the page', async () => {
     const r = shallow(
-      <IncentiveCalculator
-        query={{
-          allProducts: {edges: []},
-          bcghgidProducts: {edges: []},
-          carbonTax: []
-        }}
-      />
+      <IncentiveCalculator applicationRevision={applicationRevision} />
     );
     expect(r).toMatchSnapshot();
   });
 
   it('should pass reported products as props to IncentiveSegmentContainer component', async () => {
-    const query = {
-      allProducts: {edges: []},
-      bcghgidProducts: {
-        edges: [{node: {id: 'product-id-1', product: 'dylan'}}]
-      },
-      carbonTax: []
-    };
-    const r = shallow(<IncentiveCalculator query={query} />);
+    const r = shallow(
+      <IncentiveCalculator applicationRevision={applicationRevision} />
+    );
     expect(
       r
         .find('Relay(IncentiveSegmentContainer)')
         .first()
-        .prop('reported')
-    ).toBe(query.bcghgidProducts.edges[0].node);
+        .prop('incentivePayment')
+    ).toBe(
+      applicationRevision.ciipIncentivePaymentsByApplicationIdAndVersionNumber
+        .edges[0].node
+    );
   });
 
   it.todo('renders the table with products and calculation');

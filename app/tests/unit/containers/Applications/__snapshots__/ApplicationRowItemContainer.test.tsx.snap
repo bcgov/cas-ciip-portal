@@ -37,8 +37,7 @@ exports[`ApplicationRowItem should render the application 1`] = `
           "pathname": "/application-review",
           "query": Object {
             "applicationId": "abc",
-            "bcghgid": 123456789,
-            "reportingYear": 2018,
+            "revisionId": undefined,
             "version": 1,
           },
         }

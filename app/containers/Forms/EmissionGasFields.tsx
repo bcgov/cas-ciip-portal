@@ -26,8 +26,9 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
             onChange={e => {
               onChange({
                 ...formData,
-                annualEmission: (e.nativeEvent.target as HTMLInputElement)
-                  .value,
+                annualEmission: Number(
+                  (e.nativeEvent.target as HTMLInputElement).value
+                ),
                 annualCO2e:
                   Number((e.nativeEvent.target as HTMLInputElement).value) *
                   formData.gwp

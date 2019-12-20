@@ -4,46 +4,34 @@
 begin;
   create or replace view ggircs_portal.ciip_production as (
     with x as (
-      select * from
-      (select
-         form_result.application_id as id,
+      select
+         application_id, version_number,
          json_array_elements((form_result)::json) as production_data
       from ggircs_portal.form_result
       join ggircs_portal.form_json
       on form_result.form_id = form_json.id
-      and form_json.slug = 'production') as A
-      inner join
-      (select
-         form_result.application_id as fid,
-         (form_result -> 'facility')::json as facility_data
-      from ggircs_portal.form_result
-      join ggircs_portal.form_json
-      on form_result.form_id = form_json.id
-      and form_json.slug = 'admin') as B
-      on A.id = B.fid
+      and form_json.slug = 'production'
     )
     select
-       x.id,
-       (x.facility_data ->> 'bcghgid')::numeric as bcghgid,
+       x.application_id,
+       x.version_number,
        (x.production_data ->> 'quantity')::numeric as quantity,
-       (x.production_data ->> 'product')::varchar(1000) as product,
-       (x.production_data ->> 'productUnits')::varchar(1000) as fuel_units,
-       (x.production_data ->> 'comments')::varchar(10000) as comments,
-       (x.production_data ->> 'associatedEmissions')::numeric as associated_emissions
+       (x.production_data ->> 'productRowId')::integer as product_id,
+       (x.production_data ->> 'productUnits')::varchar(1000) as product_units,
+       (x.production_data ->> 'productionAllocationFactor')::numeric as production_allocation_factor,
+       (x.production_data ->> 'paymentAllocationFactor')::numeric as payment_allocation_factor,
+       (x.production_data ->> 'additionalData')::jsonb as additional_data
     from x
  );
 
--- Postgraphile smart-comments: These comments allow Postgraphile to infer relations between views
--- as though they were tables (ie faking a primary key in order to create an ID! type)
-comment on view ggircs_portal.ciip_production is E'@primaryKey id';
-
--- TODO(Dylan): Regular comments are interfering with postgraphile smart comments.
--- comment on view ggircs_portal.ciip_production is 'The view for production data reported in the application';
--- comment on column ggircs_portal.ciip_production.application_id is 'The application id used for reference and join';
--- comment on column ggircs_portal.ciip_production.quantity is 'The production quantity';
--- comment on column ggircs_portal.ciip_production.product is 'The actual equipment';
--- comment on column ggircs_portal.ciip_production.fuel_units is 'The emission/fuel units for the production unit';
--- comment on column ggircs_portal.ciip_production.comments is 'The comments';
--- comment on column ggircs_portal.ciip_production.associated_emissions is 'The methodology details if other';
+comment on view ggircs_portal.ciip_production is E'@omit\n The view for production data reported in the application';
+comment on column ggircs_portal.ciip_production.application_id is 'The application id';
+comment on column ggircs_portal.ciip_production.version_number is 'The application revision number';
+comment on column ggircs_portal.ciip_production.quantity is 'The production quantity';
+comment on column ggircs_portal.ciip_production.product_id is 'The id of the product';
+comment on column ggircs_portal.ciip_production.product_units is 'The units for the quantity';
+comment on column ggircs_portal.ciip_production.production_allocation_factor is 'The percentage of the facility''s total emission allocated to a product';
+comment on column ggircs_portal.ciip_production.payment_allocation_factor is 'The percentage of the facility''s taxable emission allocated to a product';
+comment on column ggircs_portal.ciip_production.additional_data is 'The product-specific additional data';
 
 commit;

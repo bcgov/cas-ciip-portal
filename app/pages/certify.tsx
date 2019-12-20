@@ -18,6 +18,7 @@ class Certify extends Component<Props> {
           ...defaultLayout_session
         }
         ...ApplicationDetailsContainer_query
+
         application(id: $applicationId) {
           ...CertificationSignature_application
           ...ApplicationDetailsContainer_application
@@ -32,14 +33,12 @@ class Certify extends Component<Props> {
     return (
       <>
         <DefaultLayout title="Submission Certification" session={query.session}>
-          <>
-            <ApplicationDetailsContainer
-              query={query}
-              isAnalyst={false}
-              application={query.application}
-            />
-            <CertificationSignature application={query.application} />
-          </>
+          <ApplicationDetailsContainer
+            query={query}
+            isAnalyst={false}
+            application={query.application}
+          />
+          <CertificationSignature application={query.application} />
         </DefaultLayout>
         <style jsx global>
           {`

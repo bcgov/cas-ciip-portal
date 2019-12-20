@@ -61,9 +61,6 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
           pathname: '/ciip-application',
           query: {
             applicationId,
-            revisionId:
-              applyButtonDetails.applicationByApplicationId.latestDraftRevision
-                .id,
             version: latestDraftVersionNumber
           }
         }}
@@ -84,9 +81,6 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
           pathname: '/view-application',
           query: {
             applicationId,
-            revisionId:
-              applyButtonDetails.applicationByApplicationId
-                .latestSubmittedRevision.id,
             version: latestSubmittedVersionNumber
           }
         }}

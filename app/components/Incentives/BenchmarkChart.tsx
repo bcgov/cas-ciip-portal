@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 
 interface Props {
-  quantity: number;
+  emissionIntensity: number;
   benchmark: number;
   eligibilityThreshold: number;
-  carbonTaxPaid?: number;
-  incentiveSegment?: number;
-  fuelPercentage?: number;
 }
 
 // TODO: does this need to stay as a class component?
@@ -30,7 +27,7 @@ class BenchmarkChart extends Component<Props> {
     const max = Math.max(
       this.props.eligibilityThreshold,
       this.props.benchmark,
-      this.props.quantity
+      this.props.emissionIntensity
     );
     const et = (this.props.eligibilityThreshold / max) * 100;
     ctx.fillRect(0, 140 - et, 120, 3); // Eligibility threshold
@@ -42,9 +39,9 @@ class BenchmarkChart extends Component<Props> {
     ctx.fillText(`BM: ${this.props.benchmark}`, 125, 140 - bm + 5);
 
     ctx.fillStyle = '#1a3494';
-    const q = (this.props.quantity / max) * 100;
+    const q = (this.props.emissionIntensity / max) * 100;
     ctx.fillRect(30, 142, 40, -q); // Benchmark
-    ctx.fillText(`QTY:  ${this.props.quantity}`, 80, 150 - q);
+    ctx.fillText(`QTY:  ${this.props.emissionIntensity}`, 80, 150 - q);
   }
 
   render() {

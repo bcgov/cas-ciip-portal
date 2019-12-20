@@ -440,6 +440,35 @@ type ApplicationRevision implements Node {
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
 
+  """Reads and enables pagination through a set of `CiipIncentivePayment`."""
+  ciipIncentivePaymentsByApplicationIdAndVersionNumber(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipIncentivePaymentCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipIncentivePayment`."""
+    orderBy: [CiipIncentivePaymentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipIncentivePaymentsConnection!
+
   """
   Reads a single `CiipUser` that is related to this `ApplicationRevision`.
   """
@@ -965,8 +994,39 @@ enum ApplicationsOrderBy {
 
 """Table containing the benchmark and eligibility threshold for a product"""
 type Benchmark implements Node {
-  """The value of the benchmark"""
-  benchmark: Int!
+  """
+  The benchmark for a product, i.e. the emission intensity that would return a 100% incentive
+  """
+  benchmark: Float!
+
+  """Reads and enables pagination through a set of `CiipIncentivePayment`."""
+  ciipIncentivePaymentsByBenchmarkId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipIncentivePaymentCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipIncentivePayment`."""
+    orderBy: [CiipIncentivePaymentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipIncentivePaymentsConnection!
 
   """Reads a single `CiipUser` that is related to this `Benchmark`."""
   ciipUserByDeletedBy: CiipUser
@@ -983,16 +1043,26 @@ type Benchmark implements Node {
   """The user who deleted the row"""
   deletedBy: Int
 
-  """The value of eligibility_threshold"""
-  eligibilityThreshold: Int!
+  """
+  The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive
+  """
+  eligibilityThreshold: Float!
 
-  """The date when this benchmark became/becomes inactive"""
-  endDate: Datetime
+  """The last reporting year where this benchmark is active"""
+  endReportingYear: Int!
+
+  """
+  Whether the emissions from exported energy were excluded in the benchmark calculation
+  """
+  excludesExportedEnergy: Boolean!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+
+  """The multiplier applied to the incentive amounts under this product"""
+  incentiveMultiplier: Float!
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
@@ -1000,11 +1070,17 @@ type Benchmark implements Node {
   """Foreign key to the product"""
   productId: Int!
 
+  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
+  reportingYearByEndReportingYear: ReportingYear
+
+  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
+  reportingYearByStartReportingYear: ReportingYear
+
   """Unique ID for the benchmark"""
   rowId: Int!
 
-  """The date when this benchmark became/becomes active"""
-  startDate: Datetime
+  """The reporting year where this benchmark becomes active"""
+  startReportingYear: Int!
 
   """Last update date of row"""
   updatedAt: Datetime!
@@ -1019,7 +1095,7 @@ for equality and combined with a logical ‘and.’
 """
 input BenchmarkCondition {
   """Checks for equality with the object’s `benchmark` field."""
-  benchmark: Int
+  benchmark: Float
 
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
@@ -1034,10 +1110,16 @@ input BenchmarkCondition {
   deletedBy: Int
 
   """Checks for equality with the object’s `eligibilityThreshold` field."""
-  eligibilityThreshold: Int
+  eligibilityThreshold: Float
 
-  """Checks for equality with the object’s `endDate` field."""
-  endDate: Datetime
+  """Checks for equality with the object’s `endReportingYear` field."""
+  endReportingYear: Int
+
+  """Checks for equality with the object’s `excludesExportedEnergy` field."""
+  excludesExportedEnergy: Boolean
+
+  """Checks for equality with the object’s `incentiveMultiplier` field."""
+  incentiveMultiplier: Float
 
   """Checks for equality with the object’s `productId` field."""
   productId: Int
@@ -1045,8 +1127,8 @@ input BenchmarkCondition {
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 
-  """Checks for equality with the object’s `startDate` field."""
-  startDate: Datetime
+  """Checks for equality with the object’s `startReportingYear` field."""
+  startReportingYear: Int
 
   """Checks for equality with the object’s `updatedAt` field."""
   updatedAt: Datetime
@@ -1057,8 +1139,10 @@ input BenchmarkCondition {
 
 """An input for mutations affecting `Benchmark`"""
 input BenchmarkInput {
-  """The value of the benchmark"""
-  benchmark: Int!
+  """
+  The benchmark for a product, i.e. the emission intensity that would return a 100% incentive
+  """
+  benchmark: Float!
 
   """Creation date of row"""
   createdAt: Datetime
@@ -1072,17 +1156,27 @@ input BenchmarkInput {
   """The user who deleted the row"""
   deletedBy: Int
 
-  """The value of eligibility_threshold"""
-  eligibilityThreshold: Int!
+  """
+  The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive
+  """
+  eligibilityThreshold: Float!
 
-  """The date when this benchmark became/becomes inactive"""
-  endDate: Datetime
+  """The last reporting year where this benchmark is active"""
+  endReportingYear: Int!
+
+  """
+  Whether the emissions from exported energy were excluded in the benchmark calculation
+  """
+  excludesExportedEnergy: Boolean
+
+  """The multiplier applied to the incentive amounts under this product"""
+  incentiveMultiplier: Float
 
   """Foreign key to the product"""
   productId: Int!
 
-  """The date when this benchmark became/becomes active"""
-  startDate: Datetime
+  """The reporting year where this benchmark becomes active"""
+  startReportingYear: Int!
 
   """Last update date of row"""
   updatedAt: Datetime
@@ -1095,8 +1189,10 @@ input BenchmarkInput {
 Represents an update to a `Benchmark`. Fields that are set will be updated.
 """
 input BenchmarkPatch {
-  """The value of the benchmark"""
-  benchmark: Int
+  """
+  The benchmark for a product, i.e. the emission intensity that would return a 100% incentive
+  """
+  benchmark: Float
 
   """Creation date of row"""
   createdAt: Datetime
@@ -1110,17 +1206,27 @@ input BenchmarkPatch {
   """The user who deleted the row"""
   deletedBy: Int
 
-  """The value of eligibility_threshold"""
-  eligibilityThreshold: Int
+  """
+  The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive
+  """
+  eligibilityThreshold: Float
 
-  """The date when this benchmark became/becomes inactive"""
-  endDate: Datetime
+  """The last reporting year where this benchmark is active"""
+  endReportingYear: Int
+
+  """
+  Whether the emissions from exported energy were excluded in the benchmark calculation
+  """
+  excludesExportedEnergy: Boolean
+
+  """The multiplier applied to the incentive amounts under this product"""
+  incentiveMultiplier: Float
 
   """Foreign key to the product"""
   productId: Int
 
-  """The date when this benchmark became/becomes active"""
-  startDate: Datetime
+  """The reporting year where this benchmark becomes active"""
+  startReportingYear: Int
 
   """Last update date of row"""
   updatedAt: Datetime
@@ -1169,17 +1275,21 @@ enum BenchmarksOrderBy {
   DELETED_BY_DESC
   ELIGIBILITY_THRESHOLD_ASC
   ELIGIBILITY_THRESHOLD_DESC
-  END_DATE_ASC
-  END_DATE_DESC
+  END_REPORTING_YEAR_ASC
+  END_REPORTING_YEAR_DESC
+  EXCLUDES_EXPORTED_ENERGY_ASC
+  EXCLUDES_EXPORTED_ENERGY_DESC
   ID_ASC
   ID_DESC
+  INCENTIVE_MULTIPLIER_ASC
+  INCENTIVE_MULTIPLIER_DESC
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
   PRODUCT_ID_ASC
   PRODUCT_ID_DESC
-  START_DATE_ASC
-  START_DATE_DESC
+  START_REPORTING_YEAR_ASC
+  START_REPORTING_YEAR_DESC
   UPDATED_AT_ASC
   UPDATED_AT_DESC
   UPDATED_BY_ASC
@@ -1226,6 +1336,7 @@ type CarbonTaxDataEdge {
 
 type CarbonTaxDatum {
   carbonTaxed: Boolean
+  carbonTaxRate: BigFloat
   ctaRateUnits: String
   fuelCharge: BigFloat
   fuelMappingId: Int
@@ -1527,19 +1638,45 @@ enum CiipApplicationWizardsOrderBy {
 
 """The view for calculating carbon tax based on ciip data"""
 type CiipCarbonTaxCalculation {
+  """The application id"""
   applicationId: Int
-  calculatedCarbonTax: BigFloat
-  carbonTaxed: Boolean
-  ctaRateUnits: String
-  fuelCharge: BigFloat
-  fuelMappingId: Int
+
+  """
+  The amount of carbon tax payed eligible for an incentive (assuming a flat carbon tax rate for the reporting year)
+  """
+  carbonTaxEligibleForCiipFlat: BigFloat
+
+  """The amount of carbon tax payed eligible for an incentive"""
+  carbonTaxEligibleForCiipProRated: BigFloat
+
+  """
+  The carbon tax applicable to this fuel (assuming a flat carbon tax rate for the reporting year)
+  """
+  carbonTaxFlat: BigFloat
+
+  """The carbon tax applicable to this fuel"""
+  carbonTaxProRated: BigFloat
+
+  """The carbon tax rate applicable at the end of the reporting period"""
+  carbonTaxRateEnd: BigFloat
+
+  """The carbon tax rate applicable at the start of the reporting period"""
+  carbonTaxRateStart: BigFloat
+
+  """The name of the fuel this carbon tax applied to"""
   fuelType: String
+
+  """The quantity of fuel consumed in the reporting period"""
   quantity: BigFloat
-  rateEndDate: Date
-  rateStartDate: Date
+
+  """The application's reporting year"""
   reportingYear: Int
-  unitConversionFactor: Int
+
+  """The fuel quantity units"""
   units: String
+
+  """The application revision number"""
+  versionNumber: Int
 }
 
 """
@@ -1550,20 +1687,27 @@ input CiipCarbonTaxCalculationCondition {
   """Checks for equality with the object’s `applicationId` field."""
   applicationId: Int
 
-  """Checks for equality with the object’s `calculatedCarbonTax` field."""
-  calculatedCarbonTax: BigFloat
+  """
+  Checks for equality with the object’s `carbonTaxEligibleForCiipFlat` field.
+  """
+  carbonTaxEligibleForCiipFlat: BigFloat
 
-  """Checks for equality with the object’s `carbonTaxed` field."""
-  carbonTaxed: Boolean
+  """
+  Checks for equality with the object’s `carbonTaxEligibleForCiipProRated` field.
+  """
+  carbonTaxEligibleForCiipProRated: BigFloat
 
-  """Checks for equality with the object’s `ctaRateUnits` field."""
-  ctaRateUnits: String
+  """Checks for equality with the object’s `carbonTaxFlat` field."""
+  carbonTaxFlat: BigFloat
 
-  """Checks for equality with the object’s `fuelCharge` field."""
-  fuelCharge: BigFloat
+  """Checks for equality with the object’s `carbonTaxProRated` field."""
+  carbonTaxProRated: BigFloat
 
-  """Checks for equality with the object’s `fuelMappingId` field."""
-  fuelMappingId: Int
+  """Checks for equality with the object’s `carbonTaxRateEnd` field."""
+  carbonTaxRateEnd: BigFloat
+
+  """Checks for equality with the object’s `carbonTaxRateStart` field."""
+  carbonTaxRateStart: BigFloat
 
   """Checks for equality with the object’s `fuelType` field."""
   fuelType: String
@@ -1571,20 +1715,14 @@ input CiipCarbonTaxCalculationCondition {
   """Checks for equality with the object’s `quantity` field."""
   quantity: BigFloat
 
-  """Checks for equality with the object’s `rateEndDate` field."""
-  rateEndDate: Date
-
-  """Checks for equality with the object’s `rateStartDate` field."""
-  rateStartDate: Date
-
   """Checks for equality with the object’s `reportingYear` field."""
   reportingYear: Int
 
-  """Checks for equality with the object’s `unitConversionFactor` field."""
-  unitConversionFactor: Int
-
   """Checks for equality with the object’s `units` field."""
   units: String
+
+  """Checks for equality with the object’s `versionNumber` field."""
+  versionNumber: Int
 }
 
 """A connection to a list of `CiipCarbonTaxCalculation` values."""
@@ -1619,652 +1757,179 @@ type CiipCarbonTaxCalculationsEdge {
 enum CiipCarbonTaxCalculationsOrderBy {
   APPLICATION_ID_ASC
   APPLICATION_ID_DESC
-  CALCULATED_CARBON_TAX_ASC
-  CALCULATED_CARBON_TAX_DESC
-  CARBON_TAXED_ASC
-  CARBON_TAXED_DESC
-  CTA_RATE_UNITS_ASC
-  CTA_RATE_UNITS_DESC
-  FUEL_CHARGE_ASC
-  FUEL_CHARGE_DESC
-  FUEL_MAPPING_ID_ASC
-  FUEL_MAPPING_ID_DESC
+  CARBON_TAX_ELIGIBLE_FOR_CIIP_FLAT_ASC
+  CARBON_TAX_ELIGIBLE_FOR_CIIP_FLAT_DESC
+  CARBON_TAX_ELIGIBLE_FOR_CIIP_PRO_RATED_ASC
+  CARBON_TAX_ELIGIBLE_FOR_CIIP_PRO_RATED_DESC
+  CARBON_TAX_FLAT_ASC
+  CARBON_TAX_FLAT_DESC
+  CARBON_TAX_PRO_RATED_ASC
+  CARBON_TAX_PRO_RATED_DESC
+  CARBON_TAX_RATE_END_ASC
+  CARBON_TAX_RATE_END_DESC
+  CARBON_TAX_RATE_START_ASC
+  CARBON_TAX_RATE_START_DESC
   FUEL_TYPE_ASC
   FUEL_TYPE_DESC
   NATURAL
   QUANTITY_ASC
   QUANTITY_DESC
-  RATE_END_DATE_ASC
-  RATE_END_DATE_DESC
-  RATE_START_DATE_ASC
-  RATE_START_DATE_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
-  UNIT_CONVERSION_FACTOR_ASC
-  UNIT_CONVERSION_FACTOR_DESC
   UNITS_ASC
   UNITS_DESC
+  VERSION_NUMBER_ASC
+  VERSION_NUMBER_DESC
 }
 
-type CiipCertifier implements Node {
-  certificationDate: Date
-  certifierName: String
-  emailAddress: String
-  fax: String
-  firstName: String
+"""
+The view that calculates the estimated incentive payment for each product of an application revision
+"""
+type CiipIncentivePayment implements Node {
+  """The application id"""
+  applicationId: Int!
+
+  """
+  Reads a single `ApplicationRevision` that is related to this `CiipIncentivePayment`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
+
+  """
+  Reads a single `Benchmark` that is related to this `CiipIncentivePayment`.
+  """
+  benchmarkByBenchmarkId: Benchmark
+
+  """The id of the benchmark"""
+  benchmarkId: Int
+
+  """
+  The amount, in canadian dollars, of carbon tax eligible for incentive for this product (assuming a flat CT rate)
+  """
+  carbonTaxEligibleFlat: BigFloat
+
+  """
+  The amount, in canadian dollars, of carbon tax eligible for incentive for this product
+  """
+  carbonTaxEligibleProRated: BigFloat
+
+  """
+  The emission intensity for this product, measured in tonnes of CO2 equivalent per unit of production
+  """
+  emissionIntensity: BigFloat
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
-  lastName: String
-  phone: String
-  position: String
-  rowId: Int!
+
+  """
+  The amount, in canadian dollars, of incentive to be payed back for this product (assuming a flat CT rate)
+  """
+  incentiveAmountFlat: BigFloat
+
+  """
+  The amount, in canadian dollars, of incentive to be payed back for this product
+  """
+  incentiveAmountProRated: BigFloat
+
+  """
+  Reads a single `Product` that is related to this `CiipIncentivePayment`.
+  """
+  productByProductId: Product
+
+  """The id of the product"""
+  productId: Int!
+
+  """The revision version number"""
+  versionNumber: Int!
 }
 
 """
-A condition to be used against `CiipCertifier` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input CiipCertifierCondition {
-  """Checks for equality with the object’s `certificationDate` field."""
-  certificationDate: Date
-
-  """Checks for equality with the object’s `certifierName` field."""
-  certifierName: String
-
-  """Checks for equality with the object’s `emailAddress` field."""
-  emailAddress: String
-
-  """Checks for equality with the object’s `fax` field."""
-  fax: String
-
-  """Checks for equality with the object’s `firstName` field."""
-  firstName: String
-
-  """Checks for equality with the object’s `lastName` field."""
-  lastName: String
-
-  """Checks for equality with the object’s `phone` field."""
-  phone: String
-
-  """Checks for equality with the object’s `position` field."""
-  position: String
-
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
-}
-
-"""A connection to a list of `CiipCertifier` values."""
-type CiipCertifiersConnection {
-  """
-  A list of edges which contains the `CiipCertifier` and cursor to aid in pagination.
-  """
-  edges: [CiipCertifiersEdge!]!
-
-  """A list of `CiipCertifier` objects."""
-  nodes: [CiipCertifier]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipCertifier` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipCertifier` edge in the connection."""
-type CiipCertifiersEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipCertifier` at the end of the edge."""
-  node: CiipCertifier
-}
-
-"""Methods to use when ordering `CiipCertifier`."""
-enum CiipCertifiersOrderBy {
-  CERTIFICATION_DATE_ASC
-  CERTIFICATION_DATE_DESC
-  CERTIFIER_NAME_ASC
-  CERTIFIER_NAME_DESC
-  EMAIL_ADDRESS_ASC
-  EMAIL_ADDRESS_DESC
-  FAX_ASC
-  FAX_DESC
-  FIRST_NAME_ASC
-  FIRST_NAME_DESC
-  ID_ASC
-  ID_DESC
-  LAST_NAME_ASC
-  LAST_NAME_DESC
-  NATURAL
-  PHONE_ASC
-  PHONE_DESC
-  POSITION_ASC
-  POSITION_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-type CiipContact implements Node {
-  emailAddress: String
-  fax: String
-  firstName: String
-
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-  lastName: String
-  phone: String
-  position: String
-  rowId: Int!
-}
-
-"""
-A condition to be used against `CiipContact` object types. All fields are tested
-for equality and combined with a logical ‘and.’
-"""
-input CiipContactCondition {
-  """Checks for equality with the object’s `emailAddress` field."""
-  emailAddress: String
-
-  """Checks for equality with the object’s `fax` field."""
-  fax: String
-
-  """Checks for equality with the object’s `firstName` field."""
-  firstName: String
-
-  """Checks for equality with the object’s `lastName` field."""
-  lastName: String
-
-  """Checks for equality with the object’s `phone` field."""
-  phone: String
-
-  """Checks for equality with the object’s `position` field."""
-  position: String
-
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
-}
-
-"""A connection to a list of `CiipContact` values."""
-type CiipContactsConnection {
-  """
-  A list of edges which contains the `CiipContact` and cursor to aid in pagination.
-  """
-  edges: [CiipContactsEdge!]!
-
-  """A list of `CiipContact` objects."""
-  nodes: [CiipContact]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipContact` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipContact` edge in the connection."""
-type CiipContactsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipContact` at the end of the edge."""
-  node: CiipContact
-}
-
-"""Methods to use when ordering `CiipContact`."""
-enum CiipContactsOrderBy {
-  EMAIL_ADDRESS_ASC
-  EMAIL_ADDRESS_DESC
-  FAX_ASC
-  FAX_DESC
-  FIRST_NAME_ASC
-  FIRST_NAME_DESC
-  ID_ASC
-  ID_DESC
-  LAST_NAME_ASC
-  LAST_NAME_DESC
-  NATURAL
-  PHONE_ASC
-  PHONE_DESC
-  POSITION_ASC
-  POSITION_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-type CiipElectricityAndHeat implements Node {
-  consumedOnsite: BigFloat
-  consumptionType: String
-  generatedOnsite: BigFloat
-
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-  onsiteEmissions: BigFloat
-  purchased: BigFloat
-  rowId: Int!
-  sold: BigFloat
-}
-
-"""
-A condition to be used against `CiipElectricityAndHeat` object types. All fields
+A condition to be used against `CiipIncentivePayment` object types. All fields
 are tested for equality and combined with a logical ‘and.’
 """
-input CiipElectricityAndHeatCondition {
-  """Checks for equality with the object’s `consumedOnsite` field."""
-  consumedOnsite: BigFloat
+input CiipIncentivePaymentCondition {
+  """Checks for equality with the object’s `applicationId` field."""
+  applicationId: Int
 
-  """Checks for equality with the object’s `consumptionType` field."""
-  consumptionType: String
+  """Checks for equality with the object’s `benchmarkId` field."""
+  benchmarkId: Int
 
-  """Checks for equality with the object’s `generatedOnsite` field."""
-  generatedOnsite: BigFloat
+  """Checks for equality with the object’s `carbonTaxEligibleFlat` field."""
+  carbonTaxEligibleFlat: BigFloat
 
-  """Checks for equality with the object’s `onsiteEmissions` field."""
-  onsiteEmissions: BigFloat
+  """
+  Checks for equality with the object’s `carbonTaxEligibleProRated` field.
+  """
+  carbonTaxEligibleProRated: BigFloat
 
-  """Checks for equality with the object’s `purchased` field."""
-  purchased: BigFloat
+  """Checks for equality with the object’s `emissionIntensity` field."""
+  emissionIntensity: BigFloat
 
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
+  """Checks for equality with the object’s `incentiveAmountFlat` field."""
+  incentiveAmountFlat: BigFloat
 
-  """Checks for equality with the object’s `sold` field."""
-  sold: BigFloat
+  """Checks for equality with the object’s `incentiveAmountProRated` field."""
+  incentiveAmountProRated: BigFloat
+
+  """Checks for equality with the object’s `productId` field."""
+  productId: Int
+
+  """Checks for equality with the object’s `versionNumber` field."""
+  versionNumber: Int
 }
 
-"""A connection to a list of `CiipElectricityAndHeat` values."""
-type CiipElectricityAndHeatsConnection {
+"""A connection to a list of `CiipIncentivePayment` values."""
+type CiipIncentivePaymentsConnection {
   """
-  A list of edges which contains the `CiipElectricityAndHeat` and cursor to aid in pagination.
+  A list of edges which contains the `CiipIncentivePayment` and cursor to aid in pagination.
   """
-  edges: [CiipElectricityAndHeatsEdge!]!
+  edges: [CiipIncentivePaymentsEdge!]!
 
-  """A list of `CiipElectricityAndHeat` objects."""
-  nodes: [CiipElectricityAndHeat]!
+  """A list of `CiipIncentivePayment` objects."""
+  nodes: [CiipIncentivePayment]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """
-  The count of *all* `CiipElectricityAndHeat` you could get from the connection.
+  The count of *all* `CiipIncentivePayment` you could get from the connection.
   """
   totalCount: Int!
 }
 
-"""A `CiipElectricityAndHeat` edge in the connection."""
-type CiipElectricityAndHeatsEdge {
+"""A `CiipIncentivePayment` edge in the connection."""
+type CiipIncentivePaymentsEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `CiipElectricityAndHeat` at the end of the edge."""
-  node: CiipElectricityAndHeat
+  """The `CiipIncentivePayment` at the end of the edge."""
+  node: CiipIncentivePayment
 }
 
-"""Methods to use when ordering `CiipElectricityAndHeat`."""
-enum CiipElectricityAndHeatsOrderBy {
-  CONSUMED_ONSITE_ASC
-  CONSUMED_ONSITE_DESC
-  CONSUMPTION_TYPE_ASC
-  CONSUMPTION_TYPE_DESC
-  GENERATED_ONSITE_ASC
-  GENERATED_ONSITE_DESC
-  ID_ASC
-  ID_DESC
-  NATURAL
-  ONSITE_EMISSIONS_ASC
-  ONSITE_EMISSIONS_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-  PURCHASED_ASC
-  PURCHASED_DESC
-  SOLD_ASC
-  SOLD_DESC
-}
-
-"""A connection to a list of `CiipFacility` values."""
-type CiipFacilitiesConnection {
-  """
-  A list of edges which contains the `CiipFacility` and cursor to aid in pagination.
-  """
-  edges: [CiipFacilitiesEdge!]!
-
-  """A list of `CiipFacility` objects."""
-  nodes: [CiipFacility]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipFacility` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipFacility` edge in the connection."""
-type CiipFacilitiesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipFacility` at the end of the edge."""
-  node: CiipFacility
-}
-
-"""Methods to use when ordering `CiipFacility`."""
-enum CiipFacilitiesOrderBy {
-  BCGHGID_ASC
-  BCGHGID_DESC
-  FACILITY_NAME_ASC
-  FACILITY_NAME_DESC
-  FACILITY_TYPE_ASC
-  FACILITY_TYPE_DESC
-  ID_ASC
-  ID_DESC
-  LATITUDE_ASC
-  LATITUDE_DESC
-  LONGITUDE_ASC
-  LONGITUDE_DESC
-  NAICS_CODE_ASC
-  NAICS_CODE_DESC
+"""Methods to use when ordering `CiipIncentivePayment`."""
+enum CiipIncentivePaymentsOrderBy {
+  APPLICATION_ID_ASC
+  APPLICATION_ID_DESC
+  BENCHMARK_ID_ASC
+  BENCHMARK_ID_DESC
+  CARBON_TAX_ELIGIBLE_FLAT_ASC
+  CARBON_TAX_ELIGIBLE_FLAT_DESC
+  CARBON_TAX_ELIGIBLE_PRO_RATED_ASC
+  CARBON_TAX_ELIGIBLE_PRO_RATED_DESC
+  EMISSION_INTENSITY_ASC
+  EMISSION_INTENSITY_DESC
+  INCENTIVE_AMOUNT_FLAT_ASC
+  INCENTIVE_AMOUNT_FLAT_DESC
+  INCENTIVE_AMOUNT_PRO_RATED_ASC
+  INCENTIVE_AMOUNT_PRO_RATED_DESC
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
-}
-
-type CiipFacility implements Node {
-  bcghgid: BigFloat
-  facilityName: String
-  facilityType: String
-
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-  latitude: BigFloat
-  longitude: BigFloat
-  naicsCode: BigFloat
-  rowId: Int!
-}
-
-"""
-A condition to be used against `CiipFacility` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input CiipFacilityCondition {
-  """Checks for equality with the object’s `bcghgid` field."""
-  bcghgid: BigFloat
-
-  """Checks for equality with the object’s `facilityName` field."""
-  facilityName: String
-
-  """Checks for equality with the object’s `facilityType` field."""
-  facilityType: String
-
-  """Checks for equality with the object’s `latitude` field."""
-  latitude: BigFloat
-
-  """Checks for equality with the object’s `longitude` field."""
-  longitude: BigFloat
-
-  """Checks for equality with the object’s `naicsCode` field."""
-  naicsCode: BigFloat
-
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
-}
-
-type CiipFuel implements Node {
-  fuelType: String
-  fuelUnits: String
-
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-  methodology: String
-  quantity: BigFloat
-  rowId: Int!
-}
-
-"""
-A condition to be used against `CiipFuel` object types. All fields are tested
-for equality and combined with a logical ‘and.’
-"""
-input CiipFuelCondition {
-  """Checks for equality with the object’s `fuelType` field."""
-  fuelType: String
-
-  """Checks for equality with the object’s `fuelUnits` field."""
-  fuelUnits: String
-
-  """Checks for equality with the object’s `methodology` field."""
-  methodology: String
-
-  """Checks for equality with the object’s `quantity` field."""
-  quantity: BigFloat
-
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
-}
-
-"""A connection to a list of `CiipFuel` values."""
-type CiipFuelsConnection {
-  """
-  A list of edges which contains the `CiipFuel` and cursor to aid in pagination.
-  """
-  edges: [CiipFuelsEdge!]!
-
-  """A list of `CiipFuel` objects."""
-  nodes: [CiipFuel]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipFuel` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipFuel` edge in the connection."""
-type CiipFuelsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipFuel` at the end of the edge."""
-  node: CiipFuel
-}
-
-"""Methods to use when ordering `CiipFuel`."""
-enum CiipFuelsOrderBy {
-  FUEL_TYPE_ASC
-  FUEL_TYPE_DESC
-  FUEL_UNITS_ASC
-  FUEL_UNITS_DESC
-  ID_ASC
-  ID_DESC
-  METHODOLOGY_ASC
-  METHODOLOGY_DESC
-  NATURAL
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-  QUANTITY_ASC
-  QUANTITY_DESC
-}
-
-type CiipOperator implements Node {
-  bcCorporateRegistryNumber: BigFloat
-  dunsNumber: BigFloat
-
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-  naicsCode: BigFloat
-  operatorName: String
-  operatorTradeName: String
-  rowId: Int!
-}
-
-"""
-A condition to be used against `CiipOperator` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input CiipOperatorCondition {
-  """
-  Checks for equality with the object’s `bcCorporateRegistryNumber` field.
-  """
-  bcCorporateRegistryNumber: BigFloat
-
-  """Checks for equality with the object’s `dunsNumber` field."""
-  dunsNumber: BigFloat
-
-  """Checks for equality with the object’s `naicsCode` field."""
-  naicsCode: BigFloat
-
-  """Checks for equality with the object’s `operatorName` field."""
-  operatorName: String
-
-  """Checks for equality with the object’s `operatorTradeName` field."""
-  operatorTradeName: String
-
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
-}
-
-"""A connection to a list of `CiipOperator` values."""
-type CiipOperatorsConnection {
-  """
-  A list of edges which contains the `CiipOperator` and cursor to aid in pagination.
-  """
-  edges: [CiipOperatorsEdge!]!
-
-  """A list of `CiipOperator` objects."""
-  nodes: [CiipOperator]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipOperator` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipOperator` edge in the connection."""
-type CiipOperatorsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipOperator` at the end of the edge."""
-  node: CiipOperator
-}
-
-"""Methods to use when ordering `CiipOperator`."""
-enum CiipOperatorsOrderBy {
-  BC_CORPORATE_REGISTRY_NUMBER_ASC
-  BC_CORPORATE_REGISTRY_NUMBER_DESC
-  DUNS_NUMBER_ASC
-  DUNS_NUMBER_DESC
-  ID_ASC
-  ID_DESC
-  NAICS_CODE_ASC
-  NAICS_CODE_DESC
-  NATURAL
-  OPERATOR_NAME_ASC
-  OPERATOR_NAME_DESC
-  OPERATOR_TRADE_NAME_ASC
-  OPERATOR_TRADE_NAME_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-type CiipProduction implements Node {
-  associatedEmissions: BigFloat
-  bcghgid: BigFloat
-  comments: String
-  fuelUnits: String
-
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  id: ID!
-  product: String
-  quantity: BigFloat
-  rowId: Int!
-}
-
-"""
-A condition to be used against `CiipProduction` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input CiipProductionCondition {
-  """Checks for equality with the object’s `associatedEmissions` field."""
-  associatedEmissions: BigFloat
-
-  """Checks for equality with the object’s `bcghgid` field."""
-  bcghgid: BigFloat
-
-  """Checks for equality with the object’s `comments` field."""
-  comments: String
-
-  """Checks for equality with the object’s `fuelUnits` field."""
-  fuelUnits: String
-
-  """Checks for equality with the object’s `product` field."""
-  product: String
-
-  """Checks for equality with the object’s `quantity` field."""
-  quantity: BigFloat
-
-  """Checks for equality with the object’s `rowId` field."""
-  rowId: Int
-}
-
-"""A connection to a list of `CiipProduction` values."""
-type CiipProductionsConnection {
-  """
-  A list of edges which contains the `CiipProduction` and cursor to aid in pagination.
-  """
-  edges: [CiipProductionsEdge!]!
-
-  """A list of `CiipProduction` objects."""
-  nodes: [CiipProduction]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `CiipProduction` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `CiipProduction` edge in the connection."""
-type CiipProductionsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `CiipProduction` at the end of the edge."""
-  node: CiipProduction
-}
-
-"""Methods to use when ordering `CiipProduction`."""
-enum CiipProductionsOrderBy {
-  ASSOCIATED_EMISSIONS_ASC
-  ASSOCIATED_EMISSIONS_DESC
-  BCGHGID_ASC
-  BCGHGID_DESC
-  COMMENTS_ASC
-  COMMENTS_DESC
-  FUEL_UNITS_ASC
-  FUEL_UNITS_DESC
-  ID_ASC
-  ID_DESC
-  NATURAL
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-  PRODUCT_ASC
-  PRODUCT_DESC
-  QUANTITY_ASC
-  QUANTITY_DESC
+  PRODUCT_ID_ASC
+  PRODUCT_ID_DESC
+  VERSION_NUMBER_ASC
+  VERSION_NUMBER_DESC
 }
 
 """Table containing the benchmark and eligibility threshold for a product"""
@@ -3201,18 +2866,18 @@ input CreateBenchmarkInput {
 
 """All input for the `createBenchmarkMutationChain` mutation."""
 input CreateBenchmarkMutationChainInput {
-  benchmarkInput: Int
+  benchmarkInput: Float
 
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  eligibilityThresholdInput: Int
-  endDateInput: Datetime
-  prevBenchmarkIdInput: Int
+  eligibilityThresholdInput: Float
+  endReportingYearInput: Int
+  incentiveMultiplierInput: Float
   productIdInput: Int
-  startDateInput: Datetime
+  startReportingYearInput: Int
 }
 
 """The output of our `createBenchmarkMutationChain` mutation."""
@@ -3241,6 +2906,12 @@ type CreateBenchmarkMutationChainPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
+  reportingYearByEndReportingYear: ReportingYear
+
+  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
+  reportingYearByStartReportingYear: ReportingYear
 }
 
 """The output of our create `Benchmark` mutation."""
@@ -3270,6 +2941,12 @@ type CreateBenchmarkPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
+  reportingYearByEndReportingYear: ReportingYear
+
+  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
+  reportingYearByStartReportingYear: ReportingYear
 }
 
 """All input for the create `CertificationUrl` mutation."""
@@ -4165,6 +3842,12 @@ type DeleteBenchmarkPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
+  reportingYearByEndReportingYear: ReportingYear
+
+  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
+  reportingYearByStartReportingYear: ReportingYear
 }
 
 """All input for the `deleteCertificationUrlByRowId` mutation."""
@@ -5202,165 +4885,6 @@ type EmissionDatum {
   gasType: String
   quantity: BigFloat
   reportId: Int
-}
-
-"""The estimated carbon tax paid for a reporting_period_duration"""
-type EstimatedCarbonTaxPaid {
-  activityId: Int
-  bcghgid: String
-  calculatedCarbonTax: BigFloat
-  emissionId: Int
-  facilityId: Int
-  flatCalculation: String
-  fuelAmount: BigFloat
-  fuelCharge: BigFloat
-  fuelId: Int
-  fuelType: String
-  naicsId: Int
-  organisationId: Int
-  proRatedCalculatedCarbonTax: BigFloat
-  proRatedCalculation: String
-  proRatedFuelCharge: BigFloat
-  reportId: Int
-  reportingPeriodDuration: String
-  unitConversionFactor: Int
-  year: Int
-}
-
-"""
-A condition to be used against `EstimatedCarbonTaxPaid` object types. All fields
-are tested for equality and combined with a logical ‘and.’
-"""
-input EstimatedCarbonTaxPaidCondition {
-  """Checks for equality with the object’s `activityId` field."""
-  activityId: Int
-
-  """Checks for equality with the object’s `bcghgid` field."""
-  bcghgid: String
-
-  """Checks for equality with the object’s `calculatedCarbonTax` field."""
-  calculatedCarbonTax: BigFloat
-
-  """Checks for equality with the object’s `emissionId` field."""
-  emissionId: Int
-
-  """Checks for equality with the object’s `facilityId` field."""
-  facilityId: Int
-
-  """Checks for equality with the object’s `flatCalculation` field."""
-  flatCalculation: String
-
-  """Checks for equality with the object’s `fuelAmount` field."""
-  fuelAmount: BigFloat
-
-  """Checks for equality with the object’s `fuelCharge` field."""
-  fuelCharge: BigFloat
-
-  """Checks for equality with the object’s `fuelId` field."""
-  fuelId: Int
-
-  """Checks for equality with the object’s `fuelType` field."""
-  fuelType: String
-
-  """Checks for equality with the object’s `naicsId` field."""
-  naicsId: Int
-
-  """Checks for equality with the object’s `organisationId` field."""
-  organisationId: Int
-
-  """
-  Checks for equality with the object’s `proRatedCalculatedCarbonTax` field.
-  """
-  proRatedCalculatedCarbonTax: BigFloat
-
-  """Checks for equality with the object’s `proRatedCalculation` field."""
-  proRatedCalculation: String
-
-  """Checks for equality with the object’s `proRatedFuelCharge` field."""
-  proRatedFuelCharge: BigFloat
-
-  """Checks for equality with the object’s `reportId` field."""
-  reportId: Int
-
-  """Checks for equality with the object’s `reportingPeriodDuration` field."""
-  reportingPeriodDuration: String
-
-  """Checks for equality with the object’s `unitConversionFactor` field."""
-  unitConversionFactor: Int
-
-  """Checks for equality with the object’s `year` field."""
-  year: Int
-}
-
-"""A connection to a list of `EstimatedCarbonTaxPaid` values."""
-type EstimatedCarbonTaxPaidsConnection {
-  """
-  A list of edges which contains the `EstimatedCarbonTaxPaid` and cursor to aid in pagination.
-  """
-  edges: [EstimatedCarbonTaxPaidsEdge!]!
-
-  """A list of `EstimatedCarbonTaxPaid` objects."""
-  nodes: [EstimatedCarbonTaxPaid]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `EstimatedCarbonTaxPaid` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-"""A `EstimatedCarbonTaxPaid` edge in the connection."""
-type EstimatedCarbonTaxPaidsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `EstimatedCarbonTaxPaid` at the end of the edge."""
-  node: EstimatedCarbonTaxPaid
-}
-
-"""Methods to use when ordering `EstimatedCarbonTaxPaid`."""
-enum EstimatedCarbonTaxPaidsOrderBy {
-  ACTIVITY_ID_ASC
-  ACTIVITY_ID_DESC
-  BCGHGID_ASC
-  BCGHGID_DESC
-  CALCULATED_CARBON_TAX_ASC
-  CALCULATED_CARBON_TAX_DESC
-  EMISSION_ID_ASC
-  EMISSION_ID_DESC
-  FACILITY_ID_ASC
-  FACILITY_ID_DESC
-  FLAT_CALCULATION_ASC
-  FLAT_CALCULATION_DESC
-  FUEL_AMOUNT_ASC
-  FUEL_AMOUNT_DESC
-  FUEL_CHARGE_ASC
-  FUEL_CHARGE_DESC
-  FUEL_ID_ASC
-  FUEL_ID_DESC
-  FUEL_TYPE_ASC
-  FUEL_TYPE_DESC
-  NAICS_ID_ASC
-  NAICS_ID_DESC
-  NATURAL
-  ORGANISATION_ID_ASC
-  ORGANISATION_ID_DESC
-  PRO_RATED_CALCULATED_CARBON_TAX_ASC
-  PRO_RATED_CALCULATED_CARBON_TAX_DESC
-  PRO_RATED_CALCULATION_ASC
-  PRO_RATED_CALCULATION_DESC
-  PRO_RATED_FUEL_CHARGE_ASC
-  PRO_RATED_FUEL_CHARGE_DESC
-  REPORT_ID_ASC
-  REPORT_ID_DESC
-  REPORTING_PERIOD_DURATION_ASC
-  REPORTING_PERIOD_DURATION_DESC
-  UNIT_CONVERSION_FACTOR_ASC
-  UNIT_CONVERSION_FACTOR_DESC
-  YEAR_ASC
-  YEAR_DESC
 }
 
 """A connection to a list of `Facility` values."""
@@ -8269,6 +7793,35 @@ type Product implements Node {
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksConnection!
 
+  """Reads and enables pagination through a set of `CiipIncentivePayment`."""
+  ciipIncentivePaymentsByProductId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CiipIncentivePaymentCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CiipIncentivePayment`."""
+    orderBy: [CiipIncentivePaymentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipIncentivePaymentsConnection!
+
   """Creation date of row"""
   createdAt: Datetime!
 
@@ -8872,8 +8425,8 @@ type Query implements Node {
     orderBy: [CiipCarbonTaxCalculationsOrderBy!] = [NATURAL]
   ): CiipCarbonTaxCalculationsConnection
 
-  """Reads and enables pagination through a set of `CiipCertifier`."""
-  allCiipCertifiers(
+  """Reads and enables pagination through a set of `CiipIncentivePayment`."""
+  allCiipIncentivePayments(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -8883,7 +8436,7 @@ type Query implements Node {
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: CiipCertifierCondition
+    condition: CiipIncentivePaymentCondition
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -8897,185 +8450,9 @@ type Query implements Node {
     """
     offset: Int
 
-    """The method to use when ordering `CiipCertifier`."""
-    orderBy: [CiipCertifiersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipCertifiersConnection
-
-  """Reads and enables pagination through a set of `CiipContact`."""
-  allCiipContacts(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipContactCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipContact`."""
-    orderBy: [CiipContactsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipContactsConnection
-
-  """
-  Reads and enables pagination through a set of `CiipElectricityAndHeat`.
-  """
-  allCiipElectricityAndHeats(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipElectricityAndHeatCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipElectricityAndHeat`."""
-    orderBy: [CiipElectricityAndHeatsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipElectricityAndHeatsConnection
-
-  """Reads and enables pagination through a set of `CiipFacility`."""
-  allCiipFacilities(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipFacilityCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipFacility`."""
-    orderBy: [CiipFacilitiesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipFacilitiesConnection
-
-  """Reads and enables pagination through a set of `CiipFuel`."""
-  allCiipFuels(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipFuelCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipFuel`."""
-    orderBy: [CiipFuelsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipFuelsConnection
-
-  """Reads and enables pagination through a set of `CiipOperator`."""
-  allCiipOperators(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipOperatorCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipOperator`."""
-    orderBy: [CiipOperatorsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipOperatorsConnection
-
-  """Reads and enables pagination through a set of `CiipProduction`."""
-  allCiipProductions(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CiipProductionCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `CiipProduction`."""
-    orderBy: [CiipProductionsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CiipProductionsConnection
+    """The method to use when ordering `CiipIncentivePayment`."""
+    orderBy: [CiipIncentivePaymentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CiipIncentivePaymentsConnection
 
   """Reads and enables pagination through a set of `CiipUserOrganisation`."""
   allCiipUserOrganisations(
@@ -9163,37 +8540,6 @@ type Query implements Node {
     """The method to use when ordering `EmissionCategoryGas`."""
     orderBy: [EmissionCategoryGasesOrderBy!] = [PRIMARY_KEY_ASC]
   ): EmissionCategoryGasesConnection
-
-  """
-  Reads and enables pagination through a set of `EstimatedCarbonTaxPaid`.
-  """
-  allEstimatedCarbonTaxPaids(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: EstimatedCarbonTaxPaidCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `EstimatedCarbonTaxPaid`."""
-    orderBy: [EstimatedCarbonTaxPaidsOrderBy!] = [NATURAL]
-  ): EstimatedCarbonTaxPaidsConnection
 
   """Reads and enables pagination through a set of `Facility`."""
   allFacilities(
@@ -9548,68 +8894,14 @@ type Query implements Node {
   ): CiipApplicationWizard
   ciipApplicationWizardByFormId(formId: Int!): CiipApplicationWizard
 
-  """Reads a single `CiipCertifier` using its globally unique `ID`."""
-  ciipCertifier(
+  """Reads a single `CiipIncentivePayment` using its globally unique `ID`."""
+  ciipIncentivePayment(
     """
-    The globally unique `ID` to be used in selecting a single `CiipCertifier`.
-    """
-    id: ID!
-  ): CiipCertifier
-  ciipCertifierByRowId(rowId: Int!): CiipCertifier
-
-  """Reads a single `CiipContact` using its globally unique `ID`."""
-  ciipContact(
-    """
-    The globally unique `ID` to be used in selecting a single `CiipContact`.
+    The globally unique `ID` to be used in selecting a single `CiipIncentivePayment`.
     """
     id: ID!
-  ): CiipContact
-  ciipContactByRowId(rowId: Int!): CiipContact
-
-  """
-  Reads a single `CiipElectricityAndHeat` using its globally unique `ID`.
-  """
-  ciipElectricityAndHeat(
-    """
-    The globally unique `ID` to be used in selecting a single `CiipElectricityAndHeat`.
-    """
-    id: ID!
-  ): CiipElectricityAndHeat
-  ciipElectricityAndHeatByRowId(rowId: Int!): CiipElectricityAndHeat
-
-  """Reads a single `CiipFacility` using its globally unique `ID`."""
-  ciipFacility(
-    """
-    The globally unique `ID` to be used in selecting a single `CiipFacility`.
-    """
-    id: ID!
-  ): CiipFacility
-  ciipFacilityByRowId(rowId: Int!): CiipFacility
-
-  """Reads a single `CiipFuel` using its globally unique `ID`."""
-  ciipFuel(
-    """The globally unique `ID` to be used in selecting a single `CiipFuel`."""
-    id: ID!
-  ): CiipFuel
-  ciipFuelByRowId(rowId: Int!): CiipFuel
-
-  """Reads a single `CiipOperator` using its globally unique `ID`."""
-  ciipOperator(
-    """
-    The globally unique `ID` to be used in selecting a single `CiipOperator`.
-    """
-    id: ID!
-  ): CiipOperator
-  ciipOperatorByRowId(rowId: Int!): CiipOperator
-
-  """Reads a single `CiipProduction` using its globally unique `ID`."""
-  ciipProduction(
-    """
-    The globally unique `ID` to be used in selecting a single `CiipProduction`.
-    """
-    id: ID!
-  ): CiipProduction
-  ciipProductionByRowId(rowId: Int!): CiipProduction
+  ): CiipIncentivePayment
+  ciipIncentivePaymentByApplicationIdAndVersionNumberAndProductId(applicationId: Int!, productId: Int!, versionNumber: Int!): CiipIncentivePayment
 
   """Reads a single `CiipUser` using its globally unique `ID`."""
   ciipUser(
@@ -9673,31 +8965,6 @@ type Query implements Node {
   ): Gas
   gasByRowId(rowId: Int!): Gas
 
-  """
-  Reads and enables pagination through a set of `EstimatedCarbonTaxPaid`.
-  """
-  getCarbonTaxByBcghgid(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-    bcghgidInput: BigFloat
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    reportingYear: String
-  ): EstimatedCarbonTaxPaidsConnection!
-
   """Reads and enables pagination through a set of `CarbonTaxDatum`."""
   getCarbonTaxData(
     """Read all values in the set after (below) this cursor."""
@@ -9718,50 +8985,6 @@ type Query implements Node {
     """
     offset: Int
   ): CarbonTaxDataConnection!
-
-  """Reads and enables pagination through a set of `CiipProduction`."""
-  getProductsByApplicationId(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-    appId: String
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-  ): CiipProductionsConnection!
-
-  """Reads and enables pagination through a set of `CiipProduction`."""
-  getProductsByBcghgid(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-    bcghgidInput: BigFloat
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-  ): CiipProductionsConnection!
 
   """Function returning current reporting year and related dates"""
   getReportingYear: ReportingYear
@@ -10046,6 +9269,64 @@ type ReportingYear implements Node {
     """The method to use when ordering `Application`."""
     orderBy: [ApplicationsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationsConnection!
+
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByEndReportingYear(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksConnection!
+
+  """Reads and enables pagination through a set of `Benchmark`."""
+  benchmarksByStartReportingYear(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: BenchmarkCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `Benchmark`."""
+    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
+  ): BenchmarksConnection!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -10752,6 +10033,12 @@ type UpdateBenchmarkPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
+  reportingYearByEndReportingYear: ReportingYear
+
+  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
+  reportingYearByStartReportingYear: ReportingYear
 }
 
 """All input for the `updateCertificationUrlByRowId` mutation."""

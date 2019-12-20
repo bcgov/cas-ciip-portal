@@ -20,17 +20,16 @@ PG_PROVE=pg_prove -h localhost
 PG_SHAREDIR=$(shell pg_config --sharedir)
 
 .PHONY: test
-test:
-	@@$(MAKE) -s $(MAKEFLAGS) createdb;
-	@@$(MAKE) -s $(MAKEFLAGS) deploy_ggircs;
-	@@$(MAKE) -s $(MAKEFLAGS) revert;
-	@@$(MAKE) -s $(MAKEFLAGS) deploy;
-	@@$(MAKE) -s $(MAKEFLAGS) prove_unit;
-	@@$(MAKE) -s $(MAKEFLAGS) prove_style;
-	@@$(MAKE) -s $(MAKEFLAGS) dropdb;
+test: | dropdb createdb deploy_ggircs deploy revert deploy_test_data prove_unit prove_style dropdb
+
 
 .PHONY: unit
-unit: dropdb createdb deploy_ggircs deploy prove_unit
+unit: | dropdb deploy_test_data prove_unit
+
+.PHONY: deploy_test_data
+deploy_test_data:
+	# Deploy data in $(TEST_DB)
+	@@PGDATABASE=$(TEST_DB) ./data/deploy-test-data.sh -d
 
 .PHONY: deploy_ggircs
 deploy_ggircs:
@@ -50,12 +49,12 @@ deploy:
 .PHONY: prove_style
 prove_style:
 	# Run style-related test suite on all objects in db using pg_prove
-	@@$(PG_PROVE) -v -d $(TEST_DB) test/style/*_test.sql
+	@@$(PG_PROVE) --failures -d $(TEST_DB) test/style/*_test.sql
 
 .PHONY: prove_unit
 prove_unit:
 	# Run unit test suite using pg_prove
-	@@$(PG_PROVE) -d $(TEST_DB) test/unit/*_test.sql
+	@@$(PG_PROVE) --failures -d $(TEST_DB) test/unit/*_test.sql
 
 .PHONY: revert
 revert:
