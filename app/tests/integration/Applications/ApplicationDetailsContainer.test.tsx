@@ -43,7 +43,6 @@ describe('ApplicationDetailsContainer', () => {
         if (props) {
           return (
             <ApplicationDetailsContainer
-              isAnalyst={false}
               query={props.query}
               application={props.query.application}
             />

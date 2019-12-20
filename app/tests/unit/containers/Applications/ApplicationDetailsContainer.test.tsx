@@ -6,7 +6,6 @@ describe('ApplicationDetailsComponent', () => {
   it('should match the snapshot with the ApplicationDetails component', async () => {
     const renderer = shallow(
       <ApplicationDetailsComponent
-        isAnalyst
         relay={null}
         query={{
           ' $refType': 'ApplicationDetailsContainer_query',

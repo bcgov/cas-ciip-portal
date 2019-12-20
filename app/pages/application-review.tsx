@@ -63,11 +63,7 @@ class ApplicationReview extends Component<Props> {
         <hr />
         <Row className="application-container">
           <Col md={8} className="application-body">
-            <ApplicationDetails
-              isAnalyst
-              query={query}
-              application={query.application}
-            />
+            <ApplicationDetails query={query} application={query.application} />
             <IncentiveCalculatorContainer
               applicationRevision={query.applicationRevision}
             />
@@ -89,8 +85,3 @@ class ApplicationReview extends Component<Props> {
 }
 
 export default ApplicationReview;
-
-/*
-TODO: Instead on conditionally rendering the ApplicationDetail,
- the page component should pass a renderItemHeaderContent function
- */

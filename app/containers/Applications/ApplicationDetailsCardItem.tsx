@@ -14,7 +14,6 @@ import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 
 interface Props {
   formResult: ApplicationDetailsCardItem_formResult;
-  isAnalyst: boolean;
   query: ApplicationDetailsCardItem_query;
 }
 
@@ -23,7 +22,6 @@ interface Props {
  */
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult,
-  // IsAnalyst,
   query
 }) => {
   const {formJsonByFormId} = formResult;

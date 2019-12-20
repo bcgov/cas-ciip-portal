@@ -15,6 +15,11 @@ describe('The application-review page', () => {
         ApplicationDetailsContainer_application: true
       },
       rowId: 1,
+      applicationRevisionStatus: {
+        ' $fragmentRefs': {
+          ApplicationRevisionStatusContainer_applicationRevisionStatus: true
+        }
+      },
       formResultsByApplicationId: {
         edges: [
           {
