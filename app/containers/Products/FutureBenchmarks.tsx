@@ -2,52 +2,36 @@ import React from 'react';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import {Button} from 'react-bootstrap';
-import moment from 'moment-timezone';
 import editBenchmarkMutation from 'mutations/benchmark/editBenchmarkMutation';
 import FormFieldTemplate from '../Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
-
-import {
-  benchmarkSchema,
-  benchmarkUISchema
-} from './ProductBenchmarkJsonSchemas';
 
 interface Props {
   benchmark: any;
   environment: RelayModernEnvironment;
   handleDeleteBenchmark: (benchmark: any) => void;
+  benchmarkSchema;
+  benchmarkUISchema;
 }
 
 const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
   benchmark,
   environment,
-  handleDeleteBenchmark
+  handleDeleteBenchmark,
+  benchmarkSchema,
+  benchmarkUISchema
 }) => {
   const updateBenchmark = async (e: IChangeEvent) => {
     const variables = {
       input: {
         id: benchmark.id,
         benchmarkPatch: {
-          benchmark: e.formData.benchmark,
-          eligibilityThreshold: e.formData.eligibilityThreshold,
-          startDate: e.formData.startDate,
-          endDate: e.formData.endDate
+          ...e.formData
         }
       }
     };
     const response = await editBenchmarkMutation(environment, variables);
     console.log(response);
-  };
-
-  const formData = {
-    benchmark: benchmark.benchmark,
-    eligibilityThreshold: benchmark.eligibilityThreshold,
-    startDate: moment
-      .tz(benchmark.startDate, 'America/Vancouver')
-      .format('DD-MM-YYYY'),
-    endDate: moment
-      .tz(benchmark.endDate, 'America/Vancouver')
-      .format('DD-MM-YYYY')
   };
 
   return (
@@ -57,7 +41,7 @@ const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
         liveOmit
         schema={benchmarkSchema}
         uiSchema={benchmarkUISchema}
-        formData={formData}
+        formData={benchmark}
         showErrorList={false}
         FieldTemplate={FormFieldTemplate}
         ObjectFieldTemplate={FormObjectFieldTemplate}

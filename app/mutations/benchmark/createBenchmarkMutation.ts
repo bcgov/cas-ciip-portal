@@ -16,8 +16,8 @@ const mutation = graphql`
         productId
         benchmark
         eligibilityThreshold
-        startDate
-        endDate
+        startReportingYear
+        endReportingYear
       }
     }
   }

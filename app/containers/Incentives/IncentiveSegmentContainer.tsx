@@ -34,7 +34,7 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
       <td>CAD {incentivePayment.incentiveAmountFlat} </td>
       <td>
         <BenchmarkChart
-          emissionIntensity={incentivePayment.emissionIntensity}
+          emissionIntensity={Number(incentivePayment.emissionIntensity)}
           benchmark={benchmark}
           eligibilityThreshold={eligibilityThreshold}
         />

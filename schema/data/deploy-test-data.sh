@@ -125,6 +125,7 @@ createdb
 [[ " ${actions[*]} " =~ " deployPortal " ]] && deployPortal
 deployPortalIfNotExists
 
+_psql -f "./portal/reporting_year.sql"
 _psql -f "./portal/form_json.sql"
 _psql -f "./portal/ciip_application_wizard.sql"
 _psql -f "./portal/fuel.sql"
@@ -134,7 +135,6 @@ _psql -f "./portal/user.sql"
 _psql -f "./portal/benchmark.sql"
 _psql -f "./portal/organisation.sql"
 _psql -f "./portal/facility.sql"
-_psql -f "./portal/reporting_year.sql"
 _psql -f "./portal/gas.sql"
 _psql -f "./portal/emission_gas.sql"
 _psql -f "./portal/application.sql"

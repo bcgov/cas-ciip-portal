@@ -62,8 +62,7 @@ describe('createBenchmarkMutation', () => {
         productIdInput: 1,
         benchmarkInput: 2,
         eligibilityThresholdInput: 3,
-        startDateInput: Date.parse('2017-11-09'),
-        prevBenchmarkIdInput: 1
+        startReportingYearInput: 2019
       }
     });
 

@@ -19,15 +19,23 @@ describe('ProductListContainer', () => {
       environment={environment}
       query={graphql`
         query ProductRowItemContainerTestQuery @relay_test_operation {
-          product: node(id: "abc") {
-            ...ProductRowItemContainer_product
+          query {
+            ...ProductRowItemContainer_query
+            product(id: "abc") {
+              ...ProductRowItemContainer_product
+            }
           }
         }
       `}
       variables={{}}
       render={({error, props}) => {
         if (props) {
-          return <ProductRowItemContainer product={props.product} />;
+          return (
+            <ProductRowItemContainer
+              product={props.query.product}
+              query={props.query}
+            />
+          );
         }
 
         if (error) {
