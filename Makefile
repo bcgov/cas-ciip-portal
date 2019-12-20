@@ -7,6 +7,10 @@ endif
 PATHFINDER_PREFIX := wksv3k
 PROJECT_PREFIX := cas-
 
+ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build install install_test mock_storageclass provision))
+include .pipeline/*.mk
+endif
+
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 
 .PHONY: help
@@ -55,13 +59,14 @@ endif
 build_schema: $(call make_help,build_schema,Builds the schema source into an image in the tools project namespace)
 build_schema: OC_PROJECT=$(OC_TOOLS_PROJECT)
 build_schema: whoami
+	@@echo build_schema with oc_build,$(PROJECT_PREFIX)ciip-portal-schema
 	$(call oc_build,$(PROJECT_PREFIX)ciip-portal-schema)
-
 
 .PHONY: build_app
 build_app: $(call make_help,build_app,Builds the app source into an image in the tools project namespace)
 build_app: OC_PROJECT=$(OC_TOOLS_PROJECT)
 build_app: whoami
+	@@echo build_app with oc_build,$(PROJECT_PREFIX)ciip-portal-schema
 	$(call oc_build,$(PROJECT_PREFIX)ciip-portal-app)
 
 .PHONY: build
@@ -84,6 +89,17 @@ install:
 .PHONY: install_test
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)
 install_test: install
+
+.PHONY: mock_storageclass
+mock_storageclass:
+	$(call oc_mock_storageclass,gluster-file gluster-file-db gluster-block)
+
+.PHONY: provision
+provision:
+	$(call oc_new_project,$(OC_TOOLS_PROJECT))
+	$(call oc_new_project,$(OC_TEST_PROJECT))
+	$(call oc_new_project,$(OC_DEV_PROJECT))
+	$(call oc_new_project,$(OC_PROD_PROJECT))
 
 .PHONY: watch
 watch: $(call make_help,watch,configure and start the watchers & dev servers)
