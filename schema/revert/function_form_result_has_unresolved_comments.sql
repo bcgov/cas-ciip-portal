@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.has_unresolved_comments;
+drop function ggircs_portal.form_result_has_unresolved_comments;
 
 commit;
