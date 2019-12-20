@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Collapse, Table, Button} from 'react-bootstrap';
+import {Collapse, Table, Button, Row, Col} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationCommentsContainer_formResult} from 'ApplicationCommentsContainer_formResult.graphql';
 import createReviewCommentMutation from 'mutations/application/createReviewCommentMutation';
@@ -76,9 +76,21 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
   return (
     <>
       <div key={formResult.id} className="form-result-box">
-        <div onClick={() => setIsOpen(!isOpen)}>
-          <h5> {formResult.formJsonByFormId.name} </h5>
-        </div>
+        <Row>
+          <Col md={10}>
+            <h5> {formResult.formJsonByFormId.name} </h5>
+          </Col>
+          <Col md={{span: 1}} style={{textAlign: 'right'}}>
+            <Button
+              aria-label="toggle-card-open"
+              title="expand or collapse the card"
+              variant="outline-dark"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? '+' : '-'}
+            </Button>
+          </Col>
+        </Row>
         <Collapse in={!isOpen}>
           <div>
             <Table striped bordered hover>

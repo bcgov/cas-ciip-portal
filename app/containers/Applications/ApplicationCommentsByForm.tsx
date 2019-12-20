@@ -35,7 +35,6 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
     console.log(response);
   };
 
-  console.log(review);
   return (
     <>
       <tr>

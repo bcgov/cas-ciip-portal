@@ -65,7 +65,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           <Col md={6}>
             <h4>{formJsonByFormId.name}</h4>
           </Col>
-          <Col md={1} style={{textAlign: 'right'}}>
+          <Col md={{span: 1, offset: 5}} style={{textAlign: 'right'}}>
             <Button
               aria-label="toggle-card-open"
               title="expand or collapse the card"
