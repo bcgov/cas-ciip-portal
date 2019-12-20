@@ -2,7 +2,13 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
-  session={null}
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
   showSubheader={true}
   title="Summary of your application"
 >
@@ -17,14 +23,10 @@ exports[`It matches the last accepted Snapshot 1`] = `
           Object {
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_application": true,
-              "ApplicationDetailsContainer_query": true,
-              "RequestedChangesByFormResult_application": true,
               "ReviseApplicationButtonContainer_application": true,
             },
             "applicationRevisionStatus": Object {
-              "applicationRevisionStatus": Object {
-                "applicationRevisionStatus": "SUBMITTED",
-              },
+              "applicationRevisionStatus": "SUBMITTED",
             },
             "formResultsByApplicationId": Object {
               "edges": Array [
@@ -43,19 +45,15 @@ exports[`It matches the last accepted Snapshot 1`] = `
         query={
           Object {
             " $fragmentRefs": Object {
-              "defaultLayout_session": true,
+              "ApplicationDetailsContainer_query": true,
             },
             "application": Object {
               " $fragmentRefs": Object {
                 "ApplicationDetailsContainer_application": true,
-                "ApplicationDetailsContainer_query": true,
-                "RequestedChangesByFormResult_application": true,
                 "ReviseApplicationButtonContainer_application": true,
               },
               "applicationRevisionStatus": Object {
-                "applicationRevisionStatus": Object {
-                  "applicationRevisionStatus": "SUBMITTED",
-                },
+                "applicationRevisionStatus": "SUBMITTED",
               },
               "formResultsByApplicationId": Object {
                 "edges": Array [
@@ -70,7 +68,11 @@ exports[`It matches the last accepted Snapshot 1`] = `
                 ],
               },
             },
-            "session": null,
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
+              },
+            },
           }
         }
       />

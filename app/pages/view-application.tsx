@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Row, Col} from 'react-bootstrap';
-import {graphql, RelayProp} from 'react-relay';
+import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
@@ -14,7 +14,6 @@ import DefaultLayout from 'layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: viewApplicationQueryResponse['query'];
-  relay: RelayProp;
 }
 
 class ViewApplication extends Component<Props> {
