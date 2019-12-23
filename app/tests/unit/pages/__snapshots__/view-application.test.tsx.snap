@@ -98,45 +98,5 @@ exports[`It matches the last accepted Snapshot 1`] = `
   <ForwardRef
     noGutters={false}
   />
-  <ForwardRef
-    noGutters={false}
-  >
-    <PDFDownloadLink
-      className="btn btn-primary"
-      document={
-        <ApplicationDetailsPdfCardItem
-          application={
-            Object {
-              " $fragmentRefs": Object {
-                "ApplicationDetailsContainer_application": true,
-                "ApplicationDetailsContainer_query": true,
-                "RequestedChangesByFormResult_application": true,
-                "ReviseApplicationButtonContainer_application": true,
-              },
-              "applicationRevisionStatus": Object {
-                "applicationRevisionStatus": "SUBMITTED",
-              },
-              "facilityByFacilityId": Object {
-                "facilityName": "Forest Floor",
-              },
-            }
-          }
-          user={
-            Object {
-              "emailAddress": "Douglas.Fir@hhry.xxx",
-              "firstName": "Douglas",
-              "id": "42",
-              "lastName": "Fir",
-              "occupation": "Manager",
-              "phoneNumber": "2504888818",
-            }
-          }
-        />
-      }
-      fileName="CIIP_Application_Forest Floor_undefined.pdf"
-    >
-      <Component />
-    </PDFDownloadLink>
-  </ForwardRef>
 </Relay(DefaultLayout)>
 `;

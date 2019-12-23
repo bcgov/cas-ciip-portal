@@ -8,8 +8,6 @@ import ApplicationDetails from 'containers/Applications/ApplicationDetailsContai
 import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
 import DefaultLayout from 'layouts/default-layout';
-import {PDFDownloadLink} from '@react-pdf/renderer';
-import ApplicationDetailsPdfCardItem from 'containers/Applications/ApplicationDetailsPdfCardItem';
 
 /*
  * ViewApplication renders a summary of the data submitted in the application.
@@ -25,13 +23,6 @@ class ViewApplication extends Component<Props> {
       query {
         session {
           ...defaultLayout_session
-          ciipUserBySub {
-            firstName
-            lastName
-            emailAddress
-            phoneNumber
-            occupation
-          }
         }
         ...ApplicationDetailsContainer_query
 
@@ -51,26 +42,6 @@ class ViewApplication extends Component<Props> {
 
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
-          reportingYear
-          facilityByFacilityId {
-            facilityName
-            facilityMailingAddress
-            facilityCity
-            facilityCountry
-            facilityProvince
-            facilityPostalCode
-          }
-          formResultsByApplicationId {
-            edges {
-              node {
-                formResult
-                formJsonByFormId {
-                  name
-                  formJson
-                }
-              }
-            }
-          }
         }
       }
     }
@@ -112,17 +83,6 @@ class ViewApplication extends Component<Props> {
             ?.applicationRevisionStatus === 'REQUESTED_CHANGES' ? (
             <ReviseApplicationButton application={query.application} />
           ) : null}
-        </Row>
-        <Row>
-          <PDFDownloadLink
-            document={pdfDocument}
-            fileName={pdfFilename}
-            className="btn btn-primary"
-          >
-            {({loading}) =>
-              loading ? 'Generating pdf...' : 'Download Application'
-            }
-          </PDFDownloadLink>
         </Row>
       </DefaultLayout>
     );
