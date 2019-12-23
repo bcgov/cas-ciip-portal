@@ -114,7 +114,7 @@
     "keycloak-connect": "^8.0.1",
     "mathjs": "^6.2.5",
     "moment-timezone": "^0.5.27",
-    "next": "^9.1.5",
+    "next": "^9.1.6",
     "pg": "^7.11.0",
     "popper.js": "^1.15.0",
     "postgraphile": "^4.5.5",
