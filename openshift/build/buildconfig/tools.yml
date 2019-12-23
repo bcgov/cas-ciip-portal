@@ -1,0 +1,43 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+
+parameters:
+- description: Prefix to prepend to object name.
+  displayName: Prefix
+  name: PREFIX
+  required: true
+- description: SHA1 of git revision to be deployed.
+  displayName: Git SHA1
+  name: GIT_SHA1
+  required: true
+
+objects:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    name: ${PREFIX}ciip-portal-tools
+  spec:
+    runPolicy: Parallel
+    nodeSelector:
+      beta.kubernetes.io/os: linux
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${PREFIX}ciip-portal-tools:${GIT_SHA1}
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 8Gi
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    source:
+      git:
+        ref: ${GIT_SHA1}
+        uri: https://github.com/bcgov/${PREFIX}ciip-portal.git
+      type: Git
+    strategy:
+      type: Docker
+    triggers: []
+  status:
+    lastVersion: 0

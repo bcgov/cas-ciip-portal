@@ -1,0 +1,21 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+
+parameters:
+- description: Prefix to prepend to object name.
+  displayName: Prefix
+  name: PREFIX
+  required: true
+- description: SHA1 of git revision to be deployed.
+  displayName: Git SHA1
+  name: GIT_SHA1
+  required: true
+
+objects:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    name: ${PREFIX}ciip-portal-tools
+  spec:
+    lookupPolicy:
+      local: true

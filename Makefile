@@ -1,5 +1,5 @@
 SHELL := /usr/bin/env bash
-ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build install install_test))
+ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build_tools build install install_test))
 include .pipeline/oc.mk
 include .pipeline/make.mk
 endif
@@ -37,6 +37,12 @@ configure: $(call make_help,configure,Configures the tools project namespace for
 configure: OC_PROJECT=$(OC_TOOLS_PROJECT)
 configure: whoami
 	$(call oc_configure)
+
+.PHONY: build_tools
+build_tools: $(call make_help,build_schema,Builds the schema source into an image in the tools project namespace)
+build_tools: OC_PROJECT=$(OC_TOOLS_PROJECT)
+build_tools: whoami
+	$(call oc_build,$(PROJECT_PREFIX)ciip-portal-tools)
 
 .PHONY: build_schema
 build_schema: $(call make_help,build_schema,Builds the schema source into an image in the tools project namespace)
