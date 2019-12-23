@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {NextRouter} from 'next/router';
 import {facilitiesListQueryResponse} from 'facilitiesListQuery.graphql';
-import AddFacilityContainer from 'containers/Facilities/AddFacilityContainer';
 import SearchTable from 'components/SearchTable';
 import DefaultLayout from 'layouts/default-layout';
 import FacilitiesListContainer from 'containers/Facilities/FacilitiesListContainer';
@@ -27,12 +26,10 @@ class FacilitiesList extends Component<Props> {
             direction: $direction
             searchField: $searchField
             searchValue: $searchValue
+            organisationId: $organisationId
           )
         session {
           ...defaultLayout_session
-        }
-        organisation(id: $organisationId) {
-          ...AddFacilityContainer_organisation
         }
       }
     }
@@ -48,7 +45,7 @@ class FacilitiesList extends Component<Props> {
   }
 
   render() {
-    const {session, organisation} = this.props.query;
+    const {session} = this.props.query;
     return (
       <>
         <DefaultLayout showSubheader session={session} title="Facilities">
@@ -59,7 +56,6 @@ class FacilitiesList extends Component<Props> {
           >
             {props => <FacilitiesListContainer {...props} />}
           </SearchTable>
-          <AddFacilityContainer organisation={organisation} />
         </DefaultLayout>
       </>
     );

@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
+import createFacilityMutation from 'mutations/facility/createFacilityMutation';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
+import {AddFacility} from './AddFacilityContainer';
 
 export const FacilitiesList = props => {
   const {
@@ -12,12 +14,16 @@ export const FacilitiesList = props => {
     handleEvent
   } = props;
   const {edges} = props.query.searchAllFacilities;
+  const {organisation} = props.query;
+  const facilityNumber = props.query.allFacilities.totalCount;
+  let [facilityCount, updateFacilityCount] = useState(facilityNumber);
   useEffect(() => {
     const refetchVariables = {
       searchField,
       searchValue,
       orderByField,
-      direction
+      direction,
+      facilityCount
     };
     props.relay.refetch(refetchVariables);
   });
@@ -42,12 +48,25 @@ export const FacilitiesList = props => {
     </tbody>
   );
 
+  const handleAddFacility = async variables => {
+    const {environment} = props.relay;
+    const response = await createFacilityMutation(environment, variables);
+    console.log(response);
+    updateFacilityCount((facilityCount += 1));
+  };
+
   return (
-    <SearchTableLayout
-      body={body}
-      displayNameToColumnNameMap={displayNameToColumnNameMap}
-      handleEvent={handleEvent}
-    />
+    <>
+      <SearchTableLayout
+        body={body}
+        displayNameToColumnNameMap={displayNameToColumnNameMap}
+        handleEvent={handleEvent}
+      />
+      <AddFacility
+        handleAddFacility={handleAddFacility}
+        organisationRowId={organisation.rowId}
+      />
+    </>
   );
 };
 
@@ -61,6 +80,8 @@ export default createRefetchContainer(
           searchValue: {type: "String"}
           orderByField: {type: "String"}
           direction: {type: "String"}
+          organisationId: {type: "ID!"}
+          facilityCount: {type: "Int"}
         ) {
         searchAllFacilities(
           searchField: $searchField
@@ -75,6 +96,16 @@ export default createRefetchContainer(
             }
           }
         }
+        allFacilities(first: $facilityCount) {
+          totalCount
+          edges {
+            cursor
+          }
+        }
+        organisation(id: $organisationId) {
+          id
+          rowId
+        }
       }
     `
   },
@@ -84,6 +115,8 @@ export default createRefetchContainer(
       $searchValue: String
       $orderByField: String
       $direction: String
+      $organisationId: ID!
+      $facilityCount: Int
     ) {
       query {
         ...FacilitiesListContainer_query
@@ -92,6 +125,8 @@ export default createRefetchContainer(
             direction: $direction
             searchField: $searchField
             searchValue: $searchValue
+            organisationId: $organisationId
+            facilityCount: $facilityCount
           )
       }
     }
