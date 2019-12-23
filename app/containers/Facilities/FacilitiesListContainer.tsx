@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import createFacilityMutation from 'mutations/facility/createFacilityMutation';
+import {AddFacility} from '../../components/facility/AddFacilityComponent';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
-import {AddFacility} from './AddFacilityContainer';
 
 export const FacilitiesList = props => {
   const {

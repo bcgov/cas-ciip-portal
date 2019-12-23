@@ -3,8 +3,8 @@ import {Button, Modal} from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import moment from 'moment-timezone';
-import FormFieldTemplate from '../Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
+import FormFieldTemplate from '../../containers/Forms/FormFieldTemplate';
+import FormObjectFieldTemplate from '../../containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
   handleAddFacility: any;
