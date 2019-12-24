@@ -9,6 +9,13 @@ import {
 } from '@react-pdf/renderer';
 import JsonSchemaForm from 'react-jsonschema-form';
 import {Header, Row, Body, FormFields, Column} from 'components/Layout/Pdf';
+import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
+import {ApplicationDetailsContainer_application} from 'ApplicationDetailsContainer_application.graphql';
+
+interface Props {
+  query: ApplicationDetailsContainer_query;
+  application: ApplicationDetailsContainer_application;
+}
 
 const styles = StyleSheet.create({
   page: {
@@ -114,6 +121,7 @@ const productionFieldTemplate = props => {
         Units: {props.quantity}
         {'\n'}
       </Text>
+      <Text>{props.productRowId}</Text>
     </>
   );
 };
@@ -122,9 +130,7 @@ const CUSTOM_FIELDS = {
   // TitleField: props => (
   //   <Text>{props.title ? props.title : '[Not Entered]'}</Text>
   // ),
-  StringField: props => (
-    <Text>{props.formData ? props.formData : '[Not Entered]'}</Text>
-  ),
+  StringField: props => <Text>{props.formData ?? '[Not Entered]'}</Text>,
   emissionSource: props => (
     <Text style={{fontSize: 13}}>
       {'\n\n'}
@@ -140,8 +146,8 @@ const customWidget = {
     props.value === true ? <Text>Yes</Text> : <Text>No</Text>
 };
 
-const ApplicationDetailsPdfCardItem = props => {
-  const {application, user} = props;
+export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
+  const {application} = props;
   const facility = application.facilityByFacilityId;
   const formResults = application.formResultsByApplicationId.edges;
 
@@ -179,14 +185,33 @@ const ApplicationDetailsPdfCardItem = props => {
                     marginBottom: 10
                   }}
                 >
-                  Applicant
+                  Operator
+                </Text>
+                <Text>{formResults[0].node.formResult.operator.name}</Text>
+                <Text>
+                  {' '}
+                  {
+                    formResults[0].node.formResult.operator.mailingAddress
+                      .streetAddress
+                  }
                 </Text>
                 <Text>
-                  {user.firstName} {user.lastName}
+                  {' '}
+                  {
+                    formResults[0].node.formResult.operator.mailingAddress.city
+                  },{' '}
+                  {
+                    formResults[0].node.formResult.operator.mailingAddress
+                      .province
+                  }
                 </Text>
-                <Text>{user.occupation}</Text>
-                <Text>{user.emailAddress}</Text>
-                <Text>{user.phoneNumber}</Text>
+                <Text>
+                  {' '}
+                  {
+                    formResults[0].node.formResult.operator.mailingAddress
+                      .postalCode
+                  }
+                </Text>
               </View>
             </Column>
             <Column>
@@ -214,7 +239,11 @@ const ApplicationDetailsPdfCardItem = props => {
           </Row>
 
           {formResults.map(({node}) => (
-            <View key={node.formJsonByFormId.id}>
+            <View key={node.formJsonByFormId.name}>
+              <Text style={{borderBottom: 1, paddingBottom: 10, fontSize: 16}}>
+                {'\n'}
+                {node.formJsonByFormId.name}
+              </Text>
               <JsonSchemaForm
                 omitExtraData
                 ArrayFieldTemplate={arrayFieldTemplate}
@@ -245,4 +274,4 @@ const ApplicationDetailsPdfCardItem = props => {
   );
 };
 
-export default ApplicationDetailsPdfCardItem;
+export default ApplicationDetailsPdf;
