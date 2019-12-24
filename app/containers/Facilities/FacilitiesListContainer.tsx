@@ -1,20 +1,32 @@
 import React, {useEffect, useState} from 'react';
-import {graphql, createRefetchContainer} from 'react-relay';
+import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import createFacilityMutation from 'mutations/facility/createFacilityMutation';
-import {AddFacility} from '../../components/facility/AddFacilityComponent';
+import AddFacility from 'components/facility/AddFacility';
+import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
 
-export const FacilitiesList = props => {
+interface Props {
+  direction: string;
+  orderByField: string;
+  searchField: string;
+  searchValue: string;
+  handleEvent: (...args: any[]) => void;
+  query: FacilitiesListContainer_query;
+  relay: RelayRefetchProp;
+}
+
+export const FacilitiesList: React.FunctionComponent<Props> = props => {
   const {
     direction,
     orderByField,
     searchField,
     searchValue,
-    handleEvent
+    handleEvent,
+    relay
   } = props;
   const {edges} = props.query.searchAllFacilities;
-  const {organisation} = props.query;
+  const {organisation, getReportingYear} = props.query;
   const facilityNumber = props.query.allFacilities.totalCount;
   let [facilityCount, updateFacilityCount] = useState(facilityNumber);
   useEffect(() => {
@@ -25,7 +37,7 @@ export const FacilitiesList = props => {
       direction,
       facilityCount
     };
-    props.relay.refetch(refetchVariables);
+    relay.refetch(refetchVariables);
   });
 
   const displayNameToColumnNameMap = {
@@ -63,8 +75,9 @@ export const FacilitiesList = props => {
         handleEvent={handleEvent}
       />
       <AddFacility
-        handleAddFacility={handleAddFacility}
         organisationRowId={organisation.rowId}
+        reportingYear={getReportingYear.reportingYear}
+        onAddFacility={handleAddFacility}
       />
     </>
   );
@@ -105,6 +118,9 @@ export default createRefetchContainer(
         organisation(id: $organisationId) {
           id
           rowId
+        }
+        getReportingYear {
+          reportingYear
         }
       }
     `

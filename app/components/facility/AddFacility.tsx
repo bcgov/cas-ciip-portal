@@ -2,17 +2,17 @@ import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
-import moment from 'moment-timezone';
-import FormFieldTemplate from '../../containers/Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from '../../containers/Forms/FormObjectFieldTemplate';
+import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
+import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
-  handleAddFacility: any;
-  organisationRowId: string;
+  onAddFacility: (...args: any[]) => void;
+  organisationRowId: number;
+  reportingYear: number;
 }
 
-export const AddFacility = props => {
-  const {handleAddFacility, organisationRowId} = props;
+const AddFacility = props => {
+  const {onAddFacility, organisationRowId, reportingYear} = props;
   const [modalShow, setModalShow] = useState(false);
   const addFacilitySchema: JSONSchema6 = {
     type: 'object',
@@ -85,8 +85,6 @@ export const AddFacility = props => {
     'postal-code': /[A-Z]\d[A-Z]\s?\d[A-Z]\d/i
   };
 
-  const reportingYear = moment().format('YYYY');
-
   const saveNewFacility = async (e: IChangeEvent) => {
     const {facilityName, facilityType, mailingAddress} = e.formData;
     const variables = {
@@ -95,13 +93,14 @@ export const AddFacility = props => {
           facilityName,
           facilityType,
           ...mailingAddress,
-          reportingYear,
+          // TODO: Our facility table currently stores reportingYear as a string. Should it be an int? It's also a string in swrs & init functions
+          reportingYear: String(reportingYear),
           organisationId: organisationRowId
         }
       }
     };
     console.log(variables);
-    handleAddFacility(variables);
+    onAddFacility(variables);
   };
 
   return (
@@ -132,3 +131,5 @@ export const AddFacility = props => {
     </>
   );
 };
+
+export default AddFacility;
