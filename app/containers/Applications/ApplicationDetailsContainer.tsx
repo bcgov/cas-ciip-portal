@@ -2,6 +2,8 @@ import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
 import {ApplicationDetailsContainer_application} from 'ApplicationDetailsContainer_application.graphql';
+import {PDFDownloadLink} from '@react-pdf/renderer';
+import ApplicationDetailsPdf from 'containers/Applications/ApplicationDetailsPdf';
 import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 
 /*
@@ -32,7 +34,18 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
           query={props.query.query}
         />
       ))}
-    </div>
+      <div style={{textAlign: 'right', marginTop: 20}}>
+        <PDFDownloadLink
+          document={pdfDocument}
+          fileName={pdfFilename}
+          className="btn btn-primary"
+        >
+          {({loading}) =>
+            loading ? 'Generating pdf...' : 'Download Application'
+          }
+        </PDFDownloadLink>
+      </div>
+    </>
   );
 };
 
