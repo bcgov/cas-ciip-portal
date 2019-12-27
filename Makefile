@@ -66,7 +66,7 @@ build_app: whoami
 
 .PHONY: build
 build: $(call make_help,build,Builds the source into an image in the tools project namespace)
-build: build_schema build_app
+build: build_tools build_schema build_app
 
 PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)ciip-portal-schema-deploy --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
 
