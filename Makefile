@@ -39,7 +39,7 @@ configure: whoami
 	$(call oc_configure)
 
 
-TOOLS_HASH=$(shell md5sum .tool-versions Dockerfile .bin/portal-tools.sh | md5sum | cut -d' ' -f1)
+TOOLS_HASH=$(shell md5sum .tool-versions Dockerfile | md5sum | cut -d' ' -f1)
 OC_TEMPLATE_VARS += TOOLS_HASH=$(TOOLS_HASH)
 .PHONY: build_tools
 build_tools: $(call make_help,build_schema,Builds a tools image in the tools openshift namespace)

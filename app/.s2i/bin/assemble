@@ -2,7 +2,6 @@
 
 set -e
 shopt -s dotglob
-echo $BASH_ENV
 
 echo "---> Installing application source ..."
 mv /tmp/src/* ./
@@ -22,9 +21,6 @@ if [ -z "$NODE_ENV" ]; then
   fi
 fi
 
-source ~/.bashrc
-asdf current
-
 echo "---> Installing all dependencies"
 yarn install --frozen-lockfile --production=false
 
@@ -36,5 +32,5 @@ yarn build:storybook
 yarn install --frozen-lockfile --production=true
 yarn cache clean
 
-# Fix source directory permissions
-fix-permissions ./
+# Fix apt-root directory permissions
+fix-permissions ../
