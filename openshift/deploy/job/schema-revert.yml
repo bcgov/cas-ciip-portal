@@ -42,8 +42,7 @@ objects:
           - /usr/bin/env
           - bash
           - -c
-          - |
-            sqitch revert -y;
+          - source ~/.bashrc && sqitch revert -y
           env:
           - name: SQITCH_TARGET
             value: "db:pg:"
