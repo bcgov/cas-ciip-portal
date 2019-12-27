@@ -6,10 +6,6 @@ parameters:
   displayName: Prefix
   name: PREFIX
   required: true
-- description: SHA1 of git revision to be deployed.
-  displayName: Git SHA1
-  name: GIT_SHA1
-  required: true
 
 objects:
 - apiVersion: image.openshift.io/v1

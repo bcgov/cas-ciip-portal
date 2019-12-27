@@ -10,6 +10,10 @@ parameters:
   displayName: Git SHA1
   name: GIT_SHA1
   required: true
+- description: Hash of the tools versions
+  displayName: Tools hash
+  name: TOOLS_HASH
+  required: true
 
 objects:
 - apiVersion: build.openshift.io/v1
@@ -23,7 +27,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: ${PREFIX}ciip-portal-tools:${GIT_SHA1}
+        name: ${PREFIX}ciip-portal-tools:${TOOLS_HASH}
     resources:
       limits:
         cpu: 1000m

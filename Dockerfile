@@ -17,9 +17,9 @@ minrate=1k\n\
 timeout=300s' >> /tmp/dnf.conf
 
 RUN dnf -yb --nodocs --config=/tmp/dnf.conf install git-core make gcc vim-common
-
 RUN dnf -yb --nodocs --config=/tmp/dnf.conf install libxml2-devel readline-devel
 RUN dnf -yb --nodocs --config=/tmp/dnf.conf install libffi-devel bzip2-devel openssl-devel
+RUN dnf -yb --nodocs --config=/tmp/dnf.conf install perl
 
 RUN chown -R 1001:0 ${APP_ROOT} && chmod -R ug+rwx ${APP_ROOT} && \
     rpm-file-permissions
