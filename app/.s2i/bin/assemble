@@ -1,12 +1,7 @@
 #!/bin/bash
 
-# Prevent running assemble in builders different than official STI image.
-# The official nodejs:8-onbuild already run npm install and use different
-# application folder.
-[ -d "/usr/src/app" ] && exit 0
-
 set -e
-
+set -x
 shopt -s dotglob
 
 echo "---> Installing application source ..."
@@ -27,17 +22,12 @@ if [ -z "$NODE_ENV" ]; then
   fi
 fi
 
-echo "---> Installing Yarn"
-curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
-
-echo "---> Adding Yarn to PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+source ~/.bashrc
+asdf current
 
 echo "---> Installing all dependencies"
 yarn install --frozen-lockfile --production=false
 
-
-#do not fail when there is no build script
 echo "---> Building"
 yarn build:relay
 yarn build:next

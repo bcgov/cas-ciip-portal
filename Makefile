@@ -38,11 +38,18 @@ configure: OC_PROJECT=$(OC_TOOLS_PROJECT)
 configure: whoami
 	$(call oc_configure)
 
+
+TOOLS_HASH=$(shell md5sum .tool-versions Dockerfile .bin/portal-tools.sh | md5sum | cut -d' ' -f1)
+OC_TEMPLATE_VARS += TOOLS_HASH=$(TOOLS_HASH)
 .PHONY: build_tools
-build_tools: $(call make_help,build_schema,Builds the schema source into an image in the tools project namespace)
+build_tools: $(call make_help,build_schema,Builds a tools image in the tools openshift namespace)
 build_tools: OC_PROJECT=$(OC_TOOLS_PROJECT)
 build_tools: whoami
+ifeq ($(shell $(OC) -n $(OC_TOOLS_PROJECT) get istag/$(PROJECT_PREFIX)ciip-portal-tools:$(TOOLS_HASH) --ignore-not-found -o name),)
 	$(call oc_build,$(PROJECT_PREFIX)ciip-portal-tools)
+else
+	@echo "The $(PROJECT_PREFIX)ciip-portal-tools:$(TOOLS_HASH) tag already exists. Skipping build_tools."
+endif
 
 .PHONY: build_schema
 build_schema: $(call make_help,build_schema,Builds the schema source into an image in the tools project namespace)
