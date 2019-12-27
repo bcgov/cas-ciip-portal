@@ -2,6 +2,7 @@
 
 set -e
 shopt -s dotglob
+echo $BASH_ENV
 
 echo "---> Installing application source ..."
 mv /tmp/src/* ./

@@ -148,18 +148,18 @@ install_pgtap: pgtap
 
 .PHONY: install_cpanm
 install_cpanm:
-ifeq (${shell which ${CPANM}},)
+ifeq ($(shell which $(word 1,$(CPANM))),)
 	# install cpanm
-	@@echo | ${CPAN} # accept cpan defaults blindly
-	@@${CPAN} App:cpanminus
+	@@echo | $(CPAN) # accept cpan defaults blindly
+	@@$(CPAN) App:cpanminus
 endif
 
 .PHONY: install_cpandeps
 install_cpandeps:
 	# install sqitch
-	${CPANM} -n https://github.com/matthieu-foucault/sqitch/releases/download/v1.0.1.TRIAL/App-Sqitch-v1.0.1-TRIAL.tar.gz
+	$(CPANM) -n https://github.com/matthieu-foucault/sqitch/releases/download/v1.0.1.TRIAL/App-Sqitch-v1.0.1-TRIAL.tar.gz
 	# install Perl dependencies from cpanfile
-	${CPANM} --installdeps .
+	$(CPANM) --installdeps .
 
 .PHONY: postinstall_check
 postinstall_check:

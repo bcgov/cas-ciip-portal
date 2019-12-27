@@ -16,7 +16,7 @@ else
   export ENABLE_CPAN_TEST="--notest"
 fi
 
-make install
+make install CPANM="cpanm $ENABLE_CPAN_TEST -l extlib"
 
 # Fix source directory permissions
 fix-permissions ./
