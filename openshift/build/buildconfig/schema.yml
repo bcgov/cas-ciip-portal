@@ -46,6 +46,7 @@ objects:
         from:
           kind: ImageStreamTag
           name: ${PREFIX}ciip-portal-tools:${TOOLS_HASH}
+        incremental: true
       type: Source
     triggers: []
   status:

@@ -6,6 +6,12 @@ shopt -s dotglob
 echo "---> Installing application source ..."
 mv /tmp/src/* ./
 
+# restore build artifacts
+if [[ -d /tmp/artifacts/ ]]; then
+    echo "Restoring build artifacts"
+    cp -rl /tmp/artifacts/. ./
+fi
+
 # Don't test installed Perl modules by default
 if [ "${ENABLE_CPAN_TEST}" = true ]; then
   export ENABLE_CPAN_TEST=""

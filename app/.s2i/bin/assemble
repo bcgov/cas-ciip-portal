@@ -6,6 +6,12 @@ shopt -s dotglob
 echo "---> Installing application source ..."
 mv /tmp/src/* ./
 
+# restore build artifacts
+if [[ -d /tmp/artifacts/ ]]; then
+    echo "Restoring build artifacts"
+    cp -rl /tmp/artifacts/. ./
+fi
+
 # Set the DEV_MODE to false by default.
 if [ -z "$DEV_MODE" ]; then
   export DEV_MODE=false
