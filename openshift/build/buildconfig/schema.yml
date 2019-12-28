@@ -10,6 +10,10 @@ parameters:
   displayName: Git SHA1
   name: GIT_SHA1
   required: true
+- description: Normalized name of the current git branch
+  displayName: Branch name
+  name: GIT_BRANCH_NORM
+  required: true
 - description: Hash of the tools versions
   displayName: Tools hash
   name: TOOLS_HASH
@@ -27,7 +31,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: ${PREFIX}ciip-portal-schema:${GIT_SHA1}
+        name: ${PREFIX}ciip-portal-schema:${GIT_BRANCH_NORM}
     resources:
       limits:
         cpu: "1"
