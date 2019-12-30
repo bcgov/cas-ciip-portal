@@ -113,7 +113,7 @@ watch_log:
 
 .PHONY: install_perl_tools
 install_perl_tools:
-	@@$(MAKE) -C schema install
+	@@$(MAKE) -C schema install CPANM="cpanm --notest"
 
 .PHONY: install_asdf_tools
 install_asdf_tools:
