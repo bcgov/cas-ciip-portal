@@ -8,7 +8,7 @@ LABEL summary="$SUMMARY" \
       io.k8s.description="$DESCRIPTION" \
       io.k8s.display-name="CAS CIIP Portal builder" \
       io.openshift.tags="s2i,cas,ciip,builder-image" \
-      name="ubi8/cas-ciip-portal-builder" \
+      name="ubi8/cas-ciip-portal-tools" \
       version="1" \
       maintainer="Matthieu Foucault <matthieu@button.is>"
 
@@ -41,5 +41,8 @@ RUN /usr/bin/env bash -c "asdf plugin-update --all"
 COPY ./.bin/import-nodejs-keyring.sh /tmp/import-nodejs-keyring.sh
 RUN /tmp/import-nodejs-keyring.sh
 
-RUN /usr/bin/env bash -c "POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install"
+# POSTGRES_EXTRA_CONFIGURE_OPTIONS is used during asdf install
+ENV POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml'
+
+RUN /usr/bin/env bash -c "asdf install"
 RUN /usr/bin/env bash -c "asdf reshim"
