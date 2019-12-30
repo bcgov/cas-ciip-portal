@@ -1,25 +1,43 @@
-import React, {useEffect} from 'react';
-import {graphql, createRefetchContainer} from 'react-relay';
+import React, {useEffect, useState} from 'react';
+import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
+import createFacilityMutation from 'mutations/facility/createFacilityMutation';
+import AddFacility from 'components/facility/AddFacility';
+import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
 
-export const FacilitiesList = props => {
+interface Props {
+  direction: string;
+  orderByField: string;
+  searchField: string;
+  searchValue: string;
+  handleEvent: (...args: any[]) => void;
+  query: FacilitiesListContainer_query;
+  relay: RelayRefetchProp;
+}
+
+export const FacilitiesList: React.FunctionComponent<Props> = props => {
   const {
     direction,
     orderByField,
     searchField,
     searchValue,
-    handleEvent
+    handleEvent,
+    relay
   } = props;
   const {edges} = props.query.searchAllFacilities;
+  const {organisation, getReportingYear} = props.query;
+  const facilityNumber = props.query.allFacilities.totalCount;
+  let [facilityCount, updateFacilityCount] = useState(facilityNumber);
   useEffect(() => {
     const refetchVariables = {
       searchField,
       searchValue,
       orderByField,
-      direction
+      direction,
+      facilityCount
     };
-    props.relay.refetch(refetchVariables);
+    relay.refetch(refetchVariables);
   });
 
   const displayNameToColumnNameMap = {
@@ -42,12 +60,26 @@ export const FacilitiesList = props => {
     </tbody>
   );
 
+  const handleAddFacility = async variables => {
+    const {environment} = props.relay;
+    const response = await createFacilityMutation(environment, variables);
+    console.log(response);
+    updateFacilityCount((facilityCount += 1));
+  };
+
   return (
-    <SearchTableLayout
-      body={body}
-      displayNameToColumnNameMap={displayNameToColumnNameMap}
-      handleEvent={handleEvent}
-    />
+    <>
+      <SearchTableLayout
+        body={body}
+        displayNameToColumnNameMap={displayNameToColumnNameMap}
+        handleEvent={handleEvent}
+      />
+      <AddFacility
+        organisationRowId={organisation.rowId}
+        reportingYear={getReportingYear.reportingYear}
+        onAddFacility={handleAddFacility}
+      />
+    </>
   );
 };
 
@@ -61,6 +93,8 @@ export default createRefetchContainer(
           searchValue: {type: "String"}
           orderByField: {type: "String"}
           direction: {type: "String"}
+          organisationId: {type: "ID!"}
+          facilityCount: {type: "Int"}
         ) {
         searchAllFacilities(
           searchField: $searchField
@@ -75,6 +109,18 @@ export default createRefetchContainer(
             }
           }
         }
+        # TODO: This is here to trigger a refactor as updating the edge / running the query in the mutation is not triggering a refresh
+        # Find a way to not pull the totalcount?
+        allFacilities(first: $facilityCount) {
+          totalCount
+        }
+        organisation(id: $organisationId) {
+          id
+          rowId
+        }
+        getReportingYear {
+          reportingYear
+        }
       }
     `
   },
@@ -84,6 +130,8 @@ export default createRefetchContainer(
       $searchValue: String
       $orderByField: String
       $direction: String
+      $organisationId: ID!
+      $facilityCount: Int
     ) {
       query {
         ...FacilitiesListContainer_query
@@ -92,6 +140,8 @@ export default createRefetchContainer(
             direction: $direction
             searchField: $searchField
             searchValue: $searchValue
+            organisationId: $organisationId
+            facilityCount: $facilityCount
           )
       }
     }
