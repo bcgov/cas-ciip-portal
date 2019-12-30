@@ -22,8 +22,9 @@ RUN dnf -yb --nodocs --config=/tmp/dnf.conf install git-core make gcc vim-common
 RUN dnf -yb --nodocs --config=/tmp/dnf.conf install libxml2-devel readline-devel
 # Python dependencies
 RUN dnf -yb --nodocs --config=/tmp/dnf.conf install libffi-devel bzip2-devel openssl-devel
-# Perl (currenly no asdf plugin for Perl)
-RUN dnf -yb --nodocs --config=/tmp/dnf.conf install perl-devel
+# Perl (currenly no asdf plugin for Perl).
+# perl-DBD-Pg needs to be installed as a package (not a CPAN dependency)
+RUN dnf -yb --nodocs --config=/tmp/dnf.conf install perl-devel perl-CPAN perl-DBD-Pg
 
 RUN git clone https://github.com/asdf-vm/asdf.git ${APP_ROOT}/asdf --branch v0.7.4
 RUN pushd ${APP_ROOT}/asdf && git checkout v0.7.4 && popd
