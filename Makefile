@@ -111,34 +111,9 @@ unwatch:
 watch_log:
 	tail -f /usr/local/var/run/watchman/$(shell whoami)-state/log
 
-CPAN=cpan
-CPANM=cpanm
-SQITCH=sqitch
-SQITCH_MIN_VERSION=0.97
-
-.PHONY: install_cpanm
-install_cpanm:
-ifeq (${shell which ${CPANM}},)
-	# install cpanm
-	@@echo | ${CPAN} # accept cpan defaults blindly
-	@@${CPAN} App:cpanminus
-endif
-
-.PHONY: install_cpandeps
-install_cpandeps:
-	# install sqitch
-	${CPANM} -n https://github.com/matthieu-foucault/sqitch/releases/download/v1.0.1.TRIAL/App-Sqitch-v1.0.1-TRIAL.tar.gz
-	# install Perl dependencies from cpanfile
-	${CPANM} --installdeps ./schema
-
-.PHONY: postinstall_check
-postinstall_check: SQITCH_VERSION=$(word 3,$(shell ${SQITCH} --version))
-postinstall_check:
-	@@printf '%s\n%s\n' "${SQITCH_MIN_VERSION}" "${SQITCH_VERSION}" | sort -CV ||\
-	(echo "FATAL: ${SQITCH} version should be at least ${SQITCH_MIN_VERSION}. Make sure the ${SQITCH} executable installed by cpanminus is available has the highest priority in the PATH" && exit 1);
-
 .PHONY: install_perl_tools
-install_perl_tools: install_cpanm install_cpandeps postinstall_check
+install_perl_tools:
+	@@$(MAKE) -C schema install
 
 .PHONY: install_asdf_tools
 install_asdf_tools:
