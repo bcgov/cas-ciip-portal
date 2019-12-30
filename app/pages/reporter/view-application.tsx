@@ -3,7 +3,6 @@ import {Row, Col} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
-import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
