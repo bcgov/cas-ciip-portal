@@ -1,24 +1,28 @@
 import {JSONSchema6} from 'json-schema';
 
-const addOperatorSchema: JSONSchema6 = {
+const addFacilitySchema: JSONSchema6 = {
   type: 'object',
-  title: 'Operator Details',
+  title: 'Facility Details',
   properties: {
-    operatorName: {
-      type: 'string',
-      title: 'Legal name'
+    facilityName: {
+      title: 'Facility Name',
+      type: 'string'
     },
-    operatorTradeName: {
+    facilityType: {
       type: 'string',
-      title: 'Trade name'
+      title: 'Facility Type',
+      enum: ['IF_a', 'IF_b', 'L_c', 'SFO', 'LFO', 'EIO']
     },
-    duns: {
+    bcghgid: {
+      type: 'string',
+      title: 'BCGHG ID Number'
+    },
+    naicsCode: {
       type: 'number',
-      title: 'DUNS number',
-      format: 'duns'
+      title: 'NAICS Code'
     },
     mailingAddress: {
-      title: 'Operator Mailing Address',
+      title: 'Facility Mailing Address',
       $ref: '#/definitions/address'
     }
   },
@@ -26,15 +30,15 @@ const addOperatorSchema: JSONSchema6 = {
     address: {
       type: 'object',
       properties: {
-        operatorMailingAddress: {
+        facilityMailingAddress: {
           title: 'Street address',
           type: 'string'
         },
-        operatorCity: {
+        facilityCity: {
           title: 'City',
           type: 'string'
         },
-        operatorProvince: {
+        facilityProvince: {
           title: 'Province or Territory',
           type: 'string',
           enum: [
@@ -53,7 +57,7 @@ const addOperatorSchema: JSONSchema6 = {
             'Yukon'
           ]
         },
-        operatorPostalCode: {
+        facilityPostalCode: {
           title: 'Postal Code',
           type: 'string',
           format: 'postal-code'
@@ -63,4 +67,4 @@ const addOperatorSchema: JSONSchema6 = {
   }
 };
 
-export default addOperatorSchema;
+export default addFacilitySchema;
