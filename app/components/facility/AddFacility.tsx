@@ -99,7 +99,7 @@ const AddFacility = props => {
         }
       }
     };
-    console.log(variables);
+
     onAddFacility(variables);
   };
 

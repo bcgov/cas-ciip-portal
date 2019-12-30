@@ -109,11 +109,10 @@ export default createRefetchContainer(
             }
           }
         }
+        # TODO: This is here to trigger a refactor as updating the edge / running the query in the mutation is not triggering a refresh
+        # Find a way to not pull the totalcount?
         allFacilities(first: $facilityCount) {
           totalCount
-          edges {
-            cursor
-          }
         }
         organisation(id: $organisationId) {
           id
