@@ -153,6 +153,21 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
           </Dropdown.Menu>
         </Dropdown>
       )}
+      <br />
+      <p id="add-organisation" onClick={() => setToastShow(!toastShow)}>
+        I can&apos;t find my organisation
+        <style jsx>
+          {`
+            #add-organisation {
+              color: blue;
+            }
+            #add-organisation:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          `}
+        </style>
+      </p>
     </>
   );
 };
