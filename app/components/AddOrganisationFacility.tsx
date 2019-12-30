@@ -57,7 +57,7 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = props => {
     const {operatorName, operatorTradeName, duns, mailingAddress} = e.formData;
     const variables = {
       input: {
-        operator: {
+        organisation: {
           operatorName,
           operatorTradeName,
           duns,

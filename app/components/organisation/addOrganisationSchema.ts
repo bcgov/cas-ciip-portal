@@ -13,7 +13,8 @@ const addOperatorSchema: JSONSchema6 = {
       title: 'Trade name'
     },
     duns: {
-      type: 'number',
+      // TODO: shouldn't the duns be a number type? This is copied from the administration form_json.
+      type: 'string',
       title: 'DUNS number',
       format: 'duns'
     },
