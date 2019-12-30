@@ -318,6 +318,24 @@ jobs:
           command: make configure
           name: Configure imagestream to point at the current SHA1
 
+  pathfinder_build_tools:
+    executor: redhat-openshift/default
+    steps:
+      - checkout
+      - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
+      - redhat-openshift/login-and-update-kubeconfig:
+          insecure-skip-tls-verify: true
+          openshift-platform-version: 3.x
+          server-address: $OC_SERVER_ADDRESS
+          token: $OC_TOKEN
+      - run:
+          command: make build_tools
+          name: Build image on the remote cluster
+
   pathfinder_build_schema:
     executor: redhat-openshift/default
     steps:
@@ -427,14 +445,18 @@ workflows:
           context: cas-pipeline
           requires:
             - pathfinder_lint
+      - pathfinder_build_tools:
+          context: cas-pipeline
+          requires:
+            - pathfinder_configure
       - pathfinder_build_schema:
           context: cas-pipeline
           requires:
-            - pathfinder_configure
+            - pathfinder_build_tools
       - pathfinder_build_app:
           context: cas-pipeline
           requires:
-            - pathfinder_configure
+            - pathfinder_build_tools
       # - test-local-cluster:
       #     context: cas-pipeline
       #     requires:
