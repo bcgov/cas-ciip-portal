@@ -30,11 +30,11 @@ objects:
         name: ${PREFIX}ciip-portal-tools:${TOOLS_HASH}
     resources:
       limits:
-        cpu: 1000m
+        cpu: 2000m
         memory: 8Gi
       requests:
-        cpu: 100m
-        memory: 256Mi
+        cpu: 1000m
+        memory: 2Gi
     source:
       git:
         ref: ${GIT_SHA1}

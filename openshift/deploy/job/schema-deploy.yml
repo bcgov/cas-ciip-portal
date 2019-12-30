@@ -72,8 +72,8 @@ objects:
           name: ${PREFIX}ciip-portal-schema-deploy
           resources:
             limits:
-              cpu: 100m
+              cpu: "1"
               memory: 64Mi
             requests:
-              cpu: 100m
+              cpu: 500m
               memory: 64Mi

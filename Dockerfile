@@ -34,10 +34,11 @@ RUN chown -R 1001:0 ${APP_ROOT} && chmod -R ug+rwx ${APP_ROOT} &&\
 USER 1001
 
 # Because asdf is loaded via BASH_ENV, all commands using adsf need to be executed using /usr/bin/env bash -c
-RUN /usr/bin/env bash -c "cat ${APP_ROOT}/.tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add || true"
+RUN /usr/bin/env bash -c "cat ${APP_ROOT}/.tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add"
 RUN /usr/bin/env bash -c "asdf plugin-update --all"
-# The asdf plugins are installed under ~/.asdf (i.e. ${APP_ROOT}/src/.asdf)
-# TODO: replace this step with a script that contains the public keys, instead of downloading them
-RUN ${APP_ROOT}/src/.asdf/plugins/nodejs/bin/import-release-team-keyring
+# The nodejs release team keyring is needed to install the asdf node plugin
+COPY ./.bin/import-nodejs-keyring.sh /tmp/import-nodejs-keyring.sh
+RUN /tmp/import-nodejs-keyring.sh
+
 RUN /usr/bin/env bash -c "POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install"
 RUN /usr/bin/env bash -c "asdf reshim"
