@@ -3,6 +3,7 @@ import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {Table, Dropdown, Button, Alert, FormControl} from 'react-bootstrap';
 import {Organisations_query} from 'Organisations_query.graphql';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import AddOrganisationFacility from 'components/AddOrganisationFacility';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
@@ -154,20 +155,11 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
         </Dropdown>
       )}
       <br />
-      <p id="add-organisation" onClick={() => setToastShow(!toastShow)}>
-        I can&apos;t find my organisation
-        <style jsx>
-          {`
-            #add-organisation {
-              color: blue;
-            }
-            #add-organisation:hover {
-              text-decoration: underline;
-              cursor: pointer;
-            }
-          `}
-        </style>
-      </p>
+      <AddOrganisationFacility
+        onAddOrganisation={() => {
+          console.log('ADD ORG');
+        }}
+      />
     </>
   );
 };

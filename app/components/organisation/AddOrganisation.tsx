@@ -6,37 +6,39 @@ import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
-  onAddFacility: (...args: any[]) => void;
-  organisationRowId: number;
-  reportingYear: number;
+  onAddOrganisation?: (...args: any[]) => void;
 }
 
-const AddFacility: React.FunctionComponent<Props> = props => {
-  const {onAddFacility, organisationRowId, reportingYear} = props;
+const AddOrganisation: React.FunctionComponent<Props> = props => {
+  const {onAddOrganisation} = props;
   const [modalShow, setModalShow] = useState(false);
-  const addFacilitySchema: JSONSchema6 = {
+  const addOperatorSchema: JSONSchema6 = {
     type: 'object',
-    title: 'Facility Details',
+    title: 'Operator Details',
     properties: {
-      facilityName: {
-        title: 'Facility Name',
-        type: 'string'
-      },
-      facilityType: {
+      name: {
         type: 'string',
-        title: 'Facility Type',
-        enum: ['IF_a', 'IF_b', 'L_c', 'SFO', 'LFO', 'EIO']
+        title: 'Legal name'
       },
-      bcghgid: {
+      tradeName: {
         type: 'string',
-        title: 'BCGHG ID Number'
+        title: 'Trade name'
+      },
+      duns: {
+        type: 'string',
+        title: 'DUNS number',
+        format: 'duns'
+      },
+      bcCorporateRegistryNumber: {
+        type: 'string',
+        title: 'BC Corporate Registry number'
       },
       naics: {
         type: 'string',
-        title: 'NAICS Code'
+        title: 'NAICS code'
       },
       mailingAddress: {
-        title: 'Facility Mailing Address',
+        title: 'Operator Mailing Address',
         $ref: '#/definitions/address'
       }
     },
@@ -44,15 +46,15 @@ const AddFacility: React.FunctionComponent<Props> = props => {
       address: {
         type: 'object',
         properties: {
-          facilityMailingAddress: {
+          operatorMailingAddress: {
             title: 'Street address',
             type: 'string'
           },
-          facilityCity: {
+          operatorCity: {
             title: 'City',
             type: 'string'
           },
-          facilityProvince: {
+          operatorProvince: {
             title: 'Province or Territory',
             type: 'string',
             enum: [
@@ -71,7 +73,7 @@ const AddFacility: React.FunctionComponent<Props> = props => {
               'Yukon'
             ]
           },
-          facilityPostalCode: {
+          operatorPostalCode: {
             title: 'Postal Code',
             type: 'string',
             format: 'postal-code'
@@ -82,48 +84,58 @@ const AddFacility: React.FunctionComponent<Props> = props => {
   };
 
   const customFormats = {
-    'postal-code': /[A-Z]\d[A-Z]\s?\d[A-Z]\d/i
+    'postal-code': /[A-Z]\d[A-Z]\s?\d[A-Z]\d/i,
+    duns: /^\d{9}$/
   };
 
-  const saveNewFacility = async (e: IChangeEvent) => {
-    const {facilityName, facilityType, mailingAddress} = e.formData;
+  const saveNewOrganisation = async (e: IChangeEvent) => {
+    const {operatorName, mailingAddress} = e.formData;
     const variables = {
       input: {
-        facility: {
-          facilityName,
-          facilityType,
-          ...mailingAddress,
-          // TODO: Our facility table currently stores reportingYear as a string. Should it be an int? It's also a string in swrs & init functions
-          reportingYear: String(reportingYear),
-          organisationId: organisationRowId
+        operator: {
+          operatorName,
+          ...mailingAddress
         }
       }
     };
     setModalShow(!modalShow);
-    onAddFacility(variables);
+    onAddOrganisation(variables);
   };
 
   return (
     <>
-      <Button onClick={() => setModalShow(!modalShow)}>Add Facility +</Button>
+      <p id="add-organisation" onClick={() => setModalShow(!modalShow)}>
+        I can&apos;t find my organisation
+        <style jsx>
+          {`
+            #add-organisation {
+              color: blue;
+            }
+            #add-organisation:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          `}
+        </style>
+      </p>
       <Modal
         centered
         size="xl"
         show={modalShow}
         onHide={() => setModalShow(false)}
       >
-        <Modal.Header>Add Facility</Modal.Header>
+        <Modal.Header>Add Organisation</Modal.Header>
         <Modal.Body>
           <JsonSchemaForm
-            schema={addFacilitySchema}
+            schema={addOperatorSchema}
             customFormats={customFormats}
             showErrorList={false}
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
-            onSubmit={saveNewFacility}
+            onSubmit={saveNewOrganisation}
           >
             <Button type="submit" variant="primary">
-              Save Facility
+              Save
             </Button>
             <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
               Close
@@ -135,4 +147,4 @@ const AddFacility: React.FunctionComponent<Props> = props => {
   );
 };
 
-export default AddFacility;
+export default AddOrganisation;
