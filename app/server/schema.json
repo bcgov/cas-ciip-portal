@@ -11454,7 +11454,7 @@
             },
             {
               "name": "rowId",
-              "description": null,
+              "description": "ciip_user_organisation primary key",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -30821,7 +30821,7 @@
             },
             {
               "name": "rowId",
-              "description": null,
+              "description": "ciip_user_organisation primary key",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -35478,7 +35478,7 @@
             },
             {
               "name": "rowId",
-              "description": null,
+              "description": "ciip_user_organisation primary key",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,

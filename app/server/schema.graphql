@@ -2160,6 +2160,8 @@ type CiipUserOrganisation implements Node {
 
   """foreign key that references the organisation table"""
   organisationId: Int!
+
+  """ciip_user_organisation primary key"""
   rowId: Int!
 
   """the status of the request to report on behalf of an organisation"""
@@ -3674,6 +3676,8 @@ input DeleteCiipUserOrganisationByRowIdInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
+
+  """ciip_user_organisation primary key"""
   rowId: Int!
 }
 
@@ -9762,6 +9766,8 @@ input UpdateCiipUserOrganisationByRowIdInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
+
+  """ciip_user_organisation primary key"""
   rowId: Int!
 }
 
