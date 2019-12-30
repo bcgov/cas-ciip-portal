@@ -99,7 +99,7 @@ const AddFacility = props => {
         }
       }
     };
-
+    setModalShow(!modalShow);
     onAddFacility(variables);
   };
 
@@ -124,6 +124,9 @@ const AddFacility = props => {
           >
             <Button type="submit" variant="primary">
               Save Facility
+            </Button>
+            <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
+              Close
             </Button>
           </JsonSchemaForm>
         </Modal.Body>
