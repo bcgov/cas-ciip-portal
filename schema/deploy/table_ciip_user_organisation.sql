@@ -7,7 +7,8 @@
 begin;
 
   create table ggircs_portal.ciip_user_organisation (
-      user_id integer not null primary key references ggircs_portal.ciip_user (id),
+      id integer primary key generated always as identity,
+      user_id integer not null references ggircs_portal.ciip_user (id),
       organisation_id integer not null references ggircs_portal.organisation (id),
       status ggircs_portal.ciip_user_organisation_status
   );
