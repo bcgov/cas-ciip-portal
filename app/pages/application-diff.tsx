@@ -10,25 +10,23 @@ interface Props extends CiipPageComponentProps {
 }
 
 class ApplicationDiff extends Component<Props> {
-  static state = {
-    applicationId: 0
-  };
-
   static query = graphql`
-    query applicationDiffQuery {
+    query applicationDiffQuery($applicationId: ID!) {
       query {
         session {
           ...defaultLayout_session
         }
-        allApplicationRevisions(condition: {applicationId: $applicationId}) {
-          edges {
-            node {
-              id
-              versionNumber
-              formResultsByApplicationIdAndVersionNumber {
-                edges {
-                  node {
-                    formResult
+        application(id: $applicationId) {
+          applicationRevisionsByApplicationId {
+            edges {
+              node {
+                id
+                versionNumber
+                formResultsByApplicationIdAndVersionNumber {
+                  edges {
+                    node {
+                      formResult
+                    }
                   }
                 }
               }
@@ -39,27 +37,17 @@ class ApplicationDiff extends Component<Props> {
     }
   `;
 
-  static async getInitialProps() {
-    return {
-      variables: {
-        applicationId: this.state.applicationId
-      }
-    };
-  }
-
   render() {
     const {query} = this.props;
-    const {session, allApplicationRevisions} = query;
     // @ts-ignore
-    console.log(allApplicationRevisions);
-    // @ts-ignore
+    const {session, application} = query;
+    const revisions = application.applicationRevisionsByApplicationId;
     const lhs =
-      allApplicationRevisions.edges[0].node
-        .formResultsByApplicationIdAndVersionNumber.edges[0].node.formResult;
-    // @ts-ignore
+      revisions.edges[0].node.formResultsByApplicationIdAndVersionNumber
+        .edges[0].node.formResult;
     const rhs =
-      allApplicationRevisions.edges[1].node
-        .formResultsByApplicationIdAndVersionNumber.edges[0].node.formResult;
+      revisions.edges[1].node.formResultsByApplicationIdAndVersionNumber
+        .edges[0].node.formResult;
     const differences = diff(lhs, rhs);
     console.log(differences);
     return (

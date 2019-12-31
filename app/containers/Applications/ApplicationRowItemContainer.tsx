@@ -59,7 +59,8 @@ export const ApplicationRowItem = props => {
           href={{
             pathname: '/application-diff',
             query: {
-              applicationRowId: applicationSearchResult.applicationId
+              applicationId:
+                applicationSearchResult.applicationByApplicationId.id
             }
           }}
         >
