@@ -5,16 +5,16 @@ import {
   Text,
   View,
   Image,
-  StyleSheet
+  StyleSheet,
+  PDFDownloadLink
 } from '@react-pdf/renderer';
 import JsonSchemaForm from 'react-jsonschema-form';
 import {Header, Row, Body, FormFields, Column} from 'components/Layout/Pdf';
-import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
-import {ApplicationDetailsContainer_application} from 'ApplicationDetailsContainer_application.graphql';
+import {createFragmentContainer, graphql} from 'react-relay';
+import {ApplicationDetailsPdf_application} from 'ApplicationDetailsPdf_application.graphql';
 
 interface Props {
-  query: ApplicationDetailsContainer_query;
-  application: ApplicationDetailsContainer_application;
+  application: ApplicationDetailsPdf_application;
 }
 
 const styles = StyleSheet.create({
@@ -127,9 +127,6 @@ const productionFieldTemplate = props => {
 };
 
 const CUSTOM_FIELDS = {
-  // TitleField: props => (
-  //   <Text>{props.title ? props.title : '[Not Entered]'}</Text>
-  // ),
   StringField: props => <Text>{props.formData ?? '[Not Entered]'}</Text>,
   emissionSource: props => (
     <Text style={{fontSize: 13}}>
@@ -151,7 +148,9 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
   const facility = application.facilityByFacilityId;
   const formResults = application.formResultsByApplicationId.edges;
 
-  return (
+  const pdfFilename = `CIIP_Application_${application.facilityByFacilityId.facilityName}_${application.reportingYear}.pdf`;
+
+  const pdfDocument = (
     <Document>
       <Page wrap size="A4" style={styles.page}>
         <Header>
@@ -272,6 +271,44 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
       </Page>
     </Document>
   );
+
+  return (
+    <PDFDownloadLink
+      document={pdfDocument}
+      fileName={pdfFilename}
+      className="btn btn-primary"
+    >
+      {({loading}) => (loading ? 'Generating pdf...' : 'Download Application')}
+    </PDFDownloadLink>
+  );
 };
 
-export default ApplicationDetailsPdf;
+export default createFragmentContainer(ApplicationDetailsPdf, {
+  application: graphql`
+    fragment ApplicationDetailsPdf_application on Application {
+      applicationRevisionStatus {
+        applicationRevisionStatus
+      }
+      reportingYear
+      facilityByFacilityId {
+        facilityName
+        facilityMailingAddress
+        facilityCity
+        facilityCountry
+        facilityProvince
+        facilityPostalCode
+      }
+      formResultsByApplicationId {
+        edges {
+          node {
+            formResult
+            formJsonByFormId {
+              name
+              formJson
+            }
+          }
+        }
+      }
+    }
+  `
+});
