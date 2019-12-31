@@ -95,7 +95,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     >
       <Card.Header>
         <Row>
-          <Col md={11}>
+          <Col md={6}>
             <h4>{formJsonByFormId.name}</h4>
           </Col>
           <Col md={{span: 2, offset: 3}}>
