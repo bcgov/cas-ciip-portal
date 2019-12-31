@@ -1,0 +1,1229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] = `
+<PDFDownloadLink
+  className="btn btn-primary"
+  document={
+    <DOCUMENT>
+      <PAGE
+        size="A4"
+        style={
+          Object {
+            "paddingBottom": 40,
+            "paddingTop": 20,
+          }
+        }
+        wrap={true}
+      >
+        <styled.VIEW>
+          <IMAGE
+            src="/static/bcid.png"
+            style={
+              Object {
+                "margin": "auto",
+                "width": 150,
+              }
+            }
+          />
+          <TEXT>
+            Application for CleanBC Industrial Incentive Program
+          </TEXT>
+        </styled.VIEW>
+        <styled.VIEW>
+          <styled.VIEW>
+            <styled.VIEW>
+              <TEXT
+                style={
+                  Object {
+                    "fontSize": 12,
+                    "margin": "10px 0 20px",
+                  }
+                }
+              >
+                Reporting Year: 
+                2019
+              </TEXT>
+            </styled.VIEW>
+            <styled.VIEW>
+              <TEXT
+                style={
+                  Object {
+                    "fontSize": 12,
+                    "margin": "10px 0 20px",
+                  }
+                }
+              >
+                Status:
+                 
+                SUBMITTED
+              </TEXT>
+            </styled.VIEW>
+          </styled.VIEW>
+          <styled.VIEW>
+            <styled.VIEW>
+              <VIEW
+                style={
+                  Object {
+                    "fontSize": 12,
+                    "lineHeight": 1.3,
+                  }
+                }
+              >
+                <TEXT
+                  style={
+                    Object {
+                      "borderBottom": 1,
+                      "lineHeight": 1.5,
+                      "marginBottom": 10,
+                    }
+                  }
+                >
+                  Operator
+                </TEXT>
+                <TEXT>
+                  dolore
+                </TEXT>
+                <TEXT>
+                   
+                  nostrud mollit
+                </TEXT>
+                <TEXT>
+                   
+                  Lorem cupidatat occaecat enim magna
+                  ,
+                   
+                  Quebec
+                </TEXT>
+                <TEXT>
+                   
+                  L0P 4Y3
+                </TEXT>
+              </VIEW>
+            </styled.VIEW>
+            <styled.VIEW>
+              <VIEW
+                style={
+                  Object {
+                    "fontSize": 12,
+                    "lineHeight": 1.3,
+                  }
+                }
+              >
+                <TEXT
+                  style={
+                    Object {
+                      "borderBottom": 1,
+                      "lineHeight": 1.5,
+                      "marginBottom": 10,
+                    }
+                  }
+                >
+                  Facility
+                </TEXT>
+                <TEXT>
+                  Forest Floor
+                </TEXT>
+                <TEXT>
+                  Evergreen Street Northwest
+                  
+
+                  Oak Grove
+                  , 
+                  British Columbia
+                  ,
+                   
+                  Canada
+                  
+
+                  V1C6T8
+                </TEXT>
+              </VIEW>
+            </styled.VIEW>
+          </styled.VIEW>
+          <VIEW>
+            <TEXT
+              style={
+                Object {
+                  "borderBottom": 1,
+                  "fontSize": 16,
+                  "paddingBottom": 10,
+                }
+              }
+            >
+              
+
+              Admin
+            </TEXT>
+            <Form
+              ArrayFieldTemplate={[Function]}
+              ErrorList={[Function]}
+              FieldTemplate={[Function]}
+              ObjectFieldTemplate={[Function]}
+              disabled={false}
+              fields={
+                Object {
+                  "StringField": [Function],
+                  "emissionGas": [Function],
+                  "emissionSource": [Function],
+                  "production": [Function],
+                }
+              }
+              formData={
+                Object {
+                  "facility": Object {
+                    "bcghgid": "deserunt anim sunt commodo",
+                    "facilityLocation": Object {
+                      "latitude": 76040618.40279126,
+                      "locationNearestCity": "in minim commodo",
+                      "locationStreetAddress": "do voluptate p",
+                      "longitude": -93687576.50244613,
+                    },
+                    "facilityName": "commodo tempor esse nulla",
+                    "facilityType": "L_c",
+                    "isFacilityLocationDifferent": true,
+                    "mailingAddress": Object {
+                      "city": "occaecat Duis et Ut min",
+                      "postalCode": "I2B 9Q7",
+                      "province": "Manitoba",
+                      "streetAddress": "non",
+                    },
+                    "naics": "in",
+                  },
+                  "operationalRepresentative": Object {
+                    "email": "ullamco sed sunt esse",
+                    "fax": "magna voluptate",
+                    "firstName": "dolor",
+                    "lastName": "proident",
+                    "mailingAddress": Object {
+                      "city": "ut consequat eu dolore",
+                      "postalCode": "Q3E 2X1",
+                      "province": "Ontario",
+                      "streetAddress": "nulla",
+                    },
+                    "phone": "Excepteur ullamco est incididunt sunt",
+                    "position": "velit Ut ut",
+                  },
+                  "operator": Object {
+                    "bcCorporateRegistryNumber": "ea",
+                    "duns": "071342626",
+                    "mailingAddress": Object {
+                      "city": "Lorem cupidatat occaecat enim magna",
+                      "postalCode": "L0P 4Y3",
+                      "province": "Quebec",
+                      "streetAddress": "nostrud mollit",
+                    },
+                    "naics": "sit dolore nulla",
+                    "name": "dolore",
+                    "tradeName": "et elit anim in quis",
+                  },
+                }
+              }
+              liveValidate={false}
+              noHtml5Validate={false}
+              noValidate={false}
+              omitExtraData={true}
+              safeRenderCompletion={false}
+              schema={
+                Object {
+                  "definitions": Object {
+                    "address": Object {
+                      "properties": Object {
+                        "city": Object {
+                          "title": "City",
+                          "type": "string",
+                        },
+                        "postalCode": Object {
+                          "format": "postal-code",
+                          "title": "Postal Code",
+                          "type": "string",
+                        },
+                        "province": Object {
+                          "enum": Array [
+                            "Alberta",
+                            "British Columbia",
+                            "Manitoba",
+                            "New Brunswick",
+                            "Newfoundland and Labrador",
+                            "Northwest Territories",
+                            "Nova Scotia",
+                            "Nunavut",
+                            "Ontario",
+                            "Prince Edward Island",
+                            "Quebec",
+                            "Saskatchewan",
+                            "Yukon",
+                          ],
+                          "title": "Province or Territory",
+                          "type": "string",
+                        },
+                        "streetAddress": Object {
+                          "title": "Street address",
+                          "type": "string",
+                        },
+                      },
+                      "type": "object",
+                    },
+                  },
+                  "properties": Object {
+                    "facility": Object {
+                      "dependencies": Object {
+                        "isFacilityLocationDifferent": Object {
+                          "oneOf": Array [
+                            Object {
+                              "properties": Object {
+                                "isFacilityLocationDifferent": Object {
+                                  "const": false,
+                                },
+                              },
+                            },
+                            Object {
+                              "properties": Object {
+                                "facilityLocation": Object {
+                                  "properties": Object {
+                                    "latitude": Object {
+                                      "title": "Latitude",
+                                      "type": "number",
+                                    },
+                                    "locationNearestCity": Object {
+                                      "title": "Nearest City",
+                                      "type": "string",
+                                    },
+                                    "locationStreetAddress": Object {
+                                      "title": "Location of the facility",
+                                      "type": "string",
+                                    },
+                                    "longitude": Object {
+                                      "title": "Longitude",
+                                      "type": "number",
+                                    },
+                                  },
+                                  "title": "Facility Location",
+                                  "type": "object",
+                                },
+                                "isFacilityLocationDifferent": Object {
+                                  "const": true,
+                                },
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      "properties": Object {
+                        "bcghgid": Object {
+                          "title": "BCGHG ID Number",
+                          "type": "string",
+                        },
+                        "facilityName": Object {
+                          "title": "Facility Name",
+                          "type": "string",
+                        },
+                        "facilityType": Object {
+                          "enum": Array [
+                            "IF_a",
+                            "IF_b",
+                            "L_c",
+                            "SFO",
+                            "LFO",
+                            "EIO",
+                          ],
+                          "title": "Facility Type",
+                          "type": "string",
+                        },
+                        "isFacilityLocationDifferent": Object {
+                          "enumNames": Array [
+                            " Yes",
+                            " No",
+                          ],
+                          "title": "Is the facility location different from the mailing address?",
+                          "type": "boolean",
+                        },
+                        "mailingAddress": Object {
+                          "$ref": "#/definitions/address",
+                          "title": "Facility Mailing Address",
+                        },
+                        "naics": Object {
+                          "title": "NAICS Code",
+                          "type": "string",
+                        },
+                      },
+                      "title": "Facility Information",
+                      "type": "object",
+                    },
+                    "operationalRepresentative": Object {
+                      "properties": Object {
+                        "email": Object {
+                          "title": "Email Address",
+                          "type": "string",
+                        },
+                        "fax": Object {
+                          "title": "Fax Number",
+                          "type": "string",
+                        },
+                        "firstName": Object {
+                          "title": "First Name",
+                          "type": "string",
+                        },
+                        "lastName": Object {
+                          "title": "Last Name",
+                          "type": "string",
+                        },
+                        "mailingAddress": Object {
+                          "$ref": "#/definitions/address",
+                          "title": "Operational Representative Mailing Address",
+                        },
+                        "phone": Object {
+                          "title": "Telephone Number",
+                          "type": "string",
+                        },
+                        "position": Object {
+                          "title": "Position/Title",
+                          "type": "string",
+                        },
+                      },
+                      "title": "Operational Representative",
+                      "type": "object",
+                    },
+                    "operator": Object {
+                      "properties": Object {
+                        "bcCorporateRegistryNumber": Object {
+                          "title": "BC Corporate Registry number",
+                          "type": "string",
+                        },
+                        "duns": Object {
+                          "format": "duns",
+                          "title": "DUNS number",
+                          "type": "string",
+                        },
+                        "mailingAddress": Object {
+                          "$ref": "#/definitions/address",
+                          "title": "Operator Mailing Address",
+                        },
+                        "naics": Object {
+                          "title": "NAICS code",
+                          "type": "string",
+                        },
+                        "name": Object {
+                          "title": "Legal name",
+                          "type": "string",
+                        },
+                        "tradeName": Object {
+                          "title": "Trade name",
+                          "type": "string",
+                        },
+                      },
+                      "title": "Operator Information",
+                      "type": "object",
+                    },
+                  },
+                  "type": "object",
+                }
+              }
+              showErrorList={false}
+              tagName={[Function]}
+              uiSchema={
+                Object {
+                  "facility": Object {
+                    "facilityLocation": Object {
+                      "ui:order": Array [
+                        "locationStreetAddress",
+                        "locationNearestCity",
+                        "latitude",
+                        "longitute",
+                      ],
+                    },
+                    "isFacilityLocationDifferent": Object {
+                      "ui:widget": "radio",
+                    },
+                    "mailingAddress": Object {
+                      "ui:order": Array [
+                        "streetAddress",
+                        "city",
+                        "postalCode",
+                        "province",
+                      ],
+                    },
+                    "ui:order": Array [
+                      "facilityName",
+                      "facilityType",
+                      "bcghgid",
+                      "naics",
+                      "mailingAddress",
+                      "isFacilityLocationDifferent",
+                      "facilityLocation",
+                    ],
+                  },
+                  "operationalRepresentative": Object {
+                    "mailingAddress": Object {
+                      "ui:order": Array [
+                        "streetAddress",
+                        "city",
+                        "postalCode",
+                        "province",
+                      ],
+                    },
+                    "ui:order": Array [
+                      "firstName",
+                      "lastName",
+                      "position",
+                      "email",
+                      "phone",
+                      "fax",
+                      "mailingAddress",
+                    ],
+                  },
+                  "operator": Object {
+                    "bcCorporateRegistryNumber": Object {
+                      "ui:col-md": 4,
+                    },
+                    "duns": Object {
+                      "ui:col-md": 4,
+                    },
+                    "mailingAddress": Object {
+                      "ui:order": Array [
+                        "streetAddress",
+                        "city",
+                        "postalCode",
+                        "province",
+                      ],
+                    },
+                    "naics": Object {
+                      "ui:col-md": 4,
+                    },
+                    "ui:order": Array [
+                      "name",
+                      "tradeName",
+                      "naics",
+                      "bcCorporateRegistryNumber",
+                      "duns",
+                      "mailingAddress",
+                    ],
+                  },
+                  "ui:order": Array [
+                    "operator",
+                    "operationalRepresentative",
+                    "facility",
+                  ],
+                }
+              }
+              widgets={
+                Object {
+                  "RadioWidget": [Function],
+                }
+              }
+            >
+              <VIEW />
+            </Form>
+          </VIEW>
+          <VIEW>
+            <TEXT
+              style={
+                Object {
+                  "borderBottom": 1,
+                  "fontSize": 16,
+                  "paddingBottom": 10,
+                }
+              }
+            >
+              
+
+              Emission
+            </TEXT>
+            <Form
+              ArrayFieldTemplate={[Function]}
+              ErrorList={[Function]}
+              FieldTemplate={[Function]}
+              ObjectFieldTemplate={[Function]}
+              disabled={false}
+              fields={
+                Object {
+                  "StringField": [Function],
+                  "emissionGas": [Function],
+                  "emissionSource": [Function],
+                  "production": [Function],
+                }
+              }
+              formData={
+                Object {
+                  "sourceTypes": Array [
+                    Object {
+                      "gases": Array [
+                        Object {
+                          "annualCO2e": -58177779.12199675,
+                          "annualEmission": -52284987.23144872,
+                          "gasDescription": "nulla ut cupidatat",
+                          "gasType": "anim mollit magna in dolor",
+                          "gwp": -21047760.185990676,
+                        },
+                        Object {
+                          "annualCO2e": 31693939.293597892,
+                          "annualEmission": -61483571.84615092,
+                          "gasDescription": "incididunt ",
+                          "gasType": "dolore ullamco aute ut",
+                          "gwp": -83872795.39575201,
+                        },
+                        Object {
+                          "annualCO2e": -11719493.280804113,
+                          "annualEmission": -39367137.67086016,
+                          "gasDescription": "reprehenderit dolore velit",
+                          "gasType": "in commodo",
+                          "gwp": 77314356.96129704,
+                        },
+                        Object {
+                          "annualCO2e": -77822926.0111989,
+                          "annualEmission": -84844919.90774758,
+                          "gasDescription": "Excepteur cillum",
+                          "gasType": "anim enim in laborum mollit",
+                          "gwp": 27943276.336350873,
+                        },
+                      ],
+                      "sourceTypeName": "proident irure cillum in",
+                    },
+                  ],
+                }
+              }
+              liveValidate={false}
+              noHtml5Validate={false}
+              noValidate={false}
+              omitExtraData={true}
+              safeRenderCompletion={false}
+              schema={
+                Object {
+                  "definitions": Object {
+                    "gas": Object {
+                      "properties": Object {
+                        "annualCO2e": Object {
+                          "title": "Tonnes (CO2 equivalent)",
+                          "type": "number",
+                        },
+                        "annualEmission": Object {
+                          "title": "Tonnes (CO2)",
+                          "type": "number",
+                        },
+                        "gasDescription": Object {
+                          "type": "string",
+                        },
+                        "gasType": Object {
+                          "title": "Gas Type",
+                          "type": "string",
+                        },
+                        "gwp": Object {
+                          "title": "GWP",
+                          "type": "number",
+                        },
+                      },
+                      "type": "object",
+                    },
+                    "sourceType": Object {
+                      "properties": Object {
+                        "gases": Object {
+                          "items": Object {
+                            "$ref": "#/definitions/gas",
+                          },
+                          "minItems": 1,
+                          "title": "gases",
+                          "type": "array",
+                        },
+                        "sourceTypeName": Object {
+                          "type": "string",
+                        },
+                      },
+                      "type": "object",
+                    },
+                  },
+                  "properties": Object {
+                    "sourceTypes": Object {
+                      "items": Object {
+                        "$ref": "#/definitions/sourceType",
+                      },
+                      "minItems": 1,
+                      "title": "Source Types",
+                      "type": "array",
+                    },
+                  },
+                  "type": "object",
+                }
+              }
+              showErrorList={false}
+              tagName={[Function]}
+              uiSchema={
+                Object {
+                  "sourceTypes": Object {
+                    "items": Object {
+                      "gases": Object {
+                        "items": Object {
+                          "ui:field": "emissionGas",
+                        },
+                        "ui:options": Object {
+                          "addable": false,
+                          "orderable": false,
+                          "removable": false,
+                        },
+                      },
+                      "sourceTypeName": Object {
+                        "classNames": "hidden-title",
+                        "ui:col-md": 12,
+                        "ui:field": "emissionSource",
+                      },
+                      "ui:order": Array [
+                        "sourceTypeName",
+                        "gases",
+                      ],
+                    },
+                    "ui:options": Object {
+                      "addable": false,
+                      "orderable": false,
+                      "removable": false,
+                    },
+                  },
+                  "ui:className": "emission-form no-col-padding",
+                }
+              }
+              widgets={
+                Object {
+                  "RadioWidget": [Function],
+                }
+              }
+            >
+              <VIEW />
+            </Form>
+          </VIEW>
+          <VIEW>
+            <TEXT
+              style={
+                Object {
+                  "borderBottom": 1,
+                  "fontSize": 16,
+                  "paddingBottom": 10,
+                }
+              }
+            >
+              
+
+              Fuel
+            </TEXT>
+            <Form
+              ArrayFieldTemplate={[Function]}
+              ErrorList={[Function]}
+              FieldTemplate={[Function]}
+              ObjectFieldTemplate={[Function]}
+              disabled={false}
+              fields={
+                Object {
+                  "StringField": [Function],
+                  "emissionGas": [Function],
+                  "emissionSource": [Function],
+                  "production": [Function],
+                }
+              }
+              formData={
+                Array [
+                  Object {
+                    "fuelType": "do Duis",
+                    "fuelUnits": "pariatur",
+                    "methodology": "wci 3.0",
+                    "quantity": 61636168.194217324,
+                  },
+                ]
+              }
+              liveValidate={false}
+              noHtml5Validate={false}
+              noValidate={false}
+              omitExtraData={true}
+              safeRenderCompletion={false}
+              schema={
+                Object {
+                  "definitions": Object {
+                    "fuel": Object {
+                      "properties": Object {
+                        "fuelType": Object {
+                          "title": "Fuel Type",
+                          "type": "string",
+                        },
+                        "fuelUnits": Object {
+                          "title": "Units",
+                          "type": "string",
+                        },
+                        "methodology": Object {
+                          "enum": Array [
+                            "wci 1.0",
+                            "wci 2.0",
+                            "wci 3.0",
+                          ],
+                          "enumNames": Array [
+                            "WCI 1.0",
+                            "WCI 2.0",
+                            "WCI 3.0",
+                          ],
+                          "title": "Methodology",
+                          "type": "string",
+                        },
+                        "quantity": Object {
+                          "title": "Quantity",
+                          "type": "number",
+                        },
+                      },
+                      "type": "object",
+                    },
+                  },
+                  "items": Object {
+                    "$ref": "#/definitions/fuel",
+                  },
+                  "type": "array",
+                }
+              }
+              showErrorList={false}
+              tagName={[Function]}
+              uiSchema={
+                Object {
+                  "items": Object {
+                    "ui:field": "fuel",
+                  },
+                  "ui:add-text": "Add a fuel",
+                  "ui:remove-text": "Remove fuel",
+                }
+              }
+              widgets={
+                Object {
+                  "RadioWidget": [Function],
+                }
+              }
+            >
+              <VIEW />
+            </Form>
+          </VIEW>
+          <VIEW>
+            <TEXT
+              style={
+                Object {
+                  "borderBottom": 1,
+                  "fontSize": 16,
+                  "paddingBottom": 10,
+                }
+              }
+            >
+              
+
+              Electricity and Heat
+            </TEXT>
+            <Form
+              ArrayFieldTemplate={[Function]}
+              ErrorList={[Function]}
+              FieldTemplate={[Function]}
+              ObjectFieldTemplate={[Function]}
+              disabled={false}
+              fields={
+                Object {
+                  "StringField": [Function],
+                  "emissionGas": [Function],
+                  "emissionSource": [Function],
+                  "production": [Function],
+                }
+              }
+              formData={
+                Object {
+                  "electricity": Object {
+                    "consumedOnSite": -43374102.27544782,
+                    "generatedOnSite": 29335124.884675294,
+                    "onSiteEmissions": -31193045.646962732,
+                    "purchased": 0,
+                    "sold": -31783905.042163014,
+                  },
+                  "heat": Object {
+                    "consumedOnSite": -4053368.657837808,
+                    "generatedOnSite": -35402187.63426024,
+                    "onSiteEmissions": -6623640.047154263,
+                    "purchased": -78143000.8935124,
+                    "purchasedEmissionFactor": 47147117.93076414,
+                    "sold": -52906993.5395059,
+                  },
+                }
+              }
+              liveValidate={false}
+              noHtml5Validate={false}
+              noValidate={false}
+              omitExtraData={true}
+              safeRenderCompletion={false}
+              schema={
+                Object {
+                  "properties": Object {
+                    "electricity": Object {
+                      "dependencies": Object {
+                        "generatedOnSite": Object {
+                          "oneOf": Array [
+                            Object {
+                              "properties": Object {
+                                "generatedOnSite": Object {
+                                  "exclusiveMinimum": 0,
+                                },
+                                "onSiteEmissions": Object {
+                                  "title": "Emissions from On-Site Generation (tCO2e)",
+                                  "type": "number",
+                                },
+                              },
+                              "required": Array [
+                                "onSiteEmissions",
+                              ],
+                            },
+                            Object {
+                              "properties": Object {
+                                "generatedOnSite": Object {
+                                  "const": 0,
+                                },
+                              },
+                            },
+                          ],
+                        },
+                        "purchased": Object {
+                          "oneOf": Array [
+                            Object {
+                              "properties": Object {
+                                "purchased": Object {
+                                  "exclusiveMinimum": 0,
+                                },
+                                "purchasedEmissionFactor": Object {
+                                  "title": "Purchased Electricity Emission Factor (tCO2e/MWh)",
+                                  "type": "number",
+                                },
+                              },
+                              "required": Array [
+                                "purchasedEmissionFactor",
+                              ],
+                            },
+                            Object {
+                              "properties": Object {
+                                "purchased": Object {
+                                  "const": 0,
+                                },
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      "properties": Object {
+                        "consumedOnSite": Object {
+                          "title": "Consumed On Site (MWh)",
+                          "type": "number",
+                        },
+                        "generatedOnSite": Object {
+                          "title": "Generated On Site (MWh)",
+                          "type": "number",
+                        },
+                        "purchased": Object {
+                          "title": "Purchased (MWh)",
+                          "type": "number",
+                        },
+                        "sold": Object {
+                          "title": "Sold (MWh)",
+                          "type": "number",
+                        },
+                      },
+                      "required": Array [
+                        "purchased",
+                        "generatedOnSite",
+                        "consumedOnSite",
+                        "sold",
+                      ],
+                      "title": "Electricity",
+                      "type": "object",
+                    },
+                    "heat": Object {
+                      "dependencies": Object {
+                        "generatedOnSite": Object {
+                          "oneOf": Array [
+                            Object {
+                              "properties": Object {
+                                "generatedOnSite": Object {
+                                  "exclusiveMinimum": 0,
+                                },
+                                "onSiteEmissions": Object {
+                                  "title": "Emissions from On-Site Generation (tCO2e)",
+                                  "type": "number",
+                                },
+                              },
+                              "required": Array [
+                                "onSiteEmissions",
+                              ],
+                            },
+                            Object {
+                              "properties": Object {
+                                "generatedOnSite": Object {
+                                  "const": 0,
+                                },
+                              },
+                            },
+                          ],
+                        },
+                        "purchased": Object {
+                          "oneOf": Array [
+                            Object {
+                              "properties": Object {
+                                "purchased": Object {
+                                  "exclusiveMinimum": 0,
+                                },
+                                "purchasedEmissionFactor": Object {
+                                  "default": 0.063,
+                                  "title": "Purchased Heat Emission Factor (tCO2e/GJ)",
+                                  "type": "number",
+                                },
+                              },
+                              "required": Array [
+                                "purchasedEmissionFactor",
+                              ],
+                            },
+                            Object {
+                              "properties": Object {
+                                "purchased": Object {
+                                  "const": 0,
+                                },
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      "properties": Object {
+                        "consumedOnSite": Object {
+                          "title": "Consumed On Site (GJ)",
+                          "type": "number",
+                        },
+                        "generatedOnSite": Object {
+                          "title": "Generated On Site (GJ)",
+                          "type": "number",
+                        },
+                        "purchased": Object {
+                          "title": "Purchased (GJ)",
+                          "type": "number",
+                        },
+                        "sold": Object {
+                          "title": "Sold (GJ)",
+                          "type": "number",
+                        },
+                      },
+                      "required": Array [
+                        "purchased",
+                        "generatedOnSite",
+                        "consumedOnSite",
+                        "sold",
+                      ],
+                      "title": "Heat",
+                      "type": "object",
+                    },
+                  },
+                  "type": "object",
+                }
+              }
+              showErrorList={false}
+              tagName={[Function]}
+              uiSchema={
+                Object {
+                  "electricity": Object {
+                    "consumedOnSite": Object {
+                      "ui:col-md": 3,
+                    },
+                    "generatedOnSite": Object {
+                      "ui:col-md": 3,
+                    },
+                    "purchased": Object {
+                      "ui:col-md": 3,
+                    },
+                    "purchasedEmissionFactor": Object {
+                      "ui:help": "Find your Grid Emission Factor here (and apply necessary conversion)",
+                      "ui:helplink": "https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/reporting/quantify/electricity",
+                    },
+                    "sold": Object {
+                      "ui:col-md": 3,
+                    },
+                    "ui:order": Array [
+                      "purchased",
+                      "generatedOnSite",
+                      "consumedOnSite",
+                      "sold",
+                      "*",
+                    ],
+                  },
+                  "heat": Object {
+                    "consumedOnSite": Object {
+                      "ui:col-md": 3,
+                    },
+                    "generatedOnSite": Object {
+                      "ui:col-md": 3,
+                    },
+                    "purchased": Object {
+                      "ui:col-md": 3,
+                    },
+                    "purchasedEmissionFactor": Object {
+                      "ui:help": "Computed using natural gas emissions from the WCI methodology, assuming 80% efficiency",
+                    },
+                    "sold": Object {
+                      "ui:col-md": 3,
+                    },
+                    "ui:order": Array [
+                      "purchased",
+                      "generatedOnSite",
+                      "consumedOnSite",
+                      "sold",
+                      "*",
+                    ],
+                  },
+                  "ui:order": Array [
+                    "electricity",
+                    "heat",
+                  ],
+                }
+              }
+              widgets={
+                Object {
+                  "RadioWidget": [Function],
+                }
+              }
+            >
+              <VIEW />
+            </Form>
+          </VIEW>
+          <VIEW>
+            <TEXT
+              style={
+                Object {
+                  "borderBottom": 1,
+                  "fontSize": 16,
+                  "paddingBottom": 10,
+                }
+              }
+            >
+              
+
+              Production
+            </TEXT>
+            <Form
+              ArrayFieldTemplate={[Function]}
+              ErrorList={[Function]}
+              FieldTemplate={[Function]}
+              ObjectFieldTemplate={[Function]}
+              disabled={false}
+              fields={
+                Object {
+                  "StringField": [Function],
+                  "emissionGas": [Function],
+                  "emissionSource": [Function],
+                  "production": [Function],
+                }
+              }
+              formData={
+                Array [
+                  Object {
+                    "additionalData": Object {
+                      "eu_6$": "anim",
+                    },
+                    "paymentAllocationFactor": -6983821,
+                    "productRowId": -33356680,
+                    "productUnits": "veniam s",
+                    "productionAllocationFactor": -88892853,
+                    "quantity": 76340076.54433769,
+                  },
+                ]
+              }
+              liveValidate={false}
+              noHtml5Validate={false}
+              noValidate={false}
+              omitExtraData={true}
+              safeRenderCompletion={false}
+              schema={
+                Object {
+                  "definitions": Object {
+                    "product": Object {
+                      "properties": Object {
+                        "additionalData": Object {
+                          "additionalProperties": true,
+                          "type": "object",
+                        },
+                        "paymentAllocationFactor": Object {
+                          "exclusiveMinimum": 0,
+                          "maximum": 100,
+                          "title": "Product allocation factor (%)",
+                          "type": "integer",
+                        },
+                        "productRowId": Object {
+                          "title": "Product or Service",
+                          "type": "integer",
+                        },
+                        "productUnits": Object {
+                          "title": "Units",
+                          "type": "string",
+                        },
+                        "productionAllocationFactor": Object {
+                          "exclusiveMinimum": 0,
+                          "maximum": 100,
+                          "title": "Product allocation factor (%)",
+                          "type": "integer",
+                        },
+                        "quantity": Object {
+                          "title": "Annual Production Amount",
+                          "type": "number",
+                        },
+                      },
+                      "required": Array [
+                        "productRowId",
+                        "quantity",
+                        "productUnits",
+                        "productionAllocationFactor",
+                        "paymentAllocationFactor",
+                      ],
+                      "type": "object",
+                    },
+                  },
+                  "items": Object {
+                    "$ref": "#/definitions/product",
+                  },
+                  "type": "array",
+                }
+              }
+              showErrorList={false}
+              tagName={[Function]}
+              uiSchema={
+                Object {
+                  "items": Object {
+                    "productRowId": Object {
+                      "ui:col-md": 8,
+                      "ui:widget": "SearchWidget",
+                    },
+                    "productionAllocationFactor": Object {
+                      "ui:col-md": 4,
+                      "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service",
+                    },
+                    "ui:field": "production",
+                  },
+                  "ui:add-text": "Add a Product",
+                  "ui:remove-text": "Remove Product",
+                }
+              }
+              widgets={
+                Object {
+                  "RadioWidget": [Function],
+                }
+              }
+            >
+              <VIEW />
+            </Form>
+          </VIEW>
+        </styled.VIEW>
+        <TEXT
+          fixed={true}
+          render={[Function]}
+          style={
+            Object {
+              "bottom": 20,
+              "fontSize": 12,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "textAlign": "center",
+            }
+          }
+        />
+      </PAGE>
+    </DOCUMENT>
+  }
+  fileName="CIIP_Application_Forest Floor_2019.pdf"
+>
+  <Component />
+</PDFDownloadLink>
+`;
