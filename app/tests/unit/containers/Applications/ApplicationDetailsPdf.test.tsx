@@ -1,31 +1,31 @@
-import React from "react";
-import { shallow } from "enzyme";
-import { ApplicationDetailsPdf } from "containers/Applications/ApplicationDetailsPdf";
-import { generateFakeSchemaData } from "../../../integration/json-schema-utils";
-import adminForm from "schema/data/portal/form_json/administration.json";
-import emissionForm from "schema/data/portal/form_json/emission.json";
-import fuelForm from "schema/data/portal/form_json/fuel.json";
-import electricityAndHeatForm from "schema/data/portal/form_json/electricity_and_heat.json";
-import productionForm from "schema/data/portal/form_json/production.json";
-import { FormJson } from "next-env";
+import React from 'react';
+import {shallow} from 'enzyme';
+import {FormJson} from 'next-env';
+import {ApplicationDetailsPdf} from 'containers/Applications/ApplicationDetailsPdf';
+import adminForm from 'schema/data/portal/form_json/administration.json';
+import emissionForm from 'schema/data/portal/form_json/emission.json';
+import fuelForm from 'schema/data/portal/form_json/fuel.json';
+import electricityAndHeatForm from 'schema/data/portal/form_json/electricity_and_heat.json';
+import productionForm from 'schema/data/portal/form_json/production.json';
+import {generateFakeSchemaData} from '../../../integration/json-schema-utils';
 
-describe("ApplicationDetailsPdf", () => {
-  it("should render application pdf donwload link", async () => {
+describe('ApplicationDetailsPdf', () => {
+  it('should render application pdf donwload link', async () => {
     const renderer = shallow(
       <ApplicationDetailsPdf
         application={{
-          " $refType": "ApplicationDetailsPdf_application",
+          ' $refType': 'ApplicationDetailsPdf_application',
           applicationRevisionStatus: {
-            applicationRevisionStatus: "SUBMITTED"
+            applicationRevisionStatus: 'SUBMITTED'
           },
           reportingYear: 2019,
           facilityByFacilityId: {
-            facilityName: "Forest Floor",
-            facilityMailingAddress: "Evergreen Street Northwest",
-            facilityCity: "Oak Grove",
-            facilityCountry: "Canada",
-            facilityProvince: "British Columbia",
-            facilityPostalCode: "V1C6T8"
+            facilityName: 'Forest Floor',
+            facilityMailingAddress: 'Evergreen Street Northwest',
+            facilityCity: 'Oak Grove',
+            facilityCountry: 'Canada',
+            facilityProvince: 'British Columbia',
+            facilityPostalCode: 'V1C6T8'
           },
           formResultsByApplicationId: {
             edges: [
@@ -33,7 +33,7 @@ describe("ApplicationDetailsPdf", () => {
                 node: {
                   formResult: generateFakeSchemaData(adminForm as FormJson),
                   formJsonByFormId: {
-                    name: "Admin",
+                    name: 'Admin',
                     formJson: adminForm
                   }
                 }
@@ -42,7 +42,7 @@ describe("ApplicationDetailsPdf", () => {
                 node: {
                   formResult: generateFakeSchemaData(emissionForm as FormJson),
                   formJsonByFormId: {
-                    name: "Emission",
+                    name: 'Emission',
                     formJson: emissionForm
                   }
                 }
@@ -51,7 +51,7 @@ describe("ApplicationDetailsPdf", () => {
                 node: {
                   formResult: generateFakeSchemaData(fuelForm as FormJson),
                   formJsonByFormId: {
-                    name: "Fuel",
+                    name: 'Fuel',
                     formJson: fuelForm
                   }
                 }
@@ -62,7 +62,7 @@ describe("ApplicationDetailsPdf", () => {
                     electricityAndHeatForm as FormJson
                   ),
                   formJsonByFormId: {
-                    name: "Electricity and Heat",
+                    name: 'Electricity and Heat',
                     formJson: electricityAndHeatForm
                   }
                 }
@@ -73,7 +73,7 @@ describe("ApplicationDetailsPdf", () => {
                     productionForm as FormJson
                   ),
                   formJsonByFormId: {
-                    name: "Production",
+                    name: 'Production',
                     formJson: productionForm
                   }
                 }
