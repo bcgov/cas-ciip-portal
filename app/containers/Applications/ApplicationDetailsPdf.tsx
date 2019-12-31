@@ -12,6 +12,11 @@ import JsonSchemaForm from 'react-jsonschema-form';
 import {Header, Row, Body, FormFields, Column} from 'components/Layout/Pdf';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ApplicationDetailsPdf_application} from 'ApplicationDetailsPdf_application.graphql';
+import PdfEmissionGasFieldTemplate from 'containers/Pdf/PdfEmissionGasFieldTemplate';
+import PdfProductionFieldsTemplate from 'containers/Pdf/PdfProductionFieldsTemplate';
+import PdfFieldTemplate from 'containers/Pdf/PdfFieldTemplate';
+import PdfArrayFieldTemplate from 'containers/Pdf/PdfArrayFieldTemplate';
+import PdfObjectFieldTemplate from 'containers/Pdf/PdfObjectFieldTemplate';
 
 interface Props {
   application: ApplicationDetailsPdf_application;
@@ -22,7 +27,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 40
   },
-  label: {fontSize: 12},
   appInfo: {
     fontSize: 12,
     margin: '10px 0 20px'
@@ -31,9 +35,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 1.3
   },
-  fields: {
-    lineHeight: 1.5
-  },
+
   pageNumbers: {
     fontSize: 12,
     position: 'absolute',
@@ -44,88 +46,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const arrayFieldTemplate = props => {
-  return (
-    <>
-      <Text>
-        {props.title === 'gases' || props.title === 'Source Types'
-          ? null
-          : props.title}
-      </Text>
-      {props.items.map(item => {
-        return <Text key={item.index}>{item.children}</Text>;
-      })}
-    </>
-  );
-};
-
-const objectFieldTemplate = props => {
-  return (
-    <>
-      {props.properties.map(
-        prop =>
-          prop.content && <View key={prop.content.key}>{prop.content}</View>
-      )}
-      {!props.properties && '\n'}
-    </>
-  );
-};
-
-const fieldTemplate = props => {
-  return (
-    <>
-      {props.label && (
-        <View style={styles.label}>
-          {props.label === 'gases' ||
-          props.label === 'sourceTypeName' ? null : props.classNames.includes(
-              'field-object'
-            ) ? (
-            <Text style={{fontSize: 15, letterSpacing: 2}}>
-              {`\n\n${props.label}: `}
-            </Text>
-          ) : (
-            <Text>{`\n${props.label}: `}</Text>
-          )}
-        </View>
-      )}
-      {props.children && <Text style={styles.fields}>{props.children}</Text>}
-    </>
-  );
-};
-
-const emissionGasFieldTemplate = props => {
-  return (
-    <Text>
-      {'\n'}
-      {props.gasType} - Tonnes: {props.annualEmission} - Tonnes (CO2e):{' '}
-      {props.annualCO2e}
-    </Text>
-  );
-};
-
-const productionFieldTemplate = props => {
-  return (
-    <>
-      <Text style={{fontSize: 15, letterSpacing: 2}}>
-        {'\n'}Production:{'\n'}
-      </Text>
-      <Text>
-        Product allocation factor (%): {props.productionAllocationFactor}
-        {'\n'}
-      </Text>
-      <Text>
-        Annual Production Amount: {props.productUnits}
-        {'\n'}
-      </Text>
-      <Text>
-        Units: {props.quantity}
-        {'\n'}
-      </Text>
-      <Text>{props.productRowId}</Text>
-    </>
-  );
-};
-
 const CUSTOM_FIELDS = {
   StringField: props => <Text>{props.formData ?? '[Not Entered]'}</Text>,
   emissionSource: props => (
@@ -134,8 +54,8 @@ const CUSTOM_FIELDS = {
       {props.formData}
     </Text>
   ),
-  emissionGas: props => emissionGasFieldTemplate(props.formData),
-  production: props => productionFieldTemplate(props.formData)
+  emissionGas: props => <PdfEmissionGasFieldTemplate {...props} />,
+  production: props => <PdfProductionFieldsTemplate {...props} />
 };
 
 const customWidget = {
@@ -152,7 +72,7 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
 
   const pdfDocument = (
     <Document>
-      <Page wrap size="A4" style={styles.page}>
+      <Page wrap size="LETTER" style={styles.page}>
         <Header>
           <Image src="/static/bcid.png" style={{width: 150, margin: 'auto'}} />
           <Text>Application for CleanBC Industrial Incentive Program</Text>
@@ -245,9 +165,9 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
               </Text>
               <JsonSchemaForm
                 omitExtraData
-                ArrayFieldTemplate={arrayFieldTemplate}
-                FieldTemplate={fieldTemplate}
-                ObjectFieldTemplate={objectFieldTemplate}
+                ArrayFieldTemplate={PdfArrayFieldTemplate}
+                FieldTemplate={PdfFieldTemplate}
+                ObjectFieldTemplate={PdfObjectFieldTemplate}
                 showErrorList={false}
                 fields={CUSTOM_FIELDS}
                 schema={node.formJsonByFormId.formJson.schema}
