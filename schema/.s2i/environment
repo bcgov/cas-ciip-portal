@@ -1,4 +1,6 @@
 PERL_MB_OPT=--install_base "/opt/app-root/src/extlib/lib/perl5"
 PERL_MM_OPT=INSTALL_BASE=/opt/app-root/src/extlib/lib/perl5
 PERL5LIB=/opt/app-root/src/extlib/lib/perl5
-PATH=/opt/app-root/src/extlib/bin:/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+# cpanm is installed in /opt/app-root/src/extlib/lib/perl5/bin
+# sqitch is installed in /opt/app-root/src/extlib/bin
+PATH=/opt/app-root/src/extlib/bin:/opt/app-root/src/extlib/lib/perl5/bin:/opt/app-root/src/bin:/opt/app-root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

@@ -1,5 +1,4 @@
 PERL=perl
-RSYNC=rsync
 PERL_VERSION=${shell ${PERL} -e 'print substr($$^V, 1)'}
 PERL_MIN_VERSION=5.10
 CPAN=cpan
@@ -96,7 +95,6 @@ verify_installed:
 
 	$(call check_file_in_path,${CPAN})
 	$(call check_file_in_path,${GIT})
-	$(call check_file_in_path,${RSYNC})
 
 	$(call check_file_in_path,${PSQL})
 	$(call check_min_version_num,${PSQL},${PSQL_VERSION},${PG_MIN_VERSION})
@@ -150,23 +148,21 @@ install_pgtap: pgtap
 
 .PHONY: install_cpanm
 install_cpanm:
-ifeq (${shell which ${CPANM}},)
+ifeq ($(shell which $(word 1,$(CPANM))),)
 	# install cpanm
-	@@echo | ${CPAN} # accept cpan defaults blindly
-	@@${CPAN} App:cpanminus
+	@@echo | $(CPAN) # accept cpan defaults blindly
+	@@$(CPAN) App:cpanminus
 endif
 
 .PHONY: install_cpandeps
 install_cpandeps:
-	# install sqitch
-	${CPANM} -n https://github.com/matthieu-foucault/sqitch/releases/download/v1.0.1.TRIAL/App-Sqitch-v1.0.1-TRIAL.tar.gz
 	# install Perl dependencies from cpanfile
-	${CPANM} --installdeps .
+	$(CPANM) --installdeps .
 
 .PHONY: postinstall_check
 postinstall_check:
 	@@printf '%s\n%s\n' "${SQITCH_MIN_VERSION}" "${SQITCH_VERSION}" | sort -CV ||\
  	(echo "FATAL: ${SQITCH} version should be at least ${SQITCH_MIN_VERSION}. Make sure the ${SQITCH} executable installed by cpanminus is available has the highest priority in the PATH" && exit 1);
 
-.PHONY: dev_install
-dev_install: install_cpanm install_cpandeps postinstall_check
+.PHONY: install
+install: install_cpanm install_cpandeps postinstall_check

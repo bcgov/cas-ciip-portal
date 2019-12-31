@@ -1,5 +1,5 @@
 SHELL := /usr/bin/env bash
-ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build install install_test))
+ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build_tools build install install_test))
 include .pipeline/oc.mk
 include .pipeline/make.mk
 endif
@@ -38,6 +38,19 @@ configure: OC_PROJECT=$(OC_TOOLS_PROJECT)
 configure: whoami
 	$(call oc_configure)
 
+
+TOOLS_HASH=$(shell md5sum .tool-versions Dockerfile | md5sum | cut -d' ' -f1)
+OC_TEMPLATE_VARS += TOOLS_HASH=$(TOOLS_HASH)
+.PHONY: build_tools
+build_tools: $(call make_help,build_schema,Builds a tools image in the tools openshift namespace)
+build_tools: OC_PROJECT=$(OC_TOOLS_PROJECT)
+build_tools: whoami
+ifeq ($(shell $(OC) -n $(OC_TOOLS_PROJECT) get istag/$(PROJECT_PREFIX)ciip-portal-tools:$(TOOLS_HASH) --ignore-not-found -o name),)
+	$(call oc_build,$(PROJECT_PREFIX)ciip-portal-tools)
+else
+	@echo "The $(PROJECT_PREFIX)ciip-portal-tools:$(TOOLS_HASH) tag already exists. Skipping build_tools."
+endif
+
 .PHONY: build_schema
 build_schema: $(call make_help,build_schema,Builds the schema source into an image in the tools project namespace)
 build_schema: OC_PROJECT=$(OC_TOOLS_PROJECT)
@@ -53,7 +66,7 @@ build_app: whoami
 
 .PHONY: build
 build: $(call make_help,build,Builds the source into an image in the tools project namespace)
-build: build_schema build_app
+build: build_tools build_schema build_app
 
 PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)ciip-portal-schema-deploy --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
 
@@ -98,40 +111,15 @@ unwatch:
 watch_log:
 	tail -f /usr/local/var/run/watchman/$(shell whoami)-state/log
 
-CPAN=cpan
-CPANM=cpanm
-SQITCH=sqitch
-SQITCH_MIN_VERSION=0.97
-
-.PHONY: install_cpanm
-install_cpanm:
-ifeq (${shell which ${CPANM}},)
-	# install cpanm
-	@@echo | ${CPAN} # accept cpan defaults blindly
-	@@${CPAN} App:cpanminus
-endif
-
-.PHONY: install_cpandeps
-install_cpandeps:
-	# install sqitch
-	${CPANM} -n https://github.com/matthieu-foucault/sqitch/releases/download/v1.0.1.TRIAL/App-Sqitch-v1.0.1-TRIAL.tar.gz
-	# install Perl dependencies from cpanfile
-	${CPANM} --installdeps ./schema
-
-.PHONY: postinstall_check
-postinstall_check: SQITCH_VERSION=$(word 3,$(shell ${SQITCH} --version))
-postinstall_check:
-	@@printf '%s\n%s\n' "${SQITCH_MIN_VERSION}" "${SQITCH_VERSION}" | sort -CV ||\
-	(echo "FATAL: ${SQITCH} version should be at least ${SQITCH_MIN_VERSION}. Make sure the ${SQITCH} executable installed by cpanminus is available has the highest priority in the PATH" && exit 1);
-
 .PHONY: install_perl_tools
-install_perl_tools: install_cpanm install_cpandeps postinstall_check
+install_perl_tools:
+	@@$(MAKE) -C schema install CPANM="cpanm --notest"
 
 .PHONY: install_asdf_tools
 install_asdf_tools:
 	@cat .tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add || true
 	@asdf plugin-update --all
-	@bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+	@bash ./.bin/import-nodejs-keyring.sh
 	@#MAKELEVEL=0 is required because of https://www.postgresql.org/message-id/1118.1538056039%40sss.pgh.pa.us
 	@MAKELEVEL=0 POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install
 	@asdf reshim

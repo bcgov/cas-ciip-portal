@@ -42,8 +42,7 @@ objects:
           - /usr/bin/env
           - bash
           - -c
-          - |
-            sqitch revert -y;
+          - sqitch revert -y || exit 0
           env:
           - name: SQITCH_TARGET
             value: "db:pg:"
@@ -74,8 +73,8 @@ objects:
           name: ${PREFIX}ciip-portal-schema-revert
           resources:
             limits:
-              cpu: 100m
+              cpu: "1"
               memory: 64Mi
             requests:
-              cpu: 100m
+              cpu: 500m
               memory: 64Mi

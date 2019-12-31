@@ -2,11 +2,6 @@ apiVersion: template.openshift.io/v1
 kind: Template
 
 parameters:
-- description: Version of Node image to be used (latest for now).
-  displayName: Version of Node Image
-  name: NODE_VERSION
-  required: true
-  value: latest
 - description: Prefix to prepend to object name.
   displayName: Prefix
   name: PREFIX
@@ -14,6 +9,14 @@ parameters:
 - description: SHA1 of git revision to be deployed.
   displayName: Git SHA1
   name: GIT_SHA1
+  required: true
+- description: Normalized name of the current git branch
+  displayName: Branch name
+  name: GIT_BRANCH_NORM
+  required: true
+- description: Hash of the tools versions
+  displayName: Tools hash
+  name: TOOLS_HASH
   required: true
 
 objects:
@@ -28,7 +31,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: ${PREFIX}ciip-portal-app:${GIT_SHA1}
+        name: ${PREFIX}ciip-portal-app:${GIT_BRANCH_NORM}
     resources:
       limits:
         cpu: "2"
@@ -46,7 +49,8 @@ objects:
       sourceStrategy:
         from:
           kind: ImageStreamTag
-          name: ${PREFIX}node:${NODE_VERSION}
+          name: ${PREFIX}ciip-portal-tools:${TOOLS_HASH}
+        incremental: true
       type: Source
     triggers: []
   status:

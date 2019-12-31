@@ -10,10 +10,6 @@ parameters:
   displayName: Git SHA1
   name: GIT_SHA1
   required: true
-- description: Normalized name of the current git branch
-  displayName: Branch name
-  name: GIT_BRANCH_NORM
-  required: true
 - description: Hash of the tools versions
   displayName: Tools hash
   name: TOOLS_HASH
@@ -23,35 +19,29 @@ objects:
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
-    name: ${PREFIX}ciip-portal-schema
+    name: ${PREFIX}ciip-portal-tools
   spec:
     runPolicy: Parallel
     nodeSelector:
-        beta.kubernetes.io/os: linux
+      beta.kubernetes.io/os: linux
     output:
       to:
         kind: ImageStreamTag
-        name: ${PREFIX}ciip-portal-schema:${GIT_BRANCH_NORM}
+        name: ${PREFIX}ciip-portal-tools:${TOOLS_HASH}
     resources:
       limits:
-        cpu: "1"
-        memory: 1Gi
+        cpu: 2000m
+        memory: 8Gi
       requests:
-        cpu: 100m
-        memory: 256Mi
+        cpu: 1000m
+        memory: 2Gi
     source:
       git:
         ref: ${GIT_SHA1}
         uri: https://github.com/bcgov/${PREFIX}ciip-portal.git
-      contextDir: schema
       type: Git
     strategy:
-      sourceStrategy:
-        from:
-          kind: ImageStreamTag
-          name: ${PREFIX}ciip-portal-tools:${TOOLS_HASH}
-        incremental: true
-      type: Source
+      type: Docker
     triggers: []
   status:
     lastVersion: 0
