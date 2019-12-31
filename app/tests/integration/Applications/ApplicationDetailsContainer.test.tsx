@@ -33,6 +33,7 @@ describe('ApplicationDetailsContainer', () => {
             application(id: $applicationId) {
               ...ApplicationDetailsContainer_application
                 @arguments(version: $version)
+              ...ApplicationDetailsPdf_application
             }
             ...ApplicationDetailsContainer_query
           }
