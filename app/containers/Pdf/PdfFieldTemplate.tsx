@@ -12,6 +12,10 @@ const PdfFieldTemplate: React.FunctionComponent<FieldTemplateProps> = props => {
     <>
       {props.label && (
         <View style={styles.label}>
+          {/* In order to properly display gas labels we need to check:
+          if label has 'field-object' class then add two new lines and style as subtitle
+          otherwise just add one new line
+          */}
           {props.label === 'gases' ||
           props.label === 'sourceTypeName' ? null : props.classNames.includes(
               'field-object'
