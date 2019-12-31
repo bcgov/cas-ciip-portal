@@ -54,6 +54,18 @@ export const ApplicationRowItem = props => {
           <Button variant="primary">View Application</Button>
         </Link>
       </td>
+      <td>
+        <Link
+          href={{
+            pathname: '/application-diff',
+            query: {
+              applicationRowId: applicationSearchResult.applicationId
+            }
+          }}
+        >
+          <Button variant="primary">Revision Diff</Button>
+        </Link>
+      </td>
     </tr>
   );
 };
