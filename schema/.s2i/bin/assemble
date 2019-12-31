@@ -19,9 +19,10 @@ else
   export ENABLE_CPAN_TEST="--notest"
 fi
 
-# install the dependencies using cpanm (make install will install cpanm if needed)
+# install the dependencies using cpanm
+# make install will install cpanm using cpan -T (skips tests)
 # installation is done in extlib
-make install CPANM="cpanm $ENABLE_CPAN_TEST -l extlib"
+make install CPANM="cpanm $ENABLE_CPAN_TEST -l extlib" CPAN='cpan -T'
 
 # Fix apt-root directory permissions
 fix-permissions ../
