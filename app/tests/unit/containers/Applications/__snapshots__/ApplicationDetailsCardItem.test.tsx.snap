@@ -16,7 +16,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
       noGutters={false}
     >
       <Col
-        md={11}
+        md={6}
       >
         <h4>
           Fuel Usage
