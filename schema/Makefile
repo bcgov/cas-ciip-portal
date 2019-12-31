@@ -150,7 +150,6 @@ install_pgtap: pgtap
 install_cpanm:
 ifeq ($(shell which $(word 1,$(CPANM))),)
 	# install cpanm
-	@@echo | $(CPAN) # accept cpan defaults blindly
 	@@$(CPAN) App:cpanminus
 endif
 
