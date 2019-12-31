@@ -51,8 +51,6 @@ class ViewApplication extends Component<Props> {
     const {query} = this.props;
     const formResults = query.application.orderedFormResults.edges;
 
-    const pdfFilename = `CIIP_Application_${application.facilityByFacilityId.facilityName}_${application.reportingYear}.pdf`;
-
     return (
       <DefaultLayout
         showSubheader

@@ -36,7 +36,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
       <div style={{textAlign: 'right', marginTop: 20}}>
         <ApplicationDetailsPdf application={props.application} />
       </div>
-    </>
+    </div>
   );
 };
 
