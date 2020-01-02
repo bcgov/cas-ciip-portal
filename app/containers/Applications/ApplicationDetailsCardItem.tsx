@@ -152,7 +152,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             uiSchema={extensibleUISchema}
             ObjectFieldTemplate={FormObjectFieldTemplate}
             formData={formResult.formResult}
-            formContext={{query}}
+            formContext={{query, showDiff}}
           >
             {/* Over-ride submit button for each form with an empty fragment */}
             <></>
