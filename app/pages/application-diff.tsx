@@ -22,6 +22,9 @@ class ApplicationDiff extends Component<Props> {
               node {
                 id
                 versionNumber
+                applicationRevisionStatus {
+                  applicationRevisionStatus
+                }
                 formResultsByApplicationIdAndVersionNumber {
                   edges {
                     node {
@@ -39,15 +42,15 @@ class ApplicationDiff extends Component<Props> {
 
   render() {
     const {query} = this.props;
-    // @ts-ignore
     const {session, application} = query;
-    const revisions = application.applicationRevisionsByApplicationId;
+    console.log(application);
+    const revisions = application.applicationRevisionsByApplicationId.edges;
     const lhs =
-      revisions.edges[0].node.formResultsByApplicationIdAndVersionNumber
-        .edges[0].node.formResult;
+      revisions[0].node.formResultsByApplicationIdAndVersionNumber.edges[0].node
+        .formResult;
     const rhs =
-      revisions.edges[1].node.formResultsByApplicationIdAndVersionNumber
-        .edges[0].node.formResult;
+      revisions[1].node.formResultsByApplicationIdAndVersionNumber.edges[0].node
+        .formResult;
     const differences = diff(lhs, rhs);
     console.log(differences);
     return (
