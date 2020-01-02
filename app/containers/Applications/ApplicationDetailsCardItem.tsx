@@ -44,16 +44,19 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     }
   });
 
-  const rhs = previousFormResult;
-  const lhs = formResult.formResult;
+  const lhs = previousFormResult;
+  const rhs = formResult.formResult;
   const differences = diff(lhs, rhs);
 
   const extensibleUISchema = JSON.parse(JSON.stringify(uiSchema));
 
   const iterate = (obj, pathArray, previousValue) => {
     const key = pathArray[0];
+
     if (typeof obj[key] === 'object') {
       iterate(obj[key], pathArray.slice(1), previousValue);
+    } else if (key === undefined) {
+      Object.assign(obj, {'ui:previous': previousValue});
     } else {
       Object.assign(obj, {
         [key]: {
@@ -64,14 +67,17 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   };
 
   if (differences) {
+    console.log(differences);
     differences.forEach(difference => {
       const pathArray = [];
       difference.path.forEach(pathItem => {
         pathArray.push(pathItem);
       });
-      iterate(extensibleUISchema, pathArray, difference.rhs);
+      iterate(extensibleUISchema, pathArray, difference.lhs);
     });
   }
+
+  console.log(extensibleUISchema);
 
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
@@ -102,7 +108,23 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 
       return formData;
     },
-    BooleanField: props => <> {props.formData ? 'Yes' : 'No'}</>,
+    BooleanField: ({formData, uiSchema}) => {
+      if (showDiff && uiSchema && uiSchema['ui:previous'] !== undefined) {
+        return (
+          <>
+            <span style={{backgroundColor: '#ffeef0'}}>
+              {uiSchema['ui:previous'] ? 'Yes' : 'No'}
+            </span>
+            &nbsp;---&gt;&nbsp;
+            <span style={{backgroundColor: '#e6ffed'}}>
+              {formData ? 'Yes' : 'No'}
+            </span>
+          </>
+        );
+      }
+
+      return <>{formData ? 'Yes' : 'No'} </>;
+    },
     emissionSource: props => <SummaryEmissionSourceFields {...props} />,
     emissionGas: props => <SummaryEmissionGasFields {...props} />,
     production: props => (

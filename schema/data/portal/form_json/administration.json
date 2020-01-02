@@ -277,7 +277,7 @@
           "locationStreetAddress",
           "locationNearestCity",
           "latitude",
-          "longitute"
+          "longitude"
         ]
       }
     }
