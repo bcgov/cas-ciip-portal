@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
+import {Button, Card, Collapse, Col, Row, Form} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import JsonSchemaForm, {FieldProps} from 'react-jsonschema-form';
 import {FormJson} from 'next-env';
 import ProductionFields from 'containers/Forms/ProductionFields';
 import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
 import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
+import diff from 'deep-diff';
 import SummaryFormArrayFieldTemplate from '../Forms/SummaryFormArrayFieldTemplate';
 import SummaryFormFieldTemplate from '../Forms/SummaryFormFieldTemplate';
 import SummaryEmissionGasFields from '../Forms/SummaryEmissionGasFields';
@@ -31,13 +32,62 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
   const [isOpen, setIsOpen] = useState(false);
+  const [showDiff, setShowDiff] = useState(false);
 
-  console.log(previousFormResults);
-  console.log(formResult);
+  let previousFormResult;
+  previousFormResults.forEach(result => {
+    if (
+      previousFormResults.length > 0 &&
+      result.node.formJsonByFormId.slug === formResult.formJsonByFormId.slug
+    ) {
+      previousFormResult = result.node.formResult;
+    }
+  });
+
+  const rhs = previousFormResult;
+  const lhs = formResult.formResult;
+  const differences = diff(lhs, rhs);
+
+  const extensibleUISchema = JSON.parse(JSON.stringify(uiSchema));
+
+  const iterate = (obj, pathArray, previousValue) => {
+    const key = pathArray[0];
+    if (typeof obj[key] === 'object') {
+      iterate(obj[key], pathArray.slice(1), previousValue);
+    } else {
+      Object.assign(obj, {
+        [key]: {
+          'ui:previous': previousValue
+        }
+      });
+    }
+  };
+
+  if (differences) {
+    differences.forEach(difference => {
+      const pathArray = [];
+      difference.path.forEach(pathItem => {
+        pathArray.push(pathItem);
+      });
+      iterate(extensibleUISchema, pathArray, difference.rhs);
+    });
+  }
 
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
-    StringField: ({formData, schema}) => {
+    StringField: ({formData, schema, uiSchema}) => {
+      if (showDiff && uiSchema && uiSchema['ui:previous']) {
+        return (
+          <>
+            <span style={{backgroundColor: 'red'}}>
+              {uiSchema['ui:previous']}
+            </span>
+            &nbsp;---&gt;&nbsp;
+            <span style={{backgroundColor: 'green'}}>{formData}</span>
+          </>
+        );
+      }
+
       if (formData === null || formData === undefined)
         return <i>[No Data Entered]</i>;
 
@@ -68,7 +118,15 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           <Col md={6}>
             <h4>{formJsonByFormId.name}</h4>
           </Col>
-          <Col md={{span: 1, offset: 5}} style={{textAlign: 'right'}}>
+          <Col md={{span: 2, offset: 3}}>
+            <Form.Check
+              label="Show Diff?"
+              checked={showDiff}
+              type="checkbox"
+              onChange={() => setShowDiff(!showDiff)}
+            />
+          </Col>
+          <Col md={1} style={{textAlign: 'right'}}>
             <Button
               aria-label="toggle-card-open"
               title="expand or collapse the card"
@@ -91,7 +149,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             fields={CUSTOM_FIELDS}
             customFormats={customFormats}
             schema={schema}
-            uiSchema={uiSchema}
+            uiSchema={extensibleUISchema}
             ObjectFieldTemplate={FormObjectFieldTemplate}
             formData={formResult.formResult}
             formContext={{query}}
