@@ -14,6 +14,7 @@ import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 
 interface Props {
   formResult: ApplicationDetailsCardItem_formResult;
+  previousFormResults?: any;
   query: ApplicationDetailsCardItem_query;
 }
 
@@ -22,6 +23,7 @@ interface Props {
  */
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult,
+  previousFormResults,
   query
 }) => {
   const {formJsonByFormId} = formResult;
@@ -29,6 +31,9 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log(previousFormResults);
+  console.log(formResult);
 
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
