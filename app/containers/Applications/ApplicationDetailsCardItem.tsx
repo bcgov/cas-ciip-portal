@@ -79,11 +79,13 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       if (showDiff && uiSchema && uiSchema['ui:previous']) {
         return (
           <>
-            <span style={{backgroundColor: 'red'}}>
+            <span style={{backgroundColor: '#ffeef0'}}>
               {uiSchema['ui:previous']}
             </span>
             &nbsp;---&gt;&nbsp;
-            <span style={{backgroundColor: 'green'}}>{formData}</span>
+            <span style={{backgroundColor: '#e6ffed'}}>
+              {formData ? formData : <i>[No Data Entered]</i>}
+            </span>
           </>
         );
       }
