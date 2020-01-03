@@ -81,22 +81,22 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Operator
                 </TEXT>
                 <TEXT>
-                  adipisicing ullamco id ipsum
+                  consequat Ut Duis
                 </TEXT>
                 <TEXT>
                    
-                  Ut culpa
+                  in qui
                 </TEXT>
                 <TEXT>
                    
-                  ipsum esse nisi
+                  mollit eu esse
                   ,
                    
-                  Prince Edward Island
+                  Nova Scotia
                 </TEXT>
                 <TEXT>
                    
-                  T6T 0S9
+                  F3K 5C2
                 </TEXT>
               </VIEW>
             </styled.VIEW>
@@ -176,56 +176,68 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               }
               formContext={
                 Object {
-                  "query": undefined,
+                  "query": Object {
+                    " $refType": "ApplicationDetailsPdf_query",
+                    "allProducts": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "name": "foo",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "name": "simpleFoo",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                  },
                 }
               }
               formData={
                 Object {
                   "facility": Object {
-                    "bcghgid": "ad",
-                    "facilityLocation": Object {
-                      "latitude": 45230992.847295016,
-                      "locationNearestCity": "tempor dolor ut",
-                      "locationStreetAddress": "ex eu Excepteur do elit",
-                      "longitude": 91617488.99787328,
-                    },
-                    "facilityName": "do nisi anim",
-                    "facilityType": "IF_a",
-                    "isFacilityLocationDifferent": true,
+                    "bcghgid": "est dolor",
+                    "facilityName": "mollit eu esse",
+                    "facilityType": "SFO",
+                    "isFacilityLocationDifferent": false,
                     "mailingAddress": Object {
-                      "city": "do dolore enim dolor",
-                      "postalCode": "B6Y 9P0",
-                      "province": "Newfoundland and Labrador",
-                      "streetAddress": "esse eu",
+                      "city": "in qui",
+                      "postalCode": "N1F 3K5",
+                      "province": "New Brunswick",
+                      "streetAddress": "consequat Ut Duis",
                     },
-                    "naics": "ea",
+                    "naics": "consequat Ut Duis",
                   },
                   "operationalRepresentative": Object {
-                    "email": "reprehenderit deserunt tempor proident nostrud",
-                    "fax": "fugiat occaecat voluptate minim",
-                    "firstName": "Duis sint",
-                    "lastName": "Du",
+                    "email": "in qui",
+                    "fax": "culpa",
+                    "firstName": "culpa",
+                    "lastName": "est dolor",
                     "mailingAddress": Object {
-                      "city": "in elit",
-                      "postalCode": "I4U 6K1",
-                      "province": "Nova Scotia",
-                      "streetAddress": "consequat esse ut et",
+                      "city": "est dolor",
+                      "postalCode": "C2H 4N1",
+                      "province": "Northwest Territories",
+                      "streetAddress": "culpa",
                     },
-                    "phone": "Excepteur proident consectetur",
-                    "position": "do nostrud aute dolor",
+                    "phone": "mollit eu esse",
+                    "position": "consequat Ut Duis",
                   },
                   "operator": Object {
-                    "bcCorporateRegistryNumber": "sunt",
-                    "duns": "021037492",
+                    "bcCorporateRegistryNumber": "consequat Ut Duis",
+                    "duns": "451234512",
                     "mailingAddress": Object {
-                      "city": "ipsum esse nisi",
-                      "postalCode": "T6T 0S9",
-                      "province": "Prince Edward Island",
-                      "streetAddress": "Ut culpa",
+                      "city": "mollit eu esse",
+                      "postalCode": "F3K 5C2",
+                      "province": "Nova Scotia",
+                      "streetAddress": "in qui",
                     },
-                    "naics": "magna ipsum et",
-                    "name": "adipisicing ullamco id ipsum",
-                    "tradeName": "in Ut deserunt ea",
+                    "naics": "in qui",
+                    "name": "consequat Ut Duis",
+                    "tradeName": "in qui",
                   },
                 }
               }
@@ -561,7 +573,25 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               }
               formContext={
                 Object {
-                  "query": undefined,
+                  "query": Object {
+                    " $refType": "ApplicationDetailsPdf_query",
+                    "allProducts": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "name": "foo",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "name": "simpleFoo",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                  },
                 }
               }
               formData={
@@ -570,47 +600,33 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": 5850910.859174922,
-                          "annualEmission": -39389558.43613123,
-                          "gasDescription": "ut enim",
-                          "gasType": "consectetur Lorem proident nulla in",
-                          "gwp": -8955164.381873935,
+                          "annualCO2e": 0,
+                          "annualEmission": -80000000,
+                          "gasDescription": "est dolor",
+                          "gasType": "consequat Ut Duis",
+                          "gwp": -40000000,
                         },
                         Object {
-                          "annualCO2e": 14485161.786734,
-                          "annualEmission": -51174256.19003377,
-                          "gasDescription": "in esse Duis aliquip dolor",
-                          "gasType": "quis ut",
-                          "gwp": -68711986.59475496,
-                        },
-                        Object {
-                          "annualCO2e": -56096596.3132721,
-                          "annualEmission": -38053373.452900715,
-                          "gasDescription": "enim culp",
-                          "gasType": "eu",
-                          "gwp": 27415744.296372235,
+                          "annualCO2e": -20000000,
+                          "annualEmission": 0,
+                          "gasDescription": "in qui",
+                          "gasType": "mollit eu esse",
+                          "gwp": -60000000,
                         },
                       ],
-                      "sourceTypeName": "eu amet occaecat tempor Excepteur",
+                      "sourceTypeName": "in qui",
                     },
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": 77052347.54913178,
-                          "annualEmission": -25959724.468492955,
-                          "gasDescription": "dolor ipsum eiusmod exercitation",
-                          "gasType": "ut et dolor",
-                          "gwp": -47262505.24332758,
-                        },
-                        Object {
-                          "annualCO2e": -15695585.305779278,
-                          "annualEmission": 70480774.21355942,
-                          "gasDescription": "reprehenderit",
-                          "gasType": "sit eiusmod",
-                          "gwp": 84589331.575786,
+                          "annualCO2e": -40000000,
+                          "annualEmission": -20000000,
+                          "gasDescription": "culpa",
+                          "gasType": "est dolor",
+                          "gwp": -80000000,
                         },
                       ],
-                      "sourceTypeName": "Ut",
+                      "sourceTypeName": "consequat Ut Duis",
                     },
                   ],
                 }
@@ -757,34 +773,40 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               }
               formContext={
                 Object {
-                  "query": undefined,
+                  "query": Object {
+                    " $refType": "ApplicationDetailsPdf_query",
+                    "allProducts": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "name": "foo",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "name": "simpleFoo",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                  },
                 }
               }
               formData={
                 Array [
                   Object {
-                    "fuelType": "Excepteur reprehenderit laboris et",
-                    "fuelUnits": "dolore Duis nostrud dolor",
+                    "fuelType": "est dolor",
+                    "fuelUnits": "in qui",
+                    "methodology": "wci 1.0",
+                    "quantity": -20000000,
+                  },
+                  Object {
+                    "fuelType": "mollit eu esse",
+                    "fuelUnits": "est dolor",
                     "methodology": "wci 2.0",
-                    "quantity": -40825612.19070873,
-                  },
-                  Object {
-                    "fuelType": "ullamco ut tempor",
-                    "fuelUnits": "eiusmod Duis dolore",
-                    "methodology": "wci 1.0",
-                    "quantity": 9637445.494048879,
-                  },
-                  Object {
-                    "fuelType": "nostrud qui reprehenderit do veniam",
-                    "fuelUnits": "sint ipsum velit nostrud nisi",
-                    "methodology": "wci 1.0",
-                    "quantity": 98483886.88510182,
-                  },
-                  Object {
-                    "fuelType": "eiusmod in ut",
-                    "fuelUnits": "tempor do laborum elit quis",
-                    "methodology": "wci 1.0",
-                    "quantity": -42640703.66822863,
+                    "quantity": 0,
                   },
                 ]
               }
@@ -890,22 +912,43 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               }
               formContext={
                 Object {
-                  "query": undefined,
+                  "query": Object {
+                    " $refType": "ApplicationDetailsPdf_query",
+                    "allProducts": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "name": "foo",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "name": "simpleFoo",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                  },
                 }
               }
               formData={
                 Object {
                   "electricity": Object {
-                    "consumedOnSite": -88067247.24694948,
-                    "generatedOnSite": 0,
+                    "consumedOnSite": 0,
+                    "generatedOnSite": -40000000,
+                    "onSiteEmissions": 0,
                     "purchased": 0,
-                    "sold": 68637193.01838201,
+                    "sold": -60000000,
                   },
                   "heat": Object {
-                    "consumedOnSite": -85923456.80599935,
-                    "generatedOnSite": 0,
-                    "purchased": 0,
-                    "sold": 159861.33329212666,
+                    "consumedOnSite": 0,
+                    "generatedOnSite": -40000000,
+                    "onSiteEmissions": -60000000,
+                    "purchased": -80000000,
+                    "purchasedEmissionFactor": -20000000,
+                    "sold": -60000000,
                   },
                 }
               }
@@ -1186,43 +1229,55 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               }
               formContext={
                 Object {
-                  "query": undefined,
+                  "query": Object {
+                    " $refType": "ApplicationDetailsPdf_query",
+                    "allProducts": Object {
+                      "edges": Array [
+                        Object {
+                          "node": Object {
+                            "name": "foo",
+                            "rowId": 1,
+                          },
+                        },
+                        Object {
+                          "node": Object {
+                            "name": "simpleFoo",
+                            "rowId": 2,
+                          },
+                        },
+                      ],
+                    },
+                  },
                 }
               }
               formData={
                 Array [
                   Object {
-                    "additionalData": Object {
-                      "Ut_4ae$": true,
-                      "adipisicing62f": true,
-                      "culpa_f8a": "velit incididunt labore",
-                    },
-                    "paymentAllocationFactor": -33571208,
-                    "productRowId": -98867132,
-                    "productUnits": "esse tempor",
-                    "productionAllocationFactor": -29401141,
-                    "quantity": 93078932.02822682,
+                    "additionalData": Object {},
+                    "paymentAllocationFactor": -59999960,
+                    "productRowId": -80000000,
+                    "productUnits": "culpa",
+                    "productionAllocationFactor": -79999980,
+                    "quantity": -40000000,
+                  },
+                  Object {
+                    "additionalData": Object {},
+                    "paymentAllocationFactor": -69999970,
+                    "productRowId": 0,
+                    "productUnits": "consequat Ut Duis",
+                    "productionAllocationFactor": -89999990,
+                    "quantity": -60000000,
                   },
                   Object {
                     "additionalData": Object {
-                      "anim_a$": 54736534,
+                      "consequat_c": -80000000,
+                      "est1a": -20000000,
                     },
-                    "paymentAllocationFactor": -65503053,
-                    "productRowId": -44763312,
-                    "productUnits": "exercitation ex officia non",
-                    "productionAllocationFactor": -78756900,
-                    "quantity": 37769364.2630367,
-                  },
-                  Object {
-                    "additionalData": Object {
-                      "ipsum69d": true,
-                      "velit_714$": -43959531,
-                    },
-                    "paymentAllocationFactor": -23423387,
-                    "productRowId": -77400616,
-                    "productUnits": "incididunt",
-                    "productionAllocationFactor": -37236182,
-                    "quantity": 46433989.64833927,
+                    "paymentAllocationFactor": -79999980,
+                    "productRowId": -20000000,
+                    "productUnits": "mollit eu esse",
+                    "productionAllocationFactor": -49999950,
+                    "quantity": -80000000,
                   },
                 ]
               }

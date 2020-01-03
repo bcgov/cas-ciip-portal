@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {FormJson} from 'next-env';
+import {mockRandom} from 'jest-mock-random';
 import {ApplicationDetailsPdf} from 'containers/Applications/ApplicationDetailsPdf';
 import adminForm from 'schema/data/portal/form_json/administration.json';
 import emissionForm from 'schema/data/portal/form_json/emission.json';
@@ -10,6 +11,12 @@ import productionForm from 'schema/data/portal/form_json/production.json';
 import {generateFakeSchemaData} from '../../../integration/json-schema-utils';
 
 describe('ApplicationDetailsPdf', () => {
+  beforeEach(() => {
+    // Mock Math.random() to be deterministic.
+    // This is needed by react-jsonschema-form's RadioWidget and by json-schema-faker
+    mockRandom([0.1, 0.2, 0.3, 0.4, 0.5]);
+  });
+
   it('should render application pdf donwload link', async () => {
     const renderer = shallow(
       <ApplicationDetailsPdf
@@ -76,6 +83,25 @@ describe('ApplicationDetailsPdf', () => {
                     name: 'Production',
                     formJson: productionForm
                   }
+                }
+              }
+            ]
+          }
+        }}
+        query={{
+          ' $refType': 'ApplicationDetailsPdf_query',
+          allProducts: {
+            edges: [
+              {
+                node: {
+                  rowId: 1,
+                  name: 'foo'
+                }
+              },
+              {
+                node: {
+                  rowId: 2,
+                  name: 'simpleFoo'
                 }
               }
             ]
