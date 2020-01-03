@@ -110,29 +110,31 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
             <Column>
               <View style={styles.applicant}>
                 <Text style={styles.underline}>Operator</Text>
-                <Text>{formResults[0].node.formResult.operator.name}</Text>
+                <Text>{formResults[0].node.formResult.operator?.name}</Text>
                 <Text>
                   {' '}
                   {
-                    formResults[0].node.formResult.operator.mailingAddress
-                      .streetAddress
+                    formResults[0].node.formResult.operator?.mailingAddress
+                      ?.streetAddress
                   }
                 </Text>
                 <Text>
                   {' '}
                   {
-                    formResults[0].node.formResult.operator.mailingAddress.city
-                  },{' '}
+                    formResults[0].node.formResult.operator?.mailingAddress
+                      ?.city
+                  }
+                  ,{' '}
                   {
-                    formResults[0].node.formResult.operator.mailingAddress
-                      .province
+                    formResults[0].node.formResult.operator?.mailingAddress
+                      ?.province
                   }
                 </Text>
                 <Text>
                   {' '}
                   {
-                    formResults[0].node.formResult.operator.mailingAddress
-                      .postalCode
+                    formResults[0].node.formResult.operator?.mailingAddress
+                      ?.postalCode
                   }
                 </Text>
               </View>
