@@ -81,22 +81,22 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Operator
                 </TEXT>
                 <TEXT>
-                  est
+                  adipisicing ullamco id ipsum
                 </TEXT>
                 <TEXT>
                    
-                  ullamco laboris labore Ut minim
+                  Ut culpa
                 </TEXT>
                 <TEXT>
                    
-                  dolor
+                  ipsum esse nisi
                   ,
                    
-                  New Brunswick
+                  Prince Edward Island
                 </TEXT>
                 <TEXT>
                    
-                  T1H 6K8
+                  T6T 0S9
                 </TEXT>
               </VIEW>
             </styled.VIEW>
@@ -182,50 +182,50 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Object {
                   "facility": Object {
-                    "bcghgid": "in dolore",
+                    "bcghgid": "ad",
                     "facilityLocation": Object {
-                      "latitude": 10959833.671075314,
-                      "locationNearestCity": "ex",
-                      "locationStreetAddress": "dolore ir",
-                      "longitude": -29986370.334555715,
+                      "latitude": 45230992.847295016,
+                      "locationNearestCity": "tempor dolor ut",
+                      "locationStreetAddress": "ex eu Excepteur do elit",
+                      "longitude": 91617488.99787328,
                     },
-                    "facilityName": "enim minim",
+                    "facilityName": "do nisi anim",
                     "facilityType": "IF_a",
                     "isFacilityLocationDifferent": true,
                     "mailingAddress": Object {
-                      "city": "qui",
-                      "postalCode": "K1L 2D9",
-                      "province": "Nunavut",
-                      "streetAddress": "ullamco",
+                      "city": "do dolore enim dolor",
+                      "postalCode": "B6Y 9P0",
+                      "province": "Newfoundland and Labrador",
+                      "streetAddress": "esse eu",
                     },
-                    "naics": "ad aute Ut",
+                    "naics": "ea",
                   },
                   "operationalRepresentative": Object {
-                    "email": "mollit est id ad",
-                    "fax": "ex exercitation adipisicing ma",
-                    "firstName": "eiusmod occaecat",
-                    "lastName": "voluptate",
+                    "email": "reprehenderit deserunt tempor proident nostrud",
+                    "fax": "fugiat occaecat voluptate minim",
+                    "firstName": "Duis sint",
+                    "lastName": "Du",
                     "mailingAddress": Object {
-                      "city": "nostrud id",
-                      "postalCode": "Y0R 2C3",
-                      "province": "Quebec",
-                      "streetAddress": "ex quis voluptate tempor cillum",
+                      "city": "in elit",
+                      "postalCode": "I4U 6K1",
+                      "province": "Nova Scotia",
+                      "streetAddress": "consequat esse ut et",
                     },
-                    "phone": "quis",
-                    "position": "dolor culpa",
+                    "phone": "Excepteur proident consectetur",
+                    "position": "do nostrud aute dolor",
                   },
                   "operator": Object {
-                    "bcCorporateRegistryNumber": "deserunt commodo sint dolor quis",
-                    "duns": "912037349",
+                    "bcCorporateRegistryNumber": "sunt",
+                    "duns": "021037492",
                     "mailingAddress": Object {
-                      "city": "dolor",
-                      "postalCode": "T1H 6K8",
-                      "province": "New Brunswick",
-                      "streetAddress": "ullamco laboris labore Ut minim",
+                      "city": "ipsum esse nisi",
+                      "postalCode": "T6T 0S9",
+                      "province": "Prince Edward Island",
+                      "streetAddress": "Ut culpa",
                     },
-                    "naics": "Du",
-                    "name": "est",
-                    "tradeName": "sint",
+                    "naics": "magna ipsum et",
+                    "name": "adipisicing ullamco id ipsum",
+                    "tradeName": "in Ut deserunt ea",
                   },
                 }
               }
@@ -570,42 +570,47 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": -5052086.729388967,
-                          "annualEmission": 9209504.352927536,
-                          "gasDescription": "Excepteur nostrud exercitation sed",
-                          "gasType": "fugiat Excepteur nisi",
-                          "gwp": -78996815.49448791,
+                          "annualCO2e": 5850910.859174922,
+                          "annualEmission": -39389558.43613123,
+                          "gasDescription": "ut enim",
+                          "gasType": "consectetur Lorem proident nulla in",
+                          "gwp": -8955164.381873935,
                         },
                         Object {
-                          "annualCO2e": 78780968.93424612,
-                          "annualEmission": -82491481.38921832,
-                          "gasDescription": "incididunt labore in",
-                          "gasType": "tempor exe",
-                          "gwp": -89767600.85051261,
+                          "annualCO2e": 14485161.786734,
+                          "annualEmission": -51174256.19003377,
+                          "gasDescription": "in esse Duis aliquip dolor",
+                          "gasType": "quis ut",
+                          "gwp": -68711986.59475496,
                         },
                         Object {
-                          "annualCO2e": -41237850.80483371,
-                          "annualEmission": -23360416.47244449,
-                          "gasDescription": "consequat ullamco qui enim dolor",
-                          "gasType": "labore ipsum",
-                          "gwp": 77118300.88412955,
-                        },
-                        Object {
-                          "annualCO2e": -28847429.95650415,
-                          "annualEmission": -11268910.004646182,
-                          "gasDescription": "in laboris sint",
-                          "gasType": "sunt",
-                          "gwp": 2651459.6499635577,
-                        },
-                        Object {
-                          "annualCO2e": -35557799.64693358,
-                          "annualEmission": -8918549.289932683,
-                          "gasDescription": "anim ut commodo ea",
-                          "gasType": "Lorem esse occaecat tempor",
-                          "gwp": -74205609.02053444,
+                          "annualCO2e": -56096596.3132721,
+                          "annualEmission": -38053373.452900715,
+                          "gasDescription": "enim culp",
+                          "gasType": "eu",
+                          "gwp": 27415744.296372235,
                         },
                       ],
-                      "sourceTypeName": "aliquip ut sint",
+                      "sourceTypeName": "eu amet occaecat tempor Excepteur",
+                    },
+                    Object {
+                      "gases": Array [
+                        Object {
+                          "annualCO2e": 77052347.54913178,
+                          "annualEmission": -25959724.468492955,
+                          "gasDescription": "dolor ipsum eiusmod exercitation",
+                          "gasType": "ut et dolor",
+                          "gwp": -47262505.24332758,
+                        },
+                        Object {
+                          "annualCO2e": -15695585.305779278,
+                          "annualEmission": 70480774.21355942,
+                          "gasDescription": "reprehenderit",
+                          "gasType": "sit eiusmod",
+                          "gwp": 84589331.575786,
+                        },
+                      ],
+                      "sourceTypeName": "Ut",
                     },
                   ],
                 }
@@ -758,22 +763,28 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "fuelType": "",
-                    "fuelUnits": "dolor amet officia",
-                    "methodology": "wci 3.0",
-                    "quantity": 717587.7353272885,
-                  },
-                  Object {
-                    "fuelType": "ipsum occaecat",
-                    "fuelUnits": "labore dolore eu",
-                    "methodology": "wci 1.0",
-                    "quantity": 71894004.30988088,
-                  },
-                  Object {
-                    "fuelType": "nisi do",
-                    "fuelUnits": "dolore",
+                    "fuelType": "Excepteur reprehenderit laboris et",
+                    "fuelUnits": "dolore Duis nostrud dolor",
                     "methodology": "wci 2.0",
-                    "quantity": -10072966.802033216,
+                    "quantity": -40825612.19070873,
+                  },
+                  Object {
+                    "fuelType": "ullamco ut tempor",
+                    "fuelUnits": "eiusmod Duis dolore",
+                    "methodology": "wci 1.0",
+                    "quantity": 9637445.494048879,
+                  },
+                  Object {
+                    "fuelType": "nostrud qui reprehenderit do veniam",
+                    "fuelUnits": "sint ipsum velit nostrud nisi",
+                    "methodology": "wci 1.0",
+                    "quantity": 98483886.88510182,
+                  },
+                  Object {
+                    "fuelType": "eiusmod in ut",
+                    "fuelUnits": "tempor do laborum elit quis",
+                    "methodology": "wci 1.0",
+                    "quantity": -42640703.66822863,
                   },
                 ]
               }
@@ -885,18 +896,16 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Object {
                   "electricity": Object {
-                    "consumedOnSite": 31359439.236546427,
-                    "generatedOnSite": -29473880.293826625,
-                    "onSiteEmissions": -17253113.583065674,
+                    "consumedOnSite": -88067247.24694948,
+                    "generatedOnSite": 0,
                     "purchased": 0,
-                    "sold": 20964929.43586959,
+                    "sold": 68637193.01838201,
                   },
                   "heat": Object {
-                    "consumedOnSite": 40567070.08344665,
-                    "generatedOnSite": 72006583.80083582,
-                    "onSiteEmissions": 87097023.96118844,
+                    "consumedOnSite": -85923456.80599935,
+                    "generatedOnSite": 0,
                     "purchased": 0,
-                    "sold": 78952521.45142123,
+                    "sold": 159861.33329212666,
                   },
                 }
               }
@@ -1183,20 +1192,37 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "additionalData": Object {},
-                    "paymentAllocationFactor": -65791418,
-                    "productRowId": -62619038,
-                    "productUnits": "in anim",
-                    "productionAllocationFactor": -47459515,
-                    "quantity": -62131341.31924396,
+                    "additionalData": Object {
+                      "Ut_4ae$": true,
+                      "adipisicing62f": true,
+                      "culpa_f8a": "velit incididunt labore",
+                    },
+                    "paymentAllocationFactor": -33571208,
+                    "productRowId": -98867132,
+                    "productUnits": "esse tempor",
+                    "productionAllocationFactor": -29401141,
+                    "quantity": 93078932.02822682,
                   },
                   Object {
-                    "additionalData": Object {},
-                    "paymentAllocationFactor": -26639160,
-                    "productRowId": 68112013,
-                    "productUnits": "et cillum nostrud voluptate",
-                    "productionAllocationFactor": -24225383,
-                    "quantity": -80659488.62678996,
+                    "additionalData": Object {
+                      "anim_a$": 54736534,
+                    },
+                    "paymentAllocationFactor": -65503053,
+                    "productRowId": -44763312,
+                    "productUnits": "exercitation ex officia non",
+                    "productionAllocationFactor": -78756900,
+                    "quantity": 37769364.2630367,
+                  },
+                  Object {
+                    "additionalData": Object {
+                      "ipsum69d": true,
+                      "velit_714$": -43959531,
+                    },
+                    "paymentAllocationFactor": -23423387,
+                    "productRowId": -77400616,
+                    "productUnits": "incididunt",
+                    "productionAllocationFactor": -37236182,
+                    "quantity": 46433989.64833927,
                   },
                 ]
               }
