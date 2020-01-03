@@ -17,9 +17,11 @@ import PdfProductionFieldsTemplate from 'containers/Pdf/PdfProductionFieldsTempl
 import PdfFieldTemplate from 'containers/Pdf/PdfFieldTemplate';
 import PdfArrayFieldTemplate from 'containers/Pdf/PdfArrayFieldTemplate';
 import PdfObjectFieldTemplate from 'containers/Pdf/PdfObjectFieldTemplate';
+import {ApplicationDetailsPdf_query} from 'ApplicationDetailsPdf_query.graphql';
 
 interface Props {
   application: ApplicationDetailsPdf_application;
+  query: ApplicationDetailsPdf_query;
 }
 
 const styles = StyleSheet.create({
@@ -35,7 +37,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 1.3
   },
-
+  underline: {
+    lineHeight: 1.5,
+    borderBottom: 1,
+    marginBottom: 10
+  },
   pageNumbers: {
     fontSize: 12,
     position: 'absolute',
@@ -55,16 +61,19 @@ const CUSTOM_FIELDS = {
     </Text>
   ),
   emissionGas: props => <PdfEmissionGasFieldTemplate {...props} />,
-  production: props => <PdfProductionFieldsTemplate {...props} />
+  production: props => {
+    return (
+      <PdfProductionFieldsTemplate query={props.formContext.query} {...props} />
+    );
+  }
 };
 
 const customWidget = {
-  RadioWidget: props =>
-    props.value === true ? <Text>Yes</Text> : <Text>No</Text>
+  RadioWidget: props => <Text>{props.value ? 'Yes' : 'No'}</Text>
 };
 
 export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
-  const {application} = props;
+  const {application, query} = props;
   const facility = application.facilityByFacilityId;
   const formResults = application.formResultsByApplicationId.edges;
 
@@ -97,15 +106,7 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
           <Row>
             <Column>
               <View style={styles.applicant}>
-                <Text
-                  style={{
-                    lineHeight: 1.5,
-                    borderBottom: 1,
-                    marginBottom: 10
-                  }}
-                >
-                  Operator
-                </Text>
+                <Text style={styles.underline}>Operator</Text>
                 <Text>{formResults[0].node.formResult.operator.name}</Text>
                 <Text>
                   {' '}
@@ -135,15 +136,7 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
             </Column>
             <Column>
               <View style={styles.applicant}>
-                <Text
-                  style={{
-                    lineHeight: 1.5,
-                    borderBottom: 1,
-                    marginBottom: 10
-                  }}
-                >
-                  Facility
-                </Text>
+                <Text style={styles.underline}>Facility</Text>
                 <Text>{facility.facilityName}</Text>
                 <Text>
                   {facility.facilityMailingAddress}
@@ -175,6 +168,7 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
                 formData={node.formResult}
                 tagName={FormFields}
                 widgets={customWidget}
+                formContext={{query}}
               >
                 <View />
               </JsonSchemaForm>
@@ -226,6 +220,19 @@ export default createFragmentContainer(ApplicationDetailsPdf, {
               name
               formJson
             }
+          }
+        }
+      }
+    }
+  `,
+  query: graphql`
+    fragment ApplicationDetailsPdf_query on Query {
+      # These fields are used in PdfProductionFieldsTemplate
+      allProducts(condition: {state: "active"}) {
+        edges {
+          node {
+            rowId
+            name
           }
         }
       }

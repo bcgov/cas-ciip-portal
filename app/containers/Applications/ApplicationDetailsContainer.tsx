@@ -34,7 +34,10 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
         />
       ))}
       <div style={{textAlign: 'right', marginTop: 20}}>
-        <ApplicationDetailsPdf application={props.application} />
+        <ApplicationDetailsPdf
+          application={props.application}
+          query={props.query}
+        />
       </div>
     </div>
   );
@@ -46,6 +49,7 @@ export default createFragmentContainer(ApplicationDetailsComponent, {
       query {
         ...ApplicationDetailsCardItem_query
       }
+      ...ApplicationDetailsPdf_query
     }
   `,
   application: graphql`
