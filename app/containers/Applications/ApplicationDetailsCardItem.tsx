@@ -34,7 +34,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const [isOpen, setIsOpen] = useState(false);
   const [showDiff, setShowDiff] = useState(false);
 
-  // If (formJsonByFormId.slug !== 'fuel') return null;
+  // If (formJsonByFormId.slug !== 'electricity-and-heat') return null;
 
   let previousFormResult;
   previousFormResults.forEach(result => {
@@ -52,24 +52,32 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 
   const extensibleUISchema = JSON.parse(JSON.stringify(uiSchema));
 
-  const iterate = (obj, pathArray, previousValue) => {
+  const iterate = (obj, pathArray, difference) => {
     let key = pathArray[0];
-    console.log(typeof key);
     if (typeof key === 'number') {
       pathArray = pathArray.slice(1);
       const index = key;
       key = pathArray[0];
       Object.assign(obj.items, {
         [key]: {
-          'ui:previous': [index, previousValue]
+          'ui:previous': [index, difference.lhs]
         }
       });
-    } else if (typeof obj[key] === 'object') {
-      iterate(obj[key], pathArray.slice(1), previousValue);
+    } else if (typeof obj[key] === 'object' && pathArray.length > 1) {
+      iterate(obj[key], pathArray.slice(1), difference);
+    } else if (difference.lhs === undefined) {
+      const newKeys = Object.keys(difference.rhs);
+      newKeys.forEach(item => {
+        Object.assign(obj[key], {
+          [item]: {
+            'ui:previous': 'NO DATA ENTERED'
+          }
+        });
+      });
     } else {
       Object.assign(obj, {
         [key]: {
-          'ui:previous': previousValue
+          'ui:previous': difference.lhs
         }
       });
     }
@@ -81,7 +89,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       difference.path.forEach(pathItem => {
         pathArray.push(pathItem);
       });
-      iterate(extensibleUISchema, pathArray, difference.lhs);
+      iterate(extensibleUISchema, pathArray, difference);
     });
   }
 
@@ -90,17 +98,11 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     StringField: props => {
       let index;
       let value;
-      if (props.name === 'quantity') {
-        console.log('uiSchemaXXXXXXXXXXXXXXXXXX:', props.uiSchema);
-        console.log('FORM CONTEXT AAAAAA MARTIANS!!!!', props.formContext);
-        console.log(props);
-      }
 
       if (typeof props.uiSchema['ui:previous'] === 'object') {
         index = props.uiSchema['ui:previous'][0];
         value = props.uiSchema['ui:previous'][1];
         const idNumber = Number(props.idSchema.$id.replace(/\D/g, ''));
-        console.log(idNumber);
         if (idNumber === index && showDiff)
           return (
             <>
@@ -129,6 +131,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         return <i>[No Data Entered]</i>;
 
       if (props.schema.enum && (props.schema as any).enumNames) {
+        console.log('IN HERE');
+        console.log(props);
         // TODO: needs a fix on jsonschema types (missing enumNames)
         const enumIndex = props.schema.enum.indexOf(props.formData);
         if (enumIndex === -1) return props.formData;
