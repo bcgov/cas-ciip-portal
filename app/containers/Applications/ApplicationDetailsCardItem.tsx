@@ -34,6 +34,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const [isOpen, setIsOpen] = useState(false);
   const [showDiff, setShowDiff] = useState(false);
 
+  // If (formJsonByFormId.slug !== 'fuel') return null;
+
   let previousFormResult;
   previousFormResults.forEach(result => {
     if (
@@ -51,12 +53,19 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const extensibleUISchema = JSON.parse(JSON.stringify(uiSchema));
 
   const iterate = (obj, pathArray, previousValue) => {
-    const key = pathArray[0];
-
-    if (typeof obj[key] === 'object') {
+    let key = pathArray[0];
+    console.log(typeof key);
+    if (typeof key === 'number') {
+      pathArray = pathArray.slice(1);
+      const index = key;
+      key = pathArray[0];
+      Object.assign(obj.items, {
+        [key]: {
+          'ui:previous': [index, previousValue]
+        }
+      });
+    } else if (typeof obj[key] === 'object') {
       iterate(obj[key], pathArray.slice(1), previousValue);
-    } else if (key === undefined) {
-      Object.assign(obj, {'ui:previous': previousValue});
     } else {
       Object.assign(obj, {
         [key]: {
@@ -67,7 +76,6 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   };
 
   if (differences) {
-    console.log(differences);
     differences.forEach(difference => {
       const pathArray = [];
       difference.path.forEach(pathItem => {
@@ -77,36 +85,57 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     });
   }
 
-  console.log(extensibleUISchema);
-
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
-    StringField: ({formData, schema, uiSchema}) => {
-      if (showDiff && uiSchema && uiSchema['ui:previous']) {
+    StringField: props => {
+      let index;
+      let value;
+      if (props.name === 'quantity') {
+        console.log('uiSchemaXXXXXXXXXXXXXXXXXX:', props.uiSchema);
+        console.log('FORM CONTEXT AAAAAA MARTIANS!!!!', props.formContext);
+        console.log(props);
+      }
+
+      if (typeof props.uiSchema['ui:previous'] === 'object') {
+        index = props.uiSchema['ui:previous'][0];
+        value = props.uiSchema['ui:previous'][1];
+        const idNumber = Number(props.idSchema.$id.replace(/\D/g, ''));
+        console.log(idNumber);
+        if (idNumber === index && showDiff)
+          return (
+            <>
+              <span style={{backgroundColor: '#ffeef0'}}>{value}</span>
+              &nbsp;---&gt;&nbsp;
+              <span style={{backgroundColor: '#e6ffed'}}>
+                {props.formData ? props.formData : <i>[No Data Entered]</i>}
+              </span>
+            </>
+          );
+      } else if (showDiff && props.uiSchema && props.uiSchema['ui:previous']) {
         return (
           <>
             <span style={{backgroundColor: '#ffeef0'}}>
-              {uiSchema['ui:previous']}
+              {props.uiSchema['ui:previous']}
             </span>
             &nbsp;---&gt;&nbsp;
             <span style={{backgroundColor: '#e6ffed'}}>
-              {formData ? formData : <i>[No Data Entered]</i>}
+              {props.formData ? props.formData : <i>[No Data Entered]</i>}
             </span>
           </>
         );
       }
 
-      if (formData === null || formData === undefined)
+      if (props.formData === null || props.formData === undefined)
         return <i>[No Data Entered]</i>;
 
-      if (schema.enum && (schema as any).enumNames) {
+      if (props.schema.enum && (props.schema as any).enumNames) {
         // TODO: needs a fix on jsonschema types (missing enumNames)
-        const enumIndex = schema.enum.indexOf(formData);
-        if (enumIndex === -1) return formData;
-        return (schema as any).enumNames[enumIndex];
+        const enumIndex = props.schema.enum.indexOf(props.formData);
+        if (enumIndex === -1) return props.formData;
+        return (props.schema as any).enumNames[enumIndex];
       }
 
-      return formData;
+      return props.formData;
     },
     BooleanField: ({formData, uiSchema}) => {
       if (showDiff && uiSchema && uiSchema['ui:previous'] !== undefined) {
