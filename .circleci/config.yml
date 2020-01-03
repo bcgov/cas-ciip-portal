@@ -32,6 +32,7 @@ jobs:
             make install_asdf_tools
             pg_ctl start
             make -C schema install_pgtap
+            pg_ctl stop
       - save_cache:
           name: Save asdf Tools Cache
           key: tool-versions-{{ checksum ".tool-versions" }}-v2
