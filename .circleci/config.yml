@@ -211,10 +211,9 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: "Pull Submodules"
+          name: "Checkout Submodules"
           command: |
-            git submodule init
-            git submodule update --remote
+            git submodule update --init
       - run:
           name: start postgres
           command: |
@@ -249,10 +248,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Pull Submodules"
+          name: "Checkout Submodules"
           command: |
-            git submodule init
-            git submodule update --remote
+            git submodule update --init
       - redhat-openshift/create-local-cluster-with-oc:
           skip-registry-check: true
       - redhat-openshift/login-and-update-kubeconfig:
@@ -288,10 +286,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Pull Submodules"
+          name: "Checkout Submodules"
           command: |
-            git submodule init
-            git submodule update --remote
+            git submodule update --init
       - redhat-openshift/login-and-update-kubeconfig:
           insecure-skip-tls-verify: true
           openshift-platform-version: 3.x
@@ -306,10 +303,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Pull Submodules"
+          name: "Checkout Submodules"
           command: |
-            git submodule init
-            git submodule update --remote
+            git submodule update --init
       - redhat-openshift/login-and-update-kubeconfig:
           insecure-skip-tls-verify: true
           openshift-platform-version: 3.x
@@ -324,10 +320,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Pull Submodules"
+          name: "Checkout Submodules"
           command: |
-            git submodule init
-            git submodule update --remote
+            git submodule update --init
       - redhat-openshift/login-and-update-kubeconfig:
           insecure-skip-tls-verify: true
           openshift-platform-version: 3.x
@@ -342,10 +337,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Pull Submodules"
+          name: "Checkout Submodules"
           command: |
-            git submodule init
-            git submodule update --remote
+            git submodule update --init
       - redhat-openshift/login-and-update-kubeconfig:
           insecure-skip-tls-verify: true
           openshift-platform-version: 3.x
@@ -360,10 +354,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Pull Submodules"
+          name: "Checkout Submodules"
           command: |
-            git submodule init
-            git submodule update --remote
+            git submodule update --init
       - redhat-openshift/login-and-update-kubeconfig:
           insecure-skip-tls-verify: true
           openshift-platform-version: 3.x
@@ -381,10 +374,9 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: "Pull Submodules"
+          name: "Checkout Submodules"
           command: |
-            git submodule init
-            git submodule update --remote
+            git submodule update --init
       - run:
           name: start postgres
           command: |
