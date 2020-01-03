@@ -9,7 +9,7 @@ import {
   PDFDownloadLink
 } from '@react-pdf/renderer';
 import JsonSchemaForm from 'react-jsonschema-form';
-import {Header, Row, Body, FormFields, Column} from 'components/Layout/Pdf';
+import {Header, Row, Body, Column} from 'components/Layout/Pdf';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ApplicationDetailsPdf_application} from 'ApplicationDetailsPdf_application.graphql';
 import PdfEmissionGasFieldTemplate from 'containers/Pdf/PdfEmissionGasFieldTemplate';
@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
   page: {
     paddingTop: 20,
     paddingBottom: 40
+  },
+  formFields: {
+    fontSize: 12
   },
   appInfo: {
     fontSize: 12,
@@ -151,7 +154,7 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
           </Row>
 
           {formResults.map(({node}) => (
-            <View key={node.formJsonByFormId.name}>
+            <View key={node.formJsonByFormId.name} style={styles.formFields}>
               <Text style={{borderBottom: 1, paddingBottom: 10, fontSize: 16}}>
                 {'\n'}
                 {node.formJsonByFormId.name}
@@ -166,7 +169,7 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
                 schema={node.formJsonByFormId.formJson.schema}
                 uiSchema={node.formJsonByFormId.formJson.uiSchema}
                 formData={node.formResult}
-                tagName={FormFields}
+                tagName="VIEW"
                 widgets={customWidget}
                 formContext={{query}}
               >

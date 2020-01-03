@@ -10,10 +10,6 @@ const Body = styled.View`
   padding: 0px 30px;
 `;
 
-const FormFields = styled.View`
-  font-size: 12px;
-`;
-
 const Row = styled.View`
   display: flex;
   flex-direction: row;
@@ -30,4 +26,4 @@ const Column = styled.View`
   margin: 0 10px;
 `;
 
-export {Header, Body, FormFields, Row, Column};
+export {Header, Body, Row, Column};
