@@ -13,6 +13,28 @@ import productionForm from 'schema/data/portal/form_json/production.json';
 import {FormJson} from 'next-env';
 import {generateFakeSchemaData} from 'tests/integration/json-schema-utils';
 
+jest.mock('@react-pdf/renderer', () => {
+  return {
+    PDFDownloadLink: () => null,
+    StyleSheet: {
+      create: () => {
+        return {
+          page: {
+            paddingTop: 20,
+            paddingBottom: 40
+          }
+        };
+      }
+    }
+  };
+});
+
+jest.mock('@react-pdf/styled-components', () => {
+  return {
+    View: () => null
+  };
+});
+
 describe('ApplicationDetailsContainer', () => {
   beforeEach(() => {
     // Mock Math.random() to be deterministic.

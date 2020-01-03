@@ -81,22 +81,22 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Operator
                 </TEXT>
                 <TEXT>
-                  mollit elit
+                  est
                 </TEXT>
                 <TEXT>
                    
-                  commodo ipsum nos
+                  ullamco laboris labore Ut minim
                 </TEXT>
                 <TEXT>
                    
-                  minim consectetur
+                  dolor
                   ,
                    
-                  Prince Edward Island
+                  New Brunswick
                 </TEXT>
                 <TEXT>
                    
-                  B7F 9O0
+                  T1H 6K8
                 </TEXT>
               </VIEW>
             </styled.VIEW>
@@ -140,7 +140,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               </VIEW>
             </styled.VIEW>
           </styled.VIEW>
-          <VIEW>
+          <VIEW
+            style={
+              Object {
+                "fontSize": 12,
+              }
+            }
+          >
             <TEXT
               style={
                 Object {
@@ -168,47 +174,58 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "production": [Function],
                 }
               }
+              formContext={
+                Object {
+                  "query": undefined,
+                }
+              }
               formData={
                 Object {
                   "facility": Object {
-                    "bcghgid": "occaecat exercitat",
-                    "facilityName": "in irure",
-                    "facilityType": "IF_b",
-                    "isFacilityLocationDifferent": false,
-                    "mailingAddress": Object {
-                      "city": "commodo",
-                      "postalCode": "B8R 2W4",
-                      "province": "Yukon",
-                      "streetAddress": "deserunt",
+                    "bcghgid": "in dolore",
+                    "facilityLocation": Object {
+                      "latitude": 10959833.671075314,
+                      "locationNearestCity": "ex",
+                      "locationStreetAddress": "dolore ir",
+                      "longitude": -29986370.334555715,
                     },
-                    "naics": "cupidatat id",
+                    "facilityName": "enim minim",
+                    "facilityType": "IF_a",
+                    "isFacilityLocationDifferent": true,
+                    "mailingAddress": Object {
+                      "city": "qui",
+                      "postalCode": "K1L 2D9",
+                      "province": "Nunavut",
+                      "streetAddress": "ullamco",
+                    },
+                    "naics": "ad aute Ut",
                   },
                   "operationalRepresentative": Object {
-                    "email": "id",
-                    "fax": "consequat mollit non minim",
-                    "firstName": "anim amet",
-                    "lastName": "magna",
+                    "email": "mollit est id ad",
+                    "fax": "ex exercitation adipisicing ma",
+                    "firstName": "eiusmod occaecat",
+                    "lastName": "voluptate",
                     "mailingAddress": Object {
-                      "city": "Excepteur laboris anim",
-                      "postalCode": "S1K 1Q6",
-                      "province": "Newfoundland and Labrador",
-                      "streetAddress": "sint Duis occaecat",
+                      "city": "nostrud id",
+                      "postalCode": "Y0R 2C3",
+                      "province": "Quebec",
+                      "streetAddress": "ex quis voluptate tempor cillum",
                     },
-                    "phone": "adipisicing id dolor",
-                    "position": "do aliquip sed aute proident",
+                    "phone": "quis",
+                    "position": "dolor culpa",
                   },
                   "operator": Object {
-                    "bcCorporateRegistryNumber": "ex sit labore velit",
-                    "duns": "913747792",
+                    "bcCorporateRegistryNumber": "deserunt commodo sint dolor quis",
+                    "duns": "912037349",
                     "mailingAddress": Object {
-                      "city": "minim consectetur",
-                      "postalCode": "B7F 9O0",
-                      "province": "Prince Edward Island",
-                      "streetAddress": "commodo ipsum nos",
+                      "city": "dolor",
+                      "postalCode": "T1H 6K8",
+                      "province": "New Brunswick",
+                      "streetAddress": "ullamco laboris labore Ut minim",
                     },
-                    "naics": "incididunt id elit proident",
-                    "name": "mollit elit",
-                    "tradeName": "nulla ipsum",
+                    "naics": "Du",
+                    "name": "est",
+                    "tradeName": "sint",
                   },
                 }
               }
@@ -413,7 +430,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 }
               }
               showErrorList={false}
-              tagName={[Function]}
+              tagName="VIEW"
               uiSchema={
                 Object {
                   "facility": Object {
@@ -508,7 +525,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               <VIEW />
             </Form>
           </VIEW>
-          <VIEW>
+          <VIEW
+            style={
+              Object {
+                "fontSize": 12,
+              }
+            }
+          >
             <TEXT
               style={
                 Object {
@@ -536,79 +559,53 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "production": [Function],
                 }
               }
+              formContext={
+                Object {
+                  "query": undefined,
+                }
+              }
               formData={
                 Object {
                   "sourceTypes": Array [
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": 36669956.97616452,
-                          "annualEmission": -28160416.975283325,
-                          "gasDescription": "veniam magna dolore laboris voluptate",
-                          "gasType": "dolor aliquip culpa",
-                          "gwp": 34442150.51597342,
+                          "annualCO2e": -5052086.729388967,
+                          "annualEmission": 9209504.352927536,
+                          "gasDescription": "Excepteur nostrud exercitation sed",
+                          "gasType": "fugiat Excepteur nisi",
+                          "gwp": -78996815.49448791,
                         },
                         Object {
-                          "annualCO2e": -29852795.288186014,
-                          "annualEmission": -95555526.34340692,
-                          "gasDescription": "anim laborum",
-                          "gasType": "ut ullamco enim",
-                          "gwp": -60845594.28915499,
+                          "annualCO2e": 78780968.93424612,
+                          "annualEmission": -82491481.38921832,
+                          "gasDescription": "incididunt labore in",
+                          "gasType": "tempor exe",
+                          "gwp": -89767600.85051261,
                         },
                         Object {
-                          "annualCO2e": -98975412.59486866,
-                          "annualEmission": 96513664.1017037,
-                          "gasDescription": "ex velit cillum consectetur",
-                          "gasType": "occaecat",
-                          "gwp": -2938851.6404684335,
+                          "annualCO2e": -41237850.80483371,
+                          "annualEmission": -23360416.47244449,
+                          "gasDescription": "consequat ullamco qui enim dolor",
+                          "gasType": "labore ipsum",
+                          "gwp": 77118300.88412955,
                         },
                         Object {
-                          "annualCO2e": 12658481.04021518,
-                          "annualEmission": -29461662.857962787,
-                          "gasDescription": "voluptate labore",
-                          "gasType": "sit amet labore ex",
-                          "gwp": -54300332.26329081,
+                          "annualCO2e": -28847429.95650415,
+                          "annualEmission": -11268910.004646182,
+                          "gasDescription": "in laboris sint",
+                          "gasType": "sunt",
+                          "gwp": 2651459.6499635577,
+                        },
+                        Object {
+                          "annualCO2e": -35557799.64693358,
+                          "annualEmission": -8918549.289932683,
+                          "gasDescription": "anim ut commodo ea",
+                          "gasType": "Lorem esse occaecat tempor",
+                          "gwp": -74205609.02053444,
                         },
                       ],
-                      "sourceTypeName": "Lorem officia",
-                    },
-                    Object {
-                      "gases": Array [
-                        Object {
-                          "annualCO2e": 6078165.610322282,
-                          "annualEmission": -47353792.21168095,
-                          "gasDescription": "aute consectetur commodo co",
-                          "gasType": "enim consequat",
-                          "gwp": 2931406.8316507787,
-                        },
-                      ],
-                      "sourceTypeName": "consequat consectetur",
-                    },
-                    Object {
-                      "gases": Array [
-                        Object {
-                          "annualCO2e": 93269200.01110289,
-                          "annualEmission": -19216621.14401093,
-                          "gasDescription": "minim",
-                          "gasType": "qui et nisi voluptate",
-                          "gwp": 67171621.48050043,
-                        },
-                        Object {
-                          "annualCO2e": -58873078.45630989,
-                          "annualEmission": -38258028.98987813,
-                          "gasDescription": "ut incididunt reprehenderit in",
-                          "gasType": "magna ipsum",
-                          "gwp": 56034583.530753046,
-                        },
-                        Object {
-                          "annualCO2e": -69444076.64876522,
-                          "annualEmission": 30672854.44983083,
-                          "gasDescription": "aliqui",
-                          "gasType": "non Duis Excepteur aliqua consequat",
-                          "gwp": -38780198.17517289,
-                        },
-                      ],
-                      "sourceTypeName": "anim mollit dolore officia ipsum",
+                      "sourceTypeName": "aliquip ut sint",
                     },
                   ],
                 }
@@ -676,7 +673,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 }
               }
               showErrorList={false}
-              tagName={[Function]}
+              tagName="VIEW"
               uiSchema={
                 Object {
                   "sourceTypes": Object {
@@ -719,7 +716,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               <VIEW />
             </Form>
           </VIEW>
-          <VIEW>
+          <VIEW
+            style={
+              Object {
+                "fontSize": 12,
+              }
+            }
+          >
             <TEXT
               style={
                 Object {
@@ -747,25 +750,30 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "production": [Function],
                 }
               }
+              formContext={
+                Object {
+                  "query": undefined,
+                }
+              }
               formData={
                 Array [
                   Object {
-                    "fuelType": "elit ex cupidatat proident",
-                    "fuelUnits": "non ullamco",
-                    "methodology": "wci 2.0",
-                    "quantity": -26354288.51878801,
-                  },
-                  Object {
-                    "fuelType": "eu magna anim",
-                    "fuelUnits": "tempor adipisicing",
-                    "methodology": "wci 1.0",
-                    "quantity": 39439376.28930646,
-                  },
-                  Object {
-                    "fuelType": "ali",
-                    "fuelUnits": "commodo quis laboris nisi",
+                    "fuelType": "",
+                    "fuelUnits": "dolor amet officia",
                     "methodology": "wci 3.0",
-                    "quantity": 79039571.29705837,
+                    "quantity": 717587.7353272885,
+                  },
+                  Object {
+                    "fuelType": "ipsum occaecat",
+                    "fuelUnits": "labore dolore eu",
+                    "methodology": "wci 1.0",
+                    "quantity": 71894004.30988088,
+                  },
+                  Object {
+                    "fuelType": "nisi do",
+                    "fuelUnits": "dolore",
+                    "methodology": "wci 2.0",
+                    "quantity": -10072966.802033216,
                   },
                 ]
               }
@@ -816,7 +824,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 }
               }
               showErrorList={false}
-              tagName={[Function]}
+              tagName="VIEW"
               uiSchema={
                 Object {
                   "items": Object {
@@ -835,7 +843,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               <VIEW />
             </Form>
           </VIEW>
-          <VIEW>
+          <VIEW
+            style={
+              Object {
+                "fontSize": 12,
+              }
+            }
+          >
             <TEXT
               style={
                 Object {
@@ -863,19 +877,26 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "production": [Function],
                 }
               }
+              formContext={
+                Object {
+                  "query": undefined,
+                }
+              }
               formData={
                 Object {
                   "electricity": Object {
-                    "consumedOnSite": -536154.4425173104,
-                    "generatedOnSite": 0,
+                    "consumedOnSite": 31359439.236546427,
+                    "generatedOnSite": -29473880.293826625,
+                    "onSiteEmissions": -17253113.583065674,
                     "purchased": 0,
-                    "sold": 62857192.08377576,
+                    "sold": 20964929.43586959,
                   },
                   "heat": Object {
-                    "consumedOnSite": 50451680.43877694,
-                    "generatedOnSite": 0,
+                    "consumedOnSite": 40567070.08344665,
+                    "generatedOnSite": 72006583.80083582,
+                    "onSiteEmissions": 87097023.96118844,
                     "purchased": 0,
-                    "sold": 49642804.53381628,
+                    "sold": 78952521.45142123,
                   },
                 }
               }
@@ -1053,7 +1074,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 }
               }
               showErrorList={false}
-              tagName={[Function]}
+              tagName="VIEW"
               uiSchema={
                 Object {
                   "electricity": Object {
@@ -1120,7 +1141,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               <VIEW />
             </Form>
           </VIEW>
-          <VIEW>
+          <VIEW
+            style={
+              Object {
+                "fontSize": 12,
+              }
+            }
+          >
             <TEXT
               style={
                 Object {
@@ -1148,36 +1175,28 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "production": [Function],
                 }
               }
+              formContext={
+                Object {
+                  "query": undefined,
+                }
+              }
               formData={
                 Array [
                   Object {
-                    "additionalData": Object {
-                      "ad_6f": 73023890,
-                      "ex_f3$": "laboris occaecat",
-                    },
-                    "paymentAllocationFactor": -70538887,
-                    "productRowId": -61805832,
-                    "productUnits": "laborum est in",
-                    "productionAllocationFactor": -6763402,
-                    "quantity": -40073746.52756761,
-                  },
-                  Object {
-                    "additionalData": Object {
-                      "ete82$": -62017167,
-                    },
-                    "paymentAllocationFactor": -71708225,
-                    "productRowId": -39219458,
-                    "productUnits": "in",
-                    "productionAllocationFactor": -28717272,
-                    "quantity": 58723645.403072536,
+                    "additionalData": Object {},
+                    "paymentAllocationFactor": -65791418,
+                    "productRowId": -62619038,
+                    "productUnits": "in anim",
+                    "productionAllocationFactor": -47459515,
+                    "quantity": -62131341.31924396,
                   },
                   Object {
                     "additionalData": Object {},
-                    "paymentAllocationFactor": -85108122,
-                    "productRowId": -66126038,
-                    "productUnits": "pa",
-                    "productionAllocationFactor": -89358271,
-                    "quantity": 25603277.210922748,
+                    "paymentAllocationFactor": -26639160,
+                    "productRowId": 68112013,
+                    "productUnits": "et cillum nostrud voluptate",
+                    "productionAllocationFactor": -24225383,
+                    "quantity": -80659488.62678996,
                   },
                 ]
               }
@@ -1237,7 +1256,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 }
               }
               showErrorList={false}
-              tagName={[Function]}
+              tagName="VIEW"
               uiSchema={
                 Object {
                   "items": Object {

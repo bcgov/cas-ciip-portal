@@ -41,6 +41,12 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
           },
         }
       }
+      query={
+        Object {
+          " $refType": "ApplicationDetailsContainer_query",
+          "query": null,
+        }
+      }
     />
   </div>
 </div>
