@@ -26,6 +26,7 @@ begin;
   );
 
   --Todo: refactor to add address table in CIIP
+  create unique index facility_swrs_report_id_uindex on ggircs_portal.facility(swrs_report_id);
 
     comment on table ggircs_portal.facility is 'Table containing information on an facility that has applied for CIIP';
     comment on column ggircs_portal.facility.id is 'unique id for the facility';

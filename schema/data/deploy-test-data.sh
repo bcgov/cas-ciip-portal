@@ -77,7 +77,16 @@ deploySwrs() {
     swrs_extract.ghgr_import (id, xml_file)
     overriding system value
   values
-  (1,'$(sed -e "s/'/''/g" < ./swrs/swrs_report_11033X.xml)')
+    (1,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_8614X.xml)'),
+    (2,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_9822X.xml)'),
+    (3,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10255X.xml)'),
+    (4,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10271X.xml)'),
+    (5,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10692X.xml)'),
+    (6,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_10759X.xml)'),
+    (7,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11033X.xml)'),
+    (8,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11233X.xml)'),
+    (9,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11266X.xml)'),
+    (10,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_11324X.xml)')
   on conflict(id) do update set xml_file=excluded.xml_file;
 EOF
 
@@ -133,8 +142,7 @@ _psql -f "./portal/product_form.sql"
 _psql -f "./portal/product.sql"
 _psql -f "./portal/user.sql"
 _psql -f "./portal/benchmark.sql"
-_psql -f "./portal/organisation.sql"
-_psql -f "./portal/facility.sql"
+_psql -f "./portal/organisation_and_facility.sql"
 _psql -f "./portal/gas.sql"
 _psql -f "./portal/emission_gas.sql"
 _psql -f "./portal/application.sql"
