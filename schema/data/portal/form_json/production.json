@@ -54,11 +54,28 @@
       "ui:field": "production",
       "productRowId": {
         "ui:col-md": 8,
-        "ui:widget": "SearchWidget"
+        "ui:widget": "SearchWidget",
+        "ui:name": "productRowId"
       },
       "productionAllocationFactor": {
         "ui:col-md": 4,
-        "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service"
+        "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service",
+        "ui:name": "productAllocationFactor"
+      },
+      "quantity": {
+        "ui:name": "quantity"
+      },
+      "productUnits": {
+        "ui:name": "productUnits"
+      },
+      "productionAllocationFactor": {
+        "ui:name": "productionAllocationFactor"
+      },
+      "paymentAllocationFactor": {
+        "ui:name": "paymentAllocationFactor"
+      },
+      "additionalData": {
+        "ui:name": "additionalData"
       }
     }
   }
