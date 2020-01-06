@@ -34,7 +34,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const [isOpen, setIsOpen] = useState(false);
   const [showDiff, setShowDiff] = useState(false);
 
-  if (formJsonByFormId.slug !== 'fuel') return null;
+  if (formJsonByFormId.slug === 'emission') return null;
 
   let previousFormResult;
   previousFormResults.forEach(result => {
@@ -52,28 +52,35 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 
   const extensibleUISchema = JSON.parse(JSON.stringify(uiSchema));
 
-  const iterate = (obj, pathArray, difference) => {
-    let key = pathArray[0];
-    // Console.log(difference);
-    // console.log(pathArray);
-    // console.log(obj);
+  const iterate = (obj, iteratedPathArray, difference, originalPathArray) => {
+    let key = iteratedPathArray[0];
     if (typeof key === 'number') {
-      console.log(pathArray);
-      pathArray = pathArray.slice(1);
-      const index = key;
-      key = pathArray[0];
+      if (difference.kind === 'N') difference.lhs = 'NO DATA ENTERED';
+      key = iteratedPathArray[1];
 
-      console.log(obj);
-      if (typeof obj.items[index] === 'object')
-        console.log('YOU GOT AN OBJECT BRO!');
-      Object.assign(obj.items, {
-        [key]: {
-          'ui:previousPath': [index, key],
-          'ui:previous': difference.lhs
-        }
-      });
-    } else if (typeof obj[key] === 'object' && pathArray.length > 1) {
-      iterate(obj[key], pathArray.slice(1), difference);
+      // Console.log(obj);
+      if (typeof obj.items[key] === 'object' && iteratedPathArray.length > 2)
+        iterate(
+          obj.items[key],
+          iteratedPathArray.slice(1),
+          difference,
+          originalPathArray
+        );
+      else {
+        Object.assign(obj.items, {
+          [key]: {
+            'ui:previousPath': originalPathArray,
+            'ui:previous': difference.lhs
+          }
+        });
+      }
+    } else if (typeof obj[key] === 'object' && iteratedPathArray.length > 1) {
+      iterate(
+        obj[key],
+        iteratedPathArray.slice(1),
+        difference,
+        originalPathArray
+      );
     } else if (difference.lhs === undefined) {
       const newKeys = Object.keys(difference.rhs);
       newKeys.forEach(item => {
@@ -83,10 +90,17 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           }
         });
       });
-    } else {
+    } else if (formJsonByFormId.slug === 'admin') {
       Object.assign(obj, {
         [key]: {
           'ui:previous': difference.lhs
+        }
+      });
+    } else {
+      Object.assign(obj, {
+        [key]: {
+          'ui:previous': difference.lhs,
+          'ui:previousPath': originalPathArray
         }
       });
     }
@@ -98,7 +112,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       difference.path.forEach(pathItem => {
         pathArray.push(pathItem);
       });
-      iterate(extensibleUISchema, pathArray, difference);
+      iterate(extensibleUISchema, pathArray, difference, pathArray);
     });
   }
 
@@ -114,11 +128,49 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     return true;
   }
 
+  const handlePreviousEnums = stringFieldProps => {
+    if (stringFieldProps.schema.enum) {
+      if (stringFieldProps.uiSchema['ui:previous'] === 'NO DATA ENTERED')
+        return stringFieldProps.uiSchema['ui:previous'];
+
+      return stringFieldProps.schema.enumNames[
+        stringFieldProps.uiSchema['ui:previous']
+      ];
+    }
+
+    return stringFieldProps.uiSchema['ui:previous'];
+  };
+
+  const handleCurrentEnums = props => {
+    if (props.schema.enum && props.schema.enumNames) {
+      // TODO: needs a fix on jsonschema types (missing enumNames)
+      const enumIndex = props.schema.enum.indexOf(props.formData);
+      if (enumIndex === -1) return props.formData;
+      return props.schema.enumNames[enumIndex];
+    }
+
+    return props.formData;
+  };
+
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => {
       if (props.uiSchema && props.uiSchema['ui:previousPath']) {
-        const idString: any = props.idSchema.$id.replace(/^\D+/g, '');
+        const field =
+          props.uiSchema['ui:previousPath'][
+            props.uiSchema['ui:previousPath'].length - 1
+          ];
+        let idString: any;
+        const hasIdSchemaProperty = Object.prototype.hasOwnProperty.call(
+          props.idSchema,
+          field
+        );
+        if (hasIdSchemaProperty) {
+          idString = props.idSchema[field].$id.replace(/^\D+/g, '');
+        } else {
+          idString = props.idSchema.$id.replace(/^\D+/g, '');
+        }
+
         const idArray: [any] = idString.split('_');
         idArray.forEach((item, index) => {
           const numberItem = parseInt(item, 10);
@@ -129,27 +181,29 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         if (
           showDiff &&
           arraysAreEqual(idArray, props.uiSchema['ui:previousPath'])
-        )
+        ) {
+          const prevValue = handlePreviousEnums(props);
+          const currentValue = handleCurrentEnums(props);
           return (
             <>
-              <span style={{backgroundColor: '#ffeef0'}}>
-                {props.uiSchema['ui:previous']}
-              </span>
+              <span style={{backgroundColor: '#ffeef0'}}>{prevValue}</span>
               &nbsp;---&gt;&nbsp;
               <span style={{backgroundColor: '#e6ffed'}}>
-                {props.formData ? props.formData : <i>[No Data Entered]</i>}
+                {props.formData ? currentValue : <i>[No Data Entered]</i>}
               </span>
             </>
           );
+        }
       } else if (showDiff && props.uiSchema && props.uiSchema['ui:previous']) {
+        const prevValue = handlePreviousEnums(props);
+        const currentValue = handleCurrentEnums(props);
+
         return (
           <>
-            <span style={{backgroundColor: '#ffeef0'}}>
-              {props.uiSchema['ui:previous']}
-            </span>
+            <span style={{backgroundColor: '#ffeef0'}}>{prevValue}</span>
             &nbsp;---&gt;&nbsp;
             <span style={{backgroundColor: '#e6ffed'}}>
-              {props.formData ? props.formData : <i>[No Data Entered]</i>}
+              {currentValue ? currentValue : <i>[No Data Entered]</i>}
             </span>
           </>
         );
