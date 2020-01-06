@@ -1824,17 +1824,19 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                       className="col-md-3"
                                     >
                                       <input
-                                        className="form-control"
+                                        onBlur={[Function]}
                                         onChange={[Function]}
-                                        type="number"
-                                        value={-80000000}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        onMouseUp={[Function]}
+                                        type="text"
+                                        value="80,000,000"
                                       />
                                     </div>
                                     <div
                                       className="col-md-2"
                                       style={
                                         Object {
-                                          "marginTop": "5px",
                                           "textAlign": "center",
                                         }
                                       }
@@ -1861,13 +1863,15 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                     </div>
                                     <div
                                       className="col-md-3"
+                                      style={
+                                        Object {
+                                          "textAlign": "center",
+                                        }
+                                      }
                                     >
-                                      <input
-                                        className="form-control"
-                                        disabled={true}
-                                        type="number"
-                                        value={0}
-                                      />
+                                      <span>
+                                        0
+                                      </span>
                                     </div>
                                   </div>
                                 </div>
@@ -1929,17 +1933,19 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                       className="col-md-3"
                                     >
                                       <input
-                                        className="form-control"
+                                        onBlur={[Function]}
                                         onChange={[Function]}
-                                        type="number"
-                                        value={0}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        onMouseUp={[Function]}
+                                        type="text"
+                                        value="0"
                                       />
                                     </div>
                                     <div
                                       className="col-md-2"
                                       style={
                                         Object {
-                                          "marginTop": "5px",
                                           "textAlign": "center",
                                         }
                                       }
@@ -1966,13 +1972,15 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                     </div>
                                     <div
                                       className="col-md-3"
+                                      style={
+                                        Object {
+                                          "textAlign": "center",
+                                        }
+                                      }
                                     >
-                                      <input
-                                        className="form-control"
-                                        disabled={true}
-                                        type="number"
-                                        value={-20000000}
-                                      />
+                                      <span>
+                                        -20,000,000
+                                      </span>
                                     </div>
                                   </div>
                                 </div>
@@ -2130,17 +2138,19 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                       className="col-md-3"
                                     >
                                       <input
-                                        className="form-control"
+                                        onBlur={[Function]}
                                         onChange={[Function]}
-                                        type="number"
-                                        value={-20000000}
+                                        onFocus={[Function]}
+                                        onKeyDown={[Function]}
+                                        onMouseUp={[Function]}
+                                        type="text"
+                                        value="20,000,000"
                                       />
                                     </div>
                                     <div
                                       className="col-md-2"
                                       style={
                                         Object {
-                                          "marginTop": "5px",
                                           "textAlign": "center",
                                         }
                                       }
@@ -2167,13 +2177,15 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                     </div>
                                     <div
                                       className="col-md-3"
+                                      style={
+                                        Object {
+                                          "textAlign": "center",
+                                        }
+                                      }
                                     >
-                                      <input
-                                        className="form-control"
-                                        disabled={true}
-                                        type="number"
-                                        value={-40000000}
-                                      />
+                                      <span>
+                                        -40,000,000
+                                      </span>
                                     </div>
                                   </div>
                                 </div>
