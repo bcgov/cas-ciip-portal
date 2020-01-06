@@ -1,6 +1,7 @@
 import React from 'react';
 import {FieldProps} from 'react-jsonschema-form';
 import {Form, Col} from 'react-bootstrap';
+import NumberFormat from 'react-number-format';
 
 const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
   const {formContext} = props;
