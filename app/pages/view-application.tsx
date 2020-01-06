@@ -59,7 +59,11 @@ class ViewApplication extends Component<Props> {
       >
         <Row>
           <Col md={8}>
-            <ApplicationDetails query={query} application={query.application} />
+            <ApplicationDetails
+              query={query}
+              application={query.application}
+              review={false}
+            />
           </Col>
           <Col md={4}>
             {formResults.map(({node}) => (

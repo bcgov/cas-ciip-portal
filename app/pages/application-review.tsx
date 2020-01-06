@@ -63,7 +63,11 @@ class ApplicationReview extends Component<Props> {
         <hr />
         <Row className="application-container">
           <Col md={8} className="application-body">
-            <ApplicationDetails query={query} application={query.application} />
+            <ApplicationDetails
+              review
+              query={query}
+              application={query.application}
+            />
             <IncentiveCalculatorContainer
               applicationRevision={query.applicationRevision}
             />

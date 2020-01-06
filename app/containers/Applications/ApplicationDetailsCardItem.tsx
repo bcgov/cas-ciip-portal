@@ -17,6 +17,7 @@ interface Props {
   formResult: ApplicationDetailsCardItem_formResult;
   previousFormResults?: any;
   query: ApplicationDetailsCardItem_query;
+  review: boolean;
 }
 
 /*
@@ -25,7 +26,8 @@ interface Props {
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult,
   previousFormResults,
-  query
+  query,
+  review
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
@@ -36,84 +38,85 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 
   if (formJsonByFormId.slug === 'emission') return null;
 
-  let previousFormResult;
-  previousFormResults.forEach(result => {
-    if (
-      previousFormResults.length > 0 &&
-      result.node.formJsonByFormId.slug === formResult.formJsonByFormId.slug
-    ) {
-      previousFormResult = result.node.formResult;
-    }
-  });
-
-  const lhs = previousFormResult;
-  const rhs = formResult.formResult;
-  const differences = diff(lhs, rhs);
-
   const extensibleUISchema = JSON.parse(JSON.stringify(uiSchema));
+  if (review) {
+    let previousFormResult;
+    previousFormResults.forEach(result => {
+      if (
+        previousFormResults.length > 0 &&
+        result.node.formJsonByFormId.slug === formResult.formJsonByFormId.slug
+      ) {
+        previousFormResult = result.node.formResult;
+      }
+    });
 
-  const iterate = (obj, iteratedPathArray, difference, originalPathArray) => {
-    let key = iteratedPathArray[0];
-    if (typeof key === 'number') {
-      if (difference.kind === 'N') difference.lhs = 'NO DATA ENTERED';
-      key = iteratedPathArray[1];
+    const lhs = previousFormResult;
+    const rhs = formResult.formResult;
+    const differences = diff(lhs, rhs);
 
-      // Console.log(obj);
-      if (typeof obj.items[key] === 'object' && iteratedPathArray.length > 2)
+    const iterate = (obj, iteratedPathArray, difference, originalPathArray) => {
+      let key = iteratedPathArray[0];
+      if (difference.lhs === undefined) difference.lhs = 'NO DATA ENTERED';
+      if (difference.lhs === '') difference.lhs += 'NO DATA ENTERED';
+      if (typeof key === 'number') {
+        if (difference.kind === 'N') difference.lhs = 'NO DATA ENTERED';
+        key = iteratedPathArray[1];
+
+        if (typeof obj.items[key] === 'object' && iteratedPathArray.length > 2)
+          iterate(
+            obj.items[key],
+            iteratedPathArray.slice(1),
+            difference,
+            originalPathArray
+          );
+        else {
+          Object.assign(obj.items, {
+            [key]: {
+              'ui:previousPath': originalPathArray,
+              'ui:previous': difference.lhs
+            }
+          });
+        }
+      } else if (typeof obj[key] === 'object' && iteratedPathArray.length > 1) {
         iterate(
-          obj.items[key],
+          obj[key],
           iteratedPathArray.slice(1),
           difference,
           originalPathArray
         );
-      else {
-        Object.assign(obj.items, {
+      } else if (formJsonByFormId.slug === 'admin') {
+        Object.assign(obj, {
           [key]: {
-            'ui:previousPath': originalPathArray,
             'ui:previous': difference.lhs
           }
         });
-      }
-    } else if (typeof obj[key] === 'object' && iteratedPathArray.length > 1) {
-      iterate(
-        obj[key],
-        iteratedPathArray.slice(1),
-        difference,
-        originalPathArray
-      );
-    } else if (difference.lhs === undefined) {
-      const newKeys = Object.keys(difference.rhs);
-      newKeys.forEach(item => {
-        Object.assign(obj[key], {
-          [item]: {
-            'ui:previous': 'NO DATA ENTERED'
+      } else {
+        Object.assign(obj, {
+          [key]: {
+            'ui:previous': difference.lhs,
+            'ui:previousPath': originalPathArray
           }
         });
-      });
-    } else if (formJsonByFormId.slug === 'admin') {
-      Object.assign(obj, {
-        [key]: {
-          'ui:previous': difference.lhs
-        }
-      });
-    } else {
-      Object.assign(obj, {
-        [key]: {
-          'ui:previous': difference.lhs,
-          'ui:previousPath': originalPathArray
+      }
+    };
+
+    if (differences) {
+      differences.forEach(difference => {
+        const pathArray = [];
+        if (difference.path) {
+          difference.path.forEach(pathItem => {
+            pathArray.push(pathItem);
+          });
+          const extensibleDifference = JSON.parse(JSON.stringify(difference));
+          iterate(
+            extensibleUISchema,
+            pathArray,
+            extensibleDifference,
+            pathArray
+          );
         }
       });
     }
-  };
-
-  if (differences) {
-    differences.forEach(difference => {
-      const pathArray = [];
-      difference.path.forEach(pathItem => {
-        pathArray.push(pathItem);
-      });
-      iterate(extensibleUISchema, pathArray, difference, pathArray);
-    });
   }
 
   function arraysAreEqual(a, b) {
@@ -128,28 +131,20 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     return true;
   }
 
-  const handlePreviousEnums = stringFieldProps => {
-    if (stringFieldProps.schema.enum) {
-      if (stringFieldProps.uiSchema['ui:previous'] === 'NO DATA ENTERED')
-        return stringFieldProps.uiSchema['ui:previous'];
-
-      return stringFieldProps.schema.enumNames[
-        stringFieldProps.uiSchema['ui:previous']
-      ];
-    }
-
-    return stringFieldProps.uiSchema['ui:previous'];
-  };
-
-  const handleCurrentEnums = props => {
+  const handleEnums = (props, isCurrent) => {
     if (props.schema.enum && props.schema.enumNames) {
       // TODO: needs a fix on jsonschema types (missing enumNames)
-      const enumIndex = props.schema.enum.indexOf(props.formData);
+
+      const enumIndex = isCurrent
+        ? props.schema.enum.indexOf(props.formData)
+        : props.schema.enum.indexOf(props.uiSchema['ui:previous']);
       if (enumIndex === -1) return props.formData;
       return props.schema.enumNames[enumIndex];
     }
 
-    return props.formData;
+    if (isCurrent) return props.formData;
+
+    return props.uiSchema['ui:previous'];
   };
 
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
@@ -168,7 +163,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         if (hasIdSchemaProperty) {
           idString = props.idSchema[field].$id.replace(/^\D+/g, '');
         } else {
-          idString = props.idSchema.$id.replace(/^\D+/g, '');
+          idString = props.idSchema.$id.replace(/^root_/g, '');
         }
 
         const idArray: [any] = idString.split('_');
@@ -182,8 +177,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           showDiff &&
           arraysAreEqual(idArray, props.uiSchema['ui:previousPath'])
         ) {
-          const prevValue = handlePreviousEnums(props);
-          const currentValue = handleCurrentEnums(props);
+          const prevValue = handleEnums(props, false);
+          const currentValue = handleEnums(props, true);
           return (
             <>
               <span style={{backgroundColor: '#ffeef0'}}>{prevValue}</span>
@@ -195,8 +190,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           );
         }
       } else if (showDiff && props.uiSchema && props.uiSchema['ui:previous']) {
-        const prevValue = handlePreviousEnums(props);
-        const currentValue = handleCurrentEnums(props);
+        const prevValue = handleEnums(props, false);
+        const currentValue = handleEnums(props, true);
 
         return (
           <>
@@ -209,10 +204,14 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         );
       }
 
-      if (props.formData === null || props.formData === undefined)
+      if (
+        props.formData === null ||
+        props.formData === undefined ||
+        props.formData === ''
+      )
         return <i>[No Data Entered]</i>;
 
-      const value = handleCurrentEnums(props);
+      const value = handleEnums(props, true);
 
       return value;
     },

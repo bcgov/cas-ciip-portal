@@ -13,6 +13,7 @@ interface Props {
   query: ApplicationDetailsContainer_query;
   application: ApplicationDetailsContainer_application;
   relay: RelayProp;
+  review: boolean;
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
@@ -28,6 +29,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
           previousFormResults={previousFormResults}
           formResult={node}
           query={props.query.query}
+          review={props.review}
         />
       ))}
     </div>
