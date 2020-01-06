@@ -36,7 +36,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const [isOpen, setIsOpen] = useState(false);
   const [showDiff, setShowDiff] = useState(false);
 
-  if (formJsonByFormId.slug === 'emission') return null;
+  const emissionDiffPathArray = [];
+  const emissionDiffArray = [];
 
   const extensibleUISchema = JSON.parse(JSON.stringify(uiSchema));
   if (review) {
@@ -56,8 +57,12 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 
     const iterate = (obj, iteratedPathArray, difference, originalPathArray) => {
       let key = iteratedPathArray[0];
-      if (difference.lhs === undefined) difference.lhs = 'NO DATA ENTERED';
-      if (difference.lhs === '') difference.lhs += 'NO DATA ENTERED';
+      if (
+        difference.lhs === undefined ||
+        difference.lhs === '' ||
+        difference.lhs === null
+      )
+        difference.lhs = 'NO DATA ENTERED';
       if (typeof key === 'number') {
         if (difference.kind === 'N') difference.lhs = 'NO DATA ENTERED';
         key = iteratedPathArray[1];
@@ -100,7 +105,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       }
     };
 
-    if (differences) {
+    if (differences && formJsonByFormId.slug !== 'emission') {
       differences.forEach(difference => {
         const pathArray = [];
         if (difference.path) {
@@ -114,6 +119,15 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             extensibleDifference,
             pathArray
           );
+        }
+      });
+    }
+
+    if (differences && formJsonByFormId.slug === 'emission') {
+      differences.forEach(difference => {
+        if (difference.path) {
+          emissionDiffPathArray.push(difference.path.join('_'));
+          emissionDiffArray.push(difference.lhs);
         }
       });
     }
@@ -134,7 +148,6 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const handleEnums = (props, isCurrent) => {
     if (props.schema.enum && props.schema.enumNames) {
       // TODO: needs a fix on jsonschema types (missing enumNames)
-
       const enumIndex = isCurrent
         ? props.schema.enum.indexOf(props.formData)
         : props.schema.enum.indexOf(props.uiSchema['ui:previous']);
@@ -250,12 +263,14 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             <h4>{formJsonByFormId.name}</h4>
           </Col>
           <Col md={{span: 2, offset: 3}}>
-            <Form.Check
-              label="Show Diff?"
-              checked={showDiff}
-              type="checkbox"
-              onChange={() => setShowDiff(!showDiff)}
-            />
+            {review ? (
+              <Form.Check
+                label="Show Diff?"
+                checked={showDiff}
+                type="checkbox"
+                onChange={() => setShowDiff(!showDiff)}
+              />
+            ) : null}
           </Col>
           <Col md={1} style={{textAlign: 'right'}}>
             <Button
@@ -283,7 +298,12 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             uiSchema={extensibleUISchema}
             ObjectFieldTemplate={FormObjectFieldTemplate}
             formData={formResult.formResult}
-            formContext={{query, showDiff}}
+            formContext={{
+              query,
+              showDiff,
+              emissionDiffPathArray,
+              emissionDiffArray
+            }}
           >
             {/* Over-ride submit button for each form with an empty fragment */}
             <></>
