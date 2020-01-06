@@ -31,7 +31,7 @@ class ApplicationReview extends Component<Props> {
           }
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
-          formResultsByApplicationId {
+          orderedFormResults(versionNumberInput: $version) {
             edges {
               node {
                 id
@@ -51,7 +51,7 @@ class ApplicationReview extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
-    const formResults = query.application.formResultsByApplicationId.edges;
+    const formResults = query.application.orderedFormResults.edges;
     return (
       <DefaultLayout session={session} width="wide">
         <ApplicationRevisionStatusContainer

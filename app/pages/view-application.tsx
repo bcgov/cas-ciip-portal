@@ -29,7 +29,7 @@ class ViewApplication extends Component<Props> {
           applicationRevisionStatus {
             applicationRevisionStatus
           }
-          formResultsByApplicationId {
+          orderedFormResults(versionNumberInput: $version) {
             edges {
               node {
                 id
@@ -49,7 +49,7 @@ class ViewApplication extends Component<Props> {
   render() {
     const {session} = this.props.query;
     const {query} = this.props;
-    const formResults = query.application.formResultsByApplicationId.edges;
+    const formResults = query.application.orderedFormResults.edges;
 
     return (
       <DefaultLayout

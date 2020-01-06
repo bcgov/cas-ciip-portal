@@ -212,14 +212,9 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       if (props.formData === null || props.formData === undefined)
         return <i>[No Data Entered]</i>;
 
-      if (props.schema.enum && (props.schema as any).enumNames) {
-        // TODO: needs a fix on jsonschema types (missing enumNames)
-        const enumIndex = props.schema.enum.indexOf(props.formData);
-        if (enumIndex === -1) return props.formData;
-        return (props.schema as any).enumNames[enumIndex];
-      }
+      const value = handleCurrentEnums(props);
 
-      return props.formData;
+      return value;
     },
     BooleanField: ({formData, uiSchema}) => {
       if (showDiff && uiSchema && uiSchema['ui:previous'] !== undefined) {
