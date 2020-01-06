@@ -15,7 +15,7 @@ describe('ApplicationDetailsCardItemComponent', () => {
       formResult: {},
       formJsonByFormId: {
         name: 'Fuel Usage',
-        formJson: {schema: {title: 'Fuel UsageCollapse'}},
+        formJson: {schema: {title: 'Fuel UsageCollapse'}, uiSchema: {}},
         slug: 'fuel'
       }
     };
@@ -25,12 +25,15 @@ describe('ApplicationDetailsCardItemComponent', () => {
         ApplicationReviewContainer_applicationReview: true
       }
     };
+    const previousFormResult = {};
     const formTitle = 'facility';
     const formSubtitle = 'facility';
     const r = shallow(
       <ApplicationDetailsCardItemComponent
         query={query}
         formResult={formResult}
+        previousFormResult={previousFormResult}
+        review={false}
         formTitle={formTitle}
         formSubtitle={formSubtitle}
       />

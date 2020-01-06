@@ -25,6 +25,18 @@ describe('ApplicationDetailsComponent', () => {
                 }
               }
             ]
+          },
+          previousSubmittedRevision: {
+            formResultsByApplicationIdAndVersionNumber: {
+              edges: {
+                node: {
+                  formJsonByFormId: {
+                    slug: 'admin'
+                  },
+                  formResult: {}
+                }
+              }
+            }
           }
         }}
       />

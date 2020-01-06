@@ -20,7 +20,7 @@ const query: viewApplicationQueryResponse['query'] = {
       ReviseApplicationButtonContainer_application: true,
       ApplicationDetailsContainer_application: true
     },
-    formResultsByApplicationId: {
+    orderedFormResults: {
       edges: [
         {
           node: {

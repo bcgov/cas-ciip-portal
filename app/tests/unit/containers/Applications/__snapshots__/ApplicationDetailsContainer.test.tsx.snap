@@ -12,6 +12,16 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
       }
     }
     key="WyJmb3JtX3Jlc3VsdHMiLDExXQ=="
+    previousFormResults={
+      Object {
+        "node": Object {
+          "formJsonByFormId": Object {
+            "slug": "admin",
+          },
+          "formResult": Object {},
+        },
+      }
+    }
     query={null}
   />
 </div>

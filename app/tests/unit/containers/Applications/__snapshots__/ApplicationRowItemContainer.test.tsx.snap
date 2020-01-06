@@ -53,5 +53,26 @@ exports[`ApplicationRowItem should render the application 1`] = `
       </Button>
     </Link>
   </td>
+  <td>
+    <Link
+      href={
+        Object {
+          "pathname": "/application-diff",
+          "query": Object {
+            "applicationId": "abc",
+          },
+        }
+      }
+    >
+      <Button
+        active={false}
+        disabled={false}
+        type="button"
+        variant="primary"
+      >
+        Revision Diff
+      </Button>
+    </Link>
+  </td>
 </tr>
 `;
