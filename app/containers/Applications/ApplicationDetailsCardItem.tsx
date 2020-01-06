@@ -158,22 +158,30 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       const value = handleEnums(props, true, prevValue);
       return value;
     },
-    BooleanField: ({formData, uiSchema}) => {
-      if (showDiff && uiSchema && uiSchema['ui:previous'] !== undefined) {
+    BooleanField: props => {
+      const hasDiff = diffPathArray.includes(
+        props.idSchema.$id.replace(/^root_/g, '')
+      );
+
+      if (showDiff && hasDiff) {
+        const prevValue =
+          diffArray[
+            diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
+          ];
         return (
           <>
             <span style={{backgroundColor: '#ffeef0'}}>
-              {uiSchema['ui:previous'] ? 'Yes' : 'No'}
+              {prevValue ? 'Yes' : 'No'}
             </span>
             &nbsp;---&gt;&nbsp;
             <span style={{backgroundColor: '#e6ffed'}}>
-              {formData ? 'Yes' : 'No'}
+              {props.formData ? 'Yes' : 'No'}
             </span>
           </>
         );
       }
 
-      return <>{formData ? 'Yes' : 'No'} </>;
+      return <>{props.formData ? 'Yes' : 'No'} </>;
     },
     emissionSource: props => <SummaryEmissionSourceFields {...props} />,
     emissionGas: props => <SummaryEmissionGasFields {...props} />,
