@@ -12,6 +12,7 @@ import electricityAndHeatForm from 'schema/data/portal/form_json/electricity_and
 import productionForm from 'schema/data/portal/form_json/production.json';
 import {FormJson} from 'next-env';
 import {generateFakeSchemaData} from '../json-schema-utils';
+import MockRouter from '../MockRouter';
 
 describe('Form', () => {
   beforeEach(() => {
@@ -22,28 +23,30 @@ describe('Form', () => {
 
   const environment = createMockEnvironment();
   const TestRenderer = () => (
-    <QueryRenderer<FormTestQuery>
-      environment={environment}
-      query={graphql`
-        query FormTestQuery($formResultId: ID!) @relay_test_operation {
-          query {
-            ...Form_query @arguments(formResultId: $formResultId)
+    <MockRouter>
+      <QueryRenderer<FormTestQuery>
+        environment={environment}
+        query={graphql`
+          query FormTestQuery($formResultId: ID!) @relay_test_operation {
+            query {
+              ...Form_query @arguments(formResultId: $formResultId)
+            }
           }
-        }
-      `}
-      variables={{formResultId: 'test-id'}}
-      render={({error, props}) => {
-        if (props) {
-          return <Form query={props.query} />;
-        }
+        `}
+        variables={{formResultId: 'test-id'}}
+        render={({error, props}) => {
+          if (props) {
+            return <Form query={props.query} />;
+          }
 
-        if (error) {
-          return error.message;
-        }
+          if (error) {
+            return error.message;
+          }
 
-        return 'Loading...';
-      }}
-    />
+          return 'Loading...';
+        }}
+      />
+    </MockRouter>
   );
 
   it('should match the snapshot with the administration form', async () => {

@@ -20,6 +20,8 @@ router.prefetch = async (url: Url, as?: Url, options?: {}): Promise<void> => {
   action('Router#prefetch')(url, as, options);
 };
 
+router.pageLoader = {prefetched: {}};
+
 Router.router = router as RouterType;
 
 export {Router};

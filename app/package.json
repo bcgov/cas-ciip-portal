@@ -113,7 +113,7 @@
     "keycloak-connect": "^8.0.1",
     "mathjs": "^6.2.5",
     "moment-timezone": "^0.5.27",
-    "next": "^9.1.5",
+    "next": "^9.1.7",
     "pg": "^7.11.0",
     "popper.js": "^1.15.0",
     "postgraphile": "^4.5.5",
@@ -195,7 +195,6 @@
     "@storybook/**/terser-webpack-plugin": "^1.4.2",
     "xo/open-editor/open": "^7.0.0",
     "xo/prettier": "^1.19.1",
-    "next/@babel/core": "^7.7.7",
     "jest/jest-cli/@jest/core/@jest/reporters/istanbul-reports/handlebars": "^4.5.3"
   },
   "jest": {
