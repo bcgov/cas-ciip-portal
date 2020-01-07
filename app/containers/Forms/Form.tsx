@@ -18,6 +18,7 @@ import EmissionGasFields from './EmissionGasFields';
 import EmissionSourceFields from './EmissionSourceFields';
 import ProductionFields from './ProductionFields';
 import ObjectField from './FormObjectField';
+import NumberFields from './NumberFields';
 
 interface Props {
   query: Form_query;
@@ -33,6 +34,9 @@ const CUSTOM_FIELDS = {
   production: props => (
     <ProductionFields query={props.formContext.query} {...props} />
   ),
+  NumberField: props => {
+    return <NumberFields query={props.formContext.query} {...props} />;
+  },
   ObjectField
 };
 
