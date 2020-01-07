@@ -19,8 +19,8 @@ interface Props {
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
   const formResults = props.application.orderedFormResults.edges;
   const previousFormResults =
-    props.application.previousSubmittedRevision
-      .formResultsByApplicationIdAndVersionNumber.edges;
+    props?.application?.previousSubmittedRevision
+      ?.formResultsByApplicationIdAndVersionNumber?.edges;
   return (
     <div>
       {formResults.map(({node}) => (

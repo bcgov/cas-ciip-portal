@@ -36,13 +36,11 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const [isOpen, setIsOpen] = useState(false);
   const [showDiff, setShowDiff] = useState(false);
 
-  const emissionDiffPathArray = [];
-  const emissionDiffArray = [];
   const diffPathArray = [];
   const diffArray = [];
 
   const extensibleUISchema = JSON.parse(JSON.stringify(uiSchema));
-  if (review) {
+  if (review && previousFormResults) {
     let previousFormResult;
     previousFormResults.forEach(result => {
       if (
@@ -57,24 +55,11 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     const rhs = formResult.formResult;
     const differences = diff(lhs, rhs);
 
-    if (differences && formJsonByFormId.slug !== 'emission') {
+    if (differences) {
       differences.forEach(difference => {
-        const pathArray = [];
         if (difference.path) {
           diffPathArray.push(difference.path.join('_'));
           diffArray.push(difference.lhs);
-          difference.path.forEach(pathItem => {
-            pathArray.push(pathItem);
-          });
-        }
-      });
-    }
-
-    if (differences && formJsonByFormId.slug === 'emission') {
-      differences.forEach(difference => {
-        if (difference.path) {
-          emissionDiffPathArray.push(difference.path.join('_'));
-          emissionDiffArray.push(difference.lhs);
         }
       });
     }
@@ -239,8 +224,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             formContext={{
               query,
               showDiff,
-              emissionDiffPathArray,
-              emissionDiffArray
+              diffPathArray,
+              diffArray
             }}
           >
             {/* Over-ride submit button for each form with an empty fragment */}

@@ -11,10 +11,10 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
   let previousEmission;
   let previousAnnualCO2e;
 
-  if (formContext.emissionDiffPathArray.includes(emissionIdString))
+  if (formContext.diffPathArray.includes(emissionIdString))
     previousEmission =
-      formContext.emissionDiffArray[
-        formContext.emissionDiffPathArray.indexOf(emissionIdString)
+      formContext.diffArray[
+        formContext.diffPathArray.indexOf(emissionIdString)
       ];
   if (
     previousEmission === undefined ||
@@ -23,11 +23,9 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
   )
     previousEmission = 'NULL';
 
-  if (formContext.emissionDiffPathArray.includes(annualIdString))
+  if (formContext.diffPathArray.includes(annualIdString))
     previousAnnualCO2e =
-      formContext.emissionDiffArray[
-        formContext.emissionDiffPathArray.indexOf(annualIdString)
-      ];
+      formContext.diffArray[formContext.diffPathArray.indexOf(annualIdString)];
   if (
     previousAnnualCO2e === undefined ||
     previousAnnualCO2e === '' ||

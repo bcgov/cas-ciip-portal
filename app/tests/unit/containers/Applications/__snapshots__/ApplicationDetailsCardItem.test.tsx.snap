@@ -80,12 +80,12 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         }
         formContext={
           Object {
-            "emissionDiffArray": Array [],
-            "emissionDiffPathArray": Array [],
+            "diffArray": Array [],
+            "diffPathArray": Array [],
             "query": Object {
               " $fragmentRefs": Object {
                 " $refType": "ProductionFields_query",
-                "ApplicationReviewContainer_applicationReview": true,
+                "ProductionFields_query": true,
               },
             },
             "showDiff": false,
