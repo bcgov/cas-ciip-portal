@@ -10,17 +10,11 @@ interface Props {
   onAddOrganisation?: (...args: any[]) => void;
   onAddFacility?: (...args: any[]) => void;
   organisationRowId?: number;
-  reportingYear?: number;
 }
 
 const AddOrganisationFacility: React.FunctionComponent<Props> = props => {
-  const {
-    onAddOrganisation,
-    onAddFacility,
-    organisationRowId,
-    reportingYear
-  } = props;
-  const [modalShow, setModalShow] = useState(false);
+  const {onAddOrganisation, onAddFacility, organisationRowId} = props;
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const customFormats = {
     'postal-code': /[A-Z]\d[A-Z]\s?\d[A-Z]\d/i,
@@ -28,53 +22,46 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = props => {
   };
 
   const saveNewFacility = async (e: IChangeEvent) => {
-    const {
-      facilityName,
-      facilityType,
-      bcghgid,
-      naicsCode,
-      mailingAddress
-    } = e.formData;
+    const {facilityName, facilityType, bcghgid} = e.formData;
     const variables = {
       input: {
         facility: {
           facilityName,
           facilityType,
           bcghgid,
-          naicsCode,
-          ...mailingAddress,
-          // TODO: Our facility table currently stores reportingYear as a string. Should it be an int? It's also a string in swrs & init functions
-          reportingYear: String(reportingYear),
           organisationId: organisationRowId
         }
       }
     };
-    setModalShow(!modalShow);
+    setModalVisible(!isModalVisible);
     onAddFacility(variables);
   };
 
   const saveNewOrganisation = async (e: IChangeEvent) => {
-    const {operatorName, operatorTradeName, duns, mailingAddress} = e.formData;
+    const {operatorName, craBusinessNumber} = e.formData;
     const variables = {
       input: {
         organisation: {
           operatorName,
-          operatorTradeName,
-          duns,
-          ...mailingAddress
+          craBusinessNumber
         }
       }
     };
-    setModalShow(!modalShow);
+    setModalVisible(!isModalVisible);
     onAddOrganisation(variables);
   };
 
   return (
     <>
       {onAddFacility ? (
-        <Button onClick={() => setModalShow(!modalShow)}>Add Facility +</Button>
+        <Button onClick={() => setModalVisible(!isModalVisible)}>
+          Add Facility +
+        </Button>
       ) : (
-        <p id="add-organisation" onClick={() => setModalShow(!modalShow)}>
+        <p
+          id="add-organisation"
+          onClick={() => setModalVisible(!isModalVisible)}
+        >
           I can&apos;t find my organisation
           <style jsx>
             {`
@@ -92,8 +79,8 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = props => {
       <Modal
         centered
         size="xl"
-        show={modalShow}
-        onHide={() => setModalShow(false)}
+        show={isModalVisible}
+        onHide={() => setModalVisible(false)}
       >
         {onAddFacility ? (
           <Modal.Header>Add Facility</Modal.Header>
@@ -112,7 +99,10 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = props => {
             <Button type="submit" variant="primary">
               Save
             </Button>
-            <Button variant="danger" onClick={() => setModalShow(!modalShow)}>
+            <Button
+              variant="danger"
+              onClick={() => setModalVisible(!isModalVisible)}
+            >
               Close
             </Button>
           </JsonSchemaForm>
