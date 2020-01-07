@@ -1,12 +1,30 @@
 import React from 'react';
 import {FieldProps} from 'react-jsonschema-form';
 import {Form, Col} from 'react-bootstrap';
+import {JSONSchema6} from 'json-schema';
 import NumberFormat from 'react-number-format';
 
-const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
+interface Props extends FieldProps {
+  annualEmission?: any;
+}
+
+const EmissionGasFields: React.FunctionComponent<Props> = ({
   formData,
-  onChange
+  onChange,
+  registry,
+  autofocus,
+  idSchema,
+  errorSchema,
+  formContext,
+  disabled,
+  readonly,
+  schema,
+  uiSchema
 }) => {
+  const {
+    properties: {annualEmission: annualEmissionSchema}
+  } = schema as {properties: Record<string, JSONSchema6>};
+
   const hideRow = formData.annualEmission > 0 ? 'hidden' : 'visible';
   return (
     <Col xs={12} md={12} className={`${hideRow} emission-row`}>
@@ -21,20 +39,26 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
           </Col>
         </Col>
         <Col md={3}>
-          <NumberFormat
-            thousandSeparator
-            isNumericString
-            allowNegative={false}
-            allowEmptyFormatting={false}
-            decimalScale={0} // Block formating long number to floating number
-            value={formData.annualEmission}
-            onValueChange={({value}) => {
+          <registry.fields.NumberField
+            required
+            schema={annualEmissionSchema}
+            uiSchema={uiSchema.annualEmission}
+            formData={formData.annualEmission}
+            autofocus={autofocus}
+            idSchema={idSchema}
+            registry={registry}
+            errorSchema={errorSchema?.annualEmission}
+            formContext={formContext}
+            disabled={disabled}
+            readonly={readonly}
+            name="annualEmission"
+            onChange={value =>
               onChange({
                 ...formData,
-                annualEmission: value ?? Number(value),
-                annualCO2e: Number(value) * formData.gwp
-              });
-            }}
+                annualEmission: value,
+                annualCO2e: value * formData.gwp
+              })
+            }
           />
         </Col>
         <Col md={2} style={{textAlign: 'center'}}>
