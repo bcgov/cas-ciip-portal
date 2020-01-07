@@ -86,35 +86,13 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       let prevValue;
       let hasDiff = false;
       if (showDiff) {
-        if (
-          props.uiSchema['ui:name'] &&
-          Object.prototype.hasOwnProperty.call(
-            props.idSchema,
-            props.uiSchema['ui:name']
-          )
-        ) {
-          hasDiff = diffPathArray.includes(
-            props.idSchema[props.uiSchema['ui:name']].$id.replace(/^root_/g, '')
-          );
-          prevValue =
-            diffArray[
-              diffPathArray.indexOf(
-                props.idSchema[props.uiSchema['ui:name']].$id.replace(
-                  /^root_/g,
-                  ''
-                )
-              )
-            ];
-        } else {
-          hasDiff = diffPathArray.includes(
-            props.idSchema.$id.replace(/^root_/g, '')
-          );
-          prevValue =
-            diffArray[
-              diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
-            ];
-        }
-
+        hasDiff = diffPathArray.includes(
+          props.idSchema.$id.replace(/^root_/g, '')
+        );
+        prevValue =
+          diffArray[
+            diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
+          ];
         if (hasDiff) {
           prevValue = handleEnums(props, false, prevValue);
           const currentValue = handleEnums(props, true, prevValue);
