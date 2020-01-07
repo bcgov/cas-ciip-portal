@@ -2427,11 +2427,11 @@
               "deprecationReason": null
             },
             {
-              "name": "ciipUserOrganisationByUserId",
+              "name": "ciipUserOrganisationByRowId",
               "description": null,
               "args": [
                 {
-                  "name": "userId",
+                  "name": "rowId",
                   "description": null,
                   "type": {
                     "kind": "NON_NULL",
@@ -6419,18 +6419,6 @@
               "deprecationReason": null
             },
             {
-              "name": "ciipUserOrganisationByUserId",
-              "description": "Reads a single `CiipUserOrganisation` that is related to this `CiipUser`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUserOrganisation",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "ciipUserOrganisationsByUserId",
               "description": "Reads and enables pagination through a set of `CiipUserOrganisation`.",
               "args": [
@@ -6522,8 +6510,8 @@
                   "ofType": null
                 }
               },
-              "isDeprecated": true,
-              "deprecationReason": "Please use ciipUserOrganisationByUserId instead"
+              "isDeprecated": false,
+              "deprecationReason": null
             },
             {
               "name": "ciipUsersByDeletedBy",
@@ -11125,6 +11113,285 @@
           "possibleTypes": null
         },
         {
+          "kind": "INPUT_OBJECT",
+          "name": "CiipUserOrganisationCondition",
+          "description": "A condition to be used against `CiipUserOrganisation` object types. All fields are tested for equality and combined with a logical ‘and.’",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "organisationId",
+              "description": "Checks for equality with the object’s `organisationId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "rowId",
+              "description": "Checks for equality with the object’s `rowId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "status",
+              "description": "Checks for equality with the object’s `status` field.",
+              "type": {
+                "kind": "ENUM",
+                "name": "CiipUserOrganisationStatus",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "userId",
+              "description": "Checks for equality with the object’s `userId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CiipUserOrganisationStatus",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "APPROVED",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PENDING",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REJECTED",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "CiipUserOrganisationsOrderBy",
+          "description": "Methods to use when ordering `CiipUserOrganisation`.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "NATURAL",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ORGANISATION_ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ORGANISATION_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PRIMARY_KEY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PRIMARY_KEY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "STATUS_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "STATUS_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "USER_ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "USER_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipUserOrganisationsConnection",
+          "description": "A connection to a list of `CiipUserOrganisation` values.",
+          "fields": [
+            {
+              "name": "edges",
+              "description": "A list of edges which contains the `CiipUserOrganisation` and cursor to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "CiipUserOrganisationsEdge",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nodes",
+              "description": "A list of `CiipUserOrganisation` objects.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "CiipUserOrganisation",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pageInfo",
+              "description": "Information to aid in pagination.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": "The count of *all* `CiipUserOrganisation` you could get from the connection.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CiipUserOrganisationsEdge",
+          "description": "A `CiipUserOrganisation` edge in the connection.",
+          "fields": [
+            {
+              "name": "cursor",
+              "description": "A cursor for use in pagination.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Cursor",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "node",
+              "description": "The `CiipUserOrganisation` at the end of the edge.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipUserOrganisation",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "OBJECT",
           "name": "CiipUserOrganisation",
           "description": "Table containing the access rights for a user to report on behalf of an organisation",
@@ -11172,6 +11439,22 @@
             {
               "name": "organisationId",
               "description": "foreign key that references the organisation table",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rowId",
+              "description": "ciip_user_organisation primary key",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -11617,263 +11900,6 @@
               "ofType": null
             }
           ],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "CiipUserOrganisationCondition",
-          "description": "A condition to be used against `CiipUserOrganisation` object types. All fields are tested for equality and combined with a logical ‘and.’",
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "organisationId",
-              "description": "Checks for equality with the object’s `organisationId` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "status",
-              "description": "Checks for equality with the object’s `status` field.",
-              "type": {
-                "kind": "ENUM",
-                "name": "CiipUserOrganisationStatus",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "userId",
-              "description": "Checks for equality with the object’s `userId` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "CiipUserOrganisationStatus",
-          "description": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "APPROVED",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PENDING",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "REJECTED",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "ENUM",
-          "name": "CiipUserOrganisationsOrderBy",
-          "description": "Methods to use when ordering `CiipUserOrganisation`.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": [
-            {
-              "name": "NATURAL",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ORGANISATION_ID_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ORGANISATION_ID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PRIMARY_KEY_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PRIMARY_KEY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "STATUS_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "STATUS_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "USER_ID_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "USER_ID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "CiipUserOrganisationsConnection",
-          "description": "A connection to a list of `CiipUserOrganisation` values.",
-          "fields": [
-            {
-              "name": "edges",
-              "description": "A list of edges which contains the `CiipUserOrganisation` and cursor to aid in pagination.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "CiipUserOrganisationsEdge",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "nodes",
-              "description": "A list of `CiipUserOrganisation` objects.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "CiipUserOrganisation",
-                    "ofType": null
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "pageInfo",
-              "description": "Information to aid in pagination.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "PageInfo",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "totalCount",
-              "description": "The count of *all* `CiipUserOrganisation` you could get from the connection.",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "CiipUserOrganisationsEdge",
-          "description": "A `CiipUserOrganisation` edge in the connection.",
-          "fields": [
-            {
-              "name": "cursor",
-              "description": "A cursor for use in pagination.",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Cursor",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "node",
-              "description": "The `CiipUserOrganisation` at the end of the edge.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUserOrganisation",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
         },
@@ -22445,7 +22471,7 @@
               "deprecationReason": null
             },
             {
-              "name": "deleteCiipUserOrganisationByUserId",
+              "name": "deleteCiipUserOrganisationByRowId",
               "description": "Deletes a single `CiipUserOrganisation` using a unique key.",
               "args": [
                 {
@@ -22456,7 +22482,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "DeleteCiipUserOrganisationByUserIdInput",
+                      "name": "DeleteCiipUserOrganisationByRowIdInput",
                       "ofType": null
                     }
                   },
@@ -23579,7 +23605,7 @@
               "deprecationReason": null
             },
             {
-              "name": "updateCiipUserOrganisationByUserId",
+              "name": "updateCiipUserOrganisationByRowId",
               "description": "Updates a single `CiipUserOrganisation` using a unique key and a patch.",
               "args": [
                 {
@@ -23590,7 +23616,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "UpdateCiipUserOrganisationByUserIdInput",
+                      "name": "UpdateCiipUserOrganisationByRowIdInput",
                       "ofType": null
                     }
                   },
@@ -30779,8 +30805,8 @@
         },
         {
           "kind": "INPUT_OBJECT",
-          "name": "DeleteCiipUserOrganisationByUserIdInput",
-          "description": "All input for the `deleteCiipUserOrganisationByUserId` mutation.",
+          "name": "DeleteCiipUserOrganisationByRowIdInput",
+          "description": "All input for the `deleteCiipUserOrganisationByRowId` mutation.",
           "fields": null,
           "inputFields": [
             {
@@ -30794,8 +30820,8 @@
               "defaultValue": null
             },
             {
-              "name": "userId",
-              "description": "foreign key that references the user table",
+              "name": "rowId",
+              "description": "ciip_user_organisation primary key",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -35422,8 +35448,8 @@
         },
         {
           "kind": "INPUT_OBJECT",
-          "name": "UpdateCiipUserOrganisationByUserIdInput",
-          "description": "All input for the `updateCiipUserOrganisationByUserId` mutation.",
+          "name": "UpdateCiipUserOrganisationByRowIdInput",
+          "description": "All input for the `updateCiipUserOrganisationByRowId` mutation.",
           "fields": null,
           "inputFields": [
             {
@@ -35451,8 +35477,8 @@
               "defaultValue": null
             },
             {
-              "name": "userId",
-              "description": "foreign key that references the user table",
+              "name": "rowId",
+              "description": "ciip_user_organisation primary key",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,

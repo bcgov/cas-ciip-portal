@@ -64,6 +64,10 @@ exports[`Organisations should render no organisations if the user has not reques
       />
     </DropdownMenu>
   </Dropdown>
+  <br />
+  <AddOrganisationFacility
+    onAddOrganisation={[Function]}
+  />
 </Fragment>
 `;
 
@@ -185,5 +189,9 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       />
     </DropdownMenu>
   </Dropdown>
+  <br />
+  <AddOrganisationFacility
+    onAddOrganisation={[Function]}
+  />
 </Fragment>
 `;

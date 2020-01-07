@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import createFacilityMutation from 'mutations/facility/createFacilityMutation';
-import AddFacility from 'components/facility/AddFacility';
+import AddOrganisationFacility from 'components/AddOrganisationFacility';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
 
@@ -26,7 +26,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = props => {
     relay
   } = props;
   const {edges} = props.query.searchAllFacilities;
-  const {organisation, getReportingYear} = props.query;
+  const {organisation} = props.query;
   const facilityNumber = props.query.allFacilities.totalCount;
   let [facilityCount, updateFacilityCount] = useState(facilityNumber);
   useEffect(() => {
@@ -74,9 +74,8 @@ export const FacilitiesList: React.FunctionComponent<Props> = props => {
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
       />
-      <AddFacility
+      <AddOrganisationFacility
         organisationRowId={organisation.rowId}
-        reportingYear={getReportingYear.reportingYear}
         onAddFacility={handleAddFacility}
       />
     </>
@@ -117,9 +116,6 @@ export default createRefetchContainer(
         organisation(id: $organisationId) {
           id
           rowId
-        }
-        getReportingYear {
-          reportingYear
         }
       }
     `

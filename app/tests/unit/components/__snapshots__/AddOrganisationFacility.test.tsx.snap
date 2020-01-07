@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddOrganisationFacility Component should match the last snapshot 1`] = `
+Array [
+  <p
+    className="jsx-2386677284"
+    id="add-organisation"
+    onClick={[Function]}
+  >
+    I can't find my organisation
+  </p>,
+  <Bootstrap(Modal)
+    centered={true}
+    onHide={[Function]}
+    show={false}
+    size="xl"
+  >
+    <ForwardRef
+      autoFocus={true}
+      backdrop={true}
+      backdropTransition={[Function]}
+      className="modal"
+      containerClassName="modal-open"
+      enforceFocus={true}
+      keyboard={true}
+      manager={
+        BootstrapModalManager {
+          "adjustAndStore": [Function],
+          "containers": Array [],
+          "data": Array [],
+          "handleContainerOverflow": true,
+          "hideSiblingNodes": true,
+          "modals": Array [],
+          "restore": [Function],
+          "scrollbarSize": 0,
+        }
+      }
+      onClick={[Function]}
+      onEnter={[Function]}
+      onEntering={[Function]}
+      onExited={[Function]}
+      onHide={[Function]}
+      onMouseUp={[Function]}
+      renderBackdrop={[Function]}
+      restoreFocus={true}
+      show={false}
+      style={Object {}}
+      transition={[Function]}
+    />
+  </Bootstrap(Modal)>,
+]
+`;
