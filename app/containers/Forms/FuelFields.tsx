@@ -4,6 +4,7 @@ import {createFragmentContainer, graphql} from 'react-relay';
 import {Form, Col} from 'react-bootstrap';
 import {FuelFields_query} from 'FuelFields_query.graphql';
 import SearchDropdown from 'components/SearchDropdown';
+import {JSONSchema6} from 'json-schema';
 
 interface Props extends FieldProps {
   query: FuelFields_query;
@@ -12,9 +13,21 @@ interface Props extends FieldProps {
 const FuelFields: React.FunctionComponent<Props> = ({
   formData,
   query,
+  onChange,
+  registry,
+  autofocus,
+  idSchema,
+  errorSchema,
+  formContext,
+  disabled,
+  readonly,
   schema,
-  onChange
+  uiSchema
 }) => {
+  const {
+    properties: {quantity: quantitySchema}
+  } = schema as {properties: Record<string, JSONSchema6>};
+
   const changeField = (event, key) => {
     onChange({
       ...formData,
@@ -39,7 +52,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
               if (items.length > 0) {
                 onChange({
                   ...formData,
-                  fuelType: items[0].label,
+                  fuelType: items[0].name,
                   fuelUnits: undefined
                 });
               }
@@ -50,17 +63,25 @@ const FuelFields: React.FunctionComponent<Props> = ({
       <Col xs={12} md={4}>
         <Form.Group controlId="id.quantity">
           <Form.Label>Quantity</Form.Label>
-          <Form.Control
-            type="number"
-            defaultValue={formData.quantity}
-            onChange={e => {
+          <registry.fields.NumberField
+            required
+            schema={quantitySchema}
+            uiSchema={uiSchema.quantity}
+            formData={formData.quantity}
+            autofocus={autofocus}
+            idSchema={idSchema}
+            registry={registry}
+            errorSchema={errorSchema?.annualEmission}
+            formContext={formContext}
+            disabled={disabled}
+            readonly={readonly}
+            name="fuelQuantity"
+            onChange={value =>
               onChange({
                 ...formData,
-                quantity: Number(
-                  (e.nativeEvent.target as HTMLInputElement).value
-                )
-              });
-            }}
+                quantity: value
+              })
+            }
           />
         </Form.Group>
       </Col>
