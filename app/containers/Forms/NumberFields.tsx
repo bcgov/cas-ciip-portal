@@ -9,18 +9,13 @@ const NumberFields: React.FunctionComponent<FieldProps> = ({
   return (
     <NumberFormat
       thousandSeparator
-      isNumericString
       className="form-control"
       allowNegative={false}
       decimalScale={4}
       value={formData}
-      onValueChange={({value}) => onChange(value)}
+      onValueChange={({value}) => onChange(Number(value))}
     />
   );
 };
-
-// Const NumberTextFields: React.FunctionComponent<TextProps> = ({value}) => {
-//   return <NumberFormat thousandSeparator displayType="text" value={value} />;
-// };
 
 export default NumberFields;

@@ -34,9 +34,7 @@ const CUSTOM_FIELDS = {
   production: props => (
     <ProductionFields query={props.formContext.query} {...props} />
   ),
-  NumberField: props => {
-    return <NumberFields query={props.formContext.query} {...props} />;
-  },
+  NumberField: NumberFields,
   ObjectField
 };
 
