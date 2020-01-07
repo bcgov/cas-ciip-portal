@@ -17,7 +17,11 @@ export default class Index extends Component<Props> {
         session {
           ...defaultLayout_session
         }
-        getReportingYear {
+        openedReportingYear {
+          applicationOpenDate
+          applicationEndDate
+        }
+        nextReportingYear {
           applicationOpenDate
           applicationEndDate
         }
@@ -26,14 +30,22 @@ export default class Index extends Component<Props> {
   `;
 
   render() {
-    const {query} = this.props;
-    const {session} = query || {};
+    const {openedReportingYear, nextReportingYear, session} =
+      this.props.query || {};
 
     const startDate = moment
-      .tz(query.getReportingYear.applicationOpenDate, 'America/Vancouver')
+      .tz(
+        openedReportingYear?.applicationOpenDate ??
+          nextReportingYear?.applicationOpenDate,
+        'America/Vancouver'
+      )
       .format('MMM D, YYYY');
     const endDate = moment
-      .tz(query.getReportingYear.applicationEndDate, 'America/Vancouver')
+      .tz(
+        openedReportingYear?.applicationEndDate ??
+          nextReportingYear?.applicationEndDate,
+        'America/Vancouver'
+      )
       .format('MMM D, YYYY');
     return (
       <DefaultLayout

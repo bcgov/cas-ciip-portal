@@ -19,6 +19,8 @@ trigger_functions/checksum_form_results [schema_ggircs_portal] 2020-01-13T23:21:
 tables/product_form [schema_ggircs_portal] 2019-12-02T17:53:31Z Matthieu Foucault <matthieu@button.is> # Add a table that contains a json schema specific to a product type
 tables/product [schema_ggircs_portal tables/product_form trigger_functions/update_timestamps] 2019-08-06T20:15:37Z Hamza Javed <hamza@button.is> # A table for adding products (for benchmarks)
 tables/reporting_year [schema_ggircs_portal] 2019-11-19T18:06:01Z Helen Liu <helen@button.is> # Added new table with current reporting year, application deadline
+function_opened_reporting_year [tables/reporting_year] 2020-01-06T19:50:36Z Matthieu Foucault <matthieu@button.is> # Add a function to get the opened reporting year
+function_next_reporting_year [tables/reporting_year] 2020-01-06T19:51:30Z Matthieu Foucault <matthieu@button.is> # Add a function to get the next reporting year
 tables/benchmark [tables/product trigger_functions/update_timestamps tables/reporting_year] 2019-08-06T20:25:30Z Hamza Javed <hamza@button.is> # A table for Benchmarks and Eligibility Thresholds for products
 tables/organisation [schema_ggircs_portal] 2019-10-11T18:45:40Z Hamza Javed <hamza@button.is> # The organisation data for CIIP
 tables/ciip_user_organisation [schema_ggircs_portal tables/ciip_user tables/organisation] 2019-10-11T18:46:57Z Hamza Javed <hamza@button.is> # Through table for Users and Organisations with a many to many relationship
@@ -52,7 +54,6 @@ swrs_functions/init_application_fuel_form_result [tables/form_result swrs_functi
 swrs_functions/init_application_emission_form_result [tables/form_result swrs_functions/get_swrs_emission_data] 2019-11-12T18:01:51Z Matthieu Foucault <matthieu@button.is> # add function to initialize emission form
 computed_columns/facility_has_swrs_report [tables/facility] 2019-11-12T19:25:09Z Matthieu Foucault <matthieu@button.is> # add function to check if a facility has a swrs report
 search_functions/search_ciip_user_organisation [tables/ciip_user_organisation] 2019-11-06T18:34:19Z Helen Liu <helen@button.is> # Added search function on user organisation table
-function_get_reporting_year [tables/reporting_year] 2019-11-20T17:40:29Z Helen Liu <helen@button.is> # added function to return current reporting year
 tables/review_comment [tables/application tables/form_json] 2019-11-25T23:54:50Z Hamza Javed <hamza@button.is> # General comment table with polymorphic ids`
 swrs_functions/get_carbon_tax_data [schema_ggircs_portal] 2019-11-28T18:45:57Z Dylan Leard <dylan@button.is> # Function retrieves carbon tax data for CIIP carbon tax calculator
 views/ciip_carbon_tax_calculation [swrs_functions/get_carbon_tax_data views/ciip_fuel tables/application] 2019-11-28T19:23:39Z Dylan Leard <dylan@button.is> # Calculates carbon tax based on ciip fuel data
