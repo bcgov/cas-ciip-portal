@@ -21,6 +21,7 @@ begin;
       operator_country varchar(1000)
   );
 
+  create unique index organisation_swrs_report_id_uindex on ggircs_portal.organisation(swrs_report_id);
   --Todo: refactor to add address table in CIIP
 
   comment on table ggircs_portal.organisation is 'Table containing information on an organisaiton that has applied for CIIP';

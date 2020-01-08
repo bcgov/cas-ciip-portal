@@ -2,8 +2,7 @@ dependencies:
   override: []
 deploy:
   override:
-    - git submodule init
-    - git submodule update --remote
+    - git submodule update --init
     - make install
 review:
   checklist: []
