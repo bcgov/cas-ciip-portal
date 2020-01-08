@@ -5,7 +5,7 @@ import {NextRouter} from 'next/router';
 import moment from 'moment-timezone';
 import {CiipPageComponentProps} from 'next-env';
 import {certificationRedirectQueryResponse} from 'certificationRedirectQuery.graphql';
-import DefaultLayout from '../layouts/default-layout';
+import DefaultLayout from 'layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: certificationRedirectQueryResponse['query'];
