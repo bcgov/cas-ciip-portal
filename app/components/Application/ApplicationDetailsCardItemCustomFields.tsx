@@ -3,6 +3,7 @@ import SummaryEmissionGasFields from 'containers/Forms/SummaryEmissionGasFields'
 import SummaryEmissionSourceFields from 'containers/Forms/SummaryEmissionSourceFields';
 import ProductionFields from 'containers/Forms/ProductionFields';
 import {FieldProps} from 'react-jsonschema-form';
+import NumberFormat from 'react-number-format';
 
 const customFields = (showDiff, diffPathArray, diffArray, handleEnums) => {
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
@@ -75,6 +76,13 @@ const customFields = (showDiff, diffPathArray, diffArray, handleEnums) => {
     emissionGas: props => <SummaryEmissionGasFields {...props} />,
     production: props => (
       <ProductionFields query={props.formContext.query} {...props} />
+    ),
+    NumberField: props => (
+      <NumberFormat
+        thousandSeparator
+        displayType="text"
+        value={props.formData}
+      />
     )
   };
   return CUSTOM_FIELDS;
