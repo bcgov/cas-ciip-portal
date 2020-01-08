@@ -59,7 +59,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
                   disabled={false}
                 >
                   <Link
-                    href="/user-dashboard"
+                    href="/reporter/user-dashboard"
                   >
                     Industry User: Dashboard
                   </Link>
@@ -75,7 +75,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
                   disabled={false}
                 >
                   <Link
-                    href="/applications"
+                    href="/analyst/applications"
                   >
                     Analyst: Applications list
                   </Link>
@@ -91,7 +91,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
                   disabled={false}
                 >
                   <Link
-                    href="/products-benchmarks"
+                    href="/admin/products-benchmarks"
                   >
                     Admin: Create Products and Benchmarks
                   </Link>

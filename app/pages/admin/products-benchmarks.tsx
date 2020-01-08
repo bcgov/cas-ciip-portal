@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {Row, Col, Button} from 'react-bootstrap';
 import {productsBenchmarksQueryResponse} from 'productsBenchmarksQuery.graphql';
-import DefaultLayout from '../layouts/default-layout';
-import ProductCreatorContainer from '../containers/Products/ProductCreatorContainer';
-import ProductListContainer from '../containers/Products/ProductListContainer';
-import SearchTable from '../components/SearchTable';
+import DefaultLayout from '../../layouts/default-layout';
+import ProductCreatorContainer from '../../containers/Products/ProductCreatorContainer';
+import ProductListContainer from '../../containers/Products/ProductListContainer';
+import SearchTable from '../../components/SearchTable';
 
 interface Props {
   query: productsBenchmarksQueryResponse['query'];

@@ -124,17 +124,17 @@ app.prepare().then(() => {
 
   if (NO_AUTH)
     server.post('/login', (req, res) =>
-      res.redirect(302, req.query.redirectTo || '/user-dashboard')
+      res.redirect(302, req.query.redirectTo || '/reporter/user-dashboard')
     );
   else
     server.post('/login', keycloak.protect(), (req, res) =>
       // This request handler gets called on a POST to /login if the user is already authenticated
-      res.redirect(302, req.query.redirectTo || '/user-dashboard')
+      res.redirect(302, req.query.redirectTo || '/reporter/user-dashboard')
     );
 
   // Keycloak callbak; do not keycloak.protect() to avoid users being authenticated against their will via XSS attack
   server.get('/login', (req, res) =>
-    res.redirect(302, req.query.redirectTo || '/user-dashboard')
+    res.redirect(302, req.query.redirectTo || '/reporter/user-dashboard')
   );
 
   server.get('*', async (req, res) => {

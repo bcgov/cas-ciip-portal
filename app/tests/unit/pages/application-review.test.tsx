@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ApplicationReview from 'pages/application-review';
+import ApplicationReview from 'pages/analyst/application-review';
 import {applicationReviewQueryResponse} from 'applicationReviewQuery.graphql';
 
 describe('The application-review page', () => {

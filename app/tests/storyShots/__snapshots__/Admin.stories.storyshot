@@ -287,7 +287,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                       role="group"
                     >
                       <Link
-                        href="/products-benchmarks"
+                        href="/admin/products-benchmarks"
                       >
                         <Button
                           active={false}
@@ -311,7 +311,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                         </Button>
                       </Link>
                       <Link
-                        href="/user-list"
+                        href="/admin/user-list"
                       >
                         <Button
                           active={false}
@@ -335,7 +335,7 @@ exports[`Storyshots containers/pageContainers/Admin Render Admin page 1`] = `
                         </Button>
                       </Link>
                       <Link
-                        href="/organisation-requests"
+                        href="/admin/organisation-requests"
                       >
                         <Button
                           active={false}

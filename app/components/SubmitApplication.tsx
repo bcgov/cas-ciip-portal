@@ -32,14 +32,14 @@ export const SubmitApplicationComponent: React.FunctionComponent<Props> = props 
     );
     console.log(response);
     // TODO: check response
-    router.push('/complete-submit');
+    router.push('/reporter/complete-submit');
   };
 
   return (
     <Link
       passHref
       href={{
-        pathname: '/complete-submit'
+        pathname: '/reporter/complete-submit'
       }}
     >
       <Button

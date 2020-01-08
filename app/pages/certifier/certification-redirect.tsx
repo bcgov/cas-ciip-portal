@@ -56,7 +56,7 @@ class CertificationRedirect extends Component<Props> {
     const version =
       query?.certificationUrlByRowId?.applicationByApplicationId
         .latestDraftRevision.versionNumber;
-    const redirectURI = `/certify?applicationId=${applicationId}&version=${version}`;
+    const redirectURI = `/certifier/certify?applicationId=${applicationId}&version=${version}`;
 
     const expiresAtMoment = query?.certificationUrlByRowId?.expiresAt
       ? moment.tz(

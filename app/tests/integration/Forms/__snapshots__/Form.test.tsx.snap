@@ -1226,7 +1226,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
           }
         >
           <a
-            href="/user-dashboard"
+            href="/reporter/user-dashboard"
             onClick={[Function]}
             onMouseEnter={[Function]}
           >
@@ -1600,7 +1600,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
           }
         >
           <a
-            href="/user-dashboard"
+            href="/reporter/user-dashboard"
             onClick={[Function]}
             onMouseEnter={[Function]}
           >
@@ -2212,7 +2212,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
           }
         >
           <a
-            href="/user-dashboard"
+            href="/reporter/user-dashboard"
             onClick={[Function]}
             onMouseEnter={[Function]}
           >

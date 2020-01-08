@@ -52,7 +52,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       setUrl(
         `${
           window.location.host
-        }/certification-redirect?rowId=${encodeURIComponent(
+        }/certifier/certification-redirect?rowId=${encodeURIComponent(
           response.createCertificationUrl.certificationUrl.rowId
         )}&id=${encodeURIComponent(props.application.id)}`
       );

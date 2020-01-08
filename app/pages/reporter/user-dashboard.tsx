@@ -3,9 +3,9 @@ import {Col, Row, ListGroup} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {NextRouter} from 'next/router';
 import {userDashboardQueryResponse} from 'userDashboardQuery.graphql';
-import Organisations from '../containers/Organisations/Organisations';
-import DefaultLayout from '../layouts/default-layout';
-import {createUserOrganisationMutation} from '../mutations/user_organisation/createUserOrganisation';
+import Organisations from '../../containers/Organisations/Organisations';
+import DefaultLayout from '../../layouts/default-layout';
+import {createUserOrganisationMutation} from '../../mutations/user_organisation/createUserOrganisation';
 
 interface Props {
   router: NextRouter;

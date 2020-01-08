@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ViewApplication from 'pages/view-application';
+import ViewApplication from 'pages/reporter/view-application';
 import {viewApplicationQueryResponse} from 'viewApplicationQuery.graphql';
 
 const query: viewApplicationQueryResponse['query'] = {

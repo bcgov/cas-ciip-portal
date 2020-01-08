@@ -97,7 +97,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
             <Col md={3} style={{lineHeight: '48px'}}>
               <Link
                 href={{
-                  pathname: '/user-dashboard'
+                  pathname: '/reporter/user-dashboard'
                 }}
               >
                 Save & Exit

@@ -3,7 +3,7 @@ import {graphql} from 'react-relay';
 import {certifyQueryResponse} from 'certifyQuery.graphql';
 import ApplicationDetailsContainer from 'containers/Applications/ApplicationDetailsContainer';
 import CertificationSignature from 'containers/Forms/CertificationSignature';
-import DefaultLayout from '../layouts/default-layout';
+import DefaultLayout from '../../layouts/default-layout';
 
 interface Props {
   query: certifyQueryResponse['query'];

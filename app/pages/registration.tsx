@@ -47,7 +47,7 @@ class Registration extends Component<Props> {
             router.push(
               router.query.redirectTo
                 ? (router.query.redirectTo as string)
-                : '/user-dashboard'
+                : '/reporter/user-dashboard'
             )
           }
         />

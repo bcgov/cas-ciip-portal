@@ -4,7 +4,7 @@ import {Button} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {completeSubmitQueryResponse} from 'completeSubmitQuery.graphql';
-import DefaultLayout from '../layouts/default-layout';
+import DefaultLayout from '../../layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: completeSubmitQueryResponse['query'];
@@ -37,7 +37,7 @@ class CompleteSubmit extends Component<Props> {
       >
         <Link
           href={{
-            pathname: '/user-dashboard'
+            pathname: '/reporter/user-dashboard'
           }}
         >
           <Button
