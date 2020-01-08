@@ -27,14 +27,13 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
       }
     };
     const response = await createApplicationMutation(environment, variables);
-    console.log(response);
+
     router.push({
-      pathname: hasSwrsReport
-        ? '/reporter/ciip-application-swrs-import'
-        : '/reporter/ciip-application',
+      pathname: '/ciip-application-legal-disclaimer',
       query: {
         applicationId: response.createApplicationMutationChain.application.id,
-        version: 1
+        version: 1,
+        hasSwrsReport
       }
     });
   };
