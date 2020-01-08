@@ -1,23 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {Button, Card, Collapse, Col, Row, Form} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import JsonSchemaForm, {FieldProps} from 'react-jsonschema-form';
 import {FormJson} from 'next-env';
-import ProductionFields from 'containers/Forms/ProductionFields';
 import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDetailsCardItem_formResult.graphql';
 import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
 import diff from 'deep-diff';
+import customFields from 'components/Application/ApplicationDetailsCardItemCustomFields';
 import SummaryFormArrayFieldTemplate from '../Forms/SummaryFormArrayFieldTemplate';
 import SummaryFormFieldTemplate from '../Forms/SummaryFormFieldTemplate';
-import SummaryEmissionGasFields from '../Forms/SummaryEmissionGasFields';
-import SummaryEmissionSourceFields from '../Forms/SummaryEmissionSourceFields';
 import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
 
 interface Props {
   formResult: ApplicationDetailsCardItem_formResult;
   previousFormResults?: any;
   query: ApplicationDetailsCardItem_query;
-  review: boolean;
 }
 
 /*
@@ -26,8 +23,7 @@ interface Props {
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult,
   previousFormResults,
-  query,
-  review
+  query
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
@@ -38,32 +34,39 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 
   const diffPathArray = [];
   const diffArray = [];
-
-  const extensibleUISchema = JSON.parse(JSON.stringify(uiSchema));
-  if (review && previousFormResults) {
-    let previousFormResult;
-    previousFormResults.forEach(result => {
-      if (
-        previousFormResults.length > 0 &&
-        result.node.formJsonByFormId.slug === formResult.formJsonByFormId.slug
-      ) {
-        previousFormResult = result.node.formResult;
-      }
-    });
-
-    const lhs = previousFormResult;
-    const rhs = formResult.formResult;
-    const differences = diff(lhs, rhs);
-
-    if (differences) {
-      differences.forEach(difference => {
-        if (difference.path) {
-          diffPathArray.push(difference.path.join('_'));
-          diffArray.push(difference.lhs);
+  useMemo(() => {
+    if (previousFormResults && showDiff) {
+      let previousFormResult;
+      previousFormResults.forEach(result => {
+        if (
+          previousFormResults.length > 0 &&
+          result.node.formJsonByFormId.slug === formResult.formJsonByFormId.slug
+        ) {
+          previousFormResult = result.node.formResult;
         }
       });
+
+      const lhs = previousFormResult;
+      const rhs = formResult.formResult;
+      const differences = diff(lhs, rhs);
+
+      if (differences) {
+        differences.forEach(difference => {
+          if (difference.path) {
+            diffPathArray.push(difference.path.join('_'));
+            diffArray.push(difference.lhs);
+          }
+        });
+      }
     }
-  }
+  }, [
+    diffArray,
+    diffPathArray,
+    formResult.formJsonByFormId.slug,
+    formResult.formResult,
+    previousFormResults,
+    showDiff
+  ]);
 
   const handleEnums = (props, isCurrent, prevValue) => {
     if (props.schema.enum && props.schema.enumNames) {
@@ -80,78 +83,10 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     return prevValue;
   };
 
-  const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
-    TitleField: props => <h3>{props.title}</h3>,
-    StringField: props => {
-      let prevValue;
-      let hasDiff = false;
-      if (showDiff) {
-        hasDiff = diffPathArray.includes(
-          props.idSchema.$id.replace(/^root_/g, '')
-        );
-        prevValue =
-          diffArray[
-            diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
-          ];
-        if (hasDiff) {
-          prevValue = handleEnums(props, false, prevValue);
-          const currentValue = handleEnums(props, true, prevValue);
-
-          return (
-            <>
-              <span style={{backgroundColor: '#ffeef0'}}>
-                {prevValue ? prevValue : <i>[No Data Entered]</i>}
-              </span>
-              &nbsp;---&gt;&nbsp;
-              <span style={{backgroundColor: '#e6ffed'}}>
-                {currentValue ? currentValue : <i>[No Data Entered]</i>}
-              </span>
-            </>
-          );
-        }
-      }
-
-      if (
-        props.formData === null ||
-        props.formData === undefined ||
-        props.formData === ''
-      )
-        return <i>[No Data Entered]</i>;
-
-      const value = handleEnums(props, true, prevValue);
-      return value;
-    },
-    BooleanField: props => {
-      const hasDiff = diffPathArray.includes(
-        props.idSchema.$id.replace(/^root_/g, '')
-      );
-
-      if (showDiff && hasDiff) {
-        const prevValue =
-          diffArray[
-            diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
-          ];
-        return (
-          <>
-            <span style={{backgroundColor: '#ffeef0'}}>
-              {prevValue ? 'Yes' : 'No'}
-            </span>
-            &nbsp;---&gt;&nbsp;
-            <span style={{backgroundColor: '#e6ffed'}}>
-              {props.formData ? 'Yes' : 'No'}
-            </span>
-          </>
-        );
-      }
-
-      return <>{props.formData ? 'Yes' : 'No'} </>;
-    },
-    emissionSource: props => <SummaryEmissionSourceFields {...props} />,
-    emissionGas: props => <SummaryEmissionGasFields {...props} />,
-    production: props => (
-      <ProductionFields query={props.formContext.query} {...props} />
-    )
-  };
+  const CUSTOM_FIELDS: Record<
+    string,
+    React.FunctionComponent<FieldProps>
+  > = customFields(showDiff, diffPathArray, diffArray, handleEnums);
   const classTag = formJsonByFormId.slug;
   return (
     <Card
@@ -164,7 +99,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             <h4>{formJsonByFormId.name}</h4>
           </Col>
           <Col md={{span: 2, offset: 3}}>
-            {review ? (
+            {previousFormResults ? (
               <Form.Check
                 label="Show Diff?"
                 checked={showDiff}
@@ -196,7 +131,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             fields={CUSTOM_FIELDS}
             customFormats={customFormats}
             schema={schema}
-            uiSchema={extensibleUISchema}
+            uiSchema={uiSchema}
             ObjectFieldTemplate={FormObjectFieldTemplate}
             formData={formResult.formResult}
             formContext={{

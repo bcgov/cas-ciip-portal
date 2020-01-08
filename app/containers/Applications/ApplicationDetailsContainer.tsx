@@ -18,9 +18,10 @@ interface Props {
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
   const formResults = props.application.orderedFormResults.edges;
-  const previousFormResults =
-    props?.application?.previousSubmittedRevision
-      ?.formResultsByApplicationIdAndVersionNumber?.edges;
+  const previousFormResults = props.review
+    ? props?.application?.previousSubmittedRevision
+        ?.formResultsByApplicationIdAndVersionNumber?.edges
+    : undefined;
   return (
     <div>
       {formResults.map(({node}) => (
@@ -29,7 +30,6 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
           previousFormResults={previousFormResults}
           formResult={node}
           query={props.query.query}
-          review={props.review}
         />
       ))}
     </div>
