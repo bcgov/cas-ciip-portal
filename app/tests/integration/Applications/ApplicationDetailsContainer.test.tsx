@@ -45,6 +45,7 @@ describe('ApplicationDetailsContainer', () => {
             <ApplicationDetailsContainer
               query={props.query}
               application={props.query.application}
+              review={false}
             />
           );
         }
@@ -126,9 +127,7 @@ describe('ApplicationDetailsContainer', () => {
                   }
                 ]
               },
-              applicationRevisionStatusesByApplicationId: {
-                id: 'status1'
-              }
+              previousSubmittedRevision: null
             }
           };
         }

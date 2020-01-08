@@ -32,7 +32,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       errorSchema={null}
       formContext={Object {}}
       formData={1}
-      idSchema={null}
       name="product"
       onChange={[Function]}
       readonly={false}
@@ -120,7 +119,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       autofocus={false}
       disabled={false}
       formContext={Object {}}
-      idSchema={null}
       name="allocationFactor"
       onChange={[Function]}
       readonly={false}
@@ -200,7 +198,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       autofocus={false}
       disabled={false}
       formContext={Object {}}
-      idSchema={null}
       name="quantity"
       onChange={[Function]}
       readonly={false}
@@ -280,7 +277,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       errorSchema={null}
       formContext={Object {}}
       formData="baz"
-      idSchema={null}
       name="productUnits"
       onChange={[Function]}
       readonly={true}
@@ -344,7 +340,14 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     errorSchema={Object {}}
     formContext={Object {}}
     formData={Object {}}
-    idSchema={null}
+    idSchema={
+      Object {
+        "$id": "production",
+        "additionalFoo": Object {
+          "$id": "production_additionalFoo",
+        },
+      }
+    }
     name={null}
     onChange={[Function]}
     readonly={false}
@@ -446,7 +449,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       errorSchema={null}
       formContext={Object {}}
       formData={1}
-      idSchema={null}
       name="product"
       onChange={[Function]}
       readonly={false}
@@ -534,7 +536,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       autofocus={false}
       disabled={false}
       formContext={Object {}}
-      idSchema={null}
       name="allocationFactor"
       onChange={[Function]}
       readonly={false}
@@ -614,7 +615,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       autofocus={false}
       disabled={false}
       formContext={Object {}}
-      idSchema={null}
       name="quantity"
       onChange={[Function]}
       readonly={false}
@@ -694,7 +694,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       errorSchema={null}
       formContext={Object {}}
       formData="bar"
-      idSchema={null}
       name="productUnits"
       onChange={[Function]}
       readonly={true}
@@ -762,7 +761,14 @@ exports[`The ProductionFields Component should match the snapshot when rendering
         "additionalFoo": "foofoo",
       }
     }
-    idSchema={null}
+    idSchema={
+      Object {
+        "$id": "production",
+        "additionalFoo": Object {
+          "$id": "production_additionalFoo",
+        },
+      }
+    }
     name={null}
     onChange={[Function]}
     readonly={false}

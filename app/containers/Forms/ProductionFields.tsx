@@ -143,6 +143,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
   }, [formData.productRowId, query.allProducts.edges]);
 
   const additionalDataIdSchema = useMemo(() => {
+    if (!additionalDataSchema) return undefined;
     return toIdSchema(
       additionalDataSchema.schema,
       idSchema.additionalData.$id,
@@ -151,7 +152,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
       idSchema.additionalData.$id
     );
   }, [
-    additionalDataSchema.schema,
+    additionalDataSchema,
     formData.additionalData,
     idSchema.additionalData.$id
   ]);
