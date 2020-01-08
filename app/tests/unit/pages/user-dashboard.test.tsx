@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import UserDashboard from 'pages/user-dashboard';
+import UserDashboard from 'pages/reporter/user-dashboard';
 
 describe('landingIndustryUser', () => {
   it('It matches the last accepted Snapshot', () => {

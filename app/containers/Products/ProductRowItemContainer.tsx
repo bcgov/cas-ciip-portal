@@ -18,9 +18,9 @@ import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graph
 import saveProductMutation from 'mutations/product/saveProductMutation';
 import editBenchmarkMutation from 'mutations/benchmark/editBenchmarkMutation';
 import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
-import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
-import FormFieldTemplate from '../Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
+import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
+import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
+import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import {productSchema, productUISchema} from './ProductBenchmarkJsonSchemas';
 import FutureBenchmarks from './FutureBenchmarks';
 

@@ -1055,7 +1055,7 @@ Array [
                 className="jsx-775259080 active"
               >
                 <a
-                  href="/user-dashboard"
+                  href="/reporter/user-dashboard"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -1066,7 +1066,7 @@ Array [
                 className="jsx-775259080"
               >
                 <a
-                  href="/facilities-list"
+                  href="/reporter/facilities-list"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >

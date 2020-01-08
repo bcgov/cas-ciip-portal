@@ -3,8 +3,8 @@ import {Row, Col} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {loginRedirectQueryResponse} from 'loginRedirectQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
-import DefaultLayout from '../layouts/default-layout';
-import RegistrationLoginButtons from '../components/RegistrationLoginButtons';
+import DefaultLayout from 'layouts/default-layout';
+import RegistrationLoginButtons from 'components/RegistrationLoginButtons';
 interface Props extends CiipPageComponentProps {
   query: loginRedirectQueryResponse['query'];
 }

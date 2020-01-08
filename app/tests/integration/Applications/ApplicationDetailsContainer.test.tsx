@@ -11,7 +11,7 @@ import fuelForm from 'schema/data/portal/form_json/fuel.json';
 import electricityAndHeatForm from 'schema/data/portal/form_json/electricity_and_heat.json';
 import productionForm from 'schema/data/portal/form_json/production.json';
 import {FormJson} from 'next-env';
-import {generateFakeSchemaData} from '../json-schema-utils';
+import {generateFakeSchemaData} from 'tests/integration/json-schema-utils';
 
 describe('ApplicationDetailsContainer', () => {
   beforeEach(() => {

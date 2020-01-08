@@ -4,7 +4,7 @@ import {
   createUserOrganisationMutationVariables
 } from 'createUserOrganisationMutation.graphql';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
-import BaseMutation from '../BaseMutation';
+import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
   mutation createUserOrganisationMutation(

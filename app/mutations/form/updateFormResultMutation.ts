@@ -4,7 +4,7 @@ import {
   updateFormResultMutationVariables
 } from 'updateFormResultMutation.graphql';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
-import BaseMutation from '../BaseMutation';
+import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
   mutation updateFormResultMutation($input: UpdateFormResultInput!) {

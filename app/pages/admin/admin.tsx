@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {adminQueryResponse} from 'adminQuery.graphql';
-import DefaultLayout from '../layouts/default-layout';
+import DefaultLayout from 'layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: adminQueryResponse['query'];
@@ -28,17 +28,17 @@ class Admin extends Component<Props> {
       <DefaultLayout session={session} title="Administrator Dashboard">
         <div>
           <ButtonGroup vertical>
-            <Link href="/products-benchmarks">
+            <Link href="/admin/products-benchmarks">
               <Button size="lg" className="buttons">
                 View Products and Benchmarks
               </Button>
             </Link>
-            <Link href="/user-list">
+            <Link href="/admin/user-list">
               <Button className="buttons" size="lg">
                 View Users
               </Button>
             </Link>
-            <Link href="/organisation-requests">
+            <Link href="/admin/organisation-requests">
               <Button className="buttons" size="lg">
                 View Access Requests
               </Button>

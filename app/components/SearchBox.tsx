@@ -2,8 +2,8 @@ import React from 'react';
 import {Button, ButtonGroup, Col} from 'react-bootstrap';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
-import FormFieldTemplate from '../containers/Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from '../containers/Forms/FormObjectFieldTemplate';
+import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
+import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
   handleEvent: (action: string, value?: string) => void;

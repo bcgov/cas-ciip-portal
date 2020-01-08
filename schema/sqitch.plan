@@ -3,66 +3,66 @@
 %uri=https://github.com/bcgov/cas-ggircs/app
 
 schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a schema for the GGIRCS Industry Portal (GIP)
-function_update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
-function_set_random_id [schema_ggircs_portal] 2019-12-04T00:34:07Z Dylan Leard <dylan@button.is> # Trigger function to generate a random string and set it to id
-function_set_expiry [schema_ggircs_portal] 2019-12-10T19:13:27Z Dylan Leard <dylan@button.is> # Function sets row expiry
-type_jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
-type_ciip_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file ciip_user_organisation_status
-type_ciip_application_revision_status [schema_ggircs_portal] 2019-11-26T18:39:57Z Helen Liu <helen@button.is> # Added ciip application status type
-type_application_search_result [schema_ggircs_portal type_ciip_application_revision_status] 2019-12-12T23:22:59Z Dylan Leard <dylan@button.is> # Return type for searching and listing applications
-table_ciip_user [schema_ggircs_portal function_update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
-function_session [schema_ggircs_portal type_jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
-function_set_user_id [function_session table_ciip_user] 2019-12-10T20:02:31Z Dylan Leard <dylan@button.is> # Trigger function updates the user_id field
-table_product_form [schema_ggircs_portal] 2019-12-02T17:53:31Z Matthieu Foucault <matthieu@button.is> # Add a table that contains a json schema specific to a product type
-table_product [schema_ggircs_portal table_product_form function_update_timestamps] 2019-08-06T20:15:37Z Hamza Javed <hamza@button.is> # A table for adding products (for benchmarks)
-table_reporting_year [schema_ggircs_portal] 2019-11-19T18:06:01Z Helen Liu <helen@button.is> # Added new table with current reporting year, application deadline
-table_benchmark [table_product function_update_timestamps table_reporting_year] 2019-08-06T20:25:30Z Hamza Javed <hamza@button.is> # A table for Benchmarks and Eligibility Thresholds for products
-table_organisation [schema_ggircs_portal] 2019-10-11T18:45:40Z Hamza Javed <hamza@button.is> # The organisation data for CIIP
-table_ciip_user_organisation [schema_ggircs_portal table_ciip_user table_organisation] 2019-10-11T18:46:57Z Hamza Javed <hamza@button.is> # Through table for Users and Organisations with a many to many relationship
-table_facility [schema_ggircs_portal table_organisation] 2019-10-11T18:47:49Z Hamza Javed <hamza@button.is> # Facility data for CIIP
-table_application [schema_ggircs_portal function_update_timestamps] 2019-10-11T18:09:42Z Dylan Leard <dylan@button.is> # Application table
-table_application_revision [table_application] 2019-12-12T00:21:28Z Dylan Leard <dylan@button.is> # Table contains versioning data for application revisions
-table_form_json [schema_ggircs_portal function_update_timestamps] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
-table_form_result [schema_ggircs_portal function_update_timestamps table_form_json] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
-type_facility_search_result [schema_ggircs_portal] 2019-12-11T21:41:41Z Helen Liu <helen@button.is> # added return type for search all facilities function
-table_application_revision_status [schema_ggircs_portal function_update_timestamps table_application_revision] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application_revision_status to schema ggircs_portal
-view_ciip_fuel [table_form_result] 2019-08-19T22:26:15Z Hamza Javed <hamza@button.is> # View for fuels reported in CIIP application
-view_ciip_electricity_and_heat [table_form_result] 2019-08-20T22:40:48Z Hamza Javed <hamza@button.is> # Electricity and Heat consumption reported for the ciip application
-view_ciip_production [table_form_result] 2019-08-20T23:22:31Z Hamza Javed <hamza@button.is> # Module throughput and production data reported in the ciip application
-function_search_application_list [table_application_revision_status type_application_search_result] 2019-09-03T20:40:05Z Dylan Leard <dylan@button.is> # add function for searching the list of applications
-function_get_swrs_organisation_data [schema_ggircs_portal] 2019-10-01T20:51:53Z Hamza Javed <hamza@button.is> # Function that imports information from swrs based on parameters
-table_ciip_application_wizard [table_form_json] 2019-10-09T17:18:33Z Matthieu Foucault <matthieu@button.is> # Add table_ciip_application_wizard
-function_get_swrs_facility_data 2019-10-07T21:25:50Z Hamza Javed <hamza@button.is> # Function to import facility data from swrs
-function_get_swrs_operator_contact_data 2019-10-07T21:28:12Z Hamza Javed <hamza@button.is> # Get operator contact data from SWRS via function
-function_get_swrs_emission_data 2019-10-07T23:36:44Z Hamza Javed <hamza@button.is> # Get summarized emission data from swrs
-function_get_swrs_fuel_data 2019-10-08T16:31:12Z Hamza Javed <hamza@button.is> # Get fuel data from swrs
-function_save_product_mutation_chain [table_product table_benchmark] 2019-10-16T19:01:28Z Dylan Leard <dylan@button.is> # Stored procedure to save a product in place of mutation chaining
-function_create_benchmark_mutation_chain [table_benchmark] 2019-10-16T21:52:34Z Dylan Leard <dylan@button.is> # Stored procedure to save a benchmark instead of mutation chaining
-table_fuel [schema_ggircs_portal] 2019-10-16T18:17:17Z Matthieu Foucault <matthieu@button.is> # add fuel table
-function_create_application_mutation_chain [table_application] 2019-10-25T18:24:34Z Dylan Leard <dylan@button.is> # Mutation chain to create an application and create a pending application status
-function_application_application_revision_status [table_application] 2019-10-30T23:57:31Z Helen Liu <helen@button.is> # Added new column application status to application
-function_application_ordered_form_results [table_application table_form_result table_ciip_application_wizard] 2019-10-30T22:29:53Z Dylan Leard <dleard@dleard-Aspire-V5-591G> # Function to order form results on an application
-table_gas [schema_ggircs_portal] 2019-11-13T18:37:12Z Hamza Javed <hamza@button.is> # Add a table for gases
-table_emission_category_gas [schema_ggircs_portal table_gas] 2019-11-12T22:24:51Z Hamza Javed <hamza@button.is> # Table for mapping emission category to all its gases and GWP values for the json form schema
-function_init_application_administration_form_result [table_form_result function_get_swrs_organisation_data function_get_swrs_facility_data function_get_swrs_operator_contact_data] 2019-11-08T22:46:02Z Matthieu Foucault <matthieu@button.is> # add function to initialize admin form result
-function_init_application_fuel_form_result [table_form_result function_get_swrs_fuel_data] 2019-11-12T18:00:52Z Matthieu Foucault <matthieu@button.is> # add function to initialize fuel form
-function_init_application_emission_form_result [table_form_result function_get_swrs_emission_data] 2019-11-12T18:01:51Z Matthieu Foucault <matthieu@button.is> # add function to initialize emission form
-function_facility_has_swrs_report [table_facility] 2019-11-12T19:25:09Z Matthieu Foucault <matthieu@button.is> # add function to check if a facility has a swrs report
-function_search_ciip_user_organisation [table_ciip_user_organisation] 2019-11-06T18:34:19Z Helen Liu <helen@button.is> # Added search function on user organisation table
-function_get_reporting_year [table_reporting_year] 2019-11-20T17:40:29Z Helen Liu <helen@button.is> # added function to return current reporting year
-table_review_comment [table_application table_form_json] 2019-11-25T23:54:50Z Hamza Javed <hamza@button.is> # General comment table with polymorphic ids`
-function_get_carbon_tax_data [schema_ggircs_portal] 2019-11-28T18:45:57Z Dylan Leard <dylan@button.is> # Function retrieves carbon tax data for CIIP carbon tax calculator
-view_ciip_carbon_tax_calculation [function_get_carbon_tax_data view_ciip_fuel table_application] 2019-11-28T19:23:39Z Dylan Leard <dylan@button.is> # Calculates carbon tax based on ciip fuel data
-function_search_products [table_product] 2019-11-21T19:48:58Z Dylan Leard <dylan@button.is> # Custom search function for products
-table_certification_url [table_application function_set_random_id] 2019-12-03T19:58:18Z Dylan Leard <dylan@button.is> # Table containing the unique certification URL for an application and related data.
-view_ciip_emission [table_application] 2019-12-13T00:12:13Z Matthieu Foucault <matthieu@button.is> # Add a view that calculates the total of non-biogenic emissions for an application
-function_search_organisation_facilities [table_facility] 2019-12-04T18:42:11Z Helen Liu <helen@button.is> # added search filter for applications of facilities
-function_search_all_facilities [table_facility] 2019-12-06T00:27:16Z Helen Liu <helen@button.is> # added search function for all facilities
-view_ciip_incentive_payment [view_ciip_production view_ciip_emission table_benchmark] 2019-12-17T20:40:18Z Matthieu Foucault <matthieu@button.is> # Add view calculating the incentive payment
-function_application_latest_submitted_revision [table_application_revision_status] 2019-12-12T18:40:39Z Dylan Leard <dylan@button.is> # Function to add computed column latest_submitted_revision to ggircs_portal.application
-function_application_latest_draft_revision [table_application_revision_status] 2019-12-12T18:41:24Z Dylan Leard <dylan@button.is> # Function to add computed column latest_draft_revision to ggircs_portal.application
-function_create_application_revision_mutation_chain [table_application_revision_status] 2019-12-13T23:52:16Z Dylan Leard <dylan@button.is> # Stored procedure to create an application revision and all dependent tables
-function_application_revision_application_revision_status [table_application_revision_status] 2019-12-17T23:56:59Z Dylan Leard <dylan@button.is> # Function creates a computed column on application_revision
-function_form_result_application_comments [table_review_comment table_form_result] 2019-12-19T00:09:34Z Dylan Leard <dylan@button.is> # Function to add computed column of application comments to form_result
-function_form_result_has_unresolved_comments [table_form_result table_review_comment] 2019-12-19T22:27:33Z Dylan Leard <dylan@button.is> # Function creates a computed boolean column on form result has_unresolved_comments
-function_application_previous_submitted_revision [table_application_revision_status] 2020-01-02T18:28:24Z Dylan Leard <dylan@button.is> # Function adds computed column on application for previous submitted revision
+trigger_functions/update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
+trigger_functions/set_random_id [schema_ggircs_portal] 2019-12-04T00:34:07Z Dylan Leard <dylan@button.is> # Trigger function to generate a random string and set it to id
+trigger_functions/set_expiry [schema_ggircs_portal] 2019-12-10T19:13:27Z Dylan Leard <dylan@button.is> # Function sets row expiry
+types/jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
+types/ciip_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file ciip_user_organisation_status
+types/ciip_application_revision_status [schema_ggircs_portal] 2019-11-26T18:39:57Z Helen Liu <helen@button.is> # Added ciip application status type
+types/application_search_result [schema_ggircs_portal types/ciip_application_revision_status] 2019-12-12T23:22:59Z Dylan Leard <dylan@button.is> # Return type for searching and listing applications
+tables/ciip_user [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
+function_session [schema_ggircs_portal types/jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
+trigger_functions/set_user_id [function_session tables/ciip_user] 2019-12-10T20:02:31Z Dylan Leard <dylan@button.is> # Trigger function updates the user_id field
+tables/product_form [schema_ggircs_portal] 2019-12-02T17:53:31Z Matthieu Foucault <matthieu@button.is> # Add a table that contains a json schema specific to a product type
+tables/product [schema_ggircs_portal tables/product_form trigger_functions/update_timestamps] 2019-08-06T20:15:37Z Hamza Javed <hamza@button.is> # A table for adding products (for benchmarks)
+tables/reporting_year [schema_ggircs_portal] 2019-11-19T18:06:01Z Helen Liu <helen@button.is> # Added new table with current reporting year, application deadline
+tables/benchmark [tables/product trigger_functions/update_timestamps tables/reporting_year] 2019-08-06T20:25:30Z Hamza Javed <hamza@button.is> # A table for Benchmarks and Eligibility Thresholds for products
+tables/organisation [schema_ggircs_portal] 2019-10-11T18:45:40Z Hamza Javed <hamza@button.is> # The organisation data for CIIP
+tables/ciip_user_organisation [schema_ggircs_portal tables/ciip_user tables/organisation] 2019-10-11T18:46:57Z Hamza Javed <hamza@button.is> # Through table for Users and Organisations with a many to many relationship
+tables/facility [schema_ggircs_portal tables/organisation] 2019-10-11T18:47:49Z Hamza Javed <hamza@button.is> # Facility data for CIIP
+tables/application [schema_ggircs_portal trigger_functions/update_timestamps] 2019-10-11T18:09:42Z Dylan Leard <dylan@button.is> # Application table
+tables/application_revision [tables/application] 2019-12-12T00:21:28Z Dylan Leard <dylan@button.is> # Table contains versioning data for application revisions
+tables/form_json [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
+tables/form_result [schema_ggircs_portal trigger_functions/update_timestamps tables/form_json] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
+types/facility_search_result [schema_ggircs_portal] 2019-12-11T21:41:41Z Helen Liu <helen@button.is> # added return type for search all facilities function
+tables/application_revision_status [schema_ggircs_portal trigger_functions/update_timestamps tables/application_revision] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application_revision_status to schema ggircs_portal
+views/ciip_fuel [tables/form_result] 2019-08-19T22:26:15Z Hamza Javed <hamza@button.is> # View for fuels reported in CIIP application
+views/ciip_electricity_and_heat [tables/form_result] 2019-08-20T22:40:48Z Hamza Javed <hamza@button.is> # Electricity and Heat consumption reported for the ciip application
+views/ciip_production [tables/form_result] 2019-08-20T23:22:31Z Hamza Javed <hamza@button.is> # Module throughput and production data reported in the ciip application
+search_functions/search_application_list [tables/application_revision_status types/application_search_result] 2019-09-03T20:40:05Z Dylan Leard <dylan@button.is> # add function for searching the list of applications
+swrs_functions/get_swrs_organisation_data [schema_ggircs_portal] 2019-10-01T20:51:53Z Hamza Javed <hamza@button.is> # Function that imports information from swrs based on parameters
+tables/ciip_application_wizard [tables/form_json] 2019-10-09T17:18:33Z Matthieu Foucault <matthieu@button.is> # Add ciip_application_wizard
+swrs_functions/get_swrs_facility_data 2019-10-07T21:25:50Z Hamza Javed <hamza@button.is> # Function to import facility data from swrs
+swrs_functions/get_swrs_operator_contact_data 2019-10-07T21:28:12Z Hamza Javed <hamza@button.is> # Get operator contact data from SWRS via function
+swrs_functions/get_swrs_emission_data 2019-10-07T23:36:44Z Hamza Javed <hamza@button.is> # Get summarized emission data from swrs
+swrs_functions/get_swrs_fuel_data 2019-10-08T16:31:12Z Hamza Javed <hamza@button.is> # Get fuel data from swrs
+mutations/save_product_mutation_chain [tables/product tables/benchmark] 2019-10-16T19:01:28Z Dylan Leard <dylan@button.is> # Stored procedure to save a product in place of mutation chaining
+mutations/create_benchmark_mutation_chain [tables/benchmark] 2019-10-16T21:52:34Z Dylan Leard <dylan@button.is> # Stored procedure to save a benchmark instead of mutation chaining
+tables/fuel [schema_ggircs_portal] 2019-10-16T18:17:17Z Matthieu Foucault <matthieu@button.is> # add fuel table
+mutations/create_application_mutation_chain [tables/application] 2019-10-25T18:24:34Z Dylan Leard <dylan@button.is> # Mutation chain to create an application and create a pending application status
+computed_columns/application_application_revision_status [tables/application] 2019-10-30T23:57:31Z Helen Liu <helen@button.is> # Added new column application status to application
+computed_columns/application_ordered_form_results [tables/application tables/form_result tables/ciip_application_wizard] 2019-10-30T22:29:53Z Dylan Leard <dleard@dleard-Aspire-V5-591G> # Function to order form results on an application
+tables/gas [schema_ggircs_portal] 2019-11-13T18:37:12Z Hamza Javed <hamza@button.is> # Add a table for gases
+tables/emission_category_gas [schema_ggircs_portal tables/gas] 2019-11-12T22:24:51Z Hamza Javed <hamza@button.is> # Table for mapping emission category to all its gases and GWP values for the json form schema
+swrs_functions/init_application_administration_form_result [tables/form_result swrs_functions/get_swrs_organisation_data swrs_functions/get_swrs_facility_data swrs_functions/get_swrs_operator_contact_data] 2019-11-08T22:46:02Z Matthieu Foucault <matthieu@button.is> # add function to initialize admin form result
+swrs_functions/init_application_fuel_form_result [tables/form_result swrs_functions/get_swrs_fuel_data] 2019-11-12T18:00:52Z Matthieu Foucault <matthieu@button.is> # add function to initialize fuel form
+swrs_functions/init_application_emission_form_result [tables/form_result swrs_functions/get_swrs_emission_data] 2019-11-12T18:01:51Z Matthieu Foucault <matthieu@button.is> # add function to initialize emission form
+computed_columns/facility_has_swrs_report [tables/facility] 2019-11-12T19:25:09Z Matthieu Foucault <matthieu@button.is> # add function to check if a facility has a swrs report
+search_functions/search_ciip_user_organisation [tables/ciip_user_organisation] 2019-11-06T18:34:19Z Helen Liu <helen@button.is> # Added search function on user organisation table
+function_get_reporting_year [tables/reporting_year] 2019-11-20T17:40:29Z Helen Liu <helen@button.is> # added function to return current reporting year
+tables/review_comment [tables/application tables/form_json] 2019-11-25T23:54:50Z Hamza Javed <hamza@button.is> # General comment table with polymorphic ids`
+swrs_functions/get_carbon_tax_data [schema_ggircs_portal] 2019-11-28T18:45:57Z Dylan Leard <dylan@button.is> # Function retrieves carbon tax data for CIIP carbon tax calculator
+views/ciip_carbon_tax_calculation [swrs_functions/get_carbon_tax_data views/ciip_fuel tables/application] 2019-11-28T19:23:39Z Dylan Leard <dylan@button.is> # Calculates carbon tax based on ciip fuel data
+search_functions/search_products [tables/product] 2019-11-21T19:48:58Z Dylan Leard <dylan@button.is> # Custom search function for products
+tables/certification_url [tables/application trigger_functions/set_random_id] 2019-12-03T19:58:18Z Dylan Leard <dylan@button.is> # Table containing the unique certification URL for an application and related data.
+views/ciip_emission [tables/application] 2019-12-13T00:12:13Z Matthieu Foucault <matthieu@button.is> # Add a view that calculates the total of non-biogenic emissions for an application
+search_functions/search_organisation_facilities [tables/facility] 2019-12-04T18:42:11Z Helen Liu <helen@button.is> # added search filter for applications of facilities
+search_functions/search_all_facilities [tables/facility] 2019-12-06T00:27:16Z Helen Liu <helen@button.is> # added search function for all facilities
+views/ciip_incentive_payment [views/ciip_production views/ciip_emission tables/benchmark] 2019-12-17T20:40:18Z Matthieu Foucault <matthieu@button.is> # Add view calculating the incentive payment
+computed_columns/application_latest_submitted_revision [tables/application_revision_status] 2019-12-12T18:40:39Z Dylan Leard <dylan@button.is> # Function to add computed column latest_submitted_revision to ggircs_portal.application
+computed_columns/application_latest_draft_revision [tables/application_revision_status] 2019-12-12T18:41:24Z Dylan Leard <dylan@button.is> # Function to add computed column latest_draft_revision to ggircs_portal.application
+mutations/create_application_revision_mutation_chain [tables/application_revision_status] 2019-12-13T23:52:16Z Dylan Leard <dylan@button.is> # Stored procedure to create an application revision and all dependent tables
+computed_columns/application_revision_application_revision_status [tables/application_revision_status] 2019-12-17T23:56:59Z Dylan Leard <dylan@button.is> # Function creates a computed column on application_revision
+computed_columns/form_result_application_comments [tables/review_comment tables/form_result] 2019-12-19T00:09:34Z Dylan Leard <dylan@button.is> # Function to add computed column of application comments to form_result
+computed_columns/form_result_has_unresolved_comments [tables/form_result tables/review_comment] 2019-12-19T22:27:33Z Dylan Leard <dylan@button.is> # Function creates a computed boolean column on form result has_unresolved_comments
+computed_columns/application_previous_submitted_revision [tables/application_revision_status] 2020-01-02T18:28:24Z Dylan Leard <dylan@button.is> # Function adds computed column on application for previous submitted revision

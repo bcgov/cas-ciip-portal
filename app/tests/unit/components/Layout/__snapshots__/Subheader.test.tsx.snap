@@ -18,7 +18,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
           class="jsx-775259080 active"
         >
           <a
-            href="/user-dashboard"
+            href="/reporter/user-dashboard"
           >
             My Dashboard
           </a>
@@ -27,7 +27,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
           class="jsx-775259080"
         >
           <a
-            href="/facilities-list"
+            href="/reporter/facilities-list"
           >
             My Applications
           </a>

@@ -8,14 +8,16 @@ const Subheader = () => (
           <li className="active">
             <Link
               href={{
-                pathname: '/user-dashboard'
+                pathname: '/reporter/user-dashboard'
               }}
             >
               My Dashboard
             </Link>
           </li>
           <li>
-            <Link href={{pathname: '/facilities-list'}}>My Applications</Link>
+            <Link href={{pathname: '/reporter/facilities-list'}}>
+              My Applications
+            </Link>
           </li>
         </ul>
       </div>

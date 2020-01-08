@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import CiipApplication from 'pages/ciip-application';
+import CiipApplication from 'pages/reporter/ciip-application';
 
 const query = {
   session: null,

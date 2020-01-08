@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Col, Form, Button, Dropdown} from 'react-bootstrap';
 import Link from 'next/link';
-import LoginButton from '../LoginButton';
+import LoginButton from 'components/LoginButton';
 
 const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
   <header>
@@ -25,13 +25,17 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item>
-                    <Link href="/user-dashboard">Industry User: Dashboard</Link>
+                    <Link href="/reporter/user-dashboard">
+                      Industry User: Dashboard
+                    </Link>
                   </Dropdown.Item>
                   <Dropdown.Item>
-                    <Link href="/applications">Analyst: Applications list</Link>
+                    <Link href="/analyst/applications">
+                      Analyst: Applications list
+                    </Link>
                   </Dropdown.Item>
                   <Dropdown.Item>
-                    <Link href="/products-benchmarks">
+                    <Link href="/admin/products-benchmarks">
                       Admin: Create Products and Benchmarks
                     </Link>
                   </Dropdown.Item>

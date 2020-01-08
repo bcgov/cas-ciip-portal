@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {graphql, createRefetchContainer} from 'react-relay';
 import {ProductListContainer_query} from 'ProductListContainer_query.graphql';
 import SearchTableLayout from 'components/SearchTableLayout';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import LoadingSpinner from 'components/LoadingSpinner';
 import ProductRowItemContainer from './ProductRowItemContainer';
 
 interface Props {

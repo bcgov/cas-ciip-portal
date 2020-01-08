@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {userListQueryResponse} from 'userListQuery.graphql';
-import DefaultLayout from '../layouts/default-layout';
-import UserTable from '../containers/Admin/UserTable';
+import DefaultLayout from 'layouts/default-layout';
+import UserTable from 'containers/Admin/UserTable';
 
 interface Props {
   query: userListQueryResponse['query'];

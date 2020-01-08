@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {copyrightQueryResponse} from 'copyrightQuery.graphql';
-import DefaultLayout from '../../layouts/default-layout';
+import DefaultLayout from 'layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: copyrightQueryResponse['query'];

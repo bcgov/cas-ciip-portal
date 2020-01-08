@@ -4,7 +4,7 @@ import {
   createCertificationUrlMutation as createCertificationUrlMutationType,
   createCertificationUrlMutationVariables
 } from 'createCertificationUrlMutation.graphql';
-import BaseMutation from '../BaseMutation';
+import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
   mutation createCertificationUrlMutation(

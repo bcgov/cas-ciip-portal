@@ -4,7 +4,7 @@ import {
   createReviewCommentMutationVariables,
   createReviewCommentMutation as createReviewCommentMutationType
 } from 'createReviewCommentMutation.graphql';
-import BaseMutation from '../BaseMutation';
+import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
   mutation createReviewCommentMutation($input: CreateReviewCommentInput!) {

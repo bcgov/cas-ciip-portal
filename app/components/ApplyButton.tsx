@@ -30,8 +30,8 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
     console.log(response);
     router.push({
       pathname: hasSwrsReport
-        ? '/ciip-application-swrs-import'
-        : '/ciip-application',
+        ? '/reporter/ciip-application-swrs-import'
+        : '/reporter/ciip-application',
       query: {
         applicationId: response.createApplicationMutationChain.application.id,
         version: 1
@@ -58,7 +58,7 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
     return (
       <Link
         href={{
-          pathname: '/ciip-application',
+          pathname: '/reporter/ciip-application',
           query: {
             applicationId,
             version: latestDraftVersionNumber
@@ -78,7 +78,7 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
     return (
       <Link
         href={{
-          pathname: '/view-application',
+          pathname: '/reporter/view-application',
           query: {
             applicationId,
             version: latestSubmittedVersionNumber

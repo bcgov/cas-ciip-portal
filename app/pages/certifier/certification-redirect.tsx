@@ -5,7 +5,7 @@ import {NextRouter} from 'next/router';
 import moment from 'moment-timezone';
 import {CiipPageComponentProps} from 'next-env';
 import {certificationRedirectQueryResponse} from 'certificationRedirectQuery.graphql';
-import DefaultLayout from '../layouts/default-layout';
+import DefaultLayout from 'layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: certificationRedirectQueryResponse['query'];
@@ -56,7 +56,7 @@ class CertificationRedirect extends Component<Props> {
     const version =
       query?.certificationUrlByRowId?.applicationByApplicationId
         .latestDraftRevision.versionNumber;
-    const redirectURI = `/certify?applicationId=${applicationId}&version=${version}`;
+    const redirectURI = `/certifier/certify?applicationId=${applicationId}&version=${version}`;
 
     const expiresAtMoment = query?.certificationUrlByRowId?.expiresAt
       ? moment.tz(

@@ -5,7 +5,7 @@ import {Organisations_query} from 'Organisations_query.graphql';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import AddOrganisationFacility from 'components/AddOrganisationFacility';
 import createOrganisationMutation from 'mutations/organisation/createOrganisationMutation';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import LoadingSpinner from 'components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
 

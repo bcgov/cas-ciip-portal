@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {ciipApplicationQueryResponse} from 'ciipApplicationQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
-import DefaultLayout from '../layouts/default-layout';
-import ApplicationWizard from '../containers/Applications/ApplicationWizard';
+import DefaultLayout from 'layouts/default-layout';
+import ApplicationWizard from 'containers/Applications/ApplicationWizard';
 
 interface Props extends CiipPageComponentProps {
   query: ciipApplicationQueryResponse['query'];

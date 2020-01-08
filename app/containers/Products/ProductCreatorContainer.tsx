@@ -3,10 +3,10 @@ import {createFragmentContainer, RelayProp} from 'react-relay';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
 import {Button, Card, Collapse} from 'react-bootstrap';
-import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
-import FormFieldTemplate from '../Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
-import createProductMutation from '../../mutations/product/createProductMutation';
+import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
+import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
+import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
+import createProductMutation from 'mutations/product/createProductMutation';
 
 interface Props {
   relay: RelayProp;

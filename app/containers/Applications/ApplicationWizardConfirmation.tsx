@@ -4,7 +4,7 @@ import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
 import {ApplicationWizardConfirmation_application} from 'ApplicationWizardConfirmation_application.graphql';
-import createCertificationUrlMutation from '../../mutations/form/createCertificationUrl';
+import createCertificationUrlMutation from 'mutations/form/createCertificationUrl';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -52,7 +52,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       setUrl(
         `${
           window.location.host
-        }/certification-redirect?rowId=${encodeURIComponent(
+        }/certifier/certification-redirect?rowId=${encodeURIComponent(
           response.createCertificationUrl.certificationUrl.rowId
         )}&id=${encodeURIComponent(props.application.id)}`
       );

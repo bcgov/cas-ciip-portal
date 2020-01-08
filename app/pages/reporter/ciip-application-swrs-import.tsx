@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {graphql} from 'react-relay';
 import {ciipApplicationSwrsImportQueryResponse} from 'ciipApplicationSwrsImportQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
-import DefaultLayout from '../layouts/default-layout';
+import DefaultLayout from 'layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: ciipApplicationSwrsImportQueryResponse['query'];
@@ -39,7 +39,7 @@ export default class Index extends Component<Props> {
 
         <Link
           href={{
-            pathname: '/ciip-application',
+            pathname: '/reporter/ciip-application',
             query: {
               ...router.query
             }

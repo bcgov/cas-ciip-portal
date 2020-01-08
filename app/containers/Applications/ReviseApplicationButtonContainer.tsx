@@ -35,7 +35,7 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = props => 
         .applicationByApplicationId.latestSubmittedRevision.versionNumber;
 
     router.push({
-      pathname: '/ciip-application',
+      pathname: '/reporter/ciip-application',
       query: {
         applicationId: application.id,
         version: newVersion,

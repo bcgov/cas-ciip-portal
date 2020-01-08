@@ -21,7 +21,7 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => 
             <Link
               passHref
               href={{
-                pathname: '/ciip-application',
+                pathname: '/reporter/ciip-application',
                 query: {
                   formResultId: node.id,
                   applicationId: application.id,
@@ -48,7 +48,7 @@ const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => 
           <Link
             passHref
             href={{
-              pathname: '/ciip-application',
+              pathname: '/reporter/ciip-application',
               query: {
                 applicationId: application.id,
                 confirmationPage: true,

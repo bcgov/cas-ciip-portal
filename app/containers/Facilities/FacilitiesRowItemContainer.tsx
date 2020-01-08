@@ -5,7 +5,7 @@ import {
   CiipApplicationRevisionStatus,
   FacilitiesRowItemContainer_facilitySearchResult
 } from 'FacilitiesRowItemContainer_facilitySearchResult.graphql';
-import ApplyButton from '../../components/ApplyButton';
+import ApplyButton from 'components/ApplyButton';
 interface Props {
   relay: RelayProp;
   facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult;

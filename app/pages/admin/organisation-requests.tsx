@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {organisationRequestsQueryResponse} from 'organisationRequestsQuery.graphql';
-import DefaultLayout from '../layouts/default-layout';
-import OrganisationRequestsTable from '../containers/Admin/OrganisationRequestsTable';
-import SearchTable from '../components/SearchTable';
+import DefaultLayout from 'layouts/default-layout';
+import OrganisationRequestsTable from 'containers/Admin/OrganisationRequestsTable';
+import SearchTable from 'components/SearchTable';
 
 interface Props {
   query: organisationRequestsQueryResponse['query'];

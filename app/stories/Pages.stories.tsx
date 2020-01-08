@@ -4,22 +4,22 @@ import {createMockEnvironment, MockPayloadGenerator} from 'relay-test-utils';
 import {withA11y} from '@storybook/addon-a11y';
 
 // Commented out imports are pages to be tested in a subsequent PR
-import Admin from 'pages/admin';
-// Import ApplicationReview from 'pages/application-review';
-// import Applications from 'pages/applications';
-import CiipApplicationSWRSImport from 'pages/ciip-application-swrs-import';
-// Import CiipApplication from 'pages/ciip-application';
-// import CompleteSubmit from 'pages/complete-submit';
+import Admin from 'pages/admin/admin';
+// Import ApplicationReview from 'pages/analyst/application-review';
+// import Applications from 'pages/analyst/applications';
+import CiipApplicationSWRSImport from 'pages/reporter/ciip-application-swrs-import';
+// Import CiipApplication from 'pages/reporter/ciip-application';
+// import CompleteSubmit from 'pages/reporter/complete-submit';
 // import Index from 'pages/index';
 // import LoginRedirect from 'pages/login-redirect';
-// import OrganisationRequests from 'pages/organisation-requests';
-// import ProductsBenchmarks from 'pages/products-benchmarks';
+// import OrganisationRequests from 'pages/admin/organisation-requests';
+// import ProductsBenchmarks from 'pages/admin/products-benchmarks';
 import Registration from 'pages/registration';
-import UserDashboard from 'pages/user-dashboard';
-import UserList from 'pages/user-list';
+import UserDashboard from 'pages/reporter/user-dashboard';
+import UserList from 'pages/admin/user-list';
 // Import UserOrganisationFacilities from 'pages/user-organisation-facilities';
 import UserProfile from 'pages/user-profile';
-// Import ViewApplication from 'pages/view-application';
+// Import ViewApplication from 'pages/reporter/view-application';
 
 import {Router} from './mockNextRouter';
 
