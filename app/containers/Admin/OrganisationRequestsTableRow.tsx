@@ -5,7 +5,7 @@ import {
   OrganisationRequestsTableRow_userOrganisation,
   CiipUserOrganisationStatus
 } from 'OrganisationRequestsTableRow_userOrganisation.graphql';
-import {updateUserOrganisationMutation} from '../../mutations/user_organisation/updateUserOrganisation';
+import {updateUserOrganisationMutation} from 'mutations/user_organisation/updateUserOrganisation';
 
 interface Props {
   relay: RelayProp;

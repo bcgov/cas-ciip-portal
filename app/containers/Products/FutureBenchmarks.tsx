@@ -3,8 +3,8 @@ import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnviron
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import {Button} from 'react-bootstrap';
 import editBenchmarkMutation from 'mutations/benchmark/editBenchmarkMutation';
-import FormFieldTemplate from '../Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
+import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
+import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
   benchmark: any;

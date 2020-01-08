@@ -7,9 +7,9 @@ import {ApplicationDetailsCardItem_formResult} from '__generated__/ApplicationDe
 import {ApplicationDetailsCardItem_query} from '__generated__/ApplicationDetailsCardItem_query.graphql';
 import diff from 'deep-diff';
 import customFields from 'components/Application/ApplicationDetailsCardItemCustomFields';
-import SummaryFormArrayFieldTemplate from '../Forms/SummaryFormArrayFieldTemplate';
-import SummaryFormFieldTemplate from '../Forms/SummaryFormFieldTemplate';
-import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
+import SummaryFormArrayFieldTemplate from 'containers/Forms/SummaryFormArrayFieldTemplate';
+import SummaryFormFieldTemplate from 'containers/Forms/SummaryFormFieldTemplate';
+import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
   formResult: ApplicationDetailsCardItem_formResult;

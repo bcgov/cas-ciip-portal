@@ -3,11 +3,11 @@ import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
 import {UserForm_user} from 'UserForm_user.graphql';
-import createUserMutation from '../../mutations/user/createUserMutation';
-import updateUserMutation from '../../mutations/user/updateUserMutation';
-import FormArrayFieldTemplate from '../Forms/FormArrayFieldTemplate';
-import FormFieldTemplate from '../Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from '../Forms/FormObjectFieldTemplate';
+import createUserMutation from 'mutations/user/createUserMutation';
+import updateUserMutation from 'mutations/user/updateUserMutation';
+import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
+import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
+import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
   user?: UserForm_user;

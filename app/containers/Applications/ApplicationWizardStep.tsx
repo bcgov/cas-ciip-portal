@@ -3,8 +3,8 @@ import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ApplicationWizardStep_query} from 'ApplicationWizardStep_query.graphql';
 import {Row, Col} from 'react-bootstrap';
 import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
-import Form from '../Forms/Form';
-import updateFormResultMutation from '../../mutations/form/updateFormResultMutation';
+import Form from 'containers/Forms/Form';
+import updateFormResultMutation from 'mutations/form/updateFormResultMutation';
 import ApplicationWizardConfirmation from './ApplicationWizardConfirmation';
 
 interface Props {

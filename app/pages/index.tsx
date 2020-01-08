@@ -4,8 +4,8 @@ import {graphql} from 'react-relay';
 import {pagesQueryResponse} from 'pagesQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
 import moment from 'moment-timezone';
-import DefaultLayout from '../layouts/default-layout';
-import RegistrationLoginButtons from '../components/RegistrationLoginButtons';
+import DefaultLayout from 'layouts/default-layout';
+import RegistrationLoginButtons from 'components/RegistrationLoginButtons';
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];

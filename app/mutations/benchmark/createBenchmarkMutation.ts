@@ -4,7 +4,7 @@ import {
   createBenchmarkMutation as createBenchmarkMutationType,
   createBenchmarkMutationVariables
 } from 'createBenchmarkMutation.graphql';
-import BaseMutation from '../BaseMutation';
+import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
   mutation createBenchmarkMutation($input: CreateBenchmarkMutationChainInput!) {

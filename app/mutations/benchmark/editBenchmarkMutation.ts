@@ -4,7 +4,7 @@ import {
   editBenchmarkMutation as editBenchmarkMutationType,
   editBenchmarkMutationVariables
 } from 'editBenchmarkMutation.graphql';
-import BaseMutation from '../BaseMutation';
+import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
   mutation editBenchmarkMutation($input: UpdateBenchmarkInput!) {

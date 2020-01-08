@@ -3,9 +3,9 @@ import {Container} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {defaultLayout_session} from '__generated__/defaultLayout_session.graphql';
 import {useRouter} from 'next/router';
-import Header from '../components/Layout/Header';
-import Footer from '../components/Layout/Footer';
-import Subheader from '../components/Layout/Subheader';
+import Header from 'components/Layout/Header';
+import Footer from 'components/Layout/Footer';
+import Subheader from 'components/Layout/Subheader';
 
 interface Props {
   title?: string | JSX.Element;

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
-import ApplicationFormNavbar from '../../components/Forms/ApplicationFormNavbar';
+import ApplicationFormNavbar from 'components/Forms/ApplicationFormNavbar';
 import ApplicationWizardStep from './ApplicationWizardStep';
 
 const setRouterQueryParam = (router, key, value, replace = false) => {

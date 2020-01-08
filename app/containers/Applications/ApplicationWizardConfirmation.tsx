@@ -4,7 +4,7 @@ import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
 import {ApplicationWizardConfirmation_application} from 'ApplicationWizardConfirmation_application.graphql';
-import createCertificationUrlMutation from '../../mutations/form/createCertificationUrl';
+import createCertificationUrlMutation from 'mutations/form/createCertificationUrl';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,

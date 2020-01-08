@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {userProfileQueryResponse} from 'userProfileQuery.graphql';
-import DefaultLayout from '../layouts/default-layout';
-import UserProfileContainer from '../containers/User/UserProfile';
+import DefaultLayout from 'layouts/default-layout';
+import UserProfileContainer from 'containers/User/UserProfile';
 
 interface Props {
   query: userProfileQueryResponse['query'];

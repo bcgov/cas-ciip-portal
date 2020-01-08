@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {adminQueryResponse} from 'adminQuery.graphql';
-import DefaultLayout from '../../layouts/default-layout';
+import DefaultLayout from 'layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: adminQueryResponse['query'];

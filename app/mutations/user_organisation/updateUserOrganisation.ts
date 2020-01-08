@@ -4,7 +4,7 @@ import {
   updateUserOrganisationMutation as updateUserOrganisationMutationType,
   updateUserOrganisationMutationVariables
 } from 'updateUserOrganisationMutation.graphql';
-import BaseMutation from '../BaseMutation';
+import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
   mutation updateUserOrganisationMutation(

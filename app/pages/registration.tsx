@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {registrationQueryResponse} from 'registrationQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
-import UserForm from '../containers/User/UserForm';
-import DefaultLayout from '../layouts/default-layout';
+import UserForm from 'containers/User/UserForm';
+import DefaultLayout from 'layouts/default-layout';
 
 interface Props extends CiipPageComponentProps {
   query: registrationQueryResponse['query'];

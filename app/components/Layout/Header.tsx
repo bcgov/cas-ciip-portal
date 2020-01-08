@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Col, Form, Button, Dropdown} from 'react-bootstrap';
 import Link from 'next/link';
-import LoginButton from '../LoginButton';
+import LoginButton from 'components/LoginButton';
 
 const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
   <header>

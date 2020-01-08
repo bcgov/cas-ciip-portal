@@ -4,7 +4,7 @@ import {
   updateApplicationMutationVariables,
   updateApplicationMutation as updateApplicationMutationType
 } from 'updateApplicationMutation.graphql';
-import BaseMutation from '../BaseMutation';
+import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
   mutation updateApplicationMutation($input: UpdateApplicationInput!) {
