@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
-import {FieldProps} from 'react-jsonschema-form';
+import {FieldProps, IdSchema} from 'react-jsonschema-form';
+import {toIdSchema} from 'react-jsonschema-form/lib/utils';
 import ErrorList from 'components/Forms/ErrorList';
-
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductionFields_query} from 'ProductionFields_query.graphql';
 import {JSONSchema6} from 'json-schema';
@@ -142,6 +142,21 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     )?.node?.productFormByProductFormId?.productFormSchema as FormJson;
   }, [formData.productRowId, query.allProducts.edges]);
 
+  const additionalDataIdSchema = useMemo(() => {
+    if (!additionalDataSchema) return undefined;
+    return toIdSchema(
+      additionalDataSchema.schema,
+      idSchema.additionalData.$id,
+      null,
+      formData.additionalData,
+      idSchema.additionalData.$id
+    );
+  }, [
+    additionalDataSchema,
+    formData.additionalData,
+    idSchema.additionalData.$id
+  ]);
+
   const productRowIdSchema = useMemo(
     () => ({
       ...(schema.properties.productRowId as JSONSchema6),
@@ -183,7 +198,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           uiSchema={uiSchema.productRowId}
           formData={formData.productRowId}
           autofocus={autofocus}
-          idSchema={idSchema}
+          idSchema={idSchema.productRowId as IdSchema}
           registry={registry}
           errorSchema={errorSchema}
           formContext={formContext}
@@ -214,7 +229,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
             uiSchema={uiSchema.productionAllocationFactor}
             formData={formData.productionAllocationFactor}
             autofocus={autofocus}
-            idSchema={idSchema}
+            idSchema={idSchema.productionAllocationFactor as IdSchema}
             registry={registry}
             errorSchema={errorSchema?.productionAllocationFactor}
             formContext={formContext}
@@ -246,7 +261,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
               uiSchema={uiSchema.quantity}
               formData={formData.quantity}
               autofocus={autofocus}
-              idSchema={idSchema}
+              idSchema={idSchema.quantity as IdSchema}
               registry={registry}
               errorSchema={errorSchema?.quantity}
               formContext={formContext}
@@ -277,7 +292,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
               uiSchema={uiSchema.productUnits}
               formData={formData.productUnits}
               autofocus={autofocus}
-              idSchema={idSchema}
+              idSchema={idSchema.productUnits as IdSchema}
               registry={registry}
               errorSchema={errorSchema}
               formContext={formContext}
@@ -294,7 +309,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           uiSchema={additionalDataSchema.uiSchema}
           formData={formData.additionalData}
           autofocus={autofocus}
-          idSchema={idSchema}
+          idSchema={additionalDataIdSchema}
           registry={registry}
           errorSchema={errorSchema?.additionalData}
           formContext={formContext}

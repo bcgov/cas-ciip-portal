@@ -25,7 +25,10 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
           </h4>
         </div>
         <div
-          className="col-md-1 offset-md-5"
+          className="col-md-2 offset-md-3"
+        />
+        <div
+          className="col-md-1"
           style={
             Object {
               "textAlign": "right",
@@ -649,8 +652,8 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                   <div
                     className="jsx-1147644460 summary-item"
                   >
-                     
                     Yes
+                     
                   </div>
                 </div>
                 <div
@@ -659,26 +662,84 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                   <div
                     className="form-row"
                   >
-                    <div>
-                      <p
-                        className="config-error"
-                        style={
-                          Object {
-                            "color": "red",
-                          }
-                        }
+                    <div
+                      className="col-12"
+                    >
+                      <h3>
+                        Facility Location
+                      </h3>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
                       >
-                        Invalid 
-                        facilityLocation
-                         object field configuration:
-                        <em>
-                          uiSchema order list does not contain property 'longitude'
-                        </em>
-                        .
-                      </p>
-                      <pre>
-                        {"type":"object","title":"Facility Location","properties":{"locationStreetAddress":{"title":"Location of the facility","type":"string"},"locationNearestCity":{"title":"Nearest City","type":"string"},"latitude":{"title":"Latitude","type":"number"},"longitude":{"title":"Longitude","type":"number"}}}
-                      </pre>
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Location of the facility
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                        in qui
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-string summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Nearest City
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                        mollit eu esse
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-number summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Latitude
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                        0
+                      </div>
+                    </div>
+                    <div
+                      className="jsx-1147644460 form-group field field-number summary-formgroup"
+                    >
+                      <div
+                        className="jsx-1147644460 summary-label"
+                      >
+                        <strong
+                          className="jsx-1147644460"
+                        >
+                          Longitude
+                        </strong>
+                      </div>
+                      <div
+                        className="jsx-1147644460 summary-item"
+                      >
+                        -60000000
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -712,7 +773,10 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
           </h4>
         </div>
         <div
-          className="col-md-1 offset-md-5"
+          className="col-md-2 offset-md-3"
+        />
+        <div
+          className="col-md-1"
           style={
             Object {
               "textAlign": "right",
@@ -1435,7 +1499,10 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
           </h4>
         </div>
         <div
-          className="col-md-1 offset-md-5"
+          className="col-md-2 offset-md-3"
+        />
+        <div
+          className="col-md-1"
           style={
             Object {
               "textAlign": "right",
@@ -1764,7 +1831,10 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
           </h4>
         </div>
         <div
-          className="col-md-1 offset-md-5"
+          className="col-md-2 offset-md-3"
+        />
+        <div
+          className="col-md-1"
           style={
             Object {
               "textAlign": "right",
@@ -2001,7 +2071,10 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
           </h4>
         </div>
         <div
-          className="col-md-1 offset-md-5"
+          className="col-md-2 offset-md-3"
+        />
+        <div
+          className="col-md-1"
           style={
             Object {
               "textAlign": "right",

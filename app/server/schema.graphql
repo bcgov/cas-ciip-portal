@@ -122,6 +122,7 @@ type Application implements Node {
     offset: Int
     versionNumberInput: String
   ): FormResultsConnection!
+  previousSubmittedRevision: ApplicationRevision
 
   """
   The foreign key to ggircs_portal.reporting_year, references reporting_year

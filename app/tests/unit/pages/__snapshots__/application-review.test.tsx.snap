@@ -43,7 +43,7 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
                 "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
               },
             },
-            "formResultsByApplicationId": Object {
+            "orderedFormResults": Object {
               "edges": Array [
                 Object {
                   "node": Object {
@@ -72,7 +72,7 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
                   "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
                 },
               },
-              "formResultsByApplicationId": Object {
+              "orderedFormResults": Object {
                 "edges": Array [
                   Object {
                     "node": Object {
@@ -98,6 +98,7 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
             },
           }
         }
+        review={true}
       />
       <Relay(IncentiveCalculator)
         applicationRevision={

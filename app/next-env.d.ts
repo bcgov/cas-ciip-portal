@@ -42,3 +42,13 @@ declare module 'react-jsonschema-form' {
     customFormats?: Record<string, any>;
   }
 }
+
+declare module 'react-jsonschema-form/lib/utils' {
+  export function toIdSchema(
+    schema: JSONSchema6,
+    id: string,
+    definitions: any,
+    formData: any,
+    idPrefix: string
+  ): IdSchema;
+}

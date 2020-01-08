@@ -72,6 +72,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       <ApplicationDetailsContainer
         query={props.query}
         application={props.application}
+        review={false}
       />
       <br />
       {props.application.latestDraftRevision.certificationSignature ? (

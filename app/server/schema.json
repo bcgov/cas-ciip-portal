@@ -5542,6 +5542,18 @@
               "deprecationReason": null
             },
             {
+              "name": "previousSubmittedRevision",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ApplicationRevision",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "reportingYear",
               "description": "The foreign key to ggircs_portal.reporting_year, references reporting_year",
               "args": [],

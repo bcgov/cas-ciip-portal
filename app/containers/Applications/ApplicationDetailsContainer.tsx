@@ -13,16 +13,21 @@ interface Props {
   query: ApplicationDetailsContainer_query;
   application: ApplicationDetailsContainer_application;
   relay: RelayProp;
+  review: boolean;
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
   const formResults = props.application.orderedFormResults.edges;
-
+  const previousFormResults = props.review
+    ? props?.application?.previousSubmittedRevision
+        ?.formResultsByApplicationIdAndVersionNumber?.edges
+    : undefined;
   return (
     <div>
       {formResults.map(({node}) => (
         <ApplicationDetailsCardItem
           key={node.id}
+          previousFormResults={previousFormResults}
           formResult={node}
           query={props.query.query}
         />
@@ -48,6 +53,18 @@ export default createFragmentContainer(ApplicationDetailsComponent, {
           node {
             id
             ...ApplicationDetailsCardItem_formResult
+          }
+        }
+      }
+      previousSubmittedRevision {
+        formResultsByApplicationIdAndVersionNumber {
+          edges {
+            node {
+              formJsonByFormId {
+                slug
+              }
+              formResult
+            }
           }
         }
       }

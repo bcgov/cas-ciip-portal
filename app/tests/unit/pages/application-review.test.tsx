@@ -20,7 +20,7 @@ describe('The application-review page', () => {
           ApplicationRevisionStatusContainer_applicationRevisionStatus: true
         }
       },
-      formResultsByApplicationId: {
+      orderedFormResults: {
         edges: [
           {
             node: {

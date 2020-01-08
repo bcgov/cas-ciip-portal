@@ -28,7 +28,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
             "applicationRevisionStatus": Object {
               "applicationRevisionStatus": "SUBMITTED",
             },
-            "formResultsByApplicationId": Object {
+            "orderedFormResults": Object {
               "edges": Array [
                 Object {
                   "node": Object {
@@ -55,7 +55,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
               "applicationRevisionStatus": Object {
                 "applicationRevisionStatus": "SUBMITTED",
               },
-              "formResultsByApplicationId": Object {
+              "orderedFormResults": Object {
                 "edges": Array [
                   Object {
                     "node": Object {
@@ -75,6 +75,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
             },
           }
         }
+        review={false}
       />
     </Col>
     <Col

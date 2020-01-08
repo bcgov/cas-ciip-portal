@@ -11,7 +11,7 @@ describe('The ProductionFields Component', () => {
   const props = {
     schema: productionSchema.schema.definitions.product as JSONSchema6,
     uiSchema: productionSchema.uiSchema,
-    idSchema: null,
+    idSchema: {additionalData: {$id: 'production'}},
     autofocus: false,
     disabled: false,
     errorSchema: null,

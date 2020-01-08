@@ -25,10 +25,13 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
       <Col
         md={
           Object {
-            "offset": 5,
-            "span": 1,
+            "offset": 3,
+            "span": 2,
           }
         }
+      />
+      <Col
+        md={1}
         style={
           Object {
             "textAlign": "right",
@@ -77,12 +80,15 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         }
         formContext={
           Object {
+            "diffArray": Array [],
+            "diffPathArray": Array [],
             "query": Object {
               " $fragmentRefs": Object {
                 " $refType": "ProductionFields_query",
-                "ApplicationReviewContainer_applicationReview": true,
+                "ProductionFields_query": true,
               },
             },
+            "showDiff": false,
           }
         }
         formData={Object {}}
