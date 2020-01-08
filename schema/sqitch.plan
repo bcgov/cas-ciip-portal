@@ -66,4 +66,4 @@ computed_columns/application_revision_application_revision_status [tables/applic
 computed_columns/form_result_application_comments [tables/review_comment tables/form_result] 2019-12-19T00:09:34Z Dylan Leard <dylan@button.is> # Function to add computed column of application comments to form_result
 computed_columns/form_result_has_unresolved_comments [tables/form_result tables/review_comment] 2019-12-19T22:27:33Z Dylan Leard <dylan@button.is> # Function creates a computed boolean column on form result has_unresolved_comments
 computed_columns/application_previous_submitted_revision [tables/application_revision_status] 2020-01-02T18:28:24Z Dylan Leard <dylan@button.is> # Function adds computed column on application for previous submitted revision
-function_import_swrs_organisation_facility 2019-12-30T22:34:43Z Matthieu Foucault <matthieu@button.is> # Add function to import swrs organisation and facility tables
+swrs_functions/import_swrs_organisation_facility 2019-12-30T22:34:43Z Matthieu Foucault <matthieu@button.is> # Add function to import swrs organisation and facility tables
