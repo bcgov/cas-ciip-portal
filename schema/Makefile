@@ -23,7 +23,7 @@ test: | dropdb createdb deploy_ggircs deploy revert deploy_test_data prove_unit 
 
 
 .PHONY: unit
-unit: | dropdb deploy_test_data prove_unit
+unit: | deploy_test_data prove_unit
 
 .PHONY: deploy_test_data
 deploy_test_data:

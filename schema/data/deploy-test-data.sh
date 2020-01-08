@@ -46,12 +46,16 @@ _psql() {
 
 dropdb() {
   echo "Drop the $database database if it exists"
-  psql -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$database'" | grep -q 1 && psql -d postgres -c "DROP DATABASE $database";
+  if psql -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$database'" | grep -q 1; then
+    psql -d postgres -c "DROP DATABASE $database";
+  fi
 }
 
 createdb() {
   echo "Create the $database database if it does not exist"
-  psql -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$database'" | grep -q 1 || psql -d postgres -c "CREATE DATABASE $database";
+  if ! psql -d postgres -tc "SELECT 1 FROM pg_database WHERE datname = '$database'" | grep -q 1; then
+    psql -d postgres -c "CREATE DATABASE $database";
+  fi
 }
 
 actions=()
