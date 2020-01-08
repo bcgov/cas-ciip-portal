@@ -71,6 +71,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         fields={
           Object {
             "BooleanField": [Function],
+            "NumberField": [Function],
             "StringField": [Function],
             "TitleField": [Function],
             "emissionGas": [Function],

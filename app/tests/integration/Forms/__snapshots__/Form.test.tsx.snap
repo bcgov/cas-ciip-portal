@@ -1332,20 +1332,14 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                  *
               </label>
               <input
-                autoFocus={false}
                 className="form-control"
-                disabled={false}
-                id="root_electricity_purchased"
-                label="Purchased (MWh)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={true}
-                step="any"
-                type="number"
-                value={-40000000}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                type="text"
+                value="40,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1362,20 +1356,14 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                  *
               </label>
               <input
-                autoFocus={false}
                 className="form-control"
-                disabled={false}
-                id="root_electricity_generatedOnSite"
-                label="Generated On Site (MWh)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={true}
-                step="any"
-                type="number"
-                value={0}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                type="text"
+                value="0"
               />
               <span
                 className="font-italic text-muted"
@@ -1392,20 +1380,14 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                  *
               </label>
               <input
-                autoFocus={false}
                 className="form-control"
-                disabled={false}
-                id="root_electricity_consumedOnSite"
-                label="Consumed On Site (MWh)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={true}
-                step="any"
-                type="number"
-                value={-60000000}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                type="text"
+                value="60,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1422,20 +1404,14 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                  *
               </label>
               <input
-                autoFocus={false}
                 className="form-control"
-                disabled={false}
-                id="root_electricity_sold"
-                label="Sold (MWh)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={true}
-                step="any"
-                type="number"
-                value={-20000000}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                type="text"
+                value="20,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1472,20 +1448,14 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                  *
               </label>
               <input
-                autoFocus={false}
                 className="form-control"
-                disabled={false}
-                id="root_heat_purchased"
-                label="Purchased (GJ)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={true}
-                step="any"
-                type="number"
-                value={-40000000}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                type="text"
+                value="40,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1502,20 +1472,14 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                  *
               </label>
               <input
-                autoFocus={false}
                 className="form-control"
-                disabled={false}
-                id="root_heat_generatedOnSite"
-                label="Generated On Site (GJ)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={true}
-                step="any"
-                type="number"
-                value={0}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                type="text"
+                value="0"
               />
               <span
                 className="font-italic text-muted"
@@ -1532,20 +1496,14 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                  *
               </label>
               <input
-                autoFocus={false}
                 className="form-control"
-                disabled={false}
-                id="root_heat_consumedOnSite"
-                label="Consumed On Site (GJ)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={true}
-                step="any"
-                type="number"
-                value={-60000000}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                type="text"
+                value="60,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1562,20 +1520,14 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                  *
               </label>
               <input
-                autoFocus={false}
                 className="form-control"
-                disabled={false}
-                id="root_heat_sold"
-                label="Sold (GJ)"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={true}
-                step="any"
-                type="number"
-                value={-20000000}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                type="text"
+                value="20,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1824,6 +1776,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                       className="col-md-3"
                                     >
                                       <input
+                                        className="form-control"
                                         onBlur={[Function]}
                                         onChange={[Function]}
                                         onFocus={[Function]}
@@ -1933,6 +1886,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                       className="col-md-3"
                                     >
                                       <input
+                                        className="form-control"
                                         onBlur={[Function]}
                                         onChange={[Function]}
                                         onFocus={[Function]}
@@ -2138,6 +2092,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                       className="col-md-3"
                                     >
                                       <input
+                                        className="form-control"
                                         onBlur={[Function]}
                                         onChange={[Function]}
                                         onFocus={[Function]}

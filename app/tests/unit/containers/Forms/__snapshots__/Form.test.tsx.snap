@@ -30,6 +30,7 @@ exports[`The Form Component should match the snapshot 1`] = `
     disabled={false}
     fields={
       Object {
+        "NumberField": [Function],
         "ObjectField": [Function],
         "emissionGas": [Function],
         "emissionSource": [Function],
