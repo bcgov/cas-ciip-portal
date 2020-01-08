@@ -13,7 +13,7 @@ const NumberFields: React.FunctionComponent<FieldProps> = ({
       allowNegative={false}
       decimalScale={4}
       value={formData}
-      onValueChange={({value}) => onChange(Number(value))}
+      onValueChange={({value}) => onChange(value ?? Number(value))}
     />
   );
 };
