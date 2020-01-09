@@ -2380,5 +2380,13 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
       </form>
     </div>
   </div>
+  <div
+    style={
+      Object {
+        "marginTop": 20,
+        "textAlign": "right",
+      }
+    }
+  />
 </div>
 `;

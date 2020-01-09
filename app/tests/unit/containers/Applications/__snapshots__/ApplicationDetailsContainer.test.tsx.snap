@@ -39,6 +39,18 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
               },
             ],
           },
+          "previousSubmittedRevision": Object {
+            "formResultsByApplicationIdAndVersionNumber": Object {
+              "edges": Object {
+                "node": Object {
+                  "formJsonByFormId": Object {
+                    "slug": "admin",
+                  },
+                  "formResult": Object {},
+                },
+              },
+            },
+          },
         }
       }
       query={

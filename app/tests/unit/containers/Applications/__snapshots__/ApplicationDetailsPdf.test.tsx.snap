@@ -451,7 +451,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "locationStreetAddress",
                         "locationNearestCity",
                         "latitude",
-                        "longitute",
+                        "longitude",
                       ],
                     },
                     "isFacilityLocationDifferent": Object {
@@ -1341,13 +1341,25 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "items": Object {
+                    "additionalData": Object {
+                      "ui:name": "additionalData",
+                    },
+                    "paymentAllocationFactor": Object {
+                      "ui:name": "paymentAllocationFactor",
+                    },
                     "productRowId": Object {
                       "ui:col-md": 8,
+                      "ui:name": "productRowId",
                       "ui:widget": "SearchWidget",
                     },
+                    "productUnits": Object {
+                      "ui:name": "productUnits",
+                    },
                     "productionAllocationFactor": Object {
-                      "ui:col-md": 4,
-                      "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service",
+                      "ui:name": "productionAllocationFactor",
+                    },
+                    "quantity": Object {
+                      "ui:name": "quantity",
                     },
                     "ui:field": "production",
                   },
