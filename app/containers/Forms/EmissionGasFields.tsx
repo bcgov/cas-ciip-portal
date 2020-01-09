@@ -1,14 +1,10 @@
 import React from 'react';
-import {FieldProps} from 'react-jsonschema-form';
+import {FieldProps, IdSchema} from 'react-jsonschema-form';
 import {Form, Col} from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import NumberFormat from 'react-number-format';
 
-interface Props extends FieldProps {
-  annualEmission?: any;
-}
-
-const EmissionGasFields: React.FunctionComponent<Props> = ({
+const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   formData,
   onChange,
   registry,
@@ -45,7 +41,7 @@ const EmissionGasFields: React.FunctionComponent<Props> = ({
             uiSchema={uiSchema.annualEmission}
             formData={formData.annualEmission}
             autofocus={autofocus}
-            idSchema={idSchema}
+            idSchema={idSchema.annualEmission as IdSchema}
             registry={registry}
             errorSchema={errorSchema?.annualEmission}
             formContext={formContext}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {FieldProps} from 'react-jsonschema-form';
+import {FieldProps, IdSchema} from 'react-jsonschema-form';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {Form, Col} from 'react-bootstrap';
 import {FuelFields_query} from 'FuelFields_query.graphql';
@@ -69,7 +69,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
             uiSchema={uiSchema.quantity}
             formData={formData.quantity}
             autofocus={autofocus}
-            idSchema={idSchema}
+            idSchema={idSchema.quantity as IdSchema}
             registry={registry}
             errorSchema={errorSchema?.annualEmission}
             formContext={formContext}
