@@ -2,6 +2,7 @@ import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
 import {ApplicationDetailsContainer_application} from 'ApplicationDetailsContainer_application.graphql';
+import ApplicationDetailsPdf from 'containers/Applications/ApplicationDetailsPdf';
 import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 
 /*
@@ -32,6 +33,12 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
           query={props.query.query}
         />
       ))}
+      <div style={{textAlign: 'right', marginTop: 20}}>
+        <ApplicationDetailsPdf
+          application={props.application}
+          query={props.query}
+        />
+      </div>
     </div>
   );
 };
@@ -42,6 +49,7 @@ export default createFragmentContainer(ApplicationDetailsComponent, {
       query {
         ...ApplicationDetailsCardItem_query
       }
+      ...ApplicationDetailsPdf_query
     }
   `,
   application: graphql`
@@ -68,6 +76,7 @@ export default createFragmentContainer(ApplicationDetailsComponent, {
           }
         }
       }
+      ...ApplicationDetailsPdf_application
     }
   `
 });

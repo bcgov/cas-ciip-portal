@@ -14,5 +14,52 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
     key="WyJmb3JtX3Jlc3VsdHMiLDExXQ=="
     query={null}
   />
+  <div
+    style={
+      Object {
+        "marginTop": 20,
+        "textAlign": "right",
+      }
+    }
+  >
+    <Relay(ApplicationDetailsPdf)
+      application={
+        Object {
+          " $refType": "ApplicationDetailsContainer_application",
+          "id": "abc",
+          "orderedFormResults": Object {
+            "edges": Array [
+              Object {
+                "node": Object {
+                  " $fragmentRefs": Object {
+                    "ApplicationDetailsCardItem_formResult": true,
+                  },
+                  "id": "WyJmb3JtX3Jlc3VsdHMiLDExXQ==",
+                },
+              },
+            ],
+          },
+          "previousSubmittedRevision": Object {
+            "formResultsByApplicationIdAndVersionNumber": Object {
+              "edges": Object {
+                "node": Object {
+                  "formJsonByFormId": Object {
+                    "slug": "admin",
+                  },
+                  "formResult": Object {},
+                },
+              },
+            },
+          },
+        }
+      }
+      query={
+        Object {
+          " $refType": "ApplicationDetailsContainer_query",
+          "query": null,
+        }
+      }
+    />
+  </div>
 </div>
 `;
