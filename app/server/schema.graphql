@@ -6087,29 +6087,6 @@ input GasPatch {
   updatedBy: String
 }
 
-"""All input for the `importSwrsOrganisationFacility` mutation."""
-input ImportSwrsOrganisationFacilityInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-}
-
-"""The output of our `importSwrsOrganisationFacility` mutation."""
-type ImportSwrsOrganisationFacilityPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
 """All input for the `initApplicationAdministrationFormResult` mutation."""
 input InitApplicationAdministrationFormResultInput {
   """
@@ -6696,12 +6673,6 @@ type Mutation {
     """
     input: DeleteReviewCommentByRowIdInput!
   ): DeleteReviewCommentPayload
-  importSwrsOrganisationFacility(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: ImportSwrsOrganisationFacilityInput!
-  ): ImportSwrsOrganisationFacilityPayload
   initApplicationAdministrationFormResult(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
