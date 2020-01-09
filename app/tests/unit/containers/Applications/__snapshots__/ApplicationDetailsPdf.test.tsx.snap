@@ -1356,7 +1356,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "ui:name": "productUnits",
                     },
                     "productionAllocationFactor": Object {
-                      "ui:name": "productionAllocationFactor",
+                      "ui:col-md": 4,
+                      "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service",
+                      "ui:name": "productAllocationFactor",
                     },
                     "quantity": Object {
                       "ui:name": "quantity",
