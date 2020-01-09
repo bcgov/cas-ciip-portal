@@ -48,15 +48,15 @@ reset client_min_messages;
 
 -- Create a dataset that has one organisation with two facilities in the same reporting year
 insert into swrs.report(id, swrs_report_id, reporting_period_duration, swrs_organisation_id, swrs_facility_id)
-values (1, 1, '2018', 1, 1), (2, 2, '2018', 1, 2);
+values (1, 1, '2018', 42, 1234), (2, 2, '2018', 42, 1235), (3, 3, '2018', 42, 1236);
 
 -- In swrs, an there is one organisation entry per report (i.e. per facility)
 -- Even if those organisations have the same swrs_organisation_id (and are the same entity)
 insert into swrs.organisation(id, report_id, swrs_organisation_id)
-values (1, 1, 1), (2, 2, 1);
+values (1, 1, 42), (2, 2, 42), (3, 3, 42);
 
-insert into swrs.facility(id, report_id, organisation_id, swrs_facility_id)
-values (1, 1, 1, 1), (2, 2, 2, 2);
+insert into swrs.facility(id, report_id, organisation_id, swrs_facility_id, facility_type)
+values (1, 1, 1, 1234, 'LFO'), (2, 2, 2, 1235, 'If_a'), (3, 3, 3, 1236, 'If_b');
 
 select ggircs_portal.import_swrs_organisation_facility();
 
@@ -65,10 +65,12 @@ select is(
   1,
   'The import function only inserts a single organisation record if an organisation has multiple facilties');
 
+
+
 select is(
   (select count(*) from ggircs_portal.facility)::integer,
   2,
-  'The import function imports both facilites belonging to the same organisation');
+  'The import function imports all non-LFO facilites belonging to the same organisation');
 
 
 select finish();
