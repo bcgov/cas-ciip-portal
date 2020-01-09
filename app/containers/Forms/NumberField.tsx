@@ -2,7 +2,7 @@ import React from 'react';
 import NumberFormat from 'react-number-format';
 import {FieldProps} from 'react-jsonschema-form';
 
-const NumberFields: React.FunctionComponent<FieldProps> = ({
+const NumberField: React.FunctionComponent<FieldProps> = ({
   formData,
   onChange
 }) => {
@@ -18,4 +18,4 @@ const NumberFields: React.FunctionComponent<FieldProps> = ({
   );
 };
 
-export default NumberFields;
+export default NumberField;
