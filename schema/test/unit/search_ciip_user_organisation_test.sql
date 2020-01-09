@@ -11,9 +11,9 @@ select has_function(
   'Function search_ciip_user_organisation should exist'
 );
 
--- drop the trigger that adds the user id based on session & add values to the ciip_user_organisation table for testing
--- TODO: find a way to mock the session in tests
-drop trigger _set_user_id on ggircs_portal.ciip_user_organisation;
+-- Mock session sub (required for insert trigger function on ciip_user_organisation)
+set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
+-- insert test data into ciip_user_organisation
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values(1, 1, 'approved');
 
 select set_eq(
