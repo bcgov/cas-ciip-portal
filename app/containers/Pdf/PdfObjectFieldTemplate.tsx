@@ -9,7 +9,6 @@ const PdfObjectFieldTemplate: React.FunctionComponent<ObjectFieldTemplateProps> 
         prop =>
           prop.content && <View key={prop.content.key}>{prop.content}</View>
       )}
-      {!props.properties && '\n'}
     </>
   );
 };
