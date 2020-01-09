@@ -61,8 +61,11 @@ createdb() {
 actions=()
 
 sqitch_revert() {
-  _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1 && sqitch revert -y "$database"
-  return 0
+  echo "Revert the $database database"
+  if _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1; then
+    sqitch revert -y "$database" || return 0;
+  fi
+  return 0;
 }
 
 deploySwrs() {
