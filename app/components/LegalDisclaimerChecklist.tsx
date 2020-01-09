@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import Checkbox from "./Checkbox";
+import React, {useState} from 'react';
+import Checkbox from './Checkbox';
 
 const consents = [
-  "I give permission to use SWIM data to start a CIIP application.",
-  "I understand that the company’s carbon tax calculation might not match how CAS does the calculation.",
-  "I understand that it may delay if the information on CIIP application does not match SWIM."
+  'I give permission to use SWIM data to start a CIIP application.',
+  'I understand that the company’s carbon tax calculation might not match how CAS does the calculation.',
+  'I understand that it may delay if the information on CIIP application does not match SWIM.'
 ];
 
 const noop = () => {};
 
-const LegalDisclaimerChecklist = (props: { onChange? }) => {
-  const { onChange = noop } = props;
+const LegalDisclaimerChecklist = (props: {onChange?}) => {
+  const {onChange = noop} = props;
 
   const [selected, setSelected] = useState([]);
 

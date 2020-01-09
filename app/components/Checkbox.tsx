@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
 
 const noop = () => {};
 
-const Checkbox = (props: { label; defaultValue?; onCheck? }) => {
-  const { label, defaultValue = false, onCheck = noop } = props;
+const Checkbox = (props: {label; defaultValue?; onCheck?}) => {
+  const {label, defaultValue = false, onCheck = noop} = props;
 
   const [checked, setChecked] = useState(defaultValue);
 

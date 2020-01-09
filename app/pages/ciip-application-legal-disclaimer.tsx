@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { graphql } from "react-relay";
-import { Button, Card, Alert } from "react-bootstrap";
-import { ciipApplicationLegalDisclaimerQueryResponse } from "ciipApplicationLegalDisclaimerQuery.graphql";
-import { CiipPageComponentProps } from "next-env";
-import Link from "next/link";
-import DefaultLayout from "../layouts/default-layout";
-import LegalDisclaimerChecklist from "../components/LegalDisclaimerChecklist";
+import React, {Component} from 'react';
+import {graphql} from 'react-relay';
+import {Button, Card, Alert} from 'react-bootstrap';
+import {ciipApplicationLegalDisclaimerQueryResponse} from 'ciipApplicationLegalDisclaimerQuery.graphql';
+import {CiipPageComponentProps} from 'next-env';
+import Link from 'next/link';
+import DefaultLayout from '../layouts/default-layout';
+import LegalDisclaimerChecklist from '../components/LegalDisclaimerChecklist';
 
 interface Props extends CiipPageComponentProps {
-  query: ciipApplicationLegalDisclaimerQueryResponse["query"];
+  query: ciipApplicationLegalDisclaimerQueryResponse['query'];
 }
 class ciipApplicationLegalDisclaimer extends Component<Props> {
   static query = graphql`
@@ -26,13 +26,13 @@ class ciipApplicationLegalDisclaimer extends Component<Props> {
   };
 
   render() {
-    const { allChecked } = this.state;
-    const { query, router } = this.props;
-    const { session } = query || {};
-    const { query: queryparams } = router;
+    const {allChecked} = this.state;
+    const {query, router} = this.props;
+    const {session} = query || {};
+    const {query: queryparams} = router;
 
-    const { applicationId, version, hasSwrsReport } = queryparams;
-    const hasImported = hasSwrsReport === "true";
+    const {applicationId, version, hasSwrsReport} = queryparams;
+    const hasImported = hasSwrsReport === 'true';
 
     let ImportMessage = null;
 
@@ -55,7 +55,7 @@ class ciipApplicationLegalDisclaimer extends Component<Props> {
         <Card className="mb-2">
           <Card.Body>
             <Card.Title className="blue">Legal Disclaimer</Card.Title>
-            <Card.Text style={{ padding: "10px 0 10px 0" }}>
+            <Card.Text style={{padding: '10px 0 10px 0'}}>
               Note: The application must be submitted by the operator of the
               reporting operation or, if there is more than one operator, the
               designated operator. By submitting the application the applicant
@@ -71,11 +71,11 @@ class ciipApplicationLegalDisclaimer extends Component<Props> {
         {ImportMessage}
 
         <LegalDisclaimerChecklist
-          onChange={allChecked => this.setState({ allChecked })}
+          onChange={allChecked => this.setState({allChecked})}
         />
         <Link
           href={{
-            pathname: "/ciip-application",
+            pathname: '/ciip-application',
             query: {
               applicationId,
               version
