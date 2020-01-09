@@ -77,13 +77,63 @@ const customFields = (showDiff, diffPathArray, diffArray, handleEnums) => {
     production: props => (
       <ProductionFields query={props.formContext.query} {...props} />
     ),
-    NumberField: props => (
-      <NumberFormat
-        thousandSeparator
-        displayType="text"
-        value={props.formData}
-      />
-    )
+    NumberField: props => {
+      if (
+        props.formData === null ||
+        props.formData === undefined ||
+        props.formData === ''
+      )
+        return <i>[No Data Entered]</i>;
+
+      let prevValue;
+      let hasDiff = false;
+      if (showDiff) {
+        hasDiff = diffPathArray.includes(
+          props.idSchema.$id.replace(/^root_/g, '')
+        );
+        prevValue =
+          diffArray[
+            diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
+          ];
+        if (hasDiff) {
+          prevValue = handleEnums(props, false, prevValue);
+          const currentValue = handleEnums(props, true, prevValue);
+
+          return (
+            <>
+              <span style={{backgroundColor: '#ffeef0'}}>
+                {prevValue ? (
+                  <NumberFormat
+                    thousandSeparator
+                    displayType="text"
+                    value={prevValue}
+                  />
+                ) : (
+                  <i>[No Data Entered]</i>
+                )}
+              </span>
+              &nbsp;---&gt;&nbsp;
+              <span style={{backgroundColor: '#e6ffed'}}>
+                {currentValue ? (
+                  <NumberFormat
+                    thousandSeparator
+                    displayType="text"
+                    value={currentValue}
+                  />
+                ) : (
+                  <i>[No Data Entered]</i>
+                )}
+              </span>
+            </>
+          );
+        }
+      }
+
+      const value = handleEnums(props, true, prevValue);
+      return (
+        <NumberFormat thousandSeparator displayType="text" value={value} />
+      );
+    }
   };
   return CUSTOM_FIELDS;
 };

@@ -1339,7 +1339,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 onKeyDown={[Function]}
                 onMouseUp={[Function]}
                 type="text"
-                value="40,000,000"
+                value="-40,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1387,7 +1387,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 onKeyDown={[Function]}
                 onMouseUp={[Function]}
                 type="text"
-                value="60,000,000"
+                value="-60,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1411,7 +1411,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 onKeyDown={[Function]}
                 onMouseUp={[Function]}
                 type="text"
-                value="20,000,000"
+                value="-20,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1455,7 +1455,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 onKeyDown={[Function]}
                 onMouseUp={[Function]}
                 type="text"
-                value="40,000,000"
+                value="-40,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1503,7 +1503,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 onKeyDown={[Function]}
                 onMouseUp={[Function]}
                 type="text"
-                value="60,000,000"
+                value="-60,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1527,7 +1527,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 onKeyDown={[Function]}
                 onMouseUp={[Function]}
                 type="text"
-                value="20,000,000"
+                value="-20,000,000"
               />
               <span
                 className="font-italic text-muted"
@@ -1783,7 +1783,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         onKeyDown={[Function]}
                                         onMouseUp={[Function]}
                                         type="text"
-                                        value="80,000,000"
+                                        value="-80,000,000"
                                       />
                                     </div>
                                     <div
@@ -2099,7 +2099,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         onKeyDown={[Function]}
                                         onMouseUp={[Function]}
                                         type="text"
-                                        value="20,000,000"
+                                        value="-20,000,000"
                                       />
                                     </div>
                                     <div

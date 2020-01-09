@@ -720,7 +720,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                       <div
                         className="jsx-1147644460 summary-item"
                       >
-                        0
+                        <span>
+                          0
+                        </span>
                       </div>
                     </div>
                     <div
@@ -738,7 +740,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                       <div
                         className="jsx-1147644460 summary-item"
                       >
-                        -60000000
+                        <span>
+                          -60,000,000
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -909,9 +913,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                         Tonnes:
                                       </strong>
                                        
-                                      <span>
-                                        -60,000,000
-                                      </span>
+                                      -60000000
                                     </div>
                                     <div
                                       className="col-md-3"
@@ -921,9 +923,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                       >
                                         Tonnes(CO2e): 
                                       </strong>
-                                      <span>
-                                        -80,000,000
-                                      </span>
+                                      -80000000
                                     </div>
                                   </div>
                                 </div>
@@ -987,9 +987,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                         Tonnes:
                                       </strong>
                                        
-                                      <span>
-                                        -80,000,000
-                                      </span>
+                                      -80000000
                                     </div>
                                     <div
                                       className="col-md-3"
@@ -999,9 +997,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                       >
                                         Tonnes(CO2e): 
                                       </strong>
-                                      <span>
-                                        0
-                                      </span>
+                                      0
                                     </div>
                                   </div>
                                 </div>
@@ -1065,9 +1061,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                         Tonnes:
                                       </strong>
                                        
-                                      <span>
-                                        0
-                                      </span>
+                                      0
                                     </div>
                                     <div
                                       className="col-md-3"
@@ -1077,9 +1071,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                       >
                                         Tonnes(CO2e): 
                                       </strong>
-                                      <span>
-                                        -20,000,000
-                                      </span>
+                                      -20000000
                                     </div>
                                   </div>
                                 </div>
@@ -1190,9 +1182,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                         Tonnes:
                                       </strong>
                                        
-                                      <span>
-                                        -20,000,000
-                                      </span>
+                                      -20000000
                                     </div>
                                     <div
                                       className="col-md-3"
@@ -1202,9 +1192,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                       >
                                         Tonnes(CO2e): 
                                       </strong>
-                                      <span>
-                                        -40,000,000
-                                      </span>
+                                      -40000000
                                     </div>
                                   </div>
                                 </div>
@@ -1315,9 +1303,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                         Tonnes:
                                       </strong>
                                        
-                                      <span>
-                                        -40,000,000
-                                      </span>
+                                      -40000000
                                     </div>
                                     <div
                                       className="col-md-3"
@@ -1327,9 +1313,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                       >
                                         Tonnes(CO2e): 
                                       </strong>
-                                      <span>
-                                        -60,000,000
-                                      </span>
+                                      -60000000
                                     </div>
                                   </div>
                                 </div>
@@ -1393,9 +1377,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                         Tonnes:
                                       </strong>
                                        
-                                      <span>
-                                        -60,000,000
-                                      </span>
+                                      -60000000
                                     </div>
                                     <div
                                       className="col-md-3"
@@ -1405,9 +1387,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                       >
                                         Tonnes(CO2e): 
                                       </strong>
-                                      <span>
-                                        -80,000,000
-                                      </span>
+                                      -80000000
                                     </div>
                                   </div>
                                 </div>
@@ -1471,9 +1451,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                         Tonnes:
                                       </strong>
                                        
-                                      <span>
-                                        -80,000,000
-                                      </span>
+                                      -80000000
                                     </div>
                                     <div
                                       className="col-md-3"
@@ -1483,9 +1461,7 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                                       >
                                         Tonnes(CO2e): 
                                       </strong>
-                                      <span>
-                                        0
-                                      </span>
+                                      0
                                     </div>
                                   </div>
                                 </div>
