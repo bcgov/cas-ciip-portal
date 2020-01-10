@@ -149,13 +149,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
               className="mx-3 my-2 w-auto"
               onChange={changeInput}
             />
-            <div
-              style={{
-                maxHeight: '250px',
-                overflow: 'hidden',
-                overflowY: 'scroll'
-              }}
-            >
+            <div className="org-scroll">
               {allOrganisations.edges.map(({node}) => {
                 return (
                   <Organisation
@@ -167,6 +161,15 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
                   />
                 );
               })}
+              <style jsx>
+                {`
+                  .org-scroll {
+                    max-height: 250px;
+                    overflow: hidden;
+                    overflow-y: scroll;
+                  }
+                `}
+              </style>
             </div>
           </Dropdown.Menu>
         </Dropdown>
