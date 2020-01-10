@@ -68,9 +68,6 @@
       "productUnits": {
         "ui:name": "productUnits"
       },
-      "productionAllocationFactor": {
-        "ui:name": "productionAllocationFactor"
-      },
       "paymentAllocationFactor": {
         "ui:name": "paymentAllocationFactor"
       },

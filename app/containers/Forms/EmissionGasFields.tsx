@@ -1,11 +1,26 @@
 import React from 'react';
-import {FieldProps} from 'react-jsonschema-form';
+import {FieldProps, IdSchema} from 'react-jsonschema-form';
 import {Form, Col} from 'react-bootstrap';
+import {JSONSchema6} from 'json-schema';
+import NumberFormat from 'react-number-format';
 
 const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   formData,
-  onChange
+  onChange,
+  registry,
+  autofocus,
+  idSchema,
+  errorSchema,
+  formContext,
+  disabled,
+  readonly,
+  schema,
+  uiSchema
 }) => {
+  const {
+    properties: {annualEmission: annualEmissionSchema}
+  } = schema as {properties: Record<string, JSONSchema6>};
+
   const hideRow = formData.annualEmission > 0 ? 'hidden' : 'visible';
   return (
     <Col xs={12} md={12} className={`${hideRow} emission-row`}>
@@ -20,31 +35,41 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
           </Col>
         </Col>
         <Col md={3}>
-          <Form.Control
-            type="number"
-            value={formData.annualEmission}
-            onChange={e => {
+          <registry.fields.NumberField
+            required
+            schema={annualEmissionSchema}
+            uiSchema={uiSchema.annualEmission}
+            formData={formData.annualEmission}
+            autofocus={autofocus}
+            idSchema={idSchema.annualEmission as IdSchema}
+            registry={registry}
+            errorSchema={errorSchema?.annualEmission}
+            formContext={formContext}
+            disabled={disabled}
+            readonly={readonly}
+            name="annualEmission"
+            onChange={value =>
               onChange({
                 ...formData,
-                annualEmission: Number(
-                  (e.nativeEvent.target as HTMLInputElement).value
-                ),
-                annualCO2e:
-                  Number((e.nativeEvent.target as HTMLInputElement).value) *
-                  formData.gwp
-              });
-            }}
+                annualEmission: value,
+                annualCO2e: value * formData.gwp
+              })
+            }
           />
         </Col>
-        <Col md={2} style={{textAlign: 'center', marginTop: '5px'}}>
+        <Col md={2} style={{textAlign: 'center'}}>
           <ul className="gwp">
             <li>X</li>
             <li>{formData.gwp}</li>
             <li>=</li>
           </ul>
         </Col>
-        <Col md={3}>
-          <Form.Control disabled type="number" value={formData.annualCO2e} />
+        <Col md={3} style={{textAlign: 'center'}}>
+          <NumberFormat
+            thousandSeparator
+            displayType="text"
+            value={formData.annualCO2e}
+          />
         </Col>
       </Form.Row>
       <style jsx>{`

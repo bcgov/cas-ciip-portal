@@ -720,7 +720,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                       <div
                         className="jsx-1147644460 summary-item"
                       >
-                        0
+                        <span>
+                          0
+                        </span>
                       </div>
                     </div>
                     <div
@@ -738,7 +740,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                       <div
                         className="jsx-1147644460 summary-item"
                       >
-                        -60000000
+                        <span>
+                          -60,000,000
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -1579,7 +1583,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                     <div
                       className="jsx-1147644460 summary-item"
                     >
-                      -80000000
+                      <span>
+                        -80,000,000
+                      </span>
                     </div>
                   </div>
                   <div
@@ -1670,7 +1676,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                     <div
                       className="jsx-1147644460 summary-item"
                     >
-                      -60000000
+                      <span>
+                        -60,000,000
+                      </span>
                     </div>
                   </div>
                   <div
@@ -1761,7 +1769,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                     <div
                       className="jsx-1147644460 summary-item"
                     >
-                      -40000000
+                      <span>
+                        -40,000,000
+                      </span>
                     </div>
                   </div>
                   <div
@@ -1897,7 +1907,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                   <div
                     className="jsx-1147644460 summary-item"
                   >
-                    -60000000
+                    <span>
+                      -60,000,000
+                    </span>
                   </div>
                 </div>
                 <div
@@ -1915,7 +1927,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                   <div
                     className="jsx-1147644460 summary-item"
                   >
-                    -20000000
+                    <span>
+                      -20,000,000
+                    </span>
                   </div>
                 </div>
                 <div
@@ -1933,7 +1947,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                   <div
                     className="jsx-1147644460 summary-item"
                   >
-                    -80000000
+                    <span>
+                      -80,000,000
+                    </span>
                   </div>
                 </div>
                 <div
@@ -1951,7 +1967,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                   <div
                     className="jsx-1147644460 summary-item"
                   >
-                    -40000000
+                    <span>
+                      -40,000,000
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1984,7 +2002,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                   <div
                     className="jsx-1147644460 summary-item"
                   >
-                    -60000000
+                    <span>
+                      -60,000,000
+                    </span>
                   </div>
                 </div>
                 <div
@@ -2002,7 +2022,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                   <div
                     className="jsx-1147644460 summary-item"
                   >
-                    -20000000
+                    <span>
+                      -20,000,000
+                    </span>
                   </div>
                 </div>
                 <div
@@ -2020,7 +2042,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                   <div
                     className="jsx-1147644460 summary-item"
                   >
-                    -80000000
+                    <span>
+                      -80,000,000
+                    </span>
                   </div>
                 </div>
                 <div
@@ -2038,7 +2062,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                   <div
                     className="jsx-1147644460 summary-item"
                   >
-                    -40000000
+                    <span>
+                      -40,000,000
+                    </span>
                   </div>
                 </div>
               </div>
@@ -2151,7 +2177,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                     <div
                       className="jsx-1147644460 summary-item"
                     >
-                      -69999970
+                      <span>
+                        -69,999,970
+                      </span>
                     </div>
                   </div>
                   <div
@@ -2169,7 +2197,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                     <div
                       className="jsx-1147644460 summary-item"
                     >
-                      -20000000
+                      <span>
+                        -20,000,000
+                      </span>
                     </div>
                   </div>
                   <div
@@ -2242,7 +2272,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                     <div
                       className="jsx-1147644460 summary-item"
                     >
-                      -79999980
+                      <span>
+                        -79,999,980
+                      </span>
                     </div>
                   </div>
                   <div
@@ -2260,7 +2292,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                     <div
                       className="jsx-1147644460 summary-item"
                     >
-                      -40000000
+                      <span>
+                        -40,000,000
+                      </span>
                     </div>
                   </div>
                   <div
@@ -2333,7 +2367,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                     <div
                       className="jsx-1147644460 summary-item"
                     >
-                      -89999990
+                      <span>
+                        -89,999,990
+                      </span>
                     </div>
                   </div>
                   <div
@@ -2351,7 +2387,9 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
                     <div
                       className="jsx-1147644460 summary-item"
                     >
-                      -60000000
+                      <span>
+                        -60,000,000
+                      </span>
                     </div>
                   </div>
                   <div
