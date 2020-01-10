@@ -16,7 +16,7 @@ create type ggircs_portal.fuel_data as (
 
 
 create or replace function ggircs_portal.get_swrs_fuel_data(facility_id integer,
-                                                            reporting_year varchar(1000))
+                                                            reporting_year integer)
   returns setof ggircs_portal.fuel_data
 as
 $body$

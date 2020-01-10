@@ -7,7 +7,7 @@ begin;
       report_id integer ,
       swrs_report_id integer ,
       swrs_organisation_id integer ,
-      reporting_year varchar(1000),
+      reporting_year integer,
       first_name varchar(1000),
       last_name varchar(1000),
       position_title varchar(1000),
@@ -24,7 +24,7 @@ begin;
 
   create or replace function ggircs_portal.get_swrs_operator_contact_data(
     facility_id integer ,
-    reporting_year varchar(1000)
+    reporting_year integer
   )
   returns ggircs_portal.operator_contact_data
   as

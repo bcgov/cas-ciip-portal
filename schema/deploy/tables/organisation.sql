@@ -9,7 +9,7 @@ begin;
       report_id integer ,
       swrs_report_id integer ,
       swrs_organisation_id integer ,
-      reporting_year varchar(1000),
+      reporting_year integer,
       operator_name varchar(1000),
       operator_trade_name varchar(1000),
       duns varchar(1000),

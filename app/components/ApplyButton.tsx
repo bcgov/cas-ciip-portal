@@ -110,7 +110,7 @@ export default createFragmentContainer(ApplyButton, {
       applicationRevisionStatus
       facilityByFacilityId {
         rowId
-        hasSwrsReport(reportingYear: "2018")
+        hasSwrsReport(reportingYear: 2018)
       }
     }
   `

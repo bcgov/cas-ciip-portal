@@ -8,7 +8,7 @@ begin;
       swrs_report_id integer ,
       swrs_facility_id integer ,
       swrs_organisation_id integer ,
-      reporting_year varchar(1000),
+      reporting_year integer,
       facility_name varchar(1000),
       facility_type varchar(1000),
       bcghgid varchar(1000),
@@ -25,7 +25,7 @@ begin;
 
   create or replace function ggircs_portal.get_swrs_facility_data(
     facility_id integer ,
-    reporting_year varchar(1000)
+    reporting_year integer
   )
   returns ggircs_portal.facility_data
   as

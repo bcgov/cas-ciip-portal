@@ -2,7 +2,7 @@
 
 begin;
 
-create or replace function ggircs_portal.init_application_fuel_form_result(facility_id int, reporting_year varchar(1000))
+create or replace function ggircs_portal.init_application_fuel_form_result(facility_id int, reporting_year integer)
 returns jsonb
 as $function$
 declare
