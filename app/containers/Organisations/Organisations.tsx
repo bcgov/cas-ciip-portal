@@ -149,17 +149,25 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
               className="mx-3 my-2 w-auto"
               onChange={changeInput}
             />
-            {allOrganisations.edges.map(({node}) => {
-              return (
-                <Organisation
-                  key={node.id}
-                  select
-                  organisation={node}
-                  orgInput={props.orgInput}
-                  selectOrg={selectOrg}
-                />
-              );
-            })}
+            <div
+              style={{
+                maxHeight: '250px',
+                overflow: 'hidden',
+                overflowY: 'scroll'
+              }}
+            >
+              {allOrganisations.edges.map(({node}) => {
+                return (
+                  <Organisation
+                    key={node.id}
+                    select
+                    organisation={node}
+                    orgInput={props.orgInput}
+                    selectOrg={selectOrg}
+                  />
+                );
+              })}
+            </div>
           </Dropdown.Menu>
         </Dropdown>
       )}
