@@ -35,69 +35,18 @@ exports[`It matches the last accepted Snapshot 1`] = `
           noGutters={false}
         >
           <Col>
-            <Dropdown
-              navbar={false}
+            <Link
+              href="/admin/admin"
             >
-              <DropdownToggle
-                id="dropdown-basic"
-                variant="primary"
+              <Button
+                active={false}
+                disabled={false}
+                type="button"
+                variant="outline-light"
               >
-                Temporary Links
-              </DropdownToggle>
-              <DropdownMenu
-                alignRight={false}
-                flip={true}
-              >
-                <DropdownItem
-                  as={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "displayName": "SafeAnchor",
-                      "render": [Function],
-                    }
-                  }
-                  disabled={false}
-                >
-                  <Link
-                    href="/reporter/user-dashboard"
-                  >
-                    Industry User: Dashboard
-                  </Link>
-                </DropdownItem>
-                <DropdownItem
-                  as={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "displayName": "SafeAnchor",
-                      "render": [Function],
-                    }
-                  }
-                  disabled={false}
-                >
-                  <Link
-                    href="/analyst/applications"
-                  >
-                    Analyst: Applications list
-                  </Link>
-                </DropdownItem>
-                <DropdownItem
-                  as={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "displayName": "SafeAnchor",
-                      "render": [Function],
-                    }
-                  }
-                  disabled={false}
-                >
-                  <Link
-                    href="/admin/products-benchmarks"
-                  >
-                    Admin: Create Products and Benchmarks
-                  </Link>
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+                Admin
+              </Button>
+            </Link>
           </Col>
           <div
             className="jsx-2807878339"

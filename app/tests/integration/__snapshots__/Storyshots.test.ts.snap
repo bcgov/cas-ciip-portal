@@ -47,22 +47,15 @@ Array [
                 <div
                   className="col"
                 >
-                  <div
-                    className="dropdown"
-                    onKeyDown={[Function]}
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
                   >
-                    <button
-                      aria-expanded={false}
-                      aria-haspopup={true}
-                      className="dropdown-toggle btn btn-primary"
-                      disabled={false}
-                      id="dropdown-basic"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      Temporary Links
-                    </button>
-                  </div>
+                    Admin
+                  </button>
                 </div>
                 <div
                   className="jsx-2807878339"
@@ -128,39 +121,205 @@ Array [
         className="content narrow container"
       >
         <div
-          className="jsx-548205736"
+          className="jsx-2718615018"
         >
           <div
-            className="btn-group-vertical"
-            role="group"
+            className="row"
           >
-            <button
-              className="buttons btn btn-primary btn-lg"
-              disabled={false}
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              type="button"
+            <div
+              className="admin-control-card card"
             >
-              View Products and Benchmarks
-            </button>
-            <button
-              className="buttons btn btn-primary btn-lg"
-              disabled={false}
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              type="button"
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  User Management
+                </div>
+                <p
+                  className="card-text"
+                >
+                  Edit user permissions, grant/revoke access etc.
+                </p>
+              </div>
+              <div
+                className="list-group list-group-flush"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    View all users
+                  </a>
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Organisation access requests
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              className="admin-control-card card"
             >
-              View Users
-            </button>
-            <button
-              className="buttons btn btn-primary btn-lg"
-              disabled={false}
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              type="button"
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  Application Management
+                </div>
+                <p
+                  className="card-text"
+                >
+                  View Application details, update applications etc.
+                </p>
+              </div>
+              <div
+                className="list-group list-group-flush"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    View all applications
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              className="admin-control-card card"
             >
-              View Access Requests
-            </button>
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  Program and Data management
+                </div>
+                <p
+                  className="card-text"
+                >
+                  Update program parameters, view program insights etc.
+                </p>
+              </div>
+              <div
+                className="list-group list-group-flush"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Edit Products and Benchmarks
+                  </a>
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="https://cas-metabase.pathfinder.gov.bc.ca/"
+                    target="_blank"
+                  >
+                    Data and Insights (Metabase)
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              className="admin-control-card card"
+            >
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  DevOps Management
+                </div>
+                <p
+                  className="card-text"
+                >
+                  View and Perform DevOps actions, e.g. deploy new features etc.
+                </p>
+              </div>
+              <div
+                className="list-group list-group-flush"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="https://cas-shipit.pathfinder.gov.bc.ca/"
+                    target="_blank"
+                  >
+                    Deploy new features (Shipit)
+                  </a>
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    target="_blank"
+                  >
+                    Airflow
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -317,22 +476,15 @@ Array [
                 <div
                   className="col"
                 >
-                  <div
-                    className="dropdown"
-                    onKeyDown={[Function]}
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
                   >
-                    <button
-                      aria-expanded={false}
-                      aria-haspopup={true}
-                      className="dropdown-toggle btn btn-primary"
-                      disabled={false}
-                      id="dropdown-basic"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      Temporary Links
-                    </button>
-                  </div>
+                    Admin
+                  </button>
                 </div>
                 <div
                   className="jsx-2807878339"
@@ -565,22 +717,15 @@ Array [
                 <div
                   className="col"
                 >
-                  <div
-                    className="dropdown"
-                    onKeyDown={[Function]}
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
                   >
-                    <button
-                      aria-expanded={false}
-                      aria-haspopup={true}
-                      className="dropdown-toggle btn btn-primary"
-                      disabled={false}
-                      id="dropdown-basic"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      Temporary Links
-                    </button>
-                  </div>
+                    Admin
+                  </button>
                 </div>
                 <div
                   className="jsx-2807878339"
@@ -974,22 +1119,15 @@ Array [
                 <div
                   className="col"
                 >
-                  <div
-                    className="dropdown"
-                    onKeyDown={[Function]}
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
                   >
-                    <button
-                      aria-expanded={false}
-                      aria-haspopup={true}
-                      className="dropdown-toggle btn btn-primary"
-                      disabled={false}
-                      id="dropdown-basic"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      Temporary Links
-                    </button>
-                  </div>
+                    Admin
+                  </button>
                 </div>
                 <div
                   className="jsx-2807878339"
@@ -1441,22 +1579,15 @@ Array [
                 <div
                   className="col"
                 >
-                  <div
-                    className="dropdown"
-                    onKeyDown={[Function]}
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
                   >
-                    <button
-                      aria-expanded={false}
-                      aria-haspopup={true}
-                      className="dropdown-toggle btn btn-primary"
-                      disabled={false}
-                      id="dropdown-basic"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      Temporary Links
-                    </button>
-                  </div>
+                    Admin
+                  </button>
                 </div>
                 <div
                   className="jsx-2807878339"
@@ -1725,22 +1856,15 @@ Array [
                 <div
                   className="col"
                 >
-                  <div
-                    className="dropdown"
-                    onKeyDown={[Function]}
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
                   >
-                    <button
-                      aria-expanded={false}
-                      aria-haspopup={true}
-                      className="dropdown-toggle btn btn-primary"
-                      disabled={false}
-                      id="dropdown-basic"
-                      onClick={[Function]}
-                      type="button"
-                    >
-                      Temporary Links
-                    </button>
-                  </div>
+                    Admin
+                  </button>
                 </div>
                 <div
                   className="jsx-2807878339"
