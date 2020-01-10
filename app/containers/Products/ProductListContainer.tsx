@@ -83,7 +83,7 @@ export default createRefetchContainer(
         ) {
         ...ProductRowItemContainer_query
         searchProducts(
-          first: 20
+          first: 2147483647
           searchField: $searchField
           searchValue: $searchValue
           orderByField: $orderByField
