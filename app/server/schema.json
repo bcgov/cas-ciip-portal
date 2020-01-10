@@ -2925,7 +2925,7 @@
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "String",
+                    "name": "Int",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -2962,7 +2962,7 @@
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "String",
+                    "name": "Int",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -3045,7 +3045,7 @@
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "String",
+                    "name": "Int",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -3082,7 +3082,7 @@
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "String",
+                    "name": "Int",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -3115,7 +3115,7 @@
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "String",
+                    "name": "Int",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -11857,7 +11857,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -12066,7 +12066,7 @@
               "description": "Checks for equality with the object’s `reportingYear` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
@@ -12700,7 +12700,7 @@
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
-                    "name": "String",
+                    "name": "Int",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -12824,7 +12824,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -18572,7 +18572,7 @@
               "description": "Checks for equality with the object’s `reportingYear` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
@@ -20052,7 +20052,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -20496,7 +20496,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -20675,7 +20675,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -20964,7 +20964,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -27057,7 +27057,7 @@
               "description": "the reporting year",
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
@@ -28395,7 +28395,7 @@
               "description": "the reporting year",
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
@@ -32851,7 +32851,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "String",
+                  "name": "Int",
                   "ofType": null
                 }
               },
@@ -32947,7 +32947,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "String",
+                  "name": "Int",
                   "ofType": null
                 }
               },
@@ -33043,7 +33043,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "String",
+                  "name": "Int",
                   "ofType": null
                 }
               },
@@ -36079,7 +36079,7 @@
               "description": "the reporting year",
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
@@ -37680,7 +37680,7 @@
               "description": "the reporting year",
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null

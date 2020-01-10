@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.facility_has_swrs_report(ggircs_portal.facility, varchar);
+drop function ggircs_portal.facility_has_swrs_report(ggircs_portal.facility, integer);
 
 commit;

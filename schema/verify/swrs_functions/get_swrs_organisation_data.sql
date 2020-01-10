@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.get_swrs_organisation_data(integer, varchar)'::regprocedure);
+select pg_get_functiondef('ggircs_portal.get_swrs_organisation_data(integer, integer)'::regprocedure);
 
 rollback;

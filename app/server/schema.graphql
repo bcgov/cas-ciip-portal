@@ -4694,7 +4694,7 @@ type Facility implements Node {
 
   """type of facility based on emission quantity"""
   facilityType: String
-  hasSwrsReport(reportingYear: String): Boolean
+  hasSwrsReport(reportingYear: Int): Boolean
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -4723,7 +4723,7 @@ type Facility implements Node {
   reportId: Int
 
   """the reporting year"""
-  reportingYear: String
+  reportingYear: Int
 
   """unique id for the facility"""
   rowId: Int!
@@ -4786,7 +4786,7 @@ input FacilityCondition {
   reportId: Int
 
   """Checks for equality with the object’s `reportingYear` field."""
-  reportingYear: String
+  reportingYear: Int
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
@@ -4815,7 +4815,7 @@ type FacilityDatum {
   naicsClassification: String
   naicsCode: Int
   reportId: Int
-  reportingYear: String
+  reportingYear: Int
   swrsFacilityId: Int
   swrsOrganisationId: Int
   swrsReportId: Int
@@ -4866,7 +4866,7 @@ input FacilityInput {
   reportId: Int
 
   """the reporting year"""
-  reportingYear: String
+  reportingYear: Int
 
   """swrs facility id from swrs"""
   swrsFacilityId: Int
@@ -4925,7 +4925,7 @@ input FacilityPatch {
   reportId: Int
 
   """the reporting year"""
-  reportingYear: String
+  reportingYear: Int
 
   """swrs facility id from swrs"""
   swrsFacilityId: Int
@@ -4955,7 +4955,7 @@ type FacilitySearchResult {
   facilityName: String
   facilityPostalCode: String
   organisationName: String
-  reportingYear: String
+  reportingYear: Int
   rowId: Int
 }
 
@@ -6118,7 +6118,7 @@ input InitApplicationAdministrationFormResultInput {
   """
   clientMutationId: String
   facilityId: Int!
-  reportingYear: String!
+  reportingYear: Int!
 }
 
 """The output of our `initApplicationAdministrationFormResult` mutation."""
@@ -6144,7 +6144,7 @@ input InitApplicationEmissionFormResultInput {
   """
   clientMutationId: String
   facilityId: Int!
-  reportingYear: String!
+  reportingYear: Int!
 }
 
 """The output of our `initApplicationEmissionFormResult` mutation."""
@@ -6170,7 +6170,7 @@ input InitApplicationFuelFormResultInput {
   """
   clientMutationId: String
   facilityId: Int!
-  reportingYear: String!
+  reportingYear: Int!
 }
 
 """The output of our `initApplicationFuelFormResult` mutation."""
@@ -7083,7 +7083,7 @@ type OperatorContactDatum {
   lastName: String
   positionTitle: String
   reportId: Int
-  reportingYear: String
+  reportingYear: Int
   swrsOrganisationId: Int
   swrsReportId: Int
   telephone: String
@@ -7187,7 +7187,7 @@ type Organisation implements Node {
   reportId: Int
 
   """the reporting year"""
-  reportingYear: String
+  reportingYear: Int
 
   """unique if for the organisation"""
   rowId: Int!
@@ -7235,7 +7235,7 @@ input OrganisationCondition {
   reportId: Int
 
   """Checks for equality with the object’s `reportingYear` field."""
-  reportingYear: String
+  reportingYear: Int
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
@@ -7258,7 +7258,7 @@ type OrganisationDatum {
   operatorProvince: String
   operatorTradeName: String
   reportId: Int
-  reportingYear: String
+  reportingYear: Int
   swrsOrganisationId: Int
   swrsReportId: Int
 }
@@ -7296,7 +7296,7 @@ input OrganisationInput {
   reportId: Int
 
   """the reporting year"""
-  reportingYear: String
+  reportingYear: Int
 
   """swrs organisation id"""
   swrsOrganisationId: Int
@@ -7340,7 +7340,7 @@ input OrganisationPatch {
   reportId: Int
 
   """the reporting year"""
-  reportingYear: String
+  reportingYear: Int
 
   """swrs organisation id"""
   swrsOrganisationId: Int
@@ -8634,9 +8634,9 @@ type Query implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
-    reportingYear: String
+    reportingYear: Int
   ): EmissionDataConnection!
-  getSwrsFacilityData(facilityId: Int, reportingYear: String): FacilityDatum
+  getSwrsFacilityData(facilityId: Int, reportingYear: Int): FacilityDatum
 
   """Reads and enables pagination through a set of `FuelDatum`."""
   getSwrsFuelData(
@@ -8658,10 +8658,10 @@ type Query implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
-    reportingYear: String
+    reportingYear: Int
   ): FuelDataConnection!
-  getSwrsOperatorContactData(facilityId: Int, reportingYear: String): OperatorContactDatum
-  getSwrsOrganisationData(facilityId: Int, reportingYear: String): OrganisationDatum
+  getSwrsOperatorContactData(facilityId: Int, reportingYear: Int): OperatorContactDatum
+  getSwrsOrganisationData(facilityId: Int, reportingYear: Int): OrganisationDatum
 
   """
   The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
