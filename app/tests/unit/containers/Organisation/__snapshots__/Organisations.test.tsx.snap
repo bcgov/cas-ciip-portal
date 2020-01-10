@@ -62,6 +62,15 @@ exports[`Organisations should render no organisations if the user has not reques
         onChange={[Function]}
         placeholder="Search..."
       />
+      <div
+        className="jsx-1652238216 org-scroll"
+      >
+        <JSXStyle
+          id="1652238216"
+        >
+          .org-scroll.jsx-1652238216{max-height:250px;overflow:hidden;overflow-y:scroll;}
+        </JSXStyle>
+      </div>
     </DropdownMenu>
   </Dropdown>
   <br />
@@ -187,6 +196,15 @@ exports[`Organisations should render the user's requested organisations 1`] = `
         onChange={[Function]}
         placeholder="Search..."
       />
+      <div
+        className="jsx-1652238216 org-scroll"
+      >
+        <JSXStyle
+          id="1652238216"
+        >
+          .org-scroll.jsx-1652238216{max-height:250px;overflow:hidden;overflow-y:scroll;}
+        </JSXStyle>
+      </div>
     </DropdownMenu>
   </Dropdown>
   <br />
