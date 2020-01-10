@@ -149,17 +149,28 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
               className="mx-3 my-2 w-auto"
               onChange={changeInput}
             />
-            {allOrganisations.edges.map(({node}) => {
-              return (
-                <Organisation
-                  key={node.id}
-                  select
-                  organisation={node}
-                  orgInput={props.orgInput}
-                  selectOrg={selectOrg}
-                />
-              );
-            })}
+            <div className="org-scroll">
+              {allOrganisations.edges.map(({node}) => {
+                return (
+                  <Organisation
+                    key={node.id}
+                    select
+                    organisation={node}
+                    orgInput={props.orgInput}
+                    selectOrg={selectOrg}
+                  />
+                );
+              })}
+              <style jsx>
+                {`
+                  .org-scroll {
+                    max-height: 250px;
+                    overflow: hidden;
+                    overflow-y: scroll;
+                  }
+                `}
+              </style>
+            </div>
           </Dropdown.Menu>
         </Dropdown>
       )}
