@@ -10,7 +10,7 @@ begin;
       swrs_report_id integer ,
       swrs_facility_id integer ,
       swrs_organisation_id integer ,
-      reporting_year varchar(1000),
+      reporting_year integer,
       facility_name varchar(1000),
       facility_type varchar(1000),
       bcghgid varchar(1000),

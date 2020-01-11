@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.init_application_administration_form_result(integer, varchar)'::regprocedure);
+select pg_get_functiondef('ggircs_portal.init_application_administration_form_result(integer, integer)'::regprocedure);
 
 rollback;

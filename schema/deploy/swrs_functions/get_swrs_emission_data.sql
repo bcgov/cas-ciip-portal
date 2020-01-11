@@ -13,7 +13,7 @@ begin;
 
   create or replace function ggircs_portal.get_swrs_emission_data(
     facility_id integer ,
-    reporting_year varchar(1000)
+    reporting_year integer
   )
   returns setof ggircs_portal.emission_data
   as

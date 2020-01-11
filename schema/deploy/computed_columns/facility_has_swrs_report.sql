@@ -3,7 +3,7 @@
 
 begin;
 
-create or replace function ggircs_portal.facility_has_swrs_report(facility ggircs_portal.facility, reporting_year varchar(1000))
+create or replace function ggircs_portal.facility_has_swrs_report(facility ggircs_portal.facility, reporting_year integer)
   returns boolean
 as
 $function$
