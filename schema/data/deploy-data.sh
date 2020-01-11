@@ -141,19 +141,30 @@ createdb
 [[ " ${actions[*]} " =~ " deployPortal " ]] && deployPortal
 deployPortalIfNotExists
 
-_psql -f "./portal/reporting_year.sql"
-_psql -f "./portal/form_json.sql"
-_psql -f "./portal/ciip_application_wizard.sql"
-_psql -f "./portal/fuel.sql"
-_psql -f "./portal/product_form.sql"
-_psql -f "./portal/product.sql"
-_psql -f "./portal/user.sql"
-_psql -f "./portal/benchmark.sql"
-_psql -f "./portal/organisation_and_facility.sql"
-_psql -f "./portal/gas.sql"
-_psql -f "./portal/emission_gas.sql"
-_psql -f "./portal/application.sql"
-_psql -f "./portal/certification_url.sql"
-_psql -f "./portal/application_revision.sql"
-_psql -f "./portal/application_revision_status.sql"
-_psql -f "./portal/form_result.sql"
+deployProdData() {
+  _psql -f "./prod/reporting_year.sql"
+  _psql -f "./prod/form_json.sql"
+  _psql -f "./prod/ciip_application_wizard.sql"
+  _psql -f "./prod/fuel.sql"
+  _psql -f "./prod/product_form.sql"
+  _psql -f "./prod/product.sql"
+  _psql -f "./prod/organisation_and_facility.sql"
+  _psql -f "./prod/gas.sql"
+  _psql -f "./prod/emission_gas.sql"
+}
+
+deployTestData() {
+  _psql -f "./test/benchmark.sql"
+  deployProdData
+}
+
+deployDevData() {
+  _psql -f "./dev/user.sql"
+  _psql -f "./dev/application.sql"
+  _psql -f "./dev/certification_url.sql"
+  _psql -f "./dev/application_revision.sql"
+  _psql -f "./dev/application_revision_status.sql"
+  _psql -f "./dev/form_result.sql"
+  deployTestData
+  deployProdData
+}
