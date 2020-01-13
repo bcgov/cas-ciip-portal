@@ -1,19 +1,19 @@
 begin;
 
 create temporary table centrifugal_compression(json_data jsonb);
-\copy centrifugal_compression(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/product_form/centrifugal_compression.json | tr -d ''\n''';
+\copy centrifugal_compression(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/product_form/centrifugal_compression.json | tr -d ''\n''';
 
 create temporary table reciprocating_compression(json_data jsonb);
-\copy reciprocating_compression(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/product_form/reciprocating_compression.json | tr -d ''\n''';
+\copy reciprocating_compression(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/product_form/reciprocating_compression.json | tr -d ''\n''';
 
 create temporary table rich_sour_gas_plant(json_data jsonb);
-\copy rich_sour_gas_plant(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/product_form/rich_sour_gas_plant.json | tr -d ''\n''';
+\copy rich_sour_gas_plant(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/product_form/rich_sour_gas_plant.json | tr -d ''\n''';
 
 create temporary table rich_sweet_gas_plant(json_data jsonb);
-\copy rich_sweet_gas_plant(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/product_form/rich_sweet_gas_plant.json | tr -d ''\n''';
+\copy rich_sweet_gas_plant(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/product_form/rich_sweet_gas_plant.json | tr -d ''\n''';
 
 create temporary table aluminum_smelting(json_data jsonb);
-\copy aluminum_smelting(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/product_form/aluminum_smelting.json | tr -d ''\n''';
+\copy aluminum_smelting(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/product_form/aluminum_smelting.json | tr -d ''\n''';
 
 with rows as (
 insert into ggircs_portal.product_form(id, product_form_description, product_form_schema)
