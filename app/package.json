@@ -138,7 +138,7 @@
     "@babel/core": "^7.7.7",
     "@storybook/addon-a11y": "^5.2.8",
     "@storybook/addon-actions": "^5.2.8",
-    "@storybook/addon-cssresources": "^5.2.8",
+    "@storybook/addon-cssresources": "^5.3.1",
     "@storybook/addon-info": "^5.2.8",
     "@storybook/addon-storyshots": "^5.2.8",
     "@storybook/addons": "^5.2.8",
