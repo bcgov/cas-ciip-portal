@@ -24,7 +24,7 @@ comment on column ggircs_portal.review_comment.id is 'Unique ID for the review_c
 comment on column ggircs_portal.review_comment.application_id is 'Foreign Key to application';
 comment on column ggircs_portal.review_comment.form_id is 'Foreign key to form_json';
 comment on column ggircs_portal.review_comment.description is 'The comment on the review_comment';
-comment on column ggircs_portal.review_comment.description is 'The type of the review_comment (determines who can see the comment)';
+comment on column ggircs_portal.review_comment.comment_type is 'The type of the review_comment (determines who can see the comment)';
 comment on column ggircs_portal.review_comment.resolved is 'The resolved status on the review_comment';
 comment on column ggircs_portal.review_comment.created_at is 'Creation date of row';
 comment on column ggircs_portal.review_comment.created_by is 'Creator of row';
