@@ -10,6 +10,7 @@ types/jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec
 types/ciip_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file ciip_user_organisation_status
 types/ciip_application_revision_status [schema_ggircs_portal] 2019-11-26T18:39:57Z Helen Liu <helen@button.is> # Added ciip application status type
 types/ciip_form_result_status [schema_ggircs_portal] 2020-01-13T19:14:50Z Dylan Leard <dylan@button.is> # form result status enum type
+types/review_comment_type [schema_ggircs_portal] 2020-01-13T20:18:15Z Dylan Leard <dylan@button.is> # The type of a review comment
 types/application_search_result [schema_ggircs_portal types/ciip_application_revision_status] 2019-12-12T23:22:59Z Dylan Leard <dylan@button.is> # Return type for searching and listing applications
 tables/ciip_user [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
 function_session [schema_ggircs_portal types/jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
