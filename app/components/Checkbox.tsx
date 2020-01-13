@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const noop = () => {};
+const noop = v => v;
 
 const Checkbox = (props: {label; defaultValue?; onCheck?}) => {
   const {label, defaultValue = false, onCheck = noop} = props;

@@ -7,7 +7,7 @@ const consents = [
   'I understand that it may delay if the information on CIIP application does not match SWIM.'
 ];
 
-const noop = () => {};
+const noop = v => v;
 
 const LegalDisclaimerChecklist = (props: {onChange?}) => {
   const {onChange = noop} = props;

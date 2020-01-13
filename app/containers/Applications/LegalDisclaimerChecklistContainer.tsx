@@ -46,8 +46,8 @@ export const LegalDisclaimerChecklistContainer: React.FunctionComponent<Props> =
       />
       <Button
         variant="primary"
-        onClick={handleContinueClick}
         disabled={!allChecked}
+        onClick={handleContinueClick}
       >
         Continue
       </Button>

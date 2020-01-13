@@ -9,7 +9,7 @@ import LegalDisclaimerChecklistContainer from 'containers/Applications/LegalDisc
 interface Props extends CiipPageComponentProps {
   query: ciipApplicationLegalDisclaimerQueryResponse['query'];
 }
-class ciipApplicationLegalDisclaimer extends Component<Props> {
+class CiipApplicationLegalDisclaimer extends Component<Props> {
   static query = graphql`
     query ciipApplicationLegalDisclaimerQuery($applicationId: ID!) {
       query {
@@ -73,4 +73,4 @@ class ciipApplicationLegalDisclaimer extends Component<Props> {
   }
 }
 
-export default ciipApplicationLegalDisclaimer;
+export default CiipApplicationLegalDisclaimer;
