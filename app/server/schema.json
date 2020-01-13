@@ -16003,7 +16003,7 @@
             },
             {
               "name": "commentType",
-              "description": null,
+              "description": "The type of the review_comment (determines who can see the comment)",
               "args": [],
               "type": {
                 "kind": "ENUM",
@@ -16067,7 +16067,7 @@
             },
             {
               "name": "description",
-              "description": "The type of the review_comment (determines who can see the comment)",
+              "description": "The comment on the review_comment",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -30781,7 +30781,7 @@
             },
             {
               "name": "commentType",
-              "description": null,
+              "description": "The type of the review_comment (determines who can see the comment)",
               "type": {
                 "kind": "ENUM",
                 "name": "ReviewCommentType",
@@ -30831,7 +30831,7 @@
             },
             {
               "name": "description",
-              "description": "The type of the review_comment (determines who can see the comment)",
+              "description": "The comment on the review_comment",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -40937,7 +40937,7 @@
             },
             {
               "name": "commentType",
-              "description": null,
+              "description": "The type of the review_comment (determines who can see the comment)",
               "type": {
                 "kind": "ENUM",
                 "name": "ReviewCommentType",
@@ -40987,7 +40987,7 @@
             },
             {
               "name": "description",
-              "description": "The type of the review_comment (determines who can see the comment)",
+              "description": "The comment on the review_comment",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",

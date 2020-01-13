@@ -9598,6 +9598,8 @@ type ReviewComment implements Node {
 
   """Foreign Key to application"""
   applicationId: Int!
+
+  """The type of the review_comment (determines who can see the comment)"""
   commentType: ReviewCommentType
 
   """Creation date of row"""
@@ -9612,7 +9614,7 @@ type ReviewComment implements Node {
   """The user who deleted the row"""
   deletedBy: String
 
-  """The type of the review_comment (determines who can see the comment)"""
+  """The comment on the review_comment"""
   description: String
 
   """Foreign key to form_json"""
@@ -9685,6 +9687,8 @@ input ReviewCommentCondition {
 input ReviewCommentInput {
   """Foreign Key to application"""
   applicationId: Int!
+
+  """The type of the review_comment (determines who can see the comment)"""
   commentType: ReviewCommentType
 
   """Creation date of row"""
@@ -9699,7 +9703,7 @@ input ReviewCommentInput {
   """The user who deleted the row"""
   deletedBy: String
 
-  """The type of the review_comment (determines who can see the comment)"""
+  """The comment on the review_comment"""
   description: String
 
   """Foreign key to form_json"""
@@ -9721,6 +9725,8 @@ Represents an update to a `ReviewComment`. Fields that are set will be updated.
 input ReviewCommentPatch {
   """Foreign Key to application"""
   applicationId: Int
+
+  """The type of the review_comment (determines who can see the comment)"""
   commentType: ReviewCommentType
 
   """Creation date of row"""
@@ -9735,7 +9741,7 @@ input ReviewCommentPatch {
   """The user who deleted the row"""
   deletedBy: String
 
-  """The type of the review_comment (determines who can see the comment)"""
+  """The comment on the review_comment"""
   description: String
 
   """Foreign key to form_json"""
