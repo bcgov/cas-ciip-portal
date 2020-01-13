@@ -39,6 +39,7 @@ begin
       and fr.application_id = application_id_input
       and fr.version_number=last_revision_id_input
       into form_result;
+
     else
       -- Populate initial version of application form results with data from swrs or empty results
       if ((select fj.name from ggircs_portal.form_json as fj where temp_row.form_id = fj.id) in ('Production', 'fuel')) then
@@ -55,11 +56,18 @@ begin
           into form_result;
         end if;
       end if;
+
     end if;
 
     -- loop over what is in the wizard, not the forms in case some forms get added/disabled etc
     insert into ggircs_portal.form_result(form_id, application_id, version_number, form_result)
     values (temp_row.form_id, application_id_input, new_version_number, form_result) returning id into form_result_id;
+
+    if last_revision_id_input = 0 then
+    -- Create form result statuses
+      insert into ggircs_portal.form_result_status(application_id, version_number, form_id, form_result_status)
+      values (application_id_input, new_version_number, temp_row.form_id, 'in review');
+    end if;
 
   end loop;
 
