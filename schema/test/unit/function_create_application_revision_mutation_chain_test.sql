@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(4);
+select plan(5);
 
 select has_function(
   'ggircs_portal', 'create_application_revision_mutation_chain', array['integer', 'integer'],
@@ -51,7 +51,26 @@ select results_eq(
   $$
     select count(form_id) from ggircs_portal.ciip_application_wizard
   $$,
-  'create_application_revision_mutation_chain creates statuses for each form result when being called from create_application_mutation_chain'
+  'create_application_revision_mutation_chain creates statuses for each form result when being called from create_application_mutation_chain (starting an application)'
+);
+
+with app_id as (
+  select a.id from ggircs_portal.application a
+    join ggircs_portal.facility f on a.facility_id = f.id
+    and facility_name = 'test facility'
+) select ggircs_portal.create_application_revision_mutation_chain((select id from app_id), 1);
+
+select results_eq(
+  $$
+    select count(*) from ggircs_portal.form_result_status frs
+    join ggircs_portal.application a on a.id = frs.application_id
+    join ggircs_portal.facility f on a.facility_id = f.id
+    and facility_name = 'test facility'
+  $$,
+  $$
+    select count(form_id) from ggircs_portal.ciip_application_wizard
+  $$,
+  'create_application_revision_mutation_chain does not create extra statuses for each form result when being called on its own (creating a revision)'
 );
 
 select finish();
