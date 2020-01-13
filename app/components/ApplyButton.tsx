@@ -2,8 +2,8 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import Link from 'next/link';
-import createApplicationMutation from 'mutations/application/createApplicationMutation';
 import {useRouter} from 'next/router';
+import createApplicationMutation from 'mutations/application/createApplicationMutation';
 import {ApplyButton_applyButtonDetails} from 'ApplyButton_applyButtonDetails.graphql';
 interface Props {
   relay: RelayProp;
