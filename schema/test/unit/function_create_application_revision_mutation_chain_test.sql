@@ -43,16 +43,14 @@ select results_eq(
 
 select results_eq(
   $$
-    select form_result_status from ggircs_portal.form_result_status frs
+    select count(*) from ggircs_portal.form_result_status frs
     join ggircs_portal.application a on a.id = frs.application_id
     join ggircs_portal.facility f on a.facility_id = f.id
     and facility_name = 'test facility'
   $$,
-  ARRAY['in review'::ggircs_portal.ciip_form_result_status,
-        'in review'::ggircs_portal.ciip_form_result_status,
-        'in review'::ggircs_portal.ciip_form_result_status,
-        'in review'::ggircs_portal.ciip_form_result_status,
-        'in review'::ggircs_portal.ciip_form_result_status],
+  $$
+    select count(form_id) from ggircs_portal.ciip_application_wizard
+  $$,
   'create_application_revision_mutation_chain creates statuses for each form result when being called from create_application_mutation_chain'
 );
 
