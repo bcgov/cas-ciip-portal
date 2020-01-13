@@ -123,6 +123,15 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -d | --drop-db )
     actions+=('dropdb' 'deploySwrs' 'deployPortal')
     ;;
+  -prod | --prod-data )
+    actions+=('deployProd')
+    ;;
+  -test | --test-data )
+    actions+=('deployTest')
+    ;;
+  -dev | --dev-data )
+    actions+=('deployDev')
+    ;;
   -p | --deploy-portal-schema )
     actions+=('deployPortal')
     ;;
@@ -135,12 +144,6 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     ;;
 esac; shift; done
 
-[[ " ${actions[*]} " =~ " dropdb " ]] && dropdb
-createdb
-[[ " ${actions[*]} " =~ " deploySwrs " ]] && deploySwrs
-[[ " ${actions[*]} " =~ " deployPortal " ]] && deployPortal
-deployPortalIfNotExists
-
 deployProdData() {
   _psql -f "./prod/reporting_year.sql"
   _psql -f "./prod/form_json.sql"
@@ -151,20 +154,50 @@ deployProdData() {
   _psql -f "./prod/organisation_and_facility.sql"
   _psql -f "./prod/gas.sql"
   _psql -f "./prod/emission_gas.sql"
+  return 0;
 }
 
 deployTestData() {
-  _psql -f "./test/benchmark.sql"
   deployProdData
+  _psql -f "./test/benchmark.sql"
+  return 0;
 }
 
 deployDevData() {
+  deployTestData
   _psql -f "./dev/user.sql"
   _psql -f "./dev/application.sql"
   _psql -f "./dev/certification_url.sql"
   _psql -f "./dev/application_revision.sql"
   _psql -f "./dev/application_revision_status.sql"
   _psql -f "./dev/form_result.sql"
-  deployTestData
-  deployProdData
+  return 0;
 }
+
+if [[ " ${actions[*]} " =~ " dropdb " ]]; then
+  dropdb
+fi
+
+createdb
+
+if [[ " ${actions[*]} " =~ " deploySwrs " ]]; then
+  deploySwrs
+fi
+if [[ " ${actions[*]} " =~ " deployPortal " ]]; then
+  deployPortal
+fi
+
+deployPortalIfNotExists
+
+if [[ " ${actions[*]} " =~ " deployProd " ]]; then
+  echo 'Deploying production data'
+  deployProdData
+fi
+if [[ " ${actions[*]} " =~ " deployTest " ]]; then
+  echo 'Deploying testing data'
+  deployTestData 
+fi
+if [[ " ${actions[*]} " =~ " deployDev " ]]; then
+  echo 'Deploying development data'
+  deployDevData
+fi
