@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const LegalDisclaimerChecklistContainer: React.FunctionComponent<Props> = props => {
-  const [allChecked, setAllChecked] = useState([]);
+  const [allChecked, setAllChecked] = useState(false);
   const router = useRouter();
 
   const handleContinueClick = async () => {

@@ -7,9 +7,13 @@ const consents = [
   'I understand that it may delay if the information on CIIP application does not match SWIM.'
 ];
 
+// Define noop function to set default value for function type props
 const noop = v => v;
+interface Props {
+  onChange?: (allSelected: boolean) => void;
+}
 
-const LegalDisclaimerChecklist = (props: {onChange?}) => {
+const LegalDisclaimerChecklist: React.FunctionComponent<Props> = props => {
   const {onChange = noop} = props;
 
   const [selected, setSelected] = useState([]);

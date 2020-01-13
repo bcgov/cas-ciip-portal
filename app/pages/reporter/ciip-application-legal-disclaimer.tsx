@@ -3,11 +3,13 @@ import {graphql} from 'react-relay';
 import {Card, Alert} from 'react-bootstrap';
 import {ciipApplicationLegalDisclaimerQueryResponse} from 'ciipApplicationLegalDisclaimerQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
+import {NextRouter} from 'next/router';
 import DefaultLayout from 'layouts/default-layout';
 import LegalDisclaimerChecklistContainer from 'containers/Applications/LegalDisclaimerChecklistContainer';
 
 interface Props extends CiipPageComponentProps {
   query: ciipApplicationLegalDisclaimerQueryResponse['query'];
+  router: NextRouter;
 }
 class CiipApplicationLegalDisclaimer extends Component<Props> {
   static query = graphql`
