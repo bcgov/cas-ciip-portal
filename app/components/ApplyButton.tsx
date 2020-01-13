@@ -12,33 +12,33 @@ interface Props {
 const ApplyButton: React.FunctionComponent<Props> = props => {
   const {applyButtonDetails} = props;
   const {facilityByFacilityId} = applyButtonDetails;
-  const {hasSwrsReport} = facilityByFacilityId;
-  const {rowId} = facilityByFacilityId;
-  const {environment} = props.relay;
+  const {hasSwrsReport, rowId} = facilityByFacilityId;
   const applicationId = applyButtonDetails?.applicationByApplicationId?.id;
 
-  const {applicationRevisionStatus} = applyButtonDetails;
   const router = useRouter();
 
-  const startApplication = async () => {
-    const variables = {
-      input: {
-        facilityIdInput: rowId
-      }
-    };
-    const response = await createApplicationMutation(environment, variables);
-
-    router.push({
-      pathname: '/ciip-application-legal-disclaimer',
-      query: {
-        applicationId: response.createApplicationMutationChain.application.id,
-        version: 1,
-        hasSwrsReport
-      }
-    });
-  };
-
   if (!applicationId) {
+    const {environment} = props.relay;
+
+    const startApplication = async () => {
+      const variables = {
+        input: {
+          facilityIdInput: rowId
+        }
+      };
+
+      const response = await createApplicationMutation(environment, variables);
+
+      router.push({
+        pathname: '/reporter/ciip-application-legal-disclaimer',
+        query: {
+          applicationId: response.createApplicationMutationChain.application.id,
+          version: 1,
+          hasSwrsReport
+        }
+      });
+    };
+
     return (
       <Button variant="primary" onClick={startApplication}>
         Apply for CIIP for this facility
@@ -46,33 +46,44 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
     );
   }
 
-  const latestSubmittedVersionNumber =
-    applyButtonDetails.applicationByApplicationId?.latestSubmittedRevision
-      ?.versionNumber;
-  const latestDraftVersionNumber =
-    applyButtonDetails.applicationByApplicationId?.latestDraftRevision
-      ?.versionNumber;
+  const {
+    applicationRevisionStatus,
+    applicationByApplicationId
+  } = applyButtonDetails;
 
-  if (applicationId && applicationRevisionStatus === 'DRAFT') {
+  const {
+    latestDraftRevision,
+    latestSubmittedRevision
+  } = applicationByApplicationId;
+
+  const latestSubmittedVersionNumber = latestSubmittedRevision?.versionNumber;
+  const latestDraftVersionNumber = latestDraftRevision?.versionNumber;
+  const latestDraftlegalDisclaimerAccepted =
+    latestDraftRevision?.legalDisclaimerAccepted;
+
+  if (applicationRevisionStatus === 'DRAFT') {
+    const continueApplication = () => {
+      router.push({
+        pathname: latestDraftlegalDisclaimerAccepted
+          ? '/reporter/ciip-application'
+          : '/reporter/ciip-application-legal-disclaimer',
+        query: {
+          applicationId,
+          version: latestDraftVersionNumber
+        }
+      });
+    };
+
     return (
-      <Link
-        href={{
-          pathname: '/reporter/ciip-application',
-          query: {
-            applicationId,
-            version: latestDraftVersionNumber
-          }
-        }}
-      >
-        <Button variant="primary">Resume CIIP application</Button>
-      </Link>
+      <Button variant="primary" onClick={continueApplication}>
+        Resume CIIP application
+      </Button>
     );
   }
 
   if (
-    applicationId &&
-    (applicationRevisionStatus === 'SUBMITTED' ||
-      applicationRevisionStatus === 'REQUESTED_CHANGES')
+    applicationRevisionStatus === 'SUBMITTED' ||
+    applicationRevisionStatus === 'REQUESTED_CHANGES'
   ) {
     return (
       <Link
@@ -100,6 +111,7 @@ export default createFragmentContainer(ApplyButton, {
         latestDraftRevision {
           id
           versionNumber
+          legalDisclaimerAccepted
         }
         latestSubmittedRevision {
           id

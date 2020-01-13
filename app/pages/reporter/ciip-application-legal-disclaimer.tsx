@@ -1,42 +1,39 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {Button, Card, Alert} from 'react-bootstrap';
+import {Card, Alert} from 'react-bootstrap';
 import {ciipApplicationLegalDisclaimerQueryResponse} from 'ciipApplicationLegalDisclaimerQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
-import Link from 'next/link';
-import DefaultLayout from '../layouts/default-layout';
-import LegalDisclaimerChecklist from '../components/LegalDisclaimerChecklist';
+import DefaultLayout from 'layouts/default-layout';
+import LegalDisclaimerChecklistContainer from 'containers/Applications/LegalDisclaimerChecklistContainer';
 
 interface Props extends CiipPageComponentProps {
   query: ciipApplicationLegalDisclaimerQueryResponse['query'];
 }
 class ciipApplicationLegalDisclaimer extends Component<Props> {
   static query = graphql`
-    query ciipApplicationLegalDisclaimerQuery {
+    query ciipApplicationLegalDisclaimerQuery($applicationId: ID!) {
       query {
         session {
           ...defaultLayout_session
+        }
+        application(id: $applicationId) {
+          ...LegalDisclaimerChecklistContainer_application
         }
       }
     }
   `;
 
-  state = {
-    allChecked: false
-  };
-
   render() {
-    const {allChecked} = this.state;
     const {query, router} = this.props;
-    const {session} = query || {};
+    const {session, application} = query || {};
     const {query: queryparams} = router;
 
-    const {applicationId, version, hasSwrsReport} = queryparams;
-    const hasImported = hasSwrsReport === 'true';
+    const {hasSwrsReport} = queryparams;
+    const hasImportedReport = hasSwrsReport === 'true';
 
     let ImportMessage = null;
 
-    if (hasImported) {
+    if (hasImportedReport) {
       ImportMessage = (
         <Alert variant="danger">
           We found an emissions report for this facility, and imported the
@@ -70,22 +67,7 @@ class ciipApplicationLegalDisclaimer extends Component<Props> {
 
         {ImportMessage}
 
-        <LegalDisclaimerChecklist
-          onChange={allChecked => this.setState({allChecked})}
-        />
-        <Link
-          href={{
-            pathname: '/ciip-application',
-            query: {
-              applicationId,
-              version
-            }
-          }}
-        >
-          <Button variant="primary" disabled={!allChecked}>
-            Continue
-          </Button>
-        </Link>
+        <LegalDisclaimerChecklistContainer application={application} />
       </DefaultLayout>
     );
   }
