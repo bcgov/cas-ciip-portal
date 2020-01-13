@@ -7,6 +7,7 @@ create table ggircs_portal.application_revision (
     application_id int not null references ggircs_portal.application(id),
     version_number int not null,
     certification_signature bytea,
+    legal_disclaimer_accepted boolean not null default false,
     user_id integer references ggircs_portal.ciip_user(id),
     created_at timestamp with time zone not null default now(),
     created_by varchar(1000),
@@ -43,5 +44,6 @@ comment on column ggircs_portal.application_revision.updated_at is 'The date the
 comment on column ggircs_portal.application_revision.updated_by is 'The person who updated the application revision status';
 comment on column ggircs_portal.application_revision.deleted_at is 'The date the application revision status was deleted';
 comment on column ggircs_portal.application_revision.deleted_by is 'The person who deleted the application revision status';
+comment on column ggircs_portal.application_revision.legal_disclaimer_accepted is 'Whether or not reporter agreed the legal disclaimer';
 
 commit;

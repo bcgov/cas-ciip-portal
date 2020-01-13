@@ -4247,6 +4247,16 @@
               "defaultValue": null
             },
             {
+              "name": "legalDisclaimerAccepted",
+              "description": "Checks for equality with the object’s `legalDisclaimerAccepted` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "updatedAt",
               "description": "Checks for equality with the object’s `updatedAt` field.",
               "type": {
@@ -4315,6 +4325,16 @@
           "kind": "SCALAR",
           "name": "Datetime",
           "description": "A point in time as described by the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Boolean",
+          "description": "The `Boolean` scalar type represents `true` or `false`.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -4397,6 +4417,18 @@
             },
             {
               "name": "DELETED_BY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "LEGAL_DISCLAIMER_ACCEPTED_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "LEGAL_DISCLAIMER_ACCEPTED_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -5020,6 +5052,22 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "legalDisclaimerAccepted",
+              "description": "Whether or not reporter agreed the legal disclaimer",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
                   "ofType": null
                 }
               },
@@ -7456,16 +7504,6 @@
           ],
           "inputFields": null,
           "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "Boolean",
-          "description": "The `Boolean` scalar type represents `true` or `false`.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -24685,6 +24723,16 @@
               "defaultValue": null
             },
             {
+              "name": "legalDisclaimerAccepted",
+              "description": "Whether or not reporter agreed the legal disclaimer",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "updatedAt",
               "description": "The date the application revision status was updated",
               "type": {
@@ -33618,6 +33666,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "legalDisclaimerAccepted",
+              "description": "Whether or not reporter agreed the legal disclaimer",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null
