@@ -27,6 +27,11 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
+create trigger _checksum_form_results
+    before insert on ggircs_portal.form_result
+    for each row
+    execute procedure ggircs_portal.checksum_form_results();
+
 comment on table ggircs_portal.form_result is 'Table containing CIIP application data received from a user';
 comment on column ggircs_portal.form_result.id is 'Unique ID for the form';
 comment on column ggircs_portal.form_result.form_id is 'The Unique ID of the form';

@@ -26,6 +26,11 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
+create trigger _checksum_form_results
+    before update of application_revision_status on ggircs_portal.application_revision_status
+    for each row
+    execute procedure ggircs_portal.checksum_form_results();
+
 comment on table ggircs_portal.application_revision_status is 'The application revision status data';
 comment on column ggircs_portal.application_revision_status.id is 'The id used for reference and join';
 comment on column ggircs_portal.application_revision_status.application_id is 'The foreign key to application used for reference and join';
