@@ -18,6 +18,12 @@ Options
 
   -d, --drop-db
     Drops the $database database before deploying
+  -prod, --prod-data
+    Deploy production data only
+  -test, --test-data
+    Deploy testing data. Inlcudes prod data
+  -dev, --dev-data
+    Deploy development data. Includes test and prod data
   -s, --deploy-swrs-schema
     Redeploys the swrs schema and inserts the swrs test reports. This requires the .cas-ggircs submodule to be initialized
   -p, --deploy-portal-schema
@@ -123,6 +129,15 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -d | --drop-db )
     actions+=('dropdb' 'deploySwrs' 'deployPortal')
     ;;
+  -prod | --prod-data | --oc-project=*-prod )
+    actions+=('deployProd')
+    ;;
+  -test | --test-data | --oc-project=*-test )
+    actions+=('deployTest')
+    ;;
+  -dev | --dev-data | --oc-project=*-dev )
+    actions+=('deployDev')
+    ;;
   -p | --deploy-portal-schema )
     actions+=('deployPortal')
     ;;
@@ -135,25 +150,60 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     ;;
 esac; shift; done
 
-[[ " ${actions[*]} " =~ " dropdb " ]] && dropdb
+deployProdData() {
+  _psql -f "./prod/reporting_year.sql"
+  _psql -f "./prod/form_json.sql"
+  _psql -f "./prod/ciip_application_wizard.sql"
+  _psql -f "./prod/fuel.sql"
+  _psql -f "./prod/product_form.sql"
+  _psql -f "./prod/product.sql"
+  _psql -f "./prod/organisation_and_facility.sql"
+  _psql -f "./prod/gas.sql"
+  _psql -f "./prod/emission_gas.sql"
+  return 0;
+}
+
+deployTestData() {
+  deployProdData
+  _psql -f "./test/benchmark.sql"
+  return 0;
+}
+
+deployDevData() {
+  deployTestData
+  _psql -f "./dev/user.sql"
+  _psql -f "./dev/application.sql"
+  _psql -f "./dev/certification_url.sql"
+  _psql -f "./dev/application_revision.sql"
+  _psql -f "./dev/application_revision_status.sql"
+  _psql -f "./dev/form_result.sql"
+  return 0;
+}
+
+if [[ " ${actions[*]} " =~ " dropdb " ]]; then
+  dropdb
+fi
+
 createdb
-[[ " ${actions[*]} " =~ " deploySwrs " ]] && deploySwrs
-[[ " ${actions[*]} " =~ " deployPortal " ]] && deployPortal
+
+if [[ " ${actions[*]} " =~ " deploySwrs " ]]; then
+  deploySwrs
+fi
+if [[ " ${actions[*]} " =~ " deployPortal " ]]; then
+  deployPortal
+fi
+
 deployPortalIfNotExists
 
-_psql -f "./portal/reporting_year.sql"
-_psql -f "./portal/form_json.sql"
-_psql -f "./portal/ciip_application_wizard.sql"
-_psql -f "./portal/fuel.sql"
-_psql -f "./portal/product_form.sql"
-_psql -f "./portal/product.sql"
-_psql -f "./portal/user.sql"
-_psql -f "./portal/benchmark.sql"
-_psql -f "./portal/organisation_and_facility.sql"
-_psql -f "./portal/gas.sql"
-_psql -f "./portal/emission_gas.sql"
-_psql -f "./portal/application.sql"
-_psql -f "./portal/certification_url.sql"
-_psql -f "./portal/application_revision.sql"
-_psql -f "./portal/application_revision_status.sql"
-_psql -f "./portal/form_result.sql"
+if [[ " ${actions[*]} " =~ " deployProd " ]]; then
+  echo 'Deploying production data'
+  deployProdData
+fi
+if [[ " ${actions[*]} " =~ " deployTest " ]]; then
+  echo 'Deploying testing data'
+  deployTestData
+fi
+if [[ " ${actions[*]} " =~ " deployDev " ]]; then
+  echo 'Deploying development data'
+  deployDevData
+fi

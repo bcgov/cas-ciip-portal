@@ -19,16 +19,26 @@ PG_PROVE=pg_prove -h localhost
 PG_SHAREDIR=$(shell pg_config --sharedir)
 
 .PHONY: test
-test: | dropdb createdb deploy_ggircs deploy revert deploy_test_data prove_unit prove_style dropdb
+test: | dropdb createdb deploy_ggircs deploy revert deploy_dev_data prove_unit prove_style dropdb
 
 
 .PHONY: unit
 unit: | deploy_test_data prove_unit
 
+.PHONY: deploy_prod_data
+deploy_prod_data:
+	# Deploy prod data in $(TEST_DB)
+	@@PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -prod
+
 .PHONY: deploy_test_data
 deploy_test_data:
-	# Deploy data in $(TEST_DB)
-	@@PGDATABASE=$(TEST_DB) ./data/deploy-test-data.sh -d
+	# Deploy test data in $(TEST_DB)
+	@@PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -test
+
+.PHONY: deploy_dev_data
+deploy_dev_data:
+	# Deploy dev data in $(TEST_DB)
+	@@PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -dev
 
 .PHONY: deploy_ggircs
 deploy_ggircs:
