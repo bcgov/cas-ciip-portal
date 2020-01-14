@@ -9,12 +9,17 @@ create table ggircs_portal.gas (
   gas_description varchar(10000),
   gwp numeric,
   created_at timestamp with time zone not null default now(),
-  created_by varchar(1000),
+  created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
-  updated_by varchar(1000),
+  updated_by int references ggircs_portal.ciip_user,
   deleted_at timestamp with time zone,
-  deleted_by varchar(1000)
+  deleted_by int references ggircs_portal.ciip_user
 );
+
+create trigger _100_timestamps
+  before insert or update on ggircs_portal.gas
+  for each row
+  execute procedure ggircs_portal.update_timestamps();
 
 comment on table ggircs_portal.gas is 'Table of gases used in the CIIP program';
 comment on column ggircs_portal.gas.id is 'Unique ID for the gas';

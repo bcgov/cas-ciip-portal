@@ -13,9 +13,9 @@ create table ggircs_portal.benchmark (
   start_reporting_year integer not null references ggircs_portal.reporting_year(reporting_year),
   end_reporting_year integer not null references ggircs_portal.reporting_year(reporting_year),
   created_at timestamp with time zone not null default now(),
-  created_by varchar(1000),
+  created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
-  updated_by varchar(1000),
+  updated_by int references ggircs_portal.ciip_user,
   deleted_at timestamp with time zone,
   deleted_by int references ggircs_portal.ciip_user
 );

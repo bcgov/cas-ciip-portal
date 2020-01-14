@@ -10,9 +10,9 @@ create table ggircs_portal.application_revision (
     legal_disclaimer_accepted boolean not null default false,
     user_id integer references ggircs_portal.ciip_user(id),
     created_at timestamp with time zone not null default now(),
-    created_by varchar(1000),
+    created_by int references ggircs_portal.ciip_user,
     updated_at timestamp with time zone not null default now(),
-    updated_by varchar(1000),
+    updated_by int references ggircs_portal.ciip_user,
     deleted_at timestamp with time zone,
     deleted_by int references ggircs_portal.ciip_user,
     primary key (application_id, version_number)
