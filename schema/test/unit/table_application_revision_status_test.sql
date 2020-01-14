@@ -3,67 +3,64 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(1);
+select plan(22);
 
+-- Table exists
 select has_table(
-    'ggircs_portal', 'application_revision_status',
-    'ggircs_portal.application_revision_status should exist, and be a table'
+  'ggircs_portal', 'application_revision_status',
+  'ggircs_portal.application_revision_status should exist, and be a table'
+);
+
+-- Keys & Indexes
+select col_is_pk(
+  'ggircs_portal', 'application_revision_status', 'id',
+  'application_revision_status has an id column primary key'
+);
+
+select col_is_fk(
+  'ggircs_portal', 'application_revision_status', ARRAY['application_id', 'version_number'],
+  'application_revision_status has a composite foreign key on application_id and version_number'
 );
 
 select has_index(
-    'swrs_transform', 'address', 'ggircs_address_primary_key',
-    'swrs_transform.address should have a primary key'
+  'ggircs_portal', 'application_revision_status', 'ggircs_portal_application_revision_status_foreign_key',
+  'application_revision_status has an index on its foreign key (application_id, version_number)'
 );
 
-select columns_are('swrs_transform'::name, 'address'::name, array[
-    'id'::name,
-    'ghgr_import_id'::name,
-    'swrs_facility_id'::name,
-    'swrs_organisation_id'::name,
-    'path_context'::name,
-    'type'::name,
-    'contact_idx'::name,
-    'parent_organisation_idx'::name,
-    'physical_address_municipality'::name,
-    'physical_address_unit_number'::name,
-    'physical_address_street_number'::name,
-    'physical_address_street_number_suffix'::name,
-    'physical_address_street_name'::name,
-    'physical_address_street_type'::name,
-    'physical_address_street_direction'::name,
-    'physical_address_prov_terr_state'::name,
-    'physical_address_postal_code_zip_code'::name,
-    'physical_address_country'::name,
-    'physical_address_national_topographical_description'::name,
-    'physical_address_additional_information'::name,
-    'physical_address_land_survey_description'::name,
-
-    'mailing_address_delivery_mode'::name,
-    'mailing_address_po_box_number'::name,
-    'mailing_address_unit_number'::name,
-    'mailing_address_rural_route_number'::name,
-    'mailing_address_street_number'::name,
-    'mailing_address_street_number_suffix'::name,
-    'mailing_address_street_name'::name,
-    'mailing_address_street_type'::name,
-    'mailing_address_street_direction'::name,
-    'mailing_address_municipality'::name,
-    'mailing_address_prov_terr_state'::name,
-    'mailing_address_postal_code_zip_code'::name,
-    'mailing_address_country'::name,
-    'mailing_address_additional_information'::name,
-
-    'geographic_address_latitude'::name,
-    'geographic_address_longitude'::name
+-- Columns
+select columns_are('ggircs_portal'::name, 'application_revision_status'::name, array[
+  'id'::name,
+  'application_id'::name,
+  'version_number'::name,
+  'application_revision_status'::name,
+  'created_at'::name,
+  'created_by'::name,
+  'updated_at'::name,
+  'updated_by'::name,
+  'deleted_at'::name,
+  'deleted_by'::name
 ]);
 
-select col_type_is(      'swrs_transform', 'address', 'ghgr_import_id', 'integer', 'address.ghgr_import_id column should be type integer');
-select col_hasnt_default('swrs_transform', 'address', 'ghgr_import_id', 'address.ghgr_import_id column should not have a default value');
+select col_type_is('ggircs_portal', 'application_revision_status', 'id', 'integer', 'id column should be type integer');
+select col_type_is('ggircs_portal', 'application_revision_status', 'application_id', 'integer', 'application_id column should be type integer');
+select col_type_is('ggircs_portal', 'application_revision_status', 'version_number', 'integer', 'version_number column should be type integer');
+select col_type_is('ggircs_portal', 'application_revision_status', 'application_revision_status', 'ggircs_portal.ciip_application_revision_status', 'application_revision_status column should be type ciip_application_revision_status');
+select col_type_is('ggircs_portal', 'application_revision_status', 'created_at', 'timestamp with time zone', 'created_at column should be type timestamptz');
+select col_type_is('ggircs_portal', 'application_revision_status', 'created_by', 'integer', 'created_by column should be type integer');
+select col_type_is('ggircs_portal', 'application_revision_status', 'updated_at', 'timestamp with time zone', 'updated_at column should be type timestamptz');
+select col_type_is('ggircs_portal', 'application_revision_status', 'updated_by', 'integer', 'updated_by column should be type integer');
+select col_type_is('ggircs_portal', 'application_revision_status', 'deleted_at', 'timestamp with time zone', 'deleted_at column should be type timestamptz');
+select col_type_is('ggircs_portal', 'application_revision_status', 'deleted_by', 'integer', 'deleted_by column should be type integer');
 
---  select has_column(       'swrs_transform', 'address', 'swrs_facility_id', 'address.swrs_facility_id column should exist');
-select col_type_is(      'swrs_transform', 'address', 'swrs_facility_id', 'integer', 'address.swrs_facility_id column should be type numeric');
-select col_is_null(      'swrs_transform', 'address', 'swrs_facility_id', 'address.swrs_facility_id column should allow null');
-select col_hasnt_default('swrs_transform', 'address', 'swrs_facility_id', 'address.swrs_facility_id column should not have a default');
+select col_not_null('ggircs_portal', 'application_revision_status', 'id', 'id column should not be nullable');
+select col_not_null('ggircs_portal', 'application_revision_status', 'application_id', 'application_id column should not be nullable');
+select col_not_null('ggircs_portal', 'application_revision_status', 'version_number', 'version_number column should not be nullable');
+select col_not_null('ggircs_portal', 'application_revision_status', 'created_at', 'created_at column should not be nullable');
+select col_not_null('ggircs_portal', 'application_revision_status', 'updated_at', 'updated_at column should not be nullable');
+
+-- Triggers
+select has_trigger('ggircs_portal', 'application_revision_status', '_100_timestamps', 'application_revision_status has update timestamps trigger');
+select has_trigger('ggircs_portal', 'application_revision_status', '_checksum_form_results', 'application_revision_status has checksum form results trigger');
 
 select finish();
 rollback;
