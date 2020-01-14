@@ -16,7 +16,8 @@ create table ggircs_portal.form_result (
   updated_by varchar(1000),
   deleted_at timestamp with time zone,
   deleted_by int references ggircs_portal.ciip_user,
-  foreign key (application_id, version_number) references ggircs_portal.application_revision(application_id, version_number)
+  foreign key (application_id, version_number) references ggircs_portal.application_revision(application_id, version_number),
+  unique (form_id, application_id, version_number)
 );
 
 create index ggircs_portal_form_result_application_revision_foreign_key on ggircs_portal.form_result(application_id, version_number);
