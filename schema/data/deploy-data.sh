@@ -18,6 +18,12 @@ Options
 
   -d, --drop-db
     Drops the $database database before deploying
+  -prod, --prod-data
+    Deploy production data only
+  -test, --test-data
+    Deploy testing data. Inlcudes prod data
+  -dev, --dev-data
+    Deploy development data. Includes test and prod data
   -s, --deploy-swrs-schema
     Redeploys the swrs schema and inserts the swrs test reports. This requires the .cas-ggircs submodule to be initialized
   -p, --deploy-portal-schema
@@ -123,13 +129,13 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -d | --drop-db )
     actions+=('dropdb' 'deploySwrs' 'deployPortal')
     ;;
-  -prod | --prod-data )
+  -prod | --prod-data | --oc-project=*-prod )
     actions+=('deployProd')
     ;;
-  -test | --test-data )
+  -test | --test-data | --oc-project=*-test )
     actions+=('deployTest')
     ;;
-  -dev | --dev-data )
+  -dev | --dev-data | --oc-project=*-dev )
     actions+=('deployDev')
     ;;
   -p | --deploy-portal-schema )
