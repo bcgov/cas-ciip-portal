@@ -10,6 +10,7 @@ import customFields from 'components/Application/ApplicationDetailsCardItemCusto
 import SummaryFormArrayFieldTemplate from 'containers/Forms/SummaryFormArrayFieldTemplate';
 import SummaryFormFieldTemplate from 'containers/Forms/SummaryFormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
+import ApplicationReviewContainer from './ApplicationReviewContainer';
 
 interface Props {
   formResult: ApplicationDetailsCardItem_formResult;
@@ -98,7 +99,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           <Col md={6}>
             <h4>{formJsonByFormId.name}</h4>
           </Col>
-          <Col md={{span: 2, offset: 3}}>
+          <Col md={2}>
             {previousFormResults ? (
               <Form.Check
                 label="Show Diff?"
@@ -107,6 +108,16 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
                 onChange={() => setShowDiff(!showDiff)}
               />
             ) : null}
+          </Col>
+          <Col md={{span: 2, offset: 1}}>
+            <ApplicationReviewContainer
+              formName={formJsonByFormId.name}
+              formResultStatus={
+                formResult
+                  .formResultStatusesByApplicationIdAndVersionNumberAndFormId
+                  .edges[0].node
+              }
+            />
           </Col>
           <Col md={1} style={{textAlign: 'right'}}>
             <Button
@@ -158,6 +169,13 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
         name
         slug
         formJson
+      }
+      formResultStatusesByApplicationIdAndVersionNumberAndFormId {
+        edges {
+          node {
+            ...ApplicationReviewContainer_formResultStatus
+          }
+        }
       }
     }
   `,
