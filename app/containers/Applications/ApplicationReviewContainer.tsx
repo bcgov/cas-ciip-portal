@@ -17,6 +17,13 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    // E.persist();
+    console.log(e.target.reviewComment.value);
+    console.log(e.target.reviewStatus.value);
+  };
+
   const reviewStatuses: Record<string, CiipFormResultStatus> = {
     approved: 'APPROVED',
     requestChanges: 'CHANGES_REQUESTED',
@@ -27,7 +34,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
   return (
     <>
       <Button variant="outline-primary" onClick={handleShow}>
-        {props.formResultStatus.formResultStatus}
+        {props.formResultStatus.formResultStatus.replace('_', ' ')}
       </Button>
       <Modal
         size="lg"
@@ -39,27 +46,13 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
           <Modal.Title>Reviewing {props.formName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form className="review-box" onSubmit={() => console.log('submit')}>
+          <Form className="review-box" onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label>Comment</Form.Label>
+              <Form.Label>Internal Comment</Form.Label>
               <Form.Control name="reviewComment" as="textarea" rows="3" />
             </Form.Group>
             <Row className="review-status">
               <Col sm={12}>
-                <div className="radio">
-                  <input
-                    type="radio"
-                    name="reviewStatus"
-                    value={reviewStatuses.inReview}
-                  />
-                  <div className="description">
-                    <h6>Comment</h6>
-                    <span>
-                      Submit general feedback without explicit approval
-                    </span>
-                  </div>
-                </div>
-
                 <div className="radio">
                   <input
                     type="radio"
@@ -73,7 +66,17 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
                     </span>
                   </div>
                 </div>
-
+                <div className="radio">
+                  <input
+                    type="radio"
+                    name="reviewStatus"
+                    value="general comment"
+                  />
+                  <div className="description">
+                    <h6>Comment</h6>
+                    <span>Leave a comment for internal use</span>
+                  </div>
+                </div>
                 <div className="radio">
                   <input
                     type="radio"
@@ -86,6 +89,17 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
                       Request changes from the applicant before this can be
                       approved
                     </span>
+                  </div>
+                </div>
+                <div className="radio">
+                  <input
+                    type="radio"
+                    name="reviewStatus"
+                    value={reviewStatuses.needsAttention}
+                  />
+                  <div className="description">
+                    <h6>Flag</h6>
+                    <span>Flag this section for further attention</span>
                   </div>
                 </div>
               </Col>
