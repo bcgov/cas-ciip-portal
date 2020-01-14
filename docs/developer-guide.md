@@ -12,7 +12,7 @@ The `schema/deploy-test-data.sh` script allows you to set up you database schema
 
 `make deploy_test_data` will drop the existing database if it exists and recreate it using the current deployment files.
 
-Run `./.bin/deploy-test-data.sh --help` to learn about other available options.
+Run `./.bin/deploy-data.sh --help` to learn about other available options.
 
 
 ## Code style and Linting
