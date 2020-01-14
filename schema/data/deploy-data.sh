@@ -69,7 +69,7 @@ actions=()
 sqitch_revert() {
   echo "Revert the $database database"
   if _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1; then
-    sqitch revert -y "$database" || return 0;
+    sqitch revert -y || return 0;
   fi
   return 0;
 }
@@ -83,7 +83,7 @@ deploySwrs() {
   fi
   pushd ../.cas-ggircs
   sqitch_revert
-  sqitch deploy "$database"
+  sqitch deploy
   popd
   _psql <<EOF
   insert into
@@ -116,7 +116,7 @@ deployPortal() {
   echo "Deploying the portal schema to $database"
   pushd ..
   sqitch_revert
-  sqitch deploy "$database"
+  sqitch deploy
   popd
 }
 

@@ -23,22 +23,22 @@ test: | dropdb createdb deploy_ggircs deploy revert deploy_dev_data prove_unit p
 
 
 .PHONY: unit
-unit: | deploy_test_data prove_unit
+unit: | deploy_dev_data prove_unit
 
 .PHONY: deploy_prod_data
 deploy_prod_data:
 	# Deploy prod data in $(TEST_DB)
-	@@PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -prod
+	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -prod
 
 .PHONY: deploy_test_data
 deploy_test_data:
 	# Deploy test data in $(TEST_DB)
-	@@PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -test
+	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -test
 
 .PHONY: deploy_dev_data
 deploy_dev_data:
 	# Deploy dev data in $(TEST_DB)
-	@@PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -dev
+	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -dev
 
 .PHONY: deploy_ggircs
 deploy_ggircs:
