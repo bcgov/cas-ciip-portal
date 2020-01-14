@@ -112,10 +112,15 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           <Col md={{span: 2, offset: 1}}>
             <ApplicationReviewContainer
               formName={formJsonByFormId.name}
+              formResultId={formResult.id}
               formResultStatus={
                 formResult
                   .formResultStatusesByApplicationIdAndVersionNumberAndFormId
-                  .edges[0].node
+                  .edges[
+                  formResult
+                    .formResultStatusesByApplicationIdAndVersionNumberAndFormId
+                    .edges.length - 1
+                ].node
               }
             />
           </Col>
@@ -164,6 +169,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
   formResult: graphql`
     fragment ApplicationDetailsCardItem_formResult on FormResult {
+      id
       formResult
       formJsonByFormId {
         name

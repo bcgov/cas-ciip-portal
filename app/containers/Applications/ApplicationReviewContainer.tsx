@@ -1,28 +1,38 @@
-import React, {useState} from 'react';
+import React, {useState, SyntheticEvent} from 'react';
 import {Button, Modal, Form, Row, Col} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {
   ApplicationReviewContainer_formResultStatus,
   CiipFormResultStatus
 } from 'ApplicationReviewContainer_formResultStatus.graphql';
+import {ReviewCommentType} from 'ApplicationCommentsByForm_reviewComment.graphql';
+import createReviewCommentMutation from 'mutations/application/createReviewCommentMutation';
 
 interface Props {
   relay: RelayProp;
   formResultStatus: ApplicationReviewContainer_formResultStatus;
   formName: string;
+  formResultId: string;
 }
 
-export const ApplicationReview: React.FunctionComponent<Props> = props => {
+interface Target extends EventTarget {
+  reviewComment: {
+    value: string;
+  };
+  reviewStatus: {
+    value: string;
+  };
+}
+
+export const ApplicationReview: React.FunctionComponent<Props> = ({
+  relay,
+  formResultStatus,
+  formName,
+  formResultId
+}) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    // E.persist();
-    console.log(e.target.reviewComment.value);
-    console.log(e.target.reviewStatus.value);
-  };
 
   const reviewStatuses: Record<string, CiipFormResultStatus> = {
     approved: 'APPROVED',
@@ -31,10 +41,46 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
     needsAttention: 'NEEDS_ATTENTION'
   };
 
+  const commentTypes: Record<string, ReviewCommentType> = {
+    approved: 'INTERNAL',
+    requestChanges: 'REQUESTED_CHANGE',
+    inReview: 'GENERAL',
+    needsAttention: 'INTERNAL'
+  };
+
+  const addComment = async (e: SyntheticEvent) => {
+    e.preventDefault();
+    e.persist();
+
+    const comment = (e.target as Target).reviewComment.value;
+    const status = (e.target as Target).reviewStatus.value;
+
+    if (!comment) return null;
+    const {environment} = relay;
+    const variables = {
+      input: {
+        reviewComment: {
+          applicationId: formResultStatus.applicationId,
+          formId: formResultStatus.formId,
+          description: comment,
+          commentType: commentTypes[status],
+          resolved: false
+        }
+      }
+    };
+
+    const response = await createReviewCommentMutation(
+      environment,
+      variables,
+      formResultId
+    );
+    console.log(response);
+  };
+
   return (
     <>
       <Button variant="outline-primary" onClick={handleShow}>
-        {props.formResultStatus.formResultStatus.replace('_', ' ')}
+        {formResultStatus.formResultStatus.replace('_', ' ')}
       </Button>
       <Modal
         size="lg"
@@ -43,10 +89,10 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
         onHide={handleClose}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Reviewing {props.formName}</Modal.Title>
+          <Modal.Title>Reviewing {formName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form className="review-box" onSubmit={handleSubmit}>
+          <Form className="review-box" onSubmit={addComment}>
             <Form.Group>
               <Form.Label>Internal Comment</Form.Label>
               <Form.Control name="reviewComment" as="textarea" rows="3" />
@@ -142,6 +188,8 @@ export const ApplicationReview: React.FunctionComponent<Props> = props => {
 export default createFragmentContainer(ApplicationReview, {
   formResultStatus: graphql`
     fragment ApplicationReviewContainer_formResultStatus on FormResultStatus {
+      applicationId
+      formId
       formResultStatus
     }
   `

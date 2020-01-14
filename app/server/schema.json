@@ -20286,6 +20286,12 @@
           "interfaces": null,
           "enumValues": [
             {
+              "name": "GENERAL",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "INTERNAL",
               "description": null,
               "isDeprecated": false,
