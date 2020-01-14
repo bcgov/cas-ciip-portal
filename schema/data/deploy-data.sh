@@ -201,7 +201,7 @@ if [[ " ${actions[*]} " =~ " deployProd " ]]; then
 fi
 if [[ " ${actions[*]} " =~ " deployTest " ]]; then
   echo 'Deploying testing data'
-  deployTestData 
+  deployTestData
 fi
 if [[ " ${actions[*]} " =~ " deployDev " ]]; then
   echo 'Deploying development data'
