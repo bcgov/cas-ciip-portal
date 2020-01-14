@@ -223,12 +223,12 @@ jobs:
           name: deploy schemas and data
           command: |
             source ~/.bashrc
-            ./.bin/deploy-test-data.sh
+            ./.bin/deploy-data.sh
       - run:
           name: deploying the data a second time should not fail on primary key conflicts
           command: |
             source ~/.bashrc
-            ./.bin/deploy-test-data.sh
+            ./.bin/deploy-data.sh
 
   acceptance:
     machine:

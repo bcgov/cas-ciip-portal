@@ -2,19 +2,19 @@
 begin;
 
 create temporary table administration (json_data jsonb);
-\copy administration(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/form_json/administration.json | tr -d ''\n''';
+\copy administration(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/form_json/administration.json | tr -d ''\n''';
 
 create temporary table emission (json_data jsonb);
-\copy emission(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/form_json/emission.json | tr -d ''\n''';
+\copy emission(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/form_json/emission.json | tr -d ''\n''';
 
 create temporary table fuel (json_data jsonb);
-\copy fuel(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/form_json/fuel.json | tr -d ''\n''';
+\copy fuel(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/form_json/fuel.json | tr -d ''\n''';
 
 create temporary table electricity_and_heat (json_data jsonb);
-\copy electricity_and_heat(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/form_json/electricity_and_heat.json | tr -d ''\n''';
+\copy electricity_and_heat(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/form_json/electricity_and_heat.json | tr -d ''\n''';
 
 create temporary table production (json_data jsonb);
-\copy production(json_data) from program 'sed ''s/\\/\\\\/g'' < portal/form_json/production.json | tr -d ''\n''';
+\copy production(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/form_json/production.json | tr -d ''\n''';
 
 with rows as (
 insert into ggircs_portal.form_json

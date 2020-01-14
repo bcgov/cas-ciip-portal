@@ -5,11 +5,11 @@ import {ApplicationDetailsContainerTestQuery} from 'ApplicationDetailsContainerT
 import {create} from 'react-test-renderer';
 import {mockRandom} from 'jest-mock-random';
 import ApplicationDetailsContainer from 'containers/Applications/ApplicationDetailsContainer';
-import adminForm from 'schema/data/portal/form_json/administration.json';
-import emissionForm from 'schema/data/portal/form_json/emission.json';
-import fuelForm from 'schema/data/portal/form_json/fuel.json';
-import electricityAndHeatForm from 'schema/data/portal/form_json/electricity_and_heat.json';
-import productionForm from 'schema/data/portal/form_json/production.json';
+import adminForm from 'schema/data/prod/form_json/administration.json';
+import emissionForm from 'schema/data/prod/form_json/emission.json';
+import fuelForm from 'schema/data/prod/form_json/fuel.json';
+import electricityAndHeatForm from 'schema/data/prod/form_json/electricity_and_heat.json';
+import productionForm from 'schema/data/prod/form_json/production.json';
 import {FormJson} from 'next-env';
 import {generateFakeSchemaData} from 'tests/integration/json-schema-utils';
 
