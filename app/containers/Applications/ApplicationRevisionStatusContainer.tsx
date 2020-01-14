@@ -29,15 +29,11 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
     event.stopPropagation();
     event.persist();
 
-    const date = new Date().toUTCString();
-
     const variables = {
       input: {
         applicationRevisionStatus: {
           applicationId: props.applicationRowId,
           applicationRevisionStatus: eventKey,
-          createdAt: date,
-          createdBy: 'Admin',
           versionNumber: props.applicationRevisionStatus.versionNumber
         }
       }
