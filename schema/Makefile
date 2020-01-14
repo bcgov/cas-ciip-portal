@@ -17,13 +17,13 @@ PG_ROLE=${shell whoami}
 TEST_DB=ggircs_test
 PG_PROVE=pg_prove -h localhost
 PG_SHAREDIR=$(shell pg_config --sharedir)
+DEPLOY_DEFAULT_DATA=deploy_dev_data
 
 .PHONY: test
-test: | dropdb createdb deploy_ggircs deploy revert deploy_dev_data prove_unit prove_style dropdb
-
+test: | dropdb createdb deploy_ggircs deploy revert $(DEPLOY_DEFAULT_DATA) prove_unit prove_style dropdb
 
 .PHONY: unit
-unit: | deploy_dev_data prove_unit
+unit: | $(DEPLOY_DEFAULT_DATA) prove_unit
 
 .PHONY: deploy_prod_data
 deploy_prod_data:
