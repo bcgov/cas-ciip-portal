@@ -18,12 +18,12 @@ export default class Index extends Component<Props> {
           ...defaultLayout_session
         }
         openedReportingYear {
-          applicationOpenDate
-          applicationEndDate
+          applicationOpenTime
+          applicationCloseTime
         }
         nextReportingYear {
-          applicationOpenDate
-          applicationEndDate
+          applicationOpenTime
+          applicationCloseTime
         }
       }
     }
@@ -35,15 +35,15 @@ export default class Index extends Component<Props> {
 
     const startDate = moment
       .tz(
-        openedReportingYear?.applicationOpenDate ??
-          nextReportingYear?.applicationOpenDate,
+        openedReportingYear?.applicationOpenTime ??
+          nextReportingYear?.applicationOpenTime,
         'America/Vancouver'
       )
       .format('MMM D, YYYY');
     const endDate = moment
       .tz(
-        openedReportingYear?.applicationEndDate ??
-          nextReportingYear?.applicationEndDate,
+        openedReportingYear?.applicationCloseTime ??
+          nextReportingYear?.applicationCloseTime,
         'America/Vancouver'
       )
       .format('MMM D, YYYY');

@@ -8,12 +8,12 @@ describe('landing', () => {
       <Index
         query={{
           openedReportingYear: {
-            applicationOpenDate: '2019-04-01 14:49:54.191757-07',
-            applicationEndDate: '2019-12-30 14:49:54.191757-07'
+            applicationOpenTime: '2019-04-01 14:49:54.191757-07',
+            applicationCloseTime: '2019-12-30 14:49:54.191757-07'
           },
           nextReportingYear: {
-            applicationOpenDate: '2019-04-01 14:49:54.191757-07',
-            applicationEndDate: '2019-12-30 14:49:54.191757-07'
+            applicationOpenTime: '2019-04-01 14:49:54.191757-07',
+            applicationCloseTime: '2019-12-30 14:49:54.191757-07'
           },
           session: null
         }}
