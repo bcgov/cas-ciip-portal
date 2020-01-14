@@ -44,19 +44,20 @@ begin
 end;
 $$ language plpgsql;
 
--- comment on function ggircs_portal.set_expiry()
---   is $$
---   a trigger to set expires_at column.
---   example usage:
+comment on function ggircs_portal.checksum_form_results()
+  is $$
+  a trigger to checksum the form_result columns from the current and previous versions of an application
+  when the application_revision_status changes.
+  example usage:
 
---   create table some_schema.some_table (
---     ...
---     expires_at timestamp with time zone not null
---   );
---   create trigger _set_expiry
---     before insert on some_schema.some_table
---     for each row
---     execute procedure ggircs_portal.set_expiry('7 days');
---   $$;
+  create table some_schema.some_table (
+    ...
+    application_revision_status jsonb
+  );
+  create trigger _checksum_form_results
+    before update of application_revision_status on some_schema.some_table
+    for each row
+    execute procedure ggircs_portal.checksum_form_results();
+  $$;
 
 commit;
