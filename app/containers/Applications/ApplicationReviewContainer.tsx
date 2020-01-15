@@ -87,8 +87,6 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
       formResultId
     );
     console.log(response);
-
-    await setFormResultStatus(e);
   };
 
   const setFormResultStatus = async (e: any) => {
