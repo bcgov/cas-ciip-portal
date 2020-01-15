@@ -1,10 +1,11 @@
 import React, {useState, SyntheticEvent} from 'react';
-import {Button, Modal, Form, Row, Col} from 'react-bootstrap';
+import {Button, Modal, Dropdown, Form, Row, Col} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {
   ApplicationReviewContainer_formResultStatus,
   CiipFormResultStatus
 } from 'ApplicationReviewContainer_formResultStatus.graphql';
+import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import {ReviewCommentType} from 'ApplicationCommentsByForm_reviewComment.graphql';
 import createReviewCommentMutation from 'mutations/application/createReviewCommentMutation';
 import updateFormResultStatusMutation from '../../mutations/application/updateFormResultStatusMutation';
@@ -35,6 +36,16 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const statusBadgeColor: Record<
+    CiipFormResultStatus,
+    'info' | 'danger' | 'success' | 'warning' | 'primary' | 'secondary'
+  > = {
+    IN_REVIEW: 'info',
+    NEEDS_ATTENTION: 'warning',
+    APPROVED: 'success',
+    CHANGES_REQUESTED: 'secondary'
+  };
+
   const reviewStatuses: Record<string, CiipFormResultStatus> = {
     approved: 'APPROVED',
     requestChanges: 'CHANGES_REQUESTED',
@@ -44,7 +55,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
 
   const commentType: Record<string, ReviewCommentType> = {
     APPROVED: 'GENERAL',
-    GENERAL: 'GENERAL',
+    IN_REVIEW: 'GENERAL',
     CHANGES_REQUESTED: 'REQUESTED_CHANGE',
     NEEDS_ATTENTION: 'INTERNAL'
   };
@@ -76,12 +87,12 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
       formResultId
     );
     console.log(response);
+
+    await setFormResultStatus(e);
   };
 
-  const setFormResultStatus = async (e: SyntheticEvent) => {
-    e.preventDefault();
-    e.persist();
-    console.log(e.target);
+  const setFormResultStatus = async (e: any) => {
+    console.log(e);
 
     const {environment} = relay;
     const variables = {
@@ -90,7 +101,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
         formResultStatusPatch: {
           applicationId: formResultStatus.applicationId,
           formId: formResultStatus.formId,
-          formResultStatus: 'APPROVED' as CiipFormResultStatus
+          formResultStatus: e as CiipFormResultStatus
         }
       }
     };
@@ -139,7 +150,11 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
                   </div>
                 </div>
                 <div className="radio">
-                  <input type="radio" name="reviewStatus" value="GENERAL" />
+                  <input
+                    type="radio"
+                    name="reviewStatus"
+                    value={reviewStatuses.inReview}
+                  />
                   <div className="description">
                     <h6>General Comment</h6>
                     <span>Leave a general comment</span>
@@ -180,8 +195,32 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
               Submit
             </Button>
           </Form>
-          <Button onClick={setFormResultStatus}>CHANGE STATUS</Button>
-          <h5>{formResultStatus.formResultStatus}</h5>
+          <Row style={{marginTop: '20px'}}>
+            <Col md={4}>
+              <h5>Form Status: </h5>
+            </Col>
+            <Col md={4}>
+              <Dropdown style={{width: '100%'}}>
+                <Dropdown.Toggle
+                  style={{width: '100%', textTransform: 'capitalize'}}
+                  variant={statusBadgeColor[formResultStatus.formResultStatus]}
+                  id="dropdown"
+                >
+                  {formResultStatus.formResultStatus}
+                </Dropdown.Toggle>
+                <Dropdown.Menu style={{width: '100%'}}>
+                  {Object.keys(statusBadgeColor).map(status => (
+                    <DropdownMenuItemComponent
+                      key={status}
+                      itemEventKey={status}
+                      itemFunc={setFormResultStatus}
+                      itemTitle={status}
+                    />
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+          </Row>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
