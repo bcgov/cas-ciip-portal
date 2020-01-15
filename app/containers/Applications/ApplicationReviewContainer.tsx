@@ -79,7 +79,6 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
         }
       }
     };
-    console.log(variables);
 
     const response = await createReviewCommentMutation(
       environment,
@@ -90,8 +89,6 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
   };
 
   const setFormResultStatus = async (e: any) => {
-    console.log(e);
-
     const {environment} = relay;
     const variables = {
       input: {
@@ -103,7 +100,6 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
         }
       }
     };
-    console.log(variables);
 
     const response = await updateFormResultStatusMutation(
       environment,
