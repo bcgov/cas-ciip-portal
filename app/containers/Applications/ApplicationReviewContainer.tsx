@@ -8,7 +8,7 @@ import {
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import {ReviewCommentType} from 'ApplicationCommentsByForm_reviewComment.graphql';
 import createReviewCommentMutation from 'mutations/application/createReviewCommentMutation';
-import updateFormResultStatusMutation from '../../mutations/application/updateFormResultStatusMutation';
+import createFormResultStatusMutation from '../../mutations/application/createFormResultStatusMutation';
 
 interface Props {
   relay: RelayProp;
@@ -92,16 +92,20 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
     const {environment} = relay;
     const variables = {
       input: {
-        id: formResultStatus.id,
-        formResultStatusPatch: {
+        formResultStatus: {
           applicationId: formResultStatus.applicationId,
           formId: formResultStatus.formId,
+          versionNumber: formResultStatus.versionNumber,
           formResultStatus: e as CiipFormResultStatus
         }
-      }
+      },
+      applicationId:
+        formResultStatus.formResultByApplicationIdAndVersionNumberAndFormId
+          .applicationByApplicationId.id,
+      version: formResultStatus.versionNumber.toString()
     };
 
-    const response = await updateFormResultStatusMutation(
+    const response = await createFormResultStatusMutation(
       environment,
       variables
     );
@@ -251,6 +255,12 @@ export default createFragmentContainer(ApplicationReview, {
       applicationId
       formId
       formResultStatus
+      versionNumber
+      formResultByApplicationIdAndVersionNumberAndFormId {
+        applicationByApplicationId {
+          id
+        }
+      }
     }
   `
 });
