@@ -23,13 +23,28 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         </h4>
       </Col>
       <Col
+        md={2}
+      />
+      <Col
         md={
           Object {
-            "offset": 3,
+            "offset": 1,
             "span": 2,
           }
         }
-      />
+      >
+        <Relay(ApplicationReview)
+          formName="Fuel Usage"
+          formResultStatus={
+            Object {
+              " $fragmentRefs": Object {
+                " $refType": "ApplicationDetailsCardItem_formResult",
+                "ApplicationReviewContainer_formResultStatus": true,
+              },
+            }
+          }
+        />
+      </Col>
       <Col
         md={1}
         style={
