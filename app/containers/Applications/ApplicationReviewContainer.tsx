@@ -44,7 +44,6 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
   const addComment = async (e: SyntheticEvent) => {
     e.preventDefault();
     e.persist();
-    console.log((e.target as Target).reviewStatus.value);
     const comment = (e.target as Target).reviewComment.value;
     const commentType = (e.target as Target).reviewStatus.value;
 

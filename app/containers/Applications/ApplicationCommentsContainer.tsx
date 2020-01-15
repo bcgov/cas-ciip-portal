@@ -19,8 +19,6 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
   const [isOpen, setIsOpen] = useState(false);
   const [showResolved, toggleShowResolved] = useState(false);
 
-  console.log(formResult);
-
   return (
     <>
       <div key={formResult.id} className="form-result-box">

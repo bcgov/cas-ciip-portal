@@ -19,7 +19,20 @@ describe('ApplicationCommentsComponent', () => {
             rowId: 1,
             name: 'ddd'
           },
-          applicationComments: {
+          internalGeneralComments: {
+            edges: [
+              {
+                node: {
+                  id: 'abc',
+                  resolved: false,
+                  ' $fragmentRefs': {
+                    ApplicationCommentsByForm_reviewComment: true
+                  }
+                }
+              }
+            ]
+          },
+          requestedChangeComments: {
             edges: [
               {
                 node: {
@@ -53,7 +66,20 @@ describe('ApplicationCommentsComponent', () => {
             rowId: 1,
             name: 'ddd'
           },
-          applicationComments: {
+          internalGeneralComments: {
+            edges: [
+              {
+                node: {
+                  id: 'abc',
+                  resolved: false,
+                  ' $fragmentRefs': {
+                    ApplicationCommentsByForm_reviewComment: true
+                  }
+                }
+              }
+            ]
+          },
+          requestedChangeComments: {
             edges: [
               {
                 node: {

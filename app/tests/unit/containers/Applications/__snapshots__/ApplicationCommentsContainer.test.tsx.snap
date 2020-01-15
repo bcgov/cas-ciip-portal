@@ -98,6 +98,47 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
             />
           </tbody>
         </ForwardRef>
+        <ForwardRef
+          bordered={true}
+          hover={true}
+          striped={true}
+        >
+          <thead
+            className="jsx-2020872473"
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            <tr
+              className="jsx-2020872473"
+            >
+              <th
+                className="jsx-2020872473"
+              >
+                Comment
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            className="jsx-2020872473"
+          >
+            <Relay(ApplicationCommentsByForm)
+              key="abc"
+              review={false}
+              reviewComment={
+                Object {
+                  " $fragmentRefs": Object {
+                    "ApplicationCommentsByForm_reviewComment": true,
+                  },
+                  "id": "abc",
+                  "resolved": false,
+                }
+              }
+            />
+          </tbody>
+        </ForwardRef>
         <a
           className="jsx-2020872473"
           href="#"
