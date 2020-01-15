@@ -1,0 +1,83 @@
+set client_min_messages to warning;
+create extension if not exists pgtap;
+reset client_min_messages;
+
+begin;
+select plan(4);
+
+select has_function(
+  'ggircs_portal', 'checksum_form_results',
+  'Function checksum_form_results should exist'
+);
+
+-- Insert organisation & facility test data
+insert into ggircs_portal.organisation(operator_name) values ('test org');
+insert into ggircs_portal.facility(organisation_id, facility_name) values (1, 'test facility');
+
+-- Call create application_mutation_chain to create a test application
+select ggircs_portal.create_application_mutation_chain((select id from ggircs_portal.facility where facility_name = 'test facility'));
+
+-- Test default status
+select results_eq(
+  $$
+    select form_result_status
+      from ggircs_portal.form_result_status
+      where application_id = (select max(id) from ggircs_portal.application)
+      and version_number = 1
+      and form_id = 1;
+  $$,
+  ARRAY['in review'::ggircs_portal.ciip_form_result_status],
+  'form_result status should default to in review'
+);
+
+update ggircs_portal.application_revision_status
+  set application_revision_status = 'submitted'
+  where application_id = (select max(id) from ggircs_portal.application)
+  and version_number = 1;
+
+-- Test trigger doesn't run when it shouldn't
+select results_eq(
+  $$
+    select form_result_status
+      from ggircs_portal.form_result_status
+      where application_id = (select max(id) from ggircs_portal.application)
+      and version_number = 1
+      and form_id = 1;
+  $$,
+  ARRAY['in review'::ggircs_portal.ciip_form_result_status],
+  'trigger should not change the form result status if there is no difference in the form result'
+);
+
+-- Call create_application_revision_mutation_chain to create a revision
+select ggircs_portal.create_application_revision_mutation_chain((select max(id) from ggircs_portal.application), 1);
+
+-- Change form_result of new version to activate trigger on update of status
+update ggircs_portal.form_result
+  set form_result = '{"TEST":"test"}'
+  where application_id = (select max(id) from ggircs_portal.application)
+  and version_number = 2;
+
+-- Activate trigger by updating status
+update ggircs_portal.application_revision_status
+  set application_revision_status = 'submitted'
+  where application_id = (select max(id) from ggircs_portal.application)
+  and version_number = 2;
+
+-- Test trigger
+select results_eq(
+  $$
+    select form_result_status
+      from ggircs_portal.form_result_status
+      where application_id = (select max(id) from ggircs_portal.application)
+      and version_number = 1
+      and form_id = 1;
+  $$,
+  ARRAY['needs attention'::ggircs_portal.ciip_form_result_status],
+  $$
+    checksum_form_results trigger changes status to 'needs attention' if form_result has changed
+  $$
+);
+
+select finish();
+
+rollback;
