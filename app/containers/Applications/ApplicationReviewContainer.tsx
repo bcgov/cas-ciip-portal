@@ -7,6 +7,7 @@ import {
 } from 'ApplicationReviewContainer_formResultStatus.graphql';
 import {ReviewCommentType} from 'ApplicationCommentsByForm_reviewComment.graphql';
 import createReviewCommentMutation from 'mutations/application/createReviewCommentMutation';
+import updateFormResultStatusMutation from '../../mutations/application/updateFormResultStatusMutation';
 
 interface Props {
   relay: RelayProp;
@@ -73,6 +74,31 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
       environment,
       variables,
       formResultId
+    );
+    console.log(response);
+  };
+
+  const setFormResultStatus = async (e: SyntheticEvent) => {
+    e.preventDefault();
+    e.persist();
+    console.log(e.target);
+
+    const {environment} = relay;
+    const variables = {
+      input: {
+        id: formResultStatus.id,
+        formResultStatusPatch: {
+          applicationId: formResultStatus.applicationId,
+          formId: formResultStatus.formId,
+          formResultStatus: 'APPROVED' as CiipFormResultStatus
+        }
+      }
+    };
+    console.log(variables);
+
+    const response = await updateFormResultStatusMutation(
+      environment,
+      variables
     );
     console.log(response);
   };
@@ -154,6 +180,8 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
               Submit
             </Button>
           </Form>
+          <Button onClick={setFormResultStatus}>CHANGE STATUS</Button>
+          <h5>{formResultStatus.formResultStatus}</h5>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -186,6 +214,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
 export default createFragmentContainer(ApplicationReview, {
   formResultStatus: graphql`
     fragment ApplicationReviewContainer_formResultStatus on FormResultStatus {
+      id
       applicationId
       formId
       formResultStatus
