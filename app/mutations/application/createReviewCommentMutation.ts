@@ -16,6 +16,7 @@ const mutation = graphql`
           description
           createdAt
           resolved
+          commentType
         }
       }
     }
@@ -27,13 +28,16 @@ const createReviewCommentMutation = async (
   variables: createReviewCommentMutationVariables,
   formResultId: string
 ) => {
+  let connectionKey = 'ApplicationCommentsContainer_internalGeneralComments';
+  if (variables.input.reviewComment.commentType === 'REQUESTED_CHANGE')
+    connectionKey = 'ApplicationCommentsContainer_requestedChangeComments';
   const configs: DeclarativeMutationConfig[] = [
     {
       type: 'RANGE_ADD',
       parentID: formResultId,
       connectionInfo: [
         {
-          key: 'ApplicationCommentsContainer_applicationComments',
+          key: connectionKey,
           rangeBehavior: 'append'
         }
       ],

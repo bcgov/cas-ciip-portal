@@ -19,6 +19,8 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
   const [isOpen, setIsOpen] = useState(false);
   const [showResolved, toggleShowResolved] = useState(false);
 
+  console.log(formResult);
+
   return (
     <>
       <div key={formResult.id} className="form-result-box">
@@ -47,7 +49,27 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                 </tr>
               </thead>
               <tbody>
-                {formResult.applicationComments.edges.map(({node}) => {
+                {formResult.internalGeneralComments.edges.map(({node}) => {
+                  if (node.resolved && !showResolved) return null;
+                  return (
+                    <ApplicationCommentsBox
+                      key={node.id}
+                      review={review}
+                      reviewComment={node}
+                    />
+                  );
+                })}
+              </tbody>
+            </Table>
+            <Table striped bordered hover>
+              <thead style={{textAlign: 'center'}}>
+                <tr>
+                  <th>Comment</th>
+                  {review ? <th>Resolve</th> : null}
+                </tr>
+              </thead>
+              <tbody>
+                {formResult.requestedChangeComments.edges.map(({node}) => {
                   if (node.resolved && !showResolved) return null;
                   return (
                     <ApplicationCommentsBox
@@ -107,8 +129,22 @@ export default createFragmentContainer(ApplicationCommentsComponent, {
         rowId
         name
       }
-      applicationComments(first: 2147483647)
-        @connection(key: "ApplicationCommentsContainer_applicationComments") {
+      internalGeneralComments(first: 2147483647)
+        @connection(
+          key: "ApplicationCommentsContainer_internalGeneralComments"
+        ) {
+        edges {
+          node {
+            id
+            resolved
+            ...ApplicationCommentsByForm_reviewComment
+          }
+        }
+      }
+      requestedChangeComments(first: 2147483647)
+        @connection(
+          key: "ApplicationCommentsContainer_requestedChangeComments"
+        ) {
         edges {
           node {
             id

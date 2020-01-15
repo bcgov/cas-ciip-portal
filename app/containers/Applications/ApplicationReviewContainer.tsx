@@ -41,19 +41,12 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
     needsAttention: 'NEEDS_ATTENTION'
   };
 
-  const commentTypes: Record<string, ReviewCommentType> = {
-    approved: 'INTERNAL',
-    requestChanges: 'REQUESTED_CHANGE',
-    inReview: 'GENERAL',
-    needsAttention: 'INTERNAL'
-  };
-
   const addComment = async (e: SyntheticEvent) => {
     e.preventDefault();
     e.persist();
-
+    console.log((e.target as Target).reviewStatus.value);
     const comment = (e.target as Target).reviewComment.value;
-    const status = (e.target as Target).reviewStatus.value;
+    const commentType = (e.target as Target).reviewStatus.value;
 
     if (!comment) return null;
     const {environment} = relay;
@@ -63,11 +56,12 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
           applicationId: formResultStatus.applicationId,
           formId: formResultStatus.formId,
           description: comment,
-          commentType: commentTypes[status],
+          commentType: commentType as ReviewCommentType,
           resolved: false
         }
       }
     };
+    console.log(variables);
 
     const response = await createReviewCommentMutation(
       environment,

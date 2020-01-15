@@ -6747,27 +6747,6 @@ type FormResult implements Node {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
 
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  applicationComments(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-  ): ReviewCommentsConnection!
-
   """The Unique ID of the Application"""
   applicationId: Int!
 
@@ -6840,6 +6819,48 @@ type FormResult implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+
+  """Reads and enables pagination through a set of `ReviewComment`."""
+  internalGeneralComments(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): ReviewCommentsConnection!
+
+  """Reads and enables pagination through a set of `ReviewComment`."""
+  requestedChangeComments(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): ReviewCommentsConnection!
 
   """Unique ID for the form"""
   rowId: Int!

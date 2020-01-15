@@ -48,7 +48,7 @@ mutations/create_benchmark_mutation_chain [tables/benchmark] 2019-10-16T21:52:34
 tables/fuel [schema_ggircs_portal] 2019-10-16T18:17:17Z Matthieu Foucault <matthieu@button.is> # add fuel table
 mutations/create_application_mutation_chain [tables/application] 2019-10-25T18:24:34Z Dylan Leard <dylan@button.is> # Mutation chain to create an application and create a pending application status
 computed_columns/application_application_revision_status [tables/application] 2019-10-30T23:57:31Z Helen Liu <helen@button.is> # Added new column application status to application
-computed_columns/application_ordered_form_results [tables/application tables/form_result tables/ciip_application_wizard] 2019-10-30T22:29:53Z Dylan Leard <dleard@dleard-Aspire-V5-591G> # Function to order form results on an application
+computed_columns/application_ordered_form_results [tables/application tables/form_result tables/ciip_application_wizard] 2019-10-30T22:29:53Z Dylan Leard <dylan@button.is> # Function to order form results on an application
 tables/gas [schema_ggircs_portal] 2019-11-13T18:37:12Z Hamza Javed <hamza@button.is> # Add a table for gases
 tables/emission_category_gas [schema_ggircs_portal tables/gas] 2019-11-12T22:24:51Z Hamza Javed <hamza@button.is> # Table for mapping emission category to all its gases and GWP values for the json form schema
 swrs_functions/init_application_administration_form_result [tables/form_result swrs_functions/get_swrs_organisation_data swrs_functions/get_swrs_facility_data swrs_functions/get_swrs_operator_contact_data] 2019-11-08T22:46:02Z Matthieu Foucault <matthieu@button.is> # add function to initialize admin form result
@@ -69,7 +69,8 @@ computed_columns/application_latest_submitted_revision [tables/application_revis
 computed_columns/application_latest_draft_revision [tables/application_revision_status] 2019-12-12T18:41:24Z Dylan Leard <dylan@button.is> # Function to add computed column latest_draft_revision to ggircs_portal.application
 mutations/create_application_revision_mutation_chain [tables/application_revision_status] 2019-12-13T23:52:16Z Dylan Leard <dylan@button.is> # Stored procedure to create an application revision and all dependent tables
 computed_columns/application_revision_application_revision_status [tables/application_revision_status] 2019-12-17T23:56:59Z Dylan Leard <dylan@button.is> # Function creates a computed column on application_revision
-computed_columns/form_result_application_comments [tables/review_comment tables/form_result] 2019-12-19T00:09:34Z Dylan Leard <dylan@button.is> # Function to add computed column of application comments to form_result
+computed_columns/form_result_internal_general_comments [tables/review_comment tables/form_result] 2019-12-19T00:09:34Z Dylan Leard <dylan@button.is> # Function to add computed column of application comments to form_result
+computed_columns/form_result_requested_change_comments [tables/form_result tables/review_comment] 2020-01-15T18:08:51Z Dylan Leard <dylan@button.is> # Computed column to return all requested change comments for a form result
 computed_columns/form_result_has_unresolved_comments [tables/form_result tables/review_comment] 2019-12-19T22:27:33Z Dylan Leard <dylan@button.is> # Function creates a computed boolean column on form result has_unresolved_comments
 computed_columns/application_previous_submitted_revision [tables/application_revision_status] 2020-01-02T18:28:24Z Dylan Leard <dylan@button.is> # Function adds computed column on application for previous submitted revision
 swrs_functions/import_swrs_organisation_facility 2019-12-30T22:34:43Z Matthieu Foucault <matthieu@button.is> # Add function to import swrs organisation and facility tables
