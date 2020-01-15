@@ -41,11 +41,18 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
     needsAttention: 'NEEDS_ATTENTION'
   };
 
+  const commentType: Record<string, ReviewCommentType> = {
+    APPROVED: 'GENERAL',
+    GENERAL: 'GENERAL',
+    CHANGES_REQUESTED: 'REQUESTED_CHANGE',
+    NEEDS_ATTENTION: 'INTERNAL'
+  };
+
   const addComment = async (e: SyntheticEvent) => {
     e.preventDefault();
     e.persist();
     const comment = (e.target as Target).reviewComment.value;
-    const commentType = (e.target as Target).reviewStatus.value;
+    const status = (e.target as Target).reviewStatus.value;
 
     if (!comment) return null;
     const {environment} = relay;
@@ -55,7 +62,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
           applicationId: formResultStatus.applicationId,
           formId: formResultStatus.formId,
           description: comment,
-          commentType: commentType as ReviewCommentType,
+          commentType: commentType[status],
           resolved: false
         }
       }
@@ -87,7 +94,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
         <Modal.Body>
           <Form className="review-box" onSubmit={addComment}>
             <Form.Group>
-              <Form.Label>Internal Comment</Form.Label>
+              <Form.Label>Comment</Form.Label>
               <Form.Control name="reviewComment" as="textarea" rows="3" />
             </Form.Group>
             <Row className="review-status">
@@ -106,14 +113,10 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
                   </div>
                 </div>
                 <div className="radio">
-                  <input
-                    type="radio"
-                    name="reviewStatus"
-                    value="general comment"
-                  />
+                  <input type="radio" name="reviewStatus" value="GENERAL" />
                   <div className="description">
-                    <h6>Comment</h6>
-                    <span>Leave a comment for internal use</span>
+                    <h6>General Comment</h6>
+                    <span>Leave a general comment</span>
                   </div>
                 </div>
                 <div className="radio">
@@ -138,7 +141,9 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
                   />
                   <div className="description">
                     <h6>Flag</h6>
-                    <span>Flag this section for further attention</span>
+                    <span>
+                      Internal Comment (Flag this section for further attention)
+                    </span>
                   </div>
                 </div>
               </Col>
