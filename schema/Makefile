@@ -25,6 +25,9 @@ test: | dropdb createdb deploy_ggircs deploy revert $(DEPLOY_DEFAULT_DATA) prove
 .PHONY: unit
 unit: | $(DEPLOY_DEFAULT_DATA) prove_unit
 
+.PHONY: test_data
+test_data: | deploy_prod_data prove_prod_data deploy_test_data prove_test_data deploy_dev_data prove_dev_data
+
 .PHONY: deploy_prod_data
 deploy_prod_data:
 	# Deploy prod data in $(TEST_DB)
@@ -64,6 +67,21 @@ prove_style:
 prove_unit:
 	# Run unit test suite using pg_prove
 	@@$(PG_PROVE) --failures -d $(TEST_DB) test/unit/*_test.sql
+
+.PHONY: prove_prod_data
+prove_prod_data:
+	# Run prod_data tests using pg_prove
+	@@$(PG_PROVE) --failures -d $(TEST_DB) test/data/prod_data_test.sql
+
+.PHONY: prove_test_data
+prove_test_data:
+	# Run test_data tests using pg_prove
+	@@$(PG_PROVE) --failures -d $(TEST_DB) test/data/test_data_test.sql
+
+.PHONY: prove_dev_data
+prove_dev_data:
+	# Run test_data tests using pg_prove
+	@@$(PG_PROVE) --failures -d $(TEST_DB) test/data/dev_data_test.sql
 
 .PHONY: revert
 revert:
