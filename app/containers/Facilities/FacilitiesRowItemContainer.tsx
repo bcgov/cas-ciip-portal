@@ -6,7 +6,7 @@ import {
   FacilitiesRowItemContainer_facilitySearchResult
 } from 'FacilitiesRowItemContainer_facilitySearchResult.graphql';
 import {FacilitiesRowItemContainer_query} from 'FacilitiesRowItemContainer_query.graphql';
-import ApplyButton from 'components/ApplyButton';
+import ApplyButtonContainer from 'containers/Applications/ApplyButtonContainer';
 interface Props {
   facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult;
   query: FacilitiesRowItemContainer_query;
@@ -51,7 +51,10 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
         )}
       </td>
       <td>
-        <ApplyButton applyButtonDetails={facilitySearchResult} query={query} />
+        <ApplyButtonContainer
+          applyButtonDetails={facilitySearchResult}
+          query={query}
+        />
       </td>
     </tr>
   );
@@ -60,7 +63,7 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
 export default createFragmentContainer(FacilitiesRowItemComponent, {
   facilitySearchResult: graphql`
     fragment FacilitiesRowItemContainer_facilitySearchResult on FacilitySearchResult {
-      ...ApplyButton_applyButtonDetails
+      ...ApplyButtonContainer_applyButtonDetails
       facilityName
       facilityMailingAddress
       facilityCity
@@ -71,7 +74,7 @@ export default createFragmentContainer(FacilitiesRowItemComponent, {
   `,
   query: graphql`
     fragment FacilitiesRowItemContainer_query on Query {
-      ...ApplyButton_query
+      ...ApplyButtonContainer_query
     }
   `
 });

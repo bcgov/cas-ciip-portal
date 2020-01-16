@@ -24,6 +24,7 @@ class ViewApplication extends Component<Props> {
           ...defaultLayout_session
         }
         ...ApplicationDetailsContainer_query
+        ...ReviseApplicationButtonContainer_query
 
         application(id: $applicationId) {
           applicationRevisionStatus {
@@ -78,7 +79,10 @@ class ViewApplication extends Component<Props> {
         <Row>
           {query?.application?.applicationRevisionStatus
             ?.applicationRevisionStatus === 'REQUESTED_CHANGES' ? (
-            <ReviseApplicationButton application={query.application} />
+            <ReviseApplicationButton
+              application={query.application}
+              query={query}
+            />
           ) : null}
         </Row>
       </DefaultLayout>

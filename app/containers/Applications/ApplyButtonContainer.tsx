@@ -4,15 +4,15 @@ import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import createApplicationMutation from 'mutations/application/createApplicationMutation';
-import {ApplyButton_applyButtonDetails} from 'ApplyButton_applyButtonDetails.graphql';
-import {ApplyButton_query} from 'ApplyButton_query.graphql';
+import {ApplyButtonContainer_applyButtonDetails} from 'ApplyButtonContainer_applyButtonDetails.graphql';
+import {ApplyButtonContainer_query} from 'ApplyButtonContainer_query.graphql';
 interface Props {
   relay: RelayProp;
-  applyButtonDetails: ApplyButton_applyButtonDetails;
-  query: ApplyButton_query;
+  applyButtonDetails: ApplyButtonContainer_applyButtonDetails;
+  query: ApplyButtonContainer_query;
 }
 
-const ApplyButton: React.FunctionComponent<Props> = ({
+export const ApplyButton: React.FunctionComponent<Props> = ({
   applyButtonDetails,
   query,
   relay
@@ -29,14 +29,17 @@ const ApplyButton: React.FunctionComponent<Props> = ({
 
   if (!query.openedReportingYear.reportingYear) {
     if (!applicationId || applicationRevisionStatus === 'DRAFT') {
-      return <span>The application window is closed</span>;
+      return (
+        <Button disabled variant="info">
+          The application window is closed
+        </Button>
+      );
     }
   }
 
   if (!applicationId) {
-    const {environment} = relay;
-
     const startApplication = async () => {
+      const {environment} = relay;
       const variables = {
         input: {
           facilityIdInput: rowId
@@ -94,7 +97,9 @@ const ApplyButton: React.FunctionComponent<Props> = ({
 
   if (
     applicationRevisionStatus === 'SUBMITTED' ||
-    applicationRevisionStatus === 'REQUESTED_CHANGES'
+    applicationRevisionStatus === 'REQUESTED_CHANGES' ||
+    applicationRevisionStatus === 'REJECTED' ||
+    applicationRevisionStatus === 'APPROVED'
   ) {
     return (
       <Link
@@ -116,7 +121,7 @@ const ApplyButton: React.FunctionComponent<Props> = ({
 
 export default createFragmentContainer(ApplyButton, {
   applyButtonDetails: graphql`
-    fragment ApplyButton_applyButtonDetails on FacilitySearchResult {
+    fragment ApplyButtonContainer_applyButtonDetails on FacilitySearchResult {
       applicationByApplicationId {
         id
         latestDraftRevision {
@@ -137,7 +142,7 @@ export default createFragmentContainer(ApplyButton, {
     }
   `,
   query: graphql`
-    fragment ApplyButton_query on Query {
+    fragment ApplyButtonContainer_query on Query {
       openedReportingYear {
         reportingYear
       }

@@ -4,16 +4,21 @@ import {Button, Col} from 'react-bootstrap';
 import createApplicationRevisionMutation from 'mutations/application/createApplicationRevisionMutation';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ReviseApplicationButtonContainer_application} from 'ReviseApplicationButtonContainer_application.graphql';
+import {ReviseApplicationButtonContainer_query} from 'ReviseApplicationButtonContainer_query.graphql';
 
 interface Props {
   application: ReviseApplicationButtonContainer_application;
   relay: RelayProp;
+  query: ReviseApplicationButtonContainer_query;
 }
 
-export const ReviseApplicationButton: React.FunctionComponent<Props> = props => {
-  const {application, relay} = props;
+export const ReviseApplicationButton: React.FunctionComponent<Props> = ({
+  application,
+  relay,
+  query
+}) => {
   const router = useRouter();
-  const reviseApplication = async () => {
+  const handleClick = async () => {
     const variables = {
       input: {
         applicationIdInput: application.rowId,
@@ -44,9 +49,19 @@ export const ReviseApplicationButton: React.FunctionComponent<Props> = props => 
     });
   };
 
+  if (!query.openedReportingYear.reportingYear) {
+    return (
+      <Col>
+        <Button disabled variant="info">
+          Application window closed
+        </Button>
+      </Col>
+    );
+  }
+
   return (
     <Col>
-      <Button variant="success" onClick={reviseApplication}>
+      <Button variant="success" onClick={handleClick}>
         Revise Application
       </Button>
     </Col>
@@ -60,6 +75,13 @@ export default createFragmentContainer(ReviseApplicationButton, {
       rowId
       latestSubmittedRevision {
         versionNumber
+      }
+    }
+  `,
+  query: graphql`
+    fragment ReviseApplicationButtonContainer_query on Query {
+      openedReportingYear {
+        reportingYear
       }
     }
   `
