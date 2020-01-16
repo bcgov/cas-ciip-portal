@@ -4,7 +4,7 @@ import {createMockEnvironment, MockPayloadGenerator} from 'relay-test-utils';
 import {withA11y} from '@storybook/addon-a11y';
 
 // Commented out imports are pages to be tested in a subsequent PR
-import Admin from 'pages/admin/admin';
+import Admin from 'pages/admin';
 // Import ApplicationReview from 'pages/analyst/application-review';
 // import Applications from 'pages/analyst/applications';
 import CiipApplicationSWRSImport from 'pages/reporter/ciip-application-swrs-import';

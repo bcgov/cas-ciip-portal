@@ -21,7 +21,8 @@ create type ggircs_portal.jwt_token as (
   preferred_username text,
   given_name text,
   family_name text,
-  email text
+  email text,
+  user_groups text[]
 );
 
 comment on type ggircs_portal.jwt_token is E'@primaryKey sub\n@foreignKey (sub) references ciip_user (uuid)';
