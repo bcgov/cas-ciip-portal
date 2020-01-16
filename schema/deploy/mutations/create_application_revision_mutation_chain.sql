@@ -24,8 +24,8 @@ begin
   insert into ggircs_portal.application_revision(application_id, version_number)
   values (application_id_input, new_version_number);
 
-  select reporting_year from ggircs_portal.opened_reporting_year into current_reporting_year;
-  if reporting_year is null then
+  select reporting_year from ggircs_portal.opened_reporting_year() into current_reporting_year;
+  if current_reporting_year is null then
     raise exception 'The application window is closed';
   end if;
 
@@ -56,9 +56,9 @@ begin
       if (select prepopulate_from_swrs from ggircs_portal.form_json where id = temp_row.form_id) then
         select form_result_init_function from ggircs_portal.form_json where id = temp_row.form_id into init_function;
         if (init_function is not null) then
-          query := format('select * from ggircs_portal.%I($1,''$2'');', init_function, current_reporting_year);
+          query := format('select * from ggircs_portal.%I($1, $2);', init_function);
           execute query
-          using facility_id_input
+          using facility_id_input, current_reporting_year
           into form_result;
         end if;
       end if;

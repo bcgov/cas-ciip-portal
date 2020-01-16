@@ -13,8 +13,8 @@ declare
   result ggircs_portal.application;
 begin
 
-  select reporting_year from ggircs_portal.opened_reporting_year into current_reporting_year;
-  if reporting_year is null then
+  select reporting_year from ggircs_portal.opened_reporting_year() into current_reporting_year;
+  if current_reporting_year is null then
     raise exception 'The application window is closed';
   end if;
 

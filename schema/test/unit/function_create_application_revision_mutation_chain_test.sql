@@ -3,12 +3,22 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(5);
+select plan(6);
 
 select has_function(
   'ggircs_portal', 'create_application_revision_mutation_chain', array['integer', 'integer'],
   'Function create_application_revision_mutation_chain should exist'
 );
+
+-- Set the timestamp to a time where the application window is open
+create or replace function ggircs_portal.current_timestamp() returns timestamptz as
+$$
+  select application_open_time
+  from ggircs_portal.reporting_year
+  order by reporting_year
+  limit 1
+  offset 2;
+$$ language sql;
 
 insert into ggircs_portal.organisation(operator_name) values ('test org');
 insert into ggircs_portal.facility(organisation_id, facility_name) values (1, 'test facility');
@@ -71,6 +81,22 @@ select results_eq(
     select count(form_id) from ggircs_portal.ciip_application_wizard
   $$,
   'create_application_revision_mutation_chain does not create extra statuses for each form result when being called on its own (creating a revision)'
+);
+
+-- Set the timestamp to a time where the application window is closed
+create or replace function ggircs_portal.current_timestamp() returns timestamptz as
+$$
+  select application_open_time - interval '1 second'
+  from ggircs_portal.reporting_year
+  order by reporting_year
+  limit 1
+  offset 2;
+$$ language sql;
+
+select throws_ok(
+  'select ggircs_portal.create_application_revision_mutation_chain(1, 1)',
+  'The application window is closed',
+  'create_application_mutation_chain should throw an exception if the application window is closed'
 );
 
 select finish();

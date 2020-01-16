@@ -14,6 +14,16 @@ select has_function(
 insert into ggircs_portal.organisation(operator_name) values ('test org');
 insert into ggircs_portal.facility(organisation_id, facility_name) values (1, 'test facility');
 
+-- Set the timesamp to a time where the application window is open
+create or replace function ggircs_portal.current_timestamp() returns timestamptz as
+$$
+  select application_open_time
+  from ggircs_portal.reporting_year
+  order by reporting_year
+  limit 1
+  offset 2;
+$$ language sql;
+
 -- Call create application_mutation_chain to create a test application
 select ggircs_portal.create_application_mutation_chain((select id from ggircs_portal.facility where facility_name = 'test facility'));
 
