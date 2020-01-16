@@ -36,7 +36,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
         >
           <Col>
             <Link
-              href="/admin/admin"
+              href="/admin"
             >
               <Button
                 active={false}

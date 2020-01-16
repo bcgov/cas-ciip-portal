@@ -19,7 +19,7 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
         <div className="login-btns header-right">
           <Row>
             <Col>
-              <Link href="/admin/admin">
+              <Link href="/admin">
                 <Button variant="outline-light">Admin</Button>
               </Link>
             </Col>
