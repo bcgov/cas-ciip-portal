@@ -6,6 +6,7 @@ schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a 
 trigger_functions/update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
 trigger_functions/set_random_id [schema_ggircs_portal] 2019-12-04T00:34:07Z Dylan Leard <dylan@button.is> # Trigger function to generate a random string and set it to id
 trigger_functions/set_expiry [schema_ggircs_portal] 2019-12-10T19:13:27Z Dylan Leard <dylan@button.is> # Function sets row expiry
+trigger_functions/ensure_window_open_submit_application_status 2020-01-16T17:51:13Z Matthieu Foucault <matthieu@button.is> # add a trigger that raises an exception if the application window is closed
 types/jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
 types/ciip_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file ciip_user_organisation_status
 types/ciip_application_revision_status [schema_ggircs_portal] 2019-11-26T18:39:57Z Helen Liu <helen@button.is> # Added ciip application status type
@@ -31,7 +32,7 @@ tables/application_revision [tables/application] 2019-12-12T00:21:28Z Dylan Lear
 tables/form_json [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
 tables/form_result [schema_ggircs_portal trigger_functions/update_timestamps tables/form_json] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
 types/facility_search_result [schema_ggircs_portal] 2019-12-11T21:41:41Z Helen Liu <helen@button.is> # added return type for search all facilities function
-tables/application_revision_status [schema_ggircs_portal trigger_functions/update_timestamps tables/application_revision] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application_revision_status to schema ggircs_portal
+tables/application_revision_status [schema_ggircs_portal trigger_functions/update_timestamps tables/application_revision trigger_functions/ensure_window_open_submit_application_status] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application_revision_status to schema ggircs_portal
 views/ciip_fuel [tables/form_result] 2019-08-19T22:26:15Z Hamza Javed <hamza@button.is> # View for fuels reported in CIIP application
 views/ciip_electricity_and_heat [tables/form_result] 2019-08-20T22:40:48Z Hamza Javed <hamza@button.is> # Electricity and Heat consumption reported for the ciip application
 views/ciip_production [tables/form_result] 2019-08-20T23:22:31Z Hamza Javed <hamza@button.is> # Module throughput and production data reported in the ciip application

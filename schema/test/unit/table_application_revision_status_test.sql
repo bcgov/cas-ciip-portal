@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(22);
+select plan(23);
 
 -- Table exists
 select has_table(
@@ -59,8 +59,11 @@ select col_not_null('ggircs_portal', 'application_revision_status', 'created_at'
 select col_not_null('ggircs_portal', 'application_revision_status', 'updated_at', 'updated_at column should not be nullable');
 
 -- Triggers
+select has_trigger('ggircs_portal', 'application_revision_status', '_ensure_window_open', 'application_revision_status has window open trigger');
 select has_trigger('ggircs_portal', 'application_revision_status', '_100_timestamps', 'application_revision_status has update timestamps trigger');
 select has_trigger('ggircs_portal', 'application_revision_status', '_checksum_form_results', 'application_revision_status has checksum form results trigger');
+
+
 
 select finish();
 rollback;
