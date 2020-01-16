@@ -1,15 +1,15 @@
 import React from 'react';
 import {Badge} from 'react-bootstrap';
-import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
+import {graphql, createFragmentContainer} from 'react-relay';
 import {
   CiipApplicationRevisionStatus,
   FacilitiesRowItemContainer_facilitySearchResult
 } from 'FacilitiesRowItemContainer_facilitySearchResult.graphql';
+import {FacilitiesRowItemContainer_query} from 'FacilitiesRowItemContainer_query.graphql';
 import ApplyButton from 'components/ApplyButton';
 interface Props {
-  relay: RelayProp;
   facilitySearchResult: FacilitiesRowItemContainer_facilitySearchResult;
-  key: number;
+  query: FacilitiesRowItemContainer_query;
 }
 const statusBadgeColor: Record<
   CiipApplicationRevisionStatus,
@@ -21,8 +21,10 @@ const statusBadgeColor: Record<
   APPROVED: 'success',
   REQUESTED_CHANGES: 'secondary'
 };
-export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = props => {
-  const {facilitySearchResult} = props;
+export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
+  facilitySearchResult,
+  query
+}) => {
   const {applicationRevisionStatus} = facilitySearchResult;
 
   return (
@@ -49,7 +51,7 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = props 
         )}
       </td>
       <td>
-        <ApplyButton applyButtonDetails={props.facilitySearchResult} />
+        <ApplyButton applyButtonDetails={facilitySearchResult} query={query} />
       </td>
     </tr>
   );
@@ -65,6 +67,11 @@ export default createFragmentContainer(FacilitiesRowItemComponent, {
       facilityPostalCode
       applicationRevisionStatus
       organisationName
+    }
+  `,
+  query: graphql`
+    fragment FacilitiesRowItemContainer_query on Query {
+      ...ApplyButton_query
     }
   `
 });

@@ -5,20 +5,36 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import createApplicationMutation from 'mutations/application/createApplicationMutation';
 import {ApplyButton_applyButtonDetails} from 'ApplyButton_applyButtonDetails.graphql';
+import {ApplyButton_query} from 'ApplyButton_query.graphql';
 interface Props {
   relay: RelayProp;
   applyButtonDetails: ApplyButton_applyButtonDetails;
+  query: ApplyButton_query;
 }
-const ApplyButton: React.FunctionComponent<Props> = props => {
-  const {applyButtonDetails} = props;
-  const {facilityByFacilityId} = applyButtonDetails;
+
+const ApplyButton: React.FunctionComponent<Props> = ({
+  applyButtonDetails,
+  query,
+  relay
+}) => {
+  const {
+    facilityByFacilityId,
+    applicationRevisionStatus,
+    applicationByApplicationId
+  } = applyButtonDetails;
   const {hasSwrsReport, rowId} = facilityByFacilityId;
   const applicationId = applyButtonDetails?.applicationByApplicationId?.id;
 
   const router = useRouter();
 
+  if (!query.openedReportingYear.reportingYear) {
+    if (!applicationId || applicationRevisionStatus === 'DRAFT') {
+      return <span>The application window is closed</span>;
+    }
+  }
+
   if (!applicationId) {
-    const {environment} = props.relay;
+    const {environment} = relay;
 
     const startApplication = async () => {
       const variables = {
@@ -45,11 +61,6 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
       </Button>
     );
   }
-
-  const {
-    applicationRevisionStatus,
-    applicationByApplicationId
-  } = applyButtonDetails;
 
   const {
     latestDraftRevision,
@@ -122,6 +133,13 @@ export default createFragmentContainer(ApplyButton, {
       facilityByFacilityId {
         rowId
         hasSwrsReport(reportingYear: 2018)
+      }
+    }
+  `,
+  query: graphql`
+    fragment ApplyButton_query on Query {
+      openedReportingYear {
+        reportingYear
       }
     }
   `
