@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.create_review_comment_mutation_chain(int, int, varchar(10000), ggircs_portal.review_comment_type, int)'::regprocedure);
+select pg_get_functiondef('ggircs_portal.create_review_comment_mutation_chain(int, int, varchar(100000), ggircs_portal.review_comment_type, int)'::regprocedure);
 
 rollback;

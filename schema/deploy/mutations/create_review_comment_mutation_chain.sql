@@ -7,7 +7,7 @@ begin;
 create or replace function ggircs_portal.create_review_comment_mutation_chain(
   application_id_input int,
   form_id_input int,
-  description_input varchar(10000),
+  description_input varchar(100000),
   comment_type_input ggircs_portal.review_comment_type,
   version_number_input int
 )
