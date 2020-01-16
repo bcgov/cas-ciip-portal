@@ -75,3 +75,4 @@ computed_columns/form_result_has_unresolved_comments [tables/form_result tables/
 computed_columns/application_previous_submitted_revision [tables/application_revision_status] 2020-01-02T18:28:24Z Dylan Leard <dylan@button.is> # Function adds computed column on application for previous submitted revision
 swrs_functions/import_swrs_organisation_facility 2019-12-30T22:34:43Z Matthieu Foucault <matthieu@button.is> # Add function to import swrs organisation and facility tables
 tables/form_result_status [tables/form_result] 2020-01-13T19:11:49Z Dylan Leard <dylan@button.is> # Table containing the status of an individual form result
+mutations/create_review_comment_mutation_chain [tables/review_comment tables/form_result_status] 2020-01-15T23:15:53Z Dylan Leard <dylan@button.is> # Mutation chain to create a comment and update the form_result_status table based on the type of the comment created

@@ -54,7 +54,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
   };
 
   const commentType: Record<string, ReviewCommentType> = {
-    APPROVED: 'GENERAL',
+    APPROVED: 'APPROVAL',
     IN_REVIEW: 'GENERAL',
     CHANGES_REQUESTED: 'REQUESTED_CHANGE',
     NEEDS_ATTENTION: 'INTERNAL'
@@ -70,14 +70,16 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
     const {environment} = relay;
     const variables = {
       input: {
-        reviewComment: {
-          applicationId: formResultStatus.applicationId,
-          formId: formResultStatus.formId,
-          description: comment,
-          commentType: commentType[status],
-          resolved: false
-        }
-      }
+        applicationIdInput: formResultStatus.applicationId,
+        formIdInput: formResultStatus.formId,
+        descriptionInput: comment,
+        commentTypeInput: commentType[status],
+        versionNumberInput: formResultStatus.versionNumber
+      },
+      applicationId:
+        formResultStatus.formResultByApplicationIdAndVersionNumberAndFormId
+          .applicationByApplicationId.id,
+      version: formResultStatus.versionNumber.toString()
     };
 
     const response = await createReviewCommentMutation(

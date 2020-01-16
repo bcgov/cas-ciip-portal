@@ -19892,6 +19892,12 @@
           "interfaces": null,
           "enumValues": [
             {
+              "name": "APPROVAL",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "GENERAL",
               "description": null,
               "isDeprecated": false,
@@ -27455,8 +27461,13 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
               "name": "currentTimestamp",
               "description": "Returns the current date and time with time zone.\nThis should be used instead of the native current_timestamp function to allow for mocking in test and development settings",
+=======
+              "name": "createReviewCommentMutationChain",
+              "description": null,
+>>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
               "args": [
                 {
                   "name": "input",
@@ -27466,7 +27477,11 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
+<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
                       "name": "CurrentTimestampInput",
+=======
+                      "name": "CreateReviewCommentMutationChainInput",
+>>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
                       "ofType": null
                     }
                   },
@@ -27475,7 +27490,11 @@
               ],
               "type": {
                 "kind": "OBJECT",
+<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
                 "name": "CurrentTimestampPayload",
+=======
+                "name": "CreateReviewCommentMutationChainPayload",
+>>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
                 "ofType": null
               },
               "isDeprecated": false,
@@ -35647,11 +35666,29 @@
         },
         {
           "kind": "INPUT_OBJECT",
+<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
           "name": "CurrentTimestampInput",
           "description": "All input for the `currentTimestamp` mutation.",
           "fields": null,
           "inputFields": [
             {
+=======
+          "name": "CreateReviewCommentMutationChainInput",
+          "description": "All input for the `createReviewCommentMutationChain` mutation.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "applicationIdInput",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+>>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
               "name": "clientMutationId",
               "description": "An arbitrary string value with no semantic meaning. Will be included in the payload verbatim. May be used to track mutations by the client.",
               "type": {
@@ -35660,6 +35697,49 @@
                 "ofType": null
               },
               "defaultValue": null
+<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
+=======
+            },
+            {
+              "name": "commentTypeInput",
+              "description": null,
+              "type": {
+                "kind": "ENUM",
+                "name": "ReviewCommentType",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "descriptionInput",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "formIdInput",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "versionNumberInput",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+>>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
             }
           ],
           "interfaces": null,
@@ -35668,10 +35748,29 @@
         },
         {
           "kind": "OBJECT",
+<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
           "name": "CurrentTimestampPayload",
           "description": "The output of our `currentTimestamp` mutation.",
           "fields": [
             {
+=======
+          "name": "CreateReviewCommentMutationChainPayload",
+          "description": "The output of our `createReviewCommentMutationChain` mutation.",
+          "fields": [
+            {
+              "name": "applicationByApplicationId",
+              "description": "Reads a single `Application` that is related to this `ReviewComment`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Application",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+>>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
               "name": "clientMutationId",
               "description": "The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations.",
               "args": [],
@@ -35684,12 +35783,21 @@
               "deprecationReason": null
             },
             {
+<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
               "name": "datetime",
               "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
+=======
+              "name": "formJsonByFormId",
+              "description": "Reads a single `FormJson` that is related to this `ReviewComment`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FormJson",
+>>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
                 "ofType": null
               },
               "isDeprecated": false,
@@ -35706,6 +35814,52 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
+=======
+            },
+            {
+              "name": "reviewComment",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReviewComment",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "reviewCommentEdge",
+              "description": "An edge for our `ReviewComment`. May be used by Relay 1.",
+              "args": [
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `ReviewComment`.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "ReviewCommentsOrderBy",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReviewCommentsEdge",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+>>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
             }
           ],
           "inputFields": null,

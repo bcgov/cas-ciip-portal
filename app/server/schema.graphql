@@ -4386,6 +4386,48 @@ input CreateReviewCommentInput {
   reviewComment: ReviewCommentInput!
 }
 
+"""All input for the `createReviewCommentMutationChain` mutation."""
+input CreateReviewCommentMutationChainInput {
+  applicationIdInput: Int
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  commentTypeInput: ReviewCommentType
+  descriptionInput: String
+  formIdInput: Int
+  versionNumberInput: Int
+}
+
+"""The output of our `createReviewCommentMutationChain` mutation."""
+type CreateReviewCommentMutationChainPayload {
+  """Reads a single `Application` that is related to this `ReviewComment`."""
+  applicationByApplicationId: Application
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """Reads a single `FormJson` that is related to this `ReviewComment`."""
+  formJsonByFormId: FormJson
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+  reviewComment: ReviewComment
+
+  """An edge for our `ReviewComment`. May be used by Relay 1."""
+  reviewCommentEdge(
+    """The method to use when ordering `ReviewComment`."""
+    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewCommentsEdge
+}
+
 """The output of our create `ReviewComment` mutation."""
 type CreateReviewCommentPayload {
   """Reads a single `Application` that is related to this `ReviewComment`."""
@@ -8079,6 +8121,12 @@ type Mutation {
     """
     input: CreateReviewCommentInput!
   ): CreateReviewCommentPayload
+  createReviewCommentMutationChain(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateReviewCommentMutationChainInput!
+  ): CreateReviewCommentMutationChainPayload
 
   """
   Returns the current date and time with time zone.
@@ -11120,6 +11168,7 @@ enum ReviewCommentsOrderBy {
 }
 
 enum ReviewCommentType {
+  APPROVAL
   GENERAL
   INTERNAL
   REQUESTED_CHANGE
