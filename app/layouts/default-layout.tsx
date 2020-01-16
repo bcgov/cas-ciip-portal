@@ -27,7 +27,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
 }) => {
   const router = useRouter();
 
-  console.log(router.asPath, session);
+  console.log(session);
 
   if ((needsSession || needsUser) && !session) {
     router.push({
