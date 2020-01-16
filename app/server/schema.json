@@ -3045,18 +3045,6 @@
               "deprecationReason": null
             },
             {
-              "name": "getReportingYear",
-              "description": "Function returning current reporting year and related dates",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ReportingYear",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "getSwrsEmissionData",
               "description": "Reads and enables pagination through a set of `EmissionDatum`.",
               "args": [
@@ -3346,6 +3334,18 @@
               "deprecationReason": null
             },
             {
+              "name": "nextReportingYear",
+              "description": "Returns the next reporting year to have an application window that opens.\nTo get the currently opened reporting year (if any), use opened_reporting_year",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReportingYear",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "node",
               "description": "Fetches an object given its globally unique `ID`.",
               "args": [
@@ -3367,6 +3367,18 @@
               "type": {
                 "kind": "INTERFACE",
                 "name": "Node",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "openedReportingYear",
+              "description": "Returns the reporting year for which the application window is currently opened (if any)",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReportingYear",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -13358,8 +13370,8 @@
           "description": "Table containing the reporting year and important dates related to the application",
           "fields": [
             {
-              "name": "applicationEndDate",
-              "description": "The date cipp applications close",
+              "name": "applicationCloseTime",
+              "description": "The date and time the CIIP applications close",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -13374,8 +13386,8 @@
               "deprecationReason": null
             },
             {
-              "name": "applicationOpenDate",
-              "description": "The date cipp applications open",
+              "name": "applicationOpenTime",
+              "description": "The date and time the CIIP applications open",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -13390,8 +13402,8 @@
               "deprecationReason": null
             },
             {
-              "name": "applicationResponseDate",
-              "description": "The date cipp users can expect a response by",
+              "name": "applicationResponseTime",
+              "description": "The date and time the CIIP users can expect a response by",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -13708,7 +13720,7 @@
             },
             {
               "name": "reportingPeriodEnd",
-              "description": "The date reporting period ends",
+              "description": "The date and time reporting period ends",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -13724,7 +13736,7 @@
             },
             {
               "name": "reportingPeriodStart",
-              "description": "The date reporting period starts",
+              "description": "The date and time reporting period starts",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -23625,8 +23637,8 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "applicationEndDate",
-              "description": "Checks for equality with the object’s `applicationEndDate` field.",
+              "name": "applicationCloseTime",
+              "description": "Checks for equality with the object’s `applicationCloseTime` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -23635,8 +23647,8 @@
               "defaultValue": null
             },
             {
-              "name": "applicationOpenDate",
-              "description": "Checks for equality with the object’s `applicationOpenDate` field.",
+              "name": "applicationOpenTime",
+              "description": "Checks for equality with the object’s `applicationOpenTime` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -23645,8 +23657,8 @@
               "defaultValue": null
             },
             {
-              "name": "applicationResponseDate",
-              "description": "Checks for equality with the object’s `applicationResponseDate` field.",
+              "name": "applicationResponseTime",
+              "description": "Checks for equality with the object’s `applicationResponseTime` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -23698,37 +23710,37 @@
           "interfaces": null,
           "enumValues": [
             {
-              "name": "APPLICATION_END_DATE_ASC",
+              "name": "APPLICATION_CLOSE_TIME_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "APPLICATION_END_DATE_DESC",
+              "name": "APPLICATION_CLOSE_TIME_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "APPLICATION_OPEN_DATE_ASC",
+              "name": "APPLICATION_OPEN_TIME_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "APPLICATION_OPEN_DATE_DESC",
+              "name": "APPLICATION_OPEN_TIME_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "APPLICATION_RESPONSE_DATE_ASC",
+              "name": "APPLICATION_RESPONSE_TIME_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "APPLICATION_RESPONSE_DATE_DESC",
+              "name": "APPLICATION_RESPONSE_TIME_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -26558,6 +26570,33 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CreateReviewCommentPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "currentTimestamp",
+              "description": "Returns the current date and time with time zone.\nThis should be used instead of the native current_timestamp function to allow for mocking in test and development settings",
+              "args": [
+                {
+                  "name": "input",
+                  "description": "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "CurrentTimestampInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CurrentTimestampPayload",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -34259,8 +34298,8 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "applicationEndDate",
-              "description": "The date cipp applications close",
+              "name": "applicationCloseTime",
+              "description": "The date and time the CIIP applications close",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -34273,8 +34312,8 @@
               "defaultValue": null
             },
             {
-              "name": "applicationOpenDate",
-              "description": "The date cipp applications open",
+              "name": "applicationOpenTime",
+              "description": "The date and time the CIIP applications open",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -34287,8 +34326,8 @@
               "defaultValue": null
             },
             {
-              "name": "applicationResponseDate",
-              "description": "The date cipp users can expect a response by",
+              "name": "applicationResponseTime",
+              "description": "The date and time the CIIP users can expect a response by",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -34302,7 +34341,7 @@
             },
             {
               "name": "reportingPeriodEnd",
-              "description": "The date reporting period ends",
+              "description": "The date and time reporting period ends",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -34316,7 +34355,7 @@
             },
             {
               "name": "reportingPeriodStart",
-              "description": "The date reporting period starts",
+              "description": "The date and time reporting period starts",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -34716,6 +34755,74 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "ReviewCommentsEdge",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CurrentTimestampInput",
+          "description": "All input for the `currentTimestamp` mutation.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "clientMutationId",
+              "description": "An arbitrary string value with no semantic meaning. Will be included in the payload verbatim. May be used to track mutations by the client.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CurrentTimestampPayload",
+          "description": "The output of our `currentTimestamp` mutation.",
+          "fields": [
+            {
+              "name": "clientMutationId",
+              "description": "The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "datetime",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "query",
+              "description": "Our root query field type. Allows us to run any query from our mutation payload.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Query",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -45160,8 +45267,8 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "applicationEndDate",
-              "description": "The date cipp applications close",
+              "name": "applicationCloseTime",
+              "description": "The date and time the CIIP applications close",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -45170,8 +45277,8 @@
               "defaultValue": null
             },
             {
-              "name": "applicationOpenDate",
-              "description": "The date cipp applications open",
+              "name": "applicationOpenTime",
+              "description": "The date and time the CIIP applications open",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -45180,8 +45287,8 @@
               "defaultValue": null
             },
             {
-              "name": "applicationResponseDate",
-              "description": "The date cipp users can expect a response by",
+              "name": "applicationResponseTime",
+              "description": "The date and time the CIIP users can expect a response by",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -45191,7 +45298,7 @@
             },
             {
               "name": "reportingPeriodEnd",
-              "description": "The date reporting period ends",
+              "description": "The date and time reporting period ends",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -45201,7 +45308,7 @@
             },
             {
               "name": "reportingPeriodStart",
-              "description": "The date reporting period starts",
+              "description": "The date and time reporting period starts",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",

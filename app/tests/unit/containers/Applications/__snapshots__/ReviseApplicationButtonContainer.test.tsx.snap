@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ReviseApplicationButton should render a disabled button if the application window is closed 1`] = `
+<Col>
+  <Button
+    active={false}
+    disabled={true}
+    type="button"
+    variant="info"
+  >
+    Application window closed
+  </Button>
+</Col>
+`;
+
+exports[`The ReviseApplicationButton should render an button if the application window is open 1`] = `
+<Col>
+  <Button
+    active={false}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+    variant="success"
+  >
+    Revise Application
+  </Button>
+</Col>
+`;

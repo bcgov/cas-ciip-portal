@@ -4,23 +4,42 @@ import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import createApplicationMutation from 'mutations/application/createApplicationMutation';
-import {ApplyButton_applyButtonDetails} from 'ApplyButton_applyButtonDetails.graphql';
+import {ApplyButtonContainer_applyButtonDetails} from 'ApplyButtonContainer_applyButtonDetails.graphql';
+import {ApplyButtonContainer_query} from 'ApplyButtonContainer_query.graphql';
 interface Props {
   relay: RelayProp;
-  applyButtonDetails: ApplyButton_applyButtonDetails;
+  applyButtonDetails: ApplyButtonContainer_applyButtonDetails;
+  query: ApplyButtonContainer_query;
 }
-const ApplyButton: React.FunctionComponent<Props> = props => {
-  const {applyButtonDetails} = props;
-  const {facilityByFacilityId} = applyButtonDetails;
+
+export const ApplyButton: React.FunctionComponent<Props> = ({
+  applyButtonDetails,
+  query,
+  relay
+}) => {
+  const {
+    facilityByFacilityId,
+    applicationRevisionStatus,
+    applicationByApplicationId
+  } = applyButtonDetails;
   const {hasSwrsReport, rowId} = facilityByFacilityId;
   const applicationId = applyButtonDetails?.applicationByApplicationId?.id;
 
   const router = useRouter();
 
-  if (!applicationId) {
-    const {environment} = props.relay;
+  if (!query.openedReportingYear.reportingYear) {
+    if (!applicationId || applicationRevisionStatus === 'DRAFT') {
+      return (
+        <Button disabled variant="info">
+          The application window is closed
+        </Button>
+      );
+    }
+  }
 
+  if (!applicationId) {
     const startApplication = async () => {
+      const {environment} = relay;
       const variables = {
         input: {
           facilityIdInput: rowId
@@ -45,11 +64,6 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
       </Button>
     );
   }
-
-  const {
-    applicationRevisionStatus,
-    applicationByApplicationId
-  } = applyButtonDetails;
 
   const {
     latestDraftRevision,
@@ -83,7 +97,9 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
 
   if (
     applicationRevisionStatus === 'SUBMITTED' ||
-    applicationRevisionStatus === 'REQUESTED_CHANGES'
+    applicationRevisionStatus === 'REQUESTED_CHANGES' ||
+    applicationRevisionStatus === 'REJECTED' ||
+    applicationRevisionStatus === 'APPROVED'
   ) {
     return (
       <Link
@@ -105,7 +121,7 @@ const ApplyButton: React.FunctionComponent<Props> = props => {
 
 export default createFragmentContainer(ApplyButton, {
   applyButtonDetails: graphql`
-    fragment ApplyButton_applyButtonDetails on FacilitySearchResult {
+    fragment ApplyButtonContainer_applyButtonDetails on FacilitySearchResult {
       applicationByApplicationId {
         id
         latestDraftRevision {
@@ -122,6 +138,13 @@ export default createFragmentContainer(ApplyButton, {
       facilityByFacilityId {
         rowId
         hasSwrsReport(reportingYear: 2018)
+      }
+    }
+  `,
+  query: graphql`
+    fragment ApplyButtonContainer_query on Query {
+      openedReportingYear {
+        reportingYear
       }
     }
   `

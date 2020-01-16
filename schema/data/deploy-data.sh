@@ -165,6 +165,7 @@ deployProdData() {
 
 deployTestData() {
   deployProdData
+  _psql -f "./test/mock_current_timestamp.sql"
   _psql -f "./test/benchmark.sql"
   return 0;
 }

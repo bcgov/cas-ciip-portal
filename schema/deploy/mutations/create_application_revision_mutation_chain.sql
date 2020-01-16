@@ -9,6 +9,7 @@ as $function$
 declare
   new_version_number int;
   form_result_id int;
+  current_reporting_year int;
   temp_row record;
   form_result jsonb;
   init_function varchar(1000);
@@ -22,6 +23,11 @@ begin
   -- Insert new row in application_revision
   insert into ggircs_portal.application_revision(application_id, version_number)
   values (application_id_input, new_version_number);
+
+  select reporting_year from ggircs_portal.opened_reporting_year() into current_reporting_year;
+  if current_reporting_year is null then
+    raise exception 'The application window is closed';
+  end if;
 
   -- Insert new value with application_id fk and version 1 into application_revision_status
   insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
@@ -50,9 +56,9 @@ begin
       if (select prepopulate_from_swrs from ggircs_portal.form_json where id = temp_row.form_id) then
         select form_result_init_function from ggircs_portal.form_json where id = temp_row.form_id into init_function;
         if (init_function is not null) then
-          query := format('select * from ggircs_portal.%I($1, 2018);', init_function);
+          query := format('select * from ggircs_portal.%I($1, $2);', init_function);
           execute query
-          using facility_id_input
+          using facility_id_input, current_reporting_year
           into form_result;
         end if;
       end if;

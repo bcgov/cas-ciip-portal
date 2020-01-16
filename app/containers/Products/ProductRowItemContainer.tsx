@@ -57,27 +57,27 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   product,
   query
 }) => {
-  const {reportingYear: currentReportingYear} = query.getReportingYear;
+  const {reportingYear: nextReportingYear} = query.nextReportingYear;
 
   const currentBenchmark = useMemo(() => {
     return product.benchmarksByProductId.edges.find(({node: benchmark}) => {
       return (
         !benchmark.deletedAt &&
-        benchmark.startReportingYear <= currentReportingYear &&
-        benchmark.endReportingYear >= currentReportingYear
+        benchmark.startReportingYear <= nextReportingYear &&
+        benchmark.endReportingYear >= nextReportingYear
       );
     })?.node;
-  }, [product.benchmarksByProductId.edges, currentReportingYear]);
+  }, [product.benchmarksByProductId.edges, nextReportingYear]);
 
   const pastBenchmarks = useMemo(
     () =>
       product.benchmarksByProductId.edges
         .filter(
           ({node}) =>
-            !node.deletedAt && node.endReportingYear < currentReportingYear
+            !node.deletedAt && node.endReportingYear < nextReportingYear
         )
         .map(({node}) => node),
-    [currentReportingYear, product.benchmarksByProductId.edges]
+    [nextReportingYear, product.benchmarksByProductId.edges]
   );
 
   const futureBenchmarks = useMemo(
@@ -85,16 +85,16 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       product.benchmarksByProductId.edges
         .filter(
           ({node}) =>
-            !node.deletedAt && node.startReportingYear > currentReportingYear
+            !node.deletedAt && node.startReportingYear > nextReportingYear
         )
         .map(({node}) => node),
-    [currentReportingYear, product.benchmarksByProductId.edges]
+    [nextReportingYear, product.benchmarksByProductId.edges]
   );
 
   // Schema for ProductRowItemContainer
   const benchmarkSchema = useMemo<JSONSchema6>(() => {
     const reportingYears = query.allReportingYears.edges
-      .filter(({node}) => node.reportingYear >= currentReportingYear)
+      .filter(({node}) => node.reportingYear >= nextReportingYear)
       .map(({node}) => node.reportingYear);
     return {
       type: 'object',
@@ -124,7 +124,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         }
       }
     };
-  }, [currentReportingYear, query.allReportingYears]);
+  }, [nextReportingYear, query.allReportingYears]);
 
   const displayPastBenchmark = benchmark => {
     return (
@@ -456,7 +456,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
   `,
   query: graphql`
     fragment ProductRowItemContainer_query on Query {
-      getReportingYear {
+      nextReportingYear {
         reportingYear
       }
       allReportingYears {

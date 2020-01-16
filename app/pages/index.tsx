@@ -17,23 +17,35 @@ export default class Index extends Component<Props> {
         session {
           ...defaultLayout_session
         }
-        getReportingYear {
-          applicationOpenDate
-          applicationEndDate
+        openedReportingYear {
+          applicationOpenTime
+          applicationCloseTime
+        }
+        nextReportingYear {
+          applicationOpenTime
+          applicationCloseTime
         }
       }
     }
   `;
 
   render() {
-    const {query} = this.props;
-    const {session} = query || {};
+    const {openedReportingYear, nextReportingYear, session} =
+      this.props.query || {};
 
     const startDate = moment
-      .tz(query.getReportingYear.applicationOpenDate, 'America/Vancouver')
+      .tz(
+        openedReportingYear?.applicationOpenTime ??
+          nextReportingYear?.applicationOpenTime,
+        'America/Vancouver'
+      )
       .format('MMM D, YYYY');
     const endDate = moment
-      .tz(query.getReportingYear.applicationEndDate, 'America/Vancouver')
+      .tz(
+        openedReportingYear?.applicationCloseTime ??
+          nextReportingYear?.applicationCloseTime,
+        'America/Vancouver'
+      )
       .format('MMM D, YYYY');
     return (
       <DefaultLayout

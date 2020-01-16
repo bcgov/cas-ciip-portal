@@ -7,11 +7,17 @@ describe('landing', () => {
     const wrapper = shallow(
       <Index
         query={{
-          getReportingYear: {
-            applicationOpenDate: '2019-04-01 14:49:54.191757-07',
-            applicationEndDate: '2019-12-30 14:49:54.191757-07'
-          }
+          openedReportingYear: {
+            applicationOpenTime: '2019-04-01 14:49:54.191757-07',
+            applicationCloseTime: '2019-12-30 14:49:54.191757-07'
+          },
+          nextReportingYear: {
+            applicationOpenTime: '2019-04-01 14:49:54.191757-07',
+            applicationCloseTime: '2019-12-30 14:49:54.191757-07'
+          },
+          session: null
         }}
+        router={null}
       />
     );
     expect(wrapper).toMatchSnapshot();

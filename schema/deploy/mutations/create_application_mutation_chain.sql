@@ -9,13 +9,17 @@ returns ggircs_portal.application
 as $function$
 declare
   new_id int;
+  current_reporting_year int;
   result ggircs_portal.application;
 begin
 
-  --Insert new value into application
-  -- TODO: use a current_reporting_year function (which should raise an exception if we are not in the reporting window)
+  select reporting_year from ggircs_portal.opened_reporting_year() into current_reporting_year;
+  if current_reporting_year is null then
+    raise exception 'The application window is closed';
+  end if;
+
   insert into ggircs_portal.application(facility_id, reporting_year)
-  values (facility_id_input, (select to_char(now(), 'YYYY')::int)) returning id into new_id;
+  values (facility_id_input, current_reporting_year) returning id into new_id;
 
   perform ggircs_portal.create_application_revision_mutation_chain(new_id, 0);
 

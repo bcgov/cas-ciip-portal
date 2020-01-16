@@ -21,6 +21,11 @@ create table ggircs_portal.application_revision_status (
 
 create index ggircs_portal_application_revision_status_foreign_key on ggircs_portal.application_revision_status(application_id, version_number);
 
+create trigger _ensure_window_open
+  before insert or update on ggircs_portal.application_revision_status
+  for each row
+  execute procedure ggircs_portal.ensure_window_open_submit_application_status();
+
 create trigger _100_timestamps
   before insert or update on ggircs_portal.application_revision_status
   for each row

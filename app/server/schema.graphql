@@ -4424,6 +4424,30 @@ type CreateReviewCommentPayload {
   ): ReviewCommentsEdge
 }
 
+"""All input for the `currentTimestamp` mutation."""
+input CurrentTimestampInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+}
+
+"""The output of our `currentTimestamp` mutation."""
+type CurrentTimestampPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+  datetime: Datetime
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
 """A location in a connection that can be used for resuming pagination."""
 scalar Cursor
 
@@ -8034,6 +8058,17 @@ type Mutation {
     input: CreateReviewCommentInput!
   ): CreateReviewCommentPayload
 
+  """
+  Returns the current date and time with time zone.
+  This should be used instead of the native current_timestamp function to allow for mocking in test and development settings
+  """
+  currentTimestamp(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CurrentTimestampInput!
+  ): CurrentTimestampPayload
+
   """Deletes a single `Application` using its globally unique id."""
   deleteApplication(
     """
@@ -10352,9 +10387,6 @@ type Query implements Node {
     offset: Int
   ): CarbonTaxDataConnection!
 
-  """Function returning current reporting year and related dates"""
-  getReportingYear: ReportingYear
-
   """Reads and enables pagination through a set of `EmissionDatum`."""
   getSwrsEmissionData(
     """Read all values in the set after (below) this cursor."""
@@ -10409,11 +10441,22 @@ type Query implements Node {
   """
   id: ID!
 
+  """
+  Returns the next reporting year to have an application window that opens.
+  To get the currently opened reporting year (if any), use opened_reporting_year
+  """
+  nextReportingYear: ReportingYear
+
   """Fetches an object given its globally unique `ID`."""
   node(
     """The globally unique `ID`."""
     id: ID!
   ): Node
+
+  """
+  Returns the reporting year for which the application window is currently opened (if any)
+  """
+  openedReportingYear: ReportingYear
 
   """Reads a single `Organisation` using its globally unique `ID`."""
   organisation(
@@ -10598,14 +10641,14 @@ type Query implements Node {
 Table containing the reporting year and important dates related to the application
 """
 type ReportingYear implements Node {
-  """The date cipp applications close"""
-  applicationEndDate: Datetime!
+  """The date and time the CIIP applications close"""
+  applicationCloseTime: Datetime!
 
-  """The date cipp applications open"""
-  applicationOpenDate: Datetime!
+  """The date and time the CIIP applications open"""
+  applicationOpenTime: Datetime!
 
-  """The date cipp users can expect a response by"""
-  applicationResponseDate: Datetime!
+  """The date and time the CIIP users can expect a response by"""
+  applicationResponseTime: Datetime!
 
   """Reads and enables pagination through a set of `Application`."""
   applicationsByReportingYear(
@@ -10699,10 +10742,10 @@ type ReportingYear implements Node {
   """
   id: ID!
 
-  """The date reporting period ends"""
+  """The date and time reporting period ends"""
   reportingPeriodEnd: Datetime!
 
-  """The date reporting period starts"""
+  """The date and time reporting period starts"""
   reportingPeriodStart: Datetime!
 
   """The current reporting year"""
@@ -10714,14 +10757,14 @@ A condition to be used against `ReportingYear` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
 input ReportingYearCondition {
-  """Checks for equality with the object’s `applicationEndDate` field."""
-  applicationEndDate: Datetime
+  """Checks for equality with the object’s `applicationCloseTime` field."""
+  applicationCloseTime: Datetime
 
-  """Checks for equality with the object’s `applicationOpenDate` field."""
-  applicationOpenDate: Datetime
+  """Checks for equality with the object’s `applicationOpenTime` field."""
+  applicationOpenTime: Datetime
 
-  """Checks for equality with the object’s `applicationResponseDate` field."""
-  applicationResponseDate: Datetime
+  """Checks for equality with the object’s `applicationResponseTime` field."""
+  applicationResponseTime: Datetime
 
   """Checks for equality with the object’s `reportingPeriodEnd` field."""
   reportingPeriodEnd: Datetime
@@ -10735,19 +10778,19 @@ input ReportingYearCondition {
 
 """An input for mutations affecting `ReportingYear`"""
 input ReportingYearInput {
-  """The date cipp applications close"""
-  applicationEndDate: Datetime!
+  """The date and time the CIIP applications close"""
+  applicationCloseTime: Datetime!
 
-  """The date cipp applications open"""
-  applicationOpenDate: Datetime!
+  """The date and time the CIIP applications open"""
+  applicationOpenTime: Datetime!
 
-  """The date cipp users can expect a response by"""
-  applicationResponseDate: Datetime!
+  """The date and time the CIIP users can expect a response by"""
+  applicationResponseTime: Datetime!
 
-  """The date reporting period ends"""
+  """The date and time reporting period ends"""
   reportingPeriodEnd: Datetime!
 
-  """The date reporting period starts"""
+  """The date and time reporting period starts"""
   reportingPeriodStart: Datetime!
 
   """The current reporting year"""
@@ -10758,19 +10801,19 @@ input ReportingYearInput {
 Represents an update to a `ReportingYear`. Fields that are set will be updated.
 """
 input ReportingYearPatch {
-  """The date cipp applications close"""
-  applicationEndDate: Datetime
+  """The date and time the CIIP applications close"""
+  applicationCloseTime: Datetime
 
-  """The date cipp applications open"""
-  applicationOpenDate: Datetime
+  """The date and time the CIIP applications open"""
+  applicationOpenTime: Datetime
 
-  """The date cipp users can expect a response by"""
-  applicationResponseDate: Datetime
+  """The date and time the CIIP users can expect a response by"""
+  applicationResponseTime: Datetime
 
-  """The date reporting period ends"""
+  """The date and time reporting period ends"""
   reportingPeriodEnd: Datetime
 
-  """The date reporting period starts"""
+  """The date and time reporting period starts"""
   reportingPeriodStart: Datetime
 
   """The current reporting year"""
@@ -10805,12 +10848,12 @@ type ReportingYearsEdge {
 
 """Methods to use when ordering `ReportingYear`."""
 enum ReportingYearsOrderBy {
-  APPLICATION_END_DATE_ASC
-  APPLICATION_END_DATE_DESC
-  APPLICATION_OPEN_DATE_ASC
-  APPLICATION_OPEN_DATE_DESC
-  APPLICATION_RESPONSE_DATE_ASC
-  APPLICATION_RESPONSE_DATE_DESC
+  APPLICATION_CLOSE_TIME_ASC
+  APPLICATION_CLOSE_TIME_DESC
+  APPLICATION_OPEN_TIME_ASC
+  APPLICATION_OPEN_TIME_DESC
+  APPLICATION_RESPONSE_TIME_ASC
+  APPLICATION_RESPONSE_TIME_DESC
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC

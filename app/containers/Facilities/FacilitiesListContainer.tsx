@@ -16,18 +16,18 @@ interface Props {
   relay: RelayRefetchProp;
 }
 
-export const FacilitiesList: React.FunctionComponent<Props> = props => {
-  const {
-    direction,
-    orderByField,
-    searchField,
-    searchValue,
-    handleEvent,
-    relay
-  } = props;
-  const {edges} = props.query.searchAllFacilities;
-  const {organisation} = props.query;
-  const facilityNumber = props.query.allFacilities.totalCount;
+export const FacilitiesList: React.FunctionComponent<Props> = ({
+  direction,
+  orderByField,
+  searchField,
+  searchValue,
+  handleEvent,
+  relay,
+  query
+}) => {
+  const {edges} = query.searchAllFacilities;
+  const {organisation} = query;
+  const facilityNumber = query.allFacilities.totalCount;
   let [facilityCount, updateFacilityCount] = useState(facilityNumber);
   useEffect(() => {
     const refetchVariables = {
@@ -55,13 +55,14 @@ export const FacilitiesList: React.FunctionComponent<Props> = props => {
         <FacilitiesRowItemContainer
           key={edge.node.rowId}
           facilitySearchResult={edge.node}
+          query={query}
         />
       ))}
     </tbody>
   );
 
   const handleAddFacility = async variables => {
-    const {environment} = props.relay;
+    const {environment} = relay;
     const response = await createFacilityMutation(environment, variables);
     console.log(response);
     updateFacilityCount((facilityCount += 1));
@@ -95,6 +96,7 @@ export default createRefetchContainer(
           organisationId: {type: "ID!"}
           facilityCount: {type: "Int"}
         ) {
+        ...FacilitiesRowItemContainer_query
         searchAllFacilities(
           searchField: $searchField
           searchValue: $searchValue

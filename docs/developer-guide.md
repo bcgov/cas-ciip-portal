@@ -14,6 +14,10 @@ The `schema/deploy-test-data.sh` script allows you to set up you database schema
 
 Run `./.bin/deploy-data.sh --help` to learn about other available options.
 
+### `ggircs_portal.current_timestamp()` in development and test mode
+
+When deploying the `test` or `dev` data, the `ggircs_portal.current_timestamp()` function, which usually calls the `current_timestamp` Postgres function, if replaced by a mock that always return the timestamp where the 2018 CIIP application window opens. This allows developers and testers to test the application process even though the window is not open.
+
 
 ## Code style and Linting
 
