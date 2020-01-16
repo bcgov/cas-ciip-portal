@@ -51,9 +51,9 @@ const GROUP_META = {
     priority: 2,
     path: '/analyst'
   },
-  'Pending Administrator': {
+  'Pending Analyst': {
     priority: 3,
-    path: '/analyst'
+    path: '/analyst/pending'
   }
 };
 
