@@ -17,13 +17,16 @@ PG_ROLE=${shell whoami}
 TEST_DB=ggircs_test
 PG_PROVE=pg_prove -h localhost
 PG_SHAREDIR=$(shell pg_config --sharedir)
+DEPLOY_DEFAULT_DATA=deploy_dev_data
 
 .PHONY: test
-test: | dropdb createdb deploy_ggircs deploy revert deploy_dev_data prove_unit prove_style dropdb
-
+test: | dropdb createdb deploy_ggircs deploy revert $(DEPLOY_DEFAULT_DATA) prove_unit prove_style dropdb
 
 .PHONY: unit
-unit: | deploy_dev_data prove_unit
+unit: | $(DEPLOY_DEFAULT_DATA) prove_unit
+
+.PHONY: test_data
+test_data: | deploy_prod_data prove_prod_data deploy_test_data prove_test_data deploy_dev_data prove_dev_data
 
 .PHONY: deploy_prod_data
 deploy_prod_data:
@@ -64,6 +67,21 @@ prove_style:
 prove_unit:
 	# Run unit test suite using pg_prove
 	@@$(PG_PROVE) --failures -d $(TEST_DB) test/unit/*_test.sql
+
+.PHONY: prove_prod_data
+prove_prod_data:
+	# Run prod_data tests using pg_prove
+	@@$(PG_PROVE) --failures -d $(TEST_DB) test/data/prod_data_test.sql
+
+.PHONY: prove_test_data
+prove_test_data:
+	# Run test_data tests using pg_prove
+	@@$(PG_PROVE) --failures -d $(TEST_DB) test/data/test_data_test.sql
+
+.PHONY: prove_dev_data
+prove_dev_data:
+	# Run test_data tests using pg_prove
+	@@$(PG_PROVE) --failures -d $(TEST_DB) test/data/dev_data_test.sql
 
 .PHONY: revert
 revert:
