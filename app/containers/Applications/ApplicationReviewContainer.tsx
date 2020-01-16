@@ -144,9 +144,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
                   />
                   <div className="description">
                     <h6>Approve</h6>
-                    <span>
-                      Approve this section. Leaving a comment is optional
-                    </span>
+                    <span>Approve this section</span>
                   </div>
                 </div>
                 <div className="radio">
