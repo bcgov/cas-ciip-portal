@@ -4406,6 +4406,15 @@ type CreateReviewCommentMutationChainPayload {
   """Reads a single `Application` that is related to this `ReviewComment`."""
   applicationByApplicationId: Application
 
+  """Reads a single `CiipUser` that is related to this `ReviewComment`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewComment`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewComment`."""
+  ciipUserByUpdatedBy: CiipUser
+
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
