@@ -32,7 +32,8 @@ begin
                    current_setting('jwt.claims.preferred_username', true),
                    current_setting('jwt.claims.given_name', true),
                    current_setting('jwt.claims.family_name', true),
-                   current_setting('jwt.claims.email', true)
+                   current_setting('jwt.claims.email', true),
+                   (select string_to_array(current_setting('jwt.claims.user_groups', true), ','))
                    )::ggircs_portal.jwt_token
     );
 end

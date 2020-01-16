@@ -34,6 +34,67 @@ if (process.env.PGPORT) {
 databaseURL += '/';
 databaseURL += process.env.PGDATABASE || 'ggircs_dev';
 
+const GROUP_META = {
+  Guest: {
+    priority: 100,
+    path: '/'
+  },
+  User: {
+    priority: 10,
+    path: '/reporter/user-dashboard'
+  },
+  'Incentive Administrator': {
+    priority: 1,
+    path: '/admin'
+  },
+  'Incentive Analyst': {
+    priority: 2,
+    path: '/analyst'
+  },
+  'Pending Administrator': {
+    priority: 3,
+    path: '/analyst'
+  }
+};
+
+const removeFirstLetter = str => str.slice(1);
+
+const getUserGroups = req => {
+  if (
+    !req.kauth ||
+    !req.kauth.grant ||
+    !req.kauth.grant.id_token ||
+    !req.kauth.grant.id_token.content ||
+    !req.kauth.grant.id_token.content.groups
+  )
+    return ['Guest'];
+
+  const username = req.kauth.grant.id_token.content.preferred_username;
+  const {groups} = req.kauth.grant.id_token.content;
+
+  if (groups.length > 0) return groups.map(removeFirstLetter);
+
+  return username.endsWith('@idir') ? ['Pending Analyst'] : ['User'];
+};
+
+const getRedirectURL = req => {
+  if (req.query.redirectTo) return req.query.redirectTo;
+
+  const groups = getUserGroups(req);
+
+  let priorityGroup = GROUP_META[groups[0]];
+
+  for (let x = 1; x < groups.length; x++) {
+    const curr = GROUP_META[groups[x]];
+
+    if (curr.priority < priorityGroup.priority) {
+      priorityGroup = curr;
+    }
+  }
+
+  return priorityGroup.path;
+};
+
 app.prepare().then(() => {
   const server = express();
 
@@ -69,7 +130,8 @@ app.prepare().then(() => {
       pgSettings(req) {
         if (NO_AUTH)
           return {
-            'jwt.claims.sub': '00000000-0000-0000-0000-000000000000'
+            'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
+            'jwt.claims.user_groups': 'Incentive Administrator'
           };
 
         const claims = {};
@@ -85,6 +147,10 @@ app.prepare().then(() => {
         // @see https://www.postgresql.org/docs/current/default-roles.html
         // claims['role'] = 'pg_monitor';
         const token = req.kauth.grant.id_token.content;
+
+        const groups = getUserGroups(req);
+        token.user_groups = groups.join(',');
+
         const properties = [
           'jti',
           'exp',
@@ -103,7 +169,8 @@ app.prepare().then(() => {
           'preferred_username',
           'given_name',
           'family_name',
-          'email'
+          'email',
+          'user_groups'
         ];
         properties.forEach(property => {
           claims[`jwt.claims.${property}`] = token[property];
@@ -123,19 +190,15 @@ app.prepare().then(() => {
   );
 
   if (NO_AUTH)
-    server.post('/login', (req, res) =>
-      res.redirect(302, req.query.redirectTo || '/reporter/user-dashboard')
-    );
+    server.post('/login', (req, res) => res.redirect(302, getRedirectURL(req)));
   else
     server.post('/login', keycloak.protect(), (req, res) =>
       // This request handler gets called on a POST to /login if the user is already authenticated
-      res.redirect(302, req.query.redirectTo || '/reporter/user-dashboard')
+      res.redirect(302, getRedirectURL(req))
     );
 
   // Keycloak callbak; do not keycloak.protect() to avoid users being authenticated against their will via XSS attack
-  server.get('/login', (req, res) =>
-    res.redirect(302, req.query.redirectTo || '/reporter/user-dashboard')
-  );
+  server.get('/login', (req, res) => res.redirect(302, getRedirectURL(req)));
 
   server.get('*', async (req, res) => {
     return handle(req, res);

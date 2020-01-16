@@ -27,6 +27,8 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
 }) => {
   const router = useRouter();
 
+  console.log(router.asPath, session);
+
   if ((needsSession || needsUser) && !session) {
     router.push({
       pathname: '/login-redirect',
@@ -141,6 +143,7 @@ export {DefaultLayout as DefaultLayoutComponent};
 export default createFragmentContainer(DefaultLayout, {
   session: graphql`
     fragment defaultLayout_session on JwtToken {
+      userGroups
       ciipUserBySub {
         __typename
       }
