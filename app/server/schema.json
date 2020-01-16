@@ -26671,13 +26671,8 @@
               "deprecationReason": null
             },
             {
-<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
-              "name": "currentTimestamp",
-              "description": "Returns the current date and time with time zone.\nThis should be used instead of the native current_timestamp function to allow for mocking in test and development settings",
-=======
               "name": "createReviewCommentMutationChain",
               "description": null,
->>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
               "args": [
                 {
                   "name": "input",
@@ -26687,11 +26682,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
-                      "name": "CurrentTimestampInput",
-=======
                       "name": "CreateReviewCommentMutationChainInput",
->>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
                       "ofType": null
                     }
                   },
@@ -26700,11 +26691,34 @@
               ],
               "type": {
                 "kind": "OBJECT",
-<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
-                "name": "CurrentTimestampPayload",
-=======
                 "name": "CreateReviewCommentMutationChainPayload",
->>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "currentTimestamp",
+              "description": "Returns the current date and time with time zone.\nThis should be used instead of the native current_timestamp function to allow for mocking in test and development settings",
+              "args": [
+                {
+                  "name": "input",
+                  "description": "The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "CurrentTimestampInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CurrentTimestampPayload",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -34790,42 +34804,6 @@
               "deprecationReason": null
             },
             {
-              "name": "ciipUserByCreatedBy",
-              "description": "Reads a single `CiipUser` that is related to this `ReviewComment`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ciipUserByDeletedBy",
-              "description": "Reads a single `CiipUser` that is related to this `ReviewComment`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ciipUserByUpdatedBy",
-              "description": "Reads a single `CiipUser` that is related to this `ReviewComment`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "clientMutationId",
               "description": "The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations.",
               "args": [],
@@ -34912,13 +34890,6 @@
         },
         {
           "kind": "INPUT_OBJECT",
-<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
-          "name": "CurrentTimestampInput",
-          "description": "All input for the `currentTimestamp` mutation.",
-          "fields": null,
-          "inputFields": [
-            {
-=======
           "name": "CreateReviewCommentMutationChainInput",
           "description": "All input for the `createReviewCommentMutationChain` mutation.",
           "fields": null,
@@ -34934,7 +34905,6 @@
               "defaultValue": null
             },
             {
->>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
               "name": "clientMutationId",
               "description": "An arbitrary string value with no semantic meaning. Will be included in the payload verbatim. May be used to track mutations by the client.",
               "type": {
@@ -34943,8 +34913,6 @@
                 "ofType": null
               },
               "defaultValue": null
-<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
-=======
             },
             {
               "name": "commentTypeInput",
@@ -34985,7 +34953,6 @@
                 "ofType": null
               },
               "defaultValue": null
->>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
             }
           ],
           "interfaces": null,
@@ -34994,12 +34961,6 @@
         },
         {
           "kind": "OBJECT",
-<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
-          "name": "CurrentTimestampPayload",
-          "description": "The output of our `currentTimestamp` mutation.",
-          "fields": [
-            {
-=======
           "name": "CreateReviewCommentMutationChainPayload",
           "description": "The output of our `createReviewCommentMutationChain` mutation.",
           "fields": [
@@ -35016,7 +34977,42 @@
               "deprecationReason": null
             },
             {
->>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
+              "name": "ciipUserByCreatedBy",
+              "description": "Reads a single `CiipUser` that is related to this `ReviewComment`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipUser",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ciipUserByDeletedBy",
+              "description": "Reads a single `CiipUser` that is related to this `ReviewComment`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipUser",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ciipUserByUpdatedBy",
+              "description": "Reads a single `CiipUser` that is related to this `ReviewComment`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipUser",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "clientMutationId",
               "description": "The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations.",
               "args": [],
@@ -35029,21 +35025,12 @@
               "deprecationReason": null
             },
             {
-<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
-              "name": "datetime",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Datetime",
-=======
               "name": "formJsonByFormId",
               "description": "Reads a single `FormJson` that is related to this `ReviewComment`.",
               "args": [],
               "type": {
                 "kind": "OBJECT",
                 "name": "FormJson",
->>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
                 "ofType": null
               },
               "isDeprecated": false,
@@ -35060,8 +35047,6 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
-<<<<<<< 8e052203bf793d9663c12f0accbb05d573591a97
-=======
             },
             {
               "name": "reviewComment",
@@ -35105,7 +35090,74 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
->>>>>>> add createReviewCommentMutationChain to automatically set form result status depending on comment type
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "CurrentTimestampInput",
+          "description": "All input for the `currentTimestamp` mutation.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "clientMutationId",
+              "description": "An arbitrary string value with no semantic meaning. Will be included in the payload verbatim. May be used to track mutations by the client.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CurrentTimestampPayload",
+          "description": "The output of our `currentTimestamp` mutation.",
+          "fields": [
+            {
+              "name": "clientMutationId",
+              "description": "The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "datetime",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "query",
+              "description": "Our root query field type. Allows us to run any query from our mutation payload.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Query",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
