@@ -416,6 +416,7 @@ jobs:
       - run:
           name: run end-to-end tests with cypress
           command: |
+            source ~/.asdf/asdf.sh
             pushd app
             yarn test:ci-e2e
             popd
