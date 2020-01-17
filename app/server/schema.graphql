@@ -7946,6 +7946,7 @@ type JwtToken {
   sessionState: UUID
   sub: UUID
   typ: String
+  userGroups: [String]
 }
 
 """
