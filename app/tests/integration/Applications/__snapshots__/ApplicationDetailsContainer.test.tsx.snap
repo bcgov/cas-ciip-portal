@@ -28,18 +28,6 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
           className="col-md-2"
         />
         <div
-          className="col-md-2 offset-md-1"
-        >
-          <button
-            className="btn btn-outline-primary"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            APPROVED
-          </button>
-        </div>
-        <div
           className="col-md-1"
           style={
             Object {
@@ -792,18 +780,6 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
           className="col-md-2"
         />
         <div
-          className="col-md-2 offset-md-1"
-        >
-          <button
-            className="btn btn-outline-primary"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            APPROVED
-          </button>
-        </div>
-        <div
           className="col-md-1"
           style={
             Object {
@@ -1530,18 +1506,6 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
           className="col-md-2"
         />
         <div
-          className="col-md-2 offset-md-1"
-        >
-          <button
-            className="btn btn-outline-primary"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            APPROVED
-          </button>
-        </div>
-        <div
           className="col-md-1"
           style={
             Object {
@@ -1880,18 +1844,6 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
           className="col-md-2"
         />
         <div
-          className="col-md-2 offset-md-1"
-        >
-          <button
-            className="btn btn-outline-primary"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            APPROVED
-          </button>
-        </div>
-        <div
           className="col-md-1"
           style={
             Object {
@@ -2147,18 +2099,6 @@ exports[`ApplicationDetailsContainer should match the snapshot with the summary 
         <div
           className="col-md-2"
         />
-        <div
-          className="col-md-2 offset-md-1"
-        >
-          <button
-            className="btn btn-outline-primary"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            APPROVED
-          </button>
-        </div>
         <div
           className="col-md-1"
           style={

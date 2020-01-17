@@ -12,7 +12,7 @@ describe('ApplicationDetailsCardItemComponent', () => {
         formJson: {schema: {title: 'Fuel UsageCollapse'}, uiSchema: {}},
         slug: 'fuel'
       },
-      formResultStatusesByApplicationIdAndVersionNumberAndFormId: {
+      formResultStatuses: {
         edges: [
           {
             node: {
@@ -59,7 +59,7 @@ describe('ApplicationDetailsCardItemComponent', () => {
         formJson: {schema: {title: 'Fuel UsageCollapse'}, uiSchema: {}},
         slug: 'fuel'
       },
-      formResultStatusesByApplicationIdAndVersionNumberAndFormId: {
+      formResultStatuses: {
         edges: [
           {
             node: {
@@ -105,7 +105,7 @@ describe('ApplicationDetailsCardItemComponent', () => {
         formJson: {schema: {title: 'Fuel UsageCollapse'}, uiSchema: {}},
         slug: 'fuel'
       },
-      formResultStatusesByApplicationIdAndVersionNumberAndFormId: {
+      formResultStatuses: {
         edges: [
           {
             node: {
@@ -163,7 +163,7 @@ describe('ApplicationDetailsCardItemComponent', () => {
         formJson: {schema: {title: 'Fuel UsageCollapse'}, uiSchema: {}},
         slug: 'fuel'
       },
-      formResultStatusesByApplicationIdAndVersionNumberAndFormId: {
+      formResultStatuses: {
         edges: [
           {
             node: {
