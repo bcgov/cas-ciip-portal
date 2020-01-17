@@ -3,6 +3,6 @@
 
 begin;
 
-create type ggircs_portal.review_comment_type as enum ('internal', 'requested change');
+create type ggircs_portal.review_comment_type as enum ('approval', 'general', 'internal', 'requested change');
 
 commit;

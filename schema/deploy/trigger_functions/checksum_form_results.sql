@@ -29,13 +29,10 @@ begin
                                           and fr.version_number = new.version_number - 1)));
 
       if new_form_result_hash != old_form_result_hash then
-      raise notice 'Form Result: % changed from previous version', (select name from ggircs_portal.form_json where id = temp_row.form_id);
         update ggircs_portal.form_result_status frs set form_result_status = 'needs attention'
         where frs.application_id = new.application_id
         and frs.form_id = temp_row.form_id;
       end if;
-
-
 
     end loop;
   end if;

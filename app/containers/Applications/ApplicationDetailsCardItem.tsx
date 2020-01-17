@@ -10,11 +10,13 @@ import customFields from 'components/Application/ApplicationDetailsCardItemCusto
 import SummaryFormArrayFieldTemplate from 'containers/Forms/SummaryFormArrayFieldTemplate';
 import SummaryFormFieldTemplate from 'containers/Forms/SummaryFormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
+import ApplicationReviewContainer from './ApplicationReviewContainer';
 
 interface Props {
   formResult: ApplicationDetailsCardItem_formResult;
   previousFormResults?: any;
   query: ApplicationDetailsCardItem_query;
+  review: boolean;
 }
 
 /*
@@ -23,7 +25,8 @@ interface Props {
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult,
   previousFormResults,
-  query
+  query,
+  review
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
@@ -98,7 +101,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           <Col md={6}>
             <h4>{formJsonByFormId.name}</h4>
           </Col>
-          <Col md={{span: 2, offset: 3}}>
+          <Col md={2}>
             {previousFormResults ? (
               <Form.Check
                 label="Show Diff?"
@@ -108,6 +111,19 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
               />
             ) : null}
           </Col>
+          {review ? (
+            <Col md={{span: 2, offset: 1}}>
+              <ApplicationReviewContainer
+                formName={formJsonByFormId.name}
+                formResultId={formResult.id}
+                formResultStatus={
+                  formResult.formResultStatuses.edges[
+                    formResult.formResultStatuses.edges.length - 1
+                  ].node
+                }
+              />
+            </Col>
+          ) : null}
           <Col md={1} style={{textAlign: 'right'}}>
             <Button
               aria-label="toggle-card-open"
@@ -153,11 +169,19 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
   formResult: graphql`
     fragment ApplicationDetailsCardItem_formResult on FormResult {
+      id
       formResult
       formJsonByFormId {
         name
         slug
         formJson
+      }
+      formResultStatuses {
+        edges {
+          node {
+            ...ApplicationReviewContainer_formResultStatus
+          }
+        }
       }
     }
   `,

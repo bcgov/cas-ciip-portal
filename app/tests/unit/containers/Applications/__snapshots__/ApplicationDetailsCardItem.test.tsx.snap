@@ -23,12 +23,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         </h4>
       </Col>
       <Col
-        md={
-          Object {
-            "offset": 3,
-            "span": 2,
-          }
-        }
+        md={2}
       />
       <Col
         md={1}

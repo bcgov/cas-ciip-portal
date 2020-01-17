@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.form_result_application_comments;
+drop function ggircs_portal.form_result_internal_general_comments;
 
 commit;

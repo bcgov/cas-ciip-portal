@@ -19,6 +19,9 @@ create table ggircs_portal.review_comment (
   deleted_by int references ggircs_portal.ciip_user
 );
 
+create index ggircs_portal_review_comment_application_foreign_key on ggircs_portal.review_comment(application_id);
+create index ggircs_portal_review_comment_form_json_foreign_key on ggircs_portal.review_comment(form_id);
+
 create trigger _100_timestamps
   before insert or update on ggircs_portal.review_comment
   for each row

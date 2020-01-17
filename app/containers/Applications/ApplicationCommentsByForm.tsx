@@ -65,6 +65,7 @@ export default createFragmentContainer(ApplicationCommentsByForm, {
       description
       createdAt
       resolved
+      commentType
     }
   `
 });

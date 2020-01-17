@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationReview should match the snapshot with the ApplicationReview component 1`] = `
+<Fragment>
+  <Button
+    active={false}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+    variant="outline-primary"
+  >
+    IN REVIEW
+  </Button>
+  <Bootstrap(Modal)
+    className="review-modal"
+    onHide={[Function]}
+    show={false}
+    size="lg"
+  >
+    <ModalHeader
+      closeButton={true}
+      closeLabel="Close"
+    >
+      <ModalTitle>
+        Reviewing 
+        Admin
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      <Form
+        className="review-box"
+        inline={false}
+        onSubmit={[Function]}
+      >
+        <FormGroup>
+          <FormLabel
+            column={false}
+            srOnly={false}
+          >
+            Comment
+          </FormLabel>
+          <FormControl
+            as="textarea"
+            name="reviewComment"
+            rows="3"
+          />
+        </FormGroup>
+        <ForwardRef
+          className="review-status"
+          noGutters={false}
+        >
+          <Col
+            sm={12}
+          >
+            <div
+              className="jsx-1106837452 radio"
+            >
+              <input
+                className="jsx-1106837452"
+                name="reviewStatus"
+                type="radio"
+                value="APPROVED"
+              />
+              <div
+                className="jsx-1106837452 description"
+              >
+                <h6
+                  className="jsx-1106837452"
+                >
+                  Approve
+                </h6>
+                <span
+                  className="jsx-1106837452"
+                >
+                  Approve this section
+                </span>
+              </div>
+            </div>
+            <div
+              className="jsx-1106837452 radio"
+            >
+              <input
+                className="jsx-1106837452"
+                name="reviewStatus"
+                type="radio"
+                value="IN_REVIEW"
+              />
+              <div
+                className="jsx-1106837452 description"
+              >
+                <h6
+                  className="jsx-1106837452"
+                >
+                  General Comment
+                </h6>
+                <span
+                  className="jsx-1106837452"
+                >
+                  Leave a general comment
+                </span>
+              </div>
+            </div>
+            <div
+              className="jsx-1106837452 radio"
+            >
+              <input
+                className="jsx-1106837452"
+                name="reviewStatus"
+                type="radio"
+                value="CHANGES_REQUESTED"
+              />
+              <div
+                className="jsx-1106837452 description"
+              >
+                <h6
+                  className="jsx-1106837452"
+                >
+                  Request Changes
+                </h6>
+                <span
+                  className="jsx-1106837452"
+                >
+                  Request changes from the applicant before this can be approved
+                </span>
+              </div>
+            </div>
+            <div
+              className="jsx-1106837452 radio"
+            >
+              <input
+                className="jsx-1106837452"
+                name="reviewStatus"
+                type="radio"
+                value="NEEDS_ATTENTION"
+              />
+              <div
+                className="jsx-1106837452 description"
+              >
+                <h6
+                  className="jsx-1106837452"
+                >
+                  Flag
+                </h6>
+                <span
+                  className="jsx-1106837452"
+                >
+                  Internal Comment (Flag this section for further attention)
+                </span>
+              </div>
+            </div>
+          </Col>
+        </ForwardRef>
+        <br
+          className="jsx-1106837452"
+        />
+        <Button
+          active={false}
+          disabled={false}
+          type="submit"
+          variant="primary"
+        >
+          Submit
+        </Button>
+      </Form>
+      <ForwardRef
+        noGutters={false}
+        style={
+          Object {
+            "marginTop": "20px",
+          }
+        }
+      >
+        <Col
+          md={4}
+        >
+          <h5
+            className="jsx-1106837452"
+          >
+            Form Status: 
+          </h5>
+        </Col>
+        <Col
+          md={4}
+        >
+          <Dropdown
+            navbar={false}
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            <DropdownToggle
+              id="dropdown"
+              style={
+                Object {
+                  "textTransform": "capitalize",
+                  "width": "100%",
+                }
+              }
+              variant="info"
+            >
+              IN_REVIEW
+            </DropdownToggle>
+            <DropdownMenu
+              alignRight={false}
+              flip={true}
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            >
+              <DropdownMenuItemComponent
+                itemEventKey="IN_REVIEW"
+                itemFunc={[Function]}
+                itemTitle="IN_REVIEW"
+                key="IN_REVIEW"
+              />
+              <DropdownMenuItemComponent
+                itemEventKey="NEEDS_ATTENTION"
+                itemFunc={[Function]}
+                itemTitle="NEEDS_ATTENTION"
+                key="NEEDS_ATTENTION"
+              />
+              <DropdownMenuItemComponent
+                itemEventKey="APPROVED"
+                itemFunc={[Function]}
+                itemTitle="APPROVED"
+                key="APPROVED"
+              />
+              <DropdownMenuItemComponent
+                itemEventKey="CHANGES_REQUESTED"
+                itemFunc={[Function]}
+                itemTitle="CHANGES_REQUESTED"
+                key="CHANGES_REQUESTED"
+              />
+            </DropdownMenu>
+          </Dropdown>
+        </Col>
+      </ForwardRef>
+    </ModalBody>
+    <ModalFooter>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="secondary"
+      >
+        Close
+      </Button>
+    </ModalFooter>
+  </Bootstrap(Modal)>
+  <JSXStyle
+    id="1106837452"
+  >
+    .review-status .radio{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;margin-top:20px;}.review-status input{margin-right:10px;}.review-status .description h6{margin-bottom:0;}.review-status .description span{font-size:14px;color:#666;}
+  </JSXStyle>
+</Fragment>
+`;

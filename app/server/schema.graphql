@@ -94,6 +94,35 @@ type Application implements Node {
     orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormResultsConnection!
 
+  """Reads and enables pagination through a set of `FormResultStatus`."""
+  formResultStatusesByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FormResultStatusCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `FormResultStatus`."""
+    orderBy: [FormResultStatusesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FormResultStatusesConnection!
+
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
@@ -4099,6 +4128,11 @@ input CreateFormResultStatusInput {
 
 """The output of our create `FormResultStatus` mutation."""
 type CreateFormResultStatusPayload {
+  """
+  Reads a single `Application` that is related to this `FormResultStatus`.
+  """
+  applicationByApplicationId: Application
+
   """Reads a single `CiipUser` that is related to this `FormResultStatus`."""
   ciipUserByCreatedBy: CiipUser
 
@@ -4113,11 +4147,6 @@ type CreateFormResultStatusPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-
-  """
-  Reads a single `FormResult` that is related to this `FormResultStatus`.
-  """
-  formResultByApplicationIdAndVersionNumberAndFormId: FormResult
 
   """The `FormResultStatus` that was created by this mutation."""
   formResultStatus: FormResultStatus
@@ -4384,6 +4413,57 @@ input CreateReviewCommentInput {
 
   """The `ReviewComment` to be created by this mutation."""
   reviewComment: ReviewCommentInput!
+}
+
+"""All input for the `createReviewCommentMutationChain` mutation."""
+input CreateReviewCommentMutationChainInput {
+  applicationIdInput: Int
+
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  commentTypeInput: ReviewCommentType
+  descriptionInput: String
+  formIdInput: Int
+  versionNumberInput: Int
+}
+
+"""The output of our `createReviewCommentMutationChain` mutation."""
+type CreateReviewCommentMutationChainPayload {
+  """Reads a single `Application` that is related to this `ReviewComment`."""
+  applicationByApplicationId: Application
+
+  """Reads a single `CiipUser` that is related to this `ReviewComment`."""
+  ciipUserByCreatedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewComment`."""
+  ciipUserByDeletedBy: CiipUser
+
+  """Reads a single `CiipUser` that is related to this `ReviewComment`."""
+  ciipUserByUpdatedBy: CiipUser
+
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """Reads a single `FormJson` that is related to this `ReviewComment`."""
+  formJsonByFormId: FormJson
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+  reviewComment: ReviewComment
+
+  """An edge for our `ReviewComment`. May be used by Relay 1."""
+  reviewCommentEdge(
+    """The method to use when ordering `ReviewComment`."""
+    orderBy: [ReviewCommentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ReviewCommentsEdge
 }
 
 """The output of our create `ReviewComment` mutation."""
@@ -5274,6 +5354,11 @@ input DeleteFormResultStatusInput {
 
 """The output of our delete `FormResultStatus` mutation."""
 type DeleteFormResultStatusPayload {
+  """
+  Reads a single `Application` that is related to this `FormResultStatus`.
+  """
+  applicationByApplicationId: Application
+
   """Reads a single `CiipUser` that is related to this `FormResultStatus`."""
   ciipUserByCreatedBy: CiipUser
 
@@ -5289,11 +5374,6 @@ type DeleteFormResultStatusPayload {
   """
   clientMutationId: String
   deletedFormResultStatusId: ID
-
-  """
-  Reads a single `FormResult` that is related to this `FormResultStatus`.
-  """
-  formResultByApplicationIdAndVersionNumberAndFormId: FormResult
 
   """The `FormResultStatus` that was deleted by this mutation."""
   formResultStatus: FormResultStatus
@@ -6747,27 +6827,6 @@ type FormResult implements Node {
   """Reads a single `Application` that is related to this `FormResult`."""
   applicationByApplicationId: Application
 
-  """Reads and enables pagination through a set of `ReviewComment`."""
-  applicationComments(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-  ): ReviewCommentsConnection!
-
   """The Unique ID of the Application"""
   applicationId: Int!
 
@@ -6807,17 +6866,12 @@ type FormResult implements Node {
   formResult: JSON!
 
   """Reads and enables pagination through a set of `FormResultStatus`."""
-  formResultStatusesByApplicationIdAndVersionNumberAndFormId(
+  formResultStatuses(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
     """Read all values in the set before (above) this cursor."""
     before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: FormResultStatusCondition
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -6830,9 +6884,6 @@ type FormResult implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
-
-    """The method to use when ordering `FormResultStatus`."""
-    orderBy: [FormResultStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormResultStatusesConnection!
   hasUnresolvedComments: Boolean
 
@@ -6840,6 +6891,48 @@ type FormResult implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+
+  """Reads and enables pagination through a set of `ReviewComment`."""
+  internalGeneralComments(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): ReviewCommentsConnection!
+
+  """Reads and enables pagination through a set of `ReviewComment`."""
+  requestedChangeComments(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): ReviewCommentsConnection!
 
   """Unique ID for the form"""
   rowId: Int!
@@ -7018,6 +7111,11 @@ enum FormResultsOrderBy {
 
 """The form result status data"""
 type FormResultStatus implements Node {
+  """
+  Reads a single `Application` that is related to this `FormResultStatus`.
+  """
+  applicationByApplicationId: Application
+
   """The foreign key to application used for reference and join"""
   applicationId: Int!
 
@@ -7044,11 +7142,6 @@ type FormResultStatus implements Node {
 
   """The form id (form_json) this status is attached to"""
   formId: Int!
-
-  """
-  Reads a single `FormResult` that is related to this `FormResultStatus`.
-  """
-  formResultByApplicationIdAndVersionNumberAndFormId: FormResult
 
   """The form result status"""
   formResultStatus: CiipFormResultStatus
@@ -8058,6 +8151,12 @@ type Mutation {
     """
     input: CreateReviewCommentInput!
   ): CreateReviewCommentPayload
+  createReviewCommentMutationChain(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateReviewCommentMutationChainInput!
+  ): CreateReviewCommentMutationChainPayload
 
   """
   Returns the current date and time with time zone.
@@ -11099,6 +11198,8 @@ enum ReviewCommentsOrderBy {
 }
 
 enum ReviewCommentType {
+  APPROVAL
+  GENERAL
   INTERNAL
   REQUESTED_CHANGE
 }
@@ -12088,6 +12189,11 @@ input UpdateFormResultStatusInput {
 
 """The output of our update `FormResultStatus` mutation."""
 type UpdateFormResultStatusPayload {
+  """
+  Reads a single `Application` that is related to this `FormResultStatus`.
+  """
+  applicationByApplicationId: Application
+
   """Reads a single `CiipUser` that is related to this `FormResultStatus`."""
   ciipUserByCreatedBy: CiipUser
 
@@ -12102,11 +12208,6 @@ type UpdateFormResultStatusPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-
-  """
-  Reads a single `FormResult` that is related to this `FormResultStatus`.
-  """
-  formResultByApplicationIdAndVersionNumberAndFormId: FormResult
 
   """The `FormResultStatus` that was updated by this mutation."""
   formResultStatus: FormResultStatus

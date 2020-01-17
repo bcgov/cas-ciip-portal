@@ -31,6 +31,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
           previousFormResults={previousFormResults}
           formResult={node}
           query={props.query.query}
+          review={props.review}
         />
       ))}
       <div style={{textAlign: 'right', marginTop: 20}}>

@@ -32,7 +32,7 @@ create trigger _100_timestamps
   execute procedure ggircs_portal.update_timestamps();
 
 create trigger _checksum_form_results
-    before update of application_revision_status on ggircs_portal.application_revision_status
+    before insert or update of application_revision_status on ggircs_portal.application_revision_status
     for each row
     execute procedure ggircs_portal.checksum_form_results();
 

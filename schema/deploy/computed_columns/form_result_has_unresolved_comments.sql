@@ -12,7 +12,8 @@ begin;
     begin
         return (select exists(select * from ggircs_portal.review_comment rc
                              where rc.application_id = form_result.application_id
-                             and rc.form_id = form_result.form_id));
+                             and rc.form_id = form_result.form_id
+                             and rc.comment_type = 'requested change'));
     end;
   $body$
   language 'plpgsql' stable;

@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import {Collapse, Table, Button, Row, Col} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationCommentsContainer_formResult} from 'ApplicationCommentsContainer_formResult.graphql';
-import createReviewCommentMutation from 'mutations/application/createReviewCommentMutation';
-import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
-import {JSONSchema6} from 'json-schema';
 import ApplicationCommentsBox from './ApplicationCommentsByForm';
 
 /*
@@ -21,57 +18,6 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
   const {formResult, review} = props;
   const [isOpen, setIsOpen] = useState(false);
   const [showResolved, toggleShowResolved] = useState(false);
-
-  const addComment = async (e: IChangeEvent) => {
-    if (!e.formData.commentInput) return null;
-    const {environment} = props.relay;
-    const variables = {
-      input: {
-        reviewComment: {
-          applicationId: formResult.applicationByApplicationId.rowId,
-          formId: formResult.formJsonByFormId.rowId,
-          description: e.formData.commentInput,
-          resolved: false
-        }
-      }
-    };
-    const formResultId = formResult.id;
-
-    const response = await createReviewCommentMutation(
-      environment,
-      variables,
-      formResultId
-    );
-    console.log(response);
-  };
-
-  const schema: JSONSchema6 = {
-    type: 'object',
-    properties: {
-      commentInput: {
-        type: 'string'
-      }
-    }
-  };
-
-  const uiSchema = {
-    commentInput: {
-      'ui:widget': 'textarea',
-      classNames: 'hide-title'
-    }
-  };
-
-  function CustomFieldTemplate(props) {
-    const {classNames, help, description, errors, children} = props;
-    return (
-      <div className={classNames}>
-        {description}
-        {children}
-        {errors}
-        {help}
-      </div>
-    );
-  }
 
   return (
     <>
@@ -101,7 +47,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                 </tr>
               </thead>
               <tbody>
-                {formResult.applicationComments.edges.map(({node}) => {
+                {formResult.internalGeneralComments.edges.map(({node}) => {
                   if (node.resolved && !showResolved) return null;
                   return (
                     <ApplicationCommentsBox
@@ -113,17 +59,26 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                 })}
               </tbody>
             </Table>
-            {review ? (
-              <JsonSchemaForm
-                schema={schema}
-                uiSchema={uiSchema}
-                FieldTemplate={CustomFieldTemplate}
-                showErrorList={false}
-                onSubmit={addComment}
-              >
-                <Button type="submit">+ Add Comment</Button>
-              </JsonSchemaForm>
-            ) : null}
+            <Table striped bordered hover>
+              <thead style={{textAlign: 'center'}}>
+                <tr>
+                  <th>Comment</th>
+                  {review ? <th>Resolve</th> : null}
+                </tr>
+              </thead>
+              <tbody>
+                {formResult.requestedChangeComments.edges.map(({node}) => {
+                  if (node.resolved && !showResolved) return null;
+                  return (
+                    <ApplicationCommentsBox
+                      key={node.id}
+                      review={review}
+                      reviewComment={node}
+                    />
+                  );
+                })}
+              </tbody>
+            </Table>
             {showResolved ? (
               <a href="#" onClick={() => toggleShowResolved(!showResolved)}>
                 Hide Resolved
@@ -172,8 +127,22 @@ export default createFragmentContainer(ApplicationCommentsComponent, {
         rowId
         name
       }
-      applicationComments(first: 2147483647)
-        @connection(key: "ApplicationCommentsContainer_applicationComments") {
+      internalGeneralComments(first: 2147483647)
+        @connection(
+          key: "ApplicationCommentsContainer_internalGeneralComments"
+        ) {
+        edges {
+          node {
+            id
+            resolved
+            ...ApplicationCommentsByForm_reviewComment
+          }
+        }
+      }
+      requestedChangeComments(first: 2147483647)
+        @connection(
+          key: "ApplicationCommentsContainer_requestedChangeComments"
+        ) {
         edges {
           node {
             id

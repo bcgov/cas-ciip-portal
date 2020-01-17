@@ -4,7 +4,7 @@
 
 begin;
 
-  create or replace function ggircs_portal.form_result_application_comments(form_result ggircs_portal.form_result)
+  create or replace function ggircs_portal.form_result_internal_general_comments(form_result ggircs_portal.form_result)
   returns setof ggircs_portal.review_comment
   as
   $body$
@@ -14,6 +14,7 @@ begin;
           select * from ggircs_portal.review_comment rc
             where rc.application_id = form_result.application_id
             and rc.form_id = form_result.form_id
+            and rc.comment_type != 'requested change':: ggircs_portal.review_comment_type
         );
     end;
   $body$

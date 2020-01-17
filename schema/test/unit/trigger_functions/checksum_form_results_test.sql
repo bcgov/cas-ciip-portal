@@ -83,9 +83,7 @@ select results_eq(
       and form_id = 1;
   $$,
   ARRAY['needs attention'::ggircs_portal.ciip_form_result_status],
-  $$
-    checksum_form_results trigger changes status to 'needs attention' if form_result has changed
-  $$
+  'checksum_form_results trigger changes status to "needs attention" if form_result has changed'
 );
 
 select finish();
