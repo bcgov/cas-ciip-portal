@@ -16,6 +16,7 @@ interface Props {
   formResult: ApplicationDetailsCardItem_formResult;
   previousFormResults?: any;
   query: ApplicationDetailsCardItem_query;
+  review: boolean;
 }
 
 /*
@@ -24,7 +25,8 @@ interface Props {
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult,
   previousFormResults,
-  query
+  query,
+  review
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
@@ -109,21 +111,19 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
               />
             ) : null}
           </Col>
-          <Col md={{span: 2, offset: 1}}>
-            <ApplicationReviewContainer
-              formName={formJsonByFormId.name}
-              formResultId={formResult.id}
-              formResultStatus={
-                formResult
-                  .formResultStatusesByApplicationIdAndVersionNumberAndFormId
-                  .edges[
-                  formResult
-                    .formResultStatusesByApplicationIdAndVersionNumberAndFormId
-                    .edges.length - 1
-                ].node
-              }
-            />
-          </Col>
+          {review ? (
+            <Col md={{span: 2, offset: 1}}>
+              <ApplicationReviewContainer
+                formName={formJsonByFormId.name}
+                formResultId={formResult.id}
+                formResultStatus={
+                  formResult.formResultStatuses.edges[
+                    formResult.formResultStatuses.edges.length - 1
+                  ].node
+                }
+              />
+            </Col>
+          ) : null}
           <Col md={1} style={{textAlign: 'right'}}>
             <Button
               aria-label="toggle-card-open"
@@ -176,7 +176,7 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
         slug
         formJson
       }
-      formResultStatusesByApplicationIdAndVersionNumberAndFormId {
+      formResultStatuses {
         edges {
           node {
             ...ApplicationReviewContainer_formResultStatus

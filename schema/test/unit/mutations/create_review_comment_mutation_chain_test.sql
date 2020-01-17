@@ -80,7 +80,7 @@ select results_eq(
     where application_id = (select max(id) from ggircs_portal.application) and form_id = 1 order by id desc limit 1;
   $$,
   ARRAY['needs attention'::ggircs_portal.ciip_form_result_status],
-  'form result status is changed to "needs attetion" by the mutation chain when comment_type is "internal"'
+  'form result status is changed to "needs attention" by the mutation chain when comment_type is "internal"'
 );
 
 -- create a comment with type 'approval'

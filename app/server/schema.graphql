@@ -94,6 +94,35 @@ type Application implements Node {
     orderBy: [FormResultsOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormResultsConnection!
 
+  """Reads and enables pagination through a set of `FormResultStatus`."""
+  formResultStatusesByApplicationId(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: FormResultStatusCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `FormResultStatus`."""
+    orderBy: [FormResultStatusesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FormResultStatusesConnection!
+
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
@@ -4099,6 +4128,11 @@ input CreateFormResultStatusInput {
 
 """The output of our create `FormResultStatus` mutation."""
 type CreateFormResultStatusPayload {
+  """
+  Reads a single `Application` that is related to this `FormResultStatus`.
+  """
+  applicationByApplicationId: Application
+
   """Reads a single `CiipUser` that is related to this `FormResultStatus`."""
   ciipUserByCreatedBy: CiipUser
 
@@ -4113,11 +4147,6 @@ type CreateFormResultStatusPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-
-  """
-  Reads a single `FormResult` that is related to this `FormResultStatus`.
-  """
-  formResultByApplicationIdAndVersionNumberAndFormId: FormResult
 
   """The `FormResultStatus` that was created by this mutation."""
   formResultStatus: FormResultStatus
@@ -5325,6 +5354,11 @@ input DeleteFormResultStatusInput {
 
 """The output of our delete `FormResultStatus` mutation."""
 type DeleteFormResultStatusPayload {
+  """
+  Reads a single `Application` that is related to this `FormResultStatus`.
+  """
+  applicationByApplicationId: Application
+
   """Reads a single `CiipUser` that is related to this `FormResultStatus`."""
   ciipUserByCreatedBy: CiipUser
 
@@ -5340,11 +5374,6 @@ type DeleteFormResultStatusPayload {
   """
   clientMutationId: String
   deletedFormResultStatusId: ID
-
-  """
-  Reads a single `FormResult` that is related to this `FormResultStatus`.
-  """
-  formResultByApplicationIdAndVersionNumberAndFormId: FormResult
 
   """The `FormResultStatus` that was deleted by this mutation."""
   formResultStatus: FormResultStatus
@@ -6837,17 +6866,12 @@ type FormResult implements Node {
   formResult: JSON!
 
   """Reads and enables pagination through a set of `FormResultStatus`."""
-  formResultStatusesByApplicationIdAndVersionNumberAndFormId(
+  formResultStatuses(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
     """Read all values in the set before (above) this cursor."""
     before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: FormResultStatusCondition
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -6860,9 +6884,6 @@ type FormResult implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
-
-    """The method to use when ordering `FormResultStatus`."""
-    orderBy: [FormResultStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): FormResultStatusesConnection!
   hasUnresolvedComments: Boolean
 
@@ -7090,6 +7111,11 @@ enum FormResultsOrderBy {
 
 """The form result status data"""
 type FormResultStatus implements Node {
+  """
+  Reads a single `Application` that is related to this `FormResultStatus`.
+  """
+  applicationByApplicationId: Application
+
   """The foreign key to application used for reference and join"""
   applicationId: Int!
 
@@ -7116,11 +7142,6 @@ type FormResultStatus implements Node {
 
   """The form id (form_json) this status is attached to"""
   formId: Int!
-
-  """
-  Reads a single `FormResult` that is related to this `FormResultStatus`.
-  """
-  formResultByApplicationIdAndVersionNumberAndFormId: FormResult
 
   """The form result status"""
   formResultStatus: CiipFormResultStatus
@@ -12168,6 +12189,11 @@ input UpdateFormResultStatusInput {
 
 """The output of our update `FormResultStatus` mutation."""
 type UpdateFormResultStatusPayload {
+  """
+  Reads a single `Application` that is related to this `FormResultStatus`.
+  """
+  applicationByApplicationId: Application
+
   """Reads a single `CiipUser` that is related to this `FormResultStatus`."""
   ciipUserByCreatedBy: CiipUser
 
@@ -12182,11 +12208,6 @@ type UpdateFormResultStatusPayload {
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
-
-  """
-  Reads a single `FormResult` that is related to this `FormResultStatus`.
-  """
-  formResultByApplicationIdAndVersionNumberAndFormId: FormResult
 
   """The `FormResultStatus` that was updated by this mutation."""
   formResultStatus: FormResultStatus

@@ -60,7 +60,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
     NEEDS_ATTENTION: 'INTERNAL'
   };
 
-  const addComment = async (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     e.persist();
     const comment = (e.target as Target).reviewComment.value;
@@ -76,9 +76,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
         commentTypeInput: commentType[status],
         versionNumberInput: formResultStatus.versionNumber
       },
-      applicationId:
-        formResultStatus.formResultByApplicationIdAndVersionNumberAndFormId
-          .applicationByApplicationId.id,
+      applicationId: formResultStatus.applicationByApplicationId.id,
       version: formResultStatus.versionNumber.toString()
     };
 
@@ -101,9 +99,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
           formResultStatus: e as CiipFormResultStatus
         }
       },
-      applicationId:
-        formResultStatus.formResultByApplicationIdAndVersionNumberAndFormId
-          .applicationByApplicationId.id,
+      applicationId: formResultStatus.applicationByApplicationId.id,
       version: formResultStatus.versionNumber.toString()
     };
 
@@ -129,7 +125,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
           <Modal.Title>Reviewing {formName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form className="review-box" onSubmit={addComment}>
+          <Form className="review-box" onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Comment</Form.Label>
               <Form.Control name="reviewComment" as="textarea" rows="3" />
@@ -256,10 +252,8 @@ export default createFragmentContainer(ApplicationReview, {
       formId
       formResultStatus
       versionNumber
-      formResultByApplicationIdAndVersionNumberAndFormId {
-        applicationByApplicationId {
-          id
-        }
+      applicationByApplicationId {
+        id
       }
     }
   `
