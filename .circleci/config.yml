@@ -223,12 +223,12 @@ jobs:
           name: deploy schemas and data
           command: |
             source ~/.bashrc
-            ./.bin/deploy-data.sh
+            ./.bin/deploy-data.sh -dev
       - run:
           name: deploying the data a second time should not fail on primary key conflicts
           command: |
             source ~/.bashrc
-            ./.bin/deploy-data.sh
+            ./.bin/deploy-data.sh -dev
 
   acceptance:
     machine:
@@ -391,6 +391,35 @@ jobs:
             make test PSQL="psql -h localhost" CI_NO_PIPELINE=true
             popd
 
+  e2e:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: "Checkout Submodules"
+          command: |
+            git submodule update --init
+      - run:
+          name: start postgres
+          command: |
+            source ~/.bashrc
+            pg_ctl start
+            createdb `whoami`
+      - run:
+          name: deploy schemas and data
+          command: |
+            source ~/.bashrc
+            ./.bin/deploy-data.sh -dev
+      - run:
+          name: run end-to-end tests with cypress
+          command: |
+            pushd app
+            yarn test:ci-e2e
+            popd
+
 workflows:
   version: 2
   test:
@@ -420,6 +449,9 @@ workflows:
       - deploy-test-data:
           requires:
             - tools
+      - e2e:
+          requires:
+            - tools
       - pathfinder_lint:
           requires:
             - lint
@@ -428,6 +460,7 @@ workflows:
             - schema
             - compile
             - deploy-test-data
+            - e2e
           context: cas-pipeline
           filters:
             branches:

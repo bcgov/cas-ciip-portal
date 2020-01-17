@@ -5,6 +5,7 @@
   "scripts": {
     "pretest": "npm run build:relay",
     "test": "jest",
+    "test:ci-e2e": "yarn dev & wait-on http://localhost:3004 && cypress run",
     "cucumber:pretty": "cucumber-js --format node_modules/cucumber-pretty --format-options '{\"descriptionEnabled\":true}'",
     "predev": "npm run build:schema && npm run build:relay",
     "dev": "node server",
@@ -87,7 +88,8 @@
         {
           "max": 8
         }
-      ]
+      ],
+      "jest/expect-expect": 0
     }
   },
   "engines": {
@@ -158,6 +160,8 @@
     "babel-plugin-relay": "^8.0.0",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
+    "cypress": "^3.8.2",
+    "cypress-plugin-snapshots": "^1.2.9",
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -190,6 +194,7 @@
     "relay-test-utils": "^8.0.0",
     "require-context.macro": "^1.2.2",
     "typescript": "3.7.3",
+    "wait-on": "^3.3.0",
     "webpack": "^4.41.0",
     "xo": "^0.25.0"
   },
