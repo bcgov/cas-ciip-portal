@@ -41,7 +41,7 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-{{ checksum "app/yarn.lock" }}
+            - yarn-packages-{{ checksum "app/yarn.lock" }}-1
       - run:
           name: Install Yarn Dependencies
           command: |
@@ -51,9 +51,10 @@ jobs:
             popd
       - save_cache:
           name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "app/yarn.lock" }}
+          key: yarn-packages-{{ checksum "app/yarn.lock" }}-1
           paths:
             - ~/.cache/yarn
+            - ~/.cache/Cypress
       - run:
           name: Configure Cpan
           command: |
@@ -78,6 +79,7 @@ jobs:
           paths:
             - .asdf
             - .bashrc
+            - .cache/Cypress # contains the cypress binary. Needed for the e2e job
             - cas-ciip-portal
             - perl5
 
