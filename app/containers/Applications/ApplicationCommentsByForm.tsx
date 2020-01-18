@@ -1,9 +1,10 @@
 import React from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import moment from 'moment-timezone';
-import {Form} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import {ApplicationCommentsByForm_reviewComment} from 'ApplicationCommentsByForm_reviewComment.graphql';
 import updateReviewCommentMutation from 'mutations/application/updateReviewCommentMutation';
+import deleteReviewCommentMutation from 'mutations/application/deleteReviewCommentMutation';
 
 /*
  * The ApplicationComments renders all the comments on the various sections of the application
@@ -13,10 +14,11 @@ interface Props {
   reviewComment: ApplicationCommentsByForm_reviewComment;
   relay: RelayProp;
   review: boolean;
+  version: any;
 }
 
 export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props => {
-  const {reviewComment, review} = props;
+  const {reviewComment, review, version} = props;
 
   const resolveComment = async () => {
     const {environment} = props.relay;
@@ -35,12 +37,32 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
     console.log(response);
   };
 
+  const deleteComment = async () => {
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        id: reviewComment.id,
+        reviewCommentPatch: {
+          deletedAt: moment
+            .tz('America/Vancouver')
+            .format('YYYY-MM-DDTHH:mm:ss')
+        }
+      },
+      applicationId: reviewComment.applicationByApplicationId.id,
+      version: String(version)
+    };
+
+    const response = await deleteReviewCommentMutation(environment, variables);
+    console.log(response);
+  };
+
   return (
     <>
       <tr>
         <td>{reviewComment.description}</td>
         {review ? (
           <td style={{textAlign: 'center'}}>
+            <Button onClick={deleteComment}>Delete</Button>
             <Form.Check
               checked={reviewComment.resolved}
               type="checkbox"
@@ -66,6 +88,9 @@ export default createFragmentContainer(ApplicationCommentsByForm, {
       createdAt
       resolved
       commentType
+      applicationByApplicationId {
+        id
+      }
     }
   `
 });

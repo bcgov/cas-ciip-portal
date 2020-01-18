@@ -54,6 +54,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                       key={node.id}
                       review={review}
                       reviewComment={node}
+                      version={formResult.versionNumber}
                     />
                   );
                 })}
@@ -74,6 +75,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                       key={node.id}
                       review={review}
                       reviewComment={node}
+                      version={formResult.versionNumber}
                     />
                   );
                 })}
@@ -119,6 +121,7 @@ export default createFragmentContainer(ApplicationCommentsComponent, {
   formResult: graphql`
     fragment ApplicationCommentsContainer_formResult on FormResult {
       id
+      versionNumber
       applicationByApplicationId {
         id
         rowId
