@@ -116,11 +116,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
               <ApplicationReviewContainer
                 formName={formJsonByFormId.name}
                 formResultId={formResult.id}
-                formResultStatus={
-                  formResult.formResultStatuses.edges[
-                    formResult.formResultStatuses.edges.length - 1
-                  ].node
-                }
+                formResultStatus={formResult.formResultStatuses}
+                versionNumber={formResult.versionNumber}
               />
             </Col>
           ) : null}
@@ -171,17 +168,14 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
     fragment ApplicationDetailsCardItem_formResult on FormResult {
       id
       formResult
+      versionNumber
       formJsonByFormId {
         name
         slug
         formJson
       }
       formResultStatuses {
-        edges {
-          node {
-            ...ApplicationReviewContainer_formResultStatus
-          }
-        }
+        ...ApplicationReviewContainer_formResultStatus
       }
     }
   `,

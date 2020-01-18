@@ -33,7 +33,6 @@ select results_eq(
     select form_result_status
       from ggircs_portal.form_result_status
       where application_id = (select max(id) from ggircs_portal.application)
-      and version_number = 1
       and form_id = 1;
   $$,
   ARRAY['in review'::ggircs_portal.ciip_form_result_status],
@@ -51,7 +50,6 @@ select results_eq(
     select form_result_status
       from ggircs_portal.form_result_status
       where application_id = (select max(id) from ggircs_portal.application)
-      and version_number = 1
       and form_id = 1;
   $$,
   ARRAY['in review'::ggircs_portal.ciip_form_result_status],
@@ -79,7 +77,6 @@ select results_eq(
     select form_result_status
       from ggircs_portal.form_result_status
       where application_id = (select max(id) from ggircs_portal.application)
-      and version_number = 1
       and form_id = 1;
   $$,
   ARRAY['needs attention'::ggircs_portal.ciip_form_result_status],

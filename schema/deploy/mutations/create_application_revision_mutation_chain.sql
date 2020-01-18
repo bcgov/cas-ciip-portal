@@ -71,8 +71,8 @@ begin
 
     if last_revision_id_input = 0 then
     -- Create form result statuses
-      insert into ggircs_portal.form_result_status(application_id, version_number, form_id, form_result_status)
-      values (application_id_input, new_version_number, temp_row.form_id, 'in review');
+      insert into ggircs_portal.form_result_status(application_id, form_id, form_result_status)
+      values (application_id_input, temp_row.form_id, 'in review');
     end if;
 
   end loop;

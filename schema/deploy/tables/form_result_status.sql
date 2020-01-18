@@ -6,7 +6,6 @@ begin;
 create table ggircs_portal.form_result_status (
     id integer primary key generated always as identity,
     application_id int not null references ggircs_portal.application(id),
-    version_number int not null,
     form_id int not null,
     form_result_status ggircs_portal.ciip_form_result_status,
     created_at timestamp with time zone not null default now(),
@@ -27,7 +26,6 @@ create trigger _100_timestamps
 comment on table ggircs_portal.form_result_status is 'The form result status data';
 comment on column ggircs_portal.form_result_status.id is 'The id used for reference and join';
 comment on column ggircs_portal.form_result_status.application_id is 'The foreign key to application used for reference and join';
-comment on column ggircs_portal.form_result_status.version_number is 'The application version this status is attached to';
 comment on column ggircs_portal.form_result_status.form_id is 'The form id (form_json) this status is attached to';
 comment on column ggircs_portal.form_result_status.form_result_status is 'The form result status';
 comment on column ggircs_portal.form_result_status.created_at is 'The date the form result status was updated';
