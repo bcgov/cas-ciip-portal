@@ -4427,7 +4427,6 @@ input CreateReviewCommentMutationChainInput {
   commentTypeInput: ReviewCommentType
   descriptionInput: String
   formIdInput: Int
-  versionNumberInput: Int
 }
 
 """The output of our `createReviewCommentMutationChain` mutation."""
@@ -6864,27 +6863,7 @@ type FormResult implements Node {
 
   """JSON dump of form data"""
   formResult: JSON!
-
-  """Reads and enables pagination through a set of `FormResultStatus`."""
-  formResultStatuses(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-  ): FormResultStatusesConnection!
+  formResultStatuses: FormResultStatus
   hasUnresolvedComments: Boolean
 
   """
@@ -7159,9 +7138,6 @@ type FormResultStatus implements Node {
 
   """The person who updated the form result status"""
   updatedBy: Int
-
-  """The application version this status is attached to"""
-  versionNumber: Int!
 }
 
 """
@@ -7198,9 +7174,6 @@ input FormResultStatusCondition {
 
   """Checks for equality with the object’s `updatedBy` field."""
   updatedBy: Int
-
-  """Checks for equality with the object’s `versionNumber` field."""
-  versionNumber: Int
 }
 
 """A connection to a list of `FormResultStatus` values."""
@@ -7256,8 +7229,6 @@ enum FormResultStatusesOrderBy {
   UPDATED_AT_DESC
   UPDATED_BY_ASC
   UPDATED_BY_DESC
-  VERSION_NUMBER_ASC
-  VERSION_NUMBER_DESC
 }
 
 """An input for mutations affecting `FormResultStatus`"""
@@ -7288,9 +7259,6 @@ input FormResultStatusInput {
 
   """The person who updated the form result status"""
   updatedBy: Int
-
-  """The application version this status is attached to"""
-  versionNumber: Int!
 }
 
 """
@@ -7323,9 +7291,6 @@ input FormResultStatusPatch {
 
   """The person who updated the form result status"""
   updatedBy: Int
-
-  """The application version this status is attached to"""
-  versionNumber: Int
 }
 
 """Table containing information on fuel"""

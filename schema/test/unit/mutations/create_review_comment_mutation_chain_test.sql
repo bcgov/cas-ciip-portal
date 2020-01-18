@@ -6,7 +6,7 @@ begin;
 select plan(11);
 
 select has_function(
-  'ggircs_portal', 'create_review_comment_mutation_chain', array['integer', 'integer', 'varchar(10000)', 'ggircs_portal.review_comment_type', 'integer'],
+  'ggircs_portal', 'create_review_comment_mutation_chain', array['integer', 'integer', 'varchar(10000)', 'ggircs_portal.review_comment_type'],
   'Function create_review_comment_mutation_chain should exist'
 );
 
@@ -36,7 +36,7 @@ select results_eq(
 );
 
 -- create a comment with type 'required change'
-select ggircs_portal.create_review_comment_mutation_chain((select max(id) from ggircs_portal.application), 1, 'test comment 1', 'requested change'::ggircs_portal.review_comment_type, 1);
+select ggircs_portal.create_review_comment_mutation_chain((select max(id) from ggircs_portal.application), 1, 'test comment 1', 'requested change'::ggircs_portal.review_comment_type);
 
 select description from ggircs_portal.review_comment
     where application_id = (select max(id) from ggircs_portal.application)
@@ -62,7 +62,7 @@ select results_eq(
 );
 
 -- create a comment with type 'internal'
-select ggircs_portal.create_review_comment_mutation_chain((select max(id) from ggircs_portal.application), 1, 'test comment 2', 'internal'::ggircs_portal.review_comment_type, 1);
+select ggircs_portal.create_review_comment_mutation_chain((select max(id) from ggircs_portal.application), 1, 'test comment 2', 'internal'::ggircs_portal.review_comment_type);
 
 select results_eq(
   $$
@@ -84,7 +84,7 @@ select results_eq(
 );
 
 -- create a comment with type 'approval'
-select ggircs_portal.create_review_comment_mutation_chain((select max(id) from ggircs_portal.application), 1, 'test comment 3', 'approval'::ggircs_portal.review_comment_type, 1);
+select ggircs_portal.create_review_comment_mutation_chain((select max(id) from ggircs_portal.application), 1, 'test comment 3', 'approval'::ggircs_portal.review_comment_type);
 
 select results_eq(
   $$
@@ -106,7 +106,7 @@ select results_eq(
 );
 
 -- create a comment with type 'general'
-select ggircs_portal.create_review_comment_mutation_chain((select max(id) from ggircs_portal.application), 1, 'test comment 4', 'general'::ggircs_portal.review_comment_type, 1);
+select ggircs_portal.create_review_comment_mutation_chain((select max(id) from ggircs_portal.application), 1, 'test comment 4', 'general'::ggircs_portal.review_comment_type);
 
 select results_eq(
   $$

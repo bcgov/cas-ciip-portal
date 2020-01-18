@@ -8,8 +8,7 @@ create or replace function ggircs_portal.create_review_comment_mutation_chain(
   application_id_input int,
   form_id_input int,
   description_input varchar(100000),
-  comment_type_input ggircs_portal.review_comment_type,
-  version_number_input int
+  comment_type_input ggircs_portal.review_comment_type
 )
 returns ggircs_portal.review_comment
 as $function$
@@ -25,14 +24,14 @@ begin
 
   -- Change review status if comment_type is internal or requested change
   if comment_type_input = 'internal' then
-    insert into ggircs_portal.form_result_status (application_id, form_id, version_number, form_result_status)
-      values (application_id_input, form_id_input, version_number_input, 'needs attention'::ggircs_portal.ciip_form_result_status);
+    insert into ggircs_portal.form_result_status (application_id, form_id, form_result_status)
+      values (application_id_input, form_id_input, 'needs attention'::ggircs_portal.ciip_form_result_status);
   elsif comment_type_input = 'requested change' then
-    insert into ggircs_portal.form_result_status (application_id, form_id, version_number, form_result_status)
-      values (application_id_input, form_id_input, version_number_input, 'changes requested'::ggircs_portal.ciip_form_result_status);
+    insert into ggircs_portal.form_result_status (application_id, form_id, form_result_status)
+      values (application_id_input, form_id_input, 'changes requested'::ggircs_portal.ciip_form_result_status);
   elsif comment_type_input = 'approval' then
-    insert into ggircs_portal.form_result_status (application_id, form_id, version_number, form_result_status)
-      values (application_id_input, form_id_input, version_number_input, 'approved'::ggircs_portal.ciip_form_result_status);
+    insert into ggircs_portal.form_result_status (application_id, form_id, form_result_status)
+      values (application_id_input, form_id_input, 'approved'::ggircs_portal.ciip_form_result_status);
   end if;
 
   select * from ggircs_portal.review_comment where id = new_id into result;

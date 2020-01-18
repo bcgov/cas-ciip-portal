@@ -15,6 +15,7 @@ interface Props {
   formResultStatus: ApplicationReviewContainer_formResultStatus;
   formName: string;
   formResultId: string;
+  versionNumber: number;
 }
 
 interface Target extends EventTarget {
@@ -30,7 +31,8 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
   relay,
   formResultStatus,
   formName,
-  formResultId
+  formResultId,
+  versionNumber
 }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -73,11 +75,10 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
         applicationIdInput: formResultStatus.applicationId,
         formIdInput: formResultStatus.formId,
         descriptionInput: comment,
-        commentTypeInput: commentType[status],
-        versionNumberInput: formResultStatus.versionNumber
+        commentTypeInput: commentType[status]
       },
       applicationId: formResultStatus.applicationByApplicationId.id,
-      version: formResultStatus.versionNumber.toString()
+      version: versionNumber.toString()
     };
 
     const response = await createReviewCommentMutation(
@@ -95,12 +96,11 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
         formResultStatus: {
           applicationId: formResultStatus.applicationId,
           formId: formResultStatus.formId,
-          versionNumber: formResultStatus.versionNumber,
           formResultStatus: e as CiipFormResultStatus
         }
       },
       applicationId: formResultStatus.applicationByApplicationId.id,
-      version: formResultStatus.versionNumber.toString()
+      version: versionNumber.toString()
     };
 
     const response = await createFormResultStatusMutation(
@@ -251,7 +251,6 @@ export default createFragmentContainer(ApplicationReview, {
       applicationId
       formId
       formResultStatus
-      versionNumber
       applicationByApplicationId {
         id
       }
