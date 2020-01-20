@@ -1,5 +1,5 @@
 SHELL := /usr/bin/env bash
-ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build_tools build install install_test))
+ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build_tools build install install_test clean_old_tags))
 include .pipeline/oc.mk
 include .pipeline/make.mk
 endif
@@ -71,6 +71,12 @@ build_app: whoami
 .PHONY: build
 build: $(call make_help,build,Builds the source into an image in the tools project namespace)
 build: build_tools build_schema build_app
+
+.PHONY: clean_old_tags
+clean_old_tags: $(call make_help,clean_old_tags,Cleans old image tags from the tools project namespace)
+	$(call oc_clean_tools_istags,$(PROJECT_PREFIX)portal-app)
+	$(call oc_clean_tools_istags,$(PROJECT_PREFIX)portal-schema)
+	$(call oc_clean_tools_istags,$(PROJECT_PREFIX)portal-tools)
 
 PORTAL_DB = "ciip_portal"
 PORTAL_USER = "portal"
