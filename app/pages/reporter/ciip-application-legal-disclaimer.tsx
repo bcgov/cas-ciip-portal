@@ -50,7 +50,7 @@ class CiipApplicationLegalDisclaimer extends Component<Props> {
     }
 
     return (
-      <DefaultLayout session={session}>
+      <DefaultLayout session={session} allowedGroups={['User']}>
         <Card className="mb-2">
           <Card.Body>
             <Card.Title className="blue">Legal Disclaimer</Card.Title>

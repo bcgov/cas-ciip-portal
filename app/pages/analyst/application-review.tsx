@@ -53,7 +53,11 @@ class ApplicationReview extends Component<Props> {
     const {session} = query || {};
     const formResults = query.application.orderedFormResults.edges;
     return (
-      <DefaultLayout session={session} width="wide">
+      <DefaultLayout
+        session={session}
+        width="wide"
+        allowedGroups={['Incentive Analyst']}
+      >
         <ApplicationRevisionStatusContainer
           applicationRevisionStatus={
             query.application.applicationRevisionStatus

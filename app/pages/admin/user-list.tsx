@@ -23,7 +23,11 @@ class UserList extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout session={query.session} title="User List">
+      <DefaultLayout
+        session={query.session}
+        title="User List"
+        allowedGroups={['Incentive Administrator']}
+      >
         <UserTable query={query} />
       </DefaultLayout>
     );

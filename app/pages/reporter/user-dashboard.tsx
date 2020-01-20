@@ -71,7 +71,12 @@ export default class UserDashBoard extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout showSubheader session={session} title="My Operators">
+      <DefaultLayout
+        showSubheader
+        session={session}
+        title="My Operators"
+        allowedGroups={['User']}
+      >
         <Row>
           <Col md={{span: 8}}>
             <Organisations

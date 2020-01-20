@@ -26,7 +26,11 @@ export default class Index extends Component<Props> {
     const {session} = query || {};
 
     return (
-      <DefaultLayout title="We imported your data" session={session}>
+      <DefaultLayout
+        title="We imported your data"
+        session={session}
+        allowedGroups={['User']}
+      >
         <p>
           We found an emissions report for this facility, and imported the
           relevant information:

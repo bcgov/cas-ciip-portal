@@ -41,7 +41,7 @@ class CiipApplication extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout session={session}>
+      <DefaultLayout session={session} allowedGroups={['User']}>
         <ApplicationWizard query={query} />
       </DefaultLayout>
     );

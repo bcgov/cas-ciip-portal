@@ -48,7 +48,12 @@ class FacilitiesList extends Component<Props> {
     const {session} = this.props.query;
     return (
       <>
-        <DefaultLayout showSubheader session={session} title="Facilities">
+        <DefaultLayout
+          showSubheader
+          session={session}
+          title="Facilities"
+          allowedGroups={['User']}
+        >
           <SearchTable
             query={this.props.query}
             defaultOrderByField="facility_name"

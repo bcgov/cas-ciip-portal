@@ -76,6 +76,7 @@ class CertificationRedirect extends Component<Props> {
           session={query.session}
           needsUser={false}
           needsSession={false}
+          allowedGroups={['User']}
         >
           {certificationUrl ? (
             <Row style={{marginTop: '60px'}}>

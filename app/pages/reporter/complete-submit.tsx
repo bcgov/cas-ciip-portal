@@ -27,6 +27,7 @@ class CompleteSubmit extends Component<Props> {
     return (
       <DefaultLayout
         session={session}
+        allowedGroups={['User']}
         title={
           <>
             Thank you for your submission. Your application has been sent and is

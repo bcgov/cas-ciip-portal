@@ -91,7 +91,11 @@ class Certify extends Component<Props> {
 
     return (
       <>
-        <DefaultLayout title="Submission Certification" session={query.session}>
+        <DefaultLayout
+          title="Submission Certification"
+          session={query.session}
+          allowedGroups={['User']}
+        >
           <ApplicationDetailsContainer
             query={query}
             application={query.application}

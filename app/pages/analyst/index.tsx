@@ -26,7 +26,11 @@ class Analyst extends Component<Props> {
       query: {session}
     } = this.props;
     return (
-      <DefaultLayout session={session} title="Analyst Dashboard">
+      <DefaultLayout
+        session={session}
+        title="Analyst Dashboard"
+        allowedGroups={['Incentive Analyst']}
+      >
         <div>
           <Row>
             <ApplicationManagement />

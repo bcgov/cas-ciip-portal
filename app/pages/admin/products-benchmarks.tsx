@@ -95,7 +95,11 @@ class ProductsBenchmarks extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout session={query.session} title="Manage Products">
+      <DefaultLayout
+        session={query.session}
+        title="Manage Products"
+        allowedGroups={['Incentive Administrator']}
+      >
         <div style={{textAlign: 'right'}}>
           <Button
             style={{marginTop: '-220px'}}

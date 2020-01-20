@@ -53,6 +53,7 @@ export default class Index extends Component<Props> {
         session={session}
         needsSession={false}
         needsUser={false}
+        allowedGroups={['Guest', 'User']}
       >
         <Row style={{marginTop: '60px'}}>
           <Col md={6}>

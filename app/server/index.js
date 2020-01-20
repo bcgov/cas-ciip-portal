@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const {postgraphile} = require('postgraphile');
 const next = require('next');
@@ -12,6 +13,7 @@ const bodyParser = require('body-parser');
 const Keycloak = require('keycloak-connect');
 const cors = require('cors');
 const voyagerMiddleware = require('graphql-voyager/middleware').express;
+const {getUserGroupLandingRoute} = require(path.resolve('./lib/user-groups'));
 
 let databaseURL = 'postgres://';
 
@@ -33,29 +35,6 @@ if (process.env.PGPORT) {
 
 databaseURL += '/';
 databaseURL += process.env.PGDATABASE || 'ggircs_dev';
-
-const GROUP_META = {
-  Guest: {
-    priority: 100,
-    path: '/'
-  },
-  User: {
-    priority: 10,
-    path: '/reporter/user-dashboard'
-  },
-  'Incentive Administrator': {
-    priority: 1,
-    path: '/admin'
-  },
-  'Incentive Analyst': {
-    priority: 2,
-    path: '/analyst'
-  },
-  'Pending Analyst': {
-    priority: 3,
-    path: '/analyst/pending'
-  }
-};
 
 const removeFirstLetter = str => str.slice(1);
 
@@ -82,17 +61,7 @@ const getRedirectURL = req => {
 
   const groups = getUserGroups(req);
 
-  let priorityGroup = GROUP_META[groups[0]];
-
-  for (let x = 1; x < groups.length; x++) {
-    const curr = GROUP_META[groups[x]];
-
-    if (curr.priority < priorityGroup.priority) {
-      priorityGroup = curr;
-    }
-  }
-
-  return priorityGroup.path;
+  return getUserGroupLandingRoute(groups);
 };
 
 app.prepare().then(() => {
@@ -131,7 +100,7 @@ app.prepare().then(() => {
         if (NO_AUTH)
           return {
             'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
-            'jwt.claims.user_groups': 'Incentive Administrator'
+            'jwt.claims.user_groups': getAllGroupNames().join(',')
           };
 
         const claims = {};

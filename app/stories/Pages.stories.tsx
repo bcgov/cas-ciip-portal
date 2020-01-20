@@ -22,13 +22,20 @@ import UserProfile from 'pages/user-profile';
 // Import ViewApplication from 'pages/reporter/view-application';
 
 import {Router} from './mockNextRouter';
+import {getAllGroupNames} from '../lib/user-groups'
 
 const render = Component => {
   const {query} = Component;
   const environment = createMockEnvironment();
   const variables = {...Router.router.query};
   environment.mock.queueOperationResolver(operation => {
-    const payload = MockPayloadGenerator.generate(operation);
+    const payload = MockPayloadGenerator.generate(operation, {
+      // https://relay.dev/docs/en/testing-relay-components#relay_test_operation
+      // Define a mock resolver for userGroups to pass an array of all group names
+      String() {
+        return getAllGroupNames();
+      }
+    });
     return payload;
   });
   return (

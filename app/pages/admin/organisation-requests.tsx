@@ -44,7 +44,11 @@ class OrganisationRequests extends Component<Props> {
     const {query} = this.props;
     return (
       <>
-        <DefaultLayout session={query.session} title="Organisation Requests">
+        <DefaultLayout
+          session={query.session}
+          title="Organisation Requests"
+          allowedGroups={['Incentive Administrator']}
+        >
           <SearchTable
             query={query}
             defaultOrderByField="status"

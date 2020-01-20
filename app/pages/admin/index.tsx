@@ -28,7 +28,11 @@ class Admin extends Component<Props> {
       query: {session}
     } = this.props;
     return (
-      <DefaultLayout session={session} title="Administrator Dashboard">
+      <DefaultLayout
+        session={session}
+        allowedGroups={['Incentive Administrator']}
+        title="Administrator Dashboard"
+      >
         <div>
           <Row>
             <UserManagement />

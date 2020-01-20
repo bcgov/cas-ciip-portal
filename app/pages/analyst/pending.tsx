@@ -25,9 +25,8 @@ class PendingAnalyst extends Component<Props> {
     return (
       <DefaultLayout
         session={session}
-        needsUser={false}
-        needsSession={false}
         title="Approval Required"
+        allowedGroups={['Pending Analyst']}
       >
         <div>
           You have not been authorized to access the CleanBC Industrial

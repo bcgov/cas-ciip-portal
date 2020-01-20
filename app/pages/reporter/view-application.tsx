@@ -57,6 +57,7 @@ class ViewApplication extends Component<Props> {
         showSubheader
         session={session}
         title="Summary of your application"
+        allowedGroups={['User']}
       >
         <Row>
           <Col md={8}>

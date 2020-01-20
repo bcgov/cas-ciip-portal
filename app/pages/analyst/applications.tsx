@@ -48,7 +48,11 @@ class Applications extends Component<Props> {
     const {query} = this.props;
     return (
       <>
-        <DefaultLayout title="Applications" session={query.session}>
+        <DefaultLayout
+          title="Applications"
+          session={query.session}
+          allowedGroups={['Incentive Analyst']}
+        >
           <SearchTable
             query={query}
             defaultOrderByField="operator_name"
