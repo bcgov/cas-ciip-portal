@@ -1,3 +1,8 @@
+/**
+  Adds a value into certification_url for application id=1;
+  (Not needed for functionality, but keeps true to the actual application flow)
+*/
+
 begin;
 
 with rows as (

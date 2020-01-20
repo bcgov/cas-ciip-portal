@@ -1,15 +1,28 @@
+/**
+  This dummy data creation file creates 2 applications with the create_application_mutation_chain.
+  1) application id=1 is in 'submitted' status with some dummy form_result data (inserted in form_result.sql)
+  2) application id=2 is created, but not started. It is in a ready state to begin the application process.
+*/
+
 begin;
 
-with rows as (
-insert into ggircs_portal.application(id, facility_id, reporting_year)
-overriding system value
-values (1,3, 2019)
-on conflict(id) do update set facility_id=excluded.facility_id, reporting_year=excluded.reporting_year
-returning 1
-) select 'Inserted ' || count(*) || ' rows into ggircs_portal.application' from rows;
+  select 'Dropping old application data: ';
+  truncate ggircs_portal.application cascade;
+  alter sequence ggircs_portal.application_id_seq restart;
+  alter sequence ggircs_portal.form_result_id_seq restart;
 
-select setval from
-setval('ggircs_portal.application_id_seq', (select max(id) from ggircs_portal.application), true)
-where setval = 0;
+  -- Create applications
+  select 'Calling ggircs_portal.create_application_mutation_chain: ';
+  select ggircs_portal.create_application_mutation_chain(1);
+  select ggircs_portal.create_application_mutation_chain(2);
+
+  -- Set certification_signature to dummy value for application id=1
+  update ggircs_portal.application_revision set certification_signature = 'signed' where application_id=1;
+
+  -- Set legal_disclaimer_accepted to true for application id=1
+  update ggircs_portal.application_revision set legal_disclaimer_accepted = true where application_id=1;
+
+  -- Update the status of application with id=1 to be 'submitted'
+  update ggircs_portal.application_revision_status set application_revision_status = 'submitted' where application_id=1;
 
 commit;
