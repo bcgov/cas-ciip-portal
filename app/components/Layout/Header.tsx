@@ -22,13 +22,18 @@ const HeaderLayout = ({
         </div>
         <div className="login-btns header-right">
           <Row>
+            <Col>
+              <Link href="/reporter/user-dashboard">
+                <Button variant="outline-light">Industry</Button>
+              </Link>
+            </Col>
             {isAdmin ? (
-              <Col>
+	      <Col>
                 <Link href="/admin">
                   <Button variant="outline-light">Admin</Button>
                 </Link>
               </Col>
-            ) : null}
+	    ) : null}
             <div>
               {isLoggedIn ? (
                 <Form.Row>
