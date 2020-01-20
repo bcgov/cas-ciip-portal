@@ -132,7 +132,7 @@
     "react-relay-network-modern-ssr": "^1.2.4",
     "react-signature-canvas": "^1.0.3",
     "relay-runtime": "^8.0.0",
-    "sinon": "^7.4.1"
+    "sinon": "^8.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
