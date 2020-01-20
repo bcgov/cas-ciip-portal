@@ -7,14 +7,15 @@
 begin;
 
   select 'Dropping old application data: ';
-  truncate ggircs_portal.application cascade;
-  alter sequence ggircs_portal.application_id_seq restart;
-  alter sequence ggircs_portal.form_result_id_seq restart;
+  truncate ggircs_portal.application restart identity cascade;
 
   -- Create applications
   select 'Calling ggircs_portal.create_application_mutation_chain: ';
   select ggircs_portal.create_application_mutation_chain(1);
   select ggircs_portal.create_application_mutation_chain(2);
+
+  -- Create an application revision on application id=1
+  select ggircs_portal.create_application_revision_mutation_chain(1,1);
 
   -- Set certification_signature to dummy value for application id=1
   update ggircs_portal.application_revision set certification_signature = 'signed' where application_id=1;
