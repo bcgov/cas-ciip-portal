@@ -34,20 +34,6 @@ exports[`It matches the last accepted Snapshot 1`] = `
         <ForwardRef
           noGutters={false}
         >
-          <Col>
-            <Link
-              href="/admin"
-            >
-              <Button
-                active={false}
-                disabled={false}
-                type="button"
-                variant="outline-light"
-              >
-                Admin
-              </Button>
-            </Link>
-          </Col>
           <div
             className="jsx-2807878339"
           >

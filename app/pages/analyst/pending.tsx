@@ -3,6 +3,9 @@ import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {pendingAnalystQueryResponse} from 'pendingAnalystQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
+import {PENDING_ANALYST} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [PENDING_ANALYST];
 
 interface Props extends CiipPageComponentProps {
   query: pendingAnalystQueryResponse['query'];
@@ -25,9 +28,8 @@ class PendingAnalyst extends Component<Props> {
     return (
       <DefaultLayout
         session={session}
-        needsUser={false}
-        needsSession={false}
         title="Approval Required"
+        allowedGroups={ALLOWED_GROUPS}
       >
         <div>
           You have not been authorized to access the CleanBC Industrial

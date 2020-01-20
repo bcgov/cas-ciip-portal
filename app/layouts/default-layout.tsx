@@ -6,6 +6,7 @@ import {useRouter} from 'next/router';
 import Header from 'components/Layout/Header';
 import Footer from 'components/Layout/Footer';
 import Subheader from 'components/Layout/Subheader';
+import {getUserGroupLandingRoute} from 'lib/user-groups';
 
 interface Props {
   title?: string | JSX.Element;
@@ -14,6 +15,7 @@ interface Props {
   needsUser?: boolean;
   needsSession?: boolean;
   width?: 'narrow' | 'wide';
+  allowedGroups?: string[];
 }
 
 const DefaultLayout: React.FunctionComponent<Props> = ({
@@ -23,11 +25,23 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   session,
   width = 'narrow',
   needsUser = true,
-  needsSession = true
+  needsSession = true,
+  allowedGroups = []
 }) => {
   const router = useRouter();
 
-  console.log(session);
+  const userGroups = session?.userGroups || ['Guest'];
+
+  const canAccess =
+    allowedGroups.length === 0 ||
+    userGroups.some(g => allowedGroups.includes(g));
+
+  if (!canAccess) {
+    router.push({
+      pathname: getUserGroupLandingRoute(userGroups)
+    });
+    return null;
+  }
 
   if ((needsSession || needsUser) && !session) {
     router.push({
@@ -54,6 +68,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       <Header
         isLoggedIn={Boolean(session)}
         isRegistered={Boolean(session && session.ciipUserBySub)}
+        isAdmin={userGroups.includes('Incentive Administrator')}
       />
       {showSubheader && <Subheader />}
       {title ? (

@@ -5,6 +5,9 @@ import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {completeSubmitQueryResponse} from 'completeSubmitQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
+import {USER} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
   query: completeSubmitQueryResponse['query'];
@@ -27,6 +30,7 @@ class CompleteSubmit extends Component<Props> {
     return (
       <DefaultLayout
         session={session}
+        allowedGroups={ALLOWED_GROUPS}
         title={
           <>
             Thank you for your submission. Your application has been sent and is

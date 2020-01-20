@@ -6,6 +6,9 @@ import ApplicationDetailsContainer from 'containers/Applications/ApplicationDeta
 import CertificationSignature from 'containers/Forms/CertificationSignature';
 import DefaultLayout from 'layouts/default-layout';
 import LegalDisclaimerChecklist from 'components/LegalDisclaimerChecklist';
+import {USER} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [USER];
 
 interface Props {
   query: certifyQueryResponse['query'];
@@ -91,7 +94,11 @@ class Certify extends Component<Props> {
 
     return (
       <>
-        <DefaultLayout title="Submission Certification" session={query.session}>
+        <DefaultLayout
+          title="Submission Certification"
+          session={query.session}
+          allowedGroups={ALLOWED_GROUPS}
+        >
           <ApplicationDetailsContainer
             query={query}
             application={query.application}

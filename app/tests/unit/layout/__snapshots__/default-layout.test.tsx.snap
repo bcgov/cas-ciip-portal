@@ -5,6 +5,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
   className="jsx-1486801185 page-wrap"
 >
   <HeaderLayout
+    isAdmin={false}
     isLoggedIn={false}
     isRegistered={false}
   />

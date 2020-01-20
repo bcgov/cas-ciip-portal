@@ -4,6 +4,9 @@ import {applicationsQueryResponse} from 'applicationsQuery.graphql';
 import ApplicationListContainer from 'containers/Applications/ApplicationListContainer';
 import DefaultLayout from 'layouts/default-layout';
 import SearchTable from 'components/SearchTable';
+import {INCENTIVE_ANALYST} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [INCENTIVE_ANALYST];
 
 interface Props {
   query: applicationsQueryResponse['query'];
@@ -48,7 +51,11 @@ class Applications extends Component<Props> {
     const {query} = this.props;
     return (
       <>
-        <DefaultLayout title="Applications" session={query.session}>
+        <DefaultLayout
+          title="Applications"
+          session={query.session}
+          allowedGroups={ALLOWED_GROUPS}
+        >
           <SearchTable
             query={query}
             defaultOrderByField="operator_name"

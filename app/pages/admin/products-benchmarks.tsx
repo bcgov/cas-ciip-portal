@@ -6,6 +6,9 @@ import DefaultLayout from 'layouts/default-layout';
 import ProductCreatorContainer from 'containers/Products/ProductCreatorContainer';
 import ProductListContainer from 'containers/Products/ProductListContainer';
 import SearchTable from 'components/SearchTable';
+import {ADMIN_GROUP} from 'data/group-constants';
+
+const ALLOWED_GROUPS = ADMIN_GROUP;
 
 interface Props {
   query: productsBenchmarksQueryResponse['query'];
@@ -95,7 +98,11 @@ class ProductsBenchmarks extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout session={query.session} title="Manage Products">
+      <DefaultLayout
+        session={query.session}
+        title="Manage Products"
+        allowedGroups={ALLOWED_GROUPS}
+      >
         <div style={{textAlign: 'right'}}>
           <Button
             style={{marginTop: '-220px'}}

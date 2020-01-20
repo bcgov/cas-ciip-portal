@@ -1,0 +1,26 @@
+{
+  "Guest": {
+    "priority": 100,
+    "path": "/"
+  },
+  "User": {
+    "priority": 10,
+    "path": "/reporter/user-dashboard"
+  },
+  "Realm Administrator": {
+    "priority": 0,
+    "path": "/admin"
+  },
+  "Incentive Administrator": {
+    "priority": 1,
+    "path": "/admin"
+  },
+  "Incentive Analyst": {
+    "priority": 2,
+    "path": "/analyst"
+  },
+  "Pending Analyst": {
+    "priority": 3,
+    "path": "/analyst/pending"
+  }
+}

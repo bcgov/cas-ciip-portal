@@ -7,6 +7,9 @@ import ApplicationDetails from 'containers/Applications/ApplicationDetailsContai
 import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
 import DefaultLayout from 'layouts/default-layout';
+import {USER} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [USER];
 
 /*
  * ViewApplication renders a summary of the data submitted in the application.
@@ -57,6 +60,7 @@ class ViewApplication extends Component<Props> {
         showSubheader
         session={session}
         title="Summary of your application"
+        allowedGroups={ALLOWED_GROUPS}
       >
         <Row>
           <Col md={8}>

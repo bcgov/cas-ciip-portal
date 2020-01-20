@@ -6,6 +6,9 @@ import moment from 'moment-timezone';
 import {CiipPageComponentProps} from 'next-env';
 import {certificationRedirectQueryResponse} from 'certificationRedirectQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
+import {USER} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
   query: certificationRedirectQueryResponse['query'];
@@ -76,6 +79,7 @@ class CertificationRedirect extends Component<Props> {
           session={query.session}
           needsUser={false}
           needsSession={false}
+          allowedGroups={ALLOWED_GROUPS}
         >
           {certificationUrl ? (
             <Row style={{marginTop: '60px'}}>

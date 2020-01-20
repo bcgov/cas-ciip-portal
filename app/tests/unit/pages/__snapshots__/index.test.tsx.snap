@@ -2,6 +2,12 @@
 
 exports[`landing It matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
+  allowedGroups={
+    Array [
+      "Guest",
+      "User",
+    ]
+  }
   needsSession={false}
   needsUser={false}
   session={null}

@@ -4,6 +4,9 @@ import {ciipApplicationQueryResponse} from 'ciipApplicationQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationWizard from 'containers/Applications/ApplicationWizard';
+import {USER} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
   query: ciipApplicationQueryResponse['query'];
@@ -41,7 +44,7 @@ class CiipApplication extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout session={session}>
+      <DefaultLayout session={session} allowedGroups={ALLOWED_GROUPS}>
         <ApplicationWizard query={query} />
       </DefaultLayout>
     );

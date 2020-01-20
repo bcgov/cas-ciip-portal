@@ -832,7 +832,16 @@ Array [
                   readOnly={false}
                   required={true}
                   type="text"
-                  value="<mock-value-for-field-\\"firstName\\">"
+                  value={
+                    Array [
+                      "Guest",
+                      "User",
+                      "Realm Administrator",
+                      "Incentive Administrator",
+                      "Incentive Analyst",
+                      "Pending Analyst",
+                    ]
+                  }
                 />
                 <span
                   className="font-italic text-muted"
@@ -861,7 +870,16 @@ Array [
                   readOnly={false}
                   required={true}
                   type="text"
-                  value="<mock-value-for-field-\\"lastName\\">"
+                  value={
+                    Array [
+                      "Guest",
+                      "User",
+                      "Realm Administrator",
+                      "Incentive Administrator",
+                      "Incentive Analyst",
+                      "Pending Analyst",
+                    ]
+                  }
                 />
                 <span
                   className="font-italic text-muted"
@@ -890,7 +908,16 @@ Array [
                   readOnly={false}
                   required={true}
                   type="text"
-                  value="<mock-value-for-field-\\"emailAddress\\">"
+                  value={
+                    Array [
+                      "Guest",
+                      "User",
+                      "Realm Administrator",
+                      "Incentive Administrator",
+                      "Incentive Analyst",
+                      "Pending Analyst",
+                    ]
+                  }
                 />
                 <span
                   className="font-italic text-muted"
@@ -919,7 +946,16 @@ Array [
                   readOnly={false}
                   required={true}
                   type="text"
-                  value="<mock-value-for-field-\\"phoneNumber\\">"
+                  value={
+                    Array [
+                      "Guest",
+                      "User",
+                      "Realm Administrator",
+                      "Incentive Administrator",
+                      "Incentive Analyst",
+                      "Pending Analyst",
+                    ]
+                  }
                 />
                 <span
                   className="font-italic text-muted"
@@ -948,7 +984,16 @@ Array [
                   readOnly={false}
                   required={true}
                   type="text"
-                  value="<mock-value-for-field-\\"occupation\\">"
+                  value={
+                    Array [
+                      "Guest",
+                      "User",
+                      "Realm Administrator",
+                      "Incentive Administrator",
+                      "Incentive Analyst",
+                      "Pending Analyst",
+                    ]
+                  }
                 />
                 <span
                   className="font-italic text-muted"
@@ -1284,7 +1329,12 @@ Array [
                   <td
                     className="jsx-2428472905"
                   >
-                    &lt;mock-value-for-field-"operatorName"&gt;
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
                   </td>
                   <td
                     className="jsx-2428472905"
@@ -1298,7 +1348,12 @@ Array [
                         }
                       }
                     >
-                      &lt;mock-value-for-field-"status"&gt;
+                      Guest
+                      User
+                      Realm Administrator
+                      Incentive Administrator
+                      Incentive Analyst
+                      Pending Analyst
                     </span>
                   </td>
                   <td
@@ -1681,22 +1736,52 @@ Array [
             <tbody>
               <tr>
                 <td>
-                  &lt;mock-value-for-field-"rowId"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
                 <td>
-                  &lt;mock-value-for-field-"firstName"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
                 <td>
-                  &lt;mock-value-for-field-"lastName"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
                 <td>
-                  &lt;mock-value-for-field-"occupation"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
                 <td>
-                  &lt;mock-value-for-field-"emailAddress"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
                 <td>
-                  &lt;mock-value-for-field-"phoneNumber"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
               </tr>
             </tbody>
@@ -1946,7 +2031,12 @@ Array [
                   First Name
                 </th>
                 <td>
-                  &lt;mock-value-for-field-"firstName"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
               </tr>
               <tr>
@@ -1954,7 +2044,12 @@ Array [
                   Last Name
                 </th>
                 <td>
-                  &lt;mock-value-for-field-"lastName"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
               </tr>
               <tr>
@@ -1962,7 +2057,12 @@ Array [
                   Occupation
                 </th>
                 <td>
-                  &lt;mock-value-for-field-"occupation"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
               </tr>
               <tr>
@@ -1970,7 +2070,12 @@ Array [
                   Phone Number
                 </th>
                 <td>
-                  &lt;mock-value-for-field-"phoneNumber"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
               </tr>
               <tr>
@@ -1978,7 +2083,12 @@ Array [
                   Email
                 </th>
                 <td>
-                  &lt;mock-value-for-field-"emailAddress"&gt;
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
                 </td>
               </tr>
             </tbody>

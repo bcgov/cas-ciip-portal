@@ -8,6 +8,9 @@ import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import {CiipPageComponentProps} from 'next-env';
+import {INCENTIVE_ANALYST} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [INCENTIVE_ANALYST];
 
 interface Props extends CiipPageComponentProps {
   query: applicationReviewQueryResponse['query'];
@@ -53,7 +56,11 @@ class ApplicationReview extends Component<Props> {
     const {session} = query || {};
     const formResults = query.application.orderedFormResults.edges;
     return (
-      <DefaultLayout session={session} width="wide">
+      <DefaultLayout
+        session={session}
+        width="wide"
+        allowedGroups={ALLOWED_GROUPS}
+      >
         <ApplicationRevisionStatusContainer
           applicationRevisionStatus={
             query.application.applicationRevisionStatus
