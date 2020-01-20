@@ -7,6 +7,10 @@
     "priority": 10,
     "path": "/reporter/user-dashboard"
   },
+  "Realm Administrator": {
+    "priority": 0,
+    "path": "/admin"
+  },
   "Incentive Administrator": {
     "priority": 1,
     "path": "/admin"

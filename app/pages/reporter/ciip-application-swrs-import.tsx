@@ -5,6 +5,9 @@ import {graphql} from 'react-relay';
 import {ciipApplicationSwrsImportQueryResponse} from 'ciipApplicationSwrsImportQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
 import DefaultLayout from 'layouts/default-layout';
+import {USER} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
   query: ciipApplicationSwrsImportQueryResponse['query'];
@@ -29,7 +32,7 @@ export default class Index extends Component<Props> {
       <DefaultLayout
         title="We imported your data"
         session={session}
-        allowedGroups={['User']}
+        allowedGroups={ALLOWED_GROUPS}
       >
         <p>
           We found an emissions report for this facility, and imported the

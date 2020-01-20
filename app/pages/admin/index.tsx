@@ -8,6 +8,9 @@ import UserManagement from 'components/Dashboard/userManagement';
 import ApplicationManagement from 'components/Dashboard/applicationManagement';
 import ProgramDataManagement from 'components/Dashboard/programDataManagement';
 import DevOpsManagement from 'components/Dashboard/devopsManagement';
+import {ADMIN_GROUP} from 'data/group-constants';
+
+const ALLOWED_GROUPS = ADMIN_GROUP;
 
 interface Props extends CiipPageComponentProps {
   query: adminQueryResponse['query'];
@@ -30,7 +33,7 @@ class Admin extends Component<Props> {
     return (
       <DefaultLayout
         session={session}
-        allowedGroups={['Incentive Administrator']}
+        allowedGroups={ALLOWED_GROUPS}
         title="Administrator Dashboard"
       >
         <div>

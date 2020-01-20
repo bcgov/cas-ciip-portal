@@ -6,6 +6,9 @@ import {analystQueryResponse} from 'analystQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationManagement from 'components/Dashboard/applicationManagement';
 import ProgramDataManagement from 'components/Dashboard/programDataManagement';
+import {INCENTIVE_ANALYST} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [INCENTIVE_ANALYST];
 
 interface Props extends CiipPageComponentProps {
   query: analystQueryResponse['query'];
@@ -29,7 +32,7 @@ class Analyst extends Component<Props> {
       <DefaultLayout
         session={session}
         title="Analyst Dashboard"
-        allowedGroups={['Incentive Analyst']}
+        allowedGroups={ALLOWED_GROUPS}
       >
         <div>
           <Row>

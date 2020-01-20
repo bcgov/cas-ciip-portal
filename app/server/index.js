@@ -1,3 +1,4 @@
+import {GUEST, USER, PENDING_ANALYST} from 'data/group-constants';
 const path = require('path');
 const express = require('express');
 const {postgraphile} = require('postgraphile');
@@ -13,7 +14,9 @@ const bodyParser = require('body-parser');
 const Keycloak = require('keycloak-connect');
 const cors = require('cors');
 const voyagerMiddleware = require('graphql-voyager/middleware').express;
-const {getUserGroupLandingRoute} = require(path.resolve('./lib/user-groups'));
+const {compactGroupNames, getUserGroupLandingRoute} = require(path.resolve(
+  './lib/user-groups'
+));
 
 let databaseURL = 'postgres://';
 
@@ -46,14 +49,19 @@ const getUserGroups = req => {
     !req.kauth.grant.id_token.content ||
     !req.kauth.grant.id_token.content.groups
   )
-    return ['Guest'];
+    return [GUEST];
 
   const username = req.kauth.grant.id_token.content.preferred_username;
   const {groups} = req.kauth.grant.id_token.content;
 
-  if (groups.length > 0) return groups.map(removeFirstLetter);
+  const processedGroups = groups.map(removeFirstLetter);
+  const validGroups = compactGroupNames(processedGroups);
 
-  return username.endsWith('@idir') ? ['Pending Analyst'] : ['User'];
+  if (validGroups.length === 0) {
+    return username.endsWith('@idir') ? [PENDING_ANALYST] : [USER];
+  }
+
+  return validGroups;
 };
 
 const getRedirectURL = req => {

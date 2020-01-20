@@ -5,6 +5,9 @@ import {facilitiesListQueryResponse} from 'facilitiesListQuery.graphql';
 import SearchTable from 'components/SearchTable';
 import DefaultLayout from 'layouts/default-layout';
 import FacilitiesListContainer from 'containers/Facilities/FacilitiesListContainer';
+import {USER} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [USER];
 
 interface Props {
   query: facilitiesListQueryResponse['query'];
@@ -52,7 +55,7 @@ class FacilitiesList extends Component<Props> {
           showSubheader
           session={session}
           title="Facilities"
-          allowedGroups={['User']}
+          allowedGroups={ALLOWED_GROUPS}
         >
           <SearchTable
             query={this.props.query}

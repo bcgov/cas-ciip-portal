@@ -4,6 +4,9 @@ import {organisationRequestsQueryResponse} from 'organisationRequestsQuery.graph
 import DefaultLayout from 'layouts/default-layout';
 import OrganisationRequestsTable from 'containers/Admin/OrganisationRequestsTable';
 import SearchTable from 'components/SearchTable';
+import {ADMIN_GROUP} from 'data/group-constants';
+
+const ALLOWED_GROUPS = ADMIN_GROUP;
 
 interface Props {
   query: organisationRequestsQueryResponse['query'];
@@ -47,7 +50,7 @@ class OrganisationRequests extends Component<Props> {
         <DefaultLayout
           session={query.session}
           title="Organisation Requests"
-          allowedGroups={['Incentive Administrator']}
+          allowedGroups={ALLOWED_GROUPS}
         >
           <SearchTable
             query={query}

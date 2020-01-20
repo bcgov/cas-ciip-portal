@@ -6,6 +6,9 @@ import {CiipPageComponentProps} from 'next-env';
 import moment from 'moment-timezone';
 import DefaultLayout from 'layouts/default-layout';
 import RegistrationLoginButtons from 'components/RegistrationLoginButtons';
+import {GUEST, USER} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [GUEST, USER];
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
@@ -53,7 +56,7 @@ export default class Index extends Component<Props> {
         session={session}
         needsSession={false}
         needsUser={false}
-        allowedGroups={['Guest', 'User']}
+        allowedGroups={ALLOWED_GROUPS}
       >
         <Row style={{marginTop: '60px'}}>
           <Col md={6}>

@@ -6,6 +6,9 @@ import {userDashboardQueryResponse} from 'userDashboardQuery.graphql';
 import Organisations from 'containers/Organisations/Organisations';
 import DefaultLayout from 'layouts/default-layout';
 import {createUserOrganisationMutation} from 'mutations/user_organisation/createUserOrganisation';
+import {USER} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [USER];
 
 interface Props {
   router: NextRouter;
@@ -75,7 +78,7 @@ export default class UserDashBoard extends Component<Props> {
         showSubheader
         session={session}
         title="My Operators"
-        allowedGroups={['User']}
+        allowedGroups={ALLOWED_GROUPS}
       >
         <Row>
           <Col md={{span: 8}}>

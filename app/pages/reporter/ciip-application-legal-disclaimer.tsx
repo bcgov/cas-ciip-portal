@@ -6,6 +6,9 @@ import {CiipPageComponentProps} from 'next-env';
 import {NextRouter} from 'next/router';
 import DefaultLayout from 'layouts/default-layout';
 import LegalDisclaimerChecklistContainer from 'containers/Applications/LegalDisclaimerChecklistContainer';
+import {USER} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
   query: ciipApplicationLegalDisclaimerQueryResponse['query'];
@@ -50,7 +53,7 @@ class CiipApplicationLegalDisclaimer extends Component<Props> {
     }
 
     return (
-      <DefaultLayout session={session} allowedGroups={['User']}>
+      <DefaultLayout session={session} allowedGroups={ALLOWED_GROUPS}>
         <Card className="mb-2">
           <Card.Body>
             <Card.Title className="blue">Legal Disclaimer</Card.Title>

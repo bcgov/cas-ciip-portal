@@ -8,6 +8,9 @@ import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import {CiipPageComponentProps} from 'next-env';
+import {INCENTIVE_ANALYST} from 'data/group-constants';
+
+const ALLOWED_GROUPS = [INCENTIVE_ANALYST];
 
 interface Props extends CiipPageComponentProps {
   query: applicationReviewQueryResponse['query'];
@@ -56,7 +59,7 @@ class ApplicationReview extends Component<Props> {
       <DefaultLayout
         session={session}
         width="wide"
-        allowedGroups={['Incentive Analyst']}
+        allowedGroups={ALLOWED_GROUPS}
       >
         <ApplicationRevisionStatusContainer
           applicationRevisionStatus={
