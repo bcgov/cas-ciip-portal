@@ -126,7 +126,7 @@ begin;
       raise notice 'Form Result(version_number 1): % has been updated', (select name from ggircs_portal.form_json where id = temp_row.form_id);
       -- New set of form_results for diffing
       update ggircs_portal.form_result
-        set form_result = (select dummy_result from dummy_results where id = temp_row.index * 2)
+        set form_result = (select dummy_result from dummy_results where id = (temp_row.index + (select count(form_id) from ggircs_portal.ciip_application_wizard)))
         where form_id = temp_row.form_id
         and application_id = 1
         and version_number = 2;

@@ -94,7 +94,13 @@ $$
 $$ language sql;
 
 select throws_ok(
-  'select ggircs_portal.create_application_revision_mutation_chain(1, 1)',
+  $$
+    with app_id as (
+    select a.id from ggircs_portal.application a
+      join ggircs_portal.facility f on a.facility_id = f.id
+      and facility_name = 'test facility'
+    ) select ggircs_portal.create_application_revision_mutation_chain((select id from app_id), (select max(version_number) from ggircs_portal.application_revision where application_id = (select id from app_id)))
+  $$,
   'The application window is closed',
   'create_application_mutation_chain should throw an exception if the application window is closed'
 );

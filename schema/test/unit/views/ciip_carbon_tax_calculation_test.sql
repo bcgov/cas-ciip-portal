@@ -12,7 +12,7 @@ select has_view(
     'ggircs_portal.ciip_carbon_tax_calculation should be a view'
 );
 
-select id, reporting_year from ggircs_portal.application;
+select application_id, version_number, fuel_type from ggircs_portal.ciip_carbon_tax_calculation;
 
 -- Carbon tax calculator calculates correct tax for Butane
 select is(
