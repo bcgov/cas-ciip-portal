@@ -48,7 +48,7 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
             .format('YYYY-MM-DDTHH:mm:ss')
         }
       },
-      applicationId: reviewComment.applicationByApplicationId.id,
+      applicationId: reviewComment.applicationId,
       version: String(version)
     };
 
@@ -88,6 +88,7 @@ export default createFragmentContainer(ApplicationCommentsByForm, {
       createdAt
       resolved
       commentType
+      applicationId
       applicationByApplicationId {
         id
       }
