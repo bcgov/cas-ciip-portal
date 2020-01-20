@@ -20,9 +20,8 @@ import UserList from 'pages/admin/user-list';
 // Import UserOrganisationFacilities from 'pages/user-organisation-facilities';
 import UserProfile from 'pages/user-profile';
 // Import ViewApplication from 'pages/reporter/view-application';
-
+import {getAllGroupNames} from '../lib/user-groups';
 import {Router} from './mockNextRouter';
-import {getAllGroupNames} from '../lib/user-groups'
 
 const render = Component => {
   const {query} = Component;
