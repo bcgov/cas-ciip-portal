@@ -17,7 +17,8 @@ begin;
           where _status.application_id = application.id and _status.application_revision_status != 'draft')
         select r.* from ggircs_portal.application_revision r
           where r.application_id = application.id
-          and r.version_number = (select x.max from x) into result;
+          and r.version_number = (select x.max from x)
+          and r.version_number !=0 into result;
       return result;
     end;
     $function$
