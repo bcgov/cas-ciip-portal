@@ -5,7 +5,9 @@
   "scripts": {
     "pretest": "npm run build:relay",
     "test": "jest",
-    "test:ci-e2e": "yarn dev & wait-on http://localhost:3004 && cypress run",
+    "test:e2e-snapshots": "yarn start & wait-on http://localhost:3004 && percy exec -- cypress run",
+    "test:e2e": "yarn start & wait-on http://localhost:3004 && cypress run",
+    "cypress": "cypress open",
     "cucumber:pretty": "cucumber-js --format node_modules/cucumber-pretty --format-options '{\"descriptionEnabled\":true}'",
     "predev": "npm run build:schema && npm run build:relay",
     "dev": "node server",
@@ -138,6 +140,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
+    "@percy/cypress": "^2.2.0",
     "@storybook/addon-a11y": "^5.2.8",
     "@storybook/addon-actions": "^5.2.8",
     "@storybook/addon-cssresources": "^5.2.8",
@@ -161,7 +164,6 @@
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "cypress": "^3.8.2",
-    "cypress-plugin-snapshots": "^1.2.9",
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",

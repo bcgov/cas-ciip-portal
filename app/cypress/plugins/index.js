@@ -1,6 +1,5 @@
-const {initPlugin} = require('cypress-plugin-snapshots/plugin');
+const percyHealthCheck = require('@percy/cypress/task');
 
-module.exports = (on, config) => {
-  initPlugin(on, config);
-  return config;
+module.exports = (on, _config) => {
+  on('task', percyHealthCheck);
 };

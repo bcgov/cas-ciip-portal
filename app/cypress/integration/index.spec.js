@@ -1,7 +1,18 @@
 describe('The index page', () => {
-  it('matches the snapshot when there is no session', () => {
+  it('contains the login buttons ', () => {
     cy.visit('/');
-    cy.get('.content');
-    cy.document().toMatchSnapshot();
+    cy.get('#page-content');
+    cy.get('header').contains('Register');
+    cy.get('header').contains('Login');
+    cy.get('#page-content').contains('Register and Apply');
+    cy.get('#page-content').contains(
+      'Already have an account? Click here to login.'
+    );
+  });
+
+  it('matches the snapshot', () => {
+    cy.visit('/');
+    cy.get('#page-content');
+    cy.percySnapshot();
   });
 });

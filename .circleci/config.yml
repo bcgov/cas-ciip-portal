@@ -204,6 +204,10 @@ jobs:
             source ~/.asdf/asdf.sh
             yarn build:relay # ensure relay modules are compiled from committed schema
             yarn build:next # ensure next.js can compile a production build
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - cas-ciip-portal # persist the build for e2e tests
 
   deploy-test-data:
     machine:
@@ -420,7 +424,37 @@ jobs:
           command: |
             source ~/.asdf/asdf.sh
             pushd app
-            yarn test:ci-e2e
+            yarn test:e2e
+            popd
+
+  e2e-snapshots:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: "Checkout Submodules"
+          command: |
+            git submodule update --init
+      - run:
+          name: start postgres
+          command: |
+            source ~/.bashrc
+            pg_ctl start
+            createdb `whoami`
+      - run:
+          name: deploy schemas and data
+          command: |
+            source ~/.bashrc
+            ./.bin/deploy-data.sh -dev
+      - run:
+          name: run end-to-end tests with percy and cypress
+          command: |
+            source ~/.asdf/asdf.sh
+            pushd app
+            yarn test:e2e-snapshots
             popd
 
 workflows:
@@ -454,7 +488,10 @@ workflows:
             - tools
       - e2e:
           requires:
-            - tools
+            - compile
+      - e2e-snapshots:
+          requires:
+            - e2e
       - pathfinder_lint:
           requires:
             - lint
@@ -464,6 +501,7 @@ workflows:
             - compile
             - deploy-test-data
             - e2e
+            - e2e-snapshots
           context: cas-pipeline
           filters:
             branches:

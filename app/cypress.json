@@ -1,4 +1,5 @@
 {
   "baseUrl": "http://localhost:3004",
-  "ignoreTestFiles": ["**/__snapshots__/*", "**/__image_snapshots__/*"]
+  "video": false,
+  "screenshotOnRunFailure": false
 }
