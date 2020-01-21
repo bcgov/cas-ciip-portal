@@ -14,7 +14,8 @@ import ApplicationReviewContainer from './ApplicationReviewContainer';
 
 interface Props {
   formResult: ApplicationDetailsCardItem_formResult;
-  previousFormResults?: any;
+  diffFromResults?: any;
+  diffToResults?: any;
   query: ApplicationDetailsCardItem_query;
   review: boolean;
 }
@@ -24,7 +25,8 @@ interface Props {
  */
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult,
-  previousFormResults,
+  diffFromResults,
+  diffToResults,
   query,
   review
 }) => {
@@ -38,25 +40,33 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const diffPathArray = [];
   const diffArray = [];
   let previousIsEmpty = false;
+
+  let diffTo;
+  diffToResults.forEach(result => {
+    if (result.node.formJsonByFormId.slug === formJsonByFormId.slug)
+      diffTo = result;
+  });
+
   useMemo(() => {
-    if (previousFormResults && showDiff) {
+    if (diffFromResults && showDiff) {
       let previousFormResult;
-      previousFormResults.forEach(result => {
+      diffFromResults.forEach(result => {
         if (
-          previousFormResults.length > 0 &&
-          result.node.formJsonByFormId.slug === formResult.formJsonByFormId.slug
+          diffFromResults.length > 0 &&
+          result.node.formJsonByFormId.slug === formJsonByFormId.slug
         ) {
           previousFormResult = result.node.formResult;
         }
       });
 
       const lhs = previousFormResult;
-      const rhs = formResult.formResult;
+      const rhs = diffTo.node.formResult;
       const differences = diff(lhs, rhs);
 
       if (
         JSON.stringify(previousFormResult) === '[]' ||
-        JSON.stringify(previousFormResult) === '{}'
+        JSON.stringify(previousFormResult) === '{}' ||
+        JSON.stringify(previousFormResult) === '[{}]'
       ) {
         previousIsEmpty = true;
       } else if (differences) {
@@ -73,10 +83,10 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     diffPathArray,
     formResult.formJsonByFormId.slug,
     formResult.formResult,
-    previousFormResults,
+    diffFromResults,
     showDiff
   ]);
-
+  if (formJsonByFormId.slug === 'production') console.log(diffFromResults);
   const handleEnums = (props, isCurrent, prevValue) => {
     if (props.schema.enum && props.schema.enumNames) {
       // TODO: needs a fix on jsonschema types (missing enumNames)
@@ -115,7 +125,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             <h4>{formJsonByFormId.name}</h4>
           </Col>
           <Col md={2}>
-            {previousFormResults ? (
+            {diffFromResults ? (
               <Form.Check
                 label="Show Diff?"
                 checked={showDiff}
@@ -159,7 +169,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             schema={schema}
             uiSchema={uiSchema}
             ObjectFieldTemplate={FormObjectFieldTemplate}
-            formData={formResult.formResult}
+            formData={review ? diffTo.node.formResult : formResult.formResult}
             formContext={{
               query,
               showDiff,

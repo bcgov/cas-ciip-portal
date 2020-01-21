@@ -20,8 +20,8 @@ interface Props {
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
-  const formResults = props.query.new.orderedFormResults.edges;
-  const previousFormResults = props.review
+  const formResults = props.application.orderedFormResults.edges;
+  const diffFromResults = props.review
     ? props?.query?.old?.orderedFormResults?.edges
     : undefined;
 
@@ -43,21 +43,15 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
     props.relay.refetch(refetchVariables);
   }, [oldDiffVersion, newDiffVersion, props.application.id, props.relay]);
 
-  console.log(
-    'OLD NUMBER BAD AT STAIRS:',
-    props?.query?.old?.orderedFormResults?.edges[0]?.node?.versionNumber
-  );
-  console.log(
-    'NEW NUMBER ALWAYS CRYING:',
-    props.query.new.orderedFormResults.edges[0].node.versionNumber
-  );
-  console.log(props);
   return (
     <>
       <Row>
         <Col md={{offset: 4, span: 2}}>
           <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
-            <Dropdown.Toggle style={{width: '100%'}} id="dropdown-old">
+            <Dropdown.Toggle
+              style={{width: '100%', textTransform: 'capitalize'}}
+              id="dropdown-old"
+            >
               {oldDiffVersion === '0'
                 ? 'swrs import'
                 : 'Version '.concat(oldDiffVersion)}
@@ -121,7 +115,8 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
         {formResults.map(({node}) => (
           <ApplicationDetailsCardItem
             key={node.id}
-            previousFormResults={previousFormResults}
+            diffFromResults={diffFromResults}
+            diffToResults={props.query.new.orderedFormResults.edges}
             formResult={node}
             query={props.query.query}
             review={props.review}
@@ -174,7 +169,7 @@ export default createRefetchContainer(
                 formJsonByFormId {
                   slug
                 }
-                ...ApplicationDetailsCardItem_formResult
+                formResult
               }
             }
           }

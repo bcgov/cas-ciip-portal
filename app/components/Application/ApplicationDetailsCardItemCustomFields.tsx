@@ -25,7 +25,8 @@ const customFields = (
           diffArray[
             diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
           ];
-        if (hasDiff || previousIsEmpty) {
+
+        if ((hasDiff || previousIsEmpty) && prevValue !== props.formData) {
           prevValue = handleEnums(props, false, prevValue);
           const currentValue = handleEnums(props, true, prevValue);
 
