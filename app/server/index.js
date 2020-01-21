@@ -15,7 +15,8 @@ const voyagerMiddleware = require('graphql-voyager/middleware').express;
 const groupConstants = require('../data/group-constants');
 const {
   compactGroupNames,
-  getUserGroupLandingRoute
+  getUserGroupLandingRoute,
+  getAllGroupNames
 } = require('../lib/user-groups');
 
 let databaseURL = 'postgres://';
