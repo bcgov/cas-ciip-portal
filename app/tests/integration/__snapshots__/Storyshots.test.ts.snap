@@ -132,6 +132,7 @@ Array [
       </div>
       <div
         className="content narrow container"
+        id="page-content"
       >
         <div
           className="jsx-2718615018"
@@ -574,6 +575,7 @@ Array [
       </div>
       <div
         className="content narrow container"
+        id="page-content"
       >
         <p>
           We found an emissions report for this facility, and imported the relevant information:
@@ -828,6 +830,7 @@ Array [
       </div>
       <div
         className="content narrow container"
+        id="page-content"
       >
         <h4
           className="mb-5"
@@ -1327,6 +1330,7 @@ Array [
       </div>
       <div
         className="content narrow container"
+        id="page-content"
       >
         <div
           className="row"
@@ -1771,6 +1775,7 @@ Array [
       </div>
       <div
         className="content narrow container"
+        id="page-content"
       >
         <div>
           <table
@@ -2078,6 +2083,7 @@ Array [
       </header>
       <div
         className="content narrow container"
+        id="page-content"
       >
         <div>
           <button
