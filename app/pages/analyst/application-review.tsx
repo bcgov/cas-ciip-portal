@@ -47,6 +47,7 @@ class ApplicationReview extends Component<Props> {
           ...IncentiveCalculatorContainer_applicationRevision
         }
         ...ApplicationDetailsContainer_query
+          @arguments(applicationId: $applicationId, newVersion: $version)
       }
     }
   `;

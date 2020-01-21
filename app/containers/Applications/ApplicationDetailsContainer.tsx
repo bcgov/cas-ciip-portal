@@ -1,5 +1,7 @@
-import React from 'react';
-import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
+import React, {useEffect, useState} from 'react';
+import {Dropdown, Row, Col} from 'react-bootstrap';
+import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
+import {createRefetchContainer, graphql, RelayRefetchProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
 import {ApplicationDetailsContainer_application} from 'ApplicationDetailsContainer_application.graphql';
 import ApplicationDetailsPdf from 'containers/Applications/ApplicationDetailsPdf';
@@ -13,71 +15,228 @@ import ApplicationDetailsCardItem from './ApplicationDetailsCardItem';
 interface Props {
   query: ApplicationDetailsContainer_query;
   application: ApplicationDetailsContainer_application;
-  relay: RelayProp;
+  relay: RelayRefetchProp;
   review: boolean;
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
-  const formResults = props.application.orderedFormResults.edges;
+  const formResults = props.query.new.orderedFormResults.edges;
   const previousFormResults = props.review
-    ? props?.application?.previousSubmittedRevision
-        ?.formResultsByApplicationIdAndVersionNumber?.edges
+    ? props?.query?.old?.orderedFormResults?.edges
     : undefined;
+
+  const [oldDiffVersion, setOldDiffVersion] = useState(
+    (
+      props.application.orderedFormResults.edges[0].node.versionNumber - 1
+    ).toString()
+  );
+  const [newDiffVersion, setNewDiffVersion] = useState(
+    props.application.orderedFormResults.edges[0].node.versionNumber.toString()
+  );
+
+  useEffect(() => {
+    const refetchVariables = {
+      oldVersion: oldDiffVersion,
+      newVersion: newDiffVersion,
+      applicationId: props.application.id
+    };
+    props.relay.refetch(refetchVariables);
+  }, [oldDiffVersion, newDiffVersion, props.application.id, props.relay]);
+
+  console.log(
+    'OLD NUMBER BAD AT STAIRS:',
+    props?.query?.old?.orderedFormResults?.edges[0]?.node?.versionNumber
+  );
+  console.log(
+    'NEW NUMBER ALWAYS CRYING:',
+    props.query.new.orderedFormResults.edges[0].node.versionNumber
+  );
+  console.log(props);
   return (
-    <div>
-      {formResults.map(({node}) => (
-        <ApplicationDetailsCardItem
-          key={node.id}
-          previousFormResults={previousFormResults}
-          formResult={node}
-          query={props.query.query}
-          review={props.review}
-        />
-      ))}
-      <div style={{textAlign: 'right', marginTop: 20}}>
-        <ApplicationDetailsPdf
-          application={props.application}
-          query={props.query}
-        />
+    <>
+      <Row>
+        <Col md={{offset: 4, span: 2}}>
+          <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
+            <Dropdown.Toggle style={{width: '100%'}} id="dropdown-old">
+              {oldDiffVersion === '0'
+                ? 'swrs import'
+                : 'Version '.concat(oldDiffVersion)}
+            </Dropdown.Toggle>
+            <Dropdown.Menu style={{width: '100%'}}>
+              {props.application.applicationRevisionsByApplicationId.edges.map(
+                ({node}, index) =>
+                  index >= Number(newDiffVersion) ||
+                  index === Number(oldDiffVersion) ? null : (
+                    <DropdownMenuItemComponent
+                      key={node.id}
+                      itemEventKey={node.versionNumber}
+                      itemFunc={setOldDiffVersion}
+                      itemTitle={
+                        node.versionNumber === 0
+                          ? 'swrs import'
+                          : node.versionNumber
+                      }
+                    />
+                  )
+              )}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+        <Col md={1}>------&gt;</Col>
+        <Col md={2}>
+          <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
+            <Dropdown.Toggle
+              style={{width: '100%', textTransform: 'capitalize'}}
+              id="dropdown-new"
+            >
+              {Number(newDiffVersion) ===
+              props.application.latestSubmittedRevision.versionNumber
+                ? `current (V${newDiffVersion})`
+                : 'Version '.concat(newDiffVersion)}
+            </Dropdown.Toggle>
+            <Dropdown.Menu style={{width: '100%'}}>
+              {props.application.applicationRevisionsByApplicationId.edges.map(
+                ({node}, index) =>
+                  index <= Number(oldDiffVersion) ? null : (
+                    <DropdownMenuItemComponent
+                      key={node.id}
+                      itemEventKey={node.versionNumber}
+                      itemFunc={setNewDiffVersion}
+                      itemTitle={
+                        node.versionNumber ===
+                        props.application.latestSubmittedRevision.versionNumber
+                          ? `current (V${node.versionNumber})`
+                          : node.versionNumber
+                      }
+                    />
+                  )
+              )}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+      </Row>
+      <br />
+
+      <div>
+        {formResults.map(({node}) => (
+          <ApplicationDetailsCardItem
+            key={node.id}
+            previousFormResults={previousFormResults}
+            formResult={node}
+            query={props.query.query}
+            review={props.review}
+          />
+        ))}
+        <div style={{textAlign: 'right', marginTop: 20}}>
+          <ApplicationDetailsPdf
+            application={props.application}
+            query={props.query}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default createFragmentContainer(ApplicationDetailsComponent, {
-  query: graphql`
-    fragment ApplicationDetailsContainer_query on Query {
-      query {
-        ...ApplicationDetailsCardItem_query
-      }
-      ...ApplicationDetailsPdf_query
-    }
-  `,
-  application: graphql`
-    fragment ApplicationDetailsContainer_application on Application
-      @argumentDefinitions(version: {type: "String!"}) {
-      id
-      orderedFormResults(versionNumberInput: $version) {
-        edges {
-          node {
-            id
-            ...ApplicationDetailsCardItem_formResult
-          }
+export default createRefetchContainer(
+  ApplicationDetailsComponent,
+  {
+    query: graphql`
+      fragment ApplicationDetailsContainer_query on Query
+        @argumentDefinitions(
+          applicationId: {type: "ID!"}
+          newVersion: {type: "String"}
+          oldVersion: {type: "String"}
+        ) {
+        query {
+          ...ApplicationDetailsCardItem_query
         }
-      }
-      previousSubmittedRevision {
-        formResultsByApplicationIdAndVersionNumber {
-          edges {
-            node {
-              formJsonByFormId {
-                slug
+        old: application(id: $applicationId) {
+          orderedFormResults(versionNumberInput: $oldVersion) {
+            edges {
+              node {
+                id
+                versionNumber
+                formJsonByFormId {
+                  slug
+                }
+                formResult
               }
-              formResult
             }
           }
         }
+        new: application(id: $applicationId) {
+          orderedFormResults(versionNumberInput: $newVersion) {
+            edges {
+              node {
+                id
+                versionNumber
+                formJsonByFormId {
+                  slug
+                }
+                ...ApplicationDetailsCardItem_formResult
+              }
+            }
+          }
+        }
+        ...ApplicationDetailsPdf_query
       }
-      ...ApplicationDetailsPdf_application
+    `,
+    application: graphql`
+      fragment ApplicationDetailsContainer_application on Application
+        @argumentDefinitions(version: {type: "String!"}) {
+        id
+        orderedFormResults(versionNumberInput: $version) {
+          edges {
+            node {
+              id
+              versionNumber
+              ...ApplicationDetailsCardItem_formResult
+            }
+          }
+        }
+        previousSubmittedRevision {
+          formResultsByApplicationIdAndVersionNumber {
+            edges {
+              node {
+                formJsonByFormId {
+                  slug
+                }
+                formResult
+              }
+            }
+          }
+        }
+        latestSubmittedRevision {
+          versionNumber
+        }
+        applicationRevisionsByApplicationId {
+          totalCount
+          edges {
+            node {
+              id
+              versionNumber
+            }
+          }
+        }
+        ...ApplicationDetailsPdf_application
+      }
+    `
+  },
+  graphql`
+    query ApplicationDetailsContainerRefetchQuery(
+      $oldVersion: String
+      $newVersion: String
+      $applicationId: ID!
+    ) {
+      query {
+        ...ApplicationDetailsContainer_query
+          @arguments(
+            oldVersion: $oldVersion
+            newVersion: $newVersion
+            applicationId: $applicationId
+          )
+      }
     }
   `
-});
+);

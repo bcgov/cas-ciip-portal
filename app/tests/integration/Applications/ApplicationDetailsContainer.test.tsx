@@ -58,6 +58,11 @@ describe('ApplicationDetailsContainer', () => {
               ...ApplicationDetailsPdf_application
             }
             ...ApplicationDetailsContainer_query
+              @arguments(
+                applicationId: $applicationId
+                oldVersion: $version
+                newVersion: $version
+              )
           }
         }
       `}
