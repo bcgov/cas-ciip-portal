@@ -173,10 +173,9 @@ deployTestData() {
 deployDevData() {
   deployTestData
   _psql -f "./dev/user.sql"
+  _psql -f "./dev/ciip_user_organisation.sql"
   _psql -f "./dev/application.sql"
   _psql -f "./dev/certification_url.sql"
-  _psql -f "./dev/application_revision.sql"
-  _psql -f "./dev/application_revision_status.sql"
   _psql -f "./dev/form_result.sql"
   return 0;
 }

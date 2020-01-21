@@ -54,6 +54,19 @@ Array [
                     onMouseEnter={[Function]}
                     type="button"
                   >
+                    Industry
+                  </button>
+                </div>
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
                     Admin
                   </button>
                 </div>
@@ -483,6 +496,19 @@ Array [
                     onMouseEnter={[Function]}
                     type="button"
                   >
+                    Industry
+                  </button>
+                </div>
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
                     Admin
                   </button>
                 </div>
@@ -714,6 +740,19 @@ Array [
               <div
                 className="row"
               >
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Industry
+                  </button>
+                </div>
                 <div
                   className="col"
                 >
@@ -1161,6 +1200,19 @@ Array [
               <div
                 className="row"
               >
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Industry
+                  </button>
+                </div>
                 <div
                   className="col"
                 >
@@ -1641,6 +1693,19 @@ Array [
                     onMouseEnter={[Function]}
                     type="button"
                   >
+                    Industry
+                  </button>
+                </div>
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
                     Admin
                   </button>
                 </div>
@@ -1938,6 +2003,19 @@ Array [
               <div
                 className="row"
               >
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Industry
+                  </button>
+                </div>
                 <div
                   className="col"
                 >

@@ -20,7 +20,7 @@ PG_SHAREDIR=$(shell pg_config --sharedir)
 DEPLOY_DEFAULT_DATA=deploy_dev_data
 
 .PHONY: test
-test: | dropdb createdb deploy_ggircs deploy revert $(DEPLOY_DEFAULT_DATA) prove_unit prove_style dropdb
+test: | test_deploy_revert $(DEPLOY_DEFAULT_DATA) prove_unit prove_style dropdb
 
 .PHONY: unit
 unit: | $(DEPLOY_DEFAULT_DATA) prove_unit
@@ -42,6 +42,10 @@ deploy_test_data:
 deploy_dev_data:
 	# Deploy dev data in $(TEST_DB)
 	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -dev
+
+.PHONY: test_deploy_revert
+# Test sqitch deploy sqitch revert
+test_deploy_revert: | dropdb createdb deploy_ggircs deploy revert
 
 .PHONY: deploy_ggircs
 deploy_ggircs:

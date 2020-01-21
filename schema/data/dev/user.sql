@@ -1,3 +1,8 @@
+/**
+  Adds some dummy users.
+  User 3: Test User is used when running yarn dev with the -NO_AUTH flag
+*/
+
 begin;
 
 with rows as (
