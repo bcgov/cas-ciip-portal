@@ -5,7 +5,13 @@ import ProductionFields from 'containers/Forms/ProductionFields';
 import {FieldProps} from 'react-jsonschema-form';
 import NumberFormat from 'react-number-format';
 
-const customFields = (showDiff, diffPathArray, diffArray, handleEnums) => {
+const customFields = (
+  showDiff,
+  diffPathArray,
+  diffArray,
+  handleEnums,
+  previousIsEmpty
+) => {
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => {
@@ -19,7 +25,7 @@ const customFields = (showDiff, diffPathArray, diffArray, handleEnums) => {
           diffArray[
             diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
           ];
-        if (hasDiff) {
+        if (hasDiff || previousIsEmpty) {
           prevValue = handleEnums(props, false, prevValue);
           const currentValue = handleEnums(props, true, prevValue);
 
@@ -95,7 +101,7 @@ const customFields = (showDiff, diffPathArray, diffArray, handleEnums) => {
           diffArray[
             diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
           ];
-        if (hasDiff) {
+        if (hasDiff || previousIsEmpty) {
           prevValue = handleEnums(props, false, prevValue);
           const currentValue = handleEnums(props, true, prevValue);
 

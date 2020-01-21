@@ -21,7 +21,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
     previousEmission === '' ||
     previousEmission === null
   )
-    previousEmission = 'NULL';
+    previousEmission = null;
 
   if (formContext.diffPathArray.includes(annualIdString))
     previousAnnualCO2e =
@@ -31,7 +31,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
     previousAnnualCO2e === '' ||
     previousAnnualCO2e === null
   )
-    previousAnnualCO2e = 'NULL';
+    previousAnnualCO2e = null;
   return (
     <Col xs={12} md={12}>
       <Form.Row>
@@ -46,10 +46,11 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
         </Col>
         <Col md={3}>
           <strong>Tonnes:</strong>{' '}
-          {formContext.showDiff ? (
+          {formContext.showDiff &&
+          (props.formData.annualEmission || previousEmission) ? (
             <>
               <span style={{backgroundColor: '#ffeef0'}}>
-                {previousEmission}
+                {previousEmission ? previousEmission : <i>[No Data Entered]</i>}
               </span>
               &nbsp;---&gt;&nbsp;
               <span style={{backgroundColor: '#e6ffed'}}>
@@ -66,10 +67,15 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
         </Col>
         <Col md={3}>
           <strong>Tonnes(CO2e): </strong>
-          {formContext.showDiff ? (
+          {formContext.showDiff &&
+          (props.formData.annualCO2e || previousAnnualCO2e) ? (
             <>
               <span style={{backgroundColor: '#ffeef0'}}>
-                {previousAnnualCO2e}
+                {previousAnnualCO2e ? (
+                  previousAnnualCO2e
+                ) : (
+                  <i>[No Data Entered]</i>
+                )}
               </span>
               &nbsp;---&gt;&nbsp;
               <span style={{backgroundColor: '#e6ffed'}}>

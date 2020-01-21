@@ -37,6 +37,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 
   const diffPathArray = [];
   const diffArray = [];
+  let previousIsEmpty = false;
   useMemo(() => {
     if (previousFormResults && showDiff) {
       let previousFormResult;
@@ -53,7 +54,12 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       const rhs = formResult.formResult;
       const differences = diff(lhs, rhs);
 
-      if (differences) {
+      if (
+        JSON.stringify(previousFormResult) === '[]' ||
+        JSON.stringify(previousFormResult) === '{}'
+      ) {
+        previousIsEmpty = true;
+      } else if (differences) {
         differences.forEach(difference => {
           if (difference.path) {
             diffPathArray.push(difference.path.join('_'));
@@ -77,7 +83,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
       const enumIndex = isCurrent
         ? props.schema.enum.indexOf(props.formData)
         : props.schema.enum.indexOf(prevValue);
-      if (enumIndex === -1) return props.formData;
+      if (enumIndex === -1 && isCurrent) return props.formData;
+      if (enumIndex === -1 && !isCurrent) return '[No Data Entered]';
       return props.schema.enumNames[enumIndex];
     }
 
@@ -89,7 +96,13 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const CUSTOM_FIELDS: Record<
     string,
     React.FunctionComponent<FieldProps>
-  > = customFields(showDiff, diffPathArray, diffArray, handleEnums);
+  > = customFields(
+    showDiff,
+    diffPathArray,
+    diffArray,
+    handleEnums,
+    previousIsEmpty
+  );
   const classTag = formJsonByFormId.slug;
   return (
     <Card
@@ -151,7 +164,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
               query,
               showDiff,
               diffPathArray,
-              diffArray
+              diffArray,
+              previousIsEmpty
             }}
           >
             {/* Over-ride submit button for each form with an empty fragment */}
