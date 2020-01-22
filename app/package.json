@@ -195,7 +195,7 @@
     "relay-config": "^8.0.0",
     "relay-test-utils": "^8.0.0",
     "require-context.macro": "^1.2.2",
-    "typescript": "3.7.3",
+    "typescript": "3.7.5",
     "wait-on": "^3.3.0",
     "webpack": "^4.41.0",
     "xo": "^0.25.0"
