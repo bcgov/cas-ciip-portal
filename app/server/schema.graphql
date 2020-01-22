@@ -7915,6 +7915,7 @@ type JwtToken {
   aud: String
   authTime: Int
   azp: String
+  brokerSessionId: String
 
   """Reads a single `CiipUser` that is related to this `JwtToken`."""
   ciipUserBySub: CiipUser
@@ -7929,6 +7930,7 @@ type JwtToken {
   name: String
   nbf: Int
   preferredUsername: String
+  priorityGroup: String
   sessionState: UUID
   sub: UUID
   typ: String

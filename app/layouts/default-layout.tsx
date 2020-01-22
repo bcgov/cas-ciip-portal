@@ -161,6 +161,7 @@ export default createFragmentContainer(DefaultLayout, {
   session: graphql`
     fragment defaultLayout_session on JwtToken {
       userGroups
+      priorityGroup
       ciipUserBySub {
         __typename
       }

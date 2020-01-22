@@ -14,9 +14,10 @@ const cors = require('cors');
 const voyagerMiddleware = require('graphql-voyager/middleware').express;
 const groupConstants = require('../data/group-constants');
 const {
-  compactGroupNames,
+  compactGroups,
   getUserGroupLandingRoute,
-  getAllGroupNames
+  getAllGroups,
+  getPriorityGroup
 } = require('../lib/user-groups');
 
 let databaseURL = 'postgres://';
@@ -52,14 +53,16 @@ const getUserGroups = req => {
   )
     return [groupConstants.GUEST];
 
-  const username = req.kauth.grant.id_token.content.preferred_username;
+  const brokerSessionId = req.kauth.grant.id_token.content.broker_session_id;
   const {groups} = req.kauth.grant.id_token.content;
 
   const processedGroups = groups.map(removeFirstLetter);
-  const validGroups = compactGroupNames(processedGroups);
+  const validGroups = compactGroups(processedGroups);
 
   if (validGroups.length === 0) {
-    return username.endsWith('@idir')
+    return brokerSessionId &&
+      brokerSessionId.length === 41 &&
+      brokerSessionId.startsWith('idir.')
       ? [groupConstants.PENDING_ANALYST]
       : [groupConstants.USER];
   }
@@ -108,11 +111,16 @@ app.prepare().then(() => {
       enableQueryBatching: true,
       dynamicJson: true,
       pgSettings(req) {
-        if (NO_AUTH)
+        if (NO_AUTH) {
+          const groups = getAllGroups();
+          const priorityGroup = getPriorityGroup(groups);
+
           return {
             'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
-            'jwt.claims.user_groups': getAllGroupNames().join(',')
+            'jwt.claims.user_groups': groups.join(','),
+            'jwt.claims.priority_group': priorityGroup
           };
+        }
 
         const claims = {};
         if (
@@ -130,6 +138,7 @@ app.prepare().then(() => {
 
         const groups = getUserGroups(req);
         token.user_groups = groups.join(',');
+        token.priority_group = getPriorityGroup(groups);
 
         const properties = [
           'jti',
@@ -150,7 +159,9 @@ app.prepare().then(() => {
           'given_name',
           'family_name',
           'email',
-          'user_groups'
+          'broker_session_id',
+          'user_groups',
+          'priority_group'
         ];
         properties.forEach(property => {
           claims[`jwt.claims.${property}`] = token[property];
