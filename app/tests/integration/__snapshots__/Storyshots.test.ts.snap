@@ -10,7 +10,412 @@ Array [
       }
     }
   >
-    Error
+    <div
+      className="jsx-1486801185 page-wrap"
+    >
+      <header
+        className="jsx-2807878339"
+      >
+        <div
+          className="jsx-2807878339 container"
+        >
+          <div
+            className="jsx-2807878339 banner"
+          >
+            <div
+              className="jsx-2807878339 header-left"
+            >
+              <img
+                alt="Go to the Government of British Columbia website"
+                className="jsx-2807878339"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                src="/static/logo-banner.png"
+              />
+              <h1
+                className="jsx-2807878339"
+              >
+                CleanBC Industrial Incentive Program
+              </h1>
+            </div>
+            <div
+              className="jsx-2807878339 login-btns header-right"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Industry
+                  </button>
+                </div>
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Admin
+                  </button>
+                </div>
+                <div
+                  className="jsx-2807878339"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/user-profile"
+                        className=""
+                        method="get"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Profile
+                        </button>
+                      </form>
+                    </div>
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/logout"
+                        className=""
+                        method="post"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Logout
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div
+        className="jsx-1486801185 page-title"
+      >
+        <div
+          className="narrow container"
+        >
+          <h1
+            className="jsx-1486801185"
+          >
+            Administrator Dashboard
+          </h1>
+        </div>
+      </div>
+      <div
+        className="content narrow container"
+        id="page-content"
+      >
+        <div
+          className="jsx-2718615018"
+        >
+          <div
+            className="row"
+          >
+            <div
+              className="admin-control-card card"
+            >
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  User Management
+                </div>
+                <p
+                  className="card-text"
+                >
+                  Edit user permissions, grant/revoke access etc.
+                </p>
+              </div>
+              <div
+                className="list-group list-group-flush"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    View all users
+                  </a>
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Organisation access requests
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              className="admin-control-card card"
+            >
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  Application Management
+                </div>
+                <p
+                  className="card-text"
+                >
+                  View Application details, update applications etc.
+                </p>
+              </div>
+              <div
+                className="list-group list-group-flush"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    View all applications
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              className="admin-control-card card"
+            >
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  Program and Data management
+                </div>
+                <p
+                  className="card-text"
+                >
+                  Update program parameters, view program insights etc.
+                </p>
+              </div>
+              <div
+                className="list-group list-group-flush"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Edit Products and Benchmarks
+                  </a>
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="https://cas-metabase.pathfinder.gov.bc.ca/"
+                    target="_blank"
+                  >
+                    Data and Insights (Metabase)
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              className="admin-control-card card"
+            >
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  DevOps Management
+                </div>
+                <p
+                  className="card-text"
+                >
+                  View and Perform DevOps actions, e.g. deploy new features etc.
+                </p>
+              </div>
+              <div
+                className="list-group list-group-flush"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="https://cas-shipit.pathfinder.gov.bc.ca/"
+                    target="_blank"
+                  >
+                    Deploy new features (Shipit)
+                  </a>
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    target="_blank"
+                  >
+                    Airflow
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer
+        className="jsx-337505255 footer"
+      >
+        <div
+          className="jsx-337505255 container"
+        >
+          <ul
+            className="jsx-337505255"
+          >
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Home
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/disclaimer"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Disclaimer
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/privacy"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Privacy
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/accessibility"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Accessibility
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/copyright"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Copyright
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/contact"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
   </div>,
   <button
     className="info__show-button"
@@ -48,7 +453,224 @@ Array [
       }
     }
   >
-    Error
+    <div
+      className="jsx-1486801185 page-wrap"
+    >
+      <header
+        className="jsx-2807878339"
+      >
+        <div
+          className="jsx-2807878339 container"
+        >
+          <div
+            className="jsx-2807878339 banner"
+          >
+            <div
+              className="jsx-2807878339 header-left"
+            >
+              <img
+                alt="Go to the Government of British Columbia website"
+                className="jsx-2807878339"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                src="/static/logo-banner.png"
+              />
+              <h1
+                className="jsx-2807878339"
+              >
+                CleanBC Industrial Incentive Program
+              </h1>
+            </div>
+            <div
+              className="jsx-2807878339 login-btns header-right"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Industry
+                  </button>
+                </div>
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Admin
+                  </button>
+                </div>
+                <div
+                  className="jsx-2807878339"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/user-profile"
+                        className=""
+                        method="get"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Profile
+                        </button>
+                      </form>
+                    </div>
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/logout"
+                        className=""
+                        method="post"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Logout
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div
+        className="jsx-1486801185 page-title"
+      >
+        <div
+          className="narrow container"
+        >
+          <h1
+            className="jsx-1486801185"
+          >
+            We imported your data
+          </h1>
+        </div>
+      </div>
+      <div
+        className="content narrow container"
+        id="page-content"
+      >
+        <p>
+          We found an emissions report for this facility, and imported the relevant information:
+          <br />
+          The administrative, fuel and emission forms will be prepopulated to match the data entered in your emission report. Please review it and complete the forms with the additional information required for your CIIP application.
+        </p>
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          type="button"
+        >
+          Continue
+        </button>
+      </div>
+      <footer
+        className="jsx-337505255 footer"
+      >
+        <div
+          className="jsx-337505255 container"
+        >
+          <ul
+            className="jsx-337505255"
+          >
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Home
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/disclaimer"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Disclaimer
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/privacy"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Privacy
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/accessibility"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Accessibility
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/copyright"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Copyright
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/contact"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
   </div>,
   <button
     className="info__show-button"
@@ -86,7 +708,430 @@ Array [
       }
     }
   >
-    Error
+    <div
+      className="jsx-1486801185 page-wrap"
+    >
+      <header
+        className="jsx-2807878339"
+      >
+        <div
+          className="jsx-2807878339 container"
+        >
+          <div
+            className="jsx-2807878339 banner"
+          >
+            <div
+              className="jsx-2807878339 header-left"
+            >
+              <img
+                alt="Go to the Government of British Columbia website"
+                className="jsx-2807878339"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                src="/static/logo-banner.png"
+              />
+              <h1
+                className="jsx-2807878339"
+              >
+                CleanBC Industrial Incentive Program
+              </h1>
+            </div>
+            <div
+              className="jsx-2807878339 login-btns header-right"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Industry
+                  </button>
+                </div>
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Admin
+                  </button>
+                </div>
+                <div
+                  className="jsx-2807878339"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/user-profile"
+                        className=""
+                        method="get"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Profile
+                        </button>
+                      </form>
+                    </div>
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/logout"
+                        className=""
+                        method="post"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Logout
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div
+        className="jsx-1486801185 page-title"
+      >
+        <div
+          className="narrow container"
+        >
+          <h1
+            className="jsx-1486801185"
+          >
+            Registration
+          </h1>
+        </div>
+      </div>
+      <div
+        className="content narrow container"
+        id="page-content"
+      >
+        <h4
+          className="mb-5"
+        >
+          Please verify or update your information
+        </h4>
+        <form
+          className="rjsf"
+          noValidate={false}
+          onSubmit={[Function]}
+        >
+          <div
+            className="col-12"
+          >
+            <div
+              className="form-row"
+            >
+              <span
+                className="font-italic text-muted"
+              />
+              <div
+                className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  className="form-label"
+                  htmlFor="root_firstName"
+                >
+                  First Name
+                   *
+                </label>
+                <input
+                  autoFocus={false}
+                  className="form-control"
+                  disabled={false}
+                  id="root_firstName"
+                  label="First Name"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  placeholder=""
+                  readOnly={false}
+                  required={true}
+                  type="text"
+                  value={
+                    Array [
+                      "Guest",
+                      "User",
+                      "Realm Administrator",
+                      "Incentive Administrator",
+                      "Incentive Analyst",
+                      "Pending Analyst",
+                    ]
+                  }
+                />
+                <span
+                  className="font-italic text-muted"
+                />
+              </div>
+              <div
+                className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  className="form-label"
+                  htmlFor="root_lastName"
+                >
+                  Last Name
+                   *
+                </label>
+                <input
+                  autoFocus={false}
+                  className="form-control"
+                  disabled={false}
+                  id="root_lastName"
+                  label="Last Name"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  placeholder=""
+                  readOnly={false}
+                  required={true}
+                  type="text"
+                  value={
+                    Array [
+                      "Guest",
+                      "User",
+                      "Realm Administrator",
+                      "Incentive Administrator",
+                      "Incentive Analyst",
+                      "Pending Analyst",
+                    ]
+                  }
+                />
+                <span
+                  className="font-italic text-muted"
+                />
+              </div>
+              <div
+                className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  className="form-label"
+                  htmlFor="root_emailAddress"
+                >
+                  Email Address
+                   *
+                </label>
+                <input
+                  autoFocus={false}
+                  className="form-control"
+                  disabled={false}
+                  id="root_emailAddress"
+                  label="Email Address"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  placeholder=""
+                  readOnly={false}
+                  required={true}
+                  type="text"
+                  value={
+                    Array [
+                      "Guest",
+                      "User",
+                      "Realm Administrator",
+                      "Incentive Administrator",
+                      "Incentive Analyst",
+                      "Pending Analyst",
+                    ]
+                  }
+                />
+                <span
+                  className="font-italic text-muted"
+                />
+              </div>
+              <div
+                className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  className="form-label"
+                  htmlFor="root_phoneNumber"
+                >
+                  Phone Number
+                   *
+                </label>
+                <input
+                  autoFocus={false}
+                  className="form-control"
+                  disabled={false}
+                  id="root_phoneNumber"
+                  label="Phone Number"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  placeholder=""
+                  readOnly={false}
+                  required={true}
+                  type="text"
+                  value={
+                    Array [
+                      "Guest",
+                      "User",
+                      "Realm Administrator",
+                      "Incentive Administrator",
+                      "Incentive Analyst",
+                      "Pending Analyst",
+                    ]
+                  }
+                />
+                <span
+                  className="font-italic text-muted"
+                />
+              </div>
+              <div
+                className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <label
+                  className="form-label"
+                  htmlFor="root_occupation"
+                >
+                  Occupation
+                   *
+                </label>
+                <input
+                  autoFocus={false}
+                  className="form-control"
+                  disabled={false}
+                  id="root_occupation"
+                  label="Occupation"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  placeholder=""
+                  readOnly={false}
+                  required={true}
+                  type="text"
+                  value={
+                    Array [
+                      "Guest",
+                      "User",
+                      "Realm Administrator",
+                      "Incentive Administrator",
+                      "Incentive Analyst",
+                      "Pending Analyst",
+                    ]
+                  }
+                />
+                <span
+                  className="font-italic text-muted"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <button
+              className="btn btn-info"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+      <footer
+        className="jsx-337505255 footer"
+      >
+        <div
+          className="jsx-337505255 container"
+        >
+          <ul
+            className="jsx-337505255"
+          >
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Home
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/disclaimer"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Disclaimer
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/privacy"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Privacy
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/accessibility"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Accessibility
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/copyright"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Copyright
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/contact"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
   </div>,
   <button
     className="info__show-button"
@@ -124,7 +1169,453 @@ Array [
       }
     }
   >
-    Error
+    <div
+      className="jsx-1486801185 page-wrap"
+    >
+      <header
+        className="jsx-2807878339"
+      >
+        <div
+          className="jsx-2807878339 container"
+        >
+          <div
+            className="jsx-2807878339 banner"
+          >
+            <div
+              className="jsx-2807878339 header-left"
+            >
+              <img
+                alt="Go to the Government of British Columbia website"
+                className="jsx-2807878339"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                src="/static/logo-banner.png"
+              />
+              <h1
+                className="jsx-2807878339"
+              >
+                CleanBC Industrial Incentive Program
+              </h1>
+            </div>
+            <div
+              className="jsx-2807878339 login-btns header-right"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Industry
+                  </button>
+                </div>
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Admin
+                  </button>
+                </div>
+                <div
+                  className="jsx-2807878339"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/user-profile"
+                        className=""
+                        method="get"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Profile
+                        </button>
+                      </form>
+                    </div>
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/logout"
+                        className=""
+                        method="post"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Logout
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div
+        className="jsx-775259080"
+      >
+        <nav
+          className="jsx-775259080 navigation-main"
+          id="navbar"
+        >
+          <div
+            className="jsx-775259080 container"
+          >
+            <ul
+              className="jsx-775259080"
+            >
+              <li
+                className="jsx-775259080 active"
+              >
+                <a
+                  href="/reporter/user-dashboard"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  My Dashboard
+                </a>
+              </li>
+              <li
+                className="jsx-775259080"
+              >
+                <a
+                  href="/reporter/facilities-list"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  My Applications
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div
+        className="jsx-1486801185 page-title"
+      >
+        <div
+          className="narrow container"
+        >
+          <h1
+            className="jsx-1486801185"
+          >
+            My Operators
+          </h1>
+        </div>
+      </div>
+      <div
+        className="content narrow container"
+        id="page-content"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col-md-8"
+          >
+            <div
+              className="fade alert alert-info show"
+              role="alert"
+            >
+              Once your access to the requested operators is approved you can view their facilities and apply for CIIP for each.
+            </div>
+            <table
+              className="table table-striped table-bordered table-hover"
+              style={
+                Object {
+                  "marginBottom": "40px",
+                  "textAlign": "left",
+                }
+              }
+            >
+              <thead
+                className="jsx-130150550"
+              >
+                <tr
+                  className="jsx-130150550"
+                >
+                  <th
+                    className="jsx-130150550"
+                  >
+                    Operator
+                  </th>
+                  <th
+                    className="jsx-130150550"
+                  >
+                    Access Status
+                  </th>
+                  <th
+                    className="jsx-130150550"
+                  >
+                    Operations/Facilities
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                className="jsx-130150550"
+              >
+                <tr
+                  className="jsx-2428472905"
+                >
+                  <td
+                    className="jsx-2428472905"
+                  >
+                    Guest
+                    User
+                    Realm Administrator
+                    Incentive Administrator
+                    Incentive Analyst
+                    Pending Analyst
+                  </td>
+                  <td
+                    className="jsx-2428472905"
+                  >
+                    <span
+                      className="badge badge-pill"
+                      style={
+                        Object {
+                          "padding": "8px",
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      Guest
+                      User
+                      Realm Administrator
+                      Incentive Administrator
+                      Incentive Analyst
+                      Pending Analyst
+                    </span>
+                  </td>
+                  <td
+                    className="jsx-2428472905"
+                  >
+                     
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div
+              className="search-dropdown dropdown"
+              onKeyDown={[Function]}
+            >
+              <h5
+                style={
+                  Object {
+                    "marginBottom": 0,
+                  }
+                }
+              >
+                Request access to an Operator:
+              </h5>
+              <small
+                style={
+                  Object {
+                    "display": "block",
+                    "marginBottom": "20px",
+                  }
+                }
+              >
+                (You can search to narrow the results in the dropdown)
+              </small>
+              <button
+                aria-expanded={false}
+                aria-haspopup={true}
+                className="search-toggle dropdown-toggle btn btn-primary"
+                disabled={false}
+                id="org-dropdown"
+                onClick={[Function]}
+                type="button"
+              >
+                Select Operator
+              </button>
+            </div>
+            <br />
+            <p
+              className="jsx-2386677284"
+              id="add-organisation"
+              onClick={[Function]}
+            >
+              I can't find my organisation
+            </p>
+          </div>
+          <div
+            className="col-md-4"
+          >
+            <h5
+              style={
+                Object {
+                  "marginBottom": "20px",
+                }
+              }
+            >
+              How to apply for CIIP
+            </h5>
+            <div
+              className="how-to-apply"
+            >
+              <div
+                className="list-group"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <strong>
+                    Step 1:
+                  </strong>
+                  <br />
+                  Request access to one or more Operators.
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <strong>
+                    Step 2:
+                  </strong>
+                  <br />
+                  CIIP administrators will approve your request.
+                   
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <strong>
+                    Step 3:
+                  </strong>
+                  <br />
+                  Once approved, you can view all the facilities for the Operator.
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <strong>
+                    Step 4:
+                  </strong>
+                  <br />
+                  You can apply for CIIP for each facility.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer
+        className="jsx-337505255 footer"
+      >
+        <div
+          className="jsx-337505255 container"
+        >
+          <ul
+            className="jsx-337505255"
+          >
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Home
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/disclaimer"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Disclaimer
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/privacy"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Privacy
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/accessibility"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Accessibility
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/copyright"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Copyright
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/contact"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
   </div>,
   <button
     className="info__show-button"
@@ -162,7 +1653,290 @@ Array [
       }
     }
   >
-    Error
+    <div
+      className="jsx-1486801185 page-wrap"
+    >
+      <header
+        className="jsx-2807878339"
+      >
+        <div
+          className="jsx-2807878339 container"
+        >
+          <div
+            className="jsx-2807878339 banner"
+          >
+            <div
+              className="jsx-2807878339 header-left"
+            >
+              <img
+                alt="Go to the Government of British Columbia website"
+                className="jsx-2807878339"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                src="/static/logo-banner.png"
+              />
+              <h1
+                className="jsx-2807878339"
+              >
+                CleanBC Industrial Incentive Program
+              </h1>
+            </div>
+            <div
+              className="jsx-2807878339 login-btns header-right"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Industry
+                  </button>
+                </div>
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Admin
+                  </button>
+                </div>
+                <div
+                  className="jsx-2807878339"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/user-profile"
+                        className=""
+                        method="get"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Profile
+                        </button>
+                      </form>
+                    </div>
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/logout"
+                        className=""
+                        method="post"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Logout
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div
+        className="jsx-1486801185 page-title"
+      >
+        <div
+          className="narrow container"
+        >
+          <h1
+            className="jsx-1486801185"
+          >
+            User List
+          </h1>
+        </div>
+      </div>
+      <div
+        className="content narrow container"
+        id="page-content"
+      >
+        <div>
+          <table
+            className="table table-striped table-bordered table-hover"
+          >
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  First Name
+                </th>
+                <th>
+                  Last Name
+                </th>
+                <th>
+                  Occupation
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Phone
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <footer
+        className="jsx-337505255 footer"
+      >
+        <div
+          className="jsx-337505255 container"
+        >
+          <ul
+            className="jsx-337505255"
+          >
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Home
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/disclaimer"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Disclaimer
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/privacy"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Privacy
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/accessibility"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Accessibility
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/copyright"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Copyright
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/contact"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
   </div>,
   <button
     className="info__show-button"
@@ -200,7 +1974,290 @@ Array [
       }
     }
   >
-    Error
+    <div
+      className="jsx-1486801185 page-wrap"
+    >
+      <header
+        className="jsx-2807878339"
+      >
+        <div
+          className="jsx-2807878339 container"
+        >
+          <div
+            className="jsx-2807878339 banner"
+          >
+            <div
+              className="jsx-2807878339 header-left"
+            >
+              <img
+                alt="Go to the Government of British Columbia website"
+                className="jsx-2807878339"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                src="/static/logo-banner.png"
+              />
+              <h1
+                className="jsx-2807878339"
+              >
+                CleanBC Industrial Incentive Program
+              </h1>
+            </div>
+            <div
+              className="jsx-2807878339 login-btns header-right"
+            >
+              <div
+                className="row"
+              >
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Industry
+                  </button>
+                </div>
+                <div
+                  className="col"
+                >
+                  <button
+                    className="btn btn-outline-light"
+                    disabled={false}
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    type="button"
+                  >
+                    Admin
+                  </button>
+                </div>
+                <div
+                  className="jsx-2807878339"
+                >
+                  <div
+                    className="form-row"
+                  >
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/user-profile"
+                        className=""
+                        method="get"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Profile
+                        </button>
+                      </form>
+                    </div>
+                    <div
+                      className="col"
+                    >
+                      <form
+                        action="/logout"
+                        className=""
+                        method="post"
+                      >
+                        <button
+                          className="btn btn-outline-light"
+                          disabled={false}
+                          type="submit"
+                        >
+                          Logout
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div
+        className="content narrow container"
+        id="page-content"
+      >
+        <div>
+          <button
+            className="button-edit btn btn-primary"
+            disabled={false}
+            onClick={[Function]}
+            style={
+              Object {
+                "width": "75px",
+              }
+            }
+            type="button"
+          >
+            Edit
+          </button>
+          <p />
+          <table
+            className="table table-striped table-bordered table-hover"
+            style={
+              Object {
+                "marginBottom": "50px",
+                "marginTop": "30px",
+              }
+            }
+          >
+            <tbody>
+              <tr>
+                <th>
+                  First Name
+                </th>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Last Name
+                </th>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Occupation
+                </th>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Phone Number
+                </th>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Email
+                </th>
+                <td>
+                  Guest
+                  User
+                  Realm Administrator
+                  Incentive Administrator
+                  Incentive Analyst
+                  Pending Analyst
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <footer
+        className="jsx-337505255 footer"
+      >
+        <div
+          className="jsx-337505255 container"
+        >
+          <ul
+            className="jsx-337505255"
+          >
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Home
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/disclaimer"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Disclaimer
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/privacy"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Privacy
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/accessibility"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Accessibility
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/copyright"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Copyright
+              </a>
+            </li>
+            <li
+              className="jsx-337505255"
+            >
+              <a
+                href="/resources/contact"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
   </div>,
   <button
     className="info__show-button"
