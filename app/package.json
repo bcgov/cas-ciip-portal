@@ -5,8 +5,8 @@
   "scripts": {
     "pretest": "npm run build:relay",
     "test": "jest",
-    "test:e2e-snapshots": "yarn start & wait-on http://localhost:3004 && percy exec -- cypress run",
-    "test:e2e": "yarn start & wait-on http://localhost:3004 && cypress run",
+    "test:e2e-snapshots": "percy exec -- cypress run",
+    "test:e2e": "cypress run",
     "cypress": "cypress open",
     "cucumber:pretty": "cucumber-js --format node_modules/cucumber-pretty --format-options '{\"descriptionEnabled\":true}'",
     "predev": "npm run build:schema && npm run build:relay",
