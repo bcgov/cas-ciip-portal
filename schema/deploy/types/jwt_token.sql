@@ -22,6 +22,8 @@ create type ggircs_portal.jwt_token as (
   given_name text,
   family_name text,
   email text,
+  broker_session_id text,
+  priority_group text,
   user_groups text[]
 );
 
@@ -41,6 +43,7 @@ comment on type ggircs_portal.jwt_token is E'@primaryKey sub\n@foreignKey (sub) 
 --    auth_time: 1571272904,
 --    session_state: 'e0444b80-0ce0-4ea6-a3e6-5a227122af3c',
 --    acr: '0',
+--    broker_session_id: 'idir.93e47291-35a5-43df-b184-5fceea1aee29',
 --    email_verified: false,
 --    name: 'Alec Wenzowski',
 --    preferred_username: 'awenzows@idir',
