@@ -6,9 +6,9 @@ import {CiipPageComponentProps} from 'next-env';
 import moment from 'moment-timezone';
 import DefaultLayout from 'layouts/default-layout';
 import RegistrationLoginButtons from 'components/RegistrationLoginButtons';
-import {GUEST, USER} from 'data/group-constants';
+import {GUEST} from 'data/group-constants';
 
-const ALLOWED_GROUPS = [GUEST, USER];
+const ALLOWED_GROUPS = [GUEST];
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];

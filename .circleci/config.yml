@@ -41,7 +41,7 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-{{ checksum "app/yarn.lock" }}
+            - yarn-packages-{{ checksum "app/yarn.lock" }}-1
       - run:
           name: Install Yarn Dependencies
           command: |
@@ -51,9 +51,10 @@ jobs:
             popd
       - save_cache:
           name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "app/yarn.lock" }}
+          key: yarn-packages-{{ checksum "app/yarn.lock" }}-1
           paths:
             - ~/.cache/yarn
+            - ~/.cache/Cypress
       - run:
           name: Configure Cpan
           command: |
@@ -78,6 +79,7 @@ jobs:
           paths:
             - .asdf
             - .bashrc
+            - .cache/Cypress # contains the cypress binary. Needed for the e2e job
             - cas-ciip-portal
             - perl5
 
@@ -202,6 +204,10 @@ jobs:
             source ~/.asdf/asdf.sh
             yarn build:relay # ensure relay modules are compiled from committed schema
             yarn build:next # ensure next.js can compile a production build
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - cas-ciip-portal # persist the build for e2e tests
 
   deploy-test-data:
     machine:
@@ -223,12 +229,12 @@ jobs:
           name: deploy schemas and data
           command: |
             source ~/.bashrc
-            ./.bin/deploy-data.sh
+            ./.bin/deploy-data.sh -dev
       - run:
           name: deploying the data a second time should not fail on primary key conflicts
           command: |
             source ~/.bashrc
-            ./.bin/deploy-data.sh
+            ./.bin/deploy-data.sh -dev
 
   acceptance:
     machine:
@@ -391,6 +397,68 @@ jobs:
             make test PSQL="psql -h localhost" CI_NO_PIPELINE=true
             popd
 
+  e2e:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: "Checkout Submodules"
+          command: |
+            git submodule update --init
+      - run:
+          name: start postgres
+          command: |
+            source ~/.bashrc
+            pg_ctl start
+            createdb `whoami`
+      - run:
+          name: deploy schemas and data
+          command: |
+            source ~/.bashrc
+            ./.bin/deploy-data.sh -dev
+      - run:
+          name: run end-to-end tests with cypress
+          command: |
+            source ~/.asdf/asdf.sh
+            pushd app
+            yarn start & yarn wait-on http://localhost:3004
+            yarn test:e2e
+            popd
+
+  e2e-snapshots:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: "Checkout Submodules"
+          command: |
+            git submodule update --init
+      - run:
+          name: start postgres
+          command: |
+            source ~/.bashrc
+            pg_ctl start
+            createdb `whoami`
+      - run:
+          name: deploy schemas and data
+          command: |
+            source ~/.bashrc
+            ./.bin/deploy-data.sh -dev
+      - run:
+          name: run end-to-end tests with percy and cypress
+          command: |
+            source ~/.asdf/asdf.sh
+            pushd app
+            yarn start & yarn wait-on http://localhost:3004
+            yarn test:e2e-snapshots
+            popd
+
 workflows:
   version: 2
   test:
@@ -420,6 +488,12 @@ workflows:
       - deploy-test-data:
           requires:
             - tools
+      - e2e:
+          requires:
+            - compile
+      - e2e-snapshots:
+          requires:
+            - e2e
       - pathfinder_lint:
           requires:
             - lint
@@ -428,6 +502,8 @@ workflows:
             - schema
             - compile
             - deploy-test-data
+            - e2e
+            - e2e-snapshots
           context: cas-pipeline
           filters:
             branches:
