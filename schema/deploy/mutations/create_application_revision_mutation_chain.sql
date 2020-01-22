@@ -33,6 +33,8 @@ begin
   insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
   values (application_id_input, new_version_number, 'draft');
 
+  select facility_id from ggircs_portal.application where id = application_id_input into facility_id_input;
+
   for temp_row in
     select form_id from ggircs_portal.ciip_application_wizard
   loop
