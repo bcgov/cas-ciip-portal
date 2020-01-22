@@ -1,5 +1,5 @@
 import React, {useState, useMemo} from 'react';
-import {Button, Card, Collapse, Col, Row, Form} from 'react-bootstrap';
+import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import JsonSchemaForm, {FieldProps} from 'react-jsonschema-form';
 import {FormJson} from 'next-env';
@@ -18,6 +18,7 @@ interface Props {
   diffToResults?: any;
   query: ApplicationDetailsCardItem_query;
   review: boolean;
+  showDiff: boolean;
 }
 
 /*
@@ -28,14 +29,14 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   diffFromResults,
   diffToResults,
   query,
-  review
+  review,
+  showDiff
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [showDiff, setShowDiff] = useState(false);
 
   const diffPathArray = [];
   const diffArray = [];
@@ -124,18 +125,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
           <Col md={6}>
             <h4>{formJsonByFormId.name}</h4>
           </Col>
-          <Col md={2}>
-            {diffFromResults ? (
-              <Form.Check
-                label="Show Diff?"
-                checked={showDiff}
-                type="checkbox"
-                onChange={() => setShowDiff(!showDiff)}
-              />
-            ) : null}
-          </Col>
           {review ? (
-            <Col md={{span: 2, offset: 1}}>
+            <Col md={{span: 2, offset: 3}}>
               <ApplicationReviewContainer
                 formName={formJsonByFormId.name}
                 formResultId={formResult.id}

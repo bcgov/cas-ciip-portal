@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Dropdown, Row, Col} from 'react-bootstrap';
+import {Dropdown, Form, Row, Col} from 'react-bootstrap';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import {createRefetchContainer, graphql, RelayRefetchProp} from 'react-relay';
 import {ApplicationDetailsContainer_query} from 'ApplicationDetailsContainer_query.graphql';
@@ -33,6 +33,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
   const [newDiffVersion, setNewDiffVersion] = useState(
     props.application.orderedFormResults.edges[0].node.versionNumber.toString()
   );
+  const [showDiff, setShowDiff] = useState(false);
 
   useEffect(() => {
     const refetchVariables = {
@@ -46,68 +47,83 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
   return (
     <>
       <Row>
-        <Col md={{offset: 4, span: 2}}>
-          <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
-            <Dropdown.Toggle
-              style={{width: '100%', textTransform: 'capitalize'}}
-              id="dropdown-old"
-            >
-              {oldDiffVersion === '0'
-                ? 'swrs import'
-                : 'Version '.concat(oldDiffVersion)}
-            </Dropdown.Toggle>
-            <Dropdown.Menu style={{width: '100%'}}>
-              {props.application.applicationRevisionsByApplicationId.edges.map(
-                ({node}, index) =>
-                  index >= Number(newDiffVersion) ||
-                  index === Number(oldDiffVersion) ? null : (
-                    <DropdownMenuItemComponent
-                      key={node.id}
-                      itemEventKey={node.versionNumber}
-                      itemFunc={setOldDiffVersion}
-                      itemTitle={
-                        node.versionNumber === 0
-                          ? 'swrs import'
-                          : node.versionNumber
-                      }
-                    />
-                  )
-              )}
-            </Dropdown.Menu>
-          </Dropdown>
+        <Col md={{offset: 2, span: 2}}>
+          {diffFromResults ? (
+            <Form.Check
+              label="Show Diff?"
+              checked={showDiff}
+              type="checkbox"
+              onChange={() => setShowDiff(!showDiff)}
+            />
+          ) : null}
         </Col>
-        <Col md={1}>------&gt;</Col>
-        <Col md={2}>
-          <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
-            <Dropdown.Toggle
-              style={{width: '100%', textTransform: 'capitalize'}}
-              id="dropdown-new"
-            >
-              {Number(newDiffVersion) ===
-              props.application.latestSubmittedRevision.versionNumber
-                ? `current (V${newDiffVersion})`
-                : 'Version '.concat(newDiffVersion)}
-            </Dropdown.Toggle>
-            <Dropdown.Menu style={{width: '100%'}}>
-              {props.application.applicationRevisionsByApplicationId.edges.map(
-                ({node}, index) =>
-                  index <= Number(oldDiffVersion) ? null : (
-                    <DropdownMenuItemComponent
-                      key={node.id}
-                      itemEventKey={node.versionNumber}
-                      itemFunc={setNewDiffVersion}
-                      itemTitle={
-                        node.versionNumber ===
-                        props.application.latestSubmittedRevision.versionNumber
-                          ? `current (V${node.versionNumber})`
-                          : node.versionNumber
-                      }
-                    />
-                  )
-              )}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>
+        {showDiff ? (
+          <>
+            <Col md={2}>
+              <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
+                <Dropdown.Toggle
+                  style={{width: '100%', textTransform: 'capitalize'}}
+                  id="dropdown-old"
+                >
+                  {oldDiffVersion === '0'
+                    ? 'swrs import'
+                    : 'Version '.concat(oldDiffVersion)}
+                </Dropdown.Toggle>
+                <Dropdown.Menu style={{width: '100%'}}>
+                  {props.application.applicationRevisionsByApplicationId.edges.map(
+                    ({node}, index) =>
+                      index >= Number(newDiffVersion) ||
+                      index === Number(oldDiffVersion) ? null : (
+                        <DropdownMenuItemComponent
+                          key={node.id}
+                          itemEventKey={node.versionNumber}
+                          itemFunc={setOldDiffVersion}
+                          itemTitle={
+                            node.versionNumber === 0
+                              ? 'swrs import'
+                              : node.versionNumber
+                          }
+                        />
+                      )
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+            <Col md={1}>------&gt;</Col>
+            <Col md={2}>
+              <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
+                <Dropdown.Toggle
+                  style={{width: '100%', textTransform: 'capitalize'}}
+                  id="dropdown-new"
+                >
+                  {Number(newDiffVersion) ===
+                  props.application.latestSubmittedRevision.versionNumber
+                    ? `current (V${newDiffVersion})`
+                    : 'Version '.concat(newDiffVersion)}
+                </Dropdown.Toggle>
+                <Dropdown.Menu style={{width: '100%'}}>
+                  {props.application.applicationRevisionsByApplicationId.edges.map(
+                    ({node}, index) =>
+                      index <= Number(oldDiffVersion) ? null : (
+                        <DropdownMenuItemComponent
+                          key={node.id}
+                          itemEventKey={node.versionNumber}
+                          itemFunc={setNewDiffVersion}
+                          itemTitle={
+                            node.versionNumber ===
+                            props.application.latestSubmittedRevision
+                              .versionNumber
+                              ? `current (V${node.versionNumber})`
+                              : node.versionNumber
+                          }
+                        />
+                      )
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+          </>
+        ) : null}
       </Row>
       <br />
 
@@ -120,6 +136,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
             formResult={node}
             query={props.query.query}
             review={props.review}
+            showDiff={showDiff}
           />
         ))}
         <div style={{textAlign: 'right', marginTop: 20}}>
