@@ -6,10 +6,50 @@ describe('ApplicationDetailsComponent', () => {
   it('should match the snapshot with the ApplicationDetails component', async () => {
     const renderer = shallow(
       <ApplicationDetailsComponent
+        review={false}
         relay={null}
         query={{
           ' $refType': 'ApplicationDetailsContainer_query',
-          query: null
+          ' $fragmentRefs': {
+            ApplicationDetailsPdf_query: true
+          },
+          query: {
+            ' $fragmentRefs': {
+              ApplicationDetailsCardItem_query: true
+            }
+          },
+          old: {
+            orderedFormResults: {
+              edges: [
+                {
+                  node: {
+                    id: 'abc',
+                    versionNumber: 0,
+                    formJsonByFormId: {
+                      slug: 'admin'
+                    },
+                    formResult: null
+                  }
+                }
+              ]
+            }
+          },
+          new: {
+            orderedFormResults: {
+              edges: [
+                {
+                  node: {
+                    id: 'abc',
+                    versionNumber: 2,
+                    formJsonByFormId: {
+                      slug: 'admin'
+                    },
+                    formResult: null
+                  }
+                }
+              ]
+            }
+          }
         }}
         application={{
           ' $refType': 'ApplicationDetailsContainer_application',
@@ -19,6 +59,7 @@ describe('ApplicationDetailsComponent', () => {
               {
                 node: {
                   id: 'WyJmb3JtX3Jlc3VsdHMiLDExXQ==',
+                  versionNumber: 2,
                   ' $fragmentRefs': {
                     ApplicationDetailsCardItem_formResult: true
                   }
@@ -26,17 +67,22 @@ describe('ApplicationDetailsComponent', () => {
               }
             ]
           },
-          previousSubmittedRevision: {
-            formResultsByApplicationIdAndVersionNumber: {
-              edges: {
+          latestSubmittedRevision: {
+            versionNumber: 2
+          },
+          applicationRevisionsByApplicationId: {
+            totalCount: 3,
+            edges: [
+              {
                 node: {
-                  formJsonByFormId: {
-                    slug: 'admin'
-                  },
-                  formResult: {}
+                  id: 'asdfgasd0',
+                  versionNumber: 0
                 }
               }
-            }
+            ]
+          },
+          ' $fragmentRefs': {
+            ApplicationDetailsPdf_application: true
           }
         }}
       />
