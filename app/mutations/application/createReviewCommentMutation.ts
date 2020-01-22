@@ -16,11 +16,7 @@ const mutation = graphql`
       clientMutationId
       reviewCommentEdge {
         node {
-          id
-          description
-          createdAt
-          resolved
-          commentType
+          ...ApplicationCommentsByForm_reviewComment
         }
       }
       query {

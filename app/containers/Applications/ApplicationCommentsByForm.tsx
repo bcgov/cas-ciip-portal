@@ -14,11 +14,12 @@ interface Props {
   reviewComment: ApplicationCommentsByForm_reviewComment;
   relay: RelayProp;
   review: boolean;
-  version: any;
+  version: number;
+  formResultId: string;
 }
 
 export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props => {
-  const {reviewComment, review, version} = props;
+  const {reviewComment, review, version, formResultId} = props;
 
   const resolveComment = async () => {
     const {environment} = props.relay;
@@ -45,14 +46,19 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
         reviewCommentPatch: {
           deletedAt: moment
             .tz('America/Vancouver')
-            .format('YYYY-MM-DDTHH:mm:ss')
+            .format('YYYY-MM-DDTHH:mm:ss'),
+          commentType: reviewComment.commentType
         }
       },
-      applicationId: reviewComment.applicationId,
+      applicationId: reviewComment.applicationByApplicationId.id,
       version: String(version)
     };
 
-    const response = await deleteReviewCommentMutation(environment, variables);
+    const response = await deleteReviewCommentMutation(
+      environment,
+      variables,
+      formResultId
+    );
     console.log(response);
   };
 
@@ -62,12 +68,14 @@ export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props =
         <td>{reviewComment.description}</td>
         {review ? (
           <td style={{textAlign: 'center'}}>
-            <Button onClick={deleteComment}>Delete</Button>
             <Form.Check
               checked={reviewComment.resolved}
               type="checkbox"
               onChange={resolveComment}
             />
+            <Button size="sm" onClick={deleteComment}>
+              Delete
+            </Button>
           </td>
         ) : null}
       </tr>
@@ -88,7 +96,6 @@ export default createFragmentContainer(ApplicationCommentsByForm, {
       createdAt
       resolved
       commentType
-      applicationId
       applicationByApplicationId {
         id
       }
