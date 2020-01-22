@@ -89,7 +89,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
-            <Col md={1}>------&gt;</Col>
+            <Col md={1}>&emsp;------&gt;</Col>
             <Col md={2}>
               <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
                 <Dropdown.Toggle
@@ -204,18 +204,6 @@ export default createRefetchContainer(
               id
               versionNumber
               ...ApplicationDetailsCardItem_formResult
-            }
-          }
-        }
-        previousSubmittedRevision {
-          formResultsByApplicationIdAndVersionNumber {
-            edges {
-              node {
-                formJsonByFormId {
-                  slug
-                }
-                formResult
-              }
             }
           }
         }
