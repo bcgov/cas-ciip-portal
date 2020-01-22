@@ -89,7 +89,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
-            <Col md={1}>&emsp;------&gt;</Col>
+            <Col md={1}>&nbsp;------&gt;</Col>
             <Col md={2}>
               <Dropdown style={{width: '100%', textTransform: 'capitalize'}}>
                 <Dropdown.Toggle

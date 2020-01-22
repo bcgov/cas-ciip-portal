@@ -32,11 +32,11 @@ const customFields = (
 
           return (
             <>
-              <span style={{backgroundColor: '#ffeef0'}}>
+              <span style={{backgroundColor: 'rgba(243,76,96, 0.3)'}}>
                 {prevValue ? prevValue : <i>[No Data Entered]</i>}
               </span>
               &nbsp;---&gt;&nbsp;
-              <span style={{backgroundColor: '#e6ffed'}}>
+              <span style={{backgroundColor: 'rgba(70,241,118, 0.3)'}}>
                 {currentValue ? currentValue : <i>[No Data Entered]</i>}
               </span>
             </>
@@ -66,11 +66,11 @@ const customFields = (
           ];
         return (
           <>
-            <span style={{backgroundColor: '#ffeef0'}}>
+            <span style={{backgroundColor: 'rgba(243,76,96, 0.3)'}}>
               {prevValue ? 'Yes' : 'No'}
             </span>
             &nbsp;---&gt;&nbsp;
-            <span style={{backgroundColor: '#e6ffed'}}>
+            <span style={{backgroundColor: 'rgba(70,241,118, 0.3)'}}>
               {props.formData ? 'Yes' : 'No'}
             </span>
           </>
@@ -108,7 +108,7 @@ const customFields = (
 
           return (
             <>
-              <span style={{backgroundColor: '#ffeef0'}}>
+              <span style={{backgroundColor: 'rgba(243,76,96, 0.3)'}}>
                 {prevValue ? (
                   <NumberFormat
                     thousandSeparator
@@ -120,7 +120,7 @@ const customFields = (
                 )}
               </span>
               &nbsp;---&gt;&nbsp;
-              <span style={{backgroundColor: '#e6ffed'}}>
+              <span style={{backgroundColor: 'rgba(70,241,118, 0.3)'}}>
                 {currentValue ? (
                   <NumberFormat
                     thousandSeparator
