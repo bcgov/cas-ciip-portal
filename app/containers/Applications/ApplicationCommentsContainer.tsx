@@ -43,7 +43,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
               <thead style={{textAlign: 'center'}}>
                 <tr>
                   <th>Comment</th>
-                  {review ? <th>Resolve</th> : null}
+                  {review ? <th>Resolve/Delete</th> : null}
                 </tr>
               </thead>
               <tbody>
@@ -55,6 +55,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                       review={review}
                       reviewComment={node}
                       version={formResult.versionNumber}
+                      formResultId={formResult.id}
                     />
                   );
                 })}
@@ -76,6 +77,7 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                       review={review}
                       reviewComment={node}
                       version={formResult.versionNumber}
+                      formResultId={formResult.id}
                     />
                   );
                 })}

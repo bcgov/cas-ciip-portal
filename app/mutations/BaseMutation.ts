@@ -24,7 +24,8 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     environment: RelayModernEnvironment,
     mutation: GraphQLTaggedNode,
     variables: T['variables'],
-    optimisticResponse?: any
+    optimisticResponse?: any,
+    updater?: any
   ) {
     const clientMutationId = `${this.mutationName}-${this.counter}`;
     variables.input.clientMutationId = clientMutationId;
@@ -41,6 +42,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
         mutation: GraphQLTaggedNode;
         variables: T['variables'];
         optimisticResponse: any;
+        updater: any;
       }
     ) {
       return new Promise<T['response']>((resolve, reject) => {
@@ -61,7 +63,8 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     return commitMutation(environment, {
       mutation,
       variables,
-      optimisticResponse
+      optimisticResponse,
+      updater
     });
   }
 }

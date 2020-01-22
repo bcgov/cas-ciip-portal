@@ -5,6 +5,11 @@ import {
   updateReviewCommentMutation as updateReviewCommentMutationType
 } from 'updateReviewCommentMutation.graphql';
 import BaseMutation from 'mutations/BaseMutation';
+import {
+  SelectorStoreUpdater,
+  RecordSourceProxy
+} from 'relay-runtime/lib/store/RelayStoreTypes';
+import {ConnectionHandler} from 'relay-runtime';
 
 const mutation = graphql`
   mutation deleteReviewCommentMutation(
@@ -13,11 +18,6 @@ const mutation = graphql`
     $version: String!
   ) {
     updateReviewComment(input: $input) {
-      clientMutationId
-      reviewComment {
-        resolved
-        ...ApplicationCommentsByForm_reviewComment
-      }
       query {
         application(id: $applicationId) {
           ...ApplicationDetailsContainer_application
@@ -30,25 +30,28 @@ const mutation = graphql`
 
 const deleteReviewCommentMutation = async (
   environment: RelayModernEnvironment,
-  variables: updateReviewCommentMutationVariables
+  variables: updateReviewCommentMutationVariables,
+  formResultId: string
 ) => {
-  const optimisticResponse = {
-    updateReviewComment: {
-      reviewComment: {
-        id: variables.input.id,
-        ...variables.input.reviewCommentPatch
-      }
-    }
+  let connectionKey = 'ApplicationCommentsContainer_internalGeneralComments';
+
+  if (variables.input.reviewCommentPatch.commentType === 'REQUESTED_CHANGE')
+    connectionKey = 'ApplicationCommentsContainer_requestedChangeComments';
+
+  const updater: SelectorStoreUpdater<RecordSourceProxy> = store => {
+    const formResultRoot = store.get(formResultId);
+    const commentConnection = ConnectionHandler.getConnection(
+      formResultRoot,
+      connectionKey
+    );
+    ConnectionHandler.deleteNode(commentConnection, variables.input.id);
   };
+
   const m = new BaseMutation<updateReviewCommentMutationType>(
     'update-review-comment-mutation'
   );
-  return m.performMutation(
-    environment,
-    mutation,
-    variables,
-    optimisticResponse
-  );
+
+  return m.performMutation(environment, mutation, variables, null, updater);
 };
 
 export default deleteReviewCommentMutation;
