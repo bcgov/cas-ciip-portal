@@ -54,7 +54,6 @@ begin
         form_result = '{}';
       end if;
       if (select prepopulate_from_swrs from ggircs_portal.form_json where id = temp_row.form_id) then
-        has_swrs_data := true;
         select form_result_init_function from ggircs_portal.form_json where id = temp_row.form_id into init_function;
         if (init_function is not null) then
           query := format('select * from ggircs_portal.%I($1, $2);', init_function);
@@ -78,8 +77,13 @@ begin
 
   end loop;
 
+  -- If the application's facility has a report_id then there is a swrs report.
+  if (exists(select id from ggircs_portal.facility where id=facility_id_input and report_id is not null)
+  and last_revision_id_input = 0) then
+    has_swrs_data := true;
+  end if;
+
   -- Create a duplicate revision 'version 0' with form_results if has_swrs_data = true;
-  raise notice 'Has swrs data: %', has_swrs_data;
   if (has_swrs_data) then
     insert into ggircs_portal.application_revision(application_id, version_number)
     values (application_id_input, 0);
