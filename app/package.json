@@ -140,7 +140,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@percy/cypress": "^2.2.0",
-    "@storybook/addon-a11y": "^5.2.8",
+    "@storybook/addon-a11y": "^5.3.8",
     "@storybook/addon-actions": "^5.3.8",
     "@storybook/addon-cssresources": "^5.3.8",
     "@storybook/addon-info": "^5.2.8",
