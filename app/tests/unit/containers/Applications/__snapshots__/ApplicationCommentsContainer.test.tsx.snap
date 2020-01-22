@@ -84,6 +84,7 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
             className="jsx-2020872473"
           >
             <Relay(ApplicationCommentsByForm)
+              formResultId="abc"
               key="abc"
               review={false}
               reviewComment={
@@ -125,6 +126,7 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
             className="jsx-2020872473"
           >
             <Relay(ApplicationCommentsByForm)
+              formResultId="abc"
               key="abc"
               review={false}
               reviewComment={
