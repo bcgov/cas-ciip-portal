@@ -82,7 +82,7 @@ describe('ApplicationDetailsContainer', () => {
     />
   );
 
-  it('should match the snapshot with the summary component', async () => {
+  it.skip('should match the snapshot with the summary component', async () => {
     const renderer = create(<TestRenderer />);
     environment.mock.resolveMostRecentOperation(operation =>
       MockPayloadGenerator.generate(operation, {
