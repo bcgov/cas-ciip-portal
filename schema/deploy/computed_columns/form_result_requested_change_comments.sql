@@ -13,8 +13,8 @@ begin;
         return query (
           select * from ggircs_portal.review_comment rc
             where rc.application_id = form_result.application_id
-            and rc.form_id = form_result.form_id
-            and rc.comment_type = 'requested change'::ggircs_portal.review_comment_type
+            and rc.form_id = form_resuent_type = 'requestedlt.form_id
+            and rc.comm change'::ggircs_portal.review_comment_type
             and rc.deleted_by is null
         );
     end;
