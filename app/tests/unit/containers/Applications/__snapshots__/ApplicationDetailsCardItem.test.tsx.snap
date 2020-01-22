@@ -23,9 +23,6 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
         </h4>
       </Col>
       <Col
-        md={2}
-      />
-      <Col
         md={1}
         style={
           Object {
@@ -78,6 +75,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
           Object {
             "diffArray": Array [],
             "diffPathArray": Array [],
+            "previousIsEmpty": false,
             "query": Object {
               " $fragmentRefs": Object {
                 " $refType": "ProductionFields_query",
