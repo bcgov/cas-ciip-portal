@@ -48,7 +48,7 @@ const deleteReviewCommentMutation = async (
   };
 
   const m = new BaseMutation<updateReviewCommentMutationType>(
-    'update-review-comment-mutation'
+    'delete-review-comment-mutation'
   );
 
   return m.performMutation(environment, mutation, variables, null, updater);
