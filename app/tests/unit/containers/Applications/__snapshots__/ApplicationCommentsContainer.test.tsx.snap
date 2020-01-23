@@ -3,48 +3,59 @@
 exports[`ApplicationCommentsComponent should match the snapshot with the ApplicationCommentsComponent component 1`] = `
 <Fragment>
   <div
-    className="jsx-2020872473 form-result-box"
+    className="jsx-3814283397 form-result-box"
     key="abc"
   >
-    <ForwardRef
-      noGutters={false}
+    <h5
+      className="jsx-3814283397"
     >
-      <Col
-        md={10}
-      >
-        <h5
-          className="jsx-2020872473"
-        >
-           
-          ddd
-           
-        </h5>
-      </Col>
-      <Col
-        md={
-          Object {
-            "span": 1,
-          }
-        }
+      ddd
+       
+      <i
+        aria-label="toggle-card-open"
+        className="jsx-3814283397"
+        onClick={[Function]}
         style={
           Object {
-            "textAlign": "right",
+            "float": "right",
+            "marginRight": "10px",
           }
         }
+        title="expand or collapse the card"
       >
-        <Button
-          active={false}
-          aria-label="toggle-card-open"
-          disabled={false}
-          onClick={[Function]}
-          title="expand or collapse the card"
-          type="button"
-          variant="outline-dark"
-        >
-          -
-        </Button>
-      </Col>
-    </ForwardRef>
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                448,
+                512,
+                Array [],
+                "f078",
+                "M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z",
+              ],
+              "iconName": "chevron-down",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </i>
+    </h5>
     <Collapse
       appear={false}
       dimension="height"
@@ -55,33 +66,26 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
       unmountOnExit={false}
     >
       <div
-        className="jsx-2020872473"
+        className="jsx-3814283397"
       >
         <ForwardRef
-          bordered={true}
           hover={true}
-          striped={true}
         >
           <thead
-            className="jsx-2020872473"
-            style={
-              Object {
-                "textAlign": "center",
-              }
-            }
+            className="jsx-3814283397 comments-header"
           >
             <tr
-              className="jsx-2020872473"
+              className="jsx-3814283397"
             >
               <th
-                className="jsx-2020872473"
+                className="jsx-3814283397"
               >
-                Comment
+                General Comment
               </th>
             </tr>
           </thead>
           <tbody
-            className="jsx-2020872473"
+            className="jsx-3814283397"
           >
             <Relay(ApplicationCommentsByForm)
               formResultId="abc"
@@ -100,30 +104,23 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
           </tbody>
         </ForwardRef>
         <ForwardRef
-          bordered={true}
           hover={true}
-          striped={true}
         >
           <thead
-            className="jsx-2020872473"
-            style={
-              Object {
-                "textAlign": "center",
-              }
-            }
+            className="jsx-3814283397 comments-header"
           >
             <tr
-              className="jsx-2020872473"
+              className="jsx-3814283397"
             >
               <th
-                className="jsx-2020872473"
+                className="jsx-3814283397"
               >
-                Comment
+                Request Changes
               </th>
             </tr>
           </thead>
           <tbody
-            className="jsx-2020872473"
+            className="jsx-3814283397"
           >
             <Relay(ApplicationCommentsByForm)
               formResultId="abc"
@@ -141,20 +138,27 @@ exports[`ApplicationCommentsComponent should match the snapshot with the Applica
             />
           </tbody>
         </ForwardRef>
-        <a
-          className="jsx-2020872473"
-          href="#"
+        <Button
+          active={false}
+          disabled={false}
           onClick={[Function]}
+          style={
+            Object {
+              "textDecoration": "none",
+            }
+          }
+          type="button"
+          variant="link"
         >
           Show Resolved
-        </a>
+        </Button>
       </div>
     </Collapse>
   </div>
   <JSXStyle
-    id="2020872473"
+    id="3814283397"
   >
-    .form-result-box{padding:25px;margin-bottom:20px;border:1px solid #ff713a;border-radius:5px;background-color:#fff4dcab;font-size:14px;}.form-result-box h5{border-bottom:1px solid #888;padding-bottom:10px;margin-bottom:20px;}.hide-title label.form-label{display:none;}
+    .form-result-box{padding:25px;margin-bottom:20px;border:1px solid #ff713a;border-radius:5px;background-color:#fff4dcab;font-size:14px;}.form-result-box h5{border-bottom:1px solid #888;padding-bottom:10px;margin-bottom:20px;}.hide-title label.form-label{display:none;}i{cursor:pointer;}.comments-header{font-weight:bold;color:#036;}.comments-header th{border:0;}
   </JSXStyle>
 </Fragment>
 `;
