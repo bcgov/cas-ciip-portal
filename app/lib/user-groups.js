@@ -1,11 +1,11 @@
 const GROUP_META = require('../data/groups.json');
 
-const getAllGroupNames = () => {
+const getAllGroups = () => {
   return Object.keys(GROUP_META);
 };
 
-const compactGroupNames = groups => {
-  const allDefinedGroups = getAllGroupNames();
+const compactGroups = groups => {
+  const allDefinedGroups = getAllGroups();
 
   // Remove undefined groups
   const validGroups = [];
@@ -16,29 +16,42 @@ const compactGroupNames = groups => {
   return validGroups;
 };
 
-const getUserGroupLandingRoute = groups => {
-  const validGroups = compactGroupNames(groups);
-
-  // Give Guest group if not belong to any group
-  if (validGroups.length === 0) validGroups.push('Guest');
-
-  // Now, find the highest priority group
-  let priorityGroup = GROUP_META[validGroups[0]];
+const getPriorityGroupData = validGroups => {
+  // Find the highest priority group
+  let name = validGroups[0];
+  let priorityGroupData = GROUP_META[name];
 
   for (let x = 1; x < validGroups.length; x++) {
-    const curr = GROUP_META[validGroups[x]];
+    name = validGroups[x];
+    const curr = GROUP_META[name];
 
-    if (curr.priority < priorityGroup.priority) {
-      priorityGroup = curr;
+    if (curr.priority < priorityGroupData.priority) {
+      priorityGroupData = curr;
     }
   }
 
-  // Return the landing route of the highest priority group
-  return priorityGroup.path;
+  // Mutate priority group data to have the name along with priority and path
+  priorityGroupData.name = name;
+  return priorityGroupData;
+};
+
+const getPriorityGroup = groupNames => {
+  const validGroups = compactGroups(groupNames);
+  const priorityGroupData = getPriorityGroupData(validGroups);
+
+  return priorityGroupData.name;
+};
+
+const getUserGroupLandingRoute = groupNames => {
+  const validGroups = compactGroups(groupNames);
+  const priorityGroupData = getPriorityGroupData(validGroups);
+
+  return priorityGroupData.path;
 };
 
 module.exports = {
   getUserGroupLandingRoute,
-  compactGroupNames,
-  getAllGroupNames
+  getPriorityGroup,
+  compactGroups,
+  getAllGroups
 };

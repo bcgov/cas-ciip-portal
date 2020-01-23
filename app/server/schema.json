@@ -25817,6 +25817,18 @@
               "deprecationReason": null
             },
             {
+              "name": "brokerSessionId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "ciipUserBySub",
               "description": "Reads a single `CiipUser` that is related to this `JwtToken`.",
               "args": [],
@@ -25950,6 +25962,18 @@
             },
             {
               "name": "preferredUsername",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "priorityGroup",
               "description": null,
               "args": [],
               "type": {
