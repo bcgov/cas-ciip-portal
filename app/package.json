@@ -101,6 +101,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
     "@graphile-contrib/pg-many-to-many": "^1.0.0-beta.12",
     "@react-pdf/renderer": "^1.6.8",
     "@react-pdf/styled-components": "^1.4.0",
