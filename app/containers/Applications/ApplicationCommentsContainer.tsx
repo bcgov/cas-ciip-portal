@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Collapse, Table, Button, Row, Col} from 'react-bootstrap';
+import {Collapse, Table, Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationCommentsContainer_formResult} from 'ApplicationCommentsContainer_formResult.graphql';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
