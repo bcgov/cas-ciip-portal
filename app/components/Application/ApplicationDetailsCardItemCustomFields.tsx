@@ -32,11 +32,17 @@ const customFields = (
 
           return (
             <>
-              <span style={{backgroundColor: 'rgba(243,76,96, 0.3)'}}>
+              <span
+                className="diffFrom"
+                // ClassName='diffFrom'
+              >
                 {prevValue ? prevValue : <i>[No Data Entered]</i>}
               </span>
               &nbsp;---&gt;&nbsp;
-              <span style={{backgroundColor: 'rgba(70,241,118, 0.3)'}}>
+              <span
+                className="diffTo"
+                // ClassName='diffTo'
+              >
                 {currentValue ? currentValue : <i>[No Data Entered]</i>}
               </span>
             </>
@@ -66,13 +72,9 @@ const customFields = (
           ];
         return (
           <>
-            <span style={{backgroundColor: 'rgba(243,76,96, 0.3)'}}>
-              {prevValue ? 'Yes' : 'No'}
-            </span>
+            <span className="diffFrom">{prevValue ? 'Yes' : 'No'}</span>
             &nbsp;---&gt;&nbsp;
-            <span style={{backgroundColor: 'rgba(70,241,118, 0.3)'}}>
-              {props.formData ? 'Yes' : 'No'}
-            </span>
+            <span className="diffTo">{props.formData ? 'Yes' : 'No'}</span>
           </>
         );
       }
@@ -108,7 +110,7 @@ const customFields = (
 
           return (
             <>
-              <span style={{backgroundColor: 'rgba(243,76,96, 0.3)'}}>
+              <span className="diffFrom">
                 {prevValue ? (
                   <NumberFormat
                     thousandSeparator
@@ -120,7 +122,7 @@ const customFields = (
                 )}
               </span>
               &nbsp;---&gt;&nbsp;
-              <span style={{backgroundColor: 'rgba(70,241,118, 0.3)'}}>
+              <span className="diffTo">
                 {currentValue ? (
                   <NumberFormat
                     thousandSeparator
