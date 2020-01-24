@@ -32,17 +32,11 @@ const customFields = (
 
           return (
             <>
-              <span
-                className="diffFrom"
-                // ClassName='diffFrom'
-              >
+              <span className="diffFrom">
                 {prevValue ? prevValue : <i>[No Data Entered]</i>}
               </span>
               &nbsp;---&gt;&nbsp;
-              <span
-                className="diffTo"
-                // ClassName='diffTo'
-              >
+              <span className="diffTo">
                 {currentValue ? currentValue : <i>[No Data Entered]</i>}
               </span>
             </>

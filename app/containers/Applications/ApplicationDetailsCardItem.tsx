@@ -13,11 +13,19 @@ import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import ApplicationReviewContainer from './ApplicationReviewContainer';
 
 interface Props {
+  // The form_result used by the fragment
   formResult: ApplicationDetailsCardItem_formResult;
+  /** Optional prop (used in review-application only).
+      An array of form results from the version that has been selected to be diffed from (older version) default: current version - 1 */
   diffFromResults?: any;
+  /** Optional prop (used in review-application only).
+      An array of form results from the version that has been selected to be diffed To (newer version) default: current version */
   diffToResults?: any;
+  // The query prop used by the fragment
   query: ApplicationDetailsCardItem_query;
+  // Boolean indicates whether this component is being rendered in a review page or not
   review: boolean;
+  // Boolean indicates whether or not to show the diff between selected versions
   showDiff: boolean;
 }
 
@@ -36,13 +44,18 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const {formJson} = formJsonByFormId;
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
+  // Expands or collapses the form_result card
   const [isOpen, setIsOpen] = useState(false);
 
+  // The array of paths to each difference between diffFrom result & diffTo result (each path matches up with idSchema)
   const diffPathArray = [];
+  // The array of differences
   const diffArray = [];
+  // If the diffFrom result is empty, there is no path. This flag gives us control over what to show in the diff in that case.
   let previousIsEmpty = false;
 
   let diffTo;
+  // Select the correct form result to diff to by matching formJson slugs
   diffToResults.forEach(result => {
     if (result.node.formJsonByFormId.slug === formJsonByFormId.slug)
       diffTo = result;
@@ -50,27 +63,30 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 
   useMemo(() => {
     if (diffFromResults && showDiff) {
-      let previousFormResult;
+      let diffFrom;
+      // Select the correct form result to diff from by matching formJson slugs
       diffFromResults.forEach(result => {
         if (
           diffFromResults.length > 0 &&
           result.node.formJsonByFormId.slug === formJsonByFormId.slug
         ) {
-          previousFormResult = result.node.formResult;
+          diffFrom = result.node.formResult;
         }
       });
 
-      const lhs = previousFormResult;
+      const lhs = diffFrom;
       const rhs = diffTo.node.formResult;
       const differences = diff(lhs, rhs);
 
+      // These are the default values for empty form results. If the form results for the diffFrom are empty, set the previousIsEmpty flag
       if (
-        JSON.stringify(previousFormResult) === '[]' ||
-        JSON.stringify(previousFormResult) === '{}' ||
-        JSON.stringify(previousFormResult) === '[{}]'
+        JSON.stringify(diffFrom) === '[]' ||
+        JSON.stringify(diffFrom) === '{}' ||
+        JSON.stringify(diffFrom) === '[{}]'
       ) {
         previousIsEmpty = true;
       } else if (differences) {
+        // Populate the diffPathArray and diffArray
         differences.forEach(difference => {
           if (difference.path) {
             diffPathArray.push(difference.path.join('_'));
@@ -87,7 +103,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     diffFromResults,
     showDiff
   ]);
-  if (formJsonByFormId.slug === 'production') console.log(diffFromResults);
+
+  // Some formData values are numbers that map to enums, this function uses the number values to return the enum names stored in the schema
   const handleEnums = (props, isCurrent, prevValue) => {
     if (props.schema.enum && props.schema.enumNames) {
       // TODO: needs a fix on jsonschema types (missing enumNames)
