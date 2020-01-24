@@ -2,15 +2,85 @@
 
 exports[`ApplicationCommentsComponent should match the snapshot with the ApplicationCommentsByForm component 1`] = `
 <Fragment>
-  <tr>
-    <td>
-      fix it
+  <tr
+    className="jsx-4122187344"
+  >
+    <td
+      className="jsx-4122187344"
+    >
+      <div
+        className="jsx-4122187344 description"
+      >
+        fix it
+      </div>
+      <div
+        className="jsx-4122187344"
+      >
+        <small
+          className="jsx-4122187344"
+          style={
+            Object {
+              "color": "#777",
+            }
+          }
+        >
+          Test
+           
+          Test
+           (
+          Dec 12th 2019, 12:00 am
+          )
+        </small>
+      </div>
     </td>
   </tr>
-  <tr>
-    <small>
-      Dec 12th 2019, 12:00:00 am
-    </small>
-  </tr>
+  <Bootstrap(Modal)
+    centered={true}
+    onHide={[Function]}
+    show={false}
+  >
+    <ModalHeader
+      closeButton={true}
+      closeLabel="Close"
+    >
+      <ModalTitle>
+        Confirm
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      <p
+        className="jsx-4122187344"
+      >
+        Are you sure you want to delete this comment?
+      </p>
+    </ModalBody>
+    <ModalFooter
+      className="text-center"
+    >
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="secondary"
+      >
+        No, keep it
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="danger"
+      >
+        Yes, delete this comment
+      </Button>
+    </ModalFooter>
+  </Bootstrap(Modal)>
+  <JSXStyle
+    id="4122187344"
+  >
+    .delete-comment-icon.jsx-4122187344{cursor:pointer;margin-left:15px;}
+  </JSXStyle>
 </Fragment>
 `;

@@ -13,7 +13,15 @@ describe('ApplicationCommentsComponent', () => {
           id: 'abc',
           description: 'fix it',
           createdAt: '2019-12-12',
-          resolved: false
+          resolved: false,
+          commentType: 'GENERAL',
+          applicationByApplicationId: {
+            id: '1'
+          },
+          ciipUserByCreatedBy: {
+            firstName: 'Test',
+            lastName: 'Test'
+          }
         }}
       />
     );
@@ -29,11 +37,19 @@ describe('ApplicationCommentsComponent', () => {
           id: 'abc',
           description: 'fix it',
           createdAt: '2019-12-12',
-          resolved: false
+          resolved: false,
+          commentType: 'GENERAL',
+          applicationByApplicationId: {
+            id: '1'
+          },
+          ciipUserByCreatedBy: {
+            firstName: 'Test',
+            lastName: 'Test'
+          }
         }}
       />
     );
-    expect(renderer.find('td').text()).toBe('fix it');
+    expect(renderer.find('td .description').text()).toBe('fix it');
   });
   it('should render the createdAt date', async () => {
     const renderer = shallow(
@@ -45,13 +61,23 @@ describe('ApplicationCommentsComponent', () => {
           id: 'abc',
           description: 'fix it',
           createdAt: '2019-12-12',
-          resolved: false
+          resolved: false,
+          commentType: 'GENERAL',
+          applicationByApplicationId: {
+            id: '1'
+          },
+          ciipUserByCreatedBy: {
+            firstName: 'Test',
+            lastName: 'Test'
+          }
         }}
       />
     );
-    expect(renderer.find('small').text()).toBe('Dec 12th 2019, 12:00:00 am');
+    expect(renderer.find('small').text()).toBe(
+      'Test Test (Dec 12th 2019, 12:00 am)'
+    );
   });
-  it('should not render the resolve checkbox if review prop is false', async () => {
+  it('should not render the resolve button if review prop is false', async () => {
     const renderer = shallow(
       <ApplicationCommentsByForm
         relay={null}
@@ -61,13 +87,21 @@ describe('ApplicationCommentsComponent', () => {
           id: 'abc',
           description: 'fix it',
           createdAt: '2019-12-12',
-          resolved: false
+          resolved: false,
+          commentType: 'GENERAL',
+          applicationByApplicationId: {
+            id: '1'
+          },
+          ciipUserByCreatedBy: {
+            firstName: 'Test',
+            lastName: 'Test'
+          }
         }}
       />
     );
-    expect(renderer.exists('FormCheck')).toBe(false);
+    expect(renderer.exists('Button.resolve-check')).toBe(false);
   });
-  it('should render the resolve checkbox if review prop is true', async () => {
+  it('should render the resolve button if review prop is true', async () => {
     const renderer = shallow(
       <ApplicationCommentsByForm
         review
@@ -77,13 +111,21 @@ describe('ApplicationCommentsComponent', () => {
           id: 'abc',
           description: 'fix it',
           createdAt: '2019-12-12',
-          resolved: false
+          resolved: false,
+          commentType: 'GENERAL',
+          applicationByApplicationId: {
+            id: '1'
+          },
+          ciipUserByCreatedBy: {
+            firstName: 'Test',
+            lastName: 'Test'
+          }
         }}
       />
     );
-    expect(renderer.exists('FormCheck')).toBe(true);
+    expect(renderer.exists('Button.resolve-check')).toBe(true);
   });
-  it('should render the resolve checkbox as un-checked if resolved = true', async () => {
+  it('should render the resolve button as un-checked if resolved = true', async () => {
     const renderer = shallow(
       <ApplicationCommentsByForm
         review
@@ -93,13 +135,21 @@ describe('ApplicationCommentsComponent', () => {
           id: 'abc',
           description: 'fix it',
           createdAt: '2019-12-12',
-          resolved: false
+          resolved: false,
+          commentType: 'GENERAL',
+          applicationByApplicationId: {
+            id: '1'
+          },
+          ciipUserByCreatedBy: {
+            firstName: 'Test',
+            lastName: 'Test'
+          }
         }}
       />
     );
-    expect(renderer.find('FormCheck').prop('checked')).toBe(false);
+    expect(renderer.find('Button.resolve-check').text()).toBe('Resolve');
   });
-  it('should render the resolve checkbox as checked if resolved = true', async () => {
+  it('should render the resolve button as checked if resolved = true', async () => {
     const renderer = shallow(
       <ApplicationCommentsByForm
         review
@@ -109,10 +159,18 @@ describe('ApplicationCommentsComponent', () => {
           id: 'abc',
           description: 'fix it',
           createdAt: '2019-12-12',
-          resolved: true
+          resolved: true,
+          commentType: 'GENERAL',
+          applicationByApplicationId: {
+            id: '1'
+          },
+          ciipUserByCreatedBy: {
+            firstName: 'Test',
+            lastName: 'Test'
+          }
         }}
       />
     );
-    expect(renderer.find('FormCheck').prop('checked')).toBe(true);
+    expect(renderer.find('Button.resolve-check').text()).toBe('Unresolve');
   });
 });

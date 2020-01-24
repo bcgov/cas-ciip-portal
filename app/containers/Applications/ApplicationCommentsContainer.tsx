@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {Collapse, Table, Button, Row, Col} from 'react-bootstrap';
+import {Collapse, Table, Button} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {ApplicationCommentsContainer_formResult} from 'ApplicationCommentsContainer_formResult.graphql';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChevronDown, faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import ApplicationCommentsBox from './ApplicationCommentsByForm';
 
 /*
@@ -22,28 +24,30 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
   return (
     <>
       <div key={formResult.id} className="form-result-box">
-        <Row>
-          <Col md={10}>
-            <h5> {formResult.formJsonByFormId.name} </h5>
-          </Col>
-          <Col md={{span: 1}} style={{textAlign: 'right'}}>
-            <Button
-              aria-label="toggle-card-open"
-              title="expand or collapse the card"
-              variant="outline-dark"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? '+' : '-'}
-            </Button>
-          </Col>
-        </Row>
+        <h5>
+          {formResult.formJsonByFormId.name}{' '}
+          <i
+            aria-label="toggle-card-open"
+            title="expand or collapse the card"
+            style={{float: 'right', marginRight: '10px'}}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? (
+              <FontAwesomeIcon icon={faChevronRight} />
+            ) : (
+              <FontAwesomeIcon icon={faChevronDown} />
+            )}
+          </i>
+        </h5>
         <Collapse in={!isOpen}>
           <div>
-            <Table striped bordered hover>
-              <thead style={{textAlign: 'center'}}>
+            <Table hover>
+              <thead className="comments-header">
                 <tr>
-                  <th>Comment</th>
-                  {review ? <th>Resolve</th> : null}
+                  <th>General Comment</th>
+                  {review ? (
+                    <th style={{textAlign: 'right'}}>Resolve/Delete</th>
+                  ) : null}
                 </tr>
               </thead>
               <tbody>
@@ -54,16 +58,20 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                       key={node.id}
                       review={review}
                       reviewComment={node}
+                      version={formResult.versionNumber}
+                      formResultId={formResult.id}
                     />
                   );
                 })}
               </tbody>
             </Table>
-            <Table striped bordered hover>
-              <thead style={{textAlign: 'center'}}>
+            <Table hover>
+              <thead className="comments-header">
                 <tr>
-                  <th>Comment</th>
-                  {review ? <th>Resolve</th> : null}
+                  <th>Request Changes</th>
+                  {review ? (
+                    <th style={{textAlign: 'right'}}>Resolve/Delete</th>
+                  ) : null}
                 </tr>
               </thead>
               <tbody>
@@ -74,20 +82,20 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
                       key={node.id}
                       review={review}
                       reviewComment={node}
+                      version={formResult.versionNumber}
+                      formResultId={formResult.id}
                     />
                   );
                 })}
               </tbody>
             </Table>
-            {showResolved ? (
-              <a href="#" onClick={() => toggleShowResolved(!showResolved)}>
-                Hide Resolved
-              </a>
-            ) : (
-              <a href="#" onClick={() => toggleShowResolved(!showResolved)}>
-                Show Resolved
-              </a>
-            )}
+            <Button
+              variant="link"
+              style={{textDecoration: 'none'}}
+              onClick={() => toggleShowResolved(!showResolved)}
+            >
+              {showResolved ? 'Hide Resolved' : 'Show Resolved'}
+            </Button>
           </div>
         </Collapse>
       </div>
@@ -110,6 +118,16 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
         .hide-title label.form-label {
           display: none;
         }
+        i {
+          cursor: pointer;
+        }
+        .comments-header {
+          font-weight: bold;
+          color: #036;
+        }
+        .comments-header th {
+          border: 0;
+        }
       `}</style>
     </>
   );
@@ -119,6 +137,7 @@ export default createFragmentContainer(ApplicationCommentsComponent, {
   formResult: graphql`
     fragment ApplicationCommentsContainer_formResult on FormResult {
       id
+      versionNumber
       applicationByApplicationId {
         id
         rowId
