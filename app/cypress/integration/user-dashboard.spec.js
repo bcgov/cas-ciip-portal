@@ -1,4 +1,13 @@
 describe('User dashboard', () => {
+  before(() => {
+    cy.login(
+      Cypress.env('TEST_REPORTER_USERNAME'),
+      Cypress.env('TEST_REPORTER_PASSWORD')
+    );
+  });
+
+  after(() => cy.logout());
+
   it('contains organisation dearch dropdown', () => {
     cy.visit('/reporter/user-dashboard');
     cy.get('.search-dropdown.dropdown').contains('Request access');
