@@ -494,6 +494,11 @@ workflows:
       - e2e-snapshots:
           requires:
             - e2e
+          filters:
+            branches:
+              only:
+                - develop
+                - master
       - pathfinder_lint:
           requires:
             - lint
