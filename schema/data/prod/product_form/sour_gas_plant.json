@@ -21,7 +21,7 @@
           "c3": {
             "type": "number",
             "title": "C3+ (mole %)",
-            "minimum": 6,
+            "minimum": 0,
             "maximum": 100
           },
           "h2s": {

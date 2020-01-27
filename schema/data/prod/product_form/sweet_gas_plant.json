@@ -21,13 +21,13 @@
           "c3": {
             "type": "number",
             "title": "C3+ (mole %)",
-            "minimum": 6,
+            "minimum": 0,
             "maximum": 100
           },
           "h2s": {
             "type": "number",
             "title": "H2S (mole %)",
-            "exclusieMinimum": 2,
+            "exclusiveMinimum": 2,
             "maximum": 100
           },
           "co2": {
