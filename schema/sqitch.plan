@@ -3,6 +3,7 @@
 %uri=https://github.com/bcgov/cas-ggircs/app
 
 schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a schema for the GGIRCS Industry Portal (GIP)
+create_roles [schema_ggircs_portal] 2020-01-27T21:15:42Z Dylan Leard <dylan@button.is> # Adds the roles necessary for row level security
 trigger_functions/update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
 trigger_functions/set_random_id [schema_ggircs_portal] 2019-12-04T00:34:07Z Dylan Leard <dylan@button.is> # Trigger function to generate a random string and set it to id
 trigger_functions/set_expiry [schema_ggircs_portal] 2019-12-10T19:13:27Z Dylan Leard <dylan@button.is> # Function sets row expiry
