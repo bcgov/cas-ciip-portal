@@ -15,6 +15,7 @@ create or replace function ggircs_portal.search_application_list(search_field te
                                               join ggircs_portal.application_revision_status status on ar.application_id = status.application_id
                                                 and ar.version_number = status.version_number
                                                 and status.application_revision_status != ''draft''
+                                                and status.version_number != 0
                                               join ggircs_portal.facility f on a.facility_id = f.id
                                               join ggircs_portal.organisation o on f.organisation_id = o.id),
                                               y as (select max(status_id) as max_id from x group by application_id)
@@ -35,6 +36,7 @@ create or replace function ggircs_portal.search_application_list(search_field te
                                               join ggircs_portal.application_revision_status status on ar.application_id = status.application_id
                                                 and ar.version_number = status.version_number
                                                 and status.application_revision_status != ''draft''
+                                                and status.version_number != 0
                                               join ggircs_portal.facility f on a.facility_id = f.id
                                               join ggircs_portal.organisation o on f.organisation_id = o.id),
                                               y as (select max(status_id) as max_id from x group by application_id)

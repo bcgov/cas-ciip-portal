@@ -16,8 +16,8 @@ declare
   query text;
   result ggircs_portal.application_revision;
   facility_id_input int;
+  has_swrs_data boolean default false;
 begin
-
   new_version_number := last_revision_id_input + 1;
 
   -- Insert new row in application_revision
@@ -76,6 +76,30 @@ begin
     end if;
 
   end loop;
+
+  -- If the application's facility has a report_id then there is a swrs report.
+  if (exists(select id from ggircs_portal.facility where id=facility_id_input and report_id is not null)
+  and last_revision_id_input = 0) then
+    has_swrs_data := true;
+  end if;
+
+  -- Create a duplicate revision 'version 0' with form_results if has_swrs_data = true;
+  if (has_swrs_data) then
+    insert into ggircs_portal.application_revision(application_id, version_number)
+    values (application_id_input, 0);
+    insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
+  values (application_id_input, 0, 'submitted');
+    for temp_row in
+      select form_id from ggircs_portal.ciip_application_wizard
+    loop
+      insert into ggircs_portal.form_result(form_id, application_id, version_number, form_result)
+    values (temp_row.form_id, application_id_input, 0, (select fr.form_result
+                                                        from ggircs_portal.form_result fr
+                                                        where fr.application_id = application_id_input
+                                                        and fr.form_id = temp_row.form_id
+                                                        and fr.version_number = 1));
+    end loop;
+  end if;
 
   select * from ggircs_portal.application_revision where application_id = application_id_input and version_number = new_version_number into result;
   return result;

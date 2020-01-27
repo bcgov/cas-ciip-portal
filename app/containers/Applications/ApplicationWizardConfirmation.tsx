@@ -136,6 +136,11 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
   query: graphql`
     fragment ApplicationWizardConfirmation_query on Query {
       ...ApplicationDetailsContainer_query
+        @arguments(
+          applicationId: $applicationId
+          oldVersion: $version
+          newVersion: $version
+        )
     }
   `
 });

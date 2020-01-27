@@ -1,5 +1,5 @@
 import React, {useState, useMemo} from 'react';
-import {Button, Card, Collapse, Col, Row, Form} from 'react-bootstrap';
+import {Button, Card, Collapse, Col, Row} from 'react-bootstrap';
 import {createFragmentContainer, graphql} from 'react-relay';
 import JsonSchemaForm, {FieldProps} from 'react-jsonschema-form';
 import {FormJson} from 'next-env';
@@ -13,10 +13,20 @@ import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import ApplicationReviewContainer from './ApplicationReviewContainer';
 
 interface Props {
+  // The form_result used by the fragment
   formResult: ApplicationDetailsCardItem_formResult;
-  previousFormResults?: any;
+  /** Optional prop (used in review-application only).
+      An array of form results from the version that has been selected to be diffed from (older version) default: current version - 1 */
+  diffFromResults?: any;
+  /** Optional prop (used in review-application only).
+      An array of form results from the version that has been selected to be diffed To (newer version) default: current version */
+  diffToResults?: any;
+  // The query prop used by the fragment
   query: ApplicationDetailsCardItem_query;
+  // Boolean indicates whether this component is being rendered in a review page or not
   review: boolean;
+  // Boolean indicates whether or not to show the diff between selected versions
+  showDiff: boolean;
 }
 
 /*
@@ -24,36 +34,59 @@ interface Props {
  */
 export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props> = ({
   formResult,
-  previousFormResults,
+  diffFromResults,
+  diffToResults,
   query,
-  review
+  review,
+  showDiff
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
   const {schema, uiSchema, customFormats} = formJson as FormJson;
 
+  // Expands or collapses the form_result card
   const [isOpen, setIsOpen] = useState(false);
-  const [showDiff, setShowDiff] = useState(false);
 
+  // The array of paths to each difference between diffFrom result & diffTo result (each path matches up with idSchema)
   const diffPathArray = [];
+  // The array of differences
   const diffArray = [];
+  // If the diffFrom result is empty, there is no path. This flag gives us control over what to show in the diff in that case.
+  let previousIsEmpty = false;
+
+  let diffTo;
+  // Select the correct form result to diff to by matching formJson slugs
+  diffToResults.forEach(result => {
+    if (result.node.formJsonByFormId.slug === formJsonByFormId.slug)
+      diffTo = result;
+  });
+
   useMemo(() => {
-    if (previousFormResults && showDiff) {
-      let previousFormResult;
-      previousFormResults.forEach(result => {
+    if (diffFromResults && showDiff) {
+      let diffFrom;
+      // Select the correct form result to diff from by matching formJson slugs
+      diffFromResults.forEach(result => {
         if (
-          previousFormResults.length > 0 &&
-          result.node.formJsonByFormId.slug === formResult.formJsonByFormId.slug
+          diffFromResults.length > 0 &&
+          result.node.formJsonByFormId.slug === formJsonByFormId.slug
         ) {
-          previousFormResult = result.node.formResult;
+          diffFrom = result.node.formResult;
         }
       });
 
-      const lhs = previousFormResult;
-      const rhs = formResult.formResult;
+      const lhs = diffFrom;
+      const rhs = diffTo.node.formResult;
       const differences = diff(lhs, rhs);
 
-      if (differences) {
+      // These are the default values for empty form results. If the form results for the diffFrom are empty, set the previousIsEmpty flag
+      if (
+        JSON.stringify(diffFrom) === '[]' ||
+        JSON.stringify(diffFrom) === '{}' ||
+        JSON.stringify(diffFrom) === '[{}]'
+      ) {
+        previousIsEmpty = true;
+      } else if (differences) {
+        // Populate the diffPathArray and diffArray
         differences.forEach(difference => {
           if (difference.path) {
             diffPathArray.push(difference.path.join('_'));
@@ -67,17 +100,19 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     diffPathArray,
     formResult.formJsonByFormId.slug,
     formResult.formResult,
-    previousFormResults,
+    diffFromResults,
     showDiff
   ]);
 
+  // Some formData values are numbers that map to enums, this function uses the number values to return the enum names stored in the schema
   const handleEnums = (props, isCurrent, prevValue) => {
     if (props.schema.enum && props.schema.enumNames) {
       // TODO: needs a fix on jsonschema types (missing enumNames)
       const enumIndex = isCurrent
         ? props.schema.enum.indexOf(props.formData)
         : props.schema.enum.indexOf(prevValue);
-      if (enumIndex === -1) return props.formData;
+      if (enumIndex === -1 && isCurrent) return props.formData;
+      if (enumIndex === -1 && !isCurrent) return '[No Data Entered]';
       return props.schema.enumNames[enumIndex];
     }
 
@@ -89,77 +124,84 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   const CUSTOM_FIELDS: Record<
     string,
     React.FunctionComponent<FieldProps>
-  > = customFields(showDiff, diffPathArray, diffArray, handleEnums);
+  > = customFields(
+    showDiff,
+    diffPathArray,
+    diffArray,
+    handleEnums,
+    previousIsEmpty
+  );
   const classTag = formJsonByFormId.slug;
   return (
-    <Card
-      style={{width: '100%', marginBottom: '10px'}}
-      className={`${classTag} summary-card`}
-    >
-      <Card.Header>
-        <Row>
-          <Col md={6}>
-            <h4>{formJsonByFormId.name}</h4>
-          </Col>
-          <Col md={2}>
-            {previousFormResults ? (
-              <Form.Check
-                label="Show Diff?"
-                checked={showDiff}
-                type="checkbox"
-                onChange={() => setShowDiff(!showDiff)}
-              />
-            ) : null}
-          </Col>
-          {review ? (
-            <Col md={{span: 2, offset: 1}}>
-              <ApplicationReviewContainer
-                formName={formJsonByFormId.name}
-                formResultId={formResult.id}
-                formResultStatus={formResult.formResultStatuses}
-                versionNumber={formResult.versionNumber}
-              />
+    <>
+      <Card
+        style={{width: '100%', marginBottom: '10px'}}
+        className={`${classTag} summary-card`}
+      >
+        <Card.Header>
+          <Row>
+            <Col md={6}>
+              <h4>{formJsonByFormId.name}</h4>
             </Col>
-          ) : null}
-          <Col md={1} style={{textAlign: 'right'}}>
-            <Button
-              aria-label="toggle-card-open"
-              title="expand or collapse the card"
-              variant="outline-dark"
-              onClick={() => setIsOpen(!isOpen)}
+            {review ? (
+              <Col md={{span: 2, offset: 3}}>
+                <ApplicationReviewContainer
+                  formName={formJsonByFormId.name}
+                  formResultId={formResult.id}
+                  formResultStatus={formResult.formResultStatuses}
+                  versionNumber={formResult.versionNumber}
+                />
+              </Col>
+            ) : null}
+            <Col md={1} style={{textAlign: 'right'}}>
+              <Button
+                aria-label="toggle-card-open"
+                title="expand or collapse the card"
+                variant="outline-dark"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {isOpen ? '+' : '-'}
+              </Button>
+            </Col>
+          </Row>
+        </Card.Header>
+        <Collapse in={!isOpen}>
+          <Card.Body>
+            <JsonSchemaForm
+              omitExtraData
+              liveOmit
+              ArrayFieldTemplate={SummaryFormArrayFieldTemplate}
+              FieldTemplate={SummaryFormFieldTemplate}
+              showErrorList={false}
+              fields={CUSTOM_FIELDS}
+              customFormats={customFormats}
+              schema={schema}
+              uiSchema={uiSchema}
+              ObjectFieldTemplate={FormObjectFieldTemplate}
+              formData={review ? diffTo.node.formResult : formResult.formResult}
+              formContext={{
+                query,
+                showDiff,
+                diffPathArray,
+                diffArray,
+                previousIsEmpty
+              }}
             >
-              {isOpen ? '+' : '-'}
-            </Button>
-          </Col>
-        </Row>
-      </Card.Header>
-      <Collapse in={!isOpen}>
-        <Card.Body>
-          <JsonSchemaForm
-            omitExtraData
-            liveOmit
-            ArrayFieldTemplate={SummaryFormArrayFieldTemplate}
-            FieldTemplate={SummaryFormFieldTemplate}
-            showErrorList={false}
-            fields={CUSTOM_FIELDS}
-            customFormats={customFormats}
-            schema={schema}
-            uiSchema={uiSchema}
-            ObjectFieldTemplate={FormObjectFieldTemplate}
-            formData={formResult.formResult}
-            formContext={{
-              query,
-              showDiff,
-              diffPathArray,
-              diffArray
-            }}
-          >
-            {/* Over-ride submit button for each form with an empty fragment */}
-            <></>
-          </JsonSchemaForm>
-        </Card.Body>
-      </Collapse>
-    </Card>
+              {/* Over-ride submit button for each form with an empty fragment */}
+              <></>
+            </JsonSchemaForm>
+          </Card.Body>
+        </Collapse>
+      </Card>
+      <style jsx global>{`
+        .diffFrom {
+          background-color: rgba(243, 76, 96, 0.3);
+        }
+        .diffTo {
+          background-color: rgba(70, 241, 118, 0.3);
+        }
+      `}</style>
+    </>
   );
 };
 
