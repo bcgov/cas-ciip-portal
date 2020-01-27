@@ -5,6 +5,7 @@ import {Form, Col} from 'react-bootstrap';
 import {FuelFields_query} from 'FuelFields_query.graphql';
 import SearchDropdown from 'components/SearchDropdown';
 import {JSONSchema6} from 'json-schema';
+import ErrorList from 'components/Forms/ErrorList';
 
 interface Props extends FieldProps {
   query: FuelFields_query;
@@ -28,6 +29,11 @@ const FuelFields: React.FunctionComponent<Props> = ({
     properties: {quantity: quantitySchema}
   } = schema as {properties: Record<string, JSONSchema6>};
 
+  const {
+    FieldTemplate
+  }: {
+    FieldTemplate: React.FunctionComponent<any>;
+  } = registry as any;
   const changeField = (event, key) => {
     onChange({
       ...formData,
@@ -41,6 +47,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
         <Form.Group controlId="id.fuelType">
           <Form.Label>Fuel Type</Form.Label>
           <SearchDropdown
+            errorSchema={errorSchema}
             placeholder="Select fuel or type to filter..."
             defaultInputValue={formData.fuelType}
             options={query.allFuels.edges.map(({node}) => ({
@@ -61,8 +68,18 @@ const FuelFields: React.FunctionComponent<Props> = ({
         </Form.Group>
       </Col>
       <Col xs={12} md={4}>
-        <Form.Group controlId="id.quantity">
-          <Form.Label>Quantity</Form.Label>
+        <FieldTemplate
+          required
+          hidden={false}
+          id="fuel.quantity"
+          classNames="form-group field field-number"
+          label={quantitySchema.title}
+          schema={quantitySchema}
+          uiSchema={uiSchema.quantity || {}}
+          formContext={formContext}
+          help={uiSchema.quantity?.['ui:help']}
+          errors={<ErrorList errors={errorSchema?.Quantity?.__errors as any} />}
+        >
           <registry.fields.NumberField
             required
             schema={quantitySchema}
@@ -71,7 +88,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
             autofocus={autofocus}
             idSchema={idSchema.quantity as IdSchema}
             registry={registry}
-            errorSchema={errorSchema?.annualEmission}
+            errorSchema={errorSchema?.Quantity}
             formContext={formContext}
             disabled={disabled}
             readonly={readonly}
@@ -83,7 +100,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
               })
             }
           />
-        </Form.Group>
+        </FieldTemplate>
       </Col>
       <Col xs={12} md={2}>
         <Form.Group controlId="id.fuelUnits">
@@ -91,6 +108,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
           <Form.Control
             as="select"
             value={formData.fuelUnits}
+            isInvalid={Boolean(errorSchema.Units)}
             onChange={e => changeField(e, 'fuelUnits')}
           >
             <option value="">...</option>
@@ -100,6 +118,11 @@ const FuelFields: React.FunctionComponent<Props> = ({
                 <option key={node.name}>{node.units}</option>
               ))}
           </Form.Control>
+          <Form.Control.Feedback type="invalid">
+            <li style={{fontSize: '16px', color: '#DC3545'}}>
+              {errorSchema?.Units?.__errors[0]}
+            </li>
+          </Form.Control.Feedback>
         </Form.Group>
       </Col>
       <Col xs={12} md={6}>
@@ -108,6 +131,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
           <Form.Control
             as="select"
             value={formData.methodology}
+            isInvalid={Boolean(errorSchema.Methodology)}
             onChange={e => changeField(e, 'methodology')}
           >
             <option value="">...</option>
@@ -117,6 +141,11 @@ const FuelFields: React.FunctionComponent<Props> = ({
               </option>
             ))}
           </Form.Control>
+          <Form.Control.Feedback type="invalid">
+            <li style={{fontSize: '16px', color: '#DC3545'}}>
+              {errorSchema?.Methodology?.__errors[0]}
+            </li>
+          </Form.Control.Feedback>
         </Form.Group>
       </Col>
     </>

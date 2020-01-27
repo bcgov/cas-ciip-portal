@@ -9,6 +9,7 @@ interface Props {
   inputProps: {id: string};
   onChange: (items: Array<{id: string | number; name: string}>) => void;
   selected?: Array<{id: string | number; name: string}>;
+  errorSchema?: any;
 }
 
 const SearchDropdown: React.FunctionComponent<Props> = ({
@@ -18,7 +19,8 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
   options,
   selected,
   inputProps,
-  onChange
+  onChange,
+  errorSchema
 }) => {
   return (
     <>
@@ -41,6 +43,11 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
         selected={selected}
         onChange={items => onChange(items)}
       />
+      {errorSchema && errorSchema['Fuel Type'] ? (
+        <li style={{color: '#DC3545'}}>
+          {errorSchema['Fuel Type'].__errors[0]}
+        </li>
+      ) : null}
       <style jsx global>
         {`
           .typeahead-input {
