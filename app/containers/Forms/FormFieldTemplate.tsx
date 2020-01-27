@@ -17,18 +17,19 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
 }) => {
   if (hidden) return <div className="hidden">{children}</div>;
 
-  const helpText = uiSchema['ui:helplink'] ? (
-    <a
-      className="font-italic"
-      href={uiSchema['ui:helplink']}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {help}
-    </a>
-  ) : (
-    <span className="font-italic text-muted">{help}</span>
-  );
+  const helpText =
+    uiSchema && uiSchema['ui:helplink'] ? (
+      <a
+        className="font-italic"
+        href={uiSchema['ui:helplink']}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {help}
+      </a>
+    ) : (
+      <span className="font-italic text-muted">{help}</span>
+    );
 
   if (schema.type === 'array')
     return (

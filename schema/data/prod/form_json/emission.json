@@ -74,7 +74,9 @@
         },
         "gases": {
           "items": {
-            "ui:field": "emissionGas"
+            "classNames": "hidden-title",
+            "ui:field": "emissionGas",
+            "ui:col-md": 12
           },
           "ui:options": {
             "addable": false,
