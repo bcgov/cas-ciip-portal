@@ -20,11 +20,6 @@ begin;
 
   create unique index user_organisation_user_id_organisation_id_uindex on ggircs_portal.ciip_user_organisation(user_id, organisation_id);
 
-  grant select, insert on ggircs_portal.ciip_user to administrator;
-
-  grant select on ggircs_portal.ciip_user to analyst;
-
-
 
   comment on table ggircs_portal.ciip_user_organisation is 'Table containing the access rights for a user to report on behalf of an organisation';
   comment on column ggircs_portal.ciip_user_organisation.id is 'ciip_user_organisation primary key';

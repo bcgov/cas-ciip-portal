@@ -172,12 +172,12 @@ app.prepare().then(() => {
           token.priority_group === 'Incentive Administrator' ||
           token.priority_group === 'Realm Administrator'
         ) {
-          claims.role = 'administrator';
+          claims.role = 'ciip_administrator';
         } else if (token.priority_group === 'Incentive Analyst') {
-          claims.role = 'analyst';
+          claims.role = 'ciip_analyst';
         } else if (token.priority_group === 'User')
-          claims.role = 'industry_user';
-        else claims.role = 'guest';
+          claims.role = 'ciip_industry_user';
+        else claims.role = 'ciip_guest';
         return claims;
       }
     })
