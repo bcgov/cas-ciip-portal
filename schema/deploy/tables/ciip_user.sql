@@ -32,22 +32,38 @@ create unique index user_email_address_uindex
   create unique index user_email_address_uuuid
   on ggircs_portal.ciip_user(uuid);
 
--- Administrator RLS
-grant select, insert on ggircs_portal.ciip_user to administrator;
+
+
+grant select, insert on ggircs_portal.ciip_user to administrator, industry_user;
 grant update (first_name, last_name, email_address, occupation, phone_number, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by)
-  on ggircs_portal.ciip_user to administrator;
+  on ggircs_portal.ciip_user to administrator, industry_user;
 
 -- Analyst RLS
 grant select on ggircs_portal.ciip_user to analyst;
 
--- Industry User RLS
-grant select, insert on ggircs_portal.ciip_user to industry_user;
-
 alter table ggircs_portal.ciip_user enable row level security;
 
-create policy update_ciip_user on ggircs_portal.ciip_user for update to industry_user
-  using (uuid = '00000000-0000-0000-0000-000000000000'::uuid)
-  with check (uuid = '00000000-0000-0000-0000-000000000000'::uuid);
+-- Administrator RLS
+create policy admin_select_all on ggircs_portal.ciip_user for select to administrator
+  using(true);
+
+create policy admin_insert_all on ggircs_portal.ciip_user for insert to administrator
+  with check(true);
+
+create policy admin_update_all_no_change_uuid on ggircs_portal.ciip_user for update to administrator
+  using(true)
+  with check(true);
+
+-- Industry User RLS
+create policy industry_user_select_own_user on ggircs_portal.ciip_user for select to industry_user
+  using (uuid=(select sub from ggircs_portal.session()));
+
+create policy industry_user_insert_own_user on ggircs_portal.ciip_user for insert to industry_user
+  with check (uuid=(select sub from ggircs_portal.session()));
+
+create policy industry_user_update_own_user on ggircs_portal.ciip_user for update to industry_user
+  using (uuid=(select sub from ggircs_portal.session()))
+  with check (uuid=(select sub from ggircs_portal.session()));
 
 comment on table ggircs_portal.ciip_user is 'Table containing the benchmark and eligibility threshold for a product';
 comment on column ggircs_portal.ciip_user.id is 'Unique ID for the user';
