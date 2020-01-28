@@ -32,6 +32,22 @@ create unique index user_email_address_uindex
   create unique index user_email_address_uuuid
   on ggircs_portal.ciip_user(uuid);
 
+-- Administrator RLS
+grant select, insert on ggircs_portal.ciip_user to administrator;
+grant update (first_name, last_name, email_address, occupation, phone_number, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by)
+  on ggircs_portal.ciip_user to administrator;
+
+-- Analyst RLS
+grant select on ggircs_portal.ciip_user to analyst;
+
+-- Industry User RLS
+grant select, insert on ggircs_portal.ciip_user to industry_user;
+
+alter table ggircs_portal.ciip_user enable row level security;
+
+create policy update_ciip_user on ggircs_portal.ciip_user for update to industry_user
+  using (uuid = '00000000-0000-0000-0000-000000000000'::uuid)
+  with check (uuid = '00000000-0000-0000-0000-000000000000'::uuid);
 
 comment on table ggircs_portal.ciip_user is 'Table containing the benchmark and eligibility threshold for a product';
 comment on column ggircs_portal.ciip_user.id is 'Unique ID for the user';

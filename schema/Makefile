@@ -70,7 +70,7 @@ prove_style:
 .PHONY: prove_unit
 prove_unit:
 	# Run unit test suite using pg_prove
-	@@$(PG_PROVE) --failures -d $(TEST_DB) test/unit/*/*_test.sql
+	@@$(PG_PROVE) --failures -v -d $(TEST_DB) test/unit/*/*_test.sql
 
 .PHONY: prove_prod_data
 prove_prod_data:
