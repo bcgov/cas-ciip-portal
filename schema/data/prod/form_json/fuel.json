@@ -27,7 +27,7 @@
             "enumNames": ["WCI 1.0", "WCI 2.0", "WCI 3.0"]
           }
         },
-        "required": ["Fuel Type", "Quantity", "Units", "Methodology"]
+        "required": ["fuelType", "quantity", "units", "methodology"]
       }
     }
   },

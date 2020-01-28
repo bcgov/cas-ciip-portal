@@ -1,5 +1,6 @@
 import React from 'react';
 import {Typeahead} from 'react-bootstrap-typeahead';
+import ErrorList from 'components/Forms/ErrorList';
 
 interface Props {
   id?: string;
@@ -43,10 +44,8 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
         selected={selected}
         onChange={items => onChange(items)}
       />
-      {errorSchema && errorSchema['Fuel Type'] ? (
-        <li style={{color: '#DC3545'}}>
-          {errorSchema['Fuel Type'].__errors[0]}
-        </li>
+      {errorSchema && errorSchema.fuelType ? (
+        <ErrorList errors={errorSchema?.fuelType?.__errors} />
       ) : null}
       <style jsx global>
         {`

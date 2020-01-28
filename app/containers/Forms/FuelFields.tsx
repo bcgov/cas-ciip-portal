@@ -78,7 +78,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
           uiSchema={uiSchema.quantity || {}}
           formContext={formContext}
           help={uiSchema.quantity?.['ui:help']}
-          errors={<ErrorList errors={errorSchema?.Quantity?.__errors as any} />}
+          errors={<ErrorList errors={errorSchema?.quantity?.__errors as any} />}
         >
           <registry.fields.NumberField
             required
@@ -88,7 +88,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
             autofocus={autofocus}
             idSchema={idSchema.quantity as IdSchema}
             registry={registry}
-            errorSchema={errorSchema?.Quantity}
+            errorSchema={errorSchema?.quantity}
             formContext={formContext}
             disabled={disabled}
             readonly={readonly}
@@ -108,7 +108,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
           <Form.Control
             as="select"
             value={formData.fuelUnits}
-            isInvalid={Boolean(errorSchema.Units)}
+            isInvalid={Boolean(errorSchema.units)}
             onChange={e => changeField(e, 'fuelUnits')}
           >
             <option value="">...</option>
@@ -120,7 +120,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
           </Form.Control>
           <Form.Control.Feedback type="invalid">
             <li style={{fontSize: '16px', color: '#DC3545'}}>
-              {errorSchema?.Units?.__errors[0]}
+              {errorSchema?.units?.__errors[0]}
             </li>
           </Form.Control.Feedback>
         </Form.Group>
@@ -131,7 +131,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
           <Form.Control
             as="select"
             value={formData.methodology}
-            isInvalid={Boolean(errorSchema.Methodology)}
+            isInvalid={Boolean(errorSchema.methodology)}
             onChange={e => changeField(e, 'methodology')}
           >
             <option value="">...</option>
@@ -143,7 +143,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
           </Form.Control>
           <Form.Control.Feedback type="invalid">
             <li style={{fontSize: '16px', color: '#DC3545'}}>
-              {errorSchema?.Methodology?.__errors[0]}
+              {errorSchema?.methodology?.__errors[0]}
             </li>
           </Form.Control.Feedback>
         </Form.Group>
