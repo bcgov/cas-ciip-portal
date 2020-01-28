@@ -69,7 +69,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
       </Col>
       <Col xs={12} md={4}>
         <FieldTemplate
-          required
+          required={schema.required.includes('quantity')}
           hidden={false}
           id="fuel.quantity"
           classNames="form-group field field-number"
@@ -81,7 +81,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
           errors={<ErrorList errors={errorSchema?.quantity?.__errors as any} />}
         >
           <registry.fields.NumberField
-            required
+            required={schema.required.includes('quantity')}
             schema={quantitySchema}
             uiSchema={uiSchema.quantity}
             formData={formData.quantity}
@@ -118,10 +118,8 @@ const FuelFields: React.FunctionComponent<Props> = ({
                 <option key={node.name}>{node.units}</option>
               ))}
           </Form.Control>
-          <Form.Control.Feedback type="invalid">
-            <li style={{fontSize: '16px', color: '#DC3545'}}>
-              {errorSchema?.units?.__errors[0]}
-            </li>
+          <Form.Control.Feedback style={{fontSize: '16px'}} type="invalid">
+            <ErrorList errors={errorSchema?.units?.__errors as any} />
           </Form.Control.Feedback>
         </Form.Group>
       </Col>
@@ -141,10 +139,8 @@ const FuelFields: React.FunctionComponent<Props> = ({
               </option>
             ))}
           </Form.Control>
-          <Form.Control.Feedback type="invalid">
-            <li style={{fontSize: '16px', color: '#DC3545'}}>
-              {errorSchema?.methodology?.__errors[0]}
-            </li>
+          <Form.Control.Feedback style={{fontSize: '16px'}} type="invalid">
+            <ErrorList errors={errorSchema?.methodology?.__errors as any} />
           </Form.Control.Feedback>
         </Form.Group>
       </Col>
