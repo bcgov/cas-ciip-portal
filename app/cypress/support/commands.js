@@ -34,3 +34,11 @@ Cypress.Commands.add('login', (username, password) => {
 Cypress.Commands.add('logout', () => {
   cy.request('/logout');
 });
+
+Cypress.Commands.add('sqlFixture', fixtureName => {
+  // This is not a real promise
+  // eslint-disable-next-line promise/prefer-await-to-then
+  cy.fixture(`${fixtureName}.sql`).then(fixture =>
+    cy.exec(`psql -d ggircs_dev << ${fixture}`)
+  );
+});

@@ -13,6 +13,8 @@ interface FormData {
   productUnits?: string;
   productionAllocationFactor?: number;
   paymentAllocationFactor?: number;
+  importedElectricityAllocationFactor?: number;
+  importedHeatAllocationFactor?: number;
   additionalData?: any;
 }
 
@@ -51,7 +53,9 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     properties: {
       productionAllocationFactor: productionAllocationFactorSchema,
       quantity: quantitySchema,
-      productUnits: productUnitsSchema
+      productUnits: productUnitsSchema,
+      importedElectricityAllocationFactor: importedElectricityAllocationFactorSchema,
+      importedHeatAllocationFactor: importedHeatAllocationFactorSchema
     }
   } = schema as {properties: Record<string, JSONSchema6>};
   const handleProductChange = (productRowId: number) => {
@@ -70,6 +74,20 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     onChange({
       ...formData,
       quantity
+    });
+  };
+
+  const handleImportedElectricityAllocationFactorChange = importedElectricityAllocationFactor => {
+    onChange({
+      ...formData,
+      importedElectricityAllocationFactor
+    });
+  };
+
+  const handleImportedHeatAllocationFactorChange = importedHeatAllocationFactor => {
+    onChange({
+      ...formData,
+      importedHeatAllocationFactor
     });
   };
 
@@ -302,6 +320,76 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           </FieldTemplate>
         </>
       )}
+      <FieldTemplate
+        required={schema.required.includes(
+          'importedElectricityAllocationFactor'
+        )}
+        hidden={false}
+        id="product.importedElectricityAllocationFactor"
+        classNames="form-group field field-number"
+        label={importedElectricityAllocationFactorSchema.title}
+        schema={importedElectricityAllocationFactorSchema}
+        uiSchema={uiSchema.importedElectricityAllocationFactor || {}}
+        formContext={formContext}
+        help={uiSchema.importedElectricityAllocationFactor?.['ui:help']}
+        errors={
+          <ErrorList
+            errors={
+              errorSchema?.importedElectricityAllocationFactor?.__errors as any
+            }
+          />
+        }
+      >
+        <registry.fields.NumberField
+          required={schema.required.includes(
+            'importedElectricityAllocationFactor'
+          )}
+          schema={importedElectricityAllocationFactorSchema}
+          uiSchema={uiSchema.importedElectricityAllocationFactor}
+          formData={formData.importedElectricityAllocationFactor}
+          autofocus={autofocus}
+          idSchema={idSchema.importedElectricityAllocationFactor as IdSchema}
+          registry={registry}
+          errorSchema={errorSchema?.importedElectricityAllocationFactor}
+          formContext={formContext}
+          disabled={disabled}
+          readonly={readonly}
+          name="allocationFactor"
+          onChange={handleImportedElectricityAllocationFactorChange}
+        />
+      </FieldTemplate>
+      <FieldTemplate
+        required={schema.required.includes('importedHeatAllocationFactor')}
+        hidden={false}
+        id="product.importedHeatAllocationFactor"
+        classNames="form-group field field-number"
+        label={importedHeatAllocationFactorSchema.title}
+        schema={importedHeatAllocationFactorSchema}
+        uiSchema={uiSchema.importedHeatAllocationFactor || {}}
+        formContext={formContext}
+        help={uiSchema.importedHeatAllocationFactor?.['ui:help']}
+        errors={
+          <ErrorList
+            errors={errorSchema?.importedHeatAllocationFactor?.__errors as any}
+          />
+        }
+      >
+        <registry.fields.NumberField
+          required={schema.required.includes('importedHeatAllocationFactor')}
+          schema={importedHeatAllocationFactorSchema}
+          uiSchema={uiSchema.importedHeatAllocationFactor}
+          formData={formData.importedHeatAllocationFactor}
+          autofocus={autofocus}
+          idSchema={idSchema.importedHeatAllocationFactor as IdSchema}
+          registry={registry}
+          errorSchema={errorSchema?.importedHeatAllocationFactor}
+          formContext={formContext}
+          disabled={disabled}
+          readonly={readonly}
+          name="allocationFactor"
+          onChange={handleImportedHeatAllocationFactorChange}
+        />
+      </FieldTemplate>
       {additionalDataSchema && (
         <registry.fields.ObjectField
           required

@@ -143,6 +143,10 @@ export const FormComponent: React.FunctionComponent<Props> = ({
             background: #eee;
             border-radius: 6px;
           }
+
+          .hidden {
+            display: none;
+          }
         `}
       </style>
     </div>

@@ -21,15 +21,27 @@
             "type": "string"
           },
           "productionAllocationFactor": {
-            "title": "Product allocation factor (%)",
+            "title": "Emission allocation factor (%)",
             "type": "integer",
             "exclusiveMinimum": 0,
             "maximum": 100
           },
-          "paymentAllocationFactor": {
-            "title": "Product allocation factor (%)",
+          "importedElectricityAllocationFactor": {
+            "title": "Imported electricity allocation factor (%)",
             "type": "integer",
-            "exclusiveMinimum": 0,
+            "minimum": 0,
+            "maximum": 100
+          },
+          "importedHeatAllocationFactor": {
+            "title": "Imported heat allocation factor (%)",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "paymentAllocationFactor": {
+            "title": "Payment allocation factor (%)",
+            "type": "integer",
+            "minimum": 0,
             "maximum": 100
           },
           "additionalData": {

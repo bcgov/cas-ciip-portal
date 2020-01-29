@@ -5,7 +5,8 @@ import {FieldProps} from 'react-jsonschema-form';
 const NumberField: React.FunctionComponent<FieldProps> = ({
   formData,
   onChange,
-  schema
+  schema,
+  idSchema
 }) => {
   const allowNegative =
     (schema.minimum === undefined && schema.exclusiveMinimum === undefined) ||
@@ -15,6 +16,7 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
   return (
     <NumberFormat
       thousandSeparator
+      id={idSchema.$id}
       className="form-control"
       allowNegative={allowNegative}
       decimalScale={4}
