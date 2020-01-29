@@ -6,7 +6,8 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
   formData,
   onChange,
   schema,
-  idSchema
+  idSchema,
+  disabled
 }) => {
   const allowNegative =
     (schema.minimum === undefined && schema.exclusiveMinimum === undefined) ||
@@ -17,6 +18,7 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
     <NumberFormat
       thousandSeparator
       id={idSchema.$id}
+      disabled={disabled}
       className="form-control"
       allowNegative={allowNegative}
       decimalScale={4}
