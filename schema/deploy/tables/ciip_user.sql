@@ -50,16 +50,19 @@ select ggircs_portal.grant_permissions('update',
   'ciip_user', 'ciip_industry_user');
 
 -- Grant ciip_guest permissions
--- ?
+-- Any?
 
 alter table ggircs_portal.ciip_user enable row level security;
 
--- Administrator RLS
+-- ciip_administrator RLS
 select ggircs_portal.create_alter_policy('create', 'admin_select_all', 'ciip_user', 'select', 'ciip_administrator', 'true', null);
 select ggircs_portal.create_alter_policy('create', 'admin_insert_all', 'ciip_user', 'insert', 'ciip_administrator', null, 'true');
 select ggircs_portal.create_alter_policy('create', 'admin_update_all_no_change_uuid', 'ciip_user', 'update', 'ciip_administrator', 'true', 'true');
 
--- Industry User RLS
+-- ciip_analyst RLS
+select ggircs_portal.create_alter_policy('create', 'analyst_select_all', 'ciip_user', 'select', 'ciip_analyst', 'true', null);
+
+-- ciip_industry_user RLS
 select ggircs_portal.create_alter_policy('create', 'ciip_industry_user_select_own_user', 'ciip_user', 'select', 'ciip_industry_user', 'uuid=(select sub from ggircs_portal.session())', null);
 select ggircs_portal.create_alter_policy('create', 'ciip_industry_user_insert_own_user', 'ciip_user', 'insert', 'ciip_industry_user', null, 'uuid=(select sub from ggircs_portal.session())');
 select ggircs_portal.create_alter_policy('create', 'ciip_industry_user_update_own_user', 'ciip_user', 'update', 'ciip_industry_user', 'uuid=(select sub from ggircs_portal.session())', 'uuid=(select sub from ggircs_portal.session())');
