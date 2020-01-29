@@ -82,11 +82,29 @@ describe('The production tab', () => {
       .clear()
       .type('Centrifugal Compression');
     cy.get('.dropdown-item').click();
+    cy.get('#root_0_additionalData_equipment-add').click();
+    cy.get('#root_0_additionalData_equipment_0_id');
+    cy.get('#root_0_additionalData_equipment_0_compressorType');
+    cy.get('#root_0_additionalData_equipment_0_energySource');
+    cy.get('#root_0_additionalData_equipment_0_powerRating');
+    cy.get('#root_0_additionalData_equipment_0_loadingFactor');
+    cy.get('#root_0_additionalData_equipment_0_runtimeHours');
+    cy.get('#root_0_additionalData_equipment_0_consumedEnergy');
+    cy.get('#root_0_additionalData_calculatedQuantity');
     cy.get('#root-add').click();
     cy.get('#root_1_productRowId')
       .clear()
       .type('Reciprocating Compression');
     cy.get('.dropdown-item').click();
+    cy.get('#root_1_additionalData_equipment-add').click();
+    cy.get('#root_1_additionalData_equipment_0_id');
+    cy.get('#root_1_additionalData_equipment_0_compressorType');
+    cy.get('#root_1_additionalData_equipment_0_energySource');
+    cy.get('#root_1_additionalData_equipment_0_powerRating');
+    cy.get('#root_1_additionalData_equipment_0_loadingFactor');
+    cy.get('#root_1_additionalData_equipment_0_runtimeHours');
+    cy.get('#root_1_additionalData_equipment_0_consumedEnergy');
+    cy.get('#root_1_additionalData_calculatedQuantity');
     cy.percySnapshot();
   });
 
@@ -212,7 +230,12 @@ describe('The production tab', () => {
       .clear()
       .type('Lime');
     cy.get('.dropdown-item').click();
-    // TODO
+    cy.get('#root_0_additionalData_lime');
+    cy.get('#root_0_additionalData_limeAllocationFactor');
+    cy.get('#root_0_additionalData_limeKilnDust');
+    cy.get('#root_0_additionalData_limeKilnDustAllocationFactor');
+    cy.get('#root_0_additionalData_soldLimestone');
+    cy.get('#root_0_additionalData_soldLimestoneAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -263,7 +286,10 @@ describe('The production tab', () => {
       .clear()
       .type('Lead-Zinc Smelting');
     cy.get('.dropdown-item').click();
-    // TODO
+    cy.get('#root_0_additionalData_lead');
+    cy.get('#root_0_additionalData_zinc');
+    cy.get('#root_0_additionalData_leadAllocationFactor');
+    cy.get('#root_0_additionalData_zincAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -279,7 +305,12 @@ describe('The production tab', () => {
     cy.get('#root_0_productionAllocationFactor');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
-    // TODO
+    cy.get('#root_0_additionalData_gasComposition_ch4');
+    cy.get('#root_0_additionalData_gasComposition_c2');
+    cy.get('#root_0_additionalData_gasComposition_c3');
+    cy.get('#root_0_additionalData_gasComposition_h2s');
+    cy.get('#root_0_additionalData_gasComposition_co2');
+    cy.get('#root_0_additionalData_gasComposition_h2o');
     cy.percySnapshot();
   });
 
@@ -295,6 +326,12 @@ describe('The production tab', () => {
     cy.get('#root_0_productionAllocationFactor');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
+    cy.get('#root_0_additionalData_gasComposition_ch4');
+    cy.get('#root_0_additionalData_gasComposition_c2');
+    cy.get('#root_0_additionalData_gasComposition_c3');
+    cy.get('#root_0_additionalData_gasComposition_h2s');
+    cy.get('#root_0_additionalData_gasComposition_co2');
+    cy.get('#root_0_additionalData_gasComposition_h2o');
     cy.percySnapshot();
   });
 

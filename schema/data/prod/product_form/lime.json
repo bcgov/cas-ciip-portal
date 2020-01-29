@@ -63,7 +63,8 @@
       "limeKilnDust",
       "limeKilnDustAllocationFactor",
       "soldLimestone",
-      "soldLimestoneAllocationFactor"
+      "soldLimestoneAllocationFactor",
+      "*"
     ]
   }
 }
