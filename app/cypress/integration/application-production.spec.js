@@ -57,6 +57,7 @@ describe('The production tab', () => {
       .type('Cement');
     cy.get('.dropdown-item').click();
     cy.get('input:visible[type=text]').should('have.length', 8);
+    cy.get('#root_0_productionAllocationFactor');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root_0_additionalData_clinkerProduced');
@@ -64,6 +65,7 @@ describe('The production tab', () => {
     cy.get('#root_0_additionalData_endOfYearClinkerInventory');
     cy.get('#root_0_additionalData_startOfYearClinkerInventory');
     cy.get('#root_0_additionalData_clinkerSales');
+    cy.get('#root_0_additionalData_calculatedQuantity');
     cy.percySnapshot();
   });
 

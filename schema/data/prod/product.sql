@@ -6,7 +6,7 @@ overriding system value
 values
 (1,'Aluminum Smelting','tonnes of aluminum produced','active', 5),
 (2, 'Cannabis (flowers and seedlings) grown under cover', 'hectares of growing space', 'active', null),
-(3, 'Cement', 'tonnes of cement equivalent','active', null),
+(3, 'Cement equivalent', 'tonnes of cement equivalent','active', 6),
 (4, 'Centrifugal Compression ','MWh','active',1),
 (5, 'Chemical Pulp', 'bone-dry tonnes','active', null),
 (6, 'Copper equivalent (open pit)','tonnes of Copper equivalent','active',null),
