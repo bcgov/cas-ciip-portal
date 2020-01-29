@@ -20,6 +20,46 @@ begin;
 
   create unique index user_organisation_user_id_organisation_id_uindex on ggircs_portal.ciip_user_organisation(user_id, organisation_id);
 
+  do
+  $grant$
+  begin
+    -- Grant ciip_administrator permissions
+    perform ggircs_portal.grant_permissions('select', null, 'ciip_user_organisation', 'ciip_administrator');
+    perform ggircs_portal.grant_permissions('insert', null, 'ciip_user_organisation', 'ciip_administrator');
+    perform ggircs_portal.grant_permissions('update', null, 'ciip_user_organisation', 'ciip_administrator');
+
+    -- Grant ciip_analyst permissions
+    perform ggircs_portal.grant_permissions('select', null, 'ciip_user_organisation', 'ciip_analyst');
+
+    -- Grant ciip_industry_user permissions
+    perform ggircs_portal.grant_permissions('select', null, 'ciip_user_organisation', 'ciip_industry_user');
+    perform ggircs_portal.grant_permissions('insert', null, 'ciip_user_organisation', 'ciip_industry_user');
+
+    -- Grant ciip_guest permissions
+    -- ?
+  end
+  $grant$;
+
+  -- Enable row-level security
+  alter table ggircs_portal.ciip_user enable row level security;
+
+  do
+  $policy$
+  begin
+    -- ciip_administrator RLS
+    perform ggircs_portal.upsert_policy('admin_select_all', 'ciip_user_organisation', 'select', 'ciip_administrator', 'true');
+    perform ggircs_portal.upsert_policy('admin_insert_all', 'ciip_user_organisation', 'insert', 'ciip_administrator', 'true');
+    perform ggircs_portal.upsert_policy('admin_update_all', 'ciip_user_organisation', 'update', 'ciip_administrator', 'true');
+
+    -- ciip_analyst RLS
+    perform ggircs_portal.upsert_policy('analyst_select_all', 'ciip_user_organisation', 'select', 'ciip_analyst', 'true');
+
+    -- ciip_industry_user RLS
+    perform ggircs_portal.upsert_policy('ciip_industry_user_select_own_row', 'ciip_user_organisation', 'select', 'ciip_industry_user', 'user_id=(select id from ggircs_portal.ciip_user where uuid = (select sub from ggircs_portal.session()))');
+    perform ggircs_portal.upsert_policy('ciip_industry_user_insert_own_row', 'ciip_user_organisation', 'insert', 'ciip_industry_user', $$user_id=(select id from ggircs_portal.ciip_user where uuid = (select sub from ggircs_portal.session())) and status='pending'$$);
+
+  end
+  $policy$;
 
   comment on table ggircs_portal.ciip_user_organisation is 'Table containing the access rights for a user to report on behalf of an organisation';
   comment on column ggircs_portal.ciip_user_organisation.id is 'ciip_user_organisation primary key';

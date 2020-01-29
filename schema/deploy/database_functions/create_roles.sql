@@ -35,8 +35,6 @@ begin
       create role ciip_guest;
    end if;
 
-   grant usage on schema ggircs_portal to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
-   grant execute on all functions in schema ggircs_portal to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
 end
 $do$;
 
