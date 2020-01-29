@@ -18,6 +18,10 @@ create temporary table aluminum_smelting(json_data jsonb);
 create temporary table cement_equivalent(json_data jsonb);
 \copy cement_equivalent(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/product_form/cement_equivalent.json | tr -d ''\n''';
 
+create temporary table lead_zinc(json_data jsonb);
+\copy lead_zinc(json_data) from program 'sed ''s/\\/\\\\/g'' < prod/product_form/lead_zinc.json | tr -d ''\n''';
+
+
 with rows as (
 insert into ggircs_portal.product_form(id, product_form_description, product_form_schema)
 overriding system value
@@ -27,7 +31,9 @@ values
 (3, 'Product form for Sour Gas Plants', (select json_data from sour_gas_plant)),
 (4, 'Product form for Sweet Gas Plants', (select json_data from sweet_gas_plant)),
 (5, 'Product form for Aluminum Smelting', (select json_data from aluminum_smelting)),
-(6, 'Product form for Cement Equivalent', (select json_data from cement_equivalent))
+(6, 'Product form for Cement Equivalent', (select json_data from cement_equivalent)),
+(7, 'Product form for Lead-Zinc smelting', (select json_data from lead_zinc))
+
 
 
 on conflict(id) do update

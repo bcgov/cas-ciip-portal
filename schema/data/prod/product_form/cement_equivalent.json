@@ -30,8 +30,7 @@
       "calculatedQuantity": {
         "title": "Cement equivalent (tonnes)",
         "type": "integer",
-        "exclusiveMinimum": 0,
-        "maximum": 100
+        "exclusiveMinimum": 0
       }
     }
   },

@@ -22,7 +22,7 @@ values
 (16, 'Lime', 'Tonnes','active', null),
 (17, 'Hot dip galvanizing','tonnes of wire processed','active',null),
 (18, 'Hydrogen Peroxide (H2O2)', 'tonnes of pure (100%) Hydrogen Peroxide produced','active', null),
-(19, 'Lead-Zinc Smelting','tonnes of lead and zinc','active',null),
+(19, 'Lead-Zinc Smelting','tonnes of lead and zinc','active', 7),
 (20, 'Sweet Gas Plants','e3m3OE','active',4),
 (21, 'Sour Gas Plants','e3m3OE','active',3),
 (22, 'Sugar (liquid)', 'tonnes','active', null),
