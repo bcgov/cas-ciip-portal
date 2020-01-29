@@ -55,26 +55,14 @@ select ggircs_portal.grant_permissions('update',
 alter table ggircs_portal.ciip_user enable row level security;
 
 -- Administrator RLS
-create policy admin_select_all on ggircs_portal.ciip_user for select to ciip_administrator
-  using(true);
-
-create policy admin_insert_all on ggircs_portal.ciip_user for insert to ciip_administrator
-  with check(true);
-
-create policy admin_update_all_no_change_uuid on ggircs_portal.ciip_user for update to ciip_administrator
-  using(true)
-  with check(true);
+select ggircs_portal.create_alter_policy('create', 'admin_select_all', 'ciip_user', 'select', 'ciip_administrator', 'true', null);
+select ggircs_portal.create_alter_policy('create', 'admin_insert_all', 'ciip_user', 'insert', 'ciip_administrator', null, 'true');
+select ggircs_portal.create_alter_policy('create', 'admin_update_all_no_change_uuid', 'ciip_user', 'update', 'ciip_administrator', 'true', 'true');
 
 -- Industry User RLS
-create policy ciip_industry_user_select_own_user on ggircs_portal.ciip_user for select to ciip_industry_user
-  using (uuid=(select sub from ggircs_portal.session()));
-
-create policy ciip_industry_user_insert_own_user on ggircs_portal.ciip_user for insert to ciip_industry_user
-  with check (uuid=(select sub from ggircs_portal.session()));
-
-create policy ciip_industry_user_update_own_user on ggircs_portal.ciip_user for update to ciip_industry_user
-  using (uuid=(select sub from ggircs_portal.session()))
-  with check (uuid=(select sub from ggircs_portal.session()));
+select ggircs_portal.create_alter_policy('create', 'ciip_industry_user_select_own_user', 'ciip_user', 'select', 'ciip_industry_user', 'uuid=(select sub from ggircs_portal.session())', null);
+select ggircs_portal.create_alter_policy('create', 'ciip_industry_user_insert_own_user', 'ciip_user', 'insert', 'ciip_industry_user', null, 'uuid=(select sub from ggircs_portal.session())');
+select ggircs_portal.create_alter_policy('create', 'ciip_industry_user_update_own_user', 'ciip_user', 'update', 'ciip_industry_user', 'uuid=(select sub from ggircs_portal.session())', 'uuid=(select sub from ggircs_portal.session())');
 
 comment on table ggircs_portal.ciip_user is 'Table containing the benchmark and eligibility threshold for a product';
 comment on column ggircs_portal.ciip_user.id is 'Unique ID for the user';

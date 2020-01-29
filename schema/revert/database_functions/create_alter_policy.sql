@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:database_functions/create_alter_policy from pg
 
-BEGIN;
+begin;
 
--- XXX Add DDLs here.
+drop function ggircs_portal.create_alter_policy;
 
-COMMIT;
+commit;
