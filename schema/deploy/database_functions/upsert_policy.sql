@@ -5,6 +5,8 @@ begin;
 
 -- upsert_policy function with 5 parameters is for select, insert, delete statements
 -- and update operations where the using/with check statements are equal
+-- example: select ggircs_portal.upsert_policy('test_policy', 'test_table', 'update', 'admin', 'true');
+-- becomes: create policy test_policy on ggircs_portal.test_table for update to admin using(true) with check(true);
 create or replace function ggircs_portal.upsert_policy(policy_name text, table_name text, operation text, role_name text, using_check_statement text)
   returns void
   as
@@ -14,7 +16,6 @@ create or replace function ggircs_portal.upsert_policy(policy_name text, table_n
     begin
         -- If policy already exists alter policy, else create a new policy
         if (select 1 from pg_policies where policyname = policy_name and tablename = table_name and schemaname = 'ggircs_portal') then
-          raise notice 'FOUND POLICY';
           common_execute_string := ('alter policy ' || quote_ident(policy_name) ||
                           ' on ggircs_portal.' || quote_ident(table_name) ||
                           ' to ' || quote_ident(role_name));
@@ -22,7 +23,6 @@ create or replace function ggircs_portal.upsert_policy(policy_name text, table_n
           common_execute_string := ('create policy ' || quote_ident(policy_name) ||
                           ' on ggircs_portal.' || quote_ident(table_name) || ' for ' || operation ||
                           ' to ' || quote_ident(role_name));
-          raise notice 'NO POLICY FOUND';
         end if;
 
         -- case statement selections for the different operations
@@ -48,6 +48,8 @@ create or replace function ggircs_portal.upsert_policy(policy_name text, table_n
 
 -- upsert_policy with 6 parameters is for update operations where the using/with check statements are different
 -- this version of the function requires 'using' and 'with check' to be defined in the using_statement and check_statement parameters
+-- example: select ggircs_portal.upsert_policy('test_policy', 'test_table', 'update', 'admin', 'using(true)', 'with check(false)');
+-- becomes: create policy test_policy on ggircs_portal.test_table for update to admin using(true) with check(false);
 create or replace function ggircs_portal.upsert_policy(policy_name text, table_name text, operation text, role_name text, using_statement text, check_statement text)
   returns void
   as
@@ -62,7 +64,7 @@ create or replace function ggircs_portal.upsert_policy(policy_name text, table_n
                           ' to ' || quote_ident(role_name));
       else
         common_execute_string := ('create policy ' || quote_ident(policy_name) ||
-                          ' on ggircs_portal.' || quote_ident(table_name) ||
+                          ' on ggircs_portal.' || quote_ident(table_name) || ' for ' || operation ||
                           ' to ' || quote_ident(role_name));
       end if;
 

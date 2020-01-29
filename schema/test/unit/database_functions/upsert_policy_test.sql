@@ -3,18 +3,11 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(11);
+select plan(13);
 
 create table ggircs_portal.test_table
 (
   id integer primary key generated always as identity
-);
-
-create table ggircs_portal.test_table_2
-(
-  id integer primary key generated always as identity,
-  allowed text,
-  denied text
 );
 
 select has_function(
@@ -71,7 +64,8 @@ select lives_ok(
 select policies_are(
     'ggircs_portal',
     'test_table',
-    ARRAY[ 'admin_select', 'admin_delete', 'admin_insert', 'admin_update']
+    ARRAY[ 'admin_select', 'admin_delete', 'admin_insert', 'admin_update'],
+    'The correct policies ahve been created for ggircs_portal.test_table'
 );
 
 select results_eq(
@@ -95,6 +89,23 @@ select results_eq(
   $$,
   ARRAY['false'::text],
   'policy admin_delete using qualifier has been changed to FALSE'
+);
+
+select lives_ok(
+  $$
+    select ggircs_portal.upsert_policy('different_statement_update', 'test_table', 'update', 'ciip_administrator', 'using(true)', 'with check(false)');
+  $$,
+  'Function upsert_policy (6 params: different using/with check statments) creates a policy with proper variables'
+);
+
+select qual, with_check from pg_policies where policyname = 'different_statement_update';
+
+select row_eq(
+  $$
+    select qual, with_check from pg_policies where policyname = 'different_statement_update'
+  $$,
+  ROW('true'::text, 'false'::text),
+  'policy different_statement_update has different values for using qualifier and with_check'
 );
 
 select finish();
