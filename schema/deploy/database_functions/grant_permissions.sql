@@ -10,7 +10,9 @@ begin;
     declare
       column_name text;
     begin
-      if (column_names is null) then
+      if (lower(operation) not in ('select', 'insert', 'update', 'delete')) then
+        raise exception 'invalid operation variable. Must be one of [select, insert, update, delete]';
+      elsif (column_names is null) then
         execute format('grant ' || quote_ident(operation) || ' on ggircs_portal.'||quote_ident(table_name) || ' to ' || quote_ident(role_name));
       else
         foreach column_name in ARRAY column_names

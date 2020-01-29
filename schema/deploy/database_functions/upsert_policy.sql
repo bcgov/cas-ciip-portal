@@ -40,7 +40,7 @@ create or replace function ggircs_portal.upsert_policy(policy_name text, table_n
                           ' to ' || quote_ident(role_name) ||
                           ' using(' || using_check_statement || ') with check(' || using_check_statement || ')');
           else
-            raise notice 'invalid operation variable';
+            raise exception 'Invalid operation variable. Must be one of [select, insert, update, delete]';
         end case;
     end;
   $function$
@@ -69,7 +69,7 @@ create or replace function ggircs_portal.upsert_policy(policy_name text, table_n
                         ' to ' || quote_ident(role_name) ||
                         ' ' || using_statement || ' ' || check_statement);
         else
-          raise notice 'invalid operation variable';
+          raise exception 'invalid operation variable';
       end case;
     end;
   $function$
