@@ -74,27 +74,27 @@ select policies_are(
     ARRAY[ 'admin_select', 'admin_delete', 'admin_insert', 'admin_update']
 );
 
-select policy_cmd_is(
-  'ggircs_portal',
-  'test_table',
-  'admin_delete',
-  'delete',
-  'policy admin_delete has command `delete`'
+select results_eq(
+  $$
+    select qual from pg_policies where policyname = 'admin_delete'
+  $$,
+  ARRAY['true'::text],
+  'policy admin_delete using qualifier is TRUE'
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.upsert_policy('admin_update', 'test_table', 'select', 'ciip_administrator', 'true');
+    select ggircs_portal.upsert_policy('admin_delete', 'test_table', 'delete', 'ciip_administrator', 'false');
   $$,
   'Function upsert_policy alters a policy if exists with proper variables'
 );
 
-select policy_cmd_is(
-  'ggircs_portal',
-  'test_table',
-  'admin_delete',
-  'delete',
-  'policy admin_delete has command `select`'
+select results_eq(
+  $$
+    select qual from pg_policies where policyname = 'admin_delete'
+  $$,
+  ARRAY['false'::text],
+  'policy admin_delete using qualifier has been changed to FALSE'
 );
 
 select finish();
