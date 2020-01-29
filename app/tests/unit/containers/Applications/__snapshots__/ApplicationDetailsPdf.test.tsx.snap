@@ -1254,30 +1254,33 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 Array [
                   Object {
                     "additionalData": Object {},
-                    "paymentAllocationFactor": -59999960,
-                    "productRowId": -80000000,
-                    "productUnits": "culpa",
-                    "productionAllocationFactor": -79999980,
-                    "quantity": -40000000,
+                    "importedElectricityAllocationFactor": 30,
+                    "importedHeatAllocationFactor": 50,
+                    "paymentAllocationFactor": 10,
+                    "productRowId": -40000000,
+                    "productUnits": "est dolor",
+                    "productionAllocationFactor": -59999960,
+                    "quantity": 0,
                   },
                   Object {
                     "additionalData": Object {},
-                    "paymentAllocationFactor": -69999970,
-                    "productRowId": 0,
-                    "productUnits": "consequat Ut Duis",
-                    "productionAllocationFactor": -89999990,
-                    "quantity": -60000000,
+                    "importedElectricityAllocationFactor": 30,
+                    "importedHeatAllocationFactor": 50,
+                    "paymentAllocationFactor": 10,
+                    "productRowId": -40000000,
+                    "productUnits": "est dolor",
+                    "productionAllocationFactor": -59999960,
+                    "quantity": 0,
                   },
                   Object {
-                    "additionalData": Object {
-                      "consequat_c": -80000000,
-                      "est1a": -20000000,
-                    },
-                    "paymentAllocationFactor": -79999980,
-                    "productRowId": -20000000,
-                    "productUnits": "mollit eu esse",
-                    "productionAllocationFactor": -49999950,
-                    "quantity": -80000000,
+                    "additionalData": Object {},
+                    "importedElectricityAllocationFactor": 30,
+                    "importedHeatAllocationFactor": 50,
+                    "paymentAllocationFactor": 10,
+                    "productRowId": -40000000,
+                    "productUnits": "est dolor",
+                    "productionAllocationFactor": -59999960,
+                    "quantity": 0,
                   },
                 ]
               }
@@ -1295,10 +1298,22 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "additionalProperties": true,
                           "type": "object",
                         },
-                        "paymentAllocationFactor": Object {
-                          "exclusiveMinimum": 0,
+                        "importedElectricityAllocationFactor": Object {
                           "maximum": 100,
-                          "title": "Product allocation factor (%)",
+                          "minimum": 0,
+                          "title": "Imported electricity allocation factor (%)",
+                          "type": "integer",
+                        },
+                        "importedHeatAllocationFactor": Object {
+                          "maximum": 100,
+                          "minimum": 0,
+                          "title": "Imported heat allocation factor (%)",
+                          "type": "integer",
+                        },
+                        "paymentAllocationFactor": Object {
+                          "maximum": 100,
+                          "minimum": 0,
+                          "title": "Payment allocation factor (%)",
                           "type": "integer",
                         },
                         "productRowId": Object {
@@ -1312,7 +1327,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "productionAllocationFactor": Object {
                           "exclusiveMinimum": 0,
                           "maximum": 100,
-                          "title": "Product allocation factor (%)",
+                          "title": "Emission allocation factor (%)",
                           "type": "integer",
                         },
                         "quantity": Object {

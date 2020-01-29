@@ -103,13 +103,13 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     formContext={Object {}}
     hidden={false}
     id="product.productionAllocationFactor"
-    label="Product allocation factor (%)"
+    label="Emission allocation factor (%)"
     required={true}
     schema={
       Object {
         "exclusiveMinimum": 0,
         "maximum": 100,
-        "title": "Product allocation factor (%)",
+        "title": "Emission allocation factor (%)",
         "type": "integer",
       }
     }
@@ -171,7 +171,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
         Object {
           "exclusiveMinimum": 0,
           "maximum": 100,
-          "title": "Product allocation factor (%)",
+          "title": "Emission allocation factor (%)",
           "type": "integer",
         }
       }
@@ -329,6 +329,168 @@ exports[`The ProductionFields Component should match the snapshot when rendering
         Object {
           "title": "Units",
           "type": "string",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-number"
+    errors={<ErrorList />}
+    formContext={Object {}}
+    hidden={false}
+    id="product.importedElectricityAllocationFactor"
+    label="Imported electricity allocation factor (%)"
+    required={false}
+    schema={
+      Object {
+        "maximum": 100,
+        "minimum": 0,
+        "title": "Imported electricity allocation factor (%)",
+        "type": "integer",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <NumberField
+      autofocus={false}
+      disabled={false}
+      formContext={Object {}}
+      name="allocationFactor"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={false}
+      schema={
+        Object {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Imported electricity allocation factor (%)",
+          "type": "integer",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-number"
+    errors={<ErrorList />}
+    formContext={Object {}}
+    hidden={false}
+    id="product.importedHeatAllocationFactor"
+    label="Imported heat allocation factor (%)"
+    required={false}
+    schema={
+      Object {
+        "maximum": 100,
+        "minimum": 0,
+        "title": "Imported heat allocation factor (%)",
+        "type": "integer",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <NumberField
+      autofocus={false}
+      disabled={false}
+      formContext={Object {}}
+      name="allocationFactor"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={false}
+      schema={
+        Object {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Imported heat allocation factor (%)",
+          "type": "integer",
         }
       }
       uiSchema={Object {}}
@@ -520,13 +682,13 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     formContext={Object {}}
     hidden={false}
     id="product.productionAllocationFactor"
-    label="Product allocation factor (%)"
+    label="Emission allocation factor (%)"
     required={true}
     schema={
       Object {
         "exclusiveMinimum": 0,
         "maximum": 100,
-        "title": "Product allocation factor (%)",
+        "title": "Emission allocation factor (%)",
         "type": "integer",
       }
     }
@@ -588,7 +750,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
         Object {
           "exclusiveMinimum": 0,
           "maximum": 100,
-          "title": "Product allocation factor (%)",
+          "title": "Emission allocation factor (%)",
           "type": "integer",
         }
       }
@@ -746,6 +908,168 @@ exports[`The ProductionFields Component should match the snapshot when rendering
         Object {
           "title": "Units",
           "type": "string",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-number"
+    errors={<ErrorList />}
+    formContext={Object {}}
+    hidden={false}
+    id="product.importedElectricityAllocationFactor"
+    label="Imported electricity allocation factor (%)"
+    required={false}
+    schema={
+      Object {
+        "maximum": 100,
+        "minimum": 0,
+        "title": "Imported electricity allocation factor (%)",
+        "type": "integer",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <NumberField
+      autofocus={false}
+      disabled={false}
+      formContext={Object {}}
+      name="allocationFactor"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={false}
+      schema={
+        Object {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Imported electricity allocation factor (%)",
+          "type": "integer",
+        }
+      }
+      uiSchema={Object {}}
+    />
+  </FormFieldTemplate>
+  <FormFieldTemplate
+    classNames="form-group field field-number"
+    errors={<ErrorList />}
+    formContext={Object {}}
+    hidden={false}
+    id="product.importedHeatAllocationFactor"
+    label="Imported heat allocation factor (%)"
+    required={false}
+    schema={
+      Object {
+        "maximum": 100,
+        "minimum": 0,
+        "title": "Imported heat allocation factor (%)",
+        "type": "integer",
+      }
+    }
+    uiSchema={Object {}}
+  >
+    <NumberField
+      autofocus={false}
+      disabled={false}
+      formContext={Object {}}
+      name="allocationFactor"
+      onChange={[Function]}
+      readonly={false}
+      registry={
+        Object {
+          "ArrayFieldTemplate": [Function],
+          "FieldTemplate": [Function],
+          "ObjectFieldTemplate": [Function],
+          "definitions": Object {},
+          "fields": Object {
+            "AnyOfField": [Function],
+            "ArrayField": [Function],
+            "BooleanField": [Function],
+            "DescriptionField": [Function],
+            "NullField": [Function],
+            "NumberField": [Function],
+            "ObjectField": [Function],
+            "OneOfField": [Function],
+            "SchemaField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "UnsupportedField": [Function],
+          },
+          "formContext": Object {},
+          "widgets": Object {
+            "AltDateTimeWidget": [Function],
+            "AltDateWidget": [Function],
+            "BaseInput": [Function],
+            "CheckboxWidget": [Function],
+            "CheckboxesWidget": [Function],
+            "ColorWidget": [Function],
+            "DateTimeWidget": [Function],
+            "DateWidget": [Function],
+            "EmailWidget": [Function],
+            "FileWidget": [Function],
+            "HiddenWidget": [Function],
+            "PasswordWidget": [Function],
+            "RadioWidget": [Function],
+            "RangeWidget": [Function],
+            "SelectWidget": [Function],
+            "TextWidget": [Function],
+            "TextareaWidget": [Function],
+            "URLWidget": [Function],
+            "UpDownWidget": [Function],
+          },
+        }
+      }
+      required={false}
+      schema={
+        Object {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Imported heat allocation factor (%)",
+          "type": "integer",
         }
       }
       uiSchema={Object {}}
