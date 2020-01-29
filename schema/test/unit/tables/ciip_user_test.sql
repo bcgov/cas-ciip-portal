@@ -5,6 +5,8 @@ reset client_min_messages;
 begin;
 select plan(11);
 
+create role test_superuser superuser;
+
 -- Table exists
 select has_table(
   'ggircs_portal', 'ciip_user',
@@ -94,7 +96,7 @@ select concat('current user is: ', (select current_user));
 -- Try to update ciip user data where
 update ggircs_portal.ciip_user set first_name = 'buddy' where uuid!=(select sub from ggircs_portal.session());
 
-set role postgres;
+set role test_superuser;
 select concat('current user is: ', (select current_user));
 
 select is_empty(
