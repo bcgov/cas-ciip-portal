@@ -1333,6 +1333,8 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
               </label>
               <input
                 className="form-control"
+                disabled={false}
+                id="root_electricity_purchased"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1357,6 +1359,8 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
               </label>
               <input
                 className="form-control"
+                disabled={false}
+                id="root_electricity_generatedOnSite"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1381,6 +1385,8 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
               </label>
               <input
                 className="form-control"
+                disabled={false}
+                id="root_electricity_consumedOnSite"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1405,6 +1411,8 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
               </label>
               <input
                 className="form-control"
+                disabled={false}
+                id="root_electricity_sold"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1449,6 +1457,8 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
               </label>
               <input
                 className="form-control"
+                disabled={false}
+                id="root_heat_purchased"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1473,6 +1483,8 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
               </label>
               <input
                 className="form-control"
+                disabled={false}
+                id="root_heat_generatedOnSite"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1497,6 +1509,8 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
               </label>
               <input
                 className="form-control"
+                disabled={false}
+                id="root_heat_consumedOnSite"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1521,6 +1535,8 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
               </label>
               <input
                 className="form-control"
+                disabled={false}
+                id="root_heat_sold"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1777,6 +1793,8 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                     >
                                       <input
                                         className="form-control"
+                                        disabled={false}
+                                        id="root_sourceTypes_0_gases_0_annualEmission"
                                         onBlur={[Function]}
                                         onChange={[Function]}
                                         onFocus={[Function]}
@@ -1887,6 +1905,8 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                     >
                                       <input
                                         className="form-control"
+                                        disabled={false}
+                                        id="root_sourceTypes_0_gases_1_annualEmission"
                                         onBlur={[Function]}
                                         onChange={[Function]}
                                         onFocus={[Function]}
@@ -2093,6 +2113,8 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                     >
                                       <input
                                         className="form-control"
+                                        disabled={false}
+                                        id="root_sourceTypes_1_gases_0_annualEmission"
                                         onBlur={[Function]}
                                         onChange={[Function]}
                                         onFocus={[Function]}

@@ -7,6 +7,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
   canAdd,
   onAddClick,
   uiSchema,
+  idSchema,
   className
 }) => {
   return (
@@ -41,7 +42,11 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
         <Form.Row>
           <Col xs={12}>
             <div className="add-button-container">
-              <Button type="button" onClick={onAddClick}>
+              <Button
+                id={`${idSchema.$id}-add`}
+                type="button"
+                onClick={onAddClick}
+              >
                 {uiSchema['ui:add-text'] || 'Add'}
               </Button>
             </div>

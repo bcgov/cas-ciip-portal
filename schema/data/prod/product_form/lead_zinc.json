@@ -1,0 +1,60 @@
+{
+  "schema": {
+    "type": "object",
+    "properties": {
+      "lead": {
+        "title": "Lead production (tonnes)",
+        "type": "integer",
+        "minimum": 0
+      },
+      "leadAllocationFactor": {
+        "title": "Allocation of facility emissions to Lead production (%)",
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 100
+      },
+      "zinc": {
+        "title": "Zinc production (tonnes)",
+        "type": "integer",
+        "minimum": 0
+      },
+      "zincAllocationFactor": {
+        "title": "Allocation of facility emissions to Zinc production (%)",
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 100
+      },
+      "calculatedQuantity": {
+        "title": "Total (tonnes)",
+        "type": "integer",
+        "minimum": 0
+      },
+      "calculatedProductionAllocationFactor": {
+        "title": "Total allocation factor (%)",
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 100
+      }
+    }
+  },
+  "uiSchema": {
+    "ui:formulae": {
+      "calculatedQuantity": "lead + zinc",
+      "calculatedProductionAllocationFactor": "leadAllocationFactor + zincAllocationFactor"
+    },
+    "calculatedQuantity": {
+      "ui:disabled": true
+    },
+    "calculatedProductionAllocationFactor": {
+      "ui:disabled": true
+    },
+    "ui:order": [
+      "lead",
+      "leadAllocationFactor",
+      "zinc",
+      "zincAllocationFactor",
+      "calculatedQuantity",
+      "calculatedProductionAllocationFactor"
+    ]
+  }
+}

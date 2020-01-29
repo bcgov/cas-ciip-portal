@@ -1,12 +1,12 @@
 describe('When logged in as a reporter', () => {
-  before(() => {
+  beforeEach(() => {
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
     );
   });
 
-  after(() => cy.logout());
+  afterEach(() => cy.logout());
 
   it('The index page redirects to the reporter dashboard', () => {
     cy.visit('/');
