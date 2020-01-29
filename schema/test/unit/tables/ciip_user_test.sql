@@ -12,7 +12,10 @@ select has_table(
   'ggircs_portal', 'ciip_user',
   'ggircs_portal.ciip_user should exist, and be a table'
 );
--- select * from ggircs_portal.ciip_user;
+
+
+-- Row level security tests --
+
 set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
 
 set role ciip_administrator;

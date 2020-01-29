@@ -41,7 +41,7 @@ begin;
   $grant$;
 
   -- Enable row-level security
-  alter table ggircs_portal.ciip_user enable row level security;
+  alter table ggircs_portal.ciip_user_organisation enable row level security;
 
   do
   $policy$
@@ -55,7 +55,13 @@ begin;
     perform ggircs_portal.upsert_policy('analyst_select_all', 'ciip_user_organisation', 'select', 'ciip_analyst', 'true');
 
     -- ciip_industry_user RLS
-    perform ggircs_portal.upsert_policy('ciip_industry_user_select_own_row', 'ciip_user_organisation', 'select', 'ciip_industry_user', 'user_id=(select id from ggircs_portal.ciip_user where uuid = (select sub from ggircs_portal.session()))');
+    perform ggircs_portal.upsert_policy(
+      'ciip_industry_user_select_own_row',
+      'ciip_user_organisation',
+      'select',
+      'ciip_industry_user',
+      $$user_id=(select id from ggircs_portal.ciip_user where uuid = (select sub from ggircs_portal.session()))$$
+    );
     perform ggircs_portal.upsert_policy('ciip_industry_user_insert_own_row', 'ciip_user_organisation', 'insert', 'ciip_industry_user', $$user_id=(select id from ggircs_portal.ciip_user where uuid = (select sub from ggircs_portal.session())) and status='pending'$$);
 
   end
