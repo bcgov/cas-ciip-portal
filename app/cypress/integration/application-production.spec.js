@@ -22,7 +22,7 @@ describe('The production tab', () => {
     cy.get('input:visible[type=text]').should('have.length', 8);
     cy.get('#root_0_productUnits')
       .invoke('val')
-      .should('contain', 'Tonnes');
+      .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
@@ -39,7 +39,11 @@ describe('The production tab', () => {
     cy.get('.dropdown-item').click();
     cy.get('#root_0_productUnits')
       .invoke('val')
-      .should('contain', 'Hectares');
+      .should('contain', 'hectares');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root-add').click();
     cy.get('#root_1_productRowId')
       .clear()
@@ -47,7 +51,11 @@ describe('The production tab', () => {
     cy.get('.dropdown-item').click();
     cy.get('#root_1_productUnits')
       .invoke('val')
-      .should('contain', 'Hectares');
+      .should('contain', 'hectares');
+    cy.get('#root_1_quantity');
+    cy.get('#root_1_productionAllocationFactor');
+    cy.get('#root_1_importedElectricityAllocationFactor');
+    cy.get('#root_1_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -56,7 +64,7 @@ describe('The production tab', () => {
       .clear()
       .type('Cement');
     cy.get('.dropdown-item').click();
-    cy.get('input:visible[type=text]').should('have.length', 8);
+    cy.get('input:visible[type=text]').should('have.length', 10);
     cy.get('#root_0_productionAllocationFactor');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
@@ -87,7 +95,13 @@ describe('The production tab', () => {
       .clear()
       .type('Chemical pulp');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'bone-dry tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -96,7 +110,13 @@ describe('The production tab', () => {
       .clear()
       .type('Copper equivalent (open pit)');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -105,7 +125,13 @@ describe('The production tab', () => {
       .clear()
       .type('Copper Equivalent (underground)');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -114,7 +140,13 @@ describe('The production tab', () => {
       .clear()
       .type('District energy');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'MWh');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -123,7 +155,13 @@ describe('The production tab', () => {
       .clear()
       .type('Gold');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -132,11 +170,25 @@ describe('The production tab', () => {
       .clear()
       .type('Forged steel balls (grinding media <3.5")');
     cy.get('.dropdown-item').click();
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root-add').click();
     cy.get('#root_1_productRowId')
       .clear()
       .type('Forged steel balls (grinding media >4")');
     cy.get('.dropdown-item').click();
+    cy.get('#root_1_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_1_quantity');
+    cy.get('#root_1_productionAllocationFactor');
+    cy.get('#root_1_importedElectricityAllocationFactor');
+    cy.get('#root_1_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -145,7 +197,13 @@ describe('The production tab', () => {
       .clear()
       .type('Gypsum wallboard');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'square meters');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -154,7 +212,7 @@ describe('The production tab', () => {
       .clear()
       .type('Lime');
     cy.get('.dropdown-item').click();
-
+    // TODO
     cy.percySnapshot();
   });
 
@@ -163,11 +221,25 @@ describe('The production tab', () => {
       .clear()
       .type('Hot dip galvanizing');
     cy.get('.dropdown-item').click();
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root-add').click();
     cy.get('#root_1_productRowId')
       .clear()
       .type('Wire draw');
     cy.get('.dropdown-item').click();
+    cy.get('#root_1_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_1_quantity');
+    cy.get('#root_1_productionAllocationFactor');
+    cy.get('#root_1_importedElectricityAllocationFactor');
+    cy.get('#root_1_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -176,7 +248,13 @@ describe('The production tab', () => {
       .clear()
       .type('Hydrogen Peroxide');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -185,7 +263,7 @@ describe('The production tab', () => {
       .clear()
       .type('Lead-Zinc Smelting');
     cy.get('.dropdown-item').click();
-
+    // TODO
     cy.percySnapshot();
   });
 
@@ -194,7 +272,14 @@ describe('The production tab', () => {
       .clear()
       .type('Sweet Gas Plants');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'e3m3OE');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
+    // TODO
     cy.percySnapshot();
   });
 
@@ -203,7 +288,13 @@ describe('The production tab', () => {
       .clear()
       .type('Sour Gas Plants');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'e3m3OE');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -212,7 +303,13 @@ describe('The production tab', () => {
       .clear()
       .type('Sugar (liquid)');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -221,7 +318,13 @@ describe('The production tab', () => {
       .clear()
       .type('Sugar (solid)');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -230,7 +333,13 @@ describe('The production tab', () => {
       .clear()
       .type('Liquefied Natural Gas');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -239,7 +348,13 @@ describe('The production tab', () => {
       .clear()
       .type('Lumber');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'cubic meters');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -248,7 +363,13 @@ describe('The production tab', () => {
       .clear()
       .type('Coal');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -257,7 +378,13 @@ describe('The production tab', () => {
       .clear()
       .type('Veneer');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'cubic meters');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -266,7 +393,13 @@ describe('The production tab', () => {
       .clear()
       .type('Wood Panels');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'cubic meters');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -275,7 +408,13 @@ describe('The production tab', () => {
       .clear()
       .type('Other Pulp');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'bone-dry tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -284,7 +423,13 @@ describe('The production tab', () => {
       .clear()
       .type('Silver Equivalent');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -293,7 +438,13 @@ describe('The production tab', () => {
       .clear()
       .type('Petroleum Refining');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'BC refining complexity factor unit');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -302,7 +453,13 @@ describe('The production tab', () => {
       .clear()
       .type('Wood pellets');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -311,7 +468,13 @@ describe('The production tab', () => {
       .clear()
       .type('Wood pellets');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 
@@ -320,7 +483,13 @@ describe('The production tab', () => {
       .clear()
       .type('Wood pellets');
     cy.get('.dropdown-item').click();
-
+    cy.get('#root_0_productUnits')
+      .invoke('val')
+      .should('contain', 'tonnes');
+    cy.get('#root_0_quantity');
+    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_importedElectricityAllocationFactor');
+    cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
   });
 });
