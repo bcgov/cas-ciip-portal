@@ -1,12 +1,12 @@
 describe('User dashboard', () => {
-  before(() => {
+  beforeEach(() => {
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
     );
   });
 
-  after(() => cy.logout());
+  afterEach(() => cy.logout());
 
   it('contains organisation dearch dropdown', () => {
     cy.visit('/reporter/user-dashboard');
