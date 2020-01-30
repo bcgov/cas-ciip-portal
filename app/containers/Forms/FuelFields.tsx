@@ -69,7 +69,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
       </Col>
       <Col xs={12} md={4}>
         <FieldTemplate
-          required={schema.required.includes('quantity')}
+          required={schema?.required?.includes('quantity')}
           hidden={false}
           id="fuel.quantity"
           classNames="form-group field field-number"
@@ -81,7 +81,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
           errors={<ErrorList errors={errorSchema?.quantity?.__errors as any} />}
         >
           <registry.fields.NumberField
-            required={schema.required.includes('quantity')}
+            required={schema?.required?.includes('quantity')}
             schema={quantitySchema}
             uiSchema={uiSchema.quantity}
             formData={formData.quantity}

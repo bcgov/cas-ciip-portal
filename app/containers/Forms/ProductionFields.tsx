@@ -321,7 +321,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
         </>
       )}
       <FieldTemplate
-        required={schema.required.includes(
+        required={schema?.required?.includes(
           'importedElectricityAllocationFactor'
         )}
         hidden={false}
@@ -341,7 +341,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
         }
       >
         <registry.fields.NumberField
-          required={schema.required.includes(
+          required={schema?.required?.includes(
             'importedElectricityAllocationFactor'
           )}
           schema={importedElectricityAllocationFactorSchema}
@@ -359,7 +359,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
         />
       </FieldTemplate>
       <FieldTemplate
-        required={schema.required.includes('importedHeatAllocationFactor')}
+        required={schema?.required?.includes('importedHeatAllocationFactor')}
         hidden={false}
         id="product.importedHeatAllocationFactor"
         classNames="form-group field field-number"
@@ -375,7 +375,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
         }
       >
         <registry.fields.NumberField
-          required={schema.required.includes('importedHeatAllocationFactor')}
+          required={schema?.required?.includes('importedHeatAllocationFactor')}
           schema={importedHeatAllocationFactorSchema}
           uiSchema={uiSchema.importedHeatAllocationFactor}
           formData={formData.importedHeatAllocationFactor}
