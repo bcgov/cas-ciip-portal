@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(10);
+select plan(14);
 
 create role test_superuser superuser;
 
@@ -33,8 +33,6 @@ values (999, 'test_org');
 insert into ggircs_portal.organisation(id, operator_name)
 overriding system value
 values (888, 'test_org');
-
-select * from ggircs_portal.ciip_user;
 
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id)
 values (888, 888);
@@ -119,6 +117,42 @@ select throws_like(
   $$,
   '%violates row-level security%',
   'Industry user cannot create a row in ciip_user_organisation with any user_id but their own'
+);
+
+-- CIIP ANALYST
+set role ciip_analyst;
+select concat('current user is: ', (select current_user));
+
+select results_eq(
+  $$
+    select count(*) from ggircs_portal.ciip_user
+  $$,
+  ARRAY[8::bigint],
+  'Analyst can select all from table ciip_user'
+);
+
+select throws_like(
+  $$
+    update ggircs_portal.ciip_user set first_name='buddy'
+  $$,
+  'permission denied%',
+    'Analyst cannot update table ciip_user'
+);
+
+select throws_like(
+  $$
+    insert into ggircs_portal.ciip_user(uuid) values ('22222222-2222-2222-2222-222222222222')
+  $$,
+  'permission denied%',
+    'Analyst cannot insert rows into table ciip_user'
+);
+
+select throws_like(
+  $$
+    delete from ggircs_portal.ciip_user where id=1
+  $$,
+  'permission denied%',
+    'Analyst cannot delete rows from table_ciip_user'
 );
 
 select finish();

@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(11);
+select plan(17);
 
 create role test_superuser superuser;
 
@@ -18,6 +18,7 @@ select has_table(
 
 set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
 
+-- CIIP_ADMINISTRATOR
 set role ciip_administrator;
 select concat('current user is: ', (select current_user));
 
@@ -58,7 +59,15 @@ select throws_like(
     'ciip_administrator can not change data in the uuid column in ciip_user table'
 );
 
+select throws_like(
+  $$
+    delete from ggircs_portal.ciip_user where id=1
+  $$,
+  'permission denied%',
+    'Administrator cannot delete rows from table_ciip_user'
+);
 
+-- CIIP_INDUSTRY_USER
 set role ciip_industry_user;
 select concat('current user is: ', (select current_user));
 
@@ -93,8 +102,13 @@ select throws_like(
     'Industry user cannot update their uuid'
 );
 
-set role ciip_industry_user;
-select concat('current user is: ', (select current_user));
+select throws_like(
+  $$
+    delete from ggircs_portal.ciip_user where id=1
+  $$,
+  'permission denied%',
+    'Industry User cannot delete rows from table_ciip_user'
+);
 
 -- Try to update ciip user data where
 update ggircs_portal.ciip_user set first_name = 'buddy' where uuid!=(select sub from ggircs_portal.session());
@@ -107,6 +121,42 @@ select is_empty(
     select * from ggircs_portal.ciip_user where first_name='buddy'
   $$,
     'Industry user cannot update data if their uuid does not match the uuid of the row'
+);
+
+-- CIIP_ANALYST
+set role ciip_analyst;
+select concat('current user is: ', (select current_user));
+
+select results_eq(
+  $$
+    select count(*) from ggircs_portal.ciip_user
+  $$,
+  ARRAY[7::bigint],
+  'Analyst can select all from table ciip_user'
+);
+
+select throws_like(
+  $$
+    update ggircs_portal.ciip_user set first_name='buddy'
+  $$,
+  'permission denied%',
+    'Analyst cannot update table ciip_user'
+);
+
+select throws_like(
+  $$
+    insert into ggircs_portal.ciip_user(uuid) values ('22222222-2222-2222-2222-222222222222')
+  $$,
+  'permission denied%',
+    'Analyst cannot insert rows into table ciip_user'
+);
+
+select throws_like(
+  $$
+    delete from ggircs_portal.ciip_user where id=1
+  $$,
+  'permission denied%',
+    'Analyst cannot delete rows from table_ciip_user'
 );
 
 select finish();
