@@ -21,7 +21,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_operator_duns +div .error-detail').contains(
       'DUNS number should be nine digits'
     );
-    // Cy.percySnapshot('admin');
+    cy.percySnapshot('admin');
 
     // Emission Form
     cy.get(':nth-child(2) > .nav-link').click();
@@ -140,7 +140,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get(
       '#root_sourceTypes_6_gases_4_annualEmission +div .error-detail'
     ).contains('should be number');
-    // Cy.percySnapshot('emission');
+    cy.percySnapshot('emission');
 
     // Fuel Form
     cy.get(':nth-child(3) > .nav-link').click();
@@ -152,7 +152,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     );
     // TODO: This will need to change once the fuelFields form is refactored.
     cy.get('.invalid-feedback').contains('is a required property');
-    // Cy.percySnapshot('fuel');
+    cy.percySnapshot('fuel');
 
     // Electricity / Heat Form
     cy.get(':nth-child(4) > .nav-link').click();
@@ -169,7 +169,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_electricity_sold +div .error-detail').contains(
       'is a required property'
     );
-    // Cy.percySnapshot('electricity-heat');
+    cy.percySnapshot('electricity-heat');
 
     // Production Form
     cy.get(':nth-child(5) > .nav-link').click();
@@ -184,6 +184,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_0_productUnits +div .error-detail').contains(
       'is a required property'
     );
-    // Cy.percySnapshot('production');
+    cy.percySnapshot('production');
   });
 });
