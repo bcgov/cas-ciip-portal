@@ -97,4 +97,6 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
       end
     $function$ language plpgsql stable;
 
+  grant execute on function ggircs_portal.search_all_facilities to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 commit;

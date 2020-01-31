@@ -41,6 +41,8 @@ begin
 end;
 $$ language plpgsql;
 
+grant execute on function ggircs_portal.checksum_form_results to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on function ggircs_portal.checksum_form_results()
   is $$
   a trigger to checksum the form_result columns from the current and previous versions of an application

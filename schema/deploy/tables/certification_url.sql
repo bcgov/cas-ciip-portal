@@ -33,6 +33,8 @@ create trigger _set_expiry
   for each row
   execute procedure ggircs_portal.set_expiry('7 days');
 
+grant all on table ggircs_portal.certification_url to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on table ggircs_portal.certification_url is 'Table containing the certification_url for an application';
 comment on column ggircs_portal.certification_url.id is 'Unique ID for the certification_url';
 comment on column ggircs_portal.certification_url.application_id is 'Foreign key to the application';

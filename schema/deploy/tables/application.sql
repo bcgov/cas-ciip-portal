@@ -11,6 +11,8 @@ create table ggircs_portal.application (
     reporting_year int references ggircs_portal.reporting_year(reporting_year)
 );
 
+grant all on table ggircs_portal.application to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on table ggircs_portal.application is 'The application data';
 comment on column ggircs_portal.application.id is 'The application id used for reference and join';
 comment on column ggircs_portal.application.facility_id is 'The foreign key to ggircs_portal.facility, references id';

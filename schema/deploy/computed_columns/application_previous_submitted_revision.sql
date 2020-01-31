@@ -27,4 +27,7 @@ begin;
     end;
     $function$
       language 'plpgsql' stable;
+
+  grant execute on function ggircs_portal.application_previous_submitted_revision to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 commit;

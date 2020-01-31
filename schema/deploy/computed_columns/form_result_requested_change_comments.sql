@@ -20,4 +20,7 @@ begin;
     end;
   $body$
   language 'plpgsql' stable;
+
+  grant execute on function ggircs_portal.form_result_requested_change_comments to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 commit;

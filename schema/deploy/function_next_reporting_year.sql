@@ -12,6 +12,8 @@ as $function$
   limit 1;
 $function$ language sql stable;
 
+grant execute on function ggircs_portal.next_reporting_year to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on function ggircs_portal.next_reporting_year is 'Returns the next reporting year to have an application window that opens.
 To get the currently opened reporting year (if any), use opened_reporting_year';
 

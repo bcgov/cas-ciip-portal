@@ -24,6 +24,8 @@ begin;
   create unique index organisation_swrs_report_id_uindex on ggircs_portal.organisation(swrs_report_id);
   --Todo: refactor to add address table in CIIP
 
+  grant all on table ggircs_portal.organisation to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
   comment on table ggircs_portal.organisation is 'Table containing information on an organisaiton that has applied for CIIP';
   comment on column ggircs_portal.organisation.id is 'unique if for the organisation';
   comment on column ggircs_portal.organisation.report_id is 'report id from swrs';

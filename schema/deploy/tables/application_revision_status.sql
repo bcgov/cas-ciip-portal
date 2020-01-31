@@ -36,6 +36,8 @@ create trigger _checksum_form_results
     for each row
     execute procedure ggircs_portal.checksum_form_results();
 
+grant all on table ggircs_portal.application_revision_status to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on table ggircs_portal.application_revision_status is 'The application revision status data';
 comment on column ggircs_portal.application_revision_status.id is 'The id used for reference and join';
 comment on column ggircs_portal.application_revision_status.application_id is 'The foreign key to application used for reference and join';

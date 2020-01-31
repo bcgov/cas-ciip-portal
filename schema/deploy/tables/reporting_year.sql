@@ -12,6 +12,8 @@ create table ggircs_portal.reporting_year (
     application_response_time timestamp with time zone not null
 );
 
+grant all on table ggircs_portal.reporting_year to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on table ggircs_portal.reporting_year is 'Table containing the reporting year and important dates related to the application';
 comment on column ggircs_portal.reporting_year.reporting_year is 'The current reporting year';
 comment on column ggircs_portal.reporting_year.reporting_period_start is 'The date and time reporting period starts';
