@@ -2,6 +2,6 @@
 
 begin;
 -- TODO: should we verify this file by checking all permissions that are set by set_general_permissions?
-select 1=1;
+select true;
 
 rollback;

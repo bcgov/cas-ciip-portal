@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(9);
+select plan(11);
 
 create table ggircs_portal.test_table
 (
@@ -29,6 +29,14 @@ select throws_ok(
   'P0001',
   'invalid operation variable. Must be one of [select, insert, update, delete]',
   'Function grant_permissions throws an exception if the operation variable is not in (select, insert, update, delete)'
+);
+
+select table_privs_are (
+  'ggircs_portal',
+  'test_table',
+  'ciip_administrator',
+  ARRAY[]::text[],
+  'role ciip_administrator has not yet been granted any privileges on ggircs_portal.test_table'
 );
 
 select lives_ok(
@@ -65,6 +73,14 @@ select table_privs_are (
   'ciip_administrator',
   ARRAY['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
   'role ciip_administrator has been granted select, insert, update, delete on ggircs_portal.test_table'
+);
+
+select any_column_privs_are (
+  'ggircs_portal',
+  'test_table_specific_column_grants',
+  'ciip_administrator',
+  ARRAY[]::text[],
+  'role ciip_administrator has not yet been granted any privileges on columns in ggircs_portal.test_table_specific_column_grants'
 );
 
 select lives_ok(

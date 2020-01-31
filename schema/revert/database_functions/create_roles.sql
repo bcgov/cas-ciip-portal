@@ -3,6 +3,6 @@
 begin;
 
 -- The create roles affects the database globally. Cannot drop the roles once created.
-select 1=1;
+select true;
 
 commit;

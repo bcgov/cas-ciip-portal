@@ -24,4 +24,6 @@ begin;
   $function$
   language 'plpgsql' volatile;
 
+  comment on function ggircs_portal.grant_permissions is 'A generic function for granting access-control permissions';
+
 commit;

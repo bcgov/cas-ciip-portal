@@ -15,7 +15,7 @@ create or replace function ggircs_portal.upsert_policy(policy_name text, table_n
       common_execute_string text;
     begin
         -- If policy already exists alter policy, else create a new policy
-        if (select 1 from pg_policies where policyname = policy_name and tablename = table_name and schemaname = 'ggircs_portal') then
+        if (select true from pg_policies where policyname = policy_name and tablename = table_name and schemaname = 'ggircs_portal') then
           common_execute_string := ('alter policy ' || quote_ident(policy_name) ||
                           ' on ggircs_portal.' || quote_ident(table_name) ||
                           ' to ' || quote_ident(role_name));
@@ -58,7 +58,7 @@ create or replace function ggircs_portal.upsert_policy(policy_name text, table_n
       common_execute_string text;
     begin
       -- If policy already exists alter policy, else create a new policy
-      if (select 1 from pg_policies where policyname = policy_name and tablename = table_name and schemaname = 'ggircs_portal') then
+      if (select true from pg_policies where policyname = policy_name and tablename = table_name and schemaname = 'ggircs_portal') then
         common_execute_string := ('alter policy ' || quote_ident(policy_name) ||
                           ' on ggircs_portal.' || quote_ident(table_name) ||
                           ' to ' || quote_ident(role_name));
@@ -78,5 +78,8 @@ create or replace function ggircs_portal.upsert_policy(policy_name text, table_n
     end;
   $function$
   language 'plpgsql' volatile;
+
+  comment on function ggircs_portal.upsert_policy(text, text, text, text, text) is 'A generic function for creating or altering row-level security policies';
+  comment on function ggircs_portal.upsert_policy(text, text, text, text, text, text) is 'A generic function for creating or altering row-level security policies for an update operation when the using statement and with check statement differs';
 
 commit;
