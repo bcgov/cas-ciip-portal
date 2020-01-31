@@ -4,6 +4,7 @@
 
 schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a schema for the GGIRCS Industry Portal (GIP)
 database_functions/create_roles [schema_ggircs_portal] 2020-01-27T21:15:42Z Dylan Leard <dylan@button.is> # Adds the roles necessary for row level security
+database_functions/set_general_permissions [schema_ggircs_portal] 2020-01-29T21:10:26Z Dylan Leard <dylan@button.is> # Sets the general or global permissions for schema ggircs_portal
 database_functions/grant_permissions [database_functions/create_roles] 2020-01-28T21:37:13Z Dylan Leard <dylan@button.is> # Function grants permission necessary for each user
 database_functions/upsert_policy [database_functions/create_roles] 2020-01-28T21:38:23Z Dylan Leard <dylan@button.is> # Function creates / alters policies for each table
 trigger_functions/update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
@@ -80,4 +81,3 @@ swrs_functions/import_swrs_organisation_facility 2019-12-30T22:34:43Z Matthieu F
 tables/form_result_status [tables/form_result] 2020-01-13T19:11:49Z Dylan Leard <dylan@button.is> # Table containing the status of an individual form result
 mutations/create_review_comment_mutation_chain [tables/review_comment tables/form_result_status] 2020-01-15T23:15:53Z Dylan Leard <dylan@button.is> # Mutation chain to create a comment and update the form_result_status table based on the type of the comment created
 computed_columns/form_result_form_result_statuses [tables/form_result tables/form_result_status] 2020-01-17T19:01:37Z Dylan Leard <dylan@button.is> # Computed column gets all form result statuses for a form result by application_id and form_id
-database_functions/set_general_permissions [schema_ggircs_portal] 2020-01-29T21:10:26Z Dylan Leard <dylan@button.is> # Sets the general or global permissions for schema ggircs_portal

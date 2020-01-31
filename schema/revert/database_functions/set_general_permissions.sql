@@ -2,6 +2,8 @@
 
 begin;
 
---TODO: Should we revert all permissions that are set by set_general_permissions here?
+  revoke usage on schema ggircs_portal from ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+  revoke usage on schema swrs from ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+  revoke select on all tables in schema swrs from ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
 
 commit;
