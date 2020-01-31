@@ -24,7 +24,7 @@ select has_function(
 
 select throws_ok(
   $$
-    select ggircs_portal.grant_permissions('badoperation', null, 'test_table', 'ciip_administrator');
+    select ggircs_portal.grant_permissions('badoperation', 'test_table', 'ciip_administrator');
   $$,
   'P0001',
   'invalid operation variable. Must be one of [select, insert, update, delete]',
@@ -41,28 +41,28 @@ select table_privs_are (
 
 select lives_ok(
   $$
-    select ggircs_portal.grant_permissions('select', null, 'test_table', 'ciip_administrator');
+    select ggircs_portal.grant_permissions('select', 'test_table', 'ciip_administrator');
   $$,
   'Function grants select'
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.grant_permissions('insert', null, 'test_table', 'ciip_administrator');
+    select ggircs_portal.grant_permissions('insert', 'test_table', 'ciip_administrator');
   $$,
   'Function grants insert'
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.grant_permissions('update', null, 'test_table', 'ciip_administrator');
+    select ggircs_portal.grant_permissions('update', 'test_table', 'ciip_administrator');
   $$,
   'Function grants update'
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.grant_permissions('delete', null, 'test_table', 'ciip_administrator');
+    select ggircs_portal.grant_permissions('delete', 'test_table', 'ciip_administrator');
   $$,
   'Function grants delete'
 );
@@ -85,7 +85,7 @@ select any_column_privs_are (
 
 select lives_ok(
   $$
-    select ggircs_portal.grant_permissions('select', ARRAY['allowed'], 'test_table_specific_column_grants', 'ciip_administrator');
+    select ggircs_portal.grant_permissions('select', 'test_table_specific_column_grants', 'ciip_administrator', ARRAY['allowed']);
   $$,
   'Function grants select when specific columns are specified'
 );

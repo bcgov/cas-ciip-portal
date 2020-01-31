@@ -3,7 +3,8 @@
 
 begin;
 
-  create or replace function ggircs_portal.grant_permissions(operation text, column_names text[], table_name text, role_name text)
+  -- Grants permission for all columns in a table
+  create or replace function ggircs_portal.grant_permissions(operation text, table_name text, role_name text)
   returns void
   as
   $function$
@@ -12,8 +13,25 @@ begin;
     begin
       if (lower(operation) not in ('select', 'insert', 'update', 'delete')) then
         raise exception 'invalid operation variable. Must be one of [select, insert, update, delete]';
-      elsif (column_names is null) then
+      else
         execute format('grant ' || quote_ident(operation) || ' on ggircs_portal.'||quote_ident(table_name) || ' to ' || quote_ident(role_name));
+      end if;
+    end;
+  $function$
+  language 'plpgsql' volatile;
+
+  comment on function ggircs_portal.grant_permissions(text, text, text) is 'A generic function for granting access-control permissions on all columns of a table';
+
+  -- Grants permissions on specific columns in a table
+  create or replace function ggircs_portal.grant_permissions(operation text, table_name text, role_name text, column_names text[])
+  returns void
+  as
+  $function$
+    declare
+      column_name text;
+    begin
+      if (lower(operation) not in ('select', 'insert', 'update', 'delete')) then
+        raise exception 'invalid operation variable. Must be one of [select, insert, update, delete]';
       else
         foreach column_name in ARRAY column_names
         loop
@@ -24,6 +42,6 @@ begin;
   $function$
   language 'plpgsql' volatile;
 
-  comment on function ggircs_portal.grant_permissions is 'A generic function for granting access-control permissions';
+  comment on function ggircs_portal.grant_permissions(text, text, text, text[]) is 'A generic function for granting access-control permissions on specific columns of a table';
 
 commit;

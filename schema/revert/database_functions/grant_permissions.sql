@@ -19,5 +19,6 @@ begin;
   revoke all privileges on all functions in schema ggircs_portal from ciip_guest;
   revoke all privileges on schema ggircs_portal from ciip_guest;
 
-  drop function ggircs_portal.grant_permissions;
+  drop function ggircs_portal.grant_permissions(text, text, text);
+  drop function ggircs_portal.grant_permissions(text, text, text, text[]);
 commit;

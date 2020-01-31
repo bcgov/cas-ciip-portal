@@ -24,16 +24,16 @@ begin;
   $grant$
   begin
     -- Grant ciip_administrator permissions
-    perform ggircs_portal.grant_permissions('select', null, 'ciip_user_organisation', 'ciip_administrator');
-    perform ggircs_portal.grant_permissions('insert', null, 'ciip_user_organisation', 'ciip_administrator');
-    perform ggircs_portal.grant_permissions('update', null, 'ciip_user_organisation', 'ciip_administrator');
+    perform ggircs_portal.grant_permissions('select', 'ciip_user_organisation', 'ciip_administrator');
+    perform ggircs_portal.grant_permissions('insert', 'ciip_user_organisation', 'ciip_administrator');
+    perform ggircs_portal.grant_permissions('update', 'ciip_user_organisation', 'ciip_administrator');
 
     -- Grant ciip_analyst permissions
-    perform ggircs_portal.grant_permissions('select', null, 'ciip_user_organisation', 'ciip_analyst');
+    perform ggircs_portal.grant_permissions('select', 'ciip_user_organisation', 'ciip_analyst');
 
     -- Grant ciip_industry_user permissions
-    perform ggircs_portal.grant_permissions('select', null, 'ciip_user_organisation', 'ciip_industry_user');
-    perform ggircs_portal.grant_permissions('insert', null, 'ciip_user_organisation', 'ciip_industry_user');
+    perform ggircs_portal.grant_permissions('select', 'ciip_user_organisation', 'ciip_industry_user');
+    perform ggircs_portal.grant_permissions('insert', 'ciip_user_organisation', 'ciip_industry_user');
 
     -- Grant ciip_guest permissions
     -- ?

@@ -37,21 +37,19 @@ do
 $grant$
 begin
 -- Grant ciip_administrator permissions
-perform ggircs_portal.grant_permissions('select', null, 'ciip_user', 'ciip_administrator');
-perform ggircs_portal.grant_permissions('insert', null, 'ciip_user', 'ciip_administrator');
-perform ggircs_portal.grant_permissions('update',
-  ARRAY['first_name', 'last_name', 'email_address', 'occupation', 'phone_number', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by'],
-  'ciip_user', 'ciip_administrator');
+perform ggircs_portal.grant_permissions('select', 'ciip_user', 'ciip_administrator');
+perform ggircs_portal.grant_permissions('insert', 'ciip_user', 'ciip_administrator');
+perform ggircs_portal.grant_permissions('update', 'ciip_user', 'ciip_administrator',
+  ARRAY['first_name', 'last_name', 'email_address', 'occupation', 'phone_number', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by']);
 
 -- Grant ciip_analyst permissions
-perform ggircs_portal.grant_permissions('select', null, 'ciip_user', 'ciip_analyst');
+perform ggircs_portal.grant_permissions('select', 'ciip_user', 'ciip_analyst');
 
 -- Grant ciip_industry_user permissions
-perform ggircs_portal.grant_permissions('select', null, 'ciip_user', 'ciip_industry_user');
-perform ggircs_portal.grant_permissions('insert', null, 'ciip_user', 'ciip_industry_user');
-perform ggircs_portal.grant_permissions('update',
-  ARRAY['first_name', 'last_name', 'email_address', 'occupation', 'phone_number', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by'],
-  'ciip_user', 'ciip_industry_user');
+perform ggircs_portal.grant_permissions('select', 'ciip_user', 'ciip_industry_user');
+perform ggircs_portal.grant_permissions('insert', 'ciip_user', 'ciip_industry_user');
+perform ggircs_portal.grant_permissions('update', 'ciip_user', 'ciip_industry_user',
+  ARRAY['first_name', 'last_name', 'email_address', 'occupation', 'phone_number', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by']);
 
 -- Grant ciip_guest permissions
 -- ?
