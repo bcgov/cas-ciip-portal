@@ -165,7 +165,7 @@
     "babel-plugin-relay": "^8.0.0",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
-    "cypress": "^3.8.2",
+    "cypress": "^3.8.3",
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
