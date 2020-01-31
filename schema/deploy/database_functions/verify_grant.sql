@@ -39,16 +39,17 @@ begin;
                and lower(privilege_type)=lower(op))
                 then continue;
               else
-                raise exception 'Grant: % on table % for to role % does not exist', op, table_name_input, role_name;
+                raise exception 'Grant: % on table % to role % does not exist', op, table_name_input, role_name;
               end if;
             end loop;
+            return true;
         end case;
       end if;
     end;
   $function$
   language 'plpgsql' stable;
 
-  comment on function ggircs_portal.grant_permissions(text, text, text) is 'A generic function for granting access-control permissions on all columns of a table';
+  comment on function ggircs_portal.verify_grant(text, text, text) is 'A generic function for testing the existence of grants on a table';
 
   -- Verifies permission grants on specific columns in a table
   create or replace function ggircs_portal.verify_grant(operation text, table_name_input text, role_name text, column_names text[])
@@ -56,7 +57,7 @@ begin;
   as
   $function$
     declare
-      valid_operations text[] := ARRAY['select', 'insert', 'update', 'delete', 'truncate', 'references', 'trigger'];
+      valid_operations text[] := ARRAY['select', 'insert', 'update', 'references'];
       op text;
       col text;
 
@@ -107,6 +108,6 @@ begin;
   $function$
   language 'plpgsql' stable;
 
-  comment on function ggircs_portal.verify_grants(text, text, text, text[]) is 'A generic function for granting access-control permissions on specific columns of a table';
+  comment on function ggircs_portal.verify_grant(text, text, text, text[]) is 'A generic function for testing existence of grants on specific columns of a table';
 
 commit;
