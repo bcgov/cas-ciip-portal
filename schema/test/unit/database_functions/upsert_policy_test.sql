@@ -5,6 +5,7 @@ reset client_min_messages;
 begin;
 select plan(13);
 
+-- Test setup
 create table ggircs_portal.test_table
 (
   id integer primary key generated always as identity

@@ -15,6 +15,7 @@ select has_table(
 
 -- Row level security tests --
 
+-- Test setup
 alter table ggircs_portal.ciip_user_organisation
   disable trigger _set_user_id;
 

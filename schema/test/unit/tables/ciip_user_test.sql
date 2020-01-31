@@ -16,6 +16,7 @@ select has_table(
 
 -- Row level security tests --
 
+-- Test setup
 set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
 
 -- CIIP_ADMINISTRATOR
