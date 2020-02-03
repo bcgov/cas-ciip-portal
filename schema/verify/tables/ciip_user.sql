@@ -21,4 +21,20 @@ select ggircs_portal.verify_grant('update', 'ciip_user', 'ciip_industry_user',
 
 -- ciip_guest Grants
 
+-- ciip_administrator Policies
+select ggircs_portal.verify_policy('select', 'admin_select_all', 'ciip_user', 'ciip_administrator');
+select ggircs_portal.verify_policy('insert', 'admin_insert_all', 'ciip_user', 'ciip_administrator');
+select ggircs_portal.verify_policy('update', 'admin_update_all_no_change_uuid', 'ciip_user', 'ciip_administrator');
+
+-- ciip_analyst Policies
+select ggircs_portal.verify_policy('select', 'analyst_select_all', 'ciip_user', 'ciip_analyst');
+
+-- ciip_industry_user Policies
+select ggircs_portal.verify_policy('select', 'ciip_industry_user_select_own_user', 'ciip_user', 'ciip_industry_user');
+select ggircs_portal.verify_policy('insert', 'ciip_industry_user_insert_own_user', 'ciip_user', 'ciip_industry_user');
+select ggircs_portal.verify_policy('update', 'ciip_industry_user_update_own_user', 'ciip_user', 'ciip_industry_user');
+
+-- ciip_guest Policies
+
+
 rollback;
