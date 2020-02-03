@@ -64,7 +64,6 @@ perform ggircs_portal.upsert_policy('ciip_analyst_update_application', 'applicat
 -- statement for select using & insert with check
 industry_user_statement := 'facility_id in (select ggircs_portal.get_valid_application_facilities())' ;
 
-
 -- ciip_industry_user RLS
 perform ggircs_portal.upsert_policy('ciip_industry_user_select_application', 'application', 'select', 'ciip_industry_user', industry_user_statement);
 perform ggircs_portal.upsert_policy('ciip_industry_user_insert_application', 'application', 'insert', 'ciip_industry_user', industry_user_statement);

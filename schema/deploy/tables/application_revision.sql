@@ -32,7 +32,67 @@ create trigger _set_user_id
     for each row
     execute procedure ggircs_portal.set_user_id();
 
-grant all on table ggircs_portal.application_revision to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+do
+$grant$
+begin
+-- Grant ciip_administrator permissions
+perform ggircs_portal.grant_permissions('select', 'application_revision', 'ciip_administrator');
+perform ggircs_portal.grant_permissions('insert', 'application_revision', 'ciip_administrator');
+perform ggircs_portal.grant_permissions('update', 'application_revision', 'ciip_administrator');
+
+-- Grant ciip_analyst permissions
+perform ggircs_portal.grant_permissions('select', 'application_revision', 'ciip_analyst');
+
+-- Grant ciip_industry_user permissions
+perform ggircs_portal.grant_permissions('select', 'application_revision', 'ciip_industry_user');
+perform ggircs_portal.grant_permissions('insert', 'application_revision', 'ciip_industry_user');
+perform ggircs_portal.grant_permissions('update', 'application_revision', 'ciip_industry_user');
+
+-- Grant ciip_guest permissions
+-- ?
+end
+$grant$;
+
+-- Enable row-level security
+alter table ggircs_portal.application_revision enable row level security;
+
+create or replace function ggircs_portal.get_valid_applications_via_revision()
+returns setof integer as
+$definer$
+  select ar.application_id from ggircs_portal.application_revision ar
+    join ggircs_portal.application a
+      on ar.application_id = a.id
+    join ggircs_portal.facility f
+      on a.facility_id = f.id
+    join ggircs_portal.ciip_user_organisation cuo
+      on f.organisation_id = cuo.organisation_id
+    join ggircs_portal.ciip_user cu
+      on cuo.user_id = cu.id
+      and cu.uuid = (select sub from ggircs_portal.session());
+$definer$ language sql strict stable security definer;
+
+do
+$policy$
+declare industry_user_statement text;
+begin
+-- ciip_administrator RLS
+perform ggircs_portal.upsert_policy('ciip_administrator_select_application_revision', 'application_revision', 'select', 'ciip_administrator', 'true');
+perform ggircs_portal.upsert_policy('ciip_administrator_insert_application_revision', 'application_revision', 'insert', 'ciip_administrator', 'true');
+perform ggircs_portal.upsert_policy('ciip_administrator_update_application_revision', 'application_revision', 'update', 'ciip_administrator', 'true');
+
+-- ciip_analyst RLS
+perform ggircs_portal.upsert_policy('ciip_analyst_select_application_revision', 'application_revision', 'select', 'ciip_analyst', 'true');
+
+-- statement for select using & insert with check
+industry_user_statement := 'application_id in (select ggircs_portal.get_valid_applications_via_revision())' ;
+
+-- ciip_industry_user RLS
+perform ggircs_portal.upsert_policy('ciip_industry_user_select_application_revision', 'application_revision', 'select', 'ciip_industry_user', industry_user_statement);
+perform ggircs_portal.upsert_policy('ciip_industry_user_insert_application_revision', 'application_revision', 'insert', 'ciip_industry_user', industry_user_statement);
+perform ggircs_portal.upsert_policy('ciip_industry_user_update_application_revision', 'application_revision', 'update', 'ciip_industry_user', industry_user_statement);
+
+end
+$policy$;
 
 comment on table ggircs_portal.application_revision is 'The application revision data';
 

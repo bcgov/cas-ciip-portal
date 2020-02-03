@@ -11,7 +11,6 @@ select has_table(
   'ggircs_portal.application should exist, and be a table'
 );
 
-
 -- Row level security tests --
 
 -- Test setup
