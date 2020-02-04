@@ -142,8 +142,6 @@ select throws_like(
 set role ciip_industry_user;
 select concat('current user is: ', (select current_user));
 
-select ggircs_portal.get_valid_review_comments();
-
 select results_eq(
   $$
     select id from ggircs_portal.review_comment

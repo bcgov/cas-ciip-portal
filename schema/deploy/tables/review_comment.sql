@@ -51,12 +51,10 @@ $grant$;
 -- Enable row-level security
 alter table ggircs_portal.review_comment enable row level security;
 
-create or replace function ggircs_portal.get_valid_review_comments()
+create or replace function ggircs_portal_private.get_valid_review_comments()
 returns setof integer as
-$definer$
-  select rc.application_id from ggircs_portal.review_comment rc
-    join ggircs_portal.application a
-      on rc.application_id = a.id
+$fn$
+  select a.id from ggircs_portal.application a
     join ggircs_portal.facility f
       on a.facility_id = f.id
     join ggircs_portal.ciip_user_organisation cuo
@@ -64,14 +62,17 @@ $definer$
     join ggircs_portal.ciip_user cu
       on cuo.user_id = cu.id
       and cu.uuid = (select sub from ggircs_portal.session())
-$definer$ language sql strict stable security definer;
+$fn$ language sql strict stable;
 
-create or replace function ggircs_portal.analyst_owns_comment()
+create or replace function ggircs_portal_private.analyst_owns_comment()
 returns integer as
-$definer$
+$fn$
   select id from ggircs_portal.ciip_user
     where uuid = (select sub from ggircs_portal.session())
-$definer$ language sql strict stable security definer;
+$fn$ language sql strict stable;
+
+grant execute on function ggircs_portal_private.get_valid_review_comments to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal_private.analyst_owns_comment to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
 
 do
 $policy$
@@ -87,11 +88,11 @@ perform ggircs_portal_private.upsert_policy('ciip_analyst_select_review_comment'
 perform ggircs_portal_private.upsert_policy('ciip_analyst_insert_review_comment', 'review_comment', 'insert', 'ciip_analyst', 'true');
   -- TODO: If we only allow update if the user created the comment, they will be the only ones allowed to resolve their own comments
   -- If we remove the constraint, anyone can delete any comment.
-perform ggircs_portal_private.upsert_policy('ciip_analyst_update_review_comment', 'review_comment', 'update', 'ciip_analyst', 'created_by=(select ggircs_portal.analyst_owns_comment())');
+perform ggircs_portal_private.upsert_policy('ciip_analyst_update_review_comment', 'review_comment', 'update', 'ciip_analyst', 'created_by=(select ggircs_portal_private.analyst_owns_comment())');
 
 -- statement for select using & insert with check
 industry_user_statement := $$
-                             application_id in (select ggircs_portal.get_valid_review_comments())
+                             application_id in (select ggircs_portal_private.get_valid_review_comments())
                              and comment_type='requested change'
                            $$;
 

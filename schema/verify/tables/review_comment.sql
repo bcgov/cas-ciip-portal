@@ -3,6 +3,8 @@
 begin;
 
 select pg_catalog.has_table_privilege('ggircs_portal.review_comment', 'select');
+select pg_get_functiondef('ggircs_portal_private.get_valid_review_comments()'::regprocedure);
+select pg_get_functiondef('ggircs_portal_private.analyst_owns_comment()'::regprocedure);
 
 -- ciip_administrator Grants
 select ggircs_portal_private.verify_grant('select', 'review_comment', 'ciip_administrator');

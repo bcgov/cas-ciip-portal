@@ -57,12 +57,10 @@ $grant$;
 -- Enable row-level security
 alter table ggircs_portal.application_revision enable row level security;
 
-create or replace function ggircs_portal.get_valid_applications_via_revision()
+create or replace function ggircs_portal_private.get_valid_applications_via_revision()
 returns setof integer as
-$definer$
-  select ar.application_id from ggircs_portal.application_revision ar
-    join ggircs_portal.application a
-      on ar.application_id = a.id
+$fn$
+  select a.id from ggircs_portal.application a
     join ggircs_portal.facility f
       on a.facility_id = f.id
     join ggircs_portal.ciip_user_organisation cuo
@@ -70,7 +68,9 @@ $definer$
     join ggircs_portal.ciip_user cu
       on cuo.user_id = cu.id
       and cu.uuid = (select sub from ggircs_portal.session());
-$definer$ language sql strict stable security definer;
+$fn$ language sql strict stable;
+
+grant execute on function ggircs_portal_private.get_valid_applications_via_revision to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
 
 do
 $policy$
@@ -85,7 +85,7 @@ perform ggircs_portal_private.upsert_policy('ciip_administrator_update_applicati
 perform ggircs_portal_private.upsert_policy('ciip_analyst_select_application_revision', 'application_revision', 'select', 'ciip_analyst', 'true');
 
 -- statement for select using & insert with check
-industry_user_statement := 'application_id in (select ggircs_portal.get_valid_applications_via_revision())' ;
+industry_user_statement := 'application_id in (select ggircs_portal_private.get_valid_applications_via_revision())' ;
 
 -- ciip_industry_user RLS
 perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_application_revision', 'application_revision', 'select', 'ciip_industry_user', industry_user_statement);

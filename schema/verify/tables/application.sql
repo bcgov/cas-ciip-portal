@@ -3,6 +3,7 @@
 begin;
 
 select pg_catalog.has_table_privilege('ggircs_portal.application', 'select');
+select pg_get_functiondef('ggircs_portal_private.get_valid_application_facilities()'::regprocedure);
 
 -- ciip_administrator Grants
 select ggircs_portal_private.verify_grant('select', 'application', 'ciip_administrator');
