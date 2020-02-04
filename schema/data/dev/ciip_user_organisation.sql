@@ -14,7 +14,8 @@ begin;
   overriding system value
   values
   (1, 3, 8, 'approved'),
-  (2, 3, 7, 'approved')
+  (2, 3, 7, 'approved'),
+  (3, 6, 7, 'approved')
   on conflict(id) do update set
     user_id=excluded.user_id,
     organisation_id=excluded.organisation_id,
