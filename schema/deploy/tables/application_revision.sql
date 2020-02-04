@@ -8,6 +8,7 @@ create table ggircs_portal.application_revision (
     version_number int not null,
     certification_signature bytea,
     legal_disclaimer_accepted boolean not null default false,
+    -- TODO: This should be renamed. It is vague. The user_id here is the id of the certifier, not the creator of the row
     user_id integer references ggircs_portal.ciip_user(id),
     created_at timestamp with time zone not null default now(),
     created_by int references ggircs_portal.ciip_user,
