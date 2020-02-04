@@ -3,8 +3,8 @@
 
 begin;
 
--- Verifies permission grants for all columns in a table
-  create or replace function ggircs_portal.verify_policy(operation text, policy_name text, table_name_input text, role_name text)
+-- Verifies if a policy exists
+  create or replace function ggircs_portal_private.verify_policy(operation text, policy_name text, table_name_input text, role_name text)
   returns boolean
   as
   $function$
@@ -62,6 +62,6 @@ begin;
   $function$
   language 'plpgsql' stable;
 
-  comment on function ggircs_portal.verify_policy(text, text, text, text) is 'A generic function for testing the existence of policies on a table';
+  comment on function ggircs_portal_private.verify_policy(text, text, text, text) is 'A generic function for testing the existence of policies on a table';
 
   commit;

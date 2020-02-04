@@ -15,17 +15,17 @@ do
 $grant$
 begin
 -- Grant ciip_administrator permissions
-perform ggircs_portal.grant_permissions('select', 'application', 'ciip_administrator');
-perform ggircs_portal.grant_permissions('insert', 'application', 'ciip_administrator');
-perform ggircs_portal.grant_permissions('update', 'application', 'ciip_administrator');
+perform ggircs_portal_private.grant_permissions('select', 'application', 'ciip_administrator');
+perform ggircs_portal_private.grant_permissions('insert', 'application', 'ciip_administrator');
+perform ggircs_portal_private.grant_permissions('update', 'application', 'ciip_administrator');
 
 -- Grant ciip_analyst permissions
-perform ggircs_portal.grant_permissions('select', 'application', 'ciip_analyst');
-perform ggircs_portal.grant_permissions('update', 'application', 'ciip_analyst');
+perform ggircs_portal_private.grant_permissions('select', 'application', 'ciip_analyst');
+perform ggircs_portal_private.grant_permissions('update', 'application', 'ciip_analyst');
 
 -- Grant ciip_industry_user permissions
-perform ggircs_portal.grant_permissions('select', 'application', 'ciip_industry_user');
-perform ggircs_portal.grant_permissions('insert', 'application', 'ciip_industry_user');
+perform ggircs_portal_private.grant_permissions('select', 'application', 'ciip_industry_user');
+perform ggircs_portal_private.grant_permissions('insert', 'application', 'ciip_industry_user');
 
 -- Grant ciip_guest permissions
 -- ?
@@ -53,20 +53,20 @@ $policy$
 declare industry_user_statement text;
 begin
 -- ciip_administrator RLS
-perform ggircs_portal.upsert_policy('ciip_administrator_select_application', 'application', 'select', 'ciip_administrator', 'true');
-perform ggircs_portal.upsert_policy('ciip_administrator_insert_application', 'application', 'insert', 'ciip_administrator', 'true');
-perform ggircs_portal.upsert_policy('ciip_administrator_update_application', 'application', 'update', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_select_application', 'application', 'select', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_insert_application', 'application', 'insert', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_update_application', 'application', 'update', 'ciip_administrator', 'true');
 
 -- ciip_analyst RLS
-perform ggircs_portal.upsert_policy('ciip_analyst_select_application', 'application', 'select', 'ciip_analyst', 'true');
-perform ggircs_portal.upsert_policy('ciip_analyst_update_application', 'application', 'update', 'ciip_analyst', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_analyst_select_application', 'application', 'select', 'ciip_analyst', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_analyst_update_application', 'application', 'update', 'ciip_analyst', 'true');
 
 -- statement for select using & insert with check
 industry_user_statement := 'facility_id in (select ggircs_portal.get_valid_application_facilities())' ;
 
 -- ciip_industry_user RLS
-perform ggircs_portal.upsert_policy('ciip_industry_user_select_application', 'application', 'select', 'ciip_industry_user', industry_user_statement);
-perform ggircs_portal.upsert_policy('ciip_industry_user_insert_application', 'application', 'insert', 'ciip_industry_user', industry_user_statement);
+perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_application', 'application', 'select', 'ciip_industry_user', industry_user_statement);
+perform ggircs_portal_private.upsert_policy('ciip_industry_user_insert_application', 'application', 'insert', 'ciip_industry_user', industry_user_statement);
 
 end
 $policy$;

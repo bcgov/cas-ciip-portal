@@ -13,8 +13,8 @@ create table ggircs_portal.test_table
 create role test_role;
 
 select has_function(
-  'ggircs_portal', 'verify_policy',
-  'Function verify_grant should exist'
+  'ggircs_portal_private', 'verify_policy',
+  'Function verify_policy should exist'
 );
 
 grant all on table ggircs_portal.test_table to test_role;
@@ -34,35 +34,35 @@ create policy all_test on ggircs_portal.test_table
 
 select lives_ok(
   $$
-    select ggircs_portal.verify_policy('select', 'select_test', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_policy('select', 'select_test', 'test_table', 'test_role');
   $$,
   'verify_policy passes when select_test policy exists for user test_role '
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.verify_policy('insert', 'insert_test', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_policy('insert', 'insert_test', 'test_table', 'test_role');
   $$,
   'verify_policy passes when insert_test policy exists for user test_role '
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.verify_policy('update', 'update_test', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_policy('update', 'update_test', 'test_table', 'test_role');
   $$,
   'verify_policy passes when update_test policy exists for user test_role '
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.verify_policy('delete', 'delete_test', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_policy('delete', 'delete_test', 'test_table', 'test_role');
   $$,
   'verify_policy passes when delete_test policy exists for user test_role '
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.verify_policy('all', 'all_test', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_policy('all', 'all_test', 'test_table', 'test_role');
   $$,
   'verify_policy passes when all_test policy exists for user test_role '
 );
@@ -71,7 +71,7 @@ select lives_ok(
 
 select throws_ok(
   $$
-    select ggircs_portal.verify_policy('bubbles', 'select_test', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_policy('bubbles', 'select_test', 'test_table', 'test_role');
   $$,
   'P0001',
   'invalid operation variable. Must be one of [select, insert, update, delete, all]',
@@ -80,7 +80,7 @@ select throws_ok(
 
 select throws_ok(
   $$
-    select ggircs_portal.verify_policy('insert', 'select_test', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_policy('insert', 'select_test', 'test_table', 'test_role');
   $$,
   'P0001',
   'Policy select_test on operation insert on table test_table for role test_role does not exist',
@@ -89,7 +89,7 @@ select throws_ok(
 
 select throws_ok(
   $$
-    select ggircs_portal.verify_policy('select', 'bubbles', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_policy('select', 'bubbles', 'test_table', 'test_role');
   $$,
   'P0001',
   'Policy bubbles on operation select on table test_table for role test_role does not exist',
@@ -98,7 +98,7 @@ select throws_ok(
 
 select throws_ok(
   $$
-    select ggircs_portal.verify_policy('select', 'select_test', 'not_a_table', 'test_role');
+    select ggircs_portal_private.verify_policy('select', 'select_test', 'not_a_table', 'test_role');
   $$,
   '42P01',
   'relation "ggircs_portal.not_a_table" does not exist',
@@ -107,7 +107,7 @@ select throws_ok(
 
 select throws_ok(
   $$
-    select ggircs_portal.verify_policy('select', 'select_test', 'test_table', 'not_a_role');
+    select ggircs_portal_private.verify_policy('select', 'select_test', 'test_table', 'not_a_role');
   $$,
   'P0001',
   'Policy select_test on operation select on table test_table for role not_a_role does not exist',

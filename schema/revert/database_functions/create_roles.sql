@@ -1,4 +1,4 @@
--- Revert ggircs-portal:create_roles from pg
+-- Revert ggircs-portal-private:create_roles from pg
 
 begin;
 

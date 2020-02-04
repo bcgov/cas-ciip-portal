@@ -1,4 +1,4 @@
--- Verify ggircs-portal:create_roles on pg
+-- Verify ggircs-portal-private:create_roles on pg
 
 begin;
 
