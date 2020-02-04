@@ -7804,6 +7804,75 @@ input GasPatch {
   updatedBy: Int
 }
 
+"""A connection to a list of `Int` values."""
+type GetValidApplicationFacilitiesConnection {
+  """
+  A list of edges which contains the `Int` and cursor to aid in pagination.
+  """
+  edges: [GetValidApplicationFacilityEdge!]!
+
+  """A list of `Int` objects."""
+  nodes: [Int]!
+
+  """The count of *all* `Int` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Int` edge in the connection."""
+type GetValidApplicationFacilityEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Int` at the end of the edge."""
+  node: Int
+}
+
+"""A connection to a list of `Int` values."""
+type GetValidApplicationsViaRevisionConnection {
+  """
+  A list of edges which contains the `Int` and cursor to aid in pagination.
+  """
+  edges: [GetValidApplicationsViaRevisionEdge!]!
+
+  """A list of `Int` objects."""
+  nodes: [Int]!
+
+  """The count of *all* `Int` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Int` edge in the connection."""
+type GetValidApplicationsViaRevisionEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Int` at the end of the edge."""
+  node: Int
+}
+
+"""A connection to a list of `Int` values."""
+type GetValidApplicationsViaRevisionStatusConnection {
+  """
+  A list of edges which contains the `Int` and cursor to aid in pagination.
+  """
+  edges: [GetValidApplicationsViaRevisionStatusEdge!]!
+
+  """A list of `Int` objects."""
+  nodes: [Int]!
+
+  """The count of *all* `Int` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `Int` edge in the connection."""
+type GetValidApplicationsViaRevisionStatusEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Int` at the end of the edge."""
+  node: Int
+}
+
 """All input for the `importSwrsOrganisationFacility` mutation."""
 input ImportSwrsOrganisationFacilityInput {
   """
@@ -10502,6 +10571,63 @@ type Query implements Node {
   ): FuelDataConnection!
   getSwrsOperatorContactData(facilityId: Int, reportingYear: Int): OperatorContactDatum
   getSwrsOrganisationData(facilityId: Int, reportingYear: Int): OrganisationDatum
+  getValidApplicationFacilities(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): GetValidApplicationFacilitiesConnection!
+  getValidApplicationsViaRevision(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): GetValidApplicationsViaRevisionConnection!
+  getValidApplicationsViaRevisionStatus(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): GetValidApplicationsViaRevisionStatusConnection!
 
   """
   The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.

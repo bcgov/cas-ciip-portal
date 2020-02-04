@@ -57,7 +57,7 @@ end
 $grant$;
 
 -- Enable row-level security
-alter table ggircs_portal.application_revision enable row level security;
+alter table ggircs_portal.application_revision_status enable row level security;
 
 create or replace function ggircs_portal.get_valid_applications_via_revision_status()
 returns setof integer as
