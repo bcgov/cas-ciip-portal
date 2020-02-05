@@ -4,7 +4,7 @@ reset client_min_messages;
 
 begin;
 
-select plan(2);
+select plan(4);
 
 /** Check schema compliance **/
 

@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.verify_policy(text, text, text, text);
+drop function ggircs_portal_private.verify_policy(text, text, text, text);
 
 commit;

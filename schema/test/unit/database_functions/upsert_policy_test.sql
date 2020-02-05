@@ -12,13 +12,13 @@ create table ggircs_portal.test_table
 );
 
 select has_function(
-  'ggircs_portal', 'upsert_policy',
+  'ggircs_portal_private', 'upsert_policy',
   'Function upsert_policy should exist'
 );
 
 select throws_ok(
   $$
-    select ggircs_portal.upsert_policy('admin_select_all', 'test_table', 'badoperation', 'ciip_administrator', 'true');
+    select ggircs_portal_private.upsert_policy('admin_select_all', 'test_table', 'badoperation', 'ciip_administrator', 'true');
   $$,
   'P0001',
   'Invalid operation variable. Must be one of [select, insert, update, delete]',
@@ -27,7 +27,7 @@ select throws_ok(
 
 select throws_ok(
   $$
-    select ggircs_portal.upsert_policy('admin_select_all', 'test_table', 'select', 'ciip_administrator', 'using(true)', 'with check(true)');
+    select ggircs_portal_private.upsert_policy('admin_select_all', 'test_table', 'select', 'ciip_administrator', 'using(true)', 'with check(true)');
   $$,
   'P0001',
   'invalid operation variable',
@@ -36,28 +36,28 @@ select throws_ok(
 
 select lives_ok(
   $$
-    select ggircs_portal.upsert_policy('admin_select', 'test_table', 'select', 'ciip_administrator', 'true');
+    select ggircs_portal_private.upsert_policy('admin_select', 'test_table', 'select', 'ciip_administrator', 'true');
   $$,
   'Function upsert_policy creates a select policy with proper variables'
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.upsert_policy('admin_delete', 'test_table', 'delete', 'ciip_administrator', 'true');
+    select ggircs_portal_private.upsert_policy('admin_delete', 'test_table', 'delete', 'ciip_administrator', 'true');
   $$,
   'Function upsert_policy creates a delete policy with proper variables'
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.upsert_policy('admin_insert', 'test_table', 'insert', 'ciip_administrator', 'true');
+    select ggircs_portal_private.upsert_policy('admin_insert', 'test_table', 'insert', 'ciip_administrator', 'true');
   $$,
   'Function upsert_policy creates an insert policy with proper variables'
 );
 
 select lives_ok(
   $$
-    select ggircs_portal.upsert_policy('admin_update', 'test_table', 'update', 'ciip_administrator', 'true');
+    select ggircs_portal_private.upsert_policy('admin_update', 'test_table', 'update', 'ciip_administrator', 'true');
   $$,
   'Function upsert_policy creates an update policy with proper variables'
 );
@@ -79,7 +79,7 @@ select results_eq(
 
 select lives_ok(
   $$
-    select ggircs_portal.upsert_policy('admin_delete', 'test_table', 'delete', 'ciip_administrator', 'false');
+    select ggircs_portal_private.upsert_policy('admin_delete', 'test_table', 'delete', 'ciip_administrator', 'false');
   $$,
   'Function upsert_policy alters a policy if exists with proper variables'
 );
@@ -94,7 +94,7 @@ select results_eq(
 
 select lives_ok(
   $$
-    select ggircs_portal.upsert_policy('different_statement_update', 'test_table', 'update', 'ciip_administrator', 'using(true)', 'with check(false)');
+    select ggircs_portal_private.upsert_policy('different_statement_update', 'test_table', 'update', 'ciip_administrator', 'using(true)', 'with check(false)');
   $$,
   'Function upsert_policy (6 params: different using/with check statments) creates a policy with proper variables'
 );

@@ -10702,9 +10702,6 @@ type Query implements Node {
     searchValue: String
   ): ProductsConnection!
   session: JwtToken
-
-  """A generic function for testing the existence of policies on a table"""
-  verifyPolicy(operation: String, policyName: String, roleName: String, tableNameInput: String): Boolean
 }
 
 """

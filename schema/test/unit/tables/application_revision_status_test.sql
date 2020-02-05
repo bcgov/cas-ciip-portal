@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(23);
+select plan(37);
 
 -- Table exists
 select has_table(
@@ -63,7 +63,150 @@ select has_trigger('ggircs_portal', 'application_revision_status', '_ensure_wind
 select has_trigger('ggircs_portal', 'application_revision_status', '_100_timestamps', 'application_revision_status has update timestamps trigger');
 select has_trigger('ggircs_portal', 'application_revision_status', '_checksum_form_results', 'application_revision_status has checksum form results trigger');
 
+-- Row level security tests
 
+create role test_superuser superuser;
+
+-- Test setup
+set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
+alter table ggircs_portal.ciip_user_organisation
+  disable trigger _set_user_id;
+
+-- User 999 has access to application_revision 999, but not application_revision 1000
+insert into ggircs_portal.ciip_user(id, uuid) overriding system value
+values (999, '11111111-1111-1111-1111-111111111111'), (1000, '22222222-2222-2222-2222-222222222222');
+insert into ggircs_portal.organisation(id) overriding system value values(999), (1000);
+insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000);
+insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
+insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id) overriding system value values(999, 999, 999), (1000, 1000, 1000);
+insert into ggircs_portal.application_revision(application_id, version_number) overriding system value values(999, 1), (999,2), (1000, 1), (1000, 2);
+insert into ggircs_portal.application_revision_status(id, application_id, version_number) overriding system value values (999,999,1), (1000, 1000, 1);
+
+
+-- CIIP_ADMINISTRATOR
+set role ciip_administrator;
+select concat('current user is: ', (select current_user));
+
+select results_eq(
+  $$
+    select count(*) from ggircs_portal.application_revision_status where id = 999 or id=1000
+  $$,
+  ARRAY[2::bigint],
+    'ciip_administrator can view all data in application_revision_status table'
+);
+
+select lives_ok(
+  $$
+    insert into ggircs_portal.application_revision_status (application_id, version_number, application_revision_status)
+    values (1000, 2, 'approved');
+  $$,
+    'ciip_administrator can insert data in application_revision_status table'
+);
+
+select throws_like(
+  $$
+    update ggircs_portal.application_revision_status set application_revision_status='approved' where id=1;
+  $$,
+  'permission denied%',
+    'Administrator cannot update rows in table_application_revision_status'
+);
+
+select throws_like(
+  $$
+    delete from ggircs_portal.application_revision_status where id=999
+  $$,
+  'permission denied%',
+    'Administrator cannot delete rows from table_application_revision_status'
+);
+
+-- CIIP_INDUSTRY_USER
+set role ciip_industry_user;
+select concat('current user is: ', (select current_user));
+
+select * from ggircs_portal.application_revision_status;
+
+select results_eq(
+  $$
+    select application_id from ggircs_portal.application_revision_status
+  $$,
+  ARRAY[999::integer],
+    'Industry user can view data from application_revision_status where the connection application_revision_status -> application -> facility -> ciip_user_organisation -> user exists on user.uuid = session.sub'
+);
+
+select lives_ok(
+  $$
+    insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status) values (999, 2, 'submitted');
+  $$,
+    'Industry user can create an application_revision_status if the facility id is in the connection application_revision -> application -> facility -> ciip_user_organisation -> user '
+);
+
+select throws_like(
+  $$
+    insert into ggircs_portal.application_revision_status(application_id, version_number) values (1000, 2);
+  $$,
+  'new row violates%',
+    'Industry User cannot create a row in ggircs_portal.application_revision_status when not connected by application_revision_status -> application -> facility -> ciip_user_organisation -> user -> user.uuid = session.sub'
+);
+
+select is_empty(
+  $$
+    select application_id from ggircs_portal.application_revision where application_id = 1000;
+  $$,
+  'Industry user cannot view application_revision_statuses that are not connected by application_revision_status -> application -> facility -> ciip_user_organisation -> user -> user.uuid = session.sub'
+);
+
+select throws_like(
+  $$
+    update ggircs_portal.application_revision_status set application_revision_status='approved' where id=999;
+  $$,
+  'permission denied%',
+    'Industry user cannot update rows in table_application_revision_status'
+);
+
+select throws_like(
+  $$
+    delete from ggircs_portal.application_revision_status where application_id=999
+  $$,
+  'permission denied%',
+    'Industry User cannot delete rows from table_application_revision_status'
+);
+
+-- CIIP_ANALYST
+set role ciip_analyst;
+select concat('current user is: ', (select current_user));
+
+select results_eq(
+  $$
+    select count(*) from ggircs_portal.application_revision_status where application_id = 999 and version_number=1 or application_id=1000 and version_number=1;
+  $$,
+  ARRAY[2::bigint],
+  'Analyst can select all from table application_revision_status'
+);
+
+select lives_ok(
+  $$
+    insert into ggircs_portal.application_revision_status(id, application_id, version_number, application_revision_status)
+    overriding system value
+    values(1002, 1000, 1, 'approved');
+  $$,
+  'Analyst can insert data in the application_revision_status table'
+);
+
+select throws_like(
+  $$
+    update ggircs_portal.application_revision_status set application_revision_status='approved' where application_id=1000 and version_number=1;
+  $$,
+  'permission denied%',
+    'Analyst cannot update table application_revision_status'
+);
+
+select throws_like(
+  $$
+    delete from ggircs_portal.application_revision_status where application_id = 999;
+  $$,
+  'permission denied%',
+    'Analyst cannot delete rows from table application_revision_status'
+);
 
 select finish();
 rollback;

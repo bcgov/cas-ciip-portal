@@ -15,8 +15,8 @@ create table ggircs_portal.test_table
 create role test_role;
 
 select has_function(
-  'ggircs_portal', 'verify_grant',
-  'Function verify_grant(text, text, text) should exist'
+  'ggircs_portal_private', 'verify_grant',
+  'Function verify_grant should exist'
 );
 
 -- Passes when should pass
@@ -25,7 +25,7 @@ grant all on table ggircs_portal.test_table to test_role;
 
 select lives_ok(
   $$
-    select ggircs_portal.verify_grant('all', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_grant('all', 'test_table', 'test_role');
   $$,
   'verify_grant passes when all permissions granted to user'
 );
@@ -35,7 +35,7 @@ grant select on table ggircs_portal.test_table to test_role;
 
 select lives_ok(
   $$
-    select ggircs_portal.verify_grant('select', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_grant('select', 'test_table', 'test_role');
   $$,
   'verify_grant passes when one permission granted to user'
 );
@@ -45,7 +45,7 @@ grant all (allowed) on table ggircs_portal.test_table to test_role;
 
 select lives_ok(
   $$
-    select ggircs_portal.verify_grant('all', 'test_table', 'test_role', ARRAY['allowed']);
+    select ggircs_portal_private.verify_grant('all', 'test_table', 'test_role', ARRAY['allowed']);
   $$,
   'verify_grant passes when all permissions granted to user on a specific column'
 );
@@ -55,7 +55,7 @@ grant select (allowed) on table ggircs_portal.test_table to test_role;
 
 select lives_ok(
   $$
-    select ggircs_portal.verify_grant('select', 'test_table', 'test_role', ARRAY['allowed']);
+    select ggircs_portal_private.verify_grant('select', 'test_table', 'test_role', ARRAY['allowed']);
   $$,
   'verify_grant passes when one permission granted to user on a specific column'
 );
@@ -66,7 +66,7 @@ revoke all on table ggircs_portal.test_table from test_role;
 
 select throws_ok(
   $$
-    select ggircs_portal.verify_grant('bubbles', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_grant('bubbles', 'test_table', 'test_role');
   $$,
   'P0001',
   'invalid operation variable. Must be one of [select, insert, update, delete, truncate, references, trigger]',
@@ -75,7 +75,7 @@ select throws_ok(
 
 select throws_ok(
   $$
-    select ggircs_portal.verify_grant('select', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_grant('select', 'test_table', 'test_role');
   $$,
   'P0001',
   'Grant: select on table test_table to role test_role does not exist',
@@ -86,7 +86,7 @@ grant select on table ggircs_portal.test_table to test_role;
 
 select throws_ok(
   $$
-    select ggircs_portal.verify_grant('all', 'test_table', 'test_role');
+    select ggircs_portal_private.verify_grant('all', 'test_table', 'test_role');
   $$,
   'P0001',
   'Grant: insert on table test_table to role test_role does not exist',
@@ -97,7 +97,7 @@ revoke all on table ggircs_portal.test_table from test_role;
 
 select throws_ok(
   $$
-    select ggircs_portal.verify_grant('select', 'test_table', 'test_role', ARRAY['allowed']);
+    select ggircs_portal_private.verify_grant('select', 'test_table', 'test_role', ARRAY['allowed']);
   $$,
   'P0001',
   'Grant: select on column allowed in table test_table to role test_role does not exist',
@@ -108,7 +108,7 @@ grant select (allowed) on table ggircs_portal.test_table to test_role;
 
 select throws_ok(
   $$
-    select ggircs_portal.verify_grant('all', 'test_table', 'test_role', ARRAY['allowed']);
+    select ggircs_portal_private.verify_grant('all', 'test_table', 'test_role', ARRAY['allowed']);
   $$,
   'P0001',
   'Grant: insert on column allowed in table test_table to role test_role does not exist',

@@ -4,7 +4,7 @@
 begin;
 
   -- Grants permission for all columns in a table
-  create or replace function ggircs_portal.grant_permissions(operation text, table_name text, role_name text)
+  create or replace function ggircs_portal_private.grant_permissions(operation text, table_name text, role_name text)
   returns void
   as
   $function$
@@ -20,10 +20,10 @@ begin;
   $function$
   language 'plpgsql' volatile;
 
-  comment on function ggircs_portal.grant_permissions(text, text, text) is 'A generic function for granting access-control permissions on all columns of a table';
+  comment on function ggircs_portal_private.grant_permissions(text, text, text) is 'A generic function for granting access-control permissions on all columns of a table';
 
   -- Grants permissions on specific columns in a table
-  create or replace function ggircs_portal.grant_permissions(operation text, table_name text, role_name text, column_names text[])
+  create or replace function ggircs_portal_private.grant_permissions(operation text, table_name text, role_name text, column_names text[])
   returns void
   as
   $function$
@@ -42,6 +42,6 @@ begin;
   $function$
   language 'plpgsql' volatile;
 
-  comment on function ggircs_portal.grant_permissions(text, text, text, text[]) is 'A generic function for granting access-control permissions on specific columns of a table';
+  comment on function ggircs_portal_private.grant_permissions(text, text, text, text[]) is 'A generic function for granting access-control permissions on specific columns of a table';
 
 commit;

@@ -3,10 +3,11 @@
 %uri=https://github.com/bcgov/cas-ggircs/app
 
 schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a schema for the GGIRCS Industry Portal (GIP)
-database_functions/create_roles [schema_ggircs_portal] 2020-01-27T21:15:42Z Dylan Leard <dylan@button.is> # Adds the roles necessary for row level security
-database_functions/verify_grant [schema_ggircs_portal] 2020-01-31T21:31:38Z Dylan Leard <dylan@button.is> # Function verifies the granted permissions a role has on tables & columns
-database_functions/verify_policy [schema_ggircs_portal] 2020-02-03T17:44:49Z Dylan Leard <dylan@button.is> # Function verifies the row level security policies attached to a table
-database_functions/set_general_permissions [schema_ggircs_portal] 2020-01-29T21:10:26Z Dylan Leard <dylan@button.is> # Sets the general or global permissions for schema ggircs_portal
+schema_ggircs_portal_private 2020-02-04T19:34:27Z Dylan Leard <dylan@button.is> # Private schema for entities needed in the portal that should not be exposed to the API
+database_functions/create_roles [schema_ggircs_portal_private] 2020-01-27T21:15:42Z Dylan Leard <dylan@button.is> # Adds the roles necessary for row level security
+database_functions/verify_grant [schema_ggircs_portal_private] 2020-01-31T21:31:38Z Dylan Leard <dylan@button.is> # Function verifies the granted permissions a role has on tables & columns
+database_functions/verify_policy [schema_ggircs_portal_private] 2020-02-03T17:44:49Z Dylan Leard <dylan@button.is> # Function verifies the row level security policies attached to a table
+database_functions/set_general_permissions [schema_ggircs_portal_private] 2020-01-29T21:10:26Z Dylan Leard <dylan@button.is> # Sets the general or global permissions for schema ggircs_portal
 database_functions/grant_permissions [database_functions/create_roles] 2020-01-28T21:37:13Z Dylan Leard <dylan@button.is> # Function grants permission necessary for each user
 database_functions/upsert_policy [database_functions/create_roles] 2020-01-28T21:38:23Z Dylan Leard <dylan@button.is> # Function creates / alters policies for each table
 trigger_functions/update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values

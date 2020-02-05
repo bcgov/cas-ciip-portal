@@ -4,7 +4,7 @@
 begin;
 
   -- Verifies permission grants for all columns in a table
-  create or replace function ggircs_portal.verify_grant(operation text, table_name_input text, role_name text)
+  create or replace function ggircs_portal_private.verify_grant(operation text, table_name_input text, role_name text)
   returns boolean
   as
   $function$
@@ -49,10 +49,10 @@ begin;
   $function$
   language 'plpgsql' stable;
 
-  comment on function ggircs_portal.verify_grant(text, text, text) is 'A generic function for testing the existence of grants on a table';
+  comment on function ggircs_portal_private.verify_grant(text, text, text) is 'A generic function for testing the existence of grants on a table';
 
   -- Verifies permission grants on specific columns in a table
-  create or replace function ggircs_portal.verify_grant(operation text, table_name_input text, role_name text, column_names text[])
+  create or replace function ggircs_portal_private.verify_grant(operation text, table_name_input text, role_name text, column_names text[])
   returns boolean
   as
   $function$
@@ -108,6 +108,6 @@ begin;
   $function$
   language 'plpgsql' stable;
 
-  comment on function ggircs_portal.verify_grant(text, text, text, text[]) is 'A generic function for testing existence of grants on specific columns of a table';
+  comment on function ggircs_portal_private.verify_grant(text, text, text, text[]) is 'A generic function for testing existence of grants on specific columns of a table';
 
 commit;

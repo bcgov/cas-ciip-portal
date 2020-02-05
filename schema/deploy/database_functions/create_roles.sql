@@ -1,5 +1,5 @@
--- Deploy ggircs-portal:create_roles to pg
--- requires: schema_ggircs_portal
+-- Deploy ggircs-portal-private:create_roles to pg
+-- requires: schema_ggircs_portal_private
 
 begin;
 
