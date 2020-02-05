@@ -8,6 +8,8 @@ $$
   select current_timestamp;
 $$ language sql;
 
+grant execute on function ggircs_portal.current_timestamp to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 commit;
 
 comment on function ggircs_portal.current_timestamp is 'Returns the current date and time with time zone.

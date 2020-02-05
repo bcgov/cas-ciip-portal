@@ -106,4 +106,6 @@ begin
 end;
 $function$ language plpgsql strict volatile;
 
+grant execute on function ggircs_portal.create_application_revision_mutation_chain to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 commit;

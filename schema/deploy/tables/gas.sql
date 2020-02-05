@@ -21,6 +21,8 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
+grant all on table ggircs_portal.gas to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on table ggircs_portal.gas is 'Table of gases used in the CIIP program';
 comment on column ggircs_portal.gas.id is 'Unique ID for the gas';
 comment on column ggircs_portal.gas.gas_type is 'The name of the gas';

@@ -83,7 +83,8 @@ begin;
   $body$
   language 'plpgsql' stable;
 
+  grant execute on function ggircs_portal.get_swrs_operator_contact_data to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 commit;
 
 -- Todo: Fix swrs addresses table to remove this limit 1 hack
---select ggircs_portal.get_swrs_operator_contact_data(1766, '2018')

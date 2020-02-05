@@ -25,6 +25,8 @@ select application_id, version_number,
 from gases
   );
 
+grant all on table ggircs_portal.ciip_emission to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on view ggircs_portal.ciip_emission is E'@omit\n The view for emission data reported in an application';
 comment on column ggircs_portal.ciip_emission.application_id is 'The application id';
 comment on column ggircs_portal.ciip_emission.version_number is 'The application revision number';

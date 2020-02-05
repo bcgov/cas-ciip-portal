@@ -33,6 +33,51 @@ create unique index user_email_address_uindex
   on ggircs_portal.ciip_user(uuid);
 
 
+do
+$grant$
+begin
+-- Grant ciip_administrator permissions
+perform ggircs_portal.grant_permissions('select', 'ciip_user', 'ciip_administrator');
+perform ggircs_portal.grant_permissions('insert', 'ciip_user', 'ciip_administrator');
+perform ggircs_portal.grant_permissions('update', 'ciip_user', 'ciip_administrator',
+  ARRAY['first_name', 'last_name', 'email_address', 'occupation', 'phone_number', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by']);
+
+-- Grant ciip_analyst permissions
+perform ggircs_portal.grant_permissions('select', 'ciip_user', 'ciip_analyst');
+
+-- Grant ciip_industry_user permissions
+perform ggircs_portal.grant_permissions('select', 'ciip_user', 'ciip_industry_user');
+perform ggircs_portal.grant_permissions('insert', 'ciip_user', 'ciip_industry_user');
+perform ggircs_portal.grant_permissions('update', 'ciip_user', 'ciip_industry_user',
+  ARRAY['first_name', 'last_name', 'email_address', 'occupation', 'phone_number', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by']);
+
+-- Grant ciip_guest permissions
+-- ?
+end
+$grant$;
+
+-- Enable row-level security
+alter table ggircs_portal.ciip_user enable row level security;
+
+do
+$policy$
+begin
+-- ciip_administrator RLS
+perform ggircs_portal.upsert_policy('ciip_administrator_select_ciip_user', 'ciip_user', 'select', 'ciip_administrator', 'true');
+perform ggircs_portal.upsert_policy('ciip_administrator_insert_ciip_user', 'ciip_user', 'insert', 'ciip_administrator', 'true');
+perform ggircs_portal.upsert_policy('ciip_administrator_update_ciip_user', 'ciip_user', 'update', 'ciip_administrator', 'true');
+
+-- ciip_analyst RLS
+perform ggircs_portal.upsert_policy('ciip_analyst_select_ciip_user', 'ciip_user', 'select', 'ciip_analyst', 'true');
+
+-- ciip_industry_user RLS
+perform ggircs_portal.upsert_policy('ciip_industry_user_select_ciip_user', 'ciip_user', 'select', 'ciip_industry_user', 'uuid=(select sub from ggircs_portal.session())');
+perform ggircs_portal.upsert_policy('ciip_industry_user_insert_ciip_user', 'ciip_user', 'insert', 'ciip_industry_user', 'uuid=(select sub from ggircs_portal.session())');
+perform ggircs_portal.upsert_policy('ciip_industry_user_update_ciip_user', 'ciip_user', 'update', 'ciip_industry_user', 'uuid=(select sub from ggircs_portal.session())');
+
+end
+$policy$;
+
 comment on table ggircs_portal.ciip_user is 'Table containing the benchmark and eligibility threshold for a product';
 comment on column ggircs_portal.ciip_user.id is 'Unique ID for the user';
 comment on column ggircs_portal.ciip_user.uuid is 'Universally Unique ID for the user used for auth';

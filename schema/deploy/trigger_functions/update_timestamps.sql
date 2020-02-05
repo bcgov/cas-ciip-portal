@@ -32,6 +32,8 @@ begin
 end;
 $$ language plpgsql;
 
+grant execute on function ggircs_portal.update_timestamps to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on function ggircs_portal.update_timestamps()
   is $$
   a trigger to set created_at and updated_at columns.

@@ -32,6 +32,8 @@ create trigger _set_user_id
     for each row
     execute procedure ggircs_portal.set_user_id();
 
+grant all on table ggircs_portal.application_revision to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on table ggircs_portal.application_revision is 'The application revision data';
 
 comment on column ggircs_portal.application_revision.application_id is 'The foreign key to the ciip application, also part of the composite primary key with version number';

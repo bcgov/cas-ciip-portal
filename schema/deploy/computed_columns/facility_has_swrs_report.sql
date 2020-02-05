@@ -15,4 +15,6 @@ end;
 $function$
   language 'plpgsql' stable;
 
+grant execute on function ggircs_portal.facility_has_swrs_report to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 commit;

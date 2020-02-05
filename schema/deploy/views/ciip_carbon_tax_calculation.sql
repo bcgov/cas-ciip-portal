@@ -71,6 +71,8 @@ begin;
     from carbon_tax_variables
  );
 
+grant all on table ggircs_portal.ciip_carbon_tax_calculation to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on view ggircs_portal.ciip_carbon_tax_calculation is 'The view for calculating carbon tax based on ciip data';
 comment on column ggircs_portal.ciip_carbon_tax_calculation.application_id is 'The application id';
 comment on column ggircs_portal.ciip_carbon_tax_calculation.version_number is 'The application revision number';

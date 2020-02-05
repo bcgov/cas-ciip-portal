@@ -3,18 +3,24 @@
 %uri=https://github.com/bcgov/cas-ggircs/app
 
 schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a schema for the GGIRCS Industry Portal (GIP)
+database_functions/create_roles [schema_ggircs_portal] 2020-01-27T21:15:42Z Dylan Leard <dylan@button.is> # Adds the roles necessary for row level security
+database_functions/verify_grant [schema_ggircs_portal] 2020-01-31T21:31:38Z Dylan Leard <dylan@button.is> # Function verifies the granted permissions a role has on tables & columns
+database_functions/verify_policy [schema_ggircs_portal] 2020-02-03T17:44:49Z Dylan Leard <dylan@button.is> # Function verifies the row level security policies attached to a table
+database_functions/set_general_permissions [schema_ggircs_portal] 2020-01-29T21:10:26Z Dylan Leard <dylan@button.is> # Sets the general or global permissions for schema ggircs_portal
+database_functions/grant_permissions [database_functions/create_roles] 2020-01-28T21:37:13Z Dylan Leard <dylan@button.is> # Function grants permission necessary for each user
+database_functions/upsert_policy [database_functions/create_roles] 2020-01-28T21:38:23Z Dylan Leard <dylan@button.is> # Function creates / alters policies for each table
 trigger_functions/update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
 trigger_functions/set_random_id [schema_ggircs_portal] 2019-12-04T00:34:07Z Dylan Leard <dylan@button.is> # Trigger function to generate a random string and set it to id
 trigger_functions/set_expiry [schema_ggircs_portal] 2019-12-10T19:13:27Z Dylan Leard <dylan@button.is> # Function sets row expiry
 trigger_functions/ensure_window_open_submit_application_status 2020-01-16T17:51:13Z Matthieu Foucault <matthieu@button.is> # add a trigger that raises an exception if the application window is closed
 types/jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
+function_session [schema_ggircs_portal types/jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
 types/ciip_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file ciip_user_organisation_status
 types/ciip_application_revision_status [schema_ggircs_portal] 2019-11-26T18:39:57Z Helen Liu <helen@button.is> # Added ciip application status type
 types/ciip_form_result_status [schema_ggircs_portal] 2020-01-13T19:14:50Z Dylan Leard <dylan@button.is> # form result status enum type
 types/review_comment_type [schema_ggircs_portal] 2020-01-13T20:18:15Z Dylan Leard <dylan@button.is> # The type of a review comment
 types/application_search_result [schema_ggircs_portal types/ciip_application_revision_status] 2019-12-12T23:22:59Z Dylan Leard <dylan@button.is> # Return type for searching and listing applications
 tables/ciip_user [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
-function_session [schema_ggircs_portal types/jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
 trigger_functions/set_user_id [function_session tables/ciip_user] 2019-12-10T20:02:31Z Dylan Leard <dylan@button.is> # Trigger function updates the user_id field
 trigger_functions/checksum_form_results [schema_ggircs_portal] 2020-01-13T23:21:05Z Dylan Leard <dylan@button.is> # Trigger function checksums current submtted and previous submitted form result & changes form result status on result
 tables/product_form [schema_ggircs_portal] 2019-12-02T17:53:31Z Matthieu Foucault <matthieu@button.is> # Add a table that contains a json schema specific to a product type

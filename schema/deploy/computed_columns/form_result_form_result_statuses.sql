@@ -24,4 +24,6 @@ begin;
   $body$
   language 'plpgsql' stable;
 
+grant execute on function ggircs_portal.form_result_form_result_statuses to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 commit;

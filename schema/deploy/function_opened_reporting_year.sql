@@ -11,6 +11,8 @@ as $function$
   and ggircs_portal.current_timestamp() <= application_close_time;
 $function$ language sql stable;
 
+grant execute on function ggircs_portal.opened_reporting_year to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+
 comment on function ggircs_portal.opened_reporting_year is 'Returns the reporting year for which the application window is currently opened (if any)';
 
 commit;

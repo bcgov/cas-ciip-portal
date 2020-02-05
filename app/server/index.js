@@ -118,7 +118,8 @@ app.prepare().then(() => {
           return {
             'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
             'jwt.claims.user_groups': groups.join(','),
-            'jwt.claims.priority_group': priorityGroup
+            'jwt.claims.priority_group': priorityGroup,
+            role: 'ciip_administrator'
           };
         }
 
@@ -167,6 +168,16 @@ app.prepare().then(() => {
           claims[`jwt.claims.${property}`] = token[property];
         });
 
+        if (
+          token.priority_group === 'Incentive Administrator' ||
+          token.priority_group === 'Realm Administrator'
+        ) {
+          claims.role = 'ciip_administrator';
+        } else if (token.priority_group === 'Incentive Analyst') {
+          claims.role = 'ciip_analyst';
+        } else if (token.priority_group === 'User')
+          claims.role = 'ciip_industry_user';
+        else claims.role = 'ciip_guest';
         return claims;
       }
     })
