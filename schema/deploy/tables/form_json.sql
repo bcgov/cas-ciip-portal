@@ -30,7 +30,44 @@ create trigger _100_timestamps
 create unique index form_json_id_uindex
   on ggircs_portal.form_json (id);
 
-grant all on table ggircs_portal.form_json to ciip_administrator, ciip_analyst, ciip_industry_user;
+do
+$grant$
+begin
+-- Grant ciip_administrator permissions
+perform ggircs_portal_private.grant_permissions('select', 'form_json', 'ciip_administrator');
+perform ggircs_portal_private.grant_permissions('insert', 'form_json', 'ciip_administrator');
+perform ggircs_portal_private.grant_permissions('update', 'form_json', 'ciip_administrator');
+
+-- Grant ciip_analyst permissions
+perform ggircs_portal_private.grant_permissions('select', 'form_json', 'ciip_analyst');
+
+-- Grant ciip_industry_user permissions
+perform ggircs_portal_private.grant_permissions('select', 'form_json', 'ciip_industry_user');
+
+-- Grant ciip_guest permissions
+-- ?
+end
+$grant$;
+
+-- Enable row-level security
+alter table ggircs_portal.form_json enable row level security;
+
+do
+$policy$
+begin
+-- ciip_administrator RLS
+perform ggircs_portal_private.upsert_policy('ciip_administrator_select_form_json', 'form_json', 'select', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_insert_form_json', 'form_json', 'insert', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_update_form_json', 'form_json', 'update', 'ciip_administrator', 'true');
+
+-- ciip_analyst RLS
+perform ggircs_portal_private.upsert_policy('ciip_analyst_select_form_json', 'form_json', 'select', 'ciip_analyst', 'true');
+
+-- ciip_industry_user RLS
+perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_form_json', 'form_json', 'select', 'ciip_industry_user', 'true');
+
+end
+$policy$;
 
 comment on table ggircs_portal.form_json is 'Table containing the structure of each form to be filled out when applying for CIIP';
 comment on column ggircs_portal.form_json.id is 'Unique ID for the form';
