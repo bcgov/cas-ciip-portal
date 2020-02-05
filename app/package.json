@@ -23,6 +23,9 @@
     "storybook": "start-storybook -s ."
   },
   "xo": {
+    "ignores": [
+      "cypress"
+    ],
     "extends": [
       "xo-typescript",
       "xo-react",
