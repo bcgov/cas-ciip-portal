@@ -9,7 +9,7 @@ create table ggircs_portal.product_form (
   product_form_schema jsonb not null
 );
 
-grant all on table ggircs_portal.product_form to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant all on table ggircs_portal.product_form to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on table ggircs_portal.product_form is 'The table that holds the custom form schemas and calculation formulas for complex products';
 comment on column ggircs_portal.product_form.id is 'A generated primary key id for the row';

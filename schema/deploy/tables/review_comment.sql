@@ -71,8 +71,8 @@ $fn$
     where uuid = (select sub from ggircs_portal.session())
 $fn$ language sql strict stable;
 
-grant execute on function ggircs_portal_private.get_valid_review_comments to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
-grant execute on function ggircs_portal_private.analyst_owns_comment to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal_private.get_valid_review_comments to ciip_administrator, ciip_analyst, ciip_industry_user;
+grant execute on function ggircs_portal_private.analyst_owns_comment to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 do
 $policy$

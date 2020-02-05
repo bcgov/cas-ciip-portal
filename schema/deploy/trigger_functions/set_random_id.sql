@@ -28,7 +28,7 @@ begin
 end;
 $$ language plpgsql volatile;
 
-grant execute on function ggircs_portal.set_random_id to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal.set_random_id to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on function ggircs_portal.set_random_id()
   is $$

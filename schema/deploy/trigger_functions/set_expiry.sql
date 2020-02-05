@@ -14,7 +14,7 @@ begin
 end;
 $$ language plpgsql;
 
-grant execute on function ggircs_portal.set_expiry to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal.set_expiry to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on function ggircs_portal.set_expiry()
   is $$

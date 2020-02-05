@@ -32,7 +32,7 @@ begin
 end;
 $$ language plpgsql;
 
-grant execute on function ggircs_portal.update_timestamps to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal.update_timestamps to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on function ggircs_portal.update_timestamps()
   is $$

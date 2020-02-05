@@ -54,6 +54,6 @@ create or replace function ggircs_portal.search_application_list(search_field te
             end
         $function$ language plpgsql stable;
 
-  grant execute on function ggircs_portal.search_application_list to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+  grant execute on function ggircs_portal.search_application_list to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 commit;

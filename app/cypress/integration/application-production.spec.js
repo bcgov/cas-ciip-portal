@@ -1,4 +1,7 @@
 describe('The production tab', () => {
+  before(() => {
+    cy.sqlFixture('ensure-application-ownership');
+  });
   beforeEach(() => {
     cy.sqlFixture('production-draft-form-result-setup');
     cy.login(

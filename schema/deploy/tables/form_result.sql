@@ -27,7 +27,7 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
-grant all on table ggircs_portal.form_result to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant all on table ggircs_portal.form_result to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on table ggircs_portal.form_result is 'Table containing CIIP application data received from a user';
 comment on column ggircs_portal.form_result.id is 'Unique ID for the form';

@@ -24,7 +24,7 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
-grant all on table ggircs_portal.fuel to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant all on table ggircs_portal.fuel to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on table ggircs_portal.fuel is 'Table containing information on fuel';
 comment on column ggircs_portal.fuel.id is 'Unique ID for the fuel';

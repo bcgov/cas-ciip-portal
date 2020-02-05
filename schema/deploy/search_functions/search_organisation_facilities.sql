@@ -23,6 +23,6 @@ create or replace function ggircs_portal.search_organisation_facilities(search_f
             end
         $function$ language plpgsql stable;
 
-  grant execute on function ggircs_portal.search_organisation_facilities to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+  grant execute on function ggircs_portal.search_organisation_facilities to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 commit;

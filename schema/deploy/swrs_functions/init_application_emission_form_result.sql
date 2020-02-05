@@ -90,6 +90,6 @@ begin
 end;
 $function$ language plpgsql strict volatile;
 
-grant execute on function ggircs_portal.init_application_emission_form_result to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal.init_application_emission_form_result to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 commit;

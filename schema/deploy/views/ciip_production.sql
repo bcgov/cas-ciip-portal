@@ -24,7 +24,7 @@ begin;
     from x
  );
 
-grant all on table ggircs_portal.ciip_production to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant all on table ggircs_portal.ciip_production to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on view ggircs_portal.ciip_production is E'@omit\n The view for production data reported in the application';
 comment on column ggircs_portal.ciip_production.application_id is 'The application id';

@@ -55,7 +55,7 @@ begin;
     )
  );
 
-grant all on table ggircs_portal.ciip_electricity_and_heat to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant all on table ggircs_portal.ciip_electricity_and_heat to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on view ggircs_portal.ciip_electricity_and_heat is E'@omit\n The view for electricity and heat data reported in the application';
 comment on column ggircs_portal.ciip_electricity_and_heat.application_id is 'The application id ';

@@ -20,6 +20,6 @@ returns setof ggircs_portal.ciip_user_organisation as
             end
         $function$ language plpgsql stable;
 
-  grant execute on function ggircs_portal.search_ciip_user_organisation to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+  grant execute on function ggircs_portal.search_ciip_user_organisation to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 commit;

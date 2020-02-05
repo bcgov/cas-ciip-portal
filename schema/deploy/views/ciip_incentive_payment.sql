@@ -98,7 +98,7 @@ create or replace view ggircs_portal.ciip_incentive_payment as (
 
 );
 
-grant all on table ggircs_portal.ciip_incentive_payment to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant all on table ggircs_portal.ciip_incentive_payment to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on view ggircs_portal.ciip_incentive_payment is '
 @primaryKey application_id, version_number, product_id
