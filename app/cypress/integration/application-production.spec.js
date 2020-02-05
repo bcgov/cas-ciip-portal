@@ -20,6 +20,10 @@ describe('The production tab', () => {
     cy.logout();
   });
 
+  after(() => {
+    cy.sqlFixture('application-production-teardown');
+  });
+
   it('Should render the aluminum product', () => {
     cy.get('#root_0_productRowId')
       .clear()
