@@ -41,10 +41,10 @@ export const ProductList: React.FunctionComponent<Props> = ({
 
     const displayNameToColumnNameMap = {
       Product: 'name',
+      Description: 'description',
       Units: 'units',
       'Benchmark (tCO2e/product units)': 'benchmark',
       'Elig. Threshold (tCO2e/product units)': 'eligibility_threshold',
-      'Incentive Multiplier': 'incentive_multiplier',
       Status: 'state'
     };
     const body = (

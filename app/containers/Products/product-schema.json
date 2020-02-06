@@ -1,0 +1,31 @@
+{
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Name"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description"
+      },
+      "units": {
+        "type": "string",
+        "title": "Production units of measurement"
+      }
+    },
+    "required": ["name", "units"]
+  },
+  "uiSchema": {
+    "name": {
+      "ui:col-md": 4
+    },
+    "units": {
+      "ui:col-md": 4
+    },
+    "description": {
+      "ui:col-md": 4
+    }
+  }
+}
