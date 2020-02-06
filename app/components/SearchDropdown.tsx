@@ -1,5 +1,6 @@
 import React from 'react';
 import {Typeahead} from 'react-bootstrap-typeahead';
+import ErrorList from 'components/Forms/ErrorList';
 
 interface Props {
   id?: string;
@@ -9,6 +10,7 @@ interface Props {
   inputProps: {id: string};
   onChange: (items: Array<{id: string | number; name: string}>) => void;
   selected?: Array<{id: string | number; name: string}>;
+  errorSchema?: any;
 }
 
 const SearchDropdown: React.FunctionComponent<Props> = ({
@@ -18,7 +20,8 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
   options,
   selected,
   inputProps,
-  onChange
+  onChange,
+  errorSchema
 }) => {
   return (
     <>
@@ -41,6 +44,9 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
         selected={selected}
         onChange={items => onChange(items)}
       />
+      {errorSchema && errorSchema.fuelType ? (
+        <ErrorList errors={errorSchema?.fuelType?.__errors} />
+      ) : null}
       <style jsx global>
         {`
           .typeahead-input {

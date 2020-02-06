@@ -701,6 +701,8 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "items": Object {
                       "gases": Object {
                         "items": Object {
+                          "classNames": "hidden-title",
+                          "ui:col-md": 12,
                           "ui:field": "emissionGas",
                         },
                         "ui:options": Object {
@@ -797,16 +799,16 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "fuelType": "est dolor",
-                    "fuelUnits": "in qui",
+                    "fuelType": "consequat Ut Duis",
+                    "fuelUnits": "culpa",
                     "methodology": "wci 1.0",
-                    "quantity": -20000000,
+                    "quantity": -80000000,
                   },
                   Object {
-                    "fuelType": "mollit eu esse",
-                    "fuelUnits": "est dolor",
-                    "methodology": "wci 2.0",
-                    "quantity": 0,
+                    "fuelType": "est dolor",
+                    "fuelUnits": "mollit eu esse",
+                    "methodology": "wci 1.0",
+                    "quantity": -20000000,
                   },
                 ]
               }
@@ -847,6 +849,12 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "type": "number",
                         },
                       },
+                      "required": Array [
+                        "fuelType",
+                        "quantity",
+                        "units",
+                        "methodology",
+                      ],
                       "type": "object",
                     },
                   },
@@ -936,19 +944,20 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Object {
                   "electricity": Object {
-                    "consumedOnSite": 0,
-                    "generatedOnSite": -40000000,
-                    "onSiteEmissions": 0,
-                    "purchased": 0,
-                    "sold": -60000000,
+                    "consumedOnSite": -60000000,
+                    "generatedOnSite": 0,
+                    "onSiteEmissions": -20000000,
+                    "purchased": -40000000,
+                    "purchasedEmissionFactor": -80000000,
+                    "sold": -20000000,
                   },
                   "heat": Object {
-                    "consumedOnSite": 0,
-                    "generatedOnSite": -40000000,
-                    "onSiteEmissions": -60000000,
-                    "purchased": -80000000,
-                    "purchasedEmissionFactor": -20000000,
-                    "sold": -60000000,
+                    "consumedOnSite": -60000000,
+                    "generatedOnSite": 0,
+                    "onSiteEmissions": -20000000,
+                    "purchased": -40000000,
+                    "purchasedEmissionFactor": -80000000,
+                    "sold": -20000000,
                   },
                 }
               }
@@ -1253,34 +1262,17 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 30,
-                    "importedHeatAllocationFactor": 50,
-                    "paymentAllocationFactor": 10,
-                    "productRowId": -40000000,
-                    "productUnits": "est dolor",
-                    "productionAllocationFactor": -59999960,
-                    "quantity": 0,
-                  },
-                  Object {
-                    "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 30,
-                    "importedHeatAllocationFactor": 50,
-                    "paymentAllocationFactor": 10,
-                    "productRowId": -40000000,
-                    "productUnits": "est dolor",
-                    "productionAllocationFactor": -59999960,
-                    "quantity": 0,
-                  },
-                  Object {
-                    "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 30,
-                    "importedHeatAllocationFactor": 50,
-                    "paymentAllocationFactor": 10,
-                    "productRowId": -40000000,
-                    "productUnits": "est dolor",
-                    "productionAllocationFactor": -59999960,
-                    "quantity": 0,
+                    "additionalData": Object {
+                      "consequat_c": -80000000,
+                      "est1a": -20000000,
+                    },
+                    "importedElectricityAllocationFactor": 50,
+                    "importedHeatAllocationFactor": 20,
+                    "paymentAllocationFactor": 30,
+                    "productRowId": 0,
+                    "productUnits": "consequat Ut Duis",
+                    "productionAllocationFactor": -89999990,
+                    "quantity": -60000000,
                   },
                 ]
               }
