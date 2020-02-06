@@ -1,3 +1,4 @@
+import getConfig from 'next/config';
 import React from 'react';
 import {createFragmentContainer, graphql} from 'react-relay';
 import MathJax from 'react-mathjax2';
@@ -26,9 +27,12 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
     <tr>
       <td>{incentivePayment.productByProductId.name}</td>
       <td>
-        <MathJax.Context input="tex">
-          <MathJax.Node>{formula}</MathJax.Node>
-        </MathJax.Context>
+        {process.env.NO_MATHJAX ||
+        getConfig()?.publicRuntimeConfig.NO_MATHJAX ? null : (
+          <MathJax.Context input="tex">
+            <MathJax.Node>{formula}</MathJax.Node>
+          </MathJax.Context>
+        )}
       </td>
       <td>CAD {incentivePayment.incentiveAmountProRated} </td>
       <td>CAD {incentivePayment.incentiveAmountFlat} </td>

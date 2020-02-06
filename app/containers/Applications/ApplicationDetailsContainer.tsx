@@ -1,3 +1,4 @@
+import getConfig from 'next/config';
 import React, {useEffect, useState} from 'react';
 import {Dropdown, Form, Row, Col} from 'react-bootstrap';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
@@ -140,10 +141,13 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
           />
         ))}
         <div style={{textAlign: 'right', marginTop: 20}}>
-          <ApplicationDetailsPdf
-            application={props.application}
-            query={props.query}
-          />
+          {process.env.NO_PDF ||
+          getConfig()?.publicRuntimeConfig.NO_PDF ? null : (
+            <ApplicationDetailsPdf
+              application={props.application}
+              query={props.query}
+            />
+          )}
         </div>
       </div>
     </>

@@ -92,7 +92,16 @@
         }
       ],
       "jest/expect-expect": 0
-    }
+    },
+    "overrides": [
+      {
+        "files": ["cypress/integration/*.spec.js"],
+        "rules": {
+          "jest/valid-expect-in-promise": 0,
+          "promise/prefer-await-to-then": 0
+        }
+      }
+    ]
   },
   "engines": {
     "node": "10.14.1",
