@@ -78,7 +78,7 @@ select throws_like(
     delete from ggircs_portal.form_result where id=1001
   $$,
   'permission denied%',
-    'Administrator cannot delete rows from table_application'
+    'Administrator cannot delete rows from table_form_result'
 );
 
 -- CIIP_INDUSTRY_USER
@@ -145,7 +145,7 @@ select throws_like(
     delete from ggircs_portal.application where id=999
   $$,
   'permission denied%',
-    'Industry User cannot delete rows from table_application'
+    'Industry User cannot delete rows from table_form_result'
 );
 
 -- attempt to update a row that user does not have access to
@@ -192,7 +192,7 @@ select throws_like(
     delete from ggircs_portal.application where id = 999;
   $$,
   'permission denied%',
-    'Analyst cannot delete rows from table application'
+    'Analyst cannot delete rows from table form_result'
 );
 
 select finish();
