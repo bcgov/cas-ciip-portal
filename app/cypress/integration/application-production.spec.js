@@ -1,6 +1,6 @@
 describe('The production tab', () => {
   beforeEach(() => {
-    cy.sqlFixture('init-production-draft-form-result');
+    cy.sqlFixture('production-draft-form-result-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
