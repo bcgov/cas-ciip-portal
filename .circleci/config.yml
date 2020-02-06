@@ -424,7 +424,7 @@ jobs:
           command: |
             source ~/.asdf/asdf.sh
             pushd app
-            yarn start NO_PDF NO_MATHJAX & yarn wait-on http://localhost:3004
+            NO_PDF=true NO_MATHJAX=true yarn start & yarn wait-on http://localhost:3004
             yarn test:e2e
             popd
 
@@ -455,7 +455,7 @@ jobs:
           command: |
             source ~/.asdf/asdf.sh
             pushd app
-            yarn start NO_PDF NO_MATHJAX & yarn wait-on http://localhost:3004
+            NO_PDF=true NO_MATHJAX=true yarn start & yarn wait-on http://localhost:3004
             yarn test:e2e-snapshots
             popd
 

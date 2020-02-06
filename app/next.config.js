@@ -19,5 +19,9 @@ module.exports = {
     ];
 
     return config;
+  },
+  publicRuntimeConfig: {
+    NO_PDF: process.env.NO_PDF,
+    NO_MATHJAX: process.env.NO_MATHJAX
   }
 };

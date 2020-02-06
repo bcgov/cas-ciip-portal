@@ -13,7 +13,7 @@ describe('When reviewing a submitted application as an analyst', () => {
 
   it('The summary page properly displays the diffs when showDiff is selected', () => {
     // Before showDiff checkbox is checked (showDiff = false)
-    cy.get('#page-content').contains('Download Application', {timeout: 10000});
+    cy.get('#page-content');
     cy.contains('Changed');
     cy.contains('Test operator').should('not.exist');
     // After showDiff checkbox is checked (showDiff = true)
