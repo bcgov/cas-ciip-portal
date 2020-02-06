@@ -142,7 +142,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
         ))}
         <div style={{textAlign: 'right', marginTop: 20}}>
           {process.env.NO_PDF ||
-          getConfig().publicRuntimeConfig.NO_PDF ? null : (
+          getConfig()?.publicRuntimeConfig.NO_PDF ? null : (
             <ApplicationDetailsPdf
               application={props.application}
               query={props.query}

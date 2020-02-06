@@ -15,7 +15,7 @@ const IncentiveSegmentFormula = () => {
     <Row>
       <Col md={12}>
         {process.env.NO_MATHJAX ||
-        getConfig().publicRuntimeConfig.NO_MATHJAX ? null : (
+        getConfig()?.publicRuntimeConfig.NO_MATHJAX ? null : (
           <MathJax.Context input="tex">
             <MathJax.Node>{formula}</MathJax.Node>
           </MathJax.Context>

@@ -28,7 +28,7 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
       <td>{incentivePayment.productByProductId.name}</td>
       <td>
         {process.env.NO_MATHJAX ||
-        getConfig().publicRuntimeConfig.NO_MATHJAX ? null : (
+        getConfig()?.publicRuntimeConfig.NO_MATHJAX ? null : (
           <MathJax.Context input="tex">
             <MathJax.Node>{formula}</MathJax.Node>
           </MathJax.Context>
