@@ -424,7 +424,7 @@ jobs:
           command: |
             source ~/.asdf/asdf.sh
             pushd app
-            yarn start & yarn wait-on http://localhost:3004
+            yarn start NO_PDF NO_MATHJAX & yarn wait-on http://localhost:3004
             yarn test:e2e
             popd
 
@@ -455,7 +455,7 @@ jobs:
           command: |
             source ~/.asdf/asdf.sh
             pushd app
-            yarn start & yarn wait-on http://localhost:3004
+            yarn start NO_PDF NO_MATHJAX & yarn wait-on http://localhost:3004
             yarn test:e2e-snapshots
             popd
 
@@ -491,9 +491,14 @@ workflows:
       - e2e:
           requires:
             - compile
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
       - e2e-snapshots:
           requires:
-            - e2e
+            - compile
           filters:
             branches:
               only:
@@ -507,7 +512,6 @@ workflows:
             - schema
             - compile
             - deploy-test-data
-            - e2e
             - e2e-snapshots
           context: cas-pipeline
           filters:

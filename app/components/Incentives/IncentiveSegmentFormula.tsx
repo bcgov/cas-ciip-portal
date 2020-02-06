@@ -13,9 +13,11 @@ const IncentiveSegmentFormula = () => {
   return (
     <Row>
       <Col md={12}>
-        <MathJax.Context input="tex">
-          <MathJax.Node>{formula}</MathJax.Node>
-        </MathJax.Context>
+        {process.env.NO_MATHJAX ? null : (
+          <MathJax.Context input="tex">
+            <MathJax.Node>{formula}</MathJax.Node>
+          </MathJax.Context>
+        )}
       </Col>
     </Row>
   );

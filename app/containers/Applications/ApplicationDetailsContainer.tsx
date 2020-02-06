@@ -140,10 +140,12 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
           />
         ))}
         <div style={{textAlign: 'right', marginTop: 20}}>
-          <ApplicationDetailsPdf
-            application={props.application}
-            query={props.query}
-          />
+          {process.env.NO_PDF ? null : (
+            <ApplicationDetailsPdf
+              application={props.application}
+              query={props.query}
+            />
+          )}
         </div>
       </div>
     </>

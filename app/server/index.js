@@ -23,6 +23,12 @@ const {
 let databaseURL = 'postgres://';
 
 const NO_AUTH = process.argv.includes('NO_AUTH');
+const NO_PDF = process.argv.includes('NO_PDF');
+const NO_MATHJAX = process.argv.includes('NO_MATHJAX');
+
+if (NO_PDF) process.env.NO_PDF = true;
+
+if (NO_MATHJAX) process.env.NO_MATHJAX = true;
 
 if (process.env.PGUSER) {
   databaseURL += process.env.PGUSER;

@@ -26,9 +26,11 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
     <tr>
       <td>{incentivePayment.productByProductId.name}</td>
       <td>
-        <MathJax.Context input="tex">
-          <MathJax.Node>{formula}</MathJax.Node>
-        </MathJax.Context>
+        {process.env.NO_MATHJAX ? null : (
+          <MathJax.Context input="tex">
+            <MathJax.Node>{formula}</MathJax.Node>
+          </MathJax.Context>
+        )}
       </td>
       <td>CAD {incentivePayment.incentiveAmountProRated} </td>
       <td>CAD {incentivePayment.incentiveAmountFlat} </td>
