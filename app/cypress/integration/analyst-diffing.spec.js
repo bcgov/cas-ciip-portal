@@ -1,5 +1,5 @@
 describe('When reviewing a submitted application as an analyst', () => {
-  before(() => {
+  beforeEach(() => {
     cy.login(
       Cypress.env('TEST_ANALYST_USERNAME'),
       Cypress.env('TEST_ANALYST_PASSWORD')
@@ -9,7 +9,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     );
   });
 
-  after(() => cy.logout());
+  afterEach(() => cy.logout());
 
   it('The summary page properly displays the diffs when showDiff is selected', () => {
     // Before showDiff checkbox is checked (showDiff = false)

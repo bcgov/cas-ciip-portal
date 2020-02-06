@@ -1,5 +1,5 @@
 describe('When reviewing a submitted application as an analyst', () => {
-  before(() => {
+  beforeEach(() => {
     cy.sqlFixture('form-validation-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),

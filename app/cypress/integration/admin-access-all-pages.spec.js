@@ -1,12 +1,12 @@
 describe('When logged in as an analyst', () => {
-  before(() => {
+  beforeEach(() => {
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
       Cypress.env('TEST_ADMIN_PASSWORD')
     );
   });
 
-  after(() => {
+  afterEach(() => {
     cy.logout();
   });
 

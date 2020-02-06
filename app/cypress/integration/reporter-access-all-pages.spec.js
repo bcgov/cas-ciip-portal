@@ -1,5 +1,5 @@
 describe('When logged in as a reporter', () => {
-  before(() => {
+  beforeEach(() => {
     cy.logout();
     cy.sqlFixture('reporter-all-access-setup');
     cy.login(
@@ -8,7 +8,7 @@ describe('When logged in as a reporter', () => {
     );
   });
 
-  after(() => {
+  afterEach(() => {
     cy.sqlFixture('reporter-all-access-teardown');
   });
 
