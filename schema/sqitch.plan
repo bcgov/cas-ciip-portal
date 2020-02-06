@@ -84,3 +84,5 @@ swrs_functions/import_swrs_organisation_facility 2019-12-30T22:34:43Z Matthieu F
 tables/form_result_status [tables/form_result] 2020-01-13T19:11:49Z Dylan Leard <dylan@button.is> # Table containing the status of an individual form result
 mutations/create_review_comment_mutation_chain [tables/review_comment tables/form_result_status] 2020-01-15T23:15:53Z Dylan Leard <dylan@button.is> # Mutation chain to create a comment and update the form_result_status table based on the type of the comment created
 computed_columns/form_result_form_result_statuses [tables/form_result tables/form_result_status] 2020-01-17T19:01:37Z Dylan Leard <dylan@button.is> # Computed column gets all form result statuses for a form result by application_id and form_id
+types/ciip_incentive_by_product [schema_ggircs_portal] 2020-02-05T00:27:23Z Hamza Javed <hamza@button.is> # Return type for the ciip_incentive_payment function
+ciip_functions/ciip_incentive_payment [tables/benchmark views/ciip_production views/ciip_electricity_and_heat types/ciip_incentive_by_product] 2020-02-03T22:17:13Z Hamza Javed <hamza@button.is> # Function for calculating incentive payout per product
