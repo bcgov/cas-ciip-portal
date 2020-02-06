@@ -1,5 +1,6 @@
 describe('When reviewing a submitted application as an analyst', () => {
   before(() => {
+    cy.sqlFixture('form-validation-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
@@ -9,6 +10,10 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.visit(
       `/reporter/ciip-application?applicationId=${applicationId}&version=1&formResultId=${formResultId}`
     );
+  });
+
+  afterEach(() => {
+    cy.sqlFixture('form-validation-teardown');
   });
 
   it('The application forms show validation errors', () => {
