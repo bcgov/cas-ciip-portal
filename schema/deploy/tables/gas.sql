@@ -21,7 +21,44 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
-grant all on table ggircs_portal.gas to ciip_administrator, ciip_analyst, ciip_industry_user;
+do
+$grant$
+begin
+-- Grant ciip_administrator permissions
+perform ggircs_portal_private.grant_permissions('select', 'gas', 'ciip_administrator');
+perform ggircs_portal_private.grant_permissions('insert', 'gas', 'ciip_administrator');
+perform ggircs_portal_private.grant_permissions('update', 'gas', 'ciip_administrator');
+
+-- Grant ciip_analyst permissions
+perform ggircs_portal_private.grant_permissions('select', 'gas', 'ciip_analyst');
+
+-- Grant ciip_industry_user permissions
+perform ggircs_portal_private.grant_permissions('select', 'gas', 'ciip_industry_user');
+
+-- Grant ciip_guest permissions
+-- ?
+end
+$grant$;
+
+-- Enable row-level security
+alter table ggircs_portal.gas enable row level security;
+
+do
+$policy$
+begin
+-- ciip_administrator RLS
+perform ggircs_portal_private.upsert_policy('ciip_administrator_select_gas', 'gas', 'select', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_insert_gas', 'gas', 'insert', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_update_gas', 'gas', 'update', 'ciip_administrator', 'true');
+
+-- ciip_analyst RLS
+perform ggircs_portal_private.upsert_policy('ciip_analyst_select_gas', 'gas', 'select', 'ciip_analyst', 'true');
+
+-- ciip_industry_user RLS
+perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_gas', 'gas', 'select', 'ciip_industry_user', 'true');
+
+end
+$policy$;
 
 comment on table ggircs_portal.gas is 'Table of gases used in the CIIP program';
 comment on column ggircs_portal.gas.id is 'Unique ID for the gas';
