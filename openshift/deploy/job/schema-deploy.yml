@@ -29,7 +29,7 @@ objects:
     name: ${PREFIX}ciip-portal-schema-deploy
   spec:
     backoffLimit: 0
-    activeDeadlineSeconds: 120
+    activeDeadlineSeconds: 7200
     template:
       metadata:
         labels:

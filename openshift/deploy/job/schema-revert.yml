@@ -29,7 +29,7 @@ objects:
     name: ${PREFIX}ciip-portal-schema-revert
   spec:
     backoffLimit: 0
-    activeDeadlineSeconds: 120
+    activeDeadlineSeconds: 7200
     template:
       metadata:
         labels:
@@ -42,7 +42,7 @@ objects:
           - /usr/bin/env
           - bash
           - -c
-          - sqitch revert -y || exit 0
+          - sqitch revert -y
           env:
           - name: SQITCH_TARGET
             value: "db:pg:"
