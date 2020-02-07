@@ -6,7 +6,7 @@
 begin;
 
 -- Function takes application id and version number:
-create or replace function ggircs_portal.ciip_incentive_payment(app_id numeric , version_no numeric )
+create or replace function ggircs_portal.ciip_incentive_payment(app_id int , version_no int )
 returns setof ggircs_portal.ciip_incentive_by_product as $function$
   declare
     product record;
