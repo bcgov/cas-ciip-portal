@@ -21,7 +21,44 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
-grant all on table ggircs_portal.emission_category_gas to ciip_administrator, ciip_analyst, ciip_industry_user;
+do
+$grant$
+begin
+-- Grant ciip_administrator permissions
+perform ggircs_portal_private.grant_permissions('select', 'emission_category_gas', 'ciip_administrator');
+perform ggircs_portal_private.grant_permissions('insert', 'emission_category_gas', 'ciip_administrator');
+perform ggircs_portal_private.grant_permissions('update', 'emission_category_gas', 'ciip_administrator');
+
+-- Grant ciip_analyst permissions
+perform ggircs_portal_private.grant_permissions('select', 'emission_category_gas', 'ciip_analyst');
+
+-- Grant ciip_industry_user permissions
+perform ggircs_portal_private.grant_permissions('select', 'emission_category_gas', 'ciip_industry_user');
+
+-- Grant ciip_guest permissions
+-- ?
+end
+$grant$;
+
+-- Enable row-level security
+alter table ggircs_portal.emission_category_gas enable row level security;
+
+do
+$policy$
+begin
+-- ciip_administrator RLS
+perform ggircs_portal_private.upsert_policy('ciip_administrator_select_emission_category_gas', 'emission_category_gas', 'select', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_insert_emission_category_gas', 'emission_category_gas', 'insert', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_update_emission_category_gas', 'emission_category_gas', 'update', 'ciip_administrator', 'true');
+
+-- ciip_analyst RLS
+perform ggircs_portal_private.upsert_policy('ciip_analyst_select_emission_category_gas', 'emission_category_gas', 'select', 'ciip_analyst', 'true');
+
+-- ciip_industry_user RLS
+perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_emission_category_gas', 'emission_category_gas', 'select', 'ciip_industry_user', 'true');
+
+end
+$policy$;
 
 comment on table ggircs_portal.emission_category_gas is 'Table of emission categories used in the CIIP program';
 comment on column ggircs_portal.emission_category_gas.id is 'Unique ID for the emission_category_gas';
