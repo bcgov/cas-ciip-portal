@@ -1,6 +1,6 @@
 describe('The production tab', () => {
   before(() => {
-    cy.sqlFixture('applicaiton-production-setup');
+    cy.sqlFixture('application-production-setup');
   });
   beforeEach(() => {
     cy.sqlFixture('production-draft-form-result-setup');
