@@ -69,9 +69,9 @@ views/ciip_carbon_tax_calculation [swrs_functions/get_carbon_tax_data views/ciip
 search_functions/search_products [tables/product] 2019-11-21T19:48:58Z Dylan Leard <dylan@button.is> # Custom search function for products
 tables/certification_url [tables/application trigger_functions/set_random_id] 2019-12-03T19:58:18Z Dylan Leard <dylan@button.is> # Table containing the unique certification URL for an application and related data.
 views/ciip_emission [tables/application] 2019-12-13T00:12:13Z Matthieu Foucault <matthieu@button.is> # Add a view that calculates the total of non-biogenic emissions for an application
+views/ciip_incentive_payment [views/ciip_production views/ciip_emission tables/benchmark] 2019-12-17T20:40:18Z Matthieu Foucault <matthieu@button.is> # Add view calculating the incentive payment
 search_functions/search_organisation_facilities [tables/facility] 2019-12-04T18:42:11Z Helen Liu <helen@button.is> # added search filter for applications of facilities
 search_functions/search_all_facilities [tables/facility] 2019-12-06T00:27:16Z Helen Liu <helen@button.is> # added search function for all facilities
-views/ciip_incentive_payment [views/ciip_production views/ciip_emission tables/benchmark] 2019-12-17T20:40:18Z Matthieu Foucault <matthieu@button.is> # Add view calculating the incentive payment
 computed_columns/application_latest_submitted_revision [tables/application_revision_status] 2019-12-12T18:40:39Z Dylan Leard <dylan@button.is> # Function to add computed column latest_submitted_revision to ggircs_portal.application
 computed_columns/application_latest_draft_revision [tables/application_revision_status] 2019-12-12T18:41:24Z Dylan Leard <dylan@button.is> # Function to add computed column latest_draft_revision to ggircs_portal.application
 mutations/create_application_revision_mutation_chain [tables/application_revision_status] 2019-12-13T23:52:16Z Dylan Leard <dylan@button.is> # Stored procedure to create an application revision and all dependent tables
@@ -85,4 +85,4 @@ tables/form_result_status [tables/form_result] 2020-01-13T19:11:49Z Dylan Leard 
 mutations/create_review_comment_mutation_chain [tables/review_comment tables/form_result_status] 2020-01-15T23:15:53Z Dylan Leard <dylan@button.is> # Mutation chain to create a comment and update the form_result_status table based on the type of the comment created
 computed_columns/form_result_form_result_statuses [tables/form_result tables/form_result_status] 2020-01-17T19:01:37Z Dylan Leard <dylan@button.is> # Computed column gets all form result statuses for a form result by application_id and form_id
 types/ciip_incentive_by_product [schema_ggircs_portal] 2020-02-05T00:27:23Z Hamza Javed <hamza@button.is> # Return type for the ciip_incentive_payment function
-ciip_functions/ciip_incentive_payment [tables/benchmark views/ciip_production views/ciip_electricity_and_heat types/ciip_incentive_by_product] 2020-02-03T22:17:13Z Hamza Javed <hamza@button.is> # Function for calculating incentive payout per product
+ciip_functions/ciip_incentive [tables/benchmark views/ciip_production views/ciip_electricity_and_heat types/ciip_incentive_by_product] 2020-02-03T22:17:13Z Hamza Javed <hamza@button.is> # Function for calculating incentive payout per product

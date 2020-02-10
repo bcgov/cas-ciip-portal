@@ -1,12 +1,11 @@
--- Deploy ggircs-portal:ciip_functions/ciip_incentive_payment to pg
+-- Deploy ggircs-portal:ciip_functions/ciip_incentive to pg
 -- requires: tables/benchmark
 -- requires: views/ciip_production
 -- requires: views/ciip_electricity_and_heat
 
 begin;
-
 -- Function takes application id and version number:
-create or replace function ggircs_portal.ciip_incentive_payment(app_id int , version_no int )
+create or replace function ggircs_portal.ciip_incentive(app_id int , version_no int )
 returns setof ggircs_portal.ciip_incentive_by_product as $function$
   declare
     product record;
@@ -22,6 +21,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     incentive_ratio_min numeric;
     incentive_ratio numeric;
     incentive_product numeric;
+    app_reporting_year int;
     carbon_tax_facility numeric;
     electricity_data ggircs_portal.ciip_electricity_and_heat;
     heat_data ggircs_portal.ciip_electricity_and_heat;
@@ -38,7 +38,11 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
      -- Get emissions for facility
      select sum(annual_co2e) into em_facility from ggircs_portal.ciip_emission
-     where version_number = version_no and application_id = app_id;
+     where version_number = 1 and application_id = 1 and gas_type != 'CO2';
+
+     -- Get reporting year for application
+     select reporting_year into app_reporting_year from ggircs_portal.application
+     where id = app_id;
 
      -- Get carbon tax data for the application
      select sum(carbon_tax_flat) into carbon_tax_facility from ggircs_portal.ciip_carbon_tax_calculation
@@ -72,7 +76,10 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
         -- Get Incentive Ratio Max and Min, BM and ET for product from Benchmark table
         select * into benchmark_data from ggircs_portal.benchmark
-        where product_id = product.product_id;
+          where product_id = product.product_id
+          and start_reporting_year <= app_reporting_year
+          and end_reporting_year >= app_reporting_year;
+
 
          -- Get Product specific data
         select * into product_data from ggircs_portal.product
