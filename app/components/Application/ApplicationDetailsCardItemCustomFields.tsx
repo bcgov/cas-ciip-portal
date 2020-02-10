@@ -15,28 +15,25 @@ const customFields = (
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => {
+      const {idSchema, formData} = props;
+      const id = idSchema?.$id;
       let prevValue;
       let hasDiff = false;
       if (showDiff) {
-        hasDiff = diffPathArray.includes(
-          props.idSchema.$id.replace(/^root_/g, '')
-        );
-        prevValue =
-          diffArray[
-            diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
-          ];
+        hasDiff = diffPathArray.includes(id.replace(/^root_/g, ''));
+        prevValue = diffArray[diffPathArray.indexOf(id.replace(/^root_/g, ''))];
 
-        if ((hasDiff || previousIsEmpty) && prevValue !== props.formData) {
+        if ((hasDiff || previousIsEmpty) && prevValue !== formData) {
           prevValue = handleEnums(props, false, prevValue);
           const currentValue = handleEnums(props, true, prevValue);
 
           return (
             <>
-              <span className="diffFrom">
+              <span id={id && `${id}-diffFrom`} className="diffFrom">
                 {prevValue ? prevValue : <i>[No Data Entered]</i>}
               </span>
               &nbsp;---&gt;&nbsp;
-              <span className="diffTo">
+              <span id={id && `${id}-diffTo`} className="diffTo">
                 {currentValue ? currentValue : <i>[No Data Entered]</i>}
               </span>
             </>
@@ -44,60 +41,53 @@ const customFields = (
         }
       }
 
-      if (
-        props.formData === null ||
-        props.formData === undefined ||
-        props.formData === ''
-      )
-        return <i>[No Data Entered]</i>;
+      if (formData === null || formData === undefined || formData === '')
+        return <i id={id}>[No Data Entered]</i>;
 
       const value = handleEnums(props, true, prevValue);
-      return value;
+      return <span id={id}>{value}</span>;
     },
     BooleanField: props => {
+      const {idSchema, formData} = props;
+      const id = idSchema?.$id;
       const hasDiff = diffPathArray.includes(
-        props.idSchema.$id.replace(/^root_/g, '')
+        idSchema.$id.replace(/^root_/g, '')
       );
 
       if (showDiff && hasDiff) {
         const prevValue =
-          diffArray[
-            diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
-          ];
+          diffArray[diffPathArray.indexOf(idSchema.$id.replace(/^root_/g, ''))];
         return (
           <>
-            <span className="diffFrom">{prevValue ? 'Yes' : 'No'}</span>
+            <span id={`${id}-diffFrom`} className="diffFrom">
+              {prevValue ? 'Yes' : 'No'}
+            </span>
             &nbsp;---&gt;&nbsp;
-            <span className="diffTo">{props.formData ? 'Yes' : 'No'}</span>
+            <span id={`${id}-diffTo`} className="diffTo">
+              {formData ? 'Yes' : 'No'}
+            </span>
           </>
         );
       }
 
-      return <>{props.formData ? 'Yes' : 'No'} </>;
+      return <span id={id}>{formData ? 'Yes' : 'No'} </span>;
     },
-    emissionSource: props => <SummaryEmissionSourceFields {...props} />,
-    emissionGas: props => <SummaryEmissionGasFields {...props} />,
+    emissionSource: SummaryEmissionSourceFields,
+    emissionGas: SummaryEmissionGasFields,
     production: props => (
       <ProductionFields query={props.formContext.query} {...props} />
     ),
     NumberField: props => {
-      if (
-        props.formData === null ||
-        props.formData === undefined ||
-        props.formData === ''
-      )
-        return <i>[No Data Entered]</i>;
+      const {idSchema, formData} = props;
+      const id = idSchema?.$id;
+      if (formData === null || formData === undefined || formData === '')
+        return <i id={id}>[No Data Entered]</i>;
 
       let prevValue;
       let hasDiff = false;
       if (showDiff) {
-        hasDiff = diffPathArray.includes(
-          props.idSchema.$id.replace(/^root_/g, '')
-        );
-        prevValue =
-          diffArray[
-            diffPathArray.indexOf(props.idSchema.$id.replace(/^root_/g, ''))
-          ];
+        hasDiff = diffPathArray.includes(id.replace(/^root_/g, ''));
+        prevValue = diffArray[diffPathArray.indexOf(id.replace(/^root_/g, ''))];
         if (hasDiff || previousIsEmpty) {
           prevValue = handleEnums(props, false, prevValue);
           const currentValue = handleEnums(props, true, prevValue);
@@ -108,11 +98,12 @@ const customFields = (
                 {prevValue ? (
                   <NumberFormat
                     thousandSeparator
+                    id={id && `${id}-diffFrom`}
                     displayType="text"
                     value={prevValue}
                   />
                 ) : (
-                  <i>[No Data Entered]</i>
+                  <i id={id && `${id}-diffFrom`}>[No Data Entered]</i>
                 )}
               </span>
               &nbsp;---&gt;&nbsp;
@@ -120,11 +111,12 @@ const customFields = (
                 {currentValue ? (
                   <NumberFormat
                     thousandSeparator
+                    id={id && `${id}-diffTo`}
                     displayType="text"
                     value={currentValue}
                   />
                 ) : (
-                  <i>[No Data Entered]</i>
+                  <i id={id && `${id}-diffTo`}>[No Data Entered]</i>
                 )}
               </span>
             </>
@@ -134,7 +126,12 @@ const customFields = (
 
       const value = handleEnums(props, true, prevValue);
       return (
-        <NumberFormat thousandSeparator displayType="text" value={value} />
+        <NumberFormat
+          thousandSeparator
+          id={id}
+          displayType="text"
+          value={value}
+        />
       );
     }
   };

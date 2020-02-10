@@ -3,3 +3,4 @@
 .vscode
 .scratch
 log/
+app/cypress/screenshots

@@ -32,6 +32,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
     previousAnnualCO2e === null
   )
     previousAnnualCO2e = null;
+  // TODO: Use react-jsonschema-form registry fields (and set field IDs for proper testing)
   return (
     <Col xs={12} md={12}>
       <Form.Row>
