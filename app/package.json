@@ -95,7 +95,9 @@
     },
     "overrides": [
       {
-        "files": ["cypress/integration/*.spec.js"],
+        "files": [
+          "cypress/integration/*.spec.js"
+        ],
         "rules": {
           "jest/valid-expect-in-promise": 0,
           "promise/prefer-await-to-then": 0
@@ -217,7 +219,8 @@
     "@storybook/**/terser-webpack-plugin": "^1.4.2",
     "xo/open-editor/open": "^7.0.0",
     "xo/prettier": "^1.19.1",
-    "jest/jest-cli/@jest/core/@jest/reporters/istanbul-reports/handlebars": "^4.5.3"
+    "jest/jest-cli/@jest/core/@jest/reporters/istanbul-reports/handlebars": "^4.5.3",
+    "wait-on/@hapi/joi/@hapi/topo/@hapi/hoek": "8.5.1"
   },
   "jest": {
     "testMatch": [
