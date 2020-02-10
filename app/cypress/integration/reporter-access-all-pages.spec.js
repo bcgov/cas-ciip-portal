@@ -24,8 +24,10 @@ describe('When logged in as a reporter', () => {
     cy.get('input').click({multiple: true});
     cy.contains('Continue').click();
     cy.url().should('include', '/reporter/ciip-application');
-    cy.get('.nav-link');
-    cy.contains('Summary').click();
+    const applicationId = window.btoa('["applications", 2]');
+    cy.visit(
+      `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
+    );
     cy.url().should('include', '/reporter/ciip-application');
     cy.get('.btn')
       .contains('Generate')

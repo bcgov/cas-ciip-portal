@@ -21,10 +21,10 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#dropdown-old').contains('Version 1');
     cy.get('#dropdown-new').contains('current');
     cy.get('.admin')
-      .get('.diffFrom')
+      .get('#root_operator_name-diffFrom')
       .contains('Test operator');
     cy.get('.admin')
-      .get('.diffTo')
+      .get('#root_operator_name-diffTo')
       .contains('Changed');
     cy.get('.emission')
       .get('.diffFrom')
