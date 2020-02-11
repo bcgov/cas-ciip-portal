@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useRouter} from 'next/router';
 import {graphql, createFragmentContainer} from 'react-relay';
 import ApplicationFormNavbar from 'components/Forms/ApplicationFormNavbar';
@@ -27,18 +27,18 @@ const ApplicationWizard = ({query}) => {
   const {formResultId} = router.query;
   const confirmationPage = Boolean(router.query.confirmationPage);
   const orderedFormResults = application.orderedFormResults.edges;
-  useEffect(() => {
-    if (confirmationPage) return;
-    if (!formResultId)
-      setRouterQueryParam(
-        router,
-        'formResultId',
-        orderedFormResults[0].node.id,
-        true
-        // If we're landing on the wizard page
-        // We want to trigger a replace instead of a push in that case
-      );
-  }, [confirmationPage, formResultId, orderedFormResults, router]);
+
+  if (!confirmationPage && !formResultId) {
+    setRouterQueryParam(
+      router,
+      'formResultId',
+      orderedFormResults[0].node.id,
+      true
+      // If we're landing on the wizard page
+      // We want to trigger a replace instead of a push in that case
+    );
+    return null;
+  }
 
   const onStepComplete = () => {
     for (let i = 0; i < orderedFormResults.length; i++) {
