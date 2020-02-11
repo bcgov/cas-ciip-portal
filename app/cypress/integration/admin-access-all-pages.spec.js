@@ -23,9 +23,8 @@ describe('When logged in as an analyst', () => {
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
     cy.get('tr');
-    // TODO: This route doesn't always work. Note made in YouTrack to investigage
-    // cy.visit('/analyst/applications');
-    // cy.url().should('include', '/analyst/applications');
-    // cy.get('tr');
+    cy.visit('/analyst/applications');
+    cy.url().should('include', '/analyst/applications');
+    cy.get('tr');
   });
 });
