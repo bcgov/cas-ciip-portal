@@ -6,7 +6,8 @@ import LoginButton from 'components/LoginButton';
 const HeaderLayout = ({
   isLoggedIn = false,
   isRegistered = false,
-  isAdmin = false
+  isAdmin = false,
+  isIndustry = false
 }) => (
   <header>
     <div className="container">
@@ -22,11 +23,13 @@ const HeaderLayout = ({
         </div>
         <div className="login-btns header-right">
           <Row>
-            <Col>
-              <Link href="/reporter/user-dashboard">
-                <Button variant="outline-light">Industry</Button>
-              </Link>
-            </Col>
+            {isIndustry ? (
+              <Col>
+                <Link href="/reporter/user-dashboard">
+                  <Button variant="outline-light">Industry</Button>
+                </Link>
+              </Col>
+            ) : null}
             {isAdmin ? (
               <Col>
                 <Link href="/admin">
