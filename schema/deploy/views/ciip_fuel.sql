@@ -23,7 +23,7 @@ begin;
     from x
  );
 
-grant all on table ggircs_portal.ciip_fuel to ciip_administrator, ciip_analyst, ciip_industry_user;
+grant select on table ggircs_portal.ciip_fuel to ciip_administrator, ciip_analyst;
 
 comment on view ggircs_portal.ciip_fuel is E'@omit\n The view for fuel data reported in the application';
 comment on column ggircs_portal.ciip_fuel.application_id is 'The application id';

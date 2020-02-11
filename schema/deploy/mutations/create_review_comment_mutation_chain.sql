@@ -39,6 +39,6 @@ begin
 end;
 $function$ language plpgsql volatile;
 
-grant execute on function ggircs_portal.create_review_comment_mutation_chain to ciip_administrator, ciip_analyst, ciip_industry_user;
+grant execute on function ggircs_portal.create_review_comment_mutation_chain to ciip_administrator, ciip_analyst;
 
 commit;
