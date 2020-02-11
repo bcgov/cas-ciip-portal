@@ -35,3 +35,7 @@ repos:
   rev: v0.12.0
   hooks:
     - id: gitlint
+- repo: https://github.com/purcell/sqlint
+  rev: master
+  hooks:
+    - id: sqlint

@@ -163,6 +163,9 @@ install_asdf_tools:
 	@MAKELEVEL=0 POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml' asdf install
 	@asdf reshim
 	@pip install -r requirements.txt
+	@gem install bundler
+	@asdf reshim
+	@bundle install
 	@asdf reshim
 
 .PHONY: install_dev_tools

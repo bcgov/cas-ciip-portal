@@ -1,0 +1,15 @@
+GEM
+  specs:
+    pg_query (1.2.0)
+    sqlint (0.1.10)
+      pg_query (~> 1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 2.1.4)
+  sqlint (~> 0.1.10)
+
+BUNDLED WITH
+   2.1.4
