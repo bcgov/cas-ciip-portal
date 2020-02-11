@@ -27,7 +27,8 @@ perform ggircs_portal_private.grant_permissions('select', 'reporting_year', 'cii
 perform ggircs_portal_private.grant_permissions('select', 'reporting_year', 'ciip_industry_user');
 
 -- Grant ciip_guest permissions
--- ?
+perform ggircs_portal_private.grant_permissions('select', 'reporting_year', 'ciip_guest');
+
 end
 $grant$;
 
@@ -38,15 +39,18 @@ do
 $policy$
 begin
 -- ciip_administrator RLS
-perform ggircs_portal_private.upsert_policy('ciip_administrator_select_emission_category_gas', 'reporting_year', 'select', 'ciip_administrator', 'true');
-perform ggircs_portal_private.upsert_policy('ciip_administrator_insert_emission_category_gas', 'reporting_year', 'insert', 'ciip_administrator', 'true');
-perform ggircs_portal_private.upsert_policy('ciip_administrator_update_emission_category_gas', 'reporting_year', 'update', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_select_reporting_year', 'reporting_year', 'select', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_insert_reporting_year', 'reporting_year', 'insert', 'ciip_administrator', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_administrator_update_reporting_year', 'reporting_year', 'update', 'ciip_administrator', 'true');
 
 -- ciip_analyst RLS
-perform ggircs_portal_private.upsert_policy('ciip_analyst_select_emission_category_gas', 'reporting_year', 'select', 'ciip_analyst', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_analyst_select_reporting_year', 'reporting_year', 'select', 'ciip_analyst', 'true');
 
 -- ciip_industry_user RLS
-perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_emission_category_gas', 'reporting_year', 'select', 'ciip_industry_user', 'true');
+perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_reporting_year', 'reporting_year', 'select', 'ciip_industry_user', 'true');
+
+-- ciip_guest RLS
+perform ggircs_portal_private.upsert_policy('ciip_guest_select_reporting_year', 'reporting_year', 'select', 'ciip_guest', 'true');
 
 end
 $policy$;

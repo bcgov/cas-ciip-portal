@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(15);
+select plan(19);
 
 create role test_superuser superuser;
 
@@ -141,6 +141,43 @@ select throws_like(
   $$,
   'permission denied%',
     'ciip_analyst cannot delete rows from table_emission_category_gas'
+);
+
+-- CIIP_GUEST
+set role ciip_guest;
+select concat('current user is: ', (select current_user));
+
+select results_eq(
+  $$
+    select count(*) from ggircs_portal.reporting_year where reporting_year < 2022;
+  $$,
+  ARRAY[4::bigint],
+    'ciip_guest can view all data in reporting_year table'
+);
+
+select throws_like(
+  $$
+    insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, application_open_time, application_close_time, application_response_time) overriding system value
+    values (1001, now(), now(), now(), now(), now());
+  $$,
+  'permission denied%',
+    'ciip_guest cannot insert into table_emission_category_gas'
+);
+
+select throws_like(
+  $$
+    update ggircs_portal.reporting_year set reporting_period_end='1000-01-01 23:00:00-08' where reporting_year=1;
+  $$,
+  'permission denied%',
+    'ciip_guest cannot update rows in table_emission_category_gas'
+);
+
+select throws_like(
+  $$
+    delete from ggircs_portal.reporting_year where reporting_year=1
+  $$,
+  'permission denied%',
+    'ciip_guest cannot delete rows from table_emission_category_gas'
 );
 
 select finish();
