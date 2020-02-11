@@ -4,9 +4,9 @@ import {applicationsQueryResponse} from 'applicationsQuery.graphql';
 import ApplicationListContainer from 'containers/Applications/ApplicationListContainer';
 import DefaultLayout from 'layouts/default-layout';
 import SearchTable from 'components/SearchTable';
-import {INCENTIVE_ANALYST} from 'data/group-constants';
+import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 
-const ALLOWED_GROUPS = [INCENTIVE_ANALYST];
+const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
 interface Props {
   query: applicationsQueryResponse['query'];

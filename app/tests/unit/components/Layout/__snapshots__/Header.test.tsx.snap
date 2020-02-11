@@ -34,20 +34,6 @@ exports[`It matches the last accepted Snapshot 1`] = `
         <ForwardRef
           noGutters={false}
         >
-          <Col>
-            <Link
-              href="/reporter/user-dashboard"
-            >
-              <Button
-                active={false}
-                disabled={false}
-                type="button"
-                variant="outline-light"
-              >
-                Industry
-              </Button>
-            </Link>
-          </Col>
           <div
             className="jsx-2807878339"
           >
