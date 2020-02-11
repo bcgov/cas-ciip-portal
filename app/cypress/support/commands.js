@@ -4,7 +4,12 @@ Cypress.Commands.add('login', (username, password) => {
   // Open the login page, fill in the form with username and password and submit.
   return (
     cy
-      .request({method: 'POST', url: '/login', followRedirect: true})
+      .request({
+        method: 'POST',
+        url: '/login',
+        followRedirect: true,
+        retryOnStatusCodeFailure: true
+      })
       // This is not a real promise
       // eslint-disable-next-line promise/prefer-await-to-then
       .then(response => {
@@ -22,6 +27,7 @@ Cypress.Commands.add('login', (username, password) => {
           method: 'POST',
           url: loginForm[0].action,
           followRedirect: true,
+          retryOnStatusCodeFailure: true,
           body: {
             username,
             password
