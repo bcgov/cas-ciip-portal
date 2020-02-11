@@ -32,8 +32,6 @@ $grant$
 begin
 -- Grant ciip_administrator permissions
 perform ggircs_portal_private.grant_permissions('select', 'form_result', 'ciip_administrator');
-perform ggircs_portal_private.grant_permissions('insert', 'form_result', 'ciip_administrator');
-perform ggircs_portal_private.grant_permissions('update', 'form_result', 'ciip_administrator');
 
 -- Grant ciip_analyst permissions
 perform ggircs_portal_private.grant_permissions('select', 'form_result', 'ciip_analyst');
@@ -72,8 +70,6 @@ declare industry_user_statement text;
 begin
 -- ciip_administrator RLS
 perform ggircs_portal_private.upsert_policy('ciip_administrator_select_form_result', 'form_result', 'select', 'ciip_administrator', 'true');
-perform ggircs_portal_private.upsert_policy('ciip_administrator_insert_form_result', 'form_result', 'insert', 'ciip_administrator', 'true');
-perform ggircs_portal_private.upsert_policy('ciip_administrator_update_form_result', 'form_result', 'update', 'ciip_administrator', 'true');
 
 -- ciip_analyst RLS
 perform ggircs_portal_private.upsert_policy('ciip_analyst_select_form_result', 'form_result', 'select', 'ciip_analyst', 'true');

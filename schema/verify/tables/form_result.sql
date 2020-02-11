@@ -7,8 +7,6 @@ select pg_get_functiondef('ggircs_portal_private.get_valid_form_result_applicati
 
 -- ciip_administrator Grants
 select ggircs_portal_private.verify_grant('select', 'form_result', 'ciip_administrator');
-select ggircs_portal_private.verify_grant('insert', 'form_result', 'ciip_administrator');
-select ggircs_portal_private.verify_grant('update', 'form_result', 'ciip_administrator');
 
 -- ciip_analyst Grants
 select ggircs_portal_private.verify_grant('select', 'form_result', 'ciip_analyst');
@@ -22,8 +20,6 @@ select ggircs_portal_private.verify_grant('update', 'form_result', 'ciip_industr
 
 -- ciip_administrator Policies
 select ggircs_portal_private.verify_policy('select', 'ciip_administrator_select_form_result', 'form_result', 'ciip_administrator');
-select ggircs_portal_private.verify_policy('insert', 'ciip_administrator_insert_form_result', 'form_result', 'ciip_administrator');
-select ggircs_portal_private.verify_policy('update', 'ciip_administrator_update_form_result', 'form_result', 'ciip_administrator');
 
 -- ciip_analyst Policies
 select ggircs_portal_private.verify_policy('select', 'ciip_analyst_select_form_result', 'form_result', 'ciip_analyst');

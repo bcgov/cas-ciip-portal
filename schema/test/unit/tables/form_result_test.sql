@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(20);
+select plan(18);
 
 select has_table(
     'ggircs_portal', 'form_result',
@@ -42,35 +42,21 @@ select results_eq(
     'ciip_administrator can view all data in form_result table'
 );
 
-select lives_ok(
+select throws_like(
   $$
     insert into ggircs_portal.form_result (id, form_id, application_id, version_number, form_result) overriding system value
     values (1001, 2, 1000, 2, '{}');
   $$,
-    'ciip_administrator can insert data in form_result table'
+  'permission denied%',
+  'ciip_administrator cannot insert data in form_result table'
 );
 
-select results_eq(
+select throws_like(
   $$
-    select count(id) from ggircs_portal.form_result where id=1001;
+    update ggircs_portal.form_result set form_id = 3 where id=1000;
   $$,
-    ARRAY[1::bigint],
-    'Data was changed by ciip_administrator'
-);
-
-select lives_ok(
-  $$
-    update ggircs_portal.form_result set form_id = 3 where id=1001;
-  $$,
-    'ciip_administrator can change data in form_result table'
-);
-
-select results_eq(
-  $$
-    select count(id) from ggircs_portal.form_result where id=1001 and form_id=3;
-  $$,
-    ARRAY[1::bigint],
-    'Data was changed by ciip_administrator'
+  'permission denied%',
+  'ciip_administrator cannot change data in form_result table'
 );
 
 select throws_like(
