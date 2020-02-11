@@ -1,25 +1,31 @@
 {
   "Guest": {
+    "pgRole": "ciip_guest",
     "priority": 100,
     "path": "/"
   },
   "User": {
+    "pgRole": "ciip_industry_user",
     "priority": 10,
     "path": "/reporter/user-dashboard"
   },
   "Realm Administrator": {
+    "pgRole": "ciip_administrator",
     "priority": 0,
     "path": "/admin"
   },
   "Incentive Administrator": {
+    "pgRole": "ciip_administrator",
     "priority": 1,
     "path": "/admin"
   },
   "Incentive Analyst": {
+    "pgRole": "ciip_analyst",
     "priority": 2,
     "path": "/analyst"
   },
   "Pending Analyst": {
+    "pgRole": "ciip_guest",
     "priority": 3,
     "path": "/analyst/pending"
   }

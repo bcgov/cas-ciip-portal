@@ -13,6 +13,7 @@ const Keycloak = require('keycloak-connect');
 const cors = require('cors');
 const voyagerMiddleware = require('graphql-voyager/middleware').express;
 const groupConstants = require('../data/group-constants');
+const groupData = require('../data/groups');
 const {
   compactGroups,
   getUserGroupLandingRoute,
@@ -120,12 +121,13 @@ app.prepare().then(() => {
         if (NO_AUTH) {
           const groups = getAllGroups();
           const priorityGroup = getPriorityGroup(groups);
-
+          console.log('GROUP:', priorityGroup);
+          console.log('ADMIN:', groupData['Realm Administrator']);
           return {
             'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
             'jwt.claims.user_groups': groups.join(','),
             'jwt.claims.priority_group': priorityGroup,
-            role: 'ciip_administrator'
+            role: groupData['Incentive Administrator'].pgRole
           };
         }
 
@@ -173,17 +175,7 @@ app.prepare().then(() => {
         properties.forEach(property => {
           claims[`jwt.claims.${property}`] = token[property];
         });
-
-        if (
-          token.priority_group === 'Incentive Administrator' ||
-          token.priority_group === 'Realm Administrator'
-        ) {
-          claims.role = 'ciip_administrator';
-        } else if (token.priority_group === 'Incentive Analyst') {
-          claims.role = 'ciip_analyst';
-        } else if (token.priority_group === 'User')
-          claims.role = 'ciip_industry_user';
-        else claims.role = 'ciip_guest';
+        claims.role = groupData[token.priority_group].pgRole;
         return claims;
       }
     })

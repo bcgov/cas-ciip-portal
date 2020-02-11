@@ -23,7 +23,7 @@ create trigger _100_timestamps
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
-grant all on table ggircs_portal.form_result_status to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant all on table ggircs_portal.form_result_status to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 comment on table ggircs_portal.form_result_status is 'The form result status data';
 comment on column ggircs_portal.form_result_status.id is 'The id used for reference and join';

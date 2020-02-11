@@ -46,7 +46,7 @@ $fn$
       and cu.uuid = (select sub from ggircs_portal.session());
 $fn$ language sql strict stable;
 
-grant execute on function ggircs_portal_private.get_valid_application_facilities to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal_private.get_valid_application_facilities to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 do
 $policy$

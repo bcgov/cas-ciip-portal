@@ -80,6 +80,6 @@ begin
 end;
 $function$ language plpgsql strict volatile;
 
-grant execute on function ggircs_portal.import_swrs_organisation_facility to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal.import_swrs_organisation_facility to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 commit;

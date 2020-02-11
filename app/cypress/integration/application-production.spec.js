@@ -1,4 +1,7 @@
 describe('The production tab', () => {
+  before(() => {
+    cy.sqlFixture('application-production-setup');
+  });
   beforeEach(() => {
     cy.sqlFixture('production-draft-form-result-setup');
     cy.login(
@@ -15,6 +18,10 @@ describe('The production tab', () => {
   afterEach(() => {
     cy.sqlFixture('production-draft-form-result-teardown');
     cy.logout();
+  });
+
+  after(() => {
+    cy.sqlFixture('application-production-teardown');
   });
 
   it('Should render the aluminum product', () => {

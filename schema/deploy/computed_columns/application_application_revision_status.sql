@@ -23,6 +23,6 @@ end;
 $function$
     language 'plpgsql' stable;
 
-grant execute on function ggircs_portal.application_application_revision_status to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+grant execute on function ggircs_portal.application_application_revision_status to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 commit;

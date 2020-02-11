@@ -66,6 +66,6 @@ returns setof ggircs_portal.product as
             end
         $function$ language plpgsql stable;
 
-  grant execute on function ggircs_portal.search_products to ciip_administrator, ciip_analyst, ciip_industry_user, ciip_guest;
+  grant execute on function ggircs_portal.search_products to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 commit;
