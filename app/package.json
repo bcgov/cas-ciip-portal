@@ -169,6 +169,7 @@
     "@types/relay-runtime": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.18.0",
+    "axios": "^0.19.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-macros": "^2.8.0",
