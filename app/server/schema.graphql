@@ -1675,6 +1675,45 @@ enum CiipFormResultStatus {
   NEEDS_ATTENTION
 }
 
+type CiipIncentiveByProduct {
+  benchmark: BigFloat
+  carbonTax: BigFloat
+  eligibilityThreshold: BigFloat
+  incentiveMultiplier: BigFloat
+  incentiveProduct: BigFloat
+  incentiveRatio: BigFloat
+  paymentAllocationFactor: BigFloat
+  productName: String
+}
+
+"""A connection to a list of `CiipIncentiveByProduct` values."""
+type CiipIncentiveByProductsConnection {
+  """
+  A list of edges which contains the `CiipIncentiveByProduct` and cursor to aid in pagination.
+  """
+  edges: [CiipIncentiveByProductsEdge!]!
+
+  """A list of `CiipIncentiveByProduct` objects."""
+  nodes: [CiipIncentiveByProduct]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `CiipIncentiveByProduct` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `CiipIncentiveByProduct` edge in the connection."""
+type CiipIncentiveByProductsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `CiipIncentiveByProduct` at the end of the edge."""
+  node: CiipIncentiveByProduct
+}
+
 """
 The view that calculates the estimated incentive payment for each product of an application revision
 """
@@ -10351,6 +10390,31 @@ type Query implements Node {
     id: ID!
   ): CiipApplicationWizard
   ciipApplicationWizardByFormId(formId: Int!): CiipApplicationWizard
+
+  """
+  Reads and enables pagination through a set of `CiipIncentiveByProduct`.
+  """
+  ciipIncentive(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+    appId: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+    versionNo: Int
+  ): CiipIncentiveByProductsConnection!
 
   """Reads a single `CiipIncentivePayment` using its globally unique `ID`."""
   ciipIncentivePayment(
