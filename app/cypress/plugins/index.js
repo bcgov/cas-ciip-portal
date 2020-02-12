@@ -13,4 +13,6 @@ module.exports = (on, _config) => {
       );
     }
   });
+
+  require('cypress-plugin-retries/lib/plugin')(on);
 };

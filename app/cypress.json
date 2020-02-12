@@ -2,5 +2,8 @@
   "baseUrl": "http://localhost:3004",
   "video": false,
   "screenshotOnRunFailure": false,
-  "defaultCommandTimeout": 10000
+  "defaultCommandTimeout": 10000,
+  "env": {
+    "RETRIES": 3
+  }
 }
