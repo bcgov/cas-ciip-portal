@@ -121,8 +121,6 @@ app.prepare().then(() => {
         if (NO_AUTH) {
           const groups = getAllGroups();
           const priorityGroup = getPriorityGroup(groups);
-          console.log('GROUP:', priorityGroup);
-          console.log('ADMIN:', groupData['Realm Administrator']);
           return {
             'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
             'jwt.claims.user_groups': groups.join(','),

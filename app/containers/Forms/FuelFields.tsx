@@ -108,7 +108,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
           <Form.Control
             as="select"
             value={formData.fuelUnits}
-            isInvalid={Boolean(errorSchema.units)}
+            isInvalid={Boolean(errorSchema.fuelUnits)}
             onChange={e => changeField(e, 'fuelUnits')}
           >
             <option value="">...</option>
@@ -119,7 +119,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
               ))}
           </Form.Control>
           <Form.Control.Feedback style={{fontSize: '16px'}} type="invalid">
-            <ErrorList errors={errorSchema?.units?.__errors as any} />
+            <ErrorList errors={errorSchema?.fuelUnits?.__errors as any} />
           </Form.Control.Feedback>
         </Form.Group>
       </Col>
