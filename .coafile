@@ -1,0 +1,3 @@
+[cli]
+bears = SQLintBear
+files = **/*.sql
