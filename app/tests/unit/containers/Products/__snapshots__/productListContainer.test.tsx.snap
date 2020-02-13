@@ -35,8 +35,8 @@ exports[`ProductList should render the product list 1`] = `
   displayNameToColumnNameMap={
     Object {
       "Benchmark (tCO2e/product units)": "benchmark",
+      "Description": "description",
       "Elig. Threshold (tCO2e/product units)": "eligibility_threshold",
-      "Incentive Multiplier": "incentive_multiplier",
       "Product": "name",
       "Status": "state",
       "Units": "units",
