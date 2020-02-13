@@ -116,4 +116,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
 $function$ language plpgsql stable;
 
+grant execute on function ggircs_portal.ciip_incentive to ciip_administrator, ciip_analyst;
+
 commit;
