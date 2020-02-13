@@ -24,7 +24,8 @@ begin
   update ggircs_portal.product
   set state = 'deprecated',
       deleted_at = now(),
-      deleted_by = 'Admin' --TODO: Should this be included in the triggers?
+      --TODO: Should this be included in the triggers?
+      deleted_by = (select id from ggircs_portal.ciip_user where uuid = (select sub from ggircs_portal.session()))
   where product.id = prev_id;
 
   select id, name, description, state, parent from ggircs_portal.product where id = new_id into result;
