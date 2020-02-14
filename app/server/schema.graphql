@@ -1707,6 +1707,7 @@ type CiipIncentiveByProduct {
   benchmark: BigFloat
   carbonTax: BigFloat
   eligibilityThreshold: BigFloat
+  emissionIntensity: BigFloat
   incentiveMultiplier: BigFloat
   incentiveProduct: BigFloat
   incentiveRatio: BigFloat

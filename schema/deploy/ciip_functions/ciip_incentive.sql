@@ -112,6 +112,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
           product.payment_allocation_factor/100 as payment_allocation_factor,
           carbon_tax_facility as carbon_tax,
           incentive_product as incentive_product,
+          em_intensity as emission_intensity,
           benchmark_data.benchmark as benchmark,
           benchmark_data.eligibility_threshold as eligibility_threshold;
 

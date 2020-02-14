@@ -13,35 +13,23 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
   ciipIncentiveByProduct
 }) => {
   const {
+    productName,
+    incentiveProduct,
     benchmark,
     eligibilityThreshold,
-    incentiveRatio,
-    incentiveMultiplier,
-    paymentAllocationFactor,
-    carbonTax
+    carbonTax,
+    emissionIntensity
   } = ciipIncentiveByProduct;
 
-  // Const formula = `
-  // 1 - \\left({ ${ciipIncentiveByProduct.emissionIntensity} - ${benchmark}
-  //   \\over
-  //   ${eligibilityThreshold} - ${benchmark}
-  // }\\right) \\times ${ciipIncentiveByProduct.carbonTax}`;
-
-  console.log(
-    incentiveRatio,
-    incentiveMultiplier,
-    paymentAllocationFactor,
-    carbonTax
-  );
-
   const formula = `
-  ${incentiveRatio} \\times ${incentiveMultiplier}
-  \\times \\left({ ${paymentAllocationFactor}} \\over 100 \\right)
-  \\times ${carbonTax}`;
+  1 - \\left({ ${emissionIntensity} - ${benchmark}
+    \\over
+    ${eligibilityThreshold} - ${benchmark}
+  }\\right) \\times ${carbonTax}`;
 
   return (
     <tr>
-      <td>{ciipIncentiveByProduct.productName}</td>
+      <td>{productName}</td>
       <td>
         {process.env.NO_MATHJAX ||
         getConfig()?.publicRuntimeConfig.NO_MATHJAX ? null : (
@@ -50,10 +38,10 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
           </MathJax.Context>
         )}
       </td>
-      <td>CAD {ciipIncentiveByProduct.incentiveProduct} </td>
+      <td>CAD {incentiveProduct} </td>
       <td>
         <BenchmarkChart
-          emissionIntensity={Number(incentiveRatio)}
+          emissionIntensity={Number(emissionIntensity)}
           benchmark={Number(benchmark)}
           eligibilityThreshold={Number(eligibilityThreshold)}
         />
@@ -73,10 +61,8 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
   ciipIncentiveByProduct: graphql`
     fragment IncentiveSegmentContainer_ciipIncentiveByProduct on CiipIncentiveByProduct {
       productName
-      incentiveRatio
-      incentiveMultiplier
-      paymentAllocationFactor
       carbonTax
+      emissionIntensity
       incentiveProduct
       benchmark
       eligibilityThreshold
