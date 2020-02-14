@@ -3,11 +3,30 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(5);
+select plan(7);
 
 select has_function(
   'ggircs_portal', 'ciip_incentive', array['integer', 'integer'],
   'Function ciip_incentive should exist'
+);
+
+select results_eq(
+  $$
+    select incentive_product from ggircs_portal.ciip_incentive(1,1) where product_name = 'Other Pulp (Mechanical pulp, paper, newsprint)';
+  $$,
+  ARRAY[11320.7746970072::numeric],
+  'ciip incentive function returns correct value when benchmark exists'
+);
+
+-- remove benchmark for product_id 29
+delete from ggircs_portal.benchmark where product_id = 29;
+
+select results_eq(
+  $$
+    select incentive_product from ggircs_portal.ciip_incentive(1,1) where product_name = 'Other Pulp (Mechanical pulp, paper, newsprint)';
+  $$,
+  ARRAY[0::numeric],
+  'ciip incentive function returns incentive_product=0 when benchmark does not exist'
 );
 
 set role ciip_administrator;

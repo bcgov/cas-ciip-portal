@@ -86,7 +86,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
           and start_reporting_year <= app_reporting_year
           and end_reporting_year >= app_reporting_year;
 
-
          -- Get Product specific data
         select * into product_data from ggircs_portal.product
         where id = product.product_id;
@@ -94,20 +93,15 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         -- Calculate Incentive Ratio as
         -- IncRatio = min(IncRatioMax, max(IncRatioMin, 1 - (EmIntensity - BM)/(ET - BM))
         intensity_range = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
-        -- Set incentive_ratio = 0 if no benchmark exists for the product
-        if (select b.id from ggircs_portal.benchmark b where b.product_id = product.product_id) = null then
-          incentive_ratio = 0;
-        else
-          incentive_ratio = least(incentive_ratio_max, greatest(incentive_ratio_min, intensity_range));
-        end if;
+        incentive_ratio = least(incentive_ratio_max, greatest(incentive_ratio_min, intensity_range));
 
         -- Calculate Incentive Amount
         -- IncAmt = IncRatio * IncMult * PmntAlloc * CTFacility
-        incentive_product = incentive_ratio *
+        -- 0 if no benchmark exists
+        incentive_product = coalesce (incentive_ratio *
                             benchmark_data.incentive_multiplier *
                             product.payment_allocation_factor/100 *
-                            carbon_tax_facility;
-
+                            carbon_tax_facility, 0);
 
         select into product_return
           product_data.name as product_name,

@@ -46,7 +46,9 @@ begin;
         "calculatedQuantity": 8760000
       },
       "paymentAllocationFactor": 59,
-      "productionAllocationFactor": 59
+      "productionAllocationFactor": 59,
+      "importedElectricityAllocationFactor": 20,
+      "importedHeatAllocationFactor": 20
     }, {
       "quantity": 12000,
       "productRowId": 26,
