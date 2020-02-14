@@ -31,8 +31,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
   begin
      -- Define placeholder variables
-     em_alloc_elec = 0;
-     em_alloc_heat = 0;
      incentive_ratio_min = 0;
      incentive_ratio_max = 1;
 
@@ -65,6 +63,14 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
                     where version_number = version_no and application_id = app_id
      loop
 
+        -- If includes_imported_energy is false, heat/elec allocation factor=0 else set values from production view
+        em_alloc_elec = 0;
+        em_alloc_heat = 0;
+        if (select includes_imported_energy from ggircs_portal.benchmark b where b.product_id = product.product_id) then
+          em_alloc_elec = product.imported_electricity_allocation_factor;
+          em_alloc_heat = product.imported_heat_allocation_factor;
+        end if;
+
         -- Calculate Emissions for Product (EmProd)
         -- EmProd = EmFacility * EmAlloc(P,F) + EmImportedElec * EmAlloc(IE) + EmImportedHeat * EmAlloc(IH)
         em_product = (em_facility * product.production_allocation_factor/100)
@@ -88,7 +94,12 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         -- Calculate Incentive Ratio as
         -- IncRatio = min(IncRatioMax, max(IncRatioMin, 1 - (EmIntensity - BM)/(ET - BM))
         intensity_range = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
-        incentive_ratio = least(incentive_ratio_max, greatest(incentive_ratio_min, intensity_range));
+        -- Set incentive_ratio = 0 if no benchmark exists for the product
+        if (select b.id from ggircs_portal.benchmark b where b.product_id = product.product_id) = null then
+          incentive_ratio = 0;
+        else
+          incentive_ratio = least(incentive_ratio_max, greatest(incentive_ratio_min, intensity_range));
+        end if;
 
         -- Calculate Incentive Amount
         -- IncAmt = IncRatio * IncMult * PmntAlloc * CTFacility
