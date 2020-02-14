@@ -2,19 +2,17 @@ import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
 import IncentiveSegmentFormula from 'components/Incentives/IncentiveSegmentFormula';
-import {IncentiveCalculatorContainer_applicationRevision} from 'IncentiveCalculatorContainer_applicationRevision.graphql';
+import {IncentiveCalculatorContainer_query} from 'IncentiveCalculatorContainer_query.graphql';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
 
 interface Props {
-  applicationRevision: IncentiveCalculatorContainer_applicationRevision;
+  query: IncentiveCalculatorContainer_query;
 }
 
 export const IncentiveCalculator: React.FunctionComponent<Props> = ({
-  applicationRevision
+  query
 }) => {
-  const {
-    edges = []
-  } = applicationRevision.ciipIncentivePaymentsByApplicationIdAndVersionNumber;
+  const {edges = []} = query.ciipIncentive;
   return (
     <>
       <Jumbotron>
@@ -35,15 +33,17 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
         <thead>
           <tr>
             <th>Product</th>
-            <th>Calculation Breakdown (flat rate)</th>
-            <th>Incentive for product (pro-rated rate)</th>
-            <th>Incentive for product (flat rate)</th>
+            <th>Calculation Breakdown</th>
+            <th>Incentive for product</th>
             <th>Chart</th>
           </tr>
         </thead>
         <tbody>
           {edges.map(({node}) => (
-            <IncentiveSegmentContainer key={node.id} incentivePayment={node} />
+            <IncentiveSegmentContainer
+              key={node.rowId}
+              ciipIncentiveByProduct={node}
+            />
           ))}
         </tbody>
       </Table>
@@ -52,13 +52,17 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
 };
 
 export default createFragmentContainer(IncentiveCalculator, {
-  applicationRevision: graphql`
-    fragment IncentiveCalculatorContainer_applicationRevision on ApplicationRevision {
-      ciipIncentivePaymentsByApplicationIdAndVersionNumber {
+  query: graphql`
+    fragment IncentiveCalculatorContainer_query on Query
+      @argumentDefinitions(
+        appId: {type: "String"}
+        versionNo: {type: "String"}
+      ) {
+      ciipIncentive(appId: $appId, versionNo: $versionNo) {
         edges {
           node {
-            id
-            ...IncentiveSegmentContainer_incentivePayment
+            rowId
+            ...IncentiveSegmentContainer_ciipIncentiveByProduct
           }
         }
       }

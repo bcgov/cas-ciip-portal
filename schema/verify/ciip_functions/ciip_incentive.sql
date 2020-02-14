@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.ciip_incentive(int, int)'::regprocedure);
+select pg_get_functiondef('ggircs_portal.ciip_incentive(text, text)'::regprocedure);
 
 rollback;

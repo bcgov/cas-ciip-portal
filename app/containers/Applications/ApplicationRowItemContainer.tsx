@@ -40,11 +40,10 @@ export const ApplicationRowItem = props => {
           href={{
             pathname: '/analyst/application-review',
             query: {
+              applicationRowId:
+                applicationSearchResult.applicationByApplicationId.rowId,
               applicationId:
                 applicationSearchResult.applicationByApplicationId.id,
-              revisionId:
-                applicationSearchResult.applicationByApplicationId
-                  .latestSubmittedRevision.id,
               version:
                 applicationSearchResult.applicationByApplicationId
                   .latestSubmittedRevision.versionNumber
@@ -71,6 +70,7 @@ export default createFragmentContainer(ApplicationRowItem, {
       submissionDate
       applicationByApplicationId {
         id
+        rowId
         latestSubmittedRevision {
           id
           versionNumber

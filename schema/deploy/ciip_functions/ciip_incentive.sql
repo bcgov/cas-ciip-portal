@@ -5,7 +5,7 @@
 
 begin;
 -- Function takes application id and version number:
-create or replace function ggircs_portal.ciip_incentive(app_id int , version_no int )
+create or replace function ggircs_portal.ciip_incentive(app_id text , version_no text)
 returns setof ggircs_portal.ciip_incentive_by_product as $function$
   declare
     product record;
@@ -30,6 +30,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     product_return ggircs_portal.ciip_incentive_by_product;
 
   begin
+
      -- Define placeholder variables
      incentive_ratio_min = 0;
      incentive_ratio_max = 1;
@@ -40,19 +41,19 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
      -- Get reporting year for application
      select reporting_year into app_reporting_year from ggircs_portal.application
-     where id = app_id;
+     where id = app_id::integer;
 
      -- Get carbon tax data for the application
      select sum(carbon_tax_flat) into carbon_tax_facility from ggircs_portal.ciip_carbon_tax_calculation
-     where version_number = version_no and application_id = app_id;
+     where version_number = version_no::integer and application_id = app_id::integer;
 
      -- Get electricity and heat data for the application
      select * into electricity_data from ggircs_portal.ciip_electricity_and_heat
-     where version_number = version_no and application_id = app_id and energy_type = 'electricity';
+     where version_number = version_no::integer and application_id = app_id::integer and energy_type = 'electricity';
 
      -- Get electricity and heat data for the application
      select * into heat_data from ggircs_portal.ciip_electricity_and_heat
-     where version_number = version_no and application_id = app_id and energy_type = 'heat';
+     where version_number = version_no::integer and application_id = app_id::integer and energy_type = 'heat';
 
      -- Calculate emissions from electricity and heat
      em_electricity = electricity_data.purchased * coalesce(electricity_data.purchased_emission_factor,0);
@@ -60,7 +61,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
      -- Loop over products
      for product in select * from ggircs_portal.ciip_production
-                    where version_number = version_no and application_id = app_id
+                    where version_number = version_no::integer and application_id = app_id::integer
      loop
 
         -- If includes_imported_energy is false, heat/elec allocation factor=0 else set values from production view
@@ -104,6 +105,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
                             carbon_tax_facility, 0);
 
         select into product_return
+          row_number() over () as id,
           product_data.name as product_name,
           incentive_ratio as incentive_ratio,
           benchmark_data.incentive_multiplier as incentive_multiplier,

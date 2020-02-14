@@ -1712,6 +1712,7 @@ type CiipIncentiveByProduct {
   incentiveRatio: BigFloat
   paymentAllocationFactor: BigFloat
   productName: String
+  rowId: Int
 }
 
 """A connection to a list of `CiipIncentiveByProduct` values."""
@@ -10425,7 +10426,7 @@ type Query implements Node {
   ciipIncentive(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
-    appId: Int
+    appId: String
 
     """Read all values in the set before (above) this cursor."""
     before: Cursor
@@ -10441,7 +10442,7 @@ type Query implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
-    versionNo: Int
+    versionNo: String
   ): CiipIncentiveByProductsConnection!
 
   """Reads a single `CiipIncentivePayment` using its globally unique `ID`."""

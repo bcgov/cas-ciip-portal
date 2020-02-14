@@ -61,7 +61,9 @@ begin;
         "calculatedProductionAllocationFactor": 1
       },
       "paymentAllocationFactor": 41,
-      "productionAllocationFactor": 1
+      "productionAllocationFactor": 1,
+      "importedElectricityAllocationFactor": 20,
+      "importedHeatAllocationFactor": 20
     }
   ]'),
   ('{"operator": {"name": "Changed"}}'),
@@ -95,7 +97,9 @@ begin;
         "calculatedQuantity": 8760
       },
       "paymentAllocationFactor": 5,
-      "productionAllocationFactor": 5
+      "productionAllocationFactor": 5,
+      "importedElectricityAllocationFactor": 20,
+      "importedHeatAllocationFactor": 20
     }, {
       "quantity": 12000,
       "productRowId": 26,
@@ -108,7 +112,9 @@ begin;
         "calculatedProductionAllocationFactor": 1
       },
       "paymentAllocationFactor": 41,
-      "productionAllocationFactor": 1
+      "productionAllocationFactor": 1,
+      "importedElectricityAllocationFactor": 20,
+      "importedHeatAllocationFactor": 20
     }
   ]');
 
