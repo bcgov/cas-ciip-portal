@@ -11095,8 +11095,18 @@
               "defaultValue": null
             },
             {
-              "name": "excludesExportedEnergy",
-              "description": "Checks for equality with the object’s `excludesExportedEnergy` field.",
+              "name": "incentiveMultiplier",
+              "description": "Checks for equality with the object’s `incentiveMultiplier` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesImportedEnergy",
+              "description": "Checks for equality with the object’s `includesImportedEnergy` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -11105,8 +11115,18 @@
               "defaultValue": null
             },
             {
-              "name": "incentiveMultiplier",
-              "description": "Checks for equality with the object’s `incentiveMultiplier` field.",
+              "name": "maximumIncentiveRatio",
+              "description": "Checks for equality with the object’s `maximumIncentiveRatio` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "minimumIncentiveRatio",
+              "description": "Checks for equality with the object’s `minimumIncentiveRatio` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Float",
@@ -11272,18 +11292,6 @@
               "deprecationReason": null
             },
             {
-              "name": "EXCLUDES_EXPORTED_ENERGY_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "EXCLUDES_EXPORTED_ENERGY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "ID_ASC",
               "description": null,
               "isDeprecated": false,
@@ -11303,6 +11311,42 @@
             },
             {
               "name": "INCENTIVE_MULTIPLIER_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCLUDES_IMPORTED_ENERGY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCLUDES_IMPORTED_ENERGY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MAXIMUM_INCENTIVE_RATIO_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MAXIMUM_INCENTIVE_RATIO_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MINIMUM_INCENTIVE_RATIO_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MINIMUM_INCENTIVE_RATIO_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -11735,22 +11779,6 @@
               "deprecationReason": null
             },
             {
-              "name": "excludesExportedEnergy",
-              "description": "Whether the emissions from exported energy were excluded in the benchmark calculation",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "id",
               "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
               "args": [],
@@ -11769,6 +11797,54 @@
             {
               "name": "incentiveMultiplier",
               "description": "The multiplier applied to the incentive amounts under this product",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "includesImportedEnergy",
+              "description": "Whether the emissions from imported energy were included in the benchmark calculation",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "maximumIncentiveRatio",
+              "description": "The minimum incentive ratio for this benchmark (typically 0)",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "minimumIncentiveRatio",
+              "description": "The minimum incentive ratio for this benchmark (typically 0)",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -30585,8 +30661,18 @@
               "defaultValue": null
             },
             {
-              "name": "excludesExportedEnergy",
-              "description": "Whether the emissions from exported energy were excluded in the benchmark calculation",
+              "name": "incentiveMultiplier",
+              "description": "The multiplier applied to the incentive amounts under this product",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesImportedEnergy",
+              "description": "Whether the emissions from imported energy were included in the benchmark calculation",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -30595,8 +30681,18 @@
               "defaultValue": null
             },
             {
-              "name": "incentiveMultiplier",
-              "description": "The multiplier applied to the incentive amounts under this product",
+              "name": "maximumIncentiveRatio",
+              "description": "The minimum incentive ratio for this benchmark (typically 0)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "minimumIncentiveRatio",
+              "description": "The minimum incentive ratio for this benchmark (typically 0)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Float",
@@ -41060,8 +41156,18 @@
               "defaultValue": null
             },
             {
-              "name": "excludesExportedEnergy",
-              "description": "Whether the emissions from exported energy were excluded in the benchmark calculation",
+              "name": "incentiveMultiplier",
+              "description": "The multiplier applied to the incentive amounts under this product",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesImportedEnergy",
+              "description": "Whether the emissions from imported energy were included in the benchmark calculation",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -41070,8 +41176,18 @@
               "defaultValue": null
             },
             {
-              "name": "incentiveMultiplier",
-              "description": "The multiplier applied to the incentive amounts under this product",
+              "name": "maximumIncentiveRatio",
+              "description": "The minimum incentive ratio for this benchmark (typically 0)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "minimumIncentiveRatio",
+              "description": "The minimum incentive ratio for this benchmark (typically 0)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Float",

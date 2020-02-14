@@ -41,8 +41,7 @@ class ProductsBenchmarks extends Component<Props> {
     formData: {formId: '', formJson: ''},
     mode: 'view',
     confirmationModalOpen: false,
-    expandCreateForm: false,
-    createProductFormKey: Date.now()
+    expandCreateForm: false
   };
 
   static async getInitialProps() {
@@ -54,13 +53,8 @@ class ProductsBenchmarks extends Component<Props> {
     };
   }
 
-  resetCreateProductForm = () => {
-    this.setState({createProductFormKey: Date.now()});
-  };
-
   toggleShowCreateForm = () => {
     const expanded = this.state.expandCreateForm;
-    this.resetCreateProductForm();
     this.setState({expandCreateForm: !expanded});
   };
 
@@ -108,19 +102,13 @@ class ProductsBenchmarks extends Component<Props> {
             style={{marginTop: '-220px'}}
             onClick={this.toggleShowCreateForm}
           >
-            Create a new Product +
+            New Product
           </Button>
         </div>
         <Row>
           <Col>
-            <ProductCreatorContainer
-              expanded={this.state.expandCreateForm}
-              resetForm={this.resetCreateProductForm}
-              createProductFormKey={this.state.createProductFormKey}
-            />
-            <br />
-            <br />
-            <br />
+            {this.state.expandCreateForm && <ProductCreatorContainer />}
+
             <SearchTable
               query={query}
               defaultOrderByField="name"
@@ -136,25 +124,3 @@ class ProductsBenchmarks extends Component<Props> {
 }
 
 export default ProductsBenchmarks;
-
-/*
-
-Product Creator:
-1: Add table for product (name and description)
-2: Add component for createproduct
-3: Add add fields for create product in component: Product name and description
-4: On save create object and push to createProduct mutation
-
-List of products
-1: create component for List of Products
-2: use queryrenderer to loop through products
-3: display products as a list
-
-BM and ET
-1: Create a component for BM and ET
-2: Pass product object to the component
-3: Component has prdouct name, description, BM and ET fields and a save button
-4: on save create update BM/ET Values: Todo: Add history in the future
-5: Update the components
-
- */

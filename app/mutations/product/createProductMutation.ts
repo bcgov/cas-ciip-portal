@@ -10,9 +10,12 @@ const mutation = graphql`
   mutation createProductMutation($input: CreateProductInput!) {
     createProduct(input: $input) {
       product {
+        id
         rowId
+        name
+        description
+        units
       }
-      clientMutationId
     }
   }
 `;

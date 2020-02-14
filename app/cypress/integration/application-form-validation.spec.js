@@ -1,6 +1,6 @@
 describe('When reviewing a submitted application as an analyst', () => {
   beforeEach(() => {
-    cy.sqlFixture('form-validation-setup');
+    cy.sqlFixture('fixtures/form-validation-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
@@ -13,7 +13,7 @@ describe('When reviewing a submitted application as an analyst', () => {
   });
 
   afterEach(() => {
-    cy.sqlFixture('form-validation-teardown');
+    cy.sqlFixture('fixtures/form-validation-teardown');
   });
 
   it('The application forms show validation errors', () => {

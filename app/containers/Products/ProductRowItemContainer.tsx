@@ -21,8 +21,8 @@ import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import {productSchema, productUISchema} from './ProductBenchmarkJsonSchemas';
 import FutureBenchmarks from './FutureBenchmarks';
+import productSchema from './product-schema.json';
 
 interface Props {
   relay: RelayProp;
@@ -32,18 +32,13 @@ interface Props {
 
 // Schema for ProductRowItemContainer
 const benchmarkUISchema = {
-  benchmark: {
-    'ui:col-md': 6
-  },
-  description: {
-    'ui:col-md': 6
+  includesImportedEnergy: {
+    'ui:widget': 'radio'
   },
   startReportingYear: {
-    'ui:col-md': 6,
     'ui:help': 'The first reporting year where this benchmark is used'
   },
   endReportingYear: {
-    'ui:col-md': 6,
     'ui:help': 'The last reporting year where this benchmark is used'
   }
 };
@@ -93,9 +88,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   // Schema for ProductRowItemContainer
   const benchmarkSchema = useMemo<JSONSchema6>(() => {
-    const reportingYears = query.allReportingYears.edges
-      .filter(({node}) => node.reportingYear >= nextReportingYear)
-      .map(({node}) => node.reportingYear);
+    const reportingYears = query.allReportingYears.edges.map(
+      ({node}) => node.reportingYear
+    );
     return {
       type: 'object',
       properties: {
@@ -107,6 +102,24 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           type: 'number',
           title: 'Eligibility Threshold'
         },
+        minimumIncentiveRatio: {
+          type: 'number',
+          title: 'Minimum incentive ratio',
+          minimum: 0,
+          maximum: 1,
+          defaultValue: 0
+        },
+        maximumIncentiveRatio: {
+          type: 'number',
+          title: 'Maximum incentive ratio',
+          minimum: 0,
+          maximum: 1,
+          defaultValue: 1
+        },
+        includesImportedEnergy: {
+          type: 'boolean',
+          title: 'Benchmark includes energy imports'
+        },
         incentiveMultiplier: {
           type: 'number',
           title: 'Incentive Multiplier',
@@ -114,17 +127,17 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         },
         startReportingYear: {
           type: 'number',
-          title: 'Start Reporting Year',
+          title: 'Start Reporting Period',
           enum: reportingYears
         },
         endReportingYear: {
           type: 'number',
-          title: 'End Reporting Year',
+          title: 'End Reporting Period',
           enum: reportingYears
         }
       }
     };
-  }, [nextReportingYear, query.allReportingYears]);
+  }, [query.allReportingYears]);
 
   const displayPastBenchmark = benchmark => {
     return (
@@ -163,12 +176,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const saveProduct = async (e: IChangeEvent) => {
     const variables = {
       input: {
-        newName: e.formData.product,
+        newName: e.formData.name,
         newDescription: e.formData.description,
         newState: 'active',
         prevId: product.rowId,
         newParent: [product.rowId],
-        newUnits: product.units
+        newUnits: e.formData.units
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -224,11 +237,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  const productFormData = {
-    product: product.name,
-    description: product.description
-  };
-
   const handleDeleteBenchmark = async benchmark => {
     await deleteBenchmark(benchmark);
   };
@@ -254,9 +262,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           <JsonSchemaForm
             omitExtraData
             liveOmit
-            schema={productSchema}
-            uiSchema={productUISchema}
-            formData={productFormData}
+            schema={productSchema.schema as JSONSchema6}
+            uiSchema={productSchema.uiSchema}
+            formData={product}
             showErrorList={false}
             ArrayFieldTemplate={FormArrayFieldTemplate}
             FieldTemplate={FormFieldTemplate}
@@ -414,10 +422,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     <>
       <tr>
         <td>{product.name}</td>
+        <td>{product.description}</td>
         <td>{product.units}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
-        <td>{currentBenchmark?.incentiveMultiplier ?? null}</td>
         <td>{product.state}</td>
         <td>
           <Button variant="info" onClick={() => setModalShow(true)}>
@@ -448,6 +456,9 @@ export default createFragmentContainer(ProductRowItemComponent, {
             incentiveMultiplier
             startReportingYear
             endReportingYear
+            includesImportedEnergy
+            minimumIncentiveRatio
+            maximumIncentiveRatio
             deletedAt
           }
         }

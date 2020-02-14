@@ -1,7 +1,7 @@
 describe('When logged in as a reporter', () => {
   beforeEach(() => {
     cy.logout();
-    cy.sqlFixture('reporter-all-access-setup');
+    cy.sqlFixture('fixtures/reporter-all-access-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
@@ -9,7 +9,7 @@ describe('When logged in as a reporter', () => {
   });
 
   afterEach(() => {
-    cy.sqlFixture('reporter-all-access-teardown');
+    cy.sqlFixture('fixtures/reporter-all-access-teardown');
   });
 
   it('The reporter should be able to load all pages within their access scope', () => {

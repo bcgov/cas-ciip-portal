@@ -5,5 +5,6 @@
   "defaultCommandTimeout": 10000,
   "env": {
     "RETRIES": 3
-  }
+  },
+  "fixturesFolder": "../schema/data"
 }
