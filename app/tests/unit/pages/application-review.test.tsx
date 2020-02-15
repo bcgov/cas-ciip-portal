@@ -33,12 +33,8 @@ describe('The application-review page', () => {
         ]
       }
     },
-    applicationRevision: {
-      ' $fragmentRefs': {
-        IncentiveCalculatorContainer_applicationRevision: true
-      }
-    },
     ' $fragmentRefs': {
+      IncentiveCalculatorContainer_query: true,
       ApplicationDetailsContainer_query: true
     }
   };
@@ -54,7 +50,7 @@ describe('The application-review page', () => {
       wrapper
         .find('Relay(IncentiveCalculator)')
         .first()
-        .prop('applicationRevision')
-    ).toBe(query.applicationRevision);
+        .prop('query')
+    ).toBe(query);
   });
 });

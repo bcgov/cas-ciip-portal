@@ -67,6 +67,7 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
           Object {
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_query": true,
+              "IncentiveCalculatorContainer_query": true,
             },
             "application": Object {
               " $fragmentRefs": Object {
@@ -91,11 +92,6 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
               },
               "rowId": 1,
             },
-            "applicationRevision": Object {
-              " $fragmentRefs": Object {
-                "IncentiveCalculatorContainer_applicationRevision": true,
-              },
-            },
             "session": Object {
               " $fragmentRefs": Object {
                 "defaultLayout_session": true,
@@ -106,10 +102,39 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
         review={true}
       />
       <Relay(IncentiveCalculator)
-        applicationRevision={
+        query={
           Object {
             " $fragmentRefs": Object {
-              "IncentiveCalculatorContainer_applicationRevision": true,
+              "ApplicationDetailsContainer_query": true,
+              "IncentiveCalculatorContainer_query": true,
+            },
+            "application": Object {
+              " $fragmentRefs": Object {
+                "ApplicationDetailsContainer_application": true,
+              },
+              "applicationRevisionStatus": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationRevisionStatusContainer_applicationRevisionStatus": true,
+                },
+              },
+              "orderedFormResults": Object {
+                "edges": Array [
+                  Object {
+                    "node": Object {
+                      " $fragmentRefs": Object {
+                        "ApplicationCommentsContainer_formResult": true,
+                      },
+                      "id": "abc",
+                    },
+                  },
+                ],
+              },
+              "rowId": 1,
+            },
+            "session": Object {
+              " $fragmentRefs": Object {
+                "defaultLayout_session": true,
+              },
             },
           }
         }
