@@ -19,7 +19,7 @@ interface Props extends CiipPageComponentProps {
 class ApplicationReview extends Component<Props> {
   static query = graphql`
     query applicationReviewQuery(
-      $applicationRowId: String!
+      $applicationRevisionId: ID!
       $applicationId: ID!
       $version: String!
     ) {
@@ -43,8 +43,9 @@ class ApplicationReview extends Component<Props> {
             }
           }
         }
-        ...IncentiveCalculatorContainer_query
-          @arguments(appId: $applicationRowId, versionNo: $version)
+        applicationRevision(id: $applicationRevisionId) {
+          ...IncentiveCalculatorContainer_applicationRevision
+        }
         ...ApplicationDetailsContainer_query
           @arguments(applicationId: $applicationId, newVersion: $version)
       }
@@ -75,7 +76,9 @@ class ApplicationReview extends Component<Props> {
               query={query}
               application={query.application}
             />
-            <IncentiveCalculatorContainer query={query} />
+            <IncentiveCalculatorContainer
+              applicationRevision={query.applicationRevision}
+            />
           </Col>
           <Col md={4} className="application-comments">
             {formResults.map(({node}) => (

@@ -2,17 +2,17 @@ import React from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {Table, Jumbotron} from 'react-bootstrap';
 import IncentiveSegmentFormula from 'components/Incentives/IncentiveSegmentFormula';
-import {IncentiveCalculatorContainer_query} from 'IncentiveCalculatorContainer_query.graphql';
+import {IncentiveCalculatorContainer_applicationRevision} from 'IncentiveCalculatorContainer_applicationRevision.graphql';
 import IncentiveSegmentContainer from './IncentiveSegmentContainer';
 
 interface Props {
-  query: IncentiveCalculatorContainer_query;
+  applicationRevision: IncentiveCalculatorContainer_applicationRevision;
 }
 
 export const IncentiveCalculator: React.FunctionComponent<Props> = ({
-  query
+  applicationRevision
 }) => {
-  const {edges = []} = query.ciipIncentive;
+  const {edges = []} = applicationRevision.ciipIncentive;
   return (
     <>
       <Jumbotron>
@@ -52,13 +52,9 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
 };
 
 export default createFragmentContainer(IncentiveCalculator, {
-  query: graphql`
-    fragment IncentiveCalculatorContainer_query on Query
-      @argumentDefinitions(
-        appId: {type: "String"}
-        versionNo: {type: "String"}
-      ) {
-      ciipIncentive(appId: $appId, versionNo: $versionNo) {
+  applicationRevision: graphql`
+    fragment IncentiveCalculatorContainer_applicationRevision on ApplicationRevision {
+      ciipIncentive {
         edges {
           node {
             rowId

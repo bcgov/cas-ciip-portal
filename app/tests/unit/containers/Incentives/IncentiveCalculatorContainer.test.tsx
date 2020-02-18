@@ -1,11 +1,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {IncentiveCalculator} from 'containers/Incentives/IncentiveCalculatorContainer';
-import {IncentiveCalculatorContainer_query} from '__generated__/IncentiveCalculatorContainer_query.graphql';
+import {IncentiveCalculatorContainer_applicationRevision} from '__generated__/IncentiveCalculatorContainer_applicationRevision.graphql';
 
 describe('IncentiveCalculator', () => {
-  const query: IncentiveCalculatorContainer_query = {
-    ' $refType': 'IncentiveCalculatorContainer_query',
+  const applicationRevision: IncentiveCalculatorContainer_applicationRevision = {
+    ' $refType': 'IncentiveCalculatorContainer_applicationRevision',
     ciipIncentive: {
       edges: [
         {
@@ -21,18 +21,22 @@ describe('IncentiveCalculator', () => {
   };
 
   it('should render the page', async () => {
-    const r = shallow(<IncentiveCalculator query={query} />);
+    const r = shallow(
+      <IncentiveCalculator applicationRevision={applicationRevision} />
+    );
     expect(r).toMatchSnapshot();
   });
 
   it('should pass reported products as props to IncentiveSegmentContainer component', async () => {
-    const r = shallow(<IncentiveCalculator query={query} />);
+    const r = shallow(
+      <IncentiveCalculator applicationRevision={applicationRevision} />
+    );
     expect(
       r
         .find('Relay(IncentiveSegmentContainer)')
         .first()
         .prop('ciipIncentiveByProduct')
-    ).toBe(query.ciipIncentive.edges[0].node);
+    ).toBe(applicationRevision.ciipIncentive.edges[0].node);
   });
 
   it.todo('renders the table with products and calculation');
