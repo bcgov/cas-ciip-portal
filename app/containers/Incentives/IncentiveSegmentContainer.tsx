@@ -2,30 +2,34 @@ import getConfig from 'next/config';
 import React from 'react';
 import {createFragmentContainer, graphql} from 'react-relay';
 import MathJax from 'react-mathjax2';
-import {IncentiveSegmentContainer_incentivePayment} from 'IncentiveSegmentContainer_incentivePayment.graphql';
+import {IncentiveSegmentContainer_ciipIncentiveByProduct} from 'IncentiveSegmentContainer_ciipIncentiveByProduct.graphql';
 import BenchmarkChart from 'components/Incentives/BenchmarkChart';
 
 interface Props {
-  incentivePayment: IncentiveSegmentContainer_incentivePayment;
+  ciipIncentiveByProduct: IncentiveSegmentContainer_ciipIncentiveByProduct;
 }
 
 const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
-  incentivePayment
+  ciipIncentiveByProduct
 }) => {
   const {
+    productName,
+    incentiveProduct,
     benchmark,
-    eligibilityThreshold
-  } = incentivePayment.benchmarkByBenchmarkId;
+    eligibilityThreshold,
+    carbonTax,
+    emissionIntensity
+  } = ciipIncentiveByProduct;
 
   const formula = `
-  1 - \\left({ ${incentivePayment.emissionIntensity} - ${benchmark}
+  1 - \\left({ ${emissionIntensity} - ${benchmark}
     \\over
     ${eligibilityThreshold} - ${benchmark}
-  }\\right) \\times ${incentivePayment.carbonTaxEligibleFlat}`;
+  }\\right) \\times ${carbonTax}`;
 
   return (
     <tr>
-      <td>{incentivePayment.productByProductId.name}</td>
+      <td>{productName}</td>
       <td>
         {process.env.NO_MATHJAX ||
         getConfig()?.publicRuntimeConfig.NO_MATHJAX ? null : (
@@ -34,13 +38,12 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
           </MathJax.Context>
         )}
       </td>
-      <td>CAD {incentivePayment.incentiveAmountProRated} </td>
-      <td>CAD {incentivePayment.incentiveAmountFlat} </td>
+      <td>CAD {incentiveProduct} </td>
       <td>
         <BenchmarkChart
-          emissionIntensity={Number(incentivePayment.emissionIntensity)}
-          benchmark={benchmark}
-          eligibilityThreshold={eligibilityThreshold}
+          emissionIntensity={Number(emissionIntensity)}
+          benchmark={Number(benchmark)}
+          eligibilityThreshold={Number(eligibilityThreshold)}
         />
       </td>
       <style jsx>
@@ -55,19 +58,14 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
 };
 
 export default createFragmentContainer(IncentiveSegmentContainer, {
-  incentivePayment: graphql`
-    fragment IncentiveSegmentContainer_incentivePayment on CiipIncentivePayment {
-      incentiveAmountFlat
-      incentiveAmountProRated
+  ciipIncentiveByProduct: graphql`
+    fragment IncentiveSegmentContainer_ciipIncentiveByProduct on CiipIncentiveByProduct {
+      productName
+      carbonTax
       emissionIntensity
-      carbonTaxEligibleFlat
-      productByProductId {
-        name
-      }
-      benchmarkByBenchmarkId {
-        benchmark
-        eligibilityThreshold
-      }
+      incentiveProduct
+      benchmark
+      eligibilityThreshold
     }
   `
 });
