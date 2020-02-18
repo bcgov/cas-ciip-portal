@@ -78,7 +78,7 @@ const customWidget = {
 export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
   const {application, query} = props;
   const facility = application.facilityByFacilityId;
-  const formResults = application.formResultsByApplicationId.edges;
+  const formResults = application.orderedFormResults.edges;
 
   const pdfFilename = `CIIP_Application_${application.facilityByFacilityId.facilityName}_${application.reportingYear}.pdf`;
 
@@ -204,7 +204,8 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
 
 export default createFragmentContainer(ApplicationDetailsPdf, {
   application: graphql`
-    fragment ApplicationDetailsPdf_application on Application {
+    fragment ApplicationDetailsPdf_application on Application
+      @argumentDefinitions(version: {type: "String!"}) {
       applicationRevisionStatus {
         applicationRevisionStatus
       }
@@ -217,7 +218,7 @@ export default createFragmentContainer(ApplicationDetailsPdf, {
         facilityProvince
         facilityPostalCode
       }
-      formResultsByApplicationId {
+      orderedFormResults(versionNumberInput: $version) {
         edges {
           node {
             formResult
