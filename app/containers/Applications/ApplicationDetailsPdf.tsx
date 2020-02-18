@@ -171,7 +171,7 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
                 schema={node.formJsonByFormId.formJson.schema}
                 uiSchema={node.formJsonByFormId.formJson.uiSchema}
                 formData={node.formResult}
-                tagName="VIEW"
+                tagName={'VIEW' as any}
                 widgets={customWidget}
                 formContext={{query}}
               >

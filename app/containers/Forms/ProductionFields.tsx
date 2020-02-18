@@ -221,6 +221,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           errorSchema={errorSchema}
           formContext={formContext}
           name="product"
+          onBlur={null}
           onChange={handleProductChange}
         />
       </FieldTemplate>
@@ -254,6 +255,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
             disabled={disabled}
             readonly={readonly}
             name="allocationFactor"
+            onBlur={null}
             onChange={handleProductionAllocationFactorChange}
           />
         </FieldTemplate>
@@ -286,6 +288,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
               disabled={disabled}
               readonly={readonly}
               name="quantity"
+              onBlur={null}
               onChange={handleQuantityChange}
             />
           </FieldTemplate>
@@ -315,6 +318,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
               errorSchema={errorSchema}
               formContext={formContext}
               name="productUnits"
+              onBlur={null}
               onChange={handleProductUnitsChange}
             />
           </FieldTemplate>
@@ -355,6 +359,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           disabled={disabled}
           readonly={readonly}
           name="allocationFactor"
+          onBlur={null}
           onChange={handleImportedElectricityAllocationFactorChange}
         />
       </FieldTemplate>
@@ -387,6 +392,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           disabled={disabled}
           readonly={readonly}
           name="allocationFactor"
+          onBlur={null}
           onChange={handleImportedHeatAllocationFactorChange}
         />
       </FieldTemplate>
@@ -405,6 +411,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           readonly={readonly}
           name={null}
           help={additionalDataSchema.uiSchema?.['ui:help']}
+          onBlur={null}
           onChange={handleAdditionalFieldsChange}
         />
       )}

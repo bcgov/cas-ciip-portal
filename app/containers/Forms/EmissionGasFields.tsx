@@ -70,6 +70,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
               disabled={disabled}
               readonly={readonly}
               name="annualEmission"
+              onBlur={null}
               onChange={value =>
                 onChange({
                   ...formData,

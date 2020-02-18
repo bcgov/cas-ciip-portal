@@ -280,6 +280,29 @@ type ApplicationRevision implements Node {
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
 
+  """
+  Reads and enables pagination through a set of `CiipIncentiveByProduct`.
+  """
+  ciipIncentive(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): CiipIncentiveByProductsConnection!
+
   """Reads and enables pagination through a set of `CiipIncentivePayment`."""
   ciipIncentivePaymentsByApplicationIdAndVersionNumber(
     """Read all values in the set after (below) this cursor."""
@@ -1707,11 +1730,13 @@ type CiipIncentiveByProduct {
   benchmark: BigFloat
   carbonTax: BigFloat
   eligibilityThreshold: BigFloat
+  emissionIntensity: BigFloat
   incentiveMultiplier: BigFloat
   incentiveProduct: BigFloat
   incentiveRatio: BigFloat
   paymentAllocationFactor: BigFloat
   productName: String
+  rowId: Int
 }
 
 """A connection to a list of `CiipIncentiveByProduct` values."""
@@ -10418,31 +10443,6 @@ type Query implements Node {
     id: ID!
   ): CiipApplicationWizard
   ciipApplicationWizardByFormId(formId: Int!): CiipApplicationWizard
-
-  """
-  Reads and enables pagination through a set of `CiipIncentiveByProduct`.
-  """
-  ciipIncentive(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-    appId: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-    versionNo: Int
-  ): CiipIncentiveByProductsConnection!
 
   """Reads a single `CiipIncentivePayment` using its globally unique `ID`."""
   ciipIncentivePayment(
