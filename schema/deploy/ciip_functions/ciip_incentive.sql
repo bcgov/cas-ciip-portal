@@ -64,10 +64,16 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
                     where version_number = version_no::integer and application_id = app_id::integer
      loop
 
+        -- Get Incentive Ratio Max and Min, BM and ET for product from Benchmark table
+        select * into benchmark_data from ggircs_portal.benchmark
+          where product_id = product.product_id
+          and start_reporting_year <= app_reporting_year
+          and end_reporting_year >= app_reporting_year;
+
         -- If includes_imported_energy is false, heat/elec allocation factor=0 else set values from production view
         em_alloc_elec = 0;
         em_alloc_heat = 0;
-        if (select includes_imported_energy from ggircs_portal.benchmark b where b.product_id = product.product_id) then
+        if (benchmark_data.includes_imported_energy) then
           em_alloc_elec = product.imported_electricity_allocation_factor;
           em_alloc_heat = product.imported_heat_allocation_factor;
         end if;
@@ -80,12 +86,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
         -- Calculate Emission Intensity
         em_intensity = em_product / product.quantity;
-
-        -- Get Incentive Ratio Max and Min, BM and ET for product from Benchmark table
-        select * into benchmark_data from ggircs_portal.benchmark
-          where product_id = product.product_id
-          and start_reporting_year <= app_reporting_year
-          and end_reporting_year >= app_reporting_year;
 
          -- Get Product specific data
         select * into product_data from ggircs_portal.product

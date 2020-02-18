@@ -21,8 +21,8 @@ begin;
        (x.production_data ->> 'productionAllocationFactor')::numeric as production_allocation_factor,
        (x.production_data ->> 'paymentAllocationFactor')::numeric as payment_allocation_factor,
        (x.production_data ->> 'additionalData')::jsonb as additional_data,
-       (x.production_data ->> 'importedElectricityAllocationFactor')::jsonb as imported_electricity_allocation_factor,
-       (x.production_data ->> 'importedHeatAllocationFactor')::jsonb as imported_heat_allocation_factor
+       (x.production_data ->> 'importedElectricityAllocationFactor')::numeric as imported_electricity_allocation_factor,
+       (x.production_data ->> 'importedHeatAllocationFactor')::numeric as imported_heat_allocation_factor
     from x
  );
 
