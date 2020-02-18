@@ -2981,10 +2981,10 @@
     "@types/koa-compose" "*"
     "@types/node" "*"
 
-"@types/mathjs@^6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@types/mathjs/-/mathjs-6.0.2.tgz#fb77aff0adcd75cf9df358ae8891e239c7ca4203"
-  integrity sha512-VXRnT6ozA8k5i3xyv8WpwarNCsIwV6Z5Cuz5bPuj9pqr5jOo3rZk/tRWdHBCmC0KMchH8OBYPC72p4ftyMXK1Q==
+"@types/mathjs@^6.0.4":
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/@types/mathjs/-/mathjs-6.0.4.tgz#0adf7335b27a5385e0dd4f766e0c53931c5c2375"
+  integrity sha512-hIxf6lfCuUbsI/iz5cevHQjKvSS+XIGPwUyYZ4GjUPrUCh9egUhLlK0d7V31jtSt1WGt6dlclnlYMNOov9JZAA==
   dependencies:
     decimal.js "^10.0.0"
 
