@@ -93,6 +93,7 @@ const FuelFields: React.FunctionComponent<Props> = ({
             disabled={disabled}
             readonly={readonly}
             name="fuelQuantity"
+            onBlur={null}
             onChange={value =>
               onChange({
                 ...formData,
