@@ -157,7 +157,7 @@
     "@storybook/addon-a11y": "^5.3.8",
     "@storybook/addon-actions": "^5.3.13",
     "@storybook/addon-cssresources": "^5.3.8",
-    "@storybook/addon-info": "^5.2.8",
+    "@storybook/addon-info": "^5.3.13",
     "@storybook/addon-storyshots": "^5.3.13",
     "@storybook/addons": "^5.3.8",
     "@storybook/react": "^5.2.8",
