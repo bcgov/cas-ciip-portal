@@ -34,7 +34,7 @@ describe('ApplicationDetailsPdf', () => {
             facilityProvince: 'British Columbia',
             facilityPostalCode: 'V1C6T8'
           },
-          formResultsByApplicationId: {
+          orderedFormResults: {
             edges: [
               {
                 node: {

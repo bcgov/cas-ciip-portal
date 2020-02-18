@@ -223,7 +223,7 @@ export default createRefetchContainer(
             }
           }
         }
-        ...ApplicationDetailsPdf_application
+        ...ApplicationDetailsPdf_application @arguments(version: $version)
       }
     `
   },
