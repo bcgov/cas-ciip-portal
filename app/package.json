@@ -163,7 +163,7 @@
     "@storybook/react": "^5.2.8",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^24.0.23",
-    "@types/mathjs": "^6.0.2",
+    "@types/mathjs": "^6.0.4",
     "@types/react-jsonschema-form": "^1.6.6",
     "@types/react-relay": "^7.0.3",
     "@types/relay-runtime": "^8.0.0",
