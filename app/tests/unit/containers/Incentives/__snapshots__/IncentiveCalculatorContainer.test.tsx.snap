@@ -36,13 +36,10 @@ exports[`IncentiveCalculator should render the page 1`] = `
           Product
         </th>
         <th>
-          Calculation Breakdown (flat rate)
+          Calculation Breakdown
         </th>
         <th>
-          Incentive for product (pro-rated rate)
-        </th>
-        <th>
-          Incentive for product (flat rate)
+          Incentive for product
         </th>
         <th>
           Chart
@@ -51,26 +48,15 @@ exports[`IncentiveCalculator should render the page 1`] = `
     </thead>
     <tbody>
       <Relay(IncentiveSegmentContainer)
-        incentivePayment={
+        ciipIncentiveByProduct={
           Object {
             " $fragmentRefs": Object {
-              "IncentiveSegmentContainer_incentivePayment": true,
+              "IncentiveSegmentContainer_ciipIncentiveByProduct": true,
             },
-            "id": "foo",
+            "rowId": 1,
           }
         }
-        key="foo"
-      />
-      <Relay(IncentiveSegmentContainer)
-        incentivePayment={
-          Object {
-            " $fragmentRefs": Object {
-              "IncentiveSegmentContainer_incentivePayment": true,
-            },
-            "id": "bar",
-          }
-        }
-        key="bar"
+        key="1"
       />
     </tbody>
   </ForwardRef>

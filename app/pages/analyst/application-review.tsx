@@ -19,8 +19,8 @@ interface Props extends CiipPageComponentProps {
 class ApplicationReview extends Component<Props> {
   static query = graphql`
     query applicationReviewQuery(
+      $applicationRevisionId: ID!
       $applicationId: ID!
-      $revisionId: ID!
       $version: String!
     ) {
       query {
@@ -43,7 +43,7 @@ class ApplicationReview extends Component<Props> {
             }
           }
         }
-        applicationRevision(id: $revisionId) {
+        applicationRevision(id: $applicationRevisionId) {
           ...IncentiveCalculatorContainer_applicationRevision
         }
         ...ApplicationDetailsContainer_query

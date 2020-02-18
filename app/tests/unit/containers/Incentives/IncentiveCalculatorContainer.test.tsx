@@ -6,22 +6,14 @@ import {IncentiveCalculatorContainer_applicationRevision} from '__generated__/In
 describe('IncentiveCalculator', () => {
   const applicationRevision: IncentiveCalculatorContainer_applicationRevision = {
     ' $refType': 'IncentiveCalculatorContainer_applicationRevision',
-    ciipIncentivePaymentsByApplicationIdAndVersionNumber: {
+    ciipIncentive: {
       edges: [
         {
           node: {
-            id: 'foo',
             ' $fragmentRefs': {
-              IncentiveSegmentContainer_incentivePayment: true
-            }
-          }
-        },
-        {
-          node: {
-            id: 'bar',
-            ' $fragmentRefs': {
-              IncentiveSegmentContainer_incentivePayment: true
-            }
+              IncentiveSegmentContainer_ciipIncentiveByProduct: true
+            },
+            rowId: 1
           }
         }
       ]
@@ -43,11 +35,8 @@ describe('IncentiveCalculator', () => {
       r
         .find('Relay(IncentiveSegmentContainer)')
         .first()
-        .prop('incentivePayment')
-    ).toBe(
-      applicationRevision.ciipIncentivePaymentsByApplicationIdAndVersionNumber
-        .edges[0].node
-    );
+        .prop('ciipIncentiveByProduct')
+    ).toBe(applicationRevision.ciipIncentive.edges[0].node);
   });
 
   it.todo('renders the table with products and calculation');

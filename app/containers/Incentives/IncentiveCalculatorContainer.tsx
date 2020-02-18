@@ -12,9 +12,7 @@ interface Props {
 export const IncentiveCalculator: React.FunctionComponent<Props> = ({
   applicationRevision
 }) => {
-  const {
-    edges = []
-  } = applicationRevision.ciipIncentivePaymentsByApplicationIdAndVersionNumber;
+  const {edges = []} = applicationRevision.ciipIncentive;
   return (
     <>
       <Jumbotron>
@@ -35,15 +33,17 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
         <thead>
           <tr>
             <th>Product</th>
-            <th>Calculation Breakdown (flat rate)</th>
-            <th>Incentive for product (pro-rated rate)</th>
-            <th>Incentive for product (flat rate)</th>
+            <th>Calculation Breakdown</th>
+            <th>Incentive for product</th>
             <th>Chart</th>
           </tr>
         </thead>
         <tbody>
           {edges.map(({node}) => (
-            <IncentiveSegmentContainer key={node.id} incentivePayment={node} />
+            <IncentiveSegmentContainer
+              key={node.rowId}
+              ciipIncentiveByProduct={node}
+            />
           ))}
         </tbody>
       </Table>
@@ -54,11 +54,11 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
 export default createFragmentContainer(IncentiveCalculator, {
   applicationRevision: graphql`
     fragment IncentiveCalculatorContainer_applicationRevision on ApplicationRevision {
-      ciipIncentivePaymentsByApplicationIdAndVersionNumber {
+      ciipIncentive {
         edges {
           node {
-            id
-            ...IncentiveSegmentContainer_incentivePayment
+            rowId
+            ...IncentiveSegmentContainer_ciipIncentiveByProduct
           }
         }
       }

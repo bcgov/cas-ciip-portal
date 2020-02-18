@@ -42,7 +42,7 @@ export const ApplicationRowItem = props => {
             query: {
               applicationId:
                 applicationSearchResult.applicationByApplicationId.id,
-              revisionId:
+              applicationRevisionId:
                 applicationSearchResult.applicationByApplicationId
                   .latestSubmittedRevision.id,
               version:
@@ -71,6 +71,7 @@ export default createFragmentContainer(ApplicationRowItem, {
       submissionDate
       applicationByApplicationId {
         id
+        rowId
         latestSubmittedRevision {
           id
           versionNumber

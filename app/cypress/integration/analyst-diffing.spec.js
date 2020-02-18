@@ -5,7 +5,7 @@ describe('When reviewing a submitted application as an analyst', () => {
       Cypress.env('TEST_ANALYST_PASSWORD')
     );
     cy.visit(
-      '/analyst/application-review?applicationId=WyJhcHBsaWNhdGlvbnMiLDFd&revisionId=WyJhcHBsaWNhdGlvbl9yZXZpc2lvbnMiLDEsMl0%3D&version=2'
+      '/analyst/application-review?applicationId=WyJhcHBsaWNhdGlvbnMiLDFd&applicationRevisionId=WyJhcHBsaWNhdGlvbl9yZXZpc2lvbnMiLDEsMl0%3D&version=2'
     );
   });
 

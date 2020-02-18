@@ -35,7 +35,7 @@ describe('The application-review page', () => {
     },
     applicationRevision: {
       ' $fragmentRefs': {
-        IncentiveCalculatorContainer_applicationRevision: true
+        IncentiveCalculatorContainer_application_revision: true
       }
     },
     ' $fragmentRefs': {
