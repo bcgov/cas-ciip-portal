@@ -44,7 +44,7 @@ Cypress.Commands.add('logout', () => {
 Cypress.Commands.add('sqlFixture', fixtureName => {
   // This is not a real promise
   // eslint-disable-next-line promise/prefer-await-to-then
-  cy.fixture(`${fixtureName}.sql`).then(fixture =>
-    cy.exec(`psql -d ggircs_dev << ${fixture}`)
+  cy.fixture(`${String(fixtureName)}.sql`).then(fixture =>
+    cy.exec(`psql -d ggircs_dev << ${String(fixture)}`)
   );
 });

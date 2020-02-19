@@ -6,17 +6,29 @@ declare type Url = string | UrlObject;
 
 const router: Partial<RouterType> = Router.router ? {...Router.router} : {};
 
-router.replace = async (url: Url, as?: Url, options?: {}): Promise<boolean> => {
+router.replace = async (
+  url: Url,
+  as?: Url,
+  options?: Record<string, unknown>
+): Promise<boolean> => {
   action('Router#replace')(url, as, options);
   return true;
 };
 
-router.push = async (url: Url, as?: Url, options?: {}): Promise<boolean> => {
+router.push = async (
+  url: Url,
+  as?: Url,
+  options?: Record<string, unknown>
+): Promise<boolean> => {
   action('Router#push')(url, as, options);
   return true;
 };
 
-router.prefetch = async (url: Url, as?: Url, options?: {}): Promise<void> => {
+router.prefetch = async (
+  url: Url,
+  as?: Url,
+  options?: Record<string, unknown>
+): Promise<void> => {
   action('Router#prefetch')(url, as, options);
 };
 

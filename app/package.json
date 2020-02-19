@@ -72,7 +72,7 @@
           "avoidEscape": true
         }
       ],
-      "no-unused-expressions": [
+      "@typescript-eslint/no-unused-expressions": [
         1,
         {
           "allowTernary": true
