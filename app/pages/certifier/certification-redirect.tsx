@@ -55,7 +55,7 @@ class CertificationRedirect extends Component<Props> {
     const facilityName = facility?.facilityName;
     const organisationName =
       facility?.organisationByOrganisationId?.operatorName;
-    const applicationId = this.props.router.query.id as string;
+    const applicationId = this.props.router.query.id;
     const version =
       query?.certificationUrlByRowId?.applicationByApplicationId
         .latestDraftRevision.versionNumber;
