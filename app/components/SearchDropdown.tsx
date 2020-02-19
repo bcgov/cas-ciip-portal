@@ -44,7 +44,7 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
         selected={selected}
         onChange={items => onChange(items)}
       />
-      {errorSchema && errorSchema.fuelType ? (
+      {errorSchema?.fuelType ? (
         <ErrorList errors={errorSchema?.fuelType?.__errors} />
       ) : null}
       <style jsx global>

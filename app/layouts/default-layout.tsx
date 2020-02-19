@@ -67,7 +67,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
     <div className="page-wrap">
       <Header
         isLoggedIn={Boolean(session)}
-        isRegistered={Boolean(session && session.ciipUserBySub)}
+        isRegistered={Boolean(session?.ciipUserBySub)}
         isAdmin={userGroups.includes('Incentive Administrator')}
         isIndustry={userGroups.includes('User')}
       />

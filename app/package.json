@@ -27,7 +27,8 @@
       "xo-typescript",
       "xo-react",
       "plugin:jest/recommended",
-      "plugin:relay/recommended"
+      "plugin:relay/recommended",
+      "plugin:cypress/recommended"
     ],
     "plugins": [
       "jest",
@@ -63,6 +64,8 @@
       "shopify/react-no-multiple-render-methods": 1,
       "unicorn/filename-case": 0,
       "import/no-unassigned-import": 0,
+      "@typescript-eslint/no-untyped-public-signature": 0,
+      "@typescript-eslint/restrict-template-expressions": 0,
       "@typescript-eslint/quotes": [
         1,
         "single",
@@ -70,7 +73,7 @@
           "avoidEscape": true
         }
       ],
-      "no-unused-expressions": [
+      "@typescript-eslint/no-unused-expressions": [
         1,
         {
           "allowTernary": true
@@ -100,7 +103,8 @@
         ],
         "rules": {
           "jest/valid-expect-in-promise": 0,
-          "promise/prefer-await-to-then": 0
+          "promise/prefer-await-to-then": 0,
+          "no-unused-expressions": 0
         }
       }
     ]
@@ -185,7 +189,8 @@
     "eslint": "^6.5.1",
     "eslint-config-xo": "^0.27.1",
     "eslint-config-xo-react": "^0.20.0",
-    "eslint-config-xo-typescript": "^0.21.0",
+    "eslint-config-xo-typescript": "^0.24.1",
+    "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-jest": "^23.6.0",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.3.0",
