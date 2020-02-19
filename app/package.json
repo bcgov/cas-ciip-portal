@@ -110,8 +110,8 @@
     ]
   },
   "engines": {
-    "node": "10.14.1",
-    "yarn": "1.12.3"
+    "node": "12.16.1",
+    "yarn": "1.22.0"
   },
   "author": "",
   "license": "ISC",
@@ -217,7 +217,7 @@
     "typescript": "3.7.5",
     "wait-on": "^3.3.0",
     "webpack": "^4.41.6",
-    "xo": "^0.25.0"
+    "xo": "^0.26.1"
   },
   "resolutions": {
     "@storybook/**/open": "^7.0.0",
