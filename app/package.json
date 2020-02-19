@@ -110,8 +110,8 @@
     ]
   },
   "engines": {
-    "node": "10.14.1",
-    "yarn": "1.12.3"
+    "node": "12.16.1",
+    "yarn": "1.22.0"
   },
   "author": "",
   "license": "ISC",
