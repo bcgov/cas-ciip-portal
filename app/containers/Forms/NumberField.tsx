@@ -33,7 +33,7 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
       // @ts-ignore
       <WidgetComponent
         schema={schema}
-        id={idSchema && idSchema.$id}
+        id={idSchema?.$id}
         label={title ?? name}
         value={formData}
         required={required}

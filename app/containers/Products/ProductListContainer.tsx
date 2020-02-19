@@ -36,7 +36,7 @@ export const ProductList: React.FunctionComponent<Props> = ({
     relay.refetch(refetchVariables);
   });
 
-  if (query && query.searchProducts && query.searchProducts.edges) {
+  if (query?.searchProducts?.edges) {
     const allProducts = query.searchProducts.edges;
 
     const displayNameToColumnNameMap = {
