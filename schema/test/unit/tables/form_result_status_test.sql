@@ -17,6 +17,7 @@ create role test_superuser superuser;
 set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
 alter table ggircs_portal.ciip_user_organisation
   disable trigger _set_user_id;
+alter table ggircs_portal.ciip_user disable trigger graphile_worker_job;
 
 -- User 999 has access to form_result_status 999, but not form_result_status 1000
 insert into ggircs_portal.ciip_user(id, uuid) overriding system value
