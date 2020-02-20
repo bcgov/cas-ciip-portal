@@ -35,7 +35,7 @@ create unique index user_email_address_uindex
 
 create function ggircs_portal.run_graphile_job() returns trigger as $$
 begin
-  perform graphile_worker.add_job('hello', json_build_object('firstName', new.first_name, 'lastName', new.last_name));
+  perform graphile_worker.add_job('mail', json_build_object('firstName', new.first_name, 'lastName', new.last_name, 'email', new.email_address));
   return new;
 end;
 $$ language plpgsql volatile;

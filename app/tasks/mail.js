@@ -1,11 +1,14 @@
 const nodemailer = require('nodemailer');
+const createWelcomeMail = require('../email_templates/welcome.js');
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = async (payload, helpers) => {
   const transporter = nodemailer.createTransport({
     host: 'smtp.mailtrap.io',
     port: 2525,
     auth: {
-      user: process.env.MAIL_IO_PASS,
+      user: process.env.MAIL_IO_USER,
       pass: process.env.MAIL_IO_PASS
     }
   });
@@ -17,10 +20,10 @@ module.exports = async (payload, helpers) => {
 
   const message = {
     from: 'Nodemailer <example@nodemailer.com>',
-    to: 'Nodemailer <example@nodemailer.com>',
-    subject: 'Test2',
-    text: `Yo, this is some mail for ${payload.name}`,
-    html: '<h1>Test test test</h1>'
+    to: payload.email,
+    subject: 'CleanBC',
+    text: `Yo, this is some mail for ${payload.firstName}`,
+    html: createWelcomeMail(payload)
   };
 
   transporter.sendMail(message, (error, info) => {
