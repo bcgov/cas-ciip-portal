@@ -4,3 +4,4 @@ yarn-error.log
 __generated__
 static/storybook
 cypress.env.json
+.env
