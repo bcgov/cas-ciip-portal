@@ -32,15 +32,7 @@ create unique index user_email_address_uindex
   create unique index user_email_address_uuuid
   on ggircs_portal.ciip_user(uuid);
 
-
-create function ggircs_portal.run_graphile_job() returns trigger as $$
-begin
-  perform graphile_worker.add_job('mail', json_build_object('firstName', new.first_name, 'lastName', new.last_name, 'email', new.email_address));
-  return new;
-end;
-$$ language plpgsql volatile;
-
-create trigger graphile_worker_job after insert on ggircs_portal.ciip_user for each row execute procedure ggircs_portal.run_graphile_job();
+create trigger graphile_worker_job after insert on ggircs_portal.ciip_user for each row execute procedure ggircs_portal.run_graphile_worker_job();
 
 do
 $grant$
