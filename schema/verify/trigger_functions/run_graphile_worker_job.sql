@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.run_graphile_worker_job()'::regprocedure);
+select pg_get_functiondef('ggircs_portal_private.run_graphile_worker_job()'::regprocedure);
 
 rollback;

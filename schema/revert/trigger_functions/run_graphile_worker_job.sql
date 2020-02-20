@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.run_graphile_worker_job;
+drop function ggircs_portal_private.run_graphile_worker_job;
 
 commit;
