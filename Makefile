@@ -5,7 +5,7 @@ include .pipeline/make.mk
 endif
 
 PATHFINDER_PREFIX := wksv3k
-PROJECT_PREFIX := cas-
+PROJECT_PREFIX := cas-ciip-
 
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 
@@ -45,17 +45,17 @@ OC_TEMPLATE_VARS += TOOLS_HASH=$(TOOLS_HASH)
 build_tools: $(call make_help,build_schema,Builds a tools image in the tools openshift namespace)
 build_tools: OC_PROJECT=$(OC_TOOLS_PROJECT)
 build_tools: whoami
-ifeq ($(shell $(OC) -n $(OC_TOOLS_PROJECT) get istag/$(PROJECT_PREFIX)ciip-portal-tools:$(TOOLS_HASH) --ignore-not-found -o name),)
-	$(call oc_build,$(PROJECT_PREFIX)ciip-portal-tools)
+ifeq ($(shell $(OC) -n $(OC_TOOLS_PROJECT) get istag/$(PROJECT_PREFIX)portal-tools:$(TOOLS_HASH) --ignore-not-found -o name),)
+	$(call oc_build,$(PROJECT_PREFIX)portal-tools)
 else
-	@echo "The $(PROJECT_PREFIX)ciip-portal-tools:$(TOOLS_HASH) tag already exists. Skipping build_tools."
+	@echo "The $(PROJECT_PREFIX)portal-tools:$(TOOLS_HASH) tag already exists. Skipping build_tools."
 endif
 
 .PHONY: build_schema
 build_schema: $(call make_help,build_schema,Builds the schema source into an image in the tools project namespace)
 build_schema: OC_PROJECT=$(OC_TOOLS_PROJECT)
 build_schema: whoami
-	$(call oc_build,$(PROJECT_PREFIX)ciip-portal-schema)
+	$(call oc_build,$(PROJECT_PREFIX)portal-schema)
 
 
 .PHONY: build_app
@@ -73,13 +73,13 @@ PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)cii
 .PHONY: install
 install: whoami
 install:
-	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-schema)
-	$(call oc_promote,$(PROJECT_PREFIX)ciip-portal-app)
+	$(call oc_promote,$(PROJECT_PREFIX)portal-schema)
+	$(call oc_promote,$(PROJECT_PREFIX)portal-app)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)postgres-master)
-	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
-	$(call oc_run_job,$(PROJECT_PREFIX)ciip-portal-schema-deploy)
+	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
+	$(call oc_run_job,$(PROJECT_PREFIX)portal-schema-deploy)
 	$(call oc_deploy)
-	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)ciip-portal-app)
+	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)portal-app)
 
 .PHONY: install_test
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)

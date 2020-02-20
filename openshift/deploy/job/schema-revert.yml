@@ -26,14 +26,14 @@ objects:
 - apiVersion: batch/v1
   kind: Job
   metadata:
-    name: ${PREFIX}ciip-portal-schema-revert
+    name: ${PREFIX}portal-schema-revert
   spec:
     backoffLimit: 0
     activeDeadlineSeconds: 7200
     template:
       metadata:
         labels:
-          name: ${PREFIX}ciip-portal-schema-revert
+          name: ${PREFIX}portal-schema-revert
       spec:
         restartPolicy: Never
         containers:
@@ -50,17 +50,17 @@ objects:
             valueFrom:
               secretKeyRef:
                 key: database-user
-                name: ${PREFIX}ggircs-postgres
+                name: ${PREFIX}portal-postgres
           - name: PGPASSWORD
             valueFrom:
               secretKeyRef:
                 key: database-password
-                name: ${PREFIX}ggircs-postgres
+                name: ${PREFIX}portal-postgres
           - name: PGDATABASE
             valueFrom:
               secretKeyRef:
                 key: database-name
-                name: ${PREFIX}ggircs-postgres
+                name: ${PREFIX}portal-postgres
           - name: PGPORT
             value: "5432"
           - name: PGHOST
@@ -69,8 +69,8 @@ objects:
             value: OpenShift Deployer
           - name: SQITCH_EMAIL
             value: deployer@pathfinder.gov.bc.ca
-          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}ciip-portal-schema:${GIT_SHA1}
-          name: ${PREFIX}ciip-portal-schema-revert
+          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-schema:${GIT_SHA1}
+          name: ${PREFIX}portal-schema-revert
           resources:
             limits:
               cpu: "1"

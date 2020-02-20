@@ -27,44 +27,44 @@ objects:
   metadata:
     annotations:
       template.alpha.openshift.io/wait-for-ready: "true"
-    name: ${PREFIX}ciip-portal-app
+    name: ${PREFIX}portal-app
   spec:
     replicas: 2
     selector:
-      name: ${PREFIX}ciip-portal-app
+      name: ${PREFIX}portal-app
     strategy:
       type: Rolling
     template:
       metadata:
         labels:
-          name: ${PREFIX}ciip-portal-app
+          name: ${PREFIX}portal-app
       spec:
         containers:
         - env:
           - name: PGUSER
             valueFrom:
               secretKeyRef:
-                key: database-user
-                name: ${PREFIX}ggircs-postgres
+                key: database-app-user
+                name: ${PREFIX}portal-postgres
           - name: PGPASSWORD
             valueFrom:
               secretKeyRef:
-                key: database-password
-                name: ${PREFIX}ggircs-postgres
+                key: database-app-password
+                name: ${PREFIX}portal-postgres
           - name: PGDATABASE
             valueFrom:
               secretKeyRef:
                 key: database-name
-                name: ${PREFIX}ggircs-postgres
+                name: ${PREFIX}portal-postgres
           - name: PGPORT
             value: "5432"
           - name: PGHOST
             value: ${PREFIX}postgres-master
           - name: PORT
             value: "3000"
-          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}ciip-portal-app:${GIT_SHA1}
+          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-app:${GIT_SHA1}
           imagePullPolicy: IfNotPresent
-          name: ${PREFIX}ciip-portal-app
+          name: ${PREFIX}portal-app
           ports:
           - containerPort: 3000
             protocol: TCP

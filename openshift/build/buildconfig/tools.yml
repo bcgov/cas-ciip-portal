@@ -19,7 +19,7 @@ objects:
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
-    name: ${PREFIX}ciip-portal-tools
+    name: ${PREFIX}portal-tools
   spec:
     runPolicy: Parallel
     nodeSelector:
@@ -27,7 +27,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: ${PREFIX}ciip-portal-tools:${TOOLS_HASH}
+        name: ${PREFIX}portal-tools:${TOOLS_HASH}
     resources:
       limits:
         cpu: 2000m
@@ -38,7 +38,7 @@ objects:
     source:
       git:
         ref: ${GIT_SHA1}
-        uri: https://github.com/bcgov/${PREFIX}ciip-portal.git
+        uri: https://github.com/bcgov/${PREFIX}portal.git
       type: Git
     strategy:
       type: Docker
