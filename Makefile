@@ -69,15 +69,35 @@ build: $(call make_help,build,Builds the source into an image in the tools proje
 build: build_tools build_schema build_app
 
 PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)ciip-portal-schema-deploy --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
+PORTAL_DB_NAME = "ciip_portal"
+PORTAL_USER = "portal"
+PORTAL_APP_USER = $(PORTAL_USER)_app
 
 .PHONY: install
 install: whoami
 install:
+	# Retrieve or generate password for the user owning the portal database
+	$(eval PORTAL_PASSWORD = $(shell if [ -n "$$($(OC) -n "$(OC_PROJECT)" get secret/$(PROJECT_PREFIX)portal-postgres --ignore-not-found -o name)" ]; then \
+$(OC) -n "$(OC_PROJECT)" get secret/$(PROJECT_PREFIX)portal-postgres -o go-template='{{index .data "database-password"}}' | base64 -d; else \
+openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
+	# Retrieve or generate password for the user with read-only access to the ggircs database
+	$(eval PORTAL_APP_PASSWORD = $(shell if [ -n "$$($(OC) -n "$(OC_PROJECT)" get secret/$(PROJECT_PREFIX)portal-postgres --ignore-not-found -o name)" ]; then \
+$(OC) -n "$(OC_PROJECT)" get secret/$(PROJECT_PREFIX)portal-postgres -o go-template='{{index .data "database-app-password"}}' | base64 -d; else \
+openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
+	# Add database name, user names and passwords to the OC template variables
+	$(eval OC_TEMPLATE_VARS += PORTAL_PASSWORD="$(shell echo -n "$(PORTAL_PASSWORD)" | base64)" PORTAL_USER="$(shell echo -n "$(PORTAL_USER)" | base64)" GGIRCS_DB="$(shell echo -n "$(PORTAL_DB_NAME)" | base64)")
+	$(eval OC_TEMPLATE_VARS += PORTAL_APP_PASSWORD="$(shell echo -n "$(PORTAL_APP_PASSWORD)" | base64)" PORTAL_APP_USER="$(shell echo -n "$(PORTAL_APP_USER)" | base64)")
+	# Retrieve the git sha1 of the last etl deploy
 	$(call oc_promote,$(PROJECT_PREFIX)portal-schema)
 	$(call oc_promote,$(PROJECT_PREFIX)portal-app)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)postgres-master)
+	# Create secrets if they don't exist yet
+	$(call oc_create_secrets)
+	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_USER) -d $(PORTAL_DB_NAME) -p $(PORTAL_PASSWORD) --owner)
 	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
 	$(call oc_run_job,$(PROJECT_PREFIX)portal-schema-deploy)
+	# Create app user. This must be executed after the deploy job so that the swrs schema exists
+	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_APP_USER) -d $(PORTAL_DB_NAME) -p $(PORTAL_APP_PASSWORD) --schemas ggircs_portal --privileges select)
 	$(call oc_deploy)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)portal-app)
 
