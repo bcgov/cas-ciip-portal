@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const createWelcomeMail = require('../email_templates/welcome.js');
-const createConfirmationMail = require('../email_templates/filingConfirmation.js');
+const createConfirmationMail = require('../email_templates/confirmation.js');
 const createAmendmentMail = require('../email_templates/amendment.js');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -23,14 +23,17 @@ module.exports = async ({
     else console.log('transporter verified');
   });
 
+  let subject;
   let htmlContent;
   switch (type) {
     // New CIIP user welcome
     case 'welcome':
+      subject = 'Welcome to CIIP';
       htmlContent = createWelcomeMail({email, firstName, lastName});
       break;
     // Confirmation of CIIP Application submission
     case 'status_change_submitted':
+      subject = 'CIIP Application Submission Confirmation';
       htmlContent = createConfirmationMail({
         email,
         firstName,
@@ -41,6 +44,7 @@ module.exports = async ({
       break;
     // Notice of amendment to CIIP Application submission
     case 'status_change_other':
+      subject = 'Your CIIP Application status has changed';
       htmlContent = createAmendmentMail({
         email,
         firstName,
@@ -61,13 +65,11 @@ module.exports = async ({
   }
 
   const message = {
-    from: 'Nodemailer <example@nodemailer.com>',
+    from: 'BCCAS <example@cas.com>',
     to: email,
-    subject: 'CIIP Welcome mail',
+    subject,
     html: htmlContent
   };
-
-  console.log(message);
 
   transporter.sendMail(message, (error, info) => {
     if (error) return console.error(error);

@@ -11,10 +11,8 @@ const createWelcomeMail = ({firstName, lastName, email}) => {
         <td style="padding: 20px 10px 30px 10px;" >
           <h3>Hello, ${firstName} ${lastName}.</h3>
           <h4>Thank you for registering for the CleanBC Industrial Incentive Program.</h4>
-          <p>Email stuff</p>
-          <p>Email stuff</p>
-          <p>Email stuff</p>
-          <p>Email stuff</p>
+          <br/>
+          <a href="http://localhost:3004">CIIP Portal</a>
         </td>
       </tr>
       <tr>
