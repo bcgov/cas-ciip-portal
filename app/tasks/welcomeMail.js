@@ -4,14 +4,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = async (payload, helpers) => {
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.mailtrap.io',
-    port: 2525,
-    auth: {
-      user: process.env.MAIL_IO_USER,
-      pass: process.env.MAIL_IO_PASS
+  const transporter = nodemailer.createTransport(
+    process.env.SMTP_CONNECTION_STRING,
+    {
+      port: 2525
     }
-  });
+  );
 
   transporter.verify(error => {
     if (error) console.error(error);
@@ -22,7 +20,6 @@ module.exports = async (payload, helpers) => {
     from: 'Nodemailer <example@nodemailer.com>',
     to: payload.email,
     subject: 'CleanBC',
-    text: `Yo, this is some mail for ${payload.firstName}`,
     html: createWelcomeMail(payload)
   };
 

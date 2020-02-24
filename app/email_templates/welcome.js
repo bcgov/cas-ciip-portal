@@ -1,5 +1,4 @@
-const createWelcomeMail = customVariables => {
-  console.log(customVariables);
+const createWelcomeMail = ({firstName, lastName, email}) => {
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
       <tr>
@@ -10,7 +9,7 @@ const createWelcomeMail = customVariables => {
       </tr>
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;" >
-          <h3>Hello, ${customVariables.firstName} ${customVariables.lastName}.</h3>
+          <h3>Hello, ${firstName} ${lastName}.</h3>
           <h4>Thank you for registering for the CleanBC Industrial Incentive Program.</h4>
           <p>Email stuff</p>
           <p>Email stuff</p>
@@ -20,7 +19,7 @@ const createWelcomeMail = customVariables => {
       </tr>
       <tr>
         <td style="padding: 20px 10px 30px 10px;">
-        <p>Sent to: ${customVariables.email}</p>
+        <p>Sent to: ${email}</p>
         <p>On behalf of the Climate Action Secretariat &amp; the CleanBC Industrial Incentive Program</p></td>
       </tr>
     </table>
