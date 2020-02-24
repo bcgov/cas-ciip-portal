@@ -18,6 +18,7 @@ select has_table(
 -- Test setup
 alter table ggircs_portal.ciip_user_organisation
   disable trigger _set_user_id;
+alter table ggircs_portal.ciip_user disable trigger graphile_worker_job;
 
 insert into ggircs_portal.ciip_user(id, uuid, first_name)
 overriding system value

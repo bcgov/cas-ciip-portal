@@ -32,6 +32,7 @@ create unique index user_email_address_uindex
   create unique index user_email_address_uuuid
   on ggircs_portal.ciip_user(uuid);
 
+create trigger graphile_worker_job after insert on ggircs_portal.ciip_user for each row execute procedure ggircs_portal_private.run_graphile_worker_job();
 
 do
 $grant$
