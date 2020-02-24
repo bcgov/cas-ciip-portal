@@ -5,7 +5,7 @@
 
 begin;
 
-alter table ggircs_portal.ciip_user disable trigger graphile_worker_job;
+alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 
 with rows as (
 insert into ggircs_portal.ciip_user (id, uuid, first_name, last_name, email_address, occupation, phone_number)
@@ -32,6 +32,6 @@ select setval from
 setval('ggircs_portal.ciip_user_id_seq', (select max(id) from ggircs_portal.ciip_user), true)
 where setval = 0;
 
-alter table ggircs_portal.ciip_user enable trigger graphile_worker_job;
+alter table ggircs_portal.ciip_user enable trigger _welcome_email;
 
 commit;

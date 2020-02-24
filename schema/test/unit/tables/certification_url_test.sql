@@ -20,7 +20,7 @@ alter table ggircs_portal.ciip_user_organisation
   disable trigger _set_user_id;
 alter table ggircs_portal.certification_url
   disable trigger _random_id;
-alter table ggircs_portal.ciip_user disable trigger graphile_worker_job;
+alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 
 -- User 999 has access to certification_url 999, but not certification_url 1000
 insert into ggircs_portal.ciip_user(id, uuid) overriding system value

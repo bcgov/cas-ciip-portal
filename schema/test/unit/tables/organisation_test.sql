@@ -16,7 +16,7 @@ select has_table(
 -- Row level security tests --
 
 -- Test setup
-alter table ggircs_portal.ciip_user disable trigger graphile_worker_job;
+alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 
 insert into ggircs_portal.ciip_user(id, uuid, first_name)
 overriding system value

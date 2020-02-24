@@ -9,6 +9,8 @@ begin;
   select 'Dropping old application data: ';
   truncate ggircs_portal.application restart identity cascade;
 
+  alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
+
   -- Create applications
   select 'Calling ggircs_portal.create_application_mutation_chain: ';
   select ggircs_portal.create_application_mutation_chain(1);
@@ -25,5 +27,7 @@ begin;
 
   -- Update the status of application with id=1 to be 'submitted'
   update ggircs_portal.application_revision_status set application_revision_status = 'submitted' where application_id=1;
+
+  alter table ggircs_portal.application_revision_status enable trigger _status_change_email;
 
 commit;

@@ -36,6 +36,11 @@ create trigger _checksum_form_results
     for each row
     execute procedure ggircs_portal.checksum_form_results();
 
+create trigger _status_change_email
+  after insert or update of application_revision_status on ggircs_portal.application_revision_status
+    for each row
+    execute procedure ggircs_portal_private.run_graphile_worker_job('status_change');
+
 do
 $grant$
 begin

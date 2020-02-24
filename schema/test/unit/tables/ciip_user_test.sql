@@ -18,7 +18,7 @@ select has_table(
 
 -- Test setup
 set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
-alter table ggircs_portal.ciip_user disable trigger graphile_worker_job;
+alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 
 -- CIIP_ADMINISTRATOR
 set role ciip_administrator;
