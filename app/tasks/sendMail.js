@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const createWelcomeMail = require('../email_templates/welcome.js');
 const createConfirmationMail = require('../email_templates/filingConfirmation.js');
+const createAmendmentMail = require('../email_templates/amendment.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -10,7 +11,8 @@ module.exports = async ({
   firstName,
   lastName,
   facilityName,
-  operatorName
+  operatorName,
+  status
 }) => {
   console.log(type);
   const transporter = nodemailer.createTransport(
@@ -27,9 +29,11 @@ module.exports = async ({
 
   let htmlContent;
   switch (type) {
+    // New CIIP user welcome
     case 'welcome':
       htmlContent = createWelcomeMail({email, firstName, lastName});
       break;
+    // Confirmation of CIIP Application submission
     case 'status_change_submitted':
       htmlContent = createConfirmationMail({
         email,
@@ -37,6 +41,17 @@ module.exports = async ({
         lastName,
         facilityName,
         operatorName
+      });
+      break;
+    // Notice of amendment to CIIP Application submission
+    case 'status_change_other':
+      htmlContent = createAmendmentMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName,
+        status
       });
       break;
     default:
