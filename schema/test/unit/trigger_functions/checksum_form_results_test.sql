@@ -10,6 +10,8 @@ select has_function(
   'Function checksum_form_results should exist'
 );
 
+alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
+
 -- Insert organisation & facility test data
 insert into ggircs_portal.organisation(operator_name) values ('test org');
 insert into ggircs_portal.facility(organisation_id, facility_name) values (1, 'test facility');
