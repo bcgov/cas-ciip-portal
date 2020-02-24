@@ -15,10 +15,7 @@ module.exports = async ({
   status
 }) => {
   const transporter = nodemailer.createTransport(
-    process.env.SMTP_CONNECTION_STRING,
-    {
-      port: 2525
-    }
+    process.env.SMTP_CONNECTION_STRING
   );
 
   transporter.verify(error => {
@@ -72,8 +69,8 @@ module.exports = async ({
 
   console.log(message);
 
-  // Transporter.sendMail(message, (error, info) => {
-  //   if (error) return console.error(error);
-  //   console.log('Message sent: %s', info.messageId);
-  // });
+  transporter.sendMail(message, (error, info) => {
+    if (error) return console.error(error);
+    console.log('Message sent: %s', info.messageId);
+  });
 };
