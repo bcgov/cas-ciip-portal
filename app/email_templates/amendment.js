@@ -22,6 +22,8 @@ const createAmendmentMail = ({
           <p>Operator: ${operatorName}</p>
           <p>Facility: ${facilityName}</p>
           <p>Status: ${status}</p>
+          <br/>
+          <a href="http://localhost:3004">CIIP Portal</a>
         </td>
       </tr>
       <tr>

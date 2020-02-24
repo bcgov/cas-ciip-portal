@@ -18,9 +18,8 @@ const createConfirmationMail = ({
           <h3>Hello, ${firstName} ${lastName}.</h3>
           <h4>Thank you for your submission to the CleanBC Industrial Incentive Program.</h4>
           <p>Your application on behalf of ${operatorName} for facility ${facilityName} has been received.</p>
-          <p>Email stuff</p>
-          <p>Email stuff</p>
-          <p>Email stuff</p>
+          <br/>
+          <a href="http://localhost:3004">CIIP Portal</a>
         </td>
       </tr>
       <tr>

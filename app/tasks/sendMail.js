@@ -14,7 +14,6 @@ module.exports = async ({
   operatorName,
   status
 }) => {
-  console.log(type);
   const transporter = nodemailer.createTransport(
     process.env.SMTP_CONNECTION_STRING,
     {
@@ -63,8 +62,6 @@ module.exports = async ({
       'Invalid message type, no message could be generated. Email not sent'
     );
   }
-
-  console.log(htmlContent);
 
   const message = {
     from: 'Nodemailer <example@nodemailer.com>',
