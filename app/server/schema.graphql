@@ -280,6 +280,35 @@ type ApplicationRevision implements Node {
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
 
+  """Reads and enables pagination through a set of `CertificationUrl`."""
+  certificationUrlsByApplicationIdAndVersionNumber(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CertificationUrlCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsConnection!
+
   """
   Reads and enables pagination through a set of `CiipIncentiveByProduct`.
   """
@@ -1286,6 +1315,16 @@ type CertificationUrl implements Node {
   """Foreign key to the application"""
   applicationId: Int!
 
+  """
+  Reads a single `ApplicationRevision` that is related to this `CertificationUrl`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
+  certificationSignature: String
+  certifiedBy: Int
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByCertifiedBy: CiipUser
+
   """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
   ciipUserByCreatedBy: CiipUser
 
@@ -1309,6 +1348,7 @@ type CertificationUrl implements Node {
 
   """The expiry date for the row"""
   expiresAt: Datetime!
+  formResultsMd5: String!
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -1323,6 +1363,7 @@ type CertificationUrl implements Node {
 
   """The user who last updated the row"""
   updatedBy: Int
+  versionNumber: Int!
 }
 
 """
@@ -1332,6 +1373,12 @@ tested for equality and combined with a logical ‘and.’
 input CertificationUrlCondition {
   """Checks for equality with the object’s `applicationId` field."""
   applicationId: Int
+
+  """Checks for equality with the object’s `certificationSignature` field."""
+  certificationSignature: String
+
+  """Checks for equality with the object’s `certifiedBy` field."""
+  certifiedBy: Int
 
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
@@ -1348,6 +1395,9 @@ input CertificationUrlCondition {
   """Checks for equality with the object’s `expiresAt` field."""
   expiresAt: Datetime
 
+  """Checks for equality with the object’s `formResultsMd5` field."""
+  formResultsMd5: String
+
   """Checks for equality with the object’s `rowId` field."""
   rowId: String
 
@@ -1356,12 +1406,17 @@ input CertificationUrlCondition {
 
   """Checks for equality with the object’s `updatedBy` field."""
   updatedBy: Int
+
+  """Checks for equality with the object’s `versionNumber` field."""
+  versionNumber: Int
 }
 
 """An input for mutations affecting `CertificationUrl`"""
 input CertificationUrlInput {
   """Foreign key to the application"""
   applicationId: Int!
+  certificationSignature: String
+  certifiedBy: Int
 
   """Creation date of row"""
   createdAt: Datetime
@@ -1377,6 +1432,7 @@ input CertificationUrlInput {
 
   """The expiry date for the row"""
   expiresAt: Datetime
+  formResultsMd5: String!
 
   """Unique ID for the certification_url"""
   rowId: String!
@@ -1386,6 +1442,7 @@ input CertificationUrlInput {
 
   """The user who last updated the row"""
   updatedBy: Int
+  versionNumber: Int!
 }
 
 """
@@ -1394,6 +1451,8 @@ Represents an update to a `CertificationUrl`. Fields that are set will be update
 input CertificationUrlPatch {
   """Foreign key to the application"""
   applicationId: Int
+  certificationSignature: String
+  certifiedBy: Int
 
   """Creation date of row"""
   createdAt: Datetime
@@ -1409,6 +1468,7 @@ input CertificationUrlPatch {
 
   """The expiry date for the row"""
   expiresAt: Datetime
+  formResultsMd5: String
 
   """Unique ID for the certification_url"""
   rowId: String
@@ -1418,6 +1478,7 @@ input CertificationUrlPatch {
 
   """The user who last updated the row"""
   updatedBy: Int
+  versionNumber: Int
 }
 
 """A connection to a list of `CertificationUrl` values."""
@@ -1452,6 +1513,10 @@ type CertificationUrlsEdge {
 enum CertificationUrlsOrderBy {
   APPLICATION_ID_ASC
   APPLICATION_ID_DESC
+  CERTIFICATION_SIGNATURE_ASC
+  CERTIFICATION_SIGNATURE_DESC
+  CERTIFIED_BY_ASC
+  CERTIFIED_BY_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
@@ -1462,6 +1527,8 @@ enum CertificationUrlsOrderBy {
   DELETED_BY_DESC
   EXPIRES_AT_ASC
   EXPIRES_AT_DESC
+  FORM_RESULTS_MD5_ASC
+  FORM_RESULTS_MD5_DESC
   ID_ASC
   ID_DESC
   NATURAL
@@ -1471,6 +1538,8 @@ enum CertificationUrlsOrderBy {
   UPDATED_AT_DESC
   UPDATED_BY_ASC
   UPDATED_BY_DESC
+  VERSION_NUMBER_ASC
+  VERSION_NUMBER_DESC
 }
 
 enum CiipApplicationRevisionStatus {
@@ -2214,6 +2283,35 @@ type CiipUser implements Node {
     """The method to use when ordering `Benchmark`."""
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksConnection!
+
+  """Reads and enables pagination through a set of `CertificationUrl`."""
+  certificationUrlsByCertifiedBy(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CertificationUrlCondition
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """The method to use when ordering `CertificationUrl`."""
+    orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CertificationUrlsConnection!
 
   """Reads and enables pagination through a set of `CertificationUrl`."""
   certificationUrlsByCreatedBy(
@@ -3857,6 +3955,11 @@ type CreateCertificationUrlPayload {
   """
   applicationByApplicationId: Application
 
+  """
+  Reads a single `ApplicationRevision` that is related to this `CertificationUrl`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
+
   """The `CertificationUrl` that was created by this mutation."""
   certificationUrl: CertificationUrl
 
@@ -3865,6 +3968,9 @@ type CreateCertificationUrlPayload {
     """The method to use when ordering `CertificationUrl`."""
     orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CertificationUrlsEdge
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByCertifiedBy: CiipUser
 
   """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
   ciipUserByCreatedBy: CiipUser
@@ -4942,6 +5048,11 @@ type DeleteCertificationUrlPayload {
   """
   applicationByApplicationId: Application
 
+  """
+  Reads a single `ApplicationRevision` that is related to this `CertificationUrl`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
+
   """The `CertificationUrl` that was deleted by this mutation."""
   certificationUrl: CertificationUrl
 
@@ -4950,6 +5061,9 @@ type DeleteCertificationUrlPayload {
     """The method to use when ordering `CertificationUrl`."""
     orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CertificationUrlsEdge
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByCertifiedBy: CiipUser
 
   """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
   ciipUserByCreatedBy: CiipUser
@@ -11668,6 +11782,11 @@ type UpdateCertificationUrlPayload {
   """
   applicationByApplicationId: Application
 
+  """
+  Reads a single `ApplicationRevision` that is related to this `CertificationUrl`.
+  """
+  applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
+
   """The `CertificationUrl` that was updated by this mutation."""
   certificationUrl: CertificationUrl
 
@@ -11676,6 +11795,9 @@ type UpdateCertificationUrlPayload {
     """The method to use when ordering `CertificationUrl`."""
     orderBy: [CertificationUrlsOrderBy!] = [PRIMARY_KEY_ASC]
   ): CertificationUrlsEdge
+
+  """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
+  ciipUserByCertifiedBy: CiipUser
 
   """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
   ciipUserByCreatedBy: CiipUser

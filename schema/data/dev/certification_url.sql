@@ -15,4 +15,9 @@ application_id=excluded.application_id
 returning 1
 ) select 'Inserted ' || count(*) || ' rows into ggircs_portal.certification_url' from rows;
 
+update ggircs_portal.certification_url set certification_signature = '12345' where application_id =1 and version_number=1;
+
+-- Update the status of application with id=1 to be 'submitted'
+  update ggircs_portal.application_revision_status set application_revision_status = 'submitted' where application_id=1 and version_number = 1;
+
 commit;

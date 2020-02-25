@@ -28,9 +28,6 @@ begin;
   -- Set legal_disclaimer_accepted to true for application id=1
   update ggircs_portal.application_revision set legal_disclaimer_accepted = true where application_id=1;
 
-  -- Update the status of application with id=1 to be 'submitted'
-  update ggircs_portal.application_revision_status set application_revision_status = 'submitted' where application_id=1;
-
   alter table ggircs_portal.application_revision_status enable trigger _status_change_email;
 
 commit;
