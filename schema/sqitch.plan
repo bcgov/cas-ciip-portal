@@ -88,3 +88,4 @@ mutations/create_review_comment_mutation_chain [tables/review_comment tables/for
 computed_columns/form_result_form_result_statuses [tables/form_result tables/form_result_status] 2020-01-17T19:01:37Z Dylan Leard <dylan@button.is> # Computed column gets all form result statuses for a form result by application_id and form_id
 types/ciip_incentive_by_product [schema_ggircs_portal] 2020-02-05T00:27:23Z Hamza Javed <hamza@button.is> # Return type for the ciip_incentive_payment function
 computed_columns/application_revision_ciip_incentive [tables/benchmark views/ciip_production views/ciip_electricity_and_heat types/ciip_incentive_by_product] 2020-02-03T22:17:13Z Hamza Javed <hamza@button.is> # Function for calculating incentive payout per product
+computed_columns/application_revision_certification_url [tables/certification_url] 2020-02-25T22:55:30Z Dylan Leard <dylan@button.is> # Computed column to retrieve the current certification url associated with the revision

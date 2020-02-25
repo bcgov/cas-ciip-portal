@@ -4994,6 +4994,18 @@
               "deprecationReason": null
             },
             {
+              "name": "certificationUrl",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CertificationUrl",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "certificationUrlsByApplicationIdAndVersionNumber",
               "description": "Reads and enables pagination through a set of `CertificationUrl`.",
               "args": [
@@ -14461,6 +14473,16 @@
               "defaultValue": null
             },
             {
+              "name": "certifiedAt",
+              "description": "Checks for equality with the object’s `certifiedAt` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "certifiedBy",
               "description": "Checks for equality with the object’s `certifiedBy` field.",
               "type": {
@@ -14603,6 +14625,18 @@
             },
             {
               "name": "CERTIFICATION_SIGNATURE_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFIED_AT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFIED_AT_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -14934,6 +14968,18 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "certifiedAt",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -31562,6 +31608,16 @@
               "defaultValue": null
             },
             {
+              "name": "certifiedAt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "certifiedBy",
               "description": null,
               "type": {
@@ -41968,6 +42024,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifiedAt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
                 "ofType": null
               },
               "defaultValue": null
