@@ -41,7 +41,7 @@ create trigger _status_change_email
     for each row
     execute procedure ggircs_portal_private.run_graphile_worker_job('status_change');
 create trigger _check_certification_signature_md5
-    before update of application_revision_status on ggircs_portal.application_revision_status
+    before insert on ggircs_portal.application_revision_status
     for each row
     execute procedure ggircs_portal_private.signature_md5('submission');
 

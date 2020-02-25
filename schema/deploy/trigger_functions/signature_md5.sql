@@ -32,11 +32,13 @@ begin;
       end loop;
 
     -- Update of application_revision_status (submitting an application)
-    if (tg_op = 'UPDATE' and tg_argv[0] = 'submission' and new.application_revision_status='submitted') then
-      if ((select form_results_md5 from ggircs_portal.certification_url where application_id = new.application_id and version_number=new.version_number and deleted_at is null) != (select md5(all_form_results))) then
-        raise exception 'current hash of form results for application % version % does not match the hash in the certification_url table', new.application_id, new.version_number;
-      elsif ((select certification_signature from ggircs_portal.certification_url where application_id = new.application_id and version_number=new.version_number and deleted_at is null) is null and new.version_number > 0) then
-        raise exception 'application % version % has not been signed by a certifier', new.application_id, new.version_number;
+    if (tg_argv[0] = 'submission') then
+      if (tg_op = 'INSERT' and new.application_revision_status='submitted') then
+        if ((select form_results_md5 from ggircs_portal.certification_url where application_id = new.application_id and version_number=new.version_number and deleted_at is null) != (select md5(all_form_results))) then
+          raise exception 'current hash of form results for application % version % does not match the hash in the certification_url table', new.application_id, new.version_number;
+        elsif ((select certification_signature from ggircs_portal.certification_url where application_id = new.application_id and version_number=new.version_number and deleted_at is null) is null and new.version_number > 0) then
+          raise exception 'application % version % has not been signed by a certifier', new.application_id, new.version_number;
+        end if;
       end if;
 
     -- Creating a row in certification_url

@@ -18,6 +18,7 @@ returning 1
 update ggircs_portal.certification_url set certification_signature = '12345' where application_id =1 and version_number=1;
 
 -- Update the status of application with id=1 to be 'submitted'
-  update ggircs_portal.application_revision_status set application_revision_status = 'submitted' where application_id=1 and version_number = 1;
+  insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
+    values (1,1,'submitted');
 
 commit;
