@@ -5,6 +5,8 @@
 
 begin;
 
+alter table ggircs_portal.ciip_user disable trigger graphile_worker_job;
+
 with rows as (
 insert into ggircs_portal.ciip_user (id, uuid, first_name, last_name, email_address, occupation, phone_number)
 overriding system value
@@ -29,5 +31,7 @@ returning 1
 select setval from
 setval('ggircs_portal.ciip_user_id_seq', (select max(id) from ggircs_portal.ciip_user), true)
 where setval = 0;
+
+alter table ggircs_portal.ciip_user enable trigger graphile_worker_job;
 
 commit;
