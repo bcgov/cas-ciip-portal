@@ -6,10 +6,10 @@
 begin;
 
 with rows as (
-insert into ggircs_portal.certification_url(id, application_id)
+insert into ggircs_portal.certification_url(id, application_id, version_number)
 overriding system value
 values
-('\xad58dd1b39a4dff1cc1e0bb1dce2d80793b85e1be4d465f6b598aa5e44558065', 1)
+('\xad58dd1b39a4dff1cc1e0bb1dce2d80793b85e1be4d465f6b598aa5e44558065', 1, 1)
 on conflict(id) do update set
 application_id=excluded.application_id
 returning 1

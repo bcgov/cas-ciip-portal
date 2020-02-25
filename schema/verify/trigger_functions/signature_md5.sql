@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.signature_md5()'::regprocedure);
+select pg_get_functiondef('ggircs_portal_private.signature_md5()'::regprocedure);
 
 rollback;

@@ -179,8 +179,8 @@ deployDevData() {
   _psql -f "./dev/user.sql"
   _psql -f "./dev/ciip_user_organisation.sql"
   _psql -f "./dev/application.sql"
-  _psql -f "./dev/certification_url.sql"
   _psql -f "./dev/form_result.sql"
+  _psql -f "./dev/certification_url.sql"
   return 0;
 }
 
