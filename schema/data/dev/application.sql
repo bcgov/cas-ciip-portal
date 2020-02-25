@@ -11,6 +11,9 @@ begin;
 
   alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 
+  -- Set a jwt token so that the created_by columns are not null on creation of application;
+  set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
+
   -- Create applications
   select 'Calling ggircs_portal.create_application_mutation_chain: ';
   select ggircs_portal.create_application_mutation_chain(1);

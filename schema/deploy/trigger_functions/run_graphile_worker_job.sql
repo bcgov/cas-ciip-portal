@@ -26,16 +26,18 @@ begin
 
       -- Get application details
       with ad as (select o.operator_name, f.facility_name, u.first_name, u.last_name, u.email_address
-            from ggircs_portal.application a
+            from ggircs_portal.application_revision ar
+            join ggircs_portal.application a
+            on ar.application_id = a.id
+            and new.application_id = ar.application_id
+            and new.version_number = ar.version_number
             join ggircs_portal.facility f
             on a.facility_id = f.id
             join ggircs_portal.organisation o
             on f.organisation_id = o.id
-            join ggircs_portal.ciip_user_organisation cuo
-            on o.id = cuo.organisation_id
             join ggircs_portal.ciip_user u
-            on u.id = cuo.user_id
-            and new.application_id = a.id)
+            on u.id = ar.created_by
+            )
       select operator_name, facility_name, first_name, last_name, email_address from ad into application_details;
       -- Choose type of email to sent based on what the status of the application has been changed to
       case
