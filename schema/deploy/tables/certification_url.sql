@@ -10,7 +10,7 @@ create table ggircs_portal.certification_url (
   certification_signature bytea,
   certified_by int references ggircs_portal.ciip_user,
   certified_at timestamp with time zone,
-  form_results_md5 text not null,
+  form_results_md5 bytea not null,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
@@ -115,6 +115,11 @@ $policy$;
 comment on table ggircs_portal.certification_url is 'Table containing the certification_url for an application';
 comment on column ggircs_portal.certification_url.id is 'Unique ID for the certification_url';
 comment on column ggircs_portal.certification_url.application_id is 'Foreign key to the application';
+comment on column ggircs_portal.certification_url.version_number is 'The version number of the application (foreign key to application_revision along with application_id)';
+comment on column ggircs_portal.certification_url.certification_signature is 'The base64 representation of the certifier''s signature';
+comment on column ggircs_portal.certification_url.certified_by is 'The user id of the certifier references ggircs_portal.ciip_user';
+comment on column ggircs_portal.certification_url.certified_at is 'The timestamp of when the signature was added';
+comment on column ggircs_portal.certification_url.form_results_md5 is 'The hash of all form results at the time the signature was added';
 comment on column ggircs_portal.certification_url.created_at is 'Creation date of row';
 comment on column ggircs_portal.certification_url.created_by is 'Creator of row';
 comment on column ggircs_portal.certification_url.updated_at is 'Last update date of row';

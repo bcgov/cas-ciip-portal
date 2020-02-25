@@ -21,15 +21,18 @@ alter table ggircs_portal.ciip_user_organisation
 alter table ggircs_portal.certification_url
   disable trigger _random_id;
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
+alter table ggircs_portal.certification_url disable trigger _check_form_result_md5;
+-- alter table ggircs_portal.certification_url disable trigger _create_form_result_md5;
 
 -- User 999 has access to certification_url 999, but not certification_url 1000
 insert into ggircs_portal.ciip_user(id, uuid) overriding system value
 values (999, '11111111-1111-1111-1111-111111111111'), (1000, '22222222-2222-2222-2222-222222222222');
 insert into ggircs_portal.organisation(id) overriding system value values(999), (1000);
 insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000);
-insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
+insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000), (1001, 1000), (1002, 1000), (1003, 1000);
+insert into ggircs_portal.application_revision(application_id, version_number) overriding system value values(999, 1), (1000, 1), (1001, 1), (1002,1), (1003,1);
 insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id) overriding system value values(999, 999, 999), (1000, 1000, 1000);
-insert into ggircs_portal.certification_url(id, application_id) overriding system value values('999', 999), ('1000', 1);
+insert into ggircs_portal.certification_url(id, application_id, version_number, form_results_md5) overriding system value values('999', 999,1, 'a'), ('1000', 1,1,'a');
 
 select * from ggircs_portal.certification_url;
 
@@ -47,8 +50,8 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.certification_url (id, application_id) overriding system value
-    values ('1001', 1);
+    insert into ggircs_portal.certification_url (id, application_id, version_number) overriding system value
+    values ('1001', 1,1);
   $$,
     'ciip_administrator can insert data in certification_url table'
 );
@@ -91,8 +94,8 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.certification_url (id, application_id) overriding system value
-    values ('1002', 999);
+    insert into ggircs_portal.certification_url (id, application_id, version_number) overriding system value
+    values ('1002', 999,1);
   $$,
     'Industry user can insert data in certification_url table'
 );
@@ -143,7 +146,7 @@ select throws_like(
 
 select throws_like(
   $$
-    insert into ggircs_portal.certification_url(id, application_id) values ('1003',1);
+    insert into ggircs_portal.certification_url(id, application_id, version_number) values ('1003',1,1);
   $$,
   'permission denied%',
     'Analyst cannot insert into table certification_url'

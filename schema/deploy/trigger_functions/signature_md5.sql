@@ -7,7 +7,7 @@ begin;
 
   declare
     all_form_results text;
-    form_result_hash text;
+    form_result_hash bytea;
     temp_row record;
     user_sub uuid;
     ciip_user_id int;
@@ -34,7 +34,7 @@ begin;
     -- Update of application_revision_status (submitting an application)
     if (tg_argv[0] = 'submission') then
       if (tg_op = 'INSERT' and new.application_revision_status='submitted') then
-        if ((select form_results_md5 from ggircs_portal.certification_url where application_id = new.application_id and version_number=new.version_number and deleted_at is null) != (select md5(all_form_results))) then
+        if ((select form_results_md5 from ggircs_portal.certification_url where application_id = new.application_id and version_number=new.version_number and deleted_at is null) != (select md5(all_form_results)::bytea)) then
           raise exception 'current hash of form results for application % version % does not match the hash in the certification_url table', new.application_id, new.version_number;
         elsif ((select certification_signature from ggircs_portal.certification_url where application_id = new.application_id and version_number=new.version_number and deleted_at is null) is null and new.version_number > 0) then
           raise exception 'application % version % has not been signed by a certifier', new.application_id, new.version_number;
@@ -43,13 +43,13 @@ begin;
 
     -- Creating a row in certification_url
     elsif (tg_op = 'INSERT' and tg_argv[0] is null) then
-      new.form_results_md5 = (select md5(all_form_results));
+      new.form_results_md5 = (select md5(all_form_results)::bytea);
       -- "Delete" previous certification_urls for revision
       update ggircs_portal.certification_url set deleted_at = now(), deleted_by=ciip_user_id where application_id = new.application_id and version_number=new.version_number and created_at < new.created_at;
 
     -- Updating the certification_signature in certification_url
     elsif (tg_op = 'UPDATE' and tg_argv[0] is null) then
-      form_result_hash = (select md5(all_form_results));
+      form_result_hash = (select md5(all_form_results)::bytea);
       if (new.form_results_md5 != form_result_hash) then
         raise notice 'CURRENT HASH: %, CERTIFICATION_URL HASH: %', form_result_hash, new.form_results_md5;
         raise exception 'current hash of form results for application % version % does not match the hash in the certification_url table', new.application_id, new.version_number;
@@ -60,6 +60,6 @@ begin;
 
     return new;
   end;
-  $$ language plpgsql volatile;
+  $$ language plpgsql volatile security definer;
 
 commit;
