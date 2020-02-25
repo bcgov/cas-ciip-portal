@@ -1,0 +1,94 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  template: job-template
+
+
+parameters:
+- description: Prefix to prepend to object name.
+  displayName: Prefix
+  name: PREFIX
+  required: true
+- description: SHA1 of git revision to be deployed.
+  displayName: Git SHA1
+  name: GIT_SHA1
+  required: true
+- description: Openshift project name
+  displayName: Project
+  name: OC_PROJECT
+  required: true
+- description: Openshift registry URL
+  displayName: Registry
+  name: OC_REGISTRY
+  required: true
+
+objects:
+- apiVersion: batch/v1
+  kind: Job
+  metadata:
+    name: ${PREFIX}swrs-import
+  spec:
+    backoffLimit: 0
+    activeDeadlineSeconds: 7200
+    template:
+      metadata:
+        labels:
+          name: ${PREFIX}swrs-import
+      spec:
+        restartPolicy: Never
+        containers:
+        - command:
+          - /usr/bin/env
+          - bash
+          - -c
+          - PGPASSWORD="$GGIRCS_PASSWORD" pg_dump -d $GGIRCS_DATABASE -h $GGIRCS_HOST -p $GGIRCS_PORT -U $GGIRCS_USER --format=custom --schema="swrs" - |\
+          - PGPASSWORD="$PORTAL_PASSWORD" pg_restore --clean --if-exists -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
+          env:
+          - name: PORTAL_USER
+            valueFrom:
+              secretKeyRef:
+                key: database-user
+                name: ${PREFIX}portal-postgres
+          - name: PORTAL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: ${PREFIX}portal-postgres
+          - name: PORTAL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                key: database-name
+                name: ${PREFIX}portal-postgres
+          - name: PORTAL_PORT
+            value: "5432"
+          - name: PORTAL_HOST
+            value: ${PREFIX}postgres-master
+          - name: GGIRCS_USER
+            valueFrom:
+              secretKeyRef:
+                key: database-user
+                name: cas-ggircs-postgres
+          - name: GGIRCS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: cas-ggircs-postgres
+          - name: GGIRCS_DATABASE
+            valueFrom:
+              secretKeyRef:
+                key: database-name
+                name: cas-ggircs-postgres
+          - name: GGIRCS_PORT
+            value: "5432"
+          - name: GGIRCS_HOST
+            value: cas-postgres-master
+
+          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-tools:${GIT_SHA1}
+          name: ${PREFIX}swrs-import
+          resources:
+            limits:
+              cpu: "1"
+              memory: 64Mi
+            requests:
+              cpu: 500m
+              memory: 64Mi

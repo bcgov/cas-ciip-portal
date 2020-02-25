@@ -4,6 +4,9 @@ include .pipeline/oc.mk
 include .pipeline/make.mk
 endif
 
+# escape commas in function calls with $(,)
+, := ,
+
 PATHFINDER_PREFIX := wksv3k
 PROJECT_PREFIX := cas-ciip-
 
@@ -90,14 +93,17 @@ openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
 	# Retrieve the git sha1 of the last etl deploy
 	$(call oc_promote,$(PROJECT_PREFIX)portal-schema)
 	$(call oc_promote,$(PROJECT_PREFIX)portal-app)
+	$(call oc_promote,$(PROJECT_PREFIX)portal-tools)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)postgres-master)
 	# Create secrets if they don't exist yet
 	$(call oc_create_secrets)
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_USER) -d $(PORTAL_DB_NAME) -p $(PORTAL_PASSWORD) --owner)
+	# TODO: Import swrs schema from the ggircs project
 	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
 	$(call oc_run_job,$(PROJECT_PREFIX)portal-schema-deploy)
 	# Create app user. This must be executed after the deploy job so that the swrs schema exists
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_APP_USER) -d $(PORTAL_DB_NAME) -p $(PORTAL_APP_PASSWORD) --schemas ggircs_portal --privileges select)
+	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_APP_USER) -d $(PORTAL_DB_NAME) -p $(PORTAL_APP_PASSWORD) --schemas swrs$(,)ggircs_portal --privileges select)
+	# TODO: Allow the app user to use the ciip_* groups
 	$(call oc_deploy)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)portal-app)
 
