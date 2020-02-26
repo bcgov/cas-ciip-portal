@@ -1,3 +1,4 @@
+SHELL := /usr/bin/env bash
 PERL=perl
 PERL_VERSION=${shell ${PERL} -e 'print substr($$^V, 1)'}
 PERL_MIN_VERSION=5.10
