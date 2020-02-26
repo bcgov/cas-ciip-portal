@@ -48,7 +48,7 @@ if (process.env.PGPORT) {
 }
 
 databaseURL += '/';
-databaseURL += process.env.PGDATABASE || 'ggircs_dev';
+databaseURL += process.env.PGDATABASE || 'ciip_portal_dev';
 
 // Graphile-worker function
 async function worker() {
