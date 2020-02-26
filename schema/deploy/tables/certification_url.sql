@@ -45,14 +45,14 @@ create trigger _create_form_result_md5
   execute procedure ggircs_portal_private.signature_md5();
 
 create trigger _check_form_result_md5
-    before update of certification_signature on ggircs_portal.certification_url
-    for each row
-    execute procedure ggircs_portal_private.signature_md5();
+  before update of certification_signature on ggircs_portal.certification_url
+  for each row
+  execute procedure ggircs_portal_private.signature_md5();
 
 create trigger _set_user_id
-    before update of certification_signature on ggircs_portal.certification_url
-    for each row
-    execute procedure ggircs_portal.set_user_id('certification_url');
+  before update of certification_signature on ggircs_portal.certification_url
+  for each row
+  execute procedure ggircs_portal.set_user_id('certification_url');
 
 do
 $grant$
