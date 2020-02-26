@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
-const createWelcomeMail = require('../../email_templates/welcome.js');
-const createConfirmationMail = require('../../email_templates/confirmation.js');
-const createAmendmentMail = require('../../email_templates/amendment.js');
+const createWelcomeMail = require('../email_templates/welcome.js.js');
+const createConfirmationMail = require('../email_templates/confirmation.js.js');
+const createAmendmentMail = require('../email_templates/amendment.js.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -14,6 +14,8 @@ module.exports = async ({
   operatorName,
   status
 }) => {
+  if (!process.env.SMTP_CONNECTION_STRING)
+    throw new Error('SMTP connection string is undefined');
   const transporter = nodemailer.createTransport(
     process.env.SMTP_CONNECTION_STRING
   );
@@ -65,7 +67,7 @@ module.exports = async ({
   }
 
   const message = {
-    from: 'BCCAS <example@cas.com>',
+    from: process.env.SENDER_EMAIL,
     to: email,
     subject,
     html: htmlContent
