@@ -15,7 +15,6 @@ trigger_functions/set_random_id [schema_ggircs_portal] 2019-12-04T00:34:07Z Dyla
 trigger_functions/set_expiry [schema_ggircs_portal] 2019-12-10T19:13:27Z Dylan Leard <dylan@button.is> # Function sets row expiry
 trigger_functions/ensure_window_open_submit_application_status 2020-01-16T17:51:13Z Matthieu Foucault <matthieu@button.is> # add a trigger that raises an exception if the application window is closed
 trigger_functions/run_graphile_worker_job [schema_ggircs_portal_private] 2020-02-20T23:08:40Z Dylan Leard <dylan@button.is> # Trigger function for running a graphile worker
-trigger_functions/signature_md5 [schema_ggircs_portal_private] 2020-02-25T18:43:40Z Dylan Leard <dylan@button.is> # Trigger function creates (on insert) or compares(on update) form_result md5 hash
 types/jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
 function_session [schema_ggircs_portal types/jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
 types/ciip_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file ciip_user_organisation_status
@@ -38,6 +37,7 @@ tables/ciip_user_organisation [schema_ggircs_portal tables/ciip_user tables/orga
 tables/facility [schema_ggircs_portal tables/organisation] 2019-10-11T18:47:49Z Hamza Javed <hamza@button.is> # Facility data for CIIP
 tables/application [schema_ggircs_portal trigger_functions/update_timestamps] 2019-10-11T18:09:42Z Dylan Leard <dylan@button.is> # Application table
 tables/application_revision [tables/application] 2019-12-12T00:21:28Z Dylan Leard <dylan@button.is> # Table contains versioning data for application revisions
+trigger_functions/signature_md5 [schema_ggircs_portal_private] 2020-02-25T18:43:40Z Dylan Leard <dylan@button.is> # Trigger function creates (on insert) or compares(on update) form_result md5 hash
 tables/form_json [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
 tables/form_result [schema_ggircs_portal trigger_functions/update_timestamps tables/form_json] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
 function_current_form_result_md5 [tables/form_result] 2020-02-26T18:42:47Z Dylan Leard <dylan@button.is> # Function computes the current md5 hash of the concactenated form results
@@ -90,4 +90,5 @@ computed_columns/form_result_form_result_statuses [tables/form_result tables/for
 types/ciip_incentive_by_product [schema_ggircs_portal] 2020-02-05T00:27:23Z Hamza Javed <hamza@button.is> # Return type for the ciip_incentive_payment function
 computed_columns/application_revision_ciip_incentive [tables/benchmark views/ciip_production views/ciip_electricity_and_heat types/ciip_incentive_by_product] 2020-02-03T22:17:13Z Hamza Javed <hamza@button.is> # Function for calculating incentive payout per product
 computed_columns/application_revision_certification_url [tables/certification_url] 2020-02-25T22:55:30Z Dylan Leard <dylan@button.is> # Computed column to retrieve the current certification url associated with the revision
-computed_columns/certification_url_hash_matches [function_current_form_result_md5 tables/certification_url] 2020-02-26T21:55:34Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Computed column(boolean) on certification_url that checks if the current md5 hash of all form_results = the form_results_md5 column in certification_url
+computed_columns/certification_url_hash_matches [function_current_form_result_md5 tables/certification_url] 2020-02-26T21:55:34Z Dylan Leard <dylan@button.is> # Computed column(boolean) on certification_url that checks if the current md5 hash of all form_results = the form_results_md5 column in certification_url
+computed_columns/application_revision_certification_signature_is_valid [tables/application_revision function_current_form_result_md5] 2020-02-26T22:47:00Z Dylan Leard <dylan@button.is> # Computed column(boolean) on application_revision to show validity of certification signature

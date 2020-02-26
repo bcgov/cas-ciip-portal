@@ -276,6 +276,7 @@ type ApplicationRevision implements Node {
     """The method to use when ordering `ApplicationRevisionStatus`."""
     orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationRevisionStatusesConnection!
+  certificationSignatureIsValid: Boolean
   certificationUrl: CertificationUrl
 
   """Reads and enables pagination through a set of `CertificationUrl`."""
