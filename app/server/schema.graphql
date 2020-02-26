@@ -1326,6 +1326,7 @@ type CertificationUrl implements Node {
 
   """The hash of all form results at the time the signature was added"""
   formResultsMd5: String
+  hashMatches: Boolean
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -8300,8 +8301,7 @@ type Mutation {
   ): CreateReviewCommentMutationChainPayload
 
   """
-  Returns the current date and time with time zone.
-  This should be used instead of the native current_timestamp function to allow for mocking in test and development settings
+  Calculates the md5 hash in bytea format of the concactenated form results for an application revision
   """
   currentTimestamp(
     """

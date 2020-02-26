@@ -14951,6 +14951,18 @@
               "deprecationReason": null
             },
             {
+              "name": "hashMatches",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "id",
               "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
               "args": [],
@@ -27318,7 +27330,7 @@
             },
             {
               "name": "currentTimestamp",
-              "description": "Returns the current date and time with time zone.\nThis should be used instead of the native current_timestamp function to allow for mocking in test and development settings",
+              "description": "Calculates the md5 hash in bytea format of the concactenated form results for an application revision",
               "args": [
                 {
                   "name": "input",
