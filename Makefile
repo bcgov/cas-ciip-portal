@@ -5,6 +5,7 @@ include .pipeline/make.mk
 endif
 
 # escape commas in function calls with $(,)
+# see https://blog.jgc.org/2007/06/escaping-comma-and-space-in-gnu-make.html
 , := ,
 
 PATHFINDER_PREFIX := wksv3k
