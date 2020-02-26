@@ -1,5 +1,10 @@
-const createWelcomeMail = customVariables => {
-  console.log(customVariables);
+const createConfirmationMail = ({
+  firstName,
+  lastName,
+  email,
+  facilityName,
+  operatorName
+}) => {
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
       <tr>
@@ -10,21 +15,20 @@ const createWelcomeMail = customVariables => {
       </tr>
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;" >
-          <h3>Hello, ${customVariables.firstName} ${customVariables.lastName}.</h3>
-          <h4>Thank you for registering for the CleanBC Industrial Incentive Program.</h4>
-          <p>Email stuff</p>
-          <p>Email stuff</p>
-          <p>Email stuff</p>
-          <p>Email stuff</p>
+          <h3>Hello, ${firstName} ${lastName}.</h3>
+          <h4>Thank you for your submission to the CleanBC Industrial Incentive Program.</h4>
+          <p>Your application on behalf of <strong>${operatorName}</strong> for facility <strong>${facilityName}</strong> has been received.</p>
+          <br/>
+          <a href="http://localhost:3004">CIIP Portal</a>
         </td>
       </tr>
       <tr>
         <td style="padding: 20px 10px 30px 10px;">
-        <p>Sent to: ${customVariables.email}</p>
+        <p>Sent to: ${email}</p>
         <p>On behalf of the Climate Action Secretariat &amp; the CleanBC Industrial Incentive Program</p></td>
       </tr>
     </table>
   `;
 };
 
-module.exports = createWelcomeMail;
+module.exports = createConfirmationMail;

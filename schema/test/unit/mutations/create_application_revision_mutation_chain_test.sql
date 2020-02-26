@@ -10,6 +10,8 @@ select has_function(
   'Function create_application_revision_mutation_chain should exist'
 );
 
+alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
+
 -- Set the timestamp to a time where the application window is open
 create or replace function ggircs_portal.current_timestamp() returns timestamptz as
 $$
