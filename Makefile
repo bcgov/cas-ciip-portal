@@ -71,6 +71,7 @@ build_app: whoami
 build: $(call make_help,build,Builds the source into an image in the tools project namespace)
 build: build_tools build_schema build_app
 
+# Retrieve the git sha1 of the last etl deploy
 PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)ciip-portal-schema-deploy --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
 PORTAL_DB = "ciip_portal"
 PORTAL_USER = "portal"
@@ -90,13 +91,13 @@ openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
 	# Add database name, user names and passwords to the OC template variables
 	$(eval OC_TEMPLATE_VARS += PORTAL_PASSWORD="$(shell echo -n "$(PORTAL_PASSWORD)" | base64)" PORTAL_USER="$(shell echo -n "$(PORTAL_USER)" | base64)" PORTAL_DB="$(shell echo -n "$(PORTAL_DB)" | base64)")
 	$(eval OC_TEMPLATE_VARS += PORTAL_APP_PASSWORD="$(shell echo -n "$(PORTAL_APP_PASSWORD)" | base64)" PORTAL_APP_USER="$(shell echo -n "$(PORTAL_APP_USER)" | base64)")
-	# Retrieve the git sha1 of the last etl deploy
 	$(call oc_promote,$(PROJECT_PREFIX)portal-schema)
 	$(call oc_promote,$(PROJECT_PREFIX)portal-app)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)postgres-master)
 	# Create secrets if they don't exist yet
 	$(call oc_create_secrets)
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_USER) -d $(PORTAL_DB) -p $(PORTAL_PASSWORD) --owner)
+	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "create extension if not exists pgcrypto;")
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,alter-role $(PORTAL_USER) createrole)
 	## TODO: give create user permission
 	$(call oc_run_job,$(PROJECT_PREFIX)swrs-import)
