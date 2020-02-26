@@ -4414,16 +4414,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationSignature",
-              "description": "Checks for equality with the object’s `certificationSignature` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "createdAt",
               "description": "Checks for equality with the object’s `createdAt` field.",
               "type": {
@@ -4494,16 +4484,6 @@
               "defaultValue": null
             },
             {
-              "name": "userId",
-              "description": "Checks for equality with the object’s `userId` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "versionNumber",
               "description": "Checks for equality with the object’s `versionNumber` field.",
               "type": {
@@ -4522,16 +4502,6 @@
           "kind": "SCALAR",
           "name": "Int",
           "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "String",
-          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -4574,18 +4544,6 @@
             },
             {
               "name": "APPLICATION_ID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "CERTIFICATION_SIGNATURE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "CERTIFICATION_SIGNATURE_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -4688,18 +4646,6 @@
             },
             {
               "name": "UPDATED_BY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "USER_ID_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "USER_ID_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -4977,18 +4923,6 @@
                   "name": "ApplicationRevisionStatusesConnection",
                   "ofType": null
                 }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "certificationSignature",
-              "description": "The base64 representation of the certifier's signature",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -5299,18 +5233,6 @@
               "deprecationReason": null
             },
             {
-              "name": "ciipUserByUserId",
-              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "createdAt",
               "description": "The date the application revision status was updated",
               "args": [],
@@ -5508,18 +5430,6 @@
             {
               "name": "updatedBy",
               "description": "The person who updated the application revision status",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "userId",
-              "description": "The certifier's user id, references ciip_user",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -6717,101 +6627,6 @@
             },
             {
               "name": "applicationRevisionsByUpdatedBy",
-              "description": "Reads and enables pagination through a set of `ApplicationRevision`.",
-              "args": [
-                {
-                  "name": "after",
-                  "description": "Read all values in the set after (below) this cursor.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Cursor",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "before",
-                  "description": "Read all values in the set before (above) this cursor.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Cursor",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "condition",
-                  "description": "A condition to be used in determining which values should be returned by the collection.",
-                  "type": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "ApplicationRevisionCondition",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": "Only read the first `n` values of the set.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "last",
-                  "description": "Only read the last `n` values of the set.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "offset",
-                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "orderBy",
-                  "description": "The method to use when ordering `ApplicationRevision`.",
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "ENUM",
-                        "name": "ApplicationRevisionsOrderBy",
-                        "ofType": null
-                      }
-                    }
-                  },
-                  "defaultValue": "[PRIMARY_KEY_ASC]"
-                }
-              ],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ApplicationRevisionsConnection",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "applicationRevisionsByUserId",
               "description": "Reads and enables pagination through a set of `ApplicationRevision`.",
               "args": [
                 {
@@ -13167,6 +12982,16 @@
               "ofType": null
             }
           ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "String",
+          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -30238,16 +30063,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationSignature",
-              "description": "The base64 representation of the certifier's signature",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "createdAt",
               "description": "The date the application revision status was updated",
               "type": {
@@ -30310,16 +30125,6 @@
             {
               "name": "updatedBy",
               "description": "The person who updated the application revision status",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "userId",
-              "description": "The certifier's user id, references ciip_user",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -30432,18 +30237,6 @@
             },
             {
               "name": "ciipUserByUpdatedBy",
-              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
               "args": [],
               "type": {
@@ -30619,18 +30412,6 @@
             },
             {
               "name": "ciipUserByUpdatedBy",
-              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
               "args": [],
               "type": {
@@ -36349,18 +36130,6 @@
               "deprecationReason": null
             },
             {
-              "name": "ciipUserByUserId",
-              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "clientMutationId",
               "description": "The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations.",
               "args": [],
@@ -40906,16 +40675,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationSignature",
-              "description": "The base64 representation of the certifier's signature",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "createdAt",
               "description": "The date the application revision status was updated",
               "type": {
@@ -40978,16 +40737,6 @@
             {
               "name": "updatedBy",
               "description": "The person who updated the application revision status",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "userId",
-              "description": "The certifier's user id, references ciip_user",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -41096,18 +40845,6 @@
             },
             {
               "name": "ciipUserByUpdatedBy",
-              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
               "args": [],
               "type": {

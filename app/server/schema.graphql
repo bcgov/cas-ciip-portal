@@ -276,9 +276,6 @@ type ApplicationRevision implements Node {
     """The method to use when ordering `ApplicationRevisionStatus`."""
     orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationRevisionStatusesConnection!
-
-  """The base64 representation of the certifier's signature"""
-  certificationSignature: String
   certificationUrl: CertificationUrl
 
   """Reads and enables pagination through a set of `CertificationUrl`."""
@@ -377,11 +374,6 @@ type ApplicationRevision implements Node {
   """
   ciipUserByUpdatedBy: CiipUser
 
-  """
-  Reads a single `CiipUser` that is related to this `ApplicationRevision`.
-  """
-  ciipUserByUserId: CiipUser
-
   """The date the application revision status was updated"""
   createdAt: Datetime!
 
@@ -437,9 +429,6 @@ type ApplicationRevision implements Node {
   """The person who updated the application revision status"""
   updatedBy: Int
 
-  """The certifier's user id, references ciip_user"""
-  userId: Int
-
   """
   The version number of the revision, also part of the composite primary key with application_id
   """
@@ -453,9 +442,6 @@ are tested for equality and combined with a logical ‘and.’
 input ApplicationRevisionCondition {
   """Checks for equality with the object’s `applicationId` field."""
   applicationId: Int
-
-  """Checks for equality with the object’s `certificationSignature` field."""
-  certificationSignature: String
 
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
@@ -478,9 +464,6 @@ input ApplicationRevisionCondition {
   """Checks for equality with the object’s `updatedBy` field."""
   updatedBy: Int
 
-  """Checks for equality with the object’s `userId` field."""
-  userId: Int
-
   """Checks for equality with the object’s `versionNumber` field."""
   versionNumber: Int
 }
@@ -491,9 +474,6 @@ input ApplicationRevisionInput {
   The foreign key to the ciip application, also part of the composite primary key with version number
   """
   applicationId: Int!
-
-  """The base64 representation of the certifier's signature"""
-  certificationSignature: String
 
   """The date the application revision status was updated"""
   createdAt: Datetime
@@ -515,9 +495,6 @@ input ApplicationRevisionInput {
 
   """The person who updated the application revision status"""
   updatedBy: Int
-
-  """The certifier's user id, references ciip_user"""
-  userId: Int
 
   """
   The version number of the revision, also part of the composite primary key with application_id
@@ -534,9 +511,6 @@ input ApplicationRevisionPatch {
   """
   applicationId: Int
 
-  """The base64 representation of the certifier's signature"""
-  certificationSignature: String
-
   """The date the application revision status was updated"""
   createdAt: Datetime
 
@@ -557,9 +531,6 @@ input ApplicationRevisionPatch {
 
   """The person who updated the application revision status"""
   updatedBy: Int
-
-  """The certifier's user id, references ciip_user"""
-  userId: Int
 
   """
   The version number of the revision, also part of the composite primary key with application_id
@@ -599,8 +570,6 @@ type ApplicationRevisionsEdge {
 enum ApplicationRevisionsOrderBy {
   APPLICATION_ID_ASC
   APPLICATION_ID_DESC
-  CERTIFICATION_SIGNATURE_ASC
-  CERTIFICATION_SIGNATURE_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
@@ -618,8 +587,6 @@ enum ApplicationRevisionsOrderBy {
   UPDATED_AT_DESC
   UPDATED_BY_ASC
   UPDATED_BY_DESC
-  USER_ID_ASC
-  USER_ID_DESC
   VERSION_NUMBER_ASC
   VERSION_NUMBER_DESC
 }
@@ -2093,35 +2060,6 @@ type CiipUser implements Node {
 
   """Reads and enables pagination through a set of `ApplicationRevision`."""
   applicationRevisionsByUpdatedBy(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ApplicationRevisionCondition
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """The method to use when ordering `ApplicationRevision`."""
-    orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ApplicationRevisionsConnection!
-
-  """Reads and enables pagination through a set of `ApplicationRevision`."""
-  applicationRevisionsByUserId(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
@@ -3753,11 +3691,6 @@ type CreateApplicationRevisionMutationChainPayload {
   ciipUserByUpdatedBy: CiipUser
 
   """
-  Reads a single `CiipUser` that is related to this `ApplicationRevision`.
-  """
-  ciipUserByUserId: CiipUser
-
-  """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
@@ -3799,11 +3732,6 @@ type CreateApplicationRevisionPayload {
   Reads a single `CiipUser` that is related to this `ApplicationRevision`.
   """
   ciipUserByUpdatedBy: CiipUser
-
-  """
-  Reads a single `CiipUser` that is related to this `ApplicationRevision`.
-  """
-  ciipUserByUserId: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -4903,11 +4831,6 @@ type DeleteApplicationRevisionPayload {
   Reads a single `CiipUser` that is related to this `ApplicationRevision`.
   """
   ciipUserByUpdatedBy: CiipUser
-
-  """
-  Reads a single `CiipUser` that is related to this `ApplicationRevision`.
-  """
-  ciipUserByUserId: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,
@@ -11610,11 +11533,6 @@ type UpdateApplicationRevisionPayload {
   Reads a single `CiipUser` that is related to this `ApplicationRevision`.
   """
   ciipUserByUpdatedBy: CiipUser
-
-  """
-  Reads a single `CiipUser` that is related to this `ApplicationRevision`.
-  """
-  ciipUserByUserId: CiipUser
 
   """
   The exact same `clientMutationId` that was provided in the mutation input,

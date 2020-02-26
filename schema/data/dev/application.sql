@@ -22,9 +22,6 @@ begin;
   -- Create an application revision on application id=1
   select ggircs_portal.create_application_revision_mutation_chain(1,1);
 
-  -- Set certification_signature to dummy value for application id=1
-  update ggircs_portal.application_revision set certification_signature = 'signed' where application_id=1;
-
   -- Set legal_disclaimer_accepted to true for application id=1
   update ggircs_portal.application_revision set legal_disclaimer_accepted = true where application_id=1;
 
