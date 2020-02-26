@@ -12,7 +12,7 @@
     "predev": "npm run build:schema && npm run build:relay",
     "dev": "node server",
     "build": "npm run build:schema && npm run build:relay && npm run build:next",
-    "build:schema": "postgraphile -X -c postgres://localhost/ggircs_dev -s ggircs_portal --export-schema-graphql server/schema.graphql --export-schema-json server/schema.json --classic-ids --sort-export && echo >> server/schema.json",
+    "build:schema": "postgraphile -X -c postgres://localhost/ciip_portal_dev -s ggircs_portal --export-schema-graphql server/schema.graphql --export-schema-json server/schema.json --classic-ids --sort-export && echo >> server/schema.json",
     "build:relay": "relay-compiler --verbose",
     "build:next": "next build",
     "build:storybook": "build-storybook -o static/storybook",

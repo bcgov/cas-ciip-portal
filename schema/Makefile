@@ -1,3 +1,4 @@
+SHELL := /usr/bin/env bash
 PERL=perl
 PERL_VERSION=${shell ${PERL} -e 'print substr($$^V, 1)'}
 PERL_MIN_VERSION=5.10
@@ -14,7 +15,7 @@ PSQL_VERSION=${word 3,${shell ${PSQL} --version}}
 PG_SERVER_VERSION=${strip ${shell ${PSQL} -tc 'show server_version;' || echo error}}
 PG_MIN_VERSION=9.1
 PG_ROLE=${shell whoami}
-TEST_DB=ggircs_test
+TEST_DB=ciip_portal_test
 PG_PROVE=pg_prove -h localhost
 PG_SHAREDIR=$(shell pg_config --sharedir)
 DEPLOY_DEFAULT_DATA=deploy_dev_data
@@ -50,17 +51,17 @@ test_deploy_revert: | dropdb createdb deploy_ggircs deploy revert
 .PHONY: deploy_ggircs
 deploy_ggircs:
 	# Deploy all SWRS changes to $(TEST_DB) using sqitch
-	@@cd .cas-ggircs; sqitch deploy ${TEST_DB}; cd ..;
+	@@pushd .cas-ggircs && SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) sqitch deploy && popd
 
 .PHONY: revert_ggircs
 revert_ggircs:
 	# Revert all SWRS changes to $(TEST_DB) using sqitch
-	@@cd .cas-ggircs; sqitch revert -y ${TEST_DB}; cd ..;
+	@@pushd .cas-ggircs && SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) sqitch revert -y && popd
 
 .PHONY: deploy
 deploy:
 	# Deploy all CIIP changes to $(TEST_DB) using sqitch
-	@@$(SQITCH) deploy $(TEST_DB);
+	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) $(SQITCH) deploy;
 
 .PHONY: prove_style
 prove_style:

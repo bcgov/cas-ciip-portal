@@ -1,7 +1,10 @@
 #!/bin/bash
 set -e
 
-database=${PGDATABASE:-ggircs_dev}
+database=${PGDATABASE:-ciip_portal_dev}
+user=${PGUSER:-$(whoami)}
+host=${PGHOST:-localhost}
+port=${PGPORT:-5432}
 
 # =============================================================================
 # Usage:
@@ -44,10 +47,11 @@ __dirname="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 pushd "$__dirname" > /dev/null
 
 _psql() {
-  user=${PGUSER:-$(whoami)}
-  host=${PGHOST:-localhost}
-  port=${PGPORT:-5432}
   psql -d "$database" -h "$host" -p "$port" -U "$user" -qtA --set ON_ERROR_STOP=1 "$@" 2>&1
+}
+
+_sqitch() {
+  SQITCH_TARGET="db:pg:" PGHOST="$host" PGDATABASE="$database" sqitch "$@"
 }
 
 dropdb() {
@@ -69,7 +73,7 @@ actions=()
 sqitch_revert() {
   echo "Revert the $database database"
   if _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'sqitch'" | grep -q 1; then
-    sqitch revert -y || return 0;
+    _sqitch revert -y || return 0;
   fi
   return 0;
 }
@@ -83,7 +87,7 @@ deploySwrs() {
   fi
   pushd ../.cas-ggircs
   sqitch_revert
-  sqitch deploy
+  _sqitch deploy
   popd
   _psql <<EOF
   insert into
@@ -116,7 +120,7 @@ deployPortal() {
   echo "Deploying the portal schema to $database"
   pushd ..
   sqitch_revert
-  sqitch deploy
+  _sqitch deploy
   popd
 }
 

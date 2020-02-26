@@ -26,51 +26,69 @@ objects:
 - apiVersion: batch/v1
   kind: Job
   metadata:
-    name: ${PREFIX}portal-schema-revert
+    name: ${PREFIX}swrs-import
   spec:
     backoffLimit: 0
     activeDeadlineSeconds: 7200
     template:
       metadata:
         labels:
-          name: ${PREFIX}portal-schema-revert
+          name: ${PREFIX}swrs-import
       spec:
         restartPolicy: Never
         containers:
-        # TODO: revert to a release to avoid deleting all the data
         - command:
           - /usr/bin/env
           - bash
           - -c
-          - sqitch revert -y
+          - >
+            touch .pgpass; chmod 0600 .pgpass;
+            echo "$GGIRCS_HOST:$GGIRCS_PORT:$GGIRCS_DATABASE:$GGIRCS_USER:$GGIRCS_PASSWORD" >> .pgpass;
+            echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass;
+            PGPASSFILE=".pgpass" pg_dump -w -h $GGIRCS_HOST -p $GGIRCS_PORT -U $GGIRCS_USER --format=custom --schema="swrs" $GGIRCS_DATABASE |
+            PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
           env:
-          - name: SQITCH_TARGET
-            value: "db:pg:"
-          - name: PGUSER
+          - name: PORTAL_USER
             valueFrom:
               secretKeyRef:
                 key: database-user
                 name: ${PREFIX}portal-postgres
-          - name: PGPASSWORD
+          - name: PORTAL_PASSWORD
             valueFrom:
               secretKeyRef:
                 key: database-password
                 name: ${PREFIX}portal-postgres
-          - name: PGDATABASE
+          - name: PORTAL_DATABASE
             valueFrom:
               secretKeyRef:
                 key: database-name
                 name: ${PREFIX}portal-postgres
-          - name: PGPORT
+          - name: PORTAL_PORT
             value: "5432"
-          - name: PGHOST
+          - name: PORTAL_HOST
             value: ${PREFIX}postgres-master
-          - name: SQITCH_FULLNAME
-            value: OpenShift Deployer
-          - name: SQITCH_EMAIL
-            value: deployer@pathfinder.gov.bc.ca
+          - name: GGIRCS_USER
+            valueFrom:
+              secretKeyRef:
+                key: database-user
+                name: cas-ggircs-postgres
+          - name: GGIRCS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: cas-ggircs-postgres
+          - name: GGIRCS_DATABASE
+            valueFrom:
+              secretKeyRef:
+                key: database-name
+                name: cas-ggircs-postgres
+          - name: GGIRCS_PORT
+            value: "5432"
+          - name: GGIRCS_HOST
+            value: cas-postgres-master
+
           image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-schema:${GIT_SHA1}
-          name: ${PREFIX}portal-schema-revert
+          name: ${PREFIX}swrs-import
           resources:
             limits:
               cpu: "1"

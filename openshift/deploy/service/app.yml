@@ -11,16 +11,16 @@ objects:
 - apiVersion: v1
   kind: Service
   metadata:
-    name: ${PREFIX}ciip-portal-app
+    name: ${PREFIX}portal-app
   spec:
     ports:
-    - name: ${PREFIX}ciip-portal-app
+    - name: ${PREFIX}portal-app
       nodePort: 0
       port: 3000
       protocol: TCP
       targetPort: 3000
     selector:
-      name: ${PREFIX}ciip-portal-app
+      name: ${PREFIX}portal-app
     sessionAffinity: None
     type: ClusterIP
   status:
