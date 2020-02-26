@@ -91,25 +91,32 @@ openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
 	# Add database name, user names and passwords to the OC template variables
 	$(eval OC_TEMPLATE_VARS += PORTAL_PASSWORD="$(shell echo -n "$(PORTAL_PASSWORD)" | base64)" PORTAL_USER="$(shell echo -n "$(PORTAL_USER)" | base64)" PORTAL_DB="$(shell echo -n "$(PORTAL_DB)" | base64)")
 	$(eval OC_TEMPLATE_VARS += PORTAL_APP_PASSWORD="$(shell echo -n "$(PORTAL_APP_PASSWORD)" | base64)" PORTAL_APP_USER="$(shell echo -n "$(PORTAL_APP_USER)" | base64)")
+	# Tag images from tools namespace
 	$(call oc_promote,$(PROJECT_PREFIX)portal-schema)
 	$(call oc_promote,$(PROJECT_PREFIX)portal-app)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)postgres-master)
 	# Create secrets if they don't exist yet
 	$(call oc_create_secrets)
+	# Create portal user and db
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_USER) -d $(PORTAL_DB) -p $(PORTAL_PASSWORD) --owner)
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "create extension if not exists pgcrypto;")
+	# Allow portal user to create roles
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,alter-role $(PORTAL_USER) createrole)
-	## TODO: give create user permission
+
+	# TODO: remove after https://github.com/bcgov/cas-postgres/pull/30 is merged
+	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "create extension if not exists pgcrypto;")
+	# Import data from SWRS database
 	$(call oc_run_job,$(PROJECT_PREFIX)swrs-import)
+	# Redeploy portal schema
 	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
 	$(call oc_run_job,$(PROJECT_PREFIX)portal-schema-deploy)
 	# Create app user. This must be executed after the deploy job so that the swrs schema exists
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_APP_USER) -d $(PORTAL_DB) -p $(PORTAL_APP_PASSWORD) --schemas swrs$(,)ggircs_portal --privileges select)
+	# Allow the app user to use the ciip_* roles
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_administrator to $(PORTAL_APP_USER);")
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_analyst to $(PORTAL_APP_USER);")
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_industry_user to $(PORTAL_APP_USER);")
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_guest to $(PORTAL_APP_USER);")
-	# TODO: Allow the app user to use the ciip_* groups
+	# Deploy the application and wait for a pod to be healthy
 	$(call oc_deploy)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)portal-app)
 
