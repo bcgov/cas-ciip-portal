@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal_private.current_form_result_md5;
+drop function ggircs_portal_private.current_form_results_md5;
 
 commit;
