@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
-const createWelcomeMail = require('../email_templates/welcome.js');
-const createConfirmationMail = require('../email_templates/confirmation.js');
-const createAmendmentMail = require('../email_templates/amendment.js');
+const createWelcomeMail = require('../../email_templates/welcome.js');
+const createConfirmationMail = require('../../email_templates/confirmation.js');
+const createAmendmentMail = require('../../email_templates/amendment.js');
 const dotenv = require('dotenv');
 dotenv.config();
 

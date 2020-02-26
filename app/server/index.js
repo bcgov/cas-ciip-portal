@@ -20,6 +20,8 @@ const {
   getAllGroups,
   getPriorityGroup
 } = require('../lib/user-groups');
+const {run} = require('graphile-worker');
+const path = require('path');
 
 let databaseURL = 'postgres://';
 
@@ -47,6 +49,24 @@ if (process.env.PGPORT) {
 
 databaseURL += '/';
 databaseURL += process.env.PGDATABASE || 'ggircs_dev';
+
+// Graphile-worker function
+async function worker() {
+  // Run a worker to execute jobs:
+  await run({
+    connectionString: databaseURL,
+    concurrency: 5,
+    pollInterval: 1000,
+    taskDirectory: path.resolve(__dirname, 'tasks')
+  });
+}
+
+// Start graphile-worker
+worker().catch(error => {
+  if (error) {
+    throw error;
+  }
+});
 
 const removeFirstLetter = str => str.slice(1);
 
