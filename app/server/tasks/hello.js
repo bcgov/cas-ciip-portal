@@ -1,5 +1,5 @@
 // This is a sample task
-const createWelcomeMail = require('../email_templates/welcome.js.js');
+const createWelcomeMail = require('../emailTemplates/welcome.js.js.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
