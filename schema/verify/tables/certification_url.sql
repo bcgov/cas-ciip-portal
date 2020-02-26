@@ -15,6 +15,8 @@ select ggircs_portal_private.verify_grant('select', 'certification_url', 'ciip_a
 -- ciip_industry_user Grants
 select ggircs_portal_private.verify_grant('select', 'certification_url', 'ciip_industry_user');
 select ggircs_portal_private.verify_grant('insert', 'certification_url', 'ciip_industry_user');
+select ggircs_portal_private.verify_grant('update', 'certification_url', 'ciip_industry_user',
+  ARRAY['certification_signature']);
 
 -- ciip_guest Grants
 
@@ -28,6 +30,7 @@ select ggircs_portal_private.verify_policy('select', 'ciip_analyst_select_certif
 -- ciip_industry_user Policies
 select ggircs_portal_private.verify_policy('select', 'ciip_industry_user_select_certification_url', 'certification_url', 'ciip_industry_user');
 select ggircs_portal_private.verify_policy('insert', 'ciip_industry_user_insert_certification_url', 'certification_url', 'ciip_industry_user');
+select ggircs_portal_private.verify_policy('update', 'ciip_industry_user_update_certification_url', 'certification_url', 'ciip_industry_user');
 
 -- ciip_guest Policies
 

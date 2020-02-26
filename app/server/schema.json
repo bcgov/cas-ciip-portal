@@ -14963,7 +14963,7 @@
             },
             {
               "name": "certificationSignature",
-              "description": null,
+              "description": "The base64 representation of the certifier's signature",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -14975,7 +14975,7 @@
             },
             {
               "name": "certifiedAt",
-              "description": null,
+              "description": "The timestamp of when the signature was added",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -14987,7 +14987,7 @@
             },
             {
               "name": "certifiedBy",
-              "description": null,
+              "description": "The user id of the certifier references ggircs_portal.ciip_user",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -15115,16 +15115,12 @@
             },
             {
               "name": "formResultsMd5",
-              "description": null,
+              "description": "The hash of all form results at the time the signature was added",
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -15191,7 +15187,7 @@
             },
             {
               "name": "versionNumber",
-              "description": null,
+              "description": "The version number of the application (foreign key to application_revision along with application_id)",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -31599,7 +31595,7 @@
             },
             {
               "name": "certificationSignature",
-              "description": null,
+              "description": "The base64 representation of the certifier's signature",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -31609,7 +31605,7 @@
             },
             {
               "name": "certifiedAt",
-              "description": null,
+              "description": "The timestamp of when the signature was added",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -31619,7 +31615,7 @@
             },
             {
               "name": "certifiedBy",
-              "description": null,
+              "description": "The user id of the certifier references ggircs_portal.ciip_user",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -31679,15 +31675,11 @@
             },
             {
               "name": "formResultsMd5",
-              "description": null,
+              "description": "The hash of all form results at the time the signature was added",
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "defaultValue": null
             },
@@ -31727,7 +31719,7 @@
             },
             {
               "name": "versionNumber",
-              "description": null,
+              "description": "The version number of the application (foreign key to application_revision along with application_id)",
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
@@ -42020,7 +42012,7 @@
             },
             {
               "name": "certificationSignature",
-              "description": null,
+              "description": "The base64 representation of the certifier's signature",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -42030,7 +42022,7 @@
             },
             {
               "name": "certifiedAt",
-              "description": null,
+              "description": "The timestamp of when the signature was added",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -42040,7 +42032,7 @@
             },
             {
               "name": "certifiedBy",
-              "description": null,
+              "description": "The user id of the certifier references ggircs_portal.ciip_user",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -42100,7 +42092,7 @@
             },
             {
               "name": "formResultsMd5",
-              "description": null,
+              "description": "The hash of all form results at the time the signature was added",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -42140,7 +42132,7 @@
             },
             {
               "name": "versionNumber",
-              "description": null,
+              "description": "The version number of the application (foreign key to application_revision along with application_id)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",

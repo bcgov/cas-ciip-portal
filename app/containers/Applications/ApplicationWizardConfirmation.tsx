@@ -39,7 +39,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           /**  The rowId in ggircs_portal.certification_url is the primary key (thus required in the relay variables)
                but the actual rowId is generated on the postgres level with a trigger, so a placeholder rowId is set here */
           rowId: 'placeholder',
-          applicationId: props.application.rowId
+          applicationId: props.application.rowId,
+          versionNumber: props.application.latestDraftRevision.versionNumber,
+          formResultsMd5: 'placeholder'
         }
       }
     };
@@ -75,7 +77,8 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         review={false}
       />
       <br />
-      {props.application.latestDraftRevision.certificationSignature ? (
+      {props.application.latestDraftRevision?.certificationUrl
+        ?.certificationSignature ? (
         <>
           <h5>
             Thank you for reviewing the application information. The Certifier
@@ -129,7 +132,10 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
       ...SubmitApplication_application
       ...ApplicationDetailsContainer_application @arguments(version: $version)
       latestDraftRevision {
-        certificationSignature
+        versionNumber
+        certificationUrl {
+          certificationSignature
+        }
       }
     }
   `,

@@ -1320,8 +1320,14 @@ type CertificationUrl implements Node {
   Reads a single `ApplicationRevision` that is related to this `CertificationUrl`.
   """
   applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
+
+  """The base64 representation of the certifier's signature"""
   certificationSignature: String
+
+  """The timestamp of when the signature was added"""
   certifiedAt: Datetime
+
+  """The user id of the certifier references ggircs_portal.ciip_user"""
   certifiedBy: Int
 
   """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
@@ -1350,7 +1356,9 @@ type CertificationUrl implements Node {
 
   """The expiry date for the row"""
   expiresAt: Datetime!
-  formResultsMd5: String!
+
+  """The hash of all form results at the time the signature was added"""
+  formResultsMd5: String
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -1365,6 +1373,10 @@ type CertificationUrl implements Node {
 
   """The user who last updated the row"""
   updatedBy: Int
+
+  """
+  The version number of the application (foreign key to application_revision along with application_id)
+  """
   versionNumber: Int!
 }
 
@@ -1420,8 +1432,14 @@ input CertificationUrlCondition {
 input CertificationUrlInput {
   """Foreign key to the application"""
   applicationId: Int!
+
+  """The base64 representation of the certifier's signature"""
   certificationSignature: String
+
+  """The timestamp of when the signature was added"""
   certifiedAt: Datetime
+
+  """The user id of the certifier references ggircs_portal.ciip_user"""
   certifiedBy: Int
 
   """Creation date of row"""
@@ -1438,7 +1456,9 @@ input CertificationUrlInput {
 
   """The expiry date for the row"""
   expiresAt: Datetime
-  formResultsMd5: String!
+
+  """The hash of all form results at the time the signature was added"""
+  formResultsMd5: String
 
   """Unique ID for the certification_url"""
   rowId: String!
@@ -1448,6 +1468,10 @@ input CertificationUrlInput {
 
   """The user who last updated the row"""
   updatedBy: Int
+
+  """
+  The version number of the application (foreign key to application_revision along with application_id)
+  """
   versionNumber: Int!
 }
 
@@ -1457,8 +1481,14 @@ Represents an update to a `CertificationUrl`. Fields that are set will be update
 input CertificationUrlPatch {
   """Foreign key to the application"""
   applicationId: Int
+
+  """The base64 representation of the certifier's signature"""
   certificationSignature: String
+
+  """The timestamp of when the signature was added"""
   certifiedAt: Datetime
+
+  """The user id of the certifier references ggircs_portal.ciip_user"""
   certifiedBy: Int
 
   """Creation date of row"""
@@ -1475,6 +1505,8 @@ input CertificationUrlPatch {
 
   """The expiry date for the row"""
   expiresAt: Datetime
+
+  """The hash of all form results at the time the signature was added"""
   formResultsMd5: String
 
   """Unique ID for the certification_url"""
@@ -1485,6 +1517,10 @@ input CertificationUrlPatch {
 
   """The user who last updated the row"""
   updatedBy: Int
+
+  """
+  The version number of the application (foreign key to application_revision along with application_id)
+  """
   versionNumber: Int
 }
 

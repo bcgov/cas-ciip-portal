@@ -35,7 +35,9 @@ class Certify extends Component<Props> {
           )
         application(id: $applicationId) {
           latestDraftRevision {
-            certificationSignature
+            certificationUrl {
+              certificationSignature
+            }
           }
           ...CertificationSignature_application
           ...ApplicationDetailsContainer_application
@@ -56,7 +58,10 @@ class Certify extends Component<Props> {
     let LegalDisclaimer = null;
     let Signature = null;
 
-    if (!query.application.latestDraftRevision.certificationSignature) {
+    if (
+      !query.application.latestDraftRevision?.certificationUrl
+        ?.certificationSignature
+    ) {
       const {firstName, lastName} = query.session.ciipUserBySub;
       const fullName = `${firstName} ${lastName}`;
 

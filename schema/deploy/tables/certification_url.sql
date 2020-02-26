@@ -10,7 +10,7 @@ create table ggircs_portal.certification_url (
   certification_signature bytea,
   certified_by int references ggircs_portal.ciip_user,
   certified_at timestamp with time zone,
-  form_results_md5 bytea not null,
+  form_results_md5 bytea,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
@@ -67,6 +67,7 @@ perform ggircs_portal_private.grant_permissions('select', 'certification_url', '
 -- Grant ciip_industry_user permissions
 perform ggircs_portal_private.grant_permissions('select', 'certification_url', 'ciip_industry_user');
 perform ggircs_portal_private.grant_permissions('insert', 'certification_url', 'ciip_industry_user');
+perform ggircs_portal_private.grant_permissions('update', 'certification_url', 'ciip_industry_user', ARRAY['certification_signature']);
 
 -- Grant ciip_guest permissions
 -- ?
@@ -108,6 +109,7 @@ industry_user_statement := 'application_id in (select ggircs_portal_private.get_
 -- ciip_industry_user RLS
 perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_certification_url', 'certification_url', 'select', 'ciip_industry_user', industry_user_statement);
 perform ggircs_portal_private.upsert_policy('ciip_industry_user_insert_certification_url', 'certification_url', 'insert', 'ciip_industry_user', industry_user_statement);
+perform ggircs_portal_private.upsert_policy('ciip_industry_user_update_certification_url', 'certification_url', 'update', 'ciip_industry_user', industry_user_statement);
 
 end
 $policy$;
