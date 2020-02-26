@@ -144,21 +144,12 @@ jobs:
             source ~/.bashrc
             pg_ctl start
             createdb `whoami`
-            createdb ggircs_dev
             createdb ciip_portal_dev
-      - run:
-          name: deploy cas-ggircs schema (SHOULD NOT NEED THIS)
-          command: |
-            source ~/.bashrc
-            cat .tool-versions | xargs -n2 asdf global # make this project's versions global
-            git clone https://github.com/bcgov/cas-ggircs.git ~/cas-ggircs --branch master
-            pushd ~/cas-ggircs
-            sqitch deploy
-            popd
       - run:
           name: deploy schema
           command: |
             source ~/.bashrc
+            psql -d ciip_portal_dev -c 'create schema swrs'
             pushd schema
             sqitch deploy
             sqitch verify
