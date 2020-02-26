@@ -1444,10 +1444,10 @@
   dependencies:
     prop-types "^15.5.10"
 
-"@graphile-contrib/pg-many-to-many@^1.0.0-beta.12":
-  version "1.0.0-beta.12"
-  resolved "https://registry.yarnpkg.com/@graphile-contrib/pg-many-to-many/-/pg-many-to-many-1.0.0-beta.12.tgz#ca80221c8c3bbf881a47e6054bab52d841dc0a09"
-  integrity sha512-4k3IPqT84PhKyMFMT+r0nRU+/pEqAYCMgjSBOw5oD3pbi2TxCDdg7+e47QINeFtITiBfKd5uvb+pPzFZsKQMDA==
+"@graphile-contrib/pg-many-to-many@^1.0.0-beta.13":
+  version "1.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/@graphile-contrib/pg-many-to-many/-/pg-many-to-many-1.0.0-beta.13.tgz#1093409d541df918fcf1bf72f60e0400b9ea9832"
+  integrity sha512-gmawC6WtCzwDwzL+E2/DJpfiH84430PB5ApbbfcAhB3qLld/pN1RDwZ8XjiWYzxrKIBoRCv9VL8mF7YhI4dkMw==
 
 "@graphile/lru@4.5.0":
   version "4.5.0"
