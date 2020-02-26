@@ -67,6 +67,8 @@ begin
       return new;
   end case;
 end;
-$$ language plpgsql volatile;
+-- TODO: Evaluate whether this needs to be a security definer
+-- Set as security definer as roles & grants are created before the graphile_worker schema (created on application start)
+$$ language plpgsql volatile security definer;
 
 commit;
