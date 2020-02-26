@@ -40,6 +40,7 @@ tables/application [schema_ggircs_portal trigger_functions/update_timestamps] 20
 tables/application_revision [tables/application] 2019-12-12T00:21:28Z Dylan Leard <dylan@button.is> # Table contains versioning data for application revisions
 tables/form_json [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
 tables/form_result [schema_ggircs_portal trigger_functions/update_timestamps tables/form_json] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
+function_current_form_result_md5 [tables/form_result] 2020-02-26T18:42:47Z Dylan Leard <dylan@button.is> # Function computes the current md5 hash of the concactenated form results
 types/facility_search_result [schema_ggircs_portal] 2019-12-11T21:41:41Z Helen Liu <helen@button.is> # added return type for search all facilities function
 tables/application_revision_status [schema_ggircs_portal trigger_functions/update_timestamps tables/application_revision trigger_functions/ensure_window_open_submit_application_status] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application_revision_status to schema ggircs_portal
 views/ciip_fuel [tables/form_result] 2019-08-19T22:26:15Z Hamza Javed <hamza@button.is> # View for fuels reported in CIIP application
