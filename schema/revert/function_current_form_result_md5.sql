@@ -1,7 +1,7 @@
 -- Revert ggircs-portal:function_current_form_result_md5 from pg
 
-BEGIN;
+begin;
 
--- XXX Add DDLs here.
+drop function ggircs_portal_private.current_form_result_md5;
 
-COMMIT;
+commit;

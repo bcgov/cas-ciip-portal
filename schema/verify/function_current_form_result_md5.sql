@@ -1,7 +1,7 @@
 -- Verify ggircs-portal:function_current_form_result_md5 on pg
 
-BEGIN;
+begin;
 
--- XXX Add verifications here.
+select pg_get_functiondef('ggircs_portal_private.current_form_result_md5(int, int)'::regprocedure);
 
-ROLLBACK;
+rollback;
