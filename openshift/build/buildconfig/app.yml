@@ -35,10 +35,10 @@ objects:
     resources:
       limits:
         cpu: "2"
-        memory: 32Gi
+        memory: 16Gi
       requests:
         cpu: "1"
-        memory: 16Gi
+        memory: 8Gi
     source:
       git:
         ref: ${GIT_SHA1}

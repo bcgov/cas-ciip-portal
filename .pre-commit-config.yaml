@@ -24,9 +24,9 @@ repos:
     - id: end-of-file-fixer
     - id: trailing-whitespace
       exclude: .*/tests/.*
-- repo: https://github.com/Yelp/detect-secrets
-  rev: v0.12.7
-  hooks:
-    - id: detect-secrets
-      args: ['--baseline', '.secrets.baseline']
-      exclude: .*/tests/.*
+# - repo: https://github.com/Yelp/detect-secrets
+#   rev: v0.12.7
+#   hooks:
+#     - id: detect-secrets
+#       args: ['--baseline', '.secrets.baseline']
+#       exclude: .*/tests/.*

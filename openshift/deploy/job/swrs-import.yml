@@ -41,8 +41,12 @@ objects:
           - /usr/bin/env
           - bash
           - -c
-          - PGPASSWORD="$GGIRCS_PASSWORD" pg_dump -d $GGIRCS_DATABASE -h $GGIRCS_HOST -p $GGIRCS_PORT -U $GGIRCS_USER --format=custom --schema="swrs" - |\
-          - PGPASSWORD="$PORTAL_PASSWORD" pg_restore --clean --if-exists -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
+          - >
+            touch .pgpass; chmod 0600 .pgpass;
+            echo "$GGIRCS_HOST:$GGIRCS_PORT:$GGIRCS_DATABASE:$GGIRCS_USER:$GGIRCS_PASSWORD" >> .pgpass;
+            echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass;
+            PGPASSFILE=".pgpass" pg_dump -w -h $GGIRCS_HOST -p $GGIRCS_PORT -U $GGIRCS_USER --format=custom --schema="swrs" $GGIRCS_DATABASE |
+            PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
           env:
           - name: PORTAL_USER
             valueFrom:
@@ -83,7 +87,7 @@ objects:
           - name: GGIRCS_HOST
             value: cas-postgres-master
 
-          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-tools:${GIT_SHA1}
+          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-schema:${GIT_SHA1}
           name: ${PREFIX}swrs-import
           resources:
             limits:

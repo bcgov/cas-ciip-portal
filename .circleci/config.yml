@@ -145,6 +145,7 @@ jobs:
             pg_ctl start
             createdb `whoami`
             createdb ggircs_dev
+            createdb ciip_portal_dev
       - run:
           name: deploy cas-ggircs schema (SHOULD NOT NEED THIS)
           command: |

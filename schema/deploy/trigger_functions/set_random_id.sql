@@ -2,7 +2,7 @@
 -- requires: schema_ggircs_portal
 
 begin;
-create extension if not exists pgcrypto;
+-- create extension if not exists pgcrypto;
 create function ggircs_portal.set_random_id()
   returns trigger as $$
 
