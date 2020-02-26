@@ -50,17 +50,17 @@ test_deploy_revert: | dropdb createdb deploy_ggircs deploy revert
 .PHONY: deploy_ggircs
 deploy_ggircs:
 	# Deploy all SWRS changes to $(TEST_DB) using sqitch
-	@@cd .cas-ggircs; sqitch deploy ${TEST_DB}; cd ..;
+	@@cd .cas-ggircs; SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) sqitch deploy; cd ..;
 
 .PHONY: revert_ggircs
 revert_ggircs:
 	# Revert all SWRS changes to $(TEST_DB) using sqitch
-	@@cd .cas-ggircs; sqitch revert -y ${TEST_DB}; cd ..;
+	@@cd .cas-ggircs; SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) sqitch revert -y; cd ..;
 
 .PHONY: deploy
 deploy:
 	# Deploy all CIIP changes to $(TEST_DB) using sqitch
-	@@$(SQITCH) deploy $(TEST_DB);
+	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) $(SQITCH) deploy;
 
 .PHONY: prove_style
 prove_style:
