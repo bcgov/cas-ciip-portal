@@ -58,8 +58,8 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
       </Row>
       <Row>
         <Col md={6}>
-          {props.application.latestDraftRevision?.certificationUrl
-            ?.certificationSignature ? (
+          {props.application.latestDraftRevision
+            .certificationSignatureIsValid ? (
             <span style={{color: 'green'}}>Signed Successfully!</span>
           ) : (
             <input
@@ -70,8 +70,8 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
           )}
         </Col>
         <Col md={{span: 3, offset: 2}}>
-          {props.application.latestDraftRevision?.certificationUrl
-            ?.certificationSignature ? (
+          {props.application.latestDraftRevision
+            .certificationSignatureIsValid ? (
             <></>
           ) : (
             <>
@@ -111,6 +111,7 @@ export default createFragmentContainer(CertificationSignatureComponent, {
         id
         applicationId
         versionNumber
+        certificationSignatureIsValid
         certificationUrl {
           id
           certificationSignature

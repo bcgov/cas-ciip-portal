@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {Button, Row, Col} from 'react-bootstrap';
+import {Button, Row, Col, Card} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
@@ -21,6 +21,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState();
   const copyArea = useRef(url);
+  const revision = props.application.latestDraftRevision;
 
   const copyToClipboard = () => {
     const el = copyArea;
@@ -40,7 +41,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                but the actual rowId is generated on the postgres level with a trigger, so a placeholder rowId is set here */
           rowId: 'placeholder',
           applicationId: props.application.rowId,
-          versionNumber: props.application.latestDraftRevision.versionNumber,
+          versionNumber: revision.versionNumber,
           formResultsMd5: 'placeholder'
         }
       }
@@ -77,8 +78,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         review={false}
       />
       <br />
-      {props.application.latestDraftRevision?.certificationUrl
-        ?.certificationSignature ? (
+      {revision.certificationSignatureIsValid ? (
         <>
           <h5>
             Thank you for reviewing the application information. The Certifier
@@ -90,10 +90,26 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         </>
       ) : (
         <>
-          <h5>
-            Thank you for reviewing the application information. You may now
-            generate a Certification page to be signed prior to submission.
-          </h5>
+          {!revision.certificationUrl.hashMatches &&
+          revision.certificationUrl.certificationSignature !== null ? (
+            <Card className="text-center">
+              <Card.Header>Error</Card.Header>
+              <Card.Body>
+                <Card.Title>The data has changed</Card.Title>
+                <Card.Text>
+                  The application data has been changed since the certifier
+                  added their signature.
+                </Card.Text>
+                <Card.Text>Please generate a new certification URL.</Card.Text>
+              </Card.Body>
+              <Card.Footer />
+            </Card>
+          ) : (
+            <h5>
+              Thank you for reviewing the application information. You may now
+              generate a Certification page to be signed prior to submission.
+            </h5>
+          )}
           <br />
           <Row>
             <Col>
@@ -133,8 +149,10 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
       ...ApplicationDetailsContainer_application @arguments(version: $version)
       latestDraftRevision {
         versionNumber
+        certificationSignatureIsValid
         certificationUrl {
           certificationSignature
+          hashMatches
         }
       }
     }

@@ -37,6 +37,7 @@ class Certify extends Component<Props> {
           latestDraftRevision {
             certificationUrl {
               certificationSignature
+              hashMatches
             }
           }
           ...CertificationSignature_application
@@ -54,6 +55,9 @@ class Certify extends Component<Props> {
   render() {
     const {allChecked} = this.state;
     const {query} = this.props;
+    const {
+      hashMatches
+    } = this.props.query.application.latestDraftRevision.certificationUrl;
 
     let LegalDisclaimer = null;
     let Signature = null;
@@ -109,13 +113,36 @@ class Certify extends Component<Props> {
           session={query.session}
           allowedGroups={ALLOWED_GROUPS}
         >
-          <ApplicationDetailsContainer
-            query={query}
-            application={query.application}
-            review={false}
-          />
-          {LegalDisclaimer}
-          {Signature}
+          {hashMatches ? (
+            <>
+              <ApplicationDetailsContainer
+                query={query}
+                application={query.application}
+                review={false}
+              />
+              {LegalDisclaimer}
+              {Signature}
+            </>
+          ) : (
+            <Card className="text-center">
+              <Card.Header>Error</Card.Header>
+              <Card.Body>
+                <Card.Title>The data has changed</Card.Title>
+                <Card.Text>
+                  The application data associated with this certification URL
+                  has been modified after the URL was generated.
+                </Card.Text>
+                <Card.Text>
+                  A notification has been automatically sent to the reporter
+                  requesting the submission of a new URL with the updated
+                  application data.
+                </Card.Text>
+              </Card.Body>
+              <Card.Footer className="text-muted">
+                No action is required on your part
+              </Card.Footer>
+            </Card>
+          )}
         </DefaultLayout>
         <style jsx global>
           {`
