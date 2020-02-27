@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It matches the last accepted Snapshot 1`] = `
+<Fragment>
+  <Relay(DefaultLayout)
+    allowedGroups={
+      Array [
+        "User",
+      ]
+    }
+    session={
+      Object {
+        " $fragmentRefs": Object {
+          "defaultLayout_session": true,
+        },
+        "ciipUserBySub": Object {
+          "firstName": "max",
+          "id": "abc",
+          "lastName": "powers",
+        },
+      }
+    }
+    title="Submission Certification"
+  >
+    <Relay(ApplicationDetailsComponent)
+      application={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplicationDetailsContainer_application": true,
+            "CertificationSignature_application": true,
+          },
+          "latestDraftRevision": Object {
+            "certificationUrl": Object {
+              "certificationSignature": "test",
+              "hashMatches": true,
+            },
+          },
+        }
+      }
+      query={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplicationDetailsContainer_query": true,
+          },
+          "application": Object {
+            " $fragmentRefs": Object {
+              "ApplicationDetailsContainer_application": true,
+              "CertificationSignature_application": true,
+            },
+            "latestDraftRevision": Object {
+              "certificationUrl": Object {
+                "certificationSignature": "test",
+                "hashMatches": true,
+              },
+            },
+          },
+          "session": Object {
+            " $fragmentRefs": Object {
+              "defaultLayout_session": true,
+            },
+            "ciipUserBySub": Object {
+              "firstName": "max",
+              "id": "abc",
+              "lastName": "powers",
+            },
+          },
+        }
+      }
+      review={false}
+    />
+  </Relay(DefaultLayout)>
+  <JSXStyle
+    id="1964638049"
+  >
+    .signatureCanvas{border:1px solid #bbb;padding:30px;width:80%;background:#eee;border-radius:6px;margin-bottom:60px;}
+  </JSXStyle>
+</Fragment>
+`;

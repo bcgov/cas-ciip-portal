@@ -19,7 +19,12 @@ exports[`The Confirmation Component match the snapshot 1`] = `
         " $refType": "ApplicationWizardConfirmation_application",
         "id": "abc",
         "latestDraftRevision": Object {
-          "certificationSignature": undefined,
+          "certificationSignatureIsValid": false,
+          "certificationUrl": Object {
+            "certificationSignature": undefined,
+            "hashMatches": true,
+          },
+          "versionNumber": 1,
         },
         "rowId": 1,
       }

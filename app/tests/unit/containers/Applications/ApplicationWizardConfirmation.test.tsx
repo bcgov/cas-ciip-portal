@@ -21,7 +21,12 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           rowId: 1,
           latestDraftRevision: {
-            certificationSignature: undefined
+            versionNumber: 1,
+            certificationSignatureIsValid: false,
+            certificationUrl: {
+              certificationSignature: undefined,
+              hashMatches: true
+            }
           }
         }}
         relay={null}
@@ -48,7 +53,12 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           rowId: 1,
           latestDraftRevision: {
-            certificationSignature: undefined
+            versionNumber: 1,
+            certificationSignatureIsValid: false,
+            certificationUrl: {
+              certificationSignature: undefined,
+              hashMatches: true
+            }
           }
         }}
         relay={null}
@@ -70,7 +80,7 @@ describe('The Confirmation Component', () => {
     ).toBe('Generate Certification Page');
   });
 
-  it('should show the Submit application dialog when certificationSignature is defined', () => {
+  it('should show the Submit application dialog when certificationSignatureIsvalid is true', () => {
     const wrapper = shallow(
       <ApplicationWizardConfirmationComponent
         query={{
@@ -88,7 +98,12 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           rowId: 1,
           latestDraftRevision: {
-            certificationSignature: 'signed'
+            versionNumber: 1,
+            certificationSignatureIsValid: true,
+            certificationUrl: {
+              certificationSignature: 'signed',
+              hashMatches: true
+            }
           }
         }}
         relay={null}
@@ -97,5 +112,37 @@ describe('The Confirmation Component', () => {
     expect(wrapper.find('Relay(SubmitApplicationComponent)').exists()).toBe(
       true
     );
+  });
+
+  it('should show a "data has chaned" dialogue when hashMathes is false but a signature exists', () => {
+    const wrapper = shallow(
+      <ApplicationWizardConfirmationComponent
+        query={{
+          ' $fragmentRefs': {
+            ApplicationDetailsContainer_query: true
+          },
+          ' $refType': 'ApplicationWizardConfirmation_query'
+        }}
+        application={{
+          ' $refType': 'ApplicationWizardConfirmation_application',
+          ' $fragmentRefs': {
+            SubmitApplication_application: true,
+            ApplicationDetailsContainer_application: true
+          },
+          id: 'abc',
+          rowId: 1,
+          latestDraftRevision: {
+            versionNumber: 1,
+            certificationSignatureIsValid: false,
+            certificationUrl: {
+              certificationSignature: 'signed',
+              hashMatches: false
+            }
+          }
+        }}
+        relay={null}
+      />
+    );
+    expect(wrapper.find('CardHeader').text()).toBe('Error');
   });
 });
