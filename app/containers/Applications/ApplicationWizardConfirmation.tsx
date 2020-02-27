@@ -64,6 +64,70 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     }
   };
 
+  const generateCertification = (
+    <>
+      <br />
+      <Row>
+        <Col>
+          <Button onClick={handleClickGenerateCertificationUrl}>
+            Generate Certification Page
+          </Button>
+        </Col>
+      </Row>
+      <br />
+      <Row>
+        <Col md={6}>
+          <input ref={copyArea} readOnly value={url} style={{width: '100%'}} />
+        </Col>
+        <Col md={2}>
+          <Button onClick={copyToClipboard}>Copy Link</Button>
+          <span style={{color: 'green'}}>{copySuccess}</span>
+        </Col>
+      </Row>
+    </>
+  );
+  let certificationMessage;
+
+  if (!revision.certificationUrl) {
+    certificationMessage = (
+      <>
+        <h5>
+          Thank you for reviewing the application information. You may now
+          generate a Certification page to be signed prior to submission.
+        </h5>
+        {generateCertification}
+      </>
+    );
+  } else if (
+    revision.certificationUrl.certificationSignature === null &&
+    revision.certificationUrl.hashMatches
+  ) {
+    certificationMessage = (
+      <h5>
+        Your application has been sent to a certifier. Submission will be
+        possible once they have verified the data in the application.
+      </h5>
+    );
+  } else {
+    certificationMessage = (
+      <>
+        <Card className="text-center">
+          <Card.Header>Error</Card.Header>
+          <Card.Body>
+            <Card.Title>The data has changed</Card.Title>
+            <Card.Text>
+              The application data has been changed since the certifier added
+              their signature.
+            </Card.Text>
+            <Card.Text>Please generate a new certification URL.</Card.Text>
+          </Card.Body>
+          <Card.Footer />
+        </Card>
+        {generateCertification}
+      </>
+    );
+  }
+
   return (
     <>
       <h1>Summary of your application:</h1>
@@ -89,51 +153,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           <SubmitApplication application={props.application} />
         </>
       ) : (
-        <>
-          {!revision.certificationUrl.hashMatches &&
-          revision.certificationUrl.certificationSignature !== null ? (
-            <Card className="text-center">
-              <Card.Header>Error</Card.Header>
-              <Card.Body>
-                <Card.Title>The data has changed</Card.Title>
-                <Card.Text>
-                  The application data has been changed since the certifier
-                  added their signature.
-                </Card.Text>
-                <Card.Text>Please generate a new certification URL.</Card.Text>
-              </Card.Body>
-              <Card.Footer />
-            </Card>
-          ) : (
-            <h5>
-              Thank you for reviewing the application information. You may now
-              generate a Certification page to be signed prior to submission.
-            </h5>
-          )}
-          <br />
-          <Row>
-            <Col>
-              <Button onClick={handleClickGenerateCertificationUrl}>
-                Generate Certification Page
-              </Button>
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col md={6}>
-              <input
-                ref={copyArea}
-                readOnly
-                value={url}
-                style={{width: '100%'}}
-              />
-            </Col>
-            <Col md={2}>
-              <Button onClick={copyToClipboard}>Copy Link</Button>
-              <span style={{color: 'green'}}>{copySuccess}</span>
-            </Col>
-          </Row>
-        </>
+        <>{certificationMessage}</>
       )}
     </>
   );

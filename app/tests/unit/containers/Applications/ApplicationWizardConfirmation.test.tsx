@@ -23,10 +23,7 @@ describe('The Confirmation Component', () => {
           latestDraftRevision: {
             versionNumber: 1,
             certificationSignatureIsValid: false,
-            certificationUrl: {
-              certificationSignature: undefined,
-              hashMatches: true
-            }
+            certificationUrl: undefined
           }
         }}
         relay={null}
@@ -35,7 +32,7 @@ describe('The Confirmation Component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should show the Generate Confirmation Page dialog when certificationSignature is undefined', () => {
+  it('should show the Generate Confirmation Page dialog when certificationUrl is undefined', () => {
     const wrapper = shallow(
       <ApplicationWizardConfirmationComponent
         query={{
@@ -55,10 +52,7 @@ describe('The Confirmation Component', () => {
           latestDraftRevision: {
             versionNumber: 1,
             certificationSignatureIsValid: false,
-            certificationUrl: {
-              certificationSignature: undefined,
-              hashMatches: true
-            }
+            certificationUrl: undefined
           }
         }}
         relay={null}
