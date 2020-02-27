@@ -72,8 +72,6 @@ build_app: whoami
 build: $(call make_help,build,Builds the source into an image in the tools project namespace)
 build: build_tools build_schema build_app
 
-# Retrieve the git sha1 of the last etl deploy
-PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)ciip-portal-schema-deploy --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}')
 PORTAL_DB = "ciip_portal"
 PORTAL_USER = "portal"
 PORTAL_APP_USER = $(PORTAL_USER)_app
@@ -108,6 +106,9 @@ openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
 	# Import data from SWRS database
 	$(call oc_run_job,$(PROJECT_PREFIX)swrs-import)
 	# Redeploy portal schema
+
+	# Retrieve the git sha1 of the last etl deploy
+	$(eval PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)portal-schema-deploy --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}'))
 	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
 	$(call oc_run_job,$(PROJECT_PREFIX)portal-schema-deploy)
 	# Create app user. This must be executed after the deploy job so that the swrs schema exists
