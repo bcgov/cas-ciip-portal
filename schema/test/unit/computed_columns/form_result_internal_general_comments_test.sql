@@ -7,7 +7,7 @@ select plan(3);
 
 select has_function(
   'ggircs_portal', 'form_result_internal_general_comments', array['ggircs_portal.form_result'],
-  'Function create_application_revision_mutation_chain should exist'
+  'Function form_result_internal_general_comments should exist'
 );
 
 insert into ggircs_portal.organisation(operator_name) values ('test org');

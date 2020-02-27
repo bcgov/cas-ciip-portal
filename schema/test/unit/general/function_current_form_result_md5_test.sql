@@ -11,10 +11,11 @@ select has_function(
   'Function current_form_results_md5 should exist'
 );
 
+alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 truncate ggircs_portal.application cascade;
 
 -- Call create application_mutation_chain to create a test application
-select ggircs_portal.create_application_mutation_chain((select id from ggircs_portal.facility
+select ggircs_portal.create_application_mutation_chain(1);
 
 select lives_ok(
   $$
@@ -25,11 +26,11 @@ select lives_ok(
 
 select results_eq(
   $$
-    select ggircs_portal_private.current_form_results_md5(1,1);
+    select pg_typeof(ggircs_portal_private.current_form_results_md5(1,1));
   $$,
-  ARRAY['bytea'],
+  ARRAY['bytea'::regtype],
   'function current_form_results_md5 returns an md5 hash of all the form results in bytea format'
-)
+);
 
 select finish();
 
