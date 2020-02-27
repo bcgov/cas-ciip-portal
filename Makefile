@@ -118,6 +118,8 @@ openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_analyst to $(PORTAL_APP_USER);")
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_industry_user to $(PORTAL_APP_USER);")
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_guest to $(PORTAL_APP_USER);")
+	# Allow the app user to create objects (required for graphile-worker to create its schema)
+	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant create on database $(PORTAL_DB) to $(PORTAL_APP_USER);")
 	# Deploy the application and wait for a pod to be healthy
 	$(call oc_deploy)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)portal-app)
