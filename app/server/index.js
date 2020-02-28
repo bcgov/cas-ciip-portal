@@ -26,6 +26,9 @@ const path = require('path');
 let databaseURL = 'postgres://';
 
 const NO_AUTH = process.argv.includes('NO_AUTH');
+const AS_REPORTER = process.argv.includes('AS_REPORTER');
+const AS_ANALYST = process.argv.includes('AS_ANALYST');
+const AS_ADMIN = process.argv.includes('AS_ADMIN');
 const NO_PDF = process.argv.includes('NO_PDF');
 const NO_MATHJAX = process.argv.includes('NO_MATHJAX');
 
@@ -151,6 +154,33 @@ app.prepare().then(() => {
           };
         }
 
+        if (AS_REPORTER) {
+          return {
+            'jwt.claims.sub': '809217a1-34b8-4179-95bc-6b4410b4fe16',
+            'jwt.claims.user_groups': 'User',
+            'jwt.claims.priority_group': 'User',
+            role: 'ciip_industry_user'
+          };
+        }
+
+        if (AS_ANALYST) {
+          return {
+            'jwt.claims.sub': '9e96cf52-9316-434e-878d-2d926a80ac8f',
+            'jwt.claims.user_groups': 'Incentive Analyst',
+            'jwt.claims.priority_group': 'Incentive Analyst',
+            role: 'ciip_analyst'
+          };
+        }
+
+        if (AS_ADMIN) {
+          return {
+            'jwt.claims.sub': 'eabdeef2-f95a-4dd5-9908-883b45d213ba',
+            'jwt.claims.user_groups': 'Incentive Administrator',
+            'jwt.claims.priority_group': 'Incentive Administrator',
+            role: 'ciip_administrator'
+          };
+        }
+
         const claims = {};
         if (
           !req.kauth ||
@@ -209,7 +239,7 @@ app.prepare().then(() => {
     })
   );
 
-  if (NO_AUTH)
+  if (NO_AUTH || AS_ANALYST || AS_REPORTER || AS_ADMIN)
     server.post('/login', (req, res) => res.redirect(302, getRedirectURL(req)));
   else
     server.post('/login', keycloak.protect(), (req, res) =>
