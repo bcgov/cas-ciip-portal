@@ -46,7 +46,7 @@ objects:
             export DATABASE_URL="postgres://$PGUSER:$PGPASSWORD@$PGHOST:$PGPORT/$PGDATABASE";
             yarn graphile-worker --schema-only;
             psql -d $PGDATABASE -c "create policy jobs_policy on graphile_worker.jobs for all to $APP_USER using (true);";
-            psql -d $PGDATABASE -c "create policy jobs_policy on graphile_worker.job_queues for all to $APP_USER using (true);";
+            psql -d $PGDATABASE -c "create policy job_queues_policy on graphile_worker.job_queues for all to $APP_USER using (true);";
           env:
           - name: PGUSER
             valueFrom:
