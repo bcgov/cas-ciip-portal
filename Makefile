@@ -105,21 +105,21 @@ openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "create extension if not exists pgcrypto;")
 	# Import data from SWRS database
 	$(call oc_run_job,$(PROJECT_PREFIX)swrs-import)
-	# Redeploy portal schema
 
 	# Retrieve the git sha1 of the last etl deploy
 	$(eval PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)portal-schema-deploy --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}'))
+	# Redeploy portal schema
 	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
 	$(call oc_run_job,$(PROJECT_PREFIX)portal-schema-deploy)
-	# Create app user. This must be executed after the deploy job so that the swrs schema exists
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_APP_USER) -d $(PORTAL_DB) -p $(PORTAL_APP_PASSWORD) --schemas swrs$(,)ggircs_portal --privileges select)
+	# Create graphile_worker schema
+	$(call oc_run_job,$(PROJECT_PREFIX)graphile-worker-schema)
+	# Create app user. This must be executed after the deploy job so that the graphile_worker schema exists
+	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_APP_USER) -d $(PORTAL_DB) -p $(PORTAL_APP_PASSWORD) --schemas graphile_worker --privileges select$(,)insert$(,)update$(,)delete)
 	# Allow the app user to use the ciip_* roles
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_administrator to $(PORTAL_APP_USER);")
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_analyst to $(PORTAL_APP_USER);")
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_industry_user to $(PORTAL_APP_USER);")
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_guest to $(PORTAL_APP_USER);")
-	# Allow the app user to create objects (required for graphile-worker to create its schema)
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant create on database $(PORTAL_DB) to $(PORTAL_APP_USER);")
 	# Deploy the application and wait for a pod to be healthy
 	$(call oc_deploy)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)portal-app)

@@ -1,0 +1,83 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  template: job-template
+
+
+parameters:
+- description: Prefix to prepend to object name.
+  displayName: Prefix
+  name: PREFIX
+  required: true
+- description: SHA1 of git revision to be deployed.
+  displayName: Git SHA1
+  name: GIT_SHA1
+  required: true
+- description: Openshift project name
+  displayName: Project
+  name: OC_PROJECT
+  required: true
+- description: Openshift registry URL
+  displayName: Registry
+  name: OC_REGISTRY
+  required: true
+
+objects:
+- apiVersion: batch/v1
+  kind: Job
+  metadata:
+    name: ${PREFIX}graphile-worker-schema
+  spec:
+    backoffLimit: 0
+    activeDeadlineSeconds: 7200
+    template:
+      metadata:
+        labels:
+          name: ${PREFIX}graphile-worker-schema
+      spec:
+        restartPolicy: Never
+        containers:
+        - command:
+          - /usr/bin/env
+          - bash
+          - -c
+          - >
+            set -e;
+            export DATABASE_URL="postgres://$PGUSER:$PGPASSWORD@$PGHOST:$PGPORT/$PGDATABASE";
+            yarn graphile-worker --schema-only;
+            psql -d $PGDATABASE -c "create policy jobs_policy on graphile_worker.jobs for all to $APP_USER using (true);";
+            psql -d $PGDATABASE -c "create policy job_queues_policy on graphile_worker.job_queues for all to $APP_USER using (true);";
+          env:
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                key: database-user
+                name: ${PREFIX}portal-postgres
+          - name: APP_USER
+            valueFrom:
+              secretKeyRef:
+                key: database-app-user
+                name: ${PREFIX}portal-postgres
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: ${PREFIX}portal-postgres
+          - name: PGDATABASE
+            valueFrom:
+              secretKeyRef:
+                key: database-name
+                name: ${PREFIX}portal-postgres
+          - name: PGPORT
+            value: "5432"
+          - name: PGHOST
+            value: ${PREFIX}postgres-master
+          image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-app:${GIT_SHA1}
+          name: ${PREFIX}graphile-worker-schema
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi

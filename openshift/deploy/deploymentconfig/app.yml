@@ -62,6 +62,11 @@ objects:
             value: ${PREFIX}postgres-master
           - name: PORT
             value: "3000"
+          - name: SMTP_CONNECTION_STRING
+            value: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
+          - name: SENDER_EMAIL
+            value: no-reply.cas@gov.bc.ca
+
           image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-app:${GIT_SHA1}
           imagePullPolicy: IfNotPresent
           name: ${PREFIX}portal-app
