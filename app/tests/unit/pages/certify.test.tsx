@@ -46,5 +46,6 @@ it('It loads the summary component & passes it the application prop if hashMatch
 it('It shows a "data has changed" error if hashMatches is false', () => {
   query.application.latestDraftRevision.certificationUrl.hashMatches = false;
   const wrapper = shallow(<Certify query={query} />);
+  expect(wrapper).toMatchSnapshot();
   expect(wrapper.find('CardHeader').text()).toBe('Error');
 });

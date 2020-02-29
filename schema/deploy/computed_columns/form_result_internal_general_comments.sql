@@ -23,4 +23,6 @@ begin;
 
   grant execute on function ggircs_portal.form_result_internal_general_comments to ciip_administrator, ciip_analyst, ciip_industry_user;
 
+comment on function ggircs_portal.form_result_internal_general_comments is 'Computed column for graphql to return set of internal or general comments for a form result';
+
 commit;

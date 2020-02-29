@@ -26,4 +26,6 @@ begin;
 
 grant execute on function ggircs_portal.form_result_form_result_statuses to ciip_administrator, ciip_analyst, ciip_industry_user;
 
+comment on function ggircs_portal.form_result_form_result_statuses is 'Computed column for graphql to return the status for a form result';
+
 commit;

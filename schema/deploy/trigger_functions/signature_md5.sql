@@ -47,6 +47,8 @@ begin;
 
     return new;
   end;
-  $$ language plpgsql volatile security definer;
+  $$ language plpgsql volatile;
+
+comment on function ggircs_portal_private.signature_md5 is 'Trigger function sets and checks the hash of form results & the state of the certification signature';
 
 commit;

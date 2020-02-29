@@ -23,4 +23,6 @@ begin;
 
   grant execute on function ggircs_portal.certification_url_hash_matches to ciip_administrator, ciip_analyst, ciip_industry_user;
 
+comment on function ggircs_portal.certification_url_hash_matches is 'Computed column for graphql to traverse to show if the current hash of form results matches the form_results_md5 in certification_url';
+
 commit;

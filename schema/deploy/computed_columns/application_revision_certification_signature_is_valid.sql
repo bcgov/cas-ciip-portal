@@ -29,4 +29,6 @@ create or replace function ggircs_portal.application_revision_certification_sign
 
 grant execute on function ggircs_portal.application_revision_certification_signature_is_valid to ciip_administrator, ciip_analyst, ciip_industry_user;
 
+comment on function ggircs_portal.application_revision_certification_signature_is_valid is 'Computed column for graphql to traverse to show if a signature is valid from application_revision';
+
 commit;

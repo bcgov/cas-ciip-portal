@@ -99,7 +99,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       </>
     );
   } else if (
-    revision.certificationUrl.certificationSignature === null &&
+    !revision.certificationUrl.certificationSignature &&
     revision.certificationUrl.hashMatches
   ) {
     certificationMessage = (

@@ -25,4 +25,6 @@ begin;
 
   grant execute on function ggircs_portal.application_latest_draft_revision to ciip_administrator, ciip_analyst, ciip_industry_user;
 
+comment on function ggircs_portal.application_latest_draft_revision is 'Computed column for graphql to traverse to the latest application_revision with status "draft" from application';
+
 commit;

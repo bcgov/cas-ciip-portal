@@ -126,4 +126,6 @@ $function$ language plpgsql stable;
 
 grant execute on function ggircs_portal.application_revision_ciip_incentive to ciip_administrator, ciip_analyst;
 
+comment on function ggircs_portal.application_revision_ciip_incentive is 'Computed column for graphql to get the ciip incentive calculations from application_revision';
+
 commit;

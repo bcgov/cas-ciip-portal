@@ -4,6 +4,7 @@
 
 schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a schema for the GGIRCS Industry Portal (GIP)
 schema_ggircs_portal_private 2020-02-04T19:34:27Z Dylan Leard <dylan@button.is> # Private schema for entities needed in the portal that should not be exposed to the API
+database_functions/graphile_worker_job_definer [schema_ggircs_portal_private] 2020-02-28T23:07:39Z Dylan Leard <dylan@button.is> # Wrapper for graphile_worker.add_job to run as security definer
 database_functions/create_roles [schema_ggircs_portal_private] 2020-01-27T21:15:42Z Dylan Leard <dylan@button.is> # Adds the roles necessary for row level security
 database_functions/verify_grant [schema_ggircs_portal_private] 2020-01-31T21:31:38Z Dylan Leard <dylan@button.is> # Function verifies the granted permissions a role has on tables & columns
 database_functions/verify_policy [schema_ggircs_portal_private] 2020-02-03T17:44:49Z Dylan Leard <dylan@button.is> # Function verifies the row level security policies attached to a table
