@@ -28,6 +28,10 @@ type Application implements Node {
     """The method to use when ordering `ApplicationRevision`."""
     orderBy: [ApplicationRevisionsOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationRevisionsConnection!
+
+  """
+  Computed column for graphql to traverse to an application_revision_status from application
+  """
   applicationRevisionStatus: ApplicationRevisionStatus
 
   """Reads and enables pagination through a set of `CertificationUrl`."""
@@ -127,10 +131,20 @@ type Application implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+
+  """
+  Computed column for graphql to traverse to the latest application_revision with status "draft" from application
+  """
   latestDraftRevision: ApplicationRevision
+
+  """
+  Computed column for graphql to traverse to the latest application_revision with status "submitted" from application
+  """
   latestSubmittedRevision: ApplicationRevision
 
-  """Reads and enables pagination through a set of `FormResult`."""
+  """
+  Computed column for graphql to traverse to a set of form results ordered by the application wizard from application
+  """
   orderedFormResults(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -151,6 +165,10 @@ type Application implements Node {
     offset: Int
     versionNumberInput: String
   ): FormResultsConnection!
+
+  """
+  Computed column for graphql to traverse to the previous application_revision with status "submitted" from application
+  """
   previousSubmittedRevision: ApplicationRevision
 
   """
@@ -244,6 +262,10 @@ type ApplicationRevision implements Node {
   The foreign key to the ciip application, also part of the composite primary key with version number
   """
   applicationId: Int!
+
+  """
+  Computed column for graphql to traverse to the latest application_revision_status from application_revision
+  """
   applicationRevisionStatus: ApplicationRevisionStatus
 
   """
@@ -276,7 +298,15 @@ type ApplicationRevision implements Node {
     """The method to use when ordering `ApplicationRevisionStatus`."""
     orderBy: [ApplicationRevisionStatusesOrderBy!] = [PRIMARY_KEY_ASC]
   ): ApplicationRevisionStatusesConnection!
+
+  """
+  Computed column for graphql to traverse to show if a signature is valid from application_revision
+  """
   certificationSignatureIsValid: Boolean
+
+  """
+  Computed column for graphql to traverse to a certification_url row from application_revision
+  """
   certificationUrl: CertificationUrl
 
   """Reads and enables pagination through a set of `CertificationUrl`."""
@@ -309,7 +339,7 @@ type ApplicationRevision implements Node {
   ): CertificationUrlsConnection!
 
   """
-  Reads and enables pagination through a set of `CiipIncentiveByProduct`.
+  Computed column for graphql to get the ciip incentive calculations from application_revision
   """
   ciipIncentive(
     """Read all values in the set after (below) this cursor."""
@@ -1327,6 +1357,11 @@ type CertificationUrl implements Node {
 
   """The hash of all form results at the time the signature was added"""
   formResultsMd5: String
+
+  """
+  Computed column for graphql to traverse to show if the current hash of form
+  results matches the form_results_md5 in certification_url
+  """
   hashMatches: Boolean
 
   """
@@ -7039,7 +7074,13 @@ type FormResult implements Node {
 
   """JSON dump of form data"""
   formResult: JSON!
+
+  """Computed column for graphql to return the status for a form result"""
   formResultStatuses: FormResultStatus
+
+  """
+  Computed column for graphql to return a boolean value for whether a form result has unresolved comments
+  """
   hasUnresolvedComments: Boolean
 
   """
@@ -7047,7 +7088,9 @@ type FormResult implements Node {
   """
   id: ID!
 
-  """Reads and enables pagination through a set of `ReviewComment`."""
+  """
+  Computed column for graphql to return set of internal or general comments for a form result
+  """
   internalGeneralComments(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
@@ -7068,7 +7111,9 @@ type FormResult implements Node {
     offset: Int
   ): ReviewCommentsConnection!
 
-  """Reads and enables pagination through a set of `ReviewComment`."""
+  """
+  Computed column for graphql to return a set of requested change comments for a form result
+  """
   requestedChangeComments(
     """Read all values in the set after (below) this cursor."""
     after: Cursor

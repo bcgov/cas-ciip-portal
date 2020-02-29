@@ -4822,7 +4822,7 @@
             },
             {
               "name": "applicationRevisionStatus",
-              "description": null,
+              "description": "Computed column for graphql to traverse to the latest application_revision_status from application_revision",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -4929,7 +4929,7 @@
             },
             {
               "name": "certificationSignatureIsValid",
-              "description": null,
+              "description": "Computed column for graphql to traverse to show if a signature is valid from application_revision",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -4941,7 +4941,7 @@
             },
             {
               "name": "certificationUrl",
-              "description": null,
+              "description": "Computed column for graphql to traverse to a certification_url row from application_revision",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -5048,7 +5048,7 @@
             },
             {
               "name": "ciipIncentive",
-              "description": "Reads and enables pagination through a set of `CiipIncentiveByProduct`.",
+              "description": "Computed column for graphql to get the ciip incentive calculations from application_revision",
               "args": [
                 {
                   "name": "after",
@@ -5581,7 +5581,7 @@
             },
             {
               "name": "applicationRevisionStatus",
-              "description": null,
+              "description": "Computed column for graphql to traverse to an application_revision_status from application",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -5922,7 +5922,7 @@
             },
             {
               "name": "latestDraftRevision",
-              "description": null,
+              "description": "Computed column for graphql to traverse to the latest application_revision with status \"draft\" from application",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -5934,7 +5934,7 @@
             },
             {
               "name": "latestSubmittedRevision",
-              "description": null,
+              "description": "Computed column for graphql to traverse to the latest application_revision with status \"submitted\" from application",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -5946,7 +5946,7 @@
             },
             {
               "name": "orderedFormResults",
-              "description": "Reads and enables pagination through a set of `FormResult`.",
+              "description": "Computed column for graphql to traverse to a set of form results ordered by the application wizard from application",
               "args": [
                 {
                   "name": "after",
@@ -6023,7 +6023,7 @@
             },
             {
               "name": "previousSubmittedRevision",
-              "description": null,
+              "description": "Computed column for graphql to traverse to the previous application_revision with status \"submitted\" from application",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -14964,7 +14964,7 @@
             },
             {
               "name": "hashMatches",
-              "description": null,
+              "description": "Computed column for graphql to traverse to show if the current hash of form results matches the form_results_md5 in certification_url",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -20125,7 +20125,7 @@
             },
             {
               "name": "formResultStatuses",
-              "description": null,
+              "description": "Computed column for graphql to return the status for a form result",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -20137,7 +20137,7 @@
             },
             {
               "name": "hasUnresolvedComments",
-              "description": null,
+              "description": "Computed column for graphql to return a boolean value for whether a form result has unresolved comments",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -20165,7 +20165,7 @@
             },
             {
               "name": "internalGeneralComments",
-              "description": "Reads and enables pagination through a set of `ReviewComment`.",
+              "description": "Computed column for graphql to return set of internal or general comments for a form result",
               "args": [
                 {
                   "name": "after",
@@ -20232,7 +20232,7 @@
             },
             {
               "name": "requestedChangeComments",
-              "description": "Reads and enables pagination through a set of `ReviewComment`.",
+              "description": "Computed column for graphql to return a set of requested change comments for a form result",
               "args": [
                 {
                   "name": "after",
