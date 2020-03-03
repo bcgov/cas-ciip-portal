@@ -2,7 +2,7 @@
 
 exports[`Form should match the snapshot with the administration form 1`] = `
 <div
-  className="jsx-221230121 "
+  className="jsx-1422928970 "
 >
   <div
     className="row"
@@ -16,7 +16,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
       }
     >
       <h1
-        className="jsx-221230121 form-title"
+        className="jsx-1422928970 form-title"
       >
         Admin
       </h1>
@@ -1353,7 +1353,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
       </div>
     </div>
     <div
-      className="jsx-221230121 form-submit"
+      className="jsx-1422928970 form-submit"
     >
       <div
         className="row"
@@ -1410,7 +1410,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
 
 exports[`Form should match the snapshot with the electricity and heat form 1`] = `
 <div
-  className="jsx-221230121 "
+  className="jsx-1422928970 "
 >
   <div
     className="row"
@@ -1424,7 +1424,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
       }
     >
       <h1
-        className="jsx-221230121 form-title"
+        className="jsx-1422928970 form-title"
       >
         Electricity And Heat
       </h1>
@@ -1695,7 +1695,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
       </div>
     </div>
     <div
-      className="jsx-221230121 form-submit"
+      className="jsx-1422928970 form-submit"
     >
       <div
         className="row"
@@ -1752,7 +1752,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
 
 exports[`Form should match the snapshot with the emission form 1`] = `
 <div
-  className="jsx-221230121 emission-form no-col-padding"
+  className="jsx-1422928970 emission-form no-col-padding"
 >
   <div
     className="row"
@@ -1766,7 +1766,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
       }
     >
       <h1
-        className="jsx-221230121 form-title"
+        className="jsx-1422928970 form-title"
       >
         Emission
       </h1>
@@ -2361,7 +2361,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
       </div>
     </div>
     <div
-      className="jsx-221230121 form-submit"
+      className="jsx-1422928970 form-submit"
     >
       <div
         className="row"
