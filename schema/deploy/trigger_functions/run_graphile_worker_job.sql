@@ -124,10 +124,10 @@ begin
         perform ggircs_portal_private.graphile_worker_job_definer('sendMail',
               json_build_object(
                 'type', 'signed_by_certifier',
-                'reporterEmail', application_details.email_address,
+                'email', application_details.email_address,
                 'firstName', application_details.first_name,
                 'lastName', application_details.last_name,
-                'email', new.certification_request_sent_to,
+                'certifierEmail', new.certification_request_sent_to,
                 'facilityName', application_details.facility_name,
                 'operatorName', application_details.operator_name,
                 'certifierFirstName', certifier_details.first_name,

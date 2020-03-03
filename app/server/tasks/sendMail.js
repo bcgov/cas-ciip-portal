@@ -3,6 +3,7 @@ const createWelcomeMail = require('../emailTemplates/welcome.js');
 const createConfirmationMail = require('../emailTemplates/confirmation.js');
 const createAmendmentMail = require('../emailTemplates/amendment.js');
 const createCertificationRequestMail = require('../emailTemplates/certificationRequest.js');
+const createSignedByCertifierMail = require('../emailTemplates/signedByCertifier.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -15,8 +16,8 @@ module.exports = async ({
   operatorName,
   status,
   reporterEmail,
-  // CertifierFirstName,
-  // certifierLastName,
+  certifierFirstName,
+  certifierLastName,
   certifierUrl
 }) => {
   if (!process.env.SMTP_CONNECTION_STRING)
@@ -72,6 +73,20 @@ module.exports = async ({
         operatorName,
         reporterEmail,
         certifierUrl
+      });
+      break;
+    // Certifier signs application
+    case 'signed_by_certifier':
+      subject = 'CIIP application certified';
+      htmlContent = createSignedByCertifierMail({
+        reporterEmail,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName,
+        email,
+        certifierFirstName,
+        certifierLastName
       });
       break;
     default:

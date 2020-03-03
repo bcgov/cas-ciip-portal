@@ -14866,7 +14866,7 @@
             },
             {
               "name": "certificationRequestSentAt",
-              "description": null,
+              "description": "The time at which the certification request was sent",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -14878,7 +14878,7 @@
             },
             {
               "name": "certificationRequestSentTo",
-              "description": null,
+              "description": "The email that the certification request was sent to",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -14926,7 +14926,7 @@
             },
             {
               "name": "certifierUrl",
-              "description": null,
+              "description": "The URL sent to the certifier",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -31502,7 +31502,7 @@
             },
             {
               "name": "certificationRequestSentAt",
-              "description": null,
+              "description": "The time at which the certification request was sent",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -31512,7 +31512,7 @@
             },
             {
               "name": "certificationRequestSentTo",
-              "description": null,
+              "description": "The email that the certification request was sent to",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -31552,7 +31552,7 @@
             },
             {
               "name": "certifierUrl",
-              "description": null,
+              "description": "The URL sent to the certifier",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -41905,7 +41905,7 @@
             },
             {
               "name": "certificationRequestSentAt",
-              "description": null,
+              "description": "The time at which the certification request was sent",
               "type": {
                 "kind": "SCALAR",
                 "name": "Datetime",
@@ -41915,7 +41915,7 @@
             },
             {
               "name": "certificationRequestSentTo",
-              "description": null,
+              "description": "The email that the certification request was sent to",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -41955,7 +41955,7 @@
             },
             {
               "name": "certifierUrl",
-              "description": null,
+              "description": "The URL sent to the certifier",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",

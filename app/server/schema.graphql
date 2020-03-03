@@ -1318,7 +1318,11 @@ type CertificationUrl implements Node {
   Reads a single `ApplicationRevision` that is related to this `CertificationUrl`.
   """
   applicationRevisionByApplicationIdAndVersionNumber: ApplicationRevision
+
+  """The time at which the certification request was sent"""
   certificationRequestSentAt: Datetime
+
+  """The email that the certification request was sent to"""
   certificationRequestSentTo: String
 
   """The base64 representation of the certifier's signature"""
@@ -1329,6 +1333,8 @@ type CertificationUrl implements Node {
 
   """The user id of the certifier references ggircs_portal.ciip_user"""
   certifiedBy: Int
+
+  """The URL sent to the certifier"""
   certifierUrl: String
 
   """Reads a single `CiipUser` that is related to this `CertificationUrl`."""
@@ -1452,7 +1458,11 @@ input CertificationUrlCondition {
 input CertificationUrlInput {
   """Foreign key to the application"""
   applicationId: Int!
+
+  """The time at which the certification request was sent"""
   certificationRequestSentAt: Datetime
+
+  """The email that the certification request was sent to"""
   certificationRequestSentTo: String
 
   """The base64 representation of the certifier's signature"""
@@ -1463,6 +1473,8 @@ input CertificationUrlInput {
 
   """The user id of the certifier references ggircs_portal.ciip_user"""
   certifiedBy: Int
+
+  """The URL sent to the certifier"""
   certifierUrl: String
 
   """Creation date of row"""
@@ -1504,7 +1516,11 @@ Represents an update to a `CertificationUrl`. Fields that are set will be update
 input CertificationUrlPatch {
   """Foreign key to the application"""
   applicationId: Int
+
+  """The time at which the certification request was sent"""
   certificationRequestSentAt: Datetime
+
+  """The email that the certification request was sent to"""
   certificationRequestSentTo: String
 
   """The base64 representation of the certifier's signature"""
@@ -1515,6 +1531,8 @@ input CertificationUrlPatch {
 
   """The user id of the certifier references ggircs_portal.ciip_user"""
   certifiedBy: Int
+
+  """The URL sent to the certifier"""
   certifierUrl: String
 
   """Creation date of row"""
