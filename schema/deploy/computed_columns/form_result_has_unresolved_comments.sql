@@ -21,4 +21,6 @@ begin;
 
   grant execute on function ggircs_portal.form_result_has_unresolved_comments to ciip_administrator, ciip_analyst, ciip_industry_user;
 
+comment on function ggircs_portal.form_result_has_unresolved_comments is 'Computed column for graphql to return a boolean value for whether a form result has unresolved comments';
+
 commit;

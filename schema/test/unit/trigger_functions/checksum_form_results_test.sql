@@ -41,10 +41,11 @@ select results_eq(
   'form_result status should default to in review'
 );
 
-update ggircs_portal.application_revision_status
-  set application_revision_status = 'submitted'
-  where application_id = (select max(id) from ggircs_portal.application)
-  and version_number = 1;
+insert into ggircs_portal.certification_url(application_id, version_number, certification_signature)
+values ((select max(id) from ggircs_portal.application), 1, 'signed');
+insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
+values ((select max(id) from ggircs_portal.application), 1, 'submitted');
+
 
 -- Test trigger doesn't run when it shouldn't
 select results_eq(
@@ -68,10 +69,11 @@ update ggircs_portal.form_result
   and version_number = 2;
 
 -- Activate trigger by updating status
-update ggircs_portal.application_revision_status
-  set application_revision_status = 'submitted'
-  where application_id = (select max(id) from ggircs_portal.application)
-  and version_number = 2;
+insert into ggircs_portal.certification_url(application_id, version_number, certification_signature)
+values ((select max(id) from ggircs_portal.application), 2, 'signed');
+insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
+values ((select max(id) from ggircs_portal.application), 2, 'submitted');
+
 
 -- Test trigger
 select results_eq(

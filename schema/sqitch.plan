@@ -4,6 +4,7 @@
 
 schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a schema for the GGIRCS Industry Portal (GIP)
 schema_ggircs_portal_private 2020-02-04T19:34:27Z Dylan Leard <dylan@button.is> # Private schema for entities needed in the portal that should not be exposed to the API
+database_functions/graphile_worker_job_definer [schema_ggircs_portal_private] 2020-02-28T23:07:39Z Dylan Leard <dylan@button.is> # Wrapper for graphile_worker.add_job to run as security definer
 database_functions/create_roles [schema_ggircs_portal_private] 2020-01-27T21:15:42Z Dylan Leard <dylan@button.is> # Adds the roles necessary for row level security
 database_functions/verify_grant [schema_ggircs_portal_private] 2020-01-31T21:31:38Z Dylan Leard <dylan@button.is> # Function verifies the granted permissions a role has on tables & columns
 database_functions/verify_policy [schema_ggircs_portal_private] 2020-02-03T17:44:49Z Dylan Leard <dylan@button.is> # Function verifies the row level security policies attached to a table
@@ -37,8 +38,10 @@ tables/ciip_user_organisation [schema_ggircs_portal tables/ciip_user tables/orga
 tables/facility [schema_ggircs_portal tables/organisation] 2019-10-11T18:47:49Z Hamza Javed <hamza@button.is> # Facility data for CIIP
 tables/application [schema_ggircs_portal trigger_functions/update_timestamps] 2019-10-11T18:09:42Z Dylan Leard <dylan@button.is> # Application table
 tables/application_revision [tables/application] 2019-12-12T00:21:28Z Dylan Leard <dylan@button.is> # Table contains versioning data for application revisions
+trigger_functions/signature_md5 [schema_ggircs_portal_private] 2020-02-25T18:43:40Z Dylan Leard <dylan@button.is> # Trigger function creates (on insert) or compares(on update) form_result md5 hash
 tables/form_json [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-24T20:00:52Z Hamza Javed <hamza@button.is> # Table for the survey js forms (in JSON)
 tables/form_result [schema_ggircs_portal trigger_functions/update_timestamps tables/form_json] 2019-07-24T22:44:27Z Hamza Javed <hamza@button.is> # A place to store all the form results
+function_current_form_result_md5 [tables/form_result] 2020-02-26T18:42:47Z Dylan Leard <dylan@button.is> # Function computes the current md5 hash of the concactenated form results
 types/facility_search_result [schema_ggircs_portal] 2019-12-11T21:41:41Z Helen Liu <helen@button.is> # added return type for search all facilities function
 tables/application_revision_status [schema_ggircs_portal trigger_functions/update_timestamps tables/application_revision trigger_functions/ensure_window_open_submit_application_status] 2019-08-29T19:42:02Z Dylan Leard <dylan@button.is> # add table application_revision_status to schema ggircs_portal
 views/ciip_fuel [tables/form_result] 2019-08-19T22:26:15Z Hamza Javed <hamza@button.is> # View for fuels reported in CIIP application
@@ -87,3 +90,6 @@ mutations/create_review_comment_mutation_chain [tables/review_comment tables/for
 computed_columns/form_result_form_result_statuses [tables/form_result tables/form_result_status] 2020-01-17T19:01:37Z Dylan Leard <dylan@button.is> # Computed column gets all form result statuses for a form result by application_id and form_id
 types/ciip_incentive_by_product [schema_ggircs_portal] 2020-02-05T00:27:23Z Hamza Javed <hamza@button.is> # Return type for the ciip_incentive_payment function
 computed_columns/application_revision_ciip_incentive [tables/benchmark views/ciip_production views/ciip_electricity_and_heat types/ciip_incentive_by_product] 2020-02-03T22:17:13Z Hamza Javed <hamza@button.is> # Function for calculating incentive payout per product
+computed_columns/application_revision_certification_url [tables/certification_url] 2020-02-25T22:55:30Z Dylan Leard <dylan@button.is> # Computed column to retrieve the current certification url associated with the revision
+computed_columns/certification_url_hash_matches [function_current_form_result_md5 tables/certification_url] 2020-02-26T21:55:34Z Dylan Leard <dylan@button.is> # Computed column(boolean) on certification_url that checks if the current md5 hash of all form_results = the form_results_md5 column in certification_url
+computed_columns/application_revision_certification_signature_is_valid [tables/application_revision function_current_form_result_md5] 2020-02-26T22:47:00Z Dylan Leard <dylan@button.is> # Computed column(boolean) on application_revision to show validity of certification signature

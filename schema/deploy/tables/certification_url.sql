@@ -6,6 +6,11 @@ begin;
 create table ggircs_portal.certification_url (
   id varchar(1000) primary key,
   application_id int not null references ggircs_portal.application(id),
+  version_number int not null,
+  certification_signature bytea,
+  certified_by int references ggircs_portal.ciip_user,
+  certified_at timestamp with time zone,
+  form_results_md5 bytea,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
@@ -14,7 +19,8 @@ create table ggircs_portal.certification_url (
   deleted_by int references ggircs_portal.ciip_user,
   -- TODO(Dylan): revisit expiry / deprecation of generated URLs in the context of Authorization
   -- Should we allow creation of multiple URLs, should the previous ones be deprecated in that case?...etc
-  expires_at timestamp with time zone not null default now()
+  expires_at timestamp with time zone not null default now(),
+  foreign key (application_id, version_number) references ggircs_portal.application_revision(application_id, version_number)
 );
 
 create trigger _random_id
@@ -33,6 +39,21 @@ create trigger _set_expiry
   for each row
   execute procedure ggircs_portal.set_expiry('7 days');
 
+create trigger _create_form_result_md5
+  before insert on ggircs_portal.certification_url
+  for each row
+  execute procedure ggircs_portal_private.signature_md5();
+
+create trigger _check_form_result_md5
+  before update of certification_signature on ggircs_portal.certification_url
+  for each row
+  execute procedure ggircs_portal_private.signature_md5();
+
+create trigger _set_user_id
+  before update of certification_signature on ggircs_portal.certification_url
+  for each row
+  execute procedure ggircs_portal.set_user_id('certification_url');
+
 do
 $grant$
 begin
@@ -46,6 +67,7 @@ perform ggircs_portal_private.grant_permissions('select', 'certification_url', '
 -- Grant ciip_industry_user permissions
 perform ggircs_portal_private.grant_permissions('select', 'certification_url', 'ciip_industry_user');
 perform ggircs_portal_private.grant_permissions('insert', 'certification_url', 'ciip_industry_user');
+perform ggircs_portal_private.grant_permissions('update', 'certification_url', 'ciip_industry_user', ARRAY['certification_signature']);
 
 -- Grant ciip_guest permissions
 -- ?
@@ -87,6 +109,7 @@ industry_user_statement := 'application_id in (select ggircs_portal_private.get_
 -- ciip_industry_user RLS
 perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_certification_url', 'certification_url', 'select', 'ciip_industry_user', industry_user_statement);
 perform ggircs_portal_private.upsert_policy('ciip_industry_user_insert_certification_url', 'certification_url', 'insert', 'ciip_industry_user', industry_user_statement);
+perform ggircs_portal_private.upsert_policy('ciip_industry_user_update_certification_url', 'certification_url', 'update', 'ciip_industry_user', industry_user_statement);
 
 end
 $policy$;
@@ -94,6 +117,11 @@ $policy$;
 comment on table ggircs_portal.certification_url is 'Table containing the certification_url for an application';
 comment on column ggircs_portal.certification_url.id is 'Unique ID for the certification_url';
 comment on column ggircs_portal.certification_url.application_id is 'Foreign key to the application';
+comment on column ggircs_portal.certification_url.version_number is 'The version number of the application (foreign key to application_revision along with application_id)';
+comment on column ggircs_portal.certification_url.certification_signature is 'The base64 representation of the certifier''s signature';
+comment on column ggircs_portal.certification_url.certified_by is 'The user id of the certifier references ggircs_portal.ciip_user';
+comment on column ggircs_portal.certification_url.certified_at is 'The timestamp of when the signature was added';
+comment on column ggircs_portal.certification_url.form_results_md5 is 'The hash of all form results at the time the signature was added';
 comment on column ggircs_portal.certification_url.created_at is 'Creation date of row';
 comment on column ggircs_portal.certification_url.created_by is 'Creator of row';
 comment on column ggircs_portal.certification_url.updated_at is 'Last update date of row';

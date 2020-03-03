@@ -68,11 +68,13 @@ select has_trigger('ggircs_portal', 'application_revision_status', '_checksum_fo
 create role test_superuser superuser;
 
 -- Test setup
+-- Triggers are disabled as we are only testing in the scope of row level security
 set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
 alter table ggircs_portal.ciip_user_organisation
   disable trigger _set_user_id;
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
+alter table ggircs_portal.application_revision_status disable trigger _check_certification_signature_md5;
 
 -- User 999 has access to application_revision 999, but not application_revision 1000
 insert into ggircs_portal.ciip_user(id, uuid) overriding system value

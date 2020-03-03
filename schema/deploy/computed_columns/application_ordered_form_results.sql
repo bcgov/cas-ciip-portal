@@ -27,4 +27,6 @@ begin;
 
   grant execute on function ggircs_portal.application_ordered_form_results to ciip_administrator, ciip_analyst, ciip_industry_user;
 
+comment on function ggircs_portal.application_ordered_form_results is 'Computed column for graphql to traverse to a set of form results ordered by the application wizard from application';
+
 commit;

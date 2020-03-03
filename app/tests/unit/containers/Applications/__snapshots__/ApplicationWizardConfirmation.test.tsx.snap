@@ -19,7 +19,9 @@ exports[`The Confirmation Component match the snapshot 1`] = `
         " $refType": "ApplicationWizardConfirmation_application",
         "id": "abc",
         "latestDraftRevision": Object {
-          "certificationSignature": undefined,
+          "certificationSignatureIsValid": false,
+          "certificationUrl": undefined,
+          "versionNumber": 1,
         },
         "rowId": 1,
       }
@@ -91,5 +93,51 @@ exports[`The Confirmation Component match the snapshot 1`] = `
       />
     </Col>
   </ForwardRef>
+</Fragment>
+`;
+
+exports[`The Confirmation Component should show a certifier has not yet signed message when hashMatches is true but certificationSignature is null 1`] = `
+<Fragment>
+  <h1>
+    Summary of your application:
+  </h1>
+  <h5>
+    Please review the information you have provided before continuing.
+  </h5>
+  <br />
+  <Relay(ApplicationDetailsComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "certificationSignatureIsValid": false,
+          "certificationUrl": Object {
+            "certificationSignature": undefined,
+            "hashMatches": true,
+          },
+          "versionNumber": 1,
+        },
+        "rowId": 1,
+      }
+    }
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_query": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_query",
+      }
+    }
+    review={false}
+  />
+  <br />
+  <h5>
+    Your application has been sent to a certifier. Submission will be possible once they have verified the data in the application.
+  </h5>
 </Fragment>
 `;

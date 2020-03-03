@@ -11,10 +11,13 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           latestDraftRevision: {
             id: 'abc',
-            certificationSignature: undefined
-          },
-          applicationRevisionStatus: {
-            id: 'def'
+            applicationId: 1,
+            versionNumber: 1,
+            certificationSignatureIsValid: false,
+            certificationUrl: {
+              id: 'abc',
+              certificationSignature: undefined
+            }
           }
         }}
         relay={null}
@@ -31,10 +34,13 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           latestDraftRevision: {
             id: 'abc',
-            certificationSignature: undefined
-          },
-          applicationRevisionStatus: {
-            id: 'def'
+            applicationId: 1,
+            versionNumber: 1,
+            certificationSignatureIsValid: false,
+            certificationUrl: {
+              id: 'abc',
+              certificationSignature: undefined
+            }
           }
         }}
         relay={null}
@@ -56,10 +62,13 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           latestDraftRevision: {
             id: 'abc',
-            certificationSignature: 'signed'
-          },
-          applicationRevisionStatus: {
-            id: 'def'
+            applicationId: 1,
+            versionNumber: 1,
+            certificationSignatureIsValid: true,
+            certificationUrl: {
+              id: 'abc',
+              certificationSignature: 'signed'
+            }
           }
         }}
         relay={null}

@@ -12,7 +12,7 @@ begin
     -- **ON NEW USER REGISTRATION**
     -- Send welcome email after registering for CIIP program
     when tg_argv[0]='welcome' then
-      perform graphile_worker.add_job('sendMail', json_build_object('type', tg_argv[0], 'firstName', new.first_name, 'lastName', new.last_name, 'email', new.email_address));
+      perform ggircs_portal_private.graphile_worker_job_definer('sendMail', json_build_object('type', tg_argv[0], 'firstName', new.first_name, 'lastName', new.last_name, 'email', new.email_address));
       return new;
 
     -- **ON APPLICATION REVISION STATUS CHANGE**
@@ -55,7 +55,7 @@ begin
       end case;
 
       -- Assign worker to the sendMail task
-      perform graphile_worker.add_job('sendMail',
+      perform ggircs_portal_private.graphile_worker_job_definer('sendMail',
             json_build_object(
               'type', status_change_type,
               'firstName', application_details.first_name,
@@ -67,8 +67,8 @@ begin
       return new;
   end case;
 end;
--- TODO: Evaluate whether this needs to be a security definer
--- Set as security definer as roles & grants are created before the graphile_worker schema (created on application start)
-$$ language plpgsql volatile security definer;
+$$ language plpgsql volatile;
+
+comment on function ggircs_portal_private.run_graphile_worker_job is 'Trigger function runs a graphile-worker job upon being called';
 
 commit;

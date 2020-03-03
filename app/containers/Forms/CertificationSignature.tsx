@@ -2,8 +2,8 @@ import React, {useRef} from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SignaturePad from 'react-signature-canvas';
 import {Button, Container, Row, Col} from 'react-bootstrap';
-import updateApplicationRevisionMutation from 'mutations/application/updateApplicationRevisionMutation';
 import {CertificationSignature_application} from 'CertificationSignature_application.graphql';
+import updateCertificationUrlMutation from 'mutations/form/updateCertificationUrlMutation';
 
 interface Props {
   application: CertificationSignature_application;
@@ -32,13 +32,13 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
     const {environment} = props.relay;
     const variables = {
       input: {
-        id: props.application.latestDraftRevision.id,
-        applicationRevisionPatch: {
+        id: props.application.latestDraftRevision.certificationUrl.id,
+        certificationUrlPatch: {
           certificationSignature: signature
         }
       }
     };
-    const response = await updateApplicationRevisionMutation(
+    const response = await updateCertificationUrlMutation(
       environment,
       variables
     );
@@ -58,7 +58,8 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
       </Row>
       <Row>
         <Col md={6}>
-          {props.application.latestDraftRevision.certificationSignature ? (
+          {props.application.latestDraftRevision
+            .certificationSignatureIsValid ? (
             <span style={{color: 'green'}}>Signed Successfully!</span>
           ) : (
             <input
@@ -69,9 +70,8 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
           )}
         </Col>
         <Col md={{span: 3, offset: 2}}>
-          {props.application.latestDraftRevision.certificationSignature ? (
-            <></>
-          ) : (
+          {(!props.application.latestDraftRevision
+            .certificationSignatureIsValid && (
             <>
               <Button
                 variant="success"
@@ -84,7 +84,7 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
                 Clear
               </Button>
             </>
-          )}
+          )) || <></>}
         </Col>
       </Row>
       <style jsx global>
@@ -107,7 +107,13 @@ export default createFragmentContainer(CertificationSignatureComponent, {
       id
       latestDraftRevision {
         id
-        certificationSignature
+        applicationId
+        versionNumber
+        certificationSignatureIsValid
+        certificationUrl {
+          id
+          certificationSignature
+        }
       }
     }
   `

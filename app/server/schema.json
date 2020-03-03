@@ -4414,16 +4414,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationSignature",
-              "description": "Checks for equality with the object’s `certificationSignature` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "createdAt",
               "description": "Checks for equality with the object’s `createdAt` field.",
               "type": {
@@ -4494,16 +4484,6 @@
               "defaultValue": null
             },
             {
-              "name": "userId",
-              "description": "Checks for equality with the object’s `userId` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "versionNumber",
               "description": "Checks for equality with the object’s `versionNumber` field.",
               "type": {
@@ -4522,16 +4502,6 @@
           "kind": "SCALAR",
           "name": "Int",
           "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "String",
-          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -4574,18 +4544,6 @@
             },
             {
               "name": "APPLICATION_ID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "CERTIFICATION_SIGNATURE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "CERTIFICATION_SIGNATURE_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -4688,18 +4646,6 @@
             },
             {
               "name": "UPDATED_BY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "USER_ID_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "USER_ID_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -4876,7 +4822,7 @@
             },
             {
               "name": "applicationRevisionStatus",
-              "description": null,
+              "description": "Computed column for graphql to traverse to the latest application_revision_status from application_revision",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -4982,20 +4928,127 @@
               "deprecationReason": null
             },
             {
-              "name": "certificationSignature",
-              "description": "The base64 representation of the certifier's signature",
+              "name": "certificationSignatureIsValid",
+              "description": "Computed column for graphql to traverse to show if a signature is valid from application_revision",
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Boolean",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
+              "name": "certificationUrl",
+              "description": "Computed column for graphql to traverse to a certification_url row from application_revision",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CertificationUrl",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "certificationUrlsByApplicationIdAndVersionNumber",
+              "description": "Reads and enables pagination through a set of `CertificationUrl`.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": "Read all values in the set after (below) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Read all values in the set before (above) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "condition",
+                  "description": "A condition to be used in determining which values should be returned by the collection.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "CertificationUrlCondition",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": "Only read the first `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Only read the last `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "offset",
+                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `CertificationUrl`.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "CertificationUrlsOrderBy",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CertificationUrlsConnection",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "ciipIncentive",
-              "description": "Reads and enables pagination through a set of `CiipIncentiveByProduct`.",
+              "description": "Computed column for graphql to get the ciip incentive calculations from application_revision",
               "args": [
                 {
                   "name": "after",
@@ -5181,18 +5234,6 @@
             },
             {
               "name": "ciipUserByUpdatedBy",
-              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
               "args": [],
               "type": {
@@ -5411,18 +5452,6 @@
               "deprecationReason": null
             },
             {
-              "name": "userId",
-              "description": "The certifier's user id, references ciip_user",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "versionNumber",
               "description": "The version number of the revision, also part of the composite primary key with application_id",
               "args": [],
@@ -5552,7 +5581,7 @@
             },
             {
               "name": "applicationRevisionStatus",
-              "description": null,
+              "description": "Computed column for graphql to traverse to an application_revision_status from application",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -5893,7 +5922,7 @@
             },
             {
               "name": "latestDraftRevision",
-              "description": null,
+              "description": "Computed column for graphql to traverse to the latest application_revision with status \"draft\" from application",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -5905,7 +5934,7 @@
             },
             {
               "name": "latestSubmittedRevision",
-              "description": null,
+              "description": "Computed column for graphql to traverse to the latest application_revision with status \"submitted\" from application",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -5917,7 +5946,7 @@
             },
             {
               "name": "orderedFormResults",
-              "description": "Reads and enables pagination through a set of `FormResult`.",
+              "description": "Computed column for graphql to traverse to a set of form results ordered by the application wizard from application",
               "args": [
                 {
                   "name": "after",
@@ -5994,7 +6023,7 @@
             },
             {
               "name": "previousSubmittedRevision",
-              "description": null,
+              "description": "Computed column for graphql to traverse to the previous application_revision with status \"submitted\" from application",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -6704,101 +6733,6 @@
               "deprecationReason": null
             },
             {
-              "name": "applicationRevisionsByUserId",
-              "description": "Reads and enables pagination through a set of `ApplicationRevision`.",
-              "args": [
-                {
-                  "name": "after",
-                  "description": "Read all values in the set after (below) this cursor.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Cursor",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "before",
-                  "description": "Read all values in the set before (above) this cursor.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Cursor",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "condition",
-                  "description": "A condition to be used in determining which values should be returned by the collection.",
-                  "type": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "ApplicationRevisionCondition",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "first",
-                  "description": "Only read the first `n` values of the set.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "last",
-                  "description": "Only read the last `n` values of the set.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "offset",
-                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "orderBy",
-                  "description": "The method to use when ordering `ApplicationRevision`.",
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "ENUM",
-                        "name": "ApplicationRevisionsOrderBy",
-                        "ofType": null
-                      }
-                    }
-                  },
-                  "defaultValue": "[PRIMARY_KEY_ASC]"
-                }
-              ],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ApplicationRevisionsConnection",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "applicationRevisionStatusesByCreatedBy",
               "description": "Reads and enables pagination through a set of `ApplicationRevisionStatus`.",
               "args": [
@@ -7362,6 +7296,101 @@
                 "ofType": {
                   "kind": "OBJECT",
                   "name": "BenchmarksConnection",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "certificationUrlsByCertifiedBy",
+              "description": "Reads and enables pagination through a set of `CertificationUrl`.",
+              "args": [
+                {
+                  "name": "after",
+                  "description": "Read all values in the set after (below) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Read all values in the set before (above) this cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "condition",
+                  "description": "A condition to be used in determining which values should be returned by the collection.",
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "CertificationUrlCondition",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "first",
+                  "description": "Only read the first `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Only read the last `n` values of the set.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "offset",
+                  "description": "Skip the first `n` values from our `after` cursor, an alternative to cursor based pagination. May not be used with `last`.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "orderBy",
+                  "description": "The method to use when ordering `CertificationUrl`.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "ENUM",
+                        "name": "CertificationUrlsOrderBy",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": "[PRIMARY_KEY_ASC]"
+                }
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CertificationUrlsConnection",
                   "ofType": null
                 }
               },
@@ -12969,6 +12998,16 @@
           "possibleTypes": null
         },
         {
+          "kind": "SCALAR",
+          "name": "String",
+          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "OBJECT",
           "name": "ProductForm",
           "description": "The table that holds the custom form schemas and calculation formulas for complex products",
@@ -14261,6 +14300,36 @@
               "defaultValue": null
             },
             {
+              "name": "certificationSignature",
+              "description": "Checks for equality with the object’s `certificationSignature` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifiedAt",
+              "description": "Checks for equality with the object’s `certifiedAt` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifiedBy",
+              "description": "Checks for equality with the object’s `certifiedBy` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "createdAt",
               "description": "Checks for equality with the object’s `createdAt` field.",
               "type": {
@@ -14311,6 +14380,16 @@
               "defaultValue": null
             },
             {
+              "name": "formResultsMd5",
+              "description": "Checks for equality with the object’s `formResultsMd5` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
               "type": {
@@ -14339,6 +14418,16 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "versionNumber",
+              "description": "Checks for equality with the object’s `versionNumber` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -14361,6 +14450,42 @@
             },
             {
               "name": "APPLICATION_ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFICATION_SIGNATURE_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFICATION_SIGNATURE_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFIED_AT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFIED_AT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFIED_BY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFIED_BY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -14426,6 +14551,18 @@
               "deprecationReason": null
             },
             {
+              "name": "FORM_RESULTS_MD5_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FORM_RESULTS_MD5_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "ID_ASC",
               "description": null,
               "isDeprecated": false,
@@ -14475,6 +14612,18 @@
             },
             {
               "name": "UPDATED_BY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "VERSION_NUMBER_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "VERSION_NUMBER_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -14638,6 +14787,66 @@
               "deprecationReason": null
             },
             {
+              "name": "applicationRevisionByApplicationIdAndVersionNumber",
+              "description": "Reads a single `ApplicationRevision` that is related to this `CertificationUrl`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ApplicationRevision",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "certificationSignature",
+              "description": "The base64 representation of the certifier's signature",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "certifiedAt",
+              "description": "The timestamp of when the signature was added",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "certifiedBy",
+              "description": "The user id of the certifier references ggircs_portal.ciip_user",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ciipUserByCertifiedBy",
+              "description": "Reads a single `CiipUser` that is related to this `CertificationUrl`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipUser",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "ciipUserByCreatedBy",
               "description": "Reads a single `CiipUser` that is related to this `CertificationUrl`.",
               "args": [],
@@ -14742,6 +14951,30 @@
               "deprecationReason": null
             },
             {
+              "name": "formResultsMd5",
+              "description": "The hash of all form results at the time the signature was added",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "hashMatches",
+              "description": "Computed column for graphql to traverse to show if the current hash of form results matches the form_results_md5 in certification_url",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "id",
               "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
               "args": [],
@@ -14797,6 +15030,22 @@
                 "kind": "SCALAR",
                 "name": "Int",
                 "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "versionNumber",
+              "description": "The version number of the application (foreign key to application_revision along with application_id)",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -19876,7 +20125,7 @@
             },
             {
               "name": "formResultStatuses",
-              "description": null,
+              "description": "Computed column for graphql to return the status for a form result",
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -19888,7 +20137,7 @@
             },
             {
               "name": "hasUnresolvedComments",
-              "description": null,
+              "description": "Computed column for graphql to return a boolean value for whether a form result has unresolved comments",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -19916,7 +20165,7 @@
             },
             {
               "name": "internalGeneralComments",
-              "description": "Reads and enables pagination through a set of `ReviewComment`.",
+              "description": "Computed column for graphql to return set of internal or general comments for a form result",
               "args": [
                 {
                   "name": "after",
@@ -19983,7 +20232,7 @@
             },
             {
               "name": "requestedChangeComments",
-              "description": "Reads and enables pagination through a set of `ReviewComment`.",
+              "description": "Computed column for graphql to return a set of requested change comments for a form result",
               "args": [
                 {
                   "name": "after",
@@ -27093,7 +27342,7 @@
             },
             {
               "name": "currentTimestamp",
-              "description": "Returns the current date and time with time zone.\nThis should be used instead of the native current_timestamp function to allow for mocking in test and development settings",
+              "description": "Calculates the md5 hash in bytea format of the concactenated form results for an application revision",
               "args": [
                 {
                   "name": "input",
@@ -29838,16 +30087,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationSignature",
-              "description": "The base64 representation of the certifier's signature",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "createdAt",
               "description": "The date the application revision status was updated",
               "type": {
@@ -29910,16 +30149,6 @@
             {
               "name": "updatedBy",
               "description": "The person who updated the application revision status",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "userId",
-              "description": "The certifier's user id, references ciip_user",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -30032,18 +30261,6 @@
             },
             {
               "name": "ciipUserByUpdatedBy",
-              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
               "args": [],
               "type": {
@@ -30219,18 +30436,6 @@
             },
             {
               "name": "ciipUserByUpdatedBy",
-              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
               "args": [],
               "type": {
@@ -31194,6 +31399,36 @@
               "defaultValue": null
             },
             {
+              "name": "certificationSignature",
+              "description": "The base64 representation of the certifier's signature",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifiedAt",
+              "description": "The timestamp of when the signature was added",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifiedBy",
+              "description": "The user id of the certifier references ggircs_portal.ciip_user",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "createdAt",
               "description": "Creation date of row",
               "type": {
@@ -31244,6 +31479,16 @@
               "defaultValue": null
             },
             {
+              "name": "formResultsMd5",
+              "description": "The hash of all form results at the time the signature was added",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "rowId",
               "description": "Unique ID for the certification_url",
               "type": {
@@ -31276,6 +31521,20 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "versionNumber",
+              "description": "The version number of the application (foreign key to application_revision along with application_id)",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -31294,6 +31553,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Application",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "applicationRevisionByApplicationIdAndVersionNumber",
+              "description": "Reads a single `ApplicationRevision` that is related to this `CertificationUrl`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ApplicationRevision",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -31337,6 +31608,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CertificationUrlsEdge",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ciipUserByCertifiedBy",
+              "description": "Reads a single `CiipUser` that is related to this `CertificationUrl`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipUser",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -35871,18 +36154,6 @@
               "deprecationReason": null
             },
             {
-              "name": "ciipUserByUserId",
-              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "clientMutationId",
               "description": "The exact same `clientMutationId` that was provided in the mutation input, unchanged and unused. May be used by a client to track mutations.",
               "args": [],
@@ -36466,6 +36737,18 @@
               "deprecationReason": null
             },
             {
+              "name": "applicationRevisionByApplicationIdAndVersionNumber",
+              "description": "Reads a single `ApplicationRevision` that is related to this `CertificationUrl`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ApplicationRevision",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "certificationUrl",
               "description": "The `CertificationUrl` that was deleted by this mutation.",
               "args": [],
@@ -36503,6 +36786,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CertificationUrlsEdge",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ciipUserByCertifiedBy",
+              "description": "Reads a single `CiipUser` that is related to this `CertificationUrl`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipUser",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -40404,16 +40699,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationSignature",
-              "description": "The base64 representation of the certifier's signature",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "createdAt",
               "description": "The date the application revision status was updated",
               "type": {
@@ -40476,16 +40761,6 @@
             {
               "name": "updatedBy",
               "description": "The person who updated the application revision status",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "userId",
-              "description": "The certifier's user id, references ciip_user",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -40594,18 +40869,6 @@
             },
             {
               "name": "ciipUserByUpdatedBy",
-              "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "CiipUser",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ciipUserByUserId",
               "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
               "args": [],
               "type": {
@@ -41509,6 +41772,36 @@
               "defaultValue": null
             },
             {
+              "name": "certificationSignature",
+              "description": "The base64 representation of the certifier's signature",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifiedAt",
+              "description": "The timestamp of when the signature was added",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifiedBy",
+              "description": "The user id of the certifier references ggircs_portal.ciip_user",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "createdAt",
               "description": "Creation date of row",
               "type": {
@@ -41559,6 +41852,16 @@
               "defaultValue": null
             },
             {
+              "name": "formResultsMd5",
+              "description": "The hash of all form results at the time the signature was added",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "rowId",
               "description": "Unique ID for the certification_url",
               "type": {
@@ -41587,6 +41890,16 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "versionNumber",
+              "description": "The version number of the application (foreign key to application_revision along with application_id)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -41605,6 +41918,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "Application",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "applicationRevisionByApplicationIdAndVersionNumber",
+              "description": "Reads a single `ApplicationRevision` that is related to this `CertificationUrl`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ApplicationRevision",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -41648,6 +41973,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CertificationUrlsEdge",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ciipUserByCertifiedBy",
+              "description": "Reads a single `CiipUser` that is related to this `CertificationUrl`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CiipUser",
                 "ofType": null
               },
               "isDeprecated": false,

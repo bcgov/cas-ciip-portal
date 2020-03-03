@@ -23,4 +23,6 @@ $function$
 
 grant execute on function ggircs_portal.application_revision_application_revision_status to ciip_administrator, ciip_analyst, ciip_industry_user;
 
+comment on function ggircs_portal.application_revision_application_revision_status is 'Computed column for graphql to traverse to the latest application_revision_status from application_revision';
+
 commit;

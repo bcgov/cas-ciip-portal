@@ -22,24 +22,28 @@ create table ggircs_portal.application_revision_status (
 create index ggircs_portal_application_revision_status_foreign_key on ggircs_portal.application_revision_status(application_id, version_number);
 
 create trigger _ensure_window_open
-  before insert or update on ggircs_portal.application_revision_status
+  before insert on ggircs_portal.application_revision_status
   for each row
   execute procedure ggircs_portal.ensure_window_open_submit_application_status();
 
 create trigger _100_timestamps
-  before insert or update on ggircs_portal.application_revision_status
+  before insert on ggircs_portal.application_revision_status
   for each row
   execute procedure ggircs_portal.update_timestamps();
 
 create trigger _checksum_form_results
-    before insert or update of application_revision_status on ggircs_portal.application_revision_status
+    before insert on ggircs_portal.application_revision_status
     for each row
     execute procedure ggircs_portal.checksum_form_results();
 
 create trigger _status_change_email
-  after insert or update of application_revision_status on ggircs_portal.application_revision_status
+  after insert on ggircs_portal.application_revision_status
     for each row
     execute procedure ggircs_portal_private.run_graphile_worker_job('status_change');
+create trigger _check_certification_signature_md5
+    before insert on ggircs_portal.application_revision_status
+    for each row
+    execute procedure ggircs_portal_private.signature_md5('submission');
 
 do
 $grant$
