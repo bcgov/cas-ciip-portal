@@ -16,7 +16,7 @@ select ggircs_portal_private.verify_grant('select', 'certification_url', 'ciip_a
 select ggircs_portal_private.verify_grant('select', 'certification_url', 'ciip_industry_user');
 select ggircs_portal_private.verify_grant('insert', 'certification_url', 'ciip_industry_user');
 select ggircs_portal_private.verify_grant('update', 'certification_url', 'ciip_industry_user',
-  ARRAY['certification_signature']);
+  ARRAY['certification_signature', 'certifier_url']);
 
 -- ciip_guest Grants
 

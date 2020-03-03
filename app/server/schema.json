@@ -14300,6 +14300,26 @@
               "defaultValue": null
             },
             {
+              "name": "certificationRequestSentAt",
+              "description": "Checks for equality with the object’s `certificationRequestSentAt` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certificationRequestSentTo",
+              "description": "Checks for equality with the object’s `certificationRequestSentTo` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "certificationSignature",
               "description": "Checks for equality with the object’s `certificationSignature` field.",
               "type": {
@@ -14325,6 +14345,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifierUrl",
+              "description": "Checks for equality with the object’s `certifierUrl` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -14455,6 +14485,30 @@
               "deprecationReason": null
             },
             {
+              "name": "CERTIFICATION_REQUEST_SENT_AT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFICATION_REQUEST_SENT_AT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFICATION_REQUEST_SENT_TO_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFICATION_REQUEST_SENT_TO_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "CERTIFICATION_SIGNATURE_ASC",
               "description": null,
               "isDeprecated": false,
@@ -14486,6 +14540,18 @@
             },
             {
               "name": "CERTIFIED_BY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFIER_URL_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFIER_URL_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -14799,6 +14865,30 @@
               "deprecationReason": null
             },
             {
+              "name": "certificationRequestSentAt",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "certificationRequestSentTo",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "certificationSignature",
               "description": "The base64 representation of the certifier's signature",
               "args": [],
@@ -14829,6 +14919,18 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "certifierUrl",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -31399,6 +31501,26 @@
               "defaultValue": null
             },
             {
+              "name": "certificationRequestSentAt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certificationRequestSentTo",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "certificationSignature",
               "description": "The base64 representation of the certifier's signature",
               "type": {
@@ -31424,6 +31546,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifierUrl",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -41772,6 +41904,26 @@
               "defaultValue": null
             },
             {
+              "name": "certificationRequestSentAt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certificationRequestSentTo",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "certificationSignature",
               "description": "The base64 representation of the certifier's signature",
               "type": {
@@ -41797,6 +41949,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifierUrl",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null

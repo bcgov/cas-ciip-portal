@@ -5,6 +5,7 @@ begin;
 
 create table ggircs_portal.certification_url (
   id varchar(1000) primary key,
+  certifier_url varchar(1000),
   application_id int not null references ggircs_portal.application(id),
   version_number int not null,
   certification_signature bytea,
@@ -17,6 +18,8 @@ create table ggircs_portal.certification_url (
   updated_by int references ggircs_portal.ciip_user,
   deleted_at timestamp with time zone,
   deleted_by int references ggircs_portal.ciip_user,
+  certification_request_sent_to varchar(1000),
+  certification_request_sent_at timestamp with time zone,
   -- TODO(Dylan): revisit expiry / deprecation of generated URLs in the context of Authorization
   -- Should we allow creation of multiple URLs, should the previous ones be deprecated in that case?...etc
   expires_at timestamp with time zone not null default now(),
@@ -54,6 +57,17 @@ create trigger _set_user_id
   for each row
   execute procedure ggircs_portal.set_user_id('certification_url');
 
+create trigger _certification_request_email
+  before update of certification_request_sent_to on ggircs_portal.certification_url
+  for each row
+  execute procedure ggircs_portal_private.run_graphile_worker_job('certification_request');
+
+create trigger _signed_by_certifier_email
+  before update of certification_signature on ggircs_portal.certification_url
+  for each row
+  execute procedure ggircs_portal_private.run_graphile_worker_job('signed_by_certifier');
+
+
 do
 $grant$
 begin
@@ -67,7 +81,7 @@ perform ggircs_portal_private.grant_permissions('select', 'certification_url', '
 -- Grant ciip_industry_user permissions
 perform ggircs_portal_private.grant_permissions('select', 'certification_url', 'ciip_industry_user');
 perform ggircs_portal_private.grant_permissions('insert', 'certification_url', 'ciip_industry_user');
-perform ggircs_portal_private.grant_permissions('update', 'certification_url', 'ciip_industry_user', ARRAY['certification_signature']);
+perform ggircs_portal_private.grant_permissions('update', 'certification_url', 'ciip_industry_user', ARRAY['certification_signature', 'certifier_url']);
 
 -- Grant ciip_guest permissions
 -- ?
@@ -116,6 +130,7 @@ $policy$;
 
 comment on table ggircs_portal.certification_url is 'Table containing the certification_url for an application';
 comment on column ggircs_portal.certification_url.id is 'Unique ID for the certification_url';
+comment on column ggircs_portal.certification_url.certifier_url is 'The URL sent to the certifier';
 comment on column ggircs_portal.certification_url.application_id is 'Foreign key to the application';
 comment on column ggircs_portal.certification_url.version_number is 'The version number of the application (foreign key to application_revision along with application_id)';
 comment on column ggircs_portal.certification_url.certification_signature is 'The base64 representation of the certifier''s signature';
@@ -127,6 +142,8 @@ comment on column ggircs_portal.certification_url.created_by is 'Creator of row'
 comment on column ggircs_portal.certification_url.updated_at is 'Last update date of row';
 comment on column ggircs_portal.certification_url.updated_by is 'The user who last updated the row';
 comment on column ggircs_portal.certification_url.deleted_at is 'Deletion date of row';
+comment on column ggircs_portal.certification_url.certification_request_sent_to is 'The email that the certification request was sent to';
+comment on column ggircs_portal.certification_url.certification_request_sent_at is 'The time at which the certification request was sent';
 comment on column ggircs_portal.certification_url.deleted_by is 'The user who deleted the row';
 comment on column ggircs_portal.certification_url.expires_at is 'The expiry date for the row';
 

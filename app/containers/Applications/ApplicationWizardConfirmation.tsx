@@ -5,6 +5,7 @@ import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
 import {ApplicationWizardConfirmation_application} from 'ApplicationWizardConfirmation_application.graphql';
 import createCertificationUrlMutation from 'mutations/form/createCertificationUrl';
+import updateCertificationUrlMutation from 'mutations/form/updateCertificationUrlMutation';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -41,8 +42,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                but the actual rowId is generated on the postgres level with a trigger, so a placeholder rowId is set here */
           rowId: 'placeholder',
           applicationId: props.application.rowId,
-          versionNumber: revision.versionNumber,
-          formResultsMd5: 'placeholder'
+          versionNumber: revision.versionNumber
         }
       }
     };
@@ -59,6 +59,23 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           response.createCertificationUrl.certificationUrl.rowId
         )}&id=${encodeURIComponent(props.application.id)}`
       );
+      const updateVariables = {
+        input: {
+          id: response.createCertificationUrl.certificationUrl.id,
+          certificationUrlPatch: {
+            certifierUrl: `${
+              window.location.host
+            }/certifier/certification-redirect?rowId=${encodeURIComponent(
+              response.createCertificationUrl.certificationUrl.rowId
+            )}&id=${encodeURIComponent(props.application.id)}`
+          }
+        }
+      };
+      const updateResponse = await updateCertificationUrlMutation(
+        environment,
+        updateVariables
+      );
+      console.log(updateResponse);
     } catch (error) {
       throw new Error(error);
     }

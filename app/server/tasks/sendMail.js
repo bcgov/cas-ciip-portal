@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 const createWelcomeMail = require('../emailTemplates/welcome.js');
 const createConfirmationMail = require('../emailTemplates/confirmation.js');
 const createAmendmentMail = require('../emailTemplates/amendment.js');
+const createCertificationRequestMail = require('../emailTemplates/certificationRequest.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -12,7 +13,11 @@ module.exports = async ({
   lastName,
   facilityName,
   operatorName,
-  status
+  status,
+  reporterEmail,
+  // CertifierFirstName,
+  // certifierLastName,
+  certifierUrl
 }) => {
   if (!process.env.SMTP_CONNECTION_STRING)
     throw new Error('SMTP connection string is undefined');
@@ -54,6 +59,19 @@ module.exports = async ({
         facilityName,
         operatorName,
         status
+      });
+      break;
+    // Request for certification
+    case 'certification_request':
+      subject = 'CIIP application certification request';
+      htmlContent = createCertificationRequestMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName,
+        reporterEmail,
+        certifierUrl
       });
       break;
     default:

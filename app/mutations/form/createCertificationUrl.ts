@@ -12,6 +12,7 @@ const mutation = graphql`
   ) {
     createCertificationUrl(input: $input) {
       certificationUrl {
+        id
         rowId
       }
     }
