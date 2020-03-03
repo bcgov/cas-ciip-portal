@@ -8,6 +8,6 @@ returns void as $$
   begin
     perform graphile_worker.add_job(task, payload);
   end;
-$$ language plpgsql volatile;
+$$ language plpgsql volatile security definer;
 
 commit;
