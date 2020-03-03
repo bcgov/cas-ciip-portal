@@ -81,22 +81,22 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Operator
                 </TEXT>
                 <TEXT>
-                  consequat Ut Duis
+                  culpa
                 </TEXT>
                 <TEXT>
                    
-                  in qui
+                  est dolor
                 </TEXT>
                 <TEXT>
                    
                   mollit eu esse
                   ,
                    
-                  Nova Scotia
+                  British Columbia
                 </TEXT>
                 <TEXT>
                    
-                  F3K 5C2
+                  y5f 2r4
                 </TEXT>
               </VIEW>
             </styled.VIEW>
@@ -200,44 +200,44 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Object {
                   "facility": Object {
-                    "bcghgid": "est dolor",
-                    "facilityName": "mollit eu esse",
-                    "facilityType": "SFO",
+                    "bcghgid": 0,
+                    "facilityName": "est dolor",
+                    "facilityType": "L_c",
                     "isFacilityLocationDifferent": false,
                     "mailingAddress": Object {
-                      "city": "in qui",
-                      "postalCode": "N1F 3K5",
-                      "province": "New Brunswick",
-                      "streetAddress": "consequat Ut Duis",
-                    },
-                    "naics": "consequat Ut Duis",
-                  },
-                  "operationalRepresentative": Object {
-                    "email": "in qui",
-                    "fax": "culpa",
-                    "firstName": "culpa",
-                    "lastName": "est dolor",
-                    "mailingAddress": Object {
                       "city": "est dolor",
-                      "postalCode": "C2H 4N1",
-                      "province": "Northwest Territories",
-                      "streetAddress": "culpa",
-                    },
-                    "phone": "mollit eu esse",
-                    "position": "consequat Ut Duis",
-                  },
-                  "operator": Object {
-                    "bcCorporateRegistryNumber": "consequat Ut Duis",
-                    "duns": "451234512",
-                    "mailingAddress": Object {
-                      "city": "mollit eu esse",
-                      "postalCode": "F3K 5C2",
+                      "postalCode": "r4E 1l3",
                       "province": "Nova Scotia",
                       "streetAddress": "in qui",
                     },
-                    "naics": "in qui",
-                    "name": "consequat Ut Duis",
-                    "tradeName": "in qui",
+                    "naics": -40000000,
+                  },
+                  "operationalRepresentative": Object {
+                    "email": "in qui",
+                    "fax": "in qui",
+                    "firstName": "consequat Ut Duis",
+                    "lastName": "culpa",
+                    "mailingAddress": Object {
+                      "city": "mollit eu esse",
+                      "postalCode": "y5f 2r4",
+                      "province": "British Columbia",
+                      "streetAddress": "est dolor",
+                    },
+                    "phone": "mollit eu esse",
+                    "position": "est dolor",
+                  },
+                  "operator": Object {
+                    "bcCorporateRegistryNumber": -80000000,
+                    "duns": "512345123",
+                    "mailingAddress": Object {
+                      "city": "mollit eu esse",
+                      "postalCode": "y5f 2r4",
+                      "province": "British Columbia",
+                      "streetAddress": "est dolor",
+                    },
+                    "naics": -60000000,
+                    "name": "culpa",
+                    "tradeName": "consequat Ut Duis",
                   },
                 }
               }
@@ -284,6 +284,12 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "type": "string",
                         },
                       },
+                      "required": Array [
+                        "streetAddress",
+                        "postalCode",
+                        "province",
+                        "city",
+                      ],
                       "type": "object",
                     },
                   },
@@ -334,7 +340,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "properties": Object {
                         "bcghgid": Object {
                           "title": "BCGHG ID Number",
-                          "type": "string",
+                          "type": "number",
                         },
                         "facilityName": Object {
                           "title": "Facility Name",
@@ -366,9 +372,16 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         },
                         "naics": Object {
                           "title": "NAICS Code",
-                          "type": "string",
+                          "type": "number",
                         },
                       },
+                      "required": Array [
+                        "naics",
+                        "bcghgid",
+                        "facilityName",
+                        "facilityType",
+                        "isFacilityLocationDifferent",
+                      ],
                       "title": "Facility Information",
                       "type": "object",
                     },
@@ -403,6 +416,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "type": "string",
                         },
                       },
+                      "required": Array [
+                        "email",
+                        "phone",
+                        "lastName",
+                        "position",
+                        "firstName",
+                      ],
                       "title": "Operational Representative",
                       "type": "object",
                     },
@@ -410,7 +430,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "properties": Object {
                         "bcCorporateRegistryNumber": Object {
                           "title": "BC Corporate Registry number",
-                          "type": "string",
+                          "type": "number",
                         },
                         "duns": Object {
                           "format": "duns",
@@ -423,7 +443,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         },
                         "naics": Object {
                           "title": "NAICS code",
-                          "type": "string",
+                          "type": "number",
                         },
                         "name": Object {
                           "title": "Legal name",
@@ -434,6 +454,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "type": "string",
                         },
                       },
+                      "required": Array [
+                        "duns",
+                        "name",
+                        "naics",
+                        "tradeName",
+                        "bcCorporateRegistryNumber",
+                      ],
                       "title": "Operator Information",
                       "type": "object",
                     },
@@ -446,7 +473,16 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "facility": Object {
+                    "bcghgid": Object {
+                      "ui:no-seperator": true,
+                    },
                     "facilityLocation": Object {
+                      "latitude": Object {
+                        "ui:no-seperator": true,
+                      },
+                      "longitude": Object {
+                        "ui:no-seperator": true,
+                      },
                       "ui:order": Array [
                         "locationStreetAddress",
                         "locationNearestCity",
@@ -465,6 +501,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "province",
                       ],
                     },
+                    "naics": Object {
+                      "ui:no-seperator": true,
+                    },
                     "ui:order": Array [
                       "facilityName",
                       "facilityType",
@@ -476,6 +515,11 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     ],
                   },
                   "operationalRepresentative": Object {
+                    "fax": Object {
+                      "ui:options": Object {
+                        "inputType": "tel",
+                      },
+                    },
                     "mailingAddress": Object {
                       "ui:order": Array [
                         "streetAddress",
@@ -483,6 +527,11 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "postalCode",
                         "province",
                       ],
+                    },
+                    "phone": Object {
+                      "ui:options": Object {
+                        "inputType": "tel",
+                      },
                     },
                     "ui:order": Array [
                       "firstName",
@@ -497,6 +546,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "operator": Object {
                     "bcCorporateRegistryNumber": Object {
                       "ui:col-md": 4,
+                      "ui:no-seperator": true,
                     },
                     "duns": Object {
                       "ui:col-md": 4,
@@ -511,6 +561,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                     "naics": Object {
                       "ui:col-md": 4,
+                      "ui:no-seperator": true,
                     },
                     "ui:order": Array [
                       "name",
@@ -597,25 +648,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Object {
                   "sourceTypes": Array [
-                    Object {
-                      "gases": Array [
-                        Object {
-                          "annualCO2e": 0,
-                          "annualEmission": -80000000,
-                          "gasDescription": "est dolor",
-                          "gasType": "consequat Ut Duis",
-                          "gwp": -40000000,
-                        },
-                        Object {
-                          "annualCO2e": -20000000,
-                          "annualEmission": 0,
-                          "gasDescription": "in qui",
-                          "gasType": "mollit eu esse",
-                          "gwp": -60000000,
-                        },
-                      ],
-                      "sourceTypeName": "in qui",
-                    },
                     Object {
                       "gases": Array [
                         Object {

@@ -27,7 +27,6 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   relay
 }) => {
   const {application, formResult} = query;
-
   // Function: store the form result
   const storeResult = async result => {
     const {environment} = relay;
@@ -47,6 +46,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   const onComplete = result => {
     const formData = result.data;
     storeResult(formData);
+    console.log('continue?');
     onStepComplete();
   };
 

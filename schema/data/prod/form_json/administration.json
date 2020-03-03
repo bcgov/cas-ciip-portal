@@ -2,82 +2,30 @@
   "schema": {
     "type": "object",
     "properties": {
-      "operator": {
-        "title": "Operator Information",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "title": "Legal name"
-          },
-          "tradeName": {
-            "type": "string",
-            "title": "Trade name"
-          },
-          "duns": {
-            "type": "string",
-            "title": "DUNS number",
-            "format": "duns"
-          },
-          "bcCorporateRegistryNumber": {
-            "type": "string",
-            "title": "BC Corporate Registry number"
-          },
-          "naics": {
-            "type": "string",
-            "title": "NAICS code"
-          },
-          "mailingAddress": {
-            "title": "Operator Mailing Address",
-            "$ref": "#/definitions/address"
-          }
-        }
-      },
-      "operationalRepresentative": {
-        "type": "object",
-        "title": "Operational Representative",
-        "properties": {
-          "firstName": {
-            "title": "First Name",
-            "type": "string"
-          },
-          "lastName": {
-            "title": "Last Name",
-            "type": "string"
-          },
-          "position": {
-            "title": "Position/Title",
-            "type": "string"
-          },
-          "email": {
-            "title": "Email Address",
-            "type": "string"
-          },
-          "phone": {
-            "title": "Telephone Number",
-            "type": "string"
-          },
-          "fax": {
-            "title": "Fax Number",
-            "type": "string"
-          },
-          "mailingAddress": {
-            "title": "Operational Representative Mailing Address",
-            "$ref": "#/definitions/address"
-          }
-        }
-      },
       "facility": {
-        "title": "Facility Information",
         "type": "object",
+        "title": "Facility Information",
+        "required": [
+          "naics",
+          "bcghgid",
+          "facilityName",
+          "facilityType",
+          "isFacilityLocationDifferent"
+        ],
         "properties": {
+          "naics": {
+            "type": "number",
+            "title": "NAICS Code"
+          },
+          "bcghgid": {
+            "type": "number",
+            "title": "BCGHG ID Number"
+          },
           "facilityName": {
-            "title": "Facility Name",
-            "type": "string"
+            "type": "string",
+            "title": "Facility Name"
           },
           "facilityType": {
-            "type": "string",
-            "title": "Facility Type",
             "enum": [
               "IF_a",
               "IF_b",
@@ -85,23 +33,17 @@
               "SFO",
               "LFO",
               "EIO"
-            ]
-          },
-          "bcghgid": {
+            ],
             "type": "string",
-            "title": "BCGHG ID Number"
-          },
-          "naics": {
-            "type": "string",
-            "title": "NAICS Code"
+            "title": "Facility Type"
           },
           "mailingAddress": {
-            "title": "Facility Mailing Address",
-            "$ref": "#/definitions/address"
+            "$ref": "#/definitions/address",
+            "title": "Facility Mailing Address"
           },
           "isFacilityLocationDifferent": {
-            "title": "Is the facility location different from the mailing address?",
             "type": "boolean",
+            "title": "Is the facility location different from the mailing address?",
             "enumNames": [
               " Yes",
               " No"
@@ -120,34 +62,113 @@
               },
               {
                 "properties": {
-                  "isFacilityLocationDifferent": {
-                    "const": true
-                  },
                   "facilityLocation": {
                     "type": "object",
                     "title": "Facility Location",
                     "properties": {
-                      "locationStreetAddress": {
-                        "title": "Location of the facility",
-                        "type": "string"
-                      },
-                      "locationNearestCity": {
-                        "title": "Nearest City",
-                        "type": "string"
-                      },
                       "latitude": {
-                        "title": "Latitude",
-                        "type": "number"
+                        "type": "number",
+                        "title": "Latitude"
                       },
                       "longitude": {
-                        "title": "Longitude",
-                        "type": "number"
+                        "type": "number",
+                        "title": "Longitude"
+                      },
+                      "locationNearestCity": {
+                        "type": "string",
+                        "title": "Nearest City"
+                      },
+                      "locationStreetAddress": {
+                        "type": "string",
+                        "title": "Location of the facility"
                       }
                     }
+                  },
+                  "isFacilityLocationDifferent": {
+                    "const": true
                   }
                 }
               }
             ]
+          }
+        }
+      },
+      "operator": {
+        "type": "object",
+        "title": "Operator Information",
+        "required": [
+          "duns",
+          "name",
+          "naics",
+          "tradeName",
+          "bcCorporateRegistryNumber"
+        ],
+        "properties": {
+          "duns": {
+            "type": "string",
+            "title": "DUNS number",
+            "format": "duns"
+          },
+          "name": {
+            "type": "string",
+            "title": "Legal name"
+          },
+          "naics": {
+            "type": "number",
+            "title": "NAICS code"
+          },
+          "tradeName": {
+            "type": "string",
+            "title": "Trade name"
+          },
+          "mailingAddress": {
+            "$ref": "#/definitions/address",
+            "title": "Operator Mailing Address"
+          },
+          "bcCorporateRegistryNumber": {
+            "type": "number",
+            "title": "BC Corporate Registry number"
+          }
+        }
+      },
+      "operationalRepresentative": {
+        "type": "object",
+        "title": "Operational Representative",
+        "required": [
+          "email",
+          "phone",
+          "lastName",
+          "position",
+          "firstName"
+        ],
+        "properties": {
+          "fax": {
+            "type": "string",
+            "title": "Fax Number"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email Address"
+          },
+          "phone": {
+            "type": "string",
+            "title": "Telephone Number"
+          },
+          "lastName": {
+            "type": "string",
+            "title": "Last Name"
+          },
+          "position": {
+            "type": "string",
+            "title": "Position/Title"
+          },
+          "firstName": {
+            "type": "string",
+            "title": "First Name"
+          },
+          "mailingAddress": {
+            "$ref": "#/definitions/address",
+            "title": "Operational Representative Mailing Address"
           }
         }
       }
@@ -155,18 +176,18 @@
     "definitions": {
       "address": {
         "type": "object",
+        "required": [
+          "streetAddress",
+          "postalCode",
+          "province",
+          "city"
+        ],
         "properties": {
-          "streetAddress": {
-            "title": "Street address",
-            "type": "string"
-          },
           "city": {
-            "title": "City",
-            "type": "string"
+            "type": "string",
+            "title": "City"
           },
           "province": {
-            "title": "Province or Territory",
-            "type": "string",
             "enum": [
               "Alberta",
               "British Columbia",
@@ -181,77 +202,31 @@
               "Quebec",
               "Saskatchewan",
               "Yukon"
-            ]
+            ],
+            "type": "string",
+            "title": "Province or Territory"
           },
           "postalCode": {
-            "title": "Postal Code",
             "type": "string",
+            "title": "Postal Code",
             "format": "postal-code"
+          },
+          "streetAddress": {
+            "type": "string",
+            "title": "Street address"
           }
         }
       }
     }
   },
-  "customFormats": {
-    "postal-code": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]",
-    "duns": "^\\d{9}$"
-  },
-  "customFormatsErrorMessages": {
-    "duns": "DUNS number should be nine digits"
-  },
   "uiSchema": {
-    "ui:order": [
-      "operator",
-      "operationalRepresentative",
-      "facility"
-    ],
-    "operator": {
-      "ui:order": [
-        "name",
-        "tradeName",
-        "naics",
-        "bcCorporateRegistryNumber",
-        "duns",
-        "mailingAddress"
-      ],
-      "mailingAddress": {
-        "ui:order": [
-          "streetAddress",
-          "city",
-          "postalCode",
-          "province"
-        ]
-      },
-      "naics": {
-        "ui:col-md": 4
-      },
-      "duns": {
-        "ui:col-md": 4
-      },
-      "bcCorporateRegistryNumber": {
-        "ui:col-md": 4
-      }
-    },
-    "operationalRepresentative": {
-      "ui:order": [
-        "firstName",
-        "lastName",
-        "position",
-        "email",
-        "phone",
-        "fax",
-        "mailingAddress"
-      ],
-      "mailingAddress": {
-        "ui:order": [
-          "streetAddress",
-          "city",
-          "postalCode",
-          "province"
-        ]
-      }
-    },
     "facility": {
+      "naics": {
+        "ui:no-seperator": true
+      },
+      "bcghgid": {
+        "ui:no-seperator": true
+      },
       "ui:order": [
         "facilityName",
         "facilityType",
@@ -269,17 +244,96 @@
           "province"
         ]
       },
-      "isFacilityLocationDifferent": {
-        "ui:widget": "radio"
-      },
       "facilityLocation": {
+        "latitude": {
+          "ui:no-seperator": true
+        },
         "ui:order": [
           "locationStreetAddress",
           "locationNearestCity",
           "latitude",
           "longitude"
+        ],
+        "longitude": {
+          "ui:no-seperator": true
+        }
+      },
+      "isFacilityLocationDifferent": {
+        "ui:widget": "radio"
+      }
+    },
+    "operator": {
+      "duns": {
+        "ui:col-md": 4
+      },
+      "naics": {
+        "ui:col-md": 4,
+        "ui:no-seperator": true
+      },
+      "ui:order": [
+        "name",
+        "tradeName",
+        "naics",
+        "bcCorporateRegistryNumber",
+        "duns",
+        "mailingAddress"
+      ],
+      "mailingAddress": {
+        "ui:order": [
+          "streetAddress",
+          "city",
+          "postalCode",
+          "province"
+        ]
+      },
+      "bcCorporateRegistryNumber": {
+        "ui:col-md": 4,
+        "ui:no-seperator": true
+      }
+    },
+    "ui:order": [
+      "operator",
+      "operationalRepresentative",
+      "facility"
+    ],
+    "operationalRepresentative": {
+      "fax": {
+        "ui:options": {
+          "inputType": "tel"
+        }
+      },
+      "phone": {
+        "ui:options": {
+          "inputType": "tel"
+        }
+      },
+      "ui:order": [
+        "firstName",
+        "lastName",
+        "position",
+        "email",
+        "phone",
+        "fax",
+        "mailingAddress"
+      ],
+      "mailingAddress": {
+        "ui:order": [
+          "streetAddress",
+          "city",
+          "postalCode",
+          "province"
         ]
       }
     }
+  },
+  "customFormats": {
+    "duns": "^\\d{9}$",
+    "email": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
+    "postal-code": "[\\w][0-9][\\w] [0-9][\\w][0-9]"
+  },
+  "customFormatsErrorMessages": {
+    "duns": "DUNS number should be nine digits",
+    "email": "Please enter a valid email",
+    "postal-code": "Format should be A1A 1A1"
   }
 }
