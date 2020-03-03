@@ -29,9 +29,8 @@ begin
                                           and fr.version_number = new.version_number - 1)));
 
       if new_form_result_hash != old_form_result_hash then
-        update ggircs_portal.form_result_status frs set form_result_status = 'needs attention'
-        where frs.application_id = new.application_id
-        and frs.form_id = temp_row.form_id;
+        insert into ggircs_portal.form_result_status(application_id, form_id, form_result_status)
+        values (new.application_id, temp_row.form_id, 'needs attention');
       end if;
 
     end loop;
@@ -39,7 +38,7 @@ begin
 
   return new;
 end;
-$$ language plpgsql;
+$$ language plpgsql volatile;
 
 grant execute on function ggircs_portal.checksum_form_results to ciip_administrator, ciip_analyst, ciip_industry_user;
 
