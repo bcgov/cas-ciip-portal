@@ -46,7 +46,6 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   const onComplete = result => {
     const formData = result.data;
     storeResult(formData);
-    console.log('continue?');
     onStepComplete();
   };
 

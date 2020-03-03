@@ -59,7 +59,6 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   } = formJson as FormJson;
 
   const transformErrors = (errors: AjvError[]) => {
-    console.log(errors);
     return errors.map(error => {
       if (error.name !== 'format') return error;
       if (!customFormatsErrorMessages[error.params.format]) return error;
@@ -76,7 +75,6 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   };
 
   const formClass = uiSchema?.['ui:className'] || '';
-  console.log('errors', hasErrors);
   return (
     <div className={formClass}>
       <Row>
