@@ -38,7 +38,7 @@ begin
 
   return new;
 end;
-$$ language plpgsql;
+$$ language plpgsql volatile;
 
 grant execute on function ggircs_portal.checksum_form_results to ciip_administrator, ciip_analyst, ciip_industry_user;
 

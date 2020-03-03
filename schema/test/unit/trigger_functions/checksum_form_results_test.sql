@@ -26,6 +26,8 @@ $$
   offset 2;
 $$ language sql;
 
+truncate ggircs_portal.application cascade;
+
 -- Call create application_mutation_chain to create a test application
 select ggircs_portal.create_application_mutation_chain((select id from ggircs_portal.facility where facility_name = 'test facility'));
 
@@ -74,14 +76,14 @@ values ((select max(id) from ggircs_portal.application), 2, 'signed');
 insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
 values ((select max(id) from ggircs_portal.application), 2, 'submitted');
 
-
 -- Test trigger
 select results_eq(
   $$
     select form_result_status
       from ggircs_portal.form_result_status
       where application_id = (select max(id) from ggircs_portal.application)
-      and form_id = 1;
+      and form_id = 1
+      order by 1 desc limit 1;
   $$,
   ARRAY['needs attention'::ggircs_portal.ciip_form_result_status],
   'checksum_form_results trigger changes status to "needs attention" if form_result has changed'
