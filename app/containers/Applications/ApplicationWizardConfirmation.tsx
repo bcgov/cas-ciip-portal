@@ -1,5 +1,5 @@
-import React, {useRef, useState} from 'react';
-import {Button, Row, Col, Card} from 'react-bootstrap';
+import React, {useRef, useState, SyntheticEvent} from 'react';
+import {Button, Row, Col, Card, Form} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
@@ -18,9 +18,16 @@ interface Props {
   relay: RelayProp;
 }
 
+interface Target extends EventTarget {
+  email: {
+    value: string;
+  };
+}
+
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState();
+  const [certificationUrlId, setCertificationUrlId] = useState();
   const copyArea = useRef(url);
   const revision = props.application.latestDraftRevision;
 
@@ -50,6 +57,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       environment,
       variables
     );
+    setCertificationUrlId(response.createCertificationUrl.certificationUrl.id);
     console.log(response);
     try {
       setUrl(
@@ -81,6 +89,26 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     }
   };
 
+  const handleSendEmail = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    event.persist();
+    const {environment} = props.relay;
+    const email = (event.target as Target).email.value;
+    const updateVariables = {
+      input: {
+        id: certificationUrlId,
+        certificationUrlPatch: {
+          certificationRequestSentTo: email
+        }
+      }
+    };
+    const updateResponse = await updateCertificationUrlMutation(
+      environment,
+      updateVariables
+    );
+    console.log(updateResponse);
+  };
+
   const generateCertification = (
     <>
       <br />
@@ -101,6 +129,27 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           <span style={{color: 'green'}}>{copySuccess}</span>
         </Col>
       </Row>
+      {url === undefined ? null : (
+        <Row>
+          <Form onSubmit={handleSendEmail}>
+            <Form.Group controlId="certifierEmail">
+              <Form.Label>Certifier Email</Form.Label>
+              <Form.Control
+                name="email"
+                type="email"
+                placeholder="Enter email"
+              />
+              <Form.Text className="text-muted">
+                Send URL to certifier
+              </Form.Text>
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Send
+            </Button>
+          </Form>
+        </Row>
+      )}
     </>
   );
   let certificationMessage;
@@ -188,6 +237,7 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
         versionNumber
         certificationSignatureIsValid
         certificationUrl {
+          id
           certificationSignature
           hashMatches
         }

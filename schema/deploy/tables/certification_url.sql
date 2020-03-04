@@ -87,7 +87,7 @@ perform ggircs_portal_private.grant_permissions('select', 'certification_url', '
 -- Grant ciip_industry_user permissions
 perform ggircs_portal_private.grant_permissions('select', 'certification_url', 'ciip_industry_user');
 perform ggircs_portal_private.grant_permissions('insert', 'certification_url', 'ciip_industry_user');
-perform ggircs_portal_private.grant_permissions('update', 'certification_url', 'ciip_industry_user', ARRAY['certification_signature', 'certifier_url', 'recertification_request_sent']);
+perform ggircs_portal_private.grant_permissions('update', 'certification_url', 'ciip_industry_user', ARRAY['certification_signature', 'certifier_url', 'recertification_request_sent', 'certification_request_sent_to']);
 
 -- Grant ciip_guest permissions
 -- ?
