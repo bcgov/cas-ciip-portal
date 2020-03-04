@@ -31,6 +31,9 @@ exports[`It matches the last accepted Snapshot 1`] = `
           },
           "latestDraftRevision": Object {
             "certificationUrl": Object {
+              " $fragmentRefs": Object {
+                "ApplicationRecertificationContainer_certificationUrl": true,
+              },
               "certificationSignature": "test",
               "hashMatches": true,
             },
@@ -49,6 +52,9 @@ exports[`It matches the last accepted Snapshot 1`] = `
             },
             "latestDraftRevision": Object {
               "certificationUrl": Object {
+                " $fragmentRefs": Object {
+                  "ApplicationRecertificationContainer_certificationUrl": true,
+                },
                 "certificationSignature": "test",
                 "hashMatches": true,
               },
@@ -77,7 +83,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
 </Fragment>
 `;
 
-exports[`It shows a "data has changed" error if hashMatches is false 1`] = `
+exports[`It renders ApplicationRecertificationContainer if hashMatches is false 1`] = `
 <Fragment>
   <Relay(DefaultLayout)
     allowedGroups={
@@ -99,30 +105,17 @@ exports[`It shows a "data has changed" error if hashMatches is false 1`] = `
     }
     title="Submission Certification"
   >
-    <Card
-      body={false}
-      className="text-center"
-    >
-      <CardHeader>
-        Error
-      </CardHeader>
-      <CardBody>
-        <CardTitle>
-          The data has changed
-        </CardTitle>
-        <CardText>
-          The application data associated with this certification URL has been modified after the URL was generated.
-        </CardText>
-        <CardText>
-          A notification has been automatically sent to the reporter requesting the submission of a new URL with the updated application data.
-        </CardText>
-      </CardBody>
-      <CardFooter
-        className="text-muted"
-      >
-        No action is required on your part
-      </CardFooter>
-    </Card>
+    <Relay(ApplicationRecertification)
+      certificationUrl={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplicationRecertificationContainer_certificationUrl": true,
+          },
+          "certificationSignature": "test",
+          "hashMatches": false,
+        }
+      }
+    />
   </Relay(DefaultLayout)>
   <JSXStyle
     id="1964638049"
