@@ -3,6 +3,7 @@ import {graphql} from 'react-relay';
 import {Card} from 'react-bootstrap';
 import {certifyQueryResponse} from 'certifyQuery.graphql';
 import ApplicationDetailsContainer from 'containers/Applications/ApplicationDetailsContainer';
+import ApplicationRecertificationContainer from 'containers/Applications/ApplicationRecertificationContainer';
 import CertificationSignature from 'containers/Forms/CertificationSignature';
 import DefaultLayout from 'layouts/default-layout';
 import LegalDisclaimerChecklist from 'components/LegalDisclaimerChecklist';
@@ -38,6 +39,7 @@ class Certify extends Component<Props> {
             certificationUrl {
               certificationSignature
               hashMatches
+              ...ApplicationRecertificationContainer_certificationUrl
             }
           }
           ...CertificationSignature_application
@@ -124,24 +126,11 @@ class Certify extends Component<Props> {
               {Signature}
             </>
           ) : (
-            <Card className="text-center">
-              <Card.Header>Error</Card.Header>
-              <Card.Body>
-                <Card.Title>The data has changed</Card.Title>
-                <Card.Text>
-                  The application data associated with this certification URL
-                  has been modified after the URL was generated.
-                </Card.Text>
-                <Card.Text>
-                  A notification has been automatically sent to the reporter
-                  requesting the submission of a new URL with the updated
-                  application data.
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer className="text-muted">
-                No action is required on your part
-              </Card.Footer>
-            </Card>
+            <ApplicationRecertificationContainer
+              certificationUrl={
+                query.application.latestDraftRevision.certificationUrl
+              }
+            />
           )}
         </DefaultLayout>
         <style jsx global>

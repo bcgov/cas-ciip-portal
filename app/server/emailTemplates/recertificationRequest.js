@@ -3,10 +3,7 @@ const createSignedByCertifierMail = ({
   firstName,
   lastName,
   facilityName,
-  operatorName,
-  certifierEmail,
-  certifierFirstName,
-  certifierLastName
+  operatorName
 }) => {
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
@@ -19,7 +16,12 @@ const createSignedByCertifierMail = ({
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;" >
           <h3>Hello, <strong>${firstName} ${lastName}</strong>.</h3>
-          <h4>Your CIIP Application has been signed by your certifier, <strong>${certifierFirstName} ${certifierLastName}</strong> (${certifierEmail}).</h4>
+          <h4>Your CIIP Application requires a new certificaton URL.</h4>
+          <p>
+            Your certifier attempted to review your application, however the data has been
+            changed since the certification URL was generated. A new URl needs to be generated and sent to the certifier from
+            the Application Summary page
+          </p>
           <h4>Application Details:</h4>
           <p>Operator: ${operatorName}</p>
           <p>Facility: ${facilityName}</p>

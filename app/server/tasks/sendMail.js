@@ -4,6 +4,7 @@ const createConfirmationMail = require('../emailTemplates/confirmation.js');
 const createAmendmentMail = require('../emailTemplates/amendment.js');
 const createCertificationRequestMail = require('../emailTemplates/certificationRequest.js');
 const createSignedByCertifierMail = require('../emailTemplates/signedByCertifier.js');
+const createRecertificationRequestMail = require('../emailTemplates/recertificationRequest.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -18,7 +19,8 @@ module.exports = async ({
   reporterEmail,
   certifierFirstName,
   certifierLastName,
-  certifierUrl
+  certifierUrl,
+  certifierEmail
 }) => {
   if (!process.env.SMTP_CONNECTION_STRING)
     throw new Error('SMTP connection string is undefined');
@@ -79,14 +81,25 @@ module.exports = async ({
     case 'signed_by_certifier':
       subject = 'CIIP application certified';
       htmlContent = createSignedByCertifierMail({
-        reporterEmail,
+        email,
         firstName,
         lastName,
         facilityName,
         operatorName,
-        email,
+        certifierEmail,
         certifierFirstName,
         certifierLastName
+      });
+      break;
+    // Request for recertification (data changed)
+    case 'recertification':
+      subject = 'CIIP Application recertification request';
+      htmlContent = createRecertificationRequestMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName
       });
       break;
     default:

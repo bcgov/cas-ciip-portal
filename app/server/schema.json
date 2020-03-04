@@ -14420,6 +14420,16 @@
               "defaultValue": null
             },
             {
+              "name": "recertificationRequestSent",
+              "description": "Checks for equality with the object’s `recertificationRequestSent` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
               "type": {
@@ -14654,6 +14664,18 @@
             },
             {
               "name": "PRIMARY_KEY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "RECERTIFICATION_REQUEST_SENT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "RECERTIFICATION_REQUEST_SENT_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -15088,6 +15110,18 @@
                   "name": "ID",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "recertificationRequestSent",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -31621,6 +31655,16 @@
               "defaultValue": null
             },
             {
+              "name": "recertificationRequestSent",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "rowId",
               "description": "Unique ID for the certification_url",
               "type": {
@@ -42019,6 +42063,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "recertificationRequestSent",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null

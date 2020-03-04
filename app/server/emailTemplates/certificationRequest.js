@@ -1,4 +1,4 @@
-const createConfirmationMail = ({
+const createCertificationRequestMail = ({
   firstName,
   lastName,
   email,
@@ -36,4 +36,4 @@ const createConfirmationMail = ({
   `;
 };
 
-module.exports = createConfirmationMail;
+module.exports = createCertificationRequestMail;

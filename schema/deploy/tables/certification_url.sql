@@ -20,6 +20,7 @@ create table ggircs_portal.certification_url (
   deleted_by int references ggircs_portal.ciip_user,
   certification_request_sent_to varchar(1000),
   certification_request_sent_at timestamp with time zone,
+  recertification_request_sent boolean default false,
   -- TODO(Dylan): revisit expiry / deprecation of generated URLs in the context of Authorization
   -- Should we allow creation of multiple URLs, should the previous ones be deprecated in that case?...etc
   expires_at timestamp with time zone not null default now(),
@@ -67,6 +68,11 @@ create trigger _signed_by_certifier_email
   for each row
   execute procedure ggircs_portal_private.run_graphile_worker_job('signed_by_certifier');
 
+create trigger _recertification_request
+  before update of recertification_request_sent on ggircs_portal.certification_url
+  for each row
+  execute procedure ggircs_portal_private.run_graphile_worker_job('recertification');
+
 
 do
 $grant$
@@ -81,7 +87,7 @@ perform ggircs_portal_private.grant_permissions('select', 'certification_url', '
 -- Grant ciip_industry_user permissions
 perform ggircs_portal_private.grant_permissions('select', 'certification_url', 'ciip_industry_user');
 perform ggircs_portal_private.grant_permissions('insert', 'certification_url', 'ciip_industry_user');
-perform ggircs_portal_private.grant_permissions('update', 'certification_url', 'ciip_industry_user', ARRAY['certification_signature', 'certifier_url']);
+perform ggircs_portal_private.grant_permissions('update', 'certification_url', 'ciip_industry_user', ARRAY['certification_signature', 'certifier_url', 'recertification_request_sent']);
 
 -- Grant ciip_guest permissions
 -- ?
