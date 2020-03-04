@@ -11,6 +11,7 @@ select has_function(
 );
 
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
+alter table ggircs_portal.certification_url disable trigger _signed_by_certifier_email;
 
 -- Insert organisation & facility test data
 insert into ggircs_portal.organisation(operator_name) values ('test org');
@@ -35,11 +36,6 @@ insert into ggircs_portal.certification_url(application_id, version_number)
 values
 ((select max(id) from ggircs_portal.application), 1);
 
--- update ggircs_portal.application_revision_status
---   set application_revision_status = 'submitted'
---   where application_id = (select max(id) from ggircs_portal.application)
---   and version_number = 1;
-
 select isnt_empty(
   $$
     select form_results_md5 from ggircs_portal.certification_url where id = (select max(id) from ggircs_portal.certification_url);
@@ -55,7 +51,6 @@ select lives_ok(
   'trigger should not throw an exception if the form_result_md5 matches the current form result hash'
 );
 
-select certification_signature from ggircs_portal.certification_url where id = (select max(id) from ggircs_portal.certification_url);
 
 -- Trigger doesn't throw when it shouldn't (user can submit if form_results_md5 = current hash and signature exists)
 select lives_ok(

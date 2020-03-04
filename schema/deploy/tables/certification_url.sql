@@ -150,6 +150,7 @@ comment on column ggircs_portal.certification_url.updated_by is 'The user who la
 comment on column ggircs_portal.certification_url.deleted_at is 'Deletion date of row';
 comment on column ggircs_portal.certification_url.certification_request_sent_to is 'The email that the certification request was sent to';
 comment on column ggircs_portal.certification_url.certification_request_sent_at is 'The time at which the certification request was sent';
+comment on column ggircs_portal.certification_url.recertification_request_sent is 'Boolean for whether a recertification request has been sent to the reporter in the case of a data change';
 comment on column ggircs_portal.certification_url.deleted_by is 'The user who deleted the row';
 comment on column ggircs_portal.certification_url.expires_at is 'The expiry date for the row';
 

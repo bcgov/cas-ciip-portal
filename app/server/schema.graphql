@@ -1377,6 +1377,10 @@ type CertificationUrl implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
+
+  """
+  Boolean for whether a recertification request has been sent to the reporter in the case of a data change
+  """
   recertificationRequestSent: Boolean
 
   """Unique ID for the certification_url"""
@@ -1500,6 +1504,10 @@ input CertificationUrlInput {
 
   """The hash of all form results at the time the signature was added"""
   formResultsMd5: String
+
+  """
+  Boolean for whether a recertification request has been sent to the reporter in the case of a data change
+  """
   recertificationRequestSent: Boolean
 
   """Unique ID for the certification_url"""
@@ -1559,6 +1567,10 @@ input CertificationUrlPatch {
 
   """The hash of all form results at the time the signature was added"""
   formResultsMd5: String
+
+  """
+  Boolean for whether a recertification request has been sent to the reporter in the case of a data change
+  """
   recertificationRequestSent: Boolean
 
   """Unique ID for the certification_url"""

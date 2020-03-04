@@ -15116,7 +15116,7 @@
             },
             {
               "name": "recertificationRequestSent",
-              "description": null,
+              "description": "Boolean for whether a recertification request has been sent to the reporter in the case of a data change",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -31656,7 +31656,7 @@
             },
             {
               "name": "recertificationRequestSent",
-              "description": null,
+              "description": "Boolean for whether a recertification request has been sent to the reporter in the case of a data change",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -42069,7 +42069,7 @@
             },
             {
               "name": "recertificationRequestSent",
-              "description": null,
+              "description": "Boolean for whether a recertification request has been sent to the reporter in the case of a data change",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
