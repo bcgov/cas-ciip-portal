@@ -15,7 +15,14 @@ const Subheader = () => (
             </Link>
           </li>
           <li>
-            <Link href={{pathname: '/reporter/facilities-list'}}>
+            <Link
+              href={{
+                pathname: '/reporter/facilities-list',
+                query: {
+                  organisationId: undefined
+                }
+              }}
+            >
               My Applications
             </Link>
           </li>
