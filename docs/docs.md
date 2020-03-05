@@ -19,3 +19,7 @@
 - Accessibility errors will show up in the cypress panel
 - Details about the errors and how to fix them will appear in the dev tools console when those errors are clicked on in the cypress browser
 - Extra config details: https://www.deque.com/axe/axe-for-web/documentation/api-documentation/#api-name-axeconfigure
+
+### Authentication
+
+We use Keycloak to manage authentication of users (using username/password or IDIR) and define their privileges using groups. The Keycloak realm configuration is available in `app/keycloak-realm-export.json`
