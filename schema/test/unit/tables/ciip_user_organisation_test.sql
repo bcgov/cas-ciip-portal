@@ -127,34 +127,34 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.ciip_user
+    select count(*) from ggircs_portal.ciip_user_organisation
   $$,
-  ARRAY[8::bigint],
-  'Analyst can select all from table ciip_user'
+  ARRAY[5::bigint],
+  'Analyst can select all from table ciip_user_organisation'
 );
 
 select throws_like(
   $$
-    update ggircs_portal.ciip_user set first_name='buddy'
+    update ggircs_portal.ciip_user_organisation set status='approved'
   $$,
   'permission denied%',
-    'Analyst cannot update table ciip_user'
+    'Analyst cannot update table ciip_user_organisation'
 );
 
 select throws_like(
   $$
-    insert into ggircs_portal.ciip_user(uuid) values ('22222222-2222-2222-2222-222222222222')
+    insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id) values (1,1)
   $$,
   'permission denied%',
-    'Analyst cannot insert rows into table ciip_user'
+    'Analyst cannot insert rows into table ciip_user_organisation'
 );
 
 select throws_like(
   $$
-    delete from ggircs_portal.ciip_user where id=1
+    delete from ggircs_portal.ciip_user_organisation where id=1
   $$,
   'permission denied%',
-    'Analyst cannot delete rows from table_ciip_user'
+    'Analyst cannot delete rows from table_ciip_user_organisation'
 );
 
 select finish();
