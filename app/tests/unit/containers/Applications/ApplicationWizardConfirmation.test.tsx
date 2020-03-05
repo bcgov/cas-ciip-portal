@@ -64,14 +64,14 @@ describe('The Confirmation Component', () => {
         .at(1)
         .text()
     ).toBe(
-      'Thank you for reviewing the application information. You may now generate a Certification page to be signed prior to submission.'
+      'Thank you for reviewing the application information. You may now send a generated Certification url to be signed prior to submission.'
     );
     expect(
       wrapper
         .find('Button')
         .at(0)
         .text()
-    ).toBe('Generate Certification Page');
+    ).toBe('Send to Certifier');
   });
 
   it('should show the Submit application dialog when certificationSignatureIsvalid is true', () => {

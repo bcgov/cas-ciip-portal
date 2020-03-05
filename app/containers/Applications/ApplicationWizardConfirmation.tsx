@@ -111,7 +111,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           </Col>
           <Col md={2}>
             <Button variant="primary" type="submit">
-              Send
+              Send to Certifier
             </Button>
           </Col>
         </Form.Row>
