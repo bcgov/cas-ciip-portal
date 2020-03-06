@@ -1304,7 +1304,7 @@ Array [
                 className="jsx-775259080"
               >
                 <a
-                  href="/reporter/facilities-list"
+                  href="/reporter/facilities-list?organisationId="
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >

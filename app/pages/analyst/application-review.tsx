@@ -8,9 +8,9 @@ import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
 import {CiipPageComponentProps} from 'next-env';
-import {INCENTIVE_ANALYST} from 'data/group-constants';
+import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 
-const ALLOWED_GROUPS = [INCENTIVE_ANALYST];
+const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
 interface Props extends CiipPageComponentProps {
   query: applicationReviewQueryResponse['query'];

@@ -5,6 +5,7 @@ import createFacilityMutation from 'mutations/facility/createFacilityMutation';
 import AddOrganisationFacility from 'components/AddOrganisationFacility';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
+import {useRouter} from 'next/router';
 
 interface Props {
   direction: string;
@@ -26,7 +27,11 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   query
 }) => {
   const {edges} = query.searchAllFacilities;
-  const {organisation} = query;
+  const router = useRouter();
+  // Allows for undefined organisation (coming from subheader My Applications)
+  // TODO: Refactor facilities-list / organisations pages
+  let organisation;
+  if (router.query.organisationId) organisation = query.organisation;
   const facilityNumber = query.allFacilities.totalCount;
   let [facilityCount, updateFacilityCount] = useState(facilityNumber);
   useEffect(() => {
@@ -75,10 +80,12 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
       />
-      <AddOrganisationFacility
-        organisationRowId={organisation.rowId}
-        onAddFacility={handleAddFacility}
-      />
+      {organisation ? (
+        <AddOrganisationFacility
+          organisationRowId={organisation.rowId}
+          onAddFacility={handleAddFacility}
+        />
+      ) : null}
     </>
   );
 };

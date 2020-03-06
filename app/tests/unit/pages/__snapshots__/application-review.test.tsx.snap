@@ -5,6 +5,8 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
   allowedGroups={
     Array [
       "Incentive Analyst",
+      "Realm Administrator",
+      "Incentive Administrator",
     ]
   }
   session={

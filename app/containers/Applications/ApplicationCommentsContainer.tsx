@@ -20,7 +20,6 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
   const {formResult, review} = props;
   const [isOpen, setIsOpen] = useState(false);
   const [showResolved, toggleShowResolved] = useState(false);
-
   return (
     <>
       <div key={formResult.id} className="form-result-box">
@@ -53,6 +52,13 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
               <tbody>
                 {formResult.internalGeneralComments.edges.map(({node}) => {
                   if (node.resolved && !showResolved) return null;
+                  if (
+                    !review &&
+                    formResult.applicationByApplicationId
+                      .applicationRevisionStatus.applicationRevisionStatus !==
+                      'REQUESTED_CHANGES'
+                  )
+                    return null;
                   return (
                     <ApplicationCommentsBox
                       key={node.id}
@@ -77,6 +83,13 @@ export const ApplicationCommentsComponent: React.FunctionComponent<Props> = prop
               <tbody>
                 {formResult.requestedChangeComments.edges.map(({node}) => {
                   if (node.resolved && !showResolved) return null;
+                  if (
+                    !review &&
+                    formResult.applicationByApplicationId
+                      .applicationRevisionStatus.applicationRevisionStatus !==
+                      'REQUESTED_CHANGES'
+                  )
+                    return null;
                   return (
                     <ApplicationCommentsBox
                       key={node.id}
@@ -141,6 +154,9 @@ export default createFragmentContainer(ApplicationCommentsComponent, {
       applicationByApplicationId {
         id
         rowId
+        applicationRevisionStatus {
+          applicationRevisionStatus
+        }
       }
       formJsonByFormId {
         rowId

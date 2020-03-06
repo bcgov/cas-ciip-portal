@@ -11,9 +11,13 @@ describe('ApplicationCommentsComponent', () => {
         formResult={{
           ' $refType': 'ApplicationCommentsContainer_formResult',
           id: 'abc',
+          versionNumber: 1,
           applicationByApplicationId: {
             id: 'abc',
-            rowId: 1
+            rowId: 1,
+            applicationRevisionStatus: {
+              applicationRevisionStatus: 'REQUESTED_CHANGES'
+            }
           },
           formJsonByFormId: {
             rowId: 1,
@@ -58,9 +62,13 @@ describe('ApplicationCommentsComponent', () => {
         formResult={{
           ' $refType': 'ApplicationCommentsContainer_formResult',
           id: 'abc',
+          versionNumber: 1,
           applicationByApplicationId: {
             id: 'abc',
-            rowId: 1
+            rowId: 1,
+            applicationRevisionStatus: {
+              applicationRevisionStatus: 'REQUESTED_CHANGES'
+            }
           },
           formJsonByFormId: {
             rowId: 1,
