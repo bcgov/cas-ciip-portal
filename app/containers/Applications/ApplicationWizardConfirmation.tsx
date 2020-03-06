@@ -27,6 +27,7 @@ interface Target extends EventTarget {
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState();
+  const [urlSent, setUrlSent] = useState(false);
   const copyArea = useRef(url);
   const revision = props.application.latestDraftRevision;
 
@@ -87,6 +88,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         updateVariables
       );
       console.log(updateResponse);
+      setUrlSent(true);
     } catch (error) {
       throw new Error(error);
     }
@@ -145,7 +147,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           Thank you for reviewing the application information. You may now send
           a generated Certification url to be signed prior to submission.
         </h5>
-        {url ? copyUrl : generateCertification}
+        {url || urlSent ? copyUrl : generateCertification}
       </>
     );
   } else if (
