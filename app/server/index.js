@@ -20,7 +20,7 @@ const {
   getAllGroups,
   getPriorityGroup
 } = require('../lib/user-groups');
-const {run} = require('graphile-worker');
+const {run, quickAddJob} = require('graphile-worker');
 const path = require('path');
 
 let databaseURL = 'postgres://';
@@ -72,6 +72,14 @@ if (!process.env.CI) {
     }
   });
 }
+
+const addWaitJob = async () => {
+  await quickAddJob({connectionString: databaseURL}, 'signalTest');
+};
+
+addWaitJob();
+addWaitJob();
+addWaitJob();
 
 const removeFirstLetter = str => str.slice(1);
 
