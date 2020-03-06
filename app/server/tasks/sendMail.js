@@ -119,7 +119,7 @@ module.exports = async ({
     html: htmlContent
   };
 
-  transporter.sendMail(message, (error, info) => {
+  await transporter.sendMail(message, (error, info) => {
     if (error) return console.error(error);
     console.log('Message sent: %s', info.messageId);
   });
