@@ -145,7 +145,13 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           Thank you for reviewing the application information. You may now send
           a generated Certification url to be signed prior to submission.
         </h5>
-        {url ? copyUrl : generateCertification}
+        {url ? (
+          <>
+            <span style={{color: 'green'}}>{copySuccess}</span> {copyUrl}
+          </>
+        ) : (
+          generateCertification
+        )}
       </>
     );
   } else if (
@@ -178,7 +184,14 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           </Card.Body>
           <Card.Footer />
         </Card>
-        {generateCertification}
+        {url ? (
+          <>
+            <span style={{color: 'green'}}>URL sent!</span>
+            {copyUrl}
+          </>
+        ) : (
+          generateCertification
+        )}
       </>
     );
   }
