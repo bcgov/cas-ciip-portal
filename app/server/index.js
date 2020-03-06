@@ -77,8 +77,7 @@ const addWaitJob = async () => {
   await quickAddJob({connectionString: databaseURL}, 'signalTest');
 };
 
-addWaitJob();
-addWaitJob();
+setTimeout(addWaitJob, 24 * 3600 * 1000);
 addWaitJob();
 
 const removeFirstLetter = str => str.slice(1);

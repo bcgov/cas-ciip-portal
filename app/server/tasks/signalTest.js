@@ -6,6 +6,6 @@ const wait = async ms => {
 };
 
 module.exports = async () => {
-  await wait(10000);
+  await wait(24 * 3600 * 1000);
   console.log('I finished my job');
 };
