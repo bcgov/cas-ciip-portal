@@ -18,7 +18,6 @@ const customFields = (
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => {
-      console.log(props);
       if (props.errorSchema.__errors || props.rawErrors)
         hasErrors = (
           <FontAwesomeIcon color="red" icon={faExclamationTriangle} />
@@ -104,7 +103,6 @@ const customFields = (
       <ProductionFields query={props.formContext.query} {...props} />
     ),
     NumberField: props => {
-      console.log(props);
       if (props?.errorSchema?.__errors || props.rawErrors)
         hasErrors = (
           <FontAwesomeIcon color="red" icon={faExclamationTriangle} />
