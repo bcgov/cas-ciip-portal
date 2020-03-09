@@ -12,16 +12,20 @@ const customFields = (
   diffPathArray,
   diffArray,
   handleEnums,
-  previousIsEmpty
+  previousIsEmpty,
+  setHasErrors
 ) => {
   let hasErrors;
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => {
-      if (props.errorSchema.__errors || props.rawErrors)
+      if (props.errorSchema.__errors || props.rawErrors) {
+        setHasErrors(true);
         hasErrors = (
           <FontAwesomeIcon color="red" icon={faExclamationTriangle} />
         );
+      }
+
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
       let prevValue;

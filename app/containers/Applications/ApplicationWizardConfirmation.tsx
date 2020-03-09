@@ -27,6 +27,7 @@ interface Target extends EventTarget {
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState();
+  const [hasErrors, setHasErrors] = useState(false);
   const copyArea = useRef(url);
   const revision = props.application.latestDraftRevision;
 
@@ -209,9 +210,17 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         query={props.query}
         application={props.application}
         review={false}
+        setHasErrors={setHasErrors}
       />
       <br />
-      {revision.certificationSignatureIsValid ? (
+      {hasErrors ? (
+        <span style={{textAlign: 'center', color: 'red'}}>
+          <h5>
+            Your Application contains errors that must be fixed before
+            submission.
+          </h5>
+        </span>
+      ) : revision.certificationSignatureIsValid ? (
         <>
           <Card>
             <Card.Header>

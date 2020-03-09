@@ -29,6 +29,7 @@ interface Props {
   showDiff: boolean;
   // Boolean indicates whether or not this item is being rendered by the summary component
   summary: boolean;
+  setHasErrors?: (...args: any[]) => void;
 }
 
 /*
@@ -41,7 +42,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   query,
   review,
   showDiff,
-  summary
+  summary,
+  setHasErrors
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
@@ -132,7 +134,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     diffPathArray,
     diffArray,
     handleEnums,
-    previousIsEmpty
+    previousIsEmpty,
+    setHasErrors
   );
   const classTag = formJsonByFormId.slug;
   return (
