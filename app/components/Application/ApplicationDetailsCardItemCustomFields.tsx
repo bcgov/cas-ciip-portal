@@ -19,7 +19,7 @@ const customFields = (
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => {
-      if (props.errorSchema.__errors || props.rawErrors) {
+      if (props?.errorSchema?.__errors || props.rawErrors) {
         setHasErrors(true);
         hasErrors = (
           <FontAwesomeIcon color="red" icon={faExclamationTriangle} />
@@ -69,10 +69,13 @@ const customFields = (
       );
     },
     BooleanField: props => {
-      if (props.errorSchema.__errors || props.rawErrors)
+      if (props.errorSchema.__errors || props.rawErrors) {
+        setHasErrors(true);
         hasErrors = (
           <FontAwesomeIcon color="red" icon={faExclamationTriangle} />
         );
+      }
+
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
       const hasDiff = diffPathArray.includes(
@@ -102,15 +105,21 @@ const customFields = (
       );
     },
     emissionSource: SummaryEmissionSourceFields,
-    emissionGas: SummaryEmissionGasFields,
+    emissionGas: props => (
+      <SummaryEmissionGasFields setHasErrors={setHasErrors} {...props} />
+    ),
     production: props => (
       <ProductionFields query={props.formContext.query} {...props} />
     ),
     NumberField: props => {
-      if (props?.errorSchema?.__errors || props.rawErrors)
+      console.log(props);
+      if (props?.errorSchema?.__errors || props.rawErrors) {
+        setHasErrors(true);
         hasErrors = (
           <FontAwesomeIcon color="red" icon={faExclamationTriangle} />
         );
+      }
+
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
       if (formData === null || formData === undefined || formData === '')

@@ -48,7 +48,6 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     FieldTemplate: React.FunctionComponent<any>;
   } = registry as any;
   // Not using the types defined in @types/react-jsonschema-form as they are out of date
-
   const {
     properties: {
       productionAllocationFactor: productionAllocationFactorSchema,

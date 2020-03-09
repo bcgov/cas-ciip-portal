@@ -7,6 +7,7 @@ import ErrorList from 'components/Forms/ErrorList';
 
 const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
   const {formContext} = props;
+  if (props?.errorSchema?.annualEmission) props.setHasErrors(true);
 
   const idString: any = props.idSchema.$id.replace(/^root_/g, '');
   const emissionIdString = idString.concat('_annualEmission');
