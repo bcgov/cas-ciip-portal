@@ -14,11 +14,13 @@
         ],
         "properties": {
           "naics": {
-            "type": "number",
-            "title": "NAICS Code"
+            "type": "string",
+            "format": "naics",
+            "title": "NAICS code"
           },
           "bcghgid": {
-            "type": "number",
+            "type": "string",
+            "format": "bcghgid",
             "title": "BCGHG ID Number"
           },
           "facilityName": {
@@ -73,6 +75,7 @@
                       "longitude": {
                         "type": "number",
                         "title": "Longitude"
+
                       },
                       "locationNearestCity": {
                         "type": "string",
@@ -114,7 +117,8 @@
             "title": "Legal name"
           },
           "naics": {
-            "type": "number",
+            "type": "string",
+            "format": "naics",
             "title": "NAICS code"
           },
           "tradeName": {
@@ -126,7 +130,7 @@
             "title": "Operator Mailing Address"
           },
           "bcCorporateRegistryNumber": {
-            "type": "number",
+            "type": "string",
             "title": "BC Corporate Registry number"
           }
         }
@@ -148,7 +152,8 @@
           },
           "email": {
             "type": "string",
-            "title": "Email Address"
+            "title": "Email Address",
+            "format": "email"
           },
           "phone": {
             "type": "string",
@@ -221,12 +226,6 @@
   },
   "uiSchema": {
     "facility": {
-      "naics": {
-        "ui:no-seperator": true
-      },
-      "bcghgid": {
-        "ui:no-seperator": true
-      },
       "ui:order": [
         "facilityName",
         "facilityType",
@@ -245,18 +244,12 @@
         ]
       },
       "facilityLocation": {
-        "latitude": {
-          "ui:no-seperator": true
-        },
         "ui:order": [
           "locationStreetAddress",
           "locationNearestCity",
           "latitude",
           "longitude"
-        ],
-        "longitude": {
-          "ui:no-seperator": true
-        }
+        ]
       },
       "isFacilityLocationDifferent": {
         "ui:widget": "radio"
@@ -267,8 +260,7 @@
         "ui:col-md": 4
       },
       "naics": {
-        "ui:col-md": 4,
-        "ui:no-seperator": true
+        "ui:col-md": 4
       },
       "ui:order": [
         "name",
@@ -287,8 +279,7 @@
         ]
       },
       "bcCorporateRegistryNumber": {
-        "ui:col-md": 4,
-        "ui:no-seperator": true
+        "ui:col-md": 4
       }
     },
     "ui:order": [
@@ -328,12 +319,14 @@
   },
   "customFormats": {
     "duns": "^\\d{9}$",
-    "email": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
+    "naics": "^\\d+$",
+    "bcghgid": "^\\d+$",
     "postal-code": "[\\w][0-9][\\w] [0-9][\\w][0-9]"
   },
   "customFormatsErrorMessages": {
     "duns": "DUNS number should be nine digits",
-    "email": "Please enter a valid email",
+    "naics": "NAICS code should be numeric",
+    "bcghgid": "BCGHGID code should be numeric",
     "postal-code": "Format should be A1A 1A1"
   }
 }
