@@ -58,7 +58,7 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
 
   return (
     <NumberFormat
-      thousandSeparator
+      thousandSeparator={!uiSchema?.['ui:no-seperator']}
       id={idSchema.$id}
       disabled={disabled}
       className="form-control"

@@ -27,7 +27,6 @@ const ApplicationWizard = ({query}) => {
   const {formResultId} = router.query;
   const confirmationPage = Boolean(router.query.confirmationPage);
   const orderedFormResults = application.orderedFormResults.edges;
-
   if (!confirmationPage && !formResultId) {
     setRouterQueryParam(
       router,

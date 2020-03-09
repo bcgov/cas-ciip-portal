@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
 import JsonSchemaForm, {
   IChangeEvent,
@@ -44,6 +44,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   onBack,
   onValueChanged
 }) => {
+  const [hasErrors, setHasErrors] = useState(false);
   const {result} = query || {};
   const {
     formJsonByFormId: {name, formJson, ciipApplicationWizardByFormId},
@@ -68,6 +69,11 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     });
   };
 
+  const onError = () => {
+    setHasErrors(true);
+    window.scrollTo(0, 0);
+  };
+
   const formClass = uiSchema?.['ui:className'] || '';
   return (
     <div className={formClass}>
@@ -76,7 +82,9 @@ export const FormComponent: React.FunctionComponent<Props> = ({
           <h1 className="form-title">{name}</h1>
         </Col>
       </Row>
-
+      {hasErrors && (
+        <div className="errors">Please correct the errors below.</div>
+      )}
       <JsonSchemaForm
         safeRenderCompletion
         showErrorList={false}
@@ -91,6 +99,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         uiSchema={uiSchema}
         ObjectFieldTemplate={FormObjectFieldTemplate}
         transformErrors={transformErrors}
+        onError={onError}
         onSubmit={onComplete}
         onChange={onValueChanged}
       >
@@ -142,6 +151,22 @@ export const FormComponent: React.FunctionComponent<Props> = ({
             padding: 30px;
             background: #eee;
             border-radius: 6px;
+          }
+          .errors {
+            margin-left: 20px;
+            padding: 20px;
+            background: #ce5c5c;
+            color: white;
+            font-size: 20px;
+          }
+          ul.error-detail {
+            padding: 0;
+            list-style: none;
+          }
+          ul.error-detail li.text-danger {
+            background: #ce5c5c;
+            color: white !important;
+            padding: 5px;
           }
         `}
       </style>
