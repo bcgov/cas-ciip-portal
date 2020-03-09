@@ -1,4 +1,4 @@
-const createSignedByCertifierMail = ({
+const createRecertificationRequestMail = ({
   email,
   firstName,
   lastName,
@@ -19,7 +19,7 @@ const createSignedByCertifierMail = ({
           <h4>Your CIIP Application requires a new certificaton URL.</h4>
           <p>
             Your certifier attempted to review your application, however the data has been
-            changed since the certification URL was generated. A new URl needs to be generated and sent to the certifier from
+            changed since the certification URL was generated. A new URL needs to be generated and sent to the certifier from
             the Application Summary page
           </p>
           <h4>Application Details:</h4>
@@ -38,4 +38,4 @@ const createSignedByCertifierMail = ({
   `;
 };
 
-module.exports = createSignedByCertifierMail;
+module.exports = createRecertificationRequestMail;
