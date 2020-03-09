@@ -5,6 +5,9 @@
 
 begin;
 
+alter table ggircs_portal.certification_url disable trigger _certification_request_email;
+alter table ggircs_portal.certification_url disable trigger _signed_by_certifier_email;
+
 with rows as (
 insert into ggircs_portal.certification_url(id, application_id, version_number)
 overriding system value
@@ -25,6 +28,8 @@ alter table ggircs_portal.application_revision_status disable trigger _status_ch
   insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
   values (1,2,'submitted');
 
+alter table ggircs_portal.certification_url enable trigger _certification_request_email;
+alter table ggircs_portal.certification_url enable trigger _signed_by_certifier_email;
 alter table ggircs_portal.application_revision_status enable trigger _status_change_email;
 
 commit;

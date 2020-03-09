@@ -1,10 +1,11 @@
-import React, {useRef, useState} from 'react';
-import {Button, Row, Col, Card} from 'react-bootstrap';
+import React, {useRef, useState, SyntheticEvent} from 'react';
+import {Button, Row, Col, Card, Form} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
 import {ApplicationWizardConfirmation_application} from 'ApplicationWizardConfirmation_application.graphql';
 import createCertificationUrlMutation from 'mutations/form/createCertificationUrl';
+import updateCertificationUrlMutation from 'mutations/form/updateCertificationUrlMutation';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -15,6 +16,12 @@ interface Props {
   query: ApplicationWizardConfirmation_query;
   application: ApplicationWizardConfirmation_application;
   relay: RelayProp;
+}
+
+interface Target extends EventTarget {
+  email: {
+    value: string;
+  };
 }
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
@@ -32,7 +39,10 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     throw new Error('document.execCommand(`copy`) failed');
   };
 
-  const handleClickGenerateCertificationUrl = async () => {
+  const handleClickGenerateCertificationUrl = async (e: SyntheticEvent) => {
+    e.preventDefault();
+    e.persist();
+    const email = (e.target as Target).email.value;
     const {environment} = props.relay;
     const variables = {
       input: {
@@ -41,8 +51,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                but the actual rowId is generated on the postgres level with a trigger, so a placeholder rowId is set here */
           rowId: 'placeholder',
           applicationId: props.application.rowId,
-          versionNumber: revision.versionNumber,
-          formResultsMd5: 'placeholder'
+          versionNumber: revision.versionNumber
         }
       }
     };
@@ -50,6 +59,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       environment,
       variables
     );
+
     console.log(response);
     try {
       setUrl(
@@ -59,6 +69,24 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           response.createCertificationUrl.certificationUrl.rowId
         )}&id=${encodeURIComponent(props.application.id)}`
       );
+      const updateVariables = {
+        input: {
+          id: response.createCertificationUrl.certificationUrl.id,
+          certificationUrlPatch: {
+            certifierUrl: `${
+              window.location.host
+            }/certifier/certification-redirect?rowId=${encodeURIComponent(
+              response.createCertificationUrl.certificationUrl.rowId
+            )}&id=${encodeURIComponent(props.application.id)}`,
+            certificationRequestSentTo: email
+          }
+        }
+      };
+      const updateResponse = await updateCertificationUrlMutation(
+        environment,
+        updateVariables
+      );
+      console.log(updateResponse);
     } catch (error) {
       throw new Error(error);
     }
@@ -67,35 +95,63 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const generateCertification = (
     <>
       <br />
-      <Row>
-        <Col>
-          <Button onClick={handleClickGenerateCertificationUrl}>
-            Generate Certification Page
-          </Button>
-        </Col>
-      </Row>
-      <br />
-      <Row>
-        <Col md={6}>
-          <input ref={copyArea} readOnly value={url} style={{width: '100%'}} />
-        </Col>
-        <Col md={2}>
-          <Button onClick={copyToClipboard}>Copy Link</Button>
-          <span style={{color: 'green'}}>{copySuccess}</span>
-        </Col>
-      </Row>
+      <Form onSubmit={handleClickGenerateCertificationUrl}>
+        <Form.Row>
+          <Col md={6}>
+            <Form.Group controlId="certifierEmail">
+              <Form.Control
+                name="email"
+                type="email"
+                placeholder="Enter email"
+              />
+              <Form.Text className="text-muted">
+                Send URL to certifier
+              </Form.Text>
+            </Form.Group>
+          </Col>
+          <Col md={2}>
+            <Button variant="primary" type="submit">
+              Send to Certifier
+            </Button>
+          </Col>
+        </Form.Row>
+      </Form>
     </>
   );
+
   let certificationMessage;
+
+  const copyUrl = (
+    <Row>
+      <Col md={6}>
+        <input
+          ref={copyArea}
+          readOnly
+          value={url || revision?.certificationUrl?.certifierUrl}
+          style={{width: '100%'}}
+        />
+      </Col>
+      <Col md={2}>
+        <Button onClick={copyToClipboard}>Copy Link</Button>
+        <span style={{color: 'green'}}>{copySuccess}</span>
+      </Col>
+    </Row>
+  );
 
   if (!revision.certificationUrl) {
     certificationMessage = (
       <>
         <h5>
-          Thank you for reviewing the application information. You may now
-          generate a Certification page to be signed prior to submission.
+          Thank you for reviewing the application information. You may now send
+          a generated Certification url to be signed prior to submission.
         </h5>
-        {generateCertification}
+        {url ? (
+          <>
+            <span style={{color: 'green'}}>{copySuccess}</span> {copyUrl}
+          </>
+        ) : (
+          generateCertification
+        )}
       </>
     );
   } else if (
@@ -103,10 +159,13 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     revision.certificationUrl.hashMatches
   ) {
     certificationMessage = (
-      <h5>
-        Your application has been sent to a certifier. Submission will be
-        possible once they have verified the data in the application.
-      </h5>
+      <>
+        <h5>
+          Your application has been sent to a certifier. Submission will be
+          possible once they have verified the data in the application.
+        </h5>
+        {copyUrl}
+      </>
     );
   } else {
     certificationMessage = (
@@ -119,11 +178,20 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
               The application data has been changed since the certifier added
               their signature.
             </Card.Text>
-            <Card.Text>Please generate a new certification URL.</Card.Text>
+            <Card.Text>
+              Please generate and send a new certification URL.
+            </Card.Text>
           </Card.Body>
           <Card.Footer />
         </Card>
-        {generateCertification}
+        {url ? (
+          <>
+            <span style={{color: 'green'}}>URL sent!</span>
+            {copyUrl}
+          </>
+        ) : (
+          generateCertification
+        )}
       </>
     );
   }
@@ -171,8 +239,10 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
         versionNumber
         certificationSignatureIsValid
         certificationUrl {
+          id
           certificationSignature
           hashMatches
+          certifierUrl
         }
       }
     }

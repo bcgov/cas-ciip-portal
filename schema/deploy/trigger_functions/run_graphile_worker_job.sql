@@ -6,6 +6,7 @@ begin;
 create or replace function ggircs_portal_private.run_graphile_worker_job() returns trigger as $$
 declare
   application_details record;
+  certifier_details record;
   status_change_type text;
 begin
   case
@@ -64,6 +65,105 @@ begin
               'facilityName', application_details.facility_name,
               'operatorName', application_details.operator_name,
               'status', new.application_revision_status));
+      return new;
+
+    -- **ON REQUEST FOR CERTIFICATION**
+    when tg_argv[0] = 'certification_request' then
+
+      with ad as (select o.operator_name, f.facility_name, u.first_name, u.last_name, u.email_address
+            from ggircs_portal.application_revision ar
+            join ggircs_portal.application a
+            on ar.application_id = a.id
+            and new.application_id = ar.application_id
+            and new.version_number = ar.version_number
+            join ggircs_portal.facility f
+            on a.facility_id = f.id
+            join ggircs_portal.organisation o
+            on f.organisation_id = o.id
+            join ggircs_portal.ciip_user u
+            on u.id = new.created_by
+            )
+      select operator_name, facility_name, first_name, last_name, email_address from ad into application_details;
+
+      perform ggircs_portal_private.graphile_worker_job_definer('sendMail',
+            json_build_object(
+              'type', 'certification_request',
+              'certifierUrl', new.certifier_url,
+              'reporterEmail', application_details.email_address,
+              'firstName', application_details.first_name,
+              'lastName', application_details.last_name,
+              'email', new.certification_request_sent_to,
+              'facilityName', application_details.facility_name,
+              'operatorName', application_details.operator_name));
+
+      -- timestamp when the email was sent
+      new.certification_request_sent_at = now();
+      return new;
+
+      -- **ON SIGNED BY CERTIFIER**
+    when tg_argv[0] = 'signed_by_certifier' then
+
+      with ad as (select o.operator_name, f.facility_name, u.first_name, u.last_name, u.email_address
+            from ggircs_portal.application_revision ar
+            join ggircs_portal.application a
+            on ar.application_id = a.id
+            and new.application_id = ar.application_id
+            and new.version_number = ar.version_number
+            join ggircs_portal.facility f
+            on a.facility_id = f.id
+            join ggircs_portal.organisation o
+            on f.organisation_id = o.id
+            join ggircs_portal.ciip_user u
+            on u.id = new.created_by
+            )
+      select operator_name, facility_name, first_name, last_name, email_address from ad into application_details;
+
+      with certifier as (select u.first_name, u.last_name from ggircs_portal.ciip_user u where u.id = new.certified_by)
+      select first_name, last_name from certifier into certifier_details;
+
+      perform ggircs_portal_private.graphile_worker_job_definer('sendMail',
+            json_build_object(
+              'type', 'signed_by_certifier',
+              'email', application_details.email_address,
+              'firstName', application_details.first_name,
+              'lastName', application_details.last_name,
+              'certifierEmail', new.certification_request_sent_to,
+              'facilityName', application_details.facility_name,
+              'operatorName', application_details.operator_name,
+              'certifierFirstName', certifier_details.first_name,
+              'certifierLastName', certifier_details.last_name));
+      return new;
+
+    -- **ON SIGNED BY CERTIFIER**
+    when tg_argv[0] = 'recertification' then
+
+      with ad as (select o.operator_name, f.facility_name, u.first_name, u.last_name, u.email_address
+            from ggircs_portal.application_revision ar
+            join ggircs_portal.application a
+            on ar.application_id = a.id
+            and new.application_id = ar.application_id
+            and new.version_number = ar.version_number
+            join ggircs_portal.facility f
+            on a.facility_id = f.id
+            join ggircs_portal.organisation o
+            on f.organisation_id = o.id
+            join ggircs_portal.ciip_user u
+            on u.id = new.created_by
+            )
+      select operator_name, facility_name, first_name, last_name, email_address from ad into application_details;
+
+      with certifier as (select u.first_name, u.last_name from ggircs_portal.ciip_user u where u.id = new.certified_by)
+      select first_name, last_name from certifier into certifier_details;
+
+      perform ggircs_portal_private.graphile_worker_job_definer('sendMail',
+            json_build_object(
+              'type', 'recertification',
+              'email', application_details.email_address,
+              'firstName', application_details.first_name,
+              'lastName', application_details.last_name,
+              'facilityName', application_details.facility_name,
+              'operatorName', application_details.operator_name));
+      new.recertification_request_sent=true;
       return new;
   end case;
 end;

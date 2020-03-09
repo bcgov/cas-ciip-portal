@@ -2,6 +2,9 @@ const nodemailer = require('nodemailer');
 const createWelcomeMail = require('../emailTemplates/welcome.js');
 const createConfirmationMail = require('../emailTemplates/confirmation.js');
 const createAmendmentMail = require('../emailTemplates/amendment.js');
+const createCertificationRequestMail = require('../emailTemplates/certificationRequest.js');
+const createSignedByCertifierMail = require('../emailTemplates/signedByCertifier.js');
+const createRecertificationRequestMail = require('../emailTemplates/recertificationRequest.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -12,7 +15,12 @@ module.exports = async ({
   lastName,
   facilityName,
   operatorName,
-  status
+  status,
+  reporterEmail,
+  certifierFirstName,
+  certifierLastName,
+  certifierUrl,
+  certifierEmail
 }) => {
   if (!process.env.SMTP_CONNECTION_STRING)
     throw new Error('SMTP connection string is undefined');
@@ -56,6 +64,44 @@ module.exports = async ({
         status
       });
       break;
+    // Request for certification
+    case 'certification_request':
+      subject = 'CIIP application certification request';
+      htmlContent = createCertificationRequestMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName,
+        reporterEmail,
+        certifierUrl
+      });
+      break;
+    // Certifier signs application
+    case 'signed_by_certifier':
+      subject = 'CIIP application certified';
+      htmlContent = createSignedByCertifierMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName,
+        certifierEmail,
+        certifierFirstName,
+        certifierLastName
+      });
+      break;
+    // Request for recertification (data changed)
+    case 'recertification':
+      subject = 'CIIP Application recertification request';
+      htmlContent = createRecertificationRequestMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName
+      });
+      break;
     default:
       htmlContent = null;
   }
@@ -73,7 +119,7 @@ module.exports = async ({
     html: htmlContent
   };
 
-  transporter.sendMail(message, (error, info) => {
+  await transporter.sendMail(message, (error, info) => {
     if (error) return console.error(error);
     console.log('Message sent: %s', info.messageId);
   });

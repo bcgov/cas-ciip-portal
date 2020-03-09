@@ -20,7 +20,10 @@ const query = {
     latestDraftRevision: {
       certificationUrl: {
         certificationSignature: 'test',
-        hashMatches: true
+        hashMatches: true,
+        ' $fragmentRefs': {
+          ApplicationRecertificationContainer_certificationUrl: true
+        }
       }
     },
     ' $fragmentRefs': {
@@ -43,9 +46,11 @@ it('It loads the summary component & passes it the application prop if hashMatch
   ).toBe(query.application);
 });
 
-it('It shows a "data has changed" error if hashMatches is false', () => {
+it('It renders ApplicationRecertificationContainer if hashMatches is false', () => {
   query.application.latestDraftRevision.certificationUrl.hashMatches = false;
   const wrapper = shallow(<Certify query={query} />);
   expect(wrapper).toMatchSnapshot();
-  expect(wrapper.find('CardHeader').text()).toBe('Error');
+  expect(
+    wrapper.find('Relay(ApplicationRecertification)').prop('certificationUrl')
+  ).toBe(query.application.latestDraftRevision.certificationUrl);
 });

@@ -30,8 +30,9 @@ describe('When logged in as a reporter', () => {
     );
     cy.url().should('include', '/reporter/ciip-application');
     cy.get('.btn')
-      .contains('Generate')
+      .contains('Send to Certifier')
       .click();
+    cy.wait(500); // Wait for half second (otherwise cypress gets the input before the value has been set)
     cy.get('input')
       .invoke('val')
       .should('contain', 'localhost');

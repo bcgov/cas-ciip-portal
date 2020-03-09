@@ -5,6 +5,10 @@ alter table ggircs_portal.ciip_user_organisation
   disable trigger _set_user_id;
 alter table ggircs_portal.application_revision_status
   disable trigger _status_change_email;
+alter table ggircs_portal.certification_url
+  disable trigger _certification_request_email;
+alter table ggircs_portal.certification_url
+  disable trigger _signed_by_certifier_email;
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 7, 'approved');
 update ggircs_portal.application_revision_status set application_revision_status = 'draft' where application_id=2 and version_number=1;
 update ggircs_portal.application_revision set legal_disclaimer_accepted = false where application_id=2 and version_number=1;
