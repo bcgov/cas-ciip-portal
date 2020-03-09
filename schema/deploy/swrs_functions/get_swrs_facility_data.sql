@@ -77,6 +77,7 @@ begin;
          left outer join swrs.address as _fac_add on _rep.id = _fac_add.report_id
                                             and _fac_add.type = 'Facility'
                                             and _fac_add.path_context = 'RegistrationData'
+                                            limit 1
 
       );
       end if;
