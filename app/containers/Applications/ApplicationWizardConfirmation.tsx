@@ -205,6 +205,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       <br />
 
       <ApplicationDetailsContainer
+        summary
         query={props.query}
         application={props.application}
         review={false}

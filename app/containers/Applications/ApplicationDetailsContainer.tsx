@@ -18,6 +18,8 @@ interface Props {
   application: ApplicationDetailsContainer_application;
   relay: RelayRefetchProp;
   review: boolean;
+  // Boolean indicates whether or not this item is being rendered by the summary component
+  summary: boolean;
 }
 
 export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
@@ -132,6 +134,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
         {formResults.map(({node}) => (
           <ApplicationDetailsCardItem
             key={node.id}
+            summary
             diffFromResults={diffFromResults}
             diffToResults={props.query.new.orderedFormResults.edges}
             formResult={node}
