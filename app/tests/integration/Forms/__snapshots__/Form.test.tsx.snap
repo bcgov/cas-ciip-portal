@@ -106,14 +106,14 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="consequat Ut Duis"
+                value="est dolor"
               />
               <span
                 className="font-italic text-muted"
               />
             </div>
             <div
-              className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+              className="form-group field field-string form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
             >
               <label
                 className="form-label"
@@ -123,23 +123,26 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                  *
               </label>
               <input
+                autoFocus={false}
                 className="form-control"
                 disabled={false}
                 id="root_operator_naics"
+                label="NAICS code"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                onKeyDown={[Function]}
-                onMouseUp={[Function]}
+                placeholder=""
+                readOnly={false}
+                required={true}
                 type="text"
-                value="-60000000"
+                value="345"
               />
               <span
                 className="font-italic text-muted"
               />
             </div>
             <div
-              className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+              className="form-group field field-string form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
             >
               <label
                 className="form-label"
@@ -149,16 +152,19 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                  *
               </label>
               <input
+                autoFocus={false}
                 className="form-control"
                 disabled={false}
                 id="root_operator_bcCorporateRegistryNumber"
+                label="BC Corporate Registry number"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                onKeyDown={[Function]}
-                onMouseUp={[Function]}
+                placeholder=""
+                readOnly={false}
+                required={true}
                 type="text"
-                value="-80000000"
+                value="consequat Ut Duis"
               />
               <span
                 className="font-italic text-muted"
@@ -234,7 +240,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="est dolor"
+                    value="culpa"
                   />
                   <span
                     className="font-italic text-muted"
@@ -263,7 +269,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="mollit eu esse"
+                    value="in qui"
                   />
                   <span
                     className="font-italic text-muted"
@@ -292,7 +298,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="y5f 2r4"
+                    value="l3y 5f2"
                   />
                   <span
                     className="font-italic text-muted"
@@ -317,7 +323,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onChange={[Function]}
                     onFocus={[Function]}
                     required={true}
-                    value="British Columbia"
+                    value="Northwest Territories"
                   >
                     <option
                       value=""
@@ -439,7 +445,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="consequat Ut Duis"
+                value="culpa"
               />
               <span
                 className="font-italic text-muted"
@@ -468,7 +474,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="culpa"
+                value="in qui"
               />
               <span
                 className="font-italic text-muted"
@@ -497,7 +503,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="est dolor"
+                value="mollit eu esse"
               />
               <span
                 className="font-italic text-muted"
@@ -525,8 +531,8 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 placeholder=""
                 readOnly={false}
                 required={true}
-                type="text"
-                value="in qui"
+                type="email"
+                value="ygmszFgms@AfkpuAfkpuAfkp.ncf"
               />
               <span
                 className="font-italic text-muted"
@@ -555,7 +561,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="tel"
-                value="mollit eu esse"
+                value="consequat Ut Duis"
               />
               <span
                 className="font-italic text-muted"
@@ -583,7 +589,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={false}
                 type="tel"
-                value="in qui"
+                value="est dolor"
               />
               <span
                 className="font-italic text-muted"
@@ -630,7 +636,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="est dolor"
+                    value="mollit eu esse"
                   />
                   <span
                     className="font-italic text-muted"
@@ -659,7 +665,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="mollit eu esse"
+                    value="consequat Ut Duis"
                   />
                   <span
                     className="font-italic text-muted"
@@ -688,7 +694,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="y5f 2r4"
+                    value="E1l 3y5"
                   />
                   <span
                     className="font-italic text-muted"
@@ -713,7 +719,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onChange={[Function]}
                     onFocus={[Function]}
                     required={true}
-                    value="British Columbia"
+                    value="Manitoba"
                   >
                     <option
                       value=""
@@ -835,7 +841,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="in qui"
+                value="est dolor"
               />
               <span
                 className="font-italic text-muted"
@@ -860,7 +866,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 onChange={[Function]}
                 onFocus={[Function]}
                 required={true}
-                value="IF_b"
+                value="L_c"
               >
                 <option
                   value=""
@@ -903,7 +909,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
               />
             </div>
             <div
-              className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
             >
               <label
                 className="form-label"
@@ -913,42 +919,48 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                  *
               </label>
               <input
+                autoFocus={false}
                 className="form-control"
                 disabled={false}
                 id="root_facility_bcghgid"
+                label="BCGHG ID Number"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                onKeyDown={[Function]}
-                onMouseUp={[Function]}
+                placeholder=""
+                readOnly={false}
+                required={true}
                 type="text"
-                value="-20000000"
+                value="345"
               />
               <span
                 className="font-italic text-muted"
               />
             </div>
             <div
-              className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+              className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
             >
               <label
                 className="form-label"
                 htmlFor="root_facility_naics"
               >
-                NAICS Code
+                NAICS code
                  *
               </label>
               <input
+                autoFocus={false}
                 className="form-control"
                 disabled={false}
                 id="root_facility_naics"
+                label="NAICS code"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
-                onKeyDown={[Function]}
-                onMouseUp={[Function]}
+                placeholder=""
+                readOnly={false}
+                required={true}
                 type="text"
-                value="-60000000"
+                value="345"
               />
               <span
                 className="font-italic text-muted"
@@ -1178,9 +1190,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     <span>
                       <input
                         autoFocus={false}
-                        checked={true}
+                        checked={false}
                         disabled={false}
-                        name="0.4"
+                        name="0.5"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -1201,9 +1213,9 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     <span>
                       <input
                         autoFocus={false}
-                        checked={false}
+                        checked={true}
                         disabled={false}
-                        name="0.4"
+                        name="0.5"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -1221,132 +1233,6 @@ exports[`Form should match the snapshot with the administration form 1`] = `
               <span
                 className="font-italic text-muted"
               />
-            </div>
-            <div
-              className="col-12"
-            >
-              <div
-                className="form-row"
-              >
-                <span
-                  className="font-italic text-muted"
-                />
-                <div
-                  className="col-12"
-                >
-                  <legend
-                    id="root_facility_facilityLocation__title"
-                  >
-                    Facility Location
-                  </legend>
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_facilityLocation_locationStreetAddress"
-                  >
-                    Location of the facility
-                  </label>
-                  <input
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_facility_facilityLocation_locationStreetAddress"
-                    label="Location of the facility"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    placeholder=""
-                    readOnly={false}
-                    required={false}
-                    type="text"
-                    value="culpa"
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_facilityLocation_locationNearestCity"
-                  >
-                    Nearest City
-                  </label>
-                  <input
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_facility_facilityLocation_locationNearestCity"
-                    label="Nearest City"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    placeholder=""
-                    readOnly={false}
-                    required={false}
-                    type="text"
-                    value="mollit eu esse"
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_facilityLocation_latitude"
-                  >
-                    Latitude
-                  </label>
-                  <input
-                    className="form-control"
-                    disabled={false}
-                    id="root_facility_facilityLocation_latitude"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    onMouseUp={[Function]}
-                    type="text"
-                    value="-20000000"
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_facilityLocation_longitude"
-                  >
-                    Longitude
-                  </label>
-                  <input
-                    className="form-control"
-                    disabled={false}
-                    id="root_facility_facilityLocation_longitude"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    onMouseUp={[Function]}
-                    type="text"
-                    value="-80000000"
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </div>

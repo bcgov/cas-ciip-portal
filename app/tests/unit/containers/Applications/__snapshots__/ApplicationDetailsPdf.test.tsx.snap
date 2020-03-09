@@ -81,22 +81,22 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Operator
                 </TEXT>
                 <TEXT>
-                  culpa
-                </TEXT>
-                <TEXT>
-                   
-                  est dolor
+                  consequat Ut Duis
                 </TEXT>
                 <TEXT>
                    
                   mollit eu esse
-                  ,
-                   
-                  British Columbia
                 </TEXT>
                 <TEXT>
                    
-                  y5f 2r4
+                  consequat Ut Duis
+                  ,
+                   
+                  Manitoba
+                </TEXT>
+                <TEXT>
+                   
+                  E1l 3y5
                 </TEXT>
               </VIEW>
             </styled.VIEW>
@@ -200,44 +200,44 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Object {
                   "facility": Object {
-                    "bcghgid": 0,
-                    "facilityName": "est dolor",
-                    "facilityType": "L_c",
+                    "bcghgid": "51234",
+                    "facilityName": "in qui",
+                    "facilityType": "IF_b",
                     "isFacilityLocationDifferent": false,
                     "mailingAddress": Object {
-                      "city": "est dolor",
-                      "postalCode": "r4E 1l3",
-                      "province": "Nova Scotia",
-                      "streetAddress": "in qui",
+                      "city": "in qui",
+                      "postalCode": "l3y 5f2",
+                      "province": "Northwest Territories",
+                      "streetAddress": "culpa",
                     },
-                    "naics": -40000000,
+                    "naics": "4512",
                   },
                   "operationalRepresentative": Object {
-                    "email": "in qui",
-                    "fax": "in qui",
-                    "firstName": "consequat Ut Duis",
-                    "lastName": "culpa",
+                    "email": "mzFgms@AfkpuAfkpuAfkp.ncf",
+                    "fax": "est dolor",
+                    "firstName": "culpa",
+                    "lastName": "in qui",
                     "mailingAddress": Object {
-                      "city": "mollit eu esse",
-                      "postalCode": "y5f 2r4",
-                      "province": "British Columbia",
-                      "streetAddress": "est dolor",
+                      "city": "consequat Ut Duis",
+                      "postalCode": "E1l 3y5",
+                      "province": "Manitoba",
+                      "streetAddress": "mollit eu esse",
                     },
-                    "phone": "mollit eu esse",
-                    "position": "est dolor",
+                    "phone": "consequat Ut Duis",
+                    "position": "mollit eu esse",
                   },
                   "operator": Object {
-                    "bcCorporateRegistryNumber": -80000000,
-                    "duns": "512345123",
+                    "bcCorporateRegistryNumber": "est dolor",
+                    "duns": "451234512",
                     "mailingAddress": Object {
-                      "city": "mollit eu esse",
-                      "postalCode": "y5f 2r4",
-                      "province": "British Columbia",
-                      "streetAddress": "est dolor",
+                      "city": "consequat Ut Duis",
+                      "postalCode": "E1l 3y5",
+                      "province": "Manitoba",
+                      "streetAddress": "mollit eu esse",
                     },
-                    "naics": -60000000,
-                    "name": "culpa",
-                    "tradeName": "consequat Ut Duis",
+                    "naics": "23",
+                    "name": "consequat Ut Duis",
+                    "tradeName": "culpa",
                   },
                 }
               }
@@ -339,8 +339,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       },
                       "properties": Object {
                         "bcghgid": Object {
+                          "format": "bcghgid",
                           "title": "BCGHG ID Number",
-                          "type": "number",
+                          "type": "string",
                         },
                         "facilityName": Object {
                           "title": "Facility Name",
@@ -371,8 +372,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "Facility Mailing Address",
                         },
                         "naics": Object {
-                          "title": "NAICS Code",
-                          "type": "number",
+                          "format": "naics",
+                          "title": "NAICS code",
+                          "type": "string",
                         },
                       },
                       "required": Array [
@@ -388,6 +390,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "operationalRepresentative": Object {
                       "properties": Object {
                         "email": Object {
+                          "format": "email",
                           "title": "Email Address",
                           "type": "string",
                         },
@@ -430,7 +433,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "properties": Object {
                         "bcCorporateRegistryNumber": Object {
                           "title": "BC Corporate Registry number",
-                          "type": "number",
+                          "type": "string",
                         },
                         "duns": Object {
                           "format": "duns",
@@ -442,8 +445,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "Operator Mailing Address",
                         },
                         "naics": Object {
+                          "format": "naics",
                           "title": "NAICS code",
-                          "type": "number",
+                          "type": "string",
                         },
                         "name": Object {
                           "title": "Legal name",
@@ -473,16 +477,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "facility": Object {
-                    "bcghgid": Object {
-                      "ui:no-seperator": true,
-                    },
                     "facilityLocation": Object {
-                      "latitude": Object {
-                        "ui:no-seperator": true,
-                      },
-                      "longitude": Object {
-                        "ui:no-seperator": true,
-                      },
                       "ui:order": Array [
                         "locationStreetAddress",
                         "locationNearestCity",
@@ -500,9 +495,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "postalCode",
                         "province",
                       ],
-                    },
-                    "naics": Object {
-                      "ui:no-seperator": true,
                     },
                     "ui:order": Array [
                       "facilityName",
@@ -546,7 +538,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "operator": Object {
                     "bcCorporateRegistryNumber": Object {
                       "ui:col-md": 4,
-                      "ui:no-seperator": true,
                     },
                     "duns": Object {
                       "ui:col-md": 4,
@@ -561,7 +552,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                     "naics": Object {
                       "ui:col-md": 4,
-                      "ui:no-seperator": true,
                     },
                     "ui:order": Array [
                       "name",
@@ -651,6 +641,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     Object {
                       "gases": Array [
                         Object {
+                          "annualCO2e": -20000000,
+                          "annualEmission": 0,
+                          "gasDescription": "in qui",
+                          "gasType": "mollit eu esse",
+                          "gwp": -60000000,
+                        },
+                        Object {
                           "annualCO2e": -40000000,
                           "annualEmission": -20000000,
                           "gasDescription": "culpa",
@@ -658,7 +655,33 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "gwp": -80000000,
                         },
                       ],
-                      "sourceTypeName": "consequat Ut Duis",
+                      "sourceTypeName": "culpa",
+                    },
+                    Object {
+                      "gases": Array [
+                        Object {
+                          "annualCO2e": -60000000,
+                          "annualEmission": -40000000,
+                          "gasDescription": "consequat Ut Duis",
+                          "gasType": "in qui",
+                          "gwp": 0,
+                        },
+                        Object {
+                          "annualCO2e": -80000000,
+                          "annualEmission": -60000000,
+                          "gasDescription": "mollit eu esse",
+                          "gasType": "culpa",
+                          "gwp": -20000000,
+                        },
+                        Object {
+                          "annualCO2e": 0,
+                          "annualEmission": -80000000,
+                          "gasDescription": "est dolor",
+                          "gasType": "consequat Ut Duis",
+                          "gwp": -40000000,
+                        },
+                      ],
+                      "sourceTypeName": "mollit eu esse",
                     },
                   ],
                 }
@@ -831,16 +854,22 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "fuelType": "mollit eu esse",
-                    "fuelUnits": "est dolor",
-                    "methodology": "wci 2.0",
-                    "quantity": 0,
-                  },
-                  Object {
                     "fuelType": "culpa",
                     "fuelUnits": "consequat Ut Duis",
                     "methodology": "wci 1.0",
                     "quantity": -60000000,
+                  },
+                  Object {
+                    "fuelType": "est dolor",
+                    "fuelUnits": "in qui",
+                    "methodology": "wci 1.0",
+                    "quantity": -20000000,
+                  },
+                  Object {
+                    "fuelType": "consequat Ut Duis",
+                    "fuelUnits": "mollit eu esse",
+                    "methodology": "wci 2.0",
+                    "quantity": -80000000,
                   },
                 ]
               }
@@ -976,20 +1005,19 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Object {
                   "electricity": Object {
-                    "consumedOnSite": 0,
-                    "generatedOnSite": -40000000,
-                    "onSiteEmissions": -60000000,
-                    "purchased": -80000000,
-                    "purchasedEmissionFactor": -20000000,
-                    "sold": -60000000,
+                    "consumedOnSite": -80000000,
+                    "generatedOnSite": 0,
+                    "purchased": -40000000,
+                    "purchasedEmissionFactor": -80000000,
+                    "sold": -40000000,
                   },
                   "heat": Object {
-                    "consumedOnSite": 0,
-                    "generatedOnSite": -40000000,
-                    "onSiteEmissions": -60000000,
-                    "purchased": -80000000,
-                    "purchasedEmissionFactor": -20000000,
-                    "sold": -60000000,
+                    "consumedOnSite": -80000000,
+                    "generatedOnSite": -20000000,
+                    "onSiteEmissions": -40000000,
+                    "purchased": -60000000,
+                    "purchasedEmissionFactor": 0,
+                    "sold": -40000000,
                   },
                 }
               }
@@ -1294,34 +1322,36 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 30,
-                    "importedHeatAllocationFactor": 50,
-                    "paymentAllocationFactor": 10,
-                    "productRowId": -40000000,
-                    "productUnits": "est dolor",
-                    "productionAllocationFactor": -59999960,
-                    "quantity": 0,
+                    "additionalData": Object {
+                      "mollitac": "est dolor",
+                    },
+                    "importedElectricityAllocationFactor": 40,
+                    "importedHeatAllocationFactor": 10,
+                    "paymentAllocationFactor": 20,
+                    "productRowId": -20000000,
+                    "productUnits": "mollit eu esse",
+                    "productionAllocationFactor": -49999950,
+                    "quantity": -80000000,
                   },
                   Object {
                     "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 30,
-                    "importedHeatAllocationFactor": 50,
-                    "paymentAllocationFactor": 10,
-                    "productRowId": -40000000,
-                    "productUnits": "est dolor",
-                    "productionAllocationFactor": -59999960,
-                    "quantity": 0,
+                    "importedElectricityAllocationFactor": 10,
+                    "importedHeatAllocationFactor": 30,
+                    "paymentAllocationFactor": 40,
+                    "productRowId": -80000000,
+                    "productUnits": "culpa",
+                    "productionAllocationFactor": -79999980,
+                    "quantity": -40000000,
                   },
                   Object {
                     "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 30,
-                    "importedHeatAllocationFactor": 50,
-                    "paymentAllocationFactor": 10,
-                    "productRowId": -40000000,
-                    "productUnits": "est dolor",
-                    "productionAllocationFactor": -59999960,
-                    "quantity": 0,
+                    "importedElectricityAllocationFactor": 10,
+                    "importedHeatAllocationFactor": 30,
+                    "paymentAllocationFactor": 40,
+                    "productRowId": -80000000,
+                    "productUnits": "culpa",
+                    "productionAllocationFactor": -79999980,
+                    "quantity": -40000000,
                   },
                 ]
               }
