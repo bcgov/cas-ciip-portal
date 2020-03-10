@@ -241,7 +241,10 @@
           "city",
           "postalCode",
           "province"
-        ]
+        ],
+        "postalCode": {
+          "ui:placeholder": "ex: A1A 1A1"
+        }
       },
       "facilityLocation": {
         "ui:order": [
@@ -276,7 +279,10 @@
           "city",
           "postalCode",
           "province"
-        ]
+        ],
+        "postalCode": {
+          "ui:placeholder": "ex: A1A 1A1"
+        }
       },
       "bcCorporateRegistryNumber": {
         "ui:col-md": 4
@@ -313,7 +319,10 @@
           "city",
           "postalCode",
           "province"
-        ]
+        ],
+        "postalCode": {
+          "ui:placeholder": "ex: A1A 1A1"
+        }
       }
     }
   },
@@ -321,7 +330,7 @@
     "duns": "^\\d{9}$",
     "naics": "^\\d+$",
     "bcghgid": "^\\d+$",
-    "postal-code": "[\\w][0-9][\\w]\\s?[0-9][\\w][0-9]"
+    "postal-code": "[a-zA-Z][0-9][a-zA-Z]\\s?[0-9][a-zA-Z][0-9]"
   },
   "customFormatsErrorMessages": {
     "duns": "DUNS number should be nine digits",
