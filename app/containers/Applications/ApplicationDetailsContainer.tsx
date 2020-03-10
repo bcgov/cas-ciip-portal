@@ -135,7 +135,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
         {formResults.map(({node}) => (
           <ApplicationDetailsCardItem
             key={node.id}
-            summary
+            summary={props.summary}
             diffFromResults={diffFromResults}
             diffToResults={props.query.new.orderedFormResults.edges}
             formResult={node}

@@ -112,7 +112,6 @@ const customFields = (
       <ProductionFields query={props.formContext.query} {...props} />
     ),
     NumberField: props => {
-      console.log(props);
       if (props?.errorSchema?.__errors || props.rawErrors) {
         setHasErrors(true);
         hasErrors = (
