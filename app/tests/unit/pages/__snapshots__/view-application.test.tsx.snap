@@ -81,6 +81,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
           }
         }
         review={false}
+        summary={false}
       />
     </Col>
     <Col

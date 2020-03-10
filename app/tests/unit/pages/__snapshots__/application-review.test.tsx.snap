@@ -106,6 +106,7 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
           }
         }
         review={true}
+        summary={false}
       />
       <Relay(IncentiveCalculator)
         applicationRevision={

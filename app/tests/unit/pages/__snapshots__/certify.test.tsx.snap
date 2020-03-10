@@ -73,6 +73,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
         }
       }
       review={false}
+      summary={false}
     />
   </Relay(DefaultLayout)>
   <JSXStyle
