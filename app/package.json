@@ -55,6 +55,7 @@
       }
     },
     "rules": {
+      "no-unused-vars": [2, { "argsIgnorePattern": "IdSchema" }],
       "cypress/no-unnecessary-waiting": 0,
       "@typescript-eslint/indent": 0,
       "@typescript-eslint/semi": 0,
