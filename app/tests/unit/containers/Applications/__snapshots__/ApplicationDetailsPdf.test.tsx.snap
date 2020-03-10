@@ -96,7 +96,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 </TEXT>
                 <TEXT>
                    
-                  y5f3y5
+                  u5f3u5
                 </TEXT>
               </VIEW>
             </styled.VIEW>
@@ -206,7 +206,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "isFacilityLocationDifferent": false,
                     "mailingAddress": Object {
                       "city": "mollit eu esse",
-                      "postalCode": "l3y 2r4",
+                      "postalCode": "k3u 2p4",
                       "province": "British Columbia",
                       "streetAddress": "culpa",
                     },
@@ -219,7 +219,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "lastName": "in qui",
                     "mailingAddress": Object {
                       "city": "culpa",
-                      "postalCode": "E1l4E1",
+                      "postalCode": "A1k4A1",
                       "province": "New Brunswick",
                       "streetAddress": "mollit eu esse",
                     },
@@ -231,7 +231,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "duns": "123451234",
                     "mailingAddress": Object {
                       "city": "consequat Ut Duis",
-                      "postalCode": "y5f3y5",
+                      "postalCode": "u5f3u5",
                       "province": "Manitoba",
                       "streetAddress": "est dolor",
                     },
@@ -489,6 +489,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "ui:widget": "radio",
                     },
                     "mailingAddress": Object {
+                      "postalCode": Object {
+                        "ui:placeholder": "ex: A1A 1A1",
+                      },
                       "ui:order": Array [
                         "streetAddress",
                         "city",
@@ -513,6 +516,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       },
                     },
                     "mailingAddress": Object {
+                      "postalCode": Object {
+                        "ui:placeholder": "ex: A1A 1A1",
+                      },
                       "ui:order": Array [
                         "streetAddress",
                         "city",
@@ -543,6 +549,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "ui:col-md": 4,
                     },
                     "mailingAddress": Object {
+                      "postalCode": Object {
+                        "ui:placeholder": "ex: A1A 1A1",
+                      },
                       "ui:order": Array [
                         "streetAddress",
                         "city",

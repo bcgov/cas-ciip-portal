@@ -294,11 +294,11 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
-                    placeholder=""
+                    placeholder="ex: A1A 1A1"
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="y5f3y5"
+                    value="u5f3u5"
                   />
                   <span
                     className="font-italic text-muted"
@@ -690,11 +690,11 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
-                    placeholder=""
+                    placeholder="ex: A1A 1A1"
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="E1l4E1"
+                    value="A1k4A1"
                   />
                   <span
                     className="font-italic text-muted"
@@ -1061,11 +1061,11 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onBlur={[Function]}
                     onChange={[Function]}
                     onFocus={[Function]}
-                    placeholder=""
+                    placeholder="ex: A1A 1A1"
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="l3y 2r4"
+                    value="k3u 2p4"
                   />
                   <span
                     className="font-italic text-muted"
