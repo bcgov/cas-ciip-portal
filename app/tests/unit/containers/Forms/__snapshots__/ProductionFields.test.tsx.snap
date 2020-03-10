@@ -29,7 +29,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     <StringField
       autofocus={false}
       disabled={false}
-      errorSchema={null}
       formContext={Object {}}
       formData={1}
       name="product"
@@ -615,7 +614,6 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     <StringField
       autofocus={false}
       disabled={false}
-      errorSchema={null}
       formContext={Object {}}
       formData={1}
       name="product"

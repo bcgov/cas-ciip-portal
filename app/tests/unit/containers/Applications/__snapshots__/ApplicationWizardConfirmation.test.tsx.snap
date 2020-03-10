@@ -35,6 +35,8 @@ exports[`The Confirmation Component match the snapshot 1`] = `
       }
     }
     review={false}
+    setHasErrors={[Function]}
+    summary={true}
   />
   <br />
   <h5>
@@ -119,6 +121,8 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
       }
     }
     review={false}
+    setHasErrors={[Function]}
+    summary={true}
   />
   <br />
   <h5>
