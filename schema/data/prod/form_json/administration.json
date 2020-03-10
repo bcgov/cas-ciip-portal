@@ -321,7 +321,7 @@
     "duns": "^\\d{9}$",
     "naics": "^\\d+$",
     "bcghgid": "^\\d+$",
-    "postal-code": "[\\w][0-9][\\w] [0-9][\\w][0-9]"
+    "postal-code": "[\\w][0-9][\\w]\\s?[0-9][\\w][0-9]"
   },
   "customFormatsErrorMessages": {
     "duns": "DUNS number should be nine digits",

@@ -15,10 +15,10 @@ const customFields = (
   previousIsEmpty,
   setHasErrors
 ) => {
-  let hasErrors;
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => {
+      let hasErrors;
       if (props?.errorSchema?.__errors || props.rawErrors) {
         setHasErrors(true);
         hasErrors = (
@@ -69,6 +69,7 @@ const customFields = (
       );
     },
     BooleanField: props => {
+      let hasErrors;
       if (props.errorSchema.__errors || props.rawErrors) {
         setHasErrors(true);
         hasErrors = (
@@ -112,6 +113,7 @@ const customFields = (
       <ProductionFields query={props.formContext.query} {...props} />
     ),
     NumberField: props => {
+      let hasErrors;
       if (props?.errorSchema?.__errors || props.rawErrors) {
         setHasErrors(true);
         hasErrors = (
