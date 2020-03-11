@@ -13,7 +13,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
     }
   >
     <CardHeader>
-      <ForwardRef
+      <Row
         noGutters={false}
       >
         <Col
@@ -45,7 +45,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
             -
           </Button>
         </Col>
-      </ForwardRef>
+      </Row>
     </CardHeader>
     <Collapse
       appear={false}
