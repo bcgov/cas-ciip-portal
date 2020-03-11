@@ -164,7 +164,7 @@
     "@storybook/addon-a11y": "^5.3.8",
     "@storybook/addon-actions": "^5.3.13",
     "@storybook/addon-cssresources": "^5.3.8",
-    "@storybook/addon-info": "^5.2.8",
+    "@storybook/addon-info": "^5.3.14",
     "@storybook/addon-storyshots": "^5.3.14",
     "@storybook/addons": "^5.3.8",
     "@storybook/react": "^5.2.8",
@@ -246,7 +246,8 @@
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.ts",
-      "\\.(css|less)$": "identity-obj-proxy"
+      "\\.(css|less)$": "identity-obj-proxy",
+      "react-syntax-highlighter/dist/esm/(.*)": "react-syntax-highlighter/dist/cjs/$1"
     },
     "setupFilesAfterEnv": [
       "<rootDir>lib/setupTests.ts",
