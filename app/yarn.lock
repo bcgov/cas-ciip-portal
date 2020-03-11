@@ -3426,10 +3426,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react-jsonschema-form@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@types/react-jsonschema-form/-/react-jsonschema-form-1.7.0.tgz#6b98871522a89737ceaacc3f6c38d7cbbbf86226"
-  integrity sha512-2vJr1f4AkleYLsMtHoEyDrss1h1j0f74/O917jvGytH24HDCfBrgobaY8B+qzFBZblEOhOENNvDPHnlmApwFMg==
+"@types/react-jsonschema-form@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@types/react-jsonschema-form/-/react-jsonschema-form-1.7.1.tgz#3068a53a6b77d75ba223fd0f6b95fa07297d42fe"
+  integrity sha512-mUU3efUOfEupoDSlCgJTOHEXJ90ZClQLThmoobkV6e8wnkSDP9EiUYza5br/QaJF8EAQFS/l/STfb/WDiUVr1w==
   dependencies:
     "@types/json-schema" "*"
     "@types/react" "*"
