@@ -214,12 +214,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       />
       <br />
       {hasErrors ? (
-        <span style={{textAlign: 'center', color: 'red'}}>
-          <h5>
-            Your Application contains errors that must be fixed before
-            submission.
-          </h5>
-        </span>
+        <div className="errors">
+          Your Application contains errors that must be fixed before submission.
+        </div>
       ) : revision.certificationSignatureIsValid ? (
         <>
           <Card>
@@ -242,6 +239,17 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       ) : (
         <>{certificationMessage}</>
       )}
+      <style jsx global>
+        {`
+          .errors {
+            margin-left: 20px;
+            padding: 20px;
+            background: #ce5c5c;
+            color: white;
+            font-size: 20px;
+          }
+        `}
+      </style>
     </>
   );
 };

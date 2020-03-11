@@ -29,7 +29,7 @@ describe('When logged in as a reporter', () => {
       `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
     );
     cy.url().should('include', '/reporter/ciip-application');
-    cy.get('h5').contains('Your Application contains errors');
+    cy.get('.errors').contains('Your Application contains errors');
     cy.get('Send to Certifier').should('not.exist');
   });
 });
