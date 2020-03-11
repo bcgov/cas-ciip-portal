@@ -9,7 +9,7 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
   >
     Certifier Signature:
   </h3>
-  <Row
+  <ForwardRef
     noGutters={false}
   >
     <Col
@@ -24,8 +24,8 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
         clearOnResize={true}
       />
     </Col>
-  </Row>
-  <Row
+  </ForwardRef>
+  <ForwardRef
     noGutters={false}
   >
     <Col
@@ -70,7 +70,7 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
         Clear
       </Button>
     </Col>
-  </Row>
+  </ForwardRef>
   <JSXStyle
     id="4143358337"
   >

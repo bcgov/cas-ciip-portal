@@ -2,7 +2,7 @@
 
 exports[`ApplicationDetailsComponent should match the snapshot with the ApplicationDetails component 1`] = `
 <Fragment>
-  <Row
+  <ForwardRef
     noGutters={false}
   >
     <Col
@@ -13,7 +13,7 @@ exports[`ApplicationDetailsComponent should match the snapshot with the Applicat
         }
       }
     />
-  </Row>
+  </ForwardRef>
   <br />
   <div>
     <Relay(ApplicationDetailsCardItemComponent)
