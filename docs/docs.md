@@ -23,3 +23,27 @@
 ### Authentication
 
 We use Keycloak to manage authentication of users (using username/password or IDIR) and define their privileges using groups. The Keycloak realm configuration is available in `app/keycloak-realm-export.json`
+
+### Mailhog
+- MailHog can be run via docker with:
+- `sudo docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog`
+- This starts a server on localhost:8025 & uses smtp port 1025
+- #### Running locally:
+- There are several ways to install MailHog locally detailed here: https://github.com/mailhog/MailHog
+- These are the steps I took to install it locally:
+- These steps require go-lang. If you already have go set up. Skip ahead to `Install MailHog`
+#### Install Go:
+- `sudo apt install golang-go`
+- Navigate to home directory
+- `mkdir gocode`
+- `echo "export GOPATH=$HOME/gocode" >> ~/.profile`
+- `source ~/.profile`
+#### Install MailHog:
+- `go get github.com/mailhog/MailHog`
+- `sudo cp /home/{user}/gocode/bin/MailHog /usr/local/bin/mailhog` --> replace `{user}` with your user
+- You should now be able to run mailhog from your command line with the command: `mailhog`
+- MailHog can be configured in a variety of ways: https://github.com/mailhog/MailHog/blob/master/docs/CONFIG.md
+- By default command `mailhog` should start the server with:
+  - SMTP server starts on port 1025
+  - HTTP server starts on port 8025
+  - Uses in-memory message storage
