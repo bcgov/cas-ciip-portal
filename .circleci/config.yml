@@ -443,8 +443,8 @@ jobs:
             source ~/.bashrc
             ./.bin/deploy-data.sh -dev
       - run:
-        command: docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
-        name: Create Mailhog server via docker image
+          command: docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
+          name: Create Mailhog server via docker image
       - run:
           name: run end-to-end tests with percy and cypress
           command: |
