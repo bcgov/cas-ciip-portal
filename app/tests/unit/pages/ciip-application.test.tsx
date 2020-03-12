@@ -4,6 +4,13 @@ import CiipApplication from 'pages/reporter/ciip-application';
 
 const query = {
   session: null,
+  application: {
+    id: 1,
+    latestDraftRevision: {
+      versionNumber: 1,
+      legalDisclaimerAccepted: true
+    }
+  },
   allFormJsons: {
     edges: [{node: {id: 'form-1'}}]
   }
