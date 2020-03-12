@@ -67,14 +67,12 @@ async function worker() {
   });
 }
 
-// Start graphile-worker (unless in CI)
-if (!process.env.CI) {
-  worker().catch(error => {
-    if (error) {
-      throw error;
-    }
-  });
-}
+// Start graphile-worker
+worker().catch(error => {
+  if (error) {
+    throw error;
+  }
+});
 
 const removeFirstLetter = str => str.slice(1);
 
