@@ -417,7 +417,7 @@ jobs:
       - run:
           name: run end-to-end tests with cypress
           environment:
-            SMTP_CONNECTION_STRING=smtp://@localhost:1025
+            SMTP_CONNECTION_STRING: smtp://@localhost:1025
           command: |
             source ~/.asdf/asdf.sh
             pushd app
@@ -453,7 +453,7 @@ jobs:
       - run:
           name: run end-to-end tests with percy and cypress
           environment:
-            SMTP_CONNECTION_STRING=smtp://@localhost:1025
+            SMTP_CONNECTION_STRING: smtp://@localhost:1025
           command: |
             source ~/.asdf/asdf.sh
             pushd app
