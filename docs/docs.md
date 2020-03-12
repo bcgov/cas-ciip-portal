@@ -20,7 +20,7 @@
 - Details about the errors and how to fix them will appear in the dev tools console when those errors are clicked on in the cypress browser
 - Extra config details: https://www.deque.com/axe/axe-for-web/documentation/api-documentation/#api-name-axeconfigure
 
-### Cypress: Ignoring email
+### Cypress: Ignore email test
 - If you want to ignore the email test locally add an env flag to the command `yarn cypress --env NO_MAIL=true`
 - `yarn test:e2e --env NO_MAIL=true` also works
 
@@ -34,7 +34,7 @@ We use Keycloak to manage authentication of users (using username/password or ID
 - This starts a server on localhost:8025 & uses smtp port 1025
 - #### Running locally:
 - There are several ways to install MailHog locally detailed here: https://github.com/mailhog/MailHog
-- These are the steps I took to install it locally:
+- These are the steps I took to install it locally (Ubuntu 16.04):
 - These steps require go-lang. If you already have go set up. Skip ahead to `Install MailHog`
 #### Install Go:
 - `sudo apt install golang-go`
