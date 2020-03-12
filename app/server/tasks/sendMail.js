@@ -22,7 +22,7 @@ module.exports = async ({
   certifierUrl,
   certifierEmail
 }) => {
-  if (!process.env.SMTP_CONNECTION_STRING)
+  if (!process.env.SMTP_CONNECTION_STRING && !process.env.NO_MAIL)
     throw new Error('SMTP connection string is undefined');
   const transporter = nodemailer.createTransport(
     process.env.SMTP_CONNECTION_STRING
