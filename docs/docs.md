@@ -20,6 +20,10 @@
 - Details about the errors and how to fix them will appear in the dev tools console when those errors are clicked on in the cypress browser
 - Extra config details: https://www.deque.com/axe/axe-for-web/documentation/api-documentation/#api-name-axeconfigure
 
+### Cypress: Ignoring email
+- If you want to ignore the email test locally add an env flag to the command `yarn cypress --env NO_MAIL=true`
+- `yarn test:e2e --env NO_MAIL=true` also works
+
 ### Authentication
 
 We use Keycloak to manage authentication of users (using username/password or IDIR) and define their privileges using groups. The Keycloak realm configuration is available in `app/keycloak-realm-export.json`
