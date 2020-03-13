@@ -1,11 +1,12 @@
 describe('When logged in as a reporter', () => {
   beforeEach(() => {
-    cy.logout();
-    cy.sqlFixture('fixtures/form-errors-prevent-submit-setup');
+    // Cy.logout();
+
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
     );
+    cy.sqlFixture('fixtures/form-errors-prevent-submit-setup');
   });
 
   afterEach(() => {
