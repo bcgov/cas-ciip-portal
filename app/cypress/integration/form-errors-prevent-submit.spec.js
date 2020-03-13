@@ -1,7 +1,5 @@
 describe('When logged in as a reporter', () => {
   beforeEach(() => {
-    // Cy.logout();
-
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
