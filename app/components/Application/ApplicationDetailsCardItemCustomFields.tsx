@@ -15,7 +15,7 @@ const customFields = (
   previousIsEmpty: boolean,
   setHasErrors: (...args: any[]) => any
 ) => {
-  const setErrorIcon = props => {
+  const setErrorIcon: (...args: any[]) => object = props => {
     if (props?.errorSchema?.__errors || props.rawErrors) {
       setHasErrors(true);
       return <FontAwesomeIcon color="red" icon={faExclamationTriangle} />;
@@ -27,7 +27,7 @@ const customFields = (
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => {
-      const errorIcon = setErrorIcon(props);
+      const errorIcon: object = setErrorIcon(props);
 
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
