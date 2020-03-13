@@ -212,11 +212,20 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       <br />
       {revision.certificationSignatureIsValid ? (
         <>
-          <h5>
-            Thank you for reviewing the application information. The Certifier
-            has signed off on this application. You may now submit the
-            application.
-          </h5>
+          <Card>
+            <Card.Header>
+              <h5>Before you submit</h5>
+            </Card.Header>
+            <Card.Body>
+              By submitting the application the applicant agrees that the
+              information contained on this application, or information
+              contained in emission reports under the Greenhouse Gas Industrial
+              Reporting and Control Act, may be disclosed to British Columbia
+              government employees, contractors and agencies for the purpose of
+              administering the CleanBC Program for Industry or the Greenhouse
+              Gas Industrial Reporting and Control Act.
+            </Card.Body>
+          </Card>
           <br />
           <SubmitApplication application={props.application} />
         </>
