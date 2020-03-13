@@ -8,23 +8,26 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
 
 const customFields = (
-  showDiff,
-  diffPathArray,
-  diffArray,
-  handleEnums,
-  previousIsEmpty,
-  setHasErrors
+  showDiff: boolean,
+  diffPathArray: any[],
+  diffArray: any[],
+  handleEnums: (...args: any[]) => any,
+  previousIsEmpty: boolean,
+  setHasErrors: (...args: any[]) => any
 ) => {
+  const setErrorIcon = props => {
+    if (props?.errorSchema?.__errors || props.rawErrors) {
+      setHasErrors(true);
+      return <FontAwesomeIcon color="red" icon={faExclamationTriangle} />;
+    }
+
+    return undefined;
+  };
+
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => {
-      let hasErrors;
-      if (props?.errorSchema?.__errors || props.rawErrors) {
-        setHasErrors(true);
-        hasErrors = (
-          <FontAwesomeIcon color="red" icon={faExclamationTriangle} />
-        );
-      }
+      const errorIcon = setErrorIcon(props);
 
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
@@ -56,7 +59,7 @@ const customFields = (
         return (
           <>
             <i id={id}>[No Data Entered]</i>
-            {hasErrors}
+            {errorIcon}
           </>
         );
 
@@ -64,18 +67,12 @@ const customFields = (
       return (
         <>
           <span id={id}>{value}</span>
-          {hasErrors}
+          {errorIcon}
         </>
       );
     },
     BooleanField: props => {
-      let hasErrors;
-      if (props.errorSchema.__errors || props.rawErrors) {
-        setHasErrors(true);
-        hasErrors = (
-          <FontAwesomeIcon color="red" icon={faExclamationTriangle} />
-        );
-      }
+      const errorIcon = setErrorIcon(props);
 
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
@@ -101,7 +98,7 @@ const customFields = (
 
       return (
         <span id={id}>
-          {formData ? <>Yes {hasErrors}</> : <>No {hasErrors}</>}{' '}
+          {formData ? <>Yes {errorIcon}</> : <>No {errorIcon}</>}{' '}
         </span>
       );
     },
@@ -113,13 +110,7 @@ const customFields = (
       <ProductionFields query={props.formContext.query} {...props} />
     ),
     NumberField: props => {
-      let hasErrors;
-      if (props?.errorSchema?.__errors || props.rawErrors) {
-        setHasErrors(true);
-        hasErrors = (
-          <FontAwesomeIcon color="red" icon={faExclamationTriangle} />
-        );
-      }
+      const errorIcon = setErrorIcon(props);
 
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
@@ -127,7 +118,7 @@ const customFields = (
         return (
           <>
             <i id={id}>[No Data Entered]</i>
-            {hasErrors}
+            {errorIcon}
           </>
         );
 
@@ -181,7 +172,7 @@ const customFields = (
             displayType="text"
             value={value}
           />
-          {hasErrors}
+          {errorIcon}
         </>
       );
     }
