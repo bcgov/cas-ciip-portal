@@ -55,8 +55,7 @@ class CiipApplication extends Component<Props> {
     const {application} = query || {};
 
     if (
-      application &&
-      application.latestDraftRevision?.legalDisclaimerAccepted === false
+      application?.latestDraftRevision?.legalDisclaimerAccepted === false
     ) {
       router.push({
         pathname: '/reporter/ciip-application-legal-disclaimer',
