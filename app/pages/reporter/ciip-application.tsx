@@ -5,11 +5,13 @@ import {CiipPageComponentProps} from 'next-env';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationWizard from 'containers/Applications/ApplicationWizard';
 import {USER} from 'data/group-constants';
+import {NextRouter} from 'next/router';
 
 const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
   query: ciipApplicationQueryResponse['query'];
+  router: NextRouter;
 }
 class CiipApplication extends Component<Props> {
   static query = graphql`
@@ -19,6 +21,13 @@ class CiipApplication extends Component<Props> {
       $version: String!
     ) {
       query {
+        application(id: $applicationId) {
+          id
+          latestDraftRevision {
+            versionNumber
+            legalDisclaimerAccepted
+          }
+        }
         session {
           ...defaultLayout_session
         }
@@ -41,8 +50,20 @@ class CiipApplication extends Component<Props> {
   });
 
   render() {
-    const {query} = this.props;
+    const {query, router} = this.props;
     const {session} = query || {};
+    const {application} = query || {};
+
+    if (application?.latestDraftRevision?.legalDisclaimerAccepted === false) {
+      router.push({
+        pathname: '/reporter/ciip-application-legal-disclaimer',
+        query: {
+          applicationId: application.id,
+          version: application.latestDraftRevision.versionNumber
+        }
+      });
+    }
+
     return (
       <DefaultLayout session={session} allowedGroups={ALLOWED_GROUPS}>
         <ApplicationWizard query={query} />
