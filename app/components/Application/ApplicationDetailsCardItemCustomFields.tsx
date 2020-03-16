@@ -4,17 +4,31 @@ import SummaryEmissionSourceFields from 'containers/Forms/SummaryEmissionSourceF
 import ProductionFields from 'containers/Forms/ProductionFields';
 import {FieldProps} from 'react-jsonschema-form';
 import NumberFormat from 'react-number-format';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
 
 const customFields = (
-  showDiff,
-  diffPathArray,
-  diffArray,
-  handleEnums,
-  previousIsEmpty
+  showDiff: boolean,
+  diffPathArray: any[],
+  diffArray: any[],
+  handleEnums: (...args: any[]) => any,
+  previousIsEmpty: boolean,
+  setHasErrors: (...args: any[]) => any
 ) => {
+  const setErrorIcon: (...args: any[]) => object = props => {
+    if (props?.errorSchema?.__errors || props.rawErrors) {
+      setHasErrors(true);
+      return <FontAwesomeIcon color="red" icon={faExclamationTriangle} />;
+    }
+
+    return undefined;
+  };
+
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
     TitleField: props => <h3>{props.title}</h3>,
     StringField: props => {
+      const errorIcon: object = setErrorIcon(props);
+
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
       let prevValue;
@@ -42,12 +56,24 @@ const customFields = (
       }
 
       if (formData === null || formData === undefined || formData === '')
-        return <i id={id}>[No Data Entered]</i>;
+        return (
+          <>
+            <i id={id}>[No Data Entered]</i>
+            {errorIcon}
+          </>
+        );
 
       const value = handleEnums(props, true, prevValue);
-      return <span id={id}>{value}</span>;
+      return (
+        <>
+          <span id={id}>{value}</span>
+          {errorIcon}
+        </>
+      );
     },
     BooleanField: props => {
+      const errorIcon = setErrorIcon(props);
+
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
       const hasDiff = diffPathArray.includes(
@@ -70,18 +96,31 @@ const customFields = (
         );
       }
 
-      return <span id={id}>{formData ? 'Yes' : 'No'} </span>;
+      return (
+        <span id={id}>
+          {formData ? <>Yes {errorIcon}</> : <>No {errorIcon}</>}{' '}
+        </span>
+      );
     },
     emissionSource: SummaryEmissionSourceFields,
-    emissionGas: SummaryEmissionGasFields,
+    emissionGas: props => (
+      <SummaryEmissionGasFields setHasErrors={setHasErrors} {...props} />
+    ),
     production: props => (
       <ProductionFields query={props.formContext.query} {...props} />
     ),
     NumberField: props => {
+      const errorIcon = setErrorIcon(props);
+
       const {idSchema, formData} = props;
       const id = idSchema?.$id;
       if (formData === null || formData === undefined || formData === '')
-        return <i id={id}>[No Data Entered]</i>;
+        return (
+          <>
+            <i id={id}>[No Data Entered]</i>
+            {errorIcon}
+          </>
+        );
 
       let prevValue;
       let hasDiff = false;
@@ -126,12 +165,15 @@ const customFields = (
 
       const value = handleEnums(props, true, prevValue);
       return (
-        <NumberFormat
-          thousandSeparator
-          id={id}
-          displayType="text"
-          value={value}
-        />
+        <>
+          <NumberFormat
+            thousandSeparator
+            id={id}
+            displayType="text"
+            value={value}
+          />
+          {errorIcon}
+        </>
       );
     }
   };

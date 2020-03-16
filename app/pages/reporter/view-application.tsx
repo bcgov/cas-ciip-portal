@@ -73,6 +73,7 @@ class ViewApplication extends Component<Props> {
               query={query}
               application={query.application}
               review={false}
+              liveValidate={false}
             />
           </Col>
           <Col md={4}>

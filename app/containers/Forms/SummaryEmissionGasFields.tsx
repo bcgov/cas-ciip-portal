@@ -1,9 +1,13 @@
 import React from 'react';
 import {FieldProps} from 'react-jsonschema-form';
 import {Form, Col} from 'react-bootstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
+import ErrorList from 'components/Forms/ErrorList';
 
 const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
   const {formContext} = props;
+  if (props?.errorSchema?.annualEmission) props.setHasErrors(true);
 
   const idString: any = props.idSchema.$id.replace(/^root_/g, '');
   const emissionIdString = idString.concat('_annualEmission');
@@ -63,7 +67,17 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
               </span>
             </>
           ) : (
-            props.formData.annualEmission
+            <>
+              {props.formData.annualEmission}{' '}
+              {props.errorSchema?.annualEmission ? (
+                <>
+                  <FontAwesomeIcon color="red" icon={faExclamationTriangle} />
+                  <ErrorList
+                    errors={props.errorSchema?.annualEmission?.__errors as any}
+                  />{' '}
+                </>
+              ) : null}
+            </>
           )}
         </Col>
         <Col md={3}>

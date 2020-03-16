@@ -2,13 +2,19 @@
 
 exports[`The Confirmation Component match the snapshot 1`] = `
 <Fragment>
-  <h1>
+  <h1
+    className="jsx-1753635690"
+  >
     Summary of your application:
   </h1>
-  <h5>
+  <h5
+    className="jsx-1753635690"
+  >
     Please review the information you have provided before continuing.
   </h5>
-  <br />
+  <br
+    className="jsx-1753635690"
+  />
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -26,6 +32,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
         "rowId": 1,
       }
     }
+    liveValidate={true}
     query={
       Object {
         " $fragmentRefs": Object {
@@ -35,8 +42,11 @@ exports[`The Confirmation Component match the snapshot 1`] = `
       }
     }
     review={false}
+    setHasErrors={[Function]}
   />
-  <br />
+  <br
+    className="jsx-1753635690"
+  />
   <h5>
     Thank you for reviewing the application information. You may now send a generated Certification url to be signed prior to submission.
   </h5>
@@ -78,18 +88,29 @@ exports[`The Confirmation Component match the snapshot 1`] = `
       </Col>
     </FormRow>
   </Form>
+  <JSXStyle
+    id="1753635690"
+  >
+    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+  </JSXStyle>
 </Fragment>
 `;
 
 exports[`The Confirmation Component should show a certifier has not yet signed message when hashMatches is true but certificationSignature is null 1`] = `
 <Fragment>
-  <h1>
+  <h1
+    className="jsx-1753635690"
+  >
     Summary of your application:
   </h1>
-  <h5>
+  <h5
+    className="jsx-1753635690"
+  >
     Please review the information you have provided before continuing.
   </h5>
-  <br />
+  <br
+    className="jsx-1753635690"
+  />
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -110,6 +131,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
         "rowId": 1,
       }
     }
+    liveValidate={true}
     query={
       Object {
         " $fragmentRefs": Object {
@@ -119,8 +141,11 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
       }
     }
     review={false}
+    setHasErrors={[Function]}
   />
-  <br />
+  <br
+    className="jsx-1753635690"
+  />
   <h5>
     Your application has been sent to a certifier. Submission will be possible once they have verified the data in the application.
   </h5>
@@ -160,5 +185,10 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
       />
     </Col>
   </ForwardRef>
+  <JSXStyle
+    id="1753635690"
+  >
+    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+  </JSXStyle>
 </Fragment>
 `;

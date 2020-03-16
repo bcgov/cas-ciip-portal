@@ -27,6 +27,9 @@ interface Props {
   review: boolean;
   // Boolean indicates whether or not to show the diff between selected versions
   showDiff: boolean;
+  // Boolean indicates whether or not to liveValidate the results (true when rendered by the summary component)
+  liveValidate: boolean;
+  setHasErrors?: (...args: any[]) => void;
 }
 
 /*
@@ -38,7 +41,9 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   diffToResults,
   query,
   review,
-  showDiff
+  showDiff,
+  liveValidate,
+  setHasErrors
 }) => {
   const {formJsonByFormId} = formResult;
   const {formJson} = formJsonByFormId;
@@ -129,7 +134,8 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     diffPathArray,
     diffArray,
     handleEnums,
-    previousIsEmpty
+    previousIsEmpty,
+    setHasErrors
   );
   const classTag = formJsonByFormId.slug;
   return (
@@ -170,6 +176,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
             <JsonSchemaForm
               omitExtraData
               liveOmit
+              liveValidate={liveValidate}
               ArrayFieldTemplate={SummaryFormArrayFieldTemplate}
               FieldTemplate={SummaryFormFieldTemplate}
               showErrorList={false}

@@ -27,6 +27,7 @@ interface Target extends EventTarget {
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState();
+  const [hasErrors, setHasErrors] = useState(false);
   const copyArea = useRef(url);
   const revision = props.application.latestDraftRevision;
 
@@ -205,12 +206,18 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       <br />
 
       <ApplicationDetailsContainer
+        liveValidate
         query={props.query}
         application={props.application}
         review={false}
+        setHasErrors={setHasErrors}
       />
       <br />
-      {revision.certificationSignatureIsValid ? (
+      {hasErrors ? (
+        <div className="errors">
+          Your Application contains errors that must be fixed before submission.
+        </div>
+      ) : revision.certificationSignatureIsValid ? (
         <>
           <Card>
             <Card.Header>
@@ -232,6 +239,17 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       ) : (
         <>{certificationMessage}</>
       )}
+      <style jsx global>
+        {`
+          .errors {
+            margin-left: 20px;
+            padding: 20px;
+            background: #ce5c5c;
+            color: white;
+            font-size: 20px;
+          }
+        `}
+      </style>
     </>
   );
 };

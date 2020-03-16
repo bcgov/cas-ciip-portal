@@ -75,6 +75,7 @@ class ApplicationReview extends Component<Props> {
               review
               query={query}
               application={query.application}
+              liveValidate={false}
             />
             <IncentiveCalculatorContainer
               applicationRevision={query.applicationRevision}

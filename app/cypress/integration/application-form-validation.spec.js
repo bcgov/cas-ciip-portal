@@ -77,7 +77,7 @@ describe('When reviewing a submitted application as an analyst', () => {
       .type('Calgary');
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
       .clear()
-      .type('H2O0H0');
+      .type('111111');
     cy.get('#root_operationalRepresentative_mailingAddress_province').select(
       'Alberta'
     );
