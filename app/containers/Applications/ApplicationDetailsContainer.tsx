@@ -18,8 +18,8 @@ interface Props {
   application: ApplicationDetailsContainer_application;
   relay: RelayRefetchProp;
   review: boolean;
-  // Boolean indicates whether or not this item is being rendered by the summary component
-  summary: boolean;
+  // Boolean indicates whether or not this item is being rendered by the summary component & should be liveValidated
+  liveValidate: boolean;
   setHasErrors?: (...args: any[]) => void;
 }
 
@@ -135,7 +135,7 @@ export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props
         {formResults.map(({node}) => (
           <ApplicationDetailsCardItem
             key={node.id}
-            liveValidate={props.summary}
+            liveValidate={props.liveValidate}
             diffFromResults={diffFromResults}
             diffToResults={props.query.new.orderedFormResults.edges}
             formResult={node}

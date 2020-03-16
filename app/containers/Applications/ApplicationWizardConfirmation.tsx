@@ -206,7 +206,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       <br />
 
       <ApplicationDetailsContainer
-        summary
+        liveValidate
         query={props.query}
         application={props.application}
         review={false}
