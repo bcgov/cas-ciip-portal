@@ -47,6 +47,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
             },
           }
         }
+        liveValidate={false}
         query={
           Object {
             " $fragmentRefs": Object {
@@ -81,7 +82,6 @@ exports[`It matches the last accepted Snapshot 1`] = `
           }
         }
         review={false}
-        summary={false}
       />
     </Col>
     <Col

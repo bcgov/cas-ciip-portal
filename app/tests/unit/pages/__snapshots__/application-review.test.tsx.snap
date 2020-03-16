@@ -65,6 +65,7 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
             "rowId": 1,
           }
         }
+        liveValidate={false}
         query={
           Object {
             " $fragmentRefs": Object {
@@ -106,7 +107,6 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
           }
         }
         review={true}
-        summary={false}
       />
       <Relay(IncentiveCalculator)
         applicationRevision={

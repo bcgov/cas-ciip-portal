@@ -121,7 +121,7 @@ class Certify extends Component<Props> {
                 query={query}
                 application={query.application}
                 review={false}
-                summary={false}
+                liveValidate={false}
               />
               {LegalDisclaimer}
               {Signature}
