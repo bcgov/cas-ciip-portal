@@ -225,12 +225,7 @@
     "xo": "^0.27.2"
   },
   "resolutions": {
-    "@storybook/**/open": "^7.0.0",
     "@storybook/**/marked": ">=0.7.0",
-    "@storybook/**/terser-webpack-plugin": "^1.4.2",
-    "xo/open-editor/open": "^7.0.0",
-    "xo/prettier": "^1.19.1",
-    "jest/jest-cli/@jest/core/@jest/reporters/istanbul-reports/handlebars": "^4.5.3",
     "wait-on/@hapi/joi/@hapi/topo/@hapi/hoek": "8.5.1",
     "**/acorn": "7.1.1",
     "jest/**/kind-of": "6.0.3",
