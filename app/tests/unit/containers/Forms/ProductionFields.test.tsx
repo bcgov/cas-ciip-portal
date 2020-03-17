@@ -27,7 +27,7 @@ describe('The ProductionFields Component', () => {
 
     name: 'product',
     query: {
-      ' $refType': 'ProductionFields_query' as 'ProductionFields_query',
+      ' $refType': 'ProductionFields_query',
       allProducts: {
         edges: [
           {
