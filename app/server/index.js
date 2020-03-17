@@ -31,10 +31,13 @@ const AS_ANALYST = process.argv.includes('AS_ANALYST');
 const AS_ADMIN = process.argv.includes('AS_ADMIN');
 const NO_PDF = process.argv.includes('NO_PDF');
 const NO_MATHJAX = process.argv.includes('NO_MATHJAX');
+const NO_MAIL = process.argv.includes('NO_MAIL');
 
 if (NO_PDF) process.env.NO_PDF = true;
 
 if (NO_MATHJAX) process.env.NO_MATHJAX = true;
+
+if (NO_MAIL) process.env.NO_MAIL = true;
 
 if (process.env.PGUSER) {
   databaseURL += process.env.PGUSER;
@@ -64,14 +67,12 @@ async function worker() {
   });
 }
 
-// Start graphile-worker (unless in CI)
-if (!process.env.CI) {
-  worker().catch(error => {
-    if (error) {
-      throw error;
-    }
-  });
-}
+// Start graphile-worker
+worker().catch(error => {
+  if (error) {
+    throw error;
+  }
+});
 
 const removeFirstLetter = str => str.slice(1);
 

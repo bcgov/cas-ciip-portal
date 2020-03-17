@@ -22,16 +22,18 @@ module.exports = async ({
   certifierUrl,
   certifierEmail
 }) => {
-  if (!process.env.SMTP_CONNECTION_STRING)
+  if (!process.env.SMTP_CONNECTION_STRING && !process.env.NO_MAIL)
     throw new Error('SMTP connection string is undefined');
   const transporter = nodemailer.createTransport(
     process.env.SMTP_CONNECTION_STRING
   );
 
-  transporter.verify(error => {
-    if (error) console.error(error);
-    else console.log('transporter verified');
-  });
+  if (!process.env.NO_MAIL) {
+    transporter.verify(error => {
+      if (error) console.error(error);
+      else console.log('transporter verified');
+    });
+  }
 
   let subject;
   let htmlContent;
@@ -118,6 +120,11 @@ module.exports = async ({
     subject,
     html: htmlContent
   };
+  if (process.env.NO_MAIL) {
+    return console.log(
+      'NO_MAIL flag is set.\nsendMail Job was sent successfully but no email was sent'
+    );
+  }
 
   await transporter.sendMail(message, (error, info) => {
     if (error) return console.error(error);

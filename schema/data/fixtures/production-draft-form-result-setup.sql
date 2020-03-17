@@ -1,3 +1,7 @@
+-- disable unnecessary triggers
+-- create connection to application via ciip_user_organisation
+-- ensure each production form is blank before each test
+
 begin;
 
 alter table ggircs_portal.ciip_user_organisation

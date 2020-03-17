@@ -1,3 +1,6 @@
+-- clear all data in benchmark & product tables
+-- insert dummy data into benchmark & product tables for testing
+
 begin;
 
 delete from ggircs_portal.benchmark;
