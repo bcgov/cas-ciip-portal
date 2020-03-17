@@ -24,6 +24,12 @@
 - If you want to ignore the email test locally add an env flag to the command `yarn cypress --env NO_MAIL=true`
 - `yarn test:e2e --env NO_MAIL=true` also works
 
+### Cypress: Fixtures
+- The data mutations done in cypress tests are passed from test to test
+- To help ensure each test passes or fails independent of other tests we run `truncate ggircs_portal.application restart identity cascade` in the setup fixture for each test. Then create 2 applications with the create_application_mutation_chain function.
+- Any specific updates to other child tables of application (ie form_result) necessary for the individual can be done once the new applications have been created.
+- This makes it more clear what data is being tested in each test and helps to avoid data changes "bleeding" into subsequent tests & causing false failures / successes.
+
 ### Authentication
 
 We use Keycloak to manage authentication of users (using username/password or IDIR) and define their privileges using groups. The Keycloak realm configuration is available in `app/keycloak-realm-export.json`
