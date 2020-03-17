@@ -233,7 +233,8 @@
     "jest/jest-cli/@jest/core/@jest/reporters/istanbul-reports/handlebars": "^4.5.3",
     "wait-on/@hapi/joi/@hapi/topo/@hapi/hoek": "8.5.1",
     "**/acorn": "7.1.1",
-    "jest/**/kind-of": "6.0.3"
+    "jest/**/kind-of": "6.0.3",
+    "**/minimist": "1.2.5"
   },
   "jest": {
     "testMatch": [
