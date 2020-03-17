@@ -1,3 +1,8 @@
+-- disable unnecessary triggers
+-- add ciip_user_organisation connection if not set
+-- refresh application data with truncate & create_application_mutation_chain
+-- create a 'submitted' application for the analyst to view
+
 begin;
 
 alter table ggircs_portal.ciip_user_organisation

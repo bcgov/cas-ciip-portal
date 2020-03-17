@@ -1,5 +1,6 @@
-describe('When logged in as an aadmin', () => {
+describe('When logged in as an admin', () => {
   beforeEach(() => {
+    // The admin spec uses the same setup as the analyst
     cy.sqlFixture('fixtures/analyst-all-access-setup');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
@@ -9,6 +10,7 @@ describe('When logged in as an aadmin', () => {
 
   afterEach(() => {
     cy.logout();
+    // The admin spec uses the same setup as the analyst
     cy.sqlFixture('fixtures/analyst-all-access-teardown');
   });
 

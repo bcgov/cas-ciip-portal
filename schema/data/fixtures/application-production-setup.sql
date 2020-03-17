@@ -1,3 +1,8 @@
+-- disable unnecessary triggers
+-- add ciip_user_organisation connection if not set
+-- do not truncate application table (uses same form results as analyst-diffing)
+-- set legal-disclaimer true to skip checkboxes
+
 begin;
 
 alter table ggircs_portal.ciip_user_organisation

@@ -1,3 +1,9 @@
+-- disable unnecessary triggers
+-- add ciip_user_organisation connection if not set
+-- refresh application data with truncate & create_application_mutation_chain
+-- create 'submitted' applications for the analyst to view & diff
+-- edit form results for versions 1&2 for diffing
+
 begin;
 
 alter table ggircs_portal.ciip_user_organisation

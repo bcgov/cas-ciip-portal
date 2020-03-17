@@ -1,3 +1,9 @@
+-- disable unnecessary triggers
+-- add ciip_user_organisation connection if not set
+-- ensure application status is set to draft so reporter can move through all pages
+-- set legal-disclaimer to false to trigger legal checkbox pages
+-- update form_result data so that there are no errors & reporter can move through all pages
+
 begin;
 
 delete from ggircs_portal.certification_url where application_id=2;

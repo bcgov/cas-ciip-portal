@@ -1,3 +1,8 @@
+-- disable unnecessary triggers
+-- add ciip_user_organisation connection if not set
+-- refresh application data with truncate & create_application_mutation_chain
+-- set legal-disclaimer to true to skip legal checkboxes page
+
 begin;
 
 alter table ggircs_portal.ciip_user_organisation

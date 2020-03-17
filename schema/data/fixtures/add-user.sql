@@ -1,3 +1,5 @@
+-- Add a user to the database (triggers welcome email)
+
 begin;
 
 insert into ggircs_portal.ciip_user(uuid, first_name, last_name, email_address)
