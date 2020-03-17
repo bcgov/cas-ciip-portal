@@ -7,7 +7,43 @@ exports[`It matches the last accepted Snapshot 1`] = `
       "User",
     ]
   }
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
 >
-  <Relay(ApplicationWizard) />
+  <Relay(ApplicationWizard)
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "applicationWizard_query": true,
+        },
+        "allFormJsons": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "id": "form-1",
+              },
+            },
+          ],
+        },
+        "application": Object {
+          "id": 1,
+          "latestDraftRevision": Object {
+            "legalDisclaimerAccepted": true,
+            "versionNumber": 1,
+          },
+        },
+        "session": Object {
+          " $fragmentRefs": Object {
+            "defaultLayout_session": true,
+          },
+        },
+      }
+    }
+  />
 </Relay(DefaultLayout)>
 `;
