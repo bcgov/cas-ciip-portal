@@ -22,6 +22,7 @@ module.exports = {
   },
   publicRuntimeConfig: {
     NO_PDF: process.env.NO_PDF,
-    NO_MATHJAX: process.env.NO_MATHJAX
+    NO_MATHJAX: process.env.NO_MATHJAX,
+    FEEDBACK_SITE_URL: process.env.FEEDBACK_SITE_URL
   }
 };
