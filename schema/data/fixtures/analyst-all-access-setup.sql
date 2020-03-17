@@ -10,6 +10,7 @@ alter table ggircs_portal.certification_url
   disable trigger _signed_by_certifier_email;
 alter table ggircs_portal.application_revision_status
   disable trigger _check_certification_signature_md5;
+delete from ggircs_portal.ciip_user_organisation where user_id=6 and organisation_id=7;
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 7, 'approved');
 truncate ggircs_portal.application restart identity cascade;
 select ggircs_portal.create_application_mutation_chain(1);

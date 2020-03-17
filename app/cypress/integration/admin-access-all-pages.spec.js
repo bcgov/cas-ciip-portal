@@ -1,5 +1,6 @@
-describe('When logged in as an analyst', () => {
+describe('When logged in as an aadmin', () => {
   beforeEach(() => {
+    cy.sqlFixture('fixtures/analyst-all-access-setup');
     cy.login(
       Cypress.env('TEST_ADMIN_USERNAME'),
       Cypress.env('TEST_ADMIN_PASSWORD')
@@ -8,6 +9,7 @@ describe('When logged in as an analyst', () => {
 
   afterEach(() => {
     cy.logout();
+    cy.sqlFixture('fixtures/analyst-all-access-teardown');
   });
 
   it('The admin should be able to load all pages within their access scope', () => {

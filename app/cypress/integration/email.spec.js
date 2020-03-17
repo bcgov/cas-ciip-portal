@@ -54,7 +54,7 @@ if (Cypress.env('NO_MAIL')) {
       cy.get('.btn')
         .contains('Send to Certifier')
         .click();
-      cy.wait(500);
+      cy.wait(1000);
       cy.request('localhost:8025/api/v1/messages').then(response => {
         // eslint-disable-next-line jest/valid-expect
         expect(response.status).to.eq(200);
