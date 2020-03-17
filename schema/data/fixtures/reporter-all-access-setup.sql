@@ -1,6 +1,6 @@
 -- disable unnecessary triggers
 -- add ciip_user_organisation connection if not set
--- ensure application status is set to draft so reporter can move through all pages
+-- refresh application data with truncate & create_application_mutation_chain
 -- set legal-disclaimer to false to trigger legal checkbox pages
 -- update form_result data so that there are no errors & reporter can move through all pages
 
@@ -15,8 +15,11 @@ alter table ggircs_portal.certification_url
   disable trigger _certification_request_email;
 alter table ggircs_portal.certification_url
   disable trigger _signed_by_certifier_email;
+delete from ggircs_portal.ciip_user_organisation where user_id=6 and organisation_id=7;
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id, status) values (6, 7, 'approved');
-update ggircs_portal.application_revision_status set application_revision_status = 'draft' where application_id=2 and version_number=1;
+truncate ggircs_portal.application restart identity cascade;
+select ggircs_portal.create_application_mutation_chain(1);
+select ggircs_portal.create_application_mutation_chain(2);
 update ggircs_portal.application_revision set legal_disclaimer_accepted = false where application_id=2 and version_number=1;
 
 -- Ensure all form results contain no errors
