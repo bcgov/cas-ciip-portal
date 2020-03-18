@@ -66,6 +66,8 @@ objects:
             value: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
           - name: SENDER_EMAIL
             value: no-reply.cas@gov.bc.ca
+          - name: FEEDBACK_SITE_URL
+            value: ciip-portal-${OC_PROJECT}-feedback.pathfinder.gov.bc.ca
 
           image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-app:${GIT_SHA1}
           imagePullPolicy: IfNotPresent

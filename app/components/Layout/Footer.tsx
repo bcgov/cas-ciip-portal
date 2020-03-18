@@ -25,6 +25,11 @@ const Footer = () => {
             <li>
               <Link href="/resources/contact">Contact Us</Link>
             </li>
+            <li>
+              {process.env.FEEDBACK_SITE_URL && (
+                <a href={process.env.FEEDBACK_SITE_URL}>Feedback</a>
+              )}
+            </li>
           </ul>
         </div>
         <style jsx>
