@@ -64,6 +64,9 @@ exports[`It matches the last accepted Snapshot 1`] = `
           Contact Us
         </a>
       </li>
+      <li
+        class="jsx-337505255"
+      />
     </ul>
   </div>
 </footer>
