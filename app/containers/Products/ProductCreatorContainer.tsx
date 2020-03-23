@@ -22,7 +22,8 @@ export const ProductCreator: React.FunctionComponent<Props> = ({relay}) => {
           description: e.formData.description,
           units: e.formData.units,
           state: 'active',
-          parent: [null]
+          parent: [null],
+          requiresEmissionAllocation: e.formData.requiresEmissionAllocation
         }
       }
     };

@@ -5,7 +5,7 @@
 begin;
 
 create or replace function ggircs_portal.save_product_mutation_chain(prev_id int, new_name varchar(1000), new_units varchar(1000), new_description varchar(1000),
-new_state varchar(1000), new_parent int ARRAY, new_requires_emission_allocation boolean)
+new_state varchar(1000), new_parent int[], new_requires_emission_allocation boolean)
 returns ggircs_portal.product
 as $function$
 declare
@@ -27,7 +27,7 @@ begin
       deleted_by = (select id from ggircs_portal.ciip_user where uuid = (select sub from ggircs_portal.session()))
   where product.id = prev_id;
 
-  select id, name, description, state, parent, requires_emission_allocation from ggircs_portal.product where id = new_id into result;
+  select id, name, description, state, requires_emission_allocation from ggircs_portal.product where id = new_id into result;
   return result;
 end;
 $function$ language plpgsql volatile;

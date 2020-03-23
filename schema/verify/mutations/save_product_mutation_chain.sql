@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.save_product_mutation_chain(int,varchar,varchar,varchar,varchar, int ARRAY, boolean)'::regprocedure);
+select pg_get_functiondef('ggircs_portal.save_product_mutation_chain(int,varchar,varchar,varchar,varchar, int[], boolean)'::regprocedure);
 
 rollback;

@@ -175,7 +175,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   // Save a product
   const saveProduct = async (e: IChangeEvent) => {
-    console.log(e.formData);
     const variables = {
       input: {
         newName: e.formData.name,
@@ -187,7 +186,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation
       }
     };
-    console.log(variables);
     const response = await saveProductMutation(relay.environment, variables);
     console.log(response);
   };
