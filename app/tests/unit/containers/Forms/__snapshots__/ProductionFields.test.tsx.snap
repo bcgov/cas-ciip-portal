@@ -103,12 +103,12 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     formContext={Object {}}
     hidden={false}
     id="product.productEmissions"
-    label="Emission allocated to product"
+    label="Emissions allocated to product"
     required={true}
     schema={
       Object {
         "exclusiveMinimum": 0,
-        "title": "Emission allocated to product",
+        "title": "Emissions allocated to product",
         "type": "number",
       }
     }
@@ -170,7 +170,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       schema={
         Object {
           "exclusiveMinimum": 0,
-          "title": "Emission allocated to product",
+          "title": "Emissions allocated to product",
           "type": "number",
         }
       }
@@ -686,12 +686,12 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     formContext={Object {}}
     hidden={false}
     id="product.productEmissions"
-    label="Emission allocated to product"
+    label="Emissions allocated to product"
     required={true}
     schema={
       Object {
         "exclusiveMinimum": 0,
-        "title": "Emission allocated to product",
+        "title": "Emissions allocated to product",
         "type": "number",
       }
     }
@@ -753,7 +753,7 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       schema={
         Object {
           "exclusiveMinimum": 0,
-          "title": "Emission allocated to product",
+          "title": "Emissions allocated to product",
           "type": "number",
         }
       }

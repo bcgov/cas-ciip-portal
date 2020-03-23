@@ -15,7 +15,7 @@ select results_eq(
     with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = 1 and version_number = 1)
     select incentive_product from ggircs_portal.application_revision_ciip_incentive((select * from record)) where product_name = 'Other Pulp (Mechanical pulp, paper, newsprint)';
   $$,
-  ARRAY[11320.7746970072::numeric],
+  ARRAY[14537.6::numeric],
   'ciip incentive function returns correct value when benchmark exists'
 );
 

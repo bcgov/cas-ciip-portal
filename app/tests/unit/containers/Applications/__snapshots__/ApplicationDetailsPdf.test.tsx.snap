@@ -1377,7 +1377,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         },
                         "productEmissions": Object {
                           "exclusiveMinimum": 0,
-                          "title": "Emission allocated to product",
+                          "title": "Emissions allocated to product",
                           "type": "number",
                         },
                         "productRowId": Object {
@@ -1416,7 +1416,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "items": Object {
                     "productEmissions": Object {
                       "ui:col-md": 4,
-                      "ui:help": "Report emission intensity associated to CIIP product, in tCO2e",
+                      "ui:help": "Report emissions associated to CIIP product, in tCO2e",
                     },
                     "productRowId": Object {
                       "ui:col-md": 8,
