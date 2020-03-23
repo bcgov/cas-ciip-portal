@@ -18,7 +18,7 @@ begin;
        (x.production_data ->> 'quantity')::numeric as quantity,
        (x.production_data ->> 'productRowId')::integer as product_id,
        (x.production_data ->> 'productUnits')::varchar(1000) as product_units,
-       (x.production_data ->> 'productionAllocationFactor')::numeric as production_allocation_factor,
+       (x.production_data ->> 'productEmissions')::numeric as production_allocation_factor,
        (x.production_data ->> 'paymentAllocationFactor')::numeric as payment_allocation_factor,
        (x.production_data ->> 'additionalData')::jsonb as additional_data,
        (x.production_data ->> 'importedElectricityAllocationFactor')::numeric as imported_electricity_allocation_factor,

@@ -39,7 +39,7 @@ describe('The production tab', () => {
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root_0_additionalData_anodeReductionAllocationFactor');
     cy.get('#root_0_additionalData_cokeCalcinationAllocationFactor');
-    cy.get('#root_0_additionalData_anodeProductionAllocationFactor');
+    cy.get('#root_0_additionalData_anodeproductEmissions');
     cy.percySnapshot();
   });
 
@@ -52,7 +52,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'hectares');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root-add').click();
@@ -64,7 +64,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'hectares');
     cy.get('#root_1_quantity');
-    cy.get('#root_1_productionAllocationFactor');
+    cy.get('#root_1_productEmissions');
     cy.get('#root_1_importedElectricityAllocationFactor');
     cy.get('#root_1_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -76,7 +76,7 @@ describe('The production tab', () => {
       .type('Cement');
     cy.get('.dropdown-item').click();
     cy.get('input:visible[type=text]').should('have.length', 10);
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root_0_additionalData_clinkerProduced');
@@ -128,7 +128,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'bone-dry tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -143,7 +143,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -158,7 +158,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -173,7 +173,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'MWh');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -188,7 +188,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -203,7 +203,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root-add').click();
@@ -215,7 +215,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_1_quantity');
-    cy.get('#root_1_productionAllocationFactor');
+    cy.get('#root_1_productEmissions');
     cy.get('#root_1_importedElectricityAllocationFactor');
     cy.get('#root_1_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -230,7 +230,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'square meters');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -259,7 +259,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root-add').click();
@@ -271,7 +271,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_1_quantity');
-    cy.get('#root_1_productionAllocationFactor');
+    cy.get('#root_1_productEmissions');
     cy.get('#root_1_importedElectricityAllocationFactor');
     cy.get('#root_1_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -286,7 +286,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -313,7 +313,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'e3m3OE');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root_0_additionalData_gasComposition_ch4');
@@ -334,7 +334,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'e3m3OE');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.get('#root_0_additionalData_gasComposition_ch4');
@@ -355,7 +355,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -370,7 +370,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -385,7 +385,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -400,7 +400,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'cubic meters');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -415,7 +415,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -430,7 +430,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'cubic meters');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -445,7 +445,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'cubic meters');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -460,7 +460,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'bone-dry tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -475,7 +475,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -490,7 +490,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'BC refining complexity factor unit');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -505,7 +505,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -520,7 +520,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();
@@ -535,7 +535,7 @@ describe('The production tab', () => {
       .invoke('val')
       .should('contain', 'tonnes');
     cy.get('#root_0_quantity');
-    cy.get('#root_0_productionAllocationFactor');
+    cy.get('#root_0_productEmissions');
     cy.get('#root_0_importedElectricityAllocationFactor');
     cy.get('#root_0_importedHeatAllocationFactor');
     cy.percySnapshot();

@@ -14,13 +14,13 @@
         "exclusiveMinimum": 0,
         "maximum": 100
       },
-      "anodeProductionAllocationFactor": {
+      "anodeproductEmissions": {
         "title": "Allocation of Facility Emissions to Anode Production (%)",
         "type": "integer",
         "exclusiveMinimum": 0,
         "maximum": 100
       },
-      "calculatedProductionAllocationFactor": {
+      "calculatedproductEmissions": {
         "type": "integer",
         "exclusiveMinimum": 0,
         "maximum": 100
@@ -34,10 +34,10 @@
   },
   "uiSchema": {
     "ui:formulae": {
-      "calculatedProductionAllocationFactor": "anodeReductionAllocationFactor",
-      "calculatedPaymentAllocationFactor": "anodeReductionAllocationFactor + cokeCalcinationAllocationFactor + anodeProductionAllocationFactor"
+      "calculatedproductEmissions": "anodeReductionAllocationFactor",
+      "calculatedPaymentAllocationFactor": "anodeReductionAllocationFactor + cokeCalcinationAllocationFactor + anodeproductEmissions"
     },
-    "calculatedProductionAllocationFactor": {
+    "calculatedproductEmissions": {
       "ui:widget": "hidden"
     },
     "calculatedPaymentAllocationFactor": {
@@ -46,7 +46,7 @@
     "ui:order": [
       "anodeReductionAllocationFactor",
       "cokeCalcinationAllocationFactor",
-      "anodeProductionAllocationFactor",
+      "anodeproductEmissions",
       "*"
     ]
   }

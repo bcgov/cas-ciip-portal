@@ -29,7 +29,7 @@
         "type": "integer",
         "minimum": 0
       },
-      "calculatedProductionAllocationFactor": {
+      "calculatedproductEmissions": {
         "title": "Total allocation factor (%)",
         "type": "integer",
         "exclusiveMinimum": 0,
@@ -40,12 +40,12 @@
   "uiSchema": {
     "ui:formulae": {
       "calculatedQuantity": "lead + zinc",
-      "calculatedProductionAllocationFactor": "leadAllocationFactor + zincAllocationFactor"
+      "calculatedproductEmissions": "leadAllocationFactor + zincAllocationFactor"
     },
     "calculatedQuantity": {
       "ui:disabled": true
     },
-    "calculatedProductionAllocationFactor": {
+    "calculatedproductEmissions": {
       "ui:disabled": true
     },
     "ui:order": [
@@ -54,7 +54,7 @@
       "zinc",
       "zincAllocationFactor",
       "calculatedQuantity",
-      "calculatedProductionAllocationFactor"
+      "calculatedproductEmissions"
     ]
   }
 }

@@ -27,7 +27,7 @@ export const PdfProductionFieldsTemplate: React.FunctionComponent<Props> = ({
       </Text>
       <Text>
         Product allocation factor (%):{' '}
-        {formData.productionAllocationFactor ?? '[Not entered]'}
+        {formData.productEmissions ?? '[Not entered]'}
         {'\n'}
       </Text>
       <Text>
