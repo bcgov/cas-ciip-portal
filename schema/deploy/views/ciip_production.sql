@@ -18,7 +18,7 @@ begin;
        (x.production_data ->> 'quantity')::numeric as quantity,
        (x.production_data ->> 'productRowId')::integer as product_id,
        (x.production_data ->> 'productUnits')::varchar(1000) as product_units,
-       (x.production_data ->> 'productEmissions')::numeric as production_allocation_factor,
+       (x.production_data ->> 'productEmissions')::numeric as product_emissions,
        (x.production_data ->> 'paymentAllocationFactor')::numeric as payment_allocation_factor,
        (x.production_data ->> 'additionalData')::jsonb as additional_data,
        (x.production_data ->> 'importedElectricityAllocationFactor')::numeric as imported_electricity_allocation_factor,
@@ -34,7 +34,7 @@ comment on column ggircs_portal.ciip_production.version_number is 'The applicati
 comment on column ggircs_portal.ciip_production.quantity is 'The production quantity';
 comment on column ggircs_portal.ciip_production.product_id is 'The id of the product';
 comment on column ggircs_portal.ciip_production.product_units is 'The units for the quantity';
-comment on column ggircs_portal.ciip_production.production_allocation_factor is 'The percentage of the facility''s total emission allocated to a product';
+comment on column ggircs_portal.ciip_production.product_emissions is 'The percentage of the facility''s total emission allocated to a product';
 comment on column ggircs_portal.ciip_production.payment_allocation_factor is 'The percentage of the facility''s taxable emission allocated to a product';
 comment on column ggircs_portal.ciip_production.additional_data is 'The product-specific additional data';
 comment on column ggircs_portal.ciip_production.imported_electricity_allocation_factor is 'The percentage of the facility''s imported electricity for a product';

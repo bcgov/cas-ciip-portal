@@ -80,7 +80,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
         -- Calculate Emissions for Product (EmProd)
         -- EmProd = EmFacility * EmAlloc(P,F) + EmImportedElec * EmAlloc(IE) + EmImportedHeat * EmAlloc(IH)
-        em_product = (em_facility * product.production_allocation_factor/100)
+        em_product = product.product_emissions
                    + (em_electricity * em_alloc_elec)
                    + (em_heat * em_alloc_elec);
 
