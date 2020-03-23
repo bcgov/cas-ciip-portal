@@ -21,7 +21,7 @@
             "type": "string"
           },
           "productEmissions": {
-            "title": "Emission allocated to product",
+            "title": "Emissions allocated to product",
             "type": "number",
             "exclusiveMinimum": 0
           },
