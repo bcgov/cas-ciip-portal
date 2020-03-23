@@ -47,14 +47,14 @@ create or replace view ggircs_portal.ciip_incentive_payment as (
   -- If the product's benchmark excludes the exported energy (see above), then it has to be removed from the facility emission
   emission_intensity as (
     select ciip_production.application_id, ciip_production.version_number, ciip_production.product_id,
-    ((ciip_non_bio_emission.annual_co2e + energy_balance.electricity_balance + energy_balance.heat_balance) * (ciip_production.production_allocation_factor / 100) / ciip_production.quantity) as emission_intensity
+    (ciip_production.product_emissions / ciip_production.quantity) as emission_intensity
     from ggircs_portal.ciip_production
     join ggircs_portal.benchmark on ciip_production.product_id = benchmark.product_id and benchmark.includes_imported_energy = true
     join ciip_non_bio_emission on ciip_production.application_id = ciip_non_bio_emission.application_id
     join energy_balance on ciip_production.application_id = energy_balance.application_id
   union
     select ciip_production.application_id, ciip_production.version_number, ciip_production.product_id,
-    (ciip_non_bio_emission.annual_co2e * (ciip_production.production_allocation_factor / 100) / ciip_production.quantity) as emission_intensity
+    (ciip_production.product_emissions / ciip_production.quantity) as emission_intensity
     from ggircs_portal.ciip_production
     join ggircs_portal.benchmark on ciip_production.product_id = benchmark.product_id and benchmark.includes_imported_energy = false
     join ciip_non_bio_emission on ciip_production.application_id = ciip_non_bio_emission.application_id

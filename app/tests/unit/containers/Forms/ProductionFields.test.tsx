@@ -116,14 +116,14 @@ describe('The ProductionFields Component', () => {
   );
 
   it.todo(
-    'should render a productionAllocationFactor input if the product does not define an additionalDataSchema'
+    'should render a productEmissions input if the product does not define an additionalDataSchema'
   );
 
   it.todo(
-    'should render a productionAllocationFactor input if the product defines an additionalDataSchema that does not have a calculatedProductionAllocationFactor property'
+    'should render a productEmissions input if the product defines an additionalDataSchema that does not have a calculatedproductEmissions property'
   );
 
   it.todo(
-    'should not render a productionAllocationFactor input if the product defines an additionalDataSchema with calculatedProductionAllocationFactor property'
+    'should not render a productEmissions input if the product defines an additionalDataSchema with calculatedproductEmissions property'
   );
 });

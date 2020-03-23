@@ -151,7 +151,7 @@ app.prepare().then(() => {
             'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
             'jwt.claims.user_groups': groups.join(','),
             'jwt.claims.priority_group': priorityGroup,
-            role: 'postgres'
+            role: process.env.NO_AUTH_POSTGRES_ROLE || 'postgres'
           };
         }
 

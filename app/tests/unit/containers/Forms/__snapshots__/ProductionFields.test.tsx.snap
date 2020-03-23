@@ -102,15 +102,14 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     errors={<ErrorList />}
     formContext={Object {}}
     hidden={false}
-    id="product.productionAllocationFactor"
-    label="Emission allocation factor (%)"
+    id="product.productEmissions"
+    label="Emissions allocated to product"
     required={true}
     schema={
       Object {
         "exclusiveMinimum": 0,
-        "maximum": 100,
-        "title": "Emission allocation factor (%)",
-        "type": "integer",
+        "title": "Emissions allocated to product",
+        "type": "number",
       }
     }
     uiSchema={Object {}}
@@ -171,9 +170,8 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       schema={
         Object {
           "exclusiveMinimum": 0,
-          "maximum": 100,
-          "title": "Emission allocation factor (%)",
-          "type": "integer",
+          "title": "Emissions allocated to product",
+          "type": "number",
         }
       }
       uiSchema={Object {}}
@@ -687,15 +685,14 @@ exports[`The ProductionFields Component should match the snapshot when rendering
     errors={<ErrorList />}
     formContext={Object {}}
     hidden={false}
-    id="product.productionAllocationFactor"
-    label="Emission allocation factor (%)"
+    id="product.productEmissions"
+    label="Emissions allocated to product"
     required={true}
     schema={
       Object {
         "exclusiveMinimum": 0,
-        "maximum": 100,
-        "title": "Emission allocation factor (%)",
-        "type": "integer",
+        "title": "Emissions allocated to product",
+        "type": "number",
       }
     }
     uiSchema={Object {}}
@@ -756,9 +753,8 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       schema={
         Object {
           "exclusiveMinimum": 0,
-          "maximum": 100,
-          "title": "Emission allocation factor (%)",
-          "type": "integer",
+          "title": "Emissions allocated to product",
+          "type": "number",
         }
       }
       uiSchema={Object {}}

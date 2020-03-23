@@ -20,11 +20,10 @@
             "title": "Units",
             "type": "string"
           },
-          "productionAllocationFactor": {
-            "title": "Emission allocation factor (%)",
-            "type": "integer",
-            "exclusiveMinimum": 0,
-            "maximum": 100
+          "productEmissions": {
+            "title": "Emissions allocated to product",
+            "type": "number",
+            "exclusiveMinimum": 0
           },
           "importedElectricityAllocationFactor": {
             "title": "Imported electricity allocation factor (%)",
@@ -53,7 +52,7 @@
           "productRowId",
           "quantity",
           "productUnits",
-          "productionAllocationFactor",
+          "productEmissions",
           "paymentAllocationFactor"
         ]
       }
@@ -66,25 +65,11 @@
       "ui:field": "production",
       "productRowId": {
         "ui:col-md": 8,
-        "ui:widget": "SearchWidget",
-        "ui:name": "productRowId"
+        "ui:widget": "SearchWidget"
       },
-      "productionAllocationFactor": {
+      "productEmissions": {
         "ui:col-md": 4,
-        "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service",
-        "ui:name": "productAllocationFactor"
-      },
-      "quantity": {
-        "ui:name": "quantity"
-      },
-      "productUnits": {
-        "ui:name": "productUnits"
-      },
-      "paymentAllocationFactor": {
-        "ui:name": "paymentAllocationFactor"
-      },
-      "additionalData": {
-        "ui:name": "additionalData"
+        "ui:help": "Report emissions associated to CIIP product, in tCO2e"
       }
     }
   }

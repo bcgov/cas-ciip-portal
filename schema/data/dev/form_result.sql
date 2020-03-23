@@ -46,7 +46,7 @@ begin;
         "calculatedQuantity": 8760000
       },
       "paymentAllocationFactor": 59,
-      "productionAllocationFactor": 59,
+      "productEmissions": 59,
       "importedElectricityAllocationFactor": 20,
       "importedHeatAllocationFactor": 20
     }, {
@@ -55,13 +55,13 @@ begin;
       "productUnits": "t",
       "additionalData": {
         "anodeReductionAllocationFactor": 1,
-        "anodeProductionAllocationFactor": 20,
+        "anodeproductEmissions": 20,
         "cokeCalcinationAllocationFactor": 20,
         "calculatedPaymentAllocationFactor": 41,
-        "calculatedProductionAllocationFactor": 1
+        "calculatedproductEmissions": 1
       },
       "paymentAllocationFactor": 41,
-      "productionAllocationFactor": 1,
+      "productEmissions": 1,
       "importedElectricityAllocationFactor": 20,
       "importedHeatAllocationFactor": 20
     }
@@ -97,7 +97,7 @@ begin;
         "calculatedQuantity": 8760
       },
       "paymentAllocationFactor": 5,
-      "productionAllocationFactor": 5,
+      "productEmissions": 5,
       "importedElectricityAllocationFactor": 20,
       "importedHeatAllocationFactor": 20
     }, {
@@ -106,13 +106,13 @@ begin;
       "productUnits": "t",
       "additionalData": {
         "anodeReductionAllocationFactor": 1,
-        "anodeProductionAllocationFactor": 20,
+        "anodeproductEmissions": 20,
         "cokeCalcinationAllocationFactor": 20,
         "calculatedPaymentAllocationFactor": 41,
-        "calculatedProductionAllocationFactor": 1
+        "calculatedproductEmissions": 1
       },
       "paymentAllocationFactor": 41,
-      "productionAllocationFactor": 1,
+      "productEmissions": 1,
       "importedElectricityAllocationFactor": 20,
       "importedHeatAllocationFactor": 20
     }

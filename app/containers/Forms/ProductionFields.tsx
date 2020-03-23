@@ -11,7 +11,7 @@ interface FormData {
   productRowId?: number;
   quantity?: number;
   productUnits?: string;
-  productionAllocationFactor?: number;
+  productEmissions?: number;
   paymentAllocationFactor?: number;
   importedElectricityAllocationFactor?: number;
   importedHeatAllocationFactor?: number;
@@ -50,7 +50,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
   // Not using the types defined in @types/react-jsonschema-form as they are out of date
   const {
     properties: {
-      productionAllocationFactor: productionAllocationFactorSchema,
+      productEmissions: productEmissionsSchema,
       quantity: quantitySchema,
       productUnits: productUnitsSchema,
       importedElectricityAllocationFactor: importedElectricityAllocationFactorSchema,
@@ -91,19 +91,19 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
   };
 
   /**
-   * Updates the product's productionAllocationFactor.
+   * Updates the product's productEmissions.
    * Unless the product has an additional data schema that defines a calculatedPayementAllocationFactor,
    * sets the paymentAllocationFactor to be the same value
-   * @param productionAllocationFactor
+   * @param productEmissions
    */
-  const handleProductionAllocationFactorChange = productionAllocationFactor => {
+  const handleProductEmissionsChange = productEmissions => {
     const paymentAllocationFactor = additionalDataSchema?.schema.properties
       .calculatedPaymentAllocationFactor
       ? formData.paymentAllocationFactor
-      : productionAllocationFactor;
+      : productEmissions;
     onChange({
       ...formData,
-      productionAllocationFactor,
+      productEmissions,
       paymentAllocationFactor
     });
   };
@@ -112,11 +112,11 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
    * Updates the product's additional data. In addition:
    *  - if the additionalDataSchema defines a calculatedQuantity property,
    *    the product's quantity is set to match that value;
-   *  - if the additionalDataSchema defines a calculatedProductionAllocationFactor property,
-   *    the product's productionAllocationFactor is set to match that value;
+   *  - if the additionalDataSchema defines a calculatedproductEmissions property,
+   *    the product's productEmissions is set to match that value;
    *  - if the additionalDataSchema defines a calculatedPaymentAllocationFactor property,
    *    the product's paymentAllocationFactor is set to match that value,
-   *    otherwise it is set to match the productionAllocationFactor.
+   *    otherwise it is set to match the productEmissions.
    * @param additionalData
    */
   const handleAdditionalFieldsChange = (additionalData: any) => {
@@ -129,12 +129,8 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
       data.quantity = additionalData.calculatedQuantity;
     }
 
-    if (
-      additionalDataSchema.schema.properties
-        .calculatedProductionAllocationFactor
-    ) {
-      data.productionAllocationFactor =
-        additionalData.calculatedProductionAllocationFactor;
+    if (additionalDataSchema.schema.properties.calculatedproductEmissions) {
+      data.productEmissions = additionalData.calculatedproductEmissions;
     }
 
     if (
@@ -143,7 +139,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
       data.paymentAllocationFactor =
         additionalData.calculatedPaymentAllocationFactor;
     } else {
-      data.paymentAllocationFactor = data.productionAllocationFactor;
+      data.paymentAllocationFactor = data.productEmissions;
     }
 
     onChange(data);
@@ -187,10 +183,9 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     !additionalDataSchema ||
     !additionalDataSchema.schema.properties.calculatedQuantity;
 
-  const renderProductionAllocationFactor =
+  const renderproductEmissions =
     !additionalDataSchema ||
-    !additionalDataSchema.schema.properties
-      .calculatedProductionAllocationFactor;
+    !additionalDataSchema.schema.properties.calculatedproductEmissions;
 
   return (
     <>
@@ -224,38 +219,38 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           onChange={handleProductChange}
         />
       </FieldTemplate>
-      {renderProductionAllocationFactor && (
+      {renderproductEmissions && (
         <FieldTemplate
           required
           hidden={false}
-          id="product.productionAllocationFactor"
+          id="product.productEmissions"
           classNames="form-group field field-number"
-          label={productionAllocationFactorSchema.title}
-          schema={productionAllocationFactorSchema}
-          uiSchema={uiSchema.productionAllocationFactor || {}}
+          label={productEmissionsSchema.title}
+          schema={productEmissionsSchema}
+          uiSchema={uiSchema.productEmissions || {}}
           formContext={formContext}
-          help={uiSchema.productionAllocationFactor?.['ui:help']}
+          help={uiSchema.productEmissions?.['ui:help']}
           errors={
             <ErrorList
-              errors={errorSchema?.productionAllocationFactor?.__errors as any}
+              errors={errorSchema?.productEmissions?.__errors as any}
             />
           }
         >
           <registry.fields.NumberField
             required
-            schema={productionAllocationFactorSchema}
-            uiSchema={uiSchema.productionAllocationFactor}
-            formData={formData.productionAllocationFactor}
+            schema={productEmissionsSchema}
+            uiSchema={uiSchema.productEmissions}
+            formData={formData.productEmissions}
             autofocus={autofocus}
-            idSchema={idSchema.productionAllocationFactor as IdSchema}
+            idSchema={idSchema.productEmissions as IdSchema}
             registry={registry}
-            errorSchema={errorSchema?.productionAllocationFactor}
+            errorSchema={errorSchema?.productEmissions}
             formContext={formContext}
             disabled={disabled}
             readonly={readonly}
             name="allocationFactor"
             onBlur={null}
-            onChange={handleProductionAllocationFactorChange}
+            onChange={handleProductEmissionsChange}
           />
         </FieldTemplate>
       )}

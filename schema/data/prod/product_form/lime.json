@@ -39,7 +39,7 @@
         "type": "integer",
         "exclusiveMinimum": 0
       },
-      "calculatedProductionAllocationFactor": {
+      "calculatedproductEmissions": {
         "type": "integer",
         "exclusiveMinimum": 0,
         "maximum": 100
@@ -49,12 +49,12 @@
   "uiSchema": {
     "ui:formulae": {
       "calculatedQuantity": "lime + limeKilnDust",
-      "calculatedProductionAllocationFactor": "limeAllocationFactor + limeKilnDustAllocationFactor"
+      "calculatedproductEmissions": "limeAllocationFactor + limeKilnDustAllocationFactor"
     },
     "calculatedQuantity": {
       "ui:widget": "hidden"
     },
-    "calculatedProductionAllocationFactor": {
+    "calculatedproductEmissions": {
       "ui:widget": "hidden"
     },
     "ui:order": [

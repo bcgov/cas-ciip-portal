@@ -1316,9 +1316,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "importedElectricityAllocationFactor": 30,
                     "importedHeatAllocationFactor": 50,
                     "paymentAllocationFactor": 10,
+                    "productEmissions": -20000000,
                     "productRowId": -40000000,
                     "productUnits": "est dolor",
-                    "productionAllocationFactor": -59999960,
                     "quantity": 0,
                   },
                   Object {
@@ -1326,9 +1326,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "importedElectricityAllocationFactor": 30,
                     "importedHeatAllocationFactor": 50,
                     "paymentAllocationFactor": 10,
+                    "productEmissions": -20000000,
                     "productRowId": -40000000,
                     "productUnits": "est dolor",
-                    "productionAllocationFactor": -59999960,
                     "quantity": 0,
                   },
                   Object {
@@ -1336,9 +1336,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "importedElectricityAllocationFactor": 30,
                     "importedHeatAllocationFactor": 50,
                     "paymentAllocationFactor": 10,
+                    "productEmissions": -20000000,
                     "productRowId": -40000000,
                     "productUnits": "est dolor",
-                    "productionAllocationFactor": -59999960,
                     "quantity": 0,
                   },
                 ]
@@ -1375,6 +1375,11 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "Payment allocation factor (%)",
                           "type": "integer",
                         },
+                        "productEmissions": Object {
+                          "exclusiveMinimum": 0,
+                          "title": "Emissions allocated to product",
+                          "type": "number",
+                        },
                         "productRowId": Object {
                           "title": "Product or Service",
                           "type": "integer",
@@ -1382,12 +1387,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "productUnits": Object {
                           "title": "Units",
                           "type": "string",
-                        },
-                        "productionAllocationFactor": Object {
-                          "exclusiveMinimum": 0,
-                          "maximum": 100,
-                          "title": "Emission allocation factor (%)",
-                          "type": "integer",
                         },
                         "quantity": Object {
                           "title": "Annual Production Amount",
@@ -1398,7 +1397,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "productRowId",
                         "quantity",
                         "productUnits",
-                        "productionAllocationFactor",
+                        "productEmissions",
                         "paymentAllocationFactor",
                       ],
                       "type": "object",
@@ -1415,27 +1414,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "items": Object {
-                    "additionalData": Object {
-                      "ui:name": "additionalData",
-                    },
-                    "paymentAllocationFactor": Object {
-                      "ui:name": "paymentAllocationFactor",
+                    "productEmissions": Object {
+                      "ui:col-md": 4,
+                      "ui:help": "Report emissions associated to CIIP product, in tCO2e",
                     },
                     "productRowId": Object {
                       "ui:col-md": 8,
-                      "ui:name": "productRowId",
                       "ui:widget": "SearchWidget",
-                    },
-                    "productUnits": Object {
-                      "ui:name": "productUnits",
-                    },
-                    "productionAllocationFactor": Object {
-                      "ui:col-md": 4,
-                      "ui:help": "Indicate percentage of total facility emissions that should be allocated to the selected product/service",
-                      "ui:name": "productAllocationFactor",
-                    },
-                    "quantity": Object {
-                      "ui:name": "quantity",
                     },
                     "ui:field": "production",
                   },
