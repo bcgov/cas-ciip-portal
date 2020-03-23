@@ -1,7 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
+import getConfig from 'next/config';
 
 const Footer = () => {
+  const feedbackUrl = getConfig()?.publicRuntimeConfig.FEEDBACK_SITE_URL;
   return (
     <>
       <footer className="footer">
@@ -25,11 +27,7 @@ const Footer = () => {
             <li>
               <Link href="/resources/contact">Contact Us</Link>
             </li>
-            <li>
-              {process.env.FEEDBACK_SITE_URL && (
-                <a href={process.env.FEEDBACK_SITE_URL}>Feedback</a>
-              )}
-            </li>
+            <li>{feedbackUrl && <a href={feedbackUrl}>Feedback</a>}</li>
           </ul>
         </div>
         <style jsx>
