@@ -9611,6 +9611,11 @@ type Product implements Node {
   """
   productFormId: Int
 
+  """
+  Boolean value indicates if the product requires allocation of emissions
+  """
+  requiresEmissionAllocation: Boolean
+
   """Unique ID for the product"""
   rowId: Int!
 
@@ -9656,6 +9661,11 @@ input ProductCondition {
 
   """Checks for equality with the object’s `productFormId` field."""
   productFormId: Int
+
+  """
+  Checks for equality with the object’s `requiresEmissionAllocation` field.
+  """
+  requiresEmissionAllocation: Boolean
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
@@ -9824,6 +9834,11 @@ input ProductInput {
   productFormId: Int
 
   """
+  Boolean value indicates if the product requires allocation of emissions
+  """
+  requiresEmissionAllocation: Boolean
+
+  """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
   """
   state: String
@@ -9867,6 +9882,11 @@ input ProductPatch {
   The id of the product form definition, for products that require more complex calculation
   """
   productFormId: Int
+
+  """
+  Boolean value indicates if the product requires allocation of emissions
+  """
+  requiresEmissionAllocation: Boolean
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -9932,6 +9952,8 @@ enum ProductsOrderBy {
   PRIMARY_KEY_DESC
   PRODUCT_FORM_ID_ASC
   PRODUCT_FORM_ID_DESC
+  REQUIRES_EMISSION_ALLOCATION_ASC
+  REQUIRES_EMISSION_ALLOCATION_DESC
   STATE_ASC
   STATE_DESC
   UNITS_ASC
