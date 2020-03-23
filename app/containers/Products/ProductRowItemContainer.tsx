@@ -165,7 +165,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newState,
         prevId: product.rowId,
         newParent: [product.rowId],
-        newUnits: product.units
+        newUnits: product.units,
+        newRequiresEmissionAllocation: product.requiresEmissionAllocation
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -174,6 +175,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   // Save a product
   const saveProduct = async (e: IChangeEvent) => {
+    console.log(e.formData);
     const variables = {
       input: {
         newName: e.formData.name,
@@ -181,9 +183,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newState: 'active',
         prevId: product.rowId,
         newParent: [product.rowId],
-        newUnits: e.formData.units
+        newUnits: e.formData.units,
+        newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation
       }
     };
+    console.log(variables);
     const response = await saveProductMutation(relay.environment, variables);
     console.log(response);
   };
@@ -446,6 +450,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
       description
       state
       units
+      requiresEmissionAllocation
       benchmarksByProductId {
         edges {
           node {

@@ -11491,6 +11491,7 @@ input SaveProductMutationChainInput {
   newDescription: String
   newName: String
   newParent: [Int]
+  newRequiresEmissionAllocation: Boolean
   newState: String
   newUnits: String
   prevId: Int

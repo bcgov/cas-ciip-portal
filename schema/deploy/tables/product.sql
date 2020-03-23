@@ -11,7 +11,7 @@ create table ggircs_portal.product (
   state varchar(1000),
   parent integer ARRAY,
   product_form_id integer references ggircs_portal.product_form(id),
-  requires_emission_allocation boolean default true,
+  requires_emission_allocation boolean,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),

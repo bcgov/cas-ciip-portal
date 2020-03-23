@@ -15,6 +15,7 @@ const mutation = graphql`
         name
         description
         units
+        requiresEmissionAllocation
       }
     }
   }

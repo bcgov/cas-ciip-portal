@@ -9,13 +9,13 @@ import BaseMutation from 'mutations/BaseMutation';
 const mutation = graphql`
   mutation saveProductMutation($input: SaveProductMutationChainInput!) {
     saveProductMutationChain(input: $input) {
-      clientMutationId
       product {
         id
         name
         description
         state
         parent
+        requiresEmissionAllocation
       }
     }
   }
