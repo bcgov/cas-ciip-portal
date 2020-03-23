@@ -69,7 +69,7 @@
       },
       "productEmissions": {
         "ui:col-md": 4,
-        "ui:help": "Report emission intensity associated to CIIP product, in tCO2e"
+        "ui:help": "Report emissions associated to CIIP product, in tCO2e"
       }
     }
   }
