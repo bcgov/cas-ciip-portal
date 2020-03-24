@@ -169,7 +169,7 @@
     "@storybook/addons": "^5.3.8",
     "@storybook/react": "^5.2.8",
     "@types/enzyme": "^3.10.5",
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^25.1.4",
     "@types/mathjs": "^6.0.4",
     "@types/react-jsonschema-form": "^1.7.0",
     "@types/react-relay": "^7.0.3",
