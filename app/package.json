@@ -217,7 +217,7 @@
     "relay-compiler": "^8.0.0",
     "relay-compiler-language-typescript": "^10.1.5",
     "relay-config": "^8.0.0",
-    "relay-test-utils": "^8.0.0",
+    "relay-test-utils": "^9.0.0",
     "require-context.macro": "^1.2.2",
     "typescript": "3.7.5",
     "wait-on": "^4.0.1",
