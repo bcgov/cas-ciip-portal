@@ -159,7 +159,6 @@ deployProdData() {
   _psql -f "./prod/form_json.sql"
   _psql -f "./prod/ciip_application_wizard.sql"
   _psql -f "./prod/fuel.sql"
-  _psql -f "./prod/product_form.sql"
   _psql -f "./prod/product.sql"
   _psql -f "./prod/organisation_and_facility.sql"
   _psql -f "./prod/gas.sql"
