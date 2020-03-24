@@ -23,7 +23,7 @@
         ]
       }
     },
-    "required": ["name", "units"]
+    "required": ["name", "units", "requiresEmissionAllocation"]
   },
   "uiSchema": {
     "name": {
