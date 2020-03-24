@@ -13,9 +13,17 @@
       "units": {
         "type": "string",
         "title": "Production units of measurement"
+      },
+      "requiresEmissionAllocation": {
+        "type": "boolean",
+        "title": "Product requires allocation of emissions?",
+        "enumNames": [
+          " Yes",
+          " No"
+        ]
       }
     },
-    "required": ["name", "units"]
+    "required": ["name", "units", "requiresEmissionAllocation"]
   },
   "uiSchema": {
     "name": {
@@ -26,6 +34,9 @@
     },
     "description": {
       "ui:col-md": 4
+    },
+    "requiresEmissionAllocation": {
+      "ui:widget": "radio"
     }
   }
 }

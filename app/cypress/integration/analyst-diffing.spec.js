@@ -53,12 +53,6 @@ describe('When reviewing a submitted application as an analyst', () => {
       .contains('[No Data Entered]');
     cy.get('.production')
       .get('.diffFrom')
-      .contains('59');
-    cy.get('.production')
-      .get('.diffTo')
-      .contains('5');
-    cy.get('.production')
-      .get('.diffFrom')
       .contains('8,760');
     cy.get('.production')
       .get('.diffTo')
@@ -97,15 +91,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('.electricity-and-heat')
       .get('.diffTo')
       .contains('29');
-    cy.get('.production')
-      .get('.diffFrom > i')
-      .contains('[No Data Entered]');
-    cy.get('.production')
-      .get('.diffTo')
-      .contains('5');
-    cy.get('.production')
-      .get('.diffFrom > i')
-      .contains('[No Data Entered]');
     cy.get('.production')
       .get('.diffTo')
       .contains('800');

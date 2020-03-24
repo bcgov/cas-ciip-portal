@@ -283,13 +283,16 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get(':nth-child(5) > .nav-link').click();
     cy.contains('Continue').click();
     cy.get('.rbt +div .error-detail').contains('is a required property');
-    cy.get('#root_0_productEmissions +div .error-detail').contains(
-      'is a required property'
-    );
     cy.get('#root_0_quantity +div .error-detail').contains(
       'is a required property'
     );
     cy.get('#root_0_productUnits +div .error-detail').contains(
+      'is a required property'
+    );
+    cy.get('#root_0_productRowId').click();
+    cy.get('#rbt-menu-item-5 > .dropdown-item > span').click();
+    cy.contains('Continue').click();
+    cy.get('#root_0_productEmissions +div .error-detail').contains(
       'is a required property'
     );
     cy.percySnapshot('production');

@@ -1315,31 +1315,28 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "additionalData": Object {},
                     "importedElectricityAllocationFactor": 30,
                     "importedHeatAllocationFactor": 50,
-                    "paymentAllocationFactor": 10,
-                    "productEmissions": -20000000,
-                    "productRowId": -40000000,
-                    "productUnits": "est dolor",
-                    "quantity": 0,
+                    "productRowId": -80000000,
+                    "productUnits": "culpa",
+                    "quantity": -40000000,
+                    "requiresEmissionAllocation": false,
                   },
                   Object {
                     "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 30,
-                    "importedHeatAllocationFactor": 50,
-                    "paymentAllocationFactor": 10,
-                    "productEmissions": -20000000,
-                    "productRowId": -40000000,
-                    "productUnits": "est dolor",
-                    "quantity": 0,
+                    "importedElectricityAllocationFactor": 20,
+                    "importedHeatAllocationFactor": 40,
+                    "productRowId": -20000000,
+                    "productUnits": "mollit eu esse",
+                    "quantity": -80000000,
+                    "requiresEmissionAllocation": false,
                   },
                   Object {
                     "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 30,
-                    "importedHeatAllocationFactor": 50,
-                    "paymentAllocationFactor": 10,
-                    "productEmissions": -20000000,
+                    "importedElectricityAllocationFactor": 10,
+                    "importedHeatAllocationFactor": 30,
                     "productRowId": -40000000,
                     "productUnits": "est dolor",
                     "quantity": 0,
+                    "requiresEmissionAllocation": false,
                   },
                 ]
               }
@@ -1352,6 +1349,41 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 Object {
                   "definitions": Object {
                     "product": Object {
+                      "dependencies": Object {
+                        "requiresEmissionAllocation": Object {
+                          "oneOf": Array [
+                            Object {
+                              "properties": Object {
+                                "requiresEmissionAllocation": Object {
+                                  "const": false,
+                                },
+                              },
+                            },
+                            Object {
+                              "properties": Object {
+                                "paymentAllocationFactor": Object {
+                                  "maximum": 100,
+                                  "minimum": 0,
+                                  "title": "Payment allocation factor (%)",
+                                  "type": "integer",
+                                },
+                                "productEmissions": Object {
+                                  "exclusiveMinimum": 0,
+                                  "title": "Emissions allocated to product",
+                                  "type": "number",
+                                },
+                                "requiresEmissionAllocation": Object {
+                                  "const": true,
+                                },
+                              },
+                              "required": Array [
+                                "productEmissions",
+                                "paymentAllocationFactor",
+                              ],
+                            },
+                          ],
+                        },
+                      },
                       "properties": Object {
                         "additionalData": Object {
                           "additionalProperties": true,
@@ -1369,17 +1401,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "Imported heat allocation factor (%)",
                           "type": "integer",
                         },
-                        "paymentAllocationFactor": Object {
-                          "maximum": 100,
-                          "minimum": 0,
-                          "title": "Payment allocation factor (%)",
-                          "type": "integer",
-                        },
-                        "productEmissions": Object {
-                          "exclusiveMinimum": 0,
-                          "title": "Emissions allocated to product",
-                          "type": "number",
-                        },
                         "productRowId": Object {
                           "title": "Product or Service",
                           "type": "integer",
@@ -1392,13 +1413,14 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "Annual Production Amount",
                           "type": "number",
                         },
+                        "requiresEmissionAllocation": Object {
+                          "type": "boolean",
+                        },
                       },
                       "required": Array [
                         "productRowId",
                         "quantity",
                         "productUnits",
-                        "productEmissions",
-                        "paymentAllocationFactor",
                       ],
                       "type": "object",
                     },
@@ -1421,6 +1443,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "productRowId": Object {
                       "ui:col-md": 8,
                       "ui:widget": "SearchWidget",
+                    },
+                    "requiresEmissionAllocation": Object {
+                      "ui:widget": "hidden",
                     },
                     "ui:field": "production",
                   },
