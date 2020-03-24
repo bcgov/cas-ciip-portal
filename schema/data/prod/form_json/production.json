@@ -20,10 +20,8 @@
             "title": "Units",
             "type": "string"
           },
-          "productEmissions": {
-            "title": "Emissions allocated to product",
-            "type": "number",
-            "exclusiveMinimum": 0
+          "requiresEmissionAllocation": {
+            "type": "boolean"
           },
           "importedElectricityAllocationFactor": {
             "title": "Imported electricity allocation factor (%)",
@@ -37,23 +35,51 @@
             "minimum": 0,
             "maximum": 100
           },
-          "paymentAllocationFactor": {
-            "title": "Payment allocation factor (%)",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 100
-          },
+
           "additionalData": {
             "type": "object",
             "additionalProperties": true
           }
         },
+        "dependencies": {
+          "requiresEmissionAllocation": {
+            "oneOf": [
+              {
+                "properties": {
+                  "requiresEmissionAllocation": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "productEmissions": {
+                    "title": "Emissions allocated to product",
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "paymentAllocationFactor": {
+                    "title": "Payment allocation factor (%)",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "requiresEmissionAllocation": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "productEmissions",
+                  "paymentAllocationFactor"
+                ]
+              }
+            ]
+          }
+        },
         "required": [
           "productRowId",
           "quantity",
-          "productUnits",
-          "productEmissions",
-          "paymentAllocationFactor"
+          "productUnits"
         ]
       }
     }
@@ -70,7 +96,8 @@
       "productEmissions": {
         "ui:col-md": 4,
         "ui:help": "Report emissions associated to CIIP product, in tCO2e"
-      }
+      },
+      "requiresEmissionAllocation": {"ui:widget": "hidden"}
     }
   }
 }

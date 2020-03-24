@@ -48,6 +48,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     FieldTemplate: React.FunctionComponent<any>;
   } = registry as any;
   // Not using the types defined in @types/react-jsonschema-form as they are out of date
+
   const {
     properties: {
       productEmissions: productEmissionsSchema,
@@ -61,11 +62,15 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     const productUnits = query.allProducts.edges.find(
       ({node}) => node.rowId === productRowId
     )?.node.units;
+    const requiresEmissionAllocation = query.allProducts.edges.find(
+      ({node}) => node.rowId === productRowId
+    )?.node.requiresEmissionAllocation;
     onChange({
       ...formData,
       productRowId,
       productUnits,
-      additionalData: {productUnits}
+      requiresEmissionAllocation,
+      additionalData: {productUnits, requiresEmissionAllocation}
     });
   };
 
@@ -183,7 +188,7 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
     !additionalDataSchema ||
     !additionalDataSchema.schema.properties.calculatedQuantity;
 
-  const renderproductEmissions =
+  const renderProductEmissions =
     !additionalDataSchema ||
     !additionalDataSchema.schema.properties.calculatedproductEmissions;
 
@@ -219,41 +224,42 @@ export const ProductionFieldsComponent: React.FunctionComponent<Props> = ({
           onChange={handleProductChange}
         />
       </FieldTemplate>
-      {renderproductEmissions && (
-        <FieldTemplate
-          required
-          hidden={false}
-          id="product.productEmissions"
-          classNames="form-group field field-number"
-          label={productEmissionsSchema.title}
-          schema={productEmissionsSchema}
-          uiSchema={uiSchema.productEmissions || {}}
-          formContext={formContext}
-          help={uiSchema.productEmissions?.['ui:help']}
-          errors={
-            <ErrorList
-              errors={errorSchema?.productEmissions?.__errors as any}
-            />
-          }
-        >
-          <registry.fields.NumberField
+      {renderProductEmissions &&
+        formData?.additionalData?.requiresEmissionAllocation && (
+          <FieldTemplate
             required
+            hidden={false}
+            id="product.productEmissions"
+            classNames="form-group field field-number"
+            label={productEmissionsSchema.title}
             schema={productEmissionsSchema}
-            uiSchema={uiSchema.productEmissions}
-            formData={formData.productEmissions}
-            autofocus={autofocus}
-            idSchema={idSchema.productEmissions as IdSchema}
-            registry={registry}
-            errorSchema={errorSchema?.productEmissions}
+            uiSchema={uiSchema.productEmissions || {}}
             formContext={formContext}
-            disabled={disabled}
-            readonly={readonly}
-            name="allocationFactor"
-            onBlur={null}
-            onChange={handleProductEmissionsChange}
-          />
-        </FieldTemplate>
-      )}
+            help={uiSchema.productEmissions?.['ui:help']}
+            errors={
+              <ErrorList
+                errors={errorSchema?.productEmissions?.__errors as any}
+              />
+            }
+          >
+            <registry.fields.NumberField
+              required
+              schema={productEmissionsSchema}
+              uiSchema={uiSchema.productEmissions}
+              formData={formData.productEmissions}
+              autofocus={autofocus}
+              idSchema={idSchema.productEmissions as IdSchema}
+              registry={registry}
+              errorSchema={errorSchema?.productEmissions}
+              formContext={formContext}
+              disabled={disabled}
+              readonly={readonly}
+              name="allocationFactor"
+              onBlur={null}
+              onChange={handleProductEmissionsChange}
+            />
+          </FieldTemplate>
+        )}
       {renderQuantity && (
         <>
           <FieldTemplate
@@ -422,6 +428,7 @@ export default createFragmentContainer(ProductionFieldsComponent, {
             rowId
             name
             units
+            requiresEmissionAllocation
             productFormByProductFormId {
               productFormSchema
             }
