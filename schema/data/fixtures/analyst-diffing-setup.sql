@@ -60,8 +60,6 @@ update ggircs_portal.form_result set form_result='[
         ],
         "calculatedQuantity": 8760000
       },
-      "paymentAllocationFactor": 59,
-      "productEmissions": 59,
       "importedElectricityAllocationFactor": 20,
       "importedHeatAllocationFactor": 20
     }, {
@@ -75,8 +73,6 @@ update ggircs_portal.form_result set form_result='[
         "calculatedPaymentAllocationFactor": 41,
         "calculatedproductEmissions": 1
       },
-      "paymentAllocationFactor": 41,
-      "productEmissions": 1,
       "importedElectricityAllocationFactor": 20,
       "importedHeatAllocationFactor": 20
     }
@@ -116,8 +112,6 @@ update ggircs_portal.form_result set form_result='[
         ],
         "calculatedQuantity": 8760
       },
-      "paymentAllocationFactor": 5,
-      "productEmissions": 5,
       "importedElectricityAllocationFactor": 20,
       "importedHeatAllocationFactor": 20
     }, {
@@ -131,8 +125,6 @@ update ggircs_portal.form_result set form_result='[
         "calculatedPaymentAllocationFactor": 41,
         "calculatedproductEmissions": 1
       },
-      "paymentAllocationFactor": 41,
-      "productEmissions": 1,
       "importedElectricityAllocationFactor": 20,
       "importedHeatAllocationFactor": 20
     }
