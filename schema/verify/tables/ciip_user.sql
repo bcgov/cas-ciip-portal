@@ -23,6 +23,7 @@ select ggircs_portal_private.verify_grant('update', 'ciip_user', 'ciip_industry_
   ARRAY['first_name', 'last_name', 'email_address', 'occupation', 'phone_number', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by']);
 
 -- ciip_guest Grants
+select ggircs_portal_private.verify_grant('select', 'ciip_user', 'ciip_guest');
 
 -- ciip_administrator Policies
 select ggircs_portal_private.verify_policy('select', 'ciip_administrator_select_ciip_user', 'ciip_user', 'ciip_administrator');
@@ -40,6 +41,6 @@ select ggircs_portal_private.verify_policy('insert', 'ciip_industry_user_insert_
 select ggircs_portal_private.verify_policy('update', 'ciip_industry_user_update_ciip_user', 'ciip_user', 'ciip_industry_user');
 
 -- ciip_guest Policies
-
+select ggircs_portal_private.verify_policy('select', 'ciip_guest_select_ciip_user', 'ciip_user', 'ciip_guest');
 
 rollback;
