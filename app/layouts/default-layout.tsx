@@ -17,7 +17,10 @@ interface Props {
   needsSession?: boolean;
   width?: 'narrow' | 'wide';
   allowedGroups?: string[];
-  help?: {title; helpMessage};
+  help?: {
+    title: string; 
+    helpMessage: string;
+  };
 }
 
 const DefaultLayout: React.FunctionComponent<Props> = ({
