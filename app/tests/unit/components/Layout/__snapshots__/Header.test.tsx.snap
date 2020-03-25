@@ -2,68 +2,72 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <header
-  className="jsx-2807878339"
+  className="jsx-1593853101"
 >
   <div
-    className="jsx-2807878339 container"
+    className="jsx-1593853101 container full-width"
   >
     <div
-      className="jsx-2807878339 banner"
+      className="jsx-1593853101 banner"
     >
       <div
-        className="jsx-2807878339 header-left"
+        className="jsx-1593853101 header-left"
       >
         <Link
           href="/"
         >
           <img
             alt="Go to the Government of British Columbia website"
-            className="jsx-2807878339"
+            className="jsx-1593853101"
             src="/static/logo-banner.png"
           />
         </Link>
         <h1
-          className="jsx-2807878339"
+          className="jsx-1593853101"
         >
           CleanBC Industrial Incentive Program
         </h1>
       </div>
       <div
-        className="jsx-2807878339 login-btns header-right"
+        className="jsx-1593853101 login-btns header-right"
       >
-        <ForwardRef
-          noGutters={false}
+        <div
+          className="jsx-1593853101 container"
         >
-          <div
-            className="jsx-2807878339"
+          <ForwardRef
+            noGutters={false}
           >
-            <FormRow>
-              <Col>
-                <LoginForm
-                  type="submit"
-                  variant="outline-light"
-                >
-                  Register
-                </LoginForm>
-              </Col>
-              <Col>
-                <LoginForm
-                  type="submit"
-                  variant="outline-light"
-                >
-                  Login
-                </LoginForm>
-              </Col>
-            </FormRow>
-          </div>
-        </ForwardRef>
+            <div
+              className="jsx-1593853101"
+            >
+              <FormRow>
+                <Col>
+                  <LoginForm
+                    type="submit"
+                    variant="outline-light"
+                  >
+                    Register
+                  </LoginForm>
+                </Col>
+                <Col>
+                  <LoginForm
+                    type="submit"
+                    variant="outline-light"
+                  >
+                    Login
+                  </LoginForm>
+                </Col>
+              </FormRow>
+            </div>
+          </ForwardRef>
+        </div>
       </div>
     </div>
   </div>
   <JSXStyle
-    id="2807878339"
+    id="1593853101"
   >
-    header.jsx-2807878339{background-color:#036;border-bottom:2px solid #fcba19;padding:10px 65px;color:#fff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;height:65px;top:0px;width:100%;}header.jsx-2807878339 h1.jsx-2807878339{font-weight:normal;margin:8px 5px 5px 18px;visibility:hidden;}.header-left.jsx-2807878339{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.header-right.jsx-2807878339{margin-right:-25px;}header.jsx-2807878339 .banner.jsx-2807878339{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:0 10px 0 0;}header.jsx-2807878339 .other.jsx-2807878339{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}.buttons.jsx-2807878339{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;}.btn.jsx-2807878339{font-weight:bolder;}.link.jsx-2807878339{color:white;-webkit-text-decoration:none;text-decoration:none;}a.jsx-2807878339:link,a.jsx-2807878339:visited{color:white;}a.jsx-2807878339:hover,a.jsx-2807878339:active{color:white;}@media screen and (min-width:600px) and (max-width:899px){header.jsx-2807878339 h1.jsx-2807878339{font-size:calc(7px + 2.2vw);visibility:visible;}}@media screen and (min-width:900px){header.jsx-2807878339 h1.jsx-2807878339{font-size:1.4em;visibility:visible;}}
+    header.jsx-1593853101{background-color:#036;border-bottom:2px solid #fcba19;padding:10px 65px;color:#fff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;height:65px;top:0px;width:100%;}header.jsx-1593853101 h1.jsx-1593853101{font-weight:normal;margin:8px 5px 5px 18px;}.header-left.jsx-1593853101{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}.header-left.jsx-1593853101 img.jsx-1593853101{height:100%;}.header-right.jsx-1593853101{margin-right:-25px;}header.jsx-1593853101 .banner.jsx-1593853101{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:0 10px 0 0;}header.jsx-1593853101 .other.jsx-1593853101{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}.buttons.jsx-1593853101{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;}.btn.jsx-1593853101{font-weight:bolder;}.link.jsx-1593853101{color:white;-webkit-text-decoration:none;text-decoration:none;}a.jsx-1593853101:link,a.jsx-1593853101:visited{color:white;}a.jsx-1593853101:hover,a.jsx-1593853101:active{color:white;}@media screen and (min-width:900px){header.jsx-1593853101 h1.jsx-1593853101{font-size:1.4em;visibility:visible;}}@media (max-width:899px){header.jsx-1593853101{padding:10px 0 !important;margin-bottom:58px;}header.jsx-1593853101 h1.jsx-1593853101{font-size:calc(6px + 2vw);visibility:visible;height:20px;}.full-width.container.jsx-1593853101{max-width:100%;padding:0;}.banner.jsx-1593853101{-webkit-flex-flow:wrap;-ms-flex-flow:wrap;flex-flow:wrap;margin:0 !important;}.header-right.jsx-1593853101{background:#004085;width:100%;padding:10px 10px 10px 35px;margin:14px 0;z-index:1;}.header-left.jsx-1593853101{padding:0 0 0 20px;}}
   </JSXStyle>
 </header>
 `;

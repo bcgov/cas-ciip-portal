@@ -7,6 +7,12 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
       "User",
     ]
   }
+  help={
+    Object {
+      "helpMessage": "An operator is an organisation",
+      "title": "What is an Operator",
+    }
+  }
   showSubheader={true}
   title="My Operators"
 >

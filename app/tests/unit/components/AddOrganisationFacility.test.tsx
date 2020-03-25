@@ -10,16 +10,18 @@ describe('AddOrganisationFacility Component', () => {
     expect(render).toMatchSnapshot();
   });
 
-  it("should render the 'I cant find my organisation' Link when passed the onAddOrganisation prop", () => {
+  it("should render the 'Click here to add a new Operator.' Link when passed the onAddOrganisation prop", () => {
     const render = mount(
       <AddOrganisationFacility onAddOrganisation={jest.fn()} />
     );
-    expect(render.find('p').text()).toBe("I can't find my organisation");
+    expect(render.find('#add-organisation').text()).toBe(
+      'Click here to add a new Operator.'
+    );
   });
 
   it('should render the Add Facility Button when passed the onAddFacility prop', () => {
     const render = mount(<AddOrganisationFacility onAddFacility={jest.fn()} />);
-    expect(render.find('Button').text()).toBe('Add Facility +');
+    expect(render.find('Button').text()).toBe('Add a new Facility');
   });
 
   it('should open the modal when Add Facility Button is clicked', () => {

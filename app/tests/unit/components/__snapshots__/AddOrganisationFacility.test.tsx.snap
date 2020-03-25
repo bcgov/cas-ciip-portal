@@ -2,18 +2,32 @@
 
 exports[`AddOrganisationFacility Component should match the last snapshot 1`] = `
 Array [
-  <p
-    className="jsx-2386677284"
+  <span
+    style={
+      Object {
+        "marginTop": "20px",
+      }
+    }
+  >
+    Can't find your Operator in the list?
+  </span>,
+  <br />,
+  <span
+    className="jsx-67075016"
     id="add-organisation"
     onClick={[Function]}
   >
-    I can't find my organisation
-  </p>,
+    <span
+      className="jsx-67075016 blue"
+    >
+      Click here to add a new Operator.
+    </span>
+  </span>,
   <Bootstrap(Modal)
     centered={true}
     onHide={[Function]}
     show={false}
-    size="xl"
+    size="lg"
   >
     <ForwardRef
       autoFocus={true}
