@@ -25,10 +25,11 @@ begin;
       "productRowId": 29,
       "productUnits": "MWh",
       "productEmissions": 5900
-    }, {
+    },
+    {
       "quantity": 12000,
       "productRowId": 26,
-      "productUnits": "t"
+      "productUnits": "t",
       "productEmissions": 1300
     }
   ]'),
@@ -42,10 +43,11 @@ begin;
       "productRowId": 29,
       "productUnits": "MWh",
       "productEmissions": 5900
-    }, {
+    },
+    {
       "quantity": 12000,
       "productRowId": 26,
-      "productUnits": "t"
+      "productUnits": "t",
       "productEmissions": 1300
     }
   ]');
