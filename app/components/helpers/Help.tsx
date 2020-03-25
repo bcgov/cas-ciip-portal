@@ -9,7 +9,7 @@ interface Props {
 export const HelpComponent: React.FunctionComponent<Props> = props => {
   const popover = (
     <Popover className="ciip-help" id="popover-basic">
-      <Popover.Title as="h3">{props.title && props.title}</Popover.Title>
+      <Popover.Title as="h3">{props.title}</Popover.Title>
       <Popover.Content>{props.helpMessage}</Popover.Content>
     </Popover>
   );
