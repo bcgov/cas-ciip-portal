@@ -7,6 +7,7 @@ import Header from 'components/Layout/Header';
 import Footer from 'components/Layout/Footer';
 import Subheader from 'components/Layout/Subheader';
 import {getUserGroupLandingRoute} from 'lib/user-groups';
+import Help from 'components/helpers/Help';
 
 interface Props {
   title?: string | JSX.Element;
@@ -16,6 +17,7 @@ interface Props {
   needsSession?: boolean;
   width?: 'narrow' | 'wide';
   allowedGroups?: string[];
+  help?: {title; helpMessage};
 }
 
 const DefaultLayout: React.FunctionComponent<Props> = ({
@@ -26,7 +28,8 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   width = 'narrow',
   needsUser = true,
   needsSession = true,
-  allowedGroups = []
+  allowedGroups = [],
+  help
 }) => {
   const router = useRouter();
 
@@ -76,6 +79,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         <div className="page-title">
           <Container className={width}>
             <h1>{title}</h1>
+            {help && <Help title={help.title} helpMessage={help.helpMessage} />}
           </Container>
         </div>
       ) : null}
@@ -104,6 +108,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           }
           h1 {
             font-size: 30px;
+            display: inline-block;
           }
           .page-title {
             background: #f5f5f5;

@@ -41,7 +41,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
     );
   if (schema.type === 'object')
     return (
-      <Col xs={12}>
+      <Col xs={12} className={classNames}>
         <Form.Row>
           {description}
           {errors}

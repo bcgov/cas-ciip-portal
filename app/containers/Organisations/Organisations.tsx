@@ -1,6 +1,13 @@
 import React from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {Table, Dropdown, Button, Alert, FormControl} from 'react-bootstrap';
+import {
+  Table,
+  Dropdown,
+  Button,
+  Alert,
+  FormControl,
+  Card
+} from 'react-bootstrap';
 import {Organisations_query} from 'Organisations_query.graphql';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import AddOrganisationFacility from 'components/AddOrganisationFacility';
@@ -8,6 +15,7 @@ import createOrganisationMutation from 'mutations/organisation/createOrganisatio
 import LoadingSpinner from 'components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
+import Help from 'components/helpers/Help';
 
 interface Props {
   query: Organisations_query;
@@ -109,73 +117,93 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
         </>
       )}
 
-      {props.confirmOrg ? (
-        <>
-          <h5 className="blue">Requesting access to: </h5>
-          <h4 style={{fontWeight: 300, margin: '15px 0'}}>{props.orgInput} </h4>
-          {/* Dev-only button to automatically create approved user-organisation requests */}
-          {process.env.NODE_ENV === 'production' ? null : (
-            <Button
-              style={{marginRight: '15px'}}
-              variant="success"
-              onClick={async () => claimOrg(true)}
-            >
-              Activate Access
-            </Button>
-          )}
-          <Button
-            style={{marginRight: '15px'}}
-            variant="primary"
-            onClick={async () => claimOrg(false)}
-          >
-            Request Access
-          </Button>
-          <Button variant="danger" onClick={cancelClaim}>
-            Cancel
-          </Button>
-        </>
-      ) : (
-        <Dropdown className="search-dropdown">
-          <h5 style={{marginBottom: 0}}>Request access to an Operator:</h5>
-          <small style={{display: 'block', marginBottom: '20px'}}>
-            (You can search to narrow the results in the dropdown)
-          </small>
-          <Dropdown.Toggle id="org-dropdown" className="search-toggle">
-            Select Operator
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <FormControl
-              placeholder="Search..."
-              className="mx-3 my-2 w-auto"
-              onChange={changeInput}
+      <div>
+        <Card style={{marginTop: '50px'}}>
+          <Card.Header>
+            <h5 className="blue inline-block">Add operators you represent </h5>
+            <Help
+              helpMessage={`Before you can report for operations,
+                you must request access to Operators you can apply on behalf off.
+                Once you you have been given access you will be able to see all the Reporting operations
+                for that Operator`}
             />
-            <div className="org-scroll">
-              {allOrganisations.edges.map(({node}) => {
-                return (
-                  <Organisation
-                    key={node.id}
-                    select
-                    organisation={node}
-                    orgInput={props.orgInput}
-                    selectOrg={selectOrg}
+          </Card.Header>
+          <Card.Body>
+            {props.confirmOrg ? (
+              <>
+                <Card.Title>Requesting access to: </Card.Title>
+                <h4 style={{fontWeight: 300, margin: '15px 0'}}>
+                  {props.orgInput}{' '}
+                </h4>
+                {/* Dev-only button to automatically create approved user-organisation requests */}
+                {process.env.NODE_ENV === 'production' ? null : (
+                  <Button
+                    style={{marginRight: '15px'}}
+                    variant="success"
+                    onClick={async () => claimOrg(true)}
+                  >
+                    Activate Access
+                  </Button>
+                )}
+                <Button
+                  style={{marginRight: '15px'}}
+                  variant="primary"
+                  onClick={async () => claimOrg(false)}
+                >
+                  Request Access
+                </Button>
+                <Button variant="danger" onClick={cancelClaim}>
+                  Cancel
+                </Button>
+              </>
+            ) : (
+              <Dropdown className="search-dropdown">
+                <Card.Title>Request access to an Operator:</Card.Title>
+                <small style={{display: 'block', marginBottom: '20px'}}>
+                  (You can search to narrow the results in the dropdown)
+                </small>
+                <Dropdown.Toggle id="org-dropdown" className="search-toggle">
+                  Select Operator
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <FormControl
+                    placeholder="Search..."
+                    className="mx-3 my-2 w-auto"
+                    onChange={changeInput}
                   />
-                );
-              })}
-              <style jsx>
-                {`
-                  .org-scroll {
-                    max-height: 250px;
-                    overflow: hidden;
-                    overflow-y: scroll;
-                  }
-                `}
-              </style>
-            </div>
-          </Dropdown.Menu>
-        </Dropdown>
-      )}
-      <br />
-      <AddOrganisationFacility onAddOrganisation={handleAddOrganisation} />
+                  <div className="org-scroll">
+                    {allOrganisations.edges.map(({node}) => {
+                      return (
+                        <Organisation
+                          key={node.id}
+                          select
+                          organisation={node}
+                          orgInput={props.orgInput}
+                          selectOrg={selectOrg}
+                        />
+                      );
+                    })}
+                  </div>
+                </Dropdown.Menu>
+              </Dropdown>
+            )}
+            <hr />
+            <AddOrganisationFacility
+              onAddOrganisation={handleAddOrganisation}
+            />
+
+            <style jsx>
+              {`
+                .org-scroll {
+                  max-height: 250px;
+                  overflow: hidden;
+                  overflow-y: scroll;
+                }
+              `}
+            </style>
+          </Card.Body>
+        </Card>
+      </div>
     </>
   );
 };

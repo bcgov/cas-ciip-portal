@@ -1,0 +1,42 @@
+.no-pad{
+    padding-left:0;
+    padding-right:0;
+}
+.no-pad-left {
+    padding-left:0;
+}
+.no-pad-right{
+    padding-right:0;
+}
+
+.col-12{
+    padding-left:0;
+    padding-right:0;
+}
+
+.badge{
+    padding: 8px;
+}
+
+.inline-block{
+    display:inline-block;
+}
+
+.search-form{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search-form .form-group{
+    float: left;
+}
+.search-form .rjsf {
+    display: inline-block;
+}
+.search-form .rjsf:first-child .col-12{
+    width: 69%;
+}
+.search-actions{
+    display:inline-block;
+    width: 30%;
+}
