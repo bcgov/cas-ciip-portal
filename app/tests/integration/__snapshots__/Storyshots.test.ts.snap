@@ -11,104 +11,108 @@ Array [
     }
   >
     <div
-      className="jsx-1486801185 page-wrap"
+      className="jsx-303545825 page-wrap"
     >
       <header
-        className="jsx-2807878339"
+        className="jsx-1593853101"
       >
         <div
-          className="jsx-2807878339 container"
+          className="jsx-1593853101 container full-width"
         >
           <div
-            className="jsx-2807878339 banner"
+            className="jsx-1593853101 banner"
           >
             <div
-              className="jsx-2807878339 header-left"
+              className="jsx-1593853101 header-left"
             >
               <img
                 alt="Go to the Government of British Columbia website"
-                className="jsx-2807878339"
+                className="jsx-1593853101"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
                 src="/static/logo-banner.png"
               />
               <h1
-                className="jsx-2807878339"
+                className="jsx-1593853101"
               >
                 CleanBC Industrial Incentive Program
               </h1>
             </div>
             <div
-              className="jsx-2807878339 login-btns header-right"
+              className="jsx-1593853101 login-btns header-right"
             >
               <div
-                className="row"
+                className="jsx-1593853101 container"
               >
                 <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Industry
-                  </button>
-                </div>
-                <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Admin
-                  </button>
-                </div>
-                <div
-                  className="jsx-2807878339"
+                  className="row"
                 >
                   <div
-                    className="form-row"
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Industry
+                    </button>
+                  </div>
+                  <div
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Admin
+                    </button>
+                  </div>
+                  <div
+                    className="jsx-1593853101"
                   >
                     <div
-                      className="col"
+                      className="form-row"
                     >
-                      <form
-                        action="/user-profile"
-                        className=""
-                        method="get"
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/user-profile"
+                          className=""
+                          method="get"
                         >
-                          Profile
-                        </button>
-                      </form>
-                    </div>
-                    <div
-                      className="col"
-                    >
-                      <form
-                        action="/logout"
-                        className=""
-                        method="post"
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Profile
+                          </button>
+                        </form>
+                      </div>
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/logout"
+                          className=""
+                          method="post"
                         >
-                          Logout
-                        </button>
-                      </form>
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Logout
+                          </button>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -118,13 +122,13 @@ Array [
         </div>
       </header>
       <div
-        className="jsx-1486801185 page-title"
+        className="jsx-303545825 page-title"
       >
         <div
           className="narrow container"
         >
           <h1
-            className="jsx-1486801185"
+            className="jsx-303545825"
           >
             Administrator Dashboard
           </h1>
@@ -457,104 +461,108 @@ Array [
     }
   >
     <div
-      className="jsx-1486801185 page-wrap"
+      className="jsx-303545825 page-wrap"
     >
       <header
-        className="jsx-2807878339"
+        className="jsx-1593853101"
       >
         <div
-          className="jsx-2807878339 container"
+          className="jsx-1593853101 container full-width"
         >
           <div
-            className="jsx-2807878339 banner"
+            className="jsx-1593853101 banner"
           >
             <div
-              className="jsx-2807878339 header-left"
+              className="jsx-1593853101 header-left"
             >
               <img
                 alt="Go to the Government of British Columbia website"
-                className="jsx-2807878339"
+                className="jsx-1593853101"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
                 src="/static/logo-banner.png"
               />
               <h1
-                className="jsx-2807878339"
+                className="jsx-1593853101"
               >
                 CleanBC Industrial Incentive Program
               </h1>
             </div>
             <div
-              className="jsx-2807878339 login-btns header-right"
+              className="jsx-1593853101 login-btns header-right"
             >
               <div
-                className="row"
+                className="jsx-1593853101 container"
               >
                 <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Industry
-                  </button>
-                </div>
-                <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Admin
-                  </button>
-                </div>
-                <div
-                  className="jsx-2807878339"
+                  className="row"
                 >
                   <div
-                    className="form-row"
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Industry
+                    </button>
+                  </div>
+                  <div
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Admin
+                    </button>
+                  </div>
+                  <div
+                    className="jsx-1593853101"
                   >
                     <div
-                      className="col"
+                      className="form-row"
                     >
-                      <form
-                        action="/user-profile"
-                        className=""
-                        method="get"
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/user-profile"
+                          className=""
+                          method="get"
                         >
-                          Profile
-                        </button>
-                      </form>
-                    </div>
-                    <div
-                      className="col"
-                    >
-                      <form
-                        action="/logout"
-                        className=""
-                        method="post"
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Profile
+                          </button>
+                        </form>
+                      </div>
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/logout"
+                          className=""
+                          method="post"
                         >
-                          Logout
-                        </button>
-                      </form>
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Logout
+                          </button>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -564,13 +572,13 @@ Array [
         </div>
       </header>
       <div
-        className="jsx-1486801185 page-title"
+        className="jsx-303545825 page-title"
       >
         <div
           className="narrow container"
         >
           <h1
-            className="jsx-1486801185"
+            className="jsx-303545825"
           >
             We imported your data
           </h1>
@@ -715,104 +723,108 @@ Array [
     }
   >
     <div
-      className="jsx-1486801185 page-wrap"
+      className="jsx-303545825 page-wrap"
     >
       <header
-        className="jsx-2807878339"
+        className="jsx-1593853101"
       >
         <div
-          className="jsx-2807878339 container"
+          className="jsx-1593853101 container full-width"
         >
           <div
-            className="jsx-2807878339 banner"
+            className="jsx-1593853101 banner"
           >
             <div
-              className="jsx-2807878339 header-left"
+              className="jsx-1593853101 header-left"
             >
               <img
                 alt="Go to the Government of British Columbia website"
-                className="jsx-2807878339"
+                className="jsx-1593853101"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
                 src="/static/logo-banner.png"
               />
               <h1
-                className="jsx-2807878339"
+                className="jsx-1593853101"
               >
                 CleanBC Industrial Incentive Program
               </h1>
             </div>
             <div
-              className="jsx-2807878339 login-btns header-right"
+              className="jsx-1593853101 login-btns header-right"
             >
               <div
-                className="row"
+                className="jsx-1593853101 container"
               >
                 <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Industry
-                  </button>
-                </div>
-                <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Admin
-                  </button>
-                </div>
-                <div
-                  className="jsx-2807878339"
+                  className="row"
                 >
                   <div
-                    className="form-row"
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Industry
+                    </button>
+                  </div>
+                  <div
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Admin
+                    </button>
+                  </div>
+                  <div
+                    className="jsx-1593853101"
                   >
                     <div
-                      className="col"
+                      className="form-row"
                     >
-                      <form
-                        action="/user-profile"
-                        className=""
-                        method="get"
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/user-profile"
+                          className=""
+                          method="get"
                         >
-                          Profile
-                        </button>
-                      </form>
-                    </div>
-                    <div
-                      className="col"
-                    >
-                      <form
-                        action="/logout"
-                        className=""
-                        method="post"
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Profile
+                          </button>
+                        </form>
+                      </div>
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/logout"
+                          className=""
+                          method="post"
                         >
-                          Logout
-                        </button>
-                      </form>
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Logout
+                          </button>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -822,13 +834,13 @@ Array [
         </div>
       </header>
       <div
-        className="jsx-1486801185 page-title"
+        className="jsx-303545825 page-title"
       >
         <div
           className="narrow container"
         >
           <h1
-            className="jsx-1486801185"
+            className="jsx-303545825"
           >
             Registration
           </h1>
@@ -839,225 +851,229 @@ Array [
         id="page-content"
       >
         <h4
-          className="mb-5"
+          className="jsx-353945995 mb-5"
         >
           Please verify or update your information
         </h4>
-        <form
-          className="rjsf"
-          noValidate={false}
-          onSubmit={[Function]}
+        <div
+          className="jsx-353945995 registration-form"
         >
-          <div
-            className="col-12"
+          <form
+            className="rjsf"
+            noValidate={false}
+            onSubmit={[Function]}
           >
             <div
-              className="form-row"
+              className="form-group field field-object col-12"
             >
-              <span
-                className="font-italic text-muted"
-              />
               <div
-                className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                className="form-row"
               >
-                <label
-                  className="form-label"
-                  htmlFor="root_firstName"
-                >
-                  First Name
-                   *
-                </label>
-                <input
-                  autoFocus={false}
-                  className="form-control"
-                  disabled={false}
-                  id="root_firstName"
-                  label="First Name"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  placeholder=""
-                  readOnly={false}
-                  required={true}
-                  type="text"
-                  value={
-                    Array [
-                      "Guest",
-                      "User",
-                      "Realm Administrator",
-                      "Incentive Administrator",
-                      "Incentive Analyst",
-                      "Pending Analyst",
-                    ]
-                  }
-                />
                 <span
                   className="font-italic text-muted"
                 />
-              </div>
-              <div
-                className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  className="form-label"
-                  htmlFor="root_lastName"
+                <div
+                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                 >
-                  Last Name
-                   *
-                </label>
-                <input
-                  autoFocus={false}
-                  className="form-control"
-                  disabled={false}
-                  id="root_lastName"
-                  label="Last Name"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  placeholder=""
-                  readOnly={false}
-                  required={true}
-                  type="text"
-                  value={
-                    Array [
-                      "Guest",
-                      "User",
-                      "Realm Administrator",
-                      "Incentive Administrator",
-                      "Incentive Analyst",
-                      "Pending Analyst",
-                    ]
-                  }
-                />
-                <span
-                  className="font-italic text-muted"
-                />
-              </div>
-              <div
-                className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  className="form-label"
-                  htmlFor="root_emailAddress"
+                  <label
+                    className="form-label"
+                    htmlFor="root_firstName"
+                  >
+                    First Name
+                     *
+                  </label>
+                  <input
+                    autoFocus={false}
+                    className="form-control"
+                    disabled={false}
+                    id="root_firstName"
+                    label="First Name"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    placeholder=""
+                    readOnly={false}
+                    required={true}
+                    type="text"
+                    value={
+                      Array [
+                        "Guest",
+                        "User",
+                        "Realm Administrator",
+                        "Incentive Administrator",
+                        "Incentive Analyst",
+                        "Pending Analyst",
+                      ]
+                    }
+                  />
+                  <span
+                    className="font-italic text-muted"
+                  />
+                </div>
+                <div
+                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                 >
-                  Email Address
-                   *
-                </label>
-                <input
-                  autoFocus={false}
-                  className="form-control"
-                  disabled={false}
-                  id="root_emailAddress"
-                  label="Email Address"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  placeholder=""
-                  readOnly={false}
-                  required={true}
-                  type="text"
-                  value={
-                    Array [
-                      "Guest",
-                      "User",
-                      "Realm Administrator",
-                      "Incentive Administrator",
-                      "Incentive Analyst",
-                      "Pending Analyst",
-                    ]
-                  }
-                />
-                <span
-                  className="font-italic text-muted"
-                />
-              </div>
-              <div
-                className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  className="form-label"
-                  htmlFor="root_phoneNumber"
+                  <label
+                    className="form-label"
+                    htmlFor="root_lastName"
+                  >
+                    Last Name
+                     *
+                  </label>
+                  <input
+                    autoFocus={false}
+                    className="form-control"
+                    disabled={false}
+                    id="root_lastName"
+                    label="Last Name"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    placeholder=""
+                    readOnly={false}
+                    required={true}
+                    type="text"
+                    value={
+                      Array [
+                        "Guest",
+                        "User",
+                        "Realm Administrator",
+                        "Incentive Administrator",
+                        "Incentive Analyst",
+                        "Pending Analyst",
+                      ]
+                    }
+                  />
+                  <span
+                    className="font-italic text-muted"
+                  />
+                </div>
+                <div
+                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                 >
-                  Phone Number
-                   *
-                </label>
-                <input
-                  autoFocus={false}
-                  className="form-control"
-                  disabled={false}
-                  id="root_phoneNumber"
-                  label="Phone Number"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  placeholder=""
-                  readOnly={false}
-                  required={true}
-                  type="text"
-                  value={
-                    Array [
-                      "Guest",
-                      "User",
-                      "Realm Administrator",
-                      "Incentive Administrator",
-                      "Incentive Analyst",
-                      "Pending Analyst",
-                    ]
-                  }
-                />
-                <span
-                  className="font-italic text-muted"
-                />
-              </div>
-              <div
-                className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-              >
-                <label
-                  className="form-label"
-                  htmlFor="root_occupation"
+                  <label
+                    className="form-label"
+                    htmlFor="root_emailAddress"
+                  >
+                    Email Address
+                     *
+                  </label>
+                  <input
+                    autoFocus={false}
+                    className="form-control"
+                    disabled={false}
+                    id="root_emailAddress"
+                    label="Email Address"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    placeholder=""
+                    readOnly={false}
+                    required={true}
+                    type="text"
+                    value={
+                      Array [
+                        "Guest",
+                        "User",
+                        "Realm Administrator",
+                        "Incentive Administrator",
+                        "Incentive Analyst",
+                        "Pending Analyst",
+                      ]
+                    }
+                  />
+                  <span
+                    className="font-italic text-muted"
+                  />
+                </div>
+                <div
+                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                 >
-                  Occupation
-                   *
-                </label>
-                <input
-                  autoFocus={false}
-                  className="form-control"
-                  disabled={false}
-                  id="root_occupation"
-                  label="Occupation"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  placeholder=""
-                  readOnly={false}
-                  required={true}
-                  type="text"
-                  value={
-                    Array [
-                      "Guest",
-                      "User",
-                      "Realm Administrator",
-                      "Incentive Administrator",
-                      "Incentive Analyst",
-                      "Pending Analyst",
-                    ]
-                  }
-                />
-                <span
-                  className="font-italic text-muted"
-                />
+                  <label
+                    className="form-label"
+                    htmlFor="root_phoneNumber"
+                  >
+                    Phone Number
+                     *
+                  </label>
+                  <input
+                    autoFocus={false}
+                    className="form-control"
+                    disabled={false}
+                    id="root_phoneNumber"
+                    label="Phone Number"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    placeholder=""
+                    readOnly={false}
+                    required={true}
+                    type="text"
+                    value={
+                      Array [
+                        "Guest",
+                        "User",
+                        "Realm Administrator",
+                        "Incentive Administrator",
+                        "Incentive Analyst",
+                        "Pending Analyst",
+                      ]
+                    }
+                  />
+                  <span
+                    className="font-italic text-muted"
+                  />
+                </div>
+                <div
+                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                >
+                  <label
+                    className="form-label"
+                    htmlFor="root_occupation"
+                  >
+                    Occupation
+                     *
+                  </label>
+                  <input
+                    autoFocus={false}
+                    className="form-control"
+                    disabled={false}
+                    id="root_occupation"
+                    label="Occupation"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    placeholder=""
+                    readOnly={false}
+                    required={true}
+                    type="text"
+                    value={
+                      Array [
+                        "Guest",
+                        "User",
+                        "Realm Administrator",
+                        "Incentive Administrator",
+                        "Incentive Analyst",
+                        "Pending Analyst",
+                      ]
+                    }
+                  />
+                  <span
+                    className="font-italic text-muted"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div>
-            <button
-              className="btn btn-info"
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
+            <div>
+              <button
+                className="btn btn-info"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
       <footer
         className="jsx-337505255 footer"
@@ -1179,104 +1195,108 @@ Array [
     }
   >
     <div
-      className="jsx-1486801185 page-wrap"
+      className="jsx-303545825 page-wrap"
     >
       <header
-        className="jsx-2807878339"
+        className="jsx-1593853101"
       >
         <div
-          className="jsx-2807878339 container"
+          className="jsx-1593853101 container full-width"
         >
           <div
-            className="jsx-2807878339 banner"
+            className="jsx-1593853101 banner"
           >
             <div
-              className="jsx-2807878339 header-left"
+              className="jsx-1593853101 header-left"
             >
               <img
                 alt="Go to the Government of British Columbia website"
-                className="jsx-2807878339"
+                className="jsx-1593853101"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
                 src="/static/logo-banner.png"
               />
               <h1
-                className="jsx-2807878339"
+                className="jsx-1593853101"
               >
                 CleanBC Industrial Incentive Program
               </h1>
             </div>
             <div
-              className="jsx-2807878339 login-btns header-right"
+              className="jsx-1593853101 login-btns header-right"
             >
               <div
-                className="row"
+                className="jsx-1593853101 container"
               >
                 <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Industry
-                  </button>
-                </div>
-                <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Admin
-                  </button>
-                </div>
-                <div
-                  className="jsx-2807878339"
+                  className="row"
                 >
                   <div
-                    className="form-row"
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Industry
+                    </button>
+                  </div>
+                  <div
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Admin
+                    </button>
+                  </div>
+                  <div
+                    className="jsx-1593853101"
                   >
                     <div
-                      className="col"
+                      className="form-row"
                     >
-                      <form
-                        action="/user-profile"
-                        className=""
-                        method="get"
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/user-profile"
+                          className=""
+                          method="get"
                         >
-                          Profile
-                        </button>
-                      </form>
-                    </div>
-                    <div
-                      className="col"
-                    >
-                      <form
-                        action="/logout"
-                        className=""
-                        method="post"
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Profile
+                          </button>
+                        </form>
+                      </div>
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/logout"
+                          className=""
+                          method="post"
                         >
-                          Logout
-                        </button>
-                      </form>
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Logout
+                          </button>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1285,23 +1305,22 @@ Array [
           </div>
         </div>
       </header>
-      <div
-        className="jsx-775259080"
-      >
+      <div>
         <nav
-          className="jsx-775259080 navigation-main"
+          className="jsx-1103754433 navigation-main"
           id="navbar"
         >
           <div
-            className="jsx-775259080 container"
+            className="jsx-1103754433 container"
           >
             <ul
-              className="jsx-775259080"
+              className="jsx-1103754433"
             >
               <li
-                className="jsx-775259080 active"
+                className="jsx-1103754433 active"
               >
                 <a
+                  className="jsx-1103754433"
                   href="/reporter/user-dashboard"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
@@ -1310,9 +1329,10 @@ Array [
                 </a>
               </li>
               <li
-                className="jsx-775259080"
+                className="jsx-1103754433"
               >
                 <a
+                  className="jsx-1103754433"
                   href="/reporter/facilities-list?organisationId="
                   onClick={[Function]}
                   onMouseEnter={[Function]}
@@ -1325,16 +1345,27 @@ Array [
         </nav>
       </div>
       <div
-        className="jsx-1486801185 page-title"
+        className="jsx-303545825 page-title"
       >
         <div
           className="narrow container"
         >
           <h1
-            className="jsx-1486801185"
+            className="jsx-303545825"
           >
             My Operators
           </h1>
+          <div
+            className="jsx-3776529057 help-trigger-container"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+          >
+            <span
+              className="jsx-3776529057 help-trigger"
+            >
+              ?
+            </span>
+          </div>
         </div>
       </div>
       <div
@@ -1429,49 +1460,97 @@ Array [
                 </tr>
               </tbody>
             </table>
-            <div
-              className="search-dropdown dropdown"
-              onKeyDown={[Function]}
-            >
-              <h5
+            <div>
+              <div
+                className="card"
                 style={
                   Object {
-                    "marginBottom": 0,
+                    "marginTop": "50px",
                   }
                 }
               >
-                Request access to an Operator:
-              </h5>
-              <small
-                style={
-                  Object {
-                    "display": "block",
-                    "marginBottom": "20px",
-                  }
-                }
-              >
-                (You can search to narrow the results in the dropdown)
-              </small>
-              <button
-                aria-expanded={false}
-                aria-haspopup={true}
-                className="search-toggle dropdown-toggle btn btn-primary"
-                disabled={false}
-                id="org-dropdown"
-                onClick={[Function]}
-                type="button"
-              >
-                Select Operator
-              </button>
+                <div
+                  className="card-header"
+                >
+                  <h5
+                    className="blue inline-block"
+                  >
+                    Add operators you represent 
+                  </h5>
+                  <div
+                    className="jsx-3776529057 help-trigger-container"
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                  >
+                    <span
+                      className="jsx-3776529057 help-trigger"
+                    >
+                      ?
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="card-body"
+                >
+                  <div
+                    className="search-dropdown dropdown"
+                    onKeyDown={[Function]}
+                  >
+                    <div
+                      className="card-title h5"
+                    >
+                      Request access to an Operator:
+                    </div>
+                    <small
+                      className="jsx-3491480756"
+                      style={
+                        Object {
+                          "display": "block",
+                          "marginBottom": "20px",
+                        }
+                      }
+                    >
+                      (You can search to narrow the results in the dropdown)
+                    </small>
+                    <button
+                      aria-expanded={false}
+                      aria-haspopup={true}
+                      className="search-toggle dropdown-toggle btn btn-primary"
+                      disabled={false}
+                      id="org-dropdown"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Select Operator
+                    </button>
+                  </div>
+                  <hr
+                    className="jsx-3491480756"
+                  />
+                  <span
+                    style={
+                      Object {
+                        "marginTop": "20px",
+                      }
+                    }
+                  >
+                    Can't find your Operator in the list?
+                  </span>
+                  <br />
+                  <span
+                    className="jsx-67075016"
+                    id="add-organisation"
+                    onClick={[Function]}
+                  >
+                    <span
+                      className="jsx-67075016 blue"
+                    >
+                      Click here to add a new Operator.
+                    </span>
+                  </span>
+                </div>
+              </div>
             </div>
-            <br />
-            <p
-              className="jsx-2386677284"
-              id="add-organisation"
-              onClick={[Function]}
-            >
-              I can't find my organisation
-            </p>
           </div>
           <div
             className="col-md-4"
@@ -1666,104 +1745,108 @@ Array [
     }
   >
     <div
-      className="jsx-1486801185 page-wrap"
+      className="jsx-303545825 page-wrap"
     >
       <header
-        className="jsx-2807878339"
+        className="jsx-1593853101"
       >
         <div
-          className="jsx-2807878339 container"
+          className="jsx-1593853101 container full-width"
         >
           <div
-            className="jsx-2807878339 banner"
+            className="jsx-1593853101 banner"
           >
             <div
-              className="jsx-2807878339 header-left"
+              className="jsx-1593853101 header-left"
             >
               <img
                 alt="Go to the Government of British Columbia website"
-                className="jsx-2807878339"
+                className="jsx-1593853101"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
                 src="/static/logo-banner.png"
               />
               <h1
-                className="jsx-2807878339"
+                className="jsx-1593853101"
               >
                 CleanBC Industrial Incentive Program
               </h1>
             </div>
             <div
-              className="jsx-2807878339 login-btns header-right"
+              className="jsx-1593853101 login-btns header-right"
             >
               <div
-                className="row"
+                className="jsx-1593853101 container"
               >
                 <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Industry
-                  </button>
-                </div>
-                <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Admin
-                  </button>
-                </div>
-                <div
-                  className="jsx-2807878339"
+                  className="row"
                 >
                   <div
-                    className="form-row"
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Industry
+                    </button>
+                  </div>
+                  <div
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Admin
+                    </button>
+                  </div>
+                  <div
+                    className="jsx-1593853101"
                   >
                     <div
-                      className="col"
+                      className="form-row"
                     >
-                      <form
-                        action="/user-profile"
-                        className=""
-                        method="get"
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/user-profile"
+                          className=""
+                          method="get"
                         >
-                          Profile
-                        </button>
-                      </form>
-                    </div>
-                    <div
-                      className="col"
-                    >
-                      <form
-                        action="/logout"
-                        className=""
-                        method="post"
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Profile
+                          </button>
+                        </form>
+                      </div>
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/logout"
+                          className=""
+                          method="post"
                         >
-                          Logout
-                        </button>
-                      </form>
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Logout
+                          </button>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1773,13 +1856,13 @@ Array [
         </div>
       </header>
       <div
-        className="jsx-1486801185 page-title"
+        className="jsx-303545825 page-title"
       >
         <div
           className="narrow container"
         >
           <h1
-            className="jsx-1486801185"
+            className="jsx-303545825"
           >
             User List
           </h1>
@@ -1990,104 +2073,108 @@ Array [
     }
   >
     <div
-      className="jsx-1486801185 page-wrap"
+      className="jsx-303545825 page-wrap"
     >
       <header
-        className="jsx-2807878339"
+        className="jsx-1593853101"
       >
         <div
-          className="jsx-2807878339 container"
+          className="jsx-1593853101 container full-width"
         >
           <div
-            className="jsx-2807878339 banner"
+            className="jsx-1593853101 banner"
           >
             <div
-              className="jsx-2807878339 header-left"
+              className="jsx-1593853101 header-left"
             >
               <img
                 alt="Go to the Government of British Columbia website"
-                className="jsx-2807878339"
+                className="jsx-1593853101"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
                 src="/static/logo-banner.png"
               />
               <h1
-                className="jsx-2807878339"
+                className="jsx-1593853101"
               >
                 CleanBC Industrial Incentive Program
               </h1>
             </div>
             <div
-              className="jsx-2807878339 login-btns header-right"
+              className="jsx-1593853101 login-btns header-right"
             >
               <div
-                className="row"
+                className="jsx-1593853101 container"
               >
                 <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Industry
-                  </button>
-                </div>
-                <div
-                  className="col"
-                >
-                  <button
-                    className="btn btn-outline-light"
-                    disabled={false}
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    type="button"
-                  >
-                    Admin
-                  </button>
-                </div>
-                <div
-                  className="jsx-2807878339"
+                  className="row"
                 >
                   <div
-                    className="form-row"
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Industry
+                    </button>
+                  </div>
+                  <div
+                    className="col"
+                  >
+                    <button
+                      className="btn btn-outline-light"
+                      disabled={false}
+                      onClick={[Function]}
+                      onMouseEnter={[Function]}
+                      type="button"
+                    >
+                      Admin
+                    </button>
+                  </div>
+                  <div
+                    className="jsx-1593853101"
                   >
                     <div
-                      className="col"
+                      className="form-row"
                     >
-                      <form
-                        action="/user-profile"
-                        className=""
-                        method="get"
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/user-profile"
+                          className=""
+                          method="get"
                         >
-                          Profile
-                        </button>
-                      </form>
-                    </div>
-                    <div
-                      className="col"
-                    >
-                      <form
-                        action="/logout"
-                        className=""
-                        method="post"
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Profile
+                          </button>
+                        </form>
+                      </div>
+                      <div
+                        className="col"
                       >
-                        <button
-                          className="btn btn-outline-light"
-                          disabled={false}
-                          type="submit"
+                        <form
+                          action="/logout"
+                          className=""
+                          method="post"
                         >
-                          Logout
-                        </button>
-                      </form>
+                          <button
+                            className="btn btn-outline-light"
+                            disabled={false}
+                            type="submit"
+                          >
+                            Logout
+                          </button>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
