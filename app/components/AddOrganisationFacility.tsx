@@ -107,7 +107,7 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = props => {
           </Modal.Header>
         ) : (
           <Modal.Header>
-            <h5>Add a new Organisation</h5>
+            <h5>Add a new Operator</h5>
           </Modal.Header>
         )}
         <Modal.Body>
