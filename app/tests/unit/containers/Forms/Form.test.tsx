@@ -9,7 +9,7 @@ describe('The Form Component', () => {
         query={{
           ' $fragmentRefs': {
             FuelFields_query: true,
-            ProductionFields_query: true
+            ProductField_query: true
           },
           ' $refType': 'Form_query',
           result: {
@@ -36,7 +36,7 @@ describe('The Form Component', () => {
         query={{
           ' $fragmentRefs': {
             FuelFields_query: true,
-            ProductionFields_query: true
+            ProductField_query: true
           },
           ' $refType': 'Form_query',
           result: {
@@ -64,7 +64,7 @@ describe('The Form Component', () => {
         query={{
           ' $fragmentRefs': {
             FuelFields_query: true,
-            ProductionFields_query: true
+            ProductField_query: true
           },
           ' $refType': 'Form_query',
           result: {

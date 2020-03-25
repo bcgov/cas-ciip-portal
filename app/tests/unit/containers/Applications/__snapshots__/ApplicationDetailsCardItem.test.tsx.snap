@@ -81,8 +81,8 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
               "previousIsEmpty": false,
               "query": Object {
                 " $fragmentRefs": Object {
-                  " $refType": "ProductionFields_query",
-                  "ProductionFields_query": true,
+                  " $refType": "ProductField_query",
+                  "ProductField_query": true,
                 },
               },
               "showDiff": false,

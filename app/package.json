@@ -104,6 +104,12 @@
         "files": [
           "cypress/integration/*.spec.js"
         ],
+        "extends": [
+          "plugin:cypress/recommended"
+        ],
+        "envs": [
+          "jest"
+        ],
         "rules": {
           "jest/valid-expect-in-promise": 0,
           "promise/prefer-await-to-then": 0,

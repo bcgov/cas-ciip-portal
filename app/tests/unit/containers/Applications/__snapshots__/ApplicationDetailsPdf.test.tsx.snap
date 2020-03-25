@@ -1312,30 +1312,21 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 30,
-                    "importedHeatAllocationFactor": 50,
-                    "productRowId": -80000000,
-                    "productUnits": "culpa",
-                    "quantity": -40000000,
+                    "productRowId": 0,
+                    "productUnits": "consequat Ut Duis",
+                    "quantity": -60000000,
                     "requiresEmissionAllocation": false,
                   },
                   Object {
-                    "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 20,
-                    "importedHeatAllocationFactor": 40,
-                    "productRowId": -20000000,
-                    "productUnits": "mollit eu esse",
-                    "quantity": -80000000,
+                    "productRowId": -60000000,
+                    "productUnits": "in qui",
+                    "quantity": -20000000,
                     "requiresEmissionAllocation": false,
                   },
                   Object {
-                    "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 10,
-                    "importedHeatAllocationFactor": 30,
-                    "productRowId": -40000000,
-                    "productUnits": "est dolor",
-                    "quantity": 0,
+                    "productRowId": 0,
+                    "productUnits": "consequat Ut Duis",
+                    "quantity": -60000000,
                     "requiresEmissionAllocation": false,
                   },
                 ]
@@ -1361,12 +1352,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                             },
                             Object {
                               "properties": Object {
-                                "paymentAllocationFactor": Object {
-                                  "maximum": 100,
-                                  "minimum": 0,
-                                  "title": "Payment allocation factor (%)",
-                                  "type": "integer",
-                                },
                                 "productEmissions": Object {
                                   "exclusiveMinimum": 0,
                                   "title": "Emissions allocated to product",
@@ -1378,29 +1363,12 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                               },
                               "required": Array [
                                 "productEmissions",
-                                "paymentAllocationFactor",
                               ],
                             },
                           ],
                         },
                       },
                       "properties": Object {
-                        "additionalData": Object {
-                          "additionalProperties": true,
-                          "type": "object",
-                        },
-                        "importedElectricityAllocationFactor": Object {
-                          "maximum": 100,
-                          "minimum": 0,
-                          "title": "Imported electricity allocation factor (%)",
-                          "type": "integer",
-                        },
-                        "importedHeatAllocationFactor": Object {
-                          "maximum": 100,
-                          "minimum": 0,
-                          "title": "Imported heat allocation factor (%)",
-                          "type": "integer",
-                        },
                         "productRowId": Object {
                           "title": "Product or Service",
                           "type": "integer",

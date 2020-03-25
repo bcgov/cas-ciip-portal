@@ -27,8 +27,8 @@ describe('ApplicationDetailsCardItemComponent', () => {
     };
     const query = {
       ' $fragmentRefs': {
-        ' $refType': 'ProductionFields_query',
-        ProductionFields_query: true
+        ' $refType': 'ProductField_query',
+        ProductField_query: true
       }
     };
     const previousFormResult = {};
@@ -76,8 +76,8 @@ describe('ApplicationDetailsCardItemComponent', () => {
     };
     const query = {
       ' $fragmentRefs': {
-        ' $refType': 'ProductionFields_query',
-        ProductionFields_query: true
+        ' $refType': 'ProductField_query',
+        ProductField_query: true
       }
     };
     const previousFormResults = [
