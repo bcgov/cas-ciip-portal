@@ -128,7 +128,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         <input
           ref={copyArea}
           readOnly
-          value={url || revision?.certificationUrl?.certifierUrl}
+          value={url ?? revision?.certificationUrl?.certifierUrl}
           style={{width: '100%'}}
         />
       </Col>
