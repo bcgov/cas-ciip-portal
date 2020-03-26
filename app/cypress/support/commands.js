@@ -45,8 +45,8 @@ Cypress.Commands.add('sqlFixture', fixtureName => {
   // This is not a real promise
   // eslint-disable-next-line promise/prefer-await-to-then
   cy.fixture(`${fixtureName}.sql`).then(fixture =>
-    cy.exec(`psql -d ciip_portal_dev <<-EOF
-    ${fixture}
-    EOF`)
+    cy.exec(`psql -d ciip_portal_dev << EOF
+${fixture}
+EOF`)
   );
 });
