@@ -18,7 +18,7 @@ interface Props {
   width?: 'narrow' | 'wide';
   allowedGroups?: string[];
   help?: {
-    title: string; 
+    title: string;
     helpMessage: string;
   };
 }
