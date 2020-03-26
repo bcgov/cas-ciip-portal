@@ -29,6 +29,7 @@ const NO_AUTH = process.argv.includes('NO_AUTH');
 const AS_REPORTER = process.argv.includes('AS_REPORTER');
 const AS_ANALYST = process.argv.includes('AS_ANALYST');
 const AS_ADMIN = process.argv.includes('AS_ADMIN');
+const AS_PENDING = process.argv.includes('AS_PENDING');
 const NO_PDF = process.argv.includes('NO_PDF');
 const NO_MATHJAX = process.argv.includes('NO_MATHJAX');
 const NO_MAIL = process.argv.includes('NO_MAIL');
@@ -179,6 +180,15 @@ app.prepare().then(() => {
             'jwt.claims.user_groups': 'Incentive Administrator',
             'jwt.claims.priority_group': 'Incentive Administrator',
             role: 'ciip_administrator'
+          };
+        }
+
+        if (AS_PENDING) {
+          return {
+            'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
+            'jwt.claims.user_groups': 'Pending Analyst',
+            'jwt.claims.priority_group': 'Pending Analyst',
+            role: 'ciip_guest'
           };
         }
 

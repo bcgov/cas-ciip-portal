@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(19);
+select plan(23);
 
 create role test_superuser superuser;
 
@@ -179,6 +179,42 @@ select is_empty(
     select * from ggircs_portal.ciip_user where first_name='wolverine'
   $$,
     'Analyst cannot update data if their uuid does not match the uuid of the row'
+);
+
+-- CIIP_GUEST
+set role ciip_guest;
+select concat('current user is: ', (select current_user));
+
+select results_eq(
+  $$
+    select uuid from ggircs_portal.ciip_user
+  $$,
+  ARRAY['11111111-1111-1111-1111-111111111111'::uuid],
+    'Guest can only select their own user'
+);
+
+select throws_like(
+  $$
+    update ggircs_portal.ciip_user set uuid = 'ca716545-a8d3-4034-819c-5e45b0e775c9' where uuid!=(select sub from ggircs_portal.session())
+  $$,
+  'permission denied%',
+    'Guest cannot update their uuid'
+);
+
+select throws_like(
+  $$
+    insert into ggircs_portal.ciip_user (uuid, first_name, last_name) values ('21111111-1111-1111-1111-111111111111'::uuid, 'test', 'testerson');
+  $$,
+  'permission denied%',
+  'Guest cannot insert'
+);
+
+select throws_like(
+  $$
+    delete from ggircs_portal.ciip_user where id=1
+  $$,
+  'permission denied%',
+    'Analyst cannot delete rows from table_ciip_user'
 );
 
 select finish();
