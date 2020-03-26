@@ -34,7 +34,8 @@ exports[`The Form Component should match the snapshot 1`] = `
         "emissionGas": [Function],
         "emissionSource": [Function],
         "fuel": [Function],
-        "production": [Function],
+        "product": [Function],
+        "productRowId": [Function],
       }
     }
     formContext={

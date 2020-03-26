@@ -71,7 +71,8 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
               "TitleField": [Function],
               "emissionGas": [Function],
               "emissionSource": [Function],
-              "production": [Function],
+              "product": [Function],
+              "productRowId": [Function],
             }
           }
           formContext={

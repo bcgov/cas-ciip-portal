@@ -171,7 +171,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
-                  "production": [Function],
+                  "product": [Function],
                 }
               }
               formContext={
@@ -618,7 +618,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
-                  "production": [Function],
+                  "product": [Function],
                 }
               }
               formContext={
@@ -820,7 +820,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
-                  "production": [Function],
+                  "product": [Function],
                 }
               }
               formContext={
@@ -965,7 +965,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
-                  "production": [Function],
+                  "product": [Function],
                 }
               }
               formContext={
@@ -1283,7 +1283,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
-                  "production": [Function],
+                  "product": [Function],
                 }
               }
               formContext={
@@ -1409,13 +1409,28 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "ui:help": "Report emissions associated to CIIP product, in tCO2e",
                     },
                     "productRowId": Object {
-                      "ui:col-md": 8,
+                      "ui:col-md": 12,
+                      "ui:field": "productRowId",
                       "ui:widget": "SearchWidget",
+                    },
+                    "productUnits": Object {
+                      "ui:col-md": 4,
+                      "ui:readonly": true,
+                    },
+                    "quantity": Object {
+                      "ui:col-md": 4,
+                      "ui:help": "Report the annual production for the product, following the guidance document provided",
                     },
                     "requiresEmissionAllocation": Object {
                       "ui:widget": "hidden",
                     },
-                    "ui:field": "production",
+                    "ui:field": "product",
+                    "ui:order": Array [
+                      "productRowId",
+                      "quantity",
+                      "productUnits",
+                      "*",
+                    ],
                   },
                   "ui:add-text": "Add a Product",
                   "ui:remove-text": "Remove Product",

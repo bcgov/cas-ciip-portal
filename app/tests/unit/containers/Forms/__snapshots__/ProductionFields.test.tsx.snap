@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The ProductionFields Component should match the snapshot when rendering a product 1`] = `
+<ObjectField
+  autofocus={false}
+  disabled={false}
+  errorSchema={null}
+  formContext={Object {}}
+  formData={
+    Object {
+      "productEmissions": 123,
+      "productRowId": 1,
+      "productUnits": "bar",
+      "quantity": 456,
+      "requiresEmissionAllocation": true,
+    }
+  }
+  idSchema={
+    Object {
+      "$id": "product_0",
+    }
+  }
+  name="product"
+  onBlur={[MockFunction]}
+  onChange={[Function]}
+  query={
+    Object {
+      " $refType": "ProductField_query",
+      "allProducts": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "name": "foo",
+              "requiresEmissionAllocation": true,
+              "rowId": 1,
+              "units": "bar",
+            },
+          },
+        ],
+      },
+    }
+  }
+  readonly={false}
+  registry={
+    Object {
+      "ArrayFieldTemplate": [Function],
+      "FieldTemplate": [Function],
+      "ObjectFieldTemplate": [Function],
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": [Function],
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
+    }
+  }
+  required={false}
+  schema={
+    Object {
+      "dependencies": Object {
+        "requiresEmissionAllocation": Object {
+          "oneOf": Array [
+            Object {
+              "properties": Object {
+                "requiresEmissionAllocation": Object {
+                  "const": false,
+                },
+              },
+            },
+            Object {
+              "properties": Object {
+                "productEmissions": Object {
+                  "exclusiveMinimum": 0,
+                  "title": "Emissions allocated to product",
+                  "type": "number",
+                },
+                "requiresEmissionAllocation": Object {
+                  "const": true,
+                },
+              },
+              "required": Array [
+                "productEmissions",
+              ],
+            },
+          ],
+        },
+      },
+      "properties": Object {
+        "productRowId": Object {
+          "title": "Product or Service",
+          "type": "integer",
+        },
+        "productUnits": Object {
+          "title": "Units",
+          "type": "string",
+        },
+        "quantity": Object {
+          "title": "Annual Production Amount",
+          "type": "number",
+        },
+        "requiresEmissionAllocation": Object {
+          "type": "boolean",
+        },
+      },
+      "required": Array [
+        "productRowId",
+        "quantity",
+        "productUnits",
+      ],
+      "type": "object",
+    }
+  }
+  uiSchema={
+    Object {
+      "items": Object {
+        "productEmissions": Object {
+          "ui:col-md": 4,
+          "ui:help": "Report emissions associated to CIIP product, in tCO2e",
+        },
+        "productRowId": Object {
+          "ui:col-md": 12,
+          "ui:field": "productRowId",
+          "ui:widget": "SearchWidget",
+        },
+        "productUnits": Object {
+          "ui:col-md": 4,
+          "ui:readonly": true,
+        },
+        "quantity": Object {
+          "ui:col-md": 4,
+          "ui:help": "Report the annual production for the product, following the guidance document provided",
+        },
+        "requiresEmissionAllocation": Object {
+          "ui:widget": "hidden",
+        },
+        "ui:field": "product",
+        "ui:order": Array [
+          "productRowId",
+          "quantity",
+          "productUnits",
+          "*",
+        ],
+      },
+      "ui:add-text": "Add a Product",
+      "ui:remove-text": "Remove Product",
+    }
+  }
+/>
+`;
