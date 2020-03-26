@@ -15,6 +15,9 @@ describe('ProductList', () => {
           }
         ]
       },
+      allProducts: {
+        totalCount: 1
+      },
       session: {
         ciipUserBySub: {
           rowId: 1
