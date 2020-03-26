@@ -26,14 +26,13 @@ interface Target extends EventTarget {
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
   const [copySuccess, setCopySuccess] = useState('');
-  const [url, setUrl] = useState();
+  const [url, setUrl] = useState<string>();
   const [hasErrors, setHasErrors] = useState(false);
-  const copyArea = useRef(url);
+  const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
 
   const copyToClipboard = () => {
-    const el = copyArea;
-    el.current.select();
+    copyArea.current.select();
     // TODO(Dylan): execCommand copy is deprecated. Look into a replacement
     const success = document.execCommand('copy');
     if (success) return setCopySuccess('Copied!');
@@ -128,7 +127,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         <input
           ref={copyArea}
           readOnly
-          value={url || revision?.certificationUrl?.certifierUrl}
+          value={revision?.certificationUrl?.certifierUrl ?? url}
           style={{width: '100%'}}
         />
       </Col>
