@@ -17,6 +17,11 @@ const mutation = graphql`
         units
         requiresEmissionAllocation
       }
+      query {
+        allProducts {
+          totalCount
+        }
+      }
     }
   }
 `;

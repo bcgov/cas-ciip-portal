@@ -12,6 +12,7 @@ interface Props {
   searchField?: string;
   searchValue?: string;
   direction?: string;
+  totalProductCount: number;
 
   handleEvent: (...args: any[]) => void;
   relay: any;
@@ -24,14 +25,17 @@ export const ProductList: React.FunctionComponent<Props> = ({
   searchField,
   searchValue,
   direction,
-  handleEvent
+  handleEvent,
+  totalProductCount
 }) => {
+  console.log(totalProductCount);
   useEffect(() => {
     const refetchVariables = {
       searchField,
       searchValue,
       orderByField,
-      direction
+      direction,
+      totalProductCount
     };
     relay.refetch(refetchVariables);
   });
@@ -80,6 +84,7 @@ export default createRefetchContainer(
           searchValue: {type: "String"}
           orderByField: {type: "String"}
           direction: {type: "String"}
+          productCount: {type: "Int"}
         ) {
         ...ProductRowItemContainer_query
         searchProducts(
@@ -96,6 +101,11 @@ export default createRefetchContainer(
             }
           }
         }
+        # TODO: This is here to trigger a refactor as updating the edge / running the query in the mutation is not triggering a refresh
+        # Find a way to not pull the totalcount?
+        allProducts(first: $productCount) {
+          totalCount
+        }
       }
     `
   },
@@ -105,6 +115,7 @@ export default createRefetchContainer(
       $searchValue: String
       $orderByField: String
       $direction: String
+      $totalProductCount: Int
     ) {
       query {
         ...ProductListContainer_query
@@ -113,6 +124,7 @@ export default createRefetchContainer(
             searchValue: $searchValue
             orderByField: $orderByField
             direction: $direction
+            productCount: $totalProductCount
           )
       }
     }

@@ -21,6 +21,7 @@ class ProductsBenchmarks extends Component<Props> {
       $direction: String
       $searchField: String
       $searchValue: String
+      $productCount: Int
     ) {
       query {
         ...ProductListContainer_query
@@ -29,6 +30,7 @@ class ProductsBenchmarks extends Component<Props> {
             direction: $direction
             searchField: $searchField
             searchValue: $searchValue
+            productCount: $productCount
           )
         session {
           ...defaultLayout_session
@@ -41,7 +43,8 @@ class ProductsBenchmarks extends Component<Props> {
     formData: {formId: '', formJson: ''},
     mode: 'view',
     confirmationModalOpen: false,
-    expandCreateForm: false
+    expandCreateForm: false,
+    totalProductCount: 0
   };
 
   static async getInitialProps() {
@@ -52,6 +55,10 @@ class ProductsBenchmarks extends Component<Props> {
       }
     };
   }
+
+  updateProductCount = (count: number) => {
+    this.setState({totalProductCount: count});
+  };
 
   toggleShowCreateForm = () => {
     const expanded = this.state.expandCreateForm;
@@ -91,6 +98,7 @@ class ProductsBenchmarks extends Component<Props> {
 
   render() {
     const {query} = this.props;
+    const {totalProductCount} = this.state;
     return (
       <DefaultLayout
         session={query.session}
@@ -107,14 +115,23 @@ class ProductsBenchmarks extends Component<Props> {
         </div>
         <Row>
           <Col>
-            {this.state.expandCreateForm && <ProductCreatorContainer />}
+            {this.state.expandCreateForm && (
+              <ProductCreatorContainer
+                updateProductCount={this.updateProductCount}
+              />
+            )}
 
             <SearchTable
               query={query}
               defaultOrderByField="name"
               defaultOrderByDisplay="Product"
             >
-              {props => <ProductListContainer {...props} />}
+              {props => (
+                <ProductListContainer
+                  {...props}
+                  totalProductCount={totalProductCount}
+                />
+              )}
             </SearchTable>
           </Col>
         </Row>
