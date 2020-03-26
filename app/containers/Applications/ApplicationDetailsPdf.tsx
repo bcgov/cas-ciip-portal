@@ -64,7 +64,7 @@ const CUSTOM_FIELDS = {
     </Text>
   ),
   emissionGas: props => <PdfEmissionGasFieldTemplate {...props} />,
-  production: props => {
+  product: props => {
     return (
       <PdfProductionFieldsTemplate query={props.formContext.query} {...props} />
     );
