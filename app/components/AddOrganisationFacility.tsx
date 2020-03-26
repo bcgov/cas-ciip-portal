@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Modal} from 'react-bootstrap';
+import {Button, Modal, Card} from 'react-bootstrap';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
@@ -54,38 +54,61 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = props => {
   return (
     <>
       {onAddFacility ? (
-        <Button onClick={() => setModalVisible(!isModalVisible)}>
-          Add Facility +
-        </Button>
+        <>
+          <Card style={{marginTop: '50px'}}>
+            <Card.Body>
+              <Card.Title>
+                Can&apos;t find the Facility you&apos;re looking for?
+              </Card.Title>
+              <Card.Text>
+                You can add a facility if it is new or hasn&apos;t reported
+                before.
+              </Card.Text>
+              <Button
+                variant="outline-primary"
+                onClick={() => setModalVisible(!isModalVisible)}
+              >
+                Add a new Facility
+              </Button>
+            </Card.Body>
+          </Card>
+        </>
       ) : (
-        <p
-          id="add-organisation"
-          onClick={() => setModalVisible(!isModalVisible)}
-        >
-          I can&apos;t find my organisation
-          <style jsx>
-            {`
-              #add-organisation {
-                color: blue;
-              }
-              #add-organisation:hover {
-                text-decoration: underline;
-                cursor: pointer;
-              }
-            `}
-          </style>
-        </p>
+        <>
+          <span style={{marginTop: '20px'}}>
+            Can&apos;t find your Operator in the list?
+          </span>
+          <br />
+          <span
+            id="add-organisation"
+            onClick={() => setModalVisible(!isModalVisible)}
+          >
+            <span className="blue">Click here to add a new Operator.</span>
+            <style jsx>
+              {`
+                #add-organisation {
+                  text-decoration: underline;
+                  cursor: pointer;
+                }
+              `}
+            </style>
+          </span>
+        </>
       )}
       <Modal
         centered
-        size="xl"
+        size="lg"
         show={isModalVisible}
         onHide={() => setModalVisible(false)}
       >
         {onAddFacility ? (
-          <Modal.Header>Add Facility</Modal.Header>
+          <Modal.Header>
+            <h5>Add a new Facility</h5>
+          </Modal.Header>
         ) : (
-          <Modal.Header>Add Organisation</Modal.Header>
+          <Modal.Header>
+            <h5>Add a new Operator</h5>
+          </Modal.Header>
         )}
         <Modal.Body>
           <JsonSchemaForm
@@ -96,15 +119,21 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = props => {
             ObjectFieldTemplate={FormObjectFieldTemplate}
             onSubmit={onAddFacility ? saveNewFacility : saveNewOrganisation}
           >
-            <Button type="submit" variant="primary">
-              Save
-            </Button>
-            <Button
-              variant="danger"
-              onClick={() => setModalVisible(!isModalVisible)}
-            >
-              Close
-            </Button>
+            <div>
+              <Button
+                style={{marginRight: '10px'}}
+                type="submit"
+                variant="primary"
+              >
+                Save
+              </Button>
+              <Button
+                variant="danger"
+                onClick={() => setModalVisible(!isModalVisible)}
+              >
+                Close
+              </Button>
+            </div>
           </JsonSchemaForm>
         </Modal.Body>
       </Modal>

@@ -24,59 +24,81 @@ exports[`Organisations should render no organisations if the user has not reques
     You are not registered to apply for any Operator at this time. You can request access to an Operator by selecting one from the dropdown below.
   </Alert>
   <br />
-  <Dropdown
-    className="search-dropdown"
-    navbar={false}
-  >
-    <h5
+  <div>
+    <Card
+      body={false}
       style={
         Object {
-          "marginBottom": 0,
+          "marginTop": "50px",
         }
       }
     >
-      Request access to an Operator:
-    </h5>
-    <small
-      style={
-        Object {
-          "display": "block",
-          "marginBottom": "20px",
-        }
-      }
-    >
-      (You can search to narrow the results in the dropdown)
-    </small>
-    <DropdownToggle
-      className="search-toggle"
-      id="org-dropdown"
-    >
-      Select Operator
-    </DropdownToggle>
-    <DropdownMenu
-      alignRight={false}
-      flip={true}
-    >
-      <FormControl
-        className="mx-3 my-2 w-auto"
-        onChange={[Function]}
-        placeholder="Search..."
-      />
-      <div
-        className="jsx-1652238216 org-scroll"
-      >
-        <JSXStyle
-          id="1652238216"
+      <CardHeader>
+        <h5
+          className="blue inline-block"
         >
-          .org-scroll.jsx-1652238216{max-height:250px;overflow:hidden;overflow-y:scroll;}
+          Add operators you represent 
+        </h5>
+        <HelpComponent
+          helpMessage="Before you can report for operations,
+                you must request access to Operators you can apply on behalf off.
+                Once you you have been given access you will be able to see all the Reporting operations
+                for that Operator"
+        />
+      </CardHeader>
+      <CardBody>
+        <Dropdown
+          className="search-dropdown"
+          navbar={false}
+        >
+          <CardTitle>
+            Request access to an Operator:
+          </CardTitle>
+          <small
+            className="jsx-3491480756"
+            style={
+              Object {
+                "display": "block",
+                "marginBottom": "20px",
+              }
+            }
+          >
+            (You can search to narrow the results in the dropdown)
+          </small>
+          <DropdownToggle
+            className="search-toggle"
+            id="org-dropdown"
+          >
+            Select Operator
+          </DropdownToggle>
+          <DropdownMenu
+            alignRight={false}
+            flip={true}
+          >
+            <FormControl
+              className="mx-3 my-2 w-auto"
+              onChange={[Function]}
+              placeholder="Search..."
+            />
+            <div
+              className="jsx-3491480756 org-scroll"
+            />
+          </DropdownMenu>
+        </Dropdown>
+        <hr
+          className="jsx-3491480756"
+        />
+        <AddOrganisationFacility
+          onAddOrganisation={[Function]}
+        />
+        <JSXStyle
+          id="3491480756"
+        >
+          .org-scroll.jsx-3491480756{max-height:250px;overflow:hidden;overflow-y:scroll;}
         </JSXStyle>
-      </div>
-    </DropdownMenu>
-  </Dropdown>
-  <br />
-  <AddOrganisationFacility
-    onAddOrganisation={[Function]}
-  />
+      </CardBody>
+    </Card>
+  </div>
 </Fragment>
 `;
 
@@ -158,58 +180,80 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       th.jsx-130150550{padding:20px;font-weight:500;}
     </JSXStyle>
   </ForwardRef>
-  <Dropdown
-    className="search-dropdown"
-    navbar={false}
-  >
-    <h5
+  <div>
+    <Card
+      body={false}
       style={
         Object {
-          "marginBottom": 0,
+          "marginTop": "50px",
         }
       }
     >
-      Request access to an Operator:
-    </h5>
-    <small
-      style={
-        Object {
-          "display": "block",
-          "marginBottom": "20px",
-        }
-      }
-    >
-      (You can search to narrow the results in the dropdown)
-    </small>
-    <DropdownToggle
-      className="search-toggle"
-      id="org-dropdown"
-    >
-      Select Operator
-    </DropdownToggle>
-    <DropdownMenu
-      alignRight={false}
-      flip={true}
-    >
-      <FormControl
-        className="mx-3 my-2 w-auto"
-        onChange={[Function]}
-        placeholder="Search..."
-      />
-      <div
-        className="jsx-1652238216 org-scroll"
-      >
-        <JSXStyle
-          id="1652238216"
+      <CardHeader>
+        <h5
+          className="blue inline-block"
         >
-          .org-scroll.jsx-1652238216{max-height:250px;overflow:hidden;overflow-y:scroll;}
+          Add operators you represent 
+        </h5>
+        <HelpComponent
+          helpMessage="Before you can report for operations,
+                you must request access to Operators you can apply on behalf off.
+                Once you you have been given access you will be able to see all the Reporting operations
+                for that Operator"
+        />
+      </CardHeader>
+      <CardBody>
+        <Dropdown
+          className="search-dropdown"
+          navbar={false}
+        >
+          <CardTitle>
+            Request access to an Operator:
+          </CardTitle>
+          <small
+            className="jsx-3491480756"
+            style={
+              Object {
+                "display": "block",
+                "marginBottom": "20px",
+              }
+            }
+          >
+            (You can search to narrow the results in the dropdown)
+          </small>
+          <DropdownToggle
+            className="search-toggle"
+            id="org-dropdown"
+          >
+            Select Operator
+          </DropdownToggle>
+          <DropdownMenu
+            alignRight={false}
+            flip={true}
+          >
+            <FormControl
+              className="mx-3 my-2 w-auto"
+              onChange={[Function]}
+              placeholder="Search..."
+            />
+            <div
+              className="jsx-3491480756 org-scroll"
+            />
+          </DropdownMenu>
+        </Dropdown>
+        <hr
+          className="jsx-3491480756"
+        />
+        <AddOrganisationFacility
+          onAddOrganisation={[Function]}
+        />
+        <JSXStyle
+          id="3491480756"
+        >
+          .org-scroll.jsx-3491480756{max-height:250px;overflow:hidden;overflow-y:scroll;}
         </JSXStyle>
-      </div>
-    </DropdownMenu>
-  </Dropdown>
-  <br />
-  <AddOrganisationFacility
-    onAddOrganisation={[Function]}
-  />
+      </CardBody>
+    </Card>
+  </div>
 </Fragment>
 `;

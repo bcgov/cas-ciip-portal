@@ -73,11 +73,16 @@ export default class UserDashBoard extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
+    const helpDetails = {
+      title: 'What is an Operator',
+      helpMessage: 'An operator is an organisation'
+    };
     return (
       <DefaultLayout
         showSubheader
         session={session}
         title="My Operators"
+        help={helpDetails}
         allowedGroups={ALLOWED_GROUPS}
       >
         <Row>

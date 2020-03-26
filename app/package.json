@@ -67,6 +67,8 @@
       "import/no-unassigned-import": 0,
       "@typescript-eslint/no-untyped-public-signature": 0,
       "@typescript-eslint/restrict-template-expressions": 0,
+      "@typescript-eslint/no-unused-vars": 0,
+      "@typescript-eslint/no-unused-vars-experimental": 1,
       "@typescript-eslint/quotes": [
         1,
         "single",

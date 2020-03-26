@@ -5,7 +5,7 @@ exports[`Form Edit User should render the snapshot 1`] = `
   class="rjsf"
 >
   <div
-    class="col-12"
+    class="form-group field field-object col-12"
   >
     <div
       class="form-row"

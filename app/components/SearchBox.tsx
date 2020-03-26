@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, ButtonGroup, Col} from 'react-bootstrap';
+import {Button, ButtonGroup} from 'react-bootstrap';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
@@ -47,17 +47,17 @@ const SearchBox: React.FunctionComponent<Props> = ({
   const uiSchema = {
     searchField: {
       'ui:placeholder': 'Search By: ',
-      'ui:col-md': 2,
+      'ui:col-md': 5,
       classNames: 'hide-title'
     },
     searchValue: {
-      'ui:col-md': 3,
+      'ui:col-md': 7,
       classNames: 'hide-title'
     }
   };
 
   return (
-    <>
+    <div className="search-form">
       <JsonSchemaForm
         schema={schema}
         uiSchema={uiSchema}
@@ -66,18 +66,16 @@ const SearchBox: React.FunctionComponent<Props> = ({
         ObjectFieldTemplate={FormObjectFieldTemplate}
         onSubmit={handleSubmit}
       >
-        <Col md={{offset: 3}}>
+        <div className="search-actions">
           <ButtonGroup style={{marginLeft: '20px'}}>
-            <Button
-              style={{marginRight: '5px'}}
-              variant="success"
-              onClick={handleClear}
-            >
+            <Button variant="success" type="submit">
+              Search
+            </Button>
+            <Button variant="danger" onClick={handleClear}>
               Reset
             </Button>
-            <Button type="submit">Search</Button>
           </ButtonGroup>
-        </Col>
+        </div>
       </JsonSchemaForm>
       {/* Hide searchField / searchValue JsonSchemaForm titles  */}
       <style jsx global>
@@ -89,7 +87,7 @@ const SearchBox: React.FunctionComponent<Props> = ({
       </style>
 
       <br />
-    </>
+    </div>
   );
 };
 

@@ -28,7 +28,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
     onSubmit={[Function]}
   >
     <div
-      className="col-12"
+      className="form-group field field-object col-12"
     >
       <div
         className="form-row"
@@ -37,7 +37,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
           className="font-italic text-muted"
         />
         <div
-          className="col-12"
+          className="form-group field field-object col-12"
         >
           <div
             className="form-row"
@@ -200,7 +200,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
               />
             </div>
             <div
-              className="col-12"
+              className="form-group field field-object col-12"
             >
               <div
                 className="form-row"
@@ -405,7 +405,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
           </div>
         </div>
         <div
-          className="col-12"
+          className="form-group field field-object col-12"
         >
           <div
             className="form-row"
@@ -596,7 +596,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
               />
             </div>
             <div
-              className="col-12"
+              className="form-group field field-object col-12"
             >
               <div
                 className="form-row"
@@ -801,7 +801,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
           </div>
         </div>
         <div
-          className="col-12"
+          className="form-group field field-object col-12"
         >
           <div
             className="form-row"
@@ -967,7 +967,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
               />
             </div>
             <div
-              className="col-12"
+              className="form-group field field-object col-12"
             >
               <div
                 className="form-row"
@@ -1322,7 +1322,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
     onSubmit={[Function]}
   >
     <div
-      className="col-12"
+      className="form-group field field-object col-12"
     >
       <div
         className="form-row"
@@ -1331,7 +1331,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
           className="font-italic text-muted"
         />
         <div
-          className="col-12"
+          className="form-group field field-object col-12"
         >
           <div
             className="form-row"
@@ -1362,6 +1362,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 className="form-control"
                 disabled={false}
                 id="root_electricity_purchased"
+                inputMode="numeric"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1388,6 +1389,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 className="form-control"
                 disabled={false}
                 id="root_electricity_generatedOnSite"
+                inputMode="numeric"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1414,6 +1416,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 className="form-control"
                 disabled={false}
                 id="root_electricity_consumedOnSite"
+                inputMode="numeric"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1440,6 +1443,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 className="form-control"
                 disabled={false}
                 id="root_electricity_sold"
+                inputMode="numeric"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1455,7 +1459,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
           </div>
         </div>
         <div
-          className="col-12"
+          className="form-group field field-object col-12"
         >
           <div
             className="form-row"
@@ -1486,6 +1490,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 className="form-control"
                 disabled={false}
                 id="root_heat_purchased"
+                inputMode="numeric"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1512,6 +1517,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 className="form-control"
                 disabled={false}
                 id="root_heat_generatedOnSite"
+                inputMode="numeric"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1538,6 +1544,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 className="form-control"
                 disabled={false}
                 id="root_heat_consumedOnSite"
+                inputMode="numeric"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1564,6 +1571,7 @@ exports[`Form should match the snapshot with the electricity and heat form 1`] =
                 className="form-control"
                 disabled={false}
                 id="root_heat_sold"
+                inputMode="numeric"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1664,7 +1672,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
     onSubmit={[Function]}
   >
     <div
-      className="col-12"
+      className="form-group field field-object col-12"
     >
       <div
         className="form-row"
@@ -1688,7 +1696,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                 className="col-md-12 col-12"
               >
                 <div
-                  className="col-12"
+                  className="form-group field field-object col-12"
                 >
                   <div
                     className="form-row"
@@ -1775,7 +1783,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             className="col-md-12 col-12"
                           >
                             <div
-                              className="col-12"
+                              className="form-group field field-object  hidden-title col-12"
                             >
                               <div
                                 className="form-row"
@@ -1829,6 +1837,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                           className="form-control"
                                           disabled={false}
                                           id="root_sourceTypes_0_gases_0_annualEmission"
+                                          inputMode="numeric"
                                           onBlur={[Function]}
                                           onChange={[Function]}
                                           onFocus={[Function]}
@@ -1898,7 +1907,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             className="col-md-12 col-12"
                           >
                             <div
-                              className="col-12"
+                              className="form-group field field-object  hidden-title col-12"
                             >
                               <div
                                 className="form-row"
@@ -1952,6 +1961,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                           className="form-control"
                                           disabled={false}
                                           id="root_sourceTypes_0_gases_1_annualEmission"
+                                          inputMode="numeric"
                                           onBlur={[Function]}
                                           onChange={[Function]}
                                           onFocus={[Function]}
@@ -2030,7 +2040,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                 className="col-md-12 col-12"
               >
                 <div
-                  className="col-12"
+                  className="form-group field field-object col-12"
                 >
                   <div
                     className="form-row"
@@ -2117,7 +2127,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             className="col-md-12 col-12"
                           >
                             <div
-                              className="col-12"
+                              className="form-group field field-object  hidden-title col-12"
                             >
                               <div
                                 className="form-row"
@@ -2171,6 +2181,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                           className="form-control"
                                           disabled={false}
                                           id="root_sourceTypes_1_gases_0_annualEmission"
+                                          inputMode="numeric"
                                           onBlur={[Function]}
                                           onChange={[Function]}
                                           onFocus={[Function]}

@@ -2,7 +2,6 @@ import {JSONSchema6} from 'json-schema';
 
 const addFacilitySchema: JSONSchema6 = {
   type: 'object',
-  title: 'Facility Details',
   properties: {
     facilityName: {
       title: 'Facility Name',

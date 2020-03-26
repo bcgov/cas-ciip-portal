@@ -37,20 +37,27 @@ class Registration extends Component<Props> {
     return (
       <DefaultLayout title="Registration" session={session} needsUser={false}>
         <h4 className="mb-5">Please verify or update your information</h4>
-        <UserForm
-          user={ciipUserBySub}
-          uuid={sub as string}
-          defaultGivenName={givenName}
-          defaultFamilyName={familyName}
-          defaultEmail={email}
-          onSubmit={async () =>
-            router.push(
-              router.query.redirectTo
-                ? (router.query.redirectTo as string)
-                : '/reporter/user-dashboard'
-            )
+        <div className="registration-form">
+          <UserForm
+            user={ciipUserBySub}
+            uuid={sub as string}
+            defaultGivenName={givenName}
+            defaultFamilyName={familyName}
+            defaultEmail={email}
+            onSubmit={async () =>
+              router.push(
+                router.query.redirectTo
+                  ? (router.query.redirectTo as string)
+                  : '/reporter/user-dashboard'
+              )
+            }
+          />
+        </div>
+        <style jsx>{`
+          .registration-form {
+            max-width: 800px;
           }
-        />
+        `}</style>
       </DefaultLayout>
     );
   }
