@@ -129,7 +129,8 @@ class ProductsBenchmarks extends Component<Props> {
               {props => (
                 <ProductListContainer
                   {...props}
-                  totalProductCount={totalProductCount}
+                  productCount={totalProductCount}
+                  updateProductCount={this.updateProductCount}
                 />
               )}
             </SearchTable>

@@ -12,8 +12,8 @@ interface Props {
   searchField?: string;
   searchValue?: string;
   direction?: string;
-  totalProductCount: number;
-
+  productCount: number;
+  updateProductCount: any;
   handleEvent: (...args: any[]) => void;
   relay: any;
 }
@@ -26,16 +26,16 @@ export const ProductList: React.FunctionComponent<Props> = ({
   searchValue,
   direction,
   handleEvent,
-  totalProductCount
+  productCount,
+  updateProductCount
 }) => {
-  console.log(totalProductCount);
   useEffect(() => {
     const refetchVariables = {
       searchField,
       searchValue,
       orderByField,
       direction,
-      totalProductCount
+      productCount
     };
     relay.refetch(refetchVariables);
   });
@@ -54,7 +54,13 @@ export const ProductList: React.FunctionComponent<Props> = ({
     const body = (
       <tbody>
         {allProducts.map(({node}) => (
-          <ProductRowItemContainer key={node.id} product={node} query={query} />
+          <ProductRowItemContainer
+            key={node.id}
+            product={node}
+            query={query}
+            updateProductCount={updateProductCount}
+            productCount={query.allProducts.totalCount}
+          />
         ))}
       </tbody>
     );
@@ -115,7 +121,7 @@ export default createRefetchContainer(
       $searchValue: String
       $orderByField: String
       $direction: String
-      $totalProductCount: Int
+      $productCount: Int
     ) {
       query {
         ...ProductListContainer_query
@@ -124,7 +130,7 @@ export default createRefetchContainer(
             searchValue: $searchValue
             orderByField: $orderByField
             direction: $direction
-            productCount: $totalProductCount
+            productCount: $productCount
           )
       }
     }
