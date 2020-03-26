@@ -12,7 +12,8 @@ interface Props {
   searchField?: string;
   searchValue?: string;
   direction?: string;
-
+  productCount: number;
+  updateProductCount: any;
   handleEvent: (...args: any[]) => void;
   relay: any;
 }
@@ -24,14 +25,17 @@ export const ProductList: React.FunctionComponent<Props> = ({
   searchField,
   searchValue,
   direction,
-  handleEvent
+  handleEvent,
+  productCount,
+  updateProductCount
 }) => {
   useEffect(() => {
     const refetchVariables = {
       searchField,
       searchValue,
       orderByField,
-      direction
+      direction,
+      productCount
     };
     relay.refetch(refetchVariables);
   });
@@ -50,7 +54,13 @@ export const ProductList: React.FunctionComponent<Props> = ({
     const body = (
       <tbody>
         {allProducts.map(({node}) => (
-          <ProductRowItemContainer key={node.id} product={node} query={query} />
+          <ProductRowItemContainer
+            key={node.id}
+            product={node}
+            query={query}
+            updateProductCount={updateProductCount}
+            productCount={query.allProducts.totalCount}
+          />
         ))}
       </tbody>
     );
@@ -80,6 +90,7 @@ export default createRefetchContainer(
           searchValue: {type: "String"}
           orderByField: {type: "String"}
           direction: {type: "String"}
+          productCount: {type: "Int"}
         ) {
         ...ProductRowItemContainer_query
         searchProducts(
@@ -96,6 +107,11 @@ export default createRefetchContainer(
             }
           }
         }
+        # TODO: This is here to trigger a refactor as updating the edge / running the query in the mutation is not triggering a refresh
+        # Find a way to not pull the totalcount?
+        allProducts(first: $productCount) {
+          totalCount
+        }
       }
     `
   },
@@ -105,6 +121,7 @@ export default createRefetchContainer(
       $searchValue: String
       $orderByField: String
       $direction: String
+      $productCount: Int
     ) {
       query {
         ...ProductListContainer_query
@@ -113,6 +130,7 @@ export default createRefetchContainer(
             searchValue: $searchValue
             orderByField: $orderByField
             direction: $direction
+            productCount: $productCount
           )
       }
     }

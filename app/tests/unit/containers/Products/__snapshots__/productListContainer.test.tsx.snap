@@ -10,9 +10,13 @@ exports[`ProductList should render the product list 1`] = `
             "id": "abc",
           }
         }
+        productCount={1}
         query={
           Object {
             " $refType": "ProductListContainer_query",
+            "allProducts": Object {
+              "totalCount": 1,
+            },
             "searchProducts": Object {
               "edges": Array [
                 Object {

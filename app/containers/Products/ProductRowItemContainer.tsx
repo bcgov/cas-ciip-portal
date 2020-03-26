@@ -28,6 +28,8 @@ interface Props {
   relay: RelayProp;
   product: ProductRowItemContainer_product;
   query: ProductRowItemContainer_query;
+  updateProductCount: any;
+  productCount: number;
 }
 
 // Schema for ProductRowItemContainer
@@ -50,7 +52,9 @@ const benchmarkUISchema = {
 export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   relay,
   product,
-  query
+  query,
+  updateProductCount,
+  productCount
 }) => {
   const {reportingYear: nextReportingYear} = query.nextReportingYear;
 
@@ -253,7 +257,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       centered
       size="xl"
       show={modalShow}
-      onHide={() => setModalShow(false)}
+      onHide={() => {
+        setModalShow(false);
+        updateProductCount(productCount++);
+      }}
     >
       <Modal.Header closeButton>
         <Modal.Title>Edit Product</Modal.Title>

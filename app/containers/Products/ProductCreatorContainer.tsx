@@ -11,9 +11,13 @@ import productSchema from './product-schema.json';
 
 interface Props {
   relay: RelayProp;
+  updateProductCount: any;
 }
 
-export const ProductCreator: React.FunctionComponent<Props> = ({relay}) => {
+export const ProductCreator: React.FunctionComponent<Props> = ({
+  relay,
+  updateProductCount
+}) => {
   const saveProduct = async (e: IChangeEvent) => {
     const variables = {
       input: {
@@ -30,6 +34,7 @@ export const ProductCreator: React.FunctionComponent<Props> = ({relay}) => {
     console.log(variables);
     const {environment} = relay;
     const response = await createProductMutation(environment, variables);
+    updateProductCount(response.createProduct.query.allProducts.totalCount);
     console.log(response);
   };
 

@@ -20,6 +20,27 @@ describe('The products and benchmark page', () => {
       .should('be.gte', 2);
   });
 
+  it('Creates & displays a new product', () => {
+    cy.contains('New Product').click();
+    cy.get('#root_name')
+      .clear()
+      .type('newProduct');
+    cy.get('#root_description')
+      .clear()
+      .type('desc');
+    cy.get('#root_units')
+      .clear()
+      .type('units');
+    cy.get('#root_units')
+      .clear()
+      .type('units');
+    cy.get(':nth-child(1) > label > :nth-child(1) > input').click();
+    cy.contains('Add Product').click();
+    cy.get('tr')
+      .its('length')
+      .should('be.gte', 3);
+  });
+
   it('Opens a modal when clicking on the edit button', () => {
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content');
