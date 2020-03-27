@@ -35,9 +35,7 @@ begin;
              report_id,
              sum(quantity) as quantity,
              sum(calculated_quantity) as calculated_quantity,
-             cast(regexp_replace(
-                regexp_replace(emission_category, 'BC_ScheduleB_', ''), 'Emissions' , ''
-             ) as varchar(1000)) as emission_category,
+             emission_category,
              gas_type
              from swrs.emission as _emission
           inner join selected_report as _rep on _emission.report_id = _rep.id

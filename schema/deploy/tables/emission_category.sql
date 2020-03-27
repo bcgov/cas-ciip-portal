@@ -63,11 +63,11 @@ comment on table ggircs_portal.emission_category is 'Table of emission categorie
 comment on column ggircs_portal.emission_category.id is 'Unique ID for the emission_category';
 comment on column ggircs_portal.emission_category.swrs_emission_category is 'The original name in the swrs data';
 comment on column ggircs_portal.emission_category.display_name is 'The name displayed in the CIIP portal UI';
-comment on column ggircs_portal.gas.created_at is 'Creation date of row';
-comment on column ggircs_portal.gas.created_by is 'Creator of row';
-comment on column ggircs_portal.gas.updated_at is 'Updated date of row';
-comment on column ggircs_portal.gas.updated_by is 'Updator of row';
-comment on column ggircs_portal.gas.deleted_at is 'Date of deletion';
-comment on column ggircs_portal.gas.deleted_by is 'The user who deleted the row';
+comment on column ggircs_portal.emission_category.created_at is 'Creation date of row';
+comment on column ggircs_portal.emission_category.created_by is 'Creator of row';
+comment on column ggircs_portal.emission_category.updated_at is 'Updated date of row';
+comment on column ggircs_portal.emission_category.updated_by is 'Updator of row';
+comment on column ggircs_portal.emission_category.deleted_at is 'Date of deletion';
+comment on column ggircs_portal.emission_category.deleted_by is 'The user who deleted the row';
 
 commit;

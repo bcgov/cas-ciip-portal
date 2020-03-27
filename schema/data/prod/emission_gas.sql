@@ -49,7 +49,7 @@ values
 (43, 8, 5),
 (44, 8, 6),
 (45, 8, 7),
-(46, 8, 8),
+(46, 8, 8)
 
 on conflict(id) do update set gas_id=excluded.gas_id, emission_category_id=excluded.emission_category_id
 returning 1

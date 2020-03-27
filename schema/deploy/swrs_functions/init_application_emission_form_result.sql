@@ -21,11 +21,7 @@ begin
 
   first_source_type := true;
   for emission_datum in (
-    with categories as (
-        select distinct on (swrs_emission_category) swrs_emission_category, id
-        from ggircs_portal.emission_category
-    )
-    select emission_category from categories order by id
+    select display_name from ggircs_portal.emission_category order by id
   )
   loop
     emission_category_var := emission_datum;
@@ -51,14 +47,20 @@ begin
             (
               select
                 ecg.id,
-                ecg.emission_category,
+                ec.display_name as emission_category,
                 g.gas_type,
                 g.gas_description,
                 g.gwp
                 from ggircs_portal.emission_category_gas ecg
+              inner join ggircs_portal.emission_category ec on ecg.emission_category_id = ec.id
               inner join ggircs_portal.gas g on ecg.gas_id = g.id
             ) as map
-            on e.emission_category = map.emission_category and e.gas_type = map.gas_type
+            on (
+              select
+                display_name
+                from ggircs_portal.emission_category
+                where e.emission_category = swrs_emission_category
+            ) = map.emission_category and e.gas_type = map.gas_type
             order by map.id
          )
          select row_to_json(t)
