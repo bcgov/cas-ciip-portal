@@ -31,7 +31,7 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
   <hr
     className="jsx-1070550671"
   />
-  <ForwardRef
+  <Row
     className="application-container"
     noGutters={false}
   >
@@ -135,7 +135,7 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
         review={true}
       />
     </Col>
-  </ForwardRef>
+  </Row>
   <JSXStyle
     id="1070550671"
   >

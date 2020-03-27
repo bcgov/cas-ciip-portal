@@ -45,7 +45,7 @@ exports[`ApplicationReview should match the snapshot with the ApplicationReview 
             rows="3"
           />
         </FormGroup>
-        <ForwardRef
+        <Row
           className="review-status"
           noGutters={false}
         >
@@ -149,7 +149,7 @@ exports[`ApplicationReview should match the snapshot with the ApplicationReview 
               </div>
             </div>
           </Col>
-        </ForwardRef>
+        </Row>
         <br
           className="jsx-1106837452"
         />
@@ -162,7 +162,7 @@ exports[`ApplicationReview should match the snapshot with the ApplicationReview 
           Submit
         </Button>
       </Form>
-      <ForwardRef
+      <Row
         noGutters={false}
         style={
           Object {
@@ -238,7 +238,7 @@ exports[`ApplicationReview should match the snapshot with the ApplicationReview 
             </DropdownMenu>
           </Dropdown>
         </Col>
-      </ForwardRef>
+      </Row>
     </ModalBody>
     <ModalFooter>
       <Button

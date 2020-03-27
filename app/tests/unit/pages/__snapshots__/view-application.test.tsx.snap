@@ -17,7 +17,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
   showSubheader={true}
   title="Summary of your application"
 >
-  <ForwardRef
+  <Row
     noGutters={false}
   >
     <Col
@@ -100,8 +100,8 @@ exports[`It matches the last accepted Snapshot 1`] = `
         review={false}
       />
     </Col>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   />
 </Relay(DefaultLayout)>
