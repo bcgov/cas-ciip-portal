@@ -57,6 +57,9 @@ describe('The products and benchmark page', () => {
     cy.contains('Save').click();
     cy.visit('/admin/products-benchmarks');
     cy.get('#page-content').contains('whatever');
+    cy.get('tr')
+      .its('length')
+      .should('be.gte', 2);
   });
 
   it('Allows the user to edit the benchmark', () => {
