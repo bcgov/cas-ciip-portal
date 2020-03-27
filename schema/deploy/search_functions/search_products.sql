@@ -37,7 +37,7 @@ returns setof ggircs_portal.product as
                   and
                     (
                       date_part(''year'', CURRENT_TIMESTAMP) between start_reporting_year and end_reporting_year
-                    ) or benchmark is null
+                     or benchmark is null)
                   order by ' || order_by_field || ' ' || direction;
               else
               return query execute
@@ -60,7 +60,7 @@ returns setof ggircs_portal.product as
               and
                 (
                   date_part(''year'', CURRENT_TIMESTAMP) between start_reporting_year and end_reporting_year
-                ) or benchmark is null
+                 or benchmark is null)
               order by '|| order_by_field || ' ' || direction;
               end if;
             end
