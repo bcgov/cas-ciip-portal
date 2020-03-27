@@ -30,7 +30,7 @@ describe('The production tab', () => {
       .clear()
       .type('Aluminum');
     cy.get('.dropdown-item').click();
-    cy.get('input:visible[type=text]').should('have.length', 8);
+    cy.get('input:visible[type=text]').should('have.length', 4);
     cy.get('#root_0_productUnits')
       .invoke('val')
       .should('contain', 'tonnes');
