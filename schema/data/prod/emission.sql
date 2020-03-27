@@ -5,9 +5,9 @@ insert into ggircs_portal.emission_category(id, swrs_emission_category, display_
 overriding system value
 values
 (1, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'Stationary Fuel Combustion'),
-(2, 'BC_ScheduleB_VentingEmissions', 'Venting/Other'),
+(2, 'BC_ScheduleB_VentingEmissions', 'Venting'),
 (3, 'BC_ScheduleB_FlaringEmissions', 'Flaring'),
-(4, 'BC_ScheduleB_FugitiveEmissions', 'Fugitive'),
+(4, 'BC_ScheduleB_FugitiveEmissions', 'Fugitive/Other'),
 (5, 'BC_ScheduleB_OnSiteTransportationEmissions', 'On-Site Transportation'),
 (6, 'BC_ScheduleB_WasteEmissions', 'Waste'),
 (7, 'BC_ScheduleB_WastewaterEmissions', 'Wastewater'),
