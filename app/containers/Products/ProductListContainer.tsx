@@ -13,7 +13,7 @@ interface Props {
   searchValue?: string;
   direction?: string;
   productCount: number;
-  updateProductCount: any;
+  updateProductCount: (...args: any[]) => void;
   handleEvent: (...args: any[]) => void;
   relay: any;
 }
@@ -59,7 +59,7 @@ export const ProductList: React.FunctionComponent<Props> = ({
             product={node}
             query={query}
             updateProductCount={updateProductCount}
-            productCount={query.allProducts.totalCount}
+            productCount={productCount}
           />
         ))}
       </tbody>
