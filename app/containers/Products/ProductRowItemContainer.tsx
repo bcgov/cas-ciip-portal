@@ -28,7 +28,7 @@ interface Props {
   relay: RelayProp;
   product: ProductRowItemContainer_product;
   query: ProductRowItemContainer_query;
-  updateProductCount: any;
+  updateProductCount: (...args: any[]) => void;
   productCount: number;
 }
 
@@ -197,12 +197,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const createBenchmark = async ({formData}: IChangeEvent) => {
     const variables = {
       input: {
-        benchmarkInput: formData.benchmark,
-        eligibilityThresholdInput: formData.eligibilityThreshold,
-        incentiveMultiplierInput: formData.incentiveMultiplier,
-        productIdInput: product.rowId,
-        startReportingYearInput: formData.startReportingYear,
-        endDateInput: formData.endReportingYear
+        benchmark: {
+          ...formData,
+          productId: product.rowId
+        }
       }
     };
 
@@ -247,6 +245,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     await deleteBenchmark(benchmark);
   };
 
+  const handleUpdateProductCount = newCount => {
+    updateProductCount(newCount);
+  };
+
   const [modalShow, setModalShow] = React.useState(false);
   const [futureBenchmarksOpen, setFutureBenchmarksOpen] = React.useState(false);
   const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
@@ -259,7 +261,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       show={modalShow}
       onHide={() => {
         setModalShow(false);
-        updateProductCount(productCount++);
+        handleUpdateProductCount((productCount += 1));
       }}
     >
       <Modal.Header closeButton>
