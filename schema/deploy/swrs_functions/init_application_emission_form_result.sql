@@ -22,8 +22,8 @@ begin
   first_source_type := true;
   for emission_datum in (
     with categories as (
-        select distinct on (emission_category) emission_category, id
-        from ggircs_portal.emission_category_gas
+        select distinct on (swrs_emission_category) swrs_emission_category, id
+        from ggircs_portal.emission_category
     )
     select emission_category from categories order by id
   )
