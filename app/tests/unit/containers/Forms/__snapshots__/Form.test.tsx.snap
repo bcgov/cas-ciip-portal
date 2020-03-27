@@ -31,11 +31,11 @@ exports[`The Form Component should match the snapshot 1`] = `
     fields={
       Object {
         "NumberField": [Function],
-        "ObjectField": [Function],
         "emissionGas": [Function],
         "emissionSource": [Function],
         "fuel": [Function],
-        "production": [Function],
+        "product": [Function],
+        "productRowId": [Function],
       }
     }
     formContext={
@@ -43,7 +43,7 @@ exports[`The Form Component should match the snapshot 1`] = `
         "query": Object {
           " $fragmentRefs": Object {
             "FuelFields_query": true,
-            "ProductionFields_query": true,
+            "ProductField_query": true,
           },
           " $refType": "Form_query",
           "result": Object {

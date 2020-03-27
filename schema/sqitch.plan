@@ -26,8 +26,7 @@ types/application_search_result [schema_ggircs_portal types/ciip_application_rev
 tables/ciip_user [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
 trigger_functions/set_user_id [function_session tables/ciip_user] 2019-12-10T20:02:31Z Dylan Leard <dylan@button.is> # Trigger function updates the user_id field
 trigger_functions/checksum_form_results [schema_ggircs_portal] 2020-01-13T23:21:05Z Dylan Leard <dylan@button.is> # Trigger function checksums current submtted and previous submitted form result & changes form result status on result
-tables/product_form [schema_ggircs_portal] 2019-12-02T17:53:31Z Matthieu Foucault <matthieu@button.is> # Add a table that contains a json schema specific to a product type
-tables/product [schema_ggircs_portal tables/product_form trigger_functions/update_timestamps] 2019-08-06T20:15:37Z Hamza Javed <hamza@button.is> # A table for adding products (for benchmarks)
+tables/product [schema_ggircs_portal trigger_functions/update_timestamps] 2019-08-06T20:15:37Z Hamza Javed <hamza@button.is> # A table for adding products (for benchmarks)
 tables/reporting_year [schema_ggircs_portal] 2019-11-19T18:06:01Z Helen Liu <helen@button.is> # Added new table with current reporting year, application deadline
 function_current_timestamp [tables/reporting_year] 2020-01-06T19:50:36Z Matthieu Foucault <matthieu@button.is> # Add a function to get current time
 function_opened_reporting_year [tables/reporting_year function_current_timestamp] 2020-01-06T19:50:36Z Matthieu Foucault <matthieu@button.is> # Add a function to get the opened reporting year

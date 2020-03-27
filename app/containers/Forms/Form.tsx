@@ -16,8 +16,8 @@ import FormArrayFieldTemplate from './FormArrayFieldTemplate';
 import FuelFields from './FuelFields';
 import EmissionGasFields from './EmissionGasFields';
 import EmissionSourceFields from './EmissionSourceFields';
-import ProductionFields from './ProductionFields';
-import ObjectField from './FormObjectField';
+import ProductField from './ProductField';
+import ProductRowIdField from './ProductRowIdField';
 import NumberField from './NumberField';
 
 interface Props {
@@ -31,11 +31,11 @@ const CUSTOM_FIELDS = {
   fuel: props => <FuelFields query={props.formContext.query} {...props} />,
   emissionSource: EmissionSourceFields,
   emissionGas: EmissionGasFields,
-  production: props => (
-    <ProductionFields query={props.formContext.query} {...props} />
+  product: props => <ProductField query={props.formContext.query} {...props} />,
+  productRowId: props => (
+    <ProductRowIdField query={props.formContext.query} {...props} />
   ),
-  NumberField,
-  ObjectField
+  NumberField
 };
 
 export const FormComponent: React.FunctionComponent<Props> = ({
@@ -179,7 +179,8 @@ export default createFragmentContainer(FormComponent, {
     fragment Form_query on Query
       @argumentDefinitions(formResultId: {type: "ID!"}) {
       ...FuelFields_query
-      ...ProductionFields_query
+      ...ProductField_query
+      ...ProductRowIdField_query
       result: formResult(id: $formResultId) {
         formResult
         formJsonByFormId {

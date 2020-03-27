@@ -230,7 +230,8 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
   `,
   query: graphql`
     fragment ApplicationDetailsCardItem_query on Query {
-      ...ProductionFields_query
+      ...ProductField_query
+      ...ProductRowIdField_query
     }
   `
 });

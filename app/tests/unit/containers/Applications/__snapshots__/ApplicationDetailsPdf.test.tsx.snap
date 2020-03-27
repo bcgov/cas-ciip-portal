@@ -171,7 +171,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
-                  "production": [Function],
+                  "product": [Function],
                 }
               }
               formContext={
@@ -618,7 +618,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
-                  "production": [Function],
+                  "product": [Function],
                 }
               }
               formContext={
@@ -820,7 +820,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
-                  "production": [Function],
+                  "product": [Function],
                 }
               }
               formContext={
@@ -965,7 +965,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
-                  "production": [Function],
+                  "product": [Function],
                 }
               }
               formContext={
@@ -1283,7 +1283,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "StringField": [Function],
                   "emissionGas": [Function],
                   "emissionSource": [Function],
-                  "production": [Function],
+                  "product": [Function],
                 }
               }
               formContext={
@@ -1312,30 +1312,21 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 30,
-                    "importedHeatAllocationFactor": 50,
-                    "productRowId": -80000000,
-                    "productUnits": "culpa",
-                    "quantity": -40000000,
+                    "productRowId": 0,
+                    "productUnits": "consequat Ut Duis",
+                    "quantity": -60000000,
                     "requiresEmissionAllocation": false,
                   },
                   Object {
-                    "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 20,
-                    "importedHeatAllocationFactor": 40,
-                    "productRowId": -20000000,
-                    "productUnits": "mollit eu esse",
-                    "quantity": -80000000,
+                    "productRowId": -60000000,
+                    "productUnits": "in qui",
+                    "quantity": -20000000,
                     "requiresEmissionAllocation": false,
                   },
                   Object {
-                    "additionalData": Object {},
-                    "importedElectricityAllocationFactor": 10,
-                    "importedHeatAllocationFactor": 30,
-                    "productRowId": -40000000,
-                    "productUnits": "est dolor",
-                    "quantity": 0,
+                    "productRowId": 0,
+                    "productUnits": "consequat Ut Duis",
+                    "quantity": -60000000,
                     "requiresEmissionAllocation": false,
                   },
                 ]
@@ -1361,12 +1352,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                             },
                             Object {
                               "properties": Object {
-                                "paymentAllocationFactor": Object {
-                                  "maximum": 100,
-                                  "minimum": 0,
-                                  "title": "Payment allocation factor (%)",
-                                  "type": "integer",
-                                },
                                 "productEmissions": Object {
                                   "exclusiveMinimum": 0,
                                   "title": "Emissions allocated to product",
@@ -1378,29 +1363,12 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                               },
                               "required": Array [
                                 "productEmissions",
-                                "paymentAllocationFactor",
                               ],
                             },
                           ],
                         },
                       },
                       "properties": Object {
-                        "additionalData": Object {
-                          "additionalProperties": true,
-                          "type": "object",
-                        },
-                        "importedElectricityAllocationFactor": Object {
-                          "maximum": 100,
-                          "minimum": 0,
-                          "title": "Imported electricity allocation factor (%)",
-                          "type": "integer",
-                        },
-                        "importedHeatAllocationFactor": Object {
-                          "maximum": 100,
-                          "minimum": 0,
-                          "title": "Imported heat allocation factor (%)",
-                          "type": "integer",
-                        },
                         "productRowId": Object {
                           "title": "Product or Service",
                           "type": "integer",
@@ -1441,13 +1409,28 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "ui:help": "Report emissions associated to CIIP product, in tCO2e",
                     },
                     "productRowId": Object {
-                      "ui:col-md": 8,
+                      "ui:col-md": 12,
+                      "ui:field": "productRowId",
                       "ui:widget": "SearchWidget",
+                    },
+                    "productUnits": Object {
+                      "ui:col-md": 4,
+                      "ui:readonly": true,
+                    },
+                    "quantity": Object {
+                      "ui:col-md": 4,
+                      "ui:help": "Report the annual production for the product, following the guidance document provided",
                     },
                     "requiresEmissionAllocation": Object {
                       "ui:widget": "hidden",
                     },
-                    "ui:field": "production",
+                    "ui:field": "product",
+                    "ui:order": Array [
+                      "productRowId",
+                      "quantity",
+                      "productUnits",
+                      "*",
+                    ],
                   },
                   "ui:add-text": "Add a Product",
                   "ui:remove-text": "Remove Product",

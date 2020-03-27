@@ -22,23 +22,6 @@
           },
           "requiresEmissionAllocation": {
             "type": "boolean"
-          },
-          "importedElectricityAllocationFactor": {
-            "title": "Imported electricity allocation factor (%)",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 100
-          },
-          "importedHeatAllocationFactor": {
-            "title": "Imported heat allocation factor (%)",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 100
-          },
-
-          "additionalData": {
-            "type": "object",
-            "additionalProperties": true
           }
         },
         "dependencies": {
@@ -58,29 +41,16 @@
                     "type": "number",
                     "exclusiveMinimum": 0
                   },
-                  "paymentAllocationFactor": {
-                    "title": "Payment allocation factor (%)",
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 100
-                  },
                   "requiresEmissionAllocation": {
                     "const": true
                   }
                 },
-                "required": [
-                  "productEmissions",
-                  "paymentAllocationFactor"
-                ]
+                "required": ["productEmissions"]
               }
             ]
           }
         },
-        "required": [
-          "productRowId",
-          "quantity",
-          "productUnits"
-        ]
+        "required": ["productRowId", "quantity", "productUnits"]
       }
     }
   },
@@ -88,16 +58,26 @@
     "ui:add-text": "Add a Product",
     "ui:remove-text": "Remove Product",
     "items": {
-      "ui:field": "production",
+      "ui:field": "product",
+      "ui:order": ["productRowId", "quantity", "productUnits", "*"],
       "productRowId": {
-        "ui:col-md": 8,
-        "ui:widget": "SearchWidget"
+        "ui:col-md": 12,
+        "ui:widget": "SearchWidget",
+        "ui:field": "productRowId"
+      },
+      "quantity": {
+        "ui:col-md": 4,
+        "ui:help": "Report the annual production for the product, following the guidance document provided"
+      },
+      "productUnits": {
+        "ui:col-md": 4,
+        "ui:readonly": true
       },
       "productEmissions": {
         "ui:col-md": 4,
         "ui:help": "Report emissions associated to CIIP product, in tCO2e"
       },
-      "requiresEmissionAllocation": {"ui:widget": "hidden"}
+      "requiresEmissionAllocation": { "ui:widget": "hidden" }
     }
   }
 }

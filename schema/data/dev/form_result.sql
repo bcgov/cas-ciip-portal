@@ -24,46 +24,13 @@ begin;
       "quantity": 8760000,
       "productRowId": 29,
       "productUnits": "MWh",
-      "additionalData": {
-        "equipment": [
-          {
-            "id": "Compressor 1",
-            "powerRating": 800,
-            "energySource": "Electric - Self-Generated",
-            "runtimeHours": 8760,
-            "loadingFactor": 100,
-            "compressorType": "Centrifugal", "consumedEnergy": 7008000
-          }, {
-            "id": "Compressor 2",
-            "powerRating": 200,
-            "energySource": "Electric - Self-Generated",
-            "runtimeHours": 8760,
-            "loadingFactor": 100,
-            "compressorType": "Centrifugal",
-            "consumedEnergy": 1752000
-          }
-        ],
-        "calculatedQuantity": 8760000
-      },
-      "paymentAllocationFactor": 59,
-      "productEmissions": 59,
-      "importedElectricityAllocationFactor": 20,
-      "importedHeatAllocationFactor": 20
-    }, {
+      "productEmissions": 5900
+    },
+    {
       "quantity": 12000,
       "productRowId": 26,
       "productUnits": "t",
-      "additionalData": {
-        "anodeReductionAllocationFactor": 1,
-        "anodeproductEmissions": 20,
-        "cokeCalcinationAllocationFactor": 20,
-        "calculatedPaymentAllocationFactor": 41,
-        "calculatedproductEmissions": 1
-      },
-      "paymentAllocationFactor": 41,
-      "productEmissions": 1,
-      "importedElectricityAllocationFactor": 20,
-      "importedHeatAllocationFactor": 20
+      "productEmissions": 1300
     }
   ]'),
   ('{"operator": {"name": "Changed"}}'),
@@ -72,49 +39,16 @@ begin;
   ('{"heat": {"sold": 0, "quantity": 6, "purchased": 29, "consumedOnsite": 5, "generatedOnsite": 44}, "electricity": {"sold": 7, "quantity": 2, "purchased": 22, "consumedOnsite": 87, "generatedOnsite": 66}}'),
   ('[
     {
-      "quantity": 87600,
+      "quantity": 8760000,
       "productRowId": 29,
       "productUnits": "MWh",
-      "additionalData": {
-        "equipment": [
-          {
-            "id": "Compressor 1",
-            "powerRating": 800,
-            "energySource": "Electric - Self-Generated",
-            "runtimeHours": 80,
-            "loadingFactor": 100,
-            "compressorType": "Centrifugal", "consumedEnergy": 7008000
-          }, {
-            "id": "Compressor 2",
-            "powerRating": 200,
-            "energySource": "Electric - Self-Generated",
-            "runtimeHours": 860,
-            "loadingFactor": 100,
-            "compressorType": "Centrifugal",
-            "consumedEnergy": 1752000
-          }
-        ],
-        "calculatedQuantity": 8760
-      },
-      "paymentAllocationFactor": 5,
-      "productEmissions": 5,
-      "importedElectricityAllocationFactor": 20,
-      "importedHeatAllocationFactor": 20
-    }, {
+      "productEmissions": 5900
+    },
+    {
       "quantity": 12000,
       "productRowId": 26,
       "productUnits": "t",
-      "additionalData": {
-        "anodeReductionAllocationFactor": 1,
-        "anodeproductEmissions": 20,
-        "cokeCalcinationAllocationFactor": 20,
-        "calculatedPaymentAllocationFactor": 41,
-        "calculatedproductEmissions": 1
-      },
-      "paymentAllocationFactor": 41,
-      "productEmissions": 1,
-      "importedElectricityAllocationFactor": 20,
-      "importedHeatAllocationFactor": 20
+      "productEmissions": 1300
     }
   ]');
 

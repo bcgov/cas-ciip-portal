@@ -1,7 +1,8 @@
 import React from 'react';
 import SummaryEmissionGasFields from 'containers/Forms/SummaryEmissionGasFields';
 import SummaryEmissionSourceFields from 'containers/Forms/SummaryEmissionSourceFields';
-import ProductionFields from 'containers/Forms/ProductionFields';
+import ProductField from 'containers/Forms/ProductField';
+import ProductRowIdField from 'containers/Forms/ProductRowIdField';
 import {FieldProps} from 'react-jsonschema-form';
 import NumberFormat from 'react-number-format';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -106,8 +107,11 @@ const customFields = (
     emissionGas: props => (
       <SummaryEmissionGasFields setHasErrors={setHasErrors} {...props} />
     ),
-    production: props => (
-      <ProductionFields query={props.formContext.query} {...props} />
+    product: props => (
+      <ProductField query={props.formContext.query} {...props} />
+    ),
+    productRowId: props => (
+      <ProductRowIdField query={props.formContext.query} {...props} />
     ),
     NumberField: props => {
       const errorIcon = setErrorIcon(props);
