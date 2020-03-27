@@ -14,47 +14,24 @@ interface Props extends FieldProps<number> {
  * It will either render inputs or the values based on what is defined in the current jsonschema form registry.
  */
 export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = props => {
-  const {
-    formData,
-    query,
-    onChange,
-    registry,
-    autofocus,
-    idSchema,
-    errorSchema,
-    formContext,
-    schema,
-    uiSchema
-  } = props;
-
-  const productRowIdSchema = useMemo(
+  /**
+   * Injects the list of products in the schema, and remove `query` from the props
+   * Other props are passed as-is to the StringField
+   */
+  const fieldProps = useMemo(
     () => ({
-      ...schema,
-      enum: query.allProducts.edges.map(({node}) => node.rowId),
-      enumNames: query.allProducts.edges.map(({node}) => node.name)
+      ...props,
+      schema: {
+        ...props.schema,
+        enum: props.query.allProducts.edges.map(({node}) => node.rowId),
+        enumNames: props.query.allProducts.edges.map(({node}) => node.name)
+      },
+      query: undefined
     }),
-    [query.allProducts.edges, schema]
+    [props]
   );
 
-  console.log(errorSchema);
-  return (
-    <registry.fields.StringField
-      required
-      disabled={false}
-      readonly={false}
-      schema={productRowIdSchema}
-      uiSchema={uiSchema}
-      formData={formData}
-      autofocus={autofocus}
-      idSchema={idSchema}
-      registry={registry}
-      errorSchema={errorSchema}
-      formContext={formContext}
-      name="product"
-      onBlur={null}
-      onChange={onChange}
-    />
-  );
+  return <props.registry.fields.StringField {...fieldProps} />;
 };
 
 export default createFragmentContainer(ProductRowIdFieldComponent, {
