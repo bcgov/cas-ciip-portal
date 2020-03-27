@@ -34,7 +34,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
         <div
           className="jsx-1593853101 container"
         >
-          <Row
+          <ForwardRef
             noGutters={false}
           >
             <div
@@ -59,7 +59,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
                 </Col>
               </FormRow>
             </div>
-          </Row>
+          </ForwardRef>
         </div>
       </div>
     </div>

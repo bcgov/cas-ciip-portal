@@ -16,7 +16,7 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
   showSubheader={true}
   title="My Operators"
 >
-  <Row
+  <ForwardRef
     noGutters={false}
   >
     <Col
@@ -103,6 +103,6 @@ exports[`landingIndustryUser It matches the last accepted Snapshot 1`] = `
         </ListGroup>
       </div>
     </Col>
-  </Row>
+  </ForwardRef>
 </Relay(DefaultLayout)>
 `;

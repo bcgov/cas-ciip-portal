@@ -4,7 +4,7 @@ exports[`The Form Component should match the snapshot 1`] = `
 <div
   className="jsx-1422928970 "
 >
-  <Row
+  <ForwardRef
     noGutters={false}
   >
     <Col
@@ -21,7 +21,7 @@ exports[`The Form Component should match the snapshot 1`] = `
         Foo
       </h1>
     </Col>
-  </Row>
+  </ForwardRef>
   <Form
     ArrayFieldTemplate={[Function]}
     ErrorList={[Function]}
@@ -79,7 +79,7 @@ exports[`The Form Component should match the snapshot 1`] = `
     <div
       className="jsx-1422928970 form-submit"
     >
-      <Row
+      <ForwardRef
         noGutters={false}
       >
         <Col
@@ -133,7 +133,7 @@ exports[`The Form Component should match the snapshot 1`] = `
             Continue
           </Button>
         </Col>
-      </Row>
+      </ForwardRef>
     </div>
   </Form>
   <JSXStyle

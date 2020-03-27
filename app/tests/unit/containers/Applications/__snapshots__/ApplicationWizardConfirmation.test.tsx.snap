@@ -149,7 +149,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
   <h5>
     Your application has been sent to a certifier. Submission will be possible once they have verified the data in the application.
   </h5>
-  <Row
+  <ForwardRef
     noGutters={false}
   >
     <Col
@@ -184,7 +184,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
         }
       />
     </Col>
-  </Row>
+  </ForwardRef>
   <JSXStyle
     id="1753635690"
   >

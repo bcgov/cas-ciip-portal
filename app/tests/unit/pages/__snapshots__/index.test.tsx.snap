@@ -12,7 +12,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
   session={null}
   showSubheader={false}
 >
-  <Row
+  <ForwardRef
     noGutters={false}
     style={
       Object {
@@ -45,8 +45,8 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       </p>
     </Col>
     <RegistrationLoginButtons />
-  </Row>
-  <Row
+  </ForwardRef>
+  <ForwardRef
     id="value-props"
     noGutters={false}
     style={
@@ -130,8 +130,8 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         </p>
       </div>
     </Col>
-  </Row>
-  <Row
+  </ForwardRef>
+  <ForwardRef
     noGutters={false}
     style={
       Object {
@@ -300,8 +300,8 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         .
       </p>
     </Col>
-  </Row>
-  <Row
+  </ForwardRef>
+  <ForwardRef
     noGutters={false}
     style={
       Object {
@@ -334,7 +334,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         Email: cas@ggircs.com
       </p>
     </Jumbotron>
-  </Row>
+  </ForwardRef>
   <JSXStyle
     id="473442302"
   >
