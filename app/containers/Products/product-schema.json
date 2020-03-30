@@ -17,13 +17,14 @@
       "requiresEmissionAllocation": {
         "type": "boolean",
         "title": "Product requires allocation of emissions?",
-        "enumNames": [
-          " Yes",
-          " No"
-        ]
+        "enumNames": [" Yes", " No"]
+      },
+      "isCiipProduct": {
+        "type": "boolean",
+        "title": "CIIP (benchmarked) product"
       }
     },
-    "required": ["name", "units", "requiresEmissionAllocation"]
+    "required": ["name", "units", "requiresEmissionAllocation", "isCiipProduct"]
   },
   "uiSchema": {
     "name": {
@@ -37,6 +38,9 @@
     },
     "requiresEmissionAllocation": {
       "ui:widget": "radio"
+    },
+    "isCiipProduct": {
+      "ui:help": "Non-CIIP products emissions are excluded from payment allocation. If a product has a fixed incentive ratio instead of a benchmark, please create a benchmark and use the mininmum and maximum incentive ratio options"
     }
   }
 }
