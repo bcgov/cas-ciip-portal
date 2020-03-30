@@ -5,13 +5,13 @@ insert into ggircs_portal.emission_category(id, swrs_emission_category, display_
 overriding system value
 values
 (1, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'General Stationary Combustion'),
-(2, 'BC_ScheduleB_VentingEmissions', 'Venting'),
-(3, 'BC_ScheduleB_FlaringEmissions', 'Flaring'),
-(4, 'BC_ScheduleB_FugitiveEmissions', 'Fugitive'),
-(5, 'BC_ScheduleB_OnSiteTransportationEmissions', 'On-Site Transportation'),
-(6, 'BC_ScheduleB_WasteEmissions', 'Waste'),
-(7, 'BC_ScheduleB_WastewaterEmissions', 'Wastewater'),
-(8, 'BC_ScheduleB_IndustrialProcessEmissions', 'Industrial Process')
+(2, 'BC_ScheduleB_IndustrialProcessEmissions', 'Industrial Process'),
+(3, 'BC_ScheduleB_VentingEmissions', 'Venting'),
+(4, 'BC_ScheduleB_FlaringEmissions', 'Flaring'),
+(5, 'BC_ScheduleB_FugitiveEmissions', 'Fugitive'),
+(6, 'BC_ScheduleB_OnSiteTransportationEmissions', 'On-Site Transportation'),
+(7, 'BC_ScheduleB_WasteEmissions', 'Waste'),
+(8, 'BC_ScheduleB_WastewaterEmissions', 'Wastewater')
 
 on conflict(id) do update set swrs_emission_category=excluded.swrs_emission_category, display_name=excluded.display_name
 returning 1
