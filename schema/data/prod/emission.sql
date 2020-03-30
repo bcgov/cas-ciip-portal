@@ -7,7 +7,7 @@ values
 (1, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'Stationary Fuel Combustion'),
 (2, 'BC_ScheduleB_VentingEmissions', 'Venting'),
 (3, 'BC_ScheduleB_FlaringEmissions', 'Flaring'),
-(4, 'BC_ScheduleB_FugitiveEmissions', 'Fugitive/Other'),
+(4, 'BC_ScheduleB_FugitiveEmissions', 'Fugitive'),
 (5, 'BC_ScheduleB_OnSiteTransportationEmissions', 'On-Site Transportation'),
 (6, 'BC_ScheduleB_WasteEmissions', 'Waste'),
 (7, 'BC_ScheduleB_WastewaterEmissions', 'Wastewater'),
