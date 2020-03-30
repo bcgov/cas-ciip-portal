@@ -1,6 +1,6 @@
 -- Verify ggircs-portal:tables/emission_category on pg
 
-BEGIN;
+begin;
 
 select pg_catalog.has_table_privilege('ggircs_portal.emission_category', 'select');
 
