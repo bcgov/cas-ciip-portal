@@ -61,7 +61,7 @@ computed_columns/application_application_revision_status [tables/application] 20
 computed_columns/application_ordered_form_results [tables/application tables/form_result tables/ciip_application_wizard] 2019-10-30T22:29:53Z Dylan Leard <dylan@button.is> # Function to order form results on an application
 tables/emission_category 2020-03-27T21:33:29Z Junmin Ahn <junmin@button.is> # Table for emission category
 tables/gas [schema_ggircs_portal] 2019-11-13T18:37:12Z Hamza Javed <hamza@button.is> # Add a table for gases
-tables/emission_category_gas [schema_ggircs_portal tables/gas] 2019-11-12T22:24:51Z Hamza Javed <hamza@button.is> # Table for mapping emission category to all its gases and GWP values for the json form schema
+tables/emission_category_gas [schema_ggircs_portal tables/gas tables/emission_category] 2019-11-12T22:24:51Z Hamza Javed <hamza@button.is> # Table for mapping emission category to all its gases and GWP values for the json form schema
 swrs_functions/init_application_administration_form_result [tables/form_result swrs_functions/get_swrs_organisation_data swrs_functions/get_swrs_facility_data swrs_functions/get_swrs_operator_contact_data] 2019-11-08T22:46:02Z Matthieu Foucault <matthieu@button.is> # add function to initialize admin form result
 swrs_functions/init_application_fuel_form_result [tables/form_result swrs_functions/get_swrs_fuel_data] 2019-11-12T18:00:52Z Matthieu Foucault <matthieu@button.is> # add function to initialize fuel form
 swrs_functions/init_application_emission_form_result [tables/form_result swrs_functions/get_swrs_emission_data] 2019-11-12T18:01:51Z Matthieu Foucault <matthieu@button.is> # add function to initialize emission form
