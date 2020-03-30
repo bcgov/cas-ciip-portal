@@ -24,6 +24,59 @@
         "title": "CIIP (benchmarked) product"
       }
     },
+    "dependencies": {
+      "requiresEmissionAllocation": {
+        "oneOf": [
+          {
+            "properties": {
+              "requiresEmissionAllocation": {
+                "const": false
+              }
+            }
+          },
+          {
+            "properties": {
+              "includesImportedElectricity": {
+                "type": "boolean",
+                "title": "Include imported electricity?",
+                "enumNames": [
+                  " Yes",
+                  " No"
+                ]
+              },
+              "includesExportedElectricity": {
+                "type": "boolean",
+                "title": "Include exported electricity?",
+                "enumNames": [
+                  " Yes",
+                  " No"
+                ]
+              },
+              "includesImportedHeat": {
+                "type": "boolean",
+                "title": "Include imported heat?",
+                "enumNames": [
+                  " Yes",
+                  " No"
+                ]
+              },
+              "includesExportedHeat": {
+                "type": "boolean",
+                "title": "Include exported heat?",
+                "enumNames": [
+                  " Yes",
+                  " No"
+                ]
+              },
+              "requiresEmissionAllocation": {
+                "const": true
+              }
+            },
+            "required": ["productEmissions"]
+          }
+        ]
+      }
+    },
     "required": ["name", "units", "requiresEmissionAllocation", "isCiipProduct"]
   },
   "uiSchema": {
@@ -41,6 +94,18 @@
     },
     "isCiipProduct": {
       "ui:help": "Non-CIIP products emissions are excluded from payment allocation. If a product has a fixed incentive ratio instead of a benchmark, please create a benchmark and use the mininmum and maximum incentive ratio options"
+    }
+    "includesImportedElectricity": {
+      "ui:widget": "radio"
+    },
+    "includesExportedElectricity": {
+      "ui:widget": "radio"
+    },
+    "includesImportedHeat": {
+      "ui:widget": "radio"
+    },
+    "includesExportedHeat": {
+      "ui:widget": "radio"
     }
   }
 }

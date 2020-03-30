@@ -18,7 +18,6 @@ interface Props {
   relay: any;
 }
 
-// Test commit
 export const ProductList: React.FunctionComponent<Props> = ({
   query,
   relay,
