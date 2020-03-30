@@ -4,4 +4,4 @@ begin;
 
 drop table ggircs_portal.emission_category;
 
-COMMIT;
+commit;
