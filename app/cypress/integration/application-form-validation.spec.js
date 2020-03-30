@@ -134,6 +134,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     // Emission Form
     cy.get(':nth-child(2) > .nav-link').click();
     cy.contains('Continue').click();
+    // General Stationary Combustion - 5
     cy.get(
       '#root_sourceTypes_0_gases_0_annualEmission +div .error-detail'
     ).contains('should be number');
@@ -149,6 +150,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get(
       '#root_sourceTypes_0_gases_4_annualEmission +div .error-detail'
     ).contains('should be number');
+    // Industrial Process - 8
     cy.get(
       '#root_sourceTypes_1_gases_0_annualEmission +div .error-detail'
     ).contains('should be number');
@@ -165,6 +167,16 @@ describe('When reviewing a submitted application as an analyst', () => {
       '#root_sourceTypes_1_gases_4_annualEmission +div .error-detail'
     ).contains('should be number');
     cy.get(
+      '#root_sourceTypes_1_gases_5_annualEmission +div .error-detail'
+    ).contains('should be number');
+    cy.get(
+      '#root_sourceTypes_1_gases_6_annualEmission +div .error-detail'
+    ).contains('should be number');
+    cy.get(
+      '#root_sourceTypes_1_gases_7_annualEmission +div .error-detail'
+    ).contains('should be number');
+    // Venting - 5
+    cy.get(
       '#root_sourceTypes_2_gases_0_annualEmission +div .error-detail'
     ).contains('should be number');
     cy.get(
@@ -179,6 +191,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get(
       '#root_sourceTypes_2_gases_4_annualEmission +div .error-detail'
     ).contains('should be number');
+    // Flaring - 5
     cy.get(
       '#root_sourceTypes_3_gases_0_annualEmission +div .error-detail'
     ).contains('should be number');
@@ -194,15 +207,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get(
       '#root_sourceTypes_3_gases_4_annualEmission +div .error-detail'
     ).contains('should be number');
-    cy.get(
-      '#root_sourceTypes_3_gases_5_annualEmission +div .error-detail'
-    ).contains('should be number');
-    cy.get(
-      '#root_sourceTypes_3_gases_6_annualEmission +div .error-detail'
-    ).contains('should be number');
-    cy.get(
-      '#root_sourceTypes_3_gases_7_annualEmission +div .error-detail'
-    ).contains('should be number');
+    // Fugitive - 8
     cy.get(
       '#root_sourceTypes_4_gases_0_annualEmission +div .error-detail'
     ).contains('should be number');
@@ -219,6 +224,16 @@ describe('When reviewing a submitted application as an analyst', () => {
       '#root_sourceTypes_4_gases_4_annualEmission +div .error-detail'
     ).contains('should be number');
     cy.get(
+      '#root_sourceTypes_4_gases_5_annualEmission +div .error-detail'
+    ).contains('should be number');
+    cy.get(
+      '#root_sourceTypes_4_gases_6_annualEmission +div .error-detail'
+    ).contains('should be number');
+    cy.get(
+      '#root_sourceTypes_4_gases_7_annualEmission +div .error-detail'
+    ).contains('should be number');
+    // On-Site Transportation - 5
+    cy.get(
       '#root_sourceTypes_5_gases_0_annualEmission +div .error-detail'
     ).contains('should be number');
     cy.get(
@@ -233,6 +248,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get(
       '#root_sourceTypes_5_gases_4_annualEmission +div .error-detail'
     ).contains('should be number');
+    // Waste - 5
     cy.get(
       '#root_sourceTypes_6_gases_0_annualEmission +div .error-detail'
     ).contains('should be number');
@@ -247,6 +263,23 @@ describe('When reviewing a submitted application as an analyst', () => {
     ).contains('should be number');
     cy.get(
       '#root_sourceTypes_6_gases_4_annualEmission +div .error-detail'
+    ).contains('should be number');
+    cy.percySnapshot('emission');
+    // Wastewater - 5
+    cy.get(
+      '#root_sourceTypes_7_gases_0_annualEmission +div .error-detail'
+    ).contains('should be number');
+    cy.get(
+      '#root_sourceTypes_7_gases_1_annualEmission +div .error-detail'
+    ).contains('should be number');
+    cy.get(
+      '#root_sourceTypes_7_gases_2_annualEmission +div .error-detail'
+    ).contains('should be number');
+    cy.get(
+      '#root_sourceTypes_7_gases_3_annualEmission +div .error-detail'
+    ).contains('should be number');
+    cy.get(
+      '#root_sourceTypes_7_gases_4_annualEmission +div .error-detail'
     ).contains('should be number');
     cy.percySnapshot('emission');
 

@@ -161,6 +161,7 @@ deployProdData() {
   _psql -f "./prod/fuel.sql"
   _psql -f "./prod/product.sql"
   _psql -f "./prod/organisation_and_facility.sql"
+  _psql -f "./prod/emission.sql"
   _psql -f "./prod/gas.sql"
   _psql -f "./prod/emission_gas.sql"
   return 0;
