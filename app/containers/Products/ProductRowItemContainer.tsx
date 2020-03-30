@@ -34,9 +34,6 @@ interface Props {
 
 // Schema for ProductRowItemContainer
 const benchmarkUISchema = {
-  includesImportedEnergy: {
-    'ui:widget': 'radio'
-  },
   startReportingYear: {
     'ui:help': 'The first reporting year where this benchmark is used'
   },
@@ -119,10 +116,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           minimum: 0,
           maximum: 1,
           defaultValue: 1
-        },
-        includesImportedEnergy: {
-          type: 'boolean',
-          title: 'Benchmark includes energy imports'
         },
         incentiveMultiplier: {
           type: 'number',
@@ -469,7 +462,6 @@ export default createFragmentContainer(ProductRowItemComponent, {
             incentiveMultiplier
             startReportingYear
             endReportingYear
-            includesImportedEnergy
             minimumIncentiveRatio
             maximumIncentiveRatio
             deletedAt
