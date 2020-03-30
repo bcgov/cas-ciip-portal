@@ -4,7 +4,7 @@ with rows as (
 insert into ggircs_portal.emission_category(id, swrs_emission_category, display_name)
 overriding system value
 values
-(1, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'Stationary Fuel Combustion'),
+(1, 'BC_ScheduleB_GeneralStationaryCombustionEmissions', 'General Stationary Combustion'),
 (2, 'BC_ScheduleB_VentingEmissions', 'Venting'),
 (3, 'BC_ScheduleB_FlaringEmissions', 'Flaring'),
 (4, 'BC_ScheduleB_FugitiveEmissions', 'Fugitive'),
