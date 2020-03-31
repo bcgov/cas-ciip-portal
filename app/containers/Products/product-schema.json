@@ -72,7 +72,7 @@
                 "const": true
               }
             },
-            "required": ["productEmissions"]
+            "required": ["includesImportedElectricity", "includesExportedElectricity", "includesImportedHeat", "includesExportedHeat"]
           }
         ]
       }
