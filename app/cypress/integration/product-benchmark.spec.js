@@ -35,6 +35,7 @@ describe('The products and benchmark page', () => {
       .clear()
       .type('units');
     cy.get(':nth-child(1) > label > :nth-child(1) > input').click();
+    cy.wait(100);
     cy.contains('Add Product').click();
     cy.get('tr')
       .its('length')

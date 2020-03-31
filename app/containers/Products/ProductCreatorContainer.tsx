@@ -35,7 +35,6 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
         }
       }
     };
-    console.log(variables);
     const {environment} = relay;
     const response = await createProductMutation(environment, variables);
     updateProductCount(response.createProduct.query.allProducts.totalCount);

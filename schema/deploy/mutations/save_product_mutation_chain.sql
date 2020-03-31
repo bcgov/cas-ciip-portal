@@ -37,7 +37,7 @@ begin
       deleted_by = (select id from ggircs_portal.ciip_user where uuid = (select sub from ggircs_portal.session()))
   where product.id = prev_id;
 
-  select id, name, description, state, requires_emission_allocation, includes_imported_electricity, includes_exported_electricity, includes_imported_heat, includes_exported_heat from ggircs_portal.product where id = new_id into result;
+  select id, name, description, state, requires_emission_allocation from ggircs_portal.product where id = new_id into result;
   return result;
 end;
 $function$ language plpgsql volatile;
