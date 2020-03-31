@@ -119,7 +119,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     </>
   );
 
-  let certificationMessage;
+  let certificationMessage: JSX.Element;
 
   const copyUrl = (
     <Row>
@@ -236,7 +236,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
           <SubmitApplication application={props.application} />
         </>
       ) : (
-        {certificationMessage}
+        certificationMessage
       )}
       <style jsx global>
         {`
