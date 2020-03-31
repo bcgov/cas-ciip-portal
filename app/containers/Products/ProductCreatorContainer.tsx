@@ -27,11 +27,17 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
           units: e.formData.units,
           state: 'active',
           parent: [null],
-          requiresEmissionAllocation: e.formData.requiresEmissionAllocation
+          requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
+          addImportedElectricityEmissions:
+            e.formData.addImportedElectricityEmissions,
+          subtractExportedElectricity:
+            e.formData.subtractExportedElectricityEmissions,
+          addImportedHeatEmissions: e.formData.addImportedHeatEmissions,
+          subtractExportedHeatEmissions:
+            e.formData.subtractExportedHeatEmissions
         }
       }
     };
-    console.log(variables);
     const {environment} = relay;
     const response = await createProductMutation(environment, variables);
     updateProductCount(response.createProduct.query.allProducts.totalCount);

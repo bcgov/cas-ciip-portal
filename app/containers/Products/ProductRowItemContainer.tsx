@@ -120,14 +120,14 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           maximum: 1,
           defaultValue: 1
         },
-        includesImportedEnergy: {
-          type: 'boolean',
-          title: 'Benchmark includes energy imports'
-        },
         incentiveMultiplier: {
           type: 'number',
           title: 'Incentive Multiplier',
           defaultValue: 1
+        },
+        includesImportedEnergy: {
+          type: 'boolean',
+          title: 'Benchmark includes energy imports'
         },
         startReportingYear: {
           type: 'number',
@@ -168,9 +168,13 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newDescription: product.description || '',
         newState,
         prevId: product.rowId,
-        newParent: [product.rowId],
         newUnits: product.units,
-        newRequiresEmissionAllocation: product.requiresEmissionAllocation
+        newParent: [product.rowId],
+        newRequiresEmissionAllocation: product.requiresEmissionAllocation,
+        newAddImportedElectricity: product.addImportedElectricityEmissions,
+        newAddExportedElectricity: product.subtractExportedElectricityEmissions,
+        newAddImportedHeat: product.addImportedHeatEmissions,
+        newAddExportedHeat: product.subtractExportedHeatEmissions
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -185,9 +189,15 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newDescription: e.formData.description,
         newState: 'active',
         prevId: product.rowId,
-        newParent: [product.rowId],
         newUnits: e.formData.units,
-        newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation
+        newParent: [product.rowId],
+        newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation,
+        newAddImportedElectricityEmissions:
+          e.formData.addImportedElectricityEmissions,
+        newAddExportedElectricityEmissions:
+          e.formData.subtractExportedElectricityEmissions,
+        newAddImportedHeatEmissions: e.formData.addImportedHeatEmissions,
+        newAddExportedHeatEmissions: e.formData.subtractExportedHeatEmissions
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -459,6 +469,10 @@ export default createFragmentContainer(ProductRowItemComponent, {
       units
       requiresEmissionAllocation
       isCiipProduct
+      addImportedElectricityEmissions
+      subtractExportedElectricityEmissions
+      addImportedHeatEmissions
+      subtractExportedHeatEmissions
       benchmarksByProductId {
         edges {
           node {

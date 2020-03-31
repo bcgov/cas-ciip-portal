@@ -6,11 +6,22 @@ begin;
 delete from ggircs_portal.benchmark;
 delete from ggircs_portal.product;
 
-insert into ggircs_portal.product(id, name, description, units, state, requires_emission_allocation)
+insert into ggircs_portal.product(
+  id,
+  name,
+  description,
+  units,
+  state,
+  requires_emission_allocation,
+  subtract_exported_electricity_emissions,
+  add_imported_electricity_emissions,
+  subtract_exported_heat_emissions,
+  add_imported_heat_emissions
+)
 overriding system value
 values
-(1, 'Product A', 'Description A', 'tonnes','active', true),
-(2, 'Product B', 'Description B', 'cubic meters', 'active', true);
+(1, 'Product A', 'Description A', 'tonnes','active', true, true, true, true, true),
+(2, 'Product B', 'Description B', 'cubic meters', 'active', true, true, true, true, true);
 
 insert into ggircs_portal.benchmark(
   id,

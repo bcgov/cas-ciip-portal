@@ -34,7 +34,19 @@ describe('The products and benchmark page', () => {
     cy.get('#root_units')
       .clear()
       .type('units');
-    cy.get(':nth-child(1) > label > :nth-child(1) > input').click();
+    cy.get(':nth-child(2) > label > :nth-child(1) > input').click();
+    cy.get(
+      '#root_addImportedElectricityEmissions > :nth-child(1) > label > :nth-child(1) > input'
+    ).click();
+    cy.get(
+      '#root_subtractExportedElectricityEmissions > :nth-child(1) > label > :nth-child(1) > input'
+    ).click();
+    cy.get(
+      '#root_addImportedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
+    ).click();
+    cy.get(
+      '#root_subtractExportedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
+    ).click();
     cy.contains('Add Product').click();
     cy.get('tr')
       .its('length')
