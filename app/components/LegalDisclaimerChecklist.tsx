@@ -34,6 +34,11 @@ const LegalDisclaimerChecklist: React.FunctionComponent<Props> = props => {
     return <Checkbox key={i} label={consent} onCheck={handleCheck} />;
   };
 
+  // The fragment below shouldn't be needed, but the React.FunctionComponent
+  // type definition doesn't allow an array as the return type
+  // See https://github.com/DefinitelyTyped/DefinitelyTyped/issues/20356,
+  // dependant on https://github.com/microsoft/TypeScript/issues/21699
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{consents.map(displayConsentCheck)}</>;
 };
 

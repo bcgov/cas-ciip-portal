@@ -70,7 +70,7 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
           )}
         </Col>
         <Col md={{span: 3, offset: 2}}>
-          {(!props.application.latestDraftRevision
+          {!props.application.latestDraftRevision
             .certificationSignatureIsValid && (
             <>
               <Button
@@ -84,7 +84,7 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
                 Clear
               </Button>
             </>
-          )) || <></>}
+          )}
         </Col>
       </Row>
       <style jsx global>

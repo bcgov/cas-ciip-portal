@@ -46,21 +46,19 @@ class OrganisationRequests extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <>
-        <DefaultLayout
-          session={query.session}
-          title="Organisation Requests"
-          allowedGroups={ALLOWED_GROUPS}
+      <DefaultLayout
+        session={query.session}
+        title="Organisation Requests"
+        allowedGroups={ALLOWED_GROUPS}
+      >
+        <SearchTable
+          query={query}
+          defaultOrderByField="status"
+          defaultOrderByDisplay="Status"
         >
-          <SearchTable
-            query={query}
-            defaultOrderByField="status"
-            defaultOrderByDisplay="Status"
-          >
-            {props => <OrganisationRequestsTable {...props} />}
-          </SearchTable>
-        </DefaultLayout>
-      </>
+          {props => <OrganisationRequestsTable {...props} />}
+        </SearchTable>
+      </DefaultLayout>
     );
   }
 }

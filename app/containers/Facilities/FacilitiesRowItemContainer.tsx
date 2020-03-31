@@ -37,15 +37,13 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
       <td>
         {' '}
         {applicationRevisionStatus ? (
-          <>
-            <Badge
-              pill
-              style={{width: '100%'}}
-              variant={statusBadgeColor[applicationRevisionStatus]}
-            >
-              {applicationRevisionStatus}
-            </Badge>
-          </>
+          <Badge
+            pill
+            style={{width: '100%'}}
+            variant={statusBadgeColor[applicationRevisionStatus]}
+          >
+            {applicationRevisionStatus}
+          </Badge>
         ) : (
           <>Application not started</>
         )}

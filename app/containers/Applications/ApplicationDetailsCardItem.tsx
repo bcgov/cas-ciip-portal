@@ -138,6 +138,9 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     setHasErrors
   );
   const classTag = formJsonByFormId.slug;
+  // Override submit button for each form with an empty fragment
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  const buttonOverride = <></>;
   return (
     <>
       <Card
@@ -194,8 +197,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
                 previousIsEmpty
               }}
             >
-              {/* Over-ride submit button for each form with an empty fragment */}
-              <></>
+              {buttonOverride}
             </JsonSchemaForm>
           </Card.Body>
         </Collapse>
