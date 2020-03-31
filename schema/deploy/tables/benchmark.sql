@@ -9,6 +9,7 @@ create table ggircs_portal.benchmark (
   benchmark real not null,
   eligibility_threshold real not null,
   incentive_multiplier real not null default 1,
+  includes_imported_energy boolean not null default true,
   minimum_incentive_ratio real not null default 0,
   maximum_incentive_ratio real not null default 1,
   start_reporting_year integer not null references ggircs_portal.reporting_year(reporting_year),
@@ -69,6 +70,7 @@ comment on column ggircs_portal.benchmark.product_id is 'Foreign key to the prod
 comment on column ggircs_portal.benchmark.benchmark is 'The benchmark for a product, i.e. the emission intensity that would return a 100% incentive';
 comment on column ggircs_portal.benchmark.eligibility_threshold is 'The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive';
 comment on column ggircs_portal.benchmark.incentive_multiplier is 'The multiplier applied to the incentive amounts under this product';
+comment on column ggircs_portal.benchmark.includes_imported_energy is 'Whether the emissions from imported energy were included in the benchmark calculation';
 comment on column ggircs_portal.benchmark.minimum_incentive_ratio is 'The minimum incentive ratio for this benchmark (typically 0)';
 comment on column ggircs_portal.benchmark.maximum_incentive_ratio is 'The minimum incentive ratio for this benchmark (typically 0)';
 comment on column ggircs_portal.benchmark.start_reporting_year is 'The reporting year where this benchmark becomes active';

@@ -27,7 +27,11 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
           units: e.formData.units,
           state: 'active',
           parent: [null],
-          requiresEmissionAllocation: e.formData.requiresEmissionAllocation
+          requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
+          includesImportedElectricity: e.formData.includesImportedElectricity,
+          includesExportedElectricity: e.formData.includesExportedElectricity,
+          includesImportedHeat: e.formData.includesImportedHeat,
+          includesExportedHeat: e.formData.includesExportedHeat
         }
       }
     };

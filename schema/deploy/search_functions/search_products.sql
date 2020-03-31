@@ -29,8 +29,7 @@ returns setof ggircs_portal.product as
                   )
                   select
                     id, name, description, units,
-                    state, parent, requires_emission_allocation,
-                    is_ciip_product,
+                    state, parent, requires_emission_allocation, is_ciip_product, includes_imported_electricity, includes_exported_electricity, includes_imported_heat, includes_exported_heat,
                     created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
                     from outerTable
                   where
@@ -55,10 +54,7 @@ returns setof ggircs_portal.product as
                 left join ggircs_portal.benchmark as b on p.id = b.product_id
               )
               select
-                id, name, description, units, state, parent,
-                requires_emission_allocation,
-                is_ciip_product,
-                created_at, created_by, updated_at, updated_by, deleted_at, deleted_by from outerTable
+                id, name, description, units, state, parent, requires_emission_allocation, is_ciip_product, includes_imported_electricity, includes_exported_electricity, includes_imported_heat, includes_exported_heat, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by from outerTable
               where
                 state != ''deprecated'' and '|| search_field || '::text ilike ''%' || search_value || '%''
               and

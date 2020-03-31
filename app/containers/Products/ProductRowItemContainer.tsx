@@ -34,6 +34,9 @@ interface Props {
 
 // Schema for ProductRowItemContainer
 const benchmarkUISchema = {
+  includesImportedEnergy: {
+    'ui:widget': 'radio'
+  },
   startReportingYear: {
     'ui:help': 'The first reporting year where this benchmark is used'
   },
@@ -54,6 +57,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   productCount
 }) => {
   const {reportingYear: nextReportingYear} = query.nextReportingYear;
+  console.log(product);
 
   const currentBenchmark = useMemo(() => {
     return product.benchmarksByProductId.edges.find(({node: benchmark}) => {
@@ -122,6 +126,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           title: 'Incentive Multiplier',
           defaultValue: 1
         },
+        includesImportedEnergy: {
+          type: 'boolean',
+          title: 'Benchmark includes energy imports'
+        },
         startReportingYear: {
           type: 'number',
           title: 'Start Reporting Period',
@@ -163,7 +171,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         prevId: product.rowId,
         newParent: [product.rowId],
         newUnits: product.units,
-        newRequiresEmissionAllocation: product.requiresEmissionAllocation
+        newRequiresEmissionAllocation: product.requiresEmissionAllocation,
+        newIncludesImportedElectricity: product.includesImportedElectricity,
+        newIncludesExportedElectricity: product.includesExportedElectricity,
+        newIncludesImportedHeat: product.includesImportedHeat,
+        newIncludesExportedHeat: product.includesExportedHeat
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -172,6 +184,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   // Save a product
   const saveProduct = async (e: IChangeEvent) => {
+    console.log(e.formData);
     const variables = {
       input: {
         newName: e.formData.name,
@@ -180,7 +193,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         prevId: product.rowId,
         newParent: [product.rowId],
         newUnits: e.formData.units,
-        newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation
+        newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation,
+        newIncludesImportedElectricity: e.formData.includesImportedElectricity,
+        newIncludesExportedElectricity: e.formData.includesExportedElectricity,
+        newIncludesImportedHeat: e.formData.includesImportedHeat,
+        newIncludesExportedHeat: e.formData.includesExportedHeat
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -452,6 +469,10 @@ export default createFragmentContainer(ProductRowItemComponent, {
       units
       requiresEmissionAllocation
       isCiipProduct
+      includesImportedElectricity
+      includesExportedElectricity
+      includesImportedHeat
+      includesExportedHeat
       benchmarksByProductId {
         edges {
           node {
@@ -462,6 +483,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
             incentiveMultiplier
             startReportingYear
             endReportingYear
+            includesImportedEnergy
             minimumIncentiveRatio
             maximumIncentiveRatio
             deletedAt

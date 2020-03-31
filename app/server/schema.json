@@ -13147,6 +13147,7 @@
               "deprecationReason": null
             },
             {
+<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
               "name": "isCiipProduct",
               "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
               "args": [],
@@ -13158,6 +13159,51 @@
                   "name": "Boolean",
                   "ofType": null
                 }
+=======
+              "name": "includesExportedElectricity",
+              "description": "Boolean value indicates if the product should attribute exported electricity to emissions",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "includesExportedHeat",
+              "description": "Boolean value indicates if the product should attribute exported heat to emissions",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "includesImportedElectricity",
+              "description": "Boolean value indicates if the product should attribute imported electricity to emissions",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "includesImportedHeat",
+              "description": "Boolean value indicates if the product should attribute imported heat to emissions",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+>>>>>>> update create/update functions & mutations
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -22243,6 +22289,46 @@
               "defaultValue": null
             },
             {
+              "name": "includesExportedElectricity",
+              "description": "Checks for equality with the object’s `includesExportedElectricity` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesExportedHeat",
+              "description": "Checks for equality with the object’s `includesExportedHeat` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesImportedElectricity",
+              "description": "Checks for equality with the object’s `includesImportedElectricity` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesImportedHeat",
+              "description": "Checks for equality with the object’s `includesImportedHeat` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "name",
               "description": "Checks for equality with the object’s `name` field.",
               "type": {
@@ -22407,6 +22493,54 @@
             },
             {
               "name": "ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCLUDES_EXPORTED_ELECTRICITY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCLUDES_EXPORTED_ELECTRICITY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCLUDES_EXPORTED_HEAT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCLUDES_EXPORTED_HEAT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCLUDES_IMPORTED_ELECTRICITY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCLUDES_IMPORTED_ELECTRICITY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCLUDES_IMPORTED_HEAT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "INCLUDES_IMPORTED_HEAT_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -35704,8 +35838,43 @@
               "defaultValue": null
             },
             {
+<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
               "name": "isCiipProduct",
               "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
+=======
+              "name": "includesExportedElectricity",
+              "description": "Boolean value indicates if the product should attribute exported electricity to emissions",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesExportedHeat",
+              "description": "Boolean value indicates if the product should attribute exported heat to emissions",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesImportedElectricity",
+              "description": "Boolean value indicates if the product should attribute imported electricity to emissions",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesImportedHeat",
+              "description": "Boolean value indicates if the product should attribute imported heat to emissions",
+>>>>>>> update create/update functions & mutations
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -41098,6 +41267,46 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newIncludesExportedElectricity",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newIncludesExportedHeat",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newIncludesImportedElectricity",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newIncludesImportedHeat",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null
@@ -47057,8 +47266,43 @@
               "defaultValue": null
             },
             {
+<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
               "name": "isCiipProduct",
               "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
+=======
+              "name": "includesExportedElectricity",
+              "description": "Boolean value indicates if the product should attribute exported electricity to emissions",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesExportedHeat",
+              "description": "Boolean value indicates if the product should attribute exported heat to emissions",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesImportedElectricity",
+              "description": "Boolean value indicates if the product should attribute imported electricity to emissions",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "includesImportedHeat",
+              "description": "Boolean value indicates if the product should attribute imported heat to emissions",
+>>>>>>> update create/update functions & mutations
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
