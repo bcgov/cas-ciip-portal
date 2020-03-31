@@ -34,7 +34,11 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
             e.formData.subtractExportedElectricityEmissions,
           addImportedHeatEmissions: e.formData.addImportedHeatEmissions,
           subtractExportedHeatEmissions:
-            e.formData.subtractExportedHeatEmissions
+            e.formData.subtractExportedHeatEmissions,
+          subtractGeneratedElectricityEmissions:
+            e.formData.subtractGeneratedElectricityEmissions,
+          subtractGeneratedHeatEmissions:
+            e.formData.subtractGeneratedHeatEmissions
         }
       }
     };

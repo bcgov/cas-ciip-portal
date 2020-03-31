@@ -68,11 +68,33 @@
                   " No"
                 ]
               },
+              "subtractGeneratedElectricityEmissions": {
+                "type": "boolean",
+                "title": "Subtract generated electricity?",
+                "enumNames": [
+                  " Yes",
+                  " No"
+                ]
+              },
+              "subtractGeneratedHeatEmissions": {
+                "type": "boolean",
+                "title": "Subtract generated heat?",
+                "enumNames": [
+                  " Yes",
+                  " No"
+                ]
+              },
               "requiresEmissionAllocation": {
                 "const": false
               }
             },
-            "required": ["addImportedElectricityEmissions", "subtractExportedElectricityEmissions", "addImportedHeatEmissions", "subtractExportedHeatEmissions"]
+            "required": [
+              "addImportedElectricityEmissions",
+              "subtractExportedElectricityEmissions",
+              "addImportedHeatEmissions",
+              "subtractExportedHeatEmissions",
+              "subtractGeneratedElectricityEmissions",
+              "subtractGeneratedHeatEmissions"]
           }
         ]
       }
@@ -110,6 +132,14 @@
     "subtractExportedHeatEmissions": {
       "ui:widget": "radio",
       "ui:help": "Should exported heat be subtracted from the facility emissions when calculating emission intensity?"
+    },
+    "subtractGeneratedElectricityEmissions": {
+      "ui:widget": "radio",
+      "ui:help": "Should generated electricity be subtracted from the facility emissions when calculating emission intensity?"
+    },
+    "subtractGeneratedHeatEmissions": {
+      "ui:widget": "radio",
+      "ui:help": "Should generated heat be subtracted from the facility emissions when calculating emission intensity?"
     }
   }
 }
