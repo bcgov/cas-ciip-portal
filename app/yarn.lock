@@ -14521,10 +14521,10 @@ relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
-relay-compiler-language-typescript@^10.1.5:
-  version "10.1.5"
-  resolved "https://registry.yarnpkg.com/relay-compiler-language-typescript/-/relay-compiler-language-typescript-10.1.5.tgz#13573d71b4541abb7ef56e4a34231a43a3e6b2c3"
-  integrity sha512-c/YPSawGyQIZA6omd6jvGd7TMbr3HES+VG1QYxEpPdUznUINvQsq/UzvlsVuB7soNxxVrzZNWl3z83ybhC66Tg==
+relay-compiler-language-typescript@12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/relay-compiler-language-typescript/-/relay-compiler-language-typescript-12.0.0.tgz#65f6fa969483dbf37aa3f3bd97c8e9f9854e7dc7"
+  integrity sha512-jTg6aO3FcC6P1mnp6AKdfJcwGx8WQ+ui3HQz9Wn25SbKiqzW4FHBAg9Q38cS/YYOk7a4otcYQPLIcaKE0HXksg==
   dependencies:
     immutable "^4.0.0-rc.12"
     invariant "^2.2.4"
