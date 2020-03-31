@@ -46,38 +46,36 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
   };
 
   return (
-    <>
-      <Row>
-        <Col md={3}>
-          <h3>Application Status: </h3>
-        </Col>
-        <Col md={2}>
-          <Dropdown style={{width: '100%'}}>
-            <Dropdown.Toggle
-              style={{width: '100%', textTransform: 'capitalize'}}
-              variant={
-                statusBadgeColor[
-                  props.applicationRevisionStatus.applicationRevisionStatus
-                ]
-              }
-              id="dropdown"
-            >
-              {props.applicationRevisionStatus.applicationRevisionStatus}
-            </Dropdown.Toggle>
-            <Dropdown.Menu style={{width: '100%'}}>
-              {Object.keys(statusBadgeColor).map(status => (
-                <DropdownMenuItemComponent
-                  key={status}
-                  itemEventKey={status}
-                  itemFunc={setApplicationRevisionStatus}
-                  itemTitle={status}
-                />
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>
-      </Row>
-    </>
+    <Row>
+      <Col md={3}>
+        <h3>Application Status: </h3>
+      </Col>
+      <Col md={2}>
+        <Dropdown style={{width: '100%'}}>
+          <Dropdown.Toggle
+            style={{width: '100%', textTransform: 'capitalize'}}
+            variant={
+              statusBadgeColor[
+                props.applicationRevisionStatus.applicationRevisionStatus
+              ]
+            }
+            id="dropdown"
+          >
+            {props.applicationRevisionStatus.applicationRevisionStatus}
+          </Dropdown.Toggle>
+          <Dropdown.Menu style={{width: '100%'}}>
+            {Object.keys(statusBadgeColor).map(status => (
+              <DropdownMenuItemComponent
+                key={status}
+                itemEventKey={status}
+                itemFunc={setApplicationRevisionStatus}
+                itemTitle={status}
+              />
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </Col>
+    </Row>
   );
 };
 

@@ -50,22 +50,20 @@ class FacilitiesList extends Component<Props> {
   render() {
     const {session} = this.props.query;
     return (
-      <>
-        <DefaultLayout
-          showSubheader
-          session={session}
-          title="Facilities"
-          allowedGroups={ALLOWED_GROUPS}
+      <DefaultLayout
+        showSubheader
+        session={session}
+        title="Facilities"
+        allowedGroups={ALLOWED_GROUPS}
+      >
+        <SearchTable
+          query={this.props.query}
+          defaultOrderByField="facility_name"
+          defaultOrderByDisplay="Facility Name"
         >
-          <SearchTable
-            query={this.props.query}
-            defaultOrderByField="facility_name"
-            defaultOrderByDisplay="Facility Name"
-          >
-            {props => <FacilitiesListContainer {...props} />}
-          </SearchTable>
-        </DefaultLayout>
-      </>
+          {props => <FacilitiesListContainer {...props} />}
+        </SearchTable>
+      </DefaultLayout>
     );
   }
 }

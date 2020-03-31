@@ -50,21 +50,19 @@ class Applications extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <>
-        <DefaultLayout
-          title="Applications"
-          session={query.session}
-          allowedGroups={ALLOWED_GROUPS}
+      <DefaultLayout
+        title="Applications"
+        session={query.session}
+        allowedGroups={ALLOWED_GROUPS}
+      >
+        <SearchTable
+          query={query}
+          defaultOrderByField="operator_name"
+          defaultOrderByDisplay="Operator Name"
         >
-          <SearchTable
-            query={query}
-            defaultOrderByField="operator_name"
-            defaultOrderByDisplay="Operator Name"
-          >
-            {props => <ApplicationListContainer {...props} />}
-          </SearchTable>
-        </DefaultLayout>
-      </>
+          {props => <ApplicationListContainer {...props} />}
+        </SearchTable>
+      </DefaultLayout>
     );
   }
 }

@@ -54,25 +54,23 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = props => {
   return (
     <>
       {onAddFacility ? (
-        <>
-          <Card style={{marginTop: '50px'}}>
-            <Card.Body>
-              <Card.Title>
-                Can&apos;t find the Facility you&apos;re looking for?
-              </Card.Title>
-              <Card.Text>
-                You can add a facility if it is new or hasn&apos;t reported
-                before.
-              </Card.Text>
-              <Button
-                variant="outline-primary"
-                onClick={() => setModalVisible(!isModalVisible)}
-              >
-                Add a new Facility
-              </Button>
-            </Card.Body>
-          </Card>
-        </>
+        <Card style={{marginTop: '50px'}}>
+          <Card.Body>
+            <Card.Title>
+              Can&apos;t find the Facility you&apos;re looking for?
+            </Card.Title>
+            <Card.Text>
+              You can add a facility if it is new or hasn&apos;t reported
+              before.
+            </Card.Text>
+            <Button
+              variant="outline-primary"
+              onClick={() => setModalVisible(!isModalVisible)}
+            >
+              Add a new Facility
+            </Button>
+          </Card.Body>
+        </Card>
       ) : (
         <>
           <span style={{marginTop: '20px'}}>
