@@ -10,7 +10,8 @@ create table ggircs_portal.product (
   units varchar(1000),
   state varchar(1000),
   parent integer ARRAY,
-  requires_emission_allocation boolean,
+  requires_emission_allocation boolean not null default false,
+  is_ciip_product boolean not null default true,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
@@ -69,6 +70,7 @@ comment on column ggircs_portal.product.name is 'The name of the product';
 comment on column ggircs_portal.product.description is 'The description of the product';
 comment on column ggircs_portal.product.units is 'The unit of measure for the product';
 comment on column ggircs_portal.product.requires_emission_allocation is 'Boolean value indicates if the product requires allocation of emissions';
+comment on column ggircs_portal.product.is_ciip_product is 'Boolean value indicates if the product is benchmarked and has an associated incentive';
 comment on column ggircs_portal.product.state is 'The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)';
 comment on column ggircs_portal.product.parent is 'The parent ID(s) (previous state) of the product';
 comment on column ggircs_portal.product.created_at is 'Creation date of row';

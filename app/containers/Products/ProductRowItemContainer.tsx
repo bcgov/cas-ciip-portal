@@ -458,6 +458,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
       state
       units
       requiresEmissionAllocation
+      isCiipProduct
       benchmarksByProductId {
         edges {
           node {
