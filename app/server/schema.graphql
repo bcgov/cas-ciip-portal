@@ -9927,11 +9927,6 @@ type Product implements Node {
   id: ID!
 
   """
-<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
-  Boolean value indicates if the product is benchmarked and has an associated incentive
-  """
-  isCiipProduct: Boolean!
-=======
   Boolean value indicates if the product should attribute exported electricity to emissions
   """
   includesExportedElectricity: Boolean
@@ -9950,7 +9945,11 @@ type Product implements Node {
   Boolean value indicates if the product should attribute imported heat to emissions
   """
   includesImportedHeat: Boolean
->>>>>>> update create/update functions & mutations
+
+  """
+  Boolean value indicates if the product is benchmarked and has an associated incentive
+  """
+  isCiipProduct: Boolean!
 
   """The name of the product"""
   name: String!
@@ -10000,10 +9999,6 @@ input ProductCondition {
   """Checks for equality with the object’s `description` field."""
   description: String
 
-<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
-  """Checks for equality with the object’s `isCiipProduct` field."""
-  isCiipProduct: Boolean
-=======
   """
   Checks for equality with the object’s `includesExportedElectricity` field.
   """
@@ -10019,7 +10014,9 @@ input ProductCondition {
 
   """Checks for equality with the object’s `includesImportedHeat` field."""
   includesImportedHeat: Boolean
->>>>>>> update create/update functions & mutations
+
+  """Checks for equality with the object’s `isCiipProduct` field."""
+  isCiipProduct: Boolean
 
   """Checks for equality with the object’s `name` field."""
   name: String
@@ -10066,11 +10063,6 @@ input ProductInput {
   description: String
 
   """
-<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
-  Boolean value indicates if the product is benchmarked and has an associated incentive
-  """
-  isCiipProduct: Boolean
-=======
   Boolean value indicates if the product should attribute exported electricity to emissions
   """
   includesExportedElectricity: Boolean
@@ -10089,7 +10081,11 @@ input ProductInput {
   Boolean value indicates if the product should attribute imported heat to emissions
   """
   includesImportedHeat: Boolean
->>>>>>> update create/update functions & mutations
+
+  """
+  Boolean value indicates if the product is benchmarked and has an associated incentive
+  """
+  isCiipProduct: Boolean
 
   """The name of the product"""
   name: String!
@@ -10137,11 +10133,6 @@ input ProductPatch {
   description: String
 
   """
-<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
-  Boolean value indicates if the product is benchmarked and has an associated incentive
-  """
-  isCiipProduct: Boolean
-=======
   Boolean value indicates if the product should attribute exported electricity to emissions
   """
   includesExportedElectricity: Boolean
@@ -10160,7 +10151,11 @@ input ProductPatch {
   Boolean value indicates if the product should attribute imported heat to emissions
   """
   includesImportedHeat: Boolean
->>>>>>> update create/update functions & mutations
+
+  """
+  Boolean value indicates if the product is benchmarked and has an associated incentive
+  """
+  isCiipProduct: Boolean
 
   """The name of the product"""
   name: String
@@ -10228,10 +10223,6 @@ enum ProductsOrderBy {
   DESCRIPTION_DESC
   ID_ASC
   ID_DESC
-<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
-  IS_CIIP_PRODUCT_ASC
-  IS_CIIP_PRODUCT_DESC
-=======
   INCLUDES_EXPORTED_ELECTRICITY_ASC
   INCLUDES_EXPORTED_ELECTRICITY_DESC
   INCLUDES_EXPORTED_HEAT_ASC
@@ -10240,7 +10231,8 @@ enum ProductsOrderBy {
   INCLUDES_IMPORTED_ELECTRICITY_DESC
   INCLUDES_IMPORTED_HEAT_ASC
   INCLUDES_IMPORTED_HEAT_DESC
->>>>>>> update create/update functions & mutations
+  IS_CIIP_PRODUCT_ASC
+  IS_CIIP_PRODUCT_DESC
   NAME_ASC
   NAME_DESC
   NATURAL

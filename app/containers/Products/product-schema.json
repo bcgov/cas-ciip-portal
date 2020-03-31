@@ -94,7 +94,7 @@
     },
     "isCiipProduct": {
       "ui:help": "Non-CIIP products emissions are excluded from payment allocation. If a product has a fixed incentive ratio instead of a benchmark, please create a benchmark and use the mininmum and maximum incentive ratio options"
-    }
+    },
     "includesImportedElectricity": {
       "ui:widget": "radio"
     },

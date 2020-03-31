@@ -13147,19 +13147,6 @@
               "deprecationReason": null
             },
             {
-<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
-              "name": "isCiipProduct",
-              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                }
-=======
               "name": "includesExportedElectricity",
               "description": "Boolean value indicates if the product should attribute exported electricity to emissions",
               "args": [],
@@ -13203,7 +13190,22 @@
                 "kind": "SCALAR",
                 "name": "Boolean",
                 "ofType": null
->>>>>>> update create/update functions & mutations
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isCiipProduct",
+              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -23372,16 +23374,6 @@
               "defaultValue": null
             },
             {
-              "name": "isCiipProduct",
-              "description": "Checks for equality with the object’s `isCiipProduct` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "includesExportedElectricity",
               "description": "Checks for equality with the object’s `includesExportedElectricity` field.",
               "type": {
@@ -23414,6 +23406,16 @@
             {
               "name": "includesImportedHeat",
               "description": "Checks for equality with the object’s `includesImportedHeat` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "isCiipProduct",
+              "description": "Checks for equality with the object’s `isCiipProduct` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -23591,18 +23593,6 @@
               "deprecationReason": null
             },
             {
-              "name": "IS_CIIP_PRODUCT_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "IS_CIIP_PRODUCT_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "INCLUDES_EXPORTED_ELECTRICITY_ASC",
               "description": null,
               "isDeprecated": false,
@@ -23646,6 +23636,18 @@
             },
             {
               "name": "INCLUDES_IMPORTED_HEAT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IS_CIIP_PRODUCT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IS_CIIP_PRODUCT_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -35838,10 +35840,6 @@
               "defaultValue": null
             },
             {
-<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
-              "name": "isCiipProduct",
-              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
-=======
               "name": "includesExportedElectricity",
               "description": "Boolean value indicates if the product should attribute exported electricity to emissions",
               "type": {
@@ -35874,7 +35872,16 @@
             {
               "name": "includesImportedHeat",
               "description": "Boolean value indicates if the product should attribute imported heat to emissions",
->>>>>>> update create/update functions & mutations
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "isCiipProduct",
+              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -47266,10 +47273,6 @@
               "defaultValue": null
             },
             {
-<<<<<<< a30b4e85204b336d69de14e65b91cfcd696e1018
-              "name": "isCiipProduct",
-              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
-=======
               "name": "includesExportedElectricity",
               "description": "Boolean value indicates if the product should attribute exported electricity to emissions",
               "type": {
@@ -47302,7 +47305,16 @@
             {
               "name": "includesImportedHeat",
               "description": "Boolean value indicates if the product should attribute imported heat to emissions",
->>>>>>> update create/update functions & mutations
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "isCiipProduct",
+              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
