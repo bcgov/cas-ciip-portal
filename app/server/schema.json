@@ -13148,12 +13148,16 @@
             },
             {
               "name": "isCiipProduct",
-              "description": null,
+              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -13195,9 +13199,13 @@
               "description": "Boolean value indicates if the product requires allocation of emissions",
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -35697,7 +35705,7 @@
             },
             {
               "name": "isCiipProduct",
-              "description": null,
+              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -47050,7 +47058,7 @@
             },
             {
               "name": "isCiipProduct",
-              "description": null,
+              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",

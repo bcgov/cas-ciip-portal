@@ -9925,7 +9925,11 @@ type Product implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   id: ID!
-  isCiipProduct: Boolean
+
+  """
+  Boolean value indicates if the product is benchmarked and has an associated incentive
+  """
+  isCiipProduct: Boolean!
 
   """The name of the product"""
   name: String!
@@ -9936,7 +9940,7 @@ type Product implements Node {
   """
   Boolean value indicates if the product requires allocation of emissions
   """
-  requiresEmissionAllocation: Boolean
+  requiresEmissionAllocation: Boolean!
 
   """Unique ID for the product"""
   rowId: Int!
@@ -10021,6 +10025,10 @@ input ProductInput {
 
   """The description of the product"""
   description: String
+
+  """
+  Boolean value indicates if the product is benchmarked and has an associated incentive
+  """
   isCiipProduct: Boolean
 
   """The name of the product"""
@@ -10067,6 +10075,10 @@ input ProductPatch {
 
   """The description of the product"""
   description: String
+
+  """
+  Boolean value indicates if the product is benchmarked and has an associated incentive
+  """
   isCiipProduct: Boolean
 
   """The name of the product"""
