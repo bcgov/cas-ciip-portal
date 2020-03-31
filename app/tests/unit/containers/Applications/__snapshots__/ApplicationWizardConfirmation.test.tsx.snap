@@ -47,47 +47,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   <br
     className="jsx-1753635690"
   />
-  <h5>
-    Thank you for reviewing the application information. You may now send a generated Certification url to be signed prior to submission.
-  </h5>
-  <br />
-  <Form
-    inline={false}
-    onSubmit={[Function]}
-  >
-    <FormRow>
-      <Col
-        md={6}
-      >
-        <FormGroup
-          controlId="certifierEmail"
-        >
-          <FormControl
-            name="email"
-            placeholder="Enter email"
-            type="email"
-          />
-          <FormText
-            className="text-muted"
-          >
-            Send URL to certifier
-          </FormText>
-        </FormGroup>
-      </Col>
-      <Col
-        md={2}
-      >
-        <Button
-          active={false}
-          disabled={false}
-          type="submit"
-          variant="primary"
-        >
-          Send to Certifier
-        </Button>
-      </Col>
-    </FormRow>
-  </Form>
+  <Component />
   <JSXStyle
     id="1753635690"
   >
@@ -146,45 +106,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
   <br
     className="jsx-1753635690"
   />
-  <h5>
-    Your application has been sent to a certifier. Submission will be possible once they have verified the data in the application.
-  </h5>
-  <Row
-    noGutters={false}
-  >
-    <Col
-      md={6}
-    >
-      <input
-        readOnly={true}
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
-      />
-    </Col>
-    <Col
-      md={2}
-    >
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-        variant="primary"
-      >
-        Copy Link
-      </Button>
-      <span
-        style={
-          Object {
-            "color": "green",
-          }
-        }
-      />
-    </Col>
-  </Row>
+  <Component />
   <JSXStyle
     id="1753635690"
   >
