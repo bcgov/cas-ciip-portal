@@ -14,7 +14,7 @@ declare
   result ggircs_portal.product;
 begin
   --Insert new value into product table and update current benchmark to point to that product
-  insert into ggircs_portal.product(name, description, units, state, parent, requires_emission_allocation, add_imported_electricity_emissions, add_exported_electricity, add_imported_heat_emissions, add_exported_heat_emissions)
+  insert into ggircs_portal.product(name, description, units, state, parent, requires_emission_allocation, add_imported_electricity_emissions, add_exported_electricity_emissions, add_imported_heat_emissions, add_exported_heat_emissions)
   values (new_name,
           new_description,
           new_units,
