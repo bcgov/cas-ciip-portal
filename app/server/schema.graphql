@@ -9840,20 +9840,6 @@ type PageInfo {
 """Table containing the information for a CIIP product"""
 type Product implements Node {
   """
-  Boolean value indicates if exported electricity emissions should be added to
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
-  """
-  addExportedElectricityEmissions: Boolean
-
-  """
-  Boolean value indicates if imported heat emissions should be added to the
-  facility emissions when calculating the product emission intensity (applies
-  only to products where requires_emission_allocation is false)
-  """
-  addExportedHeatEmissions: Boolean
-
-  """
   Boolean value indicates if imported electricity emissions should be added to
   the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
@@ -9978,6 +9964,20 @@ type Product implements Node {
   """
   state: String
 
+  """
+  Boolean value indicates if exported electricity emissions should be subtracted
+  from the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  subtractExportedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if exported heat emissions should be subtracted from
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  subtractExportedHeatEmissions: Boolean
+
   """The unit of measure for the product"""
   units: String
 
@@ -9992,16 +9992,6 @@ type Product implements Node {
 A condition to be used against `Product` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
 input ProductCondition {
-  """
-  Checks for equality with the object’s `addExportedElectricityEmissions` field.
-  """
-  addExportedElectricityEmissions: Boolean
-
-  """
-  Checks for equality with the object’s `addExportedHeatEmissions` field.
-  """
-  addExportedHeatEmissions: Boolean
-
   """
   Checks for equality with the object’s `addImportedElectricityEmissions` field.
   """
@@ -10047,6 +10037,16 @@ input ProductCondition {
   """Checks for equality with the object’s `state` field."""
   state: String
 
+  """
+  Checks for equality with the object’s `subtractExportedElectricityEmissions` field.
+  """
+  subtractExportedElectricityEmissions: Boolean
+
+  """
+  Checks for equality with the object’s `subtractExportedHeatEmissions` field.
+  """
+  subtractExportedHeatEmissions: Boolean
+
   """Checks for equality with the object’s `units` field."""
   units: String
 
@@ -10059,20 +10059,6 @@ input ProductCondition {
 
 """An input for mutations affecting `Product`"""
 input ProductInput {
-  """
-  Boolean value indicates if exported electricity emissions should be added to
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
-  """
-  addExportedElectricityEmissions: Boolean
-
-  """
-  Boolean value indicates if imported heat emissions should be added to the
-  facility emissions when calculating the product emission intensity (applies
-  only to products where requires_emission_allocation is false)
-  """
-  addExportedHeatEmissions: Boolean
-
   """
   Boolean value indicates if imported electricity emissions should be added to
   the facility emissions when calculating the product emission intensity
@@ -10123,6 +10109,20 @@ input ProductInput {
   """
   state: String
 
+  """
+  Boolean value indicates if exported electricity emissions should be subtracted
+  from the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  subtractExportedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if exported heat emissions should be subtracted from
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  subtractExportedHeatEmissions: Boolean
+
   """The unit of measure for the product"""
   units: String
 
@@ -10137,20 +10137,6 @@ input ProductInput {
 Represents an update to a `Product`. Fields that are set will be updated.
 """
 input ProductPatch {
-  """
-  Boolean value indicates if exported electricity emissions should be added to
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
-  """
-  addExportedElectricityEmissions: Boolean
-
-  """
-  Boolean value indicates if imported heat emissions should be added to the
-  facility emissions when calculating the product emission intensity (applies
-  only to products where requires_emission_allocation is false)
-  """
-  addExportedHeatEmissions: Boolean
-
   """
   Boolean value indicates if imported electricity emissions should be added to
   the facility emissions when calculating the product emission intensity
@@ -10201,6 +10187,20 @@ input ProductPatch {
   """
   state: String
 
+  """
+  Boolean value indicates if exported electricity emissions should be subtracted
+  from the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  subtractExportedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if exported heat emissions should be subtracted from
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  subtractExportedHeatEmissions: Boolean
+
   """The unit of measure for the product"""
   units: String
 
@@ -10239,10 +10239,6 @@ type ProductsEdge {
 
 """Methods to use when ordering `Product`."""
 enum ProductsOrderBy {
-  ADD_EXPORTED_ELECTRICITY_EMISSIONS_ASC
-  ADD_EXPORTED_ELECTRICITY_EMISSIONS_DESC
-  ADD_EXPORTED_HEAT_EMISSIONS_ASC
-  ADD_EXPORTED_HEAT_EMISSIONS_DESC
   ADD_IMPORTED_ELECTRICITY_EMISSIONS_ASC
   ADD_IMPORTED_ELECTRICITY_EMISSIONS_DESC
   ADD_IMPORTED_HEAT_EMISSIONS_ASC
@@ -10272,6 +10268,10 @@ enum ProductsOrderBy {
   REQUIRES_EMISSION_ALLOCATION_DESC
   STATE_ASC
   STATE_DESC
+  SUBTRACT_EXPORTED_ELECTRICITY_EMISSIONS_ASC
+  SUBTRACT_EXPORTED_ELECTRICITY_EMISSIONS_DESC
+  SUBTRACT_EXPORTED_HEAT_EMISSIONS_ASC
+  SUBTRACT_EXPORTED_HEAT_EMISSIONS_DESC
   UNITS_ASC
   UNITS_DESC
   UPDATED_AT_ASC
@@ -11804,8 +11804,6 @@ input SaveProductMutationChainInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  newAddExportedElectricityEmissions: Boolean
-  newAddExportedHeatEmissions: Boolean
   newAddImportedElectricityEmissions: Boolean
   newAddImportedHeatEmissions: Boolean
   newDescription: String
@@ -11813,6 +11811,8 @@ input SaveProductMutationChainInput {
   newParent: [Int]
   newRequiresEmissionAllocation: Boolean
   newState: String
+  newSubtractExportedElectricityEmissions: Boolean
+  newSubtractExportedHeatEmissions: Boolean
   newUnits: String
   prevId: Int
 }

@@ -12841,30 +12841,6 @@
           "description": "Table containing the information for a CIIP product",
           "fields": [
             {
-              "name": "addExportedElectricityEmissions",
-              "description": "Boolean value indicates if exported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "addExportedHeatEmissions",
-              "description": "Boolean value indicates if imported heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "addImportedElectricityEmissions",
               "description": "Boolean value indicates if imported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "args": [],
@@ -13281,6 +13257,30 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "subtractExportedElectricityEmissions",
+              "description": "Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "subtractExportedHeatEmissions",
+              "description": "Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -23324,26 +23324,6 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "addExportedElectricityEmissions",
-              "description": "Checks for equality with the object’s `addExportedElectricityEmissions` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "addExportedHeatEmissions",
-              "description": "Checks for equality with the object’s `addExportedHeatEmissions` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "addImportedElectricityEmissions",
               "description": "Checks for equality with the object’s `addImportedElectricityEmissions` field.",
               "type": {
@@ -23478,6 +23458,26 @@
               "defaultValue": null
             },
             {
+              "name": "subtractExportedElectricityEmissions",
+              "description": "Checks for equality with the object’s `subtractExportedElectricityEmissions` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "subtractExportedHeatEmissions",
+              "description": "Checks for equality with the object’s `subtractExportedHeatEmissions` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "units",
               "description": "Checks for equality with the object’s `units` field.",
               "type": {
@@ -23520,30 +23520,6 @@
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
-            {
-              "name": "ADD_EXPORTED_ELECTRICITY_EMISSIONS_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ADD_EXPORTED_ELECTRICITY_EMISSIONS_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ADD_EXPORTED_HEAT_EMISSIONS_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "ADD_EXPORTED_HEAT_EMISSIONS_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
             {
               "name": "ADD_IMPORTED_ELECTRICITY_EMISSIONS_ASC",
               "description": null,
@@ -23714,6 +23690,30 @@
             },
             {
               "name": "STATE_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBTRACT_EXPORTED_ELECTRICITY_EMISSIONS_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBTRACT_EXPORTED_ELECTRICITY_EMISSIONS_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBTRACT_EXPORTED_HEAT_EMISSIONS_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBTRACT_EXPORTED_HEAT_EMISSIONS_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -35790,26 +35790,6 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "addExportedElectricityEmissions",
-              "description": "Boolean value indicates if exported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "addExportedHeatEmissions",
-              "description": "Boolean value indicates if imported heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "addImportedElectricityEmissions",
               "description": "Boolean value indicates if imported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
@@ -35933,6 +35913,26 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "subtractExportedElectricityEmissions",
+              "description": "Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "subtractExportedHeatEmissions",
+              "description": "Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null
@@ -41269,26 +41269,6 @@
               "defaultValue": null
             },
             {
-              "name": "newAddExportedElectricityEmissions",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "newAddExportedHeatEmissions",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "newAddImportedElectricityEmissions",
               "description": null,
               "type": {
@@ -41358,6 +41338,26 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newSubtractExportedElectricityEmissions",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newSubtractExportedHeatEmissions",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null
@@ -47223,26 +47223,6 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "addExportedElectricityEmissions",
-              "description": "Boolean value indicates if exported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "addExportedHeatEmissions",
-              "description": "Boolean value indicates if imported heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "addImportedElectricityEmissions",
               "description": "Boolean value indicates if imported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
@@ -47362,6 +47342,26 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "subtractExportedElectricityEmissions",
+              "description": "Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "subtractExportedHeatEmissions",
+              "description": "Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null

@@ -38,15 +38,15 @@
             "properties": {
               "addImportedElectricityEmissions": {
                 "type": "boolean",
-                "title": "Include imported electricity?",
+                "title": "Add imported electricity?",
                 "enumNames": [
                   " Yes",
                   " No"
                 ]
               },
-              "addExportedElectricityEmissions": {
+              "subtractExportedElectricityEmissions": {
                 "type": "boolean",
-                "title": "Include exported electricity?",
+                "title": "Subtract exported electricity?",
                 "enumNames": [
                   " Yes",
                   " No"
@@ -54,15 +54,15 @@
               },
               "addImportedHeatEmissions": {
                 "type": "boolean",
-                "title": "Include imported heat?",
+                "title": "Add imported heat?",
                 "enumNames": [
                   " Yes",
                   " No"
                 ]
               },
-              "addExportedHeatEmissions": {
+              "subtractExportedHeatEmissions": {
                 "type": "boolean",
-                "title": "Include exported heat?",
+                "title": "Subtract exported heat?",
                 "enumNames": [
                   " Yes",
                   " No"
@@ -72,7 +72,7 @@
                 "const": false
               }
             },
-            "required": ["addImportedElectricityEmissions", "addExportedElectricityEmissions", "addImportedHeatEmissions", "addExportedHeatEmissions"]
+            "required": ["addImportedElectricityEmissions", "subtractExportedElectricityEmissions", "addImportedHeatEmissions", "subtractExportedHeatEmissions"]
           }
         ]
       }
@@ -96,16 +96,20 @@
       "ui:help": "Non-CIIP products emissions are excluded from payment allocation. If a product has a fixed incentive ratio instead of a benchmark, please create a benchmark and use the mininmum and maximum incentive ratio options"
     },
     "addImportedElectricityEmissions": {
-      "ui:widget": "radio"
+      "ui:widget": "radio",
+      "ui:help": "Should imported electricity be added to the facility emissions when calculating emission intensity?"
     },
-    "addExportedElectricityEmissions": {
-      "ui:widget": "radio"
+    "subtractExportedElectricityEmissions": {
+      "ui:widget": "radio",
+      "ui:help": "Should exported electricity be subtracted from the facility emissions when calculating emission intensity?"
     },
     "addImportedHeatEmissions": {
-      "ui:widget": "radio"
+      "ui:widget": "radio",
+      "ui:help": "Should imported heat be added to the facility emissions when calculating emission intensity?"
     },
-    "addExportedHeatEmissions": {
-      "ui:widget": "radio"
+    "subtractExportedHeatEmissions": {
+      "ui:widget": "radio",
+      "ui:help": "Should exported heat be subtracted from the facility emissions when calculating emission intensity?"
     }
   }
 }

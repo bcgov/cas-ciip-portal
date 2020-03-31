@@ -172,9 +172,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newParent: [product.rowId],
         newRequiresEmissionAllocation: product.requiresEmissionAllocation,
         newAddImportedElectricity: product.addImportedElectricityEmissions,
-        newAddExportedElectricity: product.addExportedElectricityEmissions,
+        newAddExportedElectricity: product.subtractExportedElectricityEmissions,
         newAddImportedHeat: product.addImportedHeatEmissions,
-        newAddExportedHeat: product.addExportedHeatEmissions
+        newAddExportedHeat: product.subtractExportedHeatEmissions
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -195,9 +195,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newAddImportedElectricityEmissions:
           e.formData.addImportedElectricityEmissions,
         newAddExportedElectricityEmissions:
-          e.formData.addExportedElectricityEmissions,
+          e.formData.subtractExportedElectricityEmissions,
         newAddImportedHeatEmissions: e.formData.addImportedHeatEmissions,
-        newAddExportedHeatEmissions: e.formData.addExportedHeatEmissions
+        newAddExportedHeatEmissions: e.formData.subtractExportedHeatEmissions
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -470,9 +470,9 @@ export default createFragmentContainer(ProductRowItemComponent, {
       requiresEmissionAllocation
       isCiipProduct
       addImportedElectricityEmissions
-      addExportedElectricityEmissions
+      subtractExportedElectricityEmissions
       addImportedHeatEmissions
-      addExportedHeatEmissions
+      subtractExportedHeatEmissions
       benchmarksByProductId {
         edges {
           node {

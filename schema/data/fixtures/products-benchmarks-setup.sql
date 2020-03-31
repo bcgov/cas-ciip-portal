@@ -13,9 +13,9 @@ insert into ggircs_portal.product(
   units,
   state,
   requires_emission_allocation,
-  add_exported_electricity_emissions,
+  subtract_exported_electricity_emissions,
   add_imported_electricity_emissions,
-  add_exported_heat_emissions,
+  subtract_exported_heat_emissions,
   add_imported_heat_emissions
 )
 overriding system value

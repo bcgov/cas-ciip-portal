@@ -39,13 +39,13 @@ describe('The products and benchmark page', () => {
       '#root_addImportedElectricityEmissions > :nth-child(1) > label > :nth-child(1) > input'
     ).click();
     cy.get(
-      '#root_addExportedElectricityEmissions > :nth-child(1) > label > :nth-child(1) > input'
+      '#root_subtractExportedElectricityEmissions > :nth-child(1) > label > :nth-child(1) > input'
     ).click();
     cy.get(
       '#root_addImportedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
     ).click();
     cy.get(
-      '#root_addExportedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
+      '#root_subtractExportedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
     ).click();
     cy.contains('Add Product').click();
     cy.get('tr')

@@ -30,9 +30,11 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
           addImportedElectricityEmissions:
             e.formData.addImportedElectricityEmissions,
-          addExportedElectricity: e.formData.addExportedElectricityEmissions,
+          subtractExportedElectricity:
+            e.formData.subtractExportedElectricityEmissions,
           addImportedHeatEmissions: e.formData.addImportedHeatEmissions,
-          addExportedHeatEmissions: e.formData.addExportedHeatEmissions
+          subtractExportedHeatEmissions:
+            e.formData.subtractExportedHeatEmissions
         }
       }
     };
