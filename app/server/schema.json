@@ -13287,6 +13287,30 @@
               "deprecationReason": null
             },
             {
+              "name": "subtractGeneratedElectricityEmissions",
+              "description": "Boolean value indicates if generated electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "subtractGeneratedHeatEmissions",
+              "description": "Boolean value indicates if generated heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "units",
               "description": "The unit of measure for the product",
               "args": [],
@@ -23478,6 +23502,26 @@
               "defaultValue": null
             },
             {
+              "name": "subtractGeneratedElectricityEmissions",
+              "description": "Checks for equality with the object’s `subtractGeneratedElectricityEmissions` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "subtractGeneratedHeatEmissions",
+              "description": "Checks for equality with the object’s `subtractGeneratedHeatEmissions` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "units",
               "description": "Checks for equality with the object’s `units` field.",
               "type": {
@@ -23714,6 +23758,30 @@
             },
             {
               "name": "SUBTRACT_EXPORTED_HEAT_EMISSIONS_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBTRACT_GENERATED_ELECTRICITY_EMISSIONS_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBTRACT_GENERATED_ELECTRICITY_EMISSIONS_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBTRACT_GENERATED_HEAT_EMISSIONS_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SUBTRACT_GENERATED_HEAT_EMISSIONS_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -35938,6 +36006,26 @@
               "defaultValue": null
             },
             {
+              "name": "subtractGeneratedElectricityEmissions",
+              "description": "Boolean value indicates if generated electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "subtractGeneratedHeatEmissions",
+              "description": "Boolean value indicates if generated heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "units",
               "description": "The unit of measure for the product",
               "type": {
@@ -41354,6 +41442,26 @@
             },
             {
               "name": "newSubtractExportedHeatEmissions",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newSubtractGeneratedElectricityEmissions",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newSubtractGeneratedHeatEmissions",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -47359,6 +47467,26 @@
             {
               "name": "subtractExportedHeatEmissions",
               "description": "Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "subtractGeneratedElectricityEmissions",
+              "description": "Boolean value indicates if generated electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "subtractGeneratedHeatEmissions",
+              "description": "Boolean value indicates if generated heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",

@@ -9978,6 +9978,20 @@ type Product implements Node {
   """
   subtractExportedHeatEmissions: Boolean
 
+  """
+  Boolean value indicates if generated electricity emissions should be
+  subtracted from the facility emissions when calculating the product emission
+  intensity (applies only to products where requires_emission_allocation is false)
+  """
+  subtractGeneratedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if generated heat emissions should be subtracted from
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  subtractGeneratedHeatEmissions: Boolean
+
   """The unit of measure for the product"""
   units: String
 
@@ -10046,6 +10060,16 @@ input ProductCondition {
   Checks for equality with the object’s `subtractExportedHeatEmissions` field.
   """
   subtractExportedHeatEmissions: Boolean
+
+  """
+  Checks for equality with the object’s `subtractGeneratedElectricityEmissions` field.
+  """
+  subtractGeneratedElectricityEmissions: Boolean
+
+  """
+  Checks for equality with the object’s `subtractGeneratedHeatEmissions` field.
+  """
+  subtractGeneratedHeatEmissions: Boolean
 
   """Checks for equality with the object’s `units` field."""
   units: String
@@ -10122,6 +10146,20 @@ input ProductInput {
   (applies only to products where requires_emission_allocation is false)
   """
   subtractExportedHeatEmissions: Boolean
+
+  """
+  Boolean value indicates if generated electricity emissions should be
+  subtracted from the facility emissions when calculating the product emission
+  intensity (applies only to products where requires_emission_allocation is false)
+  """
+  subtractGeneratedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if generated heat emissions should be subtracted from
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  subtractGeneratedHeatEmissions: Boolean
 
   """The unit of measure for the product"""
   units: String
@@ -10201,6 +10239,20 @@ input ProductPatch {
   """
   subtractExportedHeatEmissions: Boolean
 
+  """
+  Boolean value indicates if generated electricity emissions should be
+  subtracted from the facility emissions when calculating the product emission
+  intensity (applies only to products where requires_emission_allocation is false)
+  """
+  subtractGeneratedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if generated heat emissions should be subtracted from
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  subtractGeneratedHeatEmissions: Boolean
+
   """The unit of measure for the product"""
   units: String
 
@@ -10272,6 +10324,10 @@ enum ProductsOrderBy {
   SUBTRACT_EXPORTED_ELECTRICITY_EMISSIONS_DESC
   SUBTRACT_EXPORTED_HEAT_EMISSIONS_ASC
   SUBTRACT_EXPORTED_HEAT_EMISSIONS_DESC
+  SUBTRACT_GENERATED_ELECTRICITY_EMISSIONS_ASC
+  SUBTRACT_GENERATED_ELECTRICITY_EMISSIONS_DESC
+  SUBTRACT_GENERATED_HEAT_EMISSIONS_ASC
+  SUBTRACT_GENERATED_HEAT_EMISSIONS_DESC
   UNITS_ASC
   UNITS_DESC
   UPDATED_AT_ASC
@@ -11813,6 +11869,8 @@ input SaveProductMutationChainInput {
   newState: String
   newSubtractExportedElectricityEmissions: Boolean
   newSubtractExportedHeatEmissions: Boolean
+  newSubtractGeneratedElectricityEmissions: Boolean
+  newSubtractGeneratedHeatEmissions: Boolean
   newUnits: String
   prevId: Int
 }

@@ -14,7 +14,6 @@ const mutation = graphql`
         name
         description
         state
-        requiresEmissionAllocation
       }
     }
   }

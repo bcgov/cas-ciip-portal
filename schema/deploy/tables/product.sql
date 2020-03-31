@@ -16,6 +16,8 @@ create table ggircs_portal.product (
   subtract_exported_electricity_emissions boolean,
   add_imported_heat_emissions boolean,
   subtract_exported_heat_emissions boolean,
+  subtract_generated_electricity_emissions boolean,
+  subtract_generated_heat_emissions boolean,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
@@ -79,6 +81,8 @@ comment on column ggircs_portal.product.add_imported_electricity_emissions is  '
 comment on column ggircs_portal.product.subtract_exported_electricity_emissions is  'Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
 comment on column ggircs_portal.product.add_imported_heat_emissions is  'Boolean value indicates if imported heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
 comment on column ggircs_portal.product.subtract_exported_heat_emissions is  'Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
+comment on column ggircs_portal.product.subtract_generated_electricity_emissions is  'Boolean value indicates if generated electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
+comment on column ggircs_portal.product.subtract_generated_heat_emissions is  'Boolean value indicates if generated heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
 comment on column ggircs_portal.product.state is 'The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)';
 comment on column ggircs_portal.product.parent is 'The parent ID(s) (previous state) of the product';
 comment on column ggircs_portal.product.created_at is 'Creation date of row';

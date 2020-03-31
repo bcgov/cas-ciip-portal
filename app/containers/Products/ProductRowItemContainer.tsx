@@ -171,13 +171,20 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newUnits: product.units,
         newParent: [product.rowId],
         newRequiresEmissionAllocation: product.requiresEmissionAllocation,
-        newAddImportedElectricity: product.addImportedElectricityEmissions,
-        newAddExportedElectricity: product.subtractExportedElectricityEmissions,
-        newAddImportedHeat: product.addImportedHeatEmissions,
-        newAddExportedHeat: product.subtractExportedHeatEmissions
+        newAddImportedElectricityEmissions:
+          product.addImportedElectricityEmissions,
+        newSubtractExportedElectricityEmissions:
+          product.subtractExportedElectricityEmissions,
+        newAddImportedHeatEmissions: product.addImportedHeatEmissions,
+        newSubtractExportedHeatEmissions: product.subtractExportedHeatEmissions,
+        newSubtractGeneratedElectricityEmissions:
+          product.subtractGeneratedElectricityEmissions,
+        newSubtractGeneratedHeatEmissions:
+          product.subtractGeneratedHeatEmissions
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
+    handleUpdateProductCount((productCount += 1));
     console.log(response);
   };
 
@@ -194,10 +201,15 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation,
         newAddImportedElectricityEmissions:
           e.formData.addImportedElectricityEmissions,
-        newAddExportedElectricityEmissions:
+        newSubtractExportedElectricityEmissions:
           e.formData.subtractExportedElectricityEmissions,
         newAddImportedHeatEmissions: e.formData.addImportedHeatEmissions,
-        newAddExportedHeatEmissions: e.formData.subtractExportedHeatEmissions
+        newSubtractExportedHeatEmissions:
+          e.formData.subtractExportedHeatEmissions,
+        newSubtractGeneratedElectricityEmissions:
+          e.formData.subtractGeneratedElectricityEmissions,
+        newSubtractGeneratedHeatEmissions:
+          e.formData.subtractGeneratedHeatEmissions
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -473,6 +485,8 @@ export default createFragmentContainer(ProductRowItemComponent, {
       subtractExportedElectricityEmissions
       addImportedHeatEmissions
       subtractExportedHeatEmissions
+      subtractGeneratedElectricityEmissions
+      subtractGeneratedHeatEmissions
       benchmarksByProductId {
         edges {
           node {
