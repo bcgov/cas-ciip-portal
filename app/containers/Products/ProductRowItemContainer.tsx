@@ -161,7 +161,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   // Toggle the 'archived' value of a Product
   const toggleArchived = async () => {
-    console.log(product);
     const newState = product.state === 'archived' ? 'active' : 'archived';
     const variables = {
       input: {
@@ -185,6 +184,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
+    handleUpdateProductCount((productCount += 1));
     console.log(response);
   };
 
