@@ -9839,6 +9839,34 @@ type PageInfo {
 
 """Table containing the information for a CIIP product"""
 type Product implements Node {
+  """
+  Boolean value indicates if exported electricity emissions should be added to
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  addExportedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if imported heat emissions should be added to the
+  facility emissions when calculating the product emission intensity (applies
+  only to products where requires_emission_allocation is false)
+  """
+  addExportedHeatEmissions: Boolean
+
+  """
+  Boolean value indicates if imported electricity emissions should be added to
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  addImportedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if imported heat emissions should be added to the
+  facility emissions when calculating the product emission intensity (applies
+  only to products where requires_emission_allocation is false)
+  """
+  addImportedHeatEmissions: Boolean
+
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByProductId(
     """Read all values in the set after (below) this cursor."""
@@ -9927,26 +9955,6 @@ type Product implements Node {
   id: ID!
 
   """
-  Boolean value indicates if the product should attribute exported electricity to emissions
-  """
-  includesExportedElectricity: Boolean
-
-  """
-  Boolean value indicates if the product should attribute exported heat to emissions
-  """
-  includesExportedHeat: Boolean
-
-  """
-  Boolean value indicates if the product should attribute imported electricity to emissions
-  """
-  includesImportedElectricity: Boolean
-
-  """
-  Boolean value indicates if the product should attribute imported heat to emissions
-  """
-  includesImportedHeat: Boolean
-
-  """
   Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean!
@@ -9984,6 +9992,26 @@ type Product implements Node {
 A condition to be used against `Product` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
 input ProductCondition {
+  """
+  Checks for equality with the object’s `addExportedElectricityEmissions` field.
+  """
+  addExportedElectricityEmissions: Boolean
+
+  """
+  Checks for equality with the object’s `addExportedHeatEmissions` field.
+  """
+  addExportedHeatEmissions: Boolean
+
+  """
+  Checks for equality with the object’s `addImportedElectricityEmissions` field.
+  """
+  addImportedElectricityEmissions: Boolean
+
+  """
+  Checks for equality with the object’s `addImportedHeatEmissions` field.
+  """
+  addImportedHeatEmissions: Boolean
+
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
 
@@ -9998,22 +10026,6 @@ input ProductCondition {
 
   """Checks for equality with the object’s `description` field."""
   description: String
-
-  """
-  Checks for equality with the object’s `includesExportedElectricity` field.
-  """
-  includesExportedElectricity: Boolean
-
-  """Checks for equality with the object’s `includesExportedHeat` field."""
-  includesExportedHeat: Boolean
-
-  """
-  Checks for equality with the object’s `includesImportedElectricity` field.
-  """
-  includesImportedElectricity: Boolean
-
-  """Checks for equality with the object’s `includesImportedHeat` field."""
-  includesImportedHeat: Boolean
 
   """Checks for equality with the object’s `isCiipProduct` field."""
   isCiipProduct: Boolean
@@ -10047,6 +10059,34 @@ input ProductCondition {
 
 """An input for mutations affecting `Product`"""
 input ProductInput {
+  """
+  Boolean value indicates if exported electricity emissions should be added to
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  addExportedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if imported heat emissions should be added to the
+  facility emissions when calculating the product emission intensity (applies
+  only to products where requires_emission_allocation is false)
+  """
+  addExportedHeatEmissions: Boolean
+
+  """
+  Boolean value indicates if imported electricity emissions should be added to
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  addImportedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if imported heat emissions should be added to the
+  facility emissions when calculating the product emission intensity (applies
+  only to products where requires_emission_allocation is false)
+  """
+  addImportedHeatEmissions: Boolean
+
   """Creation date of row"""
   createdAt: Datetime
 
@@ -10061,26 +10101,6 @@ input ProductInput {
 
   """The description of the product"""
   description: String
-
-  """
-  Boolean value indicates if the product should attribute exported electricity to emissions
-  """
-  includesExportedElectricity: Boolean
-
-  """
-  Boolean value indicates if the product should attribute exported heat to emissions
-  """
-  includesExportedHeat: Boolean
-
-  """
-  Boolean value indicates if the product should attribute imported electricity to emissions
-  """
-  includesImportedElectricity: Boolean
-
-  """
-  Boolean value indicates if the product should attribute imported heat to emissions
-  """
-  includesImportedHeat: Boolean
 
   """
   Boolean value indicates if the product is benchmarked and has an associated incentive
@@ -10117,6 +10137,34 @@ input ProductInput {
 Represents an update to a `Product`. Fields that are set will be updated.
 """
 input ProductPatch {
+  """
+  Boolean value indicates if exported electricity emissions should be added to
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  addExportedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if imported heat emissions should be added to the
+  facility emissions when calculating the product emission intensity (applies
+  only to products where requires_emission_allocation is false)
+  """
+  addExportedHeatEmissions: Boolean
+
+  """
+  Boolean value indicates if imported electricity emissions should be added to
+  the facility emissions when calculating the product emission intensity
+  (applies only to products where requires_emission_allocation is false)
+  """
+  addImportedElectricityEmissions: Boolean
+
+  """
+  Boolean value indicates if imported heat emissions should be added to the
+  facility emissions when calculating the product emission intensity (applies
+  only to products where requires_emission_allocation is false)
+  """
+  addImportedHeatEmissions: Boolean
+
   """Creation date of row"""
   createdAt: Datetime
 
@@ -10131,26 +10179,6 @@ input ProductPatch {
 
   """The description of the product"""
   description: String
-
-  """
-  Boolean value indicates if the product should attribute exported electricity to emissions
-  """
-  includesExportedElectricity: Boolean
-
-  """
-  Boolean value indicates if the product should attribute exported heat to emissions
-  """
-  includesExportedHeat: Boolean
-
-  """
-  Boolean value indicates if the product should attribute imported electricity to emissions
-  """
-  includesImportedElectricity: Boolean
-
-  """
-  Boolean value indicates if the product should attribute imported heat to emissions
-  """
-  includesImportedHeat: Boolean
 
   """
   Boolean value indicates if the product is benchmarked and has an associated incentive
@@ -10211,6 +10239,14 @@ type ProductsEdge {
 
 """Methods to use when ordering `Product`."""
 enum ProductsOrderBy {
+  ADD_EXPORTED_ELECTRICITY_EMISSIONS_ASC
+  ADD_EXPORTED_ELECTRICITY_EMISSIONS_DESC
+  ADD_EXPORTED_HEAT_EMISSIONS_ASC
+  ADD_EXPORTED_HEAT_EMISSIONS_DESC
+  ADD_IMPORTED_ELECTRICITY_EMISSIONS_ASC
+  ADD_IMPORTED_ELECTRICITY_EMISSIONS_DESC
+  ADD_IMPORTED_HEAT_EMISSIONS_ASC
+  ADD_IMPORTED_HEAT_EMISSIONS_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
@@ -10223,14 +10259,6 @@ enum ProductsOrderBy {
   DESCRIPTION_DESC
   ID_ASC
   ID_DESC
-  INCLUDES_EXPORTED_ELECTRICITY_ASC
-  INCLUDES_EXPORTED_ELECTRICITY_DESC
-  INCLUDES_EXPORTED_HEAT_ASC
-  INCLUDES_EXPORTED_HEAT_DESC
-  INCLUDES_IMPORTED_ELECTRICITY_ASC
-  INCLUDES_IMPORTED_ELECTRICITY_DESC
-  INCLUDES_IMPORTED_HEAT_ASC
-  INCLUDES_IMPORTED_HEAT_DESC
   IS_CIIP_PRODUCT_ASC
   IS_CIIP_PRODUCT_DESC
   NAME_ASC
@@ -11776,11 +11804,11 @@ input SaveProductMutationChainInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
+  newAddExportedElectricityEmissions: Boolean
+  newAddExportedHeatEmissions: Boolean
+  newAddImportedElectricityEmissions: Boolean
+  newAddImportedHeatEmissions: Boolean
   newDescription: String
-  newIncludesExportedElectricity: Boolean
-  newIncludesExportedHeat: Boolean
-  newIncludesImportedElectricity: Boolean
-  newIncludesImportedHeat: Boolean
   newName: String
   newParent: [Int]
   newRequiresEmissionAllocation: Boolean

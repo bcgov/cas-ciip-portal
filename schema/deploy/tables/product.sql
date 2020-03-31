@@ -12,10 +12,10 @@ create table ggircs_portal.product (
   parent integer ARRAY,
   requires_emission_allocation boolean not null default false,
   is_ciip_product boolean not null default true,
-  includes_imported_electricity boolean,
-  includes_exported_electricity boolean,
-  includes_imported_heat boolean,
-  includes_exported_heat boolean,
+  add_imported_electricity_emissions boolean,
+  add_exported_electricity_emissions boolean,
+  add_imported_heat_emissions boolean,
+  add_exported_heat_emissions boolean,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
@@ -75,10 +75,10 @@ comment on column ggircs_portal.product.description is 'The description of the p
 comment on column ggircs_portal.product.units is 'The unit of measure for the product';
 comment on column ggircs_portal.product.requires_emission_allocation is 'Boolean value indicates if the product requires allocation of emissions';
 comment on column ggircs_portal.product.is_ciip_product is 'Boolean value indicates if the product is benchmarked and has an associated incentive';
-comment on column ggircs_portal.product.includes_imported_electricity is 'Boolean value indicates if the product should attribute imported electricity to emissions';
-comment on column ggircs_portal.product.includes_exported_electricity is 'Boolean value indicates if the product should attribute exported electricity to emissions';
-comment on column ggircs_portal.product.includes_imported_heat is 'Boolean value indicates if the product should attribute imported heat to emissions';
-comment on column ggircs_portal.product.includes_exported_heat is 'Boolean value indicates if the product should attribute exported heat to emissions';
+comment on column ggircs_portal.product.add_imported_electricity_emissions is  'Boolean value indicates if imported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
+comment on column ggircs_portal.product.add_exported_electricity_emissions is  'Boolean value indicates if exported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
+comment on column ggircs_portal.product.add_imported_heat_emissions is  'Boolean value indicates if imported heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
+comment on column ggircs_portal.product.add_exported_heat_emissions is  'Boolean value indicates if imported heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
 comment on column ggircs_portal.product.state is 'The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)';
 comment on column ggircs_portal.product.parent is 'The parent ID(s) (previous state) of the product';
 comment on column ggircs_portal.product.created_at is 'Creation date of row';

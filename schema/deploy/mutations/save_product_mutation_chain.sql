@@ -5,8 +5,8 @@
 begin;
 
 create or replace function ggircs_portal.save_product_mutation_chain(prev_id int, new_name varchar(1000), new_units varchar(1000), new_description varchar(1000),
-new_state varchar(1000), new_parent int[], new_requires_emission_allocation boolean, new_includes_imported_electricity boolean, new_includes_exported_electricity boolean,
-new_includes_imported_heat boolean, new_includes_exported_heat boolean)
+new_state varchar(1000), new_parent int[], new_requires_emission_allocation boolean, new_add_imported_electricity_emissions boolean, new_add_exported_electricity_emissions boolean,
+new_add_imported_heat_emissions boolean, new_add_exported_heat_emissions boolean)
 returns ggircs_portal.product
 as $function$
 declare
@@ -14,17 +14,17 @@ declare
   result ggircs_portal.product;
 begin
   --Insert new value into product table and update current benchmark to point to that product
-  insert into ggircs_portal.product(name, description, units, state, parent, requires_emission_allocation, includes_imported_electricity, includes_exported_electricity, includes_imported_heat, includes_exported_heat)
+  insert into ggircs_portal.product(name, description, units, state, parent, requires_emission_allocation, add_imported_electricity_emissions, add_exported_electricity, add_imported_heat_emissions, add_exported_heat_emissions)
   values (new_name,
           new_description,
           new_units,
           new_state,
           new_parent,
           new_requires_emission_allocation,
-          new_includes_imported_electricity,
-          new_includes_exported_electricity,
-          new_includes_imported_heat,
-          new_includes_exported_heat) returning id into new_id;
+          new_add_imported_electricity_emissions,
+          new_add_exported_electricity_emissions,
+          new_add_imported_heat_emissions,
+          new_add_exported_heat_emissions) returning id into new_id;
 
   update ggircs_portal.benchmark
   set product_id = new_id

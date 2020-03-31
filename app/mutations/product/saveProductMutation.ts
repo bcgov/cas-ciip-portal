@@ -15,10 +15,6 @@ const mutation = graphql`
         description
         state
         requiresEmissionAllocation
-        includesImportedElectricity
-        includesExportedElectricity
-        includesImportedHeat
-        includesExportedHeat
       }
     }
   }

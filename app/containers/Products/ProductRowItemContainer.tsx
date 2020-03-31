@@ -171,10 +171,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newUnits: product.units,
         newParent: [product.rowId],
         newRequiresEmissionAllocation: product.requiresEmissionAllocation,
-        newIncludesImportedElectricity: product.includesImportedElectricity,
-        newIncludesExportedElectricity: product.includesExportedElectricity,
-        newIncludesImportedHeat: product.includesImportedHeat,
-        newIncludesExportedHeat: product.includesExportedHeat
+        newAddImportedElectricity: product.addImportedElectricityEmissions,
+        newAddExportedElectricity: product.addExportedElectricityEmissions,
+        newAddImportedHeat: product.addImportedHeatEmissions,
+        newAddExportedHeat: product.addExportedHeatEmissions
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -192,10 +192,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newUnits: e.formData.units,
         newParent: [product.rowId],
         newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation,
-        newIncludesImportedElectricity: e.formData.includesImportedElectricity,
-        newIncludesExportedElectricity: e.formData.includesExportedElectricity,
-        newIncludesImportedHeat: e.formData.includesImportedHeat,
-        newIncludesExportedHeat: e.formData.includesExportedHeat
+        newAddImportedElectricityEmissions:
+          e.formData.addImportedElectricityEmissions,
+        newAddExportedElectricityEmissions:
+          e.formData.addExportedElectricityEmissions,
+        newAddImportedHeatEmissions: e.formData.addImportedHeatEmissions,
+        newAddExportedHeatEmissions: e.formData.addExportedHeatEmissions
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -467,10 +469,10 @@ export default createFragmentContainer(ProductRowItemComponent, {
       units
       requiresEmissionAllocation
       isCiipProduct
-      includesImportedElectricity
-      includesExportedElectricity
-      includesImportedHeat
-      includesExportedHeat
+      addImportedElectricityEmissions
+      addExportedElectricityEmissions
+      addImportedHeatEmissions
+      addExportedHeatEmissions
       benchmarksByProductId {
         edges {
           node {

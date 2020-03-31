@@ -30,13 +30,13 @@
           {
             "properties": {
               "requiresEmissionAllocation": {
-                "const": false
+                "const": true
               }
             }
           },
           {
             "properties": {
-              "includesImportedElectricity": {
+              "addImportedElectricityEmissions": {
                 "type": "boolean",
                 "title": "Include imported electricity?",
                 "enumNames": [
@@ -44,7 +44,7 @@
                   " No"
                 ]
               },
-              "includesExportedElectricity": {
+              "addExportedElectricityEmissions": {
                 "type": "boolean",
                 "title": "Include exported electricity?",
                 "enumNames": [
@@ -52,7 +52,7 @@
                   " No"
                 ]
               },
-              "includesImportedHeat": {
+              "addImportedHeatEmissions": {
                 "type": "boolean",
                 "title": "Include imported heat?",
                 "enumNames": [
@@ -60,7 +60,7 @@
                   " No"
                 ]
               },
-              "includesExportedHeat": {
+              "addExportedHeatEmissions": {
                 "type": "boolean",
                 "title": "Include exported heat?",
                 "enumNames": [
@@ -69,10 +69,10 @@
                 ]
               },
               "requiresEmissionAllocation": {
-                "const": true
+                "const": false
               }
             },
-            "required": ["includesImportedElectricity", "includesExportedElectricity", "includesImportedHeat", "includesExportedHeat"]
+            "required": ["addImportedElectricityEmissions", "addExportedElectricityEmissions", "addImportedHeatEmissions", "addExportedHeatEmissions"]
           }
         ]
       }
@@ -95,16 +95,16 @@
     "isCiipProduct": {
       "ui:help": "Non-CIIP products emissions are excluded from payment allocation. If a product has a fixed incentive ratio instead of a benchmark, please create a benchmark and use the mininmum and maximum incentive ratio options"
     },
-    "includesImportedElectricity": {
+    "addImportedElectricityEmissions": {
       "ui:widget": "radio"
     },
-    "includesExportedElectricity": {
+    "addExportedElectricityEmissions": {
       "ui:widget": "radio"
     },
-    "includesImportedHeat": {
+    "addImportedHeatEmissions": {
       "ui:widget": "radio"
     },
-    "includesExportedHeat": {
+    "addExportedHeatEmissions": {
       "ui:widget": "radio"
     }
   }
