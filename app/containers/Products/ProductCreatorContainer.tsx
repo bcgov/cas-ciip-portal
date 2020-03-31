@@ -11,12 +11,16 @@ import productSchema from './product-schema.json';
 
 interface Props {
   relay: RelayProp;
-  updateProductCount: any;
+  updateProductCount: (...args: any[]) => void;
+  toggleShowCreateForm: (...args: any[]) => void;
+  toggleShowProductCreatedToast: (...args: any[]) => void;
 }
 
 export const ProductCreator: React.FunctionComponent<Props> = ({
   relay,
-  updateProductCount
+  updateProductCount,
+  toggleShowCreateForm,
+  toggleShowProductCreatedToast
 }) => {
   const saveProduct = async (e: IChangeEvent) => {
     const variables = {
@@ -45,7 +49,9 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
     const {environment} = relay;
     const response = await createProductMutation(environment, variables);
     updateProductCount(response.createProduct.query.allProducts.totalCount);
-    console.log(response);
+    toggleShowCreateForm();
+    if (response.createProduct) toggleShowProductCreatedToast(true);
+    else console.log(response);
   };
 
   return (
@@ -66,6 +72,9 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
               onSubmit={saveProduct}
             >
               <Button type="submit">Add Product</Button>
+              <Button variant="danger" onClick={toggleShowCreateForm}>
+                Close
+              </Button>
             </JsonSchemaForm>
           </Card.Body>
         </Card>
