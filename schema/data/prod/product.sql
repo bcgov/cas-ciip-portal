@@ -39,7 +39,11 @@ values
 (33, 'Petroleum Refining','BC refining complexity factor unit','active',true),
 (34, 'Wood pellets', 'bone dry tonnes','active', true),
 (35, 'Wood chips', 'bone dry tonnes','active', true),
-(36, 'Waste rendering', 'tonnes','active', true)
+(36, 'Waste rendering', 'tonnes','active', true),
+(37, 'Imported electricity', 'MWh', 'active' ,true),
+(38, 'Imported heat', 'GJ', 'active' ,true),
+(39, 'Generated electricity', 'MWh', 'active' ,true),
+(40, 'Generated heat', 'GJ', 'active' ,true)
 on conflict(id) do update
 set
 name=excluded.name,
