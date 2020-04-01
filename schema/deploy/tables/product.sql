@@ -12,6 +12,7 @@ create table ggircs_portal.product (
   parent integer ARRAY,
   requires_emission_allocation boolean not null default false,
   is_ciip_product boolean not null default true,
+  is_production_amount_optional boolean default false,
   add_purchased_electricity_emissions boolean,
   subtract_exported_electricity_emissions boolean,
   add_purchased_heat_emissions boolean,
@@ -77,6 +78,7 @@ comment on column ggircs_portal.product.description is 'The description of the p
 comment on column ggircs_portal.product.units is 'The unit of measure for the product';
 comment on column ggircs_portal.product.requires_emission_allocation is 'Boolean value indicates if the product requires allocation of emissions';
 comment on column ggircs_portal.product.is_ciip_product is 'Boolean value indicates if the product is benchmarked and has an associated incentive';
+comment on column ggircs_portal.product.is_ciip_product is 'Boolean value indicates if reporting the production amount is optional for a non-ciip product';
 comment on column ggircs_portal.product.add_purchased_electricity_emissions is  'Boolean value indicates if purchased electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
 comment on column ggircs_portal.product.subtract_exported_electricity_emissions is  'Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
 comment on column ggircs_portal.product.add_purchased_heat_emissions is  'Boolean value indicates if purchased heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';

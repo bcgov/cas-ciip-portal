@@ -97,6 +97,31 @@
               "subtractGeneratedHeatEmissions"]
           }
         ]
+      },
+      "isCiipProduct": {
+        "oneOf": [
+          {
+            "properties": {
+              "isCiipProduct": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "isProductionAmountOptional": {
+                "type": "boolean",
+                "title": "Set reporting of production amount as optional?",
+                "enumNames": [
+                  " Yes",
+                  " No"
+                ]
+              }
+            },
+            "required": [
+              "isProductionAmountOptional"]
+          }
+        ]
       }
     },
     "required": ["name", "units", "requiresEmissionAllocation", "isCiipProduct"]
