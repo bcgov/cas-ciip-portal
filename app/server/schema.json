@@ -12150,7 +12150,7 @@
             },
             {
               "name": "isCiipProduct",
-              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
+              "description": "Boolean value indicates if reporting the production amount is optional for a non-ciip product",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -12160,6 +12160,18 @@
                   "name": "Boolean",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isProductionAmountOptional",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -22416,6 +22428,16 @@
               "defaultValue": null
             },
             {
+              "name": "isProductionAmountOptional",
+              "description": "Checks for equality with the object’s `isProductionAmountOptional` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "name",
               "description": "Checks for equality with the object’s `name` field.",
               "type": {
@@ -22656,6 +22678,18 @@
             },
             {
               "name": "IS_CIIP_PRODUCT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IS_PRODUCTION_AMOUNT_OPTIONAL_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IS_PRODUCTION_AMOUNT_OPTIONAL_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -34917,7 +34951,17 @@
             },
             {
               "name": "isCiipProduct",
-              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
+              "description": "Boolean value indicates if reporting the production amount is optional for a non-ciip product",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "isProductionAmountOptional",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -40370,6 +40414,26 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newIsCiipProduct",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newIsProductionAmountOptional",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null
@@ -46390,7 +46454,17 @@
             },
             {
               "name": "isCiipProduct",
-              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
+              "description": "Boolean value indicates if reporting the production amount is optional for a non-ciip product",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "isProductionAmountOptional",
+              "description": null,
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",

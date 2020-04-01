@@ -9704,9 +9704,10 @@ type Product implements Node {
   id: ID!
 
   """
-  Boolean value indicates if the product is benchmarked and has an associated incentive
+  Boolean value indicates if reporting the production amount is optional for a non-ciip product
   """
   isCiipProduct: Boolean!
+  isProductionAmountOptional: Boolean
 
   """The name of the product"""
   name: String!
@@ -9797,6 +9798,11 @@ input ProductCondition {
   """Checks for equality with the object’s `isCiipProduct` field."""
   isCiipProduct: Boolean
 
+  """
+  Checks for equality with the object’s `isProductionAmountOptional` field.
+  """
+  isProductionAmountOptional: Boolean
+
   """Checks for equality with the object’s `name` field."""
   name: String
 
@@ -9876,9 +9882,10 @@ input ProductInput {
   description: String
 
   """
-  Boolean value indicates if the product is benchmarked and has an associated incentive
+  Boolean value indicates if reporting the production amount is optional for a non-ciip product
   """
   isCiipProduct: Boolean
+  isProductionAmountOptional: Boolean
 
   """The name of the product"""
   name: String!
@@ -9968,9 +9975,10 @@ input ProductPatch {
   description: String
 
   """
-  Boolean value indicates if the product is benchmarked and has an associated incentive
+  Boolean value indicates if reporting the production amount is optional for a non-ciip product
   """
   isCiipProduct: Boolean
+  isProductionAmountOptional: Boolean
 
   """The name of the product"""
   name: String
@@ -10072,6 +10080,8 @@ enum ProductsOrderBy {
   ID_DESC
   IS_CIIP_PRODUCT_ASC
   IS_CIIP_PRODUCT_DESC
+  IS_PRODUCTION_AMOUNT_OPTIONAL_ASC
+  IS_PRODUCTION_AMOUNT_OPTIONAL_DESC
   NAME_ASC
   NAME_DESC
   NATURAL
@@ -11588,6 +11598,8 @@ input SaveProductMutationChainInput {
   newAddPurchasedElectricityEmissions: Boolean
   newAddPurchasedHeatEmissions: Boolean
   newDescription: String
+  newIsCiipProduct: Boolean
+  newIsProductionAmountOptional: Boolean
   newName: String
   newParent: [Int]
   newRequiresEmissionAllocation: Boolean
