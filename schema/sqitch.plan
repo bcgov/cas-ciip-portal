@@ -73,7 +73,6 @@ views/ciip_carbon_tax_calculation [swrs_functions/get_carbon_tax_data views/ciip
 search_functions/search_products [tables/product] 2019-11-21T19:48:58Z Dylan Leard <dylan@button.is> # Custom search function for products
 tables/certification_url [tables/application trigger_functions/set_random_id] 2019-12-03T19:58:18Z Dylan Leard <dylan@button.is> # Table containing the unique certification URL for an application and related data.
 views/ciip_emission [tables/application] 2019-12-13T00:12:13Z Matthieu Foucault <matthieu@button.is> # Add a view that calculates the total of non-biogenic emissions for an application
-views/ciip_incentive_payment [views/ciip_production views/ciip_emission tables/benchmark] 2019-12-17T20:40:18Z Matthieu Foucault <matthieu@button.is> # Add view calculating the incentive payment
 search_functions/search_organisation_facilities [tables/facility] 2019-12-04T18:42:11Z Helen Liu <helen@button.is> # added search filter for applications of facilities
 search_functions/search_all_facilities [tables/facility] 2019-12-06T00:27:16Z Helen Liu <helen@button.is> # added search function for all facilities
 computed_columns/application_latest_submitted_revision [tables/application_revision_status] 2019-12-12T18:40:39Z Dylan Leard <dylan@button.is> # Function to add computed column latest_submitted_revision to ggircs_portal.application
