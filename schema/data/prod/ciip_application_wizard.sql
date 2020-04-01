@@ -7,8 +7,7 @@ values
   (1, 0),
   (2, 1),
   (3, 2),
-  (4, 3),
-  (5, 4)
+  (4, 3)
 on conflict(form_id) do update
 set
   form_position=excluded.form_position
