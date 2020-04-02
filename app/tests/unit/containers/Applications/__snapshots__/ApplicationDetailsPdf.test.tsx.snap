@@ -994,16 +994,14 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "productRowId": -20000000,
-                    "productUnits": "mollit eu esse",
-                    "quantity": -80000000,
+                    "productRowId": -60000000,
                     "requiresEmissionAllocation": false,
+                    "requiresProductAmount": false,
                   },
                   Object {
-                    "productRowId": -80000000,
-                    "productUnits": "culpa",
-                    "quantity": -40000000,
+                    "productRowId": -60000000,
                     "requiresEmissionAllocation": false,
+                    "requiresProductAmount": false,
                   },
                 ]
               }
@@ -1043,28 +1041,51 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                             },
                           ],
                         },
+                        "requiresProductAmount": Object {
+                          "oneOf": Array [
+                            Object {
+                              "properties": Object {
+                                "productAmount": Object {
+                                  "title": "Annual Production Amount",
+                                  "type": "number",
+                                },
+                                "productUnits": Object {
+                                  "title": "Units",
+                                  "type": "string",
+                                },
+                                "requiresProductAmount": Object {
+                                  "const": true,
+                                },
+                              },
+                              "required": Array [
+                                "productAmount",
+                                "productUnits",
+                              ],
+                            },
+                            Object {
+                              "properties": Object {
+                                "requiresProductAmount": Object {
+                                  "const": false,
+                                },
+                              },
+                            },
+                          ],
+                        },
                       },
                       "properties": Object {
                         "productRowId": Object {
                           "title": "Product or Service",
                           "type": "integer",
                         },
-                        "productUnits": Object {
-                          "title": "Units",
-                          "type": "string",
-                        },
-                        "quantity": Object {
-                          "title": "Annual Production Amount",
-                          "type": "number",
-                        },
                         "requiresEmissionAllocation": Object {
+                          "type": "boolean",
+                        },
+                        "requiresProductAmount": Object {
                           "type": "boolean",
                         },
                       },
                       "required": Array [
                         "productRowId",
-                        "quantity",
-                        "productUnits",
                       ],
                       "type": "object",
                     },
@@ -1080,6 +1101,10 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "items": Object {
+                    "productAmount": Object {
+                      "ui:col-md": 4,
+                      "ui:help": "Report the annual production for the product, following the guidance document provided",
+                    },
                     "productEmissions": Object {
                       "ui:col-md": 4,
                       "ui:help": "Report emissions associated to CIIP product, in tCO2e",
@@ -1093,17 +1118,16 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "ui:col-md": 4,
                       "ui:readonly": true,
                     },
-                    "quantity": Object {
-                      "ui:col-md": 4,
-                      "ui:help": "Report the annual production for the product, following the guidance document provided",
-                    },
                     "requiresEmissionAllocation": Object {
+                      "ui:widget": "hidden",
+                    },
+                    "requiresProductAmount": Object {
                       "ui:widget": "hidden",
                     },
                     "ui:field": "product",
                     "ui:order": Array [
                       "productRowId",
-                      "quantity",
+                      "productAmount",
                       "productUnits",
                       "*",
                     ],
