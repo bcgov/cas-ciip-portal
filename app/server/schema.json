@@ -11914,8 +11914,8 @@
           "description": "Table containing the information for a CIIP product",
           "fields": [
             {
-              "name": "addImportedElectricityEmissions",
-              "description": "Boolean value indicates if imported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "name": "addPurchasedElectricityEmissions",
+              "description": "Boolean value indicates if purchased electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -11926,8 +11926,8 @@
               "deprecationReason": null
             },
             {
-              "name": "addImportedHeatEmissions",
-              "description": "Boolean value indicates if imported heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "name": "addPurchasedHeatEmissions",
+              "description": "Boolean value indicates if purchased heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -22336,8 +22336,8 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "addImportedElectricityEmissions",
-              "description": "Checks for equality with the object’s `addImportedElectricityEmissions` field.",
+              "name": "addPurchasedElectricityEmissions",
+              "description": "Checks for equality with the object’s `addPurchasedElectricityEmissions` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -22346,8 +22346,8 @@
               "defaultValue": null
             },
             {
-              "name": "addImportedHeatEmissions",
-              "description": "Checks for equality with the object’s `addImportedHeatEmissions` field.",
+              "name": "addPurchasedHeatEmissions",
+              "description": "Checks for equality with the object’s `addPurchasedHeatEmissions` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -22553,25 +22553,25 @@
           "interfaces": null,
           "enumValues": [
             {
-              "name": "ADD_IMPORTED_ELECTRICITY_EMISSIONS_ASC",
+              "name": "ADD_PURCHASED_ELECTRICITY_EMISSIONS_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "ADD_IMPORTED_ELECTRICITY_EMISSIONS_DESC",
+              "name": "ADD_PURCHASED_ELECTRICITY_EMISSIONS_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "ADD_IMPORTED_HEAT_EMISSIONS_ASC",
+              "name": "ADD_PURCHASED_HEAT_EMISSIONS_ASC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "ADD_IMPORTED_HEAT_EMISSIONS_DESC",
+              "name": "ADD_PURCHASED_HEAT_EMISSIONS_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -34846,8 +34846,8 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "addImportedElectricityEmissions",
-              "description": "Boolean value indicates if imported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "name": "addPurchasedElectricityEmissions",
+              "description": "Boolean value indicates if purchased electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -34856,8 +34856,8 @@
               "defaultValue": null
             },
             {
-              "name": "addImportedHeatEmissions",
-              "description": "Boolean value indicates if imported heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "name": "addPurchasedHeatEmissions",
+              "description": "Boolean value indicates if purchased heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -40345,7 +40345,7 @@
               "defaultValue": null
             },
             {
-              "name": "newAddImportedElectricityEmissions",
+              "name": "newAddPurchasedElectricityEmissions",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -40355,7 +40355,7 @@
               "defaultValue": null
             },
             {
-              "name": "newAddImportedHeatEmissions",
+              "name": "newAddPurchasedHeatEmissions",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -46319,8 +46319,8 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "addImportedElectricityEmissions",
-              "description": "Boolean value indicates if imported electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "name": "addPurchasedElectricityEmissions",
+              "description": "Boolean value indicates if purchased electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -46329,8 +46329,8 @@
               "defaultValue": null
             },
             {
-              "name": "addImportedHeatEmissions",
-              "description": "Boolean value indicates if imported heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "name": "addPurchasedHeatEmissions",
+              "description": "Boolean value indicates if purchased heat emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",

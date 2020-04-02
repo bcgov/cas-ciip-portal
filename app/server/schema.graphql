@@ -9632,18 +9632,18 @@ type PageInfo {
 """Table containing the information for a CIIP product"""
 type Product implements Node {
   """
-  Boolean value indicates if imported electricity emissions should be added to
+  Boolean value indicates if purchased electricity emissions should be added to
   the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
   """
-  addImportedElectricityEmissions: Boolean
+  addPurchasedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if imported heat emissions should be added to the
+  Boolean value indicates if purchased heat emissions should be added to the
   facility emissions when calculating the product emission intensity (applies
   only to products where requires_emission_allocation is false)
   """
-  addImportedHeatEmissions: Boolean
+  addPurchasedHeatEmissions: Boolean
 
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByProductId(
@@ -9770,14 +9770,14 @@ A condition to be used against `Product` object types. All fields are tested for
 """
 input ProductCondition {
   """
-  Checks for equality with the object’s `addImportedElectricityEmissions` field.
+  Checks for equality with the object’s `addPurchasedElectricityEmissions` field.
   """
-  addImportedElectricityEmissions: Boolean
+  addPurchasedElectricityEmissions: Boolean
 
   """
-  Checks for equality with the object’s `addImportedHeatEmissions` field.
+  Checks for equality with the object’s `addPurchasedHeatEmissions` field.
   """
-  addImportedHeatEmissions: Boolean
+  addPurchasedHeatEmissions: Boolean
 
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
@@ -9847,18 +9847,18 @@ input ProductCondition {
 """An input for mutations affecting `Product`"""
 input ProductInput {
   """
-  Boolean value indicates if imported electricity emissions should be added to
+  Boolean value indicates if purchased electricity emissions should be added to
   the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
   """
-  addImportedElectricityEmissions: Boolean
+  addPurchasedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if imported heat emissions should be added to the
+  Boolean value indicates if purchased heat emissions should be added to the
   facility emissions when calculating the product emission intensity (applies
   only to products where requires_emission_allocation is false)
   """
-  addImportedHeatEmissions: Boolean
+  addPurchasedHeatEmissions: Boolean
 
   """Creation date of row"""
   createdAt: Datetime
@@ -9939,18 +9939,18 @@ Represents an update to a `Product`. Fields that are set will be updated.
 """
 input ProductPatch {
   """
-  Boolean value indicates if imported electricity emissions should be added to
+  Boolean value indicates if purchased electricity emissions should be added to
   the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
   """
-  addImportedElectricityEmissions: Boolean
+  addPurchasedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if imported heat emissions should be added to the
+  Boolean value indicates if purchased heat emissions should be added to the
   facility emissions when calculating the product emission intensity (applies
   only to products where requires_emission_allocation is false)
   """
-  addImportedHeatEmissions: Boolean
+  addPurchasedHeatEmissions: Boolean
 
   """Creation date of row"""
   createdAt: Datetime
@@ -10054,10 +10054,10 @@ type ProductsEdge {
 
 """Methods to use when ordering `Product`."""
 enum ProductsOrderBy {
-  ADD_IMPORTED_ELECTRICITY_EMISSIONS_ASC
-  ADD_IMPORTED_ELECTRICITY_EMISSIONS_DESC
-  ADD_IMPORTED_HEAT_EMISSIONS_ASC
-  ADD_IMPORTED_HEAT_EMISSIONS_DESC
+  ADD_PURCHASED_ELECTRICITY_EMISSIONS_ASC
+  ADD_PURCHASED_ELECTRICITY_EMISSIONS_DESC
+  ADD_PURCHASED_HEAT_EMISSIONS_ASC
+  ADD_PURCHASED_HEAT_EMISSIONS_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   CREATED_BY_ASC
@@ -11585,8 +11585,8 @@ input SaveProductMutationChainInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  newAddImportedElectricityEmissions: Boolean
-  newAddImportedHeatEmissions: Boolean
+  newAddPurchasedElectricityEmissions: Boolean
+  newAddPurchasedHeatEmissions: Boolean
   newDescription: String
   newName: String
   newParent: [Int]
