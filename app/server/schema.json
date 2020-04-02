@@ -745,7 +745,6 @@
             {
               "name": "allCiipUsers",
               "description": "Reads and enables pagination through a set of `CiipUser`.",
->>>>>>> name changes from PR
               "args": [
                 {
                   "name": "after",
@@ -4951,7 +4950,6 @@
             {
               "name": "ciipUserByDeletedBy",
               "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
-<<<<<<< bb49f1643094dac8bfbe69c503920348394cfaca
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -5123,8 +5121,6 @@
             {
               "name": "id",
               "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
-=======
->>>>>>> name changes from PR
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -40105,11 +40101,7 @@
               "defaultValue": null
             },
             {
-<<<<<<< bb49f1643094dac8bfbe69c503920348394cfaca
-              "name": "newAddPurchasedElectricityEmissions",
-=======
               "name": "facilityId",
->>>>>>> name changes from PR
               "description": null,
               "type": {
                 "kind": "NON_NULL",
@@ -40205,9 +40197,6 @@
               "defaultValue": null
             },
             {
-<<<<<<< bb49f1643094dac8bfbe69c503920348394cfaca
-              "name": "newAddPurchasedHeatEmissions",
-=======
               "name": "facilityId",
               "description": null,
               "type": {
@@ -40259,7 +40248,6 @@
             },
             {
               "name": "json",
->>>>>>> name changes from PR
               "description": null,
               "args": [],
               "type": {
@@ -40401,7 +40389,7 @@
               "defaultValue": null
             },
             {
-              "name": "newAddImportedElectricityEmissions",
+              "name": "newAddPurchasedElectricityEmissions",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -40411,7 +40399,7 @@
               "defaultValue": null
             },
             {
-              "name": "newAddImportedHeatEmissions",
+              "name": "newAddPurchasedHeatEmissions",
               "description": null,
               "type": {
                 "kind": "SCALAR",

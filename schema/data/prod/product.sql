@@ -39,7 +39,7 @@ values
 (33, 'Petroleum Refining','BC refining complexity factor unit','active',true, true),
 (34, 'Wood pellets', 'bone dry tonnes','active', true, true),
 (35, 'Wood chips', 'bone dry tonnes','active', true, true),
-(36, 'Waste rendering', 'tonnes','active', true, true)
+(36, 'Waste rendering', 'tonnes','active', true, true),
 (37, 'Purchased electricity', 'GWh', 'active' ,true, true),
 (38, 'Purchased heat', 'GJ', 'active' ,true, true),
 (39, 'Generated electricity', 'GWh', 'active' ,true, true),
