@@ -8,7 +8,6 @@ import ApplicationDetailsContainer from 'containers/Applications/ApplicationDeta
 import adminForm from 'schema/data/prod/form_json/administration.json';
 import emissionForm from 'schema/data/prod/form_json/emission.json';
 import fuelForm from 'schema/data/prod/form_json/fuel.json';
-import electricityAndHeatForm from 'schema/data/prod/form_json/electricity_and_heat.json';
 import productionForm from 'schema/data/prod/form_json/production.json';
 import {FormJson} from 'next-env';
 import {generateFakeSchemaData} from 'tests/integration/json-schema-utils';
@@ -159,18 +158,6 @@ describe('ApplicationDetailsContainer', () => {
                       formJsonByFormId: {
                         name: 'Fuel',
                         formJson: fuelForm
-                      }
-                    }
-                  },
-                  {
-                    node: {
-                      id: 'E&H',
-                      formResult: generateFakeSchemaData(
-                        electricityAndHeatForm as FormJson
-                      ),
-                      formJsonByFormId: {
-                        name: 'Electricity and Heat',
-                        formJson: electricityAndHeatForm
                       }
                     }
                   },

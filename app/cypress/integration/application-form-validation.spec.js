@@ -6,7 +6,7 @@ describe('When reviewing a submitted application as an analyst', () => {
       Cypress.env('TEST_REPORTER_PASSWORD')
     );
     const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results", 11]');
+    const formResultId = window.btoa('["form_results", 9]');
     cy.visit(
       `/reporter/ciip-application?applicationId=${applicationId}&version=1&formResultId=${formResultId}`
     );
@@ -295,25 +295,8 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('.invalid-feedback').contains('is a required property');
     cy.percySnapshot('fuel');
 
-    // Electricity / Heat Form
-    cy.get(':nth-child(4) > .nav-link').click();
-    cy.contains('Continue').click();
-    cy.get('#root_electricity_purchased +div .error-detail').contains(
-      'is a required property'
-    );
-    cy.get('#root_electricity_generatedOnSite +div .error-detail').contains(
-      'is a required property'
-    );
-    cy.get('#root_electricity_consumedOnSite +div .error-detail').contains(
-      'is a required property'
-    );
-    cy.get('#root_electricity_sold +div .error-detail').contains(
-      'is a required property'
-    );
-    cy.percySnapshot('electricity-heat');
-
     // Production Form
-    cy.get(':nth-child(5) > .nav-link').click();
+    cy.get(':nth-child(4) > .nav-link').click();
     cy.contains('Continue').click();
     cy.get('.rbt +div .error-detail').contains('is a required property');
     cy.get('#root_0_quantity +div .error-detail').contains(

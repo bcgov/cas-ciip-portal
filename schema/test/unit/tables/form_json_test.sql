@@ -25,7 +25,7 @@ select results_eq(
   $$
     select count(*) from ggircs_portal.form_json
   $$,
-  ARRAY[5::bigint],
+  ARRAY[4::bigint],
   'ciip_administrator can view all data in form_json table'
 );
 
@@ -76,7 +76,7 @@ select results_eq(
   $$
     select count(*) from ggircs_portal.form_json
   $$,
-  ARRAY[6::bigint],
+  ARRAY[5::bigint],
   'ciip_industry_user can view all data in form_json table'
 );
 
@@ -113,7 +113,7 @@ select results_eq(
   $$
     select count(*) from ggircs_portal.form_json
   $$,
-  ARRAY[6::bigint],
+  ARRAY[5::bigint],
   'ciip_analyst can view all data in form_json table'
 );
 

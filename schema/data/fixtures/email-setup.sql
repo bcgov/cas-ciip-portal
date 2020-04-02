@@ -337,23 +337,6 @@ update ggircs_portal.form_result set form_result = '[
   }]
   '
   where application_id=2 and version_number=1 and form_id=3;
-update ggircs_portal.form_result set form_result = '{
-  "heat": {
-    "sold": 0,
-    "quantity": 6,
-    "purchased": 0,
-    "consumedOnSite": 5,
-    "generatedOnSite": 0
-  }, "electricity": {
-    "sold": 7,
-    "quantity": 2,
-    "purchased": 0,
-    "consumedOnSite": 87,
-    "generatedOnSite": 0
-  }
-  }
-  '
-  where application_id=2 and version_number=1 and form_id=4;
 update ggircs_portal.form_result set form_result = '[
     {
       "quantity": 87600,
@@ -401,6 +384,6 @@ update ggircs_portal.form_result set form_result = '[
       "importedHeatAllocationFactor": 20
     }
   ]'
-  where application_id=2 and version_number=1 and form_id=5;
+  where application_id=2 and version_number=1 and form_id=4;
 
 commit;

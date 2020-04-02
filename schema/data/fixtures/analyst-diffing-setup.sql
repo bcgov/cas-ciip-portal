@@ -32,8 +32,6 @@ update ggircs_portal.form_result set form_result='{"sourceTypes": [{"gases": [{"
   where application_id=1 and version_number=1 and form_id=2;
 update ggircs_portal.form_result set form_result='[{"fuelType": "C/D Waste - Plastic", "quantity": 4, "fuelUnits": "t", "methodology": "wci 1.0"}, {"fuelType": "Butane", "quantity": 400, "fuelUnits": "kL", "methodology": "wci 1.0"}]'
   where application_id=1 and version_number=1 and form_id=3;
-update ggircs_portal.form_result set form_result='{"heat": {"sold": 81, "quantity": 96, "purchased": 29, "consumedOnsite": 54, "generatedOnsite": 44}, "electricity": {"sold": 57, "quantity": 28, "purchased": 22, "consumedOnsite": 87, "generatedOnsite": 66}}'
-  where application_id=1 and version_number=1 and form_id=4;
 update ggircs_portal.form_result set form_result='[
     {
       "quantity": 8760000,
@@ -76,7 +74,7 @@ update ggircs_portal.form_result set form_result='[
       "importedElectricityAllocationFactor": 20,
       "importedHeatAllocationFactor": 20
     }
-  ]' where application_id=1 and version_number=1 and form_id=5;
+  ]' where application_id=1 and version_number=1 and form_id=4;
 
 
 update ggircs_portal.form_result set form_result='{"operator": {"name": "Changed"}}' where application_id=1 and version_number=2 and form_id=1;
@@ -84,8 +82,6 @@ update ggircs_portal.form_result set form_result='{"sourceTypes": [{"gases": [{"
   where application_id=1 and version_number=2 and form_id=2;
 update ggircs_portal.form_result set form_result='[{"fuelType": "C/D Waste - Plastic", "quantity": 10, "fuelUnits": "t", "methodology": "wci 2.0"}, {"fuelType": "Butane", "quantity": 40120, "fuelUnits": "kL", "methodology": "wci 1.0"}]'
   where application_id=1 and version_number=2 and form_id=3;
-update ggircs_portal.form_result set form_result='{"heat": {"sold": 0, "quantity": 6, "purchased": 29, "consumedOnsite": 5, "generatedOnsite": 44}, "electricity": {"sold": 7, "quantity": 2, "purchased": 22, "consumedOnsite": 87, "generatedOnsite": 66}}'
-  where application_id=1 and version_number=2 and form_id=4;
 update ggircs_portal.form_result set form_result='[
     {
       "quantity": 87600,
@@ -129,6 +125,6 @@ update ggircs_portal.form_result set form_result='[
       "importedHeatAllocationFactor": 20
     }
   ]'
-  where application_id=1 and version_number=2 and form_id=5;
+  where application_id=1 and version_number=2 and form_id=4;
 
 commit;

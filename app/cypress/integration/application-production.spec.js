@@ -10,7 +10,7 @@ describe('The production tab', () => {
       Cypress.env('TEST_REPORTER_PASSWORD')
     );
     const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results", 15]');
+    const formResultId = window.btoa('["form_results", 12]');
     cy.visit(
       `/reporter/ciip-application?formResultId=${formResultId}&applicationId=${applicationId}&version=1`
     );

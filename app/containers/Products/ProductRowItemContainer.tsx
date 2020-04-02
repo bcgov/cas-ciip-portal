@@ -171,11 +171,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newUnits: product.units,
         newParent: [product.rowId],
         newRequiresEmissionAllocation: product.requiresEmissionAllocation,
-        newAddImportedElectricityEmissions:
-          product.addImportedElectricityEmissions,
+        newAddPurchasedElectricityEmissions:
+          product.addPurchasedElectricityEmissions,
         newSubtractExportedElectricityEmissions:
           product.subtractExportedElectricityEmissions,
-        newAddImportedHeatEmissions: product.addImportedHeatEmissions,
+        newAddPurchasedHeatEmissions: product.addPurchasedHeatEmissions,
         newSubtractExportedHeatEmissions: product.subtractExportedHeatEmissions,
         newSubtractGeneratedElectricityEmissions:
           product.subtractGeneratedElectricityEmissions,
@@ -199,11 +199,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newUnits: e.formData.units,
         newParent: [product.rowId],
         newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation,
-        newAddImportedElectricityEmissions:
-          e.formData.addImportedElectricityEmissions,
+        newAddPurchasedElectricityEmissions:
+          e.formData.addPurchasedElectricityEmissions,
         newSubtractExportedElectricityEmissions:
           e.formData.subtractExportedElectricityEmissions,
-        newAddImportedHeatEmissions: e.formData.addImportedHeatEmissions,
+        newAddPurchasedHeatEmissions: e.formData.addPurchasedHeatEmissions,
         newSubtractExportedHeatEmissions:
           e.formData.subtractExportedHeatEmissions,
         newSubtractGeneratedElectricityEmissions:
@@ -481,9 +481,9 @@ export default createFragmentContainer(ProductRowItemComponent, {
       units
       requiresEmissionAllocation
       isCiipProduct
-      addImportedElectricityEmissions
+      addPurchasedElectricityEmissions
       subtractExportedElectricityEmissions
-      addImportedHeatEmissions
+      addPurchasedHeatEmissions
       subtractExportedHeatEmissions
       subtractGeneratedElectricityEmissions
       subtractGeneratedHeatEmissions

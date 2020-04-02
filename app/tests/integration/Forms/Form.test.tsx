@@ -8,7 +8,6 @@ import Form from 'containers/Forms/Form';
 import adminForm from 'schema/data/prod/form_json/administration.json';
 import emissionForm from 'schema/data/prod/form_json/emission.json';
 import fuelForm from 'schema/data/prod/form_json/fuel.json';
-import electricityAndHeatForm from 'schema/data/prod/form_json/electricity_and_heat.json';
 import productionForm from 'schema/data/prod/form_json/production.json';
 import {FormJson} from 'next-env';
 import {generateFakeSchemaData} from 'tests/integration/json-schema-utils';
@@ -111,28 +110,6 @@ describe('Form', () => {
               formJsonByFormId: {
                 name: 'Emission',
                 formJson: emissionForm
-              }
-            }
-          };
-        }
-      })
-    );
-    expect(renderer).toMatchSnapshot();
-  });
-
-  it('should match the snapshot with the electricity and heat form', async () => {
-    const renderer = create(<TestRenderer />);
-    environment.mock.resolveMostRecentOperation(operation =>
-      MockPayloadGenerator.generate(operation, {
-        Query() {
-          return {
-            result: {
-              formResult: generateFakeSchemaData(
-                electricityAndHeatForm as FormJson
-              ),
-              formJsonByFormId: {
-                name: 'Electricity And Heat',
-                formJson: electricityAndHeatForm
               }
             }
           };
