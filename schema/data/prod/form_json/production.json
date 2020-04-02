@@ -22,8 +22,12 @@
           },
           "requiresEmissionAllocation": {
             "type": "boolean"
+          },
+          "isProductionAmountOptional": {
+            "type": "boolean"
           }
         },
+
         "dependencies": {
           "requiresEmissionAllocation": {
             "oneOf": [
@@ -48,9 +52,22 @@
                 "required": ["productEmissions"]
               }
             ]
+          },
+          "isProductionAmountOptional" : {
+            "oneOf": [{
+              "properties": {
+                "isProductionAmountOptional": { "const": true }
+              },
+              "required": ["productRowId", "productUnits"]
+            },
+            {
+              "properties": {
+                "isProductionAmountOptional": { "const": false }
+              },
+              "required": ["productRowId", "quantity", "productUnits"]
+            }]
           }
-        },
-        "required": ["productRowId", "quantity", "productUnits"]
+        }
       }
     }
   },
@@ -77,7 +94,8 @@
         "ui:col-md": 4,
         "ui:help": "Report emissions associated to CIIP product, in tCO2e"
       },
-      "requiresEmissionAllocation": { "ui:widget": "hidden" }
+      "requiresEmissionAllocation": { "ui:widget": "hidden" },
+      "isProductionAmountOptional": { "ui:widget": "hidden" }
     }
   }
 }
