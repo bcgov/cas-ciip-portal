@@ -6,7 +6,6 @@ import {ApplicationDetailsPdf} from 'containers/Applications/ApplicationDetailsP
 import adminForm from 'schema/data/prod/form_json/administration.json';
 import emissionForm from 'schema/data/prod/form_json/emission.json';
 import fuelForm from 'schema/data/prod/form_json/fuel.json';
-import electricityAndHeatForm from 'schema/data/prod/form_json/electricity_and_heat.json';
 import productionForm from 'schema/data/prod/form_json/production.json';
 import {generateFakeSchemaData} from '../../../integration/json-schema-utils';
 
@@ -60,17 +59,6 @@ describe('ApplicationDetailsPdf', () => {
                   formJsonByFormId: {
                     name: 'Fuel',
                     formJson: fuelForm
-                  }
-                }
-              },
-              {
-                node: {
-                  formResult: generateFakeSchemaData(
-                    electricityAndHeatForm as FormJson
-                  ),
-                  formJsonByFormId: {
-                    name: 'Electricity and Heat',
-                    formJson: electricityAndHeatForm
                   }
                 }
               },
