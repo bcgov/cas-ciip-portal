@@ -47,15 +47,7 @@
     "space": true,
     "prettier": true,
     "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
     "rules": {
-      "cypress/no-unnecessary-waiting": 0,
       "@typescript-eslint/indent": 0,
       "@typescript-eslint/semi": 0,
       "@typescript-eslint/no-var-requires": 0,
@@ -69,6 +61,10 @@
       "@typescript-eslint/restrict-template-expressions": 0,
       "@typescript-eslint/no-unused-vars": 0,
       "@typescript-eslint/no-unused-vars-experimental": 1,
+      "@typescript-eslint/prefer-readonly-parameter-types": 0,
+      "@typescript-eslint/no-unsafe-member-access": 0,
+      "@typescript-eslint/no-unsafe-call": 0,
+      "@typescript-eslint/no-unsafe-return": 0,
       "@typescript-eslint/quotes": [
         1,
         "single",
@@ -107,7 +103,8 @@
         "rules": {
           "jest/valid-expect-in-promise": 0,
           "promise/prefer-await-to-then": 0,
-          "no-unused-expressions": 0
+          "no-unused-expressions": 0,
+          "cypress/no-unnecessary-waiting": 0
         }
       }
     ]
@@ -174,6 +171,7 @@
     "@types/react-jsonschema-form": "^1.7.0",
     "@types/react-relay": "^7.0.3",
     "@types/relay-runtime": "^8.0.0",
+    "@types/relay-test-utils": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.20.0",
     "axe-core": "^3.5.1",
@@ -194,7 +192,7 @@
     "eslint": "^6.5.1",
     "eslint-config-xo": "^0.29.1",
     "eslint-config-xo-react": "^0.23.0",
-    "eslint-config-xo-typescript": "^0.26.0",
+    "eslint-config-xo-typescript": "^0.27.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-jest": "^23.6.0",
     "eslint-plugin-react": "^7.16.0",
