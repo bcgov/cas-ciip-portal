@@ -13,7 +13,7 @@ values
 (7, 'Copper equivalent (underground)','tonnes of Copper equivalent','active' ,true),
 (8, 'Food (including seedlings) grown under cover', 'hectares of growing space', 'active' ,true),
 (9, 'District energy (heat)', 'MWh','active' ,true),
-(10, 'Exported electricity', 'MWh', 'active' ,true),
+(10, 'Exported electricity', 'GWh', 'active' ,true),
 (11, 'Exported heat', 'GJ', 'active' ,true),
 (12, 'Gold equivalent','tonnes of gold equivalent','active', true),
 (13, 'Forged steel balls (grinding media <3.5")','tonnes','active', true),
@@ -40,9 +40,9 @@ values
 (34, 'Wood pellets', 'bone dry tonnes','active', true),
 (35, 'Wood chips', 'bone dry tonnes','active', true),
 (36, 'Waste rendering', 'tonnes','active', true),
-(37, 'Imported electricity', 'MWh', 'active' ,true),
-(38, 'Imported heat', 'GJ', 'active' ,true),
-(39, 'Generated electricity', 'MWh', 'active' ,true),
+(37, 'Purchased electricity', 'GWh', 'active' ,true),
+(38, 'Purchased heat', 'GJ', 'active' ,true),
+(39, 'Generated electricity', 'GWh', 'active' ,true),
 (40, 'Generated heat', 'GJ', 'active' ,true)
 on conflict(id) do update
 set

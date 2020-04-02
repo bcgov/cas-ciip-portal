@@ -32,11 +32,11 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
           state: 'active',
           parent: [null],
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
-          addImportedElectricityEmissions:
-            e.formData.addImportedElectricityEmissions,
+          addPurchasedElectricityEmissions:
+            e.formData.addPurchasedElectricityEmissions,
           subtractExportedElectricityEmissions:
             e.formData.subtractExportedElectricityEmissions,
-          addImportedHeatEmissions: e.formData.addImportedHeatEmissions,
+          addPurchasedHeatEmissions: e.formData.addPurchasedHeatEmissions,
           subtractExportedHeatEmissions:
             e.formData.subtractExportedHeatEmissions,
           subtractGeneratedElectricityEmissions:

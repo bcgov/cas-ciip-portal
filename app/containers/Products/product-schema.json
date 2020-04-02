@@ -36,9 +36,9 @@
           },
           {
             "properties": {
-              "addImportedElectricityEmissions": {
+              "addPurchasedElectricityEmissions": {
                 "type": "boolean",
-                "title": "Add imported electricity?",
+                "title": "Add purchased electricity?",
                 "enumNames": [
                   " Yes",
                   " No"
@@ -52,9 +52,9 @@
                   " No"
                 ]
               },
-              "addImportedHeatEmissions": {
+              "addPurchasedHeatEmissions": {
                 "type": "boolean",
-                "title": "Add imported heat?",
+                "title": "Add purchased heat?",
                 "enumNames": [
                   " Yes",
                   " No"
@@ -89,9 +89,9 @@
               }
             },
             "required": [
-              "addImportedElectricityEmissions",
+              "addPurchasedElectricityEmissions",
               "subtractExportedElectricityEmissions",
-              "addImportedHeatEmissions",
+              "addPurchasedHeatEmissions",
               "subtractExportedHeatEmissions",
               "subtractGeneratedElectricityEmissions",
               "subtractGeneratedHeatEmissions"]
@@ -117,17 +117,17 @@
     "isCiipProduct": {
       "ui:help": "Non-CIIP products emissions are excluded from payment allocation. If a product has a fixed incentive ratio instead of a benchmark, please create a benchmark and use the mininmum and maximum incentive ratio options"
     },
-    "addImportedElectricityEmissions": {
+    "addPurchasedElectricityEmissions": {
       "ui:widget": "radio",
-      "ui:help": "Should imported electricity be added to the facility emissions when calculating emission intensity?"
+      "ui:help": "Should purchased electricity be added to the facility emissions when calculating emission intensity?"
     },
     "subtractExportedElectricityEmissions": {
       "ui:widget": "radio",
       "ui:help": "Should exported electricity be subtracted from the facility emissions when calculating emission intensity?"
     },
-    "addImportedHeatEmissions": {
+    "addPurchasedHeatEmissions": {
       "ui:widget": "radio",
-      "ui:help": "Should imported heat be added to the facility emissions when calculating emission intensity?"
+      "ui:help": "Should purchased heat be added to the facility emissions when calculating emission intensity?"
     },
     "subtractExportedHeatEmissions": {
       "ui:widget": "radio",
