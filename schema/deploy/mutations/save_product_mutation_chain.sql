@@ -7,7 +7,7 @@ begin;
 create or replace function ggircs_portal.save_product_mutation_chain(prev_id int, new_name varchar(1000), new_units varchar(1000), new_description varchar(1000),
 new_state varchar(1000), new_parent int[], new_requires_emission_allocation boolean, new_is_ciip_product boolean, new_add_imported_electricity_emissions boolean, new_subtract_exported_electricity_emissions boolean,
 new_add_purchased_heat_emissions boolean, new_subtract_exported_heat_emissions boolean, new_subtract_generated_electricity_emissions boolean, new_subtract_generated_heat_emissions boolean)
-new_is_production_amount_optional boolean)
+new_requires_product_amount boolean)
 returns ggircs_portal.product
 as $function$
 declare
@@ -29,7 +29,7 @@ begin
           subtract_exported_heat_emissions,
           subtract_generated_electricity_emissions,
           subtract_generated_heat_emissions,
-          is_production_amount_optional)
+          requires_product_amount)
   values (new_name,
           new_description,
           new_units,
@@ -43,7 +43,7 @@ begin
           new_subtract_exported_heat_emissions,
           new_subtract_generated_electricity_emissions,
           new_subtract_generated_heat_emissions,
-          new_is_production_amount_optional) returning id into new_id;
+          new_requires_product_amount) returning id into new_id;
 
   update ggircs_portal.benchmark
   set product_id = new_id

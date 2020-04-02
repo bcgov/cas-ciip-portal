@@ -9704,10 +9704,9 @@ type Product implements Node {
   id: ID!
 
   """
-  Boolean value indicates if reporting the production amount is optional for a non-ciip product
+  Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean!
-  isProductionAmountOptional: Boolean
 
   """The name of the product"""
   name: String!
@@ -9719,6 +9718,11 @@ type Product implements Node {
   Boolean value indicates if the product requires allocation of emissions
   """
   requiresEmissionAllocation: Boolean!
+
+  """
+  Boolean value indicates if reporting the production amount is required for a non-ciip product
+  """
+  requiresProductAmount: Boolean
 
   """Unique ID for the product"""
   rowId: Int!
@@ -9798,11 +9802,6 @@ input ProductCondition {
   """Checks for equality with the object’s `isCiipProduct` field."""
   isCiipProduct: Boolean
 
-  """
-  Checks for equality with the object’s `isProductionAmountOptional` field.
-  """
-  isProductionAmountOptional: Boolean
-
   """Checks for equality with the object’s `name` field."""
   name: String
 
@@ -9813,6 +9812,9 @@ input ProductCondition {
   Checks for equality with the object’s `requiresEmissionAllocation` field.
   """
   requiresEmissionAllocation: Boolean
+
+  """Checks for equality with the object’s `requiresProductAmount` field."""
+  requiresProductAmount: Boolean
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
@@ -9882,10 +9884,9 @@ input ProductInput {
   description: String
 
   """
-  Boolean value indicates if reporting the production amount is optional for a non-ciip product
+  Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean
-  isProductionAmountOptional: Boolean
 
   """The name of the product"""
   name: String!
@@ -9897,6 +9898,11 @@ input ProductInput {
   Boolean value indicates if the product requires allocation of emissions
   """
   requiresEmissionAllocation: Boolean
+
+  """
+  Boolean value indicates if reporting the production amount is required for a non-ciip product
+  """
+  requiresProductAmount: Boolean
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -9975,10 +9981,9 @@ input ProductPatch {
   description: String
 
   """
-  Boolean value indicates if reporting the production amount is optional for a non-ciip product
+  Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean
-  isProductionAmountOptional: Boolean
 
   """The name of the product"""
   name: String
@@ -9990,6 +9995,11 @@ input ProductPatch {
   Boolean value indicates if the product requires allocation of emissions
   """
   requiresEmissionAllocation: Boolean
+
+  """
+  Boolean value indicates if reporting the production amount is required for a non-ciip product
+  """
+  requiresProductAmount: Boolean
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -10080,8 +10090,6 @@ enum ProductsOrderBy {
   ID_DESC
   IS_CIIP_PRODUCT_ASC
   IS_CIIP_PRODUCT_DESC
-  IS_PRODUCTION_AMOUNT_OPTIONAL_ASC
-  IS_PRODUCTION_AMOUNT_OPTIONAL_DESC
   NAME_ASC
   NAME_DESC
   NATURAL
@@ -10091,6 +10099,8 @@ enum ProductsOrderBy {
   PRIMARY_KEY_DESC
   REQUIRES_EMISSION_ALLOCATION_ASC
   REQUIRES_EMISSION_ALLOCATION_DESC
+  REQUIRES_PRODUCT_AMOUNT_ASC
+  REQUIRES_PRODUCT_AMOUNT_DESC
   STATE_ASC
   STATE_DESC
   SUBTRACT_EXPORTED_ELECTRICITY_EMISSIONS_ASC
@@ -11599,10 +11609,10 @@ input SaveProductMutationChainInput {
   newAddPurchasedHeatEmissions: Boolean
   newDescription: String
   newIsCiipProduct: Boolean
-  newIsProductionAmountOptional: Boolean
   newName: String
   newParent: [Int]
   newRequiresEmissionAllocation: Boolean
+  newRequiresProductAmount: Boolean
   newState: String
   newSubtractExportedElectricityEmissions: Boolean
   newSubtractExportedHeatEmissions: Boolean

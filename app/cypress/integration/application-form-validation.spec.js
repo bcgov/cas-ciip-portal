@@ -299,7 +299,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get(':nth-child(4) > .nav-link').click();
     cy.contains('Continue').click();
     cy.get('.rbt +div .error-detail').contains('is a required property');
-    cy.get('#root_0_quantity +div .error-detail').contains(
+    cy.get('#root_0_productAmount +div .error-detail').contains(
       'is a required property'
     );
     cy.get('#root_0_productUnits +div .error-detail').contains(

@@ -182,7 +182,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           product.subtractGeneratedElectricityEmissions,
         newSubtractGeneratedHeatEmissions:
           product.subtractGeneratedHeatEmissions,
-        newIsProductionAmountOptional: product.isProductionAmountOptional
+        newRequiresProductAmount: product.requiresProductAmount
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -213,7 +213,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           e.formData.subtractGeneratedElectricityEmissions,
         newSubtractGeneratedHeatEmissions:
           e.formData.subtractGeneratedHeatEmissions,
-        newIsProductionAmountOptional: e.formData.isProductionAmountOptional
+        newRequiresProductAmount: e.formData.requiresProductAmount
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -491,7 +491,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
       subtractExportedHeatEmissions
       subtractGeneratedElectricityEmissions
       subtractGeneratedHeatEmissions
-      isProductionAmountOptional
+      requiresProductAmount
       benchmarksByProductId {
         edges {
           node {

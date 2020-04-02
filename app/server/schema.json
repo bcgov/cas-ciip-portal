@@ -745,6 +745,7 @@
             {
               "name": "allCiipUsers",
               "description": "Reads and enables pagination through a set of `CiipUser`.",
+>>>>>>> name changes from PR
               "args": [
                 {
                   "name": "after",
@@ -4950,6 +4951,7 @@
             {
               "name": "ciipUserByDeletedBy",
               "description": "Reads a single `CiipUser` that is related to this `ApplicationRevision`.",
+<<<<<<< bb49f1643094dac8bfbe69c503920348394cfaca
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -5121,6 +5123,8 @@
             {
               "name": "id",
               "description": "A globally unique identifier. Can be used in various places throughout the system to identify this single value.",
+=======
+>>>>>>> name changes from PR
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -12150,7 +12154,7 @@
             },
             {
               "name": "isCiipProduct",
-              "description": "Boolean value indicates if reporting the production amount is optional for a non-ciip product",
+              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -12160,18 +12164,6 @@
                   "name": "Boolean",
                   "ofType": null
                 }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "isProductionAmountOptional",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -12220,6 +12212,18 @@
                   "name": "Boolean",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "requiresProductAmount",
+              "description": "Boolean value indicates if reporting the production amount is required for a non-ciip product",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -22428,16 +22432,6 @@
               "defaultValue": null
             },
             {
-              "name": "isProductionAmountOptional",
-              "description": "Checks for equality with the object’s `isProductionAmountOptional` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "name",
               "description": "Checks for equality with the object’s `name` field.",
               "type": {
@@ -22464,6 +22458,16 @@
             {
               "name": "requiresEmissionAllocation",
               "description": "Checks for equality with the object’s `requiresEmissionAllocation` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "requiresProductAmount",
+              "description": "Checks for equality with the object’s `requiresProductAmount` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -22683,18 +22687,6 @@
               "deprecationReason": null
             },
             {
-              "name": "IS_PRODUCTION_AMOUNT_OPTIONAL_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "IS_PRODUCTION_AMOUNT_OPTIONAL_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "NAME_ASC",
               "description": null,
               "isDeprecated": false,
@@ -22744,6 +22736,18 @@
             },
             {
               "name": "REQUIRES_EMISSION_ALLOCATION_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REQUIRES_PRODUCT_AMOUNT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REQUIRES_PRODUCT_AMOUNT_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -34951,17 +34955,7 @@
             },
             {
               "name": "isCiipProduct",
-              "description": "Boolean value indicates if reporting the production amount is optional for a non-ciip product",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "isProductionAmountOptional",
-              "description": null,
+              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -35000,6 +34994,16 @@
             {
               "name": "requiresEmissionAllocation",
               "description": "Boolean value indicates if the product requires allocation of emissions",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "requiresProductAmount",
+              "description": "Boolean value indicates if reporting the production amount is required for a non-ciip product",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -40101,7 +40105,11 @@
               "defaultValue": null
             },
             {
+<<<<<<< bb49f1643094dac8bfbe69c503920348394cfaca
+              "name": "newAddPurchasedElectricityEmissions",
+=======
               "name": "facilityId",
+>>>>>>> name changes from PR
               "description": null,
               "type": {
                 "kind": "NON_NULL",
@@ -40197,6 +40205,9 @@
               "defaultValue": null
             },
             {
+<<<<<<< bb49f1643094dac8bfbe69c503920348394cfaca
+              "name": "newAddPurchasedHeatEmissions",
+=======
               "name": "facilityId",
               "description": null,
               "type": {
@@ -40248,6 +40259,7 @@
             },
             {
               "name": "json",
+>>>>>>> name changes from PR
               "description": null,
               "args": [],
               "type": {
@@ -40389,7 +40401,7 @@
               "defaultValue": null
             },
             {
-              "name": "newAddPurchasedElectricityEmissions",
+              "name": "newAddImportedElectricityEmissions",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -40399,7 +40411,7 @@
               "defaultValue": null
             },
             {
-              "name": "newAddPurchasedHeatEmissions",
+              "name": "newAddImportedHeatEmissions",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -40420,16 +40432,6 @@
             },
             {
               "name": "newIsCiipProduct",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "newIsProductionAmountOptional",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -40464,6 +40466,16 @@
             },
             {
               "name": "newRequiresEmissionAllocation",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newRequiresProductAmount",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -46454,17 +46466,7 @@
             },
             {
               "name": "isCiipProduct",
-              "description": "Boolean value indicates if reporting the production amount is optional for a non-ciip product",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "isProductionAmountOptional",
-              "description": null,
+              "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -46499,6 +46501,16 @@
             {
               "name": "requiresEmissionAllocation",
               "description": "Boolean value indicates if the product requires allocation of emissions",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "requiresProductAmount",
+              "description": "Boolean value indicates if reporting the production amount is required for a non-ciip product",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",

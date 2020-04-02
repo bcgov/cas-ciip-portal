@@ -29,7 +29,7 @@ returns setof ggircs_portal.product as
                   )
                   select
                     id, name, description, units,
-                    state, parent, requires_emission_allocation, is_ciip_product, is_production_amount_optional, subtract_exported_electricity_emissions, subtract_exported_electricity_emissions, subtract_exported_heat_emissions, subtract_exported_heat_emissions,
+                    state, parent, requires_emission_allocation, is_ciip_product, requires_product_amount, subtract_exported_electricity_emissions, subtract_exported_electricity_emissions, subtract_exported_heat_emissions, subtract_exported_heat_emissions,
                     subtract_generated_electricity_emissions, subtract_generated_heat_emissions, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
                     from outerTable
                   where
@@ -55,7 +55,7 @@ returns setof ggircs_portal.product as
               )
               select
                 id, name, description, units, state, parent,
-                requires_emission_allocation, is_ciip_product, is_production_amount_optional, subtract_exported_electricity_emissions, subtract_exported_electricity_emissions, subtract_exported_heat_emissions, subtract_exported_heat_emissions,
+                requires_emission_allocation, is_ciip_product, requires_product_amount, subtract_exported_electricity_emissions, subtract_exported_electricity_emissions, subtract_exported_heat_emissions, subtract_exported_heat_emissions,
                 subtract_generated_electricity_emissions, subtract_generated_heat_emissions, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by from outerTable
               where
                 state != ''deprecated'' and '|| search_field || '::text ilike ''%' || search_value || '%''

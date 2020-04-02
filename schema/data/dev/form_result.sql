@@ -20,13 +20,13 @@ begin;
   ('[{"fuelType": "C/D Waste - Plastic", "quantity": 4, "fuelUnits": "t", "methodology": "wci 1.0"}, {"fuelType": "Butane", "quantity": 400, "fuelUnits": "kL", "methodology": "wci 1.0"}]'),
   ('[
     {
-      "quantity": 8760000,
+      "productAmount": 8760000,
       "productRowId": 29,
       "productUnits": "MWh",
       "productEmissions": 5900
     },
     {
-      "quantity": 12000,
+      "productAmount": 12000,
       "productRowId": 26,
       "productUnits": "t",
       "productEmissions": 1300
@@ -37,13 +37,13 @@ begin;
   ('[{"fuelType": "C/D Waste - Plastic", "quantity": 10, "fuelUnits": "t", "methodology": "wci 2.0"}, {"fuelType": "Butane", "quantity": 40120, "fuelUnits": "kL", "methodology": "wci 1.0"}]'),
   ('[
     {
-      "quantity": 8760000,
+      "productAmount": 8760000,
       "productRowId": 29,
       "productUnits": "MWh",
       "productEmissions": 5900
     },
     {
-      "quantity": 12000,
+      "productAmount": 12000,
       "productRowId": 26,
       "productUnits": "t",
       "productEmissions": 1300

@@ -30,7 +30,7 @@ export const PdfProductionFieldsTemplate: React.FunctionComponent<Props> = ({
         {'\n'}
       </Text>
       <Text>
-        Annual Production Amount: {formData.quantity ?? '[Not entered]'}
+        Annual Production Amount: {formData.productAmount ?? '[Not entered]'}
         {'\n'}
       </Text>
       <Text>

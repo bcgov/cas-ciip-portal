@@ -339,7 +339,7 @@ update ggircs_portal.form_result set form_result = '[
   where application_id=2 and version_number=1 and form_id=3;
 update ggircs_portal.form_result set form_result = '[
     {
-      "quantity": 87600,
+      "productAmou": 87600,
       "productRowId": 29,
       "productUnits": "MWh",
       "additionalData": {
@@ -368,7 +368,7 @@ update ggircs_portal.form_result set form_result = '[
       "importedElectricityAllocationFactor": 20,
       "importedHeatAllocationFactor": 20
     }, {
-      "quantity": 12000,
+      "productAmou": 12000,
       "productRowId": 26,
       "productUnits": "t",
       "additionalData": {
