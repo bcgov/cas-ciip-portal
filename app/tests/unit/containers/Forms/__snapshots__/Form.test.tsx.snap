@@ -2,21 +2,16 @@
 
 exports[`The Form Component should match the snapshot 1`] = `
 <div
-  className="jsx-1422928970 "
+  className="jsx-243825984 "
 >
   <Row
     noGutters={false}
   >
     <Col
-      md={12}
-      style={
-        Object {
-          "marginLeft": "25px",
-        }
-      }
+      md={8}
     >
       <h1
-        className="jsx-1422928970 form-title"
+        className="jsx-243825984 form-title"
       >
         Foo
       </h1>
@@ -31,6 +26,7 @@ exports[`The Form Component should match the snapshot 1`] = `
     fields={
       Object {
         "NumberField": [Function],
+        "emission": [Function],
         "emissionGas": [Function],
         "emissionSource": [Function],
         "fuel": [Function],
@@ -77,7 +73,7 @@ exports[`The Form Component should match the snapshot 1`] = `
     }
   >
     <div
-      className="jsx-1422928970 form-submit"
+      className="jsx-243825984 form-submit"
     >
       <Row
         noGutters={false}
@@ -101,6 +97,7 @@ exports[`The Form Component should match the snapshot 1`] = `
           </Link>
         </Col>
         <Col
+          className="form-nav"
           md={9}
           style={
             Object {
@@ -137,9 +134,9 @@ exports[`The Form Component should match the snapshot 1`] = `
     </div>
   </Form>
   <JSXStyle
-    id="1422928970"
+    id="243825984"
   >
-    .rjsf .form-row{margin:20px 0 40px;}.emission-form .rjsf .form-row{margin:0;}.no-col-padding .form-row&gt;.col,.no-col-padding .form-row&gt;[class*='col-']{padding:0;}.form-submit{border:1px solid #bbb;padding:30px;background:#eee;border-radius:6px;}.errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}ul.error-detail{padding:0;list-style:none;}ul.error-detail li.text-danger{background:#ce5c5c;color:white !important;padding:5px;}
+    .rjsf .form-row{margin:20px 0 20px;}.emission-form .rjsf .form-row{margin:0;}.no-col-padding .form-row&gt;.col,.no-col-padding .form-row&gt;[class*='col-']{padding:0;}.form-submit{border:1px solid #bbb;padding:30px;background:#eee;border-radius:6px;}.errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}ul.error-detail{padding:0;list-style:none;}ul.error-detail li.text-danger{background:#ce5c5c;color:white !important;padding:5px;}
   </JSXStyle>
 </div>
 `;

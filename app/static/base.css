@@ -1,17 +1,24 @@
 .no-pad{
-    padding-left:0;
-    padding-right:0;
+    padding-left:0 !important;
+    padding-right:0 !important;
 }
 .no-pad-left {
-    padding-left:0;
+    padding-left:0 !important;
 }
 .no-pad-right{
-    padding-right:0;
+    padding-right:0 !important;
 }
 
 .col-12{
-    padding-left:0;
-    padding-right:0;
+    padding-left:0 !important;
+    padding-right:0 !important;
+}
+
+.col-12.form-group.field{
+    padding-left:0 !important;
+    padding-right:10px !important;
+    /* height: 0; */
+    /* display: inline-block; */
 }
 
 .badge{
@@ -39,4 +46,14 @@
 .search-actions{
     display:inline-block;
     width: 30%;
+}
+
+.emission .zero-emission,
+.emission-form .zero-emission{
+    display:none !important;
+}
+
+.emission-form .show-zero-emissions .zero-emission
+{
+    display:block !important;
 }

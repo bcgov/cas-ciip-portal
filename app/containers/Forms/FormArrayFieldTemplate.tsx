@@ -13,8 +13,12 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
   return (
     <div className={className}>
       {items.map(element => {
+        const zeroEmission =
+          element.children.props.formData.annualEmission === 0
+            ? 'zero-emission'
+            : '';
         return (
-          <React.Fragment key={element.index}>
+          <div key={element.index} className={zeroEmission}>
             <Form.Row>
               <Col xs={12} md={element.hasRemove ? 11 : 12}>
                 {element.children}
@@ -35,7 +39,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
               )}
             </Form.Row>
             <hr />
-          </React.Fragment>
+          </div>
         );
       })}
       {canAdd && (

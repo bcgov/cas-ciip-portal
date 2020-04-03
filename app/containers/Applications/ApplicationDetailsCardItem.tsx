@@ -139,7 +139,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   );
   const classTag = formJsonByFormId.slug;
   // Override submit button for each form with an empty fragment
-  // eslint-disable-next-line react/jsx-no-useless-fragment
+
   const buttonOverride = <></>;
   return (
     <>
@@ -147,7 +147,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         style={{width: '100%', marginBottom: '10px'}}
         className={`${classTag} summary-card`}
       >
-        <Card.Header>
+        <Card.Header className="summary-form-header">
           <Row>
             <Col md={6}>
               <h4>{formJsonByFormId.name}</h4>
@@ -208,6 +208,9 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         }
         .diffTo {
           background-color: rgba(70, 241, 118, 0.3);
+        }
+        .summary-form-header > .row {
+          justify-content: space-between;
         }
       `}</style>
     </>

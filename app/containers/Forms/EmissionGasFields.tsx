@@ -31,7 +31,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   } = registry as any;
   // Not using the types defined in @types/react-jsonschema-form as they are out of date
 
-  const hideRow = formData.annualEmission > 0 ? 'hidden' : 'visible';
+  const hideRow = formData.annualEmission > 0 ? 'visible' : 'hidden';
   return (
     <Col xs={12} md={12} className={`${hideRow} emission-row`}>
       <Form.Row>

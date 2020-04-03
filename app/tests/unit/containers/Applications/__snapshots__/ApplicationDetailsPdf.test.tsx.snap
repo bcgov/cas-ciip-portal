@@ -794,6 +794,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                   },
                   "ui:className": "emission-form no-col-padding",
+                  "ui:field": "emission",
                 }
               }
               widgets={

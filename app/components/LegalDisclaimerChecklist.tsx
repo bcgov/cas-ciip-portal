@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Checkbox from './Checkbox';
+import {ListGroupItem} from 'react-bootstrap';
 
 const consents = [
   'I give permission to use SWIM data to start a CIIP application.',
@@ -31,14 +32,15 @@ const LegalDisclaimerChecklist: React.FunctionComponent<Props> = props => {
       onChange(consents.length === newset.length);
     };
 
-    return <Checkbox key={i} label={consent} onCheck={handleCheck} />;
+    return (
+      <ListGroupItem>
+        <div className="legal-checklist">
+          <Checkbox key={i} label={consent} onCheck={handleCheck} />
+        </div>
+      </ListGroupItem>
+    );
   };
 
-  // The fragment below shouldn't be needed, but the React.FunctionComponent
-  // type definition doesn't allow an array as the return type
-  // See https://github.com/DefinitelyTyped/DefinitelyTyped/issues/20356,
-  // dependant on https://github.com/microsoft/TypeScript/issues/21699
-  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{consents.map(displayConsentCheck)}</>;
 };
 

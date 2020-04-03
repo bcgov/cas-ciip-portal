@@ -37,8 +37,12 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
   )
     previousAnnualCO2e = null;
   // TODO: Use react-jsonschema-form registry fields (and set field IDs for proper testing)
+
+  const zeroEmission =
+    props.formData.annualEmission === 0 ? 'zero-emission' : '';
+
   return (
-    <Col xs={12} md={12}>
+    <Col xs={12} md={12} className={zeroEmission}>
       <Form.Row>
         <Col md={4}>
           {props.formData.gasType} <br />
@@ -114,6 +118,9 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
         }
         .gwp li {
           margin: 0 10px;
+        }
+        .zero-emission.form-row {
+          display: none !important;
         }
       `}</style>
     </Col>
