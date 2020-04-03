@@ -23,13 +23,19 @@ begin;
       "productAmount": 8760000,
       "productRowId": 29,
       "productUnits": "MWh",
-      "productEmissions": 5900
+      "productEmissions": 5900,
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     },
     {
       "productAmount": 12000,
       "productRowId": 26,
       "productUnits": "t",
-      "productEmissions": 1300
+      "productEmissions": 1300,
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     }
   ]'),
   ('{"operator": {"name": "Changed"}}'),
@@ -40,13 +46,19 @@ begin;
       "productAmount": 8760000,
       "productRowId": 29,
       "productUnits": "MWh",
-      "productEmissions": 5900
+      "productEmissions": 5900,
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     },
     {
       "productAmount": 12000,
       "productRowId": 26,
       "productUnits": "t",
-      "productEmissions": 1300
+      "productEmissions": 1300,
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     }
   ]');
 

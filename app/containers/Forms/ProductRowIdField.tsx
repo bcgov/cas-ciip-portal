@@ -42,6 +42,8 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
           node {
             rowId
             name
+            requiresEmissionAllocation
+            requiresProductAmount
           }
         }
       }
