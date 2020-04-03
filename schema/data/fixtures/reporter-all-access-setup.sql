@@ -22,6 +22,16 @@ select ggircs_portal.create_application_mutation_chain(1);
 select ggircs_portal.create_application_mutation_chain(2);
 update ggircs_portal.application_revision set legal_disclaimer_accepted = false where application_id=2 and version_number=1;
 
+-- Ensure products referenced in form_result are in the database
+delete from ggircs_portal.benchmark;
+delete from ggircs_portal.product;
+
+insert into ggircs_portal.product(id, name, units, state, requires_emission_allocation, requires_product_amount)
+overriding system value
+values
+(26, 'Coal','tonnes','active', true, true),
+(29, 'Other Pulp (Mechanical pulp, paper, newsprint)', 'bone-dry tonnes','active', true, true);
+
 -- Ensure all form results contain no errors
 update ggircs_portal.form_result set form_result = '{
 "facility": {
@@ -339,46 +349,18 @@ update ggircs_portal.form_result set form_result = '[
       "productAmount": 87600,
       "productRowId": 29,
       "productUnits": "MWh",
-      "additionalData": {
-        "equipment": [
-          {
-            "id": "Compressor 1",
-            "powerRating": 800,
-            "energySource": "Electric - Self-Generated",
-            "runtimeHours": 80,
-            "loadingFactor": 100,
-            "compressorType": "Centrifugal", "consumedEnergy": 7008000
-          }, {
-            "id": "Compressor 2",
-            "powerRating": 200,
-            "energySource": "Electric - Self-Generated",
-            "runtimeHours": 860,
-            "loadingFactor": 100,
-            "compressorType": "Centrifugal",
-            "consumedEnergy": 1752000
-          }
-        ],
-        "calculatedQuantity": 8760
-      },
-      "paymentAllocationFactor": 5,
-      "productEmissions": 5,
-      "importedElectricityAllocationFactor": 20,
-      "importedHeatAllocationFactor": 20
+      "productEmissions": 12,
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     }, {
       "productAmount": 12000,
       "productRowId": 26,
       "productUnits": "t",
-      "additionalData": {
-        "anodeReductionAllocationFactor": 1,
-        "anodeproductEmissions": 20,
-        "cokeCalcinationAllocationFactor": 20,
-        "calculatedPaymentAllocationFactor": 41,
-        "calculatedproductEmissions": 1
-      },
-      "paymentAllocationFactor": 41,
-      "productEmissions": 1,
-      "importedElectricityAllocationFactor": 20,
-      "importedHeatAllocationFactor": 20
+      "productEmissions": 12,
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     }
   ]'
   where application_id=2 and version_number=1 and form_id=4;

@@ -160,6 +160,8 @@ exports[`The ProductionFields Component should match the snapshot when rendering
       },
       "required": Array [
         "productRowId",
+        "requiresEmissionAllocation",
+        "requiresProductAmount",
       ],
       "type": "object",
     }

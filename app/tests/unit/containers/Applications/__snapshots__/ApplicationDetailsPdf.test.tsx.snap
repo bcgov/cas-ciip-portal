@@ -994,12 +994,14 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
+                    "productAmount": -40000000,
                     "productRowId": -60000000,
+                    "productUnits": "culpa",
                     "requiresEmissionAllocation": false,
-                    "requiresProductAmount": false,
+                    "requiresProductAmount": true,
                   },
                   Object {
-                    "productRowId": -60000000,
+                    "productRowId": 0,
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },
@@ -1086,6 +1088,8 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       },
                       "required": Array [
                         "productRowId",
+                        "requiresEmissionAllocation",
+                        "requiresProductAmount",
                       ],
                       "type": "object",
                     },
