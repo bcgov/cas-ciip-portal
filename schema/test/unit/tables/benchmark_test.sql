@@ -32,8 +32,8 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.benchmark (id, product_id, benchmark, eligibility_threshold, incentive_multiplier, includes_imported_energy, start_reporting_year, end_reporting_year) overriding system value
-    values (1000, 1, 9999, 10000, 1, false, 2019, 2020);
+    insert into ggircs_portal.benchmark (id, product_id, benchmark, eligibility_threshold, incentive_multiplier, start_reporting_year, end_reporting_year) overriding system value
+    values (1000, 1, 9999, 10000, 1, 2019, 2020);
   $$,
     'ciip_administrator can insert data in benchmark table'
 );
@@ -83,8 +83,8 @@ select throws_like(
 
 select throws_like(
   $$
-    insert into ggircs_portal.benchmark (id, product_id, benchmark, eligibility_threshold, incentive_multiplier, includes_imported_energy, start_reporting_year, end_reporting_year) overriding system value
-    values (1001, 1, 9999, 10000, 1, false, 2019, 2020);
+    insert into ggircs_portal.benchmark (id, product_id, benchmark, eligibility_threshold, incentive_multiplier, start_reporting_year, end_reporting_year) overriding system value
+    values (1001, 1, 9999, 10000, 1, 2019, 2020);
   $$,
   'permission denied%',
     'Industry User cannot insert into table_benchmark'
@@ -120,8 +120,8 @@ select results_eq(
 
 select throws_like(
   $$
-    insert into ggircs_portal.benchmark (id, product_id, benchmark, eligibility_threshold, incentive_multiplier, includes_imported_energy, start_reporting_year, end_reporting_year) overriding system value
-    values (1001, 1, 9999, 10000, 1, false, 2019, 2020);
+    insert into ggircs_portal.benchmark (id, product_id, benchmark, eligibility_threshold, incentive_multiplier, start_reporting_year, end_reporting_year) overriding system value
+    values (1001, 1, 9999, 10000, 1, 2019, 2020);
   $$,
   'permission denied%',
     'ciip_analyst cannot insert into table_benchmark'

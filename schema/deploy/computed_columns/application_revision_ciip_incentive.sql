@@ -14,8 +14,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     em_electricity numeric;
     em_heat numeric;
     em_intensity numeric;
-    em_alloc_elec numeric;
-    em_alloc_heat numeric;
     intensity_range numeric;
     incentive_ratio_max numeric;
     incentive_ratio_min numeric;
@@ -23,71 +21,57 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     incentive_product numeric;
     app_reporting_year int;
     carbon_tax_facility numeric;
-    electricity_data ggircs_portal.ciip_electricity_and_heat;
-    heat_data ggircs_portal.ciip_electricity_and_heat;
+    payment_allocation_factor numeric; -- The portion of the facility's carbon tax allocated to the current product
+    reported_ciip_products ggircs_portal.ciip_production[]; -- The reported ciip products (excludes product with no incentive)
     benchmark_data ggircs_portal.benchmark;
     product_data ggircs_portal.product;
     product_return ggircs_portal.ciip_incentive_by_product;
 
   begin
+    -- TODO: Check that there is only a single product where requires_emission_allocation is false, we can't do the payment allocation otherwise
 
-     -- Define placeholder variables
-     incentive_ratio_min = 0;
-     incentive_ratio_max = 1;
+    -- Define placeholder variables
+    incentive_ratio_min = 0;
+    incentive_ratio_max = 1;
 
-     -- Get emissions for facility
-     select sum(annual_co2e) into em_facility from ggircs_portal.ciip_emission
-     where version_number = application_revision.version_number and application_id = application_revision.application_id and gas_type != 'CO2';
+    -- Get emissions for facility
+    select sum(annual_co2e) into em_facility from ggircs_portal.ciip_emission
+    where version_number = application_revision.version_number and application_id = application_revision.application_id and gas_type != 'CO2';
 
-     -- Get reporting year for application
-     select reporting_year into app_reporting_year from ggircs_portal.application
-     where id = application_revision.application_id;
+    -- Get reporting year for application
+    select reporting_year into app_reporting_year from ggircs_portal.application
+    where id = application_revision.application_id;
 
-     -- Get carbon tax data for the application
-     select sum(carbon_tax_flat) into carbon_tax_facility from ggircs_portal.ciip_carbon_tax_calculation
-     where version_number = application_revision.version_number and application_id = application_revision.application_id;
+    -- Get carbon tax data for the application
+    select sum(carbon_tax_flat) into carbon_tax_facility from ggircs_portal.ciip_carbon_tax_calculation
+    where version_number = application_revision.version_number and application_id = application_revision.application_id;
 
-     -- Get electricity and heat data for the application
-     select * into electricity_data from ggircs_portal.ciip_electricity_and_heat
-     where version_number = application_revision.version_number and application_id = application_revision.application_id and energy_type = 'electricity';
+    select ciip_production.* into reported_ciip_products
+      from ggircs_portal.ciip_production
+      join ggircs_portal.product _product on ciip_production.product_id = _product.id and _product.is_ciip_product = true
+      where version_number = application_revision.version_number and application_id = application_revision.application_id;
 
-     -- Get electricity and heat data for the application
-     select * into heat_data from ggircs_portal.ciip_electricity_and_heat
-     where version_number = application_revision.version_number and application_id = application_revision.application_id and energy_type = 'heat';
-
-     -- Calculate emissions from electricity and heat
-     em_electricity = electricity_data.purchased * coalesce(electricity_data.purchased_emission_factor,0);
-     em_heat = heat_data.purchased * coalesce(heat_data.purchased_emission_factor,0);
-
-     -- Loop over products
-     for product in select * from ggircs_portal.ciip_production
-                    where version_number = application_revision.version_number and application_id = application_revision.application_id
-     loop
-
+    if (select array_length(reported_ciip_products, 1)) = 0 then
+      -- Loop over products
+      foreach product in array reported_ciip_products
+      loop
         -- Get Incentive Ratio Max and Min, BM and ET for product from Benchmark table
         select * into benchmark_data from ggircs_portal.benchmark
           where product_id = product.product_id
           and start_reporting_year <= app_reporting_year
           and end_reporting_year >= app_reporting_year;
 
-        -- If includes_imported_energy is false, heat/elec allocation factor=0 else set values from production view
-        em_alloc_elec = 0;
-        em_alloc_heat = 0;
-        if (benchmark_data.includes_imported_energy) then
-          em_alloc_elec = product.imported_electricity_allocation_factor;
-          em_alloc_heat = product.imported_heat_allocation_factor;
-        end if;
-
         -- Calculate Emissions for Product (EmProd)
-        -- EmProd = EmFacility * EmAlloc(P,F) + EmImportedElec * EmAlloc(IE) + EmImportedHeat * EmAlloc(IH)
-        em_product = product.product_emissions
-                   + (em_electricity * em_alloc_elec)
-                   + (em_heat * em_alloc_elec);
+        if (product.requires_emission_allocation) then
+          em_product = product.product_emissions;
+        else
+          em_product = em_facility; -- TODO: add/subtract energy
+        end if;
 
         -- Calculate Emission Intensity
         em_intensity = em_product / product.productAmount;
 
-         -- Get Product specific data
+          -- Get Product specific data
         select * into product_data from ggircs_portal.product
         where id = product.product_id;
 
@@ -96,12 +80,20 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         intensity_range = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
         incentive_ratio = least(incentive_ratio_max, greatest(incentive_ratio_min, intensity_range));
 
+        -- Determine the payment allocation factor.
+        if (select count(*) reported_ciip_products) = 1 then
+          payment_allocation_factor = 1;
+        else
+          payment_allocation_factor = em_product / (select sum(product_emissions) from reported_ciip_products);
+        end if;
+
+
         -- Calculate Incentive Amount
         -- IncAmt = IncRatio * IncMult * PmntAlloc * CTFacility
         -- 0 if no benchmark exists
         incentive_product = coalesce (incentive_ratio *
                             benchmark_data.incentive_multiplier *
-                            product.payment_allocation_factor/100 *
+                            payment_allocation_factor *
                             carbon_tax_facility, 0);
 
         select into product_return
@@ -118,8 +110,8 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
         return next product_return;
 
-     end loop;
-
+      end loop;
+    end if;
   end
 
 $function$ language plpgsql stable;
