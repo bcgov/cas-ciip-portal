@@ -67,7 +67,7 @@
             }]
           }
         },
-        "required": ["productRowId"]
+        "required": ["productRowId", "requiresEmissionAllocation", "requiresProductAmount"]
       }
     }
   },
