@@ -130,12 +130,12 @@ set form_result = '[
   {
     "productRowId": 3,
     "productAmount": 100,
-    "productEmissions": 30
+    "productEmissions": 5
   },
   {
     "productRowId": 4,
     "productAmount": 100,
-    "productEmissions": 5
+    "productEmissions": 20
   }
 ]'
 where application_id = 1 and version_number = 1 and form_id = 4;
@@ -153,6 +153,21 @@ select is(
   ),
   0.75,
   'the correct incentive ratio is returned with a product with allocation of emissions'
+);
+
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select payment_allocation_factor
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 2
+  ),
+  0.75, -- product 2 has 15t and product 3 5t,
+  'payment is automatically allocated between ciip products based on their share of emissions'
 );
 
 -- Test roles
