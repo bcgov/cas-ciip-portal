@@ -13445,10 +13445,10 @@ react-relay-network-modern-ssr@^1.2.4:
   resolved "https://registry.yarnpkg.com/react-relay-network-modern-ssr/-/react-relay-network-modern-ssr-1.4.0.tgz#a5e4b60e69e14769c7266a1a0f5002430c815fe1"
   integrity sha512-sCIiwjzDPV9eBPOb7VcT/dmZkwrqcNpAK5eHkwjvC3Xw+RShtgB/uCSVgCUzMZpOR8iUSkzaceC/HMZdnKxF3w==
 
-react-relay-network-modern@^4.1.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/react-relay-network-modern/-/react-relay-network-modern-4.6.0.tgz#86669d72cf874637b1d1ea6f2e86a0056834cad7"
-  integrity sha512-8ej44DTLAEvw92kpLMgwl7i72ijsuqBfmDsVuxgC6ChbcYhvLa4AODJqGjipEImNx8YoAoErsc+BQvJSfT62Eg==
+react-relay-network-modern@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/react-relay-network-modern/-/react-relay-network-modern-4.6.1.tgz#872666dc75df1932cce24fc834fccc88108c2d56"
+  integrity sha512-wgIbgNVPDbJy+WywkyNU5AEOdheViNTmeNdWlqPpM0o7SGcX78Rhw1YbrbRH8Iw2aKVBvv+QGOh96rWDdhzetg==
   dependencies:
     extract-files "^5.0.1"
 
