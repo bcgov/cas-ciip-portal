@@ -3,7 +3,15 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select no_plan();
+select * from no_plan();
+
+-- Set the timestamp to the start of the 2018 reporting year reporting window
+create or replace function ggircs_portal.current_timestamp() returns timestamptz as
+$$
+  select application_open_time
+  from ggircs_portal.reporting_year
+  where reporting_year = 2018;
+$$ language sql;
 
 -- setup products and benchmarks
 truncate ggircs_portal.product, ggircs_portal.application restart identity cascade;
@@ -11,6 +19,7 @@ insert into ggircs_portal.product (
   id, name, state,
   requires_emission_allocation,
   is_ciip_product,
+  requires_product_amount,
   add_purchased_electricity_emissions,
   subtract_exported_electricity_emissions,
   add_purchased_heat_emissions,
@@ -21,7 +30,7 @@ insert into ggircs_portal.product (
 overriding system value
 values
   (1, 'simple product (no allocation, emissions = facility emissions)', 'active',
-  false, true, false, false, false, false, false, false )
+  false, true, true, false, false, false, false, false, false)
 ;
 
 insert into ggircs_portal.benchmark
@@ -46,6 +55,31 @@ set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
 -- Create application
 select ggircs_portal.create_application_mutation_chain(1);
 
+-- Add gases to have emissions associated to the facility
+-- Total emissions is 50 tCO2e
+update ggircs_portal.form_result
+set form_result = '{
+  "sourceTypes": [
+    {
+      "gases": [
+        {
+          "gwp": 1,
+          "gasType": "CO2nonbio",
+          "annualCO2e": 50,
+          "annualEmission": 50,
+          "gasDescription": "Carbon dioxide from non-biomass"
+        }
+      ]
+    }
+  ]
+}'
+where application_id = 1 and version_number = 1 and form_id = 2;
+
+-- Add a fuel to have a carbon tax amount associated to the facility
+update ggircs_portal.form_result
+set form_result = '[{"fuelType": "Butane", "quantity": 10, "fuelUnits": "kL", "methodology": "wci 1.0"}]'
+where application_id = 1 and version_number = 1 and form_id = 3;
+
 select has_function(
   'ggircs_portal', 'application_revision_ciip_incentive', ARRAY['ggircs_portal.application_revision'],
   'Function application_revision_ciip_incentive should exist'
@@ -59,9 +93,26 @@ select lives_ok(
     'The application_revision_ciip_incentive function returns an empty result set if there are no products'
 );
 
+-- Report a single product with no allocation of emissions
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 1,
+    "productAmount": 100
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select is(
+  (
+    with record as (select row(application_revision.*)::ggircs_portal.application_revision from ggircs_portal.application_revision where application_id = 1 and version_number = 1)
+    select incentive_ratio from ggircs_portal.application_revision_ciip_incentive((select * from record))
+  ),
+  0.5,
+  'the correct incentive ratio is returned with a simple product with no allocation of emissions'
+);
 
 -- Test roles
-
 set role ciip_administrator;
 
 select lives_ok(
