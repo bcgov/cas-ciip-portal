@@ -33,10 +33,8 @@ interface Props {
 }
 
 // Schema for ProductRowItemContainer
+// TODO: Use a number widget for string types that should be numbers (with postgres numeric type)
 const benchmarkUISchema = {
-  includesImportedEnergy: {
-    'ui:widget': 'radio'
-  },
   startReportingYear: {
     'ui:help': 'The first reporting year where this benchmark is used'
   },
@@ -97,37 +95,38 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     );
     return {
       type: 'object',
+      required: [
+        'benchmark',
+        'eligibilityThreshold',
+        'minimumIncentiveRatio',
+        'maximumIncentiveRatio',
+        'incentiveMultiplier',
+        'startReportingYear',
+        'endReportingYear'
+      ],
       properties: {
         benchmark: {
-          type: 'number',
+          type: 'string',
           title: 'Benchmark'
         },
         eligibilityThreshold: {
-          type: 'number',
+          type: 'string',
           title: 'Eligibility Threshold'
         },
         minimumIncentiveRatio: {
-          type: 'number',
+          type: 'string',
           title: 'Minimum incentive ratio',
-          minimum: 0,
-          maximum: 1,
-          defaultValue: 0
+          defaultValue: '0'
         },
         maximumIncentiveRatio: {
-          type: 'number',
+          type: 'string',
           title: 'Maximum incentive ratio',
-          minimum: 0,
-          maximum: 1,
-          defaultValue: 1
+          defaultValue: '1'
         },
         incentiveMultiplier: {
-          type: 'number',
+          type: 'string',
           title: 'Incentive Multiplier',
-          defaultValue: 1
-        },
-        includesImportedEnergy: {
-          type: 'boolean',
-          title: 'Benchmark includes energy imports'
+          defaultValue: '1'
         },
         startReportingYear: {
           type: 'number',
@@ -502,7 +501,6 @@ export default createFragmentContainer(ProductRowItemComponent, {
             incentiveMultiplier
             startReportingYear
             endReportingYear
-            includesImportedEnergy
             minimumIncentiveRatio
             maximumIncentiveRatio
             deletedAt

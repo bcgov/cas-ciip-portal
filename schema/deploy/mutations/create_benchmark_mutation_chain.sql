@@ -5,9 +5,9 @@ begin;
 
 create or replace function ggircs_portal.create_benchmark_mutation_chain(
   product_id_input int,
-  benchmark_input real,
-  eligibility_threshold_input real,
-  incentive_multiplier_input real,
+  benchmark_input numeric,
+  eligibility_threshold_input numeric,
+  incentive_multiplier_input numeric,
   start_reporting_year_input int,
   end_reporting_year_input int
 )
