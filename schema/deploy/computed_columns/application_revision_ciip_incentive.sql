@@ -75,15 +75,14 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
         -- Calculate Emission Intensity
         em_intensity = em_product / product.product_amount;
-        raise notice 'production amount: %', product.product_amount;
-        raise notice 'emission for product: %', em_product;
+        raise notice 'emission intensity for product: %', em_intensity;
 
 
         -- Calculate Incentive Ratio as
         -- IncRatio = min(IncRatioMax, max(IncRatioMin, 1 - (EmIntensity - BM)/(ET - BM))
         intensity_range = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
         incentive_ratio = least(incentive_ratio_max, greatest(incentive_ratio_min, intensity_range));
-
+        raise notice 'incentive ratio: %', (benchmark_data.eligibility_threshold - benchmark_data.benchmark);
         -- Determine the payment allocation factor.
         if (select count(*) reported_ciip_products) = 1 then
           payment_allocation_factor = 1;
@@ -102,6 +101,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
         select into product_return
           row_number() over () as id,
+          product_data.id as product_id,
           product_data.name as product_name,
           incentive_ratio as incentive_ratio,
           benchmark_data.incentive_multiplier as incentive_multiplier,

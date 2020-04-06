@@ -30,7 +30,13 @@ insert into ggircs_portal.product (
 overriding system value
 values
   (1, 'simple product (no allocation, emissions = facility emissions)', 'active',
-  false, true, true, false, false, false, false, false, false)
+  false, true, true, false, false, false, false, false, false),
+  (2, 'product A with allocation of emissions', 'active',
+  true, true, true, false, false, false, false, false, false),
+  (3, 'product B with allocation of emissions', 'active',
+  true, true, true, false, false, false, false, false, false),
+  (4, 'non-ciip product', 'active',
+  true, false, true, false, false, false, false, false, false)
 ;
 
 insert into ggircs_portal.benchmark
@@ -45,7 +51,8 @@ insert into ggircs_portal.benchmark
 )
 overriding system value
 values
-(1, 1, 0.25, 0.75, 1, 2018, (select reporting_year from ggircs_portal.next_reporting_year()));
+(1, 1, 0.25, 0.75, 1, 2018, 2018),
+(2, 2, 0.10, 0.30, 1, 2018, 2018);
 
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 
@@ -110,6 +117,42 @@ select is(
   ),
   0.5,
   'the correct incentive ratio is returned with a simple product with no allocation of emissions'
+);
+
+-- Report 2 ciip products with allocation and one non-ciip product
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 2,
+    "productAmount": 100,
+    "productEmissions": 15
+  },
+  {
+    "productRowId": 3,
+    "productAmount": 100,
+    "productEmissions": 30
+  },
+  {
+    "productRowId": 4,
+    "productAmount": 100,
+    "productEmissions": 5
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select incentive_ratio
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 2
+  ),
+  0.75,
+  'the correct incentive ratio is returned with a product with allocation of emissions'
 );
 
 -- Test roles
