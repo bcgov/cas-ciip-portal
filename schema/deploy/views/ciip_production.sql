@@ -15,7 +15,7 @@ begin;
     select
        x.application_id,
        x.version_number,
-       (x.production_data ->> 'quantity')::numeric as quantity,
+       (x.production_data ->> 'productAmount')::numeric as productAmount,
        (x.production_data ->> 'productRowId')::integer as product_id,
        (x.production_data ->> 'productUnits')::varchar(1000) as product_units,
        (x.production_data ->> 'productEmissions')::numeric as product_emissions,
@@ -31,9 +31,9 @@ grant select on table ggircs_portal.ciip_production to ciip_administrator, ciip_
 comment on view ggircs_portal.ciip_production is E'@omit\n The view for production data reported in the application';
 comment on column ggircs_portal.ciip_production.application_id is 'The application id';
 comment on column ggircs_portal.ciip_production.version_number is 'The application revision number';
-comment on column ggircs_portal.ciip_production.quantity is 'The production quantity';
+comment on column ggircs_portal.ciip_production.productAmount is 'The production quantity';
 comment on column ggircs_portal.ciip_production.product_id is 'The id of the product';
-comment on column ggircs_portal.ciip_production.product_units is 'The units for the quantity';
+comment on column ggircs_portal.ciip_production.product_units is 'The units for the product';
 comment on column ggircs_portal.ciip_production.product_emissions is 'The percentage of the facility''s total emission allocated to a product';
 comment on column ggircs_portal.ciip_production.payment_allocation_factor is 'The percentage of the facility''s taxable emission allocated to a product';
 comment on column ggircs_portal.ciip_production.additional_data is 'The product-specific additional data';

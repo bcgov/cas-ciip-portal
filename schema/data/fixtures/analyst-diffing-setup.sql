@@ -34,45 +34,19 @@ update ggircs_portal.form_result set form_result='[{"fuelType": "C/D Waste - Pla
   where application_id=1 and version_number=1 and form_id=3;
 update ggircs_portal.form_result set form_result='[
     {
-      "quantity": 8760000,
+      "productAmount": 8760000,
       "productRowId": 29,
       "productUnits": "MWh",
-      "additionalData": {
-        "equipment": [
-          {
-            "id": "Compressor 1",
-            "powerRating": 800,
-            "energySource": "Electric - Self-Generated",
-            "runtimeHours": 8760,
-            "loadingFactor": 100,
-            "compressorType": "Centrifugal", "consumedEnergy": 7008000
-          }, {
-            "id": "Compressor 2",
-            "powerRating": 200,
-            "energySource": "Electric - Self-Generated",
-            "runtimeHours": 8760,
-            "loadingFactor": 100,
-            "compressorType": "Centrifugal",
-            "consumedEnergy": 1752000
-          }
-        ],
-        "calculatedQuantity": 8760000
-      },
-      "importedElectricityAllocationFactor": 20,
-      "importedHeatAllocationFactor": 20
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     }, {
-      "quantity": 12000,
+      "productAmount": 12000,
       "productRowId": 26,
       "productUnits": "t",
-      "additionalData": {
-        "anodeReductionAllocationFactor": 1,
-        "anodeproductEmissions": 20,
-        "cokeCalcinationAllocationFactor": 20,
-        "calculatedPaymentAllocationFactor": 41,
-        "calculatedproductEmissions": 1
-      },
-      "importedElectricityAllocationFactor": 20,
-      "importedHeatAllocationFactor": 20
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     }
   ]' where application_id=1 and version_number=1 and form_id=4;
 
@@ -84,45 +58,19 @@ update ggircs_portal.form_result set form_result='[{"fuelType": "C/D Waste - Pla
   where application_id=1 and version_number=2 and form_id=3;
 update ggircs_portal.form_result set form_result='[
     {
-      "quantity": 87600,
+      "productAmount": 87600,
       "productRowId": 29,
       "productUnits": "MWh",
-      "additionalData": {
-        "equipment": [
-          {
-            "id": "Compressor 1",
-            "powerRating": 800,
-            "energySource": "Electric - Self-Generated",
-            "runtimeHours": 80,
-            "loadingFactor": 100,
-            "compressorType": "Centrifugal", "consumedEnergy": 7008000
-          }, {
-            "id": "Compressor 2",
-            "powerRating": 200,
-            "energySource": "Electric - Self-Generated",
-            "runtimeHours": 860,
-            "loadingFactor": 100,
-            "compressorType": "Centrifugal",
-            "consumedEnergy": 1752000
-          }
-        ],
-        "calculatedQuantity": 8760
-      },
-      "importedElectricityAllocationFactor": 20,
-      "importedHeatAllocationFactor": 20
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     }, {
-      "quantity": 12000,
+      "productAmount": 12000,
       "productRowId": 26,
       "productUnits": "t",
-      "additionalData": {
-        "anodeReductionAllocationFactor": 1,
-        "anodeproductEmissions": 20,
-        "cokeCalcinationAllocationFactor": 20,
-        "calculatedPaymentAllocationFactor": 41,
-        "calculatedproductEmissions": 1
-      },
-      "importedElectricityAllocationFactor": 20,
-      "importedHeatAllocationFactor": 20
+      "requiresEmissionAllocation": true,
+      "requiresProductAmount": true,
+      "isCiipProduct": true
     }
   ]'
   where application_id=1 and version_number=2 and form_id=4;

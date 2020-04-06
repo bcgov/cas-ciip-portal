@@ -50,7 +50,7 @@ describe('The ProductionFields Component', () => {
       productRowId: 1,
       productUnits: 'bar',
       productEmissions: 123,
-      quantity: 456,
+      productAmount: 456,
       requiresEmissionAllocation: true
     },
     onChange: jest.fn(),

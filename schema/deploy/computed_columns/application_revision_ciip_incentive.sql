@@ -85,7 +85,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
                    + (em_heat * em_alloc_elec);
 
         -- Calculate Emission Intensity
-        em_intensity = em_product / product.quantity;
+        em_intensity = em_product / product.productAmount;
 
          -- Get Product specific data
         select * into product_data from ggircs_portal.product

@@ -8,10 +8,10 @@ exports[`The ProductionFields Component should match the snapshot when rendering
   formContext={Object {}}
   formData={
     Object {
+      "productAmount": 456,
       "productEmissions": 123,
       "productRowId": 1,
       "productUnits": "bar",
-      "quantity": 456,
       "requiresEmissionAllocation": true,
     }
   }
@@ -115,28 +115,53 @@ exports[`The ProductionFields Component should match the snapshot when rendering
             },
           ],
         },
+        "requiresProductAmount": Object {
+          "oneOf": Array [
+            Object {
+              "properties": Object {
+                "productAmount": Object {
+                  "title": "Annual Production Amount",
+                  "type": "number",
+                },
+                "productUnits": Object {
+                  "title": "Units",
+                  "type": "string",
+                },
+                "requiresProductAmount": Object {
+                  "const": true,
+                },
+              },
+              "required": Array [
+                "productAmount",
+                "productUnits",
+              ],
+            },
+            Object {
+              "properties": Object {
+                "requiresProductAmount": Object {
+                  "const": false,
+                },
+              },
+            },
+          ],
+        },
       },
       "properties": Object {
         "productRowId": Object {
           "title": "Product or Service",
           "type": "integer",
         },
-        "productUnits": Object {
-          "title": "Units",
-          "type": "string",
-        },
-        "quantity": Object {
-          "title": "Annual Production Amount",
-          "type": "number",
-        },
         "requiresEmissionAllocation": Object {
+          "type": "boolean",
+        },
+        "requiresProductAmount": Object {
           "type": "boolean",
         },
       },
       "required": Array [
         "productRowId",
-        "quantity",
-        "productUnits",
+        "requiresEmissionAllocation",
+        "requiresProductAmount",
       ],
       "type": "object",
     }
@@ -144,6 +169,10 @@ exports[`The ProductionFields Component should match the snapshot when rendering
   uiSchema={
     Object {
       "items": Object {
+        "productAmount": Object {
+          "ui:col-md": 4,
+          "ui:help": "Report the annual production for the product, following the guidance document provided",
+        },
         "productEmissions": Object {
           "ui:col-md": 4,
           "ui:help": "Report emissions associated to CIIP product, in tCO2e",
@@ -157,17 +186,16 @@ exports[`The ProductionFields Component should match the snapshot when rendering
           "ui:col-md": 4,
           "ui:readonly": true,
         },
-        "quantity": Object {
-          "ui:col-md": 4,
-          "ui:help": "Report the annual production for the product, following the guidance document provided",
-        },
         "requiresEmissionAllocation": Object {
+          "ui:widget": "hidden",
+        },
+        "requiresProductAmount": Object {
           "ui:widget": "hidden",
         },
         "ui:field": "product",
         "ui:order": Array [
           "productRowId",
-          "quantity",
+          "productAmount",
           "productUnits",
           "*",
         ],

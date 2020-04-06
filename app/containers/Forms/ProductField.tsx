@@ -6,10 +6,11 @@ import {ProductField_query} from 'ProductField_query.graphql';
 
 interface FormData {
   productRowId?: number;
-  quantity?: number;
+  productAmount?: number;
   productUnits?: string;
   productEmissions?: number;
   requiresEmissionAllocation?: boolean;
+  requiresProductAmount?: boolean;
 }
 
 interface Props extends FieldProps<FormData> {
@@ -36,7 +37,8 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = props => {
       ...formData,
       productRowId,
       productUnits: product?.units,
-      requiresEmissionAllocation: product?.requiresEmissionAllocation
+      requiresEmissionAllocation: product?.requiresEmissionAllocation,
+      requiresProductAmount: product?.requiresProductAmount
     });
   };
 
@@ -52,6 +54,7 @@ export default createFragmentContainer(ProductFieldComponent, {
             rowId
             units
             requiresEmissionAllocation
+            requiresProductAmount
           }
         }
       }

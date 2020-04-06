@@ -34,8 +34,20 @@ describe('The production tab', () => {
     cy.get('#root_0_productUnits')
       .invoke('val')
       .should('contain', 'tonnes');
-    cy.get('#root_0_quantity');
+    cy.get('#root_0_productAmount');
     cy.get('#root_0_productEmissions');
+    cy.percySnapshot();
+  });
+
+  it('Should not show amount, units or emissions when requiresProductAmount and requiresEmissionAllocation are false', () => {
+    cy.get('#root_0_productRowId')
+      .clear()
+      .type('non ciip');
+    cy.get('.dropdown-item').click();
+    cy.get('input:visible[type=text]').should('have.length', 1);
+    cy.get('#root_0_productUnits').should('not.exist');
+    cy.get('#root_0_productAmount').should('not.exist');
+    cy.get('#root_0_productEmissions').should('not.exist');
     cy.percySnapshot();
   });
 });

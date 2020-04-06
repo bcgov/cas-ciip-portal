@@ -12,18 +12,14 @@
             "title": "Product or Service",
             "type": "integer"
           },
-          "quantity": {
-            "title": "Annual Production Amount",
-            "type": "number"
-          },
-          "productUnits": {
-            "title": "Units",
-            "type": "string"
-          },
           "requiresEmissionAllocation": {
+            "type": "boolean"
+          },
+          "requiresProductAmount": {
             "type": "boolean"
           }
         },
+
         "dependencies": {
           "requiresEmissionAllocation": {
             "oneOf": [
@@ -48,9 +44,30 @@
                 "required": ["productEmissions"]
               }
             ]
+          },
+          "requiresProductAmount" : {
+            "oneOf": [{
+              "properties": {
+                "requiresProductAmount": { "const": true },
+                "productAmount": {
+                  "title": "Annual Production Amount",
+                  "type": "number"
+                },
+                "productUnits": {
+                  "title": "Units",
+                  "type": "string"
+                }
+              },
+              "required": ["productAmount", "productUnits"]
+            },
+            {
+              "properties": {
+                "requiresProductAmount": { "const": false }
+              }
+            }]
           }
         },
-        "required": ["productRowId", "quantity", "productUnits"]
+        "required": ["productRowId", "requiresEmissionAllocation", "requiresProductAmount"]
       }
     }
   },
@@ -59,13 +76,13 @@
     "ui:remove-text": "Remove Product",
     "items": {
       "ui:field": "product",
-      "ui:order": ["productRowId", "quantity", "productUnits", "*"],
+      "ui:order": ["productRowId", "productAmount", "productUnits", "*"],
       "productRowId": {
         "ui:col-md": 12,
         "ui:widget": "SearchWidget",
         "ui:field": "productRowId"
       },
-      "quantity": {
+      "productAmount": {
         "ui:col-md": 4,
         "ui:help": "Report the annual production for the product, following the guidance document provided"
       },
@@ -77,7 +94,8 @@
         "ui:col-md": 4,
         "ui:help": "Report emissions associated to CIIP product, in tCO2e"
       },
-      "requiresEmissionAllocation": { "ui:widget": "hidden" }
+      "requiresEmissionAllocation": { "ui:widget": "hidden" },
+      "requiresProductAmount": { "ui:widget": "hidden" }
     }
   }
 }

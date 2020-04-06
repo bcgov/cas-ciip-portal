@@ -9719,6 +9719,11 @@ type Product implements Node {
   """
   requiresEmissionAllocation: Boolean!
 
+  """
+  Boolean value indicates if reporting the production amount is required for a non-ciip product
+  """
+  requiresProductAmount: Boolean
+
   """Unique ID for the product"""
   rowId: Int!
 
@@ -9808,6 +9813,9 @@ input ProductCondition {
   """
   requiresEmissionAllocation: Boolean
 
+  """Checks for equality with the object’s `requiresProductAmount` field."""
+  requiresProductAmount: Boolean
+
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
 
@@ -9890,6 +9898,11 @@ input ProductInput {
   Boolean value indicates if the product requires allocation of emissions
   """
   requiresEmissionAllocation: Boolean
+
+  """
+  Boolean value indicates if reporting the production amount is required for a non-ciip product
+  """
+  requiresProductAmount: Boolean
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -9982,6 +9995,11 @@ input ProductPatch {
   Boolean value indicates if the product requires allocation of emissions
   """
   requiresEmissionAllocation: Boolean
+
+  """
+  Boolean value indicates if reporting the production amount is required for a non-ciip product
+  """
+  requiresProductAmount: Boolean
 
   """
   The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)
@@ -10081,6 +10099,8 @@ enum ProductsOrderBy {
   PRIMARY_KEY_DESC
   REQUIRES_EMISSION_ALLOCATION_ASC
   REQUIRES_EMISSION_ALLOCATION_DESC
+  REQUIRES_PRODUCT_AMOUNT_ASC
+  REQUIRES_PRODUCT_AMOUNT_DESC
   STATE_ASC
   STATE_DESC
   SUBTRACT_EXPORTED_ELECTRICITY_EMISSIONS_ASC
@@ -11588,9 +11608,11 @@ input SaveProductMutationChainInput {
   newAddPurchasedElectricityEmissions: Boolean
   newAddPurchasedHeatEmissions: Boolean
   newDescription: String
+  newIsCiipProduct: Boolean
   newName: String
   newParent: [Int]
   newRequiresEmissionAllocation: Boolean
+  newRequiresProductAmount: Boolean
   newState: String
   newSubtractExportedElectricityEmissions: Boolean
   newSubtractExportedHeatEmissions: Boolean

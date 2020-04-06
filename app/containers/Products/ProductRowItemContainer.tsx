@@ -171,6 +171,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newUnits: product.units,
         newParent: [product.rowId],
         newRequiresEmissionAllocation: product.requiresEmissionAllocation,
+        newIsCiipProduct: product.isCiipProduct,
         newAddPurchasedElectricityEmissions:
           product.addPurchasedElectricityEmissions,
         newSubtractExportedElectricityEmissions:
@@ -180,7 +181,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newSubtractGeneratedElectricityEmissions:
           product.subtractGeneratedElectricityEmissions,
         newSubtractGeneratedHeatEmissions:
-          product.subtractGeneratedHeatEmissions
+          product.subtractGeneratedHeatEmissions,
+        newRequiresProductAmount: product.requiresProductAmount
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -199,6 +201,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newUnits: e.formData.units,
         newParent: [product.rowId],
         newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation,
+        newIsCiipProduct: e.formData.isCiipProduct,
         newAddPurchasedElectricityEmissions:
           e.formData.addPurchasedElectricityEmissions,
         newSubtractExportedElectricityEmissions:
@@ -209,7 +212,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newSubtractGeneratedElectricityEmissions:
           e.formData.subtractGeneratedElectricityEmissions,
         newSubtractGeneratedHeatEmissions:
-          e.formData.subtractGeneratedHeatEmissions
+          e.formData.subtractGeneratedHeatEmissions,
+        newRequiresProductAmount: e.formData.requiresProductAmount
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
@@ -487,6 +491,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
       subtractExportedHeatEmissions
       subtractGeneratedElectricityEmissions
       subtractGeneratedHeatEmissions
+      requiresProductAmount
       benchmarksByProductId {
         edges {
           node {

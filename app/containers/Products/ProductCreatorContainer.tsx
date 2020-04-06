@@ -32,6 +32,7 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
           state: 'active',
           parent: [null],
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
+          isCiipProduct: e.formData.isCiipProduct,
           addPurchasedElectricityEmissions:
             e.formData.addPurchasedElectricityEmissions,
           subtractExportedElectricityEmissions:
@@ -42,7 +43,8 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
           subtractGeneratedElectricityEmissions:
             e.formData.subtractGeneratedElectricityEmissions,
           subtractGeneratedHeatEmissions:
-            e.formData.subtractGeneratedHeatEmissions
+            e.formData.subtractGeneratedHeatEmissions,
+          requiresProductAmount: e.formData.requiresProductAmount
         }
       }
     };

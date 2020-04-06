@@ -12213,6 +12213,18 @@
               "deprecationReason": null
             },
             {
+              "name": "requiresProductAmount",
+              "description": "Boolean value indicates if reporting the production amount is required for a non-ciip product",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "rowId",
               "description": "Unique ID for the product",
               "args": [],
@@ -22450,6 +22462,16 @@
               "defaultValue": null
             },
             {
+              "name": "requiresProductAmount",
+              "description": "Checks for equality with the object’s `requiresProductAmount` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "rowId",
               "description": "Checks for equality with the object’s `rowId` field.",
               "type": {
@@ -22710,6 +22732,18 @@
             },
             {
               "name": "REQUIRES_EMISSION_ALLOCATION_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REQUIRES_PRODUCT_AMOUNT_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REQUIRES_PRODUCT_AMOUNT_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -34964,6 +34998,16 @@
               "defaultValue": null
             },
             {
+              "name": "requiresProductAmount",
+              "description": "Boolean value indicates if reporting the production amount is required for a non-ciip product",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "state",
               "description": "The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)",
               "type": {
@@ -40375,6 +40419,16 @@
               "defaultValue": null
             },
             {
+              "name": "newIsCiipProduct",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "newName",
               "description": null,
               "type": {
@@ -40400,6 +40454,16 @@
             },
             {
               "name": "newRequiresEmissionAllocation",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newRequiresProductAmount",
               "description": null,
               "type": {
                 "kind": "SCALAR",
@@ -46425,6 +46489,16 @@
             {
               "name": "requiresEmissionAllocation",
               "description": "Boolean value indicates if the product requires allocation of emissions",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "requiresProductAmount",
+              "description": "Boolean value indicates if reporting the production amount is required for a non-ciip product",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",

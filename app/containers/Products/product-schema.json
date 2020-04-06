@@ -97,6 +97,34 @@
               "subtractGeneratedHeatEmissions"]
           }
         ]
+      },
+      "isCiipProduct": {
+        "oneOf": [
+          {
+            "properties": {
+              "isCiipProduct": {
+                "const": true
+              }
+            }
+          },
+          {
+            "properties": {
+              "requiresProductAmount": {
+                "type": "boolean",
+                "title": "Set reporting of production amount as required?",
+                "enumNames": [
+                  " Yes",
+                  " No"
+                ]
+              },
+              "isCiipProduct": {
+                "const":false
+              }
+            },
+            "required": [
+              "requiresProductAmount"]
+          }
+        ]
       }
     },
     "required": ["name", "units", "requiresEmissionAllocation", "isCiipProduct"]
@@ -116,6 +144,10 @@
     },
     "isCiipProduct": {
       "ui:help": "Non-CIIP products emissions are excluded from payment allocation. If a product has a fixed incentive ratio instead of a benchmark, please create a benchmark and use the mininmum and maximum incentive ratio options"
+    },
+    "requiresProductAmount": {
+      "ui:widget": "radio",
+      "ui:help": "Should the reporting the product amount for this Non-CIIP product be required?"
     },
     "addPurchasedElectricityEmissions": {
       "ui:widget": "radio",
