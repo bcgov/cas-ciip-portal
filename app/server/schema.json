@@ -11050,7 +11050,7 @@
               "description": "Checks for equality with the object’s `benchmark` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -11100,7 +11100,7 @@
               "description": "Checks for equality with the object’s `eligibilityThreshold` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -11120,17 +11120,7 @@
               "description": "Checks for equality with the object’s `incentiveMultiplier` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "includesImportedEnergy",
-              "description": "Checks for equality with the object’s `includesImportedEnergy` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -11140,7 +11130,7 @@
               "description": "Checks for equality with the object’s `maximumIncentiveRatio` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -11150,7 +11140,7 @@
               "description": "Checks for equality with the object’s `minimumIncentiveRatio` field.",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -11212,8 +11202,8 @@
         },
         {
           "kind": "SCALAR",
-          "name": "Float",
-          "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+          "name": "BigFloat",
+          "description": "A floating point number that requires more precision than IEEE 754 binary 64",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -11332,18 +11322,6 @@
             },
             {
               "name": "INCENTIVE_MULTIPLIER_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "INCLUDES_IMPORTED_ENERGY_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "INCLUDES_IMPORTED_ENERGY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -11577,7 +11555,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Float",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -11681,7 +11659,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Float",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -11729,23 +11707,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "includesImportedEnergy",
-              "description": "Whether the emissions from imported energy were included in the benchmark calculation",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -11761,7 +11723,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Float",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -11777,7 +11739,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Float",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -14907,16 +14869,6 @@
               "defaultValue": null
             }
           ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "BigFloat",
-          "description": "A floating point number that requires more precision than IEEE 754 binary 64",
-          "fields": null,
-          "inputFields": null,
           "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
@@ -23193,6 +23145,18 @@
               "deprecationReason": null
             },
             {
+              "name": "productId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "productName",
               "description": null,
               "args": [],
@@ -30728,7 +30692,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Float",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -30782,7 +30746,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
-                  "name": "Float",
+                  "name": "BigFloat",
                   "ofType": null
                 }
               },
@@ -30807,17 +30771,7 @@
               "description": "The multiplier applied to the incentive amounts under this product",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "includesImportedEnergy",
-              "description": "Whether the emissions from imported energy were included in the benchmark calculation",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -30827,7 +30781,7 @@
               "description": "The minimum incentive ratio for this benchmark (typically 0)",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -30837,7 +30791,7 @@
               "description": "The minimum incentive ratio for this benchmark (typically 0)",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -31056,7 +31010,7 @@
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -31076,7 +31030,7 @@
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -31096,7 +31050,7 @@
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -41616,7 +41570,7 @@
               "description": "The benchmark for a product, i.e. the emission intensity that would return a 100% incentive",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -41666,7 +41620,7 @@
               "description": "The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -41686,17 +41640,7 @@
               "description": "The multiplier applied to the incentive amounts under this product",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "includesImportedEnergy",
-              "description": "Whether the emissions from imported energy were included in the benchmark calculation",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -41706,7 +41650,7 @@
               "description": "The minimum incentive ratio for this benchmark (typically 0)",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null
@@ -41716,7 +41660,7 @@
               "description": "The minimum incentive ratio for this benchmark (typically 0)",
               "type": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "BigFloat",
                 "ofType": null
               },
               "defaultValue": null

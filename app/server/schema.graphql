@@ -893,7 +893,7 @@ type Benchmark implements Node {
   """
   The benchmark for a product, i.e. the emission intensity that would return a 100% incentive
   """
-  benchmark: Float!
+  benchmark: BigFloat!
 
   """Reads a single `CiipUser` that is related to this `Benchmark`."""
   ciipUserByCreatedBy: CiipUser
@@ -919,7 +919,7 @@ type Benchmark implements Node {
   """
   The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive
   """
-  eligibilityThreshold: Float!
+  eligibilityThreshold: BigFloat!
 
   """The last reporting year where this benchmark is active"""
   endReportingYear: Int!
@@ -930,18 +930,13 @@ type Benchmark implements Node {
   id: ID!
 
   """The multiplier applied to the incentive amounts under this product"""
-  incentiveMultiplier: Float!
-
-  """
-  Whether the emissions from imported energy were included in the benchmark calculation
-  """
-  includesImportedEnergy: Boolean!
+  incentiveMultiplier: BigFloat!
 
   """The minimum incentive ratio for this benchmark (typically 0)"""
-  maximumIncentiveRatio: Float!
+  maximumIncentiveRatio: BigFloat!
 
   """The minimum incentive ratio for this benchmark (typically 0)"""
-  minimumIncentiveRatio: Float!
+  minimumIncentiveRatio: BigFloat!
 
   """Reads a single `Product` that is related to this `Benchmark`."""
   productByProductId: Product
@@ -974,7 +969,7 @@ for equality and combined with a logical ‘and.’
 """
 input BenchmarkCondition {
   """Checks for equality with the object’s `benchmark` field."""
-  benchmark: Float
+  benchmark: BigFloat
 
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
@@ -989,22 +984,19 @@ input BenchmarkCondition {
   deletedBy: Int
 
   """Checks for equality with the object’s `eligibilityThreshold` field."""
-  eligibilityThreshold: Float
+  eligibilityThreshold: BigFloat
 
   """Checks for equality with the object’s `endReportingYear` field."""
   endReportingYear: Int
 
   """Checks for equality with the object’s `incentiveMultiplier` field."""
-  incentiveMultiplier: Float
-
-  """Checks for equality with the object’s `includesImportedEnergy` field."""
-  includesImportedEnergy: Boolean
+  incentiveMultiplier: BigFloat
 
   """Checks for equality with the object’s `maximumIncentiveRatio` field."""
-  maximumIncentiveRatio: Float
+  maximumIncentiveRatio: BigFloat
 
   """Checks for equality with the object’s `minimumIncentiveRatio` field."""
-  minimumIncentiveRatio: Float
+  minimumIncentiveRatio: BigFloat
 
   """Checks for equality with the object’s `productId` field."""
   productId: Int
@@ -1027,7 +1019,7 @@ input BenchmarkInput {
   """
   The benchmark for a product, i.e. the emission intensity that would return a 100% incentive
   """
-  benchmark: Float!
+  benchmark: BigFloat!
 
   """Creation date of row"""
   createdAt: Datetime
@@ -1044,24 +1036,19 @@ input BenchmarkInput {
   """
   The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive
   """
-  eligibilityThreshold: Float!
+  eligibilityThreshold: BigFloat!
 
   """The last reporting year where this benchmark is active"""
   endReportingYear: Int!
 
   """The multiplier applied to the incentive amounts under this product"""
-  incentiveMultiplier: Float
-
-  """
-  Whether the emissions from imported energy were included in the benchmark calculation
-  """
-  includesImportedEnergy: Boolean
+  incentiveMultiplier: BigFloat
 
   """The minimum incentive ratio for this benchmark (typically 0)"""
-  maximumIncentiveRatio: Float
+  maximumIncentiveRatio: BigFloat
 
   """The minimum incentive ratio for this benchmark (typically 0)"""
-  minimumIncentiveRatio: Float
+  minimumIncentiveRatio: BigFloat
 
   """Foreign key to the product"""
   productId: Int!
@@ -1083,7 +1070,7 @@ input BenchmarkPatch {
   """
   The benchmark for a product, i.e. the emission intensity that would return a 100% incentive
   """
-  benchmark: Float
+  benchmark: BigFloat
 
   """Creation date of row"""
   createdAt: Datetime
@@ -1100,24 +1087,19 @@ input BenchmarkPatch {
   """
   The eligibility threshold for a product, i.e. the maximum emission intensity (exclusive) allowed to get an incentive
   """
-  eligibilityThreshold: Float
+  eligibilityThreshold: BigFloat
 
   """The last reporting year where this benchmark is active"""
   endReportingYear: Int
 
   """The multiplier applied to the incentive amounts under this product"""
-  incentiveMultiplier: Float
-
-  """
-  Whether the emissions from imported energy were included in the benchmark calculation
-  """
-  includesImportedEnergy: Boolean
+  incentiveMultiplier: BigFloat
 
   """The minimum incentive ratio for this benchmark (typically 0)"""
-  maximumIncentiveRatio: Float
+  maximumIncentiveRatio: BigFloat
 
   """The minimum incentive ratio for this benchmark (typically 0)"""
-  minimumIncentiveRatio: Float
+  minimumIncentiveRatio: BigFloat
 
   """Foreign key to the product"""
   productId: Int
@@ -1178,8 +1160,6 @@ enum BenchmarksOrderBy {
   ID_DESC
   INCENTIVE_MULTIPLIER_ASC
   INCENTIVE_MULTIPLIER_DESC
-  INCLUDES_IMPORTED_ENERGY_ASC
-  INCLUDES_IMPORTED_ENERGY_DESC
   MAXIMUM_INCENTIVE_RATIO_ASC
   MAXIMUM_INCENTIVE_RATIO_DESC
   MINIMUM_INCENTIVE_RATIO_ASC
@@ -1863,6 +1843,7 @@ type CiipIncentiveByProduct {
   incentiveProduct: BigFloat
   incentiveRatio: BigFloat
   paymentAllocationFactor: BigFloat
+  productId: Int
   productName: String
   rowId: Int
 }
@@ -3798,16 +3779,16 @@ input CreateBenchmarkInput {
 
 """All input for the `createBenchmarkMutationChain` mutation."""
 input CreateBenchmarkMutationChainInput {
-  benchmarkInput: Float
+  benchmarkInput: BigFloat
 
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  eligibilityThresholdInput: Float
+  eligibilityThresholdInput: BigFloat
   endReportingYearInput: Int
-  incentiveMultiplierInput: Float
+  incentiveMultiplierInput: BigFloat
   productIdInput: Int
   startReportingYearInput: Int
 }
