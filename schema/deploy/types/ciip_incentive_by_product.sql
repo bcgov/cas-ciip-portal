@@ -7,6 +7,8 @@ create type ggircs_portal.ciip_incentive_by_product as (
   id integer,
   product_id integer,
   product_name varchar(1000),
+  product_amount numeric,
+  product_emissions numeric,
   incentive_ratio numeric,
   incentive_multiplier numeric,
   payment_allocation_factor numeric,

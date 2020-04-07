@@ -98,17 +98,19 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
                             carbon_tax_facility, 0);
 
         select into product_return
-          row_number() over () as id,
-          product_data.id as product_id,
-          product_data.name as product_name,
-          incentive_ratio as incentive_ratio,
-          benchmark_data.incentive_multiplier as incentive_multiplier,
+          row_number() over (),
+          product_data.id,
+          product_data.name,
+          product.product_amount,
+          em_product,
+          incentive_ratio,
+          benchmark_data.incentive_multiplier,
           payment_allocation_factor,
-          carbon_tax_facility as carbon_tax,
-          incentive_product as incentive_product,
-          em_intensity as emission_intensity,
-          benchmark_data.benchmark as benchmark,
-          benchmark_data.eligibility_threshold as eligibility_threshold;
+          carbon_tax_facility,
+          incentive_product,
+          em_intensity,
+          benchmark_data.benchmark,
+          benchmark_data.eligibility_threshold;
 
         return next product_return;
 
