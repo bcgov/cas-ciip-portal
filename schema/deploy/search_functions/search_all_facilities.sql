@@ -4,7 +4,7 @@
 
 begin;
 
-create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text)
+create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text, offset_value int)
 
   returns setof ggircs_portal.facility_search_result as
     $function$
@@ -50,9 +50,13 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
                 on t.organisation_id = o.id::int
                 join ggircs_portal.ciip_user_organisation uo
                 on uo.organisation_id = o.id
-                and uo.user_id = ' || user_id || ')
+                and uo.user_id = ' || user_id || '),
 
-            select * from organisationInfo order by ' || order_by_field || ' ' || direction;
+            total_count as (
+              select count(*)::integer as total_facility_count from organisationInfo
+            )
+
+            select organisationInfo.*, total_facility_count from organisationInfo, total_count order by ' || order_by_field || ' ' || direction || ' limit 10 offset ' || offset_value;
 
         else
           return query execute 'with applicationStatus as (
@@ -90,9 +94,13 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
                 on t.organisation_id = o.id::int
                 join ggircs_portal.ciip_user_organisation uo
                 on uo.organisation_id = o.id
-                and uo.user_id = ' || user_id || ')
-            select * from organisationInfo
-            where '|| search_field || '::text ilike ''%' || search_value || '%'' order by '|| order_by_field || ' ' || direction;
+                and uo.user_id = ' || user_id || '),
+
+            total_count as (
+              select count(*)::integer as total_facility_count from organisationInfo
+            )
+            select organisationInfo.*, total_facility_count from organisationInfo, total_count
+            where '|| search_field || '::text ilike ''%' || search_value || '%'' order by '|| order_by_field || ' ' || direction || ' limit 10 offset ' || offset_value;
         end if;
       end
     $function$ language plpgsql stable;

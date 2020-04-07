@@ -16,7 +16,8 @@ create type ggircs_portal.facility_search_result as (
     facility_postal_code varchar(1000),
     reporting_year integer,
     application_revision_status ggircs_portal.ciip_application_revision_status,
-    organisation_name varchar(1000)
+    organisation_name varchar(1000),
+    total_facility_count integer
 );
 
 comment on type ggircs_portal.facility_search_result is '@primaryKey (facility_id, application_id)
