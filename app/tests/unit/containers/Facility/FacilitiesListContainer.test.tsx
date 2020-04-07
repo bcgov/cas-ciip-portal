@@ -86,6 +86,69 @@ describe('FacilitiesListContainer', () => {
     expect(r.find('PageItem').exists()).toBe(true);
     expect(r).toMatchSnapshot();
   });
+  it('should create Math.ceil(totalFacilityCount / 10) pagination buttons (25 facilities = 3 index buttons)', async () => {
+    const query: FacilitiesListContainer_query = {
+      ' $fragmentRefs': {
+        FacilitiesRowItemContainer_query: true
+      },
+      ' $refType': 'FacilitiesListContainer_query',
+      searchAllFacilities: {
+        edges: [
+          {
+            node: {
+              rowId: 1,
+              totalFacilityCount: 25,
+              ' $fragmentRefs ': {
+                FacilitiesRowItemContainer_facilitySearchResult: true
+              }
+            }
+          }
+        ]
+      },
+      allFacilities: {totalCount: 20},
+      organisation: {id: 'abc', rowId: 1}
+    };
+    const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+    useRouter.mockImplementationOnce(() => ({
+      query: {}
+    }));
+    const r = shallow(
+      <FacilitiesList
+        query={query}
+        relay={null}
+        direction="asc"
+        orderByField="id"
+        searchField={null}
+        searchValue={null}
+        offsetValue={1}
+        handleEvent={jest.fn()}
+      />
+    );
+    expect(
+      r
+        .find('PageItem')
+        .at(0)
+        .text()
+    ).toBe('1');
+    expect(
+      r
+        .find('PageItem')
+        .at(1)
+        .text()
+    ).toBe('2');
+    expect(
+      r
+        .find('PageItem')
+        .at(2)
+        .text()
+    ).toBe('3');
+    expect(
+      r
+        .find('PageItem')
+        .at(3)
+        .exists()
+    ).toBe(false);
+  });
   it('should not render the Pagination component if < 10 facilities (totalFacilityCount < 10)', async () => {
     const query: FacilitiesListContainer_query = {
       ' $fragmentRefs': {
