@@ -21,6 +21,7 @@ class FacilitiesList extends Component<Props> {
       $searchField: String
       $searchValue: String
       $organisationId: ID!
+      $offsetValue: Int
     ) {
       query {
         ...FacilitiesListContainer_query
@@ -30,6 +31,7 @@ class FacilitiesList extends Component<Props> {
             searchField: $searchField
             searchValue: $searchValue
             organisationId: $organisationId
+            offsetValue: $offsetValue
           )
         session {
           ...defaultLayout_session
@@ -42,7 +44,8 @@ class FacilitiesList extends Component<Props> {
     return {
       variables: {
         orderByField: 'facility_name',
-        direction: 'ASC'
+        direction: 'ASC',
+        offsetValue: 0
       }
     };
   }
