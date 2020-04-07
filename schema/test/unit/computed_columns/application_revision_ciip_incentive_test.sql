@@ -47,12 +47,15 @@ insert into ggircs_portal.benchmark
   eligibility_threshold,
   incentive_multiplier,
   start_reporting_year,
-  end_reporting_year
+  end_reporting_year,
+  minimum_incentive_ratio,
+  maximum_incentive_ratio
 )
 overriding system value
 values
-(1, 1, 0.25, 0.75, 1, 2018, 2018),
-(2, 2, 0.10, 0.30, 1, 2018, 2018);
+(1, 1, 0.25, 0.75, 1, 2018, 2018, 0, 1),
+(2, 2, 0.10, 0.30, 1, 2018, 2018, 0, 1),
+(3, 3, 0, 1, 1, 2018, 2018, 0.42, 0.42);
 
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 
@@ -168,6 +171,21 @@ select is(
   ),
   0.75, -- product 2 has 15t and product 3 5t,
   'payment is automatically allocated between ciip products based on their share of emissions'
+);
+
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select incentive_ratio
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 3
+  ),
+  0.42,
+  'incentive ratio is bound by minimum and maximum'
 );
 
 -- Test roles

@@ -15,8 +15,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     em_heat numeric;
     em_intensity numeric;
     intensity_range numeric;
-    incentive_ratio_max numeric;
-    incentive_ratio_min numeric;
     incentive_ratio numeric;
     incentive_product numeric;
     app_reporting_year int;
@@ -29,10 +27,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
 
   begin
     -- TODO: Check that there is only a single product where requires_emission_allocation is false, we can't do the payment allocation otherwise
-
-    -- Define placeholder variables
-    incentive_ratio_min = 0;
-    incentive_ratio_max = 1;
 
     -- Get emissions for facility
     select sum(annual_co2e) into em_facility from ggircs_portal.ciip_emission
@@ -80,7 +74,12 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         -- Calculate Incentive Ratio as
         -- IncRatio = min(IncRatioMax, max(IncRatioMin, 1 - (EmIntensity - BM)/(ET - BM))
         intensity_range = 1 - ((em_intensity - benchmark_data.benchmark) / (benchmark_data.eligibility_threshold - benchmark_data.benchmark));
-        incentive_ratio = least(incentive_ratio_max, greatest(incentive_ratio_min, intensity_range));
+        incentive_ratio = least(
+          benchmark_data.maximum_incentive_ratio,
+          greatest(
+            benchmark_data.minimum_incentive_ratio, intensity_range
+          )
+        );
 
         -- Determine the payment allocation factor.
         if (select array_length(reported_ciip_products, 1)) = 1 then
