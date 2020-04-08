@@ -100,7 +100,23 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
     setActivePage(pageNumber);
   };
 
-  for (let pageNumber = 1; pageNumber <= maxPages; pageNumber++) {
+  let startPage;
+  let endPage;
+  if (maxPages <= 9) {
+    startPage = 1;
+    endPage = maxPages;
+  } else if (maxPages - activePage <= 4) {
+    startPage = maxPages - 8;
+    endPage = maxPages;
+  } else if (activePage <= 5) {
+    startPage = 1;
+    endPage = 9;
+  } else {
+    startPage = activePage - 4;
+    endPage = activePage + 4;
+  }
+
+  for (let pageNumber = startPage; pageNumber <= endPage; pageNumber++) {
     items.push(
       <Pagination.Item
         key={pageNumber}
@@ -123,7 +139,9 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         <Pagination>
           <Pagination.First onClick={() => handlePaginationByPageNumber(1)} />
           <Pagination.Prev onClick={previousTenPagination} />
+          {startPage !== 1 && <Pagination.Ellipsis />}
           <Pagination>{items}</Pagination>
+          {endPage !== maxPages && <Pagination.Ellipsis />}
           <Pagination.Next onClick={nextTenPagination} />
           <Pagination.Last
             onClick={() => handlePaginationByPageNumber(maxPages)}
