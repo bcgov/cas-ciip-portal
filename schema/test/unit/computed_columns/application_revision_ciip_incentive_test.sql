@@ -49,17 +49,17 @@ values
   false, true, true, false, false, false, false, true, false),
   (10, 'product with excluded generated heat emissions', 'active',
   false, true, true, false, false, false, false, false, true),
-  (11, 'Purchased Electricity', 'active',
+  (11, 'Purchased electricity', 'active',
   true, false, true, false, false, false, false, false, false),
-  (12, 'Exported Electricity', 'active',
+  (12, 'Exported electricity', 'active',
   true, true, true, false, false, false, false, false, false),
-  (13, 'Purchased Heat', 'active',
+  (13, 'Purchased heat', 'active',
   true, false, true, false, false, false, false, false, false),
-  (14, 'Exported Heat', 'active',
+  (14, 'Exported heat', 'active',
   true, true, true, false, false, false, false, false, false),
-  (15, 'Electricity Generated on Site', 'active',
+  (15, 'Electricity generated on site', 'active',
   true, false, true, false, false, false, false, false, false),
-  (16, 'Heat Generated on Site', 'active',
+  (16, 'Heat generated on site', 'active',
   true, false, true, false, false, false, false, false, false)
 ;
 

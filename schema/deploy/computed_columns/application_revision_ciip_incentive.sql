@@ -85,7 +85,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
-                and _product.name = 'Purchased Electricity'
+                and _product.name = 'Purchased electricity'
             );
           end if;
           if product_data.subtract_exported_electricity_emissions then
@@ -94,7 +94,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
-                and _product.name = 'Exported Electricity'
+                and _product.name = 'Exported electricity'
             );
           end if;
           if product_data.add_purchased_heat_emissions then
@@ -103,7 +103,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
-                and _product.name = 'Purchased Heat'
+                and _product.name = 'Purchased heat'
             );
           end if;
           if product_data.subtract_exported_heat_emissions then
@@ -112,7 +112,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
-                and _product.name = 'Exported Heat'
+                and _product.name = 'Exported heat'
             );
           end if;
         end if;
