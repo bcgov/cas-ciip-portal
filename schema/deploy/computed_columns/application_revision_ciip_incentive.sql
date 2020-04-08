@@ -20,7 +20,8 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     app_reporting_year int;
     carbon_tax_facility numeric;
     payment_allocation_factor numeric; -- The portion of the facility's carbon tax allocated to the current product
-    reported_ciip_products ggircs_portal.ciip_production[]; -- The reported ciip products (excludes product with no incentive)
+    reported_products ggircs_portal.ciip_production[]; -- The reported products (ciip and non-ciip) for this application
+    reported_ciip_products ggircs_portal.ciip_production[]; -- The reported ciip products for this application
     benchmark_data ggircs_portal.benchmark;
     product_data ggircs_portal.product;
     product_return ggircs_portal.ciip_incentive_by_product;
@@ -39,11 +40,24 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     -- Get carbon tax data for the application
     select sum(carbon_tax_flat) into carbon_tax_facility from ggircs_portal.ciip_carbon_tax_calculation
     where version_number = application_revision.version_number and application_id = application_revision.application_id;
+
+    reported_products = array(
+      select row(ciip_production.*)
+      from ggircs_portal.ciip_production
+      where
+        version_number = application_revision.version_number
+        and application_id = application_revision.application_id
+    );
+
     reported_ciip_products = array(
       select row(ciip_production.*)
       from ggircs_portal.ciip_production
-      join ggircs_portal.product _product on ciip_production.product_id = _product.id and _product.is_ciip_product = true
-      where version_number = application_revision.version_number and application_id = application_revision.application_id
+      join ggircs_portal.product _product on
+        ciip_production.product_id = _product.id
+        and _product.is_ciip_product = true
+      where
+        version_number = application_revision.version_number
+        and application_id = application_revision.application_id
     );
 
     if (select array_length(reported_ciip_products, 1)) > 0 then
@@ -64,7 +78,43 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         if (product_data.requires_emission_allocation) then
           em_product = product.product_emissions;
         else
-          em_product = em_facility; -- TODO: add/subtract energy
+          em_product = em_facility;
+          if product_data.add_purchased_electricity_emissions then
+            em_product = em_product + (
+              select p.product_emissions
+              from unnest(reported_products) p
+              join ggircs_portal.product _product on
+                p.product_id = _product.id
+                and _product.name = 'Purchased Electricity'
+            );
+          end if;
+          if product_data.subtract_exported_electricity_emissions then
+            em_product = em_product - (
+              select p.product_emissions
+              from unnest(reported_products) p
+              join ggircs_portal.product _product on
+                p.product_id = _product.id
+                and _product.name = 'Exported Electricity'
+            );
+          end if;
+          if product_data.add_purchased_heat_emissions then
+            em_product = em_product + (
+              select p.product_emissions
+              from unnest(reported_products) p
+              join ggircs_portal.product _product on
+                p.product_id = _product.id
+                and _product.name = 'Purchased Heat'
+            );
+          end if;
+          if product_data.subtract_exported_heat_emissions then
+            em_product = em_product - (
+              select p.product_emissions
+              from unnest(reported_products) p
+              join ggircs_portal.product _product on
+                p.product_id = _product.id
+                and _product.name = 'Exported Heat'
+            );
+          end if;
         end if;
 
         -- Calculate Emission Intensity

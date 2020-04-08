@@ -274,8 +274,8 @@ select is(
       (select * from record)
     ) where product_id = 6
   ),
-  62.0,
-  'purchased heat emissions are added to the facility emissions for products that require it'
+  38.0,
+  'exported electricity emissions are added to the facility emissions for products that require it'
 );
 
 -- Report a product with no allocation of emissions which requires "Exported Electricity" to be reported
@@ -304,8 +304,8 @@ select is(
       (select * from record)
     ) where product_id = 7
   ),
-  37.0,
-  'exported electricity emissions are removed from the facility emissions for products that require it'
+  63.0,
+  'purchased heat emissions are removed from the facility emissions for products that require it'
 );
 
 -- Report a product with no allocation of emissions which requires "Expported Heat" to be reported
