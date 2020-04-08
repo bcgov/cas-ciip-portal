@@ -36,6 +36,30 @@ values
   (3, 'product B with allocation of emissions', 'active',
   true, true, true, false, false, false, false, false, false),
   (4, 'non-ciip product', 'active',
+  true, false, true, false, false, false, false, false, false),
+  (5, 'product with added purchased electricity emissions', 'active',
+  false, true, true, true, false, false, false, false, false),
+  (6, 'product with excluded exported electricity emissions', 'active',
+  false, true, true, false, true, false, false, false, false),
+  (7, 'product with added purchased heat emissions', 'active',
+  false, true, true, false, false, true, false, false, false),
+  (8, 'product with excluded exported heat emissions', 'active',
+  false, true, true, false, false, false, true, false, false),
+  (9, 'product with excluded generated electricity emissions', 'active',
+  false, true, true, false, false, false, false, true, false),
+  (10, 'product with excluded generated heat emissions', 'active',
+  false, true, true, false, false, false, false, false, true),
+  (11, 'Purchased electricity', 'active',
+  true, false, true, false, false, false, false, false, false),
+  (12, 'Exported electricity', 'active',
+  true, true, true, false, false, false, false, false, false),
+  (13, 'Purchased heat', 'active',
+  true, false, true, false, false, false, false, false, false),
+  (14, 'Exported heat', 'active',
+  true, true, true, false, false, false, false, false, false),
+  (15, 'Electricity generated on site', 'active',
+  true, false, true, false, false, false, false, false, false),
+  (16, 'Heat generated on site', 'active',
   true, false, true, false, false, false, false, false, false)
 ;
 
@@ -47,12 +71,20 @@ insert into ggircs_portal.benchmark
   eligibility_threshold,
   incentive_multiplier,
   start_reporting_year,
-  end_reporting_year
+  end_reporting_year,
+  minimum_incentive_ratio,
+  maximum_incentive_ratio
 )
 overriding system value
 values
-(1, 1, 0.25, 0.75, 1, 2018, 2018),
-(2, 2, 0.10, 0.30, 1, 2018, 2018);
+(1, 1, 0.25, 0.75, 1, 2018, 2018, 0, 1),
+(2, 2, 0.10, 0.30, 1, 2018, 2018, 0, 1),
+(3, 3, 0, 1, 1, 2018, 2018, 0.42, 0.42),
+(4, 5, 0, 1, 1, 2018, 2018, 0.42, 0.42),
+(5, 6, 0, 1, 1, 2018, 2018, 0.42, 0.42),
+(6, 7, 0, 1, 1, 2018, 2018, 0.42, 0.42),
+(8, 9, 0, 1, 1, 2018, 2018, 0.42, 0.42);
+
 
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 
@@ -168,6 +200,142 @@ select is(
   ),
   0.75, -- product 2 has 15t and product 3 5t,
   'payment is automatically allocated between ciip products based on their share of emissions'
+);
+
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select incentive_ratio
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 3
+  ),
+  0.42,
+  'incentive ratio is bound by minimum and maximum'
+);
+
+
+-- Report a product with no allocation of emissions which requires "Purchased Electricity" to be reported
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 5,
+    "productAmount": 100
+  },
+  {
+    "productRowId": 11,
+    "productAmount": 42,
+    "productEmissions": 11
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select product_emissions
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 5
+  ),
+  61.0,
+  'purchased electricity emissions are added to the facility emissions for products that require it'
+);
+
+-- Report a product with no allocation of emissions which requires "Purchased Heat" to be reported
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 6,
+    "productAmount": 100
+  },
+  {
+    "productRowId": 12,
+    "productAmount": 42,
+    "productEmissions": 12
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select product_emissions
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 6
+  ),
+  38.0,
+  'exported electricity emissions are added to the facility emissions for products that require it'
+);
+
+-- Report a product with no allocation of emissions which requires "Exported Electricity" to be reported
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 7,
+    "productAmount": 100
+  },
+  {
+    "productRowId": 13,
+    "productAmount": 42,
+    "productEmissions": 13
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select product_emissions
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 7
+  ),
+  63.0,
+  'purchased heat emissions are removed from the facility emissions for products that require it'
+);
+
+-- Report a product with no allocation of emissions which requires "Expported Heat" to be reported
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 8,
+    "productAmount": 100
+  },
+  {
+    "productRowId": 14,
+    "productAmount": 42,
+    "productEmissions": 14
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select is(
+  (
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select product_emissions
+    from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    ) where product_id = 8
+  ),
+  36.0,
+  'exported heat emissions are removed from the facility emissions for products that require it'
 );
 
 -- Test roles
