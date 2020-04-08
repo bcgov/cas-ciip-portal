@@ -1843,6 +1843,8 @@ type CiipIncentiveByProduct {
   incentiveProduct: BigFloat
   incentiveRatio: BigFloat
   paymentAllocationFactor: BigFloat
+  productAmount: BigFloat
+  productEmissions: BigFloat
   productId: Int
   productName: String
   rowId: Int
