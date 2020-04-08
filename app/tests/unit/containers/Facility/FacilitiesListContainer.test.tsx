@@ -190,4 +190,57 @@ describe('FacilitiesListContainer', () => {
     expect(r.find('PageItem').exists()).toBe(false);
     expect(r).toMatchSnapshot();
   });
+  it('should render a maximum of 9 pagination pages if there are > 9 possible pages ( totalFacilityCount > 90)', async () => {
+    const query: FacilitiesListContainer_query = {
+      ' $fragmentRefs': {
+        FacilitiesRowItemContainer_query: true
+      },
+      ' $refType': 'FacilitiesListContainer_query',
+      searchAllFacilities: {
+        edges: [
+          {
+            node: {
+              rowId: 1,
+              totalFacilityCount: 200,
+              ' $fragmentRefs ': {
+                FacilitiesRowItemContainer_facilitySearchResult: true
+              }
+            }
+          }
+        ]
+      },
+      allFacilities: {totalCount: 20},
+      organisation: {id: 'abc', rowId: 1}
+    };
+    const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+    useRouter.mockImplementationOnce(() => ({
+      query: {}
+    }));
+    const r = shallow(
+      <FacilitiesList
+        query={query}
+        relay={null}
+        direction="asc"
+        orderByField="id"
+        searchField={null}
+        searchValue={null}
+        offsetValue={1}
+        handleEvent={jest.fn()}
+      />
+    );
+    expect(
+      r
+        .find('PageItem')
+        .at(8)
+        .text()
+    ).toBe('9');
+    expect(
+      r
+        .find('PageItem')
+        .at(9)
+        .exists()
+    ).toBe(false);
+    expect(r.find('Ellipsis').exists()).toBe(true);
+    expect(r).toMatchSnapshot();
+  });
 });
