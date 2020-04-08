@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, SyntheticEvent} from 'react';
+import {Pagination} from 'react-bootstrap';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import createFacilityMutation from 'mutations/facility/createFacilityMutation';
@@ -12,6 +13,7 @@ interface Props {
   orderByField: string;
   searchField: string;
   searchValue: string;
+  offsetValue: number;
   handleEvent: (...args: any[]) => void;
   query: FacilitiesListContainer_query;
   relay: RelayRefetchProp;
@@ -34,13 +36,16 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   if (router.query.organisationId) organisation = query.organisation;
   const facilityNumber = query.allFacilities.totalCount;
   let [facilityCount, updateFacilityCount] = useState(facilityNumber);
+  const [offsetValue, setOffset] = useState(0);
+  const [activePage, setActivePage] = useState(1);
   useEffect(() => {
     const refetchVariables = {
       searchField,
       searchValue,
       orderByField,
       direction,
-      facilityCount
+      facilityCount,
+      offsetValue
     };
     relay.refetch(refetchVariables);
   });
@@ -73,6 +78,40 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
     updateFacilityCount((facilityCount += 1));
   };
 
+  const previousTenPagination = () => {
+    if (offsetValue > 0) {
+      setOffset(offsetValue - 10);
+      setActivePage(activePage - 1);
+    }
+  };
+
+  const nextTenPagination = () => {
+    setOffset(offsetValue + 10);
+    setActivePage(activePage + 1);
+  };
+
+  // Pagination
+  const items = [];
+  const maxPages = Math.ceil(
+    query?.searchAllFacilities?.edges[0]?.node?.totalFacilityCount / 10
+  );
+  const handlePaginationByPageNumber = (pageNumber: number) => {
+    setOffset((pageNumber - 1) * 10);
+    setActivePage(pageNumber);
+  };
+
+  for (let pageNumber = 1; pageNumber <= maxPages; pageNumber++) {
+    items.push(
+      <Pagination.Item
+        key={pageNumber}
+        active={pageNumber === activePage}
+        onClick={() => handlePaginationByPageNumber(pageNumber)}
+      >
+        {pageNumber}
+      </Pagination.Item>
+    );
+  }
+
   return (
     <>
       <SearchTableLayout
@@ -80,6 +119,17 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
       />
+      {maxPages > 1 && (
+        <Pagination>
+          <Pagination.First onClick={() => handlePaginationByPageNumber(1)} />
+          <Pagination.Prev onClick={previousTenPagination} />
+          <Pagination>{items}</Pagination>
+          <Pagination.Next onClick={nextTenPagination} />
+          <Pagination.Last
+            onClick={() => handlePaginationByPageNumber(maxPages)}
+          />
+        </Pagination>
+      )}
       {organisation ? (
         <AddOrganisationFacility
           organisationRowId={organisation.rowId}
@@ -102,6 +152,7 @@ export default createRefetchContainer(
           direction: {type: "String"}
           organisationId: {type: "ID!"}
           facilityCount: {type: "Int"}
+          offsetValue: {type: "Int"}
         ) {
         ...FacilitiesRowItemContainer_query
         searchAllFacilities(
@@ -109,10 +160,12 @@ export default createRefetchContainer(
           searchValue: $searchValue
           orderByField: $orderByField
           direction: $direction
+          offsetValue: $offsetValue
         ) {
           edges {
             node {
               rowId
+              totalFacilityCount
               ...FacilitiesRowItemContainer_facilitySearchResult
             }
           }
@@ -137,6 +190,7 @@ export default createRefetchContainer(
       $direction: String
       $organisationId: ID!
       $facilityCount: Int
+      $offsetValue: Int
     ) {
       query {
         ...FacilitiesListContainer_query
@@ -147,6 +201,7 @@ export default createRefetchContainer(
             searchValue: $searchValue
             organisationId: $organisationId
             facilityCount: $facilityCount
+            offsetValue: $offsetValue
           )
       }
     }

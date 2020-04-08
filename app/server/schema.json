@@ -3562,6 +3562,16 @@
                   "defaultValue": null
                 },
                 {
+                  "name": "offsetValue",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "orderByField",
                   "description": null,
                   "type": {
@@ -26038,6 +26048,18 @@
             },
             {
               "name": "rowId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalFacilityCount",
               "description": null,
               "args": [],
               "type": {

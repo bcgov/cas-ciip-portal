@@ -6798,6 +6798,7 @@ type FacilitySearchResult {
   organisationName: String
   reportingYear: Int
   rowId: Int
+  totalFacilityCount: Int
 }
 
 """A connection to a list of `FacilitySearchResult` values."""
@@ -11002,6 +11003,7 @@ type Query implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
+    offsetValue: Int
     orderByField: String
     searchField: String
     searchValue: String
