@@ -27,6 +27,7 @@ begin;
 
   --Todo: refactor to add address table in CIIP
   create unique index facility_swrs_report_id_uindex on ggircs_portal.facility(swrs_report_id);
+  create index facility_organisation_id_foreign_key on ggircs_portal.facility(organisation_id);
 
 do
   $grant$

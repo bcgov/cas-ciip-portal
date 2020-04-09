@@ -147,7 +147,7 @@
     },
     "requiresProductAmount": {
       "ui:widget": "radio",
-      "ui:help": "Should the reporting the product amount for this Non-CIIP product be required?"
+      "ui:help": "Should reporting the product amount for this Non-CIIP product be required?"
     },
     "addPurchasedElectricityEmissions": {
       "ui:widget": "radio",
