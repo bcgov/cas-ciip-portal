@@ -692,10 +692,12 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "gas": Object {
                       "properties": Object {
                         "annualCO2e": Object {
+                          "defaultValue": 0,
                           "title": "Tonnes (CO2 equivalent)",
                           "type": "number",
                         },
                         "annualEmission": Object {
+                          "defaultValue": 0,
                           "title": "Tonnes (CO2)",
                           "type": "number",
                         },
