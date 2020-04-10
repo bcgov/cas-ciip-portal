@@ -20,49 +20,46 @@ begin
     return '{}';
   end if;
 
-  return concat(
-    '{
-      "operator":{
-        "name": "',org_data.operator_name,'",
-        "tradeName": "',org_data.operator_trade_name,'",
-        "duns": "',org_data.duns,'",
-        "bcCorporateRegistryNumber":"",
-        "naics": "', facility_data.naics_code,'",
-        "mailingAddress": {
-          "streetAddress": "', org_data.operator_mailing_address,'",
-          "city": "', org_data.operator_city,'",
-          "province": "', org_data.operator_province,'",
-          "postalCode": "', org_data.operator_postal_code,'"
-        }
-      },
-      "facility": {
-        "facilityName": "', facility_data.facility_name,'",
-        "facilityType": "', facility_data.facility_type,'",
-        "bcghgid": "', facility_data.bcghgid,'",
-        "naics": "', facility_data.naics_code,'",
-        "mailingAddress": {
-          "streetAddress": "', facility_data.facility_mailing_address,'",
-          "city": "', facility_data.facility_city,'",
-          "province": "', facility_data.facility_province,'",
-          "postalCode": "', facility_data.facility_postal_code,'"
-        },
-        "isFacilityLocationDifferent": false
-      },
-      "operationalRepresentative": {
-        "firstName": "', contact_data.first_name,'",
-        "lastName": "', contact_data.last_name,'",
-        "position": "', contact_data.position_title,'",
-        "email": "', contact_data.email,'",
-        "phone": "', contact_data.telephone,'",
-        "fax": "', contact_data.fax,'",
-        "mailingAddress": {
-          "streetAddress": "', contact_data.contact_mailing_address,'",
-          "city": "', contact_data.contact_city,'",
-          "province": "', contact_data.contact_province,'",
-          "postalCode": "', contact_data.contact_postal_code,'"
-        }
-      }
-    }')::jsonb;
+  return jsonb_build_object(
+    'operator', jsonb_build_object(
+      'name', org_data.operator_name,
+      'tradeName', org_data.operator_trade_name,
+      'duns', org_data.duns,
+      'bcCorporateRegistryNumber', '',
+      'naics', facility_data.naics_code,
+      'mailingAddress', jsonb_build_object(
+        'streetAddress', org_data.operator_mailing_address,
+        'city', org_data.operator_city,
+        'province', org_data.operator_province,
+        'postalCode', org_data.operator_postal_code
+      )
+    ), 'facility', jsonb_build_object(
+      'facilityName', facility_data.facility_name,
+      'facilityType', facility_data.facility_type,
+      'bcghgid', facility_data.bcghgid,
+      'naics', facility_data.naics_code,
+      'mailingAddress', jsonb_build_object(
+        'streetAddress', facility_data.facility_mailing_address,
+        'city', facility_data.facility_city,
+        'province', facility_data.facility_province,
+        'postalCode', facility_data.facility_postal_code
+      ),
+      'isFacilityLocationDifferent', false
+    ), 'operationalRepresentative', jsonb_build_object(
+      'firstName', contact_data.first_name,
+      'lastName', contact_data.last_name,
+      'position', contact_data.position_title,
+      'email', contact_data.email,
+      'phone', contact_data.telephone,
+      'fax', contact_data.fax,
+      'mailingAddress', jsonb_build_object(
+        'streetAddress', contact_data.contact_mailing_address,
+        'city', contact_data.contact_city,
+        'province', contact_data.contact_province,
+        'postalCode', contact_data.contact_postal_code
+      )
+    )
+  );
 
 end;
 $function$ language plpgsql strict volatile;

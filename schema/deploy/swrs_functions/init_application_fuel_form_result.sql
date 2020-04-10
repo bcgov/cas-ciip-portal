@@ -23,14 +23,12 @@ begin
       result := concat(result, ',');
     end if;
     first_fuel := false;
-    result := concat(result,
-      '{',
-      '"fuelType": "', fuel_datum.fuel_type, '",',
-      '"quantity": ', fuel_datum.annual_fuel_amount, ',',
-      '"fuelUnits": "', fuel_datum.fuel_units, '",',
-      '"methodology": "', fuel_datum.alternative_methodolody_description, '"',
-      '}'
-      );
+    result := concat(result, jsonb_build_object(
+      'fuelType', fuel_datum.fuel_type,
+      'quantity', fuel_datum.annual_fuel_amount,
+      'fuelUnits', fuel_datum.fuel_units,
+      'methodology', fuel_datum.alternative_methodolody_description
+    ));
   end loop;
   result := concat(result, ']');
   return result;
