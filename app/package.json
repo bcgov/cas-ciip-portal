@@ -182,7 +182,7 @@
     "babel-plugin-relay": "^9.0.0",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
-    "cypress": "^4.1.0",
+    "cypress": "^4.3.0",
     "cypress-axe": "^0.8.1",
     "cypress-plugin-retries": "^1.5.2",
     "easygraphql-tester": "^5.1.6",
