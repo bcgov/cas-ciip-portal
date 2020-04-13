@@ -20,7 +20,8 @@
     "format": "xo --fix",
     "lint": "xo",
     "prestorybook": "npm run build:relay",
-    "storybook": "start-storybook -s ."
+    "storybook": "start-storybook -s .",
+    "commit": "git-cz"
   },
   "xo": {
     "extends": [
@@ -180,11 +181,13 @@
     "babel-plugin-macros": "^2.8.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-relay": "^9.0.0",
+    "commitizen": "^4.0.4",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "cypress": "^4.1.0",
     "cypress-axe": "^0.8.1",
     "cypress-plugin-retries": "^1.5.2",
+    "cz-conventional-changelog": "3.1.0",
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -250,6 +253,11 @@
     "transform": {
       ".*(ts|tsx|js|jsx)$": "babel-jest",
       "\\.graphql$": "jest-raw-loader"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./app/node_modules/cz-conventional-changelog"
     }
   }
 }
