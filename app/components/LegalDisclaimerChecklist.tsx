@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Checkbox from './Checkbox';
+import {ListGroupItem} from 'react-bootstrap';
 
 const consents = [
   'I give permission to use SWIM data to start a CIIP application.',
@@ -31,7 +32,13 @@ const LegalDisclaimerChecklist: React.FunctionComponent<Props> = props => {
       onChange(consents.length === newset.length);
     };
 
-    return <Checkbox key={i} label={consent} onCheck={handleCheck} />;
+    return (
+      <ListGroupItem>
+        <div className="legal-checklist">
+          <Checkbox key={i} label={consent} onCheck={handleCheck} />
+        </div>
+      </ListGroupItem>
+    );
   };
 
   // The fragment below shouldn't be needed, but the React.FunctionComponent

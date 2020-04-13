@@ -60,6 +60,7 @@
   },
   "uiSchema": {
     "ui:className": "emission-form no-col-padding",
+    "ui:field": "emission",
     "sourceTypes": {
       "ui:options": {
         "addable": false,

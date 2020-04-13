@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import {useRouter} from 'next/router';
-import {Button} from 'react-bootstrap';
+import {Button, ListGroup, ListGroupItem} from 'react-bootstrap';
 import LegalDisclaimerChecklist from 'components/LegalDisclaimerChecklist';
 import updateApplicationRevisionMutation from 'mutations/application/updateApplicationRevisionMutation';
 import {LegalDisclaimerChecklistContainer_application} from 'LegalDisclaimerChecklistContainer_application.graphql';
@@ -40,18 +40,21 @@ export const LegalDisclaimerChecklistContainer: React.FunctionComponent<Props> =
   };
 
   return (
-    <>
+    <ListGroup className="list-group-flush">
       <LegalDisclaimerChecklist
         onChange={allChecked => setAllChecked(allChecked)}
       />
-      <Button
-        variant="primary"
-        disabled={!allChecked}
-        onClick={handleContinueClick}
-      >
-        Continue
-      </Button>
-    </>
+      <ListGroupItem>
+        <Button
+          variant="primary"
+          size="lg"
+          disabled={!allChecked}
+          onClick={handleContinueClick}
+        >
+          {allChecked ? 'Continue' : 'Please check all to continue'}
+        </Button>
+      </ListGroupItem>
+    </ListGroup>
   );
 };
 

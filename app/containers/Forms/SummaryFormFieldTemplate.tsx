@@ -88,7 +88,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
         }
         .emission .summary-item {
           border: 0;
-          padding: 20px 20px 10px 20px;
+          padding: 20px 20px 10px 0;
         }
         .summary-card .card-body {
           padding-top: 0;
@@ -101,6 +101,12 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
           border-bottom: 1px solid #ccc;
           margin-top: -1px;
           padding: 10px;
+        }
+        .emission .summary-formgroup.form-group.field {
+          margin: 0 5px;
+        }
+        .emission .summary-formgroup.form-group.field h5 {
+          color: #036;
         }
       `}</style>
     </div>

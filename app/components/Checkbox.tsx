@@ -36,7 +36,10 @@ const Checkbox: React.FunctionComponent<Props> = props => {
           }
 
           label {
-            margin-left: 0.25rem;
+            margin-top: 4px;
+            margin-left: 10px;
+            position: relative;
+            top: 2px;
           }
         `}
       </style>

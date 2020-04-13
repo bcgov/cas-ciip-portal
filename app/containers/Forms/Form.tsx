@@ -17,6 +17,7 @@ import FuelFields from './FuelFields';
 import EmissionGasFields from './EmissionGasFields';
 import EmissionSourceFields from './EmissionSourceFields';
 import ProductField from './ProductField';
+import EmissionField from './EmissionField';
 import ProductRowIdField from './ProductRowIdField';
 import NumberField from './NumberField';
 
@@ -32,6 +33,9 @@ const CUSTOM_FIELDS = {
   emissionSource: EmissionSourceFields,
   emissionGas: EmissionGasFields,
   product: props => <ProductField query={props.formContext.query} {...props} />,
+  emission: props => (
+    <EmissionField query={props.formContext.query} {...props} />
+  ),
   productRowId: props => (
     <ProductRowIdField query={props.formContext.query} {...props} />
   ),
@@ -81,7 +85,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   return (
     <div className={formClass}>
       <Row>
-        <Col md={12} style={{marginLeft: '25px'}}>
+        <Col md={8}>
           <h1 className="form-title">{name}</h1>
         </Col>
       </Row>
@@ -117,7 +121,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
                 Save & Exit
               </Link>
             </Col>
-            <Col md={9} style={{textAlign: 'right'}}>
+            <Col className="form-nav" md={9} style={{textAlign: 'right'}}>
               {ciipApplicationWizardByFormId &&
                 ciipApplicationWizardByFormId.formPosition > 0 && (
                   <Button
@@ -140,7 +144,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       <style jsx global>
         {`
           .rjsf .form-row {
-            margin: 20px 0 40px;
+            margin: 20px 0 20px;
           }
           .emission-form .rjsf .form-row {
             margin: 0;

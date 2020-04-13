@@ -142,66 +142,64 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
   // eslint-disable-next-line react/jsx-no-useless-fragment
   const buttonOverride = <></>;
   return (
-    <>
-      <Card
-        style={{width: '100%', marginBottom: '10px'}}
-        className={`${classTag} summary-card`}
-      >
-        <Card.Header>
-          <Row>
-            <Col md={6}>
-              <h4>{formJsonByFormId.name}</h4>
+    <Card
+      style={{width: '100%', marginBottom: '10px'}}
+      className={`${classTag} summary-card`}
+    >
+      <Card.Header className="summary-form-header">
+        <Row>
+          <Col md={6}>
+            <h4>{formJsonByFormId.name}</h4>
+          </Col>
+          {review ? (
+            <Col md={{span: 2, offset: 3}}>
+              <ApplicationReviewContainer
+                formName={formJsonByFormId.name}
+                formResultId={formResult.id}
+                formResultStatus={formResult.formResultStatuses}
+                versionNumber={formResult.versionNumber}
+              />
             </Col>
-            {review ? (
-              <Col md={{span: 2, offset: 3}}>
-                <ApplicationReviewContainer
-                  formName={formJsonByFormId.name}
-                  formResultId={formResult.id}
-                  formResultStatus={formResult.formResultStatuses}
-                  versionNumber={formResult.versionNumber}
-                />
-              </Col>
-            ) : null}
-            <Col md={1} style={{textAlign: 'right'}}>
-              <Button
-                aria-label="toggle-card-open"
-                title="expand or collapse the card"
-                variant="outline-dark"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                {isOpen ? '+' : '-'}
-              </Button>
-            </Col>
-          </Row>
-        </Card.Header>
-        <Collapse in={!isOpen}>
-          <Card.Body>
-            <JsonSchemaForm
-              omitExtraData
-              liveOmit
-              liveValidate={liveValidate}
-              ArrayFieldTemplate={SummaryFormArrayFieldTemplate}
-              FieldTemplate={SummaryFormFieldTemplate}
-              showErrorList={false}
-              fields={CUSTOM_FIELDS}
-              customFormats={customFormats}
-              schema={schema}
-              uiSchema={uiSchema}
-              ObjectFieldTemplate={FormObjectFieldTemplate}
-              formData={review ? diffTo.node.formResult : formResult.formResult}
-              formContext={{
-                query,
-                showDiff,
-                diffPathArray,
-                diffArray,
-                previousIsEmpty
-              }}
+          ) : null}
+          <Col md={1} style={{textAlign: 'right'}}>
+            <Button
+              aria-label="toggle-card-open"
+              title="expand or collapse the card"
+              variant="outline-dark"
+              onClick={() => setIsOpen(!isOpen)}
             >
-              {buttonOverride}
-            </JsonSchemaForm>
-          </Card.Body>
-        </Collapse>
-      </Card>
+              {isOpen ? '+' : '-'}
+            </Button>
+          </Col>
+        </Row>
+      </Card.Header>
+      <Collapse in={!isOpen}>
+        <Card.Body>
+          <JsonSchemaForm
+            omitExtraData
+            liveOmit
+            liveValidate={liveValidate}
+            ArrayFieldTemplate={SummaryFormArrayFieldTemplate}
+            FieldTemplate={SummaryFormFieldTemplate}
+            showErrorList={false}
+            fields={CUSTOM_FIELDS}
+            customFormats={customFormats}
+            schema={schema}
+            uiSchema={uiSchema}
+            ObjectFieldTemplate={FormObjectFieldTemplate}
+            formData={review ? diffTo.node.formResult : formResult.formResult}
+            formContext={{
+              query,
+              showDiff,
+              diffPathArray,
+              diffArray,
+              previousIsEmpty
+            }}
+          >
+            {buttonOverride}
+          </JsonSchemaForm>
+        </Card.Body>
+      </Collapse>
       <style jsx global>{`
         .diffFrom {
           background-color: rgba(243, 76, 96, 0.3);
@@ -209,8 +207,11 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         .diffTo {
           background-color: rgba(70, 241, 118, 0.3);
         }
+        .summary-form-header > .row {
+          justify-content: space-between;
+        }
       `}</style>
-    </>
+    </Card>
   );
 };
 
