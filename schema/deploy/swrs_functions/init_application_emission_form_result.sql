@@ -37,8 +37,8 @@ begin
           select
             map.emission_category as emissionCategory,
             map.gas_type as gasType,
-            e.quantity as qty,
-            e.calculated_quantity as cqty,
+            coalesce(e.quantity, 0) as qty,
+            coalesce(e.calculated_quantity, 0) as cqty,
             map.gwp as map_gwp,
             map.gas_description as gas_description,
             map.id

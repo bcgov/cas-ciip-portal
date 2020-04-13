@@ -1,8 +1,7 @@
 import React from 'react';
-import {FieldProps, IdSchema} from 'react-jsonschema-form';
+import {FieldProps} from 'react-jsonschema-form';
 import {Form, Col} from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
-import NumberFormat from 'react-number-format';
 import ErrorList from 'components/Forms/ErrorList';
 
 const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
@@ -19,7 +18,10 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   uiSchema
 }) => {
   const {
-    properties: {annualEmission: annualEmissionSchema}
+    properties: {
+      annualEmission: annualEmissionSchema,
+      annualCO2e: annualCO2eSchema
+    }
   } = schema as {properties: Record<string, JSONSchema6>};
 
   const {
@@ -89,11 +91,37 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
           </ul>
         </Col>
         <Col md={3} style={{textAlign: 'center'}}>
-          <NumberFormat
-            thousandSeparator
-            displayType="text"
-            value={formData.annualCO2e}
-          />
+          <FieldTemplate
+            hidden={false}
+            id="emissions.annualCO2e"
+            classNames="form-group field field-number"
+            label={null}
+            schema={annualEmissionSchema}
+            uiSchema={uiSchema}
+            formContext={formContext}
+            errors={
+              <ErrorList errors={errorSchema?.annualCO2e?.__errors as any} />
+            }
+          >
+            <registry.fields.NumberField
+              required
+              readonly
+              schema={annualCO2eSchema}
+              uiSchema={uiSchema}
+              formData={formData.annualCO2e}
+              autofocus={autofocus}
+              idSchema={idSchema.annualCO2e}
+              registry={registry}
+              errorSchema={errorSchema?.annualCO2e}
+              formContext={formContext}
+              disabled={disabled}
+              name="annualCO2e"
+              onBlur={null}
+              onChange={() => {
+                throw new Error('Annual CO2e should not be edited directly');
+              }}
+            />
+          </FieldTemplate>
         </Col>
       </Form.Row>
       <style jsx>{`

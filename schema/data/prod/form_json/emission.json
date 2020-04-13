@@ -37,7 +37,9 @@
           },
           "annualEmission": {
             "title": "Tonnes (CO2)",
-            "type": "number"
+            "type": "number",
+            "defaultValue": 0,
+            "minimum": 0
           },
           "gwp": {
             "title": "GWP",
@@ -45,12 +47,14 @@
           },
           "annualCO2e": {
             "title": "Tonnes (CO2 equivalent)",
-            "type": "number"
+            "type": "number",
+            "defaultValue": 0
           },
           "gasDescription": {
             "type": "string"
           }
-        }
+        },
+        "required": ["gasType", "annualEmission", "gwp", "annualCO2e"]
       }
     }
   },
