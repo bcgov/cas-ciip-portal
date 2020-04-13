@@ -1,118 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationDetailsCardItemComponent should render the individual summary confirmation card component 1`] = `
-<Fragment>
-  <Card
-    body={false}
-    className="fuel summary-card"
-    style={
-      Object {
-        "marginBottom": "10px",
-        "width": "100%",
-      }
+<Card
+  body={false}
+  className="fuel summary-card"
+  style={
+    Object {
+      "marginBottom": "10px",
+      "width": "100%",
     }
+  }
+>
+  <CardHeader
+    className="summary-form-header"
   >
-    <CardHeader
-      className="summary-form-header"
+    <Row
+      noGutters={false}
     >
-      <Row
-        noGutters={false}
+      <Col
+        md={6}
       >
-        <Col
-          md={6}
+        <h4
+          className="jsx-3222786205"
         >
-          <h4
-            className="jsx-3222786205"
-          >
-            Fuel Usage
-          </h4>
-        </Col>
-        <Col
-          md={1}
-          style={
-            Object {
-              "textAlign": "right",
-            }
+          Fuel Usage
+        </h4>
+      </Col>
+      <Col
+        md={1}
+        style={
+          Object {
+            "textAlign": "right",
           }
-        >
-          <Button
-            active={false}
-            aria-label="toggle-card-open"
-            disabled={false}
-            onClick={[Function]}
-            title="expand or collapse the card"
-            type="button"
-            variant="outline-dark"
-          >
-            -
-          </Button>
-        </Col>
-      </Row>
-    </CardHeader>
-    <Collapse
-      appear={false}
-      dimension="height"
-      getDimensionValue={[Function]}
-      in={true}
-      mountOnEnter={false}
-      timeout={300}
-      unmountOnExit={false}
-    >
-      <CardBody>
-        <Form
-          ArrayFieldTemplate={[Function]}
-          ErrorList={[Function]}
-          FieldTemplate={[Function]}
-          ObjectFieldTemplate={[Function]}
+        }
+      >
+        <Button
+          active={false}
+          aria-label="toggle-card-open"
           disabled={false}
-          fields={
-            Object {
-              "BooleanField": [Function],
-              "NumberField": [Function],
-              "StringField": [Function],
-              "TitleField": [Function],
-              "emissionGas": [Function],
-              "emissionSource": [Function],
-              "product": [Function],
-              "productRowId": [Function],
-            }
+          onClick={[Function]}
+          title="expand or collapse the card"
+          type="button"
+          variant="outline-dark"
+        >
+          -
+        </Button>
+      </Col>
+    </Row>
+  </CardHeader>
+  <Collapse
+    appear={false}
+    dimension="height"
+    getDimensionValue={[Function]}
+    in={true}
+    mountOnEnter={false}
+    timeout={300}
+    unmountOnExit={false}
+  >
+    <CardBody>
+      <Form
+        ArrayFieldTemplate={[Function]}
+        ErrorList={[Function]}
+        FieldTemplate={[Function]}
+        ObjectFieldTemplate={[Function]}
+        disabled={false}
+        fields={
+          Object {
+            "BooleanField": [Function],
+            "NumberField": [Function],
+            "StringField": [Function],
+            "TitleField": [Function],
+            "emissionGas": [Function],
+            "emissionSource": [Function],
+            "product": [Function],
+            "productRowId": [Function],
           }
-          formContext={
-            Object {
-              "diffArray": Array [],
-              "diffPathArray": Array [],
-              "previousIsEmpty": false,
-              "query": Object {
-                " $fragmentRefs": Object {
-                  " $refType": "ProductField_query",
-                  "ProductField_query": true,
-                },
+        }
+        formContext={
+          Object {
+            "diffArray": Array [],
+            "diffPathArray": Array [],
+            "previousIsEmpty": false,
+            "query": Object {
+              " $fragmentRefs": Object {
+                " $refType": "ProductField_query",
+                "ProductField_query": true,
               },
-              "showDiff": false,
-            }
+            },
+            "showDiff": false,
           }
-          formData={Object {}}
-          liveOmit={true}
-          liveValidate={false}
-          noHtml5Validate={false}
-          noValidate={false}
-          omitExtraData={true}
-          safeRenderCompletion={false}
-          schema={
-            Object {
-              "title": "Fuel UsageCollapse",
-            }
+        }
+        formData={Object {}}
+        liveOmit={true}
+        liveValidate={false}
+        noHtml5Validate={false}
+        noValidate={false}
+        omitExtraData={true}
+        safeRenderCompletion={false}
+        schema={
+          Object {
+            "title": "Fuel UsageCollapse",
           }
-          showErrorList={false}
-          uiSchema={Object {}}
-        />
-      </CardBody>
-    </Collapse>
-  </Card>
+        }
+        showErrorList={false}
+        uiSchema={Object {}}
+      />
+    </CardBody>
+  </Collapse>
   <JSXStyle
     id="3222786205"
   >
     .diffFrom{background-color:rgba(243,76,96,0.3);}.diffTo{background-color:rgba(70,241,118,0.3);}.summary-form-header&gt;.row{-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}
   </JSXStyle>
-</Fragment>
+</Card>
 `;

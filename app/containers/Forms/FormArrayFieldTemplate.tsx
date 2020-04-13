@@ -18,7 +18,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
             ? 'zero-emission'
             : '';
         return (
-          <div key={element.index} className={zeroEmission}>
+          <div key={element.index}>
             <Form.Row>
               <Col xs={12} md={element.hasRemove ? 11 : 12}>
                 {element.children}

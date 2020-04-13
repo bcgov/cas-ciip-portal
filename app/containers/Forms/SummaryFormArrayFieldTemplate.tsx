@@ -30,6 +30,10 @@ const SummaryFormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateP
           .emission .zero-emission {
             display: none !important;
           }
+          .summary-formrow .col-12 {
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+          }
         `}
       </style>
     </>

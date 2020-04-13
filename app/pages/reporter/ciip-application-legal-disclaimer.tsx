@@ -38,7 +38,7 @@ class CiipApplicationLegalDisclaimer extends Component<Props> {
 
     let ImportMessage = null;
 
-    if (!hasImportedReport) {
+    if (hasImportedReport) {
       ImportMessage = (
         <Alert variant="info">
           We found an emissions report for this facility, and imported the

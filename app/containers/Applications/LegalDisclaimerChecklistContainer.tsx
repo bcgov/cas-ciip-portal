@@ -40,23 +40,21 @@ export const LegalDisclaimerChecklistContainer: React.FunctionComponent<Props> =
   };
 
   return (
-    <>
-      <ListGroup className="list-group-flush">
-        <LegalDisclaimerChecklist
-          onChange={allChecked => setAllChecked(allChecked)}
-        />
-        <ListGroupItem>
-          <Button
-            variant="primary"
-            size="lg"
-            disabled={!allChecked}
-            onClick={handleContinueClick}
-          >
-            {allChecked ? 'Continue' : 'Please check all to continue'}
-          </Button>
-        </ListGroupItem>
-      </ListGroup>
-    </>
+    <ListGroup className="list-group-flush">
+      <LegalDisclaimerChecklist
+        onChange={allChecked => setAllChecked(allChecked)}
+      />
+      <ListGroupItem>
+        <Button
+          variant="primary"
+          size="lg"
+          disabled={!allChecked}
+          onClick={handleContinueClick}
+        >
+          {allChecked ? 'Continue' : 'Please check all to continue'}
+        </Button>
+      </ListGroupItem>
+    </ListGroup>
   );
 };
 

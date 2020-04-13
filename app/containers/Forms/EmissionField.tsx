@@ -36,6 +36,34 @@ export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = props
             position: relative;
             top: -52px;
           }
+          .emission .zero-emission,
+          .emission-form .zero-emission {
+            display: none !important;
+          }
+
+          .emission-form .show-zero-emissions .zero-emission {
+            display: block !important;
+          }
+          .emission .emission-row {
+            display: none !important;
+          }
+
+          .emission-form .field-array hr {
+            display: none !important;
+          }
+          .emission-form .form-group {
+            margin-bottom: 0;
+          }
+
+          .emission-row {
+            margin-bottom: 1.5em;
+            border-bottom: 1px solid #dcdcdc;
+            padding-bottom: 20px !Important;
+          }
+
+          .emission-form .form-submit {
+            margin-top: 100px;
+          }
         `}
       </style>
     </div>

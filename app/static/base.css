@@ -47,13 +47,3 @@
     display:inline-block;
     width: 30%;
 }
-
-.emission .zero-emission,
-.emission-form .zero-emission{
-    display:none !important;
-}
-
-.emission-form .show-zero-emissions .zero-emission
-{
-    display:block !important;
-}

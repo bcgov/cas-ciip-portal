@@ -1321,7 +1321,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
           className="font-italic text-muted"
         />
         <div
-          className="jsx-696237408 show-zero-emissions"
+          className="jsx-61285161 show-zero-emissions"
         >
           <div
             className="emission-toggle col-md-12"
@@ -1345,7 +1345,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
               className="jsx-4148384647 field field-array field-array-of-object"
             >
               <div
-                className="jsx-4148384647 "
+                className="jsx-4148384647"
               >
                 <div
                   className="form-row"
@@ -1372,7 +1372,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             sourceTypeName
                           </label>
                           <div
-                            className="row"
+                            className="SourceFieldHeading row"
                             style={
                               Object {
                                 "margin": "20px 0 20px 0",
@@ -1383,7 +1383,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-4 col-12"
                             >
                               <h5
-                                className="jsx-2806087631"
+                                className="jsx-569590088"
                                 style={
                                   Object {
                                     "textAlign": "left",
@@ -1397,7 +1397,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-3 col-12"
                             >
                               <h6
-                                className="jsx-2806087631"
+                                className="jsx-569590088"
                               >
                                 Tonnes
                               </h6>
@@ -1406,7 +1406,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-2 col-12"
                             >
                               <h6
-                                className="jsx-2806087631"
+                                className="jsx-569590088"
                               >
                                 GWP
                               </h6>
@@ -1415,7 +1415,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-3 col-12"
                             >
                               <h6
-                                className="jsx-2806087631"
+                                className="jsx-569590088"
                               >
                                 Tonnes (CO2e)
                               </h6>
@@ -1435,7 +1435,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             className="jsx-4148384647 field field-array field-array-of-object"
                           >
                             <div
-                              className="jsx-4148384647 "
+                              className="jsx-4148384647"
                             >
                               <div
                                 className="form-row"
@@ -1453,7 +1453,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                         className="font-italic text-muted"
                                       />
                                       <div
-                                        className="visible emission-row col-md-12 col-12"
+                                        className=" emission-row col-md-12 col-12"
                                       >
                                         <div
                                           className="form-row"
