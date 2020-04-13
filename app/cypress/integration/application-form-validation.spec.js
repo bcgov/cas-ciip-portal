@@ -121,6 +121,7 @@ describe('When reviewing a submitted application as an analyst', () => {
       '#root_operationalRepresentative_mailingAddress_postalCode +div .error-detail'
     ).contains('Format should be A1A 1A1');
 
+    cy.percySnapshot('admin');
     cy.get('#root_operator_duns')
       .clear()
       .type('111222333');
@@ -129,16 +130,13 @@ describe('When reviewing a submitted application as an analyst', () => {
       .type('A1A 1A1');
     cy.contains('Continue').click();
 
-    cy.percySnapshot('admin');
-
     // Emission Form
     cy.get(':nth-child(2) > .nav-link').click();
-    cy.contains('Continue').click();
-    // General Stationary Combustion - 5
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').clear();
+    cy.contains('Continue').click(); // Try to submit the form
     cy.get(
       '#root_sourceTypes_0_gases_0_annualEmission +div .error-detail'
-    ).contains('should be number');
+    ).contains('is a required property');
     cy.percySnapshot('Emissions form');
 
     // Fuel Form
