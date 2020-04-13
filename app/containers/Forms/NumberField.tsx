@@ -56,6 +56,19 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
     schema.minimum < 0 ||
     schema.exclusiveMinimum < 0;
 
+  if (readonly) {
+    return (
+      <NumberFormat
+        thousandSeparator={!uiSchema?.['ui:no-seperator']}
+        id={idSchema.$id}
+        disabled={disabled}
+        decimalScale={4}
+        value={formData}
+        displayType="text"
+      />
+    );
+  }
+
   return (
     <NumberFormat
       thousandSeparator={!uiSchema?.['ui:no-seperator']}
@@ -64,6 +77,7 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
       className="form-control"
       allowNegative={allowNegative}
       decimalScale={4}
+      defaultValue={(schema as any).defaultValue}
       value={formData}
       onValueChange={({floatValue}) => onChange(floatValue)}
     />
