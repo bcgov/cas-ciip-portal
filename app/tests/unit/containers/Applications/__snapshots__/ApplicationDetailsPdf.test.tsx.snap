@@ -650,18 +650,18 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": 0,
-                          "annualEmission": -80000000,
-                          "gasDescription": "est dolor",
-                          "gasType": "consequat Ut Duis",
-                          "gwp": -40000000,
+                          "annualCO2e": -80000000,
+                          "annualEmission": 20000000,
+                          "gasDescription": "mollit eu esse",
+                          "gasType": "culpa",
+                          "gwp": -20000000,
                         },
                         Object {
-                          "annualCO2e": -20000000,
-                          "annualEmission": 0,
-                          "gasDescription": "in qui",
-                          "gasType": "mollit eu esse",
-                          "gwp": -60000000,
+                          "annualCO2e": -80000000,
+                          "annualEmission": 20000000,
+                          "gasDescription": "mollit eu esse",
+                          "gasType": "culpa",
+                          "gwp": -20000000,
                         },
                       ],
                       "sourceTypeName": "in qui",
@@ -669,14 +669,21 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": -40000000,
-                          "annualEmission": -20000000,
-                          "gasDescription": "culpa",
-                          "gasType": "est dolor",
-                          "gwp": -80000000,
+                          "annualCO2e": -80000000,
+                          "annualEmission": 20000000,
+                          "gasDescription": "mollit eu esse",
+                          "gasType": "culpa",
+                          "gwp": -20000000,
+                        },
+                        Object {
+                          "annualCO2e": -80000000,
+                          "annualEmission": 20000000,
+                          "gasDescription": "mollit eu esse",
+                          "gasType": "culpa",
+                          "gwp": -20000000,
                         },
                       ],
-                      "sourceTypeName": "consequat Ut Duis",
+                      "sourceTypeName": "in qui",
                     },
                   ],
                 }
@@ -698,6 +705,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         },
                         "annualEmission": Object {
                           "defaultValue": 0,
+                          "minimum": 0,
                           "title": "Tonnes (CO2)",
                           "type": "number",
                         },
@@ -713,6 +721,12 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "type": "number",
                         },
                       },
+                      "required": Array [
+                        "gasType",
+                        "annualEmission",
+                        "gwp",
+                        "annualCO2e",
+                      ],
                       "type": "object",
                     },
                     "sourceType": Object {
@@ -850,6 +864,12 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               }
               formData={
                 Array [
+                  Object {
+                    "fuelType": "in qui",
+                    "fuelUnits": "culpa",
+                    "methodology": "wci 1.0",
+                    "quantity": -40000000,
+                  },
                   Object {
                     "fuelType": "mollit eu esse",
                     "fuelUnits": "est dolor",
