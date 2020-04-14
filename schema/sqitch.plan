@@ -2,6 +2,7 @@
 %project=ggircs-portal
 %uri=https://github.com/bcgov/cas-ggircs/app
 
+schema_swrs 2020-04-15T01:19:51Z Matthieu Foucault <matthieu@button.is> # Add a schema for SWRS
 schema_ggircs_portal 2019-07-11T18:30:51Z Hamza Javed <hamza@button.is> # Add a schema for the GGIRCS Industry Portal (GIP)
 schema_ggircs_portal_private 2020-02-04T19:34:27Z Dylan Leard <dylan@button.is> # Private schema for entities needed in the portal that should not be exposed to the API
 database_functions/graphile_worker_job_definer [schema_ggircs_portal_private] 2020-02-28T23:07:39Z Dylan Leard <dylan@button.is> # Wrapper for graphile_worker.add_job to run as security definer
