@@ -149,7 +149,6 @@ jobs:
           name: deploy schema
           command: |
             source ~/.bashrc
-            psql -d ciip_portal_dev -c 'create schema swrs'
             pushd schema
             sqitch deploy
             sqitch verify
