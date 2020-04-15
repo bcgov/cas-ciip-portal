@@ -1,6 +1,6 @@
 {
   "name": "ggircs-industry-ciip-portal",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "The online portal for Industry to apply and track their CIIP applications",
   "scripts": {
     "pretest": "npm run build:relay",
@@ -154,7 +154,8 @@
     "react-relay-network-modern-ssr": "^1.2.4",
     "react-signature-canvas": "^1.0.3",
     "relay-runtime": "^9.0.0",
-    "sinon": "^9.0.2"
+    "sinon": "^9.0.2",
+    "standard-version": "^7.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",

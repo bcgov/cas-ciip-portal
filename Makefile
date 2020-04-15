@@ -181,3 +181,19 @@ deploy_test_data:
 .PHONY: commit
 commit:
 	@@app/node_modules/.bin/git-cz
+
+.PHONY: release
+release:
+	@@app/node_modules/.bin/standard-version
+
+.PHONY: release-alpha
+release-alpha:
+	@@app/node_modules/.bin/standard-version --prerelease alpha
+
+.PHONY: release-beta
+release-beta:
+	@@app/node_modules/.bin/standard-version --prerelease beta
+
+.PHONY: release-rc
+release-rc:
+	@@app/node_modules/.bin/standard-version --prerelease rc
