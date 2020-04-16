@@ -34,7 +34,6 @@ describe('The products and benchmark page', () => {
     cy.get('#root_units')
       .clear()
       .type('units');
-    cy.get(':nth-child(2) > label > :nth-child(1) > input').click();
     cy.get(
       '#root_addPurchasedElectricityEmissions > :nth-child(1) > label > :nth-child(1) > input'
     ).click();

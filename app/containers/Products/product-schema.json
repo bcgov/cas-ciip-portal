@@ -16,118 +16,71 @@
       },
       "requiresEmissionAllocation": {
         "type": "boolean",
-        "title": "Product requires allocation of emissions?",
-        "enumNames": [" Yes", " No"]
+        "title": "Allocation of emissions is required",
+        "enumNames": [" Yes", " No"],
+        "default": true
       },
       "isCiipProduct": {
         "type": "boolean",
-        "title": "CIIP (benchmarked) product"
-      }
-    },
-    "dependencies": {
-      "requiresEmissionAllocation": {
-        "oneOf": [
-          {
-            "properties": {
-              "requiresEmissionAllocation": {
-                "const": true
-              }
-            }
-          },
-          {
-            "properties": {
-              "addPurchasedElectricityEmissions": {
-                "type": "boolean",
-                "title": "Add purchased electricity?",
-                "enumNames": [
-                  " Yes",
-                  " No"
-                ]
-              },
-              "subtractExportedElectricityEmissions": {
-                "type": "boolean",
-                "title": "Subtract exported electricity?",
-                "enumNames": [
-                  " Yes",
-                  " No"
-                ]
-              },
-              "addPurchasedHeatEmissions": {
-                "type": "boolean",
-                "title": "Add purchased heat?",
-                "enumNames": [
-                  " Yes",
-                  " No"
-                ]
-              },
-              "subtractExportedHeatEmissions": {
-                "type": "boolean",
-                "title": "Subtract exported heat?",
-                "enumNames": [
-                  " Yes",
-                  " No"
-                ]
-              },
-              "subtractGeneratedElectricityEmissions": {
-                "type": "boolean",
-                "title": "Subtract generated electricity?",
-                "enumNames": [
-                  " Yes",
-                  " No"
-                ]
-              },
-              "subtractGeneratedHeatEmissions": {
-                "type": "boolean",
-                "title": "Subtract generated heat?",
-                "enumNames": [
-                  " Yes",
-                  " No"
-                ]
-              },
-              "requiresEmissionAllocation": {
-                "const": false
-              }
-            },
-            "required": [
-              "addPurchasedElectricityEmissions",
-              "subtractExportedElectricityEmissions",
-              "addPurchasedHeatEmissions",
-              "subtractExportedHeatEmissions",
-              "subtractGeneratedElectricityEmissions",
-              "subtractGeneratedHeatEmissions"]
-          }
-        ]
+        "title": "CIIP (benchmarked) product",
+        "enumNames": [" Yes", " No"],
+        "default": true
       },
-      "isCiipProduct": {
-        "oneOf": [
-          {
-            "properties": {
-              "isCiipProduct": {
-                "const": true
-              }
-            }
-          },
-          {
-            "properties": {
-              "requiresProductAmount": {
-                "type": "boolean",
-                "title": "Set reporting of production amount as required?",
-                "enumNames": [
-                  " Yes",
-                  " No"
-                ]
-              },
-              "isCiipProduct": {
-                "const":false
-              }
-            },
-            "required": [
-              "requiresProductAmount"]
-          }
-        ]
+      "addPurchasedElectricityEmissions": {
+        "type": "boolean",
+        "title": "Purchased electricity is added to facility emissions",
+        "enumNames": [" Yes", " No"],
+        "default": false
+      },
+      "subtractExportedElectricityEmissions": {
+        "type": "boolean",
+        "title": "Exported electricity is subtracted from facility emissions",
+        "enumNames": [" Yes", " No"],
+        "default": false
+      },
+      "addPurchasedHeatEmissions": {
+        "type": "boolean",
+        "title": "Purchased heat is added to facility emissions",
+        "enumNames": [" Yes", " No"],
+        "default": false
+      },
+      "subtractExportedHeatEmissions": {
+        "type": "boolean",
+        "title": "Exported heat is subtracted from facility emissions",
+        "enumNames": [" Yes", " No"],
+        "default": false
+      },
+      "subtractGeneratedElectricityEmissions": {
+        "type": "boolean",
+        "title": "Generated electricity is subtracted from facility emissions",
+        "enumNames": [" Yes", " No"],
+        "default": false
+      },
+      "subtractGeneratedHeatEmissions": {
+        "type": "boolean",
+        "title": "Generated heat is subtracted from facility emissions",
+        "enumNames": [" Yes", " No"],
+        "default": false
+      },
+      "requiresProductAmount": {
+        "type": "boolean",
+        "title": "Production amount needs to be reported",
+        "enumNames": [" Yes", " No"],
+        "default": true
       }
     },
-    "required": ["name", "units", "requiresEmissionAllocation", "isCiipProduct"]
+    "required": [
+      "name",
+      "requiresEmissionAllocation",
+      "isCiipProduct",
+      "addPurchasedElectricityEmissions",
+      "subtractExportedElectricityEmissions",
+      "addPurchasedHeatEmissions",
+      "subtractExportedHeatEmissions",
+      "subtractGeneratedElectricityEmissions",
+      "subtractGeneratedHeatEmissions",
+      "requiresProductAmount"
+    ]
   },
   "uiSchema": {
     "name": {
@@ -143,35 +96,29 @@
       "ui:widget": "radio"
     },
     "isCiipProduct": {
+      "ui:widget": "radio",
       "ui:help": "Non-CIIP products emissions are excluded from payment allocation. If a product has a fixed incentive ratio instead of a benchmark, please create a benchmark and use the mininmum and maximum incentive ratio options"
     },
     "requiresProductAmount": {
-      "ui:widget": "radio",
-      "ui:help": "Should reporting the product amount for this Non-CIIP product be required?"
+      "ui:widget": "radio"
     },
     "addPurchasedElectricityEmissions": {
-      "ui:widget": "radio",
-      "ui:help": "Should purchased electricity be added to the facility emissions when calculating emission intensity?"
+      "ui:widget": "radio"
     },
     "subtractExportedElectricityEmissions": {
-      "ui:widget": "radio",
-      "ui:help": "Should exported electricity be subtracted from the facility emissions when calculating emission intensity?"
+      "ui:widget": "radio"
     },
     "addPurchasedHeatEmissions": {
-      "ui:widget": "radio",
-      "ui:help": "Should purchased heat be added to the facility emissions when calculating emission intensity?"
+      "ui:widget": "radio"
     },
     "subtractExportedHeatEmissions": {
-      "ui:widget": "radio",
-      "ui:help": "Should exported heat be subtracted from the facility emissions when calculating emission intensity?"
+      "ui:widget": "radio"
     },
     "subtractGeneratedElectricityEmissions": {
-      "ui:widget": "radio",
-      "ui:help": "Should generated electricity be subtracted from the facility emissions when calculating emission intensity?"
+      "ui:widget": "radio"
     },
     "subtractGeneratedHeatEmissions": {
-      "ui:widget": "radio",
-      "ui:help": "Should generated heat be subtracted from the facility emissions when calculating emission intensity?"
+      "ui:widget": "radio"
     }
   }
 }

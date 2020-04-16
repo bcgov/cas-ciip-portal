@@ -9620,14 +9620,14 @@ type Product implements Node {
   the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
   """
-  addPurchasedElectricityEmissions: Boolean
+  addPurchasedElectricityEmissions: Boolean!
 
   """
   Boolean value indicates if purchased heat emissions should be added to the
   facility emissions when calculating the product emission intensity (applies
   only to products where requires_emission_allocation is false)
   """
-  addPurchasedHeatEmissions: Boolean
+  addPurchasedHeatEmissions: Boolean!
 
   """Reads and enables pagination through a set of `Benchmark`."""
   benchmarksByProductId(
@@ -9706,7 +9706,7 @@ type Product implements Node {
   """
   Boolean value indicates if reporting the production amount is required for a non-ciip product
   """
-  requiresProductAmount: Boolean
+  requiresProductAmount: Boolean!
 
   """Unique ID for the product"""
   rowId: Int!
@@ -9721,28 +9721,28 @@ type Product implements Node {
   from the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
   """
-  subtractExportedElectricityEmissions: Boolean
+  subtractExportedElectricityEmissions: Boolean!
 
   """
   Boolean value indicates if exported heat emissions should be subtracted from
   the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
   """
-  subtractExportedHeatEmissions: Boolean
+  subtractExportedHeatEmissions: Boolean!
 
   """
   Boolean value indicates if generated electricity emissions should be
   subtracted from the facility emissions when calculating the product emission
   intensity (applies only to products where requires_emission_allocation is false)
   """
-  subtractGeneratedElectricityEmissions: Boolean
+  subtractGeneratedElectricityEmissions: Boolean!
 
   """
   Boolean value indicates if generated heat emissions should be subtracted from
   the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
   """
-  subtractGeneratedHeatEmissions: Boolean
+  subtractGeneratedHeatEmissions: Boolean!
 
   """The unit of measure for the product"""
   units: String
