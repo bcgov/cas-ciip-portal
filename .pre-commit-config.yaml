@@ -22,6 +22,7 @@ repos:
     - id: check-vcs-permalinks
     - id: check-yaml
     - id: end-of-file-fixer
+      exclude: current_version\.txt
     - id: trailing-whitespace
       exclude: .*/tests/.*
 - repo: https://github.com/Yelp/detect-secrets
