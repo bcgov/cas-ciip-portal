@@ -9,6 +9,16 @@
       "type": "json"
     }
   ],
+  "bumpFiles": [
+    {
+      "filename": "current_version.txt",
+      "type": "plain-text"
+    },
+    {
+      "filename": "app/package.json",
+      "type": "json"
+    }
+  ],
   "sign": true,
   "skip": {
     "tag": true
