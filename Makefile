@@ -111,15 +111,11 @@ openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
 	# Redeploy portal schema
 	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
 	$(call oc_run_job,$(PROJECT_PREFIX)portal-schema-deploy)
-	# Create graphile_worker schema
+	# Populate graphile_worker schema
 	$(call oc_run_job,$(PROJECT_PREFIX)graphile-worker-schema)
-	# Create app user. This must be executed after the deploy job so that the graphile_worker schema exists
+	# Update app user with the correct privileges and password.
+	# This must be executed after the graphile-worker-schema job so that the graphile_worker schema exists
 	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_APP_USER) -d $(PORTAL_DB) -p $(PORTAL_APP_PASSWORD) --schemas graphile_worker --privileges select$(,)insert$(,)update$(,)delete)
-	# Allow the app user to use the ciip_* roles
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_administrator to $(PORTAL_APP_USER);")
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_analyst to $(PORTAL_APP_USER);")
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_industry_user to $(PORTAL_APP_USER);")
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "grant ciip_guest to $(PORTAL_APP_USER);")
 	# Deploy the application and wait for a pod to be healthy
 	$(call oc_deploy)
 	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)portal-app)

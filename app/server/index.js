@@ -40,14 +40,12 @@ if (NO_MATHJAX) process.env.NO_MATHJAX = true;
 
 if (NO_MAIL) process.env.NO_MAIL = true;
 
-if (process.env.PGUSER) {
-  databaseURL += process.env.PGUSER;
-  if (process.env.PGPASSWORD) {
-    databaseURL += `:${process.env.PGPASSWORD}`;
-  }
-
-  databaseURL += '@';
+databaseURL += process.env.PGUSER || 'portal_app';
+if (process.env.PGPASSWORD) {
+  databaseURL += `:${process.env.PGPASSWORD}`;
 }
+
+databaseURL += '@';
 
 databaseURL += process.env.PGHOST || 'localhost';
 if (process.env.PGPORT) {
