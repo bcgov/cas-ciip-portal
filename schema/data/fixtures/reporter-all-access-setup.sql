@@ -331,12 +331,12 @@ update ggircs_portal.form_result set form_result = '{
   where application_id=2 and version_number=1 and form_id=2;
 update ggircs_portal.form_result set form_result = '[
   {
-    "fuelType": "C/D Waste - Plastic",
+    "fuelRowId": 11,
     "quantity": 10,
     "fuelUnits": "t",
     "methodology": "wci 2.0"
   }, {
-    "fuelType": "Butane",
+    "fuelRowId": 13,
     "quantity": 40120,
     "fuelUnits": "kL",
     "methodology": "wci 1.0"

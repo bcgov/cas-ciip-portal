@@ -8,9 +8,9 @@
       "fuel": {
         "type": "object",
         "properties": {
-          "fuelType": {
-            "title": "Fuel Type",
-            "type": "string"
+          "fuelRowId": {
+            "title": "Fuel Name",
+            "type": "number"
           },
           "quantity": {
             "title": "Quantity",
@@ -27,7 +27,7 @@
             "enumNames": ["WCI 1.0", "WCI 2.0", "WCI 3.0"]
           }
         },
-        "required": ["fuelType", "quantity", "fuelUnits", "methodology"]
+        "required": ["fuelRowId", "quantity", "fuelUnits", "methodology"]
       }
     }
   },
@@ -35,7 +35,20 @@
     "ui:add-text": "Add a fuel",
     "ui:remove-text": "Remove fuel",
     "items": {
-      "ui:field": "fuel"
+      "ui:field": "fuel",
+      "ui:order": ["fuelRowId", "quantity", "fuelUnits", "methodology"],
+      "fuelRowId": {
+        "ui:widget": "SearchWidget",
+        "ui:field": "fuelRowId",
+        "ui:col-md": 6
+      },
+      "fuelUnits": {
+        "ui:readonly": true,
+        "ui:col-md": 2
+      },
+      "quantity": {
+        "ui:col-md": 4
+      }
     }
   }
 }

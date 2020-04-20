@@ -13,7 +13,7 @@ begin;
         cf.version_number,
         reporting_year.reporting_year,
         date_part('day', reporting_year.reporting_period_end - reporting_year.reporting_period_start) as reporting_period_days,
-        cf.fuel_type,
+        f.name as fuel_type,
         f.units,
         quantity,
         (cf.quantity * ct_details_start.unit_conversion_factor * ct_details_start.fuel_charge) as fuel_tax_start_rate,
@@ -34,7 +34,7 @@ begin;
         date_part('day', reporting_year.reporting_period_end - ct_details_end.rate_start_date) as end_rate_days
       from ggircs_portal.ciip_fuel as cf
       join ggircs_portal.fuel as f
-        on cf.fuel_type = f.name
+        on cf.fuel_id = f.id
       join ggircs_portal.application as a
         on cf.application_id = a.id
       join ggircs_portal.reporting_year on a.reporting_year = reporting_year.reporting_year

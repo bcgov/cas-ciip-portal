@@ -13,12 +13,13 @@ import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
 import FormObjectFieldTemplate from './FormObjectFieldTemplate';
 import FormFieldTemplate from './FormFieldTemplate';
 import FormArrayFieldTemplate from './FormArrayFieldTemplate';
-import FuelFields from './FuelFields';
+import FuelFields from './FuelField';
 import EmissionGasFields from './EmissionGasFields';
 import EmissionSourceFields from './EmissionSourceFields';
 import ProductField from './ProductField';
 import EmissionField from './EmissionField';
 import ProductRowIdField from './ProductRowIdField';
+import FuelRowIdField from './FuelRowIdField';
 import NumberField from './NumberField';
 
 interface Props {
@@ -38,6 +39,9 @@ const CUSTOM_FIELDS = {
   ),
   productRowId: props => (
     <ProductRowIdField query={props.formContext.query} {...props} />
+  ),
+  fuelRowId: props => (
+    <FuelRowIdField query={props.formContext.query} {...props} />
   ),
   NumberField
 };
@@ -186,7 +190,8 @@ export default createFragmentContainer(FormComponent, {
   query: graphql`
     fragment Form_query on Query
       @argumentDefinitions(formResultId: {type: "ID!"}) {
-      ...FuelFields_query
+      ...FuelField_query
+      ...FuelRowIdField_query
       ...ProductField_query
       ...ProductRowIdField_query
       result: formResult(id: $formResultId) {

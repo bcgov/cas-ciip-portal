@@ -116,7 +116,7 @@ where application_id = 1 and version_number = 1 and form_id = 2;
 
 -- Add a fuel to have a carbon tax amount associated to the facility
 update ggircs_portal.form_result
-set form_result = '[{"fuelType": "Butane", "quantity": 10, "fuelUnits": "kL", "methodology": "wci 1.0"}]'
+set form_result = '[{"fuelRowId": 13, "quantity": 10, "fuelUnits": "kL", "methodology": "wci 1.0"}]'
 where application_id = 1 and version_number = 1 and form_id = 3;
 
 select has_function(

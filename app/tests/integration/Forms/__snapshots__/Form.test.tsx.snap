@@ -1647,6 +1647,6 @@ exports[`Form should match the snapshot with the emission form 1`] = `
 </div>
 `;
 
-exports[`Form should match the snapshot with the fuel form 1`] = `"Cannot read property 'style' of null"`;
+exports[`Form should match the snapshot with the fuel form 1`] = `"Cannot read property 'map' of undefined"`;
 
 exports[`Form should match the snapshot with the production form 1`] = `"One or more options does not have a valid label string. Check the \`labelKey\` prop to ensure that it matches the correct option key and provides a string for filtering and display."`;

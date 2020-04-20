@@ -7,6 +7,8 @@ import {FieldProps} from 'react-jsonschema-form';
 import NumberFormat from 'react-number-format';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
+import FuelRowIdField from 'containers/Forms/FuelRowIdField';
+import FuelField from 'containers/Forms/FuelField';
 
 const customFields = (
   showDiff: boolean,
@@ -112,6 +114,10 @@ const customFields = (
     ),
     productRowId: props => (
       <ProductRowIdField query={props.formContext.query} {...props} />
+    ),
+    fuel: props => <FuelField query={props.formContext.query} {...props} />,
+    fuelRowId: props => (
+      <FuelRowIdField query={props.formContext.query} {...props} />
     ),
     NumberField: props => {
       const errorIcon = setErrorIcon(props);
