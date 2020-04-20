@@ -85,18 +85,18 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 </TEXT>
                 <TEXT>
                    
-                  est dolor
+                  in qui
                 </TEXT>
                 <TEXT>
                    
-                  consequat Ut Duis
+                  mollit eu esse
                   ,
                    
-                  Manitoba
+                  British Columbia
                 </TEXT>
                 <TEXT>
                    
-                  u5f3u5
+                  p4A2p4
                 </TEXT>
               </VIEW>
             </styled.VIEW>
@@ -213,27 +213,27 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "naics": "4512",
                   },
                   "operationalRepresentative": Object {
-                    "email": "mzFgms@AfkpuAfkpuAfkp.ncf",
-                    "fax": "est dolor",
-                    "firstName": "culpa",
-                    "lastName": "in qui",
+                    "email": "gszFg@puAfkpu.cfh",
+                    "fax": "mollit eu esse",
+                    "firstName": "in qui",
+                    "lastName": "est dolor",
                     "mailingAddress": Object {
-                      "city": "culpa",
-                      "postalCode": "A1k4A1",
-                      "province": "New Brunswick",
-                      "streetAddress": "mollit eu esse",
+                      "city": "in qui",
+                      "postalCode": "f2p5f2",
+                      "province": "Northwest Territories",
+                      "streetAddress": "consequat Ut Duis",
                     },
-                    "phone": "consequat Ut Duis",
-                    "position": "mollit eu esse",
+                    "phone": "culpa",
+                    "position": "consequat Ut Duis",
                   },
                   "operator": Object {
-                    "bcCorporateRegistryNumber": "in qui",
+                    "bcCorporateRegistryNumber": "K4512345",
                     "duns": "123451234",
                     "mailingAddress": Object {
-                      "city": "consequat Ut Duis",
-                      "postalCode": "u5f3u5",
-                      "province": "Manitoba",
-                      "streetAddress": "est dolor",
+                      "city": "mollit eu esse",
+                      "postalCode": "p4A2p4",
+                      "province": "British Columbia",
+                      "streetAddress": "in qui",
                     },
                     "naics": "4512",
                     "name": "in qui",
@@ -432,6 +432,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "operator": Object {
                       "properties": Object {
                         "bcCorporateRegistryNumber": Object {
+                          "format": "bcCorporateRegistryNumber",
                           "title": "BC Corporate Registry number",
                           "type": "string",
                         },
@@ -650,40 +651,80 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": -80000000,
-                          "annualEmission": 20000000,
-                          "gasDescription": "mollit eu esse",
-                          "gasType": "culpa",
-                          "gwp": -20000000,
+                          "annualCO2e": -60000000,
+                          "annualEmission": 30000000,
+                          "gasDescription": "consequat Ut Duis",
+                          "gasType": "in qui",
+                          "gwp": 0,
                         },
                         Object {
-                          "annualCO2e": -80000000,
-                          "annualEmission": 20000000,
-                          "gasDescription": "mollit eu esse",
-                          "gasType": "culpa",
-                          "gwp": -20000000,
+                          "annualCO2e": -60000000,
+                          "annualEmission": 30000000,
+                          "gasDescription": "consequat Ut Duis",
+                          "gasType": "in qui",
+                          "gwp": 0,
+                        },
+                        Object {
+                          "annualCO2e": -60000000,
+                          "annualEmission": 30000000,
+                          "gasDescription": "consequat Ut Duis",
+                          "gasType": "in qui",
+                          "gwp": 0,
                         },
                       ],
-                      "sourceTypeName": "in qui",
+                      "sourceTypeName": "est dolor",
                     },
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": -80000000,
-                          "annualEmission": 20000000,
-                          "gasDescription": "mollit eu esse",
-                          "gasType": "culpa",
-                          "gwp": -20000000,
+                          "annualCO2e": -60000000,
+                          "annualEmission": 30000000,
+                          "gasDescription": "consequat Ut Duis",
+                          "gasType": "in qui",
+                          "gwp": 0,
                         },
                         Object {
-                          "annualCO2e": -80000000,
-                          "annualEmission": 20000000,
-                          "gasDescription": "mollit eu esse",
-                          "gasType": "culpa",
-                          "gwp": -20000000,
+                          "annualCO2e": -60000000,
+                          "annualEmission": 30000000,
+                          "gasDescription": "consequat Ut Duis",
+                          "gasType": "in qui",
+                          "gwp": 0,
+                        },
+                        Object {
+                          "annualCO2e": -60000000,
+                          "annualEmission": 30000000,
+                          "gasDescription": "consequat Ut Duis",
+                          "gasType": "in qui",
+                          "gwp": 0,
                         },
                       ],
-                      "sourceTypeName": "in qui",
+                      "sourceTypeName": "est dolor",
+                    },
+                    Object {
+                      "gases": Array [
+                        Object {
+                          "annualCO2e": -60000000,
+                          "annualEmission": 30000000,
+                          "gasDescription": "consequat Ut Duis",
+                          "gasType": "in qui",
+                          "gwp": 0,
+                        },
+                        Object {
+                          "annualCO2e": -60000000,
+                          "annualEmission": 30000000,
+                          "gasDescription": "consequat Ut Duis",
+                          "gasType": "in qui",
+                          "gwp": 0,
+                        },
+                        Object {
+                          "annualCO2e": -60000000,
+                          "annualEmission": 30000000,
+                          "gasDescription": "consequat Ut Duis",
+                          "gasType": "in qui",
+                          "gwp": 0,
+                        },
+                      ],
+                      "sourceTypeName": "est dolor",
                     },
                   ],
                 }
@@ -866,22 +907,10 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "fuelType": "in qui",
-                    "fuelUnits": "culpa",
+                    "fuelType": "est dolor",
+                    "fuelUnits": "in qui",
                     "methodology": "wci 1.0",
-                    "quantity": -40000000,
-                  },
-                  Object {
-                    "fuelType": "mollit eu esse",
-                    "fuelUnits": "est dolor",
-                    "methodology": "wci 2.0",
-                    "quantity": 0,
-                  },
-                  Object {
-                    "fuelType": "culpa",
-                    "fuelUnits": "consequat Ut Duis",
-                    "methodology": "wci 1.0",
-                    "quantity": -60000000,
+                    "quantity": -20000000,
                   },
                 ]
               }
@@ -1017,14 +1046,17 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "productAmount": -40000000,
-                    "productRowId": -60000000,
-                    "productUnits": "culpa",
+                    "productRowId": 0,
                     "requiresEmissionAllocation": false,
-                    "requiresProductAmount": true,
+                    "requiresProductAmount": false,
                   },
                   Object {
-                    "productRowId": 0,
+                    "productRowId": -40000000,
+                    "requiresEmissionAllocation": false,
+                    "requiresProductAmount": false,
+                  },
+                  Object {
+                    "productRowId": -40000000,
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },

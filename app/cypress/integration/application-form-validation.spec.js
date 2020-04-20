@@ -116,6 +116,11 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_operator_duns +div .error-detail').contains(
       'DUNS number should be nine digits'
     );
+    cy.get(
+      '#root_operator_bcCorporateRegistryNumber +div .error-detail'
+    ).contains(
+      'BC Corporate Registry number should be 1-3 letters followed by 7 digits'
+    );
 
     cy.get(
       '#root_operationalRepresentative_mailingAddress_postalCode +div .error-detail'
