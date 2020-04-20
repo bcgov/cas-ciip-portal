@@ -11397,10 +11397,10 @@ jws@^3.2.2:
     jwa "^1.4.1"
     safe-buffer "^5.0.1"
 
-keycloak-connect@^9.0.0:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/keycloak-connect/-/keycloak-connect-9.0.2.tgz#99a46c1f60b04d0dd086f77d793401141e91ec57"
-  integrity sha512-USP9JqIBRNmfUx3I8hXFqTH0JXRzB2ZijJEG//nUURpmRCr5KhKQG4MYJfXASPozdLRn3TkDmnhT2VrFYPjjaA==
+keycloak-connect@^9.0.3:
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/keycloak-connect/-/keycloak-connect-9.0.3.tgz#b91af662298e28fe1cf98856863d66b7e5194487"
+  integrity sha512-tiTRkr/9svv/y1uTOrpvVcoPAUoEha3+oGOjVuyNjw1LsV6jOuJRETKHeEe9tKQFm6svTuFdLmwrNEMSEDCgzA==
   dependencies:
     jwk-to-pem "^2.0.0"
   optionalDependencies:
