@@ -46,7 +46,7 @@ update ggircs_portal.form_result set form_result = '{
   "naics": "12345",
   "tradeName": "trade",
   "duns": "123456789",
-  "bcCorporateRegistryNumber": "1234reg",
+  "bcCorporateRegistryNumber": "HK8394024",
   "mailingAddress": {
     "city": "Victoria",
     "province": "British Columbia",

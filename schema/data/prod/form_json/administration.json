@@ -131,6 +131,7 @@
           },
           "bcCorporateRegistryNumber": {
             "type": "string",
+            "format": "bcCorporateRegistryNumber",
             "title": "BC Corporate Registry number"
           }
         }
@@ -330,12 +331,14 @@
     "duns": "^\\d{9}$",
     "naics": "^\\d+$",
     "bcghgid": "^\\d+$",
+    "bcCorporateRegistryNumber": "^[A-Za-z]{1,3}\\d{7}$",
     "postal-code": "[a-zA-Z][0-9][a-zA-Z]\\s?[0-9][a-zA-Z][0-9]"
   },
   "customFormatsErrorMessages": {
     "duns": "DUNS number should be nine digits",
     "naics": "NAICS code should be numeric",
     "bcghgid": "BCGHGID code should be numeric",
+    "bcCorporateRegistryNumber": "BC Corporate Registry number should be 1-3 letters followed by 7 digits",
     "postal-code": "Format should be A1A 1A1"
   }
 }
