@@ -29,6 +29,7 @@ begin
           subtract_exported_heat_emissions,
           subtract_generated_electricity_emissions,
           subtract_generated_heat_emissions,
+          add_emissions_from_eios,
           requires_product_amount)
   values (new_name,
           new_description,
@@ -43,6 +44,7 @@ begin
           new_subtract_exported_heat_emissions,
           new_subtract_generated_electricity_emissions,
           new_subtract_generated_heat_emissions,
+          new_add_emissions_from_eios,
           new_requires_product_amount) returning id into new_id;
 
   update ggircs_portal.benchmark
