@@ -17,6 +17,7 @@ select pg_get_functiondef('ggircs_portal.save_product_mutation_chain(
   boolean,
   boolean,
   boolean,
+  boolean,
   boolean)'::regprocedure);
 
 rollback;

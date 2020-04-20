@@ -44,7 +44,7 @@ values
 (38, 'Purchased heat', 'GJ', 'active' ,true, true),
 (39, 'Generated electricity', 'GWh', 'active' ,true, true),
 (40, 'Generated heat', 'GJ', 'active' ,true, true),
-(40, 'Emissions from EIOs', 'GJ', 'active' ,true, true)
+(41, 'Emissions from EIOs', 'GJ', 'active' ,true, true)
 on conflict(id) do update
 set
 name=excluded.name,

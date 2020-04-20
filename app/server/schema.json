@@ -11886,6 +11886,22 @@
           "description": "Table containing the information for a CIIP product",
           "fields": [
             {
+              "name": "addEmissionsFromEios",
+              "description": "Boolean value indicates if EIO facility emissions should be added to the facility emissions when calculating the product emission intensity",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "addPurchasedElectricityEmissions",
               "description": "Boolean value indicates if purchased electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "args": [],
@@ -22338,6 +22354,16 @@
           "fields": null,
           "inputFields": [
             {
+              "name": "addEmissionsFromEios",
+              "description": "Checks for equality with the object’s `addEmissionsFromEios` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "addPurchasedElectricityEmissions",
               "description": "Checks for equality with the object’s `addPurchasedElectricityEmissions` field.",
               "type": {
@@ -22564,6 +22590,18 @@
           "inputFields": null,
           "interfaces": null,
           "enumValues": [
+            {
+              "name": "ADD_EMISSIONS_FROM_EIOS_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "ADD_EMISSIONS_FROM_EIOS_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
             {
               "name": "ADD_PURCHASED_ELECTRICITY_EMISSIONS_ASC",
               "description": null,
@@ -34908,6 +34946,16 @@
           "fields": null,
           "inputFields": [
             {
+              "name": "addEmissionsFromEios",
+              "description": "Boolean value indicates if EIO facility emissions should be added to the facility emissions when calculating the product emission intensity",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "addPurchasedElectricityEmissions",
               "description": "Boolean value indicates if purchased electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
@@ -40412,6 +40460,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "newAddEmissionsFromEios",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null
@@ -46400,6 +46458,16 @@
           "description": "Represents an update to a `Product`. Fields that are set will be updated.",
           "fields": null,
           "inputFields": [
+            {
+              "name": "addEmissionsFromEios",
+              "description": "Boolean value indicates if EIO facility emissions should be added to the facility emissions when calculating the product emission intensity",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
             {
               "name": "addPurchasedElectricityEmissions",
               "description": "Boolean value indicates if purchased electricity emissions should be added to the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",

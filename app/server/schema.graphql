@@ -9616,6 +9616,12 @@ type PageInfo {
 """Table containing the information for a CIIP product"""
 type Product implements Node {
   """
+  Boolean value indicates if EIO facility emissions should be added to the
+  facility emissions when calculating the product emission intensity
+  """
+  addEmissionsFromEios: Boolean!
+
+  """
   Boolean value indicates if purchased electricity emissions should be added to
   the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
@@ -9758,6 +9764,9 @@ type Product implements Node {
 A condition to be used against `Product` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
 input ProductCondition {
+  """Checks for equality with the object’s `addEmissionsFromEios` field."""
+  addEmissionsFromEios: Boolean
+
   """
   Checks for equality with the object’s `addPurchasedElectricityEmissions` field.
   """
@@ -9838,6 +9847,12 @@ input ProductCondition {
 
 """An input for mutations affecting `Product`"""
 input ProductInput {
+  """
+  Boolean value indicates if EIO facility emissions should be added to the
+  facility emissions when calculating the product emission intensity
+  """
+  addEmissionsFromEios: Boolean
+
   """
   Boolean value indicates if purchased electricity emissions should be added to
   the facility emissions when calculating the product emission intensity
@@ -9935,6 +9950,12 @@ input ProductInput {
 Represents an update to a `Product`. Fields that are set will be updated.
 """
 input ProductPatch {
+  """
+  Boolean value indicates if EIO facility emissions should be added to the
+  facility emissions when calculating the product emission intensity
+  """
+  addEmissionsFromEios: Boolean
+
   """
   Boolean value indicates if purchased electricity emissions should be added to
   the facility emissions when calculating the product emission intensity
@@ -10056,6 +10077,8 @@ type ProductsEdge {
 
 """Methods to use when ordering `Product`."""
 enum ProductsOrderBy {
+  ADD_EMISSIONS_FROM_EIOS_ASC
+  ADD_EMISSIONS_FROM_EIOS_DESC
   ADD_PURCHASED_ELECTRICITY_EMISSIONS_ASC
   ADD_PURCHASED_ELECTRICITY_EMISSIONS_DESC
   ADD_PURCHASED_HEAT_EMISSIONS_ASC
@@ -11590,6 +11613,7 @@ input SaveProductMutationChainInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
+  newAddEmissionsFromEios: Boolean
   newAddPurchasedElectricityEmissions: Boolean
   newAddPurchasedHeatEmissions: Boolean
   newDescription: String

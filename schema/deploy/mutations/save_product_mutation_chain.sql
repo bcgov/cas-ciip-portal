@@ -7,7 +7,7 @@ begin;
 create or replace function ggircs_portal.save_product_mutation_chain(prev_id int, new_name varchar(1000), new_units varchar(1000), new_description varchar(1000),
 new_state varchar(1000), new_parent int[], new_requires_emission_allocation boolean, new_is_ciip_product boolean, new_add_purchased_electricity_emissions boolean, new_subtract_exported_electricity_emissions boolean,
 new_add_purchased_heat_emissions boolean, new_subtract_exported_heat_emissions boolean, new_subtract_generated_electricity_emissions boolean, new_subtract_generated_heat_emissions boolean,
-new_requires_product_amount boolean)
+new_add_emissions_from_eios boolean, new_requires_product_amount boolean)
 returns ggircs_portal.product
 as $function$
 declare
