@@ -52,6 +52,9 @@ describe('The products and benchmark page', () => {
     cy.get(
       '#root_subtractGeneratedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
     ).click();
+    cy.get(
+      '#root_addEmissionsFromEios > :nth-child(1) > label > :nth-child(1) > input'
+    ).click();
     cy.contains('Add Product').click();
     cy.get('tr')
       .its('length')
