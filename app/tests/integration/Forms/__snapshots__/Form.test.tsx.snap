@@ -19,7 +19,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
   </div>
   <form
     className="rjsf"
-    noValidate={false}
+    noValidate={true}
     onSubmit={[Function]}
   >
     <div
@@ -1308,7 +1308,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
   </div>
   <form
     className="rjsf"
-    noValidate={false}
+    noValidate={true}
     onSubmit={[Function]}
   >
     <div

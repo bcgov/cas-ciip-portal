@@ -94,6 +94,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       )}
       <JsonSchemaForm
         safeRenderCompletion
+        noHtml5Validate
         showErrorList={false}
         ArrayFieldTemplate={FormArrayFieldTemplate}
         FieldTemplate={FormFieldTemplate}
