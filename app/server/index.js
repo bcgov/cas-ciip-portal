@@ -40,7 +40,15 @@ if (NO_MATHJAX) process.env.NO_MATHJAX = true;
 
 if (NO_MAIL) process.env.NO_MAIL = true;
 
-databaseURL += process.env.PGUSER || 'portal_app';
+// If authentication is disabled, this superuser is used for postgraphile queries
+const NO_AUTH_POSTGRES_ROLE = process.env.NO_AUTH_POSTGRES_ROLE || 'postgres';
+// If authentication is disabled use the user above to connect to the database
+// Otherwise, use the PGUSER env variable, or default to portal_app
+const PGUSER = NO_AUTH
+  ? NO_AUTH_POSTGRES_ROLE
+  : process.env.PGUSER || 'portal_app';
+
+databaseURL += PGUSER;
 if (process.env.PGPASSWORD) {
   databaseURL += `:${process.env.PGPASSWORD}`;
 }
@@ -150,7 +158,7 @@ app.prepare().then(() => {
             'jwt.claims.sub': '00000000-0000-0000-0000-000000000000',
             'jwt.claims.user_groups': groups.join(','),
             'jwt.claims.priority_group': priorityGroup,
-            role: process.env.NO_AUTH_POSTGRES_ROLE || 'postgres'
+            role: NO_AUTH_POSTGRES_ROLE
           };
         }
 
