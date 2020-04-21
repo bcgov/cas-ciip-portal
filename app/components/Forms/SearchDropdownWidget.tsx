@@ -13,13 +13,15 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
     () =>
       schema.enum.map((e: string, index) => ({
         id: e,
-        name: (schema as any).enumNames?.[index] ?? e
+        name: (schema as any).enumNames?.[index] ?? e,
+        state: (schema as any).state?.[index]
       })),
     [schema]
   );
 
   const getSelected = useCallback(() => {
     if (value === null || value === undefined) return undefined;
+    if ((schema as any)?.state?.indexOf(value) !== 'active') return undefined;
     const index = schema.enum.indexOf(value);
     return [
       {

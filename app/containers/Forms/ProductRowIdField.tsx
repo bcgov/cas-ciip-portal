@@ -24,7 +24,8 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = props 
       schema: {
         ...props.schema,
         enum: props.query.allProducts.edges.map(({node}) => node.rowId),
-        enumNames: props.query.allProducts.edges.map(({node}) => node.name)
+        enumNames: props.query.allProducts.edges.map(({node}) => node.name),
+        state: props.query.allProducts.edges.map(({node}) => node.state)
       },
       query: undefined
     }),
@@ -42,6 +43,7 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
           node {
             rowId
             name
+            state
           }
         }
       }
