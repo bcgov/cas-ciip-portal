@@ -279,6 +279,21 @@ Array [
                 >
                   <a
                     className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Edit Reporting Period Details
+                  </a>
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
                     href="https://cas-metabase.pathfinder.gov.bc.ca/"
                     target="_blank"
                   >
