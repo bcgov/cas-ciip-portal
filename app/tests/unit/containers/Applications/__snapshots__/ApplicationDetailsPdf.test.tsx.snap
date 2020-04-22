@@ -907,7 +907,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "fuelRowId": "est dolor",
+                    "fuelRowId": -60000000,
                     "fuelUnits": "in qui",
                     "methodology": "wci 1.0",
                     "quantity": -20000000,
@@ -926,7 +926,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "properties": Object {
                         "fuelRowId": Object {
                           "title": "Fuel Name",
-                          "type": "string",
+                          "type": "number",
                         },
                         "fuelUnits": Object {
                           "title": "Units",
@@ -972,12 +972,24 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 Object {
                   "items": Object {
                     "fuelRowId": Object {
+                      "ui:col-md": 6,
+                      "ui:field": "fuelRowId",
                       "ui:widget": "SearchWidget",
                     },
                     "fuelUnits": Object {
+                      "ui:col-md": 2,
                       "ui:readonly": true,
                     },
+                    "quantity": Object {
+                      "ui:col-md": 4,
+                    },
                     "ui:field": "fuel",
+                    "ui:order": Array [
+                      "fuelRowId",
+                      "quantity",
+                      "fuelUnits",
+                      "methodology",
+                    ],
                   },
                   "ui:add-text": "Add a fuel",
                   "ui:remove-text": "Remove fuel",
