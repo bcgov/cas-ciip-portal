@@ -1,5 +1,5 @@
-import React from 'react';
-import {Table} from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Table, Modal, Container, Row, Button} from 'react-bootstrap';
 import moment from 'moment-timezone';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {ReportingYearTable_query} from '__generated__/ReportingYearTable_query.graphql';
@@ -13,13 +13,43 @@ function formatDate(date) {
 }
 
 export const ReportingYearTableComponent: React.FunctionComponent<Props> = props => {
+  const [state, setState] = useState({editingYear: null});
+
   const {query} = props;
   if (!query.allReportingYears || !query.allReportingYears.edges) {
     return <div />;
   }
 
+  const editYear = node => {
+    setState({editingYear: node});
+  };
+
+  const saveReportingYear = async () => {
+    console.log('TODO: Save reporting year');
+  };
+
+  const editModal = (
+    <Modal
+      centered
+      size="xl"
+      show={Boolean(state.editingYear)}
+      onHide={() => {
+        setState({editingYear: null});
+      }}
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>Edit Reporting Year</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Container>
+          <Row>{state.editingYear?.reportingYear}</Row>
+        </Container>
+      </Modal.Body>
+    </Modal>
+  );
+
   return (
-    <div>
+    <>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -29,6 +59,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
             <th scope="col">Application Open Time</th>
             <th scope="col">Application Close Time</th>
             <th scope="col">Application Response Time</th>
+            <th />
           </tr>
         </thead>
         <tbody>
@@ -41,12 +72,16 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
                 <td>{formatDate(node.applicationOpenTime)}</td>
                 <td>{formatDate(node.applicationCloseTime)}</td>
                 <td>{formatDate(node.applicationResponseTime)}</td>
+                <td>
+                  <Button onClick={() => editYear(node)}>Edit</Button>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </Table>
-    </div>
+      {editModal}
+    </>
   );
 };
 
