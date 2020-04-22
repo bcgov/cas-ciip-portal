@@ -115,6 +115,15 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
                 and _product.name = 'Exported heat'
             );
           end if;
+          if product_data.add_emissions_from_eios then
+            em_product = em_product + (
+              select p.product_emissions
+              from unnest(reported_products) p
+              join ggircs_portal.product _product on
+                p.product_id = _product.id
+                and _product.name = 'Emissions from EIOs'
+            );
+          end if;
         end if;
 
         -- Calculate Emission Intensity

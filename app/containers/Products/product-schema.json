@@ -62,6 +62,12 @@
         "enumNames": [" Yes", " No"],
         "default": false
       },
+      "addEmissionsFromEios": {
+        "type": "boolean",
+        "title": "Emissions from EIOs are added to facility emissions",
+        "enumNames": [" Yes", " No"],
+        "default": false
+      },
       "requiresProductAmount": {
         "type": "boolean",
         "title": "Production amount needs to be reported",
@@ -79,6 +85,7 @@
       "subtractExportedHeatEmissions",
       "subtractGeneratedElectricityEmissions",
       "subtractGeneratedHeatEmissions",
+      "addEmissionsFromEios",
       "requiresProductAmount"
     ]
   },
@@ -118,6 +125,9 @@
       "ui:widget": "radio"
     },
     "subtractGeneratedHeatEmissions": {
+      "ui:widget": "radio"
+    },
+    "addEmissionsFromEios": {
       "ui:widget": "radio"
     }
   }
