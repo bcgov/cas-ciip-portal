@@ -10,9 +10,16 @@ exports[`Form Edit User should render the snapshot 1`] = `
     <div
       class="form-row"
     >
-      <span
-        class="font-italic text-muted"
+      <div
+        class="col-12"
       />
+      <div
+        class="col-12"
+      >
+        <span
+          class="font-italic text-muted"
+        />
+      </div>
       <div
         class="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
       >

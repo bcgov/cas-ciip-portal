@@ -165,7 +165,8 @@
     "react-signature-canvas": "^1.0.3",
     "relay-runtime": "^9.0.0",
     "sinon": "^9.0.2",
-    "standard-version": "^7.1.0"
+    "standard-version": "^7.1.0",
+    "styled-jsx": "^3.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",

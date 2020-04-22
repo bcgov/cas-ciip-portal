@@ -24,6 +24,9 @@ describe('When logged in as an admin', () => {
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');
     cy.get('tr');
+    cy.visit('/admin/reporting-years');
+    cy.url().should('include', '/admin/reporting-years');
+    cy.get('tr');
     cy.visit('/analyst/applications');
     cy.url().should('include', '/analyst/applications');
     cy.get('tr');

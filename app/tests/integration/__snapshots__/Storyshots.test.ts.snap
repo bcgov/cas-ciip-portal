@@ -279,6 +279,21 @@ Array [
                 >
                   <a
                     className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Edit Reporting Period Details
+                  </a>
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
                     href="https://cas-metabase.pathfinder.gov.bc.ca/"
                     target="_blank"
                   >
@@ -869,9 +884,16 @@ Array [
               <div
                 className="form-row"
               >
-                <span
-                  className="font-italic text-muted"
+                <div
+                  className="col-12"
                 />
+                <div
+                  className="col-12"
+                >
+                  <span
+                    className="font-italic text-muted"
+                  />
+                </div>
                 <div
                   className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                 >

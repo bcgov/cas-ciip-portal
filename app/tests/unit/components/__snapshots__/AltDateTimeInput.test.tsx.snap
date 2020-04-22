@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AltDateInput Should match last accepted snapshot: AltDateTime (both date and time) 1`] = `
+<form
+  className="rjsf"
+  noValidate={true}
+  onSubmit={[Function]}
+>
+  <SchemaField
+    autofocus={false}
+    disabled={false}
+    errorSchema={Object {}}
+    formData={Object {}}
+    idSchema={
+      Object {
+        "$id": "root",
+      }
+    }
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    readonly={false}
+    registry={
+      Object {
+        "ArrayFieldTemplate": undefined,
+        "FieldTemplate": [Function],
+        "ObjectFieldTemplate": [Function],
+        "definitions": Object {},
+        "fields": Object {
+          "AnyOfField": [Function],
+          "ArrayField": [Function],
+          "BooleanField": [Function],
+          "DescriptionField": [Function],
+          "NullField": [Function],
+          "NumberField": [Function],
+          "ObjectField": [Function],
+          "OneOfField": [Function],
+          "SchemaField": [Function],
+          "StringField": [Function],
+          "TitleField": [Function],
+          "UnsupportedField": [Function],
+        },
+        "formContext": Object {},
+        "widgets": Object {
+          "AltDateTimeInput": [Function],
+          "AltDateTimeWidget": [Function],
+          "AltDateWidget": [Function],
+          "BaseInput": [Function],
+          "CheckboxWidget": [Function],
+          "CheckboxesWidget": [Function],
+          "ColorWidget": [Function],
+          "DateTimeWidget": [Function],
+          "DateWidget": [Function],
+          "EmailWidget": [Function],
+          "FileWidget": [Function],
+          "HiddenWidget": [Function],
+          "PasswordWidget": [Function],
+          "RadioWidget": [Function],
+          "RangeWidget": [Function],
+          "SelectWidget": [Function],
+          "TextWidget": [Function],
+          "TextareaWidget": [Function],
+          "URLWidget": [Function],
+          "UpDownWidget": [Function],
+        },
+      }
+    }
+    safeRenderCompletion={false}
+    schema={
+      Object {
+        "applicationOpenTime": Object {
+          "title": "Application Open Time",
+          "type": "string",
+        },
+      }
+    }
+    uiSchema={
+      Object {
+        "applicationOpenTime": Object {
+          "ui:options": Object {
+            "hideClearButton": true,
+            "hideNowButton": true,
+          },
+          "ui:widget": "AltDateTimeInput",
+        },
+      }
+    }
+  />
+  <div>
+    <button
+      className="btn btn-info"
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;

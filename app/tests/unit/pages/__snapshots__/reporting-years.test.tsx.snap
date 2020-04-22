@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`admin It matches the last accepted Snapshot 1`] = `
+<Relay(DefaultLayout)
+  allowedGroups={
+    Array [
+      "Realm Administrator",
+      "Incentive Administrator",
+    ]
+  }
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  title="Reporting Years"
+>
+  <Relay(ReportingYearTableComponent)
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ReportingYearTable_query": true,
+        },
+        "session": Object {
+          " $fragmentRefs": Object {
+            "defaultLayout_session": true,
+          },
+        },
+      }
+    }
+  />
+</Relay(DefaultLayout)>
+`;

@@ -9,15 +9,22 @@ interface Props {
 const ProgramDataManagement: React.FunctionComponent<Props> = ({
   viewOnly = false
 }) => {
-  let EditProduct = null;
+  let EditableItems = null;
 
   if (!viewOnly) {
-    EditProduct = (
-      <ListGroup.Item>
-        <Link href="/admin/products-benchmarks">
-          <Card.Link href="#">Edit Products and Benchmarks</Card.Link>
-        </Link>
-      </ListGroup.Item>
+    EditableItems = (
+      <>
+        <ListGroup.Item>
+          <Link href="/admin/products-benchmarks">
+            <Card.Link href="#">Edit Products and Benchmarks</Card.Link>
+          </Link>
+        </ListGroup.Item>
+        <ListGroup.Item>
+          <Link href="/admin/reporting-years">
+            <Card.Link href="#">Edit Reporting Period Details</Card.Link>
+          </Link>
+        </ListGroup.Item>
+      </>
     );
   }
 
@@ -30,7 +37,7 @@ const ProgramDataManagement: React.FunctionComponent<Props> = ({
         </Card.Text>
       </Card.Body>
       <ListGroup variant="flush">
-        {EditProduct}
+        {EditableItems}
         <ListGroup.Item>
           <Card.Link
             target="_blank"

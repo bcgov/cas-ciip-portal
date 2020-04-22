@@ -44,8 +44,8 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
       <Col xs={12} className={classNames}>
         <Form.Row>
           {description}
-          {errors}
-          {helpText}
+          <div className="col-12">{errors}</div>
+          <div className="col-12">{helpText}</div>
           {children}
         </Form.Row>
       </Col>
