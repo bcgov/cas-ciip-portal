@@ -9,6 +9,23 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
   placeholder,
   value
 }) => {
+  // Get indices of all non-active products (deprecated, archived)
+  const getAllIndexes = (array, value) => {
+    const indexArray = [];
+    array.forEach((item, index) => {
+      if (item !== value) indexArray.push(index);
+    });
+    return indexArray;
+  };
+
+  const inactiveIndexes = getAllIndexes((schema as any).state, 'active');
+
+  // Remove all enums & enumNames that correspond to a non-active product from the options
+  for (let i = inactiveIndexes.length - 1; i >= 0; i--) {
+    schema.enum.splice(inactiveIndexes[i], 1);
+    (schema as any).enumNames.splice(inactiveIndexes[i], 1);
+  }
+
   const getOptions = useCallback(
     () =>
       schema.enum.map((e: string, index) => ({
@@ -21,7 +38,6 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
 
   const getSelected = useCallback(() => {
     if (value === null || value === undefined) return undefined;
-    if ((schema as any)?.state?.indexOf(value) !== 'active') return undefined;
     const index = schema.enum.indexOf(value);
     return [
       {
