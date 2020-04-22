@@ -16,7 +16,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.sqlFixture('fixtures/form-validation-teardown');
   });
 
-  it('The application forms show validation errors', () => {
+  it('The application admin form shows validation errors', () => {
     cy.get('#page-content');
 
     // Operator details
@@ -134,7 +134,9 @@ describe('When reviewing a submitted application as an analyst', () => {
       .clear()
       .type('A1A 1A1');
     cy.contains('Continue').click();
+  });
 
+  it('The application emissions form shows validation errors', () => {
     // Emission Form
     cy.get(':nth-child(2) > .nav-link').click();
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').clear();
@@ -143,19 +145,24 @@ describe('When reviewing a submitted application as an analyst', () => {
       '#root_sourceTypes_0_gases_0_annualEmission +div .error-detail'
     ).contains('is a required property');
     cy.percySnapshot('Emissions form');
+  });
 
+  it('The application fuels form shows validation errors', () => {
     // Fuel Form
     cy.get(':nth-child(3) > .nav-link').click();
     cy.contains('Add a fuel').click();
     cy.contains('Continue').click();
-    cy.get('.rbt +div .error-detail').contains('is a required property');
+    cy.get('#root_0_fuelUnits +div .error-detail').contains(
+      'is a required property'
+    );
     cy.get('#root_0_quantity +div .error-detail').contains(
       'is a required property'
     );
-    // TODO: This will need to change once the fuelFields form is refactored.
-    cy.get('.invalid-feedback').contains('is a required property');
-    cy.percySnapshot('fuel');
 
+    cy.percySnapshot('fuel');
+  });
+
+  it('The application production form shows validation errors', () => {
     // Production Form
     cy.get(':nth-child(4) > .nav-link').click();
     cy.contains('Continue').click();
