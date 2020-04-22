@@ -235,6 +235,8 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
     fragment ApplicationDetailsCardItem_query on Query {
       ...ProductField_query
       ...ProductRowIdField_query
+      ...FuelField_query
+      ...FuelRowIdField_query
     }
   `
 });

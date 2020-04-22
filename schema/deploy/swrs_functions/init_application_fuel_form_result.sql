@@ -24,7 +24,7 @@ begin
     end if;
     first_fuel := false;
     result := concat(result, jsonb_build_object(
-      'fuelType', fuel_datum.fuel_type,
+      'fuelRowId', (select id from ggircs_portal.fuel where fuel.name = fuel_datum.fuel_type and fuel.state='active'),
       'quantity', fuel_datum.annual_fuel_amount,
       'fuelUnits', fuel_datum.fuel_units,
       'methodology', fuel_datum.alternative_methodolody_description
