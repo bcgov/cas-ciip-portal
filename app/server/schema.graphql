@@ -7818,7 +7818,6 @@ type FuelDataEdge {
 }
 
 type FuelDatum {
-  alternativeMethodolodyDescription: String
   annualFuelAmount: BigFloat
   annualWeightedAvgCarbonContent: BigFloat
   annualWeightedAvgHhv: BigFloat

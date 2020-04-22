@@ -10,8 +10,7 @@ create type ggircs_portal.fuel_data as (
   fuel_units varchar(1000),
   annual_fuel_amount numeric,
   annual_weighted_avg_hhv numeric,
-  annual_weighted_avg_carbon_content numeric,
-  alternative_methodolody_description varchar(10000)
+  annual_weighted_avg_carbon_content numeric
   );
 
 
@@ -42,8 +41,7 @@ begin
              fuel_units,
              annual_fuel_amount,
              annual_weighted_avg_hhv,
-             annual_weighted_avg_carbon_content,
-             alternative_methodology_description
+             annual_weighted_avg_carbon_content
       from swrs.fuel as _fuel
              inner join selected_report as _rep on _fuel.report_id = _rep.id
              inner join swrs.fuel_mapping _fuel_mapping on _fuel.fuel_mapping_id = _fuel_mapping.id

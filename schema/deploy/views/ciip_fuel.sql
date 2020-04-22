@@ -18,8 +18,7 @@ begin;
        x.version_number,
        (x.fuel_data ->> 'quantity')::numeric as quantity,
        (x.fuel_data ->> 'fuelRowId')::integer as fuel_id,
-       (x.fuel_data ->> 'fuelUnits')::varchar(1000) as fuel_units,
-       (x.fuel_data ->> 'methodology')::varchar(1000) as methodology
+       (x.fuel_data ->> 'fuelUnits')::varchar(1000) as fuel_units
     from x
  );
 
@@ -31,6 +30,5 @@ comment on column ggircs_portal.ciip_fuel.version_number is 'The application rev
 comment on column ggircs_portal.ciip_fuel.quantity is 'The fuel quantity';
 comment on column ggircs_portal.ciip_fuel.fuel_units is 'The fuel units';
 comment on column ggircs_portal.ciip_fuel.fuel_id is 'The id of the fuel';
-comment on column ggircs_portal.ciip_fuel.methodology is 'The methodology used for reporting';
 
 commit;
