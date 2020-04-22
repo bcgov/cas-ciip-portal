@@ -234,7 +234,7 @@ export default createFragmentContainer(ApplicationDetailsPdf, {
   query: graphql`
     fragment ApplicationDetailsPdf_query on Query {
       # These fields are used in PdfProductionFieldsTemplate
-      allProducts(condition: {state: "active"}) {
+      allProducts {
         edges {
           node {
             rowId

@@ -48,7 +48,7 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = props => {
 export default createFragmentContainer(ProductFieldComponent, {
   query: graphql`
     fragment ProductField_query on Query {
-      allProducts(condition: {state: "active"}) {
+      allProducts {
         edges {
           node {
             rowId
