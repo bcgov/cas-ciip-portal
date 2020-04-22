@@ -182,7 +182,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         newSubtractGeneratedHeatEmissions:
           product.subtractGeneratedHeatEmissions,
         newRequiresProductAmount: product.requiresProductAmount,
-        newAddEmissionsFromEIOs: product.addEmissionsFromEios
+        newAddEmissionsFromEios: product.addEmissionsFromEios
       }
     };
     const response = await saveProductMutation(relay.environment, variables);
