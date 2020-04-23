@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Table, Modal, Container, Row, Button} from 'react-bootstrap';
+import {Table, Modal, Container, Button} from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm from 'react-jsonschema-form';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
@@ -17,20 +17,57 @@ function formatListViewDate(date) {
   return moment.tz(date, 'America/Vancouver').format('MMM D, YYYY');
 }
 
+function isoToLocaleDate(timestamptz) {
+  return moment.tz(timestamptz, 'America/Vancouver').format('YYYY-MM-DD');
+}
+
+function isoToLocaleTime(timestamptz) {
+  return moment.tz(timestamptz, 'America/Vancouver').format('LT');
+}
+
+function localeDateTimeToISO(date, time) {
+  return moment(`${date} ${time}`, 'YYYY-MM-DD hh:mm a').toISOString();
+}
+
 export const ReportingYearTableComponent: React.FunctionComponent<Props> = props => {
-  const [state, setState] = useState({editingYear: null});
+  const [state, setState] = useState({editingYear: null, formFields: null});
 
   const {query} = props;
   if (!query.allReportingYears || !query.allReportingYears.edges) {
     return <div />;
   }
 
+  // TODO: Refactor / implement this in a better way
   const editYear = node => {
-    setState({editingYear: node});
+    setState({
+      editingYear: node,
+      formFields: {
+        applicationOpenDate: isoToLocaleDate(node.applicationOpenTime),
+        applicationOpenTime: isoToLocaleTime(node.applicationOpenTime),
+        applicationCloseDate: isoToLocaleDate(node.applicationCloseTime),
+        applicationCloseTime: isoToLocaleTime(node.applicationCloseTime),
+        applicationResponseTime: isoToLocaleDate(node.applicationResponseTime)
+      }
+    });
   };
 
-  const saveReportingYear = async () => {
-    console.log('TODO: Save reporting year');
+  // TODO: Refactor / implement this in a better way
+  const saveReportingYear = async ({formData}) => {
+    const finalData = {
+      applicationOpenTime: localeDateTimeToISO(
+        formData.applicationOpenDate,
+        formData.applicationOpenTime
+      ),
+      applicationCloseTime: localeDateTimeToISO(
+        formData.applicationCloseDate,
+        formData.applicationCloseTime
+      ),
+      applicationResponseTime: moment(
+        formData.applicationResponseTime,
+        'YYYY-MM-DD'
+      ).toISOString()
+    };
+    console.log('TODO: Save reporting year', finalData);
   };
 
   const editModal = (
@@ -39,11 +76,13 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
       size="xl"
       show={Boolean(state.editingYear)}
       onHide={() => {
-        setState({editingYear: null});
+        setState({editingYear: null, formFields: null});
       }}
     >
       <Modal.Header closeButton>
-      <Modal.Title>Edit Reporting Year {state.editingYear?.reportingYear}</Modal.Title>
+        <Modal.Title>
+          Edit Reporting Year {state.editingYear?.reportingYear}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Container>
@@ -52,7 +91,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
             liveOmit
             schema={reportingYearSchema.schema as JSONSchema6}
             uiSchema={reportingYearSchema.uiSchema}
-            formData={state.editingYear}
+            formData={state.formFields}
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
             showErrorList={false}

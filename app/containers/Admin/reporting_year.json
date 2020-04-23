@@ -2,8 +2,16 @@
   "schema": {
     "type": "object",
     "properties": {
+      "applicationOpenDate": {
+        "title": "Application Open Date",
+        "type": "string"
+      },
       "applicationOpenTime": {
         "title": "Application Open Time",
+        "type": "string"
+      },
+      "applicationCloseDate": {
+        "title": "Application Close Date",
         "type": "string"
       },
       "applicationCloseTime": {
@@ -11,22 +19,30 @@
         "type": "string"
       },
       "applicationResponseTime": {
-        "title": "Application Response Time",
+        "title": "Application Response Date",
         "type": "string"
       }
     },
     "required": [
+      "applicationOpenDate",
       "applicationOpenTime",
+      "applicationCloseDate",
       "applicationCloseTime",
       "applicationResponseTime"
     ]
   },
   "uiSchema": {
+    "applicationOpenDate": {
+      "ui:widget": "date"
+    },
     "applicationOpenTime": {
+      "ui:widget": "text"
+    },
+    "applicationCloseDate": {
       "ui:widget": "date"
     },
     "applicationCloseTime": {
-      "ui:widget": "date"
+      "ui:widget": "text"
     },
     "applicationResponseTime": {
       "ui:widget": "date"
