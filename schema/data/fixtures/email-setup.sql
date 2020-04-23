@@ -327,13 +327,11 @@ update ggircs_portal.form_result set form_result = '[
   {
     "fuelRowId": 11,
     "quantity": 10,
-    "fuelUnits": "t",
-    "methodology": "wci 2.0"
+    "fuelUnits": "t"
   }, {
     "fuelRowId": 13,
     "quantity": 40120,
-    "fuelUnits": "kL",
-    "methodology": "wci 1.0"
+    "fuelUnits": "kL"
   }]
   '
   where application_id=2 and version_number=1 and form_id=3;

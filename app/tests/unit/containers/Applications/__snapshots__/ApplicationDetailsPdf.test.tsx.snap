@@ -909,7 +909,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Object {
                     "fuelRowId": -60000000,
                     "fuelUnits": "in qui",
-                    "methodology": "wci 1.0",
                     "quantity": -20000000,
                   },
                 ]
@@ -932,20 +931,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "Units",
                           "type": "string",
                         },
-                        "methodology": Object {
-                          "enum": Array [
-                            "wci 1.0",
-                            "wci 2.0",
-                            "wci 3.0",
-                          ],
-                          "enumNames": Array [
-                            "WCI 1.0",
-                            "WCI 2.0",
-                            "WCI 3.0",
-                          ],
-                          "title": "Methodology",
-                          "type": "string",
-                        },
                         "quantity": Object {
                           "title": "Quantity",
                           "type": "number",
@@ -955,7 +940,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "fuelRowId",
                         "quantity",
                         "fuelUnits",
-                        "methodology",
                       ],
                       "type": "object",
                     },
@@ -988,7 +972,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "fuelRowId",
                       "quantity",
                       "fuelUnits",
-                      "methodology",
                     ],
                   },
                   "ui:add-text": "Add a fuel",
@@ -1064,17 +1047,14 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
+                    "productAmount": -40000000,
+                    "productRowId": -60000000,
+                    "productUnits": "culpa",
+                    "requiresEmissionAllocation": false,
+                    "requiresProductAmount": true,
+                  },
+                  Object {
                     "productRowId": 0,
-                    "requiresEmissionAllocation": false,
-                    "requiresProductAmount": false,
-                  },
-                  Object {
-                    "productRowId": -40000000,
-                    "requiresEmissionAllocation": false,
-                    "requiresProductAmount": false,
-                  },
-                  Object {
-                    "productRowId": -40000000,
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },

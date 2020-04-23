@@ -19,15 +19,9 @@
           "fuelUnits": {
             "title": "Units",
             "type": "string"
-          },
-          "methodology": {
-            "title": "Methodology",
-            "type": "string",
-            "enum": ["wci 1.0", "wci 2.0", "wci 3.0"],
-            "enumNames": ["WCI 1.0", "WCI 2.0", "WCI 3.0"]
           }
         },
-        "required": ["fuelRowId", "quantity", "fuelUnits", "methodology"]
+        "required": ["fuelRowId", "quantity", "fuelUnits"]
       }
     }
   },
@@ -36,7 +30,7 @@
     "ui:remove-text": "Remove fuel",
     "items": {
       "ui:field": "fuel",
-      "ui:order": ["fuelRowId", "quantity", "fuelUnits", "methodology"],
+      "ui:order": ["fuelRowId", "quantity", "fuelUnits"],
       "fuelRowId": {
         "ui:widget": "SearchWidget",
         "ui:field": "fuelRowId",
