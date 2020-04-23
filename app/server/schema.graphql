@@ -6656,7 +6656,7 @@ type FacilityDatum {
   latitude: BigFloat
   longitude: BigFloat
   naicsClassification: String
-  naicsCode: String
+  naicsCode: Int
   reportId: Int
   reportingYear: Int
   swrsFacilityId: Int
