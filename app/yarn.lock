@@ -8973,7 +8973,7 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
-graphile-build-pg@4.6.0:
+graphile-build-pg@4.6.0, graphile-build-pg@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/graphile-build-pg/-/graphile-build-pg-4.6.0.tgz#4a3dd5bf730e4751b79ef7e60beb5a5663948fd6"
   integrity sha512-bty7ZkuCUutYRFZhqHCaWwgRXK8qfZ/n1z/f1puFBmG5q5UB9lwma2mAq2h7DqXRYAXBNQl3WukQ8RJlVRFP0Q==

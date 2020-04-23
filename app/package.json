@@ -131,6 +131,7 @@
     "dotenv-webpack": "^1.7.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "graphile-build-pg": "^4.6.0",
     "graphile-worker": "^0.5.0",
     "graphql": "^14.6.0",
     "graphql-voyager": "^1.0.0-rc.28",
