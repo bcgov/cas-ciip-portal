@@ -51,20 +51,16 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = props => {
     });
   };
 
-  return (
+  return productIsActive(formData, query) ? (
+    <ObjectField {...props} onChange={handleChange} />
+  ) : (
     <>
-      {productIsActive(formData, query) ? (
-        <ObjectField {...props} onChange={handleChange} />
-      ) : (
-        <>
-          <Alert variant="danger">
-            <strong>Warning:</strong> This `Product` or `Product Version` has
-            been deprecated. Please remove it and select an appropriate
-            replacement
-          </Alert>
-          <ObjectField {...props} disabled onChange={handleChange} />
-        </>
-      )}
+      <Alert variant="danger">
+        <strong>Warning:</strong> This version of the Product or Service has
+        been archived. Please remove it and select an appropriate replacement
+        (it may have the same name)
+      </Alert>
+      <ObjectField {...props} disabled onChange={handleChange} />
     </>
   );
 };
