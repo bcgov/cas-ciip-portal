@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import {Table, Modal, Container, Row, Button} from 'react-bootstrap';
+import {JSONSchema6} from 'json-schema';
+import JsonSchemaForm from 'react-jsonschema-form';
 import moment from 'moment-timezone';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {ReportingYearTable_query} from '__generated__/ReportingYearTable_query.graphql';
+import reportingYearSchema from './reporting_year.json';
 
 interface Props {
   query: ReportingYearTable_query;
@@ -43,6 +46,19 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
       <Modal.Body>
         <Container>
           <Row>{state.editingYear?.reportingYear}</Row>
+          <JsonSchemaForm
+            omitExtraData
+            liveOmit
+            schema={reportingYearSchema.schema as JSONSchema6}
+            uiSchema={reportingYearSchema.uiSchema}
+            formData={state.editingYear}
+            showErrorList={false}
+            onSubmit={saveReportingYear}
+          >
+            <Button type="submit" variant="primary">
+              Save Reporting Year
+            </Button>
+          </JsonSchemaForm>
         </Container>
       </Modal.Body>
     </Modal>
