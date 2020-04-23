@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {Table, Modal, Container, Row, Button} from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm from 'react-jsonschema-form';
+import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
+import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import moment from 'moment-timezone';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {ReportingYearTable_query} from '__generated__/ReportingYearTable_query.graphql';
@@ -11,7 +13,7 @@ interface Props {
   query: ReportingYearTable_query;
 }
 
-function formatDate(date) {
+function formatListViewDate(date) {
   return moment.tz(date, 'America/Vancouver').format('MMM D, YYYY');
 }
 
@@ -41,17 +43,18 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
       }}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Edit Reporting Year</Modal.Title>
+      <Modal.Title>Edit Reporting Year {state.editingYear?.reportingYear}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Container>
-          <Row>{state.editingYear?.reportingYear}</Row>
           <JsonSchemaForm
             omitExtraData
             liveOmit
             schema={reportingYearSchema.schema as JSONSchema6}
             uiSchema={reportingYearSchema.uiSchema}
             formData={state.editingYear}
+            FieldTemplate={FormFieldTemplate}
+            ObjectFieldTemplate={FormObjectFieldTemplate}
             showErrorList={false}
             onSubmit={saveReportingYear}
           >
@@ -83,11 +86,11 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
             return (
               <tr key={node.id}>
                 <td>{node.reportingYear}</td>
-                <td>{formatDate(node.reportingPeriodStart)}</td>
-                <td>{formatDate(node.reportingPeriodEnd)}</td>
-                <td>{formatDate(node.applicationOpenTime)}</td>
-                <td>{formatDate(node.applicationCloseTime)}</td>
-                <td>{formatDate(node.applicationResponseTime)}</td>
+                <td>{formatListViewDate(node.reportingPeriodStart)}</td>
+                <td>{formatListViewDate(node.reportingPeriodEnd)}</td>
+                <td>{formatListViewDate(node.applicationOpenTime)}</td>
+                <td>{formatListViewDate(node.applicationCloseTime)}</td>
+                <td>{formatListViewDate(node.applicationResponseTime)}</td>
                 <td>
                   <Button onClick={() => editYear(node)}>Edit</Button>
                 </td>

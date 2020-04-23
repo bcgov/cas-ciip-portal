@@ -2,14 +2,6 @@
   "schema": {
     "type": "object",
     "properties": {
-      "reportingPeriodStart": {
-        "title": "Reporting Period Start",
-        "type": "string"
-      },
-      "reportingPeriodEnd": {
-        "title": "Reporting Period End",
-        "type": "string"
-      },
       "applicationOpenTime": {
         "title": "Application Open Time",
         "type": "string"
@@ -24,24 +16,16 @@
       }
     },
     "required": [
-      "reportingPeriodStart",
-      "reportingPeriodEnd",
       "applicationOpenTime",
       "applicationCloseTime",
       "applicationResponseTime"
     ]
   },
   "uiSchema": {
-    "reportingPeriodStart": {
+    "applicationOpenTime": {
       "ui:widget": "date"
     },
-    "reportingPeriodEnd": {
-      "ui:widget": "date"
-    },
-    "reportingPeriodOpenTime": {
-      "ui:widget": "date"
-    },
-    "reportingPeriodCloseTime": {
+    "applicationCloseTime": {
       "ui:widget": "date"
     },
     "applicationResponseTime": {
