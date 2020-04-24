@@ -1,4 +1,5 @@
 import React, {useMemo} from 'react';
+import {InputGroup} from 'react-bootstrap';
 import {FieldProps} from 'react-jsonschema-form';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {ProductRowIdField_query} from 'ProductRowIdField_query.graphql';
@@ -23,22 +24,64 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = props 
       ...props,
       schema: {
         ...props.schema,
-        enum: props.query.allProducts.edges.map(({node}) => node.rowId),
-        enumNames: props.query.allProducts.edges.map(({node}) => node.name),
-        state: props.query.allProducts.edges.map(({node}) => node.state)
+        enum: props.query.active.edges.map(({node}) => node.rowId),
+        enumNames: props.query.active.edges.map(({node}) => node.name)
       },
       query: undefined
     }),
     [props]
   );
 
-  return <props.registry.fields.StringField {...fieldProps} />;
+  const activeProductIds = props.query.active.edges.map(({node}) => node.rowId);
+  const inactiveProductIds = [
+    ...props.query.archived.edges.map(({node}) => node.rowId),
+    ...props.query.deprecated.edges.map(({node}) => node.rowId)
+  ];
+  const inactiveProductNames = [
+    ...props.query.archived.edges.map(({node}) => node.name),
+    ...props.query.deprecated.edges.map(({node}) => node.name)
+  ];
+
+  if (activeProductIds.includes(props.formData) || props.formData === undefined)
+    return <props.registry.fields.StringField {...fieldProps} />;
+
+  const inactiveIndex = inactiveProductIds.indexOf(props.formData);
+  return (
+    <div>
+      <InputGroup size="lg" className="mb-3">
+        <InputGroup.Prepend>
+          <InputGroup.Text>
+            {inactiveProductNames[inactiveIndex]}
+          </InputGroup.Text>
+        </InputGroup.Prepend>
+      </InputGroup>
+    </div>
+  );
 };
 
 export default createFragmentContainer(ProductRowIdFieldComponent, {
   query: graphql`
     fragment ProductRowIdField_query on Query {
-      allProducts {
+      active: allProducts(condition: {state: "active"}) {
+        edges {
+          node {
+            rowId
+            name
+            state
+          }
+        }
+      }
+      archived: allProducts(condition: {state: "archived"}) {
+        edges {
+          node {
+            rowId
+            name
+            state
+          }
+        }
+      }
+      # Todo: Remove when deprecated products are removed
+      deprecated: allProducts(condition: {state: "deprecated"}) {
         edges {
           node {
             rowId
