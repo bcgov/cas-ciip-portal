@@ -5,11 +5,13 @@ import JsonSchemaForm from 'react-jsonschema-form';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import moment from 'moment-timezone';
-import {graphql, createFragmentContainer} from 'react-relay';
+import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {ReportingYearTable_query} from '__generated__/ReportingYearTable_query.graphql';
 import reportingYearSchema from './reporting_year.json';
+import updateReportingYearMutation from 'mutations/reporting_year/updateReportingYearMutation';
 
 interface Props {
+  relay: RelayProp;
   query: ReportingYearTable_query;
 }
 
@@ -32,7 +34,7 @@ function localeDateTimeToISO(date, time) {
 export const ReportingYearTableComponent: React.FunctionComponent<Props> = props => {
   const [state, setState] = useState({editingYear: null, formFields: null});
 
-  const {query} = props;
+  const {query, relay} = props;
   if (!query.allReportingYears || !query.allReportingYears.edges) {
     return <div />;
   }
@@ -67,7 +69,15 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
         'YYYY-MM-DD'
       ).toISOString()
     };
-    console.log('TODO: Save reporting year', finalData);
+
+    await updateReportingYearMutation(relay.environment, {
+      input: {
+        id: state.editingYear.id,
+        reportingYearPatch: {
+          ...finalData
+        }
+      }
+    });
   };
 
   const editModal = (
