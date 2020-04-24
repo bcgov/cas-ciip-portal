@@ -2155,7 +2155,19 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       Product or Service
                        *
                     </label>
-                    one
+                    <div>
+                      <div
+                        className="mb-3 input-group input-group-lg"
+                      >
+                        <div
+                          className="input-group-prepend"
+                        >
+                          <span
+                            className="input-group-text"
+                          />
+                        </div>
+                      </div>
+                    </div>
                     <span
                       className="font-italic text-muted"
                     />
@@ -2292,7 +2304,19 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       Product or Service
                        *
                     </label>
-                    one
+                    <div>
+                      <div
+                        className="mb-3 input-group input-group-lg"
+                      >
+                        <div
+                          className="input-group-prepend"
+                        >
+                          <span
+                            className="input-group-text"
+                          />
+                        </div>
+                      </div>
+                    </div>
                     <span
                       className="font-italic text-muted"
                     />
