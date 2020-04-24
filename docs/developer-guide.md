@@ -12,9 +12,9 @@ The `schema/deploy-test-data.sh` script allows you to set up you database schema
 
 `make deploy_test_data` will drop the existing database if it exists and recreate it using the current deployment files.
 The script itself can be run from the ciip portal root directory with:
-  - `./.bin/deploy-data.sh -dev`: deploy just the data
-  - `./.bin/deploy-data.sh -p -dev`: revert & deploy with sqitch + deploy the data
-  - `./.bin/deploy-data.sh -d -dev`: drop the databse, create the databse, deploy database entities with sqitch + deploy the data
+  - `./.bin/deploy-data.sh -dev`: deploy just the data to dev
+  - `./.bin/deploy-data.sh -p -dev`: revert & deploy with sqitch + deploy the data to dev
+  - `./.bin/deploy-data.sh -d -dev`: drop the database, create the database, deploy database entities with sqitch + deploy the data to dev
 
 Run `./.bin/deploy-data.sh --help` to learn about available options.
 
