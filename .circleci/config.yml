@@ -113,7 +113,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Lint with Yarn & XO
+          name: Run unit tests
           command: |
             source ~/.asdf/asdf.sh
             yarn test
