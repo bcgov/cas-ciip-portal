@@ -50,19 +50,4 @@ describe('The production tab', () => {
     cy.get('#root_0_productEmissions').should('not.exist');
     cy.percySnapshot();
   });
-
-  it('Should show a warning if a product is archived', () => {
-    const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results", 12]');
-    cy.get('#root_0_productRowId')
-      .clear()
-      .type('Aluminum');
-    cy.get('.dropdown-item').click();
-    cy.sqlFixture('fixtures/application-production-archive-product');
-    cy.visit(
-      `/reporter/ciip-application?formResultId=${formResultId}&applicationId=${applicationId}&version=1`
-    );
-    cy.get('#page-content');
-    cy.contains('Warning');
-  });
 });
