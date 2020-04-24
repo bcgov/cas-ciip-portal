@@ -5,7 +5,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
   <SearchTableLayoutComponent
     body={
       <tbody>
-        <ForwardRef(Relay(FacilitiesRowItemComponent))
+        <Relay(FacilitiesRowItemComponent)
           facilitySearchResult={
             Object {
               " $fragmentRefs ": Object {
@@ -66,7 +66,7 @@ exports[`FacilitiesListContainer should not render the Pagination component if <
   <SearchTableLayoutComponent
     body={
       <tbody>
-        <ForwardRef(Relay(FacilitiesRowItemComponent))
+        <Relay(FacilitiesRowItemComponent)
           facilitySearchResult={
             Object {
               " $fragmentRefs ": Object {
@@ -127,7 +127,7 @@ exports[`FacilitiesListContainer should render a maximum of 9 pagination pages i
   <SearchTableLayoutComponent
     body={
       <tbody>
-        <ForwardRef(Relay(FacilitiesRowItemComponent))
+        <Relay(FacilitiesRowItemComponent)
           facilitySearchResult={
             Object {
               " $fragmentRefs ": Object {
@@ -286,7 +286,7 @@ exports[`FacilitiesListContainer should render the Pagination component if > 10 
   <SearchTableLayoutComponent
     body={
       <tbody>
-        <ForwardRef(Relay(FacilitiesRowItemComponent))
+        <Relay(FacilitiesRowItemComponent)
           facilitySearchResult={
             Object {
               " $fragmentRefs ": Object {

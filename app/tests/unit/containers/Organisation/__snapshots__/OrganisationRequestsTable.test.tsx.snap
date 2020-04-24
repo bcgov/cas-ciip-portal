@@ -4,7 +4,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
 <SearchTableLayoutComponent
   body={
     <tbody>
-      <ForwardRef(Relay(OrganisationRequestsTableRowComponent))
+      <Relay(OrganisationRequestsTableRowComponent)
         userOrganisation={
           Object {
             " $fragmentRefs": Object {
