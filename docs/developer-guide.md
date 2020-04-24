@@ -11,8 +11,13 @@ The `schema/deploy-test-data.sh` script allows you to set up you database schema
 ### Deploying the data
 
 `make deploy_test_data` will drop the existing database if it exists and recreate it using the current deployment files.
+The script itself can be run from the ciip portal root directory with:
+  - `./.bin/deploy-data.sh -dev`: deploy just the data to dev
+  - `./.bin/deploy-data.sh -p -dev`: revert & deploy with sqitch + deploy the data to dev
+  - `./.bin/deploy-data.sh -d -dev`: drop the database, create the database, deploy database entities with sqitch + deploy the data to dev
 
-Run `./.bin/deploy-data.sh --help` to learn about other available options.
+Run `./.bin/deploy-data.sh --help` to learn about available options.
+
 
 ### `ggircs_portal.current_timestamp()` in development and test mode
 
@@ -87,6 +92,14 @@ local postgres server.
 ## User Authentication
 
 The application requires users to be authenticated using keycloak. Authentication can be disabled by running `node server NO_AUTH` (or `yarn dev NO_AUTH`), which is the default behavior of `make watch`.
+
+### Additional Flags
+
+`AS_REPORTER`: Automatically log in as our test reporter
+`AS_ANALYST`: Automatically log in as our test analyst
+`AS_ADMIN`: Automatically log in as our test admin
+`NO_MAIL`: Ignore all outgoing mail functionality (can be run by itself, or along with any other auth flags ie `yarn dev NO_AUTH NO_MAIL`)
+
 
 ## Unit and Integration Testing
 
