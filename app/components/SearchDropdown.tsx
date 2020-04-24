@@ -21,21 +21,6 @@ export const SearchDropdownComponent: React.FunctionComponent<Props> = ({
   inputProps,
   onChange
 }) => {
-  // Get all indexes that contain undefined
-  const getAllUndefinedIndexes = (array, value) => {
-    const indexArray = [];
-    array.forEach((item, index) => {
-      if (item === value) indexArray.push(index);
-    });
-    return indexArray;
-  };
-
-  // Remove all undefined indexes from options (required so archived/deprecated products do not show as options in the dropdown)
-  const undefinedIndexes = getAllUndefinedIndexes(options, undefined);
-  for (let i = undefinedIndexes.length - 1; i >= 0; i--) {
-    options.splice(undefinedIndexes[i], 1);
-  }
-
   return (
     <>
       <Typeahead
