@@ -9,7 +9,7 @@ import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import {ProductField_query} from '__generated__/ProductField_query.graphql';
 
-describe('The ProductionFields Component', () => {
+describe('The ProductionFields Component with active product', () => {
   const query: ProductField_query = {
     ' $refType': 'ProductField_query',
     allProducts: {
@@ -17,9 +17,10 @@ describe('The ProductionFields Component', () => {
         {
           node: {
             rowId: 1,
-            name: 'foo',
             units: 'bar',
-            requiresEmissionAllocation: true
+            state: 'active',
+            requiresEmissionAllocation: true,
+            requiresProductAmount: true
           }
         }
       ]
@@ -58,6 +59,61 @@ describe('The ProductionFields Component', () => {
   };
 
   it('should match the snapshot when rendering a product', () => {
+    const wrapper = shallow(<ProductFieldComponent {...props} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+});
+
+describe('The ProductionFields Component with archived product', () => {
+  const query: ProductField_query = {
+    ' $refType': 'ProductField_query',
+    allProducts: {
+      edges: [
+        {
+          node: {
+            rowId: 1,
+            units: 'bar',
+            state: 'archived',
+            requiresEmissionAllocation: true,
+            requiresProductAmount: true
+          }
+        }
+      ]
+    }
+  };
+
+  const idSchema: any = {$id: 'product_0'};
+  const props = {
+    schema: productionSchema.schema.definitions.product as JSONSchema6,
+    uiSchema: productionSchema.uiSchema,
+    idSchema,
+    autofocus: false,
+    disabled: false,
+    errorSchema: null,
+    formContext: {},
+    readonly: false,
+    required: false,
+    registry: {
+      ...getDefaultRegistry(),
+      ArrayFieldTemplate: FormArrayFieldTemplate,
+      ObjectFieldTemplate: FormObjectFieldTemplate,
+      FieldTemplate: FormFieldTemplate
+    } as any,
+
+    name: 'product',
+    query,
+    formData: {
+      productRowId: 1,
+      productUnits: 'bar',
+      productEmissions: 123,
+      productAmount: 456,
+      requiresEmissionAllocation: true
+    },
+    onChange: jest.fn(),
+    onBlur: jest.fn()
+  };
+
+  it('should match the snapshot when rendering an archived product', () => {
     const wrapper = shallow(<ProductFieldComponent {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
