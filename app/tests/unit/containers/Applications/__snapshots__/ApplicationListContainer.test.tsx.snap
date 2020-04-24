@@ -4,7 +4,7 @@ exports[`ApplicationList should render the application list 1`] = `
 <SearchTableLayoutComponent
   body={
     <tbody>
-      <ForwardRef(Relay(ApplicationRowItem))
+      <Relay(ApplicationRowItem)
         applicationSearchResult={
           Object {
             "id": "ciip-application-1",

@@ -4,7 +4,7 @@ exports[`ProductList should render the product list 1`] = `
 <SearchTableLayoutComponent
   body={
     <tbody>
-      <ForwardRef(Relay(ProductRowItemComponent))
+      <Relay(ProductRowItemComponent)
         product={
           Object {
             "id": "abc",
