@@ -32,7 +32,6 @@ const updateReportingYearMutation = async (
       }
     }
   };
-  console.log('Optimistic response', payload)
 
   return new BaseMutation<updateReportingYearMutationType>(
     'update-reporting-year-mutation'

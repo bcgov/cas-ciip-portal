@@ -32,23 +32,39 @@ function localeDateTimeToISO(date, time) {
 }
 
 export const ReportingYearTableComponent: React.FunctionComponent<Props> = props => {
-  const [state, setState] = useState({editingYear: null, formFields: null});
+  const initialFormState = {
+    editingYear: null,
+    formFields: null
+  };
+  const [state, setState] = useState(initialFormState);
 
   const {query, relay} = props;
   if (!query.allReportingYears || !query.allReportingYears.edges) {
     return <div />;
   }
 
+  const clearForm = () => {
+    setState(prev => {
+      return {
+        ...prev,
+        ...initialFormState
+      }
+    });
+  }
+
   // TODO: Refactor / implement this in a better way
   const editYear = node => {
-    setState({
-      editingYear: node,
-      formFields: {
-        applicationOpenDate: isoToLocaleDate(node.applicationOpenTime),
-        applicationOpenTime: isoToLocaleTime(node.applicationOpenTime),
-        applicationCloseDate: isoToLocaleDate(node.applicationCloseTime),
-        applicationCloseTime: isoToLocaleTime(node.applicationCloseTime),
-        applicationResponseTime: isoToLocaleDate(node.applicationResponseTime)
+    setState((prev) => {
+      return {
+        ...prev,
+        editingYear: node,
+        formFields: {
+          applicationOpenDate: isoToLocaleDate(node.applicationOpenTime),
+          applicationOpenTime: isoToLocaleTime(node.applicationOpenTime),
+          applicationCloseDate: isoToLocaleDate(node.applicationCloseTime),
+          applicationCloseTime: isoToLocaleTime(node.applicationCloseTime),
+          applicationResponseTime: isoToLocaleDate(node.applicationResponseTime)
+        }
       }
     });
   };
@@ -70,14 +86,15 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
       ).toISOString()
     };
 
-    await updateReportingYearMutation(relay.environment, {
+    updateReportingYearMutation(relay.environment, {
       input: {
         id: state.editingYear.id,
         reportingYearPatch: {
           ...finalData
         }
       }
-    });
+    })
+    .then(clearForm);
   };
 
   const editModal = (
@@ -85,9 +102,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
       centered
       size="xl"
       show={Boolean(state.editingYear)}
-      onHide={() => {
-        setState({editingYear: null, formFields: null});
-      }}
+      onHide={clearForm}
     >
       <Modal.Header closeButton>
         <Modal.Title>
