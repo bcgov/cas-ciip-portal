@@ -11,12 +11,10 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
 }) => {
   const getOptions = useCallback(
     () =>
-      schema.enum.map((e: string, index) => {
-        return {
-          id: e,
-          name: (schema as any).enumNames?.[index] ?? e
-        };
-      }),
+      schema.enum.map((e: string, index) => ({
+        id: e,
+        name: (schema as any).enumNames?.[index] ?? e
+      })),
     [schema]
   );
 
