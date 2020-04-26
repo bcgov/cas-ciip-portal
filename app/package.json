@@ -144,7 +144,7 @@
     "postgraphile": "^4.5.5",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0-beta.16",
-    "react-bootstrap-typeahead": "^3.4.7",
+    "react-bootstrap-typeahead": "^4.2.2",
     "react-dom": "^16.12.0",
     "react-jsonschema-form": "^1.8.1",
     "react-mathjax2": "^0.0.2",
