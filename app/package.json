@@ -124,7 +124,6 @@
     "@react-pdf/styled-components": "^1.4.0",
     "ace-builds": "^1.4.11",
     "body-parser": "^1.19.0",
-    "bootstrap": "^3.4.1",
     "cors": "^2.8.5",
     "deep-diff": "^1.0.2",
     "dotenv": "^8.2.0",
