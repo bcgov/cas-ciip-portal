@@ -13,6 +13,25 @@ import {FormJson} from 'next-env';
 import {generateFakeSchemaData} from 'tests/integration/json-schema-utils';
 import MockRouter from 'tests/integration/MockRouter';
 
+// Product & Fuel were not rendering anything (because we mess with the schema in ProductRowIdField & those values are not making it in)
+// This mock allows the data to show up (with the name of the product or fuel as 'one')
+jest.mock('components/SearchDropdown', () => {
+  return {
+    __esModule: true,
+    default: () => {
+      return 'one';
+    }
+  };
+});
+
+// Todo: Mock so that the entire flow works properly
+
+// jest.mock('components/Forms/SearchDropdownWidget', () => ({onChange,
+//   schema,
+//   id,
+//   placeholder,
+//   value}) => {return <mock-SearchDropdownWidget schema={{...schema, enums: [1,2], enumNames: ['one', 'two'], state: ['active', 'active']}} />}
+// );
 describe('Form', () => {
   beforeEach(() => {
     // Mock Math.random() to be deterministic.
@@ -85,11 +104,11 @@ describe('Form', () => {
               edges: [
                 {
                   node: {
-                    name: 'C/D Waste - Plastic',
+                    rowId: 1,
                     units: 't'
                   }
                 },
-                {node: {name: 'Diesel', units: 'kL'}}
+                {node: {rowId: 2, units: 'kL'}}
               ]
             }
           };
@@ -121,12 +140,13 @@ describe('Form', () => {
 
   it('should match the snapshot with the production form', async () => {
     const renderer = create(<TestRenderer />);
+    const data = generateFakeSchemaData(productionForm as FormJson);
     environment.mock.resolveMostRecentOperation(operation =>
       MockPayloadGenerator.generate(operation, {
         Query() {
           return {
             result: {
-              formResult: generateFakeSchemaData(productionForm as FormJson),
+              formResult: data,
               formJsonByFormId: {
                 name: 'Production',
                 formJson: productionForm
@@ -135,11 +155,12 @@ describe('Form', () => {
                 edges: [
                   {
                     node: {
-                      name: 'Dehydration',
-                      units: 'kL'
+                      rowId: 1,
+                      name: 'one',
+                      units: 'kL',
+                      state: 'active'
                     }
-                  },
-                  {node: {name: 'Potatoes', units: 't'}}
+                  }
                 ]
               }
             }

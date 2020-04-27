@@ -1647,6 +1647,797 @@ exports[`Form should match the snapshot with the emission form 1`] = `
 </div>
 `;
 
-exports[`Form should match the snapshot with the fuel form 1`] = `"One or more options does not have a valid label string. Check the \`labelKey\` prop to ensure that it matches the correct option key and provides a string for filtering and display."`;
+exports[`Form should match the snapshot with the fuel form 1`] = `
+<div
+  className="jsx-243825984 "
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-8"
+    >
+      <h1
+        className="jsx-243825984 form-title"
+      >
+        Fuel
+      </h1>
+    </div>
+  </div>
+  <form
+    className="rjsf"
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <div
+      className="col-12"
+    >
+      <span
+        className="font-italic text-muted"
+      />
+      <div
+        className="jsx-4148384647 field field-array field-array-of-object"
+      >
+        <div
+          className="jsx-4148384647"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-md-11 col-12"
+            >
+              <div
+                className="form-group field field-object col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <span
+                    className="font-italic text-muted"
+                  />
+                  <div
+                    className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_fuelRowId"
+                    >
+                      Fuel Name
+                       *
+                    </label>
+                    one
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_quantity"
+                    >
+                      Quantity
+                       *
+                    </label>
+                    <input
+                      className="form-control"
+                      disabled={false}
+                      id="root_0_quantity"
+                      inputMode="numeric"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseUp={[Function]}
+                      type="text"
+                      value="-60,000,000"
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_fuelUnits"
+                    >
+                      Units
+                       *
+                    </label>
+                    <input
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_0_fuelUnits"
+                      label="Units"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      readOnly={true}
+                      required={true}
+                      type="text"
+                      value="consequat Ut Duis"
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-md-1 col-12"
+            >
+              <div
+                className="jsx-4148384647 remove-button-container"
+              >
+                <button
+                  className="btn btn-danger"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Remove fuel
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr
+            className="jsx-4148384647"
+          />
+        </div>
+        <div
+          className="jsx-4148384647"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-md-11 col-12"
+            >
+              <div
+                className="form-group field field-object col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <span
+                    className="font-italic text-muted"
+                  />
+                  <div
+                    className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_fuelRowId"
+                    >
+                      Fuel Name
+                       *
+                    </label>
+                    one
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_quantity"
+                    >
+                      Quantity
+                       *
+                    </label>
+                    <input
+                      className="form-control"
+                      disabled={false}
+                      id="root_1_quantity"
+                      inputMode="numeric"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseUp={[Function]}
+                      type="text"
+                      value="-60,000,000"
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_fuelUnits"
+                    >
+                      Units
+                       *
+                    </label>
+                    <input
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_1_fuelUnits"
+                      label="Units"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      readOnly={true}
+                      required={true}
+                      type="text"
+                      value="consequat Ut Duis"
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-md-1 col-12"
+            >
+              <div
+                className="jsx-4148384647 remove-button-container"
+              >
+                <button
+                  className="btn btn-danger"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Remove fuel
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr
+            className="jsx-4148384647"
+          />
+        </div>
+        <div
+          className="jsx-4148384647"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-md-11 col-12"
+            >
+              <div
+                className="form-group field field-object col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <span
+                    className="font-italic text-muted"
+                  />
+                  <div
+                    className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_2_fuelRowId"
+                    >
+                      Fuel Name
+                       *
+                    </label>
+                    one
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_2_quantity"
+                    >
+                      Quantity
+                       *
+                    </label>
+                    <input
+                      className="form-control"
+                      disabled={false}
+                      id="root_2_quantity"
+                      inputMode="numeric"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseUp={[Function]}
+                      type="text"
+                      value="-60,000,000"
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_2_fuelUnits"
+                    >
+                      Units
+                       *
+                    </label>
+                    <input
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_2_fuelUnits"
+                      label="Units"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      readOnly={true}
+                      required={true}
+                      type="text"
+                      value="consequat Ut Duis"
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-md-1 col-12"
+            >
+              <div
+                className="jsx-4148384647 remove-button-container"
+              >
+                <button
+                  className="btn btn-danger"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Remove fuel
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr
+            className="jsx-4148384647"
+          />
+        </div>
+        <div
+          className="form-row"
+        >
+          <div
+            className="col-12"
+          >
+            <div
+              className="jsx-4148384647 add-button-container"
+            >
+              <button
+                className="btn btn-primary"
+                disabled={false}
+                id="root-add"
+                onClick={[Function]}
+                type="button"
+              >
+                Add a fuel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="jsx-243825984 form-submit"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "lineHeight": "48px",
+            }
+          }
+        >
+          <a
+            href="/reporter/user-dashboard"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Save & Exit
+          </a>
+        </div>
+        <div
+          className="form-nav col-md-9"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-secondary btn-lg"
+            disabled={false}
+            style={
+              Object {
+                "marginRight": "10px",
+              }
+            }
+            type="button"
+          >
+            Back
+          </button>
+          <button
+            className="btn btn-primary btn-lg"
+            disabled={false}
+            type="submit"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;
 
-exports[`Form should match the snapshot with the production form 1`] = `"One or more options does not have a valid label string. Check the \`labelKey\` prop to ensure that it matches the correct option key and provides a string for filtering and display."`;
+exports[`Form should match the snapshot with the production form 1`] = `
+<div
+  className="jsx-243825984 "
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-8"
+    >
+      <h1
+        className="jsx-243825984 form-title"
+      >
+        Production
+      </h1>
+    </div>
+  </div>
+  <form
+    className="rjsf"
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <div
+      className="col-12"
+    >
+      <span
+        className="font-italic text-muted"
+      />
+      <div
+        className="jsx-4148384647 field field-array field-array-of-object"
+      >
+        <div
+          className="jsx-4148384647"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-md-11 col-12"
+            >
+              <div
+                className="form-group field field-object col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <span
+                    className="font-italic text-muted"
+                  />
+                  <div
+                    className="form-group field field-integer form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_productRowId"
+                    >
+                      Product or Service
+                       *
+                    </label>
+                    <div>
+                      <div
+                        className="mb-3 input-group"
+                      >
+                        <div
+                          className="input-group-prepend"
+                        >
+                          <span
+                            className="input-group-text"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_productAmount"
+                    >
+                      Annual Production Amount
+                       *
+                    </label>
+                    <input
+                      className="form-control"
+                      disabled={false}
+                      id="root_0_productAmount"
+                      inputMode="numeric"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseUp={[Function]}
+                      type="text"
+                      value="-60,000,000"
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    >
+                      <p
+                        className="help-block"
+                      >
+                        Report the annual production for the product, following the guidance document provided
+                      </p>
+                    </span>
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_productUnits"
+                    >
+                      Units
+                       *
+                    </label>
+                    <input
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_0_productUnits"
+                      label="Units"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      readOnly={true}
+                      required={true}
+                      type="text"
+                      value="consequat Ut Duis"
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="hidden"
+                  >
+                    <input
+                      id="root_0_requiresEmissionAllocation"
+                      type="hidden"
+                      value={false}
+                    />
+                  </div>
+                  <div
+                    className="hidden"
+                  >
+                    <input
+                      id="root_0_requiresProductAmount"
+                      type="hidden"
+                      value={true}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-md-1 col-12"
+            >
+              <div
+                className="jsx-4148384647 remove-button-container"
+              >
+                <button
+                  className="btn btn-danger"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Remove Product
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr
+            className="jsx-4148384647"
+          />
+        </div>
+        <div
+          className="jsx-4148384647"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-md-11 col-12"
+            >
+              <div
+                className="form-group field field-object col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <span
+                    className="font-italic text-muted"
+                  />
+                  <div
+                    className="form-group field field-integer form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_1_productRowId"
+                    >
+                      Product or Service
+                       *
+                    </label>
+                    <div>
+                      <div
+                        className="mb-3 input-group"
+                      >
+                        <div
+                          className="input-group-prepend"
+                        >
+                          <span
+                            className="input-group-text"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="hidden"
+                  >
+                    <input
+                      id="root_1_requiresEmissionAllocation"
+                      type="hidden"
+                      value={false}
+                    />
+                  </div>
+                  <div
+                    className="hidden"
+                  >
+                    <input
+                      id="root_1_requiresProductAmount"
+                      type="hidden"
+                      value={false}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-md-1 col-12"
+            >
+              <div
+                className="jsx-4148384647 remove-button-container"
+              >
+                <button
+                  className="btn btn-danger"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Remove Product
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr
+            className="jsx-4148384647"
+          />
+        </div>
+        <div
+          className="form-row"
+        >
+          <div
+            className="col-12"
+          >
+            <div
+              className="jsx-4148384647 add-button-container"
+            >
+              <button
+                className="btn btn-primary"
+                disabled={false}
+                id="root-add"
+                onClick={[Function]}
+                type="button"
+              >
+                Add a Product
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="jsx-243825984 form-submit"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-3"
+          style={
+            Object {
+              "lineHeight": "48px",
+            }
+          }
+        >
+          <a
+            href="/reporter/user-dashboard"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            Save & Exit
+          </a>
+        </div>
+        <div
+          className="form-nav col-md-9"
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <button
+            className="btn btn-secondary btn-lg"
+            disabled={false}
+            style={
+              Object {
+                "marginRight": "10px",
+              }
+            }
+            type="button"
+          >
+            Back
+          </button>
+          <button
+            className="btn btn-primary btn-lg"
+            disabled={false}
+            type="submit"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;

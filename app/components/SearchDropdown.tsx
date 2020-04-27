@@ -1,6 +1,5 @@
 import React from 'react';
 import {Typeahead} from 'react-bootstrap-typeahead';
-import ErrorList from 'components/Forms/ErrorList';
 
 interface Props {
   id?: string;
@@ -13,15 +12,14 @@ interface Props {
   errorSchema?: any;
 }
 
-const SearchDropdown: React.FunctionComponent<Props> = ({
+export const SearchDropdownComponent: React.FunctionComponent<Props> = ({
   id,
   placeholder,
   defaultInputValue,
   options,
   selected,
   inputProps,
-  onChange,
-  errorSchema
+  onChange
 }) => {
   return (
     <>
@@ -56,4 +54,4 @@ const SearchDropdown: React.FunctionComponent<Props> = ({
   );
 };
 
-export default SearchDropdown;
+export default SearchDropdownComponent;
