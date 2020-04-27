@@ -2157,7 +2157,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                     </label>
                     <div>
                       <div
-                        className="mb-3 input-group input-group-lg"
+                        className="mb-3 input-group"
                       >
                         <div
                           className="input-group-prepend"
@@ -2306,7 +2306,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                     </label>
                     <div>
                       <div
-                        className="mb-3 input-group input-group-lg"
+                        className="mb-3 input-group"
                       >
                         <div
                           className="input-group-prepend"
