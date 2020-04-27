@@ -86,8 +86,10 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   };
 
   const nextTenPagination = () => {
-    setOffset(offsetValue + 10);
-    setActivePage(activePage + 1);
+    if (activePage !== maxPages) {
+      setOffset(offsetValue + 10);
+      setActivePage(activePage + 1);
+    }
   };
 
   // Pagination
