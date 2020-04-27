@@ -150,6 +150,8 @@ unwatch:
 watch_log:
 	tail -f /usr/local/var/run/watchman/$(shell whoami)-state/log
 
+# Might need to install the bundle containing DB-Pg on a Mac
+# perl -MCPAN -e 'install Bundle::DBD::Pg'
 .PHONY: install_perl_tools
 install_perl_tools:
 	@@$(MAKE) -C schema install CPANM="cpanm --notest"
