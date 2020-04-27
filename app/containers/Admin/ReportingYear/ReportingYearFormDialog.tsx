@@ -4,7 +4,7 @@ import JsonSchemaForm from 'react-jsonschema-form';
 import {JSONSchema6} from 'json-schema';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
-import reportingYearSchema from '../reporting_year.json';
+import reportingYearSchema from './reporting_year.json';
 
 // Interface Props {
 //   show: boolean;
