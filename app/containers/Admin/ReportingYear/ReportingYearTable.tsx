@@ -15,13 +15,13 @@ function formatListViewDate(date) {
   return moment.tz(date, 'America/Vancouver').format('MMM D, YYYY');
 }
 
-function isoToLocaleDate(timestamptz) {
-  return moment.tz(timestamptz, 'America/Vancouver').format('YYYY-MM-DD');
-}
+// function isoToLocaleDate(timestamptz) {
+//   return moment.tz(timestamptz, 'America/Vancouver').format('YYYY-MM-DD');
+// }
 
-function isoToLocaleTime(timestamptz) {
-  return moment.tz(timestamptz, 'America/Vancouver').format('LT');
-}
+// function isoToLocaleTime(timestamptz) {
+//   return moment.tz(timestamptz, 'America/Vancouver').format('LT');
+// }
 
 function localeDateTimeToISO(date, time) {
   return moment(`${date} ${time}`, 'YYYY-MM-DD hh:mm a').toISOString();
@@ -39,16 +39,16 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
 
   const editYear = node => setEditingYear(node);
 
-  const displayFormFields = node => {
-    if (!node) return null;
-    return {
-      applicationOpenDate: isoToLocaleDate(node.applicationOpenTime),
-      applicationOpenTime: isoToLocaleTime(node.applicationOpenTime),
-      applicationCloseDate: isoToLocaleDate(node.applicationCloseTime),
-      applicationCloseTime: isoToLocaleTime(node.applicationCloseTime),
-      applicationResponseTime: isoToLocaleDate(node.applicationResponseTime)
-    };
-  };
+  // const displayFormFields = node => {
+  //   if (!node) return null;
+  //   return {
+  //     applicationOpenDate: isoToLocaleDate(node.applicationOpenTime),
+  //     applicationOpenTime: isoToLocaleTime(node.applicationOpenTime),
+  //     applicationCloseDate: isoToLocaleDate(node.applicationCloseTime),
+  //     applicationCloseTime: isoToLocaleTime(node.applicationCloseTime),
+  //     applicationResponseTime: isoToLocaleDate(node.applicationResponseTime)
+  //   };
+  // };
 
   const saveReportingYear = ({formData}) => {
     const finalData = {
@@ -111,7 +111,8 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
       <ReportingYearFormDialog
         show={Boolean(editingYear)}
         year={editingYear?.reportingYear}
-        formFields={displayFormFields(editingYear)}
+        // formFields={displayFormFields(editingYear)}
+        formFields={editingYear}
         clearForm={clearForm}
         saveReportingYear={saveReportingYear}
       />

@@ -2,16 +2,8 @@
   "schema": {
     "type": "object",
     "properties": {
-      "applicationOpenDate": {
-        "title": "Application Open Date",
-        "type": "string"
-      },
       "applicationOpenTime": {
         "title": "Application Open Time",
-        "type": "string"
-      },
-      "applicationCloseDate": {
-        "title": "Application Close Date",
         "type": "string"
       },
       "applicationCloseTime": {
@@ -32,20 +24,29 @@
     ]
   },
   "uiSchema": {
-    "applicationOpenDate": {
-      "ui:widget": "date"
-    },
     "applicationOpenTime": {
-      "ui:widget": "text"
-    },
-    "applicationCloseDate": {
-      "ui:widget": "date"
+      "ui:widget": "alt-datetime",
+      "ui:options": {
+        "yearsRange": [2019, 2030],
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
     },
     "applicationCloseTime": {
-      "ui:widget": "text"
+      "ui:widget": "alt-datetime",
+      "ui:options": {
+        "yearsRange": [2019, 2030],
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
     },
     "applicationResponseTime": {
-      "ui:widget": "date"
+      "ui:widget": "alt-date",
+      "ui:options": {
+        "yearsRange": [2019, 2030],
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
     }
   }
 }
