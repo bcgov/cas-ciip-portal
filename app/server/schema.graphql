@@ -11029,6 +11029,7 @@ type Query implements Node {
     offset: Int
     offsetValue: Int
     orderByField: String
+    organisationRowId: String
     searchField: String
     searchValue: String
   ): FacilitySearchResultsConnection!

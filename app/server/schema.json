@@ -3582,6 +3582,16 @@
                   "defaultValue": null
                 },
                 {
+                  "name": "organisationRowId",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
                   "name": "searchField",
                   "description": null,
                   "type": {

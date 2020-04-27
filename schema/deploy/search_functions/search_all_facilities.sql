@@ -4,16 +4,25 @@
 
 begin;
 
-create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text, offset_value int)
+create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text, organisation_row_id text, offset_value int)
 
   returns setof ggircs_portal.facility_search_result as
     $function$
       declare
         user_sub uuid;
         user_id int;
+        facilities_query text;
       begin
         user_sub := (select sub from ggircs_portal.session());
         user_id := (select id from ggircs_portal.ciip_user as cu where cu.uuid = user_sub);
+
+        -- Filters the facilities by organisation if the organisation_row_id variable is set
+        if organisation_row_id is null then
+          facilities_query := '(select * from ggircs_portal.facility)';
+        else
+          facilities_query := '(select * from ggircs_portal.facility where facility.organisation_id = ' || organisation_row_id || ')';
+        end if;
+
         if search_field is null or search_value is null
           then return query execute 'with applicationStatus as (
             select t.application_revision_status as application_revision_status, t.version_number, t.created_at, t.application_id
@@ -31,7 +40,7 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
             ),
 
             tempTable as (select f.*, ad.application_revision_status, ad.id as application_id
-            from ggircs_portal.facility f
+            from ' || facilities_query || ' f
             left join applicationDetails ad on f.id = ad.facility_id),
 
             organisationInfo as (
@@ -75,7 +84,7 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
             ),
 
             tempTable as (select f.*, ad.application_revision_status, ad.id as application_id
-            from ggircs_portal.facility f
+            from ' || facilities_query || ' f
             left join applicationDetails ad on f.id = ad.facility_id),
 
             organisationInfo as (
