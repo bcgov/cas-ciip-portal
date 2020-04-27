@@ -612,69 +612,9 @@
         "logoutUrl": "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/idir/protocol/openid-connect/logout",
         "clientSecret": "**********"
       }
-    },
-    {
-      "alias": "bceid",
-      "displayName": "BCeID",
-      "internalId": "afbabd8f-4488-4ac4-a3ba-6860b71945f1",
-      "providerId": "keycloak-oidc",
-      "enabled": true,
-      "updateProfileFirstLoginMode": "on",
-      "trustEmail": false,
-      "storeToken": false,
-      "addReadTokenRoleOnCreate": false,
-      "authenticateByDefault": false,
-      "linkOnly": false,
-      "firstBrokerLoginFlowAlias": "first broker login",
-      "config": {
-        "hideOnLoginPage": "",
-        "userInfoUrl": "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/_bceid/protocol/openid-connect/userinfo",
-        "validateSignature": "true",
-        "clientId": "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/pisrwwhx",
-        "tokenUrl": "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/_bceid/protocol/openid-connect/token",
-        "uiLocales": "",
-        "jwksUrl": "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/_bceid/protocol/openid-connect/certs",
-        "backchannelSupported": "true",
-        "issuer": "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/_bceid",
-        "useJwksUrl": "true",
-        "loginHint": "",
-        "authorizationUrl": "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/_bceid/protocol/openid-connect/auth",
-        "disableUserInfo": "",
-        "logoutUrl": "https://sso-dev.pathfinder.gov.bc.ca/auth/realms/_bceid/protocol/openid-connect/logout",
-        "clientSecret": "**********"
-      }
     }
   ],
   "identityProviderMappers": [
-    {
-      "id": "bdd5f296-1949-4a90-ad62-e429bd91736e",
-      "name": "username",
-      "identityProviderAlias": "bceid",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "template": "${CLAIM.preferred_username}@${ALIAS}"
-      }
-    },
-    {
-      "id": "e3f94890-b1a5-4364-9896-7c74e00de2e5",
-      "name": "email",
-      "identityProviderAlias": "bceid",
-      "identityProviderMapper": "oidc-user-attribute-idp-mapper",
-      "config": {
-        "claim": "email",
-        "user.attribute": "email"
-      }
-    },
-    {
-      "id": "586e4bc5-26f6-4325-8df1-dc337f889db8",
-      "name": "displayName",
-      "identityProviderAlias": "bceid",
-      "identityProviderMapper": "oidc-user-attribute-idp-mapper",
-      "config": {
-        "claim": "displayName",
-        "user.attribute": "displayName"
-      }
-    },
     {
       "id": "5fa8fb1c-9f88-437b-b445-d2c6779d36a3",
       "name": "lastName",
