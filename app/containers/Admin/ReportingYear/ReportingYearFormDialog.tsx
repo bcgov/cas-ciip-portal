@@ -6,7 +6,7 @@ import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import reportingYearSchema from '../reporting_year.json';
 
-// interface Props {
+// Interface Props {
 //   show: boolean;
 //   year: number;
 //   formFields: object;
@@ -21,31 +21,23 @@ export default function ReportingYearFormDialog({
   clearForm,
   saveReportingYear
 }) {
-
   return (
-    <Modal
-      centered
-      size="xl"
-      show={show}
-      onHide={clearForm}
-    >
+    <Modal centered size="xl" show={show} onHide={clearForm}>
       <Modal.Header closeButton>
-        <Modal.Title>
-          Edit Reporting Year {year}
-        </Modal.Title>
+        <Modal.Title>Edit Reporting Year {year}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Container>
           <JsonSchemaForm
             omitExtraData
             liveOmit
+            noHtml5Validate
             schema={reportingYearSchema.schema as JSONSchema6}
             uiSchema={reportingYearSchema.uiSchema}
             formData={formFields}
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
             showErrorList={false}
-            noHtml5Validate
             onSubmit={saveReportingYear}
           >
             <Button type="submit" variant="primary">

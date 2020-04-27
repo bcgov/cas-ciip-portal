@@ -39,15 +39,15 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
 
   const editYear = node => setEditingYear(node);
 
-  const displayFormFields = (node) => {
-    if(!node) return null
+  const displayFormFields = node => {
+    if (!node) return null;
     return {
       applicationOpenDate: isoToLocaleDate(node.applicationOpenTime),
       applicationOpenTime: isoToLocaleTime(node.applicationOpenTime),
       applicationCloseDate: isoToLocaleDate(node.applicationCloseTime),
       applicationCloseTime: isoToLocaleTime(node.applicationCloseTime),
       applicationResponseTime: isoToLocaleDate(node.applicationResponseTime)
-    }
+    };
   };
 
   const saveReportingYear = ({formData}) => {
@@ -73,8 +73,7 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = props
           ...finalData
         }
       }
-    })
-    .then(clearForm);
+    }).then(clearForm);
   };
 
   return (
