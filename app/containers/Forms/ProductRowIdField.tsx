@@ -9,10 +9,13 @@ interface Props extends FieldProps<number> {
 }
 
 /**
- * Displays the information related to a product, and loads the additional data schema for products that need it.
- * By using the registry (which contains, for instance, the form's FieldTemplate and StringField)
- * this allows for this component to be reused in both the Form and the ApplicationDetailsCardItem components.
- * It will either render inputs or the values based on what is defined in the current jsonschema form registry.
+ * Separates active products from archived products & renders according to the product's state.
+ * For active products, the fieldProps are generated & either a search dropdown component is rendered
+ * or the value is rendered based on what is defined in the currentjsonschema form registry.
+ * For archived proucts, a readonly input is rendered with the name of the archived product.
+ * This split based on the state of the product allows archived products to be rendered in the product form,
+ * but since only the active products are passed to the field props, these products are not available to be selected
+ * from the search dropdown component when filling out an application.
  */
 export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = props => {
   /**
@@ -32,26 +35,39 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = props 
     [props]
   );
 
-  const activeProductIds = props.query.active.edges.map(({node}) => node.rowId);
-  const inactiveProductIds = [
-    ...props.query.archived.edges.map(({node}) => node.rowId),
-    ...props.query.deprecated.edges.map(({node}) => node.rowId)
-  ];
-  const inactiveProductNames = [
-    ...props.query.archived.edges.map(({node}) => node.name),
-    ...props.query.deprecated.edges.map(({node}) => node.name)
-  ];
+  /**
+   * Contains all products, split into arrays of active / inactive product IDs and names.
+   */
+  const allProducts = useMemo(
+    () => ({
+      activeProductIds: props.query.active.edges.map(({node}) => node.rowId),
+      inactiveProductIds: [
+        ...props.query.archived.edges.map(({node}) => node.rowId),
+        ...props.query.deprecated.edges.map(({node}) => node.rowId)
+      ],
+      inactiveProductNames: [
+        ...props.query.archived.edges.map(({node}) => node.name),
+        ...props.query.deprecated.edges.map(({node}) => node.name)
+      ]
+    }),
+    [props]
+  );
 
-  if (activeProductIds.includes(props.formData) || props.formData === undefined)
+  // Pass the fieldProps for an active product
+  if (
+    allProducts.activeProductIds.includes(props.formData) ||
+    props.formData === undefined
+  )
     return <props.registry.fields.StringField {...fieldProps} />;
 
-  const inactiveIndex = inactiveProductIds.indexOf(props.formData);
+  // Render a disabled text input for an inactive product
+  const inactiveIndex = allProducts.inactiveProductIds.indexOf(props.formData);
   return (
     <div>
-      <InputGroup size="lg" className="mb-3">
+      <InputGroup className="mb-3">
         <InputGroup.Prepend>
           <InputGroup.Text>
-            {inactiveProductNames[inactiveIndex]}
+            {allProducts.inactiveProductNames[inactiveIndex]}
           </InputGroup.Text>
         </InputGroup.Prepend>
       </InputGroup>
