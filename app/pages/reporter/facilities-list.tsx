@@ -21,6 +21,7 @@ class FacilitiesList extends Component<Props> {
       $searchField: String
       $searchValue: String
       $organisationId: ID!
+      $organisationRowId: String
       $offsetValue: Int
     ) {
       query {
@@ -31,6 +32,7 @@ class FacilitiesList extends Component<Props> {
             searchField: $searchField
             searchValue: $searchValue
             organisationId: $organisationId
+            organisationRowId: $organisationRowId
             offsetValue: $offsetValue
           )
         session {

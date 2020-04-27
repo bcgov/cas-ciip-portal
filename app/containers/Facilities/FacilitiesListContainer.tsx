@@ -169,6 +169,7 @@ export default createRefetchContainer(
           orderByField: {type: "String"}
           direction: {type: "String"}
           organisationId: {type: "ID!"}
+          organisationRowId: {type: "String"}
           facilityCount: {type: "Int"}
           offsetValue: {type: "Int"}
         ) {
@@ -177,6 +178,7 @@ export default createRefetchContainer(
           searchField: $searchField
           searchValue: $searchValue
           orderByField: $orderByField
+          organisationRowId: $organisationRowId
           direction: $direction
           offsetValue: $offsetValue
         ) {
@@ -207,6 +209,7 @@ export default createRefetchContainer(
       $orderByField: String
       $direction: String
       $organisationId: ID!
+      $organisationRowId: String
       $facilityCount: Int
       $offsetValue: Int
     ) {
@@ -217,6 +220,7 @@ export default createRefetchContainer(
             direction: $direction
             searchField: $searchField
             searchValue: $searchValue
+            organisationRowId: $organisationRowId
             organisationId: $organisationId
             facilityCount: $facilityCount
             offsetValue: $offsetValue
