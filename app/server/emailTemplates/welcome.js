@@ -1,3 +1,4 @@
+const createUrl = require('../helpers/createUrl');
 const createWelcomeMail = ({firstName, lastName, email}) => {
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
@@ -12,7 +13,7 @@ const createWelcomeMail = ({firstName, lastName, email}) => {
           <h3>Hello, ${firstName} ${lastName}.</h3>
           <h4>Thank you for registering for the CleanBC Industrial Incentive Program.</h4>
           <br/>
-          <a href="http://localhost:3004">CIIP Portal</a>
+          <a href=${createUrl()}>CIIP Portal</a>
         </td>
       </tr>
       <tr>
