@@ -68,6 +68,8 @@ objects:
             value: no-reply.cas@gov.bc.ca
           - name: FEEDBACK_SITE_URL
             value: https://ciip-portal-${OC_PROJECT}-feedback.pathfinder.gov.bc.ca
+          - name: HOST
+            value: https://ciip-portal-${OC_PROJECT}.pathfinder.gov.bc.ca
 
           image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-app:${GIT_SHA1}
           imagePullPolicy: IfNotPresent
