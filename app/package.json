@@ -47,6 +47,9 @@
     "space": true,
     "prettier": true,
     "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
     "rules": {
       "@typescript-eslint/indent": 0,
       "@typescript-eslint/semi": 0,
