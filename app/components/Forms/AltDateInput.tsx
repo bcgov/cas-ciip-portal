@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import {WidgetProps} from 'react-jsonschema-form';
 
 function rangeOptions(start, stop) {
   let options = [];
@@ -58,7 +59,7 @@ class AltDateInput extends Component {
     },
   };
 
-  constructor(props) {
+  constructor(props: WidgetProps) {
     super(props);
     this.state = parseDateString(props.value, props.time);
   }

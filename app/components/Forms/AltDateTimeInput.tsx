@@ -3,8 +3,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AltDateInput from "./AltDateInput";
+import { WidgetProps } from "react-jsonschema-form";
 
-function AltDateTimeInput(props) {
+function AltDateTimeInput(props: WidgetProps) {
   const { AltDateInput } = props.registry.widgets;
   return <AltDateInput time {...props} />;
 }

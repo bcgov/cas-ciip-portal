@@ -5,6 +5,8 @@ import {JSONSchema6} from 'json-schema';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import reportingYearSchema from './reporting_year.json';
+import AltDateInput from 'components/Forms/AltDateInput';
+import AltDateTimeInput from 'components/Forms/AltDateTimeInput';
 
 interface Props {
   show: boolean;
@@ -37,6 +39,7 @@ export default function ReportingYearFormDialog({
             formData={formFields}
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
+            widgets={{AltDateInput, AltDateTimeInput}}
             showErrorList={false}
             onSubmit={saveReportingYear}
           >
