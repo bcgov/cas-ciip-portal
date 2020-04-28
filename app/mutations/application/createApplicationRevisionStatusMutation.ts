@@ -9,6 +9,7 @@ import BaseMutation from 'mutations/BaseMutation';
 const mutation = graphql`
   mutation createApplicationRevisionStatusMutation(
     $input: CreateApplicationRevisionStatusInput!
+    $version: String
   ) {
     createApplicationRevisionStatus(input: $input) {
       clientMutationId
