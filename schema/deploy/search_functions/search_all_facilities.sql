@@ -27,16 +27,18 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
           then return query execute 'with applicationStatus as (
             select t.application_revision_status as application_revision_status, t.version_number, t.created_at, t.application_id
             from ggircs_portal.application_revision_status t
-            join (select application_id, max(version_number) as latest_version, max(created_at) as last_created
+            join (select application_id, max(version_number) as latest_version
             from ggircs_portal.application_revision_status
             group by application_id) a
             on a.application_id = t.application_id
-            and a.latest_version = t.version_number
-            and a.last_created = t.created_at),
+            and a.latest_version = t.version_number),
 
             applicationDetails as (
                 select s.application_revision_status, a.id, a.facility_id
-                from ggircs_portal.application a join applicationStatus s on a.id = s.application_id
+                from ggircs_portal.application a
+                join applicationStatus s
+                on a.id = s.application_id
+                and s.created_at = (select max(created_at) from applicationStatus)
             ),
 
             tempTable as (select f.*, ad.application_revision_status, ad.id as application_id
@@ -71,16 +73,18 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
           return query execute 'with applicationStatus as (
             select t.application_revision_status as application_revision_status, t.version_number, t.application_id
             from ggircs_portal.application_revision_status t
-            join (select application_id, max(version_number) as latest_version, max(created_at) as last_created
+            join (select application_id, max(version_number) as latest_version
             from ggircs_portal.application_revision_status
             group by application_id) a
             on a.application_id = t.application_id
-            and a.latest_version = t.version_number
-            and a.last_created = t.created_at),
+            and a.latest_version = t.version_number),
 
             applicationDetails as (
                 select s.application_revision_status, a.id, a.facility_id
-                from ggircs_portal.application a join applicationStatus s on a.id = s.application_id
+                from ggircs_portal.application a
+                join applicationStatus s
+                on a.id = s.application_id
+                and s.created_at = (select max(created_at) from applicationStatus)
             ),
 
             tempTable as (select f.*, ad.application_revision_status, ad.id as application_id
