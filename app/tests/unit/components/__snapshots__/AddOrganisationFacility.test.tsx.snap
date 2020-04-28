@@ -29,7 +29,7 @@ Array [
     show={false}
     size="lg"
   >
-    <ForwardRef
+    <Modal
       autoFocus={true}
       backdrop={true}
       backdropTransition={[Function]}

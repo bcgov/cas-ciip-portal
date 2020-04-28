@@ -42,7 +42,7 @@ exports[`ApplicationReview should match the snapshot with the ApplicationReview 
           <FormControl
             as="textarea"
             name="reviewComment"
-            rows="3"
+            rows={3}
           />
         </FormGroup>
         <Row
