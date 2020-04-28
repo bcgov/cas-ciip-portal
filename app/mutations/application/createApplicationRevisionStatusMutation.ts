@@ -18,7 +18,7 @@ const mutation = graphql`
         applicationRevisionByApplicationIdAndVersionNumber {
           applicationByApplicationId {
             id
-            applicationRevisionStatus {
+            applicationRevisionStatus(versionNumberInput: $version) {
               id
               applicationRevisionStatus
             }
