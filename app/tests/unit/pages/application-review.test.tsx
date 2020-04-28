@@ -15,7 +15,7 @@ describe('The application-review page', () => {
         ApplicationDetailsContainer_application: true
       },
       rowId: 1,
-      applicationRevisionStatus: {
+      reviewRevisionStatus: {
         ' $fragmentRefs': {
           ApplicationRevisionStatusContainer_applicationRevisionStatus: true
         }
@@ -35,7 +35,7 @@ describe('The application-review page', () => {
     },
     applicationRevision: {
       ' $fragmentRefs': {
-        IncentiveCalculatorContainer_application_revision: true
+        IncentiveCalculatorContainer_applicationRevision: true
       }
     },
     ' $fragmentRefs': {

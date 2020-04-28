@@ -154,7 +154,7 @@ export default createFragmentContainer(ApplicationCommentsComponent, {
       applicationByApplicationId {
         id
         rowId
-        applicationRevisionStatus {
+        applicationRevisionStatus(versionNumberInput: $version) {
           applicationRevisionStatus
         }
       }

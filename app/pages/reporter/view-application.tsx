@@ -35,7 +35,7 @@ class ViewApplication extends Component<Props> {
         ...ReviseApplicationButtonContainer_query
 
         application(id: $applicationId) {
-          applicationRevisionStatus {
+          applicationRevisionStatus(versionNumberInput: $version) {
             applicationRevisionStatus
           }
           orderedFormResults(versionNumberInput: $version) {

@@ -29,7 +29,9 @@ class ApplicationReview extends Component<Props> {
         }
         application(id: $applicationId) {
           rowId
-          applicationRevisionStatus {
+          reviewRevisionStatus: applicationRevisionStatus(
+            versionNumberInput: $version
+          ) {
             ...ApplicationRevisionStatusContainer_applicationRevisionStatus
           }
           ...ApplicationDetailsContainer_application
@@ -63,9 +65,7 @@ class ApplicationReview extends Component<Props> {
         allowedGroups={ALLOWED_GROUPS}
       >
         <ApplicationRevisionStatusContainer
-          applicationRevisionStatus={
-            query.application.applicationRevisionStatus
-          }
+          applicationRevisionStatus={query.application.reviewRevisionStatus}
           applicationRowId={query.application.rowId}
         />
         <hr />

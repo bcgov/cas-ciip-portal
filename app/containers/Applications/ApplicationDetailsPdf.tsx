@@ -206,7 +206,7 @@ export default createFragmentContainer(ApplicationDetailsPdf, {
   application: graphql`
     fragment ApplicationDetailsPdf_application on Application
       @argumentDefinitions(version: {type: "String!"}) {
-      applicationRevisionStatus {
+      applicationRevisionStatus(versionNumberInput: $version) {
         applicationRevisionStatus
       }
       reportingYear

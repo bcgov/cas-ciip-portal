@@ -36,7 +36,8 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
           applicationRevisionStatus: eventKey,
           versionNumber: props.applicationRevisionStatus.versionNumber
         }
-      }
+      },
+      version: props.applicationRevisionStatus.versionNumber.toString()
     };
     const response = await createApplicationRevisionStatusMutation(
       props.relay.environment,

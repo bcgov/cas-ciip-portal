@@ -32,7 +32,7 @@ type Application implements Node {
   """
   Computed column for graphql to traverse to an application_revision_status from application
   """
-  applicationRevisionStatus: ApplicationRevisionStatus
+  applicationRevisionStatus(versionNumberInput: String): ApplicationRevisionStatus
 
   """Reads and enables pagination through a set of `CertificationUrl`."""
   certificationUrlsByApplicationId(
