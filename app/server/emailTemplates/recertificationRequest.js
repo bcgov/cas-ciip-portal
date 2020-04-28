@@ -1,3 +1,4 @@
+const createUrl = require('../helpers/createUrl');
 const createRecertificationRequestMail = ({
   email,
   firstName,
@@ -26,7 +27,7 @@ const createRecertificationRequestMail = ({
           <p>Operator: ${operatorName}</p>
           <p>Facility: ${facilityName}</p>
           <br/>
-          <a href="http://localhost:3004">CIIP Portal</a>
+          <a href=${createUrl()}>CIIP Portal</a>
         </td>
       </tr>
       <tr>

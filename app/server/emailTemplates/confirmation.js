@@ -1,3 +1,4 @@
+const createUrl = require('../helpers/createUrl');
 const createConfirmationMail = ({
   firstName,
   lastName,
@@ -19,7 +20,7 @@ const createConfirmationMail = ({
           <h4>Thank you for your submission to the CleanBC Industrial Incentive Program.</h4>
           <p>Your application on behalf of <strong>${operatorName}</strong> for facility <strong>${facilityName}</strong> has been received.</p>
           <br/>
-          <a href="http://localhost:3004">CIIP Portal</a>
+          <a href=${createUrl()}>CIIP Portal</a>
         </td>
       </tr>
       <tr>

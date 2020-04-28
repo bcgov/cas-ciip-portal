@@ -1,3 +1,4 @@
+const createUrl = require('../helpers/createUrl');
 const createAmendmentMail = ({
   firstName,
   lastName,
@@ -23,7 +24,7 @@ const createAmendmentMail = ({
           <p>Facility: ${facilityName}</p>
           <p>Status: ${status}</p>
           <br/>
-          <a href="http://localhost:3004">CIIP Portal</a>
+          <a href=${createUrl()}>CIIP Portal</a>
         </td>
       </tr>
       <tr>
