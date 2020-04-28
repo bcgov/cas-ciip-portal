@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.application_application_revision_status(ggircs_portal.application);
+drop function ggircs_portal.application_application_revision_status(ggircs_portal.application, text);
 
 commit;

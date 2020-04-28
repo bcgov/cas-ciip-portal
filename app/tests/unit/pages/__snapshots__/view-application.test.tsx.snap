@@ -52,6 +52,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
           Object {
             " $fragmentRefs": Object {
               "ApplicationDetailsContainer_query": true,
+              "ReviseApplicationButtonContainer_query": true,
             },
             "application": Object {
               " $fragmentRefs": Object {
