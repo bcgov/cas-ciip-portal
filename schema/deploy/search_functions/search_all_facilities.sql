@@ -73,7 +73,7 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
           return query execute 'with applicationStatus as (
             select t.application_revision_status as application_revision_status, t.version_number, t.application_id
             from ggircs_portal.application_revision_status t
-            join (select application_id, max(version_number) as latest_version, max(created_at) as last_created
+            join (select application_id, max(version_number) as latest_version
             from ggircs_portal.application_revision_status
             group by application_id) a
             on a.application_id = t.application_id
