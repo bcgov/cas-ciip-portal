@@ -6,13 +6,13 @@ import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import reportingYearSchema from './reporting_year.json';
 
-// Interface Props {
-//   show: boolean;
-//   year: number;
-//   formFields: object;
-//   clearForm: Function;
-//   saveReportingYear: Function;
-// }
+interface Props {
+  show: boolean;
+  year: number;
+  formFields: object;
+  clearForm: () => void;
+  saveReportingYear: ({formData}) => void;
+}
 
 export default function ReportingYearFormDialog({
   show,
@@ -20,7 +20,7 @@ export default function ReportingYearFormDialog({
   formFields,
   clearForm,
   saveReportingYear
-}) {
+}: Props) {
   return (
     <Modal centered size="xl" show={show} onHide={clearForm}>
       <Modal.Header closeButton>
