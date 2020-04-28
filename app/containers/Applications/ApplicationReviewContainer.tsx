@@ -128,7 +128,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
           <Form className="review-box" onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Comment</Form.Label>
-              <Form.Control name="reviewComment" as="textarea" rows="3" />
+              <Form.Control name="reviewComment" as="textarea" rows={3} />
             </Form.Group>
             <Row className="review-status">
               <Col sm={12}>
