@@ -64,9 +64,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_operationalRepresentative_phone')
       .clear()
       .type('9009009001');
-    cy.get('#root_operationalRepresentative_fax')
-      .clear()
-      .type('6476478009');
 
     // Operational rep mailing address
     cy.get('#root_operationalRepresentative_mailingAddress_streetAddress')

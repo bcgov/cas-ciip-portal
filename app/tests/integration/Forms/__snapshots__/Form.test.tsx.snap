@@ -440,7 +440,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="culpa"
+                value="in qui"
               />
               <span
                 className="font-italic text-muted"
@@ -469,7 +469,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="in qui"
+                value="est dolor"
               />
               <span
                 className="font-italic text-muted"
@@ -498,7 +498,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="mollit eu esse"
+                value="consequat Ut Duis"
               />
               <span
                 className="font-italic text-muted"
@@ -527,7 +527,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="email"
-                value="mzFgms@AfkpuAfkpuAfkp.ncf"
+                value="gszFg@puAfkpu.cfh"
               />
               <span
                 className="font-italic text-muted"
@@ -556,35 +556,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="tel"
-                value="consequat Ut Duis"
-              />
-              <span
-                className="font-italic text-muted"
-              />
-            </div>
-            <div
-              className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-            >
-              <label
-                className="form-label"
-                htmlFor="root_operationalRepresentative_fax"
-              >
-                Fax Number
-              </label>
-              <input
-                autoFocus={false}
-                className="form-control"
-                disabled={false}
-                id="root_operationalRepresentative_fax"
-                label="Fax Number"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={false}
-                type="tel"
-                value="est dolor"
+                value="culpa"
               />
               <span
                 className="font-italic text-muted"
@@ -631,7 +603,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="mollit eu esse"
+                    value="est dolor"
                   />
                   <span
                     className="font-italic text-muted"
@@ -660,7 +632,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="culpa"
+                    value="consequat Ut Duis"
                   />
                   <span
                     className="font-italic text-muted"
@@ -689,7 +661,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="A1k4A1"
+                    value="u5f3u5"
                   />
                   <span
                     className="font-italic text-muted"
@@ -714,7 +686,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onChange={[Function]}
                     onFocus={[Function]}
                     required={true}
-                    value="New Brunswick"
+                    value="Manitoba"
                   >
                     <option
                       value=""
@@ -1187,7 +1159,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                         autoFocus={false}
                         checked={false}
                         disabled={false}
-                        name="0.1"
+                        name="0.5"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -1210,7 +1182,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                         autoFocus={false}
                         checked={true}
                         disabled={false}
-                        name="0.1"
+                        name="0.5"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}

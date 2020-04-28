@@ -213,18 +213,17 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "naics": "4512",
                   },
                   "operationalRepresentative": Object {
-                    "email": "gszFg@puAfkpu.cfh",
-                    "fax": "mollit eu esse",
-                    "firstName": "in qui",
-                    "lastName": "est dolor",
+                    "email": "Fmsy@fkpuAfkpuAfkpuAfk.kn",
+                    "firstName": "mollit eu esse",
+                    "lastName": "consequat Ut Duis",
                     "mailingAddress": Object {
                       "city": "in qui",
                       "postalCode": "f2p5f2",
                       "province": "Northwest Territories",
                       "streetAddress": "consequat Ut Duis",
                     },
-                    "phone": "culpa",
-                    "position": "consequat Ut Duis",
+                    "phone": "est dolor",
+                    "position": "in qui",
                   },
                   "operator": Object {
                     "bcCorporateRegistryNumber": "K4512345",
@@ -394,10 +393,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "Email Address",
                           "type": "string",
                         },
-                        "fax": Object {
-                          "title": "Fax Number",
-                          "type": "string",
-                        },
                         "firstName": Object {
                           "title": "First Name",
                           "type": "string",
@@ -511,11 +506,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     ],
                   },
                   "operationalRepresentative": Object {
-                    "fax": Object {
-                      "ui:options": Object {
-                        "inputType": "tel",
-                      },
-                    },
                     "mailingAddress": Object {
                       "postalCode": Object {
                         "ui:placeholder": "ex: A1A 1A1",
@@ -538,7 +528,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "position",
                       "email",
                       "phone",
-                      "fax",
                       "mailingAddress",
                     ],
                   },

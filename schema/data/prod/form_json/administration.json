@@ -147,10 +147,6 @@
           "firstName"
         ],
         "properties": {
-          "fax": {
-            "type": "string",
-            "title": "Fax Number"
-          },
           "email": {
             "type": "string",
             "title": "Email Address",
@@ -295,11 +291,6 @@
       "facility"
     ],
     "operationalRepresentative": {
-      "fax": {
-        "ui:options": {
-          "inputType": "tel"
-        }
-      },
       "phone": {
         "ui:options": {
           "inputType": "tel"
@@ -311,7 +302,6 @@
         "position",
         "email",
         "phone",
-        "fax",
         "mailingAddress"
       ],
       "mailingAddress": {
