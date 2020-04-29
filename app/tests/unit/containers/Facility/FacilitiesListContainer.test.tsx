@@ -2,7 +2,6 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import {FacilitiesList} from 'containers/Facilities/FacilitiesListContainer';
-import {First} from 'react-bootstrap/PageItem';
 
 describe('FacilitiesListContainer', () => {
   it('should match the previous snapshot', async () => {
@@ -124,30 +123,10 @@ describe('FacilitiesListContainer', () => {
         handleEvent={jest.fn()}
       />
     );
-    expect(
-      r
-        .find('PageItem')
-        .at(0)
-        .text()
-    ).toBe('1');
-    expect(
-      r
-        .find('PageItem')
-        .at(1)
-        .text()
-    ).toBe('2');
-    expect(
-      r
-        .find('PageItem')
-        .at(2)
-        .text()
-    ).toBe('3');
-    expect(
-      r
-        .find('PageItem')
-        .at(3)
-        .exists()
-    ).toBe(false);
+    expect(r.find('PageItem').at(0).text()).toBe('1');
+    expect(r.find('PageItem').at(1).text()).toBe('2');
+    expect(r.find('PageItem').at(2).text()).toBe('3');
+    expect(r.find('PageItem').at(3).exists()).toBe(false);
   });
   it('should not render the Pagination component if < 10 facilities (totalFacilityCount < 10)', async () => {
     const query: FacilitiesListContainer_query = {
@@ -228,18 +207,8 @@ describe('FacilitiesListContainer', () => {
         handleEvent={jest.fn()}
       />
     );
-    expect(
-      r
-        .find('PageItem')
-        .at(8)
-        .text()
-    ).toBe('9');
-    expect(
-      r
-        .find('PageItem')
-        .at(9)
-        .exists()
-    ).toBe(false);
+    expect(r.find('PageItem').at(8).text()).toBe('9');
+    expect(r.find('PageItem').at(9).exists()).toBe(false);
     expect(r.find('Ellipsis').exists()).toBe(true);
     expect(r).toMatchSnapshot();
   });

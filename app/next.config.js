@@ -5,7 +5,7 @@ dotenv.config();
 
 module.exports = {
   cssModules: true,
-  webpack: config => {
+  webpack: (config) => {
     config.plugins = config.plugins || [];
 
     config.plugins = [

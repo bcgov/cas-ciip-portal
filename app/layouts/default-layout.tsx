@@ -40,7 +40,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
 
   const canAccess =
     allowedGroups.length === 0 ||
-    userGroups.some(g => allowedGroups.includes(g));
+    userGroups.some((g) => allowedGroups.includes(g));
 
   if (!canAccess) {
     router.push({

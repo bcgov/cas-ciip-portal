@@ -23,7 +23,9 @@ interface Props {
   setHasErrors?: (...args: any[]) => void;
 }
 
-export const ApplicationDetailsComponent: React.FunctionComponent<Props> = props => {
+export const ApplicationDetailsComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const formResults = props.application.orderedFormResults.edges;
   const diffFromResults = props.review
     ? props?.query?.old?.orderedFormResults?.edges

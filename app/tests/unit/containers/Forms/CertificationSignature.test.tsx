@@ -46,12 +46,7 @@ describe('The Confirmation Component', () => {
         relay={null}
       />
     );
-    expect(
-      wrapper
-        .find('Button')
-        .at(0)
-        .text()
-    ).toBe('Sign');
+    expect(wrapper.find('Button').at(0).text()).toBe('Sign');
   });
 
   it('displays a success message if the application has been signed', () => {

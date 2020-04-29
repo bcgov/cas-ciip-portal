@@ -10,10 +10,12 @@ interface Props {
   relay: RelayProp;
 }
 
-export const CertificationSignatureComponent: React.FunctionComponent<Props> = props => {
+export const CertificationSignatureComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const sigCanvas: any = useRef({});
 
-  const uploadImage = e => {
+  const uploadImage = (e) => {
     e.persist();
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -65,7 +67,7 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = p
             <input
               accept="image/*"
               type="file"
-              onChange={e => uploadImage(e)}
+              onChange={(e) => uploadImage(e)}
             />
           )}
         </Col>

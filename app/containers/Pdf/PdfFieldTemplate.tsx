@@ -7,7 +7,9 @@ const styles = StyleSheet.create({
   fields: {lineHeight: 1.5}
 });
 
-const PdfFieldTemplate: React.FunctionComponent<FieldTemplateProps> = props => {
+const PdfFieldTemplate: React.FunctionComponent<FieldTemplateProps> = (
+  props
+) => {
   return (
     <>
       {props.label && (

@@ -1293,7 +1293,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
           className="font-italic text-muted"
         />
         <div
-          className="jsx-61285161 show-zero-emissions"
+          className="jsx-3846335375 show-zero-emissions"
         >
           <div
             className="emission-toggle col-md-12"
@@ -1355,7 +1355,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-4 col-12"
                             >
                               <h5
-                                className="jsx-569590088"
+                                className="jsx-4136336479"
                                 style={
                                   Object {
                                     "textAlign": "left",
@@ -1369,7 +1369,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-3 col-12"
                             >
                               <h6
-                                className="jsx-569590088"
+                                className="jsx-4136336479"
                               >
                                 Tonnes
                               </h6>
@@ -1378,7 +1378,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-2 col-12"
                             >
                               <h6
-                                className="jsx-569590088"
+                                className="jsx-4136336479"
                               >
                                 GWP
                               </h6>
@@ -1387,7 +1387,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-3 col-12"
                             >
                               <h6
-                                className="jsx-569590088"
+                                className="jsx-4136336479"
                               >
                                 Tonnes (CO2e)
                               </h6>

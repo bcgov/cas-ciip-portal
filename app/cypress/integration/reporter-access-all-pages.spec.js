@@ -29,16 +29,12 @@ describe('When logged in as a reporter', () => {
       `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
     );
     cy.url().should('include', '/reporter/ciip-application');
-    cy.get('.btn')
-      .contains('Send to Certifier')
-      .click();
+    cy.get('.btn').contains('Send to Certifier').click();
     cy.wait(500); // Wait for half second (otherwise cypress gets the input before the value has been set)
+    cy.get('input').invoke('val').should('contain', 'localhost');
     cy.get('input')
       .invoke('val')
-      .should('contain', 'localhost');
-    cy.get('input')
-      .invoke('val')
-      .then($url => {
+      .then(($url) => {
         cy.visit($url);
         cy.url().should('include', '/certifier/certification-redirect');
         cy.get('#page-content');
@@ -58,9 +54,7 @@ describe('When logged in as a reporter', () => {
         cy.get('.nav-link');
         cy.contains('Summary').click();
         cy.url().should('include', '/reporter/ciip-application');
-        cy.get('.btn')
-          .contains('Submit')
-          .click();
+        cy.get('.btn').contains('Submit').click();
         cy.url().should('include', '/reporter/complete-submit');
         cy.contains('Dashboard').click();
         cy.url().should('include', '/reporter/user-dashboard');

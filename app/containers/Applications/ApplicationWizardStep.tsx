@@ -28,7 +28,7 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
 }) => {
   const {application, formResult} = query;
   // Function: store the form result
-  const storeResult = async result => {
+  const storeResult = async (result) => {
     const {environment} = relay;
     const variables = {
       input: {
@@ -43,13 +43,13 @@ const ApplicationWizardStep: React.FunctionComponent<Props> = ({
   };
 
   // Define a callback methods on survey complete
-  const onComplete = result => {
+  const onComplete = (result) => {
     const formData = result.data;
     storeResult(formData);
     onStepComplete();
   };
 
-  const onValueChanged = async change => {
+  const onValueChanged = async (change) => {
     const {formData} = change;
     console.log(formData);
     await storeResult(formData);

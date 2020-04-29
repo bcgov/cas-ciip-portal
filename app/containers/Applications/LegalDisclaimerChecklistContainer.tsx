@@ -11,7 +11,9 @@ interface Props {
   relay: RelayProp;
 }
 
-export const LegalDisclaimerChecklistContainer: React.FunctionComponent<Props> = props => {
+export const LegalDisclaimerChecklistContainer: React.FunctionComponent<Props> = (
+  props
+) => {
   const [allChecked, setAllChecked] = useState(false);
   const router = useRouter();
 
@@ -42,7 +44,7 @@ export const LegalDisclaimerChecklistContainer: React.FunctionComponent<Props> =
   return (
     <ListGroup className="list-group-flush">
       <LegalDisclaimerChecklist
-        onChange={allChecked => setAllChecked(allChecked)}
+        onChange={(allChecked) => setAllChecked(allChecked)}
       />
       <ListGroupItem>
         <Button

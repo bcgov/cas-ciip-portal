@@ -24,7 +24,9 @@ interface Target extends EventTarget {
   };
 }
 
-export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = props => {
+export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState<string>();
   const [hasErrors, setHasErrors] = useState(false);

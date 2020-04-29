@@ -2,10 +2,9 @@ import React from 'react';
 import {useRouter} from 'next/router';
 import {Form, Button, ButtonProps} from 'react-bootstrap';
 
-const LoginForm: React.FunctionComponent<React.ComponentPropsWithoutRef<
-  'button'
-> &
-  ButtonProps> = props => {
+const LoginForm: React.FunctionComponent<
+  React.ComponentPropsWithoutRef<'button'> & ButtonProps
+> = (props) => {
   const router = useRouter();
   let loginURI = '/login';
 

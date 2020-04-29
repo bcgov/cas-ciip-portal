@@ -20,50 +20,30 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#page-content');
 
     // Operator details
-    cy.get('#root_operator_name')
-      .clear()
-      .type('John Smith');
-    cy.get('#root_operator_tradeName')
-      .clear()
-      .type('Acme Co');
-    cy.get('#root_operator_naics')
-      .clear()
-      .type('112200');
+    cy.get('#root_operator_name').clear().type('John Smith');
+    cy.get('#root_operator_tradeName').clear().type('Acme Co');
+    cy.get('#root_operator_naics').clear().type('112200');
     cy.get('#root_operator_bcCorporateRegistryNumber')
       .clear()
       .type('111112222233333');
-    cy.get('#root_operator_duns')
-      .clear()
-      .type('1112223');
+    cy.get('#root_operator_duns').clear().type('1112223');
 
     // Operator mailing address
     cy.get('#root_operator_mailingAddress_streetAddress')
       .clear()
       .type('100 North Pole');
-    cy.get('#root_operator_mailingAddress_city')
-      .clear()
-      .type('Calgary');
-    cy.get('#root_operator_mailingAddress_postalCode')
-      .clear()
-      .type('H2O 0H0');
+    cy.get('#root_operator_mailingAddress_city').clear().type('Calgary');
+    cy.get('#root_operator_mailingAddress_postalCode').clear().type('H2O 0H0');
     cy.get('#root_operator_mailingAddress_province').select('Alberta');
 
     // Operational rep details
-    cy.get('#root_operationalRepresentative_firstName')
-      .clear()
-      .type('John');
-    cy.get('#root_operationalRepresentative_lastName')
-      .clear()
-      .type('Smith');
-    cy.get('#root_operationalRepresentative_position')
-      .clear()
-      .type('CEO');
+    cy.get('#root_operationalRepresentative_firstName').clear().type('John');
+    cy.get('#root_operationalRepresentative_lastName').clear().type('Smith');
+    cy.get('#root_operationalRepresentative_position').clear().type('CEO');
     cy.get('#root_operationalRepresentative_email')
       .clear()
       .type('john@acme.com');
-    cy.get('#root_operationalRepresentative_phone')
-      .clear()
-      .type('9009009001');
+    cy.get('#root_operationalRepresentative_phone').clear().type('9009009001');
 
     // Operational rep mailing address
     cy.get('#root_operationalRepresentative_mailingAddress_streetAddress')
@@ -80,27 +60,17 @@ describe('When reviewing a submitted application as an analyst', () => {
     );
 
     // Facility details
-    cy.get('#root_facility_facilityName')
-      .clear()
-      .type('Acme1');
+    cy.get('#root_facility_facilityName').clear().type('Acme1');
     cy.get('#root_facility_facilityType').select('LFO');
-    cy.get('#root_facility_bcghgid')
-      .clear()
-      .type('11001100223');
-    cy.get('#root_facility_naics')
-      .clear()
-      .type('1100223');
+    cy.get('#root_facility_bcghgid').clear().type('11001100223');
+    cy.get('#root_facility_naics').clear().type('1100223');
 
     // Facility mailing address
     cy.get('#root_facility_mailingAddress_streetAddress')
       .clear()
       .type('100 North Pole');
-    cy.get('#root_facility_mailingAddress_city')
-      .clear()
-      .type('Calgary');
-    cy.get('#root_facility_mailingAddress_postalCode')
-      .clear()
-      .type('H2O 0H0');
+    cy.get('#root_facility_mailingAddress_city').clear().type('Calgary');
+    cy.get('#root_facility_mailingAddress_postalCode').clear().type('H2O 0H0');
     cy.get('#root_facility_mailingAddress_province').select('Alberta');
 
     cy.get(
@@ -124,9 +94,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     ).contains('Format should be A1A 1A1');
 
     cy.percySnapshot('admin');
-    cy.get('#root_operator_duns')
-      .clear()
-      .type('111222333');
+    cy.get('#root_operator_duns').clear().type('111222333');
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
       .clear()
       .type('A1A 1A1');

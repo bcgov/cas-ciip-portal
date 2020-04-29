@@ -19,7 +19,9 @@ interface Props {
   formResultId: string;
 }
 
-export const ApplicationCommentsByForm: React.FunctionComponent<Props> = props => {
+export const ApplicationCommentsByForm: React.FunctionComponent<Props> = (
+  props
+) => {
   const {reviewComment, review, version, formResultId} = props;
   const [isModalVisible, setModalVisible] = useState(false);
 

@@ -3,7 +3,7 @@ import {graphql, createFragmentContainer} from 'react-relay';
 import {Badge} from 'react-bootstrap';
 import Link from 'next/link';
 
-export const UserOrganisationComponent = props => {
+export const UserOrganisationComponent = (props) => {
   const {userOrganisation} = props;
   if (!userOrganisation) {
     return null;

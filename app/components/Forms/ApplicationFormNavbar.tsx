@@ -11,7 +11,9 @@ interface Props {
   version: string;
 }
 
-const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = props => {
+const ApplicationFormNavbarComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const {application} = props;
   return (
     <div className="nav-guide-container">

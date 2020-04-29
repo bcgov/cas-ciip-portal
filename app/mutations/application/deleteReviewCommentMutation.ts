@@ -38,7 +38,7 @@ const deleteReviewCommentMutation = async (
   if (variables.input.reviewCommentPatch.commentType === 'REQUESTED_CHANGE')
     connectionKey = 'ApplicationCommentsContainer_requestedChangeComments';
 
-  const updater: SelectorStoreUpdater<RecordSourceProxy> = store => {
+  const updater: SelectorStoreUpdater<RecordSourceProxy> = (store) => {
     const formResultRoot = store.get(formResultId);
     const commentConnection = ConnectionHandler.getConnection(
       formResultRoot,

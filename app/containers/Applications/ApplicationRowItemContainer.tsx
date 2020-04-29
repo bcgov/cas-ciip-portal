@@ -15,7 +15,7 @@ const statusBadgeColor: Record<
   REQUESTED_CHANGES: 'secondary'
 };
 
-export const ApplicationRowItem = props => {
+export const ApplicationRowItem = (props) => {
   const {applicationSearchResult = {}} = props;
   return (
     <tr>

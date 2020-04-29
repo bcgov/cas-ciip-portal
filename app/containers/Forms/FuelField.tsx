@@ -8,10 +8,10 @@ interface Props extends FieldProps {
   query: FuelField_query;
 }
 
-const FuelField: React.FunctionComponent<Props> = props => {
+const FuelField: React.FunctionComponent<Props> = (props) => {
   const {formData, query, onChange} = props;
 
-  const handleChange = fuel => {
+  const handleChange = (fuel) => {
     if (formData.fuelRowId === fuel.fuelRowId) onChange(fuel);
     else handlefuelChange(fuel.fuelRowId);
   };

@@ -2,7 +2,9 @@ import React from 'react';
 import {Text} from '@react-pdf/renderer';
 import {ArrayFieldTemplateProps} from 'react-jsonschema-form';
 
-const PdfArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> = props => {
+const PdfArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> = (
+  props
+) => {
   return (
     <>
       <Text>
@@ -10,7 +12,7 @@ const PdfArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> = 
           ? null
           : props.title}
       </Text>
-      {props.items.map(item => {
+      {props.items.map((item) => {
         return <Text key={item.index}>{item.children}</Text>;
       })}
     </>

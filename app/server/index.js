@@ -3,7 +3,7 @@ const {postgraphile} = require('postgraphile');
 const next = require('next');
 const PgManyToManyPlugin = require('@graphile-contrib/pg-many-to-many');
 
-const port = parseInt(process.env.PORT, 10) || 3004;
+const port = Number.parseInt(process.env.PORT, 10) || 3004;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
@@ -75,15 +75,15 @@ async function worker() {
 }
 
 // Start graphile-worker
-worker().catch(error => {
+worker().catch((error) => {
   if (error) {
     throw error;
   }
 });
 
-const removeFirstLetter = str => str.slice(1);
+const removeFirstLetter = (str) => str.slice(1);
 
-const getUserGroups = req => {
+const getUserGroups = (req) => {
   if (
     !req.kauth ||
     !req.kauth.grant ||
@@ -96,7 +96,7 @@ const getUserGroups = req => {
   const brokerSessionId = req.kauth.grant.id_token.content.broker_session_id;
   const {groups} = req.kauth.grant.id_token.content;
 
-  const processedGroups = groups.map(removeFirstLetter);
+  const processedGroups = groups.map((value) => removeFirstLetter(value));
   const validGroups = compactGroups(processedGroups);
 
   if (validGroups.length === 0) {
@@ -110,7 +110,7 @@ const getUserGroups = req => {
   return validGroups;
 };
 
-const getRedirectURL = req => {
+const getRedirectURL = (req) => {
   if (req.query.redirectTo) return req.query.redirectTo;
 
   const groups = getUserGroups(req);
@@ -239,7 +239,7 @@ app.prepare().then(() => {
           'user_groups',
           'priority_group'
         ];
-        properties.forEach(property => {
+        properties.forEach((property) => {
           claims[`jwt.claims.${property}`] = token[property];
         });
         claims.role = groupData[token.priority_group].pgRole;
@@ -271,7 +271,7 @@ app.prepare().then(() => {
     return handle(req, res);
   });
 
-  server.listen(port, err => {
+  server.listen(port, (err) => {
     if (err) {
       throw err;
     }

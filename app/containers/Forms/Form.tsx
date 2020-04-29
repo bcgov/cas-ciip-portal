@@ -30,17 +30,19 @@ interface Props {
 }
 
 const CUSTOM_FIELDS = {
-  fuel: props => <FuelFields query={props.formContext.query} {...props} />,
+  fuel: (props) => <FuelFields query={props.formContext.query} {...props} />,
   emissionSource: EmissionSourceFields,
   emissionGas: EmissionGasFields,
-  product: props => <ProductField query={props.formContext.query} {...props} />,
-  emission: props => (
+  product: (props) => (
+    <ProductField query={props.formContext.query} {...props} />
+  ),
+  emission: (props) => (
     <EmissionField query={props.formContext.query} {...props} />
   ),
-  productRowId: props => (
+  productRowId: (props) => (
     <ProductRowIdField query={props.formContext.query} {...props} />
   ),
-  fuelRowId: props => (
+  fuelRowId: (props) => (
     <FuelRowIdField query={props.formContext.query} {...props} />
   ),
   NumberField
@@ -69,8 +71,8 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   const transformErrors = (errors: AjvError[]) => {
     // Ignore oneOf errors https://github.com/rjsf-team/react-jsonschema-form/issues/1263
     return errors
-      .filter(error => error.name !== 'oneOf')
-      .map(error => {
+      .filter((error) => error.name !== 'oneOf')
+      .map((error) => {
         if (error.name !== 'format') return error;
         if (!customFormatsErrorMessages[error.params.format]) return error;
         return {

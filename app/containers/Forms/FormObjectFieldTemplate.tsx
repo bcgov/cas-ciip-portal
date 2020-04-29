@@ -26,7 +26,7 @@ const FormObjectFieldTemplate: React.FunctionComponent<ObjectFieldTemplateProps>
           <span className="font-italic">{description}</span>
         </Col>
       )}
-      {properties.map(prop => (
+      {properties.map((prop) => (
         <React.Fragment key={prop.content.key}>{prop.content}</React.Fragment>
       ))}
     </>

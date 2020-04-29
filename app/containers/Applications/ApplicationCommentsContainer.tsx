@@ -16,7 +16,9 @@ interface Props {
   review: boolean;
 }
 
-export const ApplicationCommentsComponent: React.FunctionComponent<Props> = props => {
+export const ApplicationCommentsComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const {formResult, review} = props;
   const [isOpen, setIsOpen] = useState(false);
   const [showResolved, toggleShowResolved] = useState(false);

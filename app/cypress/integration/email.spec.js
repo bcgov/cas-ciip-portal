@@ -15,7 +15,7 @@ if (Cypress.env('NO_MAIL')) {
 
     it('should send an automatic email upon registration', () => {
       cy.wait(500);
-      cy.request('localhost:8025/api/v1/messages').then(response => {
+      cy.request('localhost:8025/api/v1/messages').then((response) => {
         // eslint-disable-next-line jest/valid-expect
         expect(response.status).to.eq(200);
         // eslint-disable-next-line jest/valid-expect
@@ -48,14 +48,10 @@ if (Cypress.env('NO_MAIL')) {
         `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
       );
       cy.url().should('include', '/reporter/ciip-application');
-      cy.get('#certifierEmail')
-        .clear()
-        .type('certifier@certi.fy');
-      cy.get('.btn')
-        .contains('Send to Certifier')
-        .click();
+      cy.get('#certifierEmail').clear().type('certifier@certi.fy');
+      cy.get('.btn').contains('Send to Certifier').click();
       cy.wait(1000);
-      cy.request('localhost:8025/api/v1/messages').then(response => {
+      cy.request('localhost:8025/api/v1/messages').then((response) => {
         // eslint-disable-next-line jest/valid-expect
         expect(response.status).to.eq(200);
         // eslint-disable-next-line jest/valid-expect
@@ -67,7 +63,7 @@ if (Cypress.env('NO_MAIL')) {
         cy.request('DELETE', 'localhost:8025/api/v1/messages');
         cy.get('input')
           .invoke('val')
-          .then($url => {
+          .then(($url) => {
             cy.visit($url);
             cy.url().should('include', '/certifier/certification-redirect');
             cy.get('#page-content');
@@ -87,17 +83,13 @@ if (Cypress.env('NO_MAIL')) {
         `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
       );
       cy.url().should('include', '/reporter/ciip-application');
-      cy.get('#certifierEmail')
-        .clear()
-        .type('certifier@certi.fy');
-      cy.get('.btn')
-        .contains('Send to Certifier')
-        .click();
+      cy.get('#certifierEmail').clear().type('certifier@certi.fy');
+      cy.get('.btn').contains('Send to Certifier').click();
       cy.wait(500);
       cy.request('DELETE', 'localhost:8025/api/v1/messages');
       cy.get('input')
         .invoke('val')
-        .then($url => {
+        .then(($url) => {
           cy.visit($url);
           cy.url().should('include', '/certifier/certification-redirect');
           cy.get('#page-content');
@@ -107,7 +99,7 @@ if (Cypress.env('NO_MAIL')) {
           cy.get('input').click({multiple: true});
           cy.get('.btn-success').click();
           cy.wait(500);
-          cy.request('localhost:8025/api/v1/messages').then(response => {
+          cy.request('localhost:8025/api/v1/messages').then((response) => {
             // eslint-disable-next-line jest/valid-expect
             expect(response.status).to.eq(200);
             // eslint-disable-next-line jest/valid-expect
@@ -130,7 +122,7 @@ if (Cypress.env('NO_MAIL')) {
       cy.get('.admin');
       cy.contains('Submit Application').click();
       cy.wait(1000);
-      cy.request('localhost:8025/api/v1/messages').then(response => {
+      cy.request('localhost:8025/api/v1/messages').then((response) => {
         // eslint-disable-next-line jest/valid-expect
         expect(response.status).to.eq(200);
         // eslint-disable-next-line jest/valid-expect

@@ -12,7 +12,7 @@ Cypress.Commands.add('login', (username, password) => {
       })
       // This is not a real promise
       // eslint-disable-next-line promise/prefer-await-to-then
-      .then(response => {
+      .then((response) => {
         const _el = document.createElement('html');
         _el.innerHTML = response.body;
         // This should be more strict depending on your login page template.
@@ -41,10 +41,10 @@ Cypress.Commands.add('logout', () => {
   cy.request('/logout');
 });
 
-Cypress.Commands.add('sqlFixture', fixtureName => {
+Cypress.Commands.add('sqlFixture', (fixtureName) => {
   // This is not a real promise
   // eslint-disable-next-line promise/prefer-await-to-then
-  cy.fixture(`${fixtureName}.sql`).then(fixture =>
+  cy.fixture(`${fixtureName}.sql`).then((fixture) =>
     cy.exec(`psql -d ciip_portal_dev << EOF
 ${fixture}
 EOF`)

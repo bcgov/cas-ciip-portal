@@ -203,7 +203,7 @@ export const ApplicationReview: React.FunctionComponent<Props> = ({
                   {formResultStatus.formResultStatus}
                 </Dropdown.Toggle>
                 <Dropdown.Menu style={{width: '100%'}}>
-                  {Object.keys(statusBadgeColor).map(status => (
+                  {Object.keys(statusBadgeColor).map((status) => (
                     <DropdownMenuItemComponent
                       key={status}
                       itemEventKey={status}

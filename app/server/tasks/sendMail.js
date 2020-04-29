@@ -29,7 +29,7 @@ module.exports = async ({
   );
 
   if (!process.env.NO_MAIL) {
-    transporter.verify(error => {
+    transporter.verify((error) => {
       if (error) console.error(error);
       else console.log('transporter verified');
     });

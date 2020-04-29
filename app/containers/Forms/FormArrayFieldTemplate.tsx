@@ -12,11 +12,7 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
 }) => {
   return (
     <div className={className}>
-      {items.map(element => {
-        const zeroEmission =
-          element.children.props.formData.annualEmission === 0
-            ? 'zero-emission'
-            : '';
+      {items.map((element) => {
         return (
           <div key={element.index}>
             <Form.Row>

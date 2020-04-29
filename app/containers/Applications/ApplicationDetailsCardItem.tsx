@@ -61,7 +61,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
 
   let diffTo;
   // Select the correct form result to diff to by matching formJson slugs
-  diffToResults.forEach(result => {
+  diffToResults.forEach((result) => {
     if (result.node.formJsonByFormId.slug === formJsonByFormId.slug)
       diffTo = result;
   });
@@ -70,7 +70,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
     if (diffFromResults && showDiff) {
       let diffFrom;
       // Select the correct form result to diff from by matching formJson slugs
-      diffFromResults.forEach(result => {
+      diffFromResults.forEach((result) => {
         if (
           diffFromResults.length > 0 &&
           result.node.formJsonByFormId.slug === formJsonByFormId.slug
@@ -92,7 +92,7 @@ export const ApplicationDetailsCardItemComponent: React.FunctionComponent<Props>
         previousIsEmpty = true;
       } else if (differences) {
         // Populate the diffPathArray and diffArray
-        differences.forEach(difference => {
+        differences.forEach((difference) => {
           if (difference.path) {
             diffPathArray.push(difference.path.join('_'));
             diffArray.push(difference.lhs);

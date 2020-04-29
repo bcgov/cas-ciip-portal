@@ -14,7 +14,9 @@ interface Props {
   handleEvent: (...args: any[]) => void;
   relay: RelayRefetchProp;
 }
-export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> = props => {
+export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const {
     orderByField,
     searchField,
@@ -44,7 +46,7 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
   });
   const body = (
     <tbody>
-      {edges.map(edge => (
+      {edges.map((edge) => (
         <OrganisationRequestsTableRow
           key={edge.node.id}
           userOrganisation={edge.node}

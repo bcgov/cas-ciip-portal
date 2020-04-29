@@ -151,7 +151,7 @@ class ProductsBenchmarks extends Component<Props> {
               defaultOrderByField="name"
               defaultOrderByDisplay="Product"
             >
-              {props => (
+              {(props) => (
                 <ProductListContainer
                   {...props}
                   productCount={totalProductCount}

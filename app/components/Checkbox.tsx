@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 // Define noop function to set default value for function type props
 // and avoid Typescript compiler's warning to have 'onChange' prop for checkbox inputs by default
-const noop = v => v;
+const noop = (v) => v;
 
 interface Props {
   label: string;
@@ -10,7 +10,7 @@ interface Props {
   onCheck?: (checked: boolean) => void;
 }
 
-const Checkbox: React.FunctionComponent<Props> = props => {
+const Checkbox: React.FunctionComponent<Props> = (props) => {
   const {label, defaultValue = false, onCheck = noop} = props;
 
   const [checked, setChecked] = useState(defaultValue);

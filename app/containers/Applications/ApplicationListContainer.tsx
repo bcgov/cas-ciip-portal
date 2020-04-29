@@ -3,7 +3,7 @@ import {graphql, createRefetchContainer} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import ApplicationRowItemContainer from './ApplicationRowItemContainer';
 
-export const ApplicationList = props => {
+export const ApplicationList = (props) => {
   const {
     direction,
     orderByField,
@@ -33,7 +33,7 @@ export const ApplicationList = props => {
   };
   const body = (
     <tbody>
-      {edges.map(edge => (
+      {edges.map((edge) => (
         <ApplicationRowItemContainer
           key={edge.node.rowId}
           applicationSearchResult={edge.node}

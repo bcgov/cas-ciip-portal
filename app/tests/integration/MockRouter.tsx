@@ -4,7 +4,7 @@ import Router from 'next/router';
 
 const MockRouter = ({children}) => {
   const mockRouter = {
-    prefetch: async () => new Promise(resolve => resolve()),
+    prefetch: async () => new Promise((resolve) => resolve()),
     pageLoader: {
       prefetched: {}
     },

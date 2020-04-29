@@ -29,11 +29,13 @@ interface Props {
   handleOrgConfirm: (status: string, env: RelayModernEnvironment) => any;
 }
 
-export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
+export const OrganisationsComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const {session, allOrganisations} = props.query;
   if (!session) return <LoadingSpinner />;
 
-  const changeInput = event => {
+  const changeInput = (event) => {
     event.stopPropagation();
     event.preventDefault();
     event.persist();
@@ -46,7 +48,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
     props.handleContextChange();
   };
 
-  const claimOrg = async active => {
+  const claimOrg = async (active) => {
     props.handleContextChange();
     props.handleInputChange('');
     await props.handleOrgConfirm(active, props.relay.environment);
@@ -59,7 +61,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = props => {
     props.handleInputChange('');
   };
 
-  const handleAddOrganisation = async variables => {
+  const handleAddOrganisation = async (variables) => {
     const {environment} = props.relay;
     const response = await createOrganisationMutation(environment, variables);
     console.log(response);

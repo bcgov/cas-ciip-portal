@@ -1,7 +1,7 @@
 import React from 'react';
 import {Dropdown} from 'react-bootstrap';
 
-const DropdownMenuItemComponent = props => {
+const DropdownMenuItemComponent = (props) => {
   const {itemId, itemEventKey, itemFunc, itemTitle} = props;
   return (
     <Dropdown.Item
