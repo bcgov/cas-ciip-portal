@@ -422,6 +422,11 @@ type ApplicationRevision implements Node {
   """
   id: ID!
 
+  """
+  Computed column indicates if a revision is the current version of the application
+  """
+  isCurrentVersion: Boolean
+
   """Whether or not reporter agreed the legal disclaimer"""
   legalDisclaimerAccepted: Boolean!
 

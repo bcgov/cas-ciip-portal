@@ -5155,6 +5155,18 @@
               "deprecationReason": null
             },
             {
+              "name": "isCurrentVersion",
+              "description": "Computed column indicates if a revision is the current version of the application",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "legalDisclaimerAccepted",
               "description": "Whether or not reporter agreed the legal disclaimer",
               "args": [],
