@@ -10,8 +10,8 @@ const ErrorList = (props: {errors?: string[]}) => {
     <div>
       <ul className="error-detail bs-callout bs-callout-info">
         {errors
-          .filter(elem => Boolean(elem))
-          .map(error => {
+          .filter((elem) => Boolean(elem))
+          .map((error) => {
             return (
               <li key={error} className="text-danger">
                 {error}

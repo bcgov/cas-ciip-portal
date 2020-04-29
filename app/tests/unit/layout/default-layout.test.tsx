@@ -22,7 +22,7 @@ it('Redirects the user to the login page if the session is null', () => {
     pathname: '',
     query: '',
     asPath: '',
-    push: query => {
+    push: (query) => {
       pushedQuery = query;
     }
   }));
@@ -38,7 +38,7 @@ it('Redirects the user to the registration page if the session exists but the us
     pathname: '',
     query: '',
     asPath: '',
-    push: query => {
+    push: (query) => {
       pushedQuery = query;
     }
   }));

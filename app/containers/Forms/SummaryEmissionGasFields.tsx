@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
 import ErrorList from 'components/Forms/ErrorList';
 
-const EmissionGasFields: React.FunctionComponent<FieldProps> = props => {
+const EmissionGasFields: React.FunctionComponent<FieldProps> = (props) => {
   const {formContext} = props;
   if (props?.errorSchema?.annualEmission) props.setHasErrors(true);
 

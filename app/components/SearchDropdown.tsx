@@ -40,7 +40,7 @@ export const SearchDropdownComponent: React.FunctionComponent<Props> = ({
         inputProps={{...inputProps, ...{className: 'typeahead-input'}}}
         labelKey="name"
         selected={selected}
-        onChange={items => onChange(items)}
+        onChange={(items) => onChange(items)}
       />
       <style jsx global>
         {`

@@ -69,7 +69,7 @@ describe('Form', () => {
 
   it('should match the snapshot with the administration form', async () => {
     const renderer = create(<TestRenderer />);
-    environment.mock.resolveMostRecentOperation(operation =>
+    environment.mock.resolveMostRecentOperation((operation) =>
       MockPayloadGenerator.generate(operation, {
         Query() {
           return {
@@ -89,7 +89,7 @@ describe('Form', () => {
 
   it('should match the snapshot with the fuel form', async () => {
     const renderer = create(<TestRenderer />);
-    environment.mock.resolveMostRecentOperation(operation =>
+    environment.mock.resolveMostRecentOperation((operation) =>
       MockPayloadGenerator.generate(operation, {
         Query() {
           return {
@@ -120,7 +120,7 @@ describe('Form', () => {
 
   it('should match the snapshot with the emission form', async () => {
     const renderer = create(<TestRenderer />);
-    environment.mock.resolveMostRecentOperation(operation =>
+    environment.mock.resolveMostRecentOperation((operation) =>
       MockPayloadGenerator.generate(operation, {
         Query() {
           return {
@@ -141,7 +141,7 @@ describe('Form', () => {
   it('should match the snapshot with the production form', async () => {
     const renderer = create(<TestRenderer />);
     const data = generateFakeSchemaData(productionForm as FormJson);
-    environment.mock.resolveMostRecentOperation(operation =>
+    environment.mock.resolveMostRecentOperation((operation) =>
       MockPayloadGenerator.generate(operation, {
         Query() {
           return {

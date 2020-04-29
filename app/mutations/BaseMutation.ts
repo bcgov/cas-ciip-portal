@@ -49,7 +49,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
         commitMutationDefault<T>(environment, {
           ...options,
           configs,
-          onError: error => {
+          onError: (error) => {
             reject(error);
             console.log(error);
           },

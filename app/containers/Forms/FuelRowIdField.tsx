@@ -10,7 +10,9 @@ interface Props extends FieldProps<number> {
 /**
  * Fetches the list of fuels and their row ids
  */
-export const FuelRowIdFieldComponent: React.FunctionComponent<Props> = props => {
+export const FuelRowIdFieldComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   /**
    * Injects the list of Fuels in the schema, and remove `query` from the props
    * Other props are passed as-is to the StringField

@@ -22,7 +22,9 @@ interface Props extends FieldProps<FormData> {
  * This custom ObjectField component injects the read-only data for a product when the
  * product id changes
  */
-export const ProductFieldComponent: React.FunctionComponent<Props> = props => {
+export const ProductFieldComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const {formData, query, onChange} = props;
 
   const productIsActive = (formData, query) => {

@@ -22,7 +22,9 @@ const statusBadgeColor: Record<
   REQUESTED_CHANGES: 'secondary'
 };
 
-export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> = props => {
+export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   // Save Application status to database
   const setApplicationRevisionStatus = async (eventKey, event) => {
     event.preventDefault();
@@ -65,7 +67,7 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
             {props.applicationRevisionStatus.applicationRevisionStatus}
           </Dropdown.Toggle>
           <Dropdown.Menu style={{width: '100%'}}>
-            {Object.keys(statusBadgeColor).map(status => (
+            {Object.keys(statusBadgeColor).map((status) => (
               <DropdownMenuItemComponent
                 key={status}
                 itemEventKey={status}

@@ -56,7 +56,7 @@ class OrganisationRequests extends Component<Props> {
           defaultOrderByField="status"
           defaultOrderByDisplay="Status"
         >
-          {props => <OrganisationRequestsTable {...props} />}
+          {(props) => <OrganisationRequestsTable {...props} />}
         </SearchTable>
       </DefaultLayout>
     );

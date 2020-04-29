@@ -26,7 +26,7 @@ const EmissionSourceFields: React.FunctionComponent<FieldProps> = ({
         .SourceFieldHeading {
           border-top: 4px solid #0000007a;
           padding: 30px 10px 10px 0px;
-          margin-top: 30px !Important;
+          margin-top: 30px !important;
         }
       `}</style>
       <style jsx>{`

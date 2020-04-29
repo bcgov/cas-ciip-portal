@@ -12,12 +12,12 @@ interface Props {
   organisationRowId?: number;
 }
 
-const AddOrganisationFacility: React.FunctionComponent<Props> = props => {
+const AddOrganisationFacility: React.FunctionComponent<Props> = (props) => {
   const {onAddOrganisation, onAddFacility, organisationRowId} = props;
   const [isModalVisible, setModalVisible] = useState(false);
 
   const customFormats = {
-    'postal-code': /[A-Z]\d[A-Z]\s?\d[A-Z]\d/i,
+    'postal-code': /[a-z]\d[a-z]\s?\d[a-z]\d/i,
     duns: /^\d{9}$/
   };
 

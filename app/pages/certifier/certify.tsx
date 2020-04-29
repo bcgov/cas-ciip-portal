@@ -98,7 +98,7 @@ class Certify extends Component<Props> {
             </Card.Body>
           </Card>
           <LegalDisclaimerChecklist
-            onChange={allChecked => this.setState({allChecked})}
+            onChange={(allChecked) => this.setState({allChecked})}
           />
         </>
       );

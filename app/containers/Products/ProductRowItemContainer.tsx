@@ -142,7 +142,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     };
   }, [query.allReportingYears]);
 
-  const displayPastBenchmark = benchmark => {
+  const displayPastBenchmark = (benchmark) => {
     return (
       <tr key={benchmark.id}>
         <td>{benchmark.benchmark}</td>
@@ -252,7 +252,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   };
 
   // This fuction does not 'DELETE' from the database, but sets the deleted at / deleted by values. This action is not recoverable through the UI
-  const deleteBenchmark = async benchmark => {
+  const deleteBenchmark = async (benchmark) => {
     if (!benchmark) return;
     const variables = {
       input: {
@@ -268,11 +268,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  const handleDeleteBenchmark = async benchmark => {
+  const handleDeleteBenchmark = async (benchmark) => {
     await deleteBenchmark(benchmark);
   };
 
-  const handleUpdateProductCount = newCount => {
+  const handleUpdateProductCount = (newCount) => {
     updateProductCount(newCount);
   };
 
@@ -372,7 +372,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                 </Card.Header>
                 <Collapse in={futureBenchmarksOpen}>
                   <Card.Body>
-                    {futureBenchmarks.map(benchmark => (
+                    {futureBenchmarks.map((benchmark) => (
                       <FutureBenchmarks
                         key={benchmark.id}
                         benchmark={benchmark}
@@ -408,7 +408,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                         </tr>
                       </thead>
                       <tbody>
-                        {pastBenchmarks.map(benchmark => {
+                        {pastBenchmarks.map((benchmark) => {
                           return displayPastBenchmark(benchmark);
                         })}
                       </tbody>

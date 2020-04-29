@@ -58,20 +58,10 @@ describe('The Confirmation Component', () => {
         relay={null}
       />
     );
-    expect(
-      wrapper
-        .find('h5')
-        .at(1)
-        .text()
-    ).toBe(
+    expect(wrapper.find('h5').at(1).text()).toBe(
       'Thank you for reviewing the application information. You may now send a generated Certification url to be signed prior to submission.'
     );
-    expect(
-      wrapper
-        .find('Button')
-        .at(0)
-        .text()
-    ).toBe('Send to Certifier');
+    expect(wrapper.find('Button').at(0).text()).toBe('Send to Certifier');
   });
 
   it('should show the Submit application dialog when certificationSignatureIsvalid is true', () => {
@@ -170,12 +160,7 @@ describe('The Confirmation Component', () => {
       />
     );
     expect(wrapper).toMatchSnapshot();
-    expect(
-      wrapper
-        .find('h5')
-        .at(1)
-        .text()
-    ).toBe(
+    expect(wrapper.find('h5').at(1).text()).toBe(
       'Your application has been sent to a certifier. Submission will be possible once they have verified the data in the application.'
     );
   });

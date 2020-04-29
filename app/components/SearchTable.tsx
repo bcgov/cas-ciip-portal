@@ -21,21 +21,21 @@ class SearchTableComponent extends Component<Props> {
       : this.setState({direction: 'ASC'});
   };
 
-  sortColumn = column => {
+  sortColumn = (column) => {
     this.toggleDirection();
     this.setState({
       orderByField: column
     });
   };
 
-  applySearchField = column => {
+  applySearchField = (column) => {
     this.setState({
       searchField: column,
       searchValue: null
     });
   };
 
-  applySearchValue = value => {
+  applySearchValue = (value) => {
     if (this.state.searchField !== undefined) {
       this.setState({searchValue: value});
     }

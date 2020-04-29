@@ -12,7 +12,9 @@ interface Props {
   userOrganisation: OrganisationRequestsTableRow_userOrganisation;
   key: string;
 }
-export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Props> = props => {
+export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const {userOrganisation} = props;
 
   const statusBadgeColor: Record<
@@ -24,7 +26,7 @@ export const OrganisationRequestsTableRowComponent: React.FunctionComponent<Prop
     APPROVED: 'success'
   };
 
-  const handleStatusChange = async status => {
+  const handleStatusChange = async (status) => {
     const variables = {
       input: {
         id: userOrganisation.id,

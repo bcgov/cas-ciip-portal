@@ -18,7 +18,7 @@ const customFields = (
   previousIsEmpty: boolean,
   setHasErrors: (...args: any[]) => any
 ) => {
-  const setErrorIcon: (...args: any[]) => object = props => {
+  const setErrorIcon: (...args: any[]) => object = (props) => {
     if (props?.errorSchema?.__errors || props.rawErrors) {
       setHasErrors(true);
       return <FontAwesomeIcon color="red" icon={faExclamationTriangle} />;
@@ -28,8 +28,8 @@ const customFields = (
   };
 
   const CUSTOM_FIELDS: Record<string, React.FunctionComponent<FieldProps>> = {
-    TitleField: props => <h3>{props.title}</h3>,
-    StringField: props => {
+    TitleField: (props) => <h3>{props.title}</h3>,
+    StringField: (props) => {
       const errorIcon: object = setErrorIcon(props);
 
       const {idSchema, formData} = props;
@@ -74,7 +74,7 @@ const customFields = (
         </>
       );
     },
-    BooleanField: props => {
+    BooleanField: (props) => {
       const errorIcon = setErrorIcon(props);
 
       const {idSchema, formData} = props;
@@ -106,20 +106,20 @@ const customFields = (
       );
     },
     emissionSource: SummaryEmissionSourceFields,
-    emissionGas: props => (
+    emissionGas: (props) => (
       <SummaryEmissionGasFields setHasErrors={setHasErrors} {...props} />
     ),
-    product: props => (
+    product: (props) => (
       <ProductField query={props.formContext.query} {...props} />
     ),
-    productRowId: props => (
+    productRowId: (props) => (
       <ProductRowIdField query={props.formContext.query} {...props} />
     ),
-    fuel: props => <FuelField query={props.formContext.query} {...props} />,
-    fuelRowId: props => (
+    fuel: (props) => <FuelField query={props.formContext.query} {...props} />,
+    fuelRowId: (props) => (
       <FuelRowIdField query={props.formContext.query} {...props} />
     ),
-    NumberField: props => {
+    NumberField: (props) => {
       const errorIcon = setErrorIcon(props);
 
       const {idSchema, formData} = props;

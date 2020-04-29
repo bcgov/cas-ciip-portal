@@ -56,15 +56,15 @@ const styles = StyleSheet.create({
 });
 
 const CUSTOM_FIELDS = {
-  StringField: props => <Text>{props.formData ?? '[Not Entered]'}</Text>,
-  emissionSource: props => (
+  StringField: (props) => <Text>{props.formData ?? '[Not Entered]'}</Text>,
+  emissionSource: (props) => (
     <Text style={{fontSize: 13}}>
       {'\n\n'}
       {props.formData}
     </Text>
   ),
-  emissionGas: props => <PdfEmissionGasFieldTemplate {...props} />,
-  product: props => {
+  emissionGas: (props) => <PdfEmissionGasFieldTemplate {...props} />,
+  product: (props) => {
     return (
       <PdfProductionFieldsTemplate query={props.formContext.query} {...props} />
     );
@@ -72,10 +72,12 @@ const CUSTOM_FIELDS = {
 };
 
 const customWidget = {
-  RadioWidget: props => <Text>{props.value ? 'Yes' : 'No'}</Text>
+  RadioWidget: (props) => <Text>{props.value ? 'Yes' : 'No'}</Text>
 };
 
-export const ApplicationDetailsPdf: React.FunctionComponent<Props> = props => {
+export const ApplicationDetailsPdf: React.FunctionComponent<Props> = (
+  props
+) => {
   const {application, query} = props;
   const facility = application.facilityByFacilityId;
   const formResults = application.orderedFormResults.edges;

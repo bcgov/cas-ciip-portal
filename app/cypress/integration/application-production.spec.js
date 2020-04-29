@@ -26,23 +26,17 @@ describe('The production tab', () => {
   });
 
   it('Should render the aluminum product', () => {
-    cy.get('#root_0_productRowId')
-      .clear()
-      .type('Aluminum');
+    cy.get('#root_0_productRowId').clear().type('Aluminum');
     cy.get('.dropdown-item').click();
     cy.get('input:visible[type=text]').should('have.length', 4);
-    cy.get('#root_0_productUnits')
-      .invoke('val')
-      .should('contain', 'tonnes');
+    cy.get('#root_0_productUnits').invoke('val').should('contain', 'tonnes');
     cy.get('#root_0_productAmount');
     cy.get('#root_0_productEmissions');
     cy.percySnapshot();
   });
 
   it('Should not show amount, units or emissions when requiresProductAmount and requiresEmissionAllocation are false', () => {
-    cy.get('#root_0_productRowId')
-      .clear()
-      .type('non ciip');
+    cy.get('#root_0_productRowId').clear().type('non ciip');
     cy.get('.dropdown-item').click();
     cy.get('input:visible[type=text]').should('have.length', 1);
     cy.get('#root_0_productUnits').should('not.exist');

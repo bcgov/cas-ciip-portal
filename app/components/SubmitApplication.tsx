@@ -12,7 +12,9 @@ interface Props {
   relay: RelayProp;
 }
 
-export const SubmitApplicationComponent: React.FunctionComponent<Props> = props => {
+export const SubmitApplicationComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const router = useRouter();
   // Change application status to 'submitted' on application submit
   const submitApplication = async () => {

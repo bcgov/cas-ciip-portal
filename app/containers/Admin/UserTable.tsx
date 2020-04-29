@@ -5,7 +5,7 @@ import {UserTable_query} from '__generated__/UserTable_query.graphql';
 interface Props {
   query: UserTable_query;
 }
-export const UserTableComponent: React.FunctionComponent<Props> = props => {
+export const UserTableComponent: React.FunctionComponent<Props> = (props) => {
   const {query} = props;
   if (!query.allCiipUsers || !query.allCiipUsers.edges) {
     return <div />;

@@ -9,12 +9,12 @@ const consents = [
 ];
 
 // Define noop function to set default value for function type props
-const noop = v => v;
+const noop = (v) => v;
 interface Props {
   onChange?: (allSelected: boolean) => void;
 }
 
-const LegalDisclaimerChecklist: React.FunctionComponent<Props> = props => {
+const LegalDisclaimerChecklist: React.FunctionComponent<Props> = (props) => {
   const {onChange = noop} = props;
 
   const [selected, setSelected] = useState([]);
@@ -46,7 +46,7 @@ const LegalDisclaimerChecklist: React.FunctionComponent<Props> = props => {
   // See https://github.com/DefinitelyTyped/DefinitelyTyped/issues/20356,
   // dependant on https://github.com/microsoft/TypeScript/issues/21699
   // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{consents.map(displayConsentCheck)}</>;
+  return <>{consents.map((v, i) => displayConsentCheck(v, i))}</>;
 };
 
 export default LegalDisclaimerChecklist;

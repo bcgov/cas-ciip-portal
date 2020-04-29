@@ -51,12 +51,7 @@ describe('ApplicationReview', () => {
         }}
       />
     );
-    expect(
-      renderer
-        .find('Button')
-        .at(0)
-        .text()
-    ).toBe('IN REVIEW');
+    expect(renderer.find('Button').at(0).text()).toBe('IN REVIEW');
   });
   it('should should show the modal when the status button is clicked', async () => {
     const renderer = shallow(
@@ -79,10 +74,7 @@ describe('ApplicationReview', () => {
         }}
       />
     );
-    renderer
-      .find('Button')
-      .at(0)
-      .simulate('click');
+    renderer.find('Button').at(0).simulate('click');
     const modalProps = renderer
       .find('.review-modal')
       .props() as ReviewModalProps;

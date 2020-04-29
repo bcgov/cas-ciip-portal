@@ -7,7 +7,9 @@ import {Button, Col} from 'react-bootstrap';
  * This custom ObjectField component injects the read-only data for a product when the
  * product id changes
  */
-export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = props => {
+export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = (
+  props
+) => {
   const [hideZeroEmissions, setHideZeroEmissions] = useState(
     'show-zero-emissions'
   );
@@ -58,7 +60,7 @@ export const EmissionFieldComponent: React.FunctionComponent<FieldProps> = props
           .emission-row {
             margin-bottom: 1.5em;
             border-bottom: 1px solid #dcdcdc;
-            padding-bottom: 20px !Important;
+            padding-bottom: 20px !important;
           }
 
           .emission-form .form-submit {

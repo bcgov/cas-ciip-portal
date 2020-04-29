@@ -7,7 +7,9 @@ interface Props {
   displayNameToColumnNameMap: any;
   body: any;
 }
-export const SearchTableLayoutComponent: React.FunctionComponent<Props> = props => {
+export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   const {handleEvent, displayNameToColumnNameMap, body} = props;
 
   return (
@@ -27,7 +29,7 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = props 
       <Table striped bordered hover style={{textAlign: 'center'}}>
         <thead>
           <tr>
-            {Object.keys(displayNameToColumnNameMap).map(key => (
+            {Object.keys(displayNameToColumnNameMap).map((key) => (
               <SortableTableHeader
                 key={key}
                 sort={handleEvent}

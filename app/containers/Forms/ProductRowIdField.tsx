@@ -17,7 +17,9 @@ interface Props extends FieldProps<number> {
  * but since only the active products are passed to the field props, these products are not available to be selected
  * from the search dropdown component when filling out an application.
  */
-export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = props => {
+export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
+  props
+) => {
   /**
    * Injects the list of products in the schema, and remove `query` from the props
    * Other props are passed as-is to the StringField

@@ -66,7 +66,7 @@ class FacilitiesList extends Component<Props> {
           defaultOrderByField="facility_name"
           defaultOrderByDisplay="Facility Name"
         >
-          {props => <FacilitiesListContainer {...props} />}
+          {(props) => <FacilitiesListContainer {...props} />}
         </SearchTable>
       </DefaultLayout>
     );

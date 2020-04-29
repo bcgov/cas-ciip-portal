@@ -37,7 +37,7 @@ export default class UserDashBoard extends Component<Props> {
     confirmOrg: false
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     this.setState({orgInput: event});
   };
 
@@ -47,7 +47,7 @@ export default class UserDashBoard extends Component<Props> {
       : this.setState({confirmOrg: true});
   };
 
-  handleOrgChange = orgId => {
+  handleOrgChange = (orgId) => {
     this.setState({selectedOrg: orgId});
   };
 

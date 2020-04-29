@@ -1,4 +1,4 @@
-import React, {useEffect, useState, SyntheticEvent} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Pagination} from 'react-bootstrap';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
@@ -61,7 +61,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
 
   const body = (
     <tbody>
-      {edges.map(edge => (
+      {edges.map((edge) => (
         <FacilitiesRowItemContainer
           key={edge.node.rowId}
           facilitySearchResult={edge.node}
@@ -71,7 +71,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
     </tbody>
   );
 
-  const handleAddFacility = async variables => {
+  const handleAddFacility = async (variables) => {
     const {environment} = relay;
     const response = await createFacilityMutation(environment, variables);
     console.log(response);
