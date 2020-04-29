@@ -40,10 +40,16 @@ create trigger _status_change_email
   after insert on ggircs_portal.application_revision_status
     for each row
     execute procedure ggircs_portal_private.run_graphile_worker_job('status_change');
+
 create trigger _check_certification_signature_md5
     before insert on ggircs_portal.application_revision_status
     for each row
     execute procedure ggircs_portal_private.signature_md5('submission');
+
+create trigger _read_only_status_for_non_current_version
+    before insert on ggircs_portal.application_revision_status
+    for each row
+    execute procedure ggircs_portal_private.check_for_immutable_status();
 
 do
 $grant$

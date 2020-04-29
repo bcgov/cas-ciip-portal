@@ -22,6 +22,7 @@ update ggircs_portal.certification_url set certification_signature = '12345' whe
 update ggircs_portal.certification_url set certification_signature = 'signed' where application_id =1 and version_number=2;
 
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
+alter table ggircs_portal.application_revision_status disable trigger _read_only_status_for_non_current_version;
 -- Update the status of application with id=1 to be 'submitted'
   insert into ggircs_portal.application_revision_status(application_id, version_number, application_revision_status)
     values (1,1,'submitted');
@@ -31,5 +32,6 @@ alter table ggircs_portal.application_revision_status disable trigger _status_ch
 alter table ggircs_portal.certification_url enable trigger _certification_request_email;
 alter table ggircs_portal.certification_url enable trigger _signed_by_certifier_email;
 alter table ggircs_portal.application_revision_status enable trigger _status_change_email;
+alter table ggircs_portal.application_revision_status enable trigger _read_only_status_for_non_current_version;
 
 commit;
