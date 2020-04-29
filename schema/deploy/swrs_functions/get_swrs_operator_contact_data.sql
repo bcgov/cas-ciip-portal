@@ -14,7 +14,6 @@ begin;
       contact_type varchar(1000),
       email varchar(1000),
       telephone varchar(1000),
-      fax varchar(1000),
       contact_mailing_address varchar(1000),
       contact_city varchar(1000),
       contact_province varchar(1000),
@@ -53,7 +52,6 @@ begin;
           _contact.contact_type,
           _contact.email_address,
           _contact.telephone_number,
-          _contact.fax_number,
           cast(
             concat(
               'unit ' || _contact_add.mailing_address_unit_number || ', ',

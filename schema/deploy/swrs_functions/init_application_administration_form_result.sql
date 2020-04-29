@@ -51,7 +51,6 @@ begin
       'position', contact_data.position_title,
       'email', contact_data.email,
       'phone', contact_data.telephone,
-      'fax', contact_data.fax,
       'mailingAddress', jsonb_build_object(
         'streetAddress', contact_data.contact_mailing_address,
         'city', contact_data.contact_city,

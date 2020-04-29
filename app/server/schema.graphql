@@ -9265,7 +9265,6 @@ type OperatorContactDatum {
   contactProvince: String
   contactType: String
   email: String
-  fax: String
   firstName: String
   lastName: String
   positionTitle: String
