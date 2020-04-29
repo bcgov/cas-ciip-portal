@@ -8,7 +8,7 @@ values
 (2, 'CO2', 'Carbon dioxide from biomass not listed in Schedule C of GGERR', 1),
 (3, 'bioCO2', 'Carbon dioxide from biomass listed in Schedule C of GGERR', 1),
 (4, 'CH4','Methane', 25),
-(5, 'N20','Nitrous oxide', 298),
+(5, 'N2O','Nitrous oxide', 298),
 (6, 'SF6','Sulfur Hexafluoride', 22800),
 (7, 'CF4','Perfluoromethane', 7390),
 (8, 'C2F6','Perfluoroethane', 12200)
