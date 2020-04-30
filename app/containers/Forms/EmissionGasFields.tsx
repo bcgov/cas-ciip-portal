@@ -2,6 +2,7 @@ import React from 'react';
 import {FieldProps} from 'react-jsonschema-form';
 import {Form, Col} from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
+import {Decimal} from 'decimal.js-light';
 import ErrorList from 'components/Forms/ErrorList';
 
 const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
@@ -32,6 +33,13 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   // Not using the types defined in @types/react-jsonschema-form as they are out of date
 
   const hideRow = formData.annualEmission === 0 ? 'zero-emission' : '';
+
+  // Function fixes javascript decimal error example: 0.1 + 0.2 = 3.0000000004
+  const normalizeDecimal = (value: number) => {
+    const normalizedValue = new Decimal(value);
+    return normalizedValue;
+  };
+
   return (
     <Col xs={12} md={12} className={`${hideRow} emission-row`}>
       <Form.Row>
@@ -77,7 +85,9 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
                 onChange({
                   ...formData,
                   annualEmission: value,
-                  annualCO2e: value * formData.gwp
+                  annualCO2e: value
+                    ? Number(normalizeDecimal(value).times(formData.gwp))
+                    : 0
                 })
               }
             />
