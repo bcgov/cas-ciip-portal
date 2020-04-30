@@ -49,7 +49,7 @@ create trigger _check_certification_signature_md5
 create trigger _read_only_status_for_non_current_version
     before insert on ggircs_portal.application_revision_status
     for each row
-    execute procedure ggircs_portal_private.check_for_immutable_status();
+    execute procedure ggircs_portal_private.check_for_immutable_application_revision_status();
 
 do
 $grant$

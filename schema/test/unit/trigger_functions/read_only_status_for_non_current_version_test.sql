@@ -6,7 +6,7 @@ begin;
 select plan(3);
 
 select has_function(
-  'ggircs_portal_private', 'check_for_immutable_status',
+  'ggircs_portal_private', 'check_for_immutable_application_revision_status',
   'Function signature_md5 should exist'
 );
 
