@@ -17,6 +17,7 @@ trigger_functions/set_random_id [schema_ggircs_portal] 2019-12-04T00:34:07Z Dyla
 trigger_functions/set_expiry [schema_ggircs_portal] 2019-12-10T19:13:27Z Dylan Leard <dylan@button.is> # Function sets row expiry
 trigger_functions/ensure_window_open_submit_application_status 2020-01-16T17:51:13Z Matthieu Foucault <matthieu@button.is> # add a trigger that raises an exception if the application window is closed
 trigger_functions/run_graphile_worker_job [schema_ggircs_portal_private] 2020-02-20T23:08:40Z Dylan Leard <dylan@button.is> # Trigger function for running a graphile worker
+trigger_functions/check_for_immutable_application_revision_status [schema_ggircs_portal_private] 2020-04-29T19:14:56Z Dylan Leard <dylan@button.is> # Trigger function checks if the status being added applies to the current version of the application. Otherwise do not add status.
 types/jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
 function_session [schema_ggircs_portal types/jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
 types/ciip_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file ciip_user_organisation_status
@@ -93,3 +94,4 @@ computed_columns/application_revision_certification_url [tables/certification_ur
 computed_columns/certification_url_hash_matches [function_current_form_result_md5 tables/certification_url] 2020-02-26T21:55:34Z Dylan Leard <dylan@button.is> # Computed column(boolean) on certification_url that checks if the current md5 hash of all form_results = the form_results_md5 column in certification_url
 computed_columns/application_revision_certification_signature_is_valid [tables/application_revision function_current_form_result_md5] 2020-02-26T22:47:00Z Dylan Leard <dylan@button.is> # Computed column(boolean) on application_revision to show validity of certification signature
 database_functions/create_portal_app_user [database_functions/create_roles] 2020-04-17T21:51:09Z Matthieu Foucault <matthieu@button.is> # create the portal_app role
+computed_columns/application_revision_is_current_version [tables/application_revision] 2020-04-29T20:51:35Z Dylan Leard <dylan@button.is> # Boolean value on application revision indicates if revision is latest version of the application

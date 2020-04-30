@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(37);
+select plan(38);
 
 -- Table exists
 select has_table(
@@ -62,6 +62,7 @@ select col_not_null('ggircs_portal', 'application_revision_status', 'updated_at'
 select has_trigger('ggircs_portal', 'application_revision_status', '_ensure_window_open', 'application_revision_status has window open trigger');
 select has_trigger('ggircs_portal', 'application_revision_status', '_100_timestamps', 'application_revision_status has update timestamps trigger');
 select has_trigger('ggircs_portal', 'application_revision_status', '_checksum_form_results', 'application_revision_status has checksum form results trigger');
+select has_trigger('ggircs_portal', 'application_revision_status', '_read_only_status_for_non_current_version', 'application_revision_status has _read_only_status_for_non_current_version trigger');
 
 -- Row level security tests
 
@@ -75,6 +76,7 @@ alter table ggircs_portal.ciip_user_organisation
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 alter table ggircs_portal.application_revision_status disable trigger _check_certification_signature_md5;
+alter table ggircs_portal.application_revision_status disable trigger _read_only_status_for_non_current_version;
 
 -- User 999 has access to application_revision 999, but not application_revision 1000
 insert into ggircs_portal.ciip_user(id, uuid) overriding system value

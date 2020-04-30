@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Dropdown} from 'react-bootstrap';
+import {Row, Col, Dropdown, Button} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
@@ -48,36 +48,56 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
     console.log(response);
   };
 
+  const {
+    isCurrentVersion
+  } = props.applicationRevisionStatus.applicationRevisionByApplicationIdAndVersionNumber;
+
   return (
     <Row>
       <Col md={3}>
         <h3>Application Status: </h3>
       </Col>
-      <Col md={2}>
-        <Dropdown style={{width: '100%'}}>
-          <Dropdown.Toggle
-            style={{width: '100%', textTransform: 'capitalize'}}
+
+      {isCurrentVersion ? (
+        <Col md={2}>
+          <Dropdown style={{width: '100%'}}>
+            <Dropdown.Toggle
+              style={{width: '100%', textTransform: 'capitalize'}}
+              variant={
+                statusBadgeColor[
+                  props.applicationRevisionStatus.applicationRevisionStatus
+                ]
+              }
+              id="dropdown"
+            >
+              {props.applicationRevisionStatus.applicationRevisionStatus}
+            </Dropdown.Toggle>
+            <Dropdown.Menu style={{width: '100%'}}>
+              {Object.keys(statusBadgeColor).map((status) => (
+                <DropdownMenuItemComponent
+                  key={status}
+                  itemEventKey={status}
+                  itemFunc={setApplicationRevisionStatus}
+                  itemTitle={status}
+                />
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </Col>
+      ) : (
+        <Col md={2}>
+          <Button
+            disabled
             variant={
               statusBadgeColor[
                 props.applicationRevisionStatus.applicationRevisionStatus
               ]
             }
-            id="dropdown"
           >
             {props.applicationRevisionStatus.applicationRevisionStatus}
-          </Dropdown.Toggle>
-          <Dropdown.Menu style={{width: '100%'}}>
-            {Object.keys(statusBadgeColor).map((status) => (
-              <DropdownMenuItemComponent
-                key={status}
-                itemEventKey={status}
-                itemFunc={setApplicationRevisionStatus}
-                itemTitle={status}
-              />
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
-      </Col>
+          </Button>
+        </Col>
+      )}
     </Row>
   );
 };
@@ -87,6 +107,9 @@ export default createFragmentContainer(ApplicationRevisionStatusComponent, {
     fragment ApplicationRevisionStatusContainer_applicationRevisionStatus on ApplicationRevisionStatus {
       applicationRevisionStatus
       versionNumber
+      applicationRevisionByApplicationIdAndVersionNumber {
+        isCurrentVersion
+      }
     }
   `
 });

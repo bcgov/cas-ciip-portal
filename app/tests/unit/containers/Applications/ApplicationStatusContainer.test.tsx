@@ -3,9 +3,13 @@ import {shallow} from 'enzyme';
 import {ApplicationRevisionStatusComponent} from 'containers/Applications/ApplicationRevisionStatusContainer';
 
 describe('ApplicationRevisionStatusItem', () => {
-  it('should render the application status', async () => {
+  it('should render the application status in a dropdown if isCurrentVersion is true', async () => {
     const applicationRevisionStatus = {
-      applicationRevisionStatus: 'SUBMITTED'
+      applicationRevisionStatus: 'SUBMITTED',
+      versionNumber: 1,
+      applicationRevisionByApplicationIdAndVersionNumber: {
+        isCurrentVersion: true
+      }
     };
     const applicationRowId = 1;
     const r = shallow(
@@ -15,6 +19,29 @@ describe('ApplicationRevisionStatusItem', () => {
         applicationRowId={applicationRowId}
       />
     );
+    expect(r.exists('Dropdown')).toBe(true);
+    expect(r.exists('Button')).toBe(false);
+    expect(r).toMatchSnapshot();
+  });
+
+  it('should render the application status in a disabled button if isCurrentVersion is false', async () => {
+    const applicationRevisionStatus = {
+      applicationRevisionStatus: 'SUBMITTED',
+      versionNumber: 1,
+      applicationRevisionByApplicationIdAndVersionNumber: {
+        isCurrentVersion: false
+      }
+    };
+    const applicationRowId = 1;
+    const r = shallow(
+      <ApplicationRevisionStatusComponent
+        relay={null}
+        applicationRevisionStatus={applicationRevisionStatus}
+        applicationRowId={applicationRowId}
+      />
+    );
+    expect(r.exists('Dropdown')).toBe(false);
+    expect(r.find('Button').props().disabled).toBe(true);
     expect(r).toMatchSnapshot();
   });
 });
