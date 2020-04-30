@@ -35,7 +35,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   const hideRow = formData.annualEmission === 0 ? 'zero-emission' : '';
 
   // Function fixes javascript decimal error example: 0.1 + 0.2 = 3.0000000004
-  const normalizeDecimal = (value) => {
+  const normalizeDecimal = (value: number) => {
     const normalizedValue = new Decimal(value);
     return normalizedValue;
   };
