@@ -85,7 +85,9 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
                 onChange({
                   ...formData,
                   annualEmission: value,
-                  annualCO2e: normalizeDecimal(value).times(formData.gwp)
+                  annualCO2e: value
+                    ? Number(normalizeDecimal(value).times(formData.gwp))
+                    : 0
                 })
               }
             />
