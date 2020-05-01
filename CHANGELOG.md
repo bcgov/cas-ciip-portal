@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-alpha.2](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2020-05-01)
+
+
+### Features
+
+* **admin-form:** remove fax number from admin form ([c6f1f4c](https://github.com/bcgov/cas-ciip-portal/commit/c6f1f4c091c4cfe709414567292bfbb44014be52))
+* set HOST env variable when deploying the app ([c0a724f](https://github.com/bcgov/cas-ciip-portal/commit/c0a724f4590d80a067879158f75d5b98bac97348))
+* **email:** add support for HOST env variable ([#587](https://github.com/bcgov/cas-ciip-portal/issues/587)) ([056f2d6](https://github.com/bcgov/cas-ciip-portal/commit/056f2d61eae30fb24dfecc500bf1b9a04b758648))
+* error boundary shows a useful error message ([a398042](https://github.com/bcgov/cas-ciip-portal/commit/a39804215f90f8160f903c8560cd3f75770ca2d7))
+* **fuel-form:** fuel units is a read-only field ([4a8e9be](https://github.com/bcgov/cas-ciip-portal/commit/4a8e9be2791fe11e94e475f01d54d4e5a420d499))
+* **fuel-form:** remove methodology from fuel form ([0b68551](https://github.com/bcgov/cas-ciip-portal/commit/0b68551e2b286b1099007c2b75ab896f86df5f59))
+* **keycloak:** remove bceid identity provider ([1cc40c6](https://github.com/bcgov/cas-ciip-portal/commit/1cc40c6ca849ec11253bef5efbfd570b071cdcc3))
+* **product:** add EIO emissions as a product  ([8d22f60](https://github.com/bcgov/cas-ciip-portal/commit/8d22f60937065f086ecfc4b007cf211df8d5d885))
+* **product:** add optional chaining for state-check ([9bd005b](https://github.com/bcgov/cas-ciip-portal/commit/9bd005bf7d28c02ef06e1df6dd953edeec9d4723))
+* **product:** do not allow selection of inactive products from dropdown ([ad1ecff](https://github.com/bcgov/cas-ciip-portal/commit/ad1ecffd53d138eaacebd38b06f5a6f4ef00bfee))
+* **product:** ensure that although we now fetch all products regardless of state, that inactive products cannot be selected ([d43479d](https://github.com/bcgov/cas-ciip-portal/commit/d43479d816eb90e4716855dd544d097eb109b851))
+* **product:** show warning for deprecated/archived products & don't show them as options from the product dropdown ([29549e9](https://github.com/bcgov/cas-ciip-portal/commit/29549e99e2dc51cde13d90e4fb89c625f644b79c))
+* **product:** update schema ([5c227b4](https://github.com/bcgov/cas-ciip-portal/commit/5c227b4e65a0a57e3dd0586b3d5f357f932dda8a))
+* 1-step form validation ([48318d1](https://github.com/bcgov/cas-ciip-portal/commit/48318d1912c200daf38785e307c471f6512a17f8))
+* Validate BC Corporate Registry Number format ([d6a1afd](https://github.com/bcgov/cas-ciip-portal/commit/d6a1afd31a59993a5fe6c2c04ff7605bf1fbaf38))
+
+
+### Bug Fixes
+
+* use 0 for undefined values ([d8a3542](https://github.com/bcgov/cas-ciip-portal/commit/d8a35426cef8667bbffbef4c973747898293bedf))
+* use decimal.js-light library to fix inaccurate javascript decimal issue ([b981f2b](https://github.com/bcgov/cas-ciip-portal/commit/b981f2b18272188b43e76f9a7326b8e3b300ed6f))
+* **ci:** fix misnamed ci job ([c9fc187](https://github.com/bcgov/cas-ciip-portal/commit/c9fc1872d9cadd213309d2dcae0e69139f5ee75f))
+* **dependency:** add missing dependency for pg-8.0.2 -> graphile-build-pg ([2c3dcb7](https://github.com/bcgov/cas-ciip-portal/commit/2c3dcb72dde020b4ef9ea381b73bf2b70110a86d))
+* **emissions-form:** fix typo in N2O gas name (was N20) ([0d20aec](https://github.com/bcgov/cas-ciip-portal/commit/0d20aec06166f8895554ac211594eefae13c536a))
+* **facility:** pagination bar cannot go past last page ([11f3a94](https://github.com/bcgov/cas-ciip-portal/commit/11f3a945e9f5057dc5e1c279b9933cf5259d83ce))
+* **facility:** provide organisationRowId as a variable to the search facilities function ([d787828](https://github.com/bcgov/cas-ciip-portal/commit/d787828f39c565130c4f21d474a21c030cac9539))
+* **facility:** update search function to filter facilities by organisationRowId if organisationRowId is not null ([b30251d](https://github.com/bcgov/cas-ciip-portal/commit/b30251d3db598af4bd0d5d58cb5e044e195da81a))
+* **revision status:** add a boolean value to application revision to indicate if it is the current version ([63ce822](https://github.com/bcgov/cas-ciip-portal/commit/63ce8222b1f6b9a40face4fb6b28cd1cb1bcfb9a))
+* **revision status:** add a version_number_input variable to computed column for application revision status ([cc97e4b](https://github.com/bcgov/cas-ciip-portal/commit/cc97e4b9cd8c7597c32f7db41ee10c0e2bf24d4a))
+* **revision status:** add version number inputs to other queries that pull the revision status ([ef1f3e7](https://github.com/bcgov/cas-ciip-portal/commit/ef1f3e776c1c0e1bea287c4400cd7d67f0907b4e))
+* **revision status:** conditionally render a dropdown or disabled button depending on if the revision being viewed is the current version ([f5bd524](https://github.com/bcgov/cas-ciip-portal/commit/f5bd5244da8b1f99ae55ba0ff50231d6e283142a))
+* **revision status:** create trigger to disallow changing the status of a non-current version of the application ([8662301](https://github.com/bcgov/cas-ciip-portal/commit/866230191af5a360dd64ec464950ba1071afdf59))
+* **revision status:** fix search all facilities logic when retrieving application revision status ([bd733de](https://github.com/bcgov/cas-ciip-portal/commit/bd733de25406a15880dadeee7ef1dac8ff579a1f))
+* **revision status:** Fix the search facilities function to return the proper revision status ([b61c2cb](https://github.com/bcgov/cas-ciip-portal/commit/b61c2cb760dd4ea16853a53f55d21307d024310e))
+* **revision status:** remove unnecessary select ([c8f3def](https://github.com/bcgov/cas-ciip-portal/commit/c8f3def773dfb70540d4a16787e4004c4333fa60))
+* **revision status:** update mutation to accept a version input & pass version from mutation call inside review container ([86a0063](https://github.com/bcgov/cas-ciip-portal/commit/86a006329529b9170d1d95683b1d29d9539f4ecb))
+* **revision status:** use versionNumberInput variable when querying the status from a review (ensures proper status is shown for version being reviewed) ([5412c6b](https://github.com/bcgov/cas-ciip-portal/commit/5412c6b27bb3d1910fbd1dcc46bf75fedc3e6550))
+* Add missing dependency required for Storybook ([429c877](https://github.com/bcgov/cas-ciip-portal/commit/429c8772ecec0e61e00685f62d79c4e1c084bf06))
+* create portal_app database user with sqitch ([2d95365](https://github.com/bcgov/cas-ciip-portal/commit/2d953659ece01d55f02943fbd89367ed909868c4))
+* NAICS code should be converted to a string when imported from swrs ([2c4f8e3](https://github.com/bcgov/cas-ciip-portal/commit/2c4f8e384600d147da713cd2b69debbd3c92294c))
+* Remove unused older version of Bootstrap ([248b366](https://github.com/bcgov/cas-ciip-portal/commit/248b3669dfe9b8f527234a4051c7ea2ef7094b41))
+* **server:** default db user should not be portal_app if NO_AUTH is used ([50eaa6f](https://github.com/bcgov/cas-ciip-portal/commit/50eaa6f3c1540a9702e57c03c92b8392565be54a))
+
 ## 1.0.0-alpha.1 (2020-04-17)
 
 
