@@ -145,14 +145,6 @@ export const ApplicationDetailsPdf: React.FunctionComponent<Props> = (
               <View style={styles.applicant}>
                 <Text style={styles.underline}>Facility</Text>
                 <Text>{facility.facilityName}</Text>
-                <Text>
-                  {facility.facilityMailingAddress}
-                  {'\n'}
-                  {facility.facilityCity}, {facility.facilityProvince},{' '}
-                  {facility.facilityCountry}
-                  {'\n'}
-                  {facility.facilityPostalCode}
-                </Text>
               </View>
             </Column>
           </Row>
@@ -214,11 +206,6 @@ export default createFragmentContainer(ApplicationDetailsPdf, {
       reportingYear
       facilityByFacilityId {
         facilityName
-        facilityMailingAddress
-        facilityCity
-        facilityCountry
-        facilityProvince
-        facilityPostalCode
       }
       orderedFormResults(versionNumberInput: $version) {
         edges {

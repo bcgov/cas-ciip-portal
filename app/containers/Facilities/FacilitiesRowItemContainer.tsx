@@ -31,9 +31,9 @@ export const FacilitiesRowItemComponent: React.FunctionComponent<Props> = ({
     <tr>
       <td>{facilitySearchResult.organisationName}</td>
       <td>{facilitySearchResult.facilityName}</td>
-      <td>{facilitySearchResult.facilityMailingAddress}</td>
-      <td>{facilitySearchResult.facilityPostalCode}</td>
-      <td>{facilitySearchResult.facilityCity}</td>
+      <td>{facilitySearchResult.facilityType}</td>
+      <td>{facilitySearchResult.facilityBcghgid}</td>
+      <td>{facilitySearchResult.lastSwrsReportingYear}</td>
       <td>
         {' '}
         {applicationRevisionStatus ? (
@@ -63,9 +63,9 @@ export default createFragmentContainer(FacilitiesRowItemComponent, {
     fragment FacilitiesRowItemContainer_facilitySearchResult on FacilitySearchResult {
       ...ApplyButtonContainer_applyButtonDetails
       facilityName
-      facilityMailingAddress
-      facilityCity
-      facilityPostalCode
+      facilityType
+      facilityBcghgid
+      lastSwrsReportingYear
       applicationRevisionStatus
       organisationName
     }

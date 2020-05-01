@@ -11,10 +11,9 @@ create type ggircs_portal.facility_search_result as (
     application_id integer,
     facility_id integer,
     facility_name varchar(1000),
-    facility_mailing_address varchar(1000),
-    facility_city varchar(1000),
-    facility_postal_code varchar(1000),
-    reporting_year integer,
+    facility_type varchar(1000),
+    facility_bcghgid varchar(1000),
+    last_swrs_reporting_year integer,
     application_revision_status ggircs_portal.ciip_application_revision_status,
     organisation_name varchar(1000),
     total_facility_count integer
