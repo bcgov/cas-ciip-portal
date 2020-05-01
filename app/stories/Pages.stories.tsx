@@ -12,7 +12,7 @@ import CiipApplicationSWRSImport from 'pages/reporter/ciip-application-swrs-impo
 // import CompleteSubmit from 'pages/reporter/complete-submit';
 // import Index from 'pages/index';
 // import LoginRedirect from 'pages/login-redirect';
-// import OrganisationRequests from 'pages/admin/organisation-requests';
+// import OrganisationRequests from 'pages/analyst/organisation-requests';
 // import ProductsBenchmarks from 'pages/admin/products-benchmarks';
 import Registration from 'pages/registration';
 import UserDashboard from 'pages/reporter/user-dashboard';

@@ -17,6 +17,11 @@ const ApplicationManagement: React.FunctionComponent = () => {
             <Card.Link href="#">View all applications</Card.Link>
           </Link>
         </ListGroup.Item>
+        <ListGroup.Item>
+          <Link href="/analyst/organisation-requests">
+            <Card.Link href="#">Organisation access requests</Card.Link>
+          </Link>
+        </ListGroup.Item>
       </ListGroup>
     </Card>
   );
