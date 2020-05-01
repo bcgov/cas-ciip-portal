@@ -4,9 +4,9 @@ import {organisationRequestsQueryResponse} from 'organisationRequestsQuery.graph
 import DefaultLayout from 'layouts/default-layout';
 import OrganisationRequestsTable from 'containers/Admin/OrganisationRequestsTable';
 import SearchTable from 'components/SearchTable';
-import {ADMIN_GROUP} from 'data/group-constants';
+import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 
-const ALLOWED_GROUPS = ADMIN_GROUP;
+const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
 interface Props {
   query: organisationRequestsQueryResponse['query'];
