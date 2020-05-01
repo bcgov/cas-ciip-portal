@@ -11,6 +11,8 @@ select ggircs_portal_private.verify_grant('update', 'ciip_user_organisation', 'c
 
 -- ciip_analyst Grants
 select ggircs_portal_private.verify_grant('select', 'ciip_user_organisation', 'ciip_analyst');
+select ggircs_portal_private.verify_grant('insert', 'ciip_user_organisation', 'ciip_analyst');
+select ggircs_portal_private.verify_grant('update', 'ciip_user_organisation', 'ciip_analyst');
 
 -- ciip_industry_user Grants
 select ggircs_portal_private.verify_grant('select', 'ciip_user_organisation', 'ciip_industry_user');
@@ -25,6 +27,8 @@ select ggircs_portal_private.verify_policy('update', 'ciip_administrator_update_
 
 -- ciip_analyst Policies
 select ggircs_portal_private.verify_policy('select', 'ciip_analyst_select_ciip_user_organisation', 'ciip_user_organisation', 'ciip_analyst');
+select ggircs_portal_private.verify_policy('insert', 'ciip_analyst_insert_ciip_user_organisation', 'ciip_user_organisation', 'ciip_analyst');
+select ggircs_portal_private.verify_policy('update', 'ciip_analyst_update_ciip_user_organisation', 'ciip_user_organisation', 'ciip_analyst');
 
 -- ciip_industry_user Policies
 select ggircs_portal_private.verify_policy('select', 'ciip_industry_user_select_ciip_user_organisation', 'ciip_user_organisation', 'ciip_industry_user');
