@@ -9,6 +9,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
 import FuelRowIdField from 'containers/Forms/FuelRowIdField';
 import FuelField from 'containers/Forms/FuelField';
+import EmissionCategoryRowIdField from 'containers/Forms/EmissionCategoryRowIdField';
 
 const customFields = (
   showDiff: boolean,
@@ -118,6 +119,9 @@ const customFields = (
     fuel: (props) => <FuelField query={props.formContext.query} {...props} />,
     fuelRowId: (props) => (
       <FuelRowIdField query={props.formContext.query} {...props} />
+    ),
+    emissionCategoryRowId: (props) => (
+      <EmissionCategoryRowIdField query={props.formContext.query} {...props} />
     ),
     NumberField: (props) => {
       const errorIcon = setErrorIcon(props);

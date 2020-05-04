@@ -27,6 +27,7 @@ exports[`The Form Component should match the snapshot 1`] = `
       Object {
         "NumberField": [Function],
         "emission": [Function],
+        "emissionCategoryRowId": [Function],
         "emissionGas": [Function],
         "emissionSource": [Function],
         "fuel": [Function],

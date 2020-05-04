@@ -21,6 +21,7 @@ import EmissionField from './EmissionField';
 import ProductRowIdField from './ProductRowIdField';
 import FuelRowIdField from './FuelRowIdField';
 import NumberField from './NumberField';
+import EmissionCategoryRowIdField from './EmissionCategoryRowIdField';
 
 interface Props {
   query: Form_query;
@@ -44,6 +45,9 @@ const CUSTOM_FIELDS = {
   ),
   fuelRowId: (props) => (
     <FuelRowIdField query={props.formContext.query} {...props} />
+  ),
+  emissionCategoryRowId: (props) => (
+    <EmissionCategoryRowIdField query={props.formContext.query} {...props} />
   ),
   NumberField
 };
@@ -196,6 +200,7 @@ export default createFragmentContainer(FormComponent, {
       ...FuelRowIdField_query
       ...ProductField_query
       ...ProductRowIdField_query
+      ...EmissionCategoryRowIdField_query
       result: formResult(id: $formResultId) {
         formResult
         formJsonByFormId {

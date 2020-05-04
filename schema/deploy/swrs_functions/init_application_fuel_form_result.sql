@@ -26,7 +26,8 @@ begin
     result := concat(result, jsonb_build_object(
       'fuelRowId', (select id from ggircs_portal.fuel where fuel.name = fuel_datum.fuel_type and fuel.state='active'),
       'quantity', fuel_datum.annual_fuel_amount,
-      'fuelUnits', fuel_datum.fuel_units
+      'fuelUnits', fuel_datum.fuel_units,
+      'emissionCategoryRowId', (select id from ggircs_portal.emission_category where emission_category.swrs_emission_category = fuel_datum.emission_category)
     ));
   end loop;
   result := concat(result, ']');

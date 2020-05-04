@@ -1704,7 +1704,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                       onKeyDown={[Function]}
                       onMouseUp={[Function]}
                       type="text"
-                      value="-60,000,000"
+                      value="-80,000,000"
                     />
                     <span
                       className="font-italic text-muted"
@@ -1733,8 +1733,44 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                       readOnly={true}
                       required={true}
                       type="text"
-                      value="consequat Ut Duis"
+                      value="mollit eu esse"
                     />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_0_emissionCategoryRowId"
+                    >
+                      Emission Category
+                       *
+                    </label>
+                    <select
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_0_emissionCategoryRowId"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={true}
+                      value={0}
+                    >
+                      <option
+                        value=""
+                      >
+                        
+                      </option>
+                      <option
+                        value={42}
+                      >
+                        &lt;mock-value-for-field-"displayName"&gt;
+                      </option>
+                    </select>
                     <span
                       className="font-italic text-muted"
                     />
@@ -1817,7 +1853,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                       onKeyDown={[Function]}
                       onMouseUp={[Function]}
                       type="text"
-                      value="-60,000,000"
+                      value="-40,000,000"
                     />
                     <span
                       className="font-italic text-muted"
@@ -1846,121 +1882,44 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                       readOnly={true}
                       required={true}
                       type="text"
-                      value="consequat Ut Duis"
+                      value="culpa"
                     />
                     <span
                       className="font-italic text-muted"
                     />
                   </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="col-md-1 col-12"
-            >
-              <div
-                className="jsx-4148384647 remove-button-container"
-              >
-                <button
-                  className="btn btn-danger"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Remove fuel
-                </button>
-              </div>
-            </div>
-          </div>
-          <hr
-            className="jsx-4148384647"
-          />
-        </div>
-        <div
-          className="jsx-4148384647"
-        >
-          <div
-            className="form-row"
-          >
-            <div
-              className="col-md-11 col-12"
-            >
-              <div
-                className="form-group field field-object col-12"
-              >
-                <div
-                  className="form-row"
-                >
-                  <span
-                    className="font-italic text-muted"
-                  />
                   <div
                     className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                   >
                     <label
                       className="form-label"
-                      htmlFor="root_2_fuelRowId"
+                      htmlFor="root_1_emissionCategoryRowId"
                     >
-                      Fuel Name
+                      Emission Category
                        *
                     </label>
-                    one
-                    <span
-                      className="font-italic text-muted"
-                    />
-                  </div>
-                  <div
-                    className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="root_2_quantity"
-                    >
-                      Quantity
-                       *
-                    </label>
-                    <input
-                      className="form-control"
-                      disabled={false}
-                      id="root_2_quantity"
-                      inputMode="numeric"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseUp={[Function]}
-                      type="text"
-                      value="-60,000,000"
-                    />
-                    <span
-                      className="font-italic text-muted"
-                    />
-                  </div>
-                  <div
-                    className="form-group field field-string form-group col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12"
-                  >
-                    <label
-                      className="form-label"
-                      htmlFor="root_2_fuelUnits"
-                    >
-                      Units
-                       *
-                    </label>
-                    <input
+                    <select
                       autoFocus={false}
                       className="form-control"
                       disabled={false}
-                      id="root_2_fuelUnits"
-                      label="Units"
+                      id="root_1_emissionCategoryRowId"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
-                      placeholder=""
-                      readOnly={true}
                       required={true}
-                      type="text"
-                      value="consequat Ut Duis"
-                    />
+                      value={-60000000}
+                    >
+                      <option
+                        value=""
+                      >
+                        
+                      </option>
+                      <option
+                        value={42}
+                      >
+                        &lt;mock-value-for-field-"displayName"&gt;
+                      </option>
+                    </select>
                     <span
                       className="font-italic text-muted"
                     />

@@ -237,6 +237,7 @@ export default createFragmentContainer(ApplicationDetailsCardItemComponent, {
       ...ProductRowIdField_query
       ...FuelField_query
       ...FuelRowIdField_query
+      ...EmissionCategoryRowIdField_query
     }
   `
 });
