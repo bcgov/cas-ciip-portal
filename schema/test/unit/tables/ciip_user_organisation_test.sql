@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(14);
+select plan(15);
 
 create role test_superuser superuser;
 
@@ -22,19 +22,12 @@ alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 
 insert into ggircs_portal.ciip_user(id, uuid, first_name)
 overriding system value
-values (999, '11111111-1111-1111-1111-111111111111'::uuid, 'test_user');
-
-insert into ggircs_portal.ciip_user(id, uuid, first_name)
-overriding system value
-values (888, '22222222-2222-2222-2222-222222222222'::uuid, 'test_user');
+values (999, '11111111-1111-1111-1111-111111111111'::uuid, 'test_user'),
+       (888, '22222222-2222-2222-2222-222222222222'::uuid, 'test_user');
 
 insert into ggircs_portal.organisation(id, operator_name)
 overriding system value
-values (999, 'test_org');
-
-insert into ggircs_portal.organisation(id, operator_name)
-overriding system value
-values (888, 'test_org');
+values (999, 'test_org'), (888, 'test_org'), (777, 'test_org');
 
 insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id)
 values (888, 888);
@@ -133,28 +126,35 @@ select results_eq(
   'Analyst can select all from table ciip_user_organisation'
 );
 
+select lives_ok(
+  $$
+    insert into ggircs_portal.ciip_user_organisation (user_id, organisation_id)
+    values (999, 777);
+  $$,
+    'Analyst can insert data in ciip_user_organisation table'
+);
+
+select lives_ok(
+  $$
+    update ggircs_portal.ciip_user_organisation set status = 'rejected' where user_id=999 and organisation_id=777
+  $$,
+    'Analyst can change data in ciip_user_organisation table'
+);
+
+select results_eq(
+  $$
+    select count(id) from ggircs_portal.ciip_user_organisation where user_id = 999 and organisation_id = 777 and status = 'rejected'
+  $$,
+    ARRAY[1::bigint],
+    'Data was changed by Analyst'
+);
+
 select throws_like(
   $$
-    update ggircs_portal.ciip_user_organisation set status='approved'
+    delete from ggircs_portal.ciip_user_organisation
   $$,
   'permission denied%',
     'Analyst cannot update table ciip_user_organisation'
-);
-
-select throws_like(
-  $$
-    insert into ggircs_portal.ciip_user_organisation(user_id, organisation_id) values (1,1)
-  $$,
-  'permission denied%',
-    'Analyst cannot insert rows into table ciip_user_organisation'
-);
-
-select throws_like(
-  $$
-    delete from ggircs_portal.ciip_user_organisation where id=1
-  $$,
-  'permission denied%',
-    'Analyst cannot delete rows from table_ciip_user_organisation'
 );
 
 select finish();

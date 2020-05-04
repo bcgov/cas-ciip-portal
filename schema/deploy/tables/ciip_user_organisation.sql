@@ -30,6 +30,8 @@ begin;
 
     -- Grant ciip_analyst permissions
     perform ggircs_portal_private.grant_permissions('select', 'ciip_user_organisation', 'ciip_analyst');
+    perform ggircs_portal_private.grant_permissions('insert', 'ciip_user_organisation', 'ciip_analyst');
+    perform ggircs_portal_private.grant_permissions('update', 'ciip_user_organisation', 'ciip_analyst');
 
     -- Grant ciip_industry_user permissions
     perform ggircs_portal_private.grant_permissions('select', 'ciip_user_organisation', 'ciip_industry_user');
@@ -53,6 +55,8 @@ begin;
 
     -- ciip_analyst RLS
     perform ggircs_portal_private.upsert_policy('ciip_analyst_select_ciip_user_organisation', 'ciip_user_organisation', 'select', 'ciip_analyst', 'true');
+    perform ggircs_portal_private.upsert_policy('ciip_analyst_insert_ciip_user_organisation', 'ciip_user_organisation', 'insert', 'ciip_analyst', 'true');
+    perform ggircs_portal_private.upsert_policy('ciip_analyst_update_ciip_user_organisation', 'ciip_user_organisation', 'update', 'ciip_analyst', 'true');
 
     -- ciip_industry_user RLS
     perform ggircs_portal_private.upsert_policy(

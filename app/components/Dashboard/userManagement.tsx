@@ -15,11 +15,6 @@ const UserManagement: React.FunctionComponent = () => {
             <Card.Link href="#">View all users</Card.Link>
           </Link>
         </ListGroup.Item>
-        <ListGroup.Item>
-          <Link href="/admin/organisation-requests">
-            <Card.Link href="#">Organisation access requests</Card.Link>
-          </Link>
-        </ListGroup.Item>
       </ListGroup>
     </Card>
   );
