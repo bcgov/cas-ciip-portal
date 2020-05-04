@@ -15,7 +15,7 @@ import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import moment from 'moment-timezone';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
-import saveProductMutation from 'mutations/product/saveProductMutation';
+import updateProductMutation from 'mutations/product/updateProductMutation';
 import editBenchmarkMutation from 'mutations/benchmark/editBenchmarkMutation';
 import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
@@ -158,66 +158,42 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
    * Mutation functions
    */
 
-  // Toggle the 'archived' value of a Product
-  const toggleArchived = async () => {
-    const newState = product.state === 'archived' ? 'active' : 'archived';
+  // Archive a Product
+  const setArchived = async () => {
     const variables = {
       input: {
-        newName: product.name,
-        newDescription: product.description || '',
-        newState,
-        prevId: product.rowId,
-        newUnits: product.units,
-        newParent: [product.rowId],
-        newRequiresEmissionAllocation: product.requiresEmissionAllocation,
-        newIsCiipProduct: product.isCiipProduct,
-        newAddPurchasedElectricityEmissions:
-          product.addPurchasedElectricityEmissions,
-        newSubtractExportedElectricityEmissions:
-          product.subtractExportedElectricityEmissions,
-        newAddPurchasedHeatEmissions: product.addPurchasedHeatEmissions,
-        newSubtractExportedHeatEmissions: product.subtractExportedHeatEmissions,
-        newSubtractGeneratedElectricityEmissions:
-          product.subtractGeneratedElectricityEmissions,
-        newSubtractGeneratedHeatEmissions:
-          product.subtractGeneratedHeatEmissions,
-        newRequiresProductAmount: product.requiresProductAmount,
-        newAddEmissionsFromEios: product.addEmissionsFromEios
+        productState: 'archived'
       }
     };
-    const response = await saveProductMutation(relay.environment, variables);
+    const response = await updateProductMutation(relay.environment, variables);
     handleUpdateProductCount((productCount += 1));
     console.log(response);
   };
 
   // Save a product
-  const saveProduct = async (e: IChangeEvent) => {
+  const editProduct = async (e: IChangeEvent) => {
     const variables = {
       input: {
-        newName: e.formData.name,
-        newDescription: e.formData.description,
-        newState: 'active',
-        prevId: product.rowId,
-        newUnits: e.formData.units,
-        newParent: [product.rowId],
-        newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation,
-        newIsCiipProduct: e.formData.isCiipProduct,
-        newAddPurchasedElectricityEmissions:
+        productName: e.formData.name,
+        productDescription: e.formData.description,
+        units: e.formData.units,
+        requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
+        isCiipProduct: e.formData.isCiipProduct,
+        addPurchasedElectricityEmissions:
           e.formData.addPurchasedElectricityEmissions,
-        newSubtractExportedElectricityEmissions:
+        subtractExportedElectricityEmissions:
           e.formData.subtractExportedElectricityEmissions,
-        newAddPurchasedHeatEmissions: e.formData.addPurchasedHeatEmissions,
-        newSubtractExportedHeatEmissions:
-          e.formData.subtractExportedHeatEmissions,
-        newSubtractGeneratedElectricityEmissions:
+        addPurchasedHeatEmissions: e.formData.addPurchasedHeatEmissions,
+        subtractExportedHeatEmissions: e.formData.subtractExportedHeatEmissions,
+        subtractGeneratedElectricityEmissions:
           e.formData.subtractGeneratedElectricityEmissions,
-        newSubtractGeneratedHeatEmissions:
+        subtractGeneratedHeatEmissions:
           e.formData.subtractGeneratedHeatEmissions,
-        newRequiresProductAmount: e.formData.requiresProductAmount,
-        newAddEmissionsFromEios: e.formData.addEmissionsFromEios
+        requiresProductAmount: e.formData.requiresProductAmount,
+        addEmissionsFromEios: e.formData.addEmissionsFromEios
       }
     };
-    const response = await saveProductMutation(relay.environment, variables);
+    const response = await updateProductMutation(relay.environment, variables);
     console.log(response);
   };
 
@@ -307,18 +283,16 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             ArrayFieldTemplate={FormArrayFieldTemplate}
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
-            onSubmit={saveProduct}
+            onSubmit={editProduct}
           >
-            <Button type="submit" variant="primary">
-              Save Product
-            </Button>
-            {product.state === 'active' ? (
-              <Button variant="warning" onClick={toggleArchived}>
-                Archive Product
+            {product.product_state === 'draft' && (
+              <Button type="submit" variant="primary">
+                Save Product
               </Button>
-            ) : (
-              <Button variant="success" onClick={toggleArchived}>
-                Restore Product
+            )}
+            {product.product_state === 'published' && (
+              <Button variant="warning" onClick={setArchived}>
+                Archive Product
               </Button>
             )}
           </JsonSchemaForm>
@@ -459,16 +433,18 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   return (
     <>
       <tr>
-        <td>{product.name}</td>
-        <td>{product.description}</td>
+        <td>{product.product_name}</td>
+        <td>{product.product_description}</td>
         <td>{product.units}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
-        <td>{product.state}</td>
+        <td>{product.product_state}</td>
         <td>
-          <Button variant="info" onClick={() => setModalShow(true)}>
-            Edit
-          </Button>
+          {product.product_state === 'draft' && (
+            <Button variant="info" onClick={() => setModalShow(true)}>
+              Edit
+            </Button>
+          )}
         </td>
       </tr>
       {editModal}
@@ -480,9 +456,9 @@ export default createFragmentContainer(ProductRowItemComponent, {
   product: graphql`
     fragment ProductRowItemContainer_product on Product {
       rowId
-      name
-      description
-      state
+      product_name
+      product_description
+      product_state
       units
       requiresEmissionAllocation
       isCiipProduct
