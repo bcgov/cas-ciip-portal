@@ -27,7 +27,7 @@ create table ggircs_portal.product (
   deleted_by int references ggircs_portal.ciip_user
 );
 
-create index product_published_state_partial on ggircs_portal.product (product_name)
+create unique index product_published_state_partial on ggircs_portal.product (product_name)
     where (product_state = 'published');
 
 create trigger _100_timestamps
