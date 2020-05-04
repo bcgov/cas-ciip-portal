@@ -22830,18 +22830,6 @@
               "deprecationReason": null
             },
             {
-              "name": "carbonTax",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "eligibilityThreshold",
               "description": null,
               "args": [],
@@ -22891,6 +22879,18 @@
             },
             {
               "name": "incentiveRatio",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "BigFloat",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "incrementalCarbonTax",
               "description": null,
               "args": [],
               "type": {
