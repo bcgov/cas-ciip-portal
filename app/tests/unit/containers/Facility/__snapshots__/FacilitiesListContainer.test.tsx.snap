@@ -48,11 +48,11 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
     }
     displayNameToColumnNameMap={
       Object {
-        "Address": "facility_mailing_address",
-        "City": "facility_city",
+        "BC GHG id": "facility_bcghgid",
         "Facility Name": "facility_name",
+        "Facility Type": "facility_type",
         "Organisation Name": "organisation_name",
-        "Postal Code": "facility_postal_code",
+        "Reporting period of last SWRS report": "last_swrs_reporting_year",
         "Status": "application_revision_status",
       }
     }
@@ -109,11 +109,11 @@ exports[`FacilitiesListContainer should not render the Pagination component if <
     }
     displayNameToColumnNameMap={
       Object {
-        "Address": "facility_mailing_address",
-        "City": "facility_city",
+        "BC GHG id": "facility_bcghgid",
         "Facility Name": "facility_name",
+        "Facility Type": "facility_type",
         "Organisation Name": "organisation_name",
-        "Postal Code": "facility_postal_code",
+        "Reporting period of last SWRS report": "last_swrs_reporting_year",
         "Status": "application_revision_status",
       }
     }
@@ -170,11 +170,11 @@ exports[`FacilitiesListContainer should render a maximum of 9 pagination pages i
     }
     displayNameToColumnNameMap={
       Object {
-        "Address": "facility_mailing_address",
-        "City": "facility_city",
+        "BC GHG id": "facility_bcghgid",
         "Facility Name": "facility_name",
+        "Facility Type": "facility_type",
         "Organisation Name": "organisation_name",
-        "Postal Code": "facility_postal_code",
+        "Reporting period of last SWRS report": "last_swrs_reporting_year",
         "Status": "application_revision_status",
       }
     }
@@ -329,11 +329,11 @@ exports[`FacilitiesListContainer should render the Pagination component if > 10 
     }
     displayNameToColumnNameMap={
       Object {
-        "Address": "facility_mailing_address",
-        "City": "facility_city",
+        "BC GHG id": "facility_bcghgid",
         "Facility Name": "facility_name",
+        "Facility Type": "facility_type",
         "Organisation Name": "organisation_name",
-        "Postal Code": "facility_postal_code",
+        "Reporting period of last SWRS report": "last_swrs_reporting_year",
         "Status": "application_revision_status",
       }
     }

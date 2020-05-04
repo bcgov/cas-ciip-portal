@@ -123,20 +123,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 <TEXT>
                   Forest Floor
                 </TEXT>
-                <TEXT>
-                  Evergreen Street Northwest
-                  
-
-                  Oak Grove
-                  , 
-                  British Columbia
-                  ,
-                   
-                  Canada
-                  
-
-                  V1C6T8
-                </TEXT>
               </VIEW>
             </styled.VIEW>
           </styled.VIEW>

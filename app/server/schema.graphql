@@ -6447,30 +6447,12 @@ type FacilitiesEdge {
 enum FacilitiesOrderBy {
   BCGHGID_ASC
   BCGHGID_DESC
-  FACILITY_CITY_ASC
-  FACILITY_CITY_DESC
-  FACILITY_COUNTRY_ASC
-  FACILITY_COUNTRY_DESC
-  FACILITY_MAILING_ADDRESS_ASC
-  FACILITY_MAILING_ADDRESS_DESC
   FACILITY_NAME_ASC
   FACILITY_NAME_DESC
-  FACILITY_POSTAL_CODE_ASC
-  FACILITY_POSTAL_CODE_DESC
-  FACILITY_PROVINCE_ASC
-  FACILITY_PROVINCE_DESC
   FACILITY_TYPE_ASC
   FACILITY_TYPE_DESC
   ID_ASC
   ID_DESC
-  LATITUDE_ASC
-  LATITUDE_DESC
-  LONGITUDE_ASC
-  LONGITUDE_DESC
-  NAICS_CLASSIFICATION_ASC
-  NAICS_CLASSIFICATION_DESC
-  NAICS_CODE_ASC
-  NAICS_CODE_DESC
   NATURAL
   ORGANISATION_ID_ASC
   ORGANISATION_ID_DESC
@@ -6478,8 +6460,6 @@ enum FacilitiesOrderBy {
   PRIMARY_KEY_DESC
   REPORT_ID_ASC
   REPORT_ID_DESC
-  REPORTING_YEAR_ASC
-  REPORTING_YEAR_DESC
   SWRS_FACILITY_ID_ASC
   SWRS_FACILITY_ID_DESC
   SWRS_ORGANISATION_ID_ASC
@@ -6522,23 +6502,8 @@ type Facility implements Node {
   """CAS internal identifier"""
   bcghgid: String
 
-  """facility city"""
-  facilityCity: String
-
-  """facility country"""
-  facilityCountry: String
-
-  """facility mailing address"""
-  facilityMailingAddress: String
-
   """the facility name"""
   facilityName: String
-
-  """facility postal code"""
-  facilityPostalCode: String
-
-  """facility province"""
-  facilityProvince: String
 
   """type of facility based on emission quantity"""
   facilityType: String
@@ -6549,18 +6514,6 @@ type Facility implements Node {
   """
   id: ID!
 
-  """facility latitude"""
-  latitude: BigFloat
-
-  """facility longitude"""
-  longitude: BigFloat
-
-  """description of the naics code"""
-  naicsClassification: String
-
-  """The NAICS code / sector"""
-  naicsCode: Int
-
   """Reads a single `Organisation` that is related to this `Facility`."""
   organisationByOrganisationId: Organisation
 
@@ -6569,9 +6522,6 @@ type Facility implements Node {
 
   """report id from swrs"""
   reportId: Int
-
-  """the reporting year"""
-  reportingYear: Int
 
   """unique id for the facility"""
   rowId: Int!
@@ -6594,47 +6544,17 @@ input FacilityCondition {
   """Checks for equality with the object’s `bcghgid` field."""
   bcghgid: String
 
-  """Checks for equality with the object’s `facilityCity` field."""
-  facilityCity: String
-
-  """Checks for equality with the object’s `facilityCountry` field."""
-  facilityCountry: String
-
-  """Checks for equality with the object’s `facilityMailingAddress` field."""
-  facilityMailingAddress: String
-
   """Checks for equality with the object’s `facilityName` field."""
   facilityName: String
 
-  """Checks for equality with the object’s `facilityPostalCode` field."""
-  facilityPostalCode: String
-
-  """Checks for equality with the object’s `facilityProvince` field."""
-  facilityProvince: String
-
   """Checks for equality with the object’s `facilityType` field."""
   facilityType: String
-
-  """Checks for equality with the object’s `latitude` field."""
-  latitude: BigFloat
-
-  """Checks for equality with the object’s `longitude` field."""
-  longitude: BigFloat
-
-  """Checks for equality with the object’s `naicsClassification` field."""
-  naicsClassification: String
-
-  """Checks for equality with the object’s `naicsCode` field."""
-  naicsCode: Int
 
   """Checks for equality with the object’s `organisationId` field."""
   organisationId: Int
 
   """Checks for equality with the object’s `reportId` field."""
   reportId: Int
-
-  """Checks for equality with the object’s `reportingYear` field."""
-  reportingYear: Int
 
   """Checks for equality with the object’s `rowId` field."""
   rowId: Int
@@ -6674,47 +6594,17 @@ input FacilityInput {
   """CAS internal identifier"""
   bcghgid: String
 
-  """facility city"""
-  facilityCity: String
-
-  """facility country"""
-  facilityCountry: String
-
-  """facility mailing address"""
-  facilityMailingAddress: String
-
   """the facility name"""
   facilityName: String
 
-  """facility postal code"""
-  facilityPostalCode: String
-
-  """facility province"""
-  facilityProvince: String
-
   """type of facility based on emission quantity"""
   facilityType: String
-
-  """facility latitude"""
-  latitude: BigFloat
-
-  """facility longitude"""
-  longitude: BigFloat
-
-  """description of the naics code"""
-  naicsClassification: String
-
-  """The NAICS code / sector"""
-  naicsCode: Int
 
   """the id of the organization responsible for that facility"""
   organisationId: Int!
 
   """report id from swrs"""
   reportId: Int
-
-  """the reporting year"""
-  reportingYear: Int
 
   """swrs facility id from swrs"""
   swrsFacilityId: Int
@@ -6733,47 +6623,17 @@ input FacilityPatch {
   """CAS internal identifier"""
   bcghgid: String
 
-  """facility city"""
-  facilityCity: String
-
-  """facility country"""
-  facilityCountry: String
-
-  """facility mailing address"""
-  facilityMailingAddress: String
-
   """the facility name"""
   facilityName: String
 
-  """facility postal code"""
-  facilityPostalCode: String
-
-  """facility province"""
-  facilityProvince: String
-
   """type of facility based on emission quantity"""
   facilityType: String
-
-  """facility latitude"""
-  latitude: BigFloat
-
-  """facility longitude"""
-  longitude: BigFloat
-
-  """description of the naics code"""
-  naicsClassification: String
-
-  """The NAICS code / sector"""
-  naicsCode: Int
 
   """the id of the organization responsible for that facility"""
   organisationId: Int
 
   """report id from swrs"""
   reportId: Int
-
-  """the reporting year"""
-  reportingYear: Int
 
   """swrs facility id from swrs"""
   swrsFacilityId: Int
@@ -6792,18 +6652,17 @@ type FacilitySearchResult {
   applicationByApplicationId: Application
   applicationId: Int
   applicationRevisionStatus: CiipApplicationRevisionStatus
+  facilityBcghgid: String
 
   """
   Reads a single `Facility` that is related to this `FacilitySearchResult`.
   """
   facilityByFacilityId: Facility
-  facilityCity: String
   facilityId: Int
-  facilityMailingAddress: String
   facilityName: String
-  facilityPostalCode: String
+  facilityType: String
+  lastSwrsReportingYear: Int
   organisationName: String
-  reportingYear: Int
   rowId: Int
   totalFacilityCount: Int
 }

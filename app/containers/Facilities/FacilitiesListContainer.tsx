@@ -53,9 +53,9 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   const displayNameToColumnNameMap = {
     'Organisation Name': 'organisation_name',
     'Facility Name': 'facility_name',
-    Address: 'facility_mailing_address',
-    'Postal Code': 'facility_postal_code',
-    City: 'facility_city',
+    'Facility Type': 'facility_type',
+    'BC GHG id': 'facility_bcghgid',
+    'Reporting period of last SWRS report': 'last_swrs_reporting_year',
     Status: 'application_revision_status'
   };
 

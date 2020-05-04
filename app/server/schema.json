@@ -14776,58 +14776,8 @@
               "defaultValue": null
             },
             {
-              "name": "facilityCity",
-              "description": "Checks for equality with the object’s `facilityCity` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityCountry",
-              "description": "Checks for equality with the object’s `facilityCountry` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityMailingAddress",
-              "description": "Checks for equality with the object’s `facilityMailingAddress` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "facilityName",
               "description": "Checks for equality with the object’s `facilityName` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityPostalCode",
-              "description": "Checks for equality with the object’s `facilityPostalCode` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityProvince",
-              "description": "Checks for equality with the object’s `facilityProvince` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -14846,46 +14796,6 @@
               "defaultValue": null
             },
             {
-              "name": "latitude",
-              "description": "Checks for equality with the object’s `latitude` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "longitude",
-              "description": "Checks for equality with the object’s `longitude` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "naicsClassification",
-              "description": "Checks for equality with the object’s `naicsClassification` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "naicsCode",
-              "description": "Checks for equality with the object’s `naicsCode` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "organisationId",
               "description": "Checks for equality with the object’s `organisationId` field.",
               "type": {
@@ -14898,16 +14808,6 @@
             {
               "name": "reportId",
               "description": "Checks for equality with the object’s `reportId` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "reportingYear",
-              "description": "Checks for equality with the object’s `reportingYear` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -14981,42 +14881,6 @@
               "deprecationReason": null
             },
             {
-              "name": "FACILITY_CITY_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_CITY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_COUNTRY_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_COUNTRY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_MAILING_ADDRESS_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_MAILING_ADDRESS_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "FACILITY_NAME_ASC",
               "description": null,
               "isDeprecated": false,
@@ -15024,30 +14888,6 @@
             },
             {
               "name": "FACILITY_NAME_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_POSTAL_CODE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_POSTAL_CODE_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_PROVINCE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "FACILITY_PROVINCE_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -15072,54 +14912,6 @@
             },
             {
               "name": "ID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "LATITUDE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "LATITUDE_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "LONGITUDE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "LONGITUDE_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "NAICS_CLASSIFICATION_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "NAICS_CLASSIFICATION_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "NAICS_CODE_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "NAICS_CODE_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -15162,18 +14954,6 @@
             },
             {
               "name": "REPORT_ID_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "REPORTING_YEAR_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "REPORTING_YEAR_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -15452,68 +15232,8 @@
               "deprecationReason": null
             },
             {
-              "name": "facilityCity",
-              "description": "facility city",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityCountry",
-              "description": "facility country",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityMailingAddress",
-              "description": "facility mailing address",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "facilityName",
               "description": "the facility name",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityPostalCode",
-              "description": "facility postal code",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "facilityProvince",
-              "description": "facility province",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -15575,54 +15295,6 @@
               "deprecationReason": null
             },
             {
-              "name": "latitude",
-              "description": "facility latitude",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "longitude",
-              "description": "facility longitude",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "naicsClassification",
-              "description": "description of the naics code",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "naicsCode",
-              "description": "The NAICS code / sector",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "organisationByOrganisationId",
               "description": "Reads a single `Organisation` that is related to this `Facility`.",
               "args": [],
@@ -15653,18 +15325,6 @@
             {
               "name": "reportId",
               "description": "report id from swrs",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "reportingYear",
-              "description": "the reporting year",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -26050,24 +25710,24 @@
               "deprecationReason": null
             },
             {
-              "name": "facilityByFacilityId",
-              "description": "Reads a single `Facility` that is related to this `FacilitySearchResult`.",
+              "name": "facilityBcghgid",
+              "description": null,
               "args": [],
               "type": {
-                "kind": "OBJECT",
-                "name": "Facility",
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "facilityCity",
-              "description": null,
+              "name": "facilityByFacilityId",
+              "description": "Reads a single `Facility` that is related to this `FacilitySearchResult`.",
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "OBJECT",
+                "name": "Facility",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -26086,18 +25746,6 @@
               "deprecationReason": null
             },
             {
-              "name": "facilityMailingAddress",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "facilityName",
               "description": null,
               "args": [],
@@ -26110,12 +25758,24 @@
               "deprecationReason": null
             },
             {
-              "name": "facilityPostalCode",
+              "name": "facilityType",
               "description": null,
               "args": [],
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "lastSwrsReportingYear",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -26128,18 +25788,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "reportingYear",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -32939,58 +32587,8 @@
               "defaultValue": null
             },
             {
-              "name": "facilityCity",
-              "description": "facility city",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityCountry",
-              "description": "facility country",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityMailingAddress",
-              "description": "facility mailing address",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "facilityName",
               "description": "the facility name",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityPostalCode",
-              "description": "facility postal code",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityProvince",
-              "description": "facility province",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -33004,46 +32602,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "latitude",
-              "description": "facility latitude",
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "longitude",
-              "description": "facility longitude",
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "naicsClassification",
-              "description": "description of the naics code",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "naicsCode",
-              "description": "The NAICS code / sector",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
                 "ofType": null
               },
               "defaultValue": null
@@ -33065,16 +32623,6 @@
             {
               "name": "reportId",
               "description": "report id from swrs",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "reportingYear",
-              "description": "the reporting year",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
@@ -43998,58 +43546,8 @@
               "defaultValue": null
             },
             {
-              "name": "facilityCity",
-              "description": "facility city",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityCountry",
-              "description": "facility country",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityMailingAddress",
-              "description": "facility mailing address",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "facilityName",
               "description": "the facility name",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityPostalCode",
-              "description": "facility postal code",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "facilityProvince",
-              "description": "facility province",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -44068,46 +43566,6 @@
               "defaultValue": null
             },
             {
-              "name": "latitude",
-              "description": "facility latitude",
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "longitude",
-              "description": "facility longitude",
-              "type": {
-                "kind": "SCALAR",
-                "name": "BigFloat",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "naicsClassification",
-              "description": "description of the naics code",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "naicsCode",
-              "description": "The NAICS code / sector",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "organisationId",
               "description": "the id of the organization responsible for that facility",
               "type": {
@@ -44120,16 +43578,6 @@
             {
               "name": "reportId",
               "description": "report id from swrs",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "reportingYear",
-              "description": "the reporting year",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
