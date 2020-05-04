@@ -17,7 +17,7 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
     incentiveProduct,
     benchmark,
     eligibilityThreshold,
-    carbonTax,
+    incrementalCarbonTax,
     emissionIntensity
   } = ciipIncentiveByProduct;
 
@@ -25,7 +25,7 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
   1 - \\left({ ${emissionIntensity} - ${benchmark}
     \\over
     ${eligibilityThreshold} - ${benchmark}
-  }\\right) \\times ${carbonTax}`;
+  }\\right) \\times ${incrementalCarbonTax}`;
 
   return (
     <tr>
@@ -61,7 +61,7 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
   ciipIncentiveByProduct: graphql`
     fragment IncentiveSegmentContainer_ciipIncentiveByProduct on CiipIncentiveByProduct {
       productName
-      carbonTax
+      incrementalCarbonTax
       emissionIntensity
       incentiveProduct
       benchmark

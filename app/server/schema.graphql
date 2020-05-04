@@ -1841,12 +1841,12 @@ enum CiipFormResultStatus {
 
 type CiipIncentiveByProduct {
   benchmark: BigFloat
-  carbonTax: BigFloat
   eligibilityThreshold: BigFloat
   emissionIntensity: BigFloat
   incentiveMultiplier: BigFloat
   incentiveProduct: BigFloat
   incentiveRatio: BigFloat
+  incrementalCarbonTax: BigFloat
   paymentAllocationFactor: BigFloat
   productAmount: BigFloat
   productEmissions: BigFloat
