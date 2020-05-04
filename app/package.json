@@ -189,7 +189,7 @@
     "babel-preset-react-app": "^9.1.2",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
-    "cypress": "^4.4.1",
+    "cypress": "^4.5.0",
     "cypress-axe": "^0.8.1",
     "cypress-plugin-retries": "^1.5.2",
     "cz-conventional-changelog": "3.0.2",
