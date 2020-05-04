@@ -16,6 +16,7 @@ import moment from 'moment-timezone';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
 import updateProductMutation from 'mutations/product/updateProductMutation';
+import {CiipProductState} from 'updateProductMutation.graphql';
 import editBenchmarkMutation from 'mutations/benchmark/editBenchmarkMutation';
 import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
@@ -162,7 +163,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const setArchived = async () => {
     const variables = {
       input: {
-        productState: 'archived'
+        id: product.id,
+        productPatch: {
+          productState: 'ARCHIVED' as CiipProductState
+        }
       }
     };
     const response = await updateProductMutation(relay.environment, variables);
@@ -174,23 +178,28 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const editProduct = async (e: IChangeEvent) => {
     const variables = {
       input: {
-        productName: e.formData.name,
-        productDescription: e.formData.description,
-        units: e.formData.units,
-        requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
-        isCiipProduct: e.formData.isCiipProduct,
-        addPurchasedElectricityEmissions:
-          e.formData.addPurchasedElectricityEmissions,
-        subtractExportedElectricityEmissions:
-          e.formData.subtractExportedElectricityEmissions,
-        addPurchasedHeatEmissions: e.formData.addPurchasedHeatEmissions,
-        subtractExportedHeatEmissions: e.formData.subtractExportedHeatEmissions,
-        subtractGeneratedElectricityEmissions:
-          e.formData.subtractGeneratedElectricityEmissions,
-        subtractGeneratedHeatEmissions:
-          e.formData.subtractGeneratedHeatEmissions,
-        requiresProductAmount: e.formData.requiresProductAmount,
-        addEmissionsFromEios: e.formData.addEmissionsFromEios
+        id: product.id,
+        productPatch: {
+          productName: e.formData.name,
+          productDescription: e.formData.description,
+          units: e.formData.units,
+          productState: product.productState,
+          requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
+          isCiipProduct: e.formData.isCiipProduct,
+          addPurchasedElectricityEmissions:
+            e.formData.addPurchasedElectricityEmissions,
+          subtractExportedElectricityEmissions:
+            e.formData.subtractExportedElectricityEmissions,
+          addPurchasedHeatEmissions: e.formData.addPurchasedHeatEmissions,
+          subtractExportedHeatEmissions:
+            e.formData.subtractExportedHeatEmissions,
+          subtractGeneratedElectricityEmissions:
+            e.formData.subtractGeneratedElectricityEmissions,
+          subtractGeneratedHeatEmissions:
+            e.formData.subtractGeneratedHeatEmissions,
+          requiresProductAmount: e.formData.requiresProductAmount,
+          addEmissionsFromEios: e.formData.addEmissionsFromEios
+        }
       }
     };
     const response = await updateProductMutation(relay.environment, variables);
@@ -285,12 +294,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             ObjectFieldTemplate={FormObjectFieldTemplate}
             onSubmit={editProduct}
           >
-            {product.productState === 'draft' && (
+            {product.productState === 'DRAFT' && (
               <Button type="submit" variant="primary">
                 Save Product
               </Button>
             )}
-            {product.productState === 'published' && (
+            {product.productState === 'PUBLISHED' && (
               <Button variant="warning" onClick={setArchived}>
                 Archive Product
               </Button>
@@ -440,7 +449,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
         <td>{product.productState}</td>
         <td>
-          {product.productState === 'draft' && (
+          {product.productState === 'DRAFT' && (
             <Button variant="info" onClick={() => setModalShow(true)}>
               Edit
             </Button>
@@ -455,6 +464,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 export default createFragmentContainer(ProductRowItemComponent, {
   product: graphql`
     fragment ProductRowItemContainer_product on Product {
+      id
       rowId
       productName
       productDescription

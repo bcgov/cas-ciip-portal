@@ -51,7 +51,7 @@ class ProductsBenchmarks extends Component<Props> {
   static async getInitialProps() {
     return {
       variables: {
-        orderByField: 'name',
+        orderByField: 'product_name',
         direction: 'ASC'
       }
     };
@@ -148,7 +148,7 @@ class ProductsBenchmarks extends Component<Props> {
 
             <SearchTable
               query={query}
-              defaultOrderByField="name"
+              defaultOrderByField="product_name"
               defaultOrderByDisplay="Product"
             >
               {(props) => (

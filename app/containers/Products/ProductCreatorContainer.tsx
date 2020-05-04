@@ -6,6 +6,7 @@ import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import createProductMutation from 'mutations/product/createProductMutation';
+import {CiipProductState} from 'createProductMutation.graphql';
 import {JSONSchema6} from 'json-schema';
 import productSchema from './product-schema.json';
 
@@ -26,11 +27,10 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
     const variables = {
       input: {
         product: {
-          name: e.formData.name,
-          description: e.formData.description,
+          productName: e.formData.name,
+          productDescription: e.formData.description,
           units: e.formData.units,
-          state: 'active',
-          parent: [null],
+          productState: 'DRAFT' as CiipProductState,
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
           isCiipProduct: e.formData.isCiipProduct,
           addPurchasedElectricityEmissions:
