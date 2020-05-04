@@ -4,6 +4,6 @@ delete from ggircs_portal.ciip_user_organisation where user_id=6 and organisatio
 update ggircs_portal.application_revision set legal_disclaimer_accepted=false where application_id=2 and version_number=1;
 alter table ggircs_portal.ciip_user_organisation
   enable trigger _set_user_id;
-delete from ggircs_portal.product where name = 'non ciip';
+delete from ggircs_portal.product where product_name = 'non ciip';
 
 commit;
