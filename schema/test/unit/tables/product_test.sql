@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(15);
+select plan(17);
 
 create role test_superuser superuser;
 
@@ -12,6 +12,10 @@ select has_table(
   'ggircs_portal', 'product',
   'ggircs_portal.product should exist, and be a table'
 );
+
+-- Triggers
+select has_trigger('ggircs_portal', 'product', '_100_timestamps', 'product table has update timestamps trigger');
+select has_trigger('ggircs_portal', 'product', '_protect_read_only_products', 'product table has _protect_read_only_products trigger');
 
 -- Row level security tests --
 
@@ -50,7 +54,7 @@ select lives_ok(
   $$
     update ggircs_portal.product set product_name='admin changed' where id=1000;
   $$,
-    'ciip_administrator can change data in product table'
+    'ciip_administrator can change data in product table if status = draft'
 );
 
 select results_eq(
