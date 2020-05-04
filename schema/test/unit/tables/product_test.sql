@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(17);
+select plan(20);
 
 create role test_superuser superuser;
 
@@ -11,6 +11,31 @@ create role test_superuser superuser;
 select has_table(
   'ggircs_portal', 'product',
   'ggircs_portal.product should exist, and be a table'
+);
+
+-- Index
+select has_index(
+    'ggircs_portal', 'product', 'product_published_state_partial',
+    'product table should have partial index product_published_state_partial'
+);
+
+insert into ggircs_portal.product(product_name, product_state) values ('there can be only one', 'published');
+
+select throws_like(
+  $$
+  insert into ggircs_portal.product(product_name, product_state)
+    values ('there can be only one', 'published')
+  $$,
+  '%duplicate key value%',
+  'There can be only one product of the same name in published state'
+);
+
+select lives_ok(
+  $$
+  insert into ggircs_portal.product(product_name, product_state)
+    values ('there can be only one', 'draft'), ('there can be only one', 'archived')
+  $$,
+  'There can be multiple products of the same name in a non-published state'
 );
 
 -- Triggers
