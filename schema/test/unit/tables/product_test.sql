@@ -32,7 +32,7 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.product (id, name) overriding system value
+    insert into ggircs_portal.product (id, product_name) overriding system value
     values (1000, 'admin created');
   $$,
     'ciip_administrator can insert data in product table'
@@ -40,7 +40,7 @@ select lives_ok(
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.product where name='admin created'
+    select count(*) from ggircs_portal.product where product_name='admin created'
   $$,
     ARRAY[1::bigint],
     'Data was created by ciip_administrator'
@@ -48,14 +48,14 @@ select results_eq(
 
 select lives_ok(
   $$
-    update ggircs_portal.product set name='admin changed' where id=1000;
+    update ggircs_portal.product set product_name='admin changed' where id=1000;
   $$,
     'ciip_administrator can change data in product table'
 );
 
 select results_eq(
   $$
-    select count(*) from ggircs_portal.product where name='admin changed'
+    select count(*) from ggircs_portal.product where product_name='admin changed'
   $$,
     ARRAY[1::bigint],
     'Data was changed by ciip_administrator'
@@ -83,7 +83,7 @@ select results_eq(
 
 select throws_like(
   $$
-    insert into ggircs_portal.product (id, name) overriding system value
+    insert into ggircs_portal.product (id, product_name) overriding system value
     values (1001, 'denied');
   $$,
   'permission denied%',
@@ -92,7 +92,7 @@ select throws_like(
 
 select throws_like(
   $$
-    update ggircs_portal.product set name='denied' where id=1;
+    update ggircs_portal.product set product_name='denied' where id=1;
   $$,
   'permission denied%',
     'Industry User cannot update rows in table_product'
@@ -120,7 +120,7 @@ select results_eq(
 
 select throws_like(
   $$
-    insert into ggircs_portal.product (id, name) overriding system value
+    insert into ggircs_portal.product (id, product_name) overriding system value
     values (1001, 'denied');
   $$,
   'permission denied%',
@@ -129,7 +129,7 @@ select throws_like(
 
 select throws_like(
   $$
-    update ggircs_portal.product set name='denied' where id=1;
+    update ggircs_portal.product set product_name='denied' where id=1;
   $$,
   'permission denied%',
     'ciip_analyst cannot update rows in table_product'
