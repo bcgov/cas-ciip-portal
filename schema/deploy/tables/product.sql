@@ -5,11 +5,10 @@ begin;
 
 create table ggircs_portal.product (
   id integer primary key generated always as identity,
-  name varchar(1000) not null,
-  description varchar(10000),
+  product_name varchar(1000) not null,
+  product_description varchar(10000),
   units varchar(1000),
-  state varchar(1000),
-  parent integer ARRAY,
+  product_state ggircs_portal.ciip_product_state,
   requires_emission_allocation boolean not null default false,
   is_ciip_product boolean not null default true,
   requires_product_amount boolean not null default true,
@@ -74,8 +73,8 @@ $policy$;
 
 comment on table ggircs_portal.product is 'Table containing the information for a CIIP product';
 comment on column ggircs_portal.product.id is 'Unique ID for the product';
-comment on column ggircs_portal.product.name is 'The name of the product';
-comment on column ggircs_portal.product.description is 'The description of the product';
+comment on column ggircs_portal.product.product_name is 'The name of the product';
+comment on column ggircs_portal.product.product_description is 'The description of the product';
 comment on column ggircs_portal.product.units is 'The unit of measure for the product';
 comment on column ggircs_portal.product.requires_emission_allocation is 'Boolean value indicates if the product requires allocation of emissions';
 comment on column ggircs_portal.product.is_ciip_product is 'Boolean value indicates if the product is benchmarked and has an associated incentive';
@@ -87,8 +86,7 @@ comment on column ggircs_portal.product.subtract_exported_heat_emissions is  'Bo
 comment on column ggircs_portal.product.subtract_generated_electricity_emissions is  'Boolean value indicates if generated electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
 comment on column ggircs_portal.product.subtract_generated_heat_emissions is  'Boolean value indicates if generated heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
 comment on column ggircs_portal.product.add_emissions_from_eios is  'Boolean value indicates if EIO facility emissions should be added to the facility emissions when calculating the product emission intensity';
-comment on column ggircs_portal.product.state is 'The current state of the product within the lifecycle (created, split, merged, redefined, archived, unarchived)';
-comment on column ggircs_portal.product.parent is 'The parent ID(s) (previous state) of the product';
+comment on column ggircs_portal.product.product_state is 'The current state of the product within the lifecycle (draft, published, archived)';
 comment on column ggircs_portal.product.created_at is 'Creation date of row';
 comment on column ggircs_portal.product.created_by is 'Creator of row';
 comment on column ggircs_portal.product.updated_at is 'Updated date of row';
