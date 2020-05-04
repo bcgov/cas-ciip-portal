@@ -285,12 +285,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             ObjectFieldTemplate={FormObjectFieldTemplate}
             onSubmit={editProduct}
           >
-            {product.product_state === 'draft' && (
+            {product.productState === 'draft' && (
               <Button type="submit" variant="primary">
                 Save Product
               </Button>
             )}
-            {product.product_state === 'published' && (
+            {product.productState === 'published' && (
               <Button variant="warning" onClick={setArchived}>
                 Archive Product
               </Button>
@@ -433,14 +433,14 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   return (
     <>
       <tr>
-        <td>{product.product_name}</td>
-        <td>{product.product_description}</td>
+        <td>{product.productName}</td>
+        <td>{product.productDescription}</td>
         <td>{product.units}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
-        <td>{product.product_state}</td>
+        <td>{product.productState}</td>
         <td>
-          {product.product_state === 'draft' && (
+          {product.productState === 'draft' && (
             <Button variant="info" onClick={() => setModalShow(true)}>
               Edit
             </Button>
@@ -456,9 +456,9 @@ export default createFragmentContainer(ProductRowItemComponent, {
   product: graphql`
     fragment ProductRowItemContainer_product on Product {
       rowId
-      product_name
-      product_description
-      product_state
+      productName
+      productDescription
+      productState
       units
       requiresEmissionAllocation
       isCiipProduct

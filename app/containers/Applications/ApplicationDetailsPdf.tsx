@@ -227,7 +227,7 @@ export default createFragmentContainer(ApplicationDetailsPdf, {
         edges {
           node {
             rowId
-            name
+            productName
           }
         }
       }

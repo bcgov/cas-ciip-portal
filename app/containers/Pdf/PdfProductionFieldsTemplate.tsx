@@ -21,7 +21,7 @@ export const PdfProductionFieldsTemplate: React.FunctionComponent<Props> = ({
         {formData.productRowId
           ? query.allProducts.edges.find(
               ({node}) => node.rowId === formData.productRowId
-            ).node.name
+            ).node.productName
           : '[Not entered]'}
         {'\n'}
       </Text>
