@@ -146,7 +146,7 @@
     "nodemailer": "^6.4.5",
     "pg": "^8.0.3",
     "popper.js": "^1.15.0",
-    "postgraphile": "^4.5.5",
+    "postgraphile": "^4.7.0",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.1",
     "react-bootstrap-typeahead": "^4.2.2",
