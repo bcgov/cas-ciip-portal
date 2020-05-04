@@ -85,7 +85,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
-                and _product.name = 'Purchased electricity'
+                and _product.product_name = 'Purchased electricity'
             );
           end if;
           if product_data.subtract_exported_electricity_emissions then
@@ -94,7 +94,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
-                and _product.name = 'Exported electricity'
+                and _product.product_name = 'Exported electricity'
             );
           end if;
           if product_data.add_purchased_heat_emissions then
@@ -103,7 +103,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
-                and _product.name = 'Purchased heat'
+                and _product.product_name = 'Purchased heat'
             );
           end if;
           if product_data.subtract_exported_heat_emissions then
@@ -112,7 +112,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
-                and _product.name = 'Exported heat'
+                and _product.product_name = 'Exported heat'
             );
           end if;
           if product_data.add_emissions_from_eios then
@@ -121,7 +121,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
               from unnest(reported_products) p
               join ggircs_portal.product _product on
                 p.product_id = _product.id
-                and _product.name = 'Emissions from EIOs'
+                and _product.product_name = 'Emissions from EIOs'
             );
           end if;
         end if;
@@ -159,7 +159,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         select into product_return
           row_number() over (),
           product_data.id,
-          product_data.name,
+          product_data.product_name,
           product.product_amount,
           em_product,
           incentive_ratio,
