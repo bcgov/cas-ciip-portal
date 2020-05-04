@@ -6,22 +6,27 @@ begin;
 create or replace function ggircs_portal_private.protect_read_only_products()
   returns trigger as $$
     begin
-      if (new.product_state != 'draft'
-          and old.id != new.id
-          and old.product_name != new.product_name
-          and old.product_description != new.product_description
-          and old.units != new.units
-          and old.requires_emission_allocation != new.requires_emission_allocation
-          and old.is_ciip_product != new.is_ciip_product
-          and old.requires_emission_allocation != new.requires_emission_allocation
-          and old.add_purchased_electricity_emissions != new.add_purchased_electricity_emissions
-          and old.subtract_exported_electricity_emissions != new.subtract_exported_electricity_emissions
-          and old.add_purchased_heat_emissions != new.add_purchased_heat_emissions
-          and old.subtract_exported_heat_emissions != new.subtract_exported_heat_emissions
-          and old.subtract_generated_electricity_emissions != new.subtract_generated_electricity_emissions
-          and old.subtract_generated_heat_emissions != subtract_generated_heat_emissions
-          and old.add_emissions_from_eios != new.add_emissions_from_eios) then
-          raise exception 'Product row is read only. Only the product_state column of a product not in the draft state can be edited';
+      if (old.product_state = 'archived') then
+        raise exception 'Product row is read only. Archived products cannot be edited';
+      elsif (new.product_state != 'draft' and
+          (old.id != new.id
+          or old.product_name != new.product_name
+          or old.product_description != new.product_description
+          or old.units != new.units
+          or old.requires_emission_allocation != new.requires_emission_allocation
+          or old.is_ciip_product != new.is_ciip_product
+          or old.requires_emission_allocation != new.requires_emission_allocation
+          or old.add_purchased_electricity_emissions != new.add_purchased_electricity_emissions
+          or old.subtract_exported_electricity_emissions != new.subtract_exported_electricity_emissions
+          or old.add_purchased_heat_emissions != new.add_purchased_heat_emissions
+          or old.subtract_exported_heat_emissions != new.subtract_exported_heat_emissions
+          or old.subtract_generated_electricity_emissions != new.subtract_generated_electricity_emissions
+          or old.subtract_generated_heat_emissions != new.subtract_generated_heat_emissions
+          or old.add_emissions_from_eios != new.add_emissions_from_eios))
+          then
+            raise exception 'Product row is read only. A published product can only change its state to archived';
+      elsif (old.product_state = 'published' and new.product_state != 'archived') then
+        raise exception 'A published product cannot change back to draft state, can only change to archived state';
       end if;
       return new;
     end;
