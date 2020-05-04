@@ -3,7 +3,7 @@ import {FieldProps} from 'react-jsonschema-form';
 import {createFragmentContainer, graphql} from 'react-relay';
 import {EmissionCategoryRowIdField_query} from 'EmissionCategoryRowIdField_query.graphql';
 
-interface Props extends FieldProps<number> {
+export interface Props extends FieldProps<number> {
   query: EmissionCategoryRowIdField_query;
 }
 

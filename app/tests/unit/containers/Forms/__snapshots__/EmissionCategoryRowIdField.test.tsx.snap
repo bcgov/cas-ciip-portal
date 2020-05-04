@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The EmissionCategoryRowIdField component injects the category ids and names in the json schema 1`] = `
+<StringField
+  autofocus={false}
+  disabled={false}
+  errorSchema={null}
+  formContext={null}
+  formData={1}
+  idSchema={
+    Object {
+      "$id": "emissionCategoryRowId",
+    }
+  }
+  name="emissionCategoryRowId"
+  onBlur={[Function]}
+  onChange={[Function]}
+  readonly={false}
+  registry={
+    Object {
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": [Function],
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
+    }
+  }
+  required={true}
+  schema={
+    Object {
+      "enum": Array [
+        1,
+        2,
+      ],
+      "enumNames": Array [
+        "cat A",
+        "cat B",
+      ],
+      "title": "emission category",
+      "type": "number",
+    }
+  }
+  uiSchema={Object {}}
+/>
+`;
