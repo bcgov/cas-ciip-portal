@@ -8,7 +8,7 @@ create table ggircs_portal.product (
   product_name varchar(1000) not null,
   product_description varchar(10000),
   units varchar(1000),
-  product_state ggircs_portal.ciip_product_state,
+  product_state ggircs_portal.ciip_product_state default 'draft',
   requires_emission_allocation boolean not null default false,
   is_ciip_product boolean not null default true,
   requires_product_amount boolean not null default true,
@@ -34,6 +34,11 @@ create trigger _100_timestamps
   before insert or update on ggircs_portal.product
   for each row
   execute procedure ggircs_portal.update_timestamps();
+
+create trigger _protect_read_only_products
+  before update on ggircs_portal.product
+  for each row
+  execute procedure ggircs_portal.protect_read_only_products();
 
 do
 $grant$
