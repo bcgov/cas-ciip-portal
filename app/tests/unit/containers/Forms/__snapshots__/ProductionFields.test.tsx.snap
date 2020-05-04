@@ -30,10 +30,10 @@ exports[`The ProductionFields Component with active product should match the sna
         "edges": Array [
           Object {
             "node": Object {
+              "productState": "published",
               "requiresEmissionAllocation": true,
               "requiresProductAmount": true,
               "rowId": 1,
-              "state": "active",
               "units": "bar",
             },
           },
@@ -263,10 +263,10 @@ exports[`The ProductionFields Component with archived product should match the s
           "edges": Array [
             Object {
               "node": Object {
+                "productState": "archived",
                 "requiresEmissionAllocation": true,
                 "requiresProductAmount": true,
                 "rowId": 1,
-                "state": "archived",
                 "units": "bar",
               },
             },
