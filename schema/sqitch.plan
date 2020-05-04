@@ -56,7 +56,6 @@ swrs_functions/get_swrs_facility_data 2019-10-07T21:25:50Z Hamza Javed <hamza@bu
 swrs_functions/get_swrs_operator_contact_data 2019-10-07T21:28:12Z Hamza Javed <hamza@button.is> # Get operator contact data from SWRS via function
 swrs_functions/get_swrs_emission_data 2019-10-07T23:36:44Z Hamza Javed <hamza@button.is> # Get summarized emission data from swrs
 swrs_functions/get_swrs_fuel_data 2019-10-08T16:31:12Z Hamza Javed <hamza@button.is> # Get fuel data from swrs
-mutations/save_product_mutation_chain [tables/product tables/benchmark] 2019-10-16T19:01:28Z Dylan Leard <dylan@button.is> # Stored procedure to save a product in place of mutation chaining
 mutations/create_benchmark_mutation_chain [tables/benchmark] 2019-10-16T21:52:34Z Dylan Leard <dylan@button.is> # Stored procedure to save a benchmark instead of mutation chaining
 tables/fuel [schema_ggircs_portal] 2019-10-16T18:17:17Z Matthieu Foucault <matthieu@button.is> # add fuel table
 mutations/create_application_mutation_chain [tables/application] 2019-10-25T18:24:34Z Dylan Leard <dylan@button.is> # Mutation chain to create an application and create a pending application status
