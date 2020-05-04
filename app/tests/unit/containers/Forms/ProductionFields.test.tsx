@@ -18,7 +18,7 @@ describe('The ProductionFields Component with active product', () => {
           node: {
             rowId: 1,
             units: 'bar',
-            state: 'active',
+            productState: 'published',
             requiresEmissionAllocation: true,
             requiresProductAmount: true
           }
@@ -73,7 +73,7 @@ describe('The ProductionFields Component with archived product', () => {
           node: {
             rowId: 1,
             units: 'bar',
-            state: 'archived',
+            productState: 'archived',
             requiresEmissionAllocation: true,
             requiresProductAmount: true
           }
