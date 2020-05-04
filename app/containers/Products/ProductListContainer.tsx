@@ -44,12 +44,12 @@ export const ProductList: React.FunctionComponent<Props> = ({
     const allProducts = query.searchProducts.edges;
 
     const displayNameToColumnNameMap = {
-      Product: 'name',
-      Description: 'description',
+      Product: 'product_name',
+      Description: 'product_description',
       Units: 'units',
       'Benchmark (tCO2e/product units)': 'benchmark',
       'Elig. Threshold (tCO2e/product units)': 'eligibility_threshold',
-      Status: 'state'
+      Status: 'product_state'
     };
     const body = (
       <tbody>
