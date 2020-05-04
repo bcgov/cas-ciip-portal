@@ -38,7 +38,7 @@ create trigger _100_timestamps
 create trigger _protect_read_only_products
   before update on ggircs_portal.product
   for each row
-  execute procedure ggircs_portal.protect_read_only_products();
+  execute procedure ggircs_portal_private.protect_read_only_products();
 
 do
 $grant$
