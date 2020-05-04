@@ -1,5 +1,7 @@
 begin;
 
+alter table ggircs_portal.product disable trigger _protect_read_only_products;
+
 with rows as (
 insert into ggircs_portal.product(id, product_name, units, product_state, requires_emission_allocation, requires_product_amount)
 overriding system value
@@ -58,5 +60,7 @@ returning 1
 select setval from
 setval('ggircs_portal.product_id_seq', (select max(id) from ggircs_portal.product), true)
 where setval = 0;
+
+alter table ggircs_portal.product enable trigger _protect_read_only_products;
 
 commit;
