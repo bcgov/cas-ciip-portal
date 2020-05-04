@@ -27,8 +27,7 @@
       "xo-typescript",
       "xo-react",
       "plugin:jest/recommended",
-      "plugin:relay/recommended",
-      "plugin:cypress/recommended"
+      "plugin:relay/recommended"
     ],
     "plugins": [
       "jest",
@@ -103,6 +102,9 @@
       {
         "files": [
           "cypress/integration/*.spec.js"
+        ],
+        "extends": [
+          "plugin:cypress/recommended"
         ],
         "rules": {
           "jest/valid-expect-in-promise": 0,

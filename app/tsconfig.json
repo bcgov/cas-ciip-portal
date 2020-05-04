@@ -30,6 +30,7 @@
     ".next",
     ".s2i",
     "node_modules",
-    "static"
+    "static",
+    "cypress"
   ]
 }
