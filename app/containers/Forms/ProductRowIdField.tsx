@@ -29,8 +29,8 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
       ...props,
       schema: {
         ...props.schema,
-        enum: props.query.active.edges.map(({node}) => node.rowId),
-        enumNames: props.query.active.edges.map(({node}) => node.name)
+        enum: props.query.published.edges.map(({node}) => node.rowId),
+        enumNames: props.query.published.edges.map(({node}) => node.productName)
       },
       query: undefined
     }),
@@ -38,38 +38,42 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   );
 
   /**
-   * Contains all products, split into arrays of active / inactive product IDs and names.
+   * Contains all products, split into arrays of published / unpublished product IDs and names.
    */
   const allProducts = useMemo(
     () => ({
-      activeProductIds: props.query.active.edges.map(({node}) => node.rowId),
-      inactiveProductIds: [
+      publishedProductIds: props.query.published.edges.map(
+        ({node}) => node.rowId
+      ),
+      unpublishedProductIds: [
         ...props.query.archived.edges.map(({node}) => node.rowId),
-        ...props.query.deprecated.edges.map(({node}) => node.rowId)
+        ...props.query.draft.edges.map(({node}) => node.rowId)
       ],
-      inactiveProductNames: [
-        ...props.query.archived.edges.map(({node}) => node.name),
-        ...props.query.deprecated.edges.map(({node}) => node.name)
+      unpublishedProductNames: [
+        ...props.query.archived.edges.map(({node}) => node.productName),
+        ...props.query.draft.edges.map(({node}) => node.productName)
       ]
     }),
     [props]
   );
 
-  // Pass the fieldProps for an active product
+  // Pass the fieldProps for published product
   if (
-    allProducts.activeProductIds.includes(props.formData) ||
+    allProducts.publishedProductIds.includes(props.formData) ||
     props.formData === undefined
   )
     return <props.registry.fields.StringField {...fieldProps} />;
 
-  // Render a disabled text input for an inactive product
-  const inactiveIndex = allProducts.inactiveProductIds.indexOf(props.formData);
+  // Render a disabled text input for an unpublished product
+  const unpublishedIndex = allProducts.unpublishedProductIds.indexOf(
+    props.formData
+  );
   return (
     <div>
       <InputGroup className="mb-3">
         <InputGroup.Prepend>
           <InputGroup.Text>
-            {allProducts.inactiveProductNames[inactiveIndex]}
+            {allProducts.unpublishedProductNames[unpublishedIndex]}
           </InputGroup.Text>
         </InputGroup.Prepend>
       </InputGroup>
@@ -80,31 +84,31 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
 export default createFragmentContainer(ProductRowIdFieldComponent, {
   query: graphql`
     fragment ProductRowIdField_query on Query {
-      active: allProducts(condition: {state: "active"}) {
+      published: allProducts(condition: {productState: PUBLISHED}) {
         edges {
           node {
             rowId
-            name
-            state
+            productName
+            productState
           }
         }
       }
-      archived: allProducts(condition: {state: "archived"}) {
+      archived: allProducts(condition: {productState: ARCHIVED}) {
         edges {
           node {
             rowId
-            name
-            state
+            productName
+            productState
           }
         }
       }
       # Todo: Remove when deprecated products are removed
-      deprecated: allProducts(condition: {state: "deprecated"}) {
+      draft: allProducts(condition: {productState: DRAFT}) {
         edges {
           node {
             rowId
-            name
-            state
+            productName
+            productState
           }
         }
       }

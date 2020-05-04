@@ -27,11 +27,11 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
 ) => {
   const {formData, query, onChange} = props;
 
-  const productIsActive = (formData, query) => {
+  const productIsPublished = (formData, query) => {
     const product = query.allProducts.edges.find(
       ({node}) => node.rowId === formData.productRowId
     )?.node;
-    if (product?.state === 'active' || !product) return true;
+    if (product?.product_state === 'published' || !product) return true;
     return false;
   };
 
@@ -53,7 +53,7 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     });
   };
 
-  return productIsActive(formData, query) ? (
+  return productIsPublished(formData, query) ? (
     <ObjectField {...props} onChange={handleChange} />
   ) : (
     <>
@@ -75,7 +75,7 @@ export default createFragmentContainer(ProductFieldComponent, {
           node {
             rowId
             units
-            state
+            productState
             requiresEmissionAllocation
             requiresProductAmount
           }

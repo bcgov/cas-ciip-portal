@@ -11,9 +11,9 @@ const mutation = graphql`
     updateProduct(input: $input) {
       product {
         id
-        product_name
-        product_description
-        product_state
+        productName
+        productDescription
+        productState
       }
     }
   }
