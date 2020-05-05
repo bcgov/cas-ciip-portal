@@ -38,21 +38,19 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   );
 
   /**
-   * Contains all products, split into arrays of published / unpublished product IDs and names.
+   * Contains all products, split into arrays of published / archived product IDs and names.
    */
   const allProducts = useMemo(
     () => ({
       publishedProductIds: props.query.published.edges.map(
         ({node}) => node.rowId
       ),
-      unpublishedProductIds: [
-        ...props.query.archived.edges.map(({node}) => node.rowId),
-        ...props.query.draft.edges.map(({node}) => node.rowId)
-      ],
-      unpublishedProductNames: [
-        ...props.query.archived.edges.map(({node}) => node.productName),
-        ...props.query.draft.edges.map(({node}) => node.productName)
-      ]
+      archivedProductIds: props.query.archived.edges.map(
+        ({node}) => node.rowId
+      ),
+      archivedProductNames: props.query.archived.edges.map(
+        ({node}) => node.productName
+      )
     }),
     [props]
   );
@@ -64,16 +62,14 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   )
     return <props.registry.fields.StringField {...fieldProps} />;
 
-  // Render a disabled text input for an unpublished product
-  const unpublishedIndex = allProducts.unpublishedProductIds.indexOf(
-    props.formData
-  );
+  // Render a disabled text input for an archived product
+  const archivedIndex = allProducts.archivedProductIds.indexOf(props.formData);
   return (
     <div>
       <InputGroup className="mb-3">
         <InputGroup.Prepend>
           <InputGroup.Text>
-            {allProducts.unpublishedProductNames[unpublishedIndex]}
+            {allProducts.archivedProductNames[archivedIndex]}
           </InputGroup.Text>
         </InputGroup.Prepend>
       </InputGroup>
@@ -94,16 +90,6 @@ export default createFragmentContainer(ProductRowIdFieldComponent, {
         }
       }
       archived: allProducts(condition: {productState: ARCHIVED}) {
-        edges {
-          node {
-            rowId
-            productName
-            productState
-          }
-        }
-      }
-      # Todo: Remove when deprecated products are removed
-      draft: allProducts(condition: {productState: DRAFT}) {
         edges {
           node {
             rowId

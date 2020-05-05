@@ -45,7 +45,6 @@ export const ProductList: React.FunctionComponent<Props> = ({
 
     const displayNameToColumnNameMap = {
       Product: 'product_name',
-      Description: 'product_description',
       Units: 'units',
       'Benchmark (tCO2e/product units)': 'benchmark',
       'Elig. Threshold (tCO2e/product units)': 'eligibility_threshold',

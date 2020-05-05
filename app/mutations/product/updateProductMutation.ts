@@ -12,7 +12,6 @@ const mutation = graphql`
       product {
         id
         productName
-        productDescription
         productState
       }
     }
