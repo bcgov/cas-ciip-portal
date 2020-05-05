@@ -9,7 +9,6 @@ delete from ggircs_portal.product;
 insert into ggircs_portal.product(
   id,
   product_name,
-  product_description,
   units,
   product_state,
   requires_emission_allocation,
@@ -20,8 +19,8 @@ insert into ggircs_portal.product(
 )
 overriding system value
 values
-(1, 'Product A', 'Description A', 'tonnes','published', true, true, true, true, true),
-(2, 'Product B', 'Description B', 'cubic meters', 'published', true, true, true, true, true);
+(1, 'Product A', 'tonnes','published', true, true, true, true, true),
+(2, 'Product B', 'cubic meters', 'published', true, true, true, true, true);
 
 insert into ggircs_portal.benchmark(
   id,

@@ -9579,16 +9579,13 @@ type Product implements Node {
   """
   isCiipProduct: Boolean!
 
-  """The description of the product"""
-  productDescription: String
-
   """The name of the product"""
   productName: String!
 
   """
   The current state of the product within the lifecycle (draft, published, archived)
   """
-  productState: CiipProductState
+  productState: CiipProductState!
 
   """
   Boolean value indicates if the product requires allocation of emissions
@@ -9672,9 +9669,6 @@ input ProductCondition {
 
   """Checks for equality with the object’s `isCiipProduct` field."""
   isCiipProduct: Boolean
-
-  """Checks for equality with the object’s `productDescription` field."""
-  productDescription: String
 
   """Checks for equality with the object’s `productName` field."""
   productName: String
@@ -9761,9 +9755,6 @@ input ProductInput {
   Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean
-
-  """The description of the product"""
-  productDescription: String
 
   """The name of the product"""
   productName: String!
@@ -9861,9 +9852,6 @@ input ProductPatch {
   Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean
-
-  """The description of the product"""
-  productDescription: String
 
   """The name of the product"""
   productName: String
@@ -9970,8 +9958,6 @@ enum ProductsOrderBy {
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
-  PRODUCT_DESCRIPTION_ASC
-  PRODUCT_DESCRIPTION_DESC
   PRODUCT_NAME_ASC
   PRODUCT_NAME_DESC
   PRODUCT_STATE_ASC
