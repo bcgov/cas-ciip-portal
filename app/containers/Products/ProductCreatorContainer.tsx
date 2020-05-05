@@ -28,7 +28,6 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
       input: {
         product: {
           productName: e.formData.name,
-          productDescription: e.formData.description,
           units: e.formData.units,
           productState: 'DRAFT' as CiipProductState,
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,

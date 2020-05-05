@@ -28,7 +28,7 @@ returns setof ggircs_portal.product as
                     left join ggircs_portal.benchmark as b on p.id = b.product_id
                   )
                   select
-                    id, product_name, product_description, units,
+                    id, product_name, units,
                     product_state, requires_emission_allocation, is_ciip_product, requires_product_amount, subtract_exported_electricity_emissions, subtract_exported_electricity_emissions, subtract_exported_heat_emissions, subtract_exported_heat_emissions,
                     subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
                     from outerTable
@@ -52,7 +52,7 @@ returns setof ggircs_portal.product as
                 left join ggircs_portal.benchmark as b on p.id = b.product_id
               )
               select
-                id, product_name, product_description, units, product_state,
+                id, product_name, units, product_state,
                 requires_emission_allocation, is_ciip_product, requires_product_amount, subtract_exported_electricity_emissions, subtract_exported_electricity_emissions, subtract_exported_heat_emissions, subtract_exported_heat_emissions,
                 subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by from outerTable
               where
