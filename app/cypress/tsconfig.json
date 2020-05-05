@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "exclude": [
+    ".next",
+    ".s2i",
+    "node_modules",
+    "static"
+  ]
+}

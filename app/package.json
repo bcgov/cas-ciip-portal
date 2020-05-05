@@ -101,11 +101,14 @@
     "overrides": [
       {
         "files": [
-          "cypress/integration/*.spec.js"
+          "cypress/**/*.js"
         ],
         "extends": [
           "plugin:cypress/recommended"
         ],
+        "parserOptions": {
+          "project": "cypress/tsconfig.json"
+        },
         "rules": {
           "jest/valid-expect-in-promise": 0,
           "promise/prefer-await-to-then": 0,
