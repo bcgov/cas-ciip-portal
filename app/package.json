@@ -185,7 +185,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-macros": "^2.8.0",
     "babel-plugin-module-resolver": "^4.0.0",
-    "babel-plugin-relay": "^9.0.0",
+    "babel-plugin-relay": "^9.1.0",
     "babel-preset-react-app": "^9.1.2",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
