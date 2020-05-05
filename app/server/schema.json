@@ -12192,18 +12192,6 @@
               "deprecationReason": null
             },
             {
-              "name": "productDescription",
-              "description": "The description of the product",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "productName",
               "description": "The name of the product",
               "args": [],
@@ -12224,9 +12212,13 @@
               "description": "The current state of the product within the lifecycle (draft, published, archived)",
               "args": [],
               "type": {
-                "kind": "ENUM",
-                "name": "CiipProductState",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "CiipProductState",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -22178,16 +22170,6 @@
               "defaultValue": null
             },
             {
-              "name": "productDescription",
-              "description": "Checks for equality with the object’s `productDescription` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "productName",
               "description": "Checks for equality with the object’s `productName` field.",
               "type": {
@@ -22442,18 +22424,6 @@
             },
             {
               "name": "PRIMARY_KEY_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PRODUCT_DESCRIPTION_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "PRODUCT_DESCRIPTION_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -34615,16 +34585,6 @@
               "defaultValue": null
             },
             {
-              "name": "productDescription",
-              "description": "The description of the product",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "productName",
               "description": "The name of the product",
               "type": {
@@ -45720,16 +45680,6 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "productDescription",
-              "description": "The description of the product",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               },
               "defaultValue": null

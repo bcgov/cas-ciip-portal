@@ -11,7 +11,6 @@ create or replace function ggircs_portal_private.protect_read_only_products()
       elsif (new.product_state != 'draft' and
           (old.id != new.id
           or old.product_name != new.product_name
-          or old.product_description != new.product_description
           or old.units != new.units
           or old.requires_emission_allocation != new.requires_emission_allocation
           or old.is_ciip_product != new.is_ciip_product

@@ -6,9 +6,8 @@ begin;
 create table ggircs_portal.product (
   id integer primary key generated always as identity,
   product_name varchar(1000) not null,
-  product_description varchar(10000),
   units varchar(1000),
-  product_state ggircs_portal.ciip_product_state default 'draft',
+  product_state ggircs_portal.ciip_product_state not null default 'draft',
   requires_emission_allocation boolean not null default false,
   is_ciip_product boolean not null default true,
   requires_product_amount boolean not null default true,
@@ -82,7 +81,6 @@ $policy$;
 comment on table ggircs_portal.product is 'Table containing the information for a CIIP product';
 comment on column ggircs_portal.product.id is 'Unique ID for the product';
 comment on column ggircs_portal.product.product_name is 'The name of the product';
-comment on column ggircs_portal.product.product_description is 'The description of the product';
 comment on column ggircs_portal.product.units is 'The unit of measure for the product';
 comment on column ggircs_portal.product.requires_emission_allocation is 'Boolean value indicates if the product requires allocation of emissions';
 comment on column ggircs_portal.product.is_ciip_product is 'Boolean value indicates if the product is benchmarked and has an associated incentive';

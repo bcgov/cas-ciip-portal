@@ -181,7 +181,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         id: product.id,
         productPatch: {
           productName: e.formData.name,
-          productDescription: e.formData.description,
           units: e.formData.units,
           productState: product.productState,
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
@@ -443,7 +442,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     <>
       <tr>
         <td>{product.productName}</td>
-        <td>{product.productDescription}</td>
         <td>{product.units}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
@@ -467,7 +465,6 @@ export default createFragmentContainer(ProductRowItemComponent, {
       id
       rowId
       productName
-      productDescription
       productState
       units
       requiresEmissionAllocation
