@@ -56,13 +56,13 @@ begin;
   ('[
     {
       "fuelRowId": 13,
-      "quantity": 40,
+      "quantity": 10,
       "fuelUnits": "t",
       "emissionCategoryRowId": 1
     },
     {
       "fuelRowId": 11,
-      "quantity": 400012,
+      "quantity": 40120,
       "fuelUnits": "kL",
       "emissionCategoryRowId": 3
     }
