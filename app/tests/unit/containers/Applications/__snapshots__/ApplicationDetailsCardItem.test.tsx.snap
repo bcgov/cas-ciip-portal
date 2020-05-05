@@ -70,6 +70,7 @@ exports[`ApplicationDetailsCardItemComponent should render the individual summar
             "NumberField": [Function],
             "StringField": [Function],
             "TitleField": [Function],
+            "emissionCategoryRowId": [Function],
             "emissionGas": [Function],
             "emissionSource": [Function],
             "fuel": [Function],

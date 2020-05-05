@@ -27,8 +27,7 @@
       "xo-typescript",
       "xo-react",
       "plugin:jest/recommended",
-      "plugin:relay/recommended",
-      "plugin:cypress/recommended"
+      "plugin:relay/recommended"
     ],
     "plugins": [
       "jest",
@@ -102,8 +101,14 @@
     "overrides": [
       {
         "files": [
-          "cypress/integration/*.spec.js"
+          "cypress/**/*.js"
         ],
+        "extends": [
+          "plugin:cypress/recommended"
+        ],
+        "parserOptions": {
+          "project": "cypress/tsconfig.json"
+        },
         "rules": {
           "jest/valid-expect-in-promise": 0,
           "promise/prefer-await-to-then": 0,

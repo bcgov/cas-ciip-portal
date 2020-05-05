@@ -19,9 +19,13 @@
           "fuelUnits": {
             "title": "Units",
             "type": "string"
+          },
+          "emissionCategoryRowId": {
+            "title": "Emission Category",
+            "type": "number"
           }
         },
-        "required": ["fuelRowId", "quantity", "fuelUnits"]
+        "required": ["fuelRowId", "quantity", "fuelUnits","emissionCategoryRowId"]
       }
     }
   },
@@ -30,7 +34,7 @@
     "ui:remove-text": "Remove fuel",
     "items": {
       "ui:field": "fuel",
-      "ui:order": ["fuelRowId", "quantity", "fuelUnits"],
+      "ui:order": ["fuelRowId", "quantity", "fuelUnits","emissionCategoryRowId"],
       "fuelRowId": {
         "ui:widget": "SearchWidget",
         "ui:field": "fuelRowId",
@@ -42,6 +46,9 @@
       },
       "quantity": {
         "ui:col-md": 4
+      },
+      "emissionCategoryRowId": {
+        "ui:field": "emissionCategoryRowId"
       }
     }
   }

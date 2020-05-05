@@ -7685,8 +7685,10 @@ type FuelDatum {
   annualFuelAmount: BigFloat
   annualWeightedAvgCarbonContent: BigFloat
   annualWeightedAvgHhv: BigFloat
+  emissionCategory: String
   fuelClassification: String
   fuelDescription: String
+  fuelId: Int
   fuelType: String
   fuelUnits: String
   reportId: Int

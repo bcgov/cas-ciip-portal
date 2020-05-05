@@ -1,14 +1,26 @@
 describe('When reviewing a submitted application as an analyst', () => {
+  const applicationUrl = `/reporter/ciip-application?applicationId=${window.btoa(
+    '["applications",1]'
+  )}&version=1`;
+
+  const adminFormUrl = `${applicationUrl}&formResultId=${window.btoa(
+    '["form_results",1]'
+  )}`;
+  const emissionFormUrl = `${applicationUrl}&formResultId=${window.btoa(
+    '["form_results",2]'
+  )}`;
+  const fuelFormUrl = `${applicationUrl}&formResultId=${window.btoa(
+    '["form_results",3]'
+  )}`;
+  const productionFormUrl = `${applicationUrl}&formResultId=${window.btoa(
+    '["form_results",4]'
+  )}`;
+
   beforeEach(() => {
     cy.sqlFixture('fixtures/form-validation-setup');
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
-    );
-    const applicationId = window.btoa('["applications", 2]');
-    const formResultId = window.btoa('["form_results", 9]');
-    cy.visit(
-      `/reporter/ciip-application?applicationId=${applicationId}&version=1&formResultId=${formResultId}`
     );
   });
 
@@ -17,6 +29,7 @@ describe('When reviewing a submitted application as an analyst', () => {
   });
 
   it('The application admin form shows validation errors', () => {
+    cy.visit(adminFormUrl);
     cy.get('#page-content');
 
     // Operator details
@@ -76,7 +89,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get(
       '#root_facility_isFacilityLocationDifferent .radio label span input[type=radio]'
     )
-      .first()
+      .last()
       .check();
 
     cy.contains('Continue').click();
@@ -94,27 +107,38 @@ describe('When reviewing a submitted application as an analyst', () => {
     ).contains('Format should be A1A 1A1');
 
     cy.percySnapshot('admin');
+
+    // Fix invalid data
     cy.get('#root_operator_duns').clear().type('111222333');
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
       .clear()
       .type('A1A 1A1');
+    cy.get('#root_operator_bcCorporateRegistryNumber')
+      .clear()
+      .type('LLC1234567');
     cy.contains('Continue').click();
+    cy.get('#page-content h1').contains('Emission');
   });
 
   it('The application emissions form shows validation errors', () => {
     // Emission Form
-    cy.get(':nth-child(2) > .nav-link').click();
+    cy.visit(emissionFormUrl);
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').clear();
     cy.contains('Continue').click(); // Try to submit the form
     cy.get(
       '#root_sourceTypes_0_gases_0_annualEmission +div .error-detail'
     ).contains('is a required property');
     cy.percySnapshot('Emissions form');
+
+    // Fix invalid data
+    cy.get('#root_sourceTypes_0_gases_0_annualEmission').type('42');
+    cy.contains('Continue').click();
+    cy.get('#page-content h1').contains('Fuel');
   });
 
   it('The application fuels form shows validation errors', () => {
     // Fuel Form
-    cy.get(':nth-child(3) > .nav-link').click();
+    cy.visit(fuelFormUrl);
     cy.contains('Add a fuel').click();
     cy.contains('Continue').click();
     cy.get('#root_0_fuelUnits +div .error-detail').contains(
@@ -123,13 +147,25 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_0_quantity +div .error-detail').contains(
       'is a required property'
     );
-
+    cy.get('#root_0_emissionCategoryRowId +div .error-detail').contains(
+      'is a required property'
+    );
     cy.percySnapshot('fuel');
+
+    // Fix invalid data
+    cy.get('#root_0_fuelRowId').type('Diesel');
+    cy.get('#root_0_fuelRowId-item-1 > .dropdown-item').click();
+    cy.get('#root_0_quantity').type('42');
+    cy.get('#root_0_emissionCategoryRowId').select(
+      'General Stationary Combustion'
+    );
+    cy.contains('Continue').click();
+    cy.get('#page-content h1').contains('Production');
   });
 
   it('The application production form shows validation errors', () => {
     // Production Form
-    cy.get(':nth-child(4) > .nav-link').click();
+    cy.visit(productionFormUrl);
     cy.contains('Continue').click();
     cy.get('.rbt +div .error-detail').contains('is a required property');
     cy.get('#root_0_productRowId').click();
@@ -142,5 +178,14 @@ describe('When reviewing a submitted application as an analyst', () => {
       'is a required property'
     );
     cy.percySnapshot('production');
+
+    // Fix invalid data
+    cy.get('#root_0_productRowId').clear().type('Aluminum');
+    cy.get('.dropdown-item').click();
+    cy.get('#root_0_productAmount').type('123');
+    cy.get('#root_0_productEmissions').type('456');
+
+    cy.contains('Continue').click();
+    cy.get('#page-content h1').contains('Summary');
   });
 });

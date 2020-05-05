@@ -333,14 +333,17 @@ update ggircs_portal.form_result set form_result = '[
   {
     "fuelRowId": 11,
     "quantity": 10,
-    "fuelUnits": "t"
-  }, {
+    "fuelUnits": "t",
+    "emissionCategoryRowId": 1
+  },
+  {
     "fuelRowId": 13,
     "quantity": 40120,
-    "fuelUnits": "kL"
-  }]
-  '
-  where application_id=2 and version_number=1 and form_id=3;
+    "fuelUnits": "kL",
+    "emissionCategoryRowId": 3
+  }
+]'
+where application_id=2 and version_number=1 and form_id=3;
 
 update ggircs_portal.form_result set form_result = '[
     {

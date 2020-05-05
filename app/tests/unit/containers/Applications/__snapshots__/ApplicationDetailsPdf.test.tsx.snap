@@ -882,6 +882,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
+                    "emissionCategoryRowId": -40000000,
                     "fuelRowId": -60000000,
                     "fuelUnits": "in qui",
                     "quantity": -20000000,
@@ -898,6 +899,10 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "definitions": Object {
                     "fuel": Object {
                       "properties": Object {
+                        "emissionCategoryRowId": Object {
+                          "title": "Emission Category",
+                          "type": "number",
+                        },
                         "fuelRowId": Object {
                           "title": "Fuel Name",
                           "type": "number",
@@ -915,6 +920,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "fuelRowId",
                         "quantity",
                         "fuelUnits",
+                        "emissionCategoryRowId",
                       ],
                       "type": "object",
                     },
@@ -930,6 +936,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "items": Object {
+                    "emissionCategoryRowId": Object {
+                      "ui:field": "emissionCategoryRowId",
+                    },
                     "fuelRowId": Object {
                       "ui:col-md": 6,
                       "ui:field": "fuelRowId",
@@ -947,6 +956,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "fuelRowId",
                       "quantity",
                       "fuelUnits",
+                      "emissionCategoryRowId",
                     ],
                   },
                   "ui:add-text": "Add a fuel",
@@ -1022,14 +1032,17 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "productAmount": -40000000,
-                    "productRowId": -60000000,
-                    "productUnits": "culpa",
+                    "productRowId": 0,
                     "requiresEmissionAllocation": false,
-                    "requiresProductAmount": true,
+                    "requiresProductAmount": false,
                   },
                   Object {
-                    "productRowId": 0,
+                    "productRowId": -40000000,
+                    "requiresEmissionAllocation": false,
+                    "requiresProductAmount": false,
+                  },
+                  Object {
+                    "productRowId": -40000000,
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },
