@@ -12136,18 +12136,6 @@
               "deprecationReason": null
             },
             {
-              "name": "currentBenchmark",
-              "description": "Computed column returns the current benchmark for a product",
-              "args": [],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Benchmark",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "deletedAt",
               "description": "Date of deletion",
               "args": [],

@@ -9501,9 +9501,6 @@ type Product implements Node {
   """Creator of row"""
   createdBy: Int
 
-  """Computed column returns the current benchmark for a product"""
-  currentBenchmark: Benchmark
-
   """Date of deletion"""
   deletedAt: Datetime
 
