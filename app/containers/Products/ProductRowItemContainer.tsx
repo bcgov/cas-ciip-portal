@@ -17,7 +17,7 @@ import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.g
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
 import updateProductMutation from 'mutations/product/updateProductMutation';
 import {CiipProductState} from 'updateProductMutation.graphql';
-import editBenchmarkMutation from 'mutations/benchmark/editBenchmarkMutation';
+import updateBenchmarkMutation from 'mutations/benchmark/updateBenchmarkMutation';
 import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
@@ -222,7 +222,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  const updateCurrentBenchmark = async ({formData}: IChangeEvent) => {
+  const editBenchmark = async ({formData}: IChangeEvent) => {
     const variables = {
       input: {
         id: currentBenchmark.id,
@@ -231,7 +231,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         }
       }
     };
-    const response = await editBenchmarkMutation(relay.environment, variables);
+    const response = await updateBenchmarkMutation(
+      relay.environment,
+      variables
+    );
     console.log(response);
   };
 
@@ -248,7 +251,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         }
       }
     };
-    const response = await editBenchmarkMutation(relay.environment, variables);
+    const response = await updateBenchmarkMutation(
+      relay.environment,
+      variables
+    );
     console.log(response);
   };
 
@@ -332,7 +338,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
             onSubmit={
-              currentBenchmark ? updateCurrentBenchmark : createBenchmark
+              product.productState === 'DRAFT' ? editBenchmark : createBenchmark
             }
           >
             <Button type="submit">Save</Button>
