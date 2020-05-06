@@ -55,28 +55,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   updateProductCount,
   productCount
 }) => {
-  const {reportingYear: nextReportingYear} = query.nextReportingYear;
+  const currentBenchmark = product.benchmarksByProductId?.edges[0]?.node;
 
-  const currentBenchmark = useMemo(() => {
-    return product.benchmarksByProductId.edges.find(({node: benchmark}) => {
-      return (
-        !benchmark.deletedAt &&
-        benchmark.startReportingYear <= nextReportingYear &&
-        benchmark.endReportingYear >= nextReportingYear
-      );
-    })?.node;
-  }, [product.benchmarksByProductId.edges, nextReportingYear]);
-
-  const pastBenchmarks = useMemo(
-    () =>
-      product.benchmarksByProductId.edges
-        .filter(
-          ({node}) =>
-            !node.deletedAt && node.endReportingYear < nextReportingYear
-        )
-        .map(({node}) => node),
-    [nextReportingYear, product.benchmarksByProductId.edges]
-  );
+  const pastBenchmarks = product.benchmarksByProductId?.edges.slice(1);
 
   // Schema for ProductRowItemContainer
   const benchmarkSchema = useMemo<JSONSchema6>(() => {
@@ -377,7 +358,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     </Modal>
   );
 
-  console.log(product);
   return (
     <>
       <tr>
@@ -417,7 +397,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
       addEmissionsFromEios
       requiresProductAmount
       updatedAt
-      benchmarksByProductId {
+      benchmarksByProductId(orderBy: CREATED_AT_DESC) {
         edges {
           node {
             id
