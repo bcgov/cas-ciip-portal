@@ -441,3 +441,211 @@ exports[`The ProductionFields Component with archived product should match the s
   />
 </Fragment>
 `;
+
+exports[`The ProductionFields Component with published product should match the snapshot when rendering a product 1`] = `
+<ObjectField
+  autofocus={false}
+  disabled={false}
+  errorSchema={null}
+  formContext={Object {}}
+  formData={
+    Object {
+      "productAmount": 456,
+      "productEmissions": 123,
+      "productRowId": 1,
+      "productUnits": "bar",
+      "requiresEmissionAllocation": true,
+    }
+  }
+  idSchema={
+    Object {
+      "$id": "product_0",
+    }
+  }
+  name="product"
+  onBlur={[MockFunction]}
+  onChange={[Function]}
+  query={
+    Object {
+      " $refType": "ProductField_query",
+      "allProducts": Object {
+        "edges": Array [
+          Object {
+            "node": Object {
+              "productState": "PUBLISHED",
+              "requiresEmissionAllocation": true,
+              "requiresProductAmount": true,
+              "rowId": 1,
+              "units": "bar",
+            },
+          },
+        ],
+      },
+    }
+  }
+  readonly={false}
+  registry={
+    Object {
+      "ArrayFieldTemplate": [Function],
+      "FieldTemplate": [Function],
+      "ObjectFieldTemplate": [Function],
+      "definitions": Object {},
+      "fields": Object {
+        "AnyOfField": [Function],
+        "ArrayField": [Function],
+        "BooleanField": [Function],
+        "DescriptionField": [Function],
+        "NullField": [Function],
+        "NumberField": [Function],
+        "ObjectField": [Function],
+        "OneOfField": [Function],
+        "SchemaField": [Function],
+        "StringField": [Function],
+        "TitleField": [Function],
+        "UnsupportedField": [Function],
+      },
+      "formContext": Object {},
+      "widgets": Object {
+        "AltDateTimeWidget": [Function],
+        "AltDateWidget": [Function],
+        "BaseInput": [Function],
+        "CheckboxWidget": [Function],
+        "CheckboxesWidget": [Function],
+        "ColorWidget": [Function],
+        "DateTimeWidget": [Function],
+        "DateWidget": [Function],
+        "EmailWidget": [Function],
+        "FileWidget": [Function],
+        "HiddenWidget": [Function],
+        "PasswordWidget": [Function],
+        "RadioWidget": [Function],
+        "RangeWidget": [Function],
+        "SelectWidget": [Function],
+        "TextWidget": [Function],
+        "TextareaWidget": [Function],
+        "URLWidget": [Function],
+        "UpDownWidget": [Function],
+      },
+    }
+  }
+  required={false}
+  schema={
+    Object {
+      "dependencies": Object {
+        "requiresEmissionAllocation": Object {
+          "oneOf": Array [
+            Object {
+              "properties": Object {
+                "requiresEmissionAllocation": Object {
+                  "const": false,
+                },
+              },
+            },
+            Object {
+              "properties": Object {
+                "productEmissions": Object {
+                  "exclusiveMinimum": 0,
+                  "title": "Emissions allocated to product",
+                  "type": "number",
+                },
+                "requiresEmissionAllocation": Object {
+                  "const": true,
+                },
+              },
+              "required": Array [
+                "productEmissions",
+              ],
+            },
+          ],
+        },
+        "requiresProductAmount": Object {
+          "oneOf": Array [
+            Object {
+              "properties": Object {
+                "productAmount": Object {
+                  "title": "Annual Production Amount",
+                  "type": "number",
+                },
+                "productUnits": Object {
+                  "title": "Units",
+                  "type": "string",
+                },
+                "requiresProductAmount": Object {
+                  "const": true,
+                },
+              },
+              "required": Array [
+                "productAmount",
+                "productUnits",
+              ],
+            },
+            Object {
+              "properties": Object {
+                "requiresProductAmount": Object {
+                  "const": false,
+                },
+              },
+            },
+          ],
+        },
+      },
+      "properties": Object {
+        "productRowId": Object {
+          "title": "Product or Service",
+          "type": "integer",
+        },
+        "requiresEmissionAllocation": Object {
+          "type": "boolean",
+        },
+        "requiresProductAmount": Object {
+          "type": "boolean",
+        },
+      },
+      "required": Array [
+        "productRowId",
+        "requiresEmissionAllocation",
+        "requiresProductAmount",
+      ],
+      "type": "object",
+    }
+  }
+  uiSchema={
+    Object {
+      "items": Object {
+        "productAmount": Object {
+          "ui:col-md": 4,
+          "ui:help": "Report the annual production for the product, following the guidance document provided",
+        },
+        "productEmissions": Object {
+          "ui:col-md": 4,
+          "ui:help": "Report emissions associated to CIIP product, in tCO2e",
+        },
+        "productRowId": Object {
+          "ui:col-md": 12,
+          "ui:field": "productRowId",
+          "ui:widget": "SearchWidget",
+        },
+        "productUnits": Object {
+          "ui:col-md": 4,
+          "ui:readonly": true,
+        },
+        "requiresEmissionAllocation": Object {
+          "ui:widget": "hidden",
+        },
+        "requiresProductAmount": Object {
+          "ui:widget": "hidden",
+        },
+        "ui:field": "product",
+        "ui:order": Array [
+          "productRowId",
+          "productAmount",
+          "productUnits",
+          "*",
+        ],
+      },
+      "ui:add-text": "Add a Product",
+      "ui:remove-text": "Remove Product",
+    }
+  }
+/>
+`;
