@@ -39,7 +39,6 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
               from ggircs_portal.application a
               join applicationStatus s
               on a.id = s.application_id
-              and s.created_at = (select max(created_at) from applicationStatus)
           ),
 
           tempTable as (select f.*, ad.application_revision_status, ad.id as application_id, r.reporting_period_duration
