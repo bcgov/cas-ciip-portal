@@ -27,6 +27,7 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
 ) => {
   const {formData, query, onChange} = props;
 
+  // TODO: Clean up this function with array.some() as noted in https://github.com/bcgov/cas-ciip-portal/pull/621
   const productIsPublished = (formData, query) => {
     const product = query.allProducts.edges.find(
       ({node}) => node.rowId === formData.productRowId
