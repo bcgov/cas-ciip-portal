@@ -22,6 +22,8 @@ import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import productSchema from './product-schema.json';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTachometerAlt, faCube} from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   relay: RelayProp;
@@ -375,20 +377,20 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     </Modal>
   );
 
+  console.log(product);
   return (
     <>
       <tr>
         <td>{product.productName}</td>
-        <td>{product.units}</td>
+        <td>{product.updatedAt}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
+        <td>{product.requiresEmissionAllocation ? 'Yes' : 'No'}</td>
         <td>{product.productState}</td>
+        <td>{product.isCiipProduct ? 'Yes' : 'No'}</td>
         <td>
-          {product.productState === 'DRAFT' && (
-            <Button variant="info" onClick={() => setModalShow(true)}>
-              Edit
-            </Button>
-          )}
+          <FontAwesomeIcon icon={faTachometerAlt} /> ||{' '}
+          <FontAwesomeIcon icon={faCube} />
         </td>
       </tr>
       {editModal}
@@ -414,6 +416,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
       subtractGeneratedHeatEmissions
       addEmissionsFromEios
       requiresProductAmount
+      updatedAt
       benchmarksByProductId {
         edges {
           node {

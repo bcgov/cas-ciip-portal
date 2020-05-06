@@ -39,9 +39,9 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
                 }}
               />
             ))}
-            <th />
           </tr>
         </thead>
+        <th />
         {body}
       </Table>
     </>
