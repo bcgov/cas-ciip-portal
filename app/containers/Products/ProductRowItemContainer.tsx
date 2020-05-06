@@ -12,7 +12,6 @@ import {
 } from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
-import moment from 'moment-timezone';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
 import updateProductMutation from 'mutations/product/updateProductMutation';
@@ -22,7 +21,6 @@ import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import FutureBenchmarks from './FutureBenchmarks';
 import productSchema from './product-schema.json';
 
 interface Props {
@@ -73,17 +71,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         .filter(
           ({node}) =>
             !node.deletedAt && node.endReportingYear < nextReportingYear
-        )
-        .map(({node}) => node),
-    [nextReportingYear, product.benchmarksByProductId.edges]
-  );
-
-  const futureBenchmarks = useMemo(
-    () =>
-      product.benchmarksByProductId.edges
-        .filter(
-          ({node}) =>
-            !node.deletedAt && node.startReportingYear > nextReportingYear
         )
         .map(({node}) => node),
     [nextReportingYear, product.benchmarksByProductId.edges]
@@ -238,36 +225,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  // This fuction does not 'DELETE' from the database, but sets the deleted at / deleted by values. This action is not recoverable through the UI
-  const deleteBenchmark = async (benchmark) => {
-    if (!benchmark) return;
-    const variables = {
-      input: {
-        id: currentBenchmark.id,
-        benchmarkPatch: {
-          deletedAt: moment
-            .tz('America/Vancouver')
-            .format('YYYY-MM-DDTHH:mm:ss')
-        }
-      }
-    };
-    const response = await updateBenchmarkMutation(
-      relay.environment,
-      variables
-    );
-    console.log(response);
-  };
-
-  const handleDeleteBenchmark = async (benchmark) => {
-    await deleteBenchmark(benchmark);
-  };
-
   const handleUpdateProductCount = (newCount) => {
     updateProductCount(newCount);
   };
 
   const [modalShow, setModalShow] = React.useState(false);
-  const [futureBenchmarksOpen, setFutureBenchmarksOpen] = React.useState(false);
   const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
   const [addBenchmarkOpen, setAddBenchmarkOpen] = React.useState(false);
 
@@ -342,39 +304,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             }
           >
             <Button type="submit">Save</Button>
-            <Button
-              variant="danger"
-              onClick={async () => deleteBenchmark(currentBenchmark)}
-            >
-              Delete
-            </Button>
           </JsonSchemaForm>
           <br />
-          <Row>
-            <Col md={12}>
-              <Card>
-                <Card.Header
-                  onClick={() => setFutureBenchmarksOpen(!futureBenchmarksOpen)}
-                >
-                  Future Benchmarks
-                </Card.Header>
-                <Collapse in={futureBenchmarksOpen}>
-                  <Card.Body>
-                    {futureBenchmarks.map((benchmark) => (
-                      <FutureBenchmarks
-                        key={benchmark.id}
-                        benchmark={benchmark}
-                        environment={relay.environment}
-                        handleDeleteBenchmark={handleDeleteBenchmark}
-                        benchmarkSchema={benchmarkSchema}
-                        benchmarkUISchema={benchmarkUISchema}
-                      />
-                    ))}
-                  </Card.Body>
-                </Collapse>
-              </Card>
-            </Col>
-          </Row>
           <Row>
             <Col md={12}>
               <Card>
