@@ -8,7 +8,9 @@ import {
   Col,
   Card,
   Collapse,
-  Table
+  Table,
+  OverlayTrigger,
+  Tooltip
 } from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
@@ -213,17 +215,17 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     updateProductCount(newCount);
   };
 
-  const [modalShow, setModalShow] = React.useState(false);
+  const [productModalShow, setProductModalShow] = React.useState(false);
   const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
   const [addBenchmarkOpen, setAddBenchmarkOpen] = React.useState(false);
 
-  const editModal = (
+  const editProductModal = (
     <Modal
       centered
       size="xl"
-      show={modalShow}
+      show={productModalShow}
       onHide={() => {
-        setModalShow(false);
+        setProductModalShow(false);
         handleUpdateProductCount((productCount += 1));
       }}
     >
@@ -370,11 +372,34 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         <td>{product.productState}</td>
         <td>{product.isCiipProduct ? 'Yes' : 'No'}</td>
         <td>
-          <FontAwesomeIcon icon={faTachometerAlt} /> &emsp;
-          <FontAwesomeIcon icon={faCube} />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="benchmark">Edit Benchmark</Tooltip>}
+          >
+            <FontAwesomeIcon className="editIcon" icon={faTachometerAlt} />
+          </OverlayTrigger>
+          &emsp;
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="product">Edit Product</Tooltip>}
+          >
+            <FontAwesomeIcon
+              className="editIcon"
+              icon={faCube}
+              onClick={() => setProductModalShow(true)}
+            />
+          </OverlayTrigger>
         </td>
       </tr>
-      {editModal}
+      {editProductModal}
+      <style jsx global>
+        {`
+          .editIcon:hover {
+            color: red;
+            cursor: pointer;
+          }
+        `}
+      </style>
     </>
   );
 };
