@@ -9,9 +9,9 @@ const schemaCode = fs.readFileSync(
 
 const mutation = `
         mutation createBenchmarkTestMutation(
-          $input: CreateBenchmarkMutationChainInput!
+          $input: CreateBenchmarkInput!
         ) {
-          createBenchmarkMutationChain(input: $input) {
+          createBenchmark(input: $input) {
             benchmark {
               id
             }
@@ -34,18 +34,22 @@ describe('createBenchmarkMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" of required type "CreateBenchmarkMutationChainInput!" was not provided.'
+      'Variable "$input" of required type "CreateBenchmarkInput!" was not provided.'
     );
   });
-  it('Should throw an error if a variable is missing', () => {
+  it('Should throw an error if an invalid variable is present', () => {
     let error;
     try {
       tester.mock(mutation, {
         input: {
-          productIdInput: 1,
-          benchmarkInput: 2,
-          eligibilityThresholdInput: 3,
-          boop: 123
+          benchmark: {
+            productId: 1,
+            benchmark: 2,
+            eligibilityThreshold: 3,
+            startReportingYear: 2019,
+            endReportingYear: 2020,
+            boop: 123
+          }
         }
       });
     } catch (error_) {
@@ -53,22 +57,23 @@ describe('createBenchmarkMutation', () => {
     }
 
     expect(error.message).toEqual(
-      'Variable "$input" got invalid value { productIdInput: 1, benchmarkInput: 2, eligibilityThresholdInput: 3, boop: 123 }; Field "boop" is not defined by type CreateBenchmarkMutationChainInput.'
+      'Variable "$input" got invalid value { productId: 1, benchmark: 2, eligibilityThreshold: 3, startReportingYear: 2019, endReportingYear: 2020, boop: 123 } at "input.benchmark"; Field "boop" is not defined by type BenchmarkInput.'
     );
   });
   it('Should return id(string) if valid', () => {
     const test = tester.mock(mutation, {
       input: {
-        productIdInput: 1,
-        benchmarkInput: 2,
-        eligibilityThresholdInput: 3,
-        startReportingYearInput: 2019
+        benchmark: {
+          productId: 1,
+          benchmark: 2,
+          eligibilityThreshold: 3,
+          startReportingYear: 2019,
+          endReportingYear: 2020
+        }
       }
     });
 
     expect(test).toBeDefined();
-    expect(typeof test.data.createBenchmarkMutationChain.benchmark.id).toBe(
-      'string'
-    );
+    expect(typeof test.data.createBenchmark.benchmark.id).toBe('string');
   });
 });
