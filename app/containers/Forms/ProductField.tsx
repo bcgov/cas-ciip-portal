@@ -31,7 +31,7 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     const product = query.allProducts.edges.find(
       ({node}) => node.rowId === formData.productRowId
     )?.node;
-    if (product?.productState === 'published' || !product) return true;
+    if (product?.productState === 'PUBLISHED' || !product) return true;
     return false;
   };
 
