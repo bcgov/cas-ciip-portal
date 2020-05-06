@@ -22,6 +22,7 @@ import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import productSchema from './product-schema.json';
+import moment from 'moment-timezone';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTachometerAlt, faCube} from '@fortawesome/free-solid-svg-icons';
 
@@ -362,14 +363,14 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     <>
       <tr>
         <td>{product.productName}</td>
-        <td>{product.updatedAt}</td>
+        <td>{moment(product.updatedAt).format('DD-MM-YYYY')}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
         <td>{product.requiresEmissionAllocation ? 'Yes' : 'No'}</td>
         <td>{product.productState}</td>
         <td>{product.isCiipProduct ? 'Yes' : 'No'}</td>
         <td>
-          <FontAwesomeIcon icon={faTachometerAlt} /> ||{' '}
+          <FontAwesomeIcon icon={faTachometerAlt} /> &emsp;
           <FontAwesomeIcon icon={faCube} />
         </td>
       </tr>
