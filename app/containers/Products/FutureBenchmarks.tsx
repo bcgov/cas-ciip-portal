@@ -2,7 +2,7 @@ import React from 'react';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import {Button} from 'react-bootstrap';
-import editBenchmarkMutation from 'mutations/benchmark/editBenchmarkMutation';
+import updateBenchmarkMutation from 'mutations/benchmark/updateBenchmarkMutation';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
@@ -30,7 +30,7 @@ const FutureBenchmarksComponent: React.FunctionComponent<Props> = ({
         }
       }
     };
-    const response = await editBenchmarkMutation(environment, variables);
+    const response = await updateBenchmarkMutation(environment, variables);
     console.log(response);
   };
 
