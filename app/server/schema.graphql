@@ -3790,62 +3790,6 @@ input CreateBenchmarkInput {
   clientMutationId: String
 }
 
-"""All input for the `createBenchmarkMutationChain` mutation."""
-input CreateBenchmarkMutationChainInput {
-  benchmarkInput: BigFloat
-
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  eligibilityThresholdInput: BigFloat
-  endReportingYearInput: Int
-  incentiveMultiplierInput: BigFloat
-  productIdInput: Int
-  startReportingYearInput: Int
-}
-
-"""The output of our `createBenchmarkMutationChain` mutation."""
-type CreateBenchmarkMutationChainPayload {
-  benchmark: Benchmark
-
-  """An edge for our `Benchmark`. May be used by Relay 1."""
-  benchmarkEdge(
-    """The method to use when ordering `Benchmark`."""
-    orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
-  ): BenchmarksEdge
-
-  """Reads a single `CiipUser` that is related to this `Benchmark`."""
-  ciipUserByCreatedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `Benchmark`."""
-  ciipUserByDeletedBy: CiipUser
-
-  """Reads a single `CiipUser` that is related to this `Benchmark`."""
-  ciipUserByUpdatedBy: CiipUser
-
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """Reads a single `Product` that is related to this `Benchmark`."""
-  productByProductId: Product
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
-  reportingYearByEndReportingYear: ReportingYear
-
-  """Reads a single `ReportingYear` that is related to this `Benchmark`."""
-  reportingYearByStartReportingYear: ReportingYear
-}
-
 """The output of our create `Benchmark` mutation."""
 type CreateBenchmarkPayload {
   """The `Benchmark` that was created by this mutation."""
@@ -8249,12 +8193,6 @@ type Mutation {
     """
     input: CreateBenchmarkInput!
   ): CreateBenchmarkPayload
-  createBenchmarkMutationChain(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateBenchmarkMutationChainInput!
-  ): CreateBenchmarkMutationChainPayload
 
   """Creates a single `CertificationUrl`."""
   createCertificationUrl(
@@ -9542,6 +9480,9 @@ type Product implements Node {
 
   """Creator of row"""
   createdBy: Int
+
+  """Computed column returns the current benchmark for a product"""
+  currentBenchmark: Benchmark
 
   """Date of deletion"""
   deletedAt: Datetime
