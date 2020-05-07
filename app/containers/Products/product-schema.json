@@ -2,17 +2,16 @@
   "schema": {
     "type": "object",
     "properties": {
+      "basic": {
+        "type": "string"
+      },
       "name": {
         "type": "string",
         "title": "Name"
       },
-      "description": {
-        "type": "string",
-        "title": "Description"
-      },
       "units": {
         "type": "string",
-        "title": "Production units of measurement"
+        "title": "Units of measurement"
       },
       "requiresEmissionAllocation": {
         "type": "boolean",
@@ -26,15 +25,18 @@
         "enumNames": [" Yes", " No"],
         "default": true
       },
+      "requiresProductAmount": {
+        "type": "boolean",
+        "title": "Production amount needs to be reported",
+        "enumNames": [" Yes", " No"],
+        "default": true
+      },
+      "additions": {
+        "type": "string"
+      },
       "addPurchasedElectricityEmissions": {
         "type": "boolean",
         "title": "Purchased electricity is added to facility emissions",
-        "enumNames": [" Yes", " No"],
-        "default": false
-      },
-      "subtractExportedElectricityEmissions": {
-        "type": "boolean",
-        "title": "Exported electricity is subtracted from facility emissions",
         "enumNames": [" Yes", " No"],
         "default": false
       },
@@ -44,15 +46,24 @@
         "enumNames": [" Yes", " No"],
         "default": false
       },
-      "subtractExportedHeatEmissions": {
+      "addEmissionsFromEios": {
         "type": "boolean",
-        "title": "Exported heat is subtracted from facility emissions",
+        "title": "Emissions from EIOs are added to facility emissions",
         "enumNames": [" Yes", " No"],
         "default": false
+      },
+      "subtractions": {
+        "type": "string"
       },
       "subtractGeneratedElectricityEmissions": {
         "type": "boolean",
         "title": "Generated electricity is subtracted from facility emissions",
+        "enumNames": [" Yes", " No"],
+        "default": false
+      },
+      "subtractExportedElectricityEmissions": {
+        "type": "boolean",
+        "title": "Exported electricity is subtracted from facility emissions",
         "enumNames": [" Yes", " No"],
         "default": false
       },
@@ -62,17 +73,11 @@
         "enumNames": [" Yes", " No"],
         "default": false
       },
-      "addEmissionsFromEios": {
+      "subtractExportedHeatEmissions": {
         "type": "boolean",
-        "title": "Emissions from EIOs are added to facility emissions",
+        "title": "Exported heat is subtracted from facility emissions",
         "enumNames": [" Yes", " No"],
         "default": false
-      },
-      "requiresProductAmount": {
-        "type": "boolean",
-        "title": "Production amount needs to be reported",
-        "enumNames": [" Yes", " No"],
-        "default": true
       }
     },
     "required": [
@@ -90,44 +95,75 @@
     ]
   },
   "uiSchema": {
+    "basic": {
+      "ui:col-md": 12,
+      "classNames": "hidden-title",
+      "ui:widget": "header",
+      "ui:options": {
+        "text": "Basic Information"
+      }
+    },
     "name": {
-      "ui:col-md": 4
+      "ui:col-md": 6
     },
     "units": {
-      "ui:col-md": 4
-    },
-    "description": {
-      "ui:col-md": 4
+      "ui:col-md": 6
     },
     "requiresEmissionAllocation": {
+      "ui:col-md": 4,
       "ui:widget": "radio"
     },
     "isCiipProduct": {
+      "ui:col-md": 4,
       "ui:widget": "radio",
       "ui:help": "Non-CIIP products emissions are excluded from payment allocation. If a product has a fixed incentive ratio instead of a benchmark, please create a benchmark and use the mininmum and maximum incentive ratio options"
     },
     "requiresProductAmount": {
+      "ui:col-md": 4,
       "ui:widget": "radio"
     },
+    "additions": {
+      "ui:col-md": 12,
+      "classNames": "hidden-title",
+      "ui:widget": "header",
+      "ui:options": {
+        "text": "Additions to Facility Emissions"
+      }
+    },
     "addPurchasedElectricityEmissions": {
+      "ui:col-md": 4,
       "ui:widget": "radio"
     },
     "subtractExportedElectricityEmissions": {
+      "ui:col-md": 4,
       "ui:widget": "radio"
     },
     "addPurchasedHeatEmissions": {
+      "ui:col-md": 4,
       "ui:widget": "radio"
     },
+    "subtractions": {
+      "ui:col-md": 12,
+      "classNames": "hidden-title",
+      "ui:widget": "header",
+      "ui:options": {
+        "text": "Subtractions from Facility Emissions"
+      }
+    },
     "subtractExportedHeatEmissions": {
+      "ui:col-md": 4,
       "ui:widget": "radio"
     },
     "subtractGeneratedElectricityEmissions": {
+      "ui:col-md": 4,
       "ui:widget": "radio"
     },
     "subtractGeneratedHeatEmissions": {
+      "ui:col-md": 4,
       "ui:widget": "radio"
     },
     "addEmissionsFromEios": {
+      "ui:col-md": 4,
       "ui:widget": "radio"
     }
   }
