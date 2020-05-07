@@ -23,6 +23,7 @@ import moment from 'moment-timezone';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTachometerAlt, faCube} from '@fortawesome/free-solid-svg-icons';
 import HeaderWidget from 'components/HeaderWidget';
+import PastBenchmarks from 'components/Benchmark/PastBenchmarks';
 
 interface Props {
   relay: RelayProp;
@@ -41,14 +42,6 @@ const benchmarkUISchema = {
     'ui:widget': 'header',
     'ui:options': {
       text: 'Current Benchmark Information'
-    }
-  },
-  past: {
-    'ui:col-md': 12,
-    classNames: 'hidden-title',
-    'ui:widget': 'header',
-    'ui:options': {
-      text: 'Benchmark History'
     }
   },
   benchmark: {
@@ -89,7 +82,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 }) => {
   const currentBenchmark = product.benchmarksByProductId?.edges[0]?.node;
 
-  // Const pastBenchmarks = product.benchmarksByProductId?.edges.slice(1);
+  const pastBenchmarks = product.benchmarksByProductId?.edges.slice(1);
 
   // Schema for ProductRowItemContainer
   const benchmarkSchema = useMemo<JSONSchema6>(() => {
@@ -143,9 +136,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           type: 'string',
           title: 'Maximum incentive ratio',
           defaultValue: '1'
-        },
-        past: {
-          type: 'string'
         }
       }
     };
@@ -336,6 +326,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             >
               <Button type="submit">Save</Button>
             </JsonSchemaForm>
+            <PastBenchmarks pastBenchmarks={pastBenchmarks} />
           </Container>
         </Modal.Body>
       </Modal>
@@ -429,7 +420,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
             endReportingYear
             minimumIncentiveRatio
             maximumIncentiveRatio
-            deletedAt
+            createdAt
           }
         }
       }
