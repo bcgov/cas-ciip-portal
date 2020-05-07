@@ -37,11 +37,14 @@ exports[`ProductList should render the product list 1`] = `
   }
   displayNameToColumnNameMap={
     Object {
-      "Benchmark (tCO2e/product units)": "benchmark",
-      "Elig. Threshold (tCO2e/product units)": "eligibility_threshold",
+      "Allocation of Emissions": "requires_emission_allocation",
+      "Benchmark": "benchmark",
+      "Ciip Benchmarked": "is_ciip_product",
+      "Edit/View": null,
+      "Eligibility Threshold": "eligibility_threshold",
+      "Modified (D/M/Y)": "updated_at",
       "Product": "product_name",
       "Status": "product_state",
-      "Units": "units",
     }
   }
 />
