@@ -166,7 +166,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       input: {
         id: product.id,
         productPatch: {
-          productName: e.formData.name,
+          productName: e.formData.productName,
           units: e.formData.units,
           productState: product.productState,
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
@@ -188,6 +188,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       }
     };
     const response = await updateProductMutation(relay.environment, variables);
+    handleUpdateProductCount((productCount += 1));
+    setProductModalShow(false);
     console.log(response);
   };
 
@@ -205,6 +207,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       relay.environment,
       variables
     );
+    handleUpdateProductCount((productCount += 1));
+    setProductModalShow(false);
     console.log(response);
   };
 
@@ -221,6 +225,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       relay.environment,
       variables
     );
+    handleUpdateProductCount((productCount += 1));
+    setProductModalShow(false);
     console.log(response);
   };
 
@@ -319,7 +325,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
               FieldTemplate={FormFieldTemplate}
               ObjectFieldTemplate={FormObjectFieldTemplate}
               onSubmit={
-                product.productState === 'DRAFT'
+                currentBenchmark && product.productState === 'DRAFT'
                   ? editBenchmark
                   : createBenchmark
               }

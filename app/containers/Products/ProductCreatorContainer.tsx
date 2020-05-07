@@ -9,6 +9,7 @@ import createProductMutation from 'mutations/product/createProductMutation';
 import {CiipProductState} from 'createProductMutation.graphql';
 import {JSONSchema6} from 'json-schema';
 import productSchema from './product-schema.json';
+import HeaderWidget from 'components/HeaderWidget';
 
 interface Props {
   relay: RelayProp;
@@ -64,6 +65,7 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
             <JsonSchemaForm
               omitExtraData
               liveOmit
+              widgets={{header: HeaderWidget}}
               schema={productSchema.schema as JSONSchema6}
               uiSchema={productSchema.uiSchema}
               showErrorList={false}
