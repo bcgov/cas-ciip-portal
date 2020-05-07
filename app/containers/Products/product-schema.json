@@ -5,7 +5,7 @@
       "basic": {
         "type": "string"
       },
-      "name": {
+      "productName": {
         "type": "string",
         "title": "Name"
       },
@@ -81,7 +81,7 @@
       }
     },
     "required": [
-      "name",
+      "productName",
       "requiresEmissionAllocation",
       "isCiipProduct",
       "addPurchasedElectricityEmissions",
@@ -103,7 +103,7 @@
         "text": "Basic Information"
       }
     },
-    "name": {
+    "productName": {
       "ui:col-md": 6
     },
     "units": {
