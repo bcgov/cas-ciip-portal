@@ -632,9 +632,9 @@ exports[`ProductList should match the previous snaphshot 1`] = `
     </ModalBody>
   </Bootstrap(Modal)>
   <JSXStyle
-    id="937805963"
+    id="548042990"
   >
-    .hidden-title label{display:none;}.close{color:white;}
+    .hidden-title label{display:none;}.close{color:white;}.hidden-button{display:none;}
   </JSXStyle>
   <JSXStyle
     id="204006405"
