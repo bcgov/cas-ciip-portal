@@ -160,6 +160,21 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
+  // Archive a Product
+  const publishProduct = async () => {
+    const variables = {
+      input: {
+        id: product.id,
+        productPatch: {
+          productState: 'PUBLISHED' as CiipProductState
+        }
+      }
+    };
+    const response = await updateProductMutation(relay.environment, variables);
+    handleUpdateProductCount((productCount += 1));
+    console.log(response);
+  };
+
   // Save a product
   const editProduct = async (e: IChangeEvent) => {
     const variables = {
@@ -271,9 +286,14 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
               onSubmit={editProduct}
             >
               {product.productState === 'DRAFT' && (
-                <Button type="submit" variant="primary">
-                  Save Product
-                </Button>
+                <>
+                  <Button type="submit" variant="primary">
+                    Save
+                  </Button>
+                  <Button variant="success" onClick={publishProduct}>
+                    Publish Product
+                  </Button>
+                </>
               )}
               {product.productState === 'PUBLISHED' && (
                 <Button variant="warning" onClick={setArchived}>
@@ -332,7 +352,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                   : createBenchmark
               }
             >
-              <Button type="submit">Save</Button>
+              {product.productState === 'DRAFT' ||
+              product.productState === 'PUBLISHED' ? (
+                <Button type="submit">Save</Button>
+              ) : (
+                <Button className="hidden-button" />
+              )}
             </JsonSchemaForm>
             <PastBenchmarks pastBenchmarks={pastBenchmarks} />
           </Container>
@@ -344,6 +369,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         }
         .close {
           color: white;
+        }
+        .hidden-button {
+          display: none;
         }
       `}</style>
     </>
