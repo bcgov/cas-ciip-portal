@@ -4,11 +4,6 @@ import {
   Button,
   Modal,
   Container,
-  Row,
-  Col,
-  Card,
-  Collapse,
-  Table,
   OverlayTrigger,
   Tooltip
 } from 'react-bootstrap';
@@ -27,6 +22,7 @@ import productSchema from './product-schema.json';
 import moment from 'moment-timezone';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTachometerAlt, faCube} from '@fortawesome/free-solid-svg-icons';
+import HeaderWidget from 'components/HeaderWidget';
 
 interface Props {
   relay: RelayProp;
@@ -39,11 +35,44 @@ interface Props {
 // Schema for ProductRowItemContainer
 // TODO: Use a number widget for string types that should be numbers (with postgres numeric type)
 const benchmarkUISchema = {
+  current: {
+    'ui:col-md': 12,
+    classNames: 'hidden-title',
+    'ui:widget': 'header',
+    'ui:options': {
+      text: 'Current Benchmark Information'
+    }
+  },
+  past: {
+    'ui:col-md': 12,
+    classNames: 'hidden-title',
+    'ui:widget': 'header',
+    'ui:options': {
+      text: 'Benchmark History'
+    }
+  },
+  benchmark: {
+    'ui:col-md': 3
+  },
+  eligibilityThreshold: {
+    'ui:col-md': 3
+  },
   startReportingYear: {
+    'ui:col-md': 3,
     'ui:help': 'The first reporting year where this benchmark is used'
   },
   endReportingYear: {
+    'ui:col-md': 3,
     'ui:help': 'The last reporting year where this benchmark is used'
+  },
+  incentiveMultiplier: {
+    'ui:col-md': 3
+  },
+  minimumIncentiveRatio: {
+    'ui:col-md': 3
+  },
+  maximumIncentiveRatio: {
+    'ui:col-md': 3
   }
 };
 
@@ -60,7 +89,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 }) => {
   const currentBenchmark = product.benchmarksByProductId?.edges[0]?.node;
 
-  const pastBenchmarks = product.benchmarksByProductId?.edges.slice(1);
+  // Const pastBenchmarks = product.benchmarksByProductId?.edges.slice(1);
 
   // Schema for ProductRowItemContainer
   const benchmarkSchema = useMemo<JSONSchema6>(() => {
@@ -79,13 +108,31 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         'endReportingYear'
       ],
       properties: {
+        current: {
+          type: 'string'
+        },
         benchmark: {
           type: 'string',
           title: 'Benchmark'
         },
+        startReportingYear: {
+          type: 'number',
+          title: 'Start Reporting Period',
+          enum: reportingYears
+        },
+        endReportingYear: {
+          type: 'number',
+          title: 'End Reporting Period',
+          enum: reportingYears
+        },
         eligibilityThreshold: {
           type: 'string',
           title: 'Eligibility Threshold'
+        },
+        incentiveMultiplier: {
+          type: 'string',
+          title: 'Incentive Multiplier',
+          defaultValue: '1'
         },
         minimumIncentiveRatio: {
           type: 'string',
@@ -97,36 +144,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           title: 'Maximum incentive ratio',
           defaultValue: '1'
         },
-        incentiveMultiplier: {
-          type: 'string',
-          title: 'Incentive Multiplier',
-          defaultValue: '1'
-        },
-        startReportingYear: {
-          type: 'number',
-          title: 'Start Reporting Period',
-          enum: reportingYears
-        },
-        endReportingYear: {
-          type: 'number',
-          title: 'End Reporting Period',
-          enum: reportingYears
+        past: {
+          type: 'string'
         }
       }
     };
   }, [query.allReportingYears]);
-
-  const displayPastBenchmark = (benchmark) => {
-    return (
-      <tr key={benchmark.id}>
-        <td>{benchmark.benchmark}</td>
-        <td>{benchmark.eligibilityThreshold}</td>
-        <td>{benchmark.incentiveMultiplier}</td>
-        <td>{benchmark.startReportingYear}</td>
-        <td>{benchmark.endReportingYear}</td>
-      </tr>
-    );
-  };
 
   /**
    * Mutation functions
@@ -216,149 +239,115 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   };
 
   const [productModalShow, setProductModalShow] = React.useState(false);
-  const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
-  const [addBenchmarkOpen, setAddBenchmarkOpen] = React.useState(false);
+  const [benchmarkModalShow, setBenchmarkModalShow] = React.useState(false);
 
   const editProductModal = (
-    <Modal
-      centered
-      size="xl"
-      show={productModalShow}
-      onHide={() => {
-        setProductModalShow(false);
-        handleUpdateProductCount((productCount += 1));
-      }}
-    >
-      <Modal.Header closeButton>
-        <Modal.Title>Edit Product</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Container>
-          <Row>PRODUCT</Row>
-          <JsonSchemaForm
-            omitExtraData
-            liveOmit
-            schema={productSchema.schema as JSONSchema6}
-            uiSchema={productSchema.uiSchema}
-            formData={product}
-            showErrorList={false}
-            ArrayFieldTemplate={FormArrayFieldTemplate}
-            FieldTemplate={FormFieldTemplate}
-            ObjectFieldTemplate={FormObjectFieldTemplate}
-            onSubmit={editProduct}
-          >
-            {product.productState === 'DRAFT' && (
-              <Button type="submit" variant="primary">
-                Save Product
-              </Button>
-            )}
-            {product.productState === 'PUBLISHED' && (
-              <Button variant="warning" onClick={setArchived}>
-                Archive Product
-              </Button>
-            )}
-          </JsonSchemaForm>
-          <br />
-          <Row>BENCHMARKS</Row>
-          <br />
-          Current
-          <hr />
-          <Row>
-            <Col md={4}>Benchmark: {currentBenchmark?.benchmark ?? null}</Col>
-            <Col md={4}>
-              ET: {currentBenchmark?.eligibilityThreshold ?? null}
-            </Col>
-            <Col md={4}>
-              Multiplier: {currentBenchmark?.incentiveMultiplier ?? null}
-            </Col>
-            <Col md={4}>
-              Last Reporting Year: {currentBenchmark?.endReportingYear ?? null}
-            </Col>
-          </Row>
-          <JsonSchemaForm
-            omitExtraData
-            liveOmit
-            schema={benchmarkSchema}
-            uiSchema={benchmarkUISchema}
-            formData={currentBenchmark}
-            showErrorList={false}
-            ArrayFieldTemplate={FormArrayFieldTemplate}
-            FieldTemplate={FormFieldTemplate}
-            ObjectFieldTemplate={FormObjectFieldTemplate}
-            onSubmit={
-              product.productState === 'DRAFT' ? editBenchmark : createBenchmark
-            }
-          >
-            <Button type="submit">Save</Button>
-          </JsonSchemaForm>
-          <br />
-          <Row>
-            <Col md={12}>
-              <Card>
-                <Card.Header
-                  onClick={() => setPastBenchmarksOpen(!pastBenchmarksOpen)}
-                >
-                  Past Benchmarks
-                </Card.Header>
-                <Collapse in={pastBenchmarksOpen}>
-                  <Card.Body>
-                    <Table>
-                      <thead>
-                        <tr>
-                          <th>Benchmark</th>
-                          <th>Eligibility Threshold</th>
-                          <th>Incentive Multiplier</th>
-                          <th>Start Reporting Year</th>
-                          <th>End Reporting Year</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {pastBenchmarks.map((benchmark) => {
-                          return displayPastBenchmark(benchmark);
-                        })}
-                      </tbody>
-                    </Table>
-                  </Card.Body>
-                </Collapse>
-              </Card>
-            </Col>
-          </Row>
-          <Button
-            style={{marginTop: '10px'}}
-            variant="success"
-            onClick={() => setAddBenchmarkOpen(!addBenchmarkOpen)}
-          >
-            Add Benchmark +
-          </Button>
-          <Collapse in={addBenchmarkOpen}>
-            <Card>
-              <Card.Header>Add Benchmark</Card.Header>
-              <Card.Body>
-                <JsonSchemaForm
-                  omitExtraData
-                  liveOmit
-                  schema={benchmarkSchema}
-                  uiSchema={benchmarkUISchema}
-                  showErrorList={false}
-                  ArrayFieldTemplate={FormArrayFieldTemplate}
-                  FieldTemplate={FormFieldTemplate}
-                  ObjectFieldTemplate={FormObjectFieldTemplate}
-                  onSubmit={createBenchmark}
-                >
-                  <Button type="submit">Save</Button>
-                  <Button
-                    variant="warning"
-                    onClick={() => setAddBenchmarkOpen(!addBenchmarkOpen)}
-                  >
-                    Cancel
-                  </Button>
-                </JsonSchemaForm>
-              </Card.Body>
-            </Card>
-          </Collapse>
-        </Container>
-      </Modal.Body>
-    </Modal>
+    <>
+      <Modal
+        centered
+        size="xl"
+        show={productModalShow}
+        onHide={() => {
+          setProductModalShow(false);
+          handleUpdateProductCount((productCount += 1));
+        }}
+      >
+        <Modal.Header
+          closeButton
+          style={{color: 'white', background: '#003366'}}
+        >
+          <Modal.Title>Edit Product</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{background: '#f5f5f5'}}>
+          <Container>
+            <JsonSchemaForm
+              omitExtraData
+              liveOmit
+              widgets={{header: HeaderWidget}}
+              schema={productSchema.schema as JSONSchema6}
+              uiSchema={productSchema.uiSchema}
+              formData={product}
+              showErrorList={false}
+              ArrayFieldTemplate={FormArrayFieldTemplate}
+              FieldTemplate={FormFieldTemplate}
+              ObjectFieldTemplate={FormObjectFieldTemplate}
+              onSubmit={editProduct}
+            >
+              {product.productState === 'DRAFT' && (
+                <Button type="submit" variant="primary">
+                  Save Product
+                </Button>
+              )}
+              {product.productState === 'PUBLISHED' && (
+                <Button variant="warning" onClick={setArchived}>
+                  Archive Product
+                </Button>
+              )}
+            </JsonSchemaForm>
+          </Container>
+        </Modal.Body>
+      </Modal>
+      <style jsx global>{`
+        .hidden-title label {
+          display: none;
+        }
+        .close {
+          color: white;
+        }
+      `}</style>
+    </>
+  );
+
+  const editBenchmarkModal = (
+    <>
+      <Modal
+        centered
+        size="xl"
+        show={benchmarkModalShow}
+        onHide={() => {
+          setBenchmarkModalShow(false);
+          handleUpdateProductCount((productCount += 1));
+        }}
+      >
+        <Modal.Header
+          closeButton
+          style={{color: 'white', background: '#003366'}}
+        >
+          <Modal.Title>Edit Benchmark</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{background: '#f5f5f5'}}>
+          <Container>
+            <JsonSchemaForm
+              omitExtraData
+              liveOmit
+              widgets={{header: HeaderWidget}}
+              schema={benchmarkSchema}
+              uiSchema={benchmarkUISchema}
+              formData={currentBenchmark}
+              showErrorList={false}
+              ArrayFieldTemplate={FormArrayFieldTemplate}
+              FieldTemplate={FormFieldTemplate}
+              ObjectFieldTemplate={FormObjectFieldTemplate}
+              onSubmit={
+                product.productState === 'DRAFT'
+                  ? editBenchmark
+                  : createBenchmark
+              }
+            >
+              <Button type="submit">Save</Button>
+            </JsonSchemaForm>
+          </Container>
+        </Modal.Body>
+      </Modal>
+      <style jsx global>{`
+        .hidden-title label {
+          display: none;
+        }
+        .close {
+          color: white;
+        }
+      `}</style>
+    </>
   );
 
   return (
@@ -376,7 +365,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             placement="bottom"
             overlay={<Tooltip id="benchmark">Edit Benchmark</Tooltip>}
           >
-            <FontAwesomeIcon className="editIcon" icon={faTachometerAlt} />
+            <FontAwesomeIcon
+              className="editIcon"
+              icon={faTachometerAlt}
+              onClick={() => setBenchmarkModalShow(true)}
+            />
           </OverlayTrigger>
           &emsp;
           <OverlayTrigger
@@ -392,6 +385,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         </td>
       </tr>
       {editProductModal}
+      {editBenchmarkModal}
       <style jsx global>
         {`
           .editIcon:hover {
