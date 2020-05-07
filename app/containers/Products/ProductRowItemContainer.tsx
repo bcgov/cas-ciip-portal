@@ -259,6 +259,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             <JsonSchemaForm
               omitExtraData
               liveOmit
+              disabled={product.productState !== 'DRAFT'}
               widgets={{header: HeaderWidget}}
               schema={productSchema.schema as JSONSchema6}
               uiSchema={productSchema.uiSchema}
@@ -316,6 +317,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             <JsonSchemaForm
               omitExtraData
               liveOmit
+              disabled={product.productState === 'ARCHIVED'}
               widgets={{header: HeaderWidget}}
               schema={benchmarkSchema}
               uiSchema={benchmarkUISchema}
@@ -360,10 +362,19 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         <td>
           <OverlayTrigger
             placement="bottom"
-            overlay={<Tooltip id="benchmark">Edit Benchmark</Tooltip>}
+            overlay={
+              <Tooltip id="benchmark">
+                {product.productState === 'ARCHIVED' ? 'View' : 'Edit'}{' '}
+                Benchmark
+              </Tooltip>
+            }
           >
             <FontAwesomeIcon
-              className="editIcon"
+              className={
+                product.productState === 'ARCHIVED'
+                  ? 'editIcon-disabled'
+                  : 'editIcon'
+              }
               icon={faTachometerAlt}
               onClick={() => setBenchmarkModalShow(true)}
             />
@@ -371,10 +382,18 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           &emsp;
           <OverlayTrigger
             placement="bottom"
-            overlay={<Tooltip id="product">Edit Product</Tooltip>}
+            overlay={
+              <Tooltip id="product">
+                {product.productState === 'DRAFT' ? 'Edit' : 'View'} Product
+              </Tooltip>
+            }
           >
             <FontAwesomeIcon
-              className="editIcon"
+              className={
+                product.productState === 'DRAFT'
+                  ? 'editIcon'
+                  : 'editIcon-disabled'
+              }
               icon={faCube}
               onClick={() => setProductModalShow(true)}
             />
@@ -389,6 +408,15 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             color: red;
             cursor: pointer;
           }
+          .editIcon-disabled {
+            opacity: 0.5;
+          }
+        }
+        .editIcon-disabled:hover {
+          color: red;
+          opacity: 0.5;
+          cursor: pointer;
+        }
         `}
       </style>
     </>
