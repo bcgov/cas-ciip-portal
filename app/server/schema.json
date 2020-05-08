@@ -13080,16 +13080,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationRequestSentTo",
-              "description": "Checks for equality with the object’s `certificationRequestSentTo` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "certificationSignature",
               "description": "Checks for equality with the object’s `certificationSignature` field.",
               "type": {
@@ -13115,6 +13105,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifierEmail",
+              "description": "Checks for equality with the object’s `certifierEmail` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -13210,6 +13210,16 @@
               "defaultValue": null
             },
             {
+              "name": "sendCertificationRequest",
+              "description": "Checks for equality with the object’s `sendCertificationRequest` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "updatedAt",
               "description": "Checks for equality with the object’s `updatedAt` field.",
               "type": {
@@ -13277,18 +13287,6 @@
               "deprecationReason": null
             },
             {
-              "name": "CERTIFICATION_REQUEST_SENT_TO_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "CERTIFICATION_REQUEST_SENT_TO_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "CERTIFICATION_SIGNATURE_ASC",
               "description": null,
               "isDeprecated": false,
@@ -13320,6 +13318,18 @@
             },
             {
               "name": "CERTIFIED_BY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFIER_EMAIL_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "CERTIFIER_EMAIL_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -13446,6 +13456,18 @@
             },
             {
               "name": "RECERTIFICATION_REQUEST_SENT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SEND_CERTIFICATION_REQUEST_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SEND_CERTIFICATION_REQUEST_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -13669,18 +13691,6 @@
               "deprecationReason": null
             },
             {
-              "name": "certificationRequestSentTo",
-              "description": "The email that the certification request was sent to",
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "certificationSignature",
               "description": "The base64 representation of the certifier's signature",
               "args": [],
@@ -13711,6 +13721,18 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "certifierEmail",
+              "description": "The email that the certification request was sent to",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -13906,6 +13928,22 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "sendCertificationRequest",
+              "description": "User defined boolean indicates whether to send an email to the certifier",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
                   "ofType": null
                 }
               },
@@ -31089,16 +31127,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationRequestSentTo",
-              "description": "The email that the certification request was sent to",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "certificationSignature",
               "description": "The base64 representation of the certifier's signature",
               "type": {
@@ -31124,6 +31152,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifierEmail",
+              "description": "The email that the certification request was sent to",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -31219,6 +31257,16 @@
                   "name": "String",
                   "ofType": null
                 }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "sendCertificationRequest",
+              "description": "User defined boolean indicates whether to send an email to the certifier",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
               },
               "defaultValue": null
             },
@@ -41698,16 +41746,6 @@
               "defaultValue": null
             },
             {
-              "name": "certificationRequestSentTo",
-              "description": "The email that the certification request was sent to",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "certificationSignature",
               "description": "The base64 representation of the certifier's signature",
               "type": {
@@ -41733,6 +41771,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "certifierEmail",
+              "description": "The email that the certification request was sent to",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null
@@ -41823,6 +41871,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "sendCertificationRequest",
+              "description": "User defined boolean indicates whether to send an email to the certifier",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null

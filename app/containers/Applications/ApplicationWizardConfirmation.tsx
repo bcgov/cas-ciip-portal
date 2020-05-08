@@ -48,7 +48,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     e.preventDefault();
     e.persist();
     const email = (e.target as Target).email.value;
-    // Const sendEmail = (e.target as Target).sendEmailChecked.checked;
+    const sendEmail = (e.target as Target).sendEmailChecked.checked;
     const {environment} = props.relay;
     const variables = {
       input: {
@@ -84,7 +84,8 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             }/certifier/certification-redirect?rowId=${encodeURIComponent(
               response.createCertificationUrl.certificationUrl.rowId
             )}&id=${encodeURIComponent(props.application.id)}`,
-            certificationRequestSentTo: email
+            certifierEmail: email,
+            sendCertificationEmail: sendEmail
           }
         }
       };
