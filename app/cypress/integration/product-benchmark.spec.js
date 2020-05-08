@@ -64,7 +64,7 @@ describe('The benchmark modal', () => {
     cy.get('#root_benchmark').clear().type('12');
     cy.get('.rjsf > .btn').contains('Save');
     cy.get('.rjsf > .btn').click();
-    cy.get('#root_benchmark').should('have.value', '12');
+    cy.get('tbody > :nth-child(1) > :nth-child(3)').contains('12');
   });
 
   it('Allows editing a benchmark for a published product', () => {
@@ -73,7 +73,7 @@ describe('The benchmark modal', () => {
     cy.get('#root_benchmark').clear().type('10');
     cy.get('.rjsf > .btn').contains('Save');
     cy.get('.rjsf > .btn').click();
-    cy.get('#root_benchmark').should('have.value', '10');
+    cy.get('tbody > :nth-child(2) > :nth-child(3)').contains('10');
   });
 
   it('Does not allow editing a benchmark for an archived product', () => {
@@ -145,7 +145,7 @@ describe('The product modal', () => {
     cy.get('.rjsf > .btn-primary').contains('Save');
     cy.get('.rjsf > .btn-success').contains('Publish');
     cy.get('.rjsf > .btn-primary').click();
-    cy.get('#root_productName').should('have.value', 'changed');
+    cy.get('tbody > :nth-child(1) > :nth-child(1)').contains('changed');
   });
 
   it('Does not allow editing a published product', () => {
@@ -158,7 +158,7 @@ describe('The product modal', () => {
   it('Does not allow editing an archived product', () => {
     cy.get(':nth-child(3) > :nth-child(8) > .fa-cube > path').click();
     cy.get('#root_productName').should('have.prop', 'disabled', true);
-    cy.get('.rjsf > .btn').should('not.exist');
+    cy.get('.rjsf > .btn').should('have.class', 'hidden-button');
     cy.get('.close > [aria-hidden="true"]').click();
   });
 
