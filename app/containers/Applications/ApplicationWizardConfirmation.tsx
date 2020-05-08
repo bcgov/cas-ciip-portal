@@ -22,6 +22,9 @@ interface Target extends EventTarget {
   email: {
     value: string;
   };
+  sendEmailChecked: {
+    checked: boolean;
+  };
 }
 
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = (
@@ -45,6 +48,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     e.preventDefault();
     e.persist();
     const email = (e.target as Target).email.value;
+    // Const sendEmail = (e.target as Target).sendEmailChecked.checked;
     const {environment} = props.relay;
     const variables = {
       input: {
@@ -97,27 +101,38 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const generateCertification = (
     <>
       <br />
-      <Form onSubmit={handleClickGenerateCertificationUrl}>
-        <Form.Row>
-          <Col md={6}>
-            <Form.Group controlId="certifierEmail">
-              <Form.Control
-                name="email"
-                type="email"
-                placeholder="Enter email"
+      <Card>
+        <Card.Header>Application Certification</Card.Header>
+        <Card.Body>
+          <Card.Text>
+            Once you have reviewed the application and ensured all the data is
+            correct, the application has to be certified.
+          </Card.Text>
+          <Form onSubmit={handleClickGenerateCertificationUrl}>
+            <Form.Row>
+              <Form.Group as={Col} md="4" controlId="certifierEmail">
+                <Form.Control
+                  name="email"
+                  type="email"
+                  placeholder="Certifier Email"
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Group>
+              <Form.Check
+                className="text-muted"
+                name="sendEmailChecked"
+                type="checkbox"
+                label="Notify certifier via email that this application is ready for certification"
               />
-              <Form.Text className="text-muted">
-                Send URL to certifier
-              </Form.Text>
             </Form.Group>
-          </Col>
-          <Col md={2}>
-            <Button variant="primary" type="submit">
-              Send to Certifier
+            <Button variant="info" type="submit">
+              Submit for Certification
             </Button>
-          </Col>
-        </Form.Row>
-      </Form>
+          </Form>
+        </Card.Body>
+        <Card.Footer />
+      </Card>
     </>
   );
 
@@ -141,20 +156,12 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   );
 
   if (!revision.certificationUrl) {
-    certificationMessage = (
+    certificationMessage = url ? (
       <>
-        <h5>
-          Thank you for reviewing the application information. You may now send
-          a generated Certification url to be signed prior to submission.
-        </h5>
-        {url ? (
-          <>
-            <span style={{color: 'green'}}>{copySuccess}</span> {copyUrl}
-          </>
-        ) : (
-          generateCertification
-        )}
+        <span style={{color: 'green'}}>{copySuccess}</span> {copyUrl}
       </>
+    ) : (
+      generateCertification
     );
   } else if (
     !revision.certificationUrl.certificationSignature &&
