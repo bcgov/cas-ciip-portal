@@ -85,7 +85,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
               response.createCertificationUrl.certificationUrl.rowId
             )}&id=${encodeURIComponent(props.application.id)}`,
             certifierEmail: email,
-            sendCertificationEmail: sendEmail
+            sendCertificationRequest: sendEmail
           }
         }
       };

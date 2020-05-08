@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(15);
+select plan(18);
 
 -- Table exists
 select has_table(
@@ -35,7 +35,28 @@ insert into ggircs_portal.application_revision(application_id, version_number) o
 insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id) overriding system value values(999, 999, 999), (1000, 1000, 1000);
 insert into ggircs_portal.certification_url(id, application_id, version_number) overriding system value values('999', 999,1), ('1000', 1,1);
 
-select * from ggircs_portal.certification_url;
+select throws_like(
+  $$
+    update ggircs_portal.certification_url set certifier_email='changed', send_certification_request=true where id='999'
+  $$,
+  '%does not exist%',
+  '_certification_request_email trigger attempts to send an email if send_certification_request = true'
+);
+
+select lives_ok(
+  $$
+    update ggircs_portal.certification_url set certifier_email='changed', send_certification_request=false where id='999'
+  $$,
+  '_certification_request_email trigger does notattempt to send an email if send_certification_request = false'
+);
+
+select results_eq(
+  $$
+    select certification_request_sent_at from ggircs_portal.certification_url where id='999'
+  $$,
+  ARRAY[null::timestamptz],
+  '_certification_request_email trigger did not send an email if send_certification_request = false'
+);
 
 -- CIIP_ADMINISTRATOR
 set role ciip_administrator;
