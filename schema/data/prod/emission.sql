@@ -11,7 +11,8 @@ values
 (5, 'BC_ScheduleB_FugitiveEmissions', 'Fugitive'),
 (6, 'BC_ScheduleB_OnSiteTransportationEmissions', 'On-Site Transportation'),
 (7, 'BC_ScheduleB_WasteEmissions', 'Waste'),
-(8, 'BC_ScheduleB_WastewaterEmissions', 'Wastewater')
+(8, 'BC_ScheduleB_WastewaterEmissions', 'Wastewater'),
+(9, null, 'Other, non-carbon taxed')
 
 on conflict(id) do update set swrs_emission_category=excluded.swrs_emission_category, display_name=excluded.display_name
 returning 1

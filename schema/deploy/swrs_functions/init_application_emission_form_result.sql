@@ -21,7 +21,7 @@ begin
 
   first_source_type := true;
   for emission_datum in (
-    select display_name from ggircs_portal.emission_category order by id
+    select display_name from ggircs_portal.emission_category where swrs_emission_category is not null order by id
   )
   loop
     emission_category_var := emission_datum;
@@ -52,7 +52,9 @@ begin
                 g.gas_description,
                 g.gwp
                 from ggircs_portal.emission_category_gas ecg
-              inner join ggircs_portal.emission_category ec on ecg.emission_category_id = ec.id
+              inner join ggircs_portal.emission_category ec
+                on ecg.emission_category_id = ec.id
+                and ec.swrs_emission_category is not null
               inner join ggircs_portal.gas g on ecg.gas_id = g.id
             ) as map
             on (
