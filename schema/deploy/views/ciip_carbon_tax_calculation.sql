@@ -33,6 +33,8 @@ begin;
         date_part('day', ct_details_start.rate_end_date - reporting_year.reporting_period_start) as start_rate_days,
         date_part('day', reporting_year.reporting_period_end - ct_details_end.rate_start_date) as end_rate_days
       from ggircs_portal.ciip_fuel as cf
+        inner join ggircs_portal.emission_category
+          on cf.emission_category_id not in (select id from ggircs_portal.emission_category where swrs_emission_category is null)
       join ggircs_portal.fuel as f
         on cf.fuel_id = f.id
       join ggircs_portal.application as a

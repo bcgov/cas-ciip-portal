@@ -18,7 +18,8 @@ begin;
        x.version_number,
        (x.fuel_data ->> 'quantity')::numeric as quantity,
        (x.fuel_data ->> 'fuelRowId')::integer as fuel_id,
-       (x.fuel_data ->> 'fuelUnits')::varchar(1000) as fuel_units
+       (x.fuel_data ->> 'fuelUnits')::varchar(1000) as fuel_units,
+       (x.fuel_data ->> 'emissionCategoryRowId')::numeric as emission_category_id
     from x
  );
 
