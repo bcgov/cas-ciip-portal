@@ -47,47 +47,202 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   <br
     className="jsx-1753635690"
   />
-  <h5>
-    Thank you for reviewing the application information. You may now send a generated Certification url to be signed prior to submission.
-  </h5>
   <br />
-  <Form
-    inline={false}
-    onSubmit={[Function]}
+  <Card
+    body={false}
   >
-    <FormRow>
-      <Col
-        md={6}
+    <CardHeader>
+      Application Certification
+    </CardHeader>
+    <CardBody>
+      <CardText>
+        Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
+      </CardText>
+      <Form
+        inline={false}
+        onSubmit={[Function]}
       >
-        <FormGroup
-          controlId="certifierEmail"
-        >
-          <FormControl
-            name="email"
-            placeholder="Enter email"
-            type="email"
-          />
-          <FormText
-            className="text-muted"
+        <FormRow>
+          <FormGroup
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "Col",
+                "render": [Function],
+              }
+            }
+            controlId="certifierEmail"
+            md="4"
           >
-            Send URL to certifier
-          </FormText>
+            <FormControl
+              name="email"
+              placeholder="Certifier Email"
+              type="email"
+            />
+          </FormGroup>
+        </FormRow>
+        <FormGroup>
+          <FormCheck
+            className="text-muted"
+            disabled={false}
+            inline={false}
+            isInvalid={false}
+            isValid={false}
+            label="Notify certifier via email that this application is ready for certification"
+            name="sendEmailChecked"
+            title=""
+            type="checkbox"
+          />
         </FormGroup>
-      </Col>
-      <Col
-        md={2}
-      >
         <Button
           active={false}
           disabled={false}
           type="submit"
-          variant="primary"
+          variant="info"
         >
-          Send to Certifier
+          Submit for Certification
         </Button>
-      </Col>
-    </FormRow>
-  </Form>
+      </Form>
+    </CardBody>
+    <CardFooter />
+  </Card>
+  <JSXStyle
+    id="1753635690"
+  >
+    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`The Confirmation Component should show a "data has changed" dialogue when hashMatches is false but a signature exists 1`] = `
+<Fragment>
+  <h1
+    className="jsx-1753635690"
+  >
+    Summary of your application:
+  </h1>
+  <h5
+    className="jsx-1753635690"
+  >
+    Please review the information you have provided before continuing.
+  </h5>
+  <br
+    className="jsx-1753635690"
+  />
+  <Relay(ApplicationDetailsComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "certificationSignatureIsValid": false,
+          "certificationUrl": Object {
+            "certificationSignature": "signed",
+            "hashMatches": false,
+          },
+          "versionNumber": 1,
+        },
+        "rowId": 1,
+      }
+    }
+    liveValidate={true}
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_query": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_query",
+      }
+    }
+    review={false}
+    setHasErrors={[Function]}
+  />
+  <br
+    className="jsx-1753635690"
+  />
+  <Card
+    body={false}
+    className="text-center"
+  >
+    <CardHeader>
+      Error
+    </CardHeader>
+    <CardBody>
+      <CardTitle>
+        The data has changed
+      </CardTitle>
+      <CardText>
+        The application data has been changed since the certifier added their signature.
+      </CardText>
+      <CardText>
+        Please generate and send a new certification URL.
+      </CardText>
+    </CardBody>
+    <CardFooter />
+  </Card>
+  <br />
+  <Card
+    body={false}
+  >
+    <CardHeader>
+      Application Certification
+    </CardHeader>
+    <CardBody>
+      <CardText>
+        Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
+      </CardText>
+      <Form
+        inline={false}
+        onSubmit={[Function]}
+      >
+        <FormRow>
+          <FormGroup
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "Col",
+                "render": [Function],
+              }
+            }
+            controlId="certifierEmail"
+            md="4"
+          >
+            <FormControl
+              name="email"
+              placeholder="Certifier Email"
+              type="email"
+            />
+          </FormGroup>
+        </FormRow>
+        <FormGroup>
+          <FormCheck
+            className="text-muted"
+            disabled={false}
+            inline={false}
+            isInvalid={false}
+            isValid={false}
+            label="Notify certifier via email that this application is ready for certification"
+            name="sendEmailChecked"
+            title=""
+            type="checkbox"
+          />
+        </FormGroup>
+        <Button
+          active={false}
+          disabled={false}
+          type="submit"
+          variant="info"
+        >
+          Submit for Certification
+        </Button>
+      </Form>
+    </CardBody>
+    <CardFooter />
+  </Card>
   <JSXStyle
     id="1753635690"
   >
