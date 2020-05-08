@@ -145,33 +145,19 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
    * Mutation functions
    */
 
-  // Archive a Product
-  const setArchived = async () => {
+  // Change a product status
+  const updateStatus = async (state: CiipProductState) => {
     const variables = {
       input: {
         id: product.id,
         productPatch: {
-          productState: 'ARCHIVED' as CiipProductState
+          productState: state
         }
       }
     };
     const response = await updateProductMutation(relay.environment, variables);
     handleUpdateProductCount((productCount += 1));
-    console.log(response);
-  };
-
-  // Archive a Product
-  const publishProduct = async () => {
-    const variables = {
-      input: {
-        id: product.id,
-        productPatch: {
-          productState: 'PUBLISHED' as CiipProductState
-        }
-      }
-    };
-    const response = await updateProductMutation(relay.environment, variables);
-    handleUpdateProductCount((productCount += 1));
+    setProductModalShow(false);
     console.log(response);
   };
 
@@ -223,7 +209,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       variables
     );
     handleUpdateProductCount((productCount += 1));
-    setProductModalShow(false);
+    setBenchmarkModalShow(false);
     console.log(response);
   };
 
@@ -241,7 +227,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       variables
     );
     handleUpdateProductCount((productCount += 1));
-    setProductModalShow(false);
+    setBenchmarkModalShow(false);
     console.log(response);
   };
 
@@ -252,117 +238,87 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const [productModalShow, setProductModalShow] = React.useState(false);
   const [benchmarkModalShow, setBenchmarkModalShow] = React.useState(false);
 
-  const editProductModal = (
-    <>
-      <Modal
-        centered
-        size="xl"
-        show={productModalShow}
-        onHide={() => {
-          setProductModalShow(false);
-          handleUpdateProductCount((productCount += 1));
-        }}
-      >
-        <Modal.Header
-          closeButton
-          style={{color: 'white', background: '#003366'}}
-        >
-          <Modal.Title>Edit Product</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{background: '#f5f5f5'}}>
-          <Container>
-            <JsonSchemaForm
-              omitExtraData
-              liveOmit
-              disabled={product.productState !== 'DRAFT'}
-              widgets={{header: HeaderWidget}}
-              schema={productSchema.schema as JSONSchema6}
-              uiSchema={productSchema.uiSchema}
-              formData={product}
-              showErrorList={false}
-              ArrayFieldTemplate={FormArrayFieldTemplate}
-              FieldTemplate={FormFieldTemplate}
-              ObjectFieldTemplate={FormObjectFieldTemplate}
-              onSubmit={editProduct}
+  const modalButtons = (isProduct: boolean) => {
+    if (isProduct) {
+      if (product.productState === 'DRAFT')
+        return (
+          <>
+            <Button type="submit" variant="primary">
+              Save
+            </Button>
+            <Button
+              variant="success"
+              onClick={async () => updateStatus('PUBLISHED')}
             >
-              {product.productState === 'DRAFT' && (
-                <>
-                  <Button type="submit" variant="primary">
-                    Save
-                  </Button>
-                  <Button variant="success" onClick={publishProduct}>
-                    Publish Product
-                  </Button>
-                </>
-              )}
-              {product.productState === 'PUBLISHED' && (
-                <Button variant="warning" onClick={setArchived}>
-                  Archive Product
-                </Button>
-              )}
-            </JsonSchemaForm>
-          </Container>
-        </Modal.Body>
-      </Modal>
-      <style jsx global>{`
-        .hidden-title label {
-          display: none;
-        }
-        .close {
-          color: white;
-        }
-      `}</style>
-    </>
-  );
+              Publish Product
+            </Button>
+          </>
+        );
 
-  const editBenchmarkModal = (
+      if (product.productState === 'PUBLISHED')
+        return (
+          <Button
+            variant="warning"
+            onClick={async () => updateStatus('ARCHIVED')}
+          >
+            Archive Product
+          </Button>
+        );
+    }
+
+    if (
+      product.productState === 'DRAFT' ||
+      product.productState === 'PUBLISHED'
+    )
+      return <Button type="submit">Save</Button>;
+
+    return <Button className="hidden-button" />;
+  };
+
+  const innerModal = (isProduct: boolean) => (
     <>
-      <Modal
-        centered
-        size="xl"
-        show={benchmarkModalShow}
-        onHide={() => {
-          setBenchmarkModalShow(false);
-          handleUpdateProductCount((productCount += 1));
-        }}
-      >
-        <Modal.Header
-          closeButton
-          style={{color: 'white', background: '#003366'}}
-        >
-          <Modal.Title>Edit Benchmark</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{background: '#f5f5f5'}}>
-          <Container>
-            <JsonSchemaForm
-              omitExtraData
-              liveOmit
-              disabled={product.productState === 'ARCHIVED'}
-              widgets={{header: HeaderWidget}}
-              schema={benchmarkSchema}
-              uiSchema={benchmarkUISchema}
-              formData={currentBenchmark}
-              showErrorList={false}
-              ArrayFieldTemplate={FormArrayFieldTemplate}
-              FieldTemplate={FormFieldTemplate}
-              ObjectFieldTemplate={FormObjectFieldTemplate}
-              onSubmit={
-                currentBenchmark && product.productState === 'DRAFT'
-                  ? editBenchmark
-                  : createBenchmark
-              }
-            >
-              {product.productState === 'DRAFT' ||
-              product.productState === 'PUBLISHED' ? (
-                <Button type="submit">Save</Button>
-              ) : (
-                <Button className="hidden-button" />
-              )}
-            </JsonSchemaForm>
+      <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
+        <Modal.Title>
+          {isProduct ? 'Edit Product' : 'Edit Benchmark'}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{background: '#f5f5f5'}}>
+        <Container>
+          <JsonSchemaForm
+            omitExtraData
+            liveOmit
+            disabled={
+              isProduct
+                ? product.productState !== 'DRAFT'
+                : product.productState === 'ARCHIVED'
+            }
+            widgets={{header: HeaderWidget}}
+            schema={
+              isProduct
+                ? (productSchema.schema as JSONSchema6)
+                : benchmarkSchema
+            }
+            uiSchema={isProduct ? productSchema.uiSchema : benchmarkUISchema}
+            formData={isProduct ? product : currentBenchmark}
+            showErrorList={false}
+            ArrayFieldTemplate={FormArrayFieldTemplate}
+            FieldTemplate={FormFieldTemplate}
+            ObjectFieldTemplate={FormObjectFieldTemplate}
+            onSubmit={
+              isProduct
+                ? editProduct
+                : currentBenchmark && product.productState === 'DRAFT'
+                ? editBenchmark
+                : createBenchmark
+            }
+          >
+            {modalButtons(isProduct)}
+          </JsonSchemaForm>
+          {isProduct ? null : (
             <PastBenchmarks pastBenchmarks={pastBenchmarks} />
-          </Container>
-        </Modal.Body>
-      </Modal>
+          )}
+        </Container>
+      </Modal.Body>
       <style jsx global>{`
         .hidden-title label {
           display: none;
@@ -375,6 +331,34 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         }
       `}</style>
     </>
+  );
+
+  const editProductModal = (
+    <Modal
+      centered
+      size="xl"
+      show={productModalShow}
+      onHide={() => {
+        setProductModalShow(false);
+        handleUpdateProductCount((productCount += 1));
+      }}
+    >
+      {innerModal(true)}
+    </Modal>
+  );
+
+  const editBenchmarkModal = (
+    <Modal
+      centered
+      size="xl"
+      show={benchmarkModalShow}
+      onHide={() => {
+        setBenchmarkModalShow(false);
+        handleUpdateProductCount((productCount += 1));
+      }}
+    >
+      {innerModal(false)}
+    </Modal>
   );
 
   return (
