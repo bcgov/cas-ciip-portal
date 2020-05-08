@@ -1,0 +1,618 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
+<Fragment>
+  <Bootstrap(Modal)
+    centered={true}
+    onHide={[MockFunction]}
+    show={true}
+    size="xl"
+  >
+    <ModalHeader
+      closeButton={true}
+      closeLabel="Close"
+    >
+      <ModalTitle>
+        New Reporting Year
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      <Container
+        fluid={false}
+      >
+        <Form
+          ErrorList={[Function]}
+          FieldTemplate={[Function]}
+          ObjectFieldTemplate={[Function]}
+          disabled={false}
+          formData={Object {}}
+          liveOmit={true}
+          liveValidate={false}
+          noHtml5Validate={true}
+          noValidate={false}
+          omitExtraData={true}
+          onSubmit={[Function]}
+          safeRenderCompletion={false}
+          schema={
+            Object {
+              "properties": Object {
+                "applicationCloseTime": Object {
+                  "title": "Application Close Time",
+                  "type": "string",
+                },
+                "applicationOpenTime": Object {
+                  "title": "Application Open Time",
+                  "type": "string",
+                },
+                "applicationResponseTime": Object {
+                  "title": "Application Response Date",
+                  "type": "string",
+                },
+                "reportingPeriodEnd": Object {
+                  "title": "Reporting Period End",
+                  "type": "string",
+                },
+                "reportingPeriodStart": Object {
+                  "title": "Reporting Period Start",
+                  "type": "string",
+                },
+                "reportingYear": Object {
+                  "title": "Reporting Year",
+                  "type": "integer",
+                },
+              },
+              "required": Array [
+                "reportingYear",
+                "reportingPeriodStart",
+                "reportingPeriodEnd",
+                "applicationOpenTime",
+                "applicationCloseTime",
+                "applicationResponseTime",
+              ],
+              "type": "object",
+            }
+          }
+          showErrorList={false}
+          uiSchema={
+            Object {
+              "applicationCloseTime": Object {
+                "ui:options": Object {
+                  "hideClearButton": true,
+                  "hideNowButton": true,
+                  "yearsRange": Array [
+                    2020,
+                    2030,
+                  ],
+                },
+                "ui:widget": "AltDateTimeInput",
+              },
+              "applicationOpenTime": Object {
+                "ui:options": Object {
+                  "hideClearButton": true,
+                  "hideNowButton": true,
+                  "yearsRange": Array [
+                    2020,
+                    2030,
+                  ],
+                },
+                "ui:widget": "AltDateTimeInput",
+              },
+              "applicationResponseTime": Object {
+                "ui:options": Object {
+                  "hideClearButton": true,
+                  "hideNowButton": true,
+                  "yearsRange": Array [
+                    2020,
+                    2030,
+                  ],
+                },
+                "ui:widget": "AltDateInput",
+              },
+              "reportingPeriodEnd": Object {
+                "ui:options": Object {
+                  "hideClearButton": true,
+                  "hideNowButton": true,
+                  "yearsRange": Array [
+                    2018,
+                    2030,
+                  ],
+                },
+                "ui:widget": "AltDateInput",
+              },
+              "reportingPeriodStart": Object {
+                "ui:options": Object {
+                  "hideClearButton": true,
+                  "hideNowButton": true,
+                  "yearsRange": Array [
+                    2018,
+                    2030,
+                  ],
+                },
+                "ui:widget": "AltDateInput",
+              },
+            }
+          }
+          validate={[Function]}
+          widgets={
+            Object {
+              "AltDateInput": [Function],
+              "AltDateTimeInput": [Function],
+            }
+          }
+        >
+          <Button
+            active={false}
+            disabled={false}
+            type="submit"
+            variant="primary"
+          >
+            Save Reporting Year
+          </Button>
+        </Form>
+      </Container>
+    </ModalBody>
+  </Bootstrap(Modal)>
+  <JSXStyle
+    id="841285729"
+  >
+    .
+    r
+    j
+    s
+    f
+     
+    .
+    f
+    o
+    r
+    m
+    -
+    r
+    o
+    w
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    :
+    2
+    0
+    p
+    x
+     
+    0
+     
+    2
+    0
+    p
+    x
+    ;
+    }
+    .
+    e
+    m
+    i
+    s
+    s
+    i
+    o
+    n
+    -
+    f
+    o
+    r
+    m
+     
+    .
+    r
+    j
+    s
+    f
+     
+    .
+    f
+    o
+    r
+    m
+    -
+    r
+    o
+    w
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    :
+    0
+    ;
+    }
+    .
+    n
+    o
+    -
+    c
+    o
+    l
+    -
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+     
+    .
+    f
+    o
+    r
+    m
+    -
+    r
+    o
+    w
+    &gt;
+    .
+    c
+    o
+    l
+    ,
+    .
+    n
+    o
+    -
+    c
+    o
+    l
+    -
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+     
+    .
+    f
+    o
+    r
+    m
+    -
+    r
+    o
+    w
+    &gt;
+    [
+    c
+    l
+    a
+    s
+    s
+    *
+    =
+    '
+    c
+    o
+    l
+    -
+    '
+    ]
+    {
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    0
+    ;
+    }
+    .
+    f
+    o
+    r
+    m
+    -
+    s
+    u
+    b
+    m
+    i
+    t
+    {
+    b
+    o
+    r
+    d
+    e
+    r
+    :
+    1
+    p
+    x
+     
+    s
+    o
+    l
+    i
+    d
+     
+    #
+    b
+    b
+    b
+    ;
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    3
+    0
+    p
+    x
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    e
+    e
+    e
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    r
+    a
+    d
+    i
+    u
+    s
+    :
+    6
+    p
+    x
+    ;
+    }
+    .
+    e
+    r
+    r
+    o
+    r
+    s
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    l
+    e
+    f
+    t
+    :
+    2
+    0
+    p
+    x
+    ;
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    2
+    0
+    p
+    x
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    c
+    e
+    5
+    c
+    5
+    c
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    w
+    h
+    i
+    t
+    e
+    ;
+    f
+    o
+    n
+    t
+    -
+    s
+    i
+    z
+    e
+    :
+    2
+    0
+    p
+    x
+    ;
+    }
+    u
+    l
+    .
+    e
+    r
+    r
+    o
+    r
+    -
+    d
+    e
+    t
+    a
+    i
+    l
+    {
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    0
+    ;
+    l
+    i
+    s
+    t
+    -
+    s
+    t
+    y
+    l
+    e
+    :
+    n
+    o
+    n
+    e
+    ;
+    }
+    u
+    l
+    .
+    e
+    r
+    r
+    o
+    r
+    -
+    d
+    e
+    t
+    a
+    i
+    l
+     
+    l
+    i
+    .
+    t
+    e
+    x
+    t
+    -
+    d
+    a
+    n
+    g
+    e
+    r
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    c
+    e
+    5
+    c
+    5
+    c
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    w
+    h
+    i
+    t
+    e
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    5
+    p
+    x
+    ;
+    }
+  </JSXStyle>
+</Fragment>
+`;

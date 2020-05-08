@@ -1,0 +1,47 @@
+{
+  "schema": {
+    "type": "object",
+    "properties": {
+      "applicationOpenTime": {
+        "title": "Application Open Time",
+        "type": "string"
+      },
+      "applicationCloseTime": {
+        "title": "Application Close Time",
+        "type": "string"
+      },
+      "applicationResponseTime": {
+        "title": "Application Response Date",
+        "type": "string"
+      }
+    },
+    "required": [
+      "applicationOpenTime",
+      "applicationCloseTime",
+      "applicationResponseTime"
+    ]
+  },
+  "uiSchema": {
+    "applicationOpenTime": {
+      "ui:widget": "AltDateTimeInput",
+      "ui:options": {
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
+    },
+    "applicationCloseTime": {
+      "ui:widget": "AltDateTimeInput",
+      "ui:options": {
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
+    },
+    "applicationResponseTime": {
+      "ui:widget": "AltDateInput",
+      "ui:options": {
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ import JsonSchemaForm, {
 } from 'react-jsonschema-form';
 import {Form_query} from 'Form_query.graphql';
 import {Button, Row, Col} from 'react-bootstrap';
+import globalFormStyles from './FormSharedStyles';
 import Link from 'next/link';
 import {FormJson} from 'next-env';
 import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
@@ -153,40 +154,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         </div>
       </JsonSchemaForm>
       <style jsx global>
-        {`
-          .rjsf .form-row {
-            margin: 20px 0 20px;
-          }
-          .emission-form .rjsf .form-row {
-            margin: 0;
-          }
-          .no-col-padding .form-row > .col,
-          .no-col-padding .form-row > [class*='col-'] {
-            padding: 0;
-          }
-          .form-submit {
-            border: 1px solid #bbb;
-            padding: 30px;
-            background: #eee;
-            border-radius: 6px;
-          }
-          .errors {
-            margin-left: 20px;
-            padding: 20px;
-            background: #ce5c5c;
-            color: white;
-            font-size: 20px;
-          }
-          ul.error-detail {
-            padding: 0;
-            list-style: none;
-          }
-          ul.error-detail li.text-danger {
-            background: #ce5c5c;
-            color: white !important;
-            padding: 5px;
-          }
-        `}
+        {globalFormStyles}
       </style>
     </div>
   );

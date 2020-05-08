@@ -1,0 +1,76 @@
+{
+  "schema": {
+    "type": "object",
+    "properties": {
+      "reportingYear": {
+        "title": "Reporting Year",
+        "type": "integer"
+      },
+      "reportingPeriodStart": {
+        "title": "Reporting Period Start",
+        "type": "string"
+      },
+      "reportingPeriodEnd": {
+        "title": "Reporting Period End",
+        "type": "string"
+      },
+      "applicationOpenTime": {
+        "title": "Application Open Time",
+        "type": "string"
+      },
+      "applicationCloseTime": {
+        "title": "Application Close Time",
+        "type": "string"
+      },
+      "applicationResponseTime": {
+        "title": "Application Response Date",
+        "type": "string"
+      }
+    },
+    "required": [
+      "reportingYear",
+      "reportingPeriodStart",
+      "reportingPeriodEnd",
+      "applicationOpenTime",
+      "applicationCloseTime",
+      "applicationResponseTime"
+    ]
+  },
+  "uiSchema": {
+    "reportingPeriodStart": {
+      "ui:widget": "AltDateInput",
+      "ui:options": {
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
+    },
+    "reportingPeriodEnd": {
+      "ui:widget": "AltDateInput",
+      "ui:options": {
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
+    },
+    "applicationOpenTime": {
+      "ui:widget": "AltDateTimeInput",
+      "ui:options": {
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
+    },
+    "applicationCloseTime": {
+      "ui:widget": "AltDateTimeInput",
+      "ui:options": {
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
+    },
+    "applicationResponseTime": {
+      "ui:widget": "AltDateInput",
+      "ui:options": {
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
+    }
+  }
+}
