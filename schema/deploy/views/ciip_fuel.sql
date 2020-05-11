@@ -18,7 +18,8 @@ begin;
        x.version_number,
        (x.fuel_data ->> 'quantity')::numeric as quantity,
        (x.fuel_data ->> 'fuelRowId')::integer as fuel_id,
-       (x.fuel_data ->> 'fuelUnits')::varchar(1000) as fuel_units
+       (x.fuel_data ->> 'fuelUnits')::varchar(1000) as fuel_units,
+       (x.fuel_data ->> 'emissionCategoryRowId')::numeric as emission_category_id
     from x
  );
 
@@ -30,5 +31,6 @@ comment on column ggircs_portal.ciip_fuel.version_number is 'The application rev
 comment on column ggircs_portal.ciip_fuel.quantity is 'The fuel quantity';
 comment on column ggircs_portal.ciip_fuel.fuel_units is 'The fuel units';
 comment on column ggircs_portal.ciip_fuel.fuel_id is 'The id of the fuel';
+comment on column ggircs_portal.ciip_fuel.emission_category_id is 'The foreign key to the emission_category table, defines what emission category the fuel belongs to';
 
 commit;

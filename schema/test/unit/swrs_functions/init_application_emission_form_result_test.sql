@@ -4,7 +4,7 @@ reset client_min_messages;
 
 begin;
 
-select plan(11);
+select plan(12);
 
 select has_function(
   'ggircs_portal', 'init_application_emission_form_result', array['integer', 'integer'],
@@ -41,6 +41,25 @@ select ggircs_portal.init_application_emission_form_result(
 $$,
 'init_application_emission_form_result can initialize data for a facility for a year with no swrs report'
 );
+
+select set_hasnt(
+  $$
+  with source_types as (
+    select json_array_elements((form_result.form_result ->> 'sourceTypes')::json) as source_type
+    from ggircs_portal.form_result
+    where form_id = 2
+  ),
+  all_source_type_names as (
+    select (source_type ->> 'sourceTypeName')::varchar(1000)    as source_type_name
+    from source_types)
+  select * from all_source_type_names;
+  $$,
+  $$
+    select 'Other, non-carbon taxed'
+  $$,
+  'Other, non-carbon taxed emission category is not included in the form result after running init_application_emission_form_result'
+);
+
 
 
 select finish();
