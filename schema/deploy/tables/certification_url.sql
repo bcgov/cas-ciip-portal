@@ -18,7 +18,8 @@ create table ggircs_portal.certification_url (
   updated_by int references ggircs_portal.ciip_user,
   deleted_at timestamp with time zone,
   deleted_by int references ggircs_portal.ciip_user,
-  certification_request_sent_to varchar(1000),
+  send_certification_request boolean not null default false,
+  certifier_email varchar(1000),
   certification_request_sent_at timestamp with time zone,
   recertification_request_sent boolean default false,
   -- TODO(Dylan): revisit expiry / deprecation of generated URLs in the context of Authorization
@@ -59,7 +60,7 @@ create trigger _set_user_id
   execute procedure ggircs_portal.set_user_id('certification_url');
 
 create trigger _certification_request_email
-  before update of certification_request_sent_to on ggircs_portal.certification_url
+  before update of certifier_email on ggircs_portal.certification_url
   for each row
   execute procedure ggircs_portal_private.run_graphile_worker_job('certification_request');
 
@@ -87,7 +88,7 @@ perform ggircs_portal_private.grant_permissions('select', 'certification_url', '
 -- Grant ciip_industry_user permissions
 perform ggircs_portal_private.grant_permissions('select', 'certification_url', 'ciip_industry_user');
 perform ggircs_portal_private.grant_permissions('insert', 'certification_url', 'ciip_industry_user');
-perform ggircs_portal_private.grant_permissions('update', 'certification_url', 'ciip_industry_user', ARRAY['certification_signature', 'certifier_url', 'recertification_request_sent', 'certification_request_sent_to']);
+perform ggircs_portal_private.grant_permissions('update', 'certification_url', 'ciip_industry_user', ARRAY['certification_signature', 'certifier_url', 'recertification_request_sent', 'certifier_email', 'send_certification_request']);
 
 -- Grant ciip_guest permissions
 -- ?
@@ -148,7 +149,8 @@ comment on column ggircs_portal.certification_url.created_by is 'Creator of row'
 comment on column ggircs_portal.certification_url.updated_at is 'Last update date of row';
 comment on column ggircs_portal.certification_url.updated_by is 'The user who last updated the row';
 comment on column ggircs_portal.certification_url.deleted_at is 'Deletion date of row';
-comment on column ggircs_portal.certification_url.certification_request_sent_to is 'The email that the certification request was sent to';
+comment on column ggircs_portal.certification_url.send_certification_request is 'User defined boolean indicates whether to send an email to the certifier';
+comment on column ggircs_portal.certification_url.certifier_email is 'The email that the certification request was sent to';
 comment on column ggircs_portal.certification_url.certification_request_sent_at is 'The time at which the certification request was sent';
 comment on column ggircs_portal.certification_url.recertification_request_sent is 'Boolean for whether a recertification request has been sent to the reporter in the case of a data change';
 comment on column ggircs_portal.certification_url.deleted_by is 'The user who deleted the row';

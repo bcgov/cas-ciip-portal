@@ -58,10 +58,12 @@ describe('The Confirmation Component', () => {
         relay={null}
       />
     );
-    expect(wrapper.find('h5').at(1).text()).toBe(
-      'Thank you for reviewing the application information. You may now send a generated Certification url to be signed prior to submission.'
+    expect(wrapper.find('CardHeader').at(0).text()).toBe(
+      'Application Certification'
     );
-    expect(wrapper.find('Button').at(0).text()).toBe('Send to Certifier');
+    expect(wrapper.find('Button').at(0).text()).toBe(
+      'Submit for Certification'
+    );
   });
 
   it('should show the Submit application dialog when certificationSignatureIsvalid is true', () => {
@@ -127,7 +129,9 @@ describe('The Confirmation Component', () => {
         relay={null}
       />
     );
-    expect(wrapper.find('CardHeader').text()).toBe('Error');
+
+    expect(wrapper.find('CardHeader').at(0).text()).toBe('Error');
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('should show a certifier has not yet signed message when hashMatches is true but certificationSignature is null', () => {

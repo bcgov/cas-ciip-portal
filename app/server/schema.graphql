@@ -1249,9 +1249,6 @@ type CertificationUrl implements Node {
   """The time at which the certification request was sent"""
   certificationRequestSentAt: Datetime
 
-  """The email that the certification request was sent to"""
-  certificationRequestSentTo: String
-
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
 
@@ -1260,6 +1257,9 @@ type CertificationUrl implements Node {
 
   """The user id of the certifier references ggircs_portal.ciip_user"""
   certifiedBy: Int
+
+  """The email that the certification request was sent to"""
+  certifierEmail: String
 
   """The URL sent to the certifier"""
   certifierUrl: String
@@ -1313,6 +1313,11 @@ type CertificationUrl implements Node {
   """Unique ID for the certification_url"""
   rowId: String!
 
+  """
+  User defined boolean indicates whether to send an email to the certifier
+  """
+  sendCertificationRequest: Boolean!
+
   """Last update date of row"""
   updatedAt: Datetime!
 
@@ -1338,11 +1343,6 @@ input CertificationUrlCondition {
   """
   certificationRequestSentAt: Datetime
 
-  """
-  Checks for equality with the object’s `certificationRequestSentTo` field.
-  """
-  certificationRequestSentTo: String
-
   """Checks for equality with the object’s `certificationSignature` field."""
   certificationSignature: String
 
@@ -1351,6 +1351,9 @@ input CertificationUrlCondition {
 
   """Checks for equality with the object’s `certifiedBy` field."""
   certifiedBy: Int
+
+  """Checks for equality with the object’s `certifierEmail` field."""
+  certifierEmail: String
 
   """Checks for equality with the object’s `certifierUrl` field."""
   certifierUrl: String
@@ -1381,6 +1384,11 @@ input CertificationUrlCondition {
   """Checks for equality with the object’s `rowId` field."""
   rowId: String
 
+  """
+  Checks for equality with the object’s `sendCertificationRequest` field.
+  """
+  sendCertificationRequest: Boolean
+
   """Checks for equality with the object’s `updatedAt` field."""
   updatedAt: Datetime
 
@@ -1399,9 +1407,6 @@ input CertificationUrlInput {
   """The time at which the certification request was sent"""
   certificationRequestSentAt: Datetime
 
-  """The email that the certification request was sent to"""
-  certificationRequestSentTo: String
-
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
 
@@ -1410,6 +1415,9 @@ input CertificationUrlInput {
 
   """The user id of the certifier references ggircs_portal.ciip_user"""
   certifiedBy: Int
+
+  """The email that the certification request was sent to"""
+  certifierEmail: String
 
   """The URL sent to the certifier"""
   certifierUrl: String
@@ -1440,6 +1448,11 @@ input CertificationUrlInput {
   """Unique ID for the certification_url"""
   rowId: String!
 
+  """
+  User defined boolean indicates whether to send an email to the certifier
+  """
+  sendCertificationRequest: Boolean
+
   """Last update date of row"""
   updatedAt: Datetime
 
@@ -1462,9 +1475,6 @@ input CertificationUrlPatch {
   """The time at which the certification request was sent"""
   certificationRequestSentAt: Datetime
 
-  """The email that the certification request was sent to"""
-  certificationRequestSentTo: String
-
   """The base64 representation of the certifier's signature"""
   certificationSignature: String
 
@@ -1473,6 +1483,9 @@ input CertificationUrlPatch {
 
   """The user id of the certifier references ggircs_portal.ciip_user"""
   certifiedBy: Int
+
+  """The email that the certification request was sent to"""
+  certifierEmail: String
 
   """The URL sent to the certifier"""
   certifierUrl: String
@@ -1502,6 +1515,11 @@ input CertificationUrlPatch {
 
   """Unique ID for the certification_url"""
   rowId: String
+
+  """
+  User defined boolean indicates whether to send an email to the certifier
+  """
+  sendCertificationRequest: Boolean
 
   """Last update date of row"""
   updatedAt: Datetime
@@ -1549,14 +1567,14 @@ enum CertificationUrlsOrderBy {
   APPLICATION_ID_DESC
   CERTIFICATION_REQUEST_SENT_AT_ASC
   CERTIFICATION_REQUEST_SENT_AT_DESC
-  CERTIFICATION_REQUEST_SENT_TO_ASC
-  CERTIFICATION_REQUEST_SENT_TO_DESC
   CERTIFICATION_SIGNATURE_ASC
   CERTIFICATION_SIGNATURE_DESC
   CERTIFIED_AT_ASC
   CERTIFIED_AT_DESC
   CERTIFIED_BY_ASC
   CERTIFIED_BY_DESC
+  CERTIFIER_EMAIL_ASC
+  CERTIFIER_EMAIL_DESC
   CERTIFIER_URL_ASC
   CERTIFIER_URL_DESC
   CREATED_AT_ASC
@@ -1578,6 +1596,8 @@ enum CertificationUrlsOrderBy {
   PRIMARY_KEY_DESC
   RECERTIFICATION_REQUEST_SENT_ASC
   RECERTIFICATION_REQUEST_SENT_DESC
+  SEND_CERTIFICATION_REQUEST_ASC
+  SEND_CERTIFICATION_REQUEST_DESC
   UPDATED_AT_ASC
   UPDATED_AT_DESC
   UPDATED_BY_ASC
