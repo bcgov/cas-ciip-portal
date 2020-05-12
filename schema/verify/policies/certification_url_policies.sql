@@ -14,6 +14,10 @@ select ggircs_portal_private.verify_policy('select', 'ciip_industry_user_select_
 select ggircs_portal_private.verify_policy('insert', 'ciip_industry_user_insert_certification_url', 'certification_url', 'ciip_industry_user');
 select ggircs_portal_private.verify_policy('update', 'ciip_industry_user_update_certification_url', 'certification_url', 'ciip_industry_user');
 
+-- ciip_industry_user (certifier) Policies
+select ggircs_portal_private.verify_policy('select', 'certifier_select_certification_url', 'certification_url', 'ciip_industry_user');
+select ggircs_portal_private.verify_policy('update', 'certifier_update_certification_url', 'certification_url', 'ciip_industry_user');
+
 -- ciip_guest Policies
 
 rollback;

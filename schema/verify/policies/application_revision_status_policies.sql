@@ -14,6 +14,9 @@ select ggircs_portal_private.verify_policy('insert', 'ciip_analyst_insert_applic
 select ggircs_portal_private.verify_policy('select', 'ciip_industry_user_select_application_revision_status', 'application_revision_status', 'ciip_industry_user');
 select ggircs_portal_private.verify_policy('insert', 'ciip_industry_user_insert_application_revision_status', 'application_revision_status', 'ciip_industry_user');
 
+-- ciip_industry_user (certifier) Policies
+select ggircs_portal_private.verify_policy('select', 'certifier_select_application_revision_status', 'application_revision_status', 'ciip_industry_user');
+
 --ciip_guest Policies
 
 ROLLBACK;
