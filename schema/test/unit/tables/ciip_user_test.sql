@@ -133,7 +133,7 @@ select results_eq(
   $$
     select count(*) from ggircs_portal.ciip_user
   $$,
-  ARRAY['7'::bigint],
+  ARRAY['8'::bigint],
     'Analyst can view all data from ciip_user'
 );
 

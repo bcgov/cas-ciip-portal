@@ -23,7 +23,7 @@ create or replace function ggircs_portal_private.validate_certifier()
       join ggircs_portal.ciip_user cu
         on cer.certifier_email = cu.email_address
         and cu.uuid = (select sub from ggircs_portal.session());
-  $fn$ language sql strict stable;
+  $fn$ language sql strict stable security definer;
 
   grant execute on function ggircs_portal_private.validate_certifier to ciip_administrator, ciip_analyst, ciip_industry_user;
 
@@ -43,7 +43,7 @@ perform ggircs_portal_private.upsert_policy('ciip_analyst_update_application', '
 
 -- statement for select using & insert with check
 industry_user_statement := 'facility_id in (select ggircs_portal_private.get_valid_application_facilities())';
-certifier_user_statement := 'id in (select ggircs_portal_private.get_valid_application_facilities())';
+certifier_user_statement := 'id in (select ggircs_portal_private.validate_certifier())';
 
 -- ciip_industry_user RLS
 perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_application', 'application', 'select', 'ciip_industry_user', industry_user_statement);
