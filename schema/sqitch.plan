@@ -102,3 +102,4 @@ policies/certification_url_policies [tables/certification_url] 2020-05-12T19:10:
 policies/application_revision_policies [database_functions/get_valid_applications_for_reporter database_functions/get_valid_applications_for_certifier] 2020-05-12T20:09:45Z Dylan Leard <dylan@button.is> # Applies row-level security for application_revision table
 policies/application_policies [tables/certification_url] 2020-05-12T20:44:30Z Dylan Leard <dylan@button.is> # Applies row-level security for table application
 policies/form_result_policies [database_functions/get_valid_applications_for_reporter database_functions/get_valid_applications_for_certifier] 2020-05-12T22:22:42Z Dylan Leard <dylan@button.is> # Applies row-level security policies for form_result table
+policies/facility_policies [tables/certification_url] 2020-05-12T23:05:04Z Dylan Leard <dylan@button.is> # Applies row-level security policies to the facility table
