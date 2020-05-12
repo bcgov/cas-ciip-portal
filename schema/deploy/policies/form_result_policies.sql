@@ -17,7 +17,7 @@ perform ggircs_portal_private.upsert_policy('ciip_analyst_select_form_result', '
 
 -- statement for select using & insert with check
 industry_user_statement := 'application_id in (select ggircs_portal_private.get_valid_applications_for_reporter())' ;
-certfier_user_statement := 'application_id in (select ggircs_portal_private.get_valid_applications_for_certifier())' ;
+certifier_user_statement := 'application_id in (select ggircs_portal_private.get_valid_applications_for_certifier())' ;
 
 -- ciip_industry_user RLS
 perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_form_result', 'form_result', 'select', 'ciip_industry_user', industry_user_statement);
