@@ -22,8 +22,11 @@ industry_user_statement := 'application_id in (select ggircs_portal_private.get_
 certifier_user_statement := 'application_id in (select ggircs_portal_private.get_valid_applications_for_certifier())';
 
 -- ciip_industry_user RLS
-perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_application_revision_status', 'application_revision_status', 'select', 'ciip_industry_user', industry_user_statement || ' or ' || certifier_user_statement);
+perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_application_revision_status', 'application_revision_status', 'select', 'ciip_industry_user', industry_user_statement);
 perform ggircs_portal_private.upsert_policy('ciip_industry_user_insert_application_revision_status', 'application_revision_status', 'insert', 'ciip_industry_user', industry_user_statement);
+
+-- ciip_industry_user (certifier) RLS
+perform ggircs_portal_private.upsert_policy('certifier_select_application_revision_status', 'application_revision_status', 'select', 'ciip_industry_user', certifier_user_statement);
 
 end
 $policy$;

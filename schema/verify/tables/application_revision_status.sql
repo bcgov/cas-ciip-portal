@@ -3,7 +3,6 @@
 begin;
 
 select pg_catalog.has_table_privilege('ggircs_portal.application_revision_status', 'select');
--- select pg_get_functiondef('ggircs_portal_private.get_valid_applications_via_revision_status()'::regprocedure);
 
 -- ciip_administrator Grants
 select ggircs_portal_private.verify_grant('select', 'application_revision_status', 'ciip_administrator');
