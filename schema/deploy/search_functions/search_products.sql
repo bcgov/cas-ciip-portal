@@ -40,14 +40,14 @@ returns setof ggircs_portal.product as
             'select
               id, product_name, units,
               product_state, requires_emission_allocation, is_ciip_product, requires_product_amount, subtract_exported_electricity_emissions, subtract_exported_electricity_emissions, subtract_exported_heat_emissions, subtract_exported_heat_emissions,
-              subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
+              subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, is_read_only, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
               from innerTable order by ' || order_by_field || ' ' || direction;
       else
         return query execute search_query_input_query ||
           'select
             id, product_name, units, product_state,
             requires_emission_allocation, is_ciip_product, requires_product_amount, subtract_exported_electricity_emissions, subtract_exported_electricity_emissions, subtract_exported_heat_emissions, subtract_exported_heat_emissions,
-            subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
+            subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, is_read_only, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
             from innerTable
           where
             '|| search_field || '::text ilike ''%' || search_value || '%''

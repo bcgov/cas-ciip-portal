@@ -289,8 +289,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             liveOmit
             disabled={
               isProduct
-                ? product.productState !== 'DRAFT'
-                : product.productState === 'ARCHIVED'
+                ? product.productState !== 'DRAFT' || product.isReadOnly
+                : product.productState === 'ARCHIVED' || product.isReadOnly
             }
             widgets={{header: HeaderWidget}}
             schema={
@@ -445,6 +445,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
       units
       requiresEmissionAllocation
       isCiipProduct
+      isReadOnly
       addPurchasedElectricityEmissions
       subtractExportedElectricityEmissions
       addPurchasedHeatEmissions
