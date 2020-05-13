@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(16);
+select plan(20);
 
 -- Table exists
 select has_table(
@@ -26,6 +26,10 @@ insert into ggircs_portal.organisation(id) overriding system value values(999), 
 insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id) overriding system value values(999, 999, 999), (1000, 1000, 1000);
+insert into ggircs_portal.application_revision(application_id, version_number) overriding system value values(999, 1);
+
+insert into ggircs_portal.ciip_user(id, uuid, email_address) overriding system value values (1001, '33333333-3333-3333-3333-333333333333', 'certifier@test.test');
+insert into ggircs_portal.certification_url(id, application_id, version_number, certifier_email) overriding system value values('999', 999, 1, 'certifier@test.test');
 
 
 -- CIIP_ADMINISTRATOR
@@ -154,6 +158,42 @@ select throws_like(
   $$,
   'permission denied%',
     'Analyst cannot delete rows from table application'
+);
+
+-- CIIP_INDUSTRY_USER (Certifier)
+set role ciip_industry_user;
+set jwt.claims.sub to '33333333-3333-3333-3333-333333333333';
+
+select results_eq(
+  $$
+    select distinct id from ggircs_portal.application
+  $$,
+  ARRAY[999::integer],
+    'Certifier can view data from application where the current users certifier_email on certification_url maps to an application'
+);
+
+select throws_like(
+  $$
+    insert into ggircs_portal.application(facility_id) values (1);
+  $$,
+  'new row violates%',
+    'Certifier cannot create a row in ggircs_portal.application'
+);
+
+select throws_like(
+  $$
+    update ggircs_portal.application set reporting_year=2100 where id=999;
+  $$,
+  'permission denied%',
+    'Certifier cannot update ggircs_portal.application'
+);
+
+select throws_like(
+  $$
+    delete from ggircs_portal.application where id = 999;
+  $$,
+  'permission denied%',
+    'Certifier cannot delete rows from table application'
 );
 
 select finish();

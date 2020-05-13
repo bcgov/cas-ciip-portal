@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(17);
+select plan(21);
 
 -- Table exists
 select has_table(
@@ -20,6 +20,8 @@ set jwt.claims.sub to '11111111-1111-1111-1111-111111111111';
 alter table ggircs_portal.ciip_user_organisation
   disable trigger _set_user_id;
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
+alter table ggircs_portal.certification_url disable trigger _check_form_result_md5;
+alter table ggircs_portal.certification_url disable trigger _create_form_result_md5;
 
 -- User 999 has access to application_revision 999, but not application_revision 1000
 insert into ggircs_portal.ciip_user(id, uuid) overriding system value
@@ -29,6 +31,9 @@ insert into ggircs_portal.facility(id, organisation_id) overriding system value 
 insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id) overriding system value values(999, 999, 999), (1000, 1000, 1000);
 insert into ggircs_portal.application_revision(application_id, version_number) overriding system value values(999, 1), (1000, 1);
+
+insert into ggircs_portal.ciip_user(id, uuid, email_address) overriding system value values (1001, '33333333-3333-3333-3333-333333333333', 'certifier@test.test');
+insert into ggircs_portal.certification_url(id, application_id, version_number, certifier_email) overriding system value values('999', 999, 1, 'certifier@test.test');
 
 
 -- CIIP_ADMINISTRATOR
@@ -168,6 +173,44 @@ select throws_like(
   $$,
   'permission denied%',
     'Analyst cannot delete rows from table application_revision'
+);
+
+-- CIIP_INDUSTRY_USER (Certifier)
+set role ciip_industry_user;
+set jwt.claims.sub to '33333333-3333-3333-3333-333333333333';
+
+select results_eq(
+  $$
+    select distinct application_id from ggircs_portal.application_revision
+  $$,
+  ARRAY[999::integer],
+    'Certifier can view data from application_revision where the current users certifier_email on certification_url maps to an application'
+);
+
+select throws_like(
+  $$
+    insert into ggircs_portal.application_revision(application_id, version_number) values (999, 3);
+  $$,
+  'new row violates%',
+    'Certifier cannot create a row in ggircs_portal.application_revision'
+);
+
+-- Attempt to update & ensure no data was changed
+update ggircs_portal.application_revision set legal_disclaimer_accepted=true where application_id=999 and version_number=1;
+select results_eq(
+  $$
+    select legal_disclaimer_accepted from ggircs_portal.application_revision where application_id=999 and version_number=1;
+  $$,
+  ARRAY['false'::boolean],
+    'Certifier cannot update table application_revision'
+);
+
+select throws_like(
+  $$
+    delete from ggircs_portal.application_revision where application_id = 999;
+  $$,
+  'permission denied%',
+    'Certifier cannot delete rows from table application_revision'
 );
 
 select finish();
