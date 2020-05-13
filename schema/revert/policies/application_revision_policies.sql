@@ -1,0 +1,17 @@
+-- Revert ggircs-portal:policies/application_revision_policies on pg
+
+begin;
+
+drop policy ciip_administrator_select_application_revision on ggircs_portal.application_revision;
+drop policy ciip_administrator_insert_application_revision on ggircs_portal.application_revision;
+drop policy ciip_administrator_update_application_revision on ggircs_portal.application_revision;
+
+drop policy ciip_analyst_select_application_revision on ggircs_portal.application_revision;
+
+drop policy ciip_industry_user_select_application_revision on ggircs_portal.application_revision;
+drop policy ciip_industry_user_insert_application_revision on ggircs_portal.application_revision;
+drop policy ciip_industry_user_update_application_revision on ggircs_portal.application_revision;
+
+drop policy certifier_select_application_revision on ggircs_portal.application_revision;
+
+commit;

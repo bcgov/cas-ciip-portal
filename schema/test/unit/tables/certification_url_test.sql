@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(18);
+select plan(22);
 
 -- Table exists
 select has_table(
@@ -24,16 +24,20 @@ alter table ggircs_portal.certification_url
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
 alter table ggircs_portal.certification_url disable trigger _check_form_result_md5;
 alter table ggircs_portal.certification_url disable trigger _create_form_result_md5;
+alter table ggircs_portal.certification_url disable trigger _signed_by_certifier_email;
 
 -- User 999 has access to certification_url 999, but not certification_url 1000
 insert into ggircs_portal.ciip_user(id, uuid) overriding system value
 values (999, '11111111-1111-1111-1111-111111111111'), (1000, '22222222-2222-2222-2222-222222222222');
-insert into ggircs_portal.organisation(id) overriding system value values(999), (1000);
-insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000);
+insert into ggircs_portal.organisation(id) overriding system value values(999), (1000), (1001);
+insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000), (1001, 1001);
 insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000), (1001, 1000), (1002, 1000), (1003, 1000);
 insert into ggircs_portal.application_revision(application_id, version_number) overriding system value values(999, 1), (1000, 1), (1001, 1), (1002,1), (1003,1);
 insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id) overriding system value values(999, 999, 999), (1000, 1000, 1000);
 insert into ggircs_portal.certification_url(id, application_id, version_number) overriding system value values('999', 999,1), ('1000', 1,1);
+
+insert into ggircs_portal.ciip_user(id, uuid, email_address) overriding system value values (1001, '33333333-3333-3333-3333-333333333333', 'certifier@test.test');
+insert into ggircs_portal.certification_url(id, application_id, version_number, certifier_email) overriding system value values('9999', 1001, 1, 'certifier@test.test');
 
 select throws_like(
   $$
@@ -180,6 +184,46 @@ select throws_like(
   $$,
   'permission denied%',
     'Analyst cannot delete rows from table certification_url'
+);
+
+
+-- CIIP_INDUSTRY_USER (Certifier)
+set role ciip_industry_user;
+set jwt.claims.sub to '33333333-3333-3333-3333-333333333333';
+select concat('current user is: ', (select current_user));
+
+select * from ggircs_portal.certification_url;
+
+select results_eq(
+  $$
+    select id from ggircs_portal.certification_url;
+  $$,
+  ARRAY['9999'::character varying(1000)],
+    'Certifier can view data in certification_url table if their user_email = certification_url.certifier_email'
+);
+
+select throws_like(
+  $$
+    insert into ggircs_portal.certification_url (id, application_id, version_number) overriding system value
+    values ('1005', 999,1);
+  $$,
+  '%new row violates row-level security%',
+    'Certifier cannot insert rows in table_certification_url'
+);
+
+select lives_ok(
+  $$
+    update ggircs_portal.certification_url set certification_signature='asdf' where id='9999';
+  $$,
+    'Certifier can update rows in table_certification_url'
+);
+
+select throws_like(
+  $$
+    delete from ggircs_portal.certification_url where application_id='999'
+  $$,
+  'permission denied%',
+    'Certifier cannot delete rows from table_certification_url'
 );
 
 select finish();

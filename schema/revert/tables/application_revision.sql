@@ -3,6 +3,5 @@
 begin;
 
 drop table ggircs_portal.application_revision;
-drop function ggircs_portal_private.get_valid_applications_via_revision;
 
 commit;

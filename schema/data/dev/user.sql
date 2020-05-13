@@ -16,7 +16,8 @@ values
   (3, '00000000-0000-0000-0000-000000000000', 'Test', 'User', 'ciip@mailinator.com', 'Unauthenticated User', '123456789'),
   (4, 'eabdeef2-f95a-4dd5-9908-883b45d213ba', 'Cypress', 'Admin', 'ciip-admin@mailinator.com', 'Cypress Admin', '123456789'),
   (5, '9e96cf52-9316-434e-878d-2d926a80ac8f', 'Cypress', 'Analyst', 'ciip-analyst@mailinator.com', 'Cypress Analyst', '123456789'),
-  (6, '809217a1-34b8-4179-95bc-6b4410b4fe16', 'Cypress', 'Reporter', 'ciip-reporter@mailinator.com', 'Cypress Reporter', '123456789')
+  (6, '809217a1-34b8-4179-95bc-6b4410b4fe16', 'Cypress', 'Reporter', 'ciip-reporter@mailinator.com', 'Cypress Reporter', '123456789'),
+  (7, '15a21af2-ce88-42e6-ac90-0a5e24260ec6', 'Cypress', 'Certifier', 'certifier@certi.fy', 'Cypress Certifier', '123456789')
 
 on conflict(id) do update set
   uuid=excluded.uuid,
