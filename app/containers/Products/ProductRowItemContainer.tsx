@@ -396,13 +396,16 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             placement="bottom"
             overlay={
               <Tooltip id="product">
-                {product.productState === 'DRAFT' ? 'Edit' : 'View'} Product
+                {product.productState === 'DRAFT' && !product.isReadOnly
+                  ? 'Edit'
+                  : 'View'}{' '}
+                Product
               </Tooltip>
             }
           >
             <FontAwesomeIcon
               className={
-                product.productState === 'DRAFT'
+                product.productState === 'DRAFT' && !product.isReadOnly
                   ? 'editIcon'
                   : 'editIcon-disabled'
               }

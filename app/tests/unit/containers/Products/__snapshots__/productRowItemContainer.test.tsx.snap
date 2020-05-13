@@ -212,6 +212,7 @@ exports[`ProductList should match the previous snaphshot 1`] = `
               },
               "id": "abc",
               "isCiipProduct": true,
+              "isReadOnly": false,
               "productName": "test product",
               "productState": "PUBLISHED",
               "requiresEmissionAllocation": true,
