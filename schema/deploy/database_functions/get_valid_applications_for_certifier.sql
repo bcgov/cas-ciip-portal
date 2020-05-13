@@ -12,7 +12,7 @@ begin;
       join ggircs_portal.ciip_user cu
         on cer.certifier_email = cu.email_address
         and cu.uuid = (select sub from ggircs_portal.session());
-  $fn$ language sql strict stable;
+  $fn$ language sql strict stable security definer;
 
   grant execute on function ggircs_portal_private.get_valid_applications_for_certifier to ciip_administrator, ciip_analyst, ciip_industry_user;
 

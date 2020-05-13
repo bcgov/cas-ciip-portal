@@ -14,7 +14,7 @@ $fn$
     join ggircs_portal.ciip_user cu
       on cuo.user_id = cu.id
       and cu.uuid = (select sub from ggircs_portal.session());
-$fn$ language sql strict stable;
+$fn$ language sql strict stable security definer;
 
 grant execute on function ggircs_portal_private.get_valid_applications_for_reporter to ciip_administrator, ciip_analyst, ciip_industry_user;
 
