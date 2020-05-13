@@ -18,7 +18,7 @@ create table ggircs_portal.certification_url (
   updated_by int references ggircs_portal.ciip_user,
   deleted_at timestamp with time zone,
   deleted_by int references ggircs_portal.ciip_user,
-  send_certification_request boolean not null default false,
+  send_certification_request boolean not null default true,
   certifier_email varchar(1000),
   certification_request_sent_at timestamp with time zone,
   recertification_request_sent boolean default false,
