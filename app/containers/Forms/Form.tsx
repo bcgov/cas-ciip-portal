@@ -92,9 +92,12 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     window.scrollTo(0, 0);
   };
 
-  const showAllocationReminder = formResult.some((result) => {
-    return result?.requiresEmissionAllocation === true;
-  });
+  let showAllocationReminder;
+  if (ciipApplicationWizardByFormId?.formPosition === 3)
+    showAllocationReminder = formResult?.some((result) => {
+      return result?.requiresEmissionAllocation === true;
+    });
+
   const formClass = uiSchema?.['ui:className'] || '';
   return (
     <div className={formClass}>
