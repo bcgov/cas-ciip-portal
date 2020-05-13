@@ -18,6 +18,7 @@ create table ggircs_portal.product (
   subtract_generated_electricity_emissions boolean not null default false,
   subtract_generated_heat_emissions boolean not null default false,
   add_emissions_from_eios boolean not null default false,
+  is_read_only boolean not null default false,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
