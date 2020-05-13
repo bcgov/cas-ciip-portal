@@ -25,11 +25,11 @@ select ggircs_portal.create_application_mutation_chain(1);
 delete from ggircs_portal.benchmark;
 delete from ggircs_portal.product;
 
-insert into ggircs_portal.product(id, name, units, state, requires_emission_allocation, requires_product_amount)
+insert into ggircs_portal.product(id, product_name, units, product_state, requires_emission_allocation, requires_product_amount)
 overriding system value
 values
-(26, 'Coal','tonnes','active', true, true),
-(29, 'Other Pulp (Mechanical pulp, paper, newsprint)', 'bone-dry tonnes','active', true, true);
+(26, 'Coal','tonnes','published', true, true),
+(29, 'Other Pulp (Mechanical pulp, paper, newsprint)', 'bone-dry tonnes','published', true, true);
 
 -- Ensure all form results contain no errors
 update ggircs_portal.form_result set form_result = '{

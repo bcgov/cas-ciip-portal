@@ -39,7 +39,6 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
                 }}
               />
             ))}
-            <th />
           </tr>
         </thead>
         {body}

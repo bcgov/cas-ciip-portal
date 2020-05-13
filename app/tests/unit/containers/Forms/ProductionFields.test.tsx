@@ -9,7 +9,7 @@ import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import {ProductField_query} from '__generated__/ProductField_query.graphql';
 
-describe('The ProductionFields Component with active product', () => {
+describe('The ProductionFields Component with published product', () => {
   const query: ProductField_query = {
     ' $refType': 'ProductField_query',
     allProducts: {
@@ -18,7 +18,7 @@ describe('The ProductionFields Component with active product', () => {
           node: {
             rowId: 1,
             units: 'bar',
-            state: 'active',
+            productState: 'PUBLISHED',
             requiresEmissionAllocation: true,
             requiresProductAmount: true
           }
@@ -73,7 +73,7 @@ describe('The ProductionFields Component with archived product', () => {
           node: {
             rowId: 1,
             units: 'bar',
-            state: 'archived',
+            productState: 'ARCHIVED',
             requiresEmissionAllocation: true,
             requiresProductAmount: true
           }

@@ -4,25 +4,26 @@ import {
   Button,
   Modal,
   Container,
-  Row,
-  Col,
-  Card,
-  Collapse,
-  Table
+  OverlayTrigger,
+  Tooltip
 } from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
-import moment from 'moment-timezone';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
-import saveProductMutation from 'mutations/product/saveProductMutation';
-import editBenchmarkMutation from 'mutations/benchmark/editBenchmarkMutation';
+import updateProductMutation from 'mutations/product/updateProductMutation';
+import {CiipProductState} from 'updateProductMutation.graphql';
+import updateBenchmarkMutation from 'mutations/benchmark/updateBenchmarkMutation';
 import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import FutureBenchmarks from './FutureBenchmarks';
 import productSchema from './product-schema.json';
+import moment from 'moment-timezone';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTachometerAlt, faCube} from '@fortawesome/free-solid-svg-icons';
+import HeaderWidget from 'components/HeaderWidget';
+import PastBenchmarks from 'components/Benchmark/PastBenchmarks';
 
 interface Props {
   relay: RelayProp;
@@ -35,11 +36,36 @@ interface Props {
 // Schema for ProductRowItemContainer
 // TODO: Use a number widget for string types that should be numbers (with postgres numeric type)
 const benchmarkUISchema = {
+  current: {
+    'ui:col-md': 12,
+    classNames: 'hidden-title',
+    'ui:widget': 'header',
+    'ui:options': {
+      text: 'Current Benchmark Information'
+    }
+  },
+  benchmark: {
+    'ui:col-md': 3
+  },
+  eligibilityThreshold: {
+    'ui:col-md': 3
+  },
   startReportingYear: {
+    'ui:col-md': 3,
     'ui:help': 'The first reporting year where this benchmark is used'
   },
   endReportingYear: {
+    'ui:col-md': 3,
     'ui:help': 'The last reporting year where this benchmark is used'
+  },
+  incentiveMultiplier: {
+    'ui:col-md': 3
+  },
+  minimumIncentiveRatio: {
+    'ui:col-md': 3
+  },
+  maximumIncentiveRatio: {
+    'ui:col-md': 3
   }
 };
 
@@ -54,39 +80,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   updateProductCount,
   productCount
 }) => {
-  const {reportingYear: nextReportingYear} = query.nextReportingYear;
+  const currentBenchmark = product.benchmarksByProductId?.edges[0]?.node;
 
-  const currentBenchmark = useMemo(() => {
-    return product.benchmarksByProductId.edges.find(({node: benchmark}) => {
-      return (
-        !benchmark.deletedAt &&
-        benchmark.startReportingYear <= nextReportingYear &&
-        benchmark.endReportingYear >= nextReportingYear
-      );
-    })?.node;
-  }, [product.benchmarksByProductId.edges, nextReportingYear]);
-
-  const pastBenchmarks = useMemo(
-    () =>
-      product.benchmarksByProductId.edges
-        .filter(
-          ({node}) =>
-            !node.deletedAt && node.endReportingYear < nextReportingYear
-        )
-        .map(({node}) => node),
-    [nextReportingYear, product.benchmarksByProductId.edges]
-  );
-
-  const futureBenchmarks = useMemo(
-    () =>
-      product.benchmarksByProductId.edges
-        .filter(
-          ({node}) =>
-            !node.deletedAt && node.startReportingYear > nextReportingYear
-        )
-        .map(({node}) => node),
-    [nextReportingYear, product.benchmarksByProductId.edges]
-  );
+  const pastBenchmarks = product.benchmarksByProductId?.edges.slice(1);
 
   // Schema for ProductRowItemContainer
   const benchmarkSchema = useMemo<JSONSchema6>(() => {
@@ -105,28 +101,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         'endReportingYear'
       ],
       properties: {
+        current: {
+          type: 'string'
+        },
         benchmark: {
           type: 'string',
           title: 'Benchmark'
-        },
-        eligibilityThreshold: {
-          type: 'string',
-          title: 'Eligibility Threshold'
-        },
-        minimumIncentiveRatio: {
-          type: 'string',
-          title: 'Minimum incentive ratio',
-          defaultValue: '0'
-        },
-        maximumIncentiveRatio: {
-          type: 'string',
-          title: 'Maximum incentive ratio',
-          defaultValue: '1'
-        },
-        incentiveMultiplier: {
-          type: 'string',
-          title: 'Incentive Multiplier',
-          defaultValue: '1'
         },
         startReportingYear: {
           type: 'number',
@@ -137,87 +117,80 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           type: 'number',
           title: 'End Reporting Period',
           enum: reportingYears
+        },
+        eligibilityThreshold: {
+          type: 'string',
+          title: 'Eligibility Threshold'
+        },
+        incentiveMultiplier: {
+          type: 'string',
+          title: 'Incentive Multiplier',
+          defaultValue: '1'
+        },
+        minimumIncentiveRatio: {
+          type: 'string',
+          title: 'Minimum incentive ratio',
+          defaultValue: '0'
+        },
+        maximumIncentiveRatio: {
+          type: 'string',
+          title: 'Maximum incentive ratio',
+          defaultValue: '1'
         }
       }
     };
   }, [query.allReportingYears]);
 
-  const displayPastBenchmark = (benchmark) => {
-    return (
-      <tr key={benchmark.id}>
-        <td>{benchmark.benchmark}</td>
-        <td>{benchmark.eligibilityThreshold}</td>
-        <td>{benchmark.incentiveMultiplier}</td>
-        <td>{benchmark.startReportingYear}</td>
-        <td>{benchmark.endReportingYear}</td>
-      </tr>
-    );
-  };
-
   /**
    * Mutation functions
    */
 
-  // Toggle the 'archived' value of a Product
-  const toggleArchived = async () => {
-    const newState = product.state === 'archived' ? 'active' : 'archived';
+  // Change a product status
+  const updateStatus = async (state: CiipProductState) => {
     const variables = {
       input: {
-        newName: product.name,
-        newDescription: product.description || '',
-        newState,
-        prevId: product.rowId,
-        newUnits: product.units,
-        newParent: [product.rowId],
-        newRequiresEmissionAllocation: product.requiresEmissionAllocation,
-        newIsCiipProduct: product.isCiipProduct,
-        newAddPurchasedElectricityEmissions:
-          product.addPurchasedElectricityEmissions,
-        newSubtractExportedElectricityEmissions:
-          product.subtractExportedElectricityEmissions,
-        newAddPurchasedHeatEmissions: product.addPurchasedHeatEmissions,
-        newSubtractExportedHeatEmissions: product.subtractExportedHeatEmissions,
-        newSubtractGeneratedElectricityEmissions:
-          product.subtractGeneratedElectricityEmissions,
-        newSubtractGeneratedHeatEmissions:
-          product.subtractGeneratedHeatEmissions,
-        newRequiresProductAmount: product.requiresProductAmount,
-        newAddEmissionsFromEios: product.addEmissionsFromEios
+        id: product.id,
+        productPatch: {
+          productState: state
+        }
       }
     };
-    const response = await saveProductMutation(relay.environment, variables);
+    const response = await updateProductMutation(relay.environment, variables);
     handleUpdateProductCount((productCount += 1));
+    setProductModalShow(false);
     console.log(response);
   };
 
   // Save a product
-  const saveProduct = async (e: IChangeEvent) => {
+  const editProduct = async (e: IChangeEvent) => {
     const variables = {
       input: {
-        newName: e.formData.name,
-        newDescription: e.formData.description,
-        newState: 'active',
-        prevId: product.rowId,
-        newUnits: e.formData.units,
-        newParent: [product.rowId],
-        newRequiresEmissionAllocation: e.formData.requiresEmissionAllocation,
-        newIsCiipProduct: e.formData.isCiipProduct,
-        newAddPurchasedElectricityEmissions:
-          e.formData.addPurchasedElectricityEmissions,
-        newSubtractExportedElectricityEmissions:
-          e.formData.subtractExportedElectricityEmissions,
-        newAddPurchasedHeatEmissions: e.formData.addPurchasedHeatEmissions,
-        newSubtractExportedHeatEmissions:
-          e.formData.subtractExportedHeatEmissions,
-        newSubtractGeneratedElectricityEmissions:
-          e.formData.subtractGeneratedElectricityEmissions,
-        newSubtractGeneratedHeatEmissions:
-          e.formData.subtractGeneratedHeatEmissions,
-        newRequiresProductAmount: e.formData.requiresProductAmount,
-        newAddEmissionsFromEios: e.formData.addEmissionsFromEios
+        id: product.id,
+        productPatch: {
+          productName: e.formData.productName,
+          units: e.formData.units,
+          productState: product.productState,
+          requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
+          isCiipProduct: e.formData.isCiipProduct,
+          addPurchasedElectricityEmissions:
+            e.formData.addPurchasedElectricityEmissions,
+          subtractExportedElectricityEmissions:
+            e.formData.subtractExportedElectricityEmissions,
+          addPurchasedHeatEmissions: e.formData.addPurchasedHeatEmissions,
+          subtractExportedHeatEmissions:
+            e.formData.subtractExportedHeatEmissions,
+          subtractGeneratedElectricityEmissions:
+            e.formData.subtractGeneratedElectricityEmissions,
+          subtractGeneratedHeatEmissions:
+            e.formData.subtractGeneratedHeatEmissions,
+          requiresProductAmount: e.formData.requiresProductAmount,
+          addEmissionsFromEios: e.formData.addEmissionsFromEios
+        }
       }
     };
-    const response = await saveProductMutation(relay.environment, variables);
+    const response = await updateProductMutation(relay.environment, variables);
+    handleUpdateProductCount((productCount += 1));
+    setProductModalShow(false);
     console.log(response);
   };
 
@@ -235,10 +208,12 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       relay.environment,
       variables
     );
+    handleUpdateProductCount((productCount += 1));
+    setBenchmarkModalShow(false);
     console.log(response);
   };
 
-  const updateCurrentBenchmark = async ({formData}: IChangeEvent) => {
+  const editBenchmark = async ({formData}: IChangeEvent) => {
     const variables = {
       input: {
         id: currentBenchmark.id,
@@ -247,231 +222,215 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         }
       }
     };
-    const response = await editBenchmarkMutation(relay.environment, variables);
+    const response = await updateBenchmarkMutation(
+      relay.environment,
+      variables
+    );
+    handleUpdateProductCount((productCount += 1));
+    setBenchmarkModalShow(false);
     console.log(response);
-  };
-
-  // This fuction does not 'DELETE' from the database, but sets the deleted at / deleted by values. This action is not recoverable through the UI
-  const deleteBenchmark = async (benchmark) => {
-    if (!benchmark) return;
-    const variables = {
-      input: {
-        id: currentBenchmark.id,
-        benchmarkPatch: {
-          deletedAt: moment
-            .tz('America/Vancouver')
-            .format('YYYY-MM-DDTHH:mm:ss')
-        }
-      }
-    };
-    const response = await editBenchmarkMutation(relay.environment, variables);
-    console.log(response);
-  };
-
-  const handleDeleteBenchmark = async (benchmark) => {
-    await deleteBenchmark(benchmark);
   };
 
   const handleUpdateProductCount = (newCount) => {
     updateProductCount(newCount);
   };
 
-  const [modalShow, setModalShow] = React.useState(false);
-  const [futureBenchmarksOpen, setFutureBenchmarksOpen] = React.useState(false);
-  const [pastBenchmarksOpen, setPastBenchmarksOpen] = React.useState(false);
-  const [addBenchmarkOpen, setAddBenchmarkOpen] = React.useState(false);
+  const [productModalShow, setProductModalShow] = React.useState(false);
+  const [benchmarkModalShow, setBenchmarkModalShow] = React.useState(false);
 
-  const editModal = (
-    <Modal
-      centered
-      size="xl"
-      show={modalShow}
-      onHide={() => {
-        setModalShow(false);
-        handleUpdateProductCount((productCount += 1));
-      }}
-    >
-      <Modal.Header closeButton>
-        <Modal.Title>Edit Product</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Container>
-          <Row>PRODUCT</Row>
-          <JsonSchemaForm
-            omitExtraData
-            liveOmit
-            schema={productSchema.schema as JSONSchema6}
-            uiSchema={productSchema.uiSchema}
-            formData={product}
-            showErrorList={false}
-            ArrayFieldTemplate={FormArrayFieldTemplate}
-            FieldTemplate={FormFieldTemplate}
-            ObjectFieldTemplate={FormObjectFieldTemplate}
-            onSubmit={saveProduct}
-          >
+  const modalButtons = (isProduct: boolean) => {
+    if (isProduct) {
+      if (product.productState === 'DRAFT')
+        return (
+          <>
             <Button type="submit" variant="primary">
-              Save Product
+              Save
             </Button>
-            {product.state === 'active' ? (
-              <Button variant="warning" onClick={toggleArchived}>
-                Archive Product
-              </Button>
-            ) : (
-              <Button variant="success" onClick={toggleArchived}>
-                Restore Product
-              </Button>
-            )}
-          </JsonSchemaForm>
-          <br />
-          <Row>BENCHMARKS</Row>
-          <br />
-          Current
-          <hr />
-          <Row>
-            <Col md={4}>Benchmark: {currentBenchmark?.benchmark ?? null}</Col>
-            <Col md={4}>
-              ET: {currentBenchmark?.eligibilityThreshold ?? null}
-            </Col>
-            <Col md={4}>
-              Multiplier: {currentBenchmark?.incentiveMultiplier ?? null}
-            </Col>
-            <Col md={4}>
-              Last Reporting Year: {currentBenchmark?.endReportingYear ?? null}
-            </Col>
-          </Row>
+            <Button
+              variant="success"
+              onClick={async () => updateStatus('PUBLISHED')}
+            >
+              Publish Product
+            </Button>
+          </>
+        );
+
+      if (product.productState === 'PUBLISHED')
+        return (
+          <Button
+            variant="warning"
+            onClick={async () => updateStatus('ARCHIVED')}
+          >
+            Archive Product
+          </Button>
+        );
+    }
+
+    if (
+      product.productState === 'DRAFT' ||
+      product.productState === 'PUBLISHED'
+    )
+      return <Button type="submit">Save</Button>;
+
+    return <Button className="hidden-button" />;
+  };
+
+  const innerModal = (isProduct: boolean) => (
+    <>
+      <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
+        <Modal.Title>
+          {isProduct ? 'Edit Product' : 'Edit Benchmark'}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{background: '#f5f5f5'}}>
+        <Container>
           <JsonSchemaForm
             omitExtraData
             liveOmit
-            schema={benchmarkSchema}
-            uiSchema={benchmarkUISchema}
-            formData={currentBenchmark}
+            disabled={
+              isProduct
+                ? product.productState !== 'DRAFT'
+                : product.productState === 'ARCHIVED'
+            }
+            widgets={{header: HeaderWidget}}
+            schema={
+              isProduct
+                ? (productSchema.schema as JSONSchema6)
+                : benchmarkSchema
+            }
+            uiSchema={isProduct ? productSchema.uiSchema : benchmarkUISchema}
+            formData={isProduct ? product : currentBenchmark}
             showErrorList={false}
             ArrayFieldTemplate={FormArrayFieldTemplate}
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
             onSubmit={
-              currentBenchmark ? updateCurrentBenchmark : createBenchmark
+              isProduct
+                ? editProduct
+                : currentBenchmark && product.productState === 'DRAFT'
+                ? editBenchmark
+                : createBenchmark
             }
           >
-            <Button type="submit">Save</Button>
-            <Button
-              variant="danger"
-              onClick={async () => deleteBenchmark(currentBenchmark)}
-            >
-              Delete
-            </Button>
+            {modalButtons(isProduct)}
           </JsonSchemaForm>
-          <br />
-          <Row>
-            <Col md={12}>
-              <Card>
-                <Card.Header
-                  onClick={() => setFutureBenchmarksOpen(!futureBenchmarksOpen)}
-                >
-                  Future Benchmarks
-                </Card.Header>
-                <Collapse in={futureBenchmarksOpen}>
-                  <Card.Body>
-                    {futureBenchmarks.map((benchmark) => (
-                      <FutureBenchmarks
-                        key={benchmark.id}
-                        benchmark={benchmark}
-                        environment={relay.environment}
-                        handleDeleteBenchmark={handleDeleteBenchmark}
-                        benchmarkSchema={benchmarkSchema}
-                        benchmarkUISchema={benchmarkUISchema}
-                      />
-                    ))}
-                  </Card.Body>
-                </Collapse>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col md={12}>
-              <Card>
-                <Card.Header
-                  onClick={() => setPastBenchmarksOpen(!pastBenchmarksOpen)}
-                >
-                  Past Benchmarks
-                </Card.Header>
-                <Collapse in={pastBenchmarksOpen}>
-                  <Card.Body>
-                    <Table>
-                      <thead>
-                        <tr>
-                          <th>Benchmark</th>
-                          <th>Eligibility Threshold</th>
-                          <th>Incentive Multiplier</th>
-                          <th>Start Reporting Year</th>
-                          <th>End Reporting Year</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {pastBenchmarks.map((benchmark) => {
-                          return displayPastBenchmark(benchmark);
-                        })}
-                      </tbody>
-                    </Table>
-                  </Card.Body>
-                </Collapse>
-              </Card>
-            </Col>
-          </Row>
-          <Button
-            style={{marginTop: '10px'}}
-            variant="success"
-            onClick={() => setAddBenchmarkOpen(!addBenchmarkOpen)}
-          >
-            Add Benchmark +
-          </Button>
-          <Collapse in={addBenchmarkOpen}>
-            <Card>
-              <Card.Header>Add Benchmark</Card.Header>
-              <Card.Body>
-                <JsonSchemaForm
-                  omitExtraData
-                  liveOmit
-                  schema={benchmarkSchema}
-                  uiSchema={benchmarkUISchema}
-                  showErrorList={false}
-                  ArrayFieldTemplate={FormArrayFieldTemplate}
-                  FieldTemplate={FormFieldTemplate}
-                  ObjectFieldTemplate={FormObjectFieldTemplate}
-                  onSubmit={createBenchmark}
-                >
-                  <Button type="submit">Save</Button>
-                  <Button
-                    variant="warning"
-                    onClick={() => setAddBenchmarkOpen(!addBenchmarkOpen)}
-                  >
-                    Cancel
-                  </Button>
-                </JsonSchemaForm>
-              </Card.Body>
-            </Card>
-          </Collapse>
+          {isProduct ? null : (
+            <PastBenchmarks pastBenchmarks={pastBenchmarks} />
+          )}
         </Container>
       </Modal.Body>
+      <style jsx global>{`
+        .hidden-title label {
+          display: none;
+        }
+        .close {
+          color: white;
+        }
+        .hidden-button {
+          display: none;
+        }
+      `}</style>
+    </>
+  );
+
+  const editProductModal = (
+    <Modal
+      centered
+      size="xl"
+      show={productModalShow}
+      onHide={() => {
+        setProductModalShow(false);
+        handleUpdateProductCount((productCount += 1));
+      }}
+    >
+      {innerModal(true)}
+    </Modal>
+  );
+
+  const editBenchmarkModal = (
+    <Modal
+      centered
+      size="xl"
+      show={benchmarkModalShow}
+      onHide={() => {
+        setBenchmarkModalShow(false);
+        handleUpdateProductCount((productCount += 1));
+      }}
+    >
+      {innerModal(false)}
     </Modal>
   );
 
   return (
     <>
       <tr>
-        <td>{product.name}</td>
-        <td>{product.description}</td>
-        <td>{product.units}</td>
+        <td>{product.productName}</td>
+        <td>{moment(product.updatedAt).format('DD-MM-YYYY')}</td>
         <td>{currentBenchmark?.benchmark ?? null}</td>
         <td>{currentBenchmark?.eligibilityThreshold ?? null}</td>
-        <td>{product.state}</td>
+        <td>{product.requiresEmissionAllocation ? 'Yes' : 'No'}</td>
+        <td>{product.productState}</td>
+        <td>{product.isCiipProduct ? 'Yes' : 'No'}</td>
         <td>
-          <Button variant="info" onClick={() => setModalShow(true)}>
-            Edit
-          </Button>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={
+              <Tooltip id="benchmark">
+                {product.productState === 'ARCHIVED' ? 'View' : 'Edit'}{' '}
+                Benchmark
+              </Tooltip>
+            }
+          >
+            <FontAwesomeIcon
+              className={
+                product.productState === 'ARCHIVED'
+                  ? 'editIcon-disabled'
+                  : 'editIcon'
+              }
+              icon={faTachometerAlt}
+              onClick={() => setBenchmarkModalShow(true)}
+            />
+          </OverlayTrigger>
+          &emsp;
+          <OverlayTrigger
+            placement="bottom"
+            overlay={
+              <Tooltip id="product">
+                {product.productState === 'DRAFT' ? 'Edit' : 'View'} Product
+              </Tooltip>
+            }
+          >
+            <FontAwesomeIcon
+              className={
+                product.productState === 'DRAFT'
+                  ? 'editIcon'
+                  : 'editIcon-disabled'
+              }
+              icon={faCube}
+              onClick={() => setProductModalShow(true)}
+            />
+          </OverlayTrigger>
         </td>
       </tr>
-      {editModal}
+      {editProductModal}
+      {editBenchmarkModal}
+      <style jsx global>
+        {`
+          .editIcon:hover {
+            color: red;
+            cursor: pointer;
+          }
+          .editIcon-disabled {
+            opacity: 0.5;
+          }
+        }
+        .editIcon-disabled:hover {
+          color: red;
+          opacity: 0.5;
+          cursor: pointer;
+        }
+        `}
+      </style>
     </>
   );
 };
@@ -479,10 +438,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 export default createFragmentContainer(ProductRowItemComponent, {
   product: graphql`
     fragment ProductRowItemContainer_product on Product {
+      id
       rowId
-      name
-      description
-      state
+      productName
+      productState
       units
       requiresEmissionAllocation
       isCiipProduct
@@ -494,7 +453,8 @@ export default createFragmentContainer(ProductRowItemComponent, {
       subtractGeneratedHeatEmissions
       addEmissionsFromEios
       requiresProductAmount
-      benchmarksByProductId {
+      updatedAt
+      benchmarksByProductId(orderBy: CREATED_AT_DESC) {
         edges {
           node {
             id
@@ -506,7 +466,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
             endReportingYear
             minimumIncentiveRatio
             maximumIncentiveRatio
-            deletedAt
+            createdAt
           }
         }
       }

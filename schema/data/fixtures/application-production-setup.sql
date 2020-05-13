@@ -13,7 +13,7 @@ truncate ggircs_portal.application restart identity cascade;
 select ggircs_portal.create_application_mutation_chain(1);
 select ggircs_portal.create_application_mutation_chain(2);
 update ggircs_portal.application_revision set legal_disclaimer_accepted=true where application_id=2 and version_number=1;
-insert into ggircs_portal.product(name, units, state, requires_emission_allocation, requires_product_amount)
-  values ('non ciip','tonnes of aluminum produced','active', false, false);
+insert into ggircs_portal.product(product_name, units, product_state, requires_emission_allocation, requires_product_amount)
+  values ('non ciip','tonnes of aluminum produced','published', false, false);
 
 commit;

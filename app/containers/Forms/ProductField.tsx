@@ -27,11 +27,12 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
 ) => {
   const {formData, query, onChange} = props;
 
-  const productIsActive = (formData, query) => {
+  // TODO: Clean up this function with array.some() as noted in https://github.com/bcgov/cas-ciip-portal/pull/621
+  const productIsPublished = (formData, query) => {
     const product = query.allProducts.edges.find(
       ({node}) => node.rowId === formData.productRowId
     )?.node;
-    if (product?.state === 'active' || !product) return true;
+    if (product?.productState === 'PUBLISHED' || !product) return true;
     return false;
   };
 
@@ -53,7 +54,7 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
     });
   };
 
-  return productIsActive(formData, query) ? (
+  return productIsPublished(formData, query) ? (
     <ObjectField {...props} onChange={handleChange} />
   ) : (
     <>
@@ -75,7 +76,7 @@ export default createFragmentContainer(ProductFieldComponent, {
           node {
             rowId
             units
-            state
+            productState
             requiresEmissionAllocation
             requiresProductAmount
           }

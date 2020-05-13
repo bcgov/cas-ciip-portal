@@ -6,8 +6,10 @@ import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import createProductMutation from 'mutations/product/createProductMutation';
+import {CiipProductState} from 'createProductMutation.graphql';
 import {JSONSchema6} from 'json-schema';
 import productSchema from './product-schema.json';
+import HeaderWidget from 'components/HeaderWidget';
 
 interface Props {
   relay: RelayProp;
@@ -26,11 +28,9 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
     const variables = {
       input: {
         product: {
-          name: e.formData.name,
-          description: e.formData.description,
+          productName: e.formData.productName,
           units: e.formData.units,
-          state: 'active',
-          parent: [null],
+          productState: 'DRAFT' as CiipProductState,
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
           isCiipProduct: e.formData.isCiipProduct,
           addPurchasedElectricityEmissions:
@@ -65,6 +65,7 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
             <JsonSchemaForm
               omitExtraData
               liveOmit
+              widgets={{header: HeaderWidget}}
               schema={productSchema.schema as JSONSchema6}
               uiSchema={productSchema.uiSchema}
               showErrorList={false}

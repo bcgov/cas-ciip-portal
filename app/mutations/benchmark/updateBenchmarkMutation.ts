@@ -1,13 +1,13 @@
 import {graphql} from 'react-relay';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
-  editBenchmarkMutation as editBenchmarkMutationType,
-  editBenchmarkMutationVariables
-} from 'editBenchmarkMutation.graphql';
+  updateBenchmarkMutation as updateBenchmarkMutationType,
+  updateBenchmarkMutationVariables
+} from 'updateBenchmarkMutation.graphql';
 import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
-  mutation editBenchmarkMutation($input: UpdateBenchmarkInput!) {
+  mutation updateBenchmarkMutation($input: UpdateBenchmarkInput!) {
     updateBenchmark(input: $input) {
       benchmark {
         id
@@ -17,9 +17,9 @@ const mutation = graphql`
 `;
 
 // TODO: May want to surface the onCompleted errors to the user (ie not reject, resolve & report)
-const editBenchmarkMutation = async (
+const updateBenchmarkMutation = async (
   environment: RelayModernEnvironment,
-  variables: editBenchmarkMutationVariables
+  variables: updateBenchmarkMutationVariables
 ) => {
   // Optimistic response
   const updateBenchmarkPayload = {
@@ -31,8 +31,8 @@ const editBenchmarkMutation = async (
     }
   };
 
-  const m = new BaseMutation<editBenchmarkMutationType>(
-    'edit-benchmark-mutation'
+  const m = new BaseMutation<updateBenchmarkMutationType>(
+    'update-benchmark-mutation'
   );
   return m.performMutation(
     environment,
@@ -42,4 +42,4 @@ const editBenchmarkMutation = async (
   );
 };
 
-export default editBenchmarkMutation;
+export default updateBenchmarkMutation;

@@ -12,8 +12,7 @@ const mutation = graphql`
       product {
         id
         rowId
-        name
-        description
+        productName
         units
         requiresEmissionAllocation
       }

@@ -44,12 +44,14 @@ export const ProductList: React.FunctionComponent<Props> = ({
     const allProducts = query.searchProducts.edges;
 
     const displayNameToColumnNameMap = {
-      Product: 'name',
-      Description: 'description',
-      Units: 'units',
-      'Benchmark (tCO2e/product units)': 'benchmark',
-      'Elig. Threshold (tCO2e/product units)': 'eligibility_threshold',
-      Status: 'state'
+      Product: 'product_name',
+      'Modified (D/M/Y)': 'updated_at',
+      Benchmark: 'benchmark',
+      'Eligibility Threshold': 'eligibility_threshold',
+      'Allocation of Emissions': 'requires_emission_allocation',
+      Status: 'product_state',
+      'Ciip Benchmarked': 'is_ciip_product',
+      'Edit/View': null
     };
     const body = (
       <tbody>
