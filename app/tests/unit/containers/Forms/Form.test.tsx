@@ -11,7 +11,8 @@ describe('The Form Component', () => {
             FuelField_query: true,
             FuelRowIdField_query: true,
             ProductField_query: true,
-            ProductRowIdField_query: true
+            ProductRowIdField_query: true,
+            EmissionCategoryRowIdField_query: true
           },
           ' $refType': 'Form_query',
           result: {
@@ -40,7 +41,8 @@ describe('The Form Component', () => {
             FuelField_query: true,
             ProductField_query: true,
             FuelRowIdField_query: true,
-            ProductRowIdField_query: true
+            ProductRowIdField_query: true,
+            EmissionCategoryRowIdField_query: true
           },
           ' $refType': 'Form_query',
           result: {
@@ -60,6 +62,71 @@ describe('The Form Component', () => {
     );
     expect(wrapper.find('.form-nav').find('Button')).toHaveLength(1);
     expect(wrapper.find('Button').text()).toBe('Continue');
+  });
+
+  it('should not render an alert reminder to check the guidance if no product requires emission allocation', () => {
+    const wrapper = shallow(
+      <FormComponent
+        query={{
+          ' $fragmentRefs': {
+            FuelField_query: true,
+            ProductField_query: true,
+            FuelRowIdField_query: true,
+            ProductRowIdField_query: true,
+            EmissionCategoryRowIdField_query: true
+          },
+          ' $refType': 'Form_query',
+          result: {
+            formResult: [{requiresEmissionAllocation: false}],
+            formJsonByFormId: {
+              formJson: {},
+              ciipApplicationWizardByFormId: {
+                formPosition: 3
+              },
+              name: 'Foo'
+            }
+          }
+        }}
+        onComplete={jest.fn()}
+        onBack={jest.fn()}
+      />
+    );
+    expect(wrapper.find('Alert')).toHaveLength(0);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render alert reminder to check the guidance if any product requires emission allocation', () => {
+    const wrapper = shallow(
+      <FormComponent
+        query={{
+          ' $fragmentRefs': {
+            FuelField_query: true,
+            ProductField_query: true,
+            FuelRowIdField_query: true,
+            ProductRowIdField_query: true,
+            EmissionCategoryRowIdField_query: true
+          },
+          ' $refType': 'Form_query',
+          result: {
+            formResult: [
+              {requiresEmissionAllocation: false},
+              {requiresEmissionAllocation: true}
+            ],
+            formJsonByFormId: {
+              formJson: {},
+              ciipApplicationWizardByFormId: {
+                formPosition: 3
+              },
+              name: 'Foo'
+            }
+          }
+        }}
+        onComplete={jest.fn()}
+        onBack={jest.fn()}
+      />
+    );
+    expect(wrapper.find('Alert')).toHaveLength(1);
+    expect(wrapper).toMatchSnapshot();
   });
 
   /* It('should render the continue and back button on subsequent forms', () => {
