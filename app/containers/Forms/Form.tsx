@@ -6,7 +6,7 @@ import JsonSchemaForm, {
   AjvError
 } from 'react-jsonschema-form';
 import {Form_query} from 'Form_query.graphql';
-import {Button, Row, Col} from 'react-bootstrap';
+import {Button, Row, Col, Alert} from 'react-bootstrap';
 import globalFormStyles from './FormSharedStyles';
 import Link from 'next/link';
 import {FormJson} from 'next-env';
@@ -92,6 +92,9 @@ export const FormComponent: React.FunctionComponent<Props> = ({
     window.scrollTo(0, 0);
   };
 
+  const showAllocationReminder = formResult.some((result) => {
+    return result?.requiresEmissionAllocation === true;
+  });
   const formClass = uiSchema?.['ui:className'] || '';
   return (
     <div className={formClass}>
@@ -122,6 +125,14 @@ export const FormComponent: React.FunctionComponent<Props> = ({
         onSubmit={onComplete}
         onChange={onValueChanged}
       >
+        {showAllocationReminder && (
+          <Alert variant="info">
+            <Alert.Heading>Before you proceed:</Alert.Heading>
+            Please refer to the guidance documents to calculate the emission
+            allocations for each product or service, and ensure that you report
+            all the necessary product or services
+          </Alert>
+        )}
         <div className="form-submit">
           <Row>
             <Col md={3} style={{lineHeight: '48px'}}>
@@ -130,22 +141,21 @@ export const FormComponent: React.FunctionComponent<Props> = ({
                   pathname: '/reporter/user-dashboard'
                 }}
               >
-                Save & Exit
+                Save &amp; Exit
               </Link>
             </Col>
             <Col className="form-nav" md={9} style={{textAlign: 'right'}}>
-              {ciipApplicationWizardByFormId &&
-                ciipApplicationWizardByFormId.formPosition > 0 && (
-                  <Button
-                    size="lg"
-                    type="button"
-                    style={{marginRight: '10px'}}
-                    variant="secondary"
-                    onClick={onBack}
-                  >
-                    Back
-                  </Button>
-                )}
+              {ciipApplicationWizardByFormId?.formPosition > 0 && (
+                <Button
+                  size="lg"
+                  type="button"
+                  style={{marginRight: '10px'}}
+                  variant="secondary"
+                  onClick={onBack}
+                >
+                  Back
+                </Button>
+              )}
               <Button size="lg" type="submit">
                 Continue
               </Button>
