@@ -83,6 +83,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
         </FormRow>
         <FormGroup>
           <FormCheck
+            checked={true}
             className="text-muted"
             disabled={false}
             inline={false}
@@ -220,6 +221,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
         </FormRow>
         <FormGroup>
           <FormCheck
+            checked={true}
             className="text-muted"
             disabled={false}
             inline={false}

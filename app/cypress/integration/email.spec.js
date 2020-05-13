@@ -49,7 +49,6 @@ if (Cypress.env('NO_MAIL')) {
       );
       cy.url().should('include', '/reporter/ciip-application');
       cy.get('#certifierEmail').clear().type('certifier@certi.fy');
-      cy.get('.form-check-input').click();
       cy.get('.btn').contains('Submit for Certification').click();
       cy.wait(1000);
       cy.request('localhost:8025/api/v1/messages').then((response) => {
@@ -85,7 +84,6 @@ if (Cypress.env('NO_MAIL')) {
       );
       cy.url().should('include', '/reporter/ciip-application');
       cy.get('#certifierEmail').clear().type('certifier@certi.fy');
-      cy.get('.form-check-input').click();
       cy.get('.btn').contains('Submit for Certification').click();
       cy.wait(500);
       cy.request('DELETE', 'localhost:8025/api/v1/messages');

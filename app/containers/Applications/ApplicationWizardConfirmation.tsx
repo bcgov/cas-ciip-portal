@@ -121,6 +121,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             </Form.Row>
             <Form.Group>
               <Form.Check
+                checked
                 className="text-muted"
                 name="sendEmailChecked"
                 type="checkbox"
