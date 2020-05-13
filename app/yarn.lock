@@ -7595,11 +7595,6 @@ escape-string-regexp@^2.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
   integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
 
-escape-string-regexp@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-3.0.0.tgz#1dad9cc28aed682be0de197280f79911a5fccd61"
-  integrity sha512-11dXIUC3umvzEViLP117d0KN6LJzZxh5+9F4E/7WLAAw7GrHk8NpUR+g9iJi/pe9C0py4F8rs0hreyRCwlAuZg==
-
 escodegen@^1.11.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/escodegen/-/escodegen-1.14.1.tgz#ba01d0c8278b5e95a9a45350142026659027a457"
@@ -14877,14 +14872,13 @@ react-addons-create-fragment@^15.6.2:
     loose-envify "^1.3.1"
     object-assign "^4.1.0"
 
-react-bootstrap-typeahead@^4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/react-bootstrap-typeahead/-/react-bootstrap-typeahead-4.2.2.tgz#39476990c7fb7b8021f8c7633d3a57b04ffbb694"
-  integrity sha512-oggbReJKbLeumfyFnWzHK0Cdv5T3DRW4EcAEXDipVk56BXk/1gBnz6tfzAc9B9kvZ1eDOjeEoaCcN9l4el0xUw==
+react-bootstrap-typeahead@^4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-typeahead/-/react-bootstrap-typeahead-4.2.3.tgz#d5ade1080574b4d486e9283a7b022239bb2df224"
+  integrity sha512-qDMql6I+x5oU+Ek90B90763zL9EHYv6hcShEtobuyofgHOuAiMB8HNA4Zlt4JCbL/5bbM4+bnSAc9c5a6cQ6kg==
   dependencies:
     "@babel/runtime" "^7.3.4"
     classnames "^2.2.0"
-    escape-string-regexp "^3.0.0"
     fast-deep-equal "^3.1.1"
     invariant "^2.2.1"
     lodash.debounce "^4.0.8"
