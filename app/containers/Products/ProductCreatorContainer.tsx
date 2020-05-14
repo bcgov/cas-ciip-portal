@@ -83,6 +83,9 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
         </Card>
       </div>
       <style jsx>{`
+        .hidden-title label {
+          display: none;
+        }
         div {
           margin-bottom: 50px;
         }
