@@ -32,6 +32,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 ) => {
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState<string>();
+  const [isChecked, toggleChecked] = useState(true);
   const [hasErrors, setHasErrors] = useState(false);
   const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
@@ -121,11 +122,12 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             </Form.Row>
             <Form.Group>
               <Form.Check
-                checked
+                checked={isChecked}
                 className="text-muted"
                 name="sendEmailChecked"
                 type="checkbox"
                 label="Notify certifier via email that this application is ready for certification"
+                onChange={() => toggleChecked(!isChecked)}
               />
             </Form.Group>
             <Button variant="info" type="submit">
