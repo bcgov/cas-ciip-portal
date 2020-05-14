@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(12);
+select plan(11);
 
 select has_function(
   'ggircs_portal_private', 'protect_read_only_products',
@@ -91,14 +91,6 @@ select lives_ok(
     update ggircs_portal.product set product_state='archived' where id = 1001;
   $$,
   'trigger should allow changing a published product to archived'
-);
-
-select results_eq(
-  $$
-    select is_read_only from ggircs_portal.product where id = 1001;
-  $$,
-  ARRAY['true'::boolean],
-  'changing state to archived should make the product read-only'
 );
 
 select finish();
