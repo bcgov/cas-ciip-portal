@@ -29,7 +29,8 @@ export const ApplicationList = (props) => {
     'Facility Name': 'facility_name',
     'Reporting Year': 'reporting_year',
     'Submission Date': 'submission_date',
-    Status: 'application_revision_status'
+    Status: 'application_revision_status',
+    '': null
   };
   const body = (
     <tbody>

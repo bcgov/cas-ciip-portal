@@ -30,8 +30,9 @@ export const OrganisationRequestsTableComponent: React.FunctionComponent<Props> 
     'First Name': 'first_name',
     'Last Name': 'last_name',
     Email: 'email_address',
+    Operator: 'operator_name',
     Status: 'status',
-    Operator: 'operator_name'
+    '': null
   };
 
   const {edges} = props.query.searchCiipUserOrganisation;

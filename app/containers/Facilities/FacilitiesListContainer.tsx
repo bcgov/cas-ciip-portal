@@ -56,7 +56,8 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
     'Facility Type': 'facility_type',
     'BC GHG id': 'facility_bcghgid',
     'Reporting period of last SWRS report': 'last_swrs_reporting_year',
-    Status: 'application_revision_status'
+    Status: 'application_revision_status',
+    '': null
   };
 
   const body = (
