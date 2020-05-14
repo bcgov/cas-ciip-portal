@@ -28,7 +28,8 @@ overriding system value
 values
 (1, 'Product A', 'tonnes','draft', true, true, true, true, true, true, true, true, true, true, false, '2018-01-01'),
 (2, 'Product B', 'cubic meters', 'published', true, true, true, true, true, true, true, true, true, true, false, '2018-01-01'),
-(3, 'Product C', 'unicorns per million', 'archived', true, true, true, true, true, true, true, true, true, true, true, '2018-01-01');
+(3, 'Product C', 'unicorns per million', 'archived', true, true, true, true, true, true, true, true, true, true, true, '2018-01-01'),
+(4, 'Product D', 'kilolitres', 'published', true, true, true, true, true, true, true, true, true, true, true, '2018-01-01');
 
 insert into ggircs_portal.benchmark(
   id,
@@ -45,6 +46,7 @@ values
 (1, 1, 0.12, 0.15, 1, 2018, 2022, '2018-01-01'),
 (2, 2, 888, 999, 1, 2018, 2022, '2018-01-01'),
 (3, 3, 123, 456, 1, 2018, 2019, '2018-01-01'),
-(4, 3, 789, 987, 1, 2019, 2022, '2019-01-01');
+(4, 3, 789, 987, 1, 2019, 2022, '2019-01-01'),
+(5, 4, 789, 987, 1, 2019, 2022, '2019-01-01');
 
 commit;

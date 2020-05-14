@@ -15,7 +15,7 @@ describe('The products and benchmark page', () => {
   });
 
   it('Displays the list of all products', () => {
-    cy.get('tr').its('length').should('be.gte', 3);
+    cy.get('tr').its('length').should('be.gte', 4);
     cy.get('#page-content').contains('Product A');
     cy.get('#page-content').contains('Product B');
     cy.get('#page-content').contains('Product C');
@@ -74,6 +74,15 @@ describe('The benchmark modal', () => {
     cy.get('.rjsf > .btn').contains('Save');
     cy.get('.rjsf > .btn').click();
     cy.get('tbody > :nth-child(2) > :nth-child(3)').contains('10');
+  });
+
+  it('Allows editing a benchmark for a published (read-only) product', () => {
+    cy.get(':nth-child(4) > :nth-child(8) > .fa-tachometer-alt > path').click();
+    cy.get('#root_benchmark').should('have.prop', 'disabled', false);
+    cy.get('#root_benchmark').clear().type('10');
+    cy.get('.rjsf > .btn').contains('Save');
+    cy.get('.rjsf > .btn').click();
+    cy.get('tbody > :nth-child(4) > :nth-child(3)').contains('10');
   });
 
   it('Does not allow editing a benchmark for an archived product', () => {
@@ -226,7 +235,7 @@ describe('The Create Product modal', () => {
       '#root_subtractGeneratedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
     ).click();
     cy.contains('Add Product').click();
-    cy.get('tr').its('length').should('be.gte', 4);
+    cy.get('tr').its('length').should('be.gte', 5);
     cy.get('tbody > :nth-child(1) > :nth-child(6)').contains('DRAFT');
   });
 });

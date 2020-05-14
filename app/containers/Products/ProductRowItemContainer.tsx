@@ -255,7 +255,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           </>
         );
 
-      if (product.productState === 'PUBLISHED')
+      if (product.productState === 'PUBLISHED' && !product.isReadOnly)
         return (
           <Button
             variant="warning"
@@ -264,6 +264,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             Archive Product
           </Button>
         );
+      return <Button className="hidden-button" />;
     }
 
     if (
@@ -290,7 +291,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             disabled={
               isProduct
                 ? product.productState !== 'DRAFT' || product.isReadOnly
-                : product.isReadOnly
+                : product.productState === 'ARCHIVED'
             }
             widgets={{header: HeaderWidget}}
             schema={
