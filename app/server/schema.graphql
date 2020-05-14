@@ -9539,6 +9539,10 @@ type Product implements Node {
   Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean!
+
+  """
+  Boolean value indicates if the product is read-only and cannot be changed regardless of state
+  """
   isReadOnly: Boolean!
 
   """The name of the product"""
@@ -9720,6 +9724,10 @@ input ProductInput {
   Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean
+
+  """
+  Boolean value indicates if the product is read-only and cannot be changed regardless of state
+  """
   isReadOnly: Boolean
 
   """The name of the product"""
@@ -9818,6 +9826,10 @@ input ProductPatch {
   Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean
+
+  """
+  Boolean value indicates if the product is read-only and cannot be changed regardless of state
+  """
   isReadOnly: Boolean
 
   """The name of the product"""

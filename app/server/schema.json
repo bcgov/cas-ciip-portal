@@ -12260,7 +12260,7 @@
             },
             {
               "name": "isReadOnly",
-              "description": null,
+              "description": "Boolean value indicates if the product is read-only and cannot be changed regardless of state",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -34433,7 +34433,7 @@
             },
             {
               "name": "isReadOnly",
-              "description": null,
+              "description": "Boolean value indicates if the product is read-only and cannot be changed regardless of state",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -45543,7 +45543,7 @@
             },
             {
               "name": "isReadOnly",
-              "description": null,
+              "description": "Boolean value indicates if the product is read-only and cannot be changed regardless of state",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",

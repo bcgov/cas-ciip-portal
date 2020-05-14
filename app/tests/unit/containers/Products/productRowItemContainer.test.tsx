@@ -101,21 +101,6 @@ describe('ProductList', () => {
     expect(r.find('Form').last().prop('disabled')).toBe(false);
   });
 
-  it('should not allow benchmark and product editing when the product is ARCHIVED', async () => {
-    product.productState = 'ARCHIVED';
-    const r = shallow(
-      <ProductRowItemComponent product={product} query={query} />
-    );
-    expect(
-      r.find('OverlayTrigger').last().prop('overlay').props.children.join('')
-    ).toEqual('View Product');
-    expect(r.find('Form').first().prop('disabled')).toBe(true);
-    expect(
-      r.find('OverlayTrigger').first().prop('overlay').props.children.join('')
-    ).toEqual('View Benchmark');
-    expect(r.find('Form').last().prop('disabled')).toBe(true);
-  });
-
   it('should not allow product editing when the product is read-only', async () => {
     product.productState = 'DRAFT';
     product.isReadOnly = true;
