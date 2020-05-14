@@ -21,13 +21,14 @@ insert into ggircs_portal.product(
   subtract_generated_electricity_emissions,
   subtract_generated_heat_emissions,
   add_emissions_from_eios,
+  is_read_only,
   updated_at
 )
 overriding system value
 values
-(1, 'Product A', 'tonnes','draft', true, true, true, true, true, true, true, true, true, true, '2018-01-01'),
-(2, 'Product B', 'cubic meters', 'published', true, true, true, true, true, true, true, true, true, true, '2018-01-01'),
-(3, 'Product C', 'unicorns per million', 'archived', true, true, true, true, true, true, true, true, true, true, '2018-01-01');
+(1, 'Product A', 'tonnes','draft', true, true, true, true, true, true, true, true, true, true, false, '2018-01-01'),
+(2, 'Product B', 'cubic meters', 'published', true, true, true, true, true, true, true, true, true, true, false, '2018-01-01'),
+(3, 'Product C', 'unicorns per million', 'archived', true, true, true, true, true, true, true, true, true, true, true, '2018-01-01');
 
 insert into ggircs_portal.benchmark(
   id,
