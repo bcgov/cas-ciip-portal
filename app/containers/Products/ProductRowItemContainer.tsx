@@ -290,7 +290,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             disabled={
               isProduct
                 ? product.productState !== 'DRAFT' || product.isReadOnly
-                : product.productState === 'ARCHIVED' || product.isReadOnly
+                : product.isReadOnly
             }
             widgets={{header: HeaderWidget}}
             schema={
