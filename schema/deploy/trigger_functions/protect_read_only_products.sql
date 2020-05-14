@@ -7,9 +7,7 @@ create or replace function ggircs_portal_private.protect_read_only_products()
   returns trigger as $$
     begin
       if (old.is_read_only = true) then
-        raise exception 'Product row is read only. Energy products cannot be edited';
-      elsif (old.product_state = 'archived') then
-        raise exception 'Product row is read only. Archived products cannot be edited';
+        raise exception 'Product row is read-only. Read-only products include products in ARCHIVED state and protected Energy-related products';
       elsif (new.product_state != 'draft' and
           (old.id != new.id
           or old.product_name != new.product_name
@@ -28,6 +26,8 @@ create or replace function ggircs_portal_private.protect_read_only_products()
             raise exception 'Product row is read only. A published product can only change its state to archived';
       elsif (old.product_state = 'published' and new.product_state != 'archived') then
         raise exception 'A published product cannot change back to draft state, can only change to archived state';
+      elsif(new.product_state = 'archived') then
+        new.is_read_only = true;
       end if;
       return new;
     end;
