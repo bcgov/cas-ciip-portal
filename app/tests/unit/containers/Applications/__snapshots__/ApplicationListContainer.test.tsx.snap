@@ -15,6 +15,7 @@ exports[`ApplicationList should render the application list 1`] = `
   }
   displayNameToColumnNameMap={
     Object {
+      "": null,
       "Application Id": "id",
       "Facility Name": "facility_name",
       "Operator Name": "operator_name",

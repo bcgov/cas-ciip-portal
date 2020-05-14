@@ -18,6 +18,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
   }
   displayNameToColumnNameMap={
     Object {
+      "": null,
       "Email": "email_address",
       "First Name": "first_name",
       "Last Name": "last_name",
