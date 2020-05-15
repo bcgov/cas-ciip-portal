@@ -48,6 +48,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
     }
     displayNameToColumnNameMap={
       Object {
+        "": null,
         "BC GHG id": "facility_bcghgid",
         "Facility Name": "facility_name",
         "Facility Type": "facility_type",
@@ -109,6 +110,7 @@ exports[`FacilitiesListContainer should not render the Pagination component if <
     }
     displayNameToColumnNameMap={
       Object {
+        "": null,
         "BC GHG id": "facility_bcghgid",
         "Facility Name": "facility_name",
         "Facility Type": "facility_type",
@@ -170,6 +172,7 @@ exports[`FacilitiesListContainer should render a maximum of 9 pagination pages i
     }
     displayNameToColumnNameMap={
       Object {
+        "": null,
         "BC GHG id": "facility_bcghgid",
         "Facility Name": "facility_name",
         "Facility Type": "facility_type",
@@ -329,6 +332,7 @@ exports[`FacilitiesListContainer should render the Pagination component if > 10 
     }
     displayNameToColumnNameMap={
       Object {
+        "": null,
         "BC GHG id": "facility_bcghgid",
         "Facility Name": "facility_name",
         "Facility Type": "facility_type",

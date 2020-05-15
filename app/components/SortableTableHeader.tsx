@@ -22,7 +22,7 @@ const SortableTableHeader: React.FunctionComponent<Props> = ({
     >
       {displayName}
       <br />
-      <FontAwesomeIcon color="white" icon={faSort} />
+      {displayName && <FontAwesomeIcon color="white" icon={faSort} />}
     </th>
   );
 };

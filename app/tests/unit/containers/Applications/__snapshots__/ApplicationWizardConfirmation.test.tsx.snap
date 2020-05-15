@@ -91,6 +91,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
             isValid={false}
             label="Notify certifier via email that this application is ready for certification"
             name="sendEmailChecked"
+            onChange={[Function]}
             title=""
             type="checkbox"
           />
@@ -229,6 +230,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
             isValid={false}
             label="Notify certifier via email that this application is ready for certification"
             name="sendEmailChecked"
+            onChange={[Function]}
             title=""
             type="checkbox"
           />

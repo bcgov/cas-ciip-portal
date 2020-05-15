@@ -42,6 +42,7 @@ if (Cypress.env('NO_MAIL')) {
       cy.wait(1000);
       cy.sqlFixture('fixtures/email-teardown');
     });
+
     it('should send notification emails to the certifier when the reporter sends a request, and to the reporter if the data is out of date', () => {
       const applicationId = window.btoa('["applications", 2]');
       cy.visit(
@@ -77,6 +78,7 @@ if (Cypress.env('NO_MAIL')) {
           });
       });
     });
+
     it('should send a notification email to the reporter when application has been certified', () => {
       const applicationId = window.btoa('["applications", 2]');
       cy.visit(
@@ -132,6 +134,41 @@ if (Cypress.env('NO_MAIL')) {
           'Thank you for your submission'
         );
         cy.request('DELETE', 'localhost:8025/api/v1/messages');
+      });
+    });
+  });
+
+  describe('Certification email opt-out', () => {
+    before(() => {
+      cy.sqlFixture('fixtures/email-setup');
+    });
+    beforeEach(() => {
+      cy.logout();
+      cy.login(
+        Cypress.env('TEST_REPORTER_USERNAME'),
+        Cypress.env('TEST_REPORTER_PASSWORD')
+      );
+    });
+    after(() => {
+      cy.wait(1000);
+      cy.sqlFixture('fixtures/email-teardown');
+    });
+    it('should not send a notification email to the certifier if the reporter opts out', () => {
+      const applicationId = window.btoa('["applications", 2]');
+      cy.request('DELETE', 'localhost:8025/api/v1/messages');
+      cy.visit(
+        `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
+      );
+      cy.url().should('include', '/reporter/ciip-application');
+      cy.get('#certifierEmail').clear().type('certifier@certi.fy');
+      cy.get('.form-check-input').click();
+      cy.get('.btn').contains('Submit for Certification').click();
+      cy.wait(1000);
+      cy.request('localhost:8025/api/v1/messages').then((response) => {
+        // eslint-disable-next-line jest/valid-expect
+        expect(response.body.length).to.eq(0);
+        cy.request('DELETE', 'localhost:8025/api/v1/messages');
+        cy.wait(500);
       });
     });
   });
