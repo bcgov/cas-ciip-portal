@@ -123,6 +123,7 @@ describe('When reviewing a submitted application as an analyst', () => {
   it('The application emissions form shows validation errors', () => {
     // Emission Form
     cy.visit(emissionFormUrl);
+    cy.wait(1000);
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').clear();
     cy.contains('Continue').click(); // Try to submit the form
     cy.get(

@@ -159,7 +159,7 @@ deployProdData() {
   _psql -f "./prod/form_json.sql"
   _psql -f "./prod/ciip_application_wizard.sql"
   _psql -f "./prod/fuel.sql"
-  _psql -f "./prod/product.sql"
+  _psql -f "./prod/energy_product.sql"
   _psql -f "./prod/organisation_and_facility.sql"
   _psql -f "./prod/emission.sql"
   _psql -f "./prod/gas.sql"
@@ -170,6 +170,7 @@ deployProdData() {
 deployTestData() {
   deployProdData
   _psql -f "./test/mock_current_timestamp.sql"
+  _psql -f "./test/product.sql"
   _psql -f "./test/benchmark.sql"
   return 0;
 }
