@@ -64,8 +64,8 @@ export default class Index extends Component<Props> {
               What is the CleanBC Industrial Incentive Program?
             </h3>
             <p>
-              In 2018, B.C.’s $30 carbon tax rate was raised to $35, and it is
-              set to increase by $5 every year until 2021. As the price of
+              In 2018, B.C.’s $30 carbon tax rate was raised to $35, and in
+              2019, the carbon tax rate rose from $35 to $40. As the price of
               carbon rises, the CleanBC Program for Industry will support
               competitiveness and facilitate emission reductions using revenues
               from the carbon tax that industry pays above $30 per tonne carbon
@@ -78,8 +78,8 @@ export default class Index extends Component<Props> {
               Industrial Reporting and Control Act (GGIRCA).
             </p>
             <p>
-              The CIIP helps cleaner industrial operations across the province
-              by reducing carbon tax costs for facilities near world-leading
+              The CIIP helps industrial operations across the province by
+              reducing net carbon-tax costs for facilities near world-leading
               emissions benchmarks.
             </p>
           </Col>
@@ -95,8 +95,9 @@ export default class Index extends Component<Props> {
               <img src="../../static/icons/import.png" />
               <h5 className="blue">1. Register as an Industrial Reporter</h5>
               <p>
-                Before you can apply for an operation, you have to register
-                yourself as an industrial reporter.
+                Before you can apply for the CIIP on behalf of an eligible
+                operation, you must register with the Ministry of Environment
+                and Climate Change Strategy.
               </p>
             </div>
           </Col>
@@ -107,7 +108,7 @@ export default class Index extends Component<Props> {
               <h5 className="blue">2. Request to apply for an Operation</h5>
               <p>
                 Once you’ve registered you can request to apply on behalf one or
-                multiple Operations.
+                multiple eligible Operations.
               </p>
             </div>
           </Col>
@@ -144,19 +145,12 @@ export default class Index extends Component<Props> {
                   <td>CIIP application forms open</td>
                 </tr>
                 <tr>
-                  <td>May 16, 2020</td>
-                  <td>Webinar for CIIP</td>
+                  <td />
+                  <td>Industrial GHG reporting deadline</td>
                 </tr>
                 <tr>
                   <td>{endDate}</td>
                   <td>CIIP application form due</td>
-                </tr>
-                <tr>
-                  <td>May 31, 2021</td>
-                  <td>
-                    CIIP application form due <br />
-                    (along with 2019 GHG reporting data)
-                  </td>
                 </tr>
               </tbody>
             </Table>

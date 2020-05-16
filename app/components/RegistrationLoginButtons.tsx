@@ -8,7 +8,7 @@ const RegistrationLoginButtons = () => {
       <Card style={{width: '100%', margin: '30px 0'}}>
         <Card.Body>
           <Card.Title className="blue">
-            Apply for CleanBC Industrial Incentive Program (CIIP)
+            Apply for the CleanBC Industrial Incentive Program (CIIP)
           </Card.Title>
           <Card.Text style={{padding: '10px 0 10px 0'}}>
             Operators must submit a CIIP application form by June 30, 2019. As
