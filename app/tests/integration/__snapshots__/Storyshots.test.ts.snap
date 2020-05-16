@@ -1377,17 +1377,6 @@ Array [
           >
             My Operators
           </h1>
-          <div
-            className="jsx-3776529057 help-trigger-container"
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
-          >
-            <span
-              className="jsx-3776529057 help-trigger"
-            >
-              ?
-            </span>
-          </div>
         </div>
       </div>
       <div
@@ -1416,11 +1405,30 @@ Array [
               </a>
             </div>
             <div
-              className="fade alert alert-info show"
-              role="alert"
+              className="card bg-light"
             >
-              Once your access to the requested operators is approved you can view their facilities and apply for CIIP for each.
+              <div
+                className="card-body"
+              >
+                Operator, Operator Representative, and Reporting Operation are defined in the
+                 
+                <a
+                  href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                >
+                  Greenhouse Gas Industrial Reporting and Control Act
+                </a>
+                 
+                and
+                 
+                <a
+                  href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+                >
+                  Greenhouse Gas Emission Reporting Regulation
+                </a>
+                .
+              </div>
             </div>
+            <br />
             <table
               className="table table-striped table-bordered table-hover"
               style={
@@ -1431,30 +1439,30 @@ Array [
               }
             >
               <thead
-                className="jsx-130150550"
+                className="jsx-1706603431"
               >
                 <tr
-                  className="jsx-130150550"
+                  className="jsx-1706603431"
                 >
                   <th
-                    className="jsx-130150550"
+                    className="jsx-1706603431"
                   >
                     Operator
                   </th>
                   <th
-                    className="jsx-130150550"
+                    className="jsx-1706603431"
                   >
                     Access Status
                   </th>
                   <th
-                    className="jsx-130150550"
+                    className="jsx-1706603431"
                   >
                     Operations/Facilities
                   </th>
                 </tr>
               </thead>
               <tbody
-                className="jsx-130150550"
+                className="jsx-1706603431"
               >
                 <tr
                   className="jsx-2428472905"
@@ -1507,26 +1515,6 @@ Array [
                 }
               >
                 <div
-                  className="card-header"
-                >
-                  <h5
-                    className="blue inline-block"
-                  >
-                    Add operators you represent 
-                  </h5>
-                  <div
-                    className="jsx-3776529057 help-trigger-container"
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
-                  >
-                    <span
-                      className="jsx-3776529057 help-trigger"
-                    >
-                      ?
-                    </span>
-                  </div>
-                </div>
-                <div
                   className="card-body"
                 >
                   <div
@@ -1536,7 +1524,69 @@ Array [
                     <div
                       className="card-title h5"
                     >
-                      Request access to an Operator:
+                      Request access to apply for the CIIP on behalf of a Reporting Operation:
+                    </div>
+                    <div
+                      className="fade alert alert-warning show"
+                      role="alert"
+                    >
+                      <p
+                        className="jsx-3491480756"
+                      >
+                        The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than Operator, the Designated Operator as defined by the
+                         
+                        <a
+                          className="alert-link"
+                          href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                        >
+                          Greenhouse Gas Industrial Reporting and Control Act
+                        </a>
+                         
+                        and
+                         
+                        <a
+                          className="alert-link"
+                          href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                        >
+                          Greenhouse Gas Emission Reporting Regulation
+                        </a>
+                        . Other representatives of the Reporting Operation may complete the application if authorization from the Operator is provided.
+                      </p>
+                      <p
+                        className="jsx-3491480756"
+                      >
+                        Further information on the role of the Operator and Certifying Official
+                         
+                        <a
+                          className="alert-link"
+                          href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                        >
+                          can be found here
+                        </a>
+                        .
+                      </p>
+                      <p
+                        className="jsx-3491480756"
+                      >
+                        Please email
+                         
+                        <a
+                          className="alert-link"
+                          href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                        >
+                          GHGRegulator@gov.bc.ca
+                        </a>
+                         
+                        if you have any questions.
+                      </p>
                     </div>
                     <small
                       className="jsx-3491480756"
@@ -1618,7 +1668,7 @@ Array [
                     Step 1:
                   </strong>
                   <br />
-                  Request access to one or more Operators.
+                  Request access to apply on behalf of an Operation as an applicant.
                 </div>
                 <div
                   className="list-group-item"
@@ -1630,7 +1680,7 @@ Array [
                     Step 2:
                   </strong>
                   <br />
-                  CIIP administrators will approve your request.
+                  CIIP administrators will review and approve your request.
                    
                 </div>
                 <div
@@ -1643,7 +1693,7 @@ Array [
                     Step 3:
                   </strong>
                   <br />
-                  Once approved, you can view all the facilities for the Operator.
+                  Applicants will fill out an application for the Operation and send it to a Certifying Official.
                 </div>
                 <div
                   className="list-group-item"
@@ -1655,7 +1705,55 @@ Array [
                     Step 4:
                   </strong>
                   <br />
-                  You can apply for CIIP for each facility.
+                  The Certifying Official reviews and signs off on the application.
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <strong>
+                    Step 5:
+                  </strong>
+                  <br />
+                  The applicant submits the application for assessment by the Ministry.
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <strong>
+                    Step 6:
+                  </strong>
+                  <br />
+                  CIIP administrators review the application.
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <strong>
+                    Step 7:
+                  </strong>
+                  <br />
+                  If any changes are required, the applicant will be requested to revise the application.
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <strong>
+                    Step 8:
+                  </strong>
+                  <br />
+                  Once processed, the applicant will receive a grant letter with further details on the expected incentive payment.
                 </div>
               </div>
             </div>

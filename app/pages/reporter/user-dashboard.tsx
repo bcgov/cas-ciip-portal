@@ -82,16 +82,12 @@ export default class UserDashBoard extends Component<Props> {
     const {session} = query || {};
     const hasCertificationRequests =
       session.ciipUserBySub.certificationRequests.edges.length > 0;
-    const helpDetails = {
-      title: 'What is an Operator',
-      helpMessage: 'An operator is an organisation'
-    };
+
     return (
       <DefaultLayout
         showSubheader
         session={session}
         title="My Operators"
-        help={helpDetails}
         allowedGroups={ALLOWED_GROUPS}
       >
         <Row>
@@ -115,23 +111,48 @@ export default class UserDashBoard extends Component<Props> {
                 <ListGroup.Item>
                   <strong>Step 1:</strong>
                   <br />
-                  Request access to one or more Operators.
+                  Request access to apply on behalf of an Operation as an
+                  applicant.
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <strong>Step 2:</strong>
                   <br />
-                  CIIP administrators will approve your request.{' '}
+                  CIIP administrators will review and approve your request.{' '}
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <strong>Step 3:</strong>
                   <br />
-                  Once approved, you can view all the facilities for the
-                  Operator.
+                  Applicants will fill out an application for the Operation and
+                  send it to a Certifying Official.
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <strong>Step 4:</strong>
                   <br />
-                  You can apply for CIIP for each facility.
+                  The Certifying Official reviews and signs off on the
+                  application.
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <strong>Step 5:</strong>
+                  <br />
+                  The applicant submits the application for assessment by the
+                  Ministry.
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <strong>Step 6:</strong>
+                  <br />
+                  CIIP administrators review the application.
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <strong>Step 7:</strong>
+                  <br />
+                  If any changes are required, the applicant will be requested
+                  to revise the application.
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <strong>Step 8:</strong>
+                  <br />
+                  Once processed, the applicant will receive a grant letter with
+                  further details on the expected incentive payment.
                 </ListGroup.Item>
               </ListGroup>
             </div>
