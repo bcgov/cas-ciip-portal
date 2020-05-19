@@ -31,18 +31,18 @@ create table ggircs_portal.certification_url (
 create trigger _random_id
   before insert on ggircs_portal.certification_url
   for each row
-  execute procedure ggircs_portal.set_random_id();
+  execute procedure ggircs_portal_private.set_random_id();
 
 create trigger _100_timestamps
   before insert or update on ggircs_portal.certification_url
   for each row
-  execute procedure ggircs_portal.update_timestamps();
+  execute procedure ggircs_portal_private.update_timestamps();
 
 -- Sets expires_at column for 7 days from creation
 create trigger _set_expiry
   before insert on ggircs_portal.certification_url
   for each row
-  execute procedure ggircs_portal.set_expiry('7 days');
+  execute procedure ggircs_portal_private.set_expiry('7 days');
 
 create trigger _create_form_result_md5
   before insert on ggircs_portal.certification_url
@@ -57,7 +57,7 @@ create trigger _check_form_result_md5
 create trigger _set_user_id
   before update of certification_signature on ggircs_portal.certification_url
   for each row
-  execute procedure ggircs_portal.set_user_id('certification_url');
+  execute procedure ggircs_portal_private.set_user_id('certification_url');
 
 create trigger _certification_request_email
   before update of certifier_email on ggircs_portal.certification_url

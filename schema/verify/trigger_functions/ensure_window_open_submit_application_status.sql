@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.ensure_window_open_submit_application_status()'::regprocedure);
+select pg_get_functiondef('ggircs_portal_private.ensure_window_open_submit_application_status()'::regprocedure);
 
 rollback;

@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.set_expiry;
+drop function ggircs_portal_private.set_expiry;
 
 commit;

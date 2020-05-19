@@ -18,7 +18,7 @@ create table ggircs_portal.emission_category (
 create trigger _100_timestamps
   before insert or update on ggircs_portal.emission_category
   for each row
-  execute procedure ggircs_portal.update_timestamps();
+  execute procedure ggircs_portal_private.update_timestamps();
 
 do
 $grant$

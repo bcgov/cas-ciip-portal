@@ -6,7 +6,7 @@ begin;
 select plan(6);
 
 select has_function(
-  'ggircs_portal', 'ensure_window_open_submit_application_status',
+  'ggircs_portal_private', 'ensure_window_open_submit_application_status',
   'Function ensure_window_open_submit_application_status should exist'
 );
 

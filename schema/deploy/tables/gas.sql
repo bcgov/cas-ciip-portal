@@ -19,7 +19,7 @@ create table ggircs_portal.gas (
 create trigger _100_timestamps
   before insert or update on ggircs_portal.gas
   for each row
-  execute procedure ggircs_portal.update_timestamps();
+  execute procedure ggircs_portal_private.update_timestamps();
 
 do
 $grant$

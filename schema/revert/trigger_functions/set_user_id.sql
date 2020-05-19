@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.set_user_id;
+drop function ggircs_portal_private.set_user_id;
 
 commit;

@@ -25,7 +25,7 @@ create index ggircs_portal_form_result_application_revision_foreign_key on ggirc
 create trigger _100_timestamps
   before insert or update on ggircs_portal.form_result
   for each row
-  execute procedure ggircs_portal.update_timestamps();
+  execute procedure ggircs_portal_private.update_timestamps();
 
 do
 $grant$

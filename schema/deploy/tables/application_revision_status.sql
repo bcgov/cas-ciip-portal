@@ -24,17 +24,17 @@ create index ggircs_portal_application_revision_status_foreign_key on ggircs_por
 create trigger _ensure_window_open
   before insert on ggircs_portal.application_revision_status
   for each row
-  execute procedure ggircs_portal.ensure_window_open_submit_application_status();
+  execute procedure ggircs_portal_private.ensure_window_open_submit_application_status();
 
 create trigger _100_timestamps
   before insert on ggircs_portal.application_revision_status
   for each row
-  execute procedure ggircs_portal.update_timestamps();
+  execute procedure ggircs_portal_private.update_timestamps();
 
 create trigger _checksum_form_results
     before insert on ggircs_portal.application_revision_status
     for each row
-    execute procedure ggircs_portal.checksum_form_results();
+    execute procedure ggircs_portal_private.checksum_form_results();
 
 create trigger _status_change_email
   after insert on ggircs_portal.application_revision_status

@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.set_random_id()'::regprocedure);
+select pg_get_functiondef('ggircs_portal_private.set_random_id()'::regprocedure);
 
 rollback;

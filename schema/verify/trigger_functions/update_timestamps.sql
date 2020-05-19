@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.update_timestamps()'::regprocedure);
+select pg_get_functiondef('ggircs_portal_private.update_timestamps()'::regprocedure);
 
 rollback;

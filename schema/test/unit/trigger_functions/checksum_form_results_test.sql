@@ -6,7 +6,7 @@ begin;
 select plan(4);
 
 select has_function(
-  'ggircs_portal', 'checksum_form_results',
+  'ggircs_portal_private', 'checksum_form_results',
   'Function checksum_form_results should exist'
 );
 
