@@ -11090,6 +11090,7 @@ type ReportingYear implements Node {
 
   """The current reporting year"""
   reportingYear: Int!
+  swrsDeadline: Datetime!
 }
 
 """
@@ -11114,6 +11115,9 @@ input ReportingYearCondition {
 
   """Checks for equality with the object’s `reportingYear` field."""
   reportingYear: Int
+
+  """Checks for equality with the object’s `swrsDeadline` field."""
+  swrsDeadline: Datetime
 }
 
 """An input for mutations affecting `ReportingYear`"""
@@ -11135,6 +11139,7 @@ input ReportingYearInput {
 
   """The current reporting year"""
   reportingYear: Int!
+  swrsDeadline: Datetime!
 }
 
 """
@@ -11158,6 +11163,7 @@ input ReportingYearPatch {
 
   """The current reporting year"""
   reportingYear: Int
+  swrsDeadline: Datetime
 }
 
 """A connection to a list of `ReportingYear` values."""
@@ -11203,6 +11209,8 @@ enum ReportingYearsOrderBy {
   REPORTING_PERIOD_START_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
+  SWRS_DEADLINE_ASC
+  SWRS_DEADLINE_DESC
 }
 
 """Table containing the information for a CIIP review_comment"""

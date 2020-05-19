@@ -12900,6 +12900,22 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "swrsDeadline",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -24183,6 +24199,16 @@
                 "ofType": null
               },
               "defaultValue": null
+            },
+            {
+              "name": "swrsDeadline",
+              "description": "Checks for equality with the object’s `swrsDeadline` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
+                "ofType": null
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -24283,6 +24309,18 @@
             },
             {
               "name": "REPORTING_YEAR_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SWRS_DEADLINE_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SWRS_DEADLINE_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -34794,6 +34832,20 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "Int",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "swrsDeadline",
+              "description": null,
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
                   "ofType": null
                 }
               },
@@ -45940,6 +45992,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "swrsDeadline",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
                 "ofType": null
               },
               "defaultValue": null

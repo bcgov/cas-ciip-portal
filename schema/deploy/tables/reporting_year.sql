@@ -7,6 +7,7 @@ create table ggircs_portal.reporting_year (
     reporting_year integer not null primary key,
     reporting_period_start timestamp with time zone not null,
     reporting_period_end timestamp with time zone not null,
+    swrs_deadline timestamp with time zone not null,
     application_open_time timestamp with time zone not null,
     application_close_time timestamp with time zone not null,
     application_response_time timestamp with time zone not null
