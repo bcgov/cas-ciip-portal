@@ -32,7 +32,7 @@ create unique index product_published_state_partial on ggircs_portal.product (pr
 create trigger _100_timestamps
   before insert or update on ggircs_portal.product
   for each row
-  execute procedure ggircs_portal.update_timestamps();
+  execute procedure ggircs_portal_private.update_timestamps();
 
 create trigger _protect_read_only_products
   before update on ggircs_portal.product

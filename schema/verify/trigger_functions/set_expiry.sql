@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.set_expiry()'::regprocedure);
+select pg_get_functiondef('ggircs_portal_private.set_expiry()'::regprocedure);
 
 rollback;

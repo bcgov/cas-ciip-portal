@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.checksum_form_results;
+drop function ggircs_portal_private.checksum_form_results;
 
 commit;

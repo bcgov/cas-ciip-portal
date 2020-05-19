@@ -3,7 +3,7 @@
 
 begin;
 
-create function ggircs_portal.update_timestamps()
+create function ggircs_portal_private.update_timestamps()
   returns trigger as $$
 
 declare
@@ -32,9 +32,9 @@ begin
 end;
 $$ language plpgsql;
 
-grant execute on function ggircs_portal.update_timestamps to ciip_administrator, ciip_analyst, ciip_industry_user;
+grant execute on function ggircs_portal_private.update_timestamps to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal.update_timestamps()
+comment on function ggircs_portal_private.update_timestamps()
   is $$
   a trigger to set created_at and updated_at columns.
   example usage:
@@ -47,7 +47,7 @@ comment on function ggircs_portal.update_timestamps()
   create trigger _100_timestamps
     before insert or update on some_schema.some_table
     for each row
-    execute procedure ggircs_portal.update_timestamps();
+    execute procedure ggircs_portal_private.update_timestamps();
   $$;
 
 commit;

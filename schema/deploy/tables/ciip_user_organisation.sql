@@ -16,7 +16,7 @@ begin;
   create trigger _set_user_id
     before insert on ggircs_portal.ciip_user_organisation
     for each row
-    execute procedure ggircs_portal.set_user_id();
+    execute procedure ggircs_portal_private.set_user_id();
 
   create unique index user_organisation_user_id_organisation_id_uindex on ggircs_portal.ciip_user_organisation(user_id, organisation_id);
 

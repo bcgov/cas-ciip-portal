@@ -25,7 +25,7 @@ create table ggircs_portal.form_json (
 create trigger _100_timestamps
   before insert or update on ggircs_portal.form_json
   for each row
-  execute procedure ggircs_portal.update_timestamps();
+  execute procedure ggircs_portal_private.update_timestamps();
 
 create unique index form_json_id_uindex
   on ggircs_portal.form_json (id);

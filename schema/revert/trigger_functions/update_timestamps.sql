@@ -2,6 +2,6 @@
 
 begin;
 
-drop function ggircs_portal.update_timestamps;
+drop function ggircs_portal_private.update_timestamps;
 
 commit;

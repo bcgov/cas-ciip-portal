@@ -24,7 +24,7 @@ create table ggircs_portal.ciip_user
 create trigger _100_timestamps
   before insert or update on ggircs_portal.ciip_user
   for each row
-  execute procedure ggircs_portal.update_timestamps();
+  execute procedure ggircs_portal_private.update_timestamps();
 
 create unique index user_email_address_uindex
   on ggircs_portal.ciip_user(email_address);

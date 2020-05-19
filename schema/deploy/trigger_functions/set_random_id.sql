@@ -3,7 +3,7 @@
 
 begin;
 create extension if not exists pgcrypto;
-create function ggircs_portal.set_random_id()
+create function ggircs_portal_private.set_random_id()
   returns trigger as $$
 
 declare
@@ -17,7 +17,7 @@ begin
     new_id := replace(new_id, '/', '_'); -- url safe replacement
     new_id := replace(new_id, '+', '-'); -- url safe replacement
     if new_id in (select id from ggircs_portal.certification_url) then
-      raise warning 'ggircs_portal.set_random_id() experienced hash collision on %s - rerunning hash function & generating new id', new_id;
+      raise warning 'ggircs_portal_private.set_random_id() experienced hash collision on %s - rerunning hash function & generating new id', new_id;
     else
       exit;
     end if;
@@ -28,9 +28,9 @@ begin
 end;
 $$ language plpgsql volatile;
 
-grant execute on function ggircs_portal.set_random_id to ciip_administrator, ciip_analyst, ciip_industry_user;
+grant execute on function ggircs_portal_private.set_random_id to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal.set_random_id()
+comment on function ggircs_portal_private.set_random_id()
   is $$
   a trigger to set id column.
   example usage:
@@ -42,7 +42,7 @@ comment on function ggircs_portal.set_random_id()
   create trigger _random_id
     before insert on some_schema.some_table
     for each row
-    execute procedure ggircs_portal.set_random_id();
+    execute procedure ggircs_portal_private.set_random_id();
   $$;
 
 commit;

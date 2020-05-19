@@ -2,7 +2,7 @@
 
 begin;
 
-create or replace function ggircs_portal.ensure_window_open_submit_application_status()
+create or replace function ggircs_portal_private.ensure_window_open_submit_application_status()
   returns trigger as $$
     begin
       if (select reporting_year from ggircs_portal.opened_reporting_year()) is null then
@@ -17,8 +17,8 @@ create or replace function ggircs_portal.ensure_window_open_submit_application_s
     end;
   $$ language plpgsql;
 
-grant execute on function ggircs_portal.ensure_window_open_submit_application_status to ciip_administrator, ciip_analyst, ciip_industry_user;
+grant execute on function ggircs_portal_private.ensure_window_open_submit_application_status to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal.ensure_window_open_submit_application_status is 'a trigger function that throws an exception if the application window is not opened and the new status is either "draft" or "submitted"';
+comment on function ggircs_portal_private.ensure_window_open_submit_application_status is 'a trigger function that throws an exception if the application window is not opened and the new status is either "draft" or "submitted"';
 
 commit;

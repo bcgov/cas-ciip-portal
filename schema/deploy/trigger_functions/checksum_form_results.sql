@@ -3,7 +3,7 @@
 
 begin;
 
-create or replace function ggircs_portal.checksum_form_results()
+create or replace function ggircs_portal_private.checksum_form_results()
   returns trigger as $$
 declare
   new_form_result_hash text;
@@ -40,9 +40,9 @@ begin
 end;
 $$ language plpgsql volatile;
 
-grant execute on function ggircs_portal.checksum_form_results to ciip_administrator, ciip_analyst, ciip_industry_user;
+grant execute on function ggircs_portal_private.checksum_form_results to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal.checksum_form_results()
+comment on function ggircs_portal_private.checksum_form_results()
   is $$
   a trigger to checksum the form_result columns from the current and previous versions of an application
   when the application_revision_status changes.
@@ -55,7 +55,7 @@ comment on function ggircs_portal.checksum_form_results()
   create trigger _checksum_form_results
     before update of application_revision_status on some_schema.some_table
     for each row
-    execute procedure ggircs_portal.checksum_form_results();
+    execute procedure ggircs_portal_private.checksum_form_results();
   $$;
 
 commit;

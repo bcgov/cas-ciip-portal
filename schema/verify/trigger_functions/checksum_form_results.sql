@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.checksum_form_results()'::regprocedure);
+select pg_get_functiondef('ggircs_portal_private.checksum_form_results()'::regprocedure);
 
 rollback;

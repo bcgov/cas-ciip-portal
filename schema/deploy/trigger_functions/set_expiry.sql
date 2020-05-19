@@ -3,7 +3,7 @@
 
 begin;
 
-create function ggircs_portal.set_expiry()
+create function ggircs_portal_private.set_expiry()
   returns trigger as $$
 declare
   interval_value interval;
@@ -14,9 +14,9 @@ begin
 end;
 $$ language plpgsql;
 
-grant execute on function ggircs_portal.set_expiry to ciip_administrator, ciip_analyst, ciip_industry_user;
+grant execute on function ggircs_portal_private.set_expiry to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal.set_expiry()
+comment on function ggircs_portal_private.set_expiry()
   is $$
   a trigger to set expires_at column.
   example usage:
@@ -28,7 +28,7 @@ comment on function ggircs_portal.set_expiry()
   create trigger _set_expiry
     before insert on some_schema.some_table
     for each row
-    execute procedure ggircs_portal.set_expiry('7 days');
+    execute procedure ggircs_portal_private.set_expiry('7 days');
   $$;
 
 commit;
