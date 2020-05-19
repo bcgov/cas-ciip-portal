@@ -1,0 +1,18 @@
+-- Revert ggircs-portal:policies/review_comment_policies from pg
+
+begin;
+
+drop policy ciip_administrator_select_review_comment on ggircs_portal.review_comment;
+drop policy ciip_administrator_insert_review_comment on ggircs_portal.review_comment;
+drop policy ciip_administrator_update_review_comment on ggircs_portal.review_comment;
+
+drop policy ciip_analyst_select_review_comment on ggircs_portal.review_comment;
+drop policy ciip_analyst_update_review_comment on ggircs_portal.review_comment;
+drop policy ciip_analyst_insert_review_comment on ggircs_portal.review_comment;
+
+drop policy ciip_industry_user_select_review_comment on ggircs_portal.review_comment;
+
+drop function ggircs_portal_private.get_valid_review_comments;
+drop function ggircs_portal_private.analyst_owns_comment;
+
+commit;
