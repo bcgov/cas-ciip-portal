@@ -49,26 +49,6 @@ begin;
   -- Enable row-level security
   alter table ggircs_portal.organisation enable row level security;
 
-  do
-  $policy$
-  begin
-    -- ciip_administrator RLS
-    perform ggircs_portal_private.upsert_policy('ciip_administrator_select_organisation', 'organisation', 'select', 'ciip_administrator', 'true');
-    perform ggircs_portal_private.upsert_policy('ciip_administrator_insert_organisation', 'organisation', 'insert', 'ciip_administrator', 'true');
-    perform ggircs_portal_private.upsert_policy('ciip_administrator_update_organisation', 'organisation', 'update', 'ciip_administrator', 'true');
-
-    -- ciip_analyst RLS
-    perform ggircs_portal_private.upsert_policy('ciip_analyst_select_organisation', 'organisation', 'select', 'ciip_analyst', 'true');
-    perform ggircs_portal_private.upsert_policy('ciip_analyst_insert_organisation', 'organisation', 'insert', 'ciip_analyst', 'true');
-    perform ggircs_portal_private.upsert_policy('ciip_analyst_update_organisation', 'organisation', 'update', 'ciip_analyst', 'true');
-
-    -- ciip_industry_user RLS
-    perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_organisation', 'organisation', 'select', 'ciip_industry_user', 'true');
-    perform ggircs_portal_private.upsert_policy('ciip_industry_user_insert_organisation', 'organisation', 'insert', 'ciip_industry_user', 'true');
-
-  end
-  $policy$;
-
   comment on table ggircs_portal.organisation is 'Table containing information on an organisaiton that has applied for CIIP';
   comment on column ggircs_portal.organisation.id is 'unique if for the organisation';
   comment on column ggircs_portal.organisation.report_id is 'report id from swrs';
