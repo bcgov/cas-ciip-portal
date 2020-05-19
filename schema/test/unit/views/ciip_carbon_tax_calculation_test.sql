@@ -6,6 +6,8 @@ reset client_min_messages;
 begin;
 select plan(3);
 
+update ggircs_portal.application set reporting_year = 2018 where id = 1;
+
 -- View should exist
 select has_view(
     'ggircs_portal', 'ciip_carbon_tax_calculation',
