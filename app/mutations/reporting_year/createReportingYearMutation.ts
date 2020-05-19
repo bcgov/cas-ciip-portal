@@ -13,9 +13,9 @@ const mutation = graphql`
         reportingYear
         reportingPeriodStart
         reportingPeriodEnd
+        swrsDeadline
         applicationOpenTime
         applicationCloseTime
-        applicationResponseTime
       }
       query {
         allReportingYears(orderBy: REPORTING_YEAR_DESC) {
@@ -25,9 +25,9 @@ const mutation = graphql`
               reportingYear
               reportingPeriodStart
               reportingPeriodEnd
+              swrsDeadline
               applicationOpenTime
               applicationCloseTime
-              applicationResponseTime
             }
           }
         }

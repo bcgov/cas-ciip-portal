@@ -20,7 +20,10 @@ function transformUiSchema(json) {
   Object.keys(json).forEach((field) => {
     if (field.includes('reportingPeriod')) {
       json[field]['ui:options'].yearsRange = [thisYear - 2, thisYear + 10];
-    } else if (field.includes('application')) {
+    } else if (
+      field.includes('application') ||
+      field.includes('swrsDeadline')
+    ) {
       json[field]['ui:options'].yearsRange = [thisYear, thisYear + 10];
     }
   });
