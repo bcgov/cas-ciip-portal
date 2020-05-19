@@ -31,7 +31,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       <p
         className="jsx-473442302"
       >
-        In 2018, B.C.’s $30 carbon tax rate was raised to $35, and it is set to increase by $5 every year until 2021. As the price of carbon rises, the CleanBC Program for Industry will support competitiveness and facilitate emission reductions using revenues from the carbon tax that industry pays above $30 per tonne carbon dioxide equivalent (tCO2e).
+        In 2018, B.C.’s $30 carbon tax rate was raised to $35, and in 2019, the carbon tax rate rose from $35 to $40. As the price of carbon rises, the CleanBC Program for Industry will support competitiveness and facilitate emission reductions using revenues from the carbon tax that industry pays above $30 per tonne carbon dioxide equivalent (tCO2e).
       </p>
       <p
         className="jsx-473442302"
@@ -41,7 +41,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       <p
         className="jsx-473442302"
       >
-        The CIIP helps cleaner industrial operations across the province by reducing carbon tax costs for facilities near world-leading emissions benchmarks.
+        The CIIP helps industrial operations across the province by reducing net carbon-tax costs for facilities near world-leading emissions benchmarks.
       </p>
     </Col>
     <RegistrationLoginButtons />
@@ -82,7 +82,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         <p
           className="jsx-473442302"
         >
-          Before you can apply for an operation, you have to register yourself as an industrial reporter.
+          Before you can apply for the CIIP on behalf of an eligible operation, you must register with the Ministry of Environment and Climate Change Strategy.
         </p>
       </div>
     </Col>
@@ -104,7 +104,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         <p
           className="jsx-473442302"
         >
-          Once you’ve registered you can request to apply on behalf one or multiple Operations.
+          Once you’ve registered you can request to apply on behalf one or multiple eligible Operations.
         </p>
       </div>
     </Col>
@@ -189,63 +189,33 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
           className="jsx-473442302"
         >
           <tr
-            className="jsx-473442302"
+            key="j87kj39uhf8930"
           >
-            <td
-              className="jsx-473442302"
-            >
+            <td>
               Apr 1, 2019
             </td>
-            <td
-              className="jsx-473442302"
-            >
+            <td>
               CIIP application forms open
             </td>
           </tr>
           <tr
-            className="jsx-473442302"
+            key="kd9393hd8sy273"
           >
-            <td
-              className="jsx-473442302"
-            >
-              May 16, 2020
-            </td>
-            <td
-              className="jsx-473442302"
-            >
-              Webinar for CIIP
-            </td>
-          </tr>
-          <tr
-            className="jsx-473442302"
-          >
-            <td
-              className="jsx-473442302"
-            >
+            <td>
               Dec 30, 2019
             </td>
-            <td
-              className="jsx-473442302"
-            >
+            <td>
               CIIP application form due
             </td>
           </tr>
           <tr
-            className="jsx-473442302"
+            key="848tfh282740jd"
           >
-            <td
-              className="jsx-473442302"
-            >
-              May 31, 2021
+            <td>
+              May 19, 2020
             </td>
-            <td
-              className="jsx-473442302"
-            >
-              CIIP application form due 
-              <br
-                className="jsx-473442302"
-              />
-              (along with 2019 GHG reporting data)
+            <td>
+              Industrial GHG reporting deadline
             </td>
           </tr>
         </tbody>

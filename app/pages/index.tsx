@@ -9,6 +9,8 @@ import RegistrationLoginButtons from 'components/RegistrationLoginButtons';
 import {GUEST} from 'data/group-constants';
 
 const ALLOWED_GROUPS = [GUEST];
+const TIME_ZONE = 'America/Vancouver';
+const DATE_FORMAT = 'MMM D, YYYY';
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
@@ -21,10 +23,12 @@ export default class Index extends Component<Props> {
           ...defaultLayout_session
         }
         openedReportingYear {
+          swrsDeadline
           applicationOpenTime
           applicationCloseTime
         }
         nextReportingYear {
+          swrsDeadline
           applicationOpenTime
           applicationCloseTime
         }
@@ -36,20 +40,52 @@ export default class Index extends Component<Props> {
     const {openedReportingYear, nextReportingYear, session} =
       this.props.query || {};
 
-    const startDate = moment
-      .tz(
-        openedReportingYear?.applicationOpenTime ??
-          nextReportingYear?.applicationOpenTime,
-        'America/Vancouver'
+    const startDate = moment.tz(
+      openedReportingYear?.applicationOpenTime ??
+        nextReportingYear?.applicationOpenTime,
+      TIME_ZONE
+    );
+    const endDate = moment.tz(
+      openedReportingYear?.applicationCloseTime ??
+        nextReportingYear?.applicationCloseTime,
+      TIME_ZONE
+    );
+    const swrsDeadline = moment.tz(
+      openedReportingYear?.swrsDeadline ?? nextReportingYear?.swrsDeadline,
+      TIME_ZONE
+    );
+
+    const keyDates = [
+      {
+        date: swrsDeadline,
+        description: 'Industrial GHG reporting deadline',
+        key: '848tfh282740jd'
+      },
+      {
+        date: startDate,
+        description: 'CIIP application forms open',
+        key: 'j87kj39uhf8930'
+      },
+      {
+        date: endDate,
+        description: 'CIIP application form due',
+        key: 'kd9393hd8sy273'
+      }
+    ];
+
+    const keyDatesRows = keyDates
+      .sort((a: any, b: any) =>
+        a.date.isBefore(b.date) ? -1 : a.date.isSame(b.date) ? 0 : 1
       )
-      .format('MMM D, YYYY');
-    const endDate = moment
-      .tz(
-        openedReportingYear?.applicationCloseTime ??
-          nextReportingYear?.applicationCloseTime,
-        'America/Vancouver'
-      )
-      .format('MMM D, YYYY');
+      .map((d) => {
+        return (
+          <tr key={d.key}>
+            <td>{d.date.format(DATE_FORMAT)}</td>
+            <td>{d.description}</td>
+          </tr>
+        );
+      });
+
     return (
       <DefaultLayout
         showSubheader={false}
@@ -139,20 +175,7 @@ export default class Index extends Component<Props> {
                   <th />
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>{startDate}</td>
-                  <td>CIIP application forms open</td>
-                </tr>
-                <tr>
-                  <td />
-                  <td>Industrial GHG reporting deadline</td>
-                </tr>
-                <tr>
-                  <td>{endDate}</td>
-                  <td>CIIP application form due</td>
-                </tr>
-              </tbody>
+              <tbody>{keyDatesRows}</tbody>
             </Table>
 
             <Card
