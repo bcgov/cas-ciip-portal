@@ -4,10 +4,11 @@ import {
 } from 'react-relay';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {DeclarativeMutationConfig} from 'relay-runtime';
+import {toast} from 'react-toastify';
 
 interface BaseMutationType {
   response: any;
-  variables: {input: any};
+  variables: {input: any; messages?: {success: string; failure: string}};
 }
 
 export default class BaseMutation<T extends BaseMutationType = never> {
@@ -27,6 +28,12 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     optimisticResponse?: any,
     updater?: any
   ) {
+    const success_message = variables.messages?.success
+      ? variables.messages.success
+      : '';
+    const failure_message = variables.messages?.failure
+      ? variables.messages.failure
+      : 'Oops! Seems like something went wrong';
     const clientMutationId = `${this.mutationName}-${this.counter}`;
     variables.input.clientMutationId = clientMutationId;
     if (optimisticResponse) {
@@ -51,10 +58,21 @@ export default class BaseMutation<T extends BaseMutationType = never> {
           configs,
           onError: (error) => {
             reject(error);
-            console.log(error);
+            failure_message &&
+              toast(failure_message, {
+                className: 'mutation-toast Toastify__toast--error',
+                autoClose: false,
+                position: 'bottom-right'
+              });
           },
           onCompleted: (response, errors) => {
             errors ? reject(errors) : resolve(response);
+            success_message &&
+              toast(success_message, {
+                className: 'mutation-toast Toastify__toast--success',
+                autoClose: 5000,
+                position: 'bottom-right'
+              });
           }
         });
       });

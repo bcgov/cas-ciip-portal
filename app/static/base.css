@@ -47,3 +47,15 @@
     display:inline-block;
     width: 30%;
 }
+.mutation-toast.Toastify__toast{
+    padding-left:15px;
+}
+.mutation-toast .Toastify__toast-body{
+    color:white;
+}
+.mutation-toast.Toastify__toast--success{
+    background:#49b34c;
+}
+.mutation-toast .Toastify__progress-bar--default{
+    background: #add059;
+}

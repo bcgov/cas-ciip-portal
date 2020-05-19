@@ -7,6 +7,8 @@ import {getRequest} from 'relay-runtime';
 import {createEnvironment} from 'lib/relay-environment';
 import ErrorBoundary from 'lib/error-boundary';
 import LoadingSpinner from 'components/LoadingSpinner';
+import ToasterHelper from 'components/helpers/Toaster';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 interface AppProps {
   pageProps: {
@@ -44,6 +46,7 @@ export default class App extends NextApp<AppProps> {
         variables: {...variables, ...router.query}
       })
     );
+
     return (
       <ErrorBoundary>
         <QueryRenderer
@@ -66,6 +69,7 @@ export default class App extends NextApp<AppProps> {
             );
           }}
         />
+        <ToasterHelper />
       </ErrorBoundary>
     );
   }
