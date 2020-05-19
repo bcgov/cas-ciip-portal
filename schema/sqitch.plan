@@ -110,3 +110,4 @@ policies/ciip_user_organisation_policies [tables/ciip_user_organisation] 2020-05
 policies/ciip_user_policies [tables/ciip_user] 2020-05-19T21:15:19Z Dylan Leard <dylan@button.is> # Adds row-level security policies for ciip_user table
 policies/emission_category_gas_policies [tables/emission_category_gas] 2020-05-19T21:19:33Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Adds row-level security policies for emission_category_gas table
 policies/emission_category_policies [tables/emission_category] 2020-05-19T21:22:23Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Adds row-level security policies for emission_category table
+policies/form_json_policies [tables/form_json] 2020-05-19T21:25:50Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Adds row-level security policies for form_json table
