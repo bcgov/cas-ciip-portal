@@ -1,6 +1,6 @@
 -- Verify ggircs-portal:policies/application_policies on pg
 
-BEGIN;
+begin;
 
 -- ciip_administrator Policies
 select ggircs_portal_private.verify_policy('select', 'ciip_administrator_select_application', 'application', 'ciip_administrator');
@@ -20,4 +20,4 @@ select ggircs_portal_private.verify_policy('select', 'certifier_select_applicati
 
 -- ciip_guest Policies
 
-ROLLBACK;
+rollback;

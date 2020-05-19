@@ -104,3 +104,4 @@ policies/application_policies [tables/certification_url] 2020-05-12T20:44:30Z Dy
 policies/form_result_policies [database_functions/get_valid_applications_for_reporter database_functions/get_valid_applications_for_certifier] 2020-05-12T22:22:42Z Dylan Leard <dylan@button.is> # Applies row-level security policies for form_result table
 policies/facility_policies [tables/certification_url] 2020-05-12T23:05:04Z Dylan Leard <dylan@button.is> # Applies row-level security policies to the facility table
 computed_columns/ciip_user_certification_requests [tables/ciip_user tables/certification_url tables/application] 2020-05-13T17:23:35Z Kristen Cooke <kristen@button.is> # Computed column returns all certification requests (latest drafts) associated with a user's email
+policies/benchmark_policies [tables/benchmark] 2020-05-19T20:35:10Z Dylan Leard <dylan@button.is> # Applies row-level security policies for benchmark table
