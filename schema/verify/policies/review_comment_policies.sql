@@ -2,6 +2,9 @@
 
 begin;
 
+select pg_get_functiondef('ggircs_portal_private.get_valid_review_comments()'::regprocedure);
+select pg_get_functiondef('ggircs_portal_private.analyst_owns_comment()'::regprocedure);
+
 -- ciip_administrator Policies
 select ggircs_portal_private.verify_policy('select', 'ciip_administrator_select_review_comment', 'review_comment', 'ciip_administrator');
 select ggircs_portal_private.verify_policy('insert', 'ciip_administrator_insert_review_comment', 'review_comment', 'ciip_administrator');
