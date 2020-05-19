@@ -91,7 +91,7 @@ deploySwrs() {
   popd
   _psql <<EOF
   insert into
-    swrs_extract.ghgr_import (id, xml_file)
+    swrs_extract.eccc_xml_file (id, xml_file)
     overriding system value
   values
     (1,'$(sed -e "s/'/''/g" < ../.cas-ggircs/test/data/Report_8614X.xml)'),
