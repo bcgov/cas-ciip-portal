@@ -115,3 +115,4 @@ policies/form_result_status_policies [tables/form_result_status] 2020-05-19T21:2
 policies/fuel_policies [tables/fuel] 2020-05-19T21:32:56Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Adds row-level security policies for fuel table
 policies/gas_policies [tables/gas] 2020-05-19T21:35:16Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Adds row-level security for gas table
 policies/organisation_policies [tables/organisation] 2020-05-19T21:37:23Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Adds row-level security policies for organisation table
+policies/product_policies [tables/product] 2020-05-19T21:49:50Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Adds row-level security policies for product table

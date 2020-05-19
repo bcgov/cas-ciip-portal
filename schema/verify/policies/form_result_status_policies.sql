@@ -2,6 +2,8 @@
 
 begin;
 
+select pg_get_functiondef('ggircs_portal_private.get_valid_form_result_status_applications()'::regprocedure);
+
 -- ciip_administrator Policies
 select ggircs_portal_private.verify_policy('select', 'ciip_administrator_select_form_result_status', 'form_result_status', 'ciip_administrator');
 select ggircs_portal_private.verify_policy('insert', 'ciip_administrator_insert_form_result_status', 'form_result_status', 'ciip_administrator');
