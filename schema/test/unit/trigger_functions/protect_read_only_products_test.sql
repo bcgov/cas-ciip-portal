@@ -3,15 +3,15 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(10);
+select plan(11);
 
 select has_function(
   'ggircs_portal_private', 'protect_read_only_products',
   'Function protect_read_only_products should exist'
 );
 
-insert into ggircs_portal.product(id, product_name, product_state) overriding system value
-  values (1000, 'draft product', 'draft'), (1001, 'published product', 'published'), (1002, 'archived product', 'archived');
+insert into ggircs_portal.product(id, product_name, product_state, is_read_only) overriding system value
+  values (1000, 'draft product', 'draft', false), (1001, 'published product', 'published', false), (1002, 'archived product', 'archived', true), (1003, 'read-only product', 'published', true);
 
 -- Test trigger fires when it should
 select throws_like(
@@ -34,7 +34,7 @@ select throws_like(
   $$
     update ggircs_portal.product set product_name = 'changed archived product' where id = 1002
   $$,
-  '%Archived products cannot be edited%',
+  '%Product row is read-only%',
   'trigger throws when trying to update an archived product'
 );
 
@@ -58,8 +58,16 @@ select throws_like(
   $$
     update ggircs_portal.product set product_state = 'draft' where id = 1002
   $$,
-  '%Archived products cannot be edited%',
+  '%Product row is read-only%',
   'trigger throws when trying to update the state of an archived product back to published'
+);
+
+select throws_like(
+  $$
+    update ggircs_portal.product set product_name = 'cant change this' where id = 1003
+  $$,
+  '%Product row is read-only%',
+  'trigger throws when trying to update a read-only product'
 );
 
 -- Test trigger doesn't run when it shouldn't

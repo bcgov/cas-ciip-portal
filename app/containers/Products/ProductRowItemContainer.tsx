@@ -255,7 +255,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           </>
         );
 
-      if (product.productState === 'PUBLISHED')
+      if (product.productState === 'PUBLISHED' && !product.isReadOnly)
         return (
           <Button
             variant="warning"
@@ -264,6 +264,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             Archive Product
           </Button>
         );
+      return <Button className="hidden-button" />;
     }
 
     if (
@@ -289,7 +290,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             liveOmit
             disabled={
               isProduct
-                ? product.productState !== 'DRAFT'
+                ? product.productState !== 'DRAFT' || product.isReadOnly
                 : product.productState === 'ARCHIVED'
             }
             widgets={{header: HeaderWidget}}
@@ -396,13 +397,16 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             placement="bottom"
             overlay={
               <Tooltip id="product">
-                {product.productState === 'DRAFT' ? 'Edit' : 'View'} Product
+                {product.productState === 'DRAFT' && !product.isReadOnly
+                  ? 'Edit'
+                  : 'View'}{' '}
+                Product
               </Tooltip>
             }
           >
             <FontAwesomeIcon
               className={
-                product.productState === 'DRAFT'
+                product.productState === 'DRAFT' && !product.isReadOnly
                   ? 'editIcon'
                   : 'editIcon-disabled'
               }
@@ -445,6 +449,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
       units
       requiresEmissionAllocation
       isCiipProduct
+      isReadOnly
       addPurchasedElectricityEmissions
       subtractExportedElectricityEmissions
       addPurchasedHeatEmissions

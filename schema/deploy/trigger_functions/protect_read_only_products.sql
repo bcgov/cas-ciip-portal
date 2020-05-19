@@ -6,8 +6,8 @@ begin;
 create or replace function ggircs_portal_private.protect_read_only_products()
   returns trigger as $$
     begin
-      if (old.product_state = 'archived') then
-        raise exception 'Product row is read only. Archived products cannot be edited';
+      if (old.is_read_only = true or old.product_state = 'archived') then
+        raise exception 'Product row is read-only. Read-only products include products in ARCHIVED state and protected Energy-related products';
       elsif (new.product_state != 'draft' and
           (old.id != new.id
           or old.product_name != new.product_name

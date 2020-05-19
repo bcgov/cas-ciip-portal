@@ -1,4 +1,4 @@
-describe('When logged in as a reporter', () => {
+describe('When logged in as a certifier(reporter)', () => {
   beforeEach(() => {
     cy.logout();
     cy.sqlFixture('fixtures/certifier-access-setup');

@@ -19,6 +19,7 @@ describe('ProductList', () => {
     subtractGeneratedHeatEmissions: false,
     addEmissionsFromEios: false,
     requiresProductAmount: true,
+    isReadOnly: false,
     updatedAt: '2020-05-06',
     benchmarksByProductId: {
       edges: [
@@ -100,8 +101,9 @@ describe('ProductList', () => {
     expect(r.find('Form').last().prop('disabled')).toBe(false);
   });
 
-  it('should not allow benchmark and product editing when the product is ARCHIVED', async () => {
-    product.productState = 'ARCHIVED';
+  it('should not allow product editing when the product is read-only', async () => {
+    product.productState = 'DRAFT';
+    product.isReadOnly = true;
     const r = shallow(
       <ProductRowItemComponent product={product} query={query} />
     );
@@ -109,9 +111,5 @@ describe('ProductList', () => {
       r.find('OverlayTrigger').last().prop('overlay').props.children.join('')
     ).toEqual('View Product');
     expect(r.find('Form').first().prop('disabled')).toBe(true);
-    expect(
-      r.find('OverlayTrigger').first().prop('overlay').props.children.join('')
-    ).toEqual('View Benchmark');
-    expect(r.find('Form').last().prop('disabled')).toBe(true);
   });
 });

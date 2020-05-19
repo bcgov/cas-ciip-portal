@@ -12259,6 +12259,22 @@
               "deprecationReason": null
             },
             {
+              "name": "isReadOnly",
+              "description": "Boolean value indicates if the product is read-only and cannot be changed regardless of state",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "productName",
               "description": "The name of the product",
               "args": [],
@@ -22237,6 +22253,16 @@
               "defaultValue": null
             },
             {
+              "name": "isReadOnly",
+              "description": "Checks for equality with the object’s `isReadOnly` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "productName",
               "description": "Checks for equality with the object’s `productName` field.",
               "type": {
@@ -22473,6 +22499,18 @@
             },
             {
               "name": "IS_CIIP_PRODUCT_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IS_READ_ONLY_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IS_READ_ONLY_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -34394,6 +34432,16 @@
               "defaultValue": null
             },
             {
+              "name": "isReadOnly",
+              "description": "Boolean value indicates if the product is read-only and cannot be changed regardless of state",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "productName",
               "description": "The name of the product",
               "type": {
@@ -45486,6 +45534,16 @@
             {
               "name": "isCiipProduct",
               "description": "Boolean value indicates if the product is benchmarked and has an associated incentive",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "isReadOnly",
+              "description": "Boolean value indicates if the product is read-only and cannot be changed regardless of state",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
