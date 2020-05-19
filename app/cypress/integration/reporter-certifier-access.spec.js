@@ -33,5 +33,9 @@ describe('When logged in as a reporter', () => {
     ).click();
     cy.contains('Certifier Signature');
     cy.get('.btn-success').click();
+    cy.visit('/certifier/requests');
+    cy.get('#page-content');
+    cy.contains('View').click();
+    cy.url().should('include', '/certifier/certify');
   });
 });

@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`certifier requests list page It matches the last accepted Snapshot 1`] = `
+<Relay(DefaultLayout)
+  allowedGroups={
+    Array [
+      "User",
+    ]
+  }
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+      "ciipUserBySub": Object {
+        " $fragmentRefs": Object {
+          "CertificationRequestsTable_query": true,
+        },
+      },
+    }
+  }
+  title="Certification Requests"
+>
+  <Relay(CertificationRequestsTableComponent)
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "CertificationRequestsTable_query": true,
+        },
+      }
+    }
+  />
+</Relay(DefaultLayout)>
+`;
