@@ -38,8 +38,6 @@ perform ggircs_portal_private.upsert_policy('ciip_administrator_update_review_co
 -- ciip_analyst RLS
 perform ggircs_portal_private.upsert_policy('ciip_analyst_select_review_comment', 'review_comment', 'select', 'ciip_analyst', 'true');
 perform ggircs_portal_private.upsert_policy('ciip_analyst_insert_review_comment', 'review_comment', 'insert', 'ciip_analyst', 'true');
-  -- TODO: If we only allow update if the user created the comment, they will be the only ones allowed to resolve their own comments
-  -- If we remove the constraint, anyone can delete any comment.
 perform ggircs_portal_private.upsert_policy('ciip_analyst_update_review_comment', 'review_comment', 'update', 'ciip_analyst', 'created_by=(select ggircs_portal_private.analyst_owns_comment())');
 
 -- statement for select using & insert with check
