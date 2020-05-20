@@ -199,6 +199,16 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
             </td>
           </tr>
           <tr
+            key="848tfh282740jd"
+          >
+            <td>
+              Jun 1, 2019
+            </td>
+            <td>
+              Industrial GHG reporting deadline
+            </td>
+          </tr>
+          <tr
             key="kd9393hd8sy273"
           >
             <td>
@@ -206,16 +216,6 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
             </td>
             <td>
               CIIP application form due
-            </td>
-          </tr>
-          <tr
-            key="848tfh282740jd"
-          >
-            <td>
-              May 19, 2020
-            </td>
-            <td>
-              Industrial GHG reporting deadline
             </td>
           </tr>
         </tbody>
