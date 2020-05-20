@@ -12,9 +12,9 @@ database_functions/verify_policy [schema_ggircs_portal_private] 2020-02-03T17:44
 database_functions/set_general_permissions [schema_ggircs_portal_private] 2020-01-29T21:10:26Z Dylan Leard <dylan@button.is> # Sets the general or global permissions for schema ggircs_portal
 database_functions/grant_permissions [database_functions/create_roles] 2020-01-28T21:37:13Z Dylan Leard <dylan@button.is> # Function grants permission necessary for each user
 database_functions/upsert_policy [database_functions/create_roles] 2020-01-28T21:38:23Z Dylan Leard <dylan@button.is> # Function creates / alters policies for each table
-trigger_functions/update_timestamps [schema_ggircs_portal] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
-trigger_functions/set_random_id [schema_ggircs_portal] 2019-12-04T00:34:07Z Dylan Leard <dylan@button.is> # Trigger function to generate a random string and set it to id
-trigger_functions/set_expiry [schema_ggircs_portal] 2019-12-10T19:13:27Z Dylan Leard <dylan@button.is> # Function sets row expiry
+trigger_functions/update_timestamps [schema_ggircs_portal_private] 2019-10-01T21:42:55Z Alec Wenzowski <alec@button.is> # A function to be used as a trigger to update the created_at and updated column values
+trigger_functions/set_random_id [schema_ggircs_portal_private] 2019-12-04T00:34:07Z Dylan Leard <dylan@button.is> # Trigger function to generate a random string and set it to id
+trigger_functions/set_expiry [schema_ggircs_portal_private] 2019-12-10T19:13:27Z Dylan Leard <dylan@button.is> # Function sets row expiry
 trigger_functions/ensure_window_open_submit_application_status 2020-01-16T17:51:13Z Matthieu Foucault <matthieu@button.is> # add a trigger that raises an exception if the application window is closed
 trigger_functions/run_graphile_worker_job [schema_ggircs_portal_private] 2020-02-20T23:08:40Z Dylan Leard <dylan@button.is> # Trigger function for running a graphile worker
 trigger_functions/check_for_immutable_application_revision_status [schema_ggircs_portal_private] 2020-04-29T19:14:56Z Dylan Leard <dylan@button.is> # Trigger function checks if the status being added applies to the current version of the application. Otherwise do not add status.
@@ -29,7 +29,7 @@ types/application_search_result [schema_ggircs_portal types/ciip_application_rev
 types/ciip_product_state [schema_ggircs_portal] 2020-05-04T17:14:21Z Dylan Leard <dylan@button.is> # product_state enum type
 tables/ciip_user [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
 trigger_functions/set_user_id [function_session tables/ciip_user] 2019-12-10T20:02:31Z Dylan Leard <dylan@button.is> # Trigger function updates the user_id field
-trigger_functions/checksum_form_results [schema_ggircs_portal] 2020-01-13T23:21:05Z Dylan Leard <dylan@button.is> # Trigger function checksums current submtted and previous submitted form result & changes form result status on result
+trigger_functions/checksum_form_results [schema_ggircs_portal_private] 2020-01-13T23:21:05Z Dylan Leard <dylan@button.is> # Trigger function checksums current submtted and previous submitted form result & changes form result status on result
 tables/product [schema_ggircs_portal trigger_functions/update_timestamps types/ciip_product_state trigger_functions/protect_read_only_products] 2019-08-06T20:15:37Z Hamza Javed <hamza@button.is> # A table for adding products (for benchmarks)
 tables/reporting_year [schema_ggircs_portal] 2019-11-19T18:06:01Z Helen Liu <helen@button.is> # Added new table with current reporting year, application deadline
 function_current_timestamp [tables/reporting_year] 2020-01-06T19:50:36Z Matthieu Foucault <matthieu@button.is> # Add a function to get current time
@@ -104,3 +104,17 @@ policies/application_policies [tables/certification_url] 2020-05-12T20:44:30Z Dy
 policies/form_result_policies [database_functions/get_valid_applications_for_reporter database_functions/get_valid_applications_for_certifier] 2020-05-12T22:22:42Z Dylan Leard <dylan@button.is> # Applies row-level security policies for form_result table
 policies/facility_policies [tables/certification_url] 2020-05-12T23:05:04Z Dylan Leard <dylan@button.is> # Applies row-level security policies to the facility table
 computed_columns/ciip_user_certification_requests [tables/ciip_user tables/certification_url tables/application] 2020-05-13T17:23:35Z Kristen Cooke <kristen@button.is> # Computed column returns all certification requests (latest drafts) associated with a user's email
+policies/benchmark_policies [tables/benchmark] 2020-05-19T20:35:10Z Dylan Leard <dylan@button.is> # Applies row-level security policies for benchmark table
+policies/ciip_application_wizard_policies [tables/ciip_application_wizard] 2020-05-19T20:41:06Z Dylan Leard <dylan@button.is> # Adds row-level security policies for ciip_application_wizard table
+policies/ciip_user_organisation_policies [tables/ciip_user_organisation] 2020-05-19T20:59:07Z Dylan Leard <dylan@button.is> # Applies row-level security policies for ciip_user_organisation table
+policies/ciip_user_policies [tables/ciip_user] 2020-05-19T21:15:19Z Dylan Leard <dylan@button.is> # Adds row-level security policies for ciip_user table
+policies/emission_category_gas_policies [tables/emission_category_gas] 2020-05-19T21:19:33Z Dylan Leard <dylan@button.is> # Adds row-level security policies for emission_category_gas table
+policies/emission_category_policies [tables/emission_category] 2020-05-19T21:22:23Z Dylan Leard <dylan@button.is> # Adds row-level security policies for emission_category table
+policies/form_json_policies [tables/form_json] 2020-05-19T21:25:50Z Dylan Leard <dylan@button.is> # Adds row-level security policies for form_json table
+policies/form_result_status_policies [tables/form_result_status] 2020-05-19T21:29:48Z Dylan Leard <dylan@button.is> # Adds row-level security policies for form_result_status table
+policies/fuel_policies [tables/fuel] 2020-05-19T21:32:56Z Dylan Leard <dylan@button.is> # Adds row-level security policies for fuel table
+policies/gas_policies [tables/gas] 2020-05-19T21:35:16Z Dylan Leard <dylan@button.is> # Adds row-level security for gas table
+policies/organisation_policies [tables/organisation] 2020-05-19T21:37:23Z Dylan Leard <dylan@button.is> # Adds row-level security policies for organisation table
+policies/product_policies [tables/product] 2020-05-19T21:49:50Z Dylan Leard <dylan@button.is> # Adds row-level security policies for product table
+policies/reporting_year_policies [tables/reporting_year] 2020-05-19T21:52:53Z Dylan Leard <dylan@button.is> # Adds row-level security policies for reporting_year table
+policies/review_comment_policies [tables/review_comment] 2020-05-19T21:57:08Z Dylan Leard <dylan@button.is> # Adds row-level security policies for review_comment table

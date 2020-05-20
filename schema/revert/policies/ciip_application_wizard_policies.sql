@@ -1,0 +1,13 @@
+-- Revert ggircs-portal:policies/ciip_application_wizard_policies from pg
+
+begin;
+
+drop policy ciip_administrator_select_ciip_application_wizard on ggircs_portal.ciip_application_wizard;
+drop policy ciip_administrator_insert_ciip_application_wizard on ggircs_portal.ciip_application_wizard;
+drop policy ciip_administrator_update_ciip_application_wizard on ggircs_portal.ciip_application_wizard;
+
+drop policy ciip_analyst_select_ciip_application_wizard on ggircs_portal.ciip_application_wizard;
+
+drop policy ciip_industry_user_select_ciip_application_wizard on ggircs_portal.ciip_application_wizard;
+
+commit;

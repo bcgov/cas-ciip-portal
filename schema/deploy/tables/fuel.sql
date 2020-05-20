@@ -46,23 +46,6 @@ $grant$;
 -- Enable row-level security
 alter table ggircs_portal.fuel enable row level security;
 
-do
-$policy$
-begin
--- ciip_administrator RLS
-perform ggircs_portal_private.upsert_policy('ciip_administrator_select_fuel', 'fuel', 'select', 'ciip_administrator', 'true');
-perform ggircs_portal_private.upsert_policy('ciip_administrator_insert_fuel', 'fuel', 'insert', 'ciip_administrator', 'true');
-perform ggircs_portal_private.upsert_policy('ciip_administrator_update_fuel', 'fuel', 'update', 'ciip_administrator', 'true');
-
--- ciip_analyst RLS
-perform ggircs_portal_private.upsert_policy('ciip_analyst_select_fuel', 'fuel', 'select', 'ciip_analyst', 'true');
-
--- ciip_industry_user RLS
-perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_fuel', 'fuel', 'select', 'ciip_industry_user', 'true');
-
-end
-$policy$;
-
 comment on table ggircs_portal.fuel is 'Table containing information on fuel';
 comment on column ggircs_portal.fuel.id is 'Unique ID for the fuel';
 comment on column ggircs_portal.fuel.name is 'The name of the fuel';

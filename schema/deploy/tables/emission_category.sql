@@ -42,23 +42,6 @@ $grant$;
 -- Enable row-level security
 alter table ggircs_portal.emission_category enable row level security;
 
-do
-$policy$
-begin
--- ciip_administrator RLS
-perform ggircs_portal_private.upsert_policy('ciip_administrator_select_emission_category', 'emission_category', 'select', 'ciip_administrator', 'true');
-perform ggircs_portal_private.upsert_policy('ciip_administrator_insert_emission_category', 'emission_category', 'insert', 'ciip_administrator', 'true');
-perform ggircs_portal_private.upsert_policy('ciip_administrator_update_emission_category', 'emission_category', 'update', 'ciip_administrator', 'true');
-
--- ciip_analyst RLS
-perform ggircs_portal_private.upsert_policy('ciip_analyst_select_emission_category', 'emission_category', 'select', 'ciip_analyst', 'true');
-
--- ciip_industry_user RLS
-perform ggircs_portal_private.upsert_policy('ciip_industry_user_select_emission_category', 'emission_category', 'select', 'ciip_industry_user', 'true');
-
-end
-$policy$;
-
 comment on table ggircs_portal.emission_category is 'Table of emission categories used in the CIIP program';
 comment on column ggircs_portal.emission_category.id is 'Unique ID for the emission_category';
 comment on column ggircs_portal.emission_category.swrs_emission_category is 'The original name in the swrs data';
