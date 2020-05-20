@@ -7,8 +7,6 @@ const ERRORS = {
   CLOSE_BEFORE_REPORTING_END:
     'Application close time must occur after the reporting period end',
   PAST_DATE: 'Please select a future date for:',
-  RESPONSE_DATE:
-    'Application response date must occur after both the close time and the open time',
   END_BEFORE_START:
     'Reporting period end must occur after the reporting period start',
   REPORTING_YEAR:
@@ -27,9 +25,6 @@ function validateApplicationDates(existingData, formData, errors, uiSchema) {
     : undefined;
   const closeDate = formData.applicationCloseTime
     ? moment.tz(formData.applicationCloseTime, TIME_ZONE)
-    : undefined;
-  const responseDate = formData.applicationResponseTime
-    ? moment.tz(formData.applicationResponseTime, TIME_ZONE)
     : undefined;
 
   const reportingEnd =
@@ -56,30 +51,11 @@ function validateApplicationDates(existingData, formData, errors, uiSchema) {
   }
 
   if (
-    Boolean(responseDate) &&
-    isPastDate(responseDate) &&
-    !uiSchema.applicationResponseTime['ui:disabled']
-  ) {
-    errors.addError(`${ERRORS.PAST_DATE} Application response date`);
-  }
-
-  if (
     Boolean(closeDate) &&
     Boolean(openDate) &&
     closeDate.isSameOrBefore(openDate)
   ) {
     errors.addError(ERRORS.CLOSE_BEFORE_OPEN_DATE);
-  }
-
-  if (
-    (Boolean(responseDate) &&
-      Boolean(closeDate) &&
-      responseDate.isBefore(closeDate)) ||
-    (Boolean(responseDate) &&
-      Boolean(openDate) &&
-      responseDate.isBefore(openDate))
-  ) {
-    errors.addError(ERRORS.RESPONSE_DATE);
   }
 
   if (

@@ -12537,22 +12537,6 @@
               "deprecationReason": null
             },
             {
-              "name": "applicationResponseTime",
-              "description": "The date and time the CIIP users can expect a response by",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Datetime",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "applicationsByReportingYear",
               "description": "Reads and enables pagination through a set of `Application`.",
               "args": [
@@ -12895,6 +12879,22 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "swrsDeadline",
+              "description": "The Industrial GHG (SWRS) Reporting deadline",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
                   "ofType": null
                 }
               },
@@ -24145,16 +24145,6 @@
               "defaultValue": null
             },
             {
-              "name": "applicationResponseTime",
-              "description": "Checks for equality with the object’s `applicationResponseTime` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Datetime",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "reportingPeriodEnd",
               "description": "Checks for equality with the object’s `reportingPeriodEnd` field.",
               "type": {
@@ -24180,6 +24170,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "swrsDeadline",
+              "description": "Checks for equality with the object’s `swrsDeadline` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
                 "ofType": null
               },
               "defaultValue": null
@@ -24217,18 +24217,6 @@
             },
             {
               "name": "APPLICATION_OPEN_TIME_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "APPLICATION_RESPONSE_TIME_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "APPLICATION_RESPONSE_TIME_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -24283,6 +24271,18 @@
             },
             {
               "name": "REPORTING_YEAR_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SWRS_DEADLINE_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "SWRS_DEADLINE_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -34744,20 +34744,6 @@
               "defaultValue": null
             },
             {
-              "name": "applicationResponseTime",
-              "description": "The date and time the CIIP users can expect a response by",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Datetime",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
               "name": "reportingPeriodEnd",
               "description": "The date and time reporting period ends",
               "type": {
@@ -34794,6 +34780,20 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "Int",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "swrsDeadline",
+              "description": "The Industrial GHG (SWRS) Reporting deadline",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Datetime",
                   "ofType": null
                 }
               },
@@ -45905,16 +45905,6 @@
               "defaultValue": null
             },
             {
-              "name": "applicationResponseTime",
-              "description": "The date and time the CIIP users can expect a response by",
-              "type": {
-                "kind": "SCALAR",
-                "name": "Datetime",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
               "name": "reportingPeriodEnd",
               "description": "The date and time reporting period ends",
               "type": {
@@ -45940,6 +45930,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "swrsDeadline",
+              "description": "The Industrial GHG (SWRS) Reporting deadline",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Datetime",
                 "ofType": null
               },
               "defaultValue": null

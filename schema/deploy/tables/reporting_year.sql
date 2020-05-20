@@ -7,9 +7,9 @@ create table ggircs_portal.reporting_year (
     reporting_year integer not null primary key,
     reporting_period_start timestamp with time zone not null,
     reporting_period_end timestamp with time zone not null,
+    swrs_deadline timestamp with time zone not null,
     application_open_time timestamp with time zone not null,
-    application_close_time timestamp with time zone not null,
-    application_response_time timestamp with time zone not null
+    application_close_time timestamp with time zone not null
 );
 
 do
@@ -39,8 +39,8 @@ comment on table ggircs_portal.reporting_year is 'Table containing the reporting
 comment on column ggircs_portal.reporting_year.reporting_year is 'The current reporting year';
 comment on column ggircs_portal.reporting_year.reporting_period_start is 'The date and time reporting period starts';
 comment on column ggircs_portal.reporting_year.reporting_period_end is 'The date and time reporting period ends';
+comment on column ggircs_portal.reporting_year.swrs_deadline is 'The Industrial GHG (SWRS) Reporting deadline';
 comment on column ggircs_portal.reporting_year.application_open_time is 'The date and time the CIIP applications open';
 comment on column ggircs_portal.reporting_year.application_close_time is 'The date and time the CIIP applications close';
-comment on column ggircs_portal.reporting_year.application_response_time is 'The date and time the CIIP users can expect a response by';
 
 commit;

@@ -32,7 +32,7 @@ select results_eq(
 
 select lives_ok(
   $$
-    insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, application_open_time, application_close_time, application_response_time) overriding system value
+    insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time) overriding system value
     values (3000, now(), now(), now(), now(), now());
   $$,
     'ciip_administrator can insert data in reporting_year table'
@@ -83,7 +83,7 @@ select results_eq(
 
 select throws_like(
   $$
-    insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, application_open_time, application_close_time, application_response_time) overriding system value
+    insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time) overriding system value
     values (1001, now(), now(), now(), now(), now());
   $$,
   'permission denied%',
@@ -120,7 +120,7 @@ select results_eq(
 
 select throws_like(
   $$
-    insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, application_open_time, application_close_time, application_response_time) overriding system value
+    insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time) overriding system value
     values (1001, now(), now(), now(), now(), now());
   $$,
   'permission denied%',
@@ -157,7 +157,7 @@ select results_eq(
 
 select throws_like(
   $$
-    insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, application_open_time, application_close_time, application_response_time) overriding system value
+    insert into ggircs_portal.reporting_year (reporting_year, reporting_period_start, reporting_period_end, swrs_deadline, application_open_time, application_close_time) overriding system value
     values (1001, now(), now(), now(), now(), now());
   $$,
   'permission denied%',

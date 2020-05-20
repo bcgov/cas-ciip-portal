@@ -14,9 +14,9 @@ const mutation = `
         reportingYear
         reportingPeriodStart
         reportingPeriodEnd
+        swrsDeadline
         applicationOpenTime
         applicationCloseTime
-        applicationResponseTime
       }
       query {
         allReportingYears(orderBy: REPORTING_YEAR_DESC) {
@@ -26,9 +26,9 @@ const mutation = `
               reportingYear
               reportingPeriodStart
               reportingPeriodEnd
+              swrsDeadline
               applicationOpenTime
               applicationCloseTime
-              applicationResponseTime
             }
           }
         }
@@ -66,9 +66,9 @@ describe('createReportingYearMutation', () => {
             reportingYear: 2024,
             // ReportingPeriodStart: '2024-01-01 00:00:00.000-08:00',
             reportingPeriodEnd: '2024-12-31 00:00:00.000-08:00',
+            swrsDeadline: '2025-06-01 00:00:00.000-07:00',
             applicationOpenTime: '2024-06-01 00:00:00.000-07:00',
-            applicationCloseTime: '2025-03-01 00:00:00.000-08:00',
-            applicationResponseTime: '2025-03-30 00:00:00.000-07:00'
+            applicationCloseTime: '2025-03-01 00:00:00.000-08:00'
           }
         }
       });
@@ -86,9 +86,9 @@ describe('createReportingYearMutation', () => {
           reportingYear: 2024,
           reportingPeriodStart: '2024-01-01 00:00:00.000-08:00',
           reportingPeriodEnd: '2024-12-31 00:00:00.000-08:00',
+          swrsDeadline: '2025-06-01 00:00:00.000-07:00',
           applicationOpenTime: '2024-06-01 00:00:00.000-07:00',
-          applicationCloseTime: '2025-03-01 00:00:00.000-08:00',
-          applicationResponseTime: '2025-03-30 00:00:00.000-07:00'
+          applicationCloseTime: '2025-03-01 00:00:00.000-08:00'
         }
       }
     });

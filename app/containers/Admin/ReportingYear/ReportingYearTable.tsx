@@ -89,9 +89,9 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
             <th scope="col">Reporting Year</th>
             <th scope="col">Reporting Period Start</th>
             <th scope="col">Reporting Period End</th>
+            <th scope="col">Industrial GHG Reporting (SWRS) Deadline</th>
             <th scope="col">Application Open Time</th>
             <th scope="col">Application Close Time</th>
-            <th scope="col">Application Response Time</th>
             <th />
           </tr>
         </thead>
@@ -102,11 +102,11 @@ export const ReportingYearTableComponent: React.FunctionComponent<Props> = (
                 <td>{node.reportingYear}</td>
                 <td>{formatListViewDate(node.reportingPeriodStart)}</td>
                 <td>{formatListViewDate(node.reportingPeriodEnd)}</td>
+                <td>{formatListViewDate(node.swrsDeadline)}</td>
                 <td>{formatListViewDate(node.applicationOpenTime)}</td>
                 <td>{formatListViewDate(node.applicationCloseTime)}</td>
-                <td>{formatListViewDate(node.applicationResponseTime)}</td>
                 <td>
-                  {!isDatePast(node.applicationResponseTime) && (
+                  {!isDatePast(node.applicationCloseTime) && (
                     <Button onClick={() => editYear(node)}>Edit</Button>
                   )}
                 </td>
@@ -142,9 +142,9 @@ export default createFragmentContainer(ReportingYearTableComponent, {
             reportingYear
             reportingPeriodStart
             reportingPeriodEnd
+            swrsDeadline
             applicationOpenTime
             applicationCloseTime
-            applicationResponseTime
           }
         }
       }

@@ -6,7 +6,7 @@ create or replace function ggircs_portal.current_timestamp() returns timestamptz
 $$
   select application_open_time
   from ggircs_portal.reporting_year
-  where reporting_year = 2018
+  where reporting_year = 2019
 $$ language sql;
 
 commit;

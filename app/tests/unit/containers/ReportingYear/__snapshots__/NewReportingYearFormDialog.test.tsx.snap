@@ -44,10 +44,6 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
                   "title": "Application Open Time",
                   "type": "string",
                 },
-                "applicationResponseTime": Object {
-                  "title": "Application Response Date",
-                  "type": "string",
-                },
                 "reportingPeriodEnd": Object {
                   "title": "Reporting Period End",
                   "type": "string",
@@ -60,14 +56,18 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
                   "title": "Reporting Year",
                   "type": "integer",
                 },
+                "swrsDeadline": Object {
+                  "title": "Industrial GHG Reporting (SWRS) Deadline",
+                  "type": "string",
+                },
               },
               "required": Array [
                 "reportingYear",
+                "swrsDeadline",
                 "reportingPeriodStart",
                 "reportingPeriodEnd",
                 "applicationOpenTime",
                 "applicationCloseTime",
-                "applicationResponseTime",
               ],
               "type": "object",
             }
@@ -97,17 +97,6 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
                 },
                 "ui:widget": "AltDateTimeInput",
               },
-              "applicationResponseTime": Object {
-                "ui:options": Object {
-                  "hideClearButton": true,
-                  "hideNowButton": true,
-                  "yearsRange": Array [
-                    2020,
-                    2030,
-                  ],
-                },
-                "ui:widget": "AltDateInput",
-              },
               "reportingPeriodEnd": Object {
                 "ui:options": Object {
                   "hideClearButton": true,
@@ -125,6 +114,17 @@ exports[`NewReportingYearFormDialog Should match last accepted snapshot 1`] = `
                   "hideNowButton": true,
                   "yearsRange": Array [
                     2018,
+                    2030,
+                  ],
+                },
+                "ui:widget": "AltDateInput",
+              },
+              "swrsDeadline": Object {
+                "ui:options": Object {
+                  "hideClearButton": true,
+                  "hideNowButton": true,
+                  "yearsRange": Array [
+                    2020,
                     2030,
                   ],
                 },

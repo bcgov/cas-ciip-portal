@@ -11,9 +11,9 @@ const mutation = `
   mutation updateReportingYearMutation($input: UpdateReportingYearInput!) {
     updateReportingYear(input: $input) {
       reportingYear {
+        swrsDeadline
         applicationOpenTime
         applicationCloseTime
-        applicationResponseTime
       }
       clientMutationId
     }
@@ -59,12 +59,12 @@ describe('updateReportingYearMutation', () => {
 
   // Skipping until we find a way to make custom scalars testable:
   // https://github.com/EasyGraphQL/easygraphql-tester/issues/118
-  it.skip('Should return applicationResponseTime(string) if valid', () => {
+  it.skip('Should return applicationOpenTime(string) if valid', () => {
     const test = tester.mock(mutation, {
       input: {
         id: 'abc',
         reportingYearPatch: {
-          applicationResponseTime: '2026-10-30 00:00:00.000-07:00'
+          applicationOpenTime: '2026-10-30 00:00:00.000-07:00'
         }
       }
     });
@@ -72,7 +72,7 @@ describe('updateReportingYearMutation', () => {
     expect(test).toBeDefined();
 
     expect(
-      typeof test.data.updateReportingYear.reportingYear.applicationResponseTime
+      typeof test.data.updateReportingYear.reportingYear.applicationOpenTime
     ).toBe('string');
   });
 });

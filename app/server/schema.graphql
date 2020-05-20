@@ -10987,9 +10987,6 @@ type ReportingYear implements Node {
   """The date and time the CIIP applications open"""
   applicationOpenTime: Datetime!
 
-  """The date and time the CIIP users can expect a response by"""
-  applicationResponseTime: Datetime!
-
   """Reads and enables pagination through a set of `Application`."""
   applicationsByReportingYear(
     """Read all values in the set after (below) this cursor."""
@@ -11090,6 +11087,9 @@ type ReportingYear implements Node {
 
   """The current reporting year"""
   reportingYear: Int!
+
+  """The Industrial GHG (SWRS) Reporting deadline"""
+  swrsDeadline: Datetime!
 }
 
 """
@@ -11103,9 +11103,6 @@ input ReportingYearCondition {
   """Checks for equality with the object’s `applicationOpenTime` field."""
   applicationOpenTime: Datetime
 
-  """Checks for equality with the object’s `applicationResponseTime` field."""
-  applicationResponseTime: Datetime
-
   """Checks for equality with the object’s `reportingPeriodEnd` field."""
   reportingPeriodEnd: Datetime
 
@@ -11114,6 +11111,9 @@ input ReportingYearCondition {
 
   """Checks for equality with the object’s `reportingYear` field."""
   reportingYear: Int
+
+  """Checks for equality with the object’s `swrsDeadline` field."""
+  swrsDeadline: Datetime
 }
 
 """An input for mutations affecting `ReportingYear`"""
@@ -11124,9 +11124,6 @@ input ReportingYearInput {
   """The date and time the CIIP applications open"""
   applicationOpenTime: Datetime!
 
-  """The date and time the CIIP users can expect a response by"""
-  applicationResponseTime: Datetime!
-
   """The date and time reporting period ends"""
   reportingPeriodEnd: Datetime!
 
@@ -11135,6 +11132,9 @@ input ReportingYearInput {
 
   """The current reporting year"""
   reportingYear: Int!
+
+  """The Industrial GHG (SWRS) Reporting deadline"""
+  swrsDeadline: Datetime!
 }
 
 """
@@ -11147,9 +11147,6 @@ input ReportingYearPatch {
   """The date and time the CIIP applications open"""
   applicationOpenTime: Datetime
 
-  """The date and time the CIIP users can expect a response by"""
-  applicationResponseTime: Datetime
-
   """The date and time reporting period ends"""
   reportingPeriodEnd: Datetime
 
@@ -11158,6 +11155,9 @@ input ReportingYearPatch {
 
   """The current reporting year"""
   reportingYear: Int
+
+  """The Industrial GHG (SWRS) Reporting deadline"""
+  swrsDeadline: Datetime
 }
 
 """A connection to a list of `ReportingYear` values."""
@@ -11192,8 +11192,6 @@ enum ReportingYearsOrderBy {
   APPLICATION_CLOSE_TIME_DESC
   APPLICATION_OPEN_TIME_ASC
   APPLICATION_OPEN_TIME_DESC
-  APPLICATION_RESPONSE_TIME_ASC
-  APPLICATION_RESPONSE_TIME_DESC
   NATURAL
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
@@ -11203,6 +11201,8 @@ enum ReportingYearsOrderBy {
   REPORTING_PERIOD_START_DESC
   REPORTING_YEAR_ASC
   REPORTING_YEAR_DESC
+  SWRS_DEADLINE_ASC
+  SWRS_DEADLINE_DESC
 }
 
 """Table containing the information for a CIIP review_comment"""

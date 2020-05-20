@@ -9,6 +9,8 @@ import RegistrationLoginButtons from 'components/RegistrationLoginButtons';
 import {GUEST} from 'data/group-constants';
 
 const ALLOWED_GROUPS = [GUEST];
+const TIME_ZONE = 'America/Vancouver';
+const DATE_FORMAT = 'MMM D, YYYY';
 
 interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
@@ -21,10 +23,12 @@ export default class Index extends Component<Props> {
           ...defaultLayout_session
         }
         openedReportingYear {
+          swrsDeadline
           applicationOpenTime
           applicationCloseTime
         }
         nextReportingYear {
+          swrsDeadline
           applicationOpenTime
           applicationCloseTime
         }
@@ -36,20 +40,52 @@ export default class Index extends Component<Props> {
     const {openedReportingYear, nextReportingYear, session} =
       this.props.query || {};
 
-    const startDate = moment
-      .tz(
-        openedReportingYear?.applicationOpenTime ??
-          nextReportingYear?.applicationOpenTime,
-        'America/Vancouver'
+    const startDate = moment.tz(
+      openedReportingYear?.applicationOpenTime ??
+        nextReportingYear?.applicationOpenTime,
+      TIME_ZONE
+    );
+    const endDate = moment.tz(
+      openedReportingYear?.applicationCloseTime ??
+        nextReportingYear?.applicationCloseTime,
+      TIME_ZONE
+    );
+    const swrsDeadline = moment.tz(
+      openedReportingYear?.swrsDeadline ?? nextReportingYear?.swrsDeadline,
+      TIME_ZONE
+    );
+
+    const keyDates = [
+      {
+        date: swrsDeadline,
+        description: 'Industrial GHG reporting deadline',
+        key: '848tfh282740jd'
+      },
+      {
+        date: startDate,
+        description: 'CIIP application forms open',
+        key: 'j87kj39uhf8930'
+      },
+      {
+        date: endDate,
+        description: 'CIIP application form due',
+        key: 'kd9393hd8sy273'
+      }
+    ];
+
+    const keyDatesRows = keyDates
+      .sort((a: any, b: any) =>
+        a.date.isBefore(b.date) ? -1 : a.date.isSame(b.date) ? 0 : 1
       )
-      .format('MMM D, YYYY');
-    const endDate = moment
-      .tz(
-        openedReportingYear?.applicationCloseTime ??
-          nextReportingYear?.applicationCloseTime,
-        'America/Vancouver'
-      )
-      .format('MMM D, YYYY');
+      .map((d) => {
+        return (
+          <tr key={d.key}>
+            <td>{d.date.format(DATE_FORMAT)}</td>
+            <td>{d.description}</td>
+          </tr>
+        );
+      });
+
     return (
       <DefaultLayout
         showSubheader={false}
@@ -64,8 +100,8 @@ export default class Index extends Component<Props> {
               What is the CleanBC Industrial Incentive Program?
             </h3>
             <p>
-              In 2018, B.C.’s $30 carbon tax rate was raised to $35, and it is
-              set to increase by $5 every year until 2021. As the price of
+              In 2018, B.C.’s $30 carbon tax rate was raised to $35, and in
+              2019, the carbon tax rate rose from $35 to $40. As the price of
               carbon rises, the CleanBC Program for Industry will support
               competitiveness and facilitate emission reductions using revenues
               from the carbon tax that industry pays above $30 per tonne carbon
@@ -78,8 +114,8 @@ export default class Index extends Component<Props> {
               Industrial Reporting and Control Act (GGIRCA).
             </p>
             <p>
-              The CIIP helps cleaner industrial operations across the province
-              by reducing carbon tax costs for facilities near world-leading
+              The CIIP helps industrial operations across the province by
+              reducing net carbon-tax costs for facilities near world-leading
               emissions benchmarks.
             </p>
           </Col>
@@ -95,8 +131,9 @@ export default class Index extends Component<Props> {
               <img src="../../static/icons/import.png" />
               <h5 className="blue">1. Register as an Industrial Reporter</h5>
               <p>
-                Before you can apply for an operation, you have to register
-                yourself as an industrial reporter.
+                Before you can apply for the CIIP on behalf of an eligible
+                operation, you must register with the Ministry of Environment
+                and Climate Change Strategy.
               </p>
             </div>
           </Col>
@@ -107,7 +144,7 @@ export default class Index extends Component<Props> {
               <h5 className="blue">2. Request to apply for an Operation</h5>
               <p>
                 Once you’ve registered you can request to apply on behalf one or
-                multiple Operations.
+                multiple eligible Operations.
               </p>
             </div>
           </Col>
@@ -138,27 +175,7 @@ export default class Index extends Component<Props> {
                   <th />
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>{startDate}</td>
-                  <td>CIIP application forms open</td>
-                </tr>
-                <tr>
-                  <td>May 16, 2020</td>
-                  <td>Webinar for CIIP</td>
-                </tr>
-                <tr>
-                  <td>{endDate}</td>
-                  <td>CIIP application form due</td>
-                </tr>
-                <tr>
-                  <td>May 31, 2021</td>
-                  <td>
-                    CIIP application form due <br />
-                    (along with 2019 GHG reporting data)
-                  </td>
-                </tr>
-              </tbody>
+              <tbody>{keyDatesRows}</tbody>
             </Table>
 
             <Card

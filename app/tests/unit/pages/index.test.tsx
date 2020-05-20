@@ -8,10 +8,12 @@ describe('landing', () => {
       <Index
         query={{
           openedReportingYear: {
+            swrsDeadline: '2019-06-01 11:59:59.999-07',
             applicationOpenTime: '2019-04-01 14:49:54.191757-07',
             applicationCloseTime: '2019-12-30 14:49:54.191757-07'
           },
           nextReportingYear: {
+            swrsDeadline: '2019-06-01 11:59:59.999-07',
             applicationOpenTime: '2019-04-01 14:49:54.191757-07',
             applicationCloseTime: '2019-12-30 14:49:54.191757-07'
           },

@@ -2,6 +2,10 @@
   "schema": {
     "type": "object",
     "properties": {
+      "swrsDeadline": {
+        "title": "Industrial GHG Reporting (SWRS) Deadline",
+        "type": "string"
+      },
       "applicationOpenTime": {
         "title": "Application Open Time",
         "type": "string"
@@ -9,19 +13,22 @@
       "applicationCloseTime": {
         "title": "Application Close Time",
         "type": "string"
-      },
-      "applicationResponseTime": {
-        "title": "Application Response Date",
-        "type": "string"
       }
     },
     "required": [
+      "swrsDeadline",
       "applicationOpenTime",
-      "applicationCloseTime",
-      "applicationResponseTime"
+      "applicationCloseTime"
     ]
   },
   "uiSchema": {
+    "swrsDeadline": {
+      "ui:widget": "AltDateInput",
+      "ui:options": {
+        "hideNowButton": true,
+        "hideClearButton": true
+      }
+    },
     "applicationOpenTime": {
       "ui:widget": "AltDateTimeInput",
       "ui:options": {
@@ -31,13 +38,6 @@
     },
     "applicationCloseTime": {
       "ui:widget": "AltDateTimeInput",
-      "ui:options": {
-        "hideNowButton": true,
-        "hideClearButton": true
-      }
-    },
-    "applicationResponseTime": {
-      "ui:widget": "AltDateInput",
       "ui:options": {
         "hideNowButton": true,
         "hideClearButton": true

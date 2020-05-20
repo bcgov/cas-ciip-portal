@@ -10,9 +10,9 @@ const mutation = graphql`
   mutation updateReportingYearMutation($input: UpdateReportingYearInput!) {
     updateReportingYear(input: $input) {
       reportingYear {
+        swrsDeadline
         applicationOpenTime
         applicationCloseTime
-        applicationResponseTime
       }
       clientMutationId
     }
