@@ -22,6 +22,7 @@ const {
 } = require('../lib/user-groups');
 const {run} = require('graphile-worker');
 const path = require('path');
+const namespaceMap = require('../data/namespace-map');
 
 let databaseURL = 'postgres://';
 
@@ -134,7 +135,17 @@ app.prepare().then(() => {
     })
   );
 
-  const keycloak = new Keycloak({store: memoryStore});
+  // Keycloak for dev/test/prod
+  const kcNamespace = namespaceMap[process.env.PROJECT] || '-dev';
+  const kcConfig = {
+    realm: 'pisrwwhx',
+    'auth-server-url': `https://sso${kcNamespace}.pathfinder.gov.bc.ca/auth`,
+    'ssl-required': 'external',
+    resource: 'cas-ciip-portal',
+    'public-client': true,
+    'confidential-port': 0
+  };
+  const keycloak = new Keycloak({store: memoryStore}, kcConfig);
 
   server.use(
     keycloak.middleware({
