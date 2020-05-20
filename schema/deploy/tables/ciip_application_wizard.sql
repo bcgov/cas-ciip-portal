@@ -7,7 +7,6 @@ create table ggircs_portal.ciip_application_wizard (
   form_id integer not null primary key references ggircs_portal.form_json(id),
   form_position integer not null
 );
--- TODO(wenzowski): trigger to ensure consistency of form_position column
 
 create unique index ciip_application_wizard_form_id_uindex on ggircs_portal.ciip_application_wizard(form_id);
 create unique index ciip_application_wizard_form_position_uindex on ggircs_portal.ciip_application_wizard(form_position);

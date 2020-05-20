@@ -22,8 +22,6 @@ create table ggircs_portal.certification_url (
   certifier_email varchar(1000),
   certification_request_sent_at timestamp with time zone,
   recertification_request_sent boolean default false,
-  -- TODO(Dylan): revisit expiry / deprecation of generated URLs in the context of Authorization
-  -- Should we allow creation of multiple URLs, should the previous ones be deprecated in that case?...etc
   expires_at timestamp with time zone not null default now(),
   foreign key (application_id, version_number) references ggircs_portal.application_revision(application_id, version_number)
 );

@@ -22,7 +22,6 @@ begin;
   );
 
   create unique index organisation_swrs_report_id_uindex on ggircs_portal.organisation(swrs_report_id);
-  --Todo: refactor to add address table in CIIP
 
   do
   $grant$
