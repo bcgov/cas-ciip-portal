@@ -25,6 +25,13 @@ export default class UserDashBoard extends Component<Props> {
           ciipUserBySub {
             id
             rowId
+            certificationRequests {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
           }
         }
       }
@@ -73,6 +80,8 @@ export default class UserDashBoard extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
+    const hasCertificationRequests =
+      session.ciipUserBySub.certificationRequests.edges.length > 0;
     const helpDetails = {
       title: 'What is an Operator',
       helpMessage: 'An operator is an organisation'
@@ -89,6 +98,7 @@ export default class UserDashBoard extends Component<Props> {
           <Col md={{span: 8}}>
             <Organisations
               query={query}
+              flagCertRequests={hasCertificationRequests}
               orgInput={this.state.orgInput}
               selectedOrg={this.state.selectedOrg}
               confirmOrg={this.state.confirmOrg}

@@ -1,5 +1,188 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Organisations should announce there are certification requests to view 1`] = `
+<Fragment>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="info"
+  >
+    One or more reporting operations has requested that you certify an application.
+     
+    <AlertLink
+      href="/certifier/requests"
+    >
+      View all certification requests.
+    </AlertLink>
+  </Alert>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="info"
+  >
+    Once your access to the requested operators is approved you can view their facilities and apply for CIIP for each.
+  </Alert>
+  <ForwardRef
+    bordered={true}
+    hover={true}
+    striped={true}
+    style={
+      Object {
+        "marginBottom": "40px",
+        "textAlign": "left",
+      }
+    }
+  >
+    <thead
+      className="jsx-130150550"
+    >
+      <tr
+        className="jsx-130150550"
+      >
+        <th
+          className="jsx-130150550"
+        >
+          Operator
+        </th>
+        <th
+          className="jsx-130150550"
+        >
+          Access Status
+        </th>
+        <th
+          className="jsx-130150550"
+        >
+          Operations/Facilities
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="jsx-130150550"
+    >
+      <Relay(UserOrganisationComponent)
+        key="OrgId"
+        userOrganisation={
+          Object {
+            " $fragmentRefs": Object {
+              "UserOrganisation_userOrganisation": true,
+            },
+            "id": "OrgId",
+          }
+        }
+      />
+    </tbody>
+    <JSXStyle
+      id="130150550"
+    >
+      th.jsx-130150550{padding:20px;font-weight:500;}
+    </JSXStyle>
+  </ForwardRef>
+  <div>
+    <Card
+      body={false}
+      style={
+        Object {
+          "marginTop": "50px",
+        }
+      }
+    >
+      <CardHeader>
+        <h5
+          className="blue inline-block"
+        >
+          Add operators you represent 
+        </h5>
+        <HelpComponent
+          helpMessage="Before you can report for operations,
+                you must request access to Operators you can apply on behalf off.
+                Once you you have been given access you will be able to see all the Reporting operations
+                for that Operator"
+        />
+      </CardHeader>
+      <CardBody>
+        <Dropdown
+          className="search-dropdown"
+          navbar={false}
+        >
+          <CardTitle>
+            Request access to an Operator:
+          </CardTitle>
+          <small
+            className="jsx-3491480756"
+            style={
+              Object {
+                "display": "block",
+                "marginBottom": "20px",
+              }
+            }
+          >
+            (You can search to narrow the results in the dropdown)
+          </small>
+          <DropdownToggle
+            className="search-toggle"
+            id="org-dropdown"
+          >
+            Select Operator
+          </DropdownToggle>
+          <DropdownMenu
+            alignRight={false}
+            flip={true}
+          >
+            <FormControl
+              className="mx-3 my-2 w-auto"
+              onChange={[Function]}
+              placeholder="Search..."
+            />
+            <div
+              className="jsx-3491480756 org-scroll"
+            />
+          </DropdownMenu>
+        </Dropdown>
+        <hr
+          className="jsx-3491480756"
+        />
+        <AddOrganisationFacility
+          onAddOrganisation={[Function]}
+        />
+        <JSXStyle
+          id="3491480756"
+        >
+          .org-scroll.jsx-3491480756{max-height:250px;overflow:hidden;overflow-y:scroll;}
+        </JSXStyle>
+      </CardBody>
+    </Card>
+  </div>
+</Fragment>
+`;
+
 exports[`Organisations should render no organisations if the user has not requested any access 1`] = `
 <Fragment>
   <Alert

@@ -5,7 +5,8 @@ const createCertificationRequestMail = ({
   facilityName,
   operatorName,
   reporterEmail,
-  certifierUrl
+  certifierUrl,
+  host
 }) => {
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
@@ -24,7 +25,10 @@ const createCertificationRequestMail = ({
             a summary of the data.
           </p>
           <br/>
-          <a href=${certifierUrl}>CIIP Application</a>
+          <p>
+            <a href=${certifierUrl}>CIIP Application</a>
+          </p>
+          <p>Or, <a href="${host}/certifier/requests">view all certification requests</a>.</p>
         </td>
       </tr>
       <tr>

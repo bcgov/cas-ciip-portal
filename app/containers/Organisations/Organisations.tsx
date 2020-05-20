@@ -20,6 +20,7 @@ import Help from 'components/helpers/Help';
 interface Props {
   query: Organisations_query;
   relay: RelayProp;
+  flagCertRequests: boolean;
   orgInput: string;
   selectedOrg: number;
   confirmOrg: boolean;
@@ -72,6 +73,15 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
   const {edges} = session.ciipUserBySub.ciipUserOrganisationsByUserId;
   return (
     <>
+      {props.flagCertRequests && (
+        <Alert variant="info">
+          One or more reporting operations has requested that you certify an
+          application.{' '}
+          <Alert.Link href="/certifier/requests">
+            View all certification requests.
+          </Alert.Link>
+        </Alert>
+      )}
       {edges.length === 0 ? (
         <>
           <Alert variant="warning">
