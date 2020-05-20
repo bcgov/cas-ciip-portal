@@ -135,8 +135,10 @@ app.prepare().then(() => {
     })
   );
 
-  // Keycloak for dev/test/prod
-  const kcNamespace = namespaceMap[process.env.PROJECT] || '-dev';
+  // Keycloak instantiation for dev/test/prod
+  const kcNamespace = process.env.PROJECT
+    ? namespaceMap[process.env.PROJECT]
+    : '-dev';
   const kcConfig = {
     realm: 'pisrwwhx',
     'auth-server-url': `https://sso${kcNamespace}.pathfinder.gov.bc.ca/auth`,
