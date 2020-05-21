@@ -1,14 +1,13 @@
 
 # Welcome to the CIIP Portal
 
-  
 
 CIIP stands for the **CleanBC Industrial Incentive Program** and is part of the CleanBC Program for Industry, which applies to large industrial operations that report their emissions under the Greenhouse Gas Industrial Reporting and Control Act (GGIRCA). The CIIP helps eligible industrial operations across the province by reducing carbon tax costs for facilities based on product-specific emissions benchmarks.
 
 See the [Documentation](#documentation) section below for more information and links.
 
-  
-  
+
+
 
 ## Description
 
@@ -47,11 +46,11 @@ CIIP requires an application form to be submitted annually. CIIP is a voluntary 
 
 ### Data Architecture
 
-  
+
 
 (TBC)
 
-  
+
 
 ### Project Material Publication
 
@@ -59,7 +58,7 @@ The materials published include:
 
 #### [Code Repositories](https://github.com/bcgov?utf8=%E2%9C%93&q=cas&type=&language=)
  - /bcgov/cas-airflow-dags
- - /bcgov/cas-ciip-portal  
+ - /bcgov/cas-ciip-portal
  - /bcgov/cas-docker-metabase
  - /bcgov/cas-docker-sqitch
  - /bcgov/cas-ggircs
@@ -77,8 +76,8 @@ The materials published include:
  - /bcgov/cas-shipit-engine
  - /bcgov/cas-sqitch
 
-  
-  
+
+
 
 ## Documentation
 
@@ -90,7 +89,7 @@ The materials published include:
 
 - [CleanBC Industrial Incentive Program: FAQs - PDF](https://www2.gov.bc.ca/assets/gov/environment/climate-change/ind/cleanbc-program-for-industry/cleanbc_industrial_incentive_program_faq.pdf?forcedownload=true)
 
-  
+
 
 ## Contributors
 
