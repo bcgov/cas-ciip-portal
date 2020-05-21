@@ -76,7 +76,8 @@ module.exports = async ({
         facilityName,
         operatorName,
         reporterEmail,
-        certifierUrl
+        certifierUrl,
+        host: process.env.HOST
       });
       break;
     // Certifier signs application

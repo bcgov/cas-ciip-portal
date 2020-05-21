@@ -1404,6 +1404,21 @@ Array [
               className="fade alert alert-info show"
               role="alert"
             >
+              One or more reporting operations has requested that you certify an application.
+               
+              <a
+                className="alert-link"
+                href="/certifier/requests"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+              >
+                View all certification requests.
+              </a>
+            </div>
+            <div
+              className="fade alert alert-info show"
+              role="alert"
+            >
               Once your access to the requested operators is approved you can view their facilities and apply for CIIP for each.
             </div>
             <table

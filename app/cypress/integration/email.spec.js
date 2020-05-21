@@ -61,6 +61,8 @@ if (Cypress.env('NO_MAIL')) {
         expect(response.body[0].Content.Body).to.contain(
           'has requested that you review'
         );
+        // eslint-disable-next-line jest/valid-expect
+        expect(response.body[0].Content.Body).to.contain('/certifier/requests');
         cy.request('DELETE', 'localhost:8025/api/v1/messages');
         cy.get('input')
           .invoke('val')
