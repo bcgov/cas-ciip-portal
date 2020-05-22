@@ -28,14 +28,14 @@ if [ -z "$NODE_ENV" ]; then
 fi
 
 echo "---> Installing all dependencies"
-yarn install --frozen-lockfile --production=false
+yarn install --frozen-lockfile --check-files --production=false
 
 echo "---> Building"
 yarn build:relay
 yarn build:next
 yarn build:storybook
 
-yarn install --frozen-lockfile --production=true
+yarn install --frozen-lockfile --check-files --production=true
 yarn cache clean
 
 # Fix apt-root directory permissions
