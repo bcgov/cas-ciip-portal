@@ -27,6 +27,7 @@ types/ciip_form_result_status [schema_ggircs_portal] 2020-01-13T19:14:50Z Dylan 
 types/review_comment_type [schema_ggircs_portal] 2020-01-13T20:18:15Z Dylan Leard <dylan@button.is> # The type of a review comment
 types/application_search_result [schema_ggircs_portal types/ciip_application_revision_status] 2019-12-12T23:22:59Z Dylan Leard <dylan@button.is> # Return type for searching and listing applications
 types/ciip_product_state [schema_ggircs_portal] 2020-05-04T17:14:21Z Dylan Leard <dylan@button.is> # product_state enum type
+types/search_certification_url_result [schema_ggircs_portal] 2020-05-22T18:42:07Z Dylan Leard <dylan@button.is> # Custom return type for the certification_url search function
 tables/ciip_user [schema_ggircs_portal trigger_functions/update_timestamps] 2019-07-11T18:32:05Z Hamza Javed <hamza@button.is> # Create a User table for GGIRCS Industry Portal (GIP)
 trigger_functions/set_user_id [function_session tables/ciip_user] 2019-12-10T20:02:31Z Dylan Leard <dylan@button.is> # Trigger function updates the user_id field
 trigger_functions/checksum_form_results [schema_ggircs_portal_private] 2020-01-13T23:21:05Z Dylan Leard <dylan@button.is> # Trigger function checksums current submtted and previous submitted form result & changes form result status on result
