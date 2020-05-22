@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login redirect page It matches the last accepted Snapshot 1`] = `
+<Relay(DefaultLayout)
+  needsSession={false}
+  needsUser={false}
+  session={null}
+  showSubheader={false}
+>
+  <Row
+    noGutters={false}
+    style={
+      Object {
+        "marginTop": "60px",
+      }
+    }
+  >
+    <Col
+      md={6}
+    >
+      <h3
+        className="blue"
+      >
+        You need to be logged in to access this page.
+      </h3>
+      <p>
+        Please log in or register in order to access this page.
+        <br />
+        You will be redirected to the requested page after doing so.
+      </p>
+    </Col>
+    <RegistrationLoginButtons
+      applicationDeadline="August 31, 2020"
+    />
+  </Row>
+</Relay(DefaultLayout)>
+`;
