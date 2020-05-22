@@ -2187,6 +2187,7 @@ type CiipUser implements Node {
 
     """Read all values in the set before (above) this cursor."""
     before: Cursor
+    direction: String
 
     """Only read the first `n` values of the set."""
     first: Int
@@ -2199,7 +2200,11 @@ type CiipUser implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
-  ): CertificationUrlsConnection!
+    offsetValue: Int
+    orderByField: String
+    searchFields: [String]
+    searchValues: [String]
+  ): SearchCertificationUrlResultsConnection!
 
   """Reads and enables pagination through a set of `CertificationUrl`."""
   certificationUrlsByCertifiedBy(
@@ -10975,6 +10980,34 @@ type Query implements Node {
     searchValue: String
   ): ProductsConnection!
   session: JwtToken
+
+  """
+  Reads and enables pagination through a set of `SearchCertificationUrlResult2`.
+  """
+  testFunc(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+    direction: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+    offsetValue: Int
+    orderByField: String
+    searchFields: [String]
+    searchValues: [String]
+  ): SearchCertificationUrlResult2SConnection!
 }
 
 """
@@ -11442,6 +11475,88 @@ enum ReviewCommentType {
   GENERAL
   INTERNAL
   REQUESTED_CHANGE
+}
+
+type SearchCertificationUrlResult {
+  applicationId: Int
+  applicationRevisionStatus: CiipApplicationRevisionStatus
+  certifiedAt: Datetime
+  certifiedByFirstName: String
+  certifiedByLastName: String
+  certifierEmail: String
+  facilityName: String
+  operatorName: String
+  rowId: String
+  versionNumber: Int
+}
+
+type SearchCertificationUrlResult2 {
+  applicationId: Int
+  applicationRevisionStatus: CiipApplicationRevisionStatus
+  certifiedAt: Datetime
+  certifiedByFirstName: String
+  certifiedByLastName: String
+  certifierEmail: String
+  facilityName: String
+  operatorName: String
+  rowId: String
+  versionNumber: Int
+}
+
+"""A connection to a list of `SearchCertificationUrlResult2` values."""
+type SearchCertificationUrlResult2SConnection {
+  """
+  A list of edges which contains the `SearchCertificationUrlResult2` and cursor to aid in pagination.
+  """
+  edges: [SearchCertificationUrlResult2SEdge!]!
+
+  """A list of `SearchCertificationUrlResult2` objects."""
+  nodes: [SearchCertificationUrlResult2]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `SearchCertificationUrlResult2` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `SearchCertificationUrlResult2` edge in the connection."""
+type SearchCertificationUrlResult2SEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `SearchCertificationUrlResult2` at the end of the edge."""
+  node: SearchCertificationUrlResult2
+}
+
+"""A connection to a list of `SearchCertificationUrlResult` values."""
+type SearchCertificationUrlResultsConnection {
+  """
+  A list of edges which contains the `SearchCertificationUrlResult` and cursor to aid in pagination.
+  """
+  edges: [SearchCertificationUrlResultsEdge!]!
+
+  """A list of `SearchCertificationUrlResult` objects."""
+  nodes: [SearchCertificationUrlResult]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `SearchCertificationUrlResult` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `SearchCertificationUrlResult` edge in the connection."""
+type SearchCertificationUrlResultsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `SearchCertificationUrlResult` at the end of the edge."""
+  node: SearchCertificationUrlResult
 }
 
 """All input for the `updateApplicationByRowId` mutation."""
