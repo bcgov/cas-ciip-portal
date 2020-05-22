@@ -66,27 +66,25 @@ begin;
                       select result.*, total_count.total_request_count from result, total_count';
 
         if search_field is null then
-          raise notice'NULL';
           return query execute
-            search_query || ' and certifier_email = ' || quote_literal(user_email) || ' limit 20 offset ' || offset_value;
+            search_query || ' and certifier_email = ' || quote_literal(user_email) || ' ' || order_by_string || ' limit 20 offset ' || offset_value;
         else
           case
+
           when array_length(search_field, 1) = 1 then
             search_value_string := '%' || search_value[1] || '%';
             search_string := concat(' and ', search_string, search_field[1], ' ilike ',quote_literal(search_value_string));
-            RAISE NOTICE 'SEARCH STRING: %', search_string;
 
           else
             search_value_string := '%' || search_value[1] || '%';
             search_string := concat(' and ', search_string, search_field[1],' ilike ', quote_literal(search_value_string));
             for i in 2 .. array_length(search_field, 1)
               loop
-                RAISE NOTICE 'search field: %', search_field[i];
-                RAISE NOTICE 'search value: %', search_value[i];
+
                 search_value_string := '%' || search_value[i] || '%';
                 search_string := concat(search_string, ' and ', search_field[i],' ilike ', quote_literal(search_value_string));
+
               end loop;
-              RAISE NOTICE 'SEARCH STRING: %', search_string;
 
           end case;
 
@@ -98,8 +96,8 @@ begin;
   $body$
   language 'plpgsql' stable;
 
-  grant execute on function ggircs_portal.ciip_user_certification_requests to ciip_administrator, ciip_analyst, ciip_industry_user;
+  grant execute on function ggircs_portal.search_certification_requests to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-  comment on function ggircs_portal.ciip_user_certification_requests is 'Computed column returns all latest certification requests associated with a user email';
+  comment on function ggircs_portal.serach_certification_requests is 'Search function returns data related to certification requests associated with the current user';
 
 commit;
