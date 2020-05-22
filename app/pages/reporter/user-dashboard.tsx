@@ -25,13 +25,13 @@ export default class UserDashBoard extends Component<Props> {
           ciipUserBySub {
             id
             rowId
-            certificationRequests {
-              edges {
-                node {
-                  id
-                }
-              }
-            }
+            # certificationRequests {
+            #   edges {
+            #     node {
+            #       id
+            #     }
+            #   }
+            # }
           }
         }
       }

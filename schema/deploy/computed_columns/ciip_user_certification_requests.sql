@@ -7,13 +7,13 @@ begin;
 
   create or replace function ggircs_portal.ciip_user_certification_requests(
     ciip_user ggircs_portal.ciip_user,
-    search_fields text[],
-    search_values text[],
+    search_field text[],
+    search_value text[],
     order_by_field text,
     direction text,
     offset_value int
   )
-  returns setof ggircs_portal.search_certification_url_result2
+  returns setof ggircs_portal.search_certification_url_result
   as
   $body$
     declare
@@ -22,7 +22,6 @@ begin;
       search_query text;
       search_value_string text;
     begin
-      email := 'certifier@certi.fy';
       order_by_string := concat(' order by ', order_by_field, ' ', direction);
       search_query := 'with applicationStatus as (
                         select t.application_revision_status as application_revision_status, t.version_number, t.created_at, t.application_id
@@ -32,7 +31,8 @@ begin;
                         group by application_id) a
                         on a.application_id = t.application_id
                         and a.latest_version = t.version_number
-                        and a.last_created = t.created_at)
+                        and a.last_created = t.created_at),
+                      result as (
                         select
                         c.id,
                         c.application_id,
@@ -60,28 +60,32 @@ begin;
                       join ggircs_portal.organisation o
                         on f.organisation_id = o.id
                       join applicationStatus s
-                        on app.id = s.application_id';
+                        on app.id = s.application_id),
+                      total_count as (
+                        select count(*)::integer as total_request_count from result
+                      )
+                      select result.*, total_count.total_request_count from result, total_count';
 
-        if search_fields is null then
+        if search_field is null then
           raise notice'NULL';
           return query execute
             search_query || ' and certifier_email = ' || quote_literal(ciip_user.email_address) || ' limit 20 offset ' || offset_value;
         else
           case
-          when array_length(search_fields, 1) = 1 then
-            search_value_string := '%' || search_values[1] || '%';
-            search_string := concat(' and ', search_string, search_fields[1], ' ilike ',quote_literal(search_value_string));
+          when array_length(search_field, 1) = 1 then
+            search_value_string := '%' || search_value[1] || '%';
+            search_string := concat(' and ', search_string, search_field[1], ' ilike ',quote_literal(search_value_string));
             RAISE NOTICE 'SEARCH STRING: %', search_string;
 
           else
-            search_value_string := '%' || search_values[1] || '%';
-            search_string := concat(' and ', search_string, search_fields[1],' ilike ', quote_literal(search_value_string));
-            for i in 2 .. array_length(search_fields, 1)
+            search_value_string := '%' || search_value[1] || '%';
+            search_string := concat(' and ', search_string, search_field[1],' ilike ', quote_literal(search_value_string));
+            for i in 2 .. array_length(search_field, 1)
               loop
-                RAISE NOTICE 'search field: %', search_fields[i];
-                RAISE NOTICE 'search value: %', search_values[i];
-                search_value_string := '%' || search_values[i] || '%';
-                search_string := concat(search_string, ' and ', search_fields[i],' ilike ', quote_literal(search_value_string));
+                RAISE NOTICE 'search field: %', search_field[i];
+                RAISE NOTICE 'search value: %', search_value[i];
+                search_value_string := '%' || search_value[i] || '%';
+                search_string := concat(search_string, ' and ', search_field[i],' ilike ', quote_literal(search_value_string));
               end loop;
               RAISE NOTICE 'SEARCH STRING: %', search_string;
 
