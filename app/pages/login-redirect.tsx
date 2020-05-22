@@ -5,6 +5,10 @@ import {loginRedirectQueryResponse} from 'loginRedirectQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
 import DefaultLayout from 'layouts/default-layout';
 import RegistrationLoginButtons from 'components/RegistrationLoginButtons';
+import moment from 'moment-timezone';
+
+const TIME_ZONE = 'America/Vancouver';
+
 interface Props extends CiipPageComponentProps {
   query: loginRedirectQueryResponse['query'];
 }
@@ -16,13 +20,28 @@ export default class LoginRedirect extends Component<Props> {
         session {
           ...defaultLayout_session
         }
+        openedReportingYear {
+          applicationCloseTime
+        }
+        nextReportingYear {
+          applicationCloseTime
+        }
       }
     }
   `;
 
   render() {
     const {query} = this.props;
-    const {session} = query || {};
+    const {session, openedReportingYear, nextReportingYear} = query || {};
+
+    const deadline = moment
+      .tz(
+        openedReportingYear?.applicationCloseTime ??
+          nextReportingYear?.applicationCloseTime,
+        TIME_ZONE
+      )
+      .format('MMMM DD, YYYY');
+
     return (
       <DefaultLayout
         showSubheader={false}
@@ -41,7 +60,7 @@ export default class LoginRedirect extends Component<Props> {
               You will be redirected to the requested page after doing so.
             </p>
           </Col>
-          <RegistrationLoginButtons />
+          <RegistrationLoginButtons applicationDeadline={deadline} />
         </Row>
       </DefaultLayout>
     );

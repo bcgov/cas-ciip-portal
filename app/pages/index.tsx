@@ -119,7 +119,9 @@ export default class Index extends Component<Props> {
               emissions benchmarks.
             </p>
           </Col>
-          <RegistrationLoginButtons />
+          <RegistrationLoginButtons
+            applicationDeadline={endDate.format('MMMM DD, YYYY')}
+          />
         </Row>
 
         <Row style={{marginTop: '100px'}} id="value-props">
