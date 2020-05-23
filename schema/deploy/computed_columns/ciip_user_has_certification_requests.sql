@@ -5,7 +5,7 @@
 
 begin;
 
-  create or replace function ggircs_portal.search_certification_requests(
+  create or replace function ggircs_portal.ciip_user_has_certification_requests(
     ciip_user ggircs_portal.ciip_user
   )
   returns boolean
@@ -13,10 +13,11 @@ begin;
   $body$
     declare
     begin
-      if select count(*) from ggircs_portal.certification_url where certifier_email = ciip_user.email_address = 0 then
+      if (select count(*) from ggircs_portal.certification_url where certifier_email = ciip_user.email_address) = 0 then
         return false;
       else
         return true;
+      end if;
     end;
   $body$
   language 'plpgsql' stable;

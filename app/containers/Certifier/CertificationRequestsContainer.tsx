@@ -32,8 +32,6 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   relay,
   query
 }) => {
-  // Const [requestCount, updateRequestCount] = useState(0);
-  const requestCount = 0;
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
   useEffect(() => {
@@ -42,7 +40,6 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
       searchValue,
       orderByField,
       direction,
-      requestCount,
       offsetValue
     };
     relay.refetch(refetchVariables);
@@ -50,7 +47,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
   const displayNameToColumnNameMap = {
     Facility: 'facility_name',
-    Organisation: 'organisation_name',
+    Organisation: 'operator_name',
     Status: 'application_revision_status',
     'Certified By': 'certified_by',
     'Date Certified': 'certified_at',
@@ -59,16 +56,17 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
   const body = (
     <tbody>
-      {query.certificationRequests.edges.map(({node}) => {
+      {query.searchCertificationRequests.edges.map(({node}) => {
         const status = node.applicationRevisionStatus;
 
         const facility = node.facilityName;
 
         const organisation = node.operatorName;
 
-        const certifierName = node.certifiedBy
-          ? `${node.certifiedByFirstName} ${node.certifiedByLastName}`
-          : '';
+        const certifierName =
+          node.certifiedByFirstName || node.certifiedByLastName
+            ? `${node.certifiedByFirstName} ${node.certifiedByLastName}`
+            : '';
 
         const {applicationId} = node;
         const {versionNumber} = node;
@@ -109,9 +107,10 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
   // Pagination
   const items = [];
-  const maxPages = Math.ceil(
-    query?.certificationRequests?.edges[0]?.node?.totalRequestCount / 20
-  );
+  const maxPages = 1;
+  // Math.ceil(
+  //   query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount / 20
+  // );
   const handlePaginationByPageNumber = (pageNumber: number) => {
     setOffset((pageNumber - 1) * 20);
     setActivePage(pageNumber);
@@ -145,7 +144,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
     );
   }
 
-  return query.certificationRequests.edges.length === 0 ? (
+  return query.searchCertificationRequests.edges.length === 0 ? (
     <Alert variant="info">You have no current certification requests.</Alert>
   ) : (
     <>
@@ -174,17 +173,16 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 export default createRefetchContainer(
   CertificationRequestsComponent,
   {
-    certificationRequests: graphql`
-      fragment CertificationRequestsContainer_certificationRequests on CiipUser
+    query: graphql`
+      fragment CertificationRequestsContainer_query on Query
         @argumentDefinitions(
           searchField: {type: "[String]"}
           searchValue: {type: "[String]"}
           orderByField: {type: "String"}
           direction: {type: "String"}
-          requestCount: {type: "Int"}
           offsetValue: {type: "Int"}
         ) {
-        certificationRequests(
+        searchCertificationRequests(
           searchField: $searchField
           searchValue: $searchValue
           orderByField: $orderByField
@@ -220,17 +218,15 @@ export default createRefetchContainer(
       $searchValue: [String]
       $orderByField: String
       $direction: String
-      $requestCount: Int
       $offsetValue: Int
     ) {
-      certificationRequests {
-        ...CertificationRequestsContainer_certificationRequests
+      query {
+        ...CertificationRequestsContainer_query
           @arguments(
             orderByField: $orderByField
             direction: $direction
             searchField: $searchField
             searchValue: $searchValue
-            requestCount: $requestCount
             offsetValue: $offsetValue
           )
       }

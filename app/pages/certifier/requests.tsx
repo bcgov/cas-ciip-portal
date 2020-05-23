@@ -19,27 +19,24 @@ interface Props extends CiipPageComponentProps {
 export default class CertifierRequests extends Component<Props> {
   static query = graphql`
     query requestsQuery(
-      $orderByField: [String]
-      $direction: [String]
-      $searchField: String
-      $searchValue: String
+      $searchField: [String]
+      $searchValue: [String]
+      $orderByField: String
+      $direction: String
       $offsetValue: Int
     ) {
       query {
         session {
-          ciipUserBySub {
-            # ...CertificationRequestsTable_query
-            ...CertificationRequestsContainer_certificationRequests
-              @arguments(
-                orderByField: $orderByField
-                direction: $direction
-                searchField: $searchField
-                searchValue: $searchValue
-                offsetValue: $offsetValue
-              )
-          }
           ...defaultLayout_session
         }
+        ...CertificationRequestsContainer_query
+          @arguments(
+            searchField: $searchField
+            searchValue: $searchValue
+            orderByField: $orderByField
+            direction: $direction
+            offsetValue: $offsetValue
+          )
       }
     }
   `;
@@ -64,9 +61,9 @@ export default class CertifierRequests extends Component<Props> {
       >
         {/* <CertificationRequestsTable query={query.session.ciipUserBySub} /> */}
         <SearchTable
-          query={this.props.query.session.ciipUserBySub}
+          query={this.props.query}
           defaultOrderByField="facility_name"
-          defaultOrderByDisplay="Facility Name"
+          defaultOrderByDisplay="Facility"
         >
           {(props) => <CertificationRequestsContainer {...props} />}
         </SearchTable>

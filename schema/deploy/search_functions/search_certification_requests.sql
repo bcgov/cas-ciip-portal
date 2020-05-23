@@ -18,8 +18,9 @@ begin;
       order_by_string text;
       search_query text;
       search_value_string text;
-      user_email text
+      user_email text;
     begin
+      raise notice 'HELLOOOO';
       user_email := (select email_address from ggircs_portal.ciip_user cu where cu.uuid = (select sub from ggircs_portal.session()));
       order_by_string := concat(' order by ', order_by_field, ' ', direction);
       search_query := 'with applicationStatus as (
@@ -30,8 +31,8 @@ begin;
                         group by application_id) a
                         on a.application_id = t.application_id
                         and a.latest_version = t.version_number
-                        and a.last_created = t.created_at),
-                      result as (
+                        and a.last_created = t.created_at)
+
                         select
                         c.id,
                         c.application_id,
@@ -59,13 +60,9 @@ begin;
                       join ggircs_portal.organisation o
                         on f.organisation_id = o.id
                       join applicationStatus s
-                        on app.id = s.application_id),
-                      total_count as (
-                        select count(*)::integer as total_request_count from result
-                      )
-                      select result.*, total_count.total_request_count from result, total_count';
+                        on app.id = s.application_id';
 
-        if search_field is null then
+        if search_field[1] is null then
           return query execute
             search_query || ' and certifier_email = ' || quote_literal(user_email) || ' ' || order_by_string || ' limit 20 offset ' || offset_value;
         else
@@ -98,6 +95,6 @@ begin;
 
   grant execute on function ggircs_portal.search_certification_requests to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-  comment on function ggircs_portal.serach_certification_requests is 'Search function returns data related to certification requests associated with the current user';
+  comment on function ggircs_portal.search_certification_requests is 'Search function returns data related to certification requests associated with the current user';
 
 commit;

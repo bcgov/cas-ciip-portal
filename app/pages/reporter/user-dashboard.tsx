@@ -25,13 +25,7 @@ export default class UserDashBoard extends Component<Props> {
           ciipUserBySub {
             id
             rowId
-            # certificationRequests {
-            #   edges {
-            #     node {
-            #       id
-            #     }
-            #   }
-            # }
+            hasCertificationRequests
           }
         }
       }
@@ -80,9 +74,8 @@ export default class UserDashBoard extends Component<Props> {
   render() {
     const {query} = this.props;
     const {session} = query || {};
-    const hasCertificationRequests =
-      session.ciipUserBySub.certificationRequests.edges.length > 0;
-
+    const hasCertificationRequests = this.props?.query?.session?.ciipUserBySub
+      ?.hasCertificationRequests;
     return (
       <DefaultLayout
         showSubheader
