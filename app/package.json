@@ -180,7 +180,7 @@
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "@types/enzyme": "^3.10.5",
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^25.2.3",
     "@types/react-jsonschema-form": "^1.7.2",
     "@types/react-relay": "^7.0.7",
     "@types/relay-runtime": "^8.0.8",
