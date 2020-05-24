@@ -2123,10 +2123,10 @@
   resolved "https://registry.yarnpkg.com/@react-pdf/png-js/-/png-js-1.0.0.tgz#00fcb969dca4ce82a0a7673413ade039e47b361e"
   integrity sha1-APy5adykzoKgp2c0E63gOeR7Nh4=
 
-"@react-pdf/renderer@^1.6.8":
-  version "1.6.8"
-  resolved "https://registry.yarnpkg.com/@react-pdf/renderer/-/renderer-1.6.8.tgz#f8fcb6be0d3966eed879ecfd8a9d046b5015db7d"
-  integrity sha512-m0C/Gxb+YAqH7MKKRir9nOHxtooZDpkslr1XBOII1kX/Me4oqUjiql1CHAmIcHqMBaM57jo0sZc3ZlpusbEM3A==
+"@react-pdf/renderer@^1.6.9":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@react-pdf/renderer/-/renderer-1.6.9.tgz#4c4a9256ec4c15f4bc8dbaf81154e82d442a89b7"
+  integrity sha512-GoYEfOGrSv9VncBwdufGh/Wmfz/0g13HYmgE0NG4XDZer/POTCTIZZF8B2LS99Vg/ByGqiVabwxtlxxw07JTag==
   dependencies:
     "@babel/runtime" "^7.6.2"
     "@react-pdf/fontkit" "^1.13.0"
@@ -2140,8 +2140,8 @@
     media-engine "^1.0.3"
     page-wrapping "^1.1.0"
     ramda "^0.26.1"
-    react-reconciler "^0.21.0"
-    scheduler "^0.15.0"
+    react-reconciler "^0.24.0"
+    scheduler "^0.18.0"
     yoga-layout-prebuilt "^1.9.3"
 
 "@react-pdf/styled-components@^1.4.0":
@@ -15133,15 +15133,15 @@ react-popper@^1.0.0, react-popper@^1.3.2, react-popper@^1.3.6:
     typed-styles "^0.0.7"
     warning "^4.0.2"
 
-react-reconciler@^0.21.0:
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.21.0.tgz#8180342ab3c8295f860025a86d0a03742a294ea7"
-  integrity sha512-h4Rl3L3O6G9V4Ff+F+tCXX8ElDVn0Psk/odT+NPWeA55Yk5G7+kHT8D+Q3yE+51C72LbrYcX6OfLmCZ/7Nx9cw==
+react-reconciler@^0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.24.0.tgz#5a396b2c2f5efe8554134a5935f49f546723f2dd"
+  integrity sha512-gAGnwWkf+NOTig9oOowqid9O0HjTDC+XVGBCAmJYYJ2A2cN/O4gDdIuuUQjv8A4v6GDwVfJkagpBBLW5OW9HSw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.15.0"
+    scheduler "^0.18.0"
 
 react-redux@^7.0.2:
   version "7.2.0"
@@ -16086,10 +16086,10 @@ saxes@^3.1.9:
   dependencies:
     xmlchars "^2.1.1"
 
-scheduler@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.15.0.tgz#6bfcf80ff850b280fed4aeecc6513bc0b4f17f8e"
-  integrity sha512-xAefmSfN6jqAa7Kuq7LIJY0bwAPG3xlCj0HMEBQk1lxYiDKZscY2xJ5U/61ZTrYbmNQbXa+gc7czPkVo11tnCg==
+scheduler@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.18.0.tgz#5901ad6659bc1d8f3fdaf36eb7a67b0d6746b1c4"
+  integrity sha512-agTSHR1Nbfi6ulI0kYNK0203joW2Y5W4po4l+v03tOoiJKpTBbxpNhWDvqc/4IcOw+KLmSiQLTasZ4cab2/UWQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
