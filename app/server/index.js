@@ -136,8 +136,8 @@ app.prepare().then(() => {
   );
 
   // Keycloak instantiation for dev/test/prod
-  const kcNamespace = process.env.PROJECT
-    ? namespaceMap[process.env.PROJECT]
+  const kcNamespace = process.env.NAMESPACE
+    ? namespaceMap[process.env.NAMESPACE]
     : '-dev';
   const kcConfig = {
     realm: 'pisrwwhx',
