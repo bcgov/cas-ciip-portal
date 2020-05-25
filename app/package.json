@@ -210,7 +210,7 @@
     "eslint-config-xo-typescript": "^0.27.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-jest": "^23.10.0",
-    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.0",
     "eslint-plugin-relay": "^1.7.1",
     "eslint-plugin-shopify": "^35.0.0",
