@@ -92,8 +92,11 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
     </tbody>
   );
 
+  const maxResultsPerPage = 20;
+
   const maxPages = Math.ceil(
-    query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount / 20
+    query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount /
+      maxResultsPerPage
   );
 
   return query.searchCertificationRequests.edges.length === 0 ? (
@@ -112,6 +115,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
           offsetValue={offsetValue}
           maxPages={maxPages}
           activePage={activePage}
+          maxResultsPerPage={maxResultsPerPage}
         />
       )}
     </>

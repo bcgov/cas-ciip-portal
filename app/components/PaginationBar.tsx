@@ -7,29 +7,37 @@ interface Props {
   offsetValue: number;
   maxPages: number;
   activePage: number;
+  maxResultsPerPage: number;
 }
 export const PaginationBarComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const {setOffset, setActivePage, offsetValue, maxPages, activePage} = props;
+  const {
+    setOffset,
+    setActivePage,
+    offsetValue,
+    maxPages,
+    activePage,
+    maxResultsPerPage
+  } = props;
 
   const previousTenPagination = () => {
     if (offsetValue > 0) {
-      setOffset(offsetValue - 20);
+      setOffset(offsetValue - maxResultsPerPage);
       setActivePage(activePage - 1);
     }
   };
 
   const nextTenPagination = () => {
     if (activePage !== maxPages) {
-      setOffset(offsetValue + 20);
+      setOffset(offsetValue + maxResultsPerPage);
       setActivePage(activePage + 1);
     }
   };
 
   const items = [];
   const handlePaginationByPageNumber = (pageNumber: number) => {
-    setOffset((pageNumber - 1) * 20);
+    setOffset((pageNumber - 1) * maxResultsPerPage);
     setActivePage(pageNumber);
   };
 
