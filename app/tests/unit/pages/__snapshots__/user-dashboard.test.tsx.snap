@@ -7,12 +7,6 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
       "User",
     ]
   }
-  help={
-    Object {
-      "helpMessage": "An operator is an organisation",
-      "title": "What is an Operator",
-    }
-  }
   session={
     Object {
       " $fragmentRefs": Object {
@@ -110,7 +104,7 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
               Step 1:
             </strong>
             <br />
-            Request access to one or more Operators.
+            Request access to apply on behalf of an Operation as an applicant.
           </ListGroupItem>
           <ListGroupItem
             active={false}
@@ -121,7 +115,7 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
               Step 2:
             </strong>
             <br />
-            CIIP administrators will approve your request.
+            CIIP administrators will review and approve your request.
              
           </ListGroupItem>
           <ListGroupItem
@@ -133,7 +127,7 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
               Step 3:
             </strong>
             <br />
-            Once approved, you can view all the facilities for the Operator.
+            Applicants will fill out an application for the Operation and send it to a Certifying Official.
           </ListGroupItem>
           <ListGroupItem
             active={false}
@@ -144,7 +138,51 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
               Step 4:
             </strong>
             <br />
-            You can apply for CIIP for each facility.
+            The Certifying Official reviews and signs off on the application.
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 5:
+            </strong>
+            <br />
+            The applicant submits the application for assessment by the Ministry.
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 6:
+            </strong>
+            <br />
+            CIIP administrators review the application.
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 7:
+            </strong>
+            <br />
+            If any changes are required, the applicant will be requested to revise the application.
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 8:
+            </strong>
+            <br />
+            Once processed, the applicant will receive a grant letter with further details on the expected incentive payment.
           </ListGroupItem>
         </ListGroup>
       </div>
@@ -159,12 +197,6 @@ exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
     Array [
       "User",
     ]
-  }
-  help={
-    Object {
-      "helpMessage": "An operator is an organisation",
-      "title": "What is an Operator",
-    }
   }
   session={
     Object {
@@ -251,7 +283,7 @@ exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
               Step 1:
             </strong>
             <br />
-            Request access to one or more Operators.
+            Request access to apply on behalf of an Operation as an applicant.
           </ListGroupItem>
           <ListGroupItem
             active={false}
@@ -262,7 +294,7 @@ exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
               Step 2:
             </strong>
             <br />
-            CIIP administrators will approve your request.
+            CIIP administrators will review and approve your request.
              
           </ListGroupItem>
           <ListGroupItem
@@ -274,7 +306,7 @@ exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
               Step 3:
             </strong>
             <br />
-            Once approved, you can view all the facilities for the Operator.
+            Applicants will fill out an application for the Operation and send it to a Certifying Official.
           </ListGroupItem>
           <ListGroupItem
             active={false}
@@ -285,7 +317,51 @@ exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
               Step 4:
             </strong>
             <br />
-            You can apply for CIIP for each facility.
+            The Certifying Official reviews and signs off on the application.
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 5:
+            </strong>
+            <br />
+            The applicant submits the application for assessment by the Ministry.
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 6:
+            </strong>
+            <br />
+            CIIP administrators review the application.
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 7:
+            </strong>
+            <br />
+            If any changes are required, the applicant will be requested to revise the application.
+          </ListGroupItem>
+          <ListGroupItem
+            active={false}
+            disabled={false}
+            variant={null}
+          >
+            <strong>
+              Step 8:
+            </strong>
+            <br />
+            Once processed, the applicant will receive a grant letter with further details on the expected incentive payment.
           </ListGroupItem>
         </ListGroup>
       </div>

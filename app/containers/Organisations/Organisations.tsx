@@ -4,8 +4,8 @@ import {
   Table,
   Dropdown,
   Button,
-  Alert,
   FormControl,
+  Alert,
   Card
 } from 'react-bootstrap';
 import {Organisations_query} from 'Organisations_query.graphql';
@@ -15,7 +15,6 @@ import createOrganisationMutation from 'mutations/organisation/createOrganisatio
 import LoadingSpinner from 'components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
-import Help from 'components/helpers/Help';
 
 interface Props {
   query: Organisations_query;
@@ -82,64 +81,53 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
           </Alert.Link>
         </Alert>
       )}
-      {edges.length === 0 ? (
-        <>
-          <Alert variant="warning">
-            You are not registered to apply for any Operator at this time. You
-            can request access to an Operator by selecting one from the dropdown
-            below.
-          </Alert>
-          <br />
-        </>
-      ) : (
-        <>
-          <Alert variant="info">
-            Once your access to the requested operators is approved you can view
-            their facilities and apply for CIIP for each.
-          </Alert>
-          <Table
-            striped
-            bordered
-            hover
-            style={{textAlign: 'left', marginBottom: '40px'}}
-          >
-            <thead>
-              <tr>
-                <th>Operator</th>
-                <th>Access Status</th>
-                <th>Operations/Facilities</th>
-              </tr>
-            </thead>
-            <tbody>
-              {edges.map(({node}) => {
-                return (
-                  <UserOrganisation key={node.id} userOrganisation={node} />
-                );
-              })}
-            </tbody>
-            <style jsx>
-              {`
-                th {
-                  padding: 20px;
-                  font-weight: 500;
-                }
-              `}
-            </style>
-          </Table>
-        </>
+      <Card bg="light">
+        <Card.Body>
+          Operator, Operator Representative, and Reporting Operation are defined
+          in the{' '}
+          <a href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01">
+            Greenhouse Gas Industrial Reporting and Control Act
+          </a>{' '}
+          and{' '}
+          <a href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015">
+            Greenhouse Gas Emission Reporting Regulation
+          </a>
+          .
+        </Card.Body>
+      </Card>
+      <br />
+      {edges.length > 0 && (
+        <Table
+          striped
+          bordered
+          hover
+          style={{textAlign: 'left', marginBottom: '40px'}}
+        >
+          <thead>
+            <tr>
+              <th>Operator</th>
+              <th>Access Status</th>
+              <th>Operations/Facilities</th>
+            </tr>
+          </thead>
+          <tbody>
+            {edges.map(({node}) => {
+              return <UserOrganisation key={node.id} userOrganisation={node} />;
+            })}
+          </tbody>
+          <style jsx>
+            {`
+              th {
+                padding: 20px;
+                font-weight: 500;
+              }
+            `}
+          </style>
+        </Table>
       )}
 
       <div>
         <Card style={{marginTop: '50px'}}>
-          <Card.Header>
-            <h5 className="blue inline-block">Add operators you represent </h5>
-            <Help
-              helpMessage={`Before you can report for operations,
-                you must request access to Operators you can apply on behalf off.
-                Once you you have been given access you will be able to see all the Reporting operations
-                for that Operator`}
-            />
-          </Card.Header>
           <Card.Body>
             {props.confirmOrg ? (
               <>
@@ -170,7 +158,43 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
               </>
             ) : (
               <Dropdown className="search-dropdown">
-                <Card.Title>Request access to an Operator:</Card.Title>
+                <Card.Title>
+                  Request access to apply for the CIIP on behalf of a Reporting
+                  Operation:
+                </Card.Title>
+                <Alert variant="warning">
+                  <p>
+                    The CleanBC Industrial Incentive Program application must be
+                    submitted by the Operator of the Reporting Operation or, if
+                    there is more than Operator, the Designated Operator as
+                    defined by the{' '}
+                    <Alert.Link href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01">
+                      Greenhouse Gas Industrial Reporting and Control Act
+                    </Alert.Link>{' '}
+                    and{' '}
+                    <Alert.Link href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015">
+                      Greenhouse Gas Emission Reporting Regulation
+                    </Alert.Link>
+                    . Other representatives of the Reporting Operation may
+                    complete the application if authorization from the Operator
+                    is provided.
+                  </p>
+                  <p>
+                    Further information on the role of the Operator and
+                    Certifying Official{' '}
+                    <Alert.Link href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program">
+                      can be found here
+                    </Alert.Link>
+                    .
+                  </p>
+                  <p>
+                    Please email{' '}
+                    <Alert.Link href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry">
+                      GHGRegulator@gov.bc.ca
+                    </Alert.Link>{' '}
+                    if you have any questions.
+                  </p>
+                </Alert>
                 <small style={{display: 'block', marginBottom: '20px'}}>
                   (You can search to narrow the results in the dropdown)
                 </small>

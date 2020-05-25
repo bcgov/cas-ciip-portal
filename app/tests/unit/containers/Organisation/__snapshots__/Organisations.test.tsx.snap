@@ -29,27 +29,30 @@ exports[`Organisations should announce there are certification requests to view 
       View all certification requests.
     </AlertLink>
   </Alert>
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="info"
+  <Card
+    bg="light"
+    body={false}
   >
-    Once your access to the requested operators is approved you can view their facilities and apply for CIIP for each.
-  </Alert>
+    <CardBody>
+      Operator, Operator Representative, and Reporting Operation are defined in the
+       
+      <a
+        href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+      >
+        Greenhouse Gas Industrial Reporting and Control Act
+      </a>
+       
+      and
+       
+      <a
+        href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+      >
+        Greenhouse Gas Emission Reporting Regulation
+      </a>
+      .
+    </CardBody>
+  </Card>
+  <br />
   <ForwardRef
     bordered={true}
     hover={true}
@@ -62,30 +65,30 @@ exports[`Organisations should announce there are certification requests to view 
     }
   >
     <thead
-      className="jsx-130150550"
+      className="jsx-1706603431"
     >
       <tr
-        className="jsx-130150550"
+        className="jsx-1706603431"
       >
         <th
-          className="jsx-130150550"
+          className="jsx-1706603431"
         >
           Operator
         </th>
         <th
-          className="jsx-130150550"
+          className="jsx-1706603431"
         >
           Access Status
         </th>
         <th
-          className="jsx-130150550"
+          className="jsx-1706603431"
         >
           Operations/Facilities
         </th>
       </tr>
     </thead>
     <tbody
-      className="jsx-130150550"
+      className="jsx-1706603431"
     >
       <Relay(UserOrganisationComponent)
         key="OrgId"
@@ -100,9 +103,9 @@ exports[`Organisations should announce there are certification requests to view 
       />
     </tbody>
     <JSXStyle
-      id="130150550"
+      id="1706603431"
     >
-      th.jsx-130150550{padding:20px;font-weight:500;}
+      th.jsx-1706603431{padding:20px;font-weight:500;}
     </JSXStyle>
   </ForwardRef>
   <div>
@@ -114,27 +117,79 @@ exports[`Organisations should announce there are certification requests to view 
         }
       }
     >
-      <CardHeader>
-        <h5
-          className="blue inline-block"
-        >
-          Add operators you represent 
-        </h5>
-        <HelpComponent
-          helpMessage="Before you can report for operations,
-                you must request access to Operators you can apply on behalf off.
-                Once you you have been given access you will be able to see all the Reporting operations
-                for that Operator"
-        />
-      </CardHeader>
       <CardBody>
         <Dropdown
           className="search-dropdown"
           navbar={false}
         >
           <CardTitle>
-            Request access to an Operator:
+            Request access to apply for the CIIP on behalf of a Reporting Operation:
           </CardTitle>
+          <Alert
+            closeLabel="Close alert"
+            show={true}
+            transition={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "appear": false,
+                  "in": false,
+                  "mountOnEnter": false,
+                  "timeout": 300,
+                  "unmountOnExit": false,
+                },
+                "displayName": "Fade",
+                "render": [Function],
+              }
+            }
+            variant="warning"
+          >
+            <p
+              className="jsx-3491480756"
+            >
+              The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than Operator, the Designated Operator as defined by the
+               
+              <AlertLink
+                href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+              >
+                Greenhouse Gas Industrial Reporting and Control Act
+              </AlertLink>
+               
+              and
+               
+              <AlertLink
+                href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+              >
+                Greenhouse Gas Emission Reporting Regulation
+              </AlertLink>
+              . Other representatives of the Reporting Operation may complete the application if authorization from the Operator is provided.
+            </p>
+            <p
+              className="jsx-3491480756"
+            >
+              Further information on the role of the Operator and Certifying Official
+               
+              <AlertLink
+                href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+              >
+                can be found here
+              </AlertLink>
+              .
+            </p>
+            <p
+              className="jsx-3491480756"
+            >
+              Please email
+               
+              <AlertLink
+                href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
+              >
+                GHGRegulator@gov.bc.ca
+              </AlertLink>
+               
+              if you have any questions.
+            </p>
+          </Alert>
           <small
             className="jsx-3491480756"
             style={
@@ -185,27 +240,29 @@ exports[`Organisations should announce there are certification requests to view 
 
 exports[`Organisations should render no organisations if the user has not requested any access 1`] = `
 <Fragment>
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="warning"
+  <Card
+    bg="light"
+    body={false}
   >
-    You are not registered to apply for any Operator at this time. You can request access to an Operator by selecting one from the dropdown below.
-  </Alert>
+    <CardBody>
+      Operator, Operator Representative, and Reporting Operation are defined in the
+       
+      <a
+        href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+      >
+        Greenhouse Gas Industrial Reporting and Control Act
+      </a>
+       
+      and
+       
+      <a
+        href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+      >
+        Greenhouse Gas Emission Reporting Regulation
+      </a>
+      .
+    </CardBody>
+  </Card>
   <br />
   <div>
     <Card
@@ -216,27 +273,79 @@ exports[`Organisations should render no organisations if the user has not reques
         }
       }
     >
-      <CardHeader>
-        <h5
-          className="blue inline-block"
-        >
-          Add operators you represent 
-        </h5>
-        <HelpComponent
-          helpMessage="Before you can report for operations,
-                you must request access to Operators you can apply on behalf off.
-                Once you you have been given access you will be able to see all the Reporting operations
-                for that Operator"
-        />
-      </CardHeader>
       <CardBody>
         <Dropdown
           className="search-dropdown"
           navbar={false}
         >
           <CardTitle>
-            Request access to an Operator:
+            Request access to apply for the CIIP on behalf of a Reporting Operation:
           </CardTitle>
+          <Alert
+            closeLabel="Close alert"
+            show={true}
+            transition={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "appear": false,
+                  "in": false,
+                  "mountOnEnter": false,
+                  "timeout": 300,
+                  "unmountOnExit": false,
+                },
+                "displayName": "Fade",
+                "render": [Function],
+              }
+            }
+            variant="warning"
+          >
+            <p
+              className="jsx-3491480756"
+            >
+              The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than Operator, the Designated Operator as defined by the
+               
+              <AlertLink
+                href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+              >
+                Greenhouse Gas Industrial Reporting and Control Act
+              </AlertLink>
+               
+              and
+               
+              <AlertLink
+                href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+              >
+                Greenhouse Gas Emission Reporting Regulation
+              </AlertLink>
+              . Other representatives of the Reporting Operation may complete the application if authorization from the Operator is provided.
+            </p>
+            <p
+              className="jsx-3491480756"
+            >
+              Further information on the role of the Operator and Certifying Official
+               
+              <AlertLink
+                href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+              >
+                can be found here
+              </AlertLink>
+              .
+            </p>
+            <p
+              className="jsx-3491480756"
+            >
+              Please email
+               
+              <AlertLink
+                href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
+              >
+                GHGRegulator@gov.bc.ca
+              </AlertLink>
+               
+              if you have any questions.
+            </p>
+          </Alert>
           <small
             className="jsx-3491480756"
             style={
@@ -287,27 +396,30 @@ exports[`Organisations should render no organisations if the user has not reques
 
 exports[`Organisations should render the user's requested organisations 1`] = `
 <Fragment>
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="info"
+  <Card
+    bg="light"
+    body={false}
   >
-    Once your access to the requested operators is approved you can view their facilities and apply for CIIP for each.
-  </Alert>
+    <CardBody>
+      Operator, Operator Representative, and Reporting Operation are defined in the
+       
+      <a
+        href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+      >
+        Greenhouse Gas Industrial Reporting and Control Act
+      </a>
+       
+      and
+       
+      <a
+        href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+      >
+        Greenhouse Gas Emission Reporting Regulation
+      </a>
+      .
+    </CardBody>
+  </Card>
+  <br />
   <ForwardRef
     bordered={true}
     hover={true}
@@ -320,30 +432,30 @@ exports[`Organisations should render the user's requested organisations 1`] = `
     }
   >
     <thead
-      className="jsx-130150550"
+      className="jsx-1706603431"
     >
       <tr
-        className="jsx-130150550"
+        className="jsx-1706603431"
       >
         <th
-          className="jsx-130150550"
+          className="jsx-1706603431"
         >
           Operator
         </th>
         <th
-          className="jsx-130150550"
+          className="jsx-1706603431"
         >
           Access Status
         </th>
         <th
-          className="jsx-130150550"
+          className="jsx-1706603431"
         >
           Operations/Facilities
         </th>
       </tr>
     </thead>
     <tbody
-      className="jsx-130150550"
+      className="jsx-1706603431"
     >
       <Relay(UserOrganisationComponent)
         key="OrgId"
@@ -358,9 +470,9 @@ exports[`Organisations should render the user's requested organisations 1`] = `
       />
     </tbody>
     <JSXStyle
-      id="130150550"
+      id="1706603431"
     >
-      th.jsx-130150550{padding:20px;font-weight:500;}
+      th.jsx-1706603431{padding:20px;font-weight:500;}
     </JSXStyle>
   </ForwardRef>
   <div>
@@ -372,27 +484,79 @@ exports[`Organisations should render the user's requested organisations 1`] = `
         }
       }
     >
-      <CardHeader>
-        <h5
-          className="blue inline-block"
-        >
-          Add operators you represent 
-        </h5>
-        <HelpComponent
-          helpMessage="Before you can report for operations,
-                you must request access to Operators you can apply on behalf off.
-                Once you you have been given access you will be able to see all the Reporting operations
-                for that Operator"
-        />
-      </CardHeader>
       <CardBody>
         <Dropdown
           className="search-dropdown"
           navbar={false}
         >
           <CardTitle>
-            Request access to an Operator:
+            Request access to apply for the CIIP on behalf of a Reporting Operation:
           </CardTitle>
+          <Alert
+            closeLabel="Close alert"
+            show={true}
+            transition={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "appear": false,
+                  "in": false,
+                  "mountOnEnter": false,
+                  "timeout": 300,
+                  "unmountOnExit": false,
+                },
+                "displayName": "Fade",
+                "render": [Function],
+              }
+            }
+            variant="warning"
+          >
+            <p
+              className="jsx-3491480756"
+            >
+              The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than Operator, the Designated Operator as defined by the
+               
+              <AlertLink
+                href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
+              >
+                Greenhouse Gas Industrial Reporting and Control Act
+              </AlertLink>
+               
+              and
+               
+              <AlertLink
+                href="http://www.bclaws.ca/civix/document/id/lc/statreg/249_2015"
+              >
+                Greenhouse Gas Emission Reporting Regulation
+              </AlertLink>
+              . Other representatives of the Reporting Operation may complete the application if authorization from the Operator is provided.
+            </p>
+            <p
+              className="jsx-3491480756"
+            >
+              Further information on the role of the Operator and Certifying Official
+               
+              <AlertLink
+                href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+              >
+                can be found here
+              </AlertLink>
+              .
+            </p>
+            <p
+              className="jsx-3491480756"
+            >
+              Please email
+               
+              <AlertLink
+                href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
+              >
+                GHGRegulator@gov.bc.ca
+              </AlertLink>
+               
+              if you have any questions.
+            </p>
+          </Alert>
           <small
             className="jsx-3491480756"
             style={
