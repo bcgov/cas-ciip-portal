@@ -160,7 +160,7 @@
     "react-mathjax2": "^0.0.2",
     "react-number-format": "^4.3.1",
     "react-relay": "^9.1.0",
-    "react-relay-network-modern": "^4.6.1",
+    "react-relay-network-modern": "^4.7.0",
     "react-relay-network-modern-ssr": "^1.2.4",
     "react-signature-canvas": "^1.0.3",
     "react-toastify": "^6.0.0-rc.2",
