@@ -19,7 +19,6 @@ create table ggircs_portal.form_json (
   prepopulate_from_ciip boolean not null,
   prepopulate_from_swrs boolean not null,
   form_result_init_function varchar(1000)
-  --todo: add versioning columns
 );
 
 create trigger _100_timestamps

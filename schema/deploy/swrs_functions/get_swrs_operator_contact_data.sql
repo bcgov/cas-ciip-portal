@@ -84,5 +84,3 @@ begin;
   grant execute on function ggircs_portal.get_swrs_operator_contact_data to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 commit;
-
--- Todo: Fix swrs addresses table to remove this limit 1 hack

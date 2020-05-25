@@ -27,7 +27,6 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     product_return ggircs_portal.ciip_incentive_by_product;
 
   begin
-    -- TODO: Check that there is only a single product where requires_emission_allocation is false, we can't do the payment allocation otherwise
 
     -- Get emissions for facility
     select sum(annual_co2e) into em_facility from ggircs_portal.ciip_emission

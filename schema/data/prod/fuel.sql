@@ -1,7 +1,5 @@
 begin;
 
--- TODO: remove flaring & venting (get from emissions / gas tables)
-
 with rows as (
 insert into ggircs_portal.fuel(id, name, units, state, swrs_fuel_mapping_id)
 overriding system value

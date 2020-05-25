@@ -46,13 +46,6 @@ begin
           status_change_type := 'status_change_submitted';
         else
           status_change_type := 'status_change_other';
-        -- TODO: Do we want different emails for each status change? Or is submitted / other enough?
-        -- when new.application_revision_status = 'requested changes' then
-        --   status_change_type := 'status_change_requested_changes';
-        -- when new.application_revision_status = 'approved' then
-        --   status_change_type := 'status_change_approved';
-        -- when new.application_revision_status = 'rejected' then
-        --   status_change_type := 'status_change_rejected';
       end case;
 
       -- Assign worker to the sendMail task
