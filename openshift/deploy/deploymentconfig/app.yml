@@ -70,6 +70,8 @@ objects:
             value: https://ciip-portal-${OC_PROJECT}-feedback.pathfinder.gov.bc.ca
           - name: HOST
             value: https://ciip-portal-${OC_PROJECT}.pathfinder.gov.bc.ca
+          - name: NAMESPACE
+            value: ${OC_PROJECT}
 
           image: ${OC_REGISTRY}/${OC_PROJECT}/${PREFIX}portal-app:${GIT_SHA1}
           imagePullPolicy: IfNotPresent

@@ -1,8 +1,0 @@
-{
-  "realm": "pisrwwhx",
-  "auth-server-url": "https://sso-dev.pathfinder.gov.bc.ca/auth",
-  "ssl-required": "external",
-  "resource": "cas-ciip-portal",
-  "public-client": true,
-  "confidential-port": 0
-}
