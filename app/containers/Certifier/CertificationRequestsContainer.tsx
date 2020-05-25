@@ -64,10 +64,13 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
         const organisation = node.operatorName;
 
-        const certifierName =
-          node.certifiedByFirstName || node.certifiedByLastName
-            ? `${node.certifiedByFirstName} ${node.certifiedByLastName}`
-            : '';
+        let certifierName = '';
+        if (node.certifiedByFirstName && node.certifiedByLastName)
+          certifierName = `${node.certifiedByFirstName} ${node.certifiedByLastName}`;
+        else if (node.certifiedByFirstName && !node.certifiedByLastName)
+          certifierName = node.certifiedByFirstName;
+        else if (!node.certifiedByFirstName && node.certifiedByLastName)
+          certifierName = node.certifiedByLastName;
 
         return (
           <tr key={node.rowId}>
@@ -91,13 +94,13 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
   const maxResultsPerPage = 20;
 
-  const maxPages = Math.ceil(
-    query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount /
-      maxResultsPerPage
-  );
+  const totalRequestCount =
+    query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount || 0;
 
   return query.searchCertificationRequests.edges.length === 0 ? (
-    <Alert variant="info">You have no current certification requests.</Alert>
+    <Alert variant="info">
+      You have no current certification requests matching your search criteria.
+    </Alert>
   ) : (
     <>
       <SearchTableLayout
@@ -105,16 +108,14 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
       />
-      {maxPages > 1 && (
-        <PaginationBar
-          setOffset={setOffset}
-          setActivePage={setActivePage}
-          offsetValue={offsetValue}
-          maxPages={maxPages}
-          activePage={activePage}
-          maxResultsPerPage={maxResultsPerPage}
-        />
-      )}
+      <PaginationBar
+        setOffset={setOffset}
+        setActivePage={setActivePage}
+        offsetValue={offsetValue}
+        activePage={activePage}
+        maxResultsPerPage={maxResultsPerPage}
+        totalCount={totalRequestCount}
+      />
     </>
   );
 };

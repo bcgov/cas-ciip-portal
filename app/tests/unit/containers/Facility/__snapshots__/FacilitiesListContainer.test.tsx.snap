@@ -59,67 +59,13 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
     }
     handleEvent={[MockFunction]}
   />
-</Fragment>
-`;
-
-exports[`FacilitiesListContainer should not render the Pagination component if < 10 facilities (totalFacilityCount < 10) 1`] = `
-<Fragment>
-  <SearchTableLayoutComponent
-    body={
-      <tbody>
-        <Relay(FacilitiesRowItemComponent)
-          facilitySearchResult={
-            Object {
-              " $fragmentRefs ": Object {
-                "FacilitiesRowItemContainer_facilitySearchResult": true,
-              },
-              "rowId": 1,
-              "totalFacilityCount": 5,
-            }
-          }
-          query={
-            Object {
-              " $fragmentRefs": Object {
-                "FacilitiesRowItemContainer_query": true,
-              },
-              " $refType": "FacilitiesListContainer_query",
-              "allFacilities": Object {
-                "totalCount": 20,
-              },
-              "organisation": Object {
-                "id": "abc",
-                "rowId": 1,
-              },
-              "searchAllFacilities": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      " $fragmentRefs ": Object {
-                        "FacilitiesRowItemContainer_facilitySearchResult": true,
-                      },
-                      "rowId": 1,
-                      "totalFacilityCount": 5,
-                    },
-                  },
-                ],
-              },
-            }
-          }
-        />
-      </tbody>
-    }
-    displayNameToColumnNameMap={
-      Object {
-        "": null,
-        "BC GHG id": "facility_bcghgid",
-        "Facility Name": "facility_name",
-        "Facility Type": "facility_type",
-        "Organisation Name": "organisation_name",
-        "Reporting period of last SWRS report": "last_swrs_reporting_year",
-        "Status": "application_revision_status",
-      }
-    }
-    handleEvent={[MockFunction]}
+  <PaginationBarComponent
+    activePage={1}
+    maxResultsPerPage={10}
+    offsetValue={0}
+    setActivePage={[Function]}
+    setOffset={[Function]}
+    totalCount={1}
   />
 </Fragment>
 `;

@@ -3,13 +3,27 @@ import {shallow} from 'enzyme';
 import {PaginationBarComponent} from 'components/PaginationBar';
 
 describe('PaginationBar', () => {
-  it('should render the Pagination component if maxPages > 1', async () => {
+  it('should not render the Pagination component if Math.ceil(totalCount / maxResultsPerPage) < 2', async () => {
     const r = shallow(
       <PaginationBarComponent
         setOffset={jest.fn()}
         setActivePage={jest.fn()}
         offsetValue={0}
-        maxPages={3}
+        totalCount={5}
+        activePage={1}
+        maxResultsPerPage={10}
+      />
+    );
+    expect(r.find('PageItem').exists()).toBe(false);
+    expect(r).toMatchSnapshot();
+  });
+  it('should render the Pagination component if Math.ceil(totalCount / maxResultsPerPage) > 1', async () => {
+    const r = shallow(
+      <PaginationBarComponent
+        setOffset={jest.fn()}
+        setActivePage={jest.fn()}
+        offsetValue={0}
+        totalCount={25}
         activePage={1}
         maxResultsPerPage={10}
       />
@@ -17,13 +31,13 @@ describe('PaginationBar', () => {
     expect(r.find('PageItem').exists()).toBe(true);
     expect(r).toMatchSnapshot();
   });
-  it('should create a number of pagination buttons equal to maxPages', async () => {
+  it('should create a number of pagination buttons equal to Math.ceil(totalCount / maxResultsPerPage)', async () => {
     const r = shallow(
       <PaginationBarComponent
         setOffset={jest.fn()}
         setActivePage={jest.fn()}
         offsetValue={0}
-        maxPages={3}
+        totalCount={25}
         activePage={1}
         maxResultsPerPage={10}
       />
@@ -33,13 +47,13 @@ describe('PaginationBar', () => {
     expect(r.find('PageItem').at(2).text()).toBe('3');
     expect(r.find('PageItem').at(3).exists()).toBe(false);
   });
-  it('should render a maximum of 9 pagination pages if maxPages > 9', async () => {
+  it('should render a maximum of 9 pagination pages if Math.ceil(totalCount / maxResultsPerPage) > 9', async () => {
     const r = shallow(
       <PaginationBarComponent
         setOffset={jest.fn()}
         setActivePage={jest.fn()}
         offsetValue={0}
-        maxPages={13}
+        totalCount={130}
         activePage={1}
         maxResultsPerPage={10}
       />

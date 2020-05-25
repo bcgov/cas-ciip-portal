@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PaginationBar should render a maximum of 9 pagination pages if maxPages > 9 1`] = `
+exports[`PaginationBar should not render the Pagination component if Math.ceil(totalCount / maxResultsPerPage) < 2 1`] = `""`;
+
+exports[`PaginationBar should render a maximum of 9 pagination pages if Math.ceil(totalCount / maxResultsPerPage) > 9 1`] = `
 <ForwardRef>
   <First
     onClick={[Function]}
@@ -101,7 +103,7 @@ exports[`PaginationBar should render a maximum of 9 pagination pages if maxPages
 </ForwardRef>
 `;
 
-exports[`PaginationBar should render the Pagination component if maxPages > 1 1`] = `
+exports[`PaginationBar should render the Pagination component if Math.ceil(totalCount / maxResultsPerPage) > 1 1`] = `
 <ForwardRef>
   <First
     onClick={[Function]}

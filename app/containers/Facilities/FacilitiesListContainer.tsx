@@ -81,10 +81,8 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
 
   const maxResultsPerPage = 10;
 
-  const maxPages = Math.ceil(
-    query?.searchAllFacilities?.edges[0]?.node?.totalFacilityCount /
-      maxResultsPerPage
-  );
+  const totalFacilityCount =
+    query?.searchAllFacilities?.edges[0]?.node?.totalFacilityCount || 0;
 
   return (
     <>
@@ -93,16 +91,14 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
       />
-      {maxPages > 1 && (
-        <PaginationBar
-          setOffset={setOffset}
-          setActivePage={setActivePage}
-          offsetValue={offsetValue}
-          maxPages={maxPages}
-          activePage={activePage}
-          maxResultsPerPage={maxResultsPerPage}
-        />
-      )}
+      <PaginationBar
+        setOffset={setOffset}
+        setActivePage={setActivePage}
+        offsetValue={offsetValue}
+        activePage={activePage}
+        maxResultsPerPage={maxResultsPerPage}
+        totalCount={totalFacilityCount}
+      />
       {organisation ? (
         <AddOrganisationFacility
           organisationRowId={organisation.rowId}

@@ -5,7 +5,6 @@ import {CiipPageComponentProps} from 'next-env';
 import {requestsQueryResponse} from 'requestsQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
-// Import CertificationRequestsTable from 'containers/Certifier/CertificationRequestsTable';
 import SearchTable from 'components/SearchTable';
 import CertificationRequestsContainer from 'containers/Certifier/CertificationRequestsContainer';
 

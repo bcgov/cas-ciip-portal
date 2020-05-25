@@ -2,12 +2,12 @@ import React from 'react';
 import {Pagination} from 'react-bootstrap';
 
 interface Props {
-  setOffset: (...args: any[]) => void;
-  setActivePage: (...args: any[]) => void;
+  setOffset: (...args: number[]) => void;
+  setActivePage: (...args: number[]) => void;
   offsetValue: number;
-  maxPages: number;
   activePage: number;
   maxResultsPerPage: number;
+  totalCount: number;
 }
 export const PaginationBarComponent: React.FunctionComponent<Props> = (
   props
@@ -16,9 +16,9 @@ export const PaginationBarComponent: React.FunctionComponent<Props> = (
     setOffset,
     setActivePage,
     offsetValue,
-    maxPages,
     activePage,
-    maxResultsPerPage
+    maxResultsPerPage,
+    totalCount
   } = props;
 
   const previousTenPagination = () => {
@@ -40,6 +40,8 @@ export const PaginationBarComponent: React.FunctionComponent<Props> = (
     setOffset((pageNumber - 1) * maxResultsPerPage);
     setActivePage(pageNumber);
   };
+
+  const maxPages = Math.ceil(totalCount / maxResultsPerPage);
 
   let startPage;
   let endPage;
@@ -69,17 +71,20 @@ export const PaginationBarComponent: React.FunctionComponent<Props> = (
     );
   }
 
-  return (
-    <Pagination>
-      <Pagination.First onClick={() => handlePaginationByPageNumber(1)} />
-      <Pagination.Prev onClick={previousTenPagination} />
-      {startPage !== 1 && <Pagination.Ellipsis />}
-      <Pagination>{items}</Pagination>
-      {endPage !== maxPages && <Pagination.Ellipsis />}
-      <Pagination.Next onClick={nextTenPagination} />
-      <Pagination.Last onClick={() => handlePaginationByPageNumber(maxPages)} />
-    </Pagination>
-  );
+  if (maxPages > 1)
+    return (
+      <Pagination>
+        <Pagination.First onClick={() => handlePaginationByPageNumber(1)} />
+        <Pagination.Prev onClick={previousTenPagination} />
+        {startPage !== 1 && <Pagination.Ellipsis />}
+        <Pagination>{items}</Pagination>
+        {endPage !== maxPages && <Pagination.Ellipsis />}
+        <Pagination.Next onClick={nextTenPagination} />
+        <Pagination.Last
+          onClick={() => handlePaginationByPageNumber(maxPages)}
+        />
+      </Pagination>
+    );
 };
 
 export default PaginationBarComponent;
