@@ -13,7 +13,8 @@ create type ggircs_portal.search_certification_url_result as (
     operator_name varchar(1000),
     application_revision_status ggircs_portal.ciip_application_revision_status,
     certified_by_first_name varchar(1000),
-    certified_by_last_name varchar(1000)
+    certified_by_last_name varchar(1000),
+    total_request_count int
 );
 
 comment on type ggircs_portal.search_certification_url_result is '@primaryKey (id)';

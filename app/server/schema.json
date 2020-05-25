@@ -26504,6 +26504,18 @@
               "deprecationReason": null
             },
             {
+              "name": "totalRequestCount",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "versionNumber",
               "description": null,
               "args": [],

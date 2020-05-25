@@ -72,7 +72,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
         const {versionNumber} = node;
 
         return (
-          <tr key={node.id}>
+          <tr key={node.rowId}>
             <td>{facility}</td>
             <td>{organisation}</td>
             <td>{status}</td>
@@ -107,10 +107,9 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
   // Pagination
   const items = [];
-  const maxPages = 1;
-  // Math.ceil(
-  //   query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount / 20
-  // );
+  const maxPages = Math.ceil(
+    query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount / 20
+  );
   const handlePaginationByPageNumber = (pageNumber: number) => {
     setOffset((pageNumber - 1) * 20);
     setActivePage(pageNumber);
@@ -201,14 +200,10 @@ export default createRefetchContainer(
               applicationRevisionStatus
               certifiedByFirstName
               certifiedByLastName
+              totalRequestCount
             }
           }
         }
-        # TODO: This is here to trigger a refactor as updating the edge / running the query in the mutation is not triggering a refresh
-        # Find a way to not pull the totalcount?
-        # allCertificationUrls(first: $requestCount) {
-        #   totalCount
-        # }
       }
     `
   },

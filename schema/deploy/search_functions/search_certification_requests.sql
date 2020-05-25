@@ -31,8 +31,9 @@ begin;
                         group by application_id) a
                         on a.application_id = t.application_id
                         and a.latest_version = t.version_number
-                        and a.last_created = t.created_at)
+                        and a.last_created = t.created_at),
 
+                      searchResult as (
                         select
                         c.id,
                         c.application_id,
@@ -60,11 +61,16 @@ begin;
                       join ggircs_portal.organisation o
                         on f.organisation_id = o.id
                       join applicationStatus s
-                        on app.id = s.application_id';
+                        on app.id = s.application_id),
+
+                    total_count as (
+                      select count(*)::integer as total_request_count from searchResult
+                    )
+                    select searchResult.*, total_count.total_request_count from searchResult, total_count';
 
         if search_field[1] is null then
           return query execute
-            search_query || ' and certifier_email = ' || quote_literal(user_email) || ' ' || order_by_string || ' limit 20 offset ' || offset_value;
+            search_query || ' where certifier_email = ' || quote_literal(user_email) || ' ' || order_by_string || ' limit 20 offset ' || offset_value;
         else
           case
 
@@ -87,7 +93,7 @@ begin;
 
       return query execute
         search_query ||
-        ' and certifier_email = ' || quote_literal(user_email)|| ' ' || search_string || order_by_string || ' limit 20 offset ' || offset_value;
+        ' where certifier_email = ' || quote_literal(user_email)|| ' ' || search_string || order_by_string || ' limit 20 offset ' || offset_value;
       end if;
     end;
   $body$

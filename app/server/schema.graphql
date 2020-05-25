@@ -11464,6 +11464,7 @@ type SearchCertificationUrlResult {
   facilityName: String
   operatorName: String
   rowId: String
+  totalRequestCount: Int
   versionNumber: Int
 }
 
