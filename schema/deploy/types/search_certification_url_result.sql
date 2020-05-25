@@ -17,5 +17,6 @@ create type ggircs_portal.search_certification_url_result as (
     total_request_count int
 );
 
-comment on type ggircs_portal.search_certification_url_result is '@primaryKey (id)';
+comment on type ggircs_portal.search_certification_url_result is '@primaryKey (id)
+@foreignKey (application_id) references ggircs_portal.application(id)';
 commit;

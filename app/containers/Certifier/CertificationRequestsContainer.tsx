@@ -69,9 +69,6 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
             ? `${node.certifiedByFirstName} ${node.certifiedByLastName}`
             : '';
 
-        const {applicationId} = node;
-        const {versionNumber} = node;
-
         return (
           <tr key={node.rowId}>
             <td>{facility}</td>
@@ -81,7 +78,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
             <td>{formatListViewDate(node.certifiedAt)}</td>
             <td>
               <Link
-                href={`/certifier/certify?applicationId=${applicationId}&version=${versionNumber}`}
+                href={`/certifier/certify?applicationId=${node.applicationByApplicationId.id}&version=${node.versionNumber}`}
               >
                 <Button className="w-100">View</Button>
               </Link>
@@ -154,6 +151,9 @@ export default createRefetchContainer(
               certifiedByFirstName
               certifiedByLastName
               totalRequestCount
+              applicationByApplicationId {
+                id
+              }
             }
           }
         }
