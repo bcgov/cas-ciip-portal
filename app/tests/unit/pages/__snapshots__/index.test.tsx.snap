@@ -44,7 +44,9 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         The CIIP helps industrial operations across the province by reducing net carbon-tax costs for facilities near world-leading emissions benchmarks.
       </p>
     </Col>
-    <RegistrationLoginButtons />
+    <RegistrationLoginButtons
+      applicationDeadline="December 30, 2019"
+    />
   </Row>
   <Row
     id="value-props"
