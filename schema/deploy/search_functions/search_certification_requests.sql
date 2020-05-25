@@ -20,7 +20,6 @@ begin;
       search_value_string text;
       user_email text;
     begin
-      raise notice 'HELLOOOO';
       user_email := (select email_address from ggircs_portal.ciip_user cu where cu.uuid = (select sub from ggircs_portal.session()));
       order_by_string := concat(' order by ', order_by_field, ' ', direction);
       search_query := 'with applicationStatus as (
