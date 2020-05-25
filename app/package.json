@@ -176,7 +176,7 @@
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-cssresources": "^5.3.18",
     "@storybook/addon-info": "^5.3.18",
-    "@storybook/addon-storyshots": "^5.3.18",
+    "@storybook/addon-storyshots": "^5.3.19",
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "@types/enzyme": "^3.10.5",
