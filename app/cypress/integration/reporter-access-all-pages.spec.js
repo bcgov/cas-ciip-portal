@@ -21,8 +21,7 @@ describe('When logged in as a reporter', () => {
     cy.get('tr');
     cy.contains('Resume').click();
     cy.url().should('include', '/reporter/ciip-application-legal-disclaimer');
-    cy.get('input').click({multiple: true});
-    cy.contains('Continue').click();
+    cy.contains('Consent and continue').click();
     cy.url().should('include', '/reporter/ciip-application');
     const applicationId = window.btoa('["applications", 2]');
     cy.visit(
