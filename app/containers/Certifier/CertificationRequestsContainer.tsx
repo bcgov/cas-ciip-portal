@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Alert, Pagination} from 'react-bootstrap';
+import {Button, Alert} from 'react-bootstrap';
 import moment from 'moment-timezone';
 import Link from 'next/link';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
+import PaginationBar from 'components/PaginationBar';
 import {CertificationRequestsContainer_query} from '__generated__/CertificationRequestsContainer_query.graphql';
 
 const TIME_ZONE = 'America/Vancouver';
@@ -91,57 +92,9 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
     </tbody>
   );
 
-  const previousTenPagination = () => {
-    if (offsetValue > 0) {
-      setOffset(offsetValue - 20);
-      setActivePage(activePage - 1);
-    }
-  };
-
-  const nextTenPagination = () => {
-    if (activePage !== maxPages) {
-      setOffset(offsetValue + 20);
-      setActivePage(activePage + 1);
-    }
-  };
-
-  // Pagination
-  const items = [];
   const maxPages = Math.ceil(
     query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount / 20
   );
-  const handlePaginationByPageNumber = (pageNumber: number) => {
-    setOffset((pageNumber - 1) * 20);
-    setActivePage(pageNumber);
-  };
-
-  let startPage;
-  let endPage;
-  if (maxPages <= 9) {
-    startPage = 1;
-    endPage = maxPages;
-  } else if (maxPages - activePage <= 4) {
-    startPage = maxPages - 8;
-    endPage = maxPages;
-  } else if (activePage <= 5) {
-    startPage = 1;
-    endPage = 9;
-  } else {
-    startPage = activePage - 4;
-    endPage = activePage + 4;
-  }
-
-  for (let pageNumber = startPage; pageNumber <= endPage; pageNumber++) {
-    items.push(
-      <Pagination.Item
-        key={pageNumber}
-        active={pageNumber === activePage}
-        onClick={() => handlePaginationByPageNumber(pageNumber)}
-      >
-        {pageNumber}
-      </Pagination.Item>
-    );
-  }
 
   return query.searchCertificationRequests.edges.length === 0 ? (
     <Alert variant="info">You have no current certification requests.</Alert>
@@ -153,17 +106,13 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
         handleEvent={handleEvent}
       />
       {maxPages > 1 && (
-        <Pagination>
-          <Pagination.First onClick={() => handlePaginationByPageNumber(1)} />
-          <Pagination.Prev onClick={previousTenPagination} />
-          {startPage !== 1 && <Pagination.Ellipsis />}
-          <Pagination>{items}</Pagination>
-          {endPage !== maxPages && <Pagination.Ellipsis />}
-          <Pagination.Next onClick={nextTenPagination} />
-          <Pagination.Last
-            onClick={() => handlePaginationByPageNumber(maxPages)}
-          />
-        </Pagination>
+        <PaginationBar
+          setOffset={setOffset}
+          setActivePage={setActivePage}
+          offsetValue={offsetValue}
+          maxPages={maxPages}
+          activePage={activePage}
+        />
       )}
     </>
   );
