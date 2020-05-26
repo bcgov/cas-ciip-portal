@@ -38,8 +38,7 @@ USER 1001
 RUN /usr/bin/env bash -c "cat ${APP_ROOT}/.tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add"
 RUN /usr/bin/env bash -c "asdf plugin-update --all"
 # The nodejs release team keyring is needed to install the asdf node plugin
-COPY ./.bin/import-nodejs-keyring.sh /tmp/import-nodejs-keyring.sh
-RUN /tmp/import-nodejs-keyring.sh
+RUN /usr/bin/env bash -c "~/.asdf/plugins/nodejs/bin/import-release-team-keyring"
 
 # POSTGRES_EXTRA_CONFIGURE_OPTIONS is used during asdf install
 ENV POSTGRES_EXTRA_CONFIGURE_OPTIONS='--with-libxml'
