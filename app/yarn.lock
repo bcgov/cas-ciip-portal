@@ -2272,15 +2272,15 @@
     react-inspector "^4.0.0"
     uuid "^3.3.2"
 
-"@storybook/addon-cssresources@^5.3.18":
-  version "5.3.18"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-cssresources/-/addon-cssresources-5.3.18.tgz#aa53bed05b19f1e3870140974100dd42b0a555eb"
-  integrity sha512-2gYFah8DOFk0ZSxaNr7I8xF8q0qVt7GAS09AhMKVPF5WYsy+5aALUrFH3ZqQkL6xCN8tPV/0EyR2Z4gfXc3V5Q==
+"@storybook/addon-cssresources@^5.3.19":
+  version "5.3.19"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-cssresources/-/addon-cssresources-5.3.19.tgz#12571f3fff7c3798b90d94eb7d437c724d0a0a8d"
+  integrity sha512-OJwRQhAEj8iTk/Rw735WX2A+c8W3KDpeLN4ogoPWxyyqiPGveLjdqi69xV+YxNKLQThOwBu/ak95sPoPK5F7XQ==
   dependencies:
-    "@storybook/addons" "5.3.18"
-    "@storybook/api" "5.3.18"
-    "@storybook/components" "5.3.18"
-    "@storybook/core-events" "5.3.18"
+    "@storybook/addons" "5.3.19"
+    "@storybook/api" "5.3.19"
+    "@storybook/components" "5.3.19"
+    "@storybook/core-events" "5.3.19"
     core-js "^3.0.1"
     global "^4.3.2"
     react "^16.8.3"
