@@ -166,7 +166,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                   <p>
                     The CleanBC Industrial Incentive Program application must be
                     submitted by the Operator of the Reporting Operation or, if
-                    there is more than Operator, the Designated Operator as
+                    there is more than one Operator, the Designated Operator as
                     defined by the{' '}
                     <Alert.Link href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01">
                       Greenhouse Gas Industrial Reporting and Control Act
