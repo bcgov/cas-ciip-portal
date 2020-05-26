@@ -147,7 +147,7 @@ exports[`Organisations should announce there are certification requests to view 
             <p
               className="jsx-3491480756"
             >
-              The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than Operator, the Designated Operator as defined by the
+              The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than one Operator, the Designated Operator as defined by the
                
               <AlertLink
                 href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
@@ -303,7 +303,7 @@ exports[`Organisations should render no organisations if the user has not reques
             <p
               className="jsx-3491480756"
             >
-              The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than Operator, the Designated Operator as defined by the
+              The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than one Operator, the Designated Operator as defined by the
                
               <AlertLink
                 href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
@@ -514,7 +514,7 @@ exports[`Organisations should render the user's requested organisations 1`] = `
             <p
               className="jsx-3491480756"
             >
-              The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than Operator, the Designated Operator as defined by the
+              The CleanBC Industrial Incentive Program application must be submitted by the Operator of the Reporting Operation or, if there is more than one Operator, the Designated Operator as defined by the
                
               <AlertLink
                 href="http://www.bclaws.ca/civix/document/id/complete/statreg/14029_01"
