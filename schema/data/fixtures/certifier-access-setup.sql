@@ -365,8 +365,8 @@ update ggircs_portal.form_result set form_result = '[
   ]'
   where application_id=1 and version_number=1 and form_id=4;
 
-insert into ggircs_portal.certification_url(id, certifier_url, application_id, version_number, send_certification_request, certifier_email)
+insert into ggircs_portal.certification_url(id, certifier_url, created_by, application_id, version_number, send_certification_request, certifier_email)
 overriding system value
-values ('testpage', 'localhost:3004/certifier/certification-redirect?rowId=testpage', 1, 1, false, 'certifier@certi.fy');
+values ('testpage', 'localhost:3004/certifier/certification-redirect?rowId=testpage', 6, 1, 1, false, 'certifier@certi.fy');
 
 commit;
