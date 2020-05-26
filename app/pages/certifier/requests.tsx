@@ -58,7 +58,6 @@ export default class CertifierRequests extends Component<Props> {
         session={query.session}
         allowedGroups={ALLOWED_GROUPS}
       >
-        {/* <CertificationRequestsTable query={query.session.ciipUserBySub} /> */}
         <SearchTable
           query={this.props.query}
           defaultOrderByField="facility_name"
