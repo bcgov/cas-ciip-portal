@@ -107,6 +107,30 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         <Card.Header>Application Certification</Card.Header>
         <Card.Body>
           <Card.Text>
+            Thank you for reviewing your application to the CleanBC Industrial
+            Incentive Program.
+          </Card.Text>
+          <Card.Text>
+            Your application is almost complete.
+            <ul>
+              <li>
+                Please send the secure URL below to a Certifying Official in
+                your organisation to approve the application. You will be
+                notified via email when this step is complete.
+              </li>
+              <li>
+                Once you have received notification that the application has
+                been certified, you will need to return here to submit the
+                application.
+              </li>
+              <li>
+                Once submitted, you will be notified via email when your
+                application has been approved or if any further information is
+                required to process your application.
+              </li>
+            </ul>
+          </Card.Text>
+          <Card.Text>
             Once you have reviewed the application and ensured all the data is
             correct, the application has to be certified.
           </Card.Text>
