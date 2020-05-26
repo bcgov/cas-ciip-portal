@@ -85,6 +85,7 @@ export const PaginationBarComponent: React.FunctionComponent<Props> = (
         />
       </Pagination>
     );
+  return null;
 };
 
 export default PaginationBarComponent;
