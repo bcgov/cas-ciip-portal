@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {Card, Alert} from 'react-bootstrap';
 import {ciipApplicationLegalDisclaimerQueryResponse} from 'ciipApplicationLegalDisclaimerQuery.graphql';
+import ApplicationConsent from 'containers/Applications/ApplicationConsent';
 import {CiipPageComponentProps} from 'next-env';
 import {NextRouter} from 'next/router';
 import DefaultLayout from 'layouts/default-layout';
-import LegalDisclaimerChecklistContainer from 'containers/Applications/LegalDisclaimerChecklistContainer';
 import {USER} from 'data/group-constants';
 
 const ALLOWED_GROUPS = [USER];
@@ -22,7 +22,7 @@ class CiipApplicationLegalDisclaimer extends Component<Props> {
           ...defaultLayout_session
         }
         application(id: $applicationId) {
-          ...LegalDisclaimerChecklistContainer_application
+          ...ApplicationConsent_application
         }
       }
     }
@@ -64,20 +64,31 @@ class CiipApplicationLegalDisclaimer extends Component<Props> {
           </Card.Header>
           <Card.Body>
             <Card.Text style={{padding: '10px 0 10px 0'}}>
-              Note: The application must be submitted by the operator of the
-              reporting operation or, if there is more than one operator, the
-              designated operator. By submitting the application the applicant
-              agrees that the information contained on this application, or
-              information contained in emission reports under the Greenhouse Gas
-              Industrial Reporting and Control Act, may be shared with other
-              British Columbia government agencies for the purpose of
-              administering the CleanBC Program for Industry.
+              Please note that, once submitted, the Certifying Official and
+              Operator certify that the Certifying Official has reviewed the
+              information being submitted, and has exercised due diligence to
+              ensure that the information is true and complete, and that, to the
+              best of the Certifying Official&apos;s knowledge, the information
+              submitted herein is accurate and based on reasonable estimates
+              using available data.
+            </Card.Text>
+            <Card.Text style={{padding: '10px 0 10px 0'}}>
+              The Operator agrees to repay any incentive amounts erroneously
+              paid or which are, upon audit or review by the Province of British
+              Columbia, are determined by the Province to be either inconsistent
+              with{' '}
+              <Card.Link href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program">
+                CIIP Rules
+              </Card.Link>{' '}
+              or not supported by evidence related to fuel usage and tax paid,
+              and acknowledges that any repayment amount may be deducted from a
+              following year&apos;s incentive payment, or other payments due to
+              the Operator from the Province.
             </Card.Text>
 
             {ImportMessage}
+            <ApplicationConsent application={application} />
           </Card.Body>
-
-          <LegalDisclaimerChecklistContainer application={application} />
         </Card>
       </DefaultLayout>
     );

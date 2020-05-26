@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interstitial application legal disclaimer page It matches the last accepted Snapshot 1`] = `
+<Relay(DefaultLayout)
+  allowedGroups={
+    Array [
+      "User",
+    ]
+  }
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  title="Legal Disclaimer"
+>
+  <Card
+    body={false}
+    className="mb-2"
+  >
+    <CardHeader>
+      Please review and confirm the information below
+    </CardHeader>
+    <CardBody>
+      <CardText
+        style={
+          Object {
+            "padding": "10px 0 10px 0",
+          }
+        }
+      >
+        Please note that, once submitted, the Certifying Official and Operator certify that the Certifying Official has reviewed the information being submitted, and has exercised due diligence to ensure that the information is true and complete, and that, to the best of the Certifying Official's knowledge, the information submitted herein is accurate and based on reasonable estimates using available data.
+      </CardText>
+      <CardText
+        style={
+          Object {
+            "padding": "10px 0 10px 0",
+          }
+        }
+      >
+        The Operator agrees to repay any incentive amounts erroneously paid or which are, upon audit or review by the Province of British Columbia, are determined by the Province to be either inconsistent with
+         
+        <CardLink
+          href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program"
+        >
+          CIIP Rules
+        </CardLink>
+         
+        or not supported by evidence related to fuel usage and tax paid, and acknowledges that any repayment amount may be deducted from a following year's incentive payment, or other payments due to the Operator from the Province.
+      </CardText>
+      <Relay(ApplicationConsent)
+        application={
+          Object {
+            " $fragmentRefs": Object {
+              "ApplicationConsent_application": true,
+            },
+          }
+        }
+      />
+    </CardBody>
+  </Card>
+</Relay(DefaultLayout)>
+`;
