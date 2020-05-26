@@ -29,6 +29,10 @@ class CertificationRedirect extends Component<Props> {
           id
           rowId
           expiresAt
+          ciipUserByCreatedBy {
+            firstName
+            lastName
+          }
           applicationByApplicationId {
             id
             latestDraftRevision {
@@ -49,6 +53,10 @@ class CertificationRedirect extends Component<Props> {
   render() {
     const {query, router} = this.props;
     const {session} = query;
+    const {
+      firstName,
+      lastName
+    } = query?.certificationUrlByRowId?.ciipUserByCreatedBy;
     const facility =
       query?.certificationUrlByRowId?.applicationByApplicationId
         ?.facilityByFacilityId;
@@ -85,14 +93,15 @@ class CertificationRedirect extends Component<Props> {
             <Col md={{offset: 3, span: 6}}>
               <h3 className="blue">Your certification is requested.</h3>
               <p>
-                On behalf of <strong>{organisationName}</strong>, for facility{' '}
-                <strong>{facilityName} </strong>
-                please certify the information reported in the application is
-                correct.
+                <strong>{`${firstName} ${lastName}`}</strong> on behalf of{' '}
+                <strong>{organisationName}</strong>, for facility{' '}
+                <strong>{facilityName}</strong> has requested that you review,
+                certify, and sign off on the information contained in this CIIP
+                application.
               </p>
               {session?.ciipUserBySub ? (
                 <>
-                  <p>Please continue to the certification page</p>
+                  <p>Please continue to the certification page.</p>
                   <Col md={{span: 5, offset: 1}}>
                     <Button onClick={async () => router.push(redirectURI)}>
                       Continue
