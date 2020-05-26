@@ -8,9 +8,7 @@ const query = {
     ciipUserBySub: {
       id: 'ciip-reporter@mailinator.com',
       rowId: 6,
-      certificationRequests: {
-        edges: []
-      }
+      hasCertificationRequests: false
     },
     ' $fragmentRefs': {
       defaultLayout_session: true
@@ -26,15 +24,7 @@ const queryWithCertRequests: userDashboardQueryResponse['query'] = {
     ciipUserBySub: {
       id: 'ciip-reporter@mailinator.com',
       rowId: 6,
-      certificationRequests: {
-        edges: [
-          {
-            node: {
-              id: '1'
-            }
-          }
-        ]
-      }
+      hasCertificationRequests: true
     },
     ' $fragmentRefs': {
       defaultLayout_session: true

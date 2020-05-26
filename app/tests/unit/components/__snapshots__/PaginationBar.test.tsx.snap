@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginationBar should not render the Pagination component if Math.ceil(totalCount / maxResultsPerPage) < 2 1`] = `""`;
+
+exports[`PaginationBar should render a maximum of 9 pagination pages if Math.ceil(totalCount / maxResultsPerPage) > 9 1`] = `
+<ForwardRef>
+  <First
+    onClick={[Function]}
+  />
+  <Prev
+    onClick={[Function]}
+  />
+  <ForwardRef>
+    <PageItem
+      active={true}
+      activeLabel="(current)"
+      disabled={false}
+      key="1"
+      onClick={[Function]}
+    >
+      1
+    </PageItem>
+    <PageItem
+      active={false}
+      activeLabel="(current)"
+      disabled={false}
+      key="2"
+      onClick={[Function]}
+    >
+      2
+    </PageItem>
+    <PageItem
+      active={false}
+      activeLabel="(current)"
+      disabled={false}
+      key="3"
+      onClick={[Function]}
+    >
+      3
+    </PageItem>
+    <PageItem
+      active={false}
+      activeLabel="(current)"
+      disabled={false}
+      key="4"
+      onClick={[Function]}
+    >
+      4
+    </PageItem>
+    <PageItem
+      active={false}
+      activeLabel="(current)"
+      disabled={false}
+      key="5"
+      onClick={[Function]}
+    >
+      5
+    </PageItem>
+    <PageItem
+      active={false}
+      activeLabel="(current)"
+      disabled={false}
+      key="6"
+      onClick={[Function]}
+    >
+      6
+    </PageItem>
+    <PageItem
+      active={false}
+      activeLabel="(current)"
+      disabled={false}
+      key="7"
+      onClick={[Function]}
+    >
+      7
+    </PageItem>
+    <PageItem
+      active={false}
+      activeLabel="(current)"
+      disabled={false}
+      key="8"
+      onClick={[Function]}
+    >
+      8
+    </PageItem>
+    <PageItem
+      active={false}
+      activeLabel="(current)"
+      disabled={false}
+      key="9"
+      onClick={[Function]}
+    >
+      9
+    </PageItem>
+  </ForwardRef>
+  <Ellipsis />
+  <Next
+    onClick={[Function]}
+  />
+  <Last
+    onClick={[Function]}
+  />
+</ForwardRef>
+`;
+
+exports[`PaginationBar should render the Pagination component if Math.ceil(totalCount / maxResultsPerPage) > 1 1`] = `
+<ForwardRef>
+  <First
+    onClick={[Function]}
+  />
+  <Prev
+    onClick={[Function]}
+  />
+  <ForwardRef>
+    <PageItem
+      active={true}
+      activeLabel="(current)"
+      disabled={false}
+      key="1"
+      onClick={[Function]}
+    >
+      1
+    </PageItem>
+    <PageItem
+      active={false}
+      activeLabel="(current)"
+      disabled={false}
+      key="2"
+      onClick={[Function]}
+    >
+      2
+    </PageItem>
+    <PageItem
+      active={false}
+      activeLabel="(current)"
+      disabled={false}
+      key="3"
+      onClick={[Function]}
+    >
+      3
+    </PageItem>
+  </ForwardRef>
+  <Next
+    onClick={[Function]}
+  />
+  <Last
+    onClick={[Function]}
+  />
+</ForwardRef>
+`;

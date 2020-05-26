@@ -2178,29 +2178,6 @@ type CiipUser implements Node {
     orderBy: [BenchmarksOrderBy!] = [PRIMARY_KEY_ASC]
   ): BenchmarksConnection!
 
-  """
-  Computed column returns all latest certification requests associated with a user email
-  """
-  certificationRequests(
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-  ): CertificationUrlsConnection!
-
   """Reads and enables pagination through a set of `CertificationUrl`."""
   certificationUrlsByCertifiedBy(
     """Read all values in the set after (below) this cursor."""
@@ -3068,6 +3045,11 @@ type CiipUser implements Node {
     """The method to use when ordering `Gas`."""
     orderBy: [GasesOrderBy!] = [PRIMARY_KEY_ASC]
   ): GasesConnection!
+
+  """
+  Computed column true if the user has certification requests attached to their email
+  """
+  hasCertificationRequests: Boolean
 
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -10899,6 +10881,34 @@ type Query implements Node {
     searchValue: String
   ): ApplicationSearchResultsConnection!
 
+  """
+  Search function returns data related to certification requests associated with the current user
+  """
+  searchCertificationRequests(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+    direction: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+    offsetValue: Int
+    orderByField: String
+    searchField: [String]
+    searchValue: [String]
+  ): SearchCertificationUrlResultsConnection!
+
   """Reads and enables pagination through a set of `CiipUserOrganisation`."""
   searchCiipUserOrganisation(
     """Read all values in the set after (below) this cursor."""
@@ -11442,6 +11452,52 @@ enum ReviewCommentType {
   GENERAL
   INTERNAL
   REQUESTED_CHANGE
+}
+
+type SearchCertificationUrlResult {
+  """
+  Reads a single `Application` that is related to this `SearchCertificationUrlResult`.
+  """
+  applicationByApplicationId: Application
+  applicationId: Int
+  applicationRevisionStatus: CiipApplicationRevisionStatus
+  certifiedAt: Datetime
+  certifiedByFirstName: String
+  certifiedByLastName: String
+  certifierEmail: String
+  facilityName: String
+  operatorName: String
+  rowId: String
+  totalRequestCount: Int
+  versionNumber: Int
+}
+
+"""A connection to a list of `SearchCertificationUrlResult` values."""
+type SearchCertificationUrlResultsConnection {
+  """
+  A list of edges which contains the `SearchCertificationUrlResult` and cursor to aid in pagination.
+  """
+  edges: [SearchCertificationUrlResultsEdge!]!
+
+  """A list of `SearchCertificationUrlResult` objects."""
+  nodes: [SearchCertificationUrlResult]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `SearchCertificationUrlResult` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `SearchCertificationUrlResult` edge in the connection."""
+type SearchCertificationUrlResultsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `SearchCertificationUrlResult` at the end of the edge."""
+  node: SearchCertificationUrlResult
 }
 
 """All input for the `updateApplicationByRowId` mutation."""

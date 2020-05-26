@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Pagination} from 'react-bootstrap';
+import PaginationBar from 'components/PaginationBar';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
 import createFacilityMutation from 'mutations/facility/createFacilityMutation';
@@ -79,57 +79,10 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
     updateFacilityCount((facilityCount += 1));
   };
 
-  const previousTenPagination = () => {
-    if (offsetValue > 0) {
-      setOffset(offsetValue - 10);
-      setActivePage(activePage - 1);
-    }
-  };
+  const maxResultsPerPage = 10;
 
-  const nextTenPagination = () => {
-    if (activePage !== maxPages) {
-      setOffset(offsetValue + 10);
-      setActivePage(activePage + 1);
-    }
-  };
-
-  // Pagination
-  const items = [];
-  const maxPages = Math.ceil(
-    query?.searchAllFacilities?.edges[0]?.node?.totalFacilityCount / 10
-  );
-  const handlePaginationByPageNumber = (pageNumber: number) => {
-    setOffset((pageNumber - 1) * 10);
-    setActivePage(pageNumber);
-  };
-
-  let startPage;
-  let endPage;
-  if (maxPages <= 9) {
-    startPage = 1;
-    endPage = maxPages;
-  } else if (maxPages - activePage <= 4) {
-    startPage = maxPages - 8;
-    endPage = maxPages;
-  } else if (activePage <= 5) {
-    startPage = 1;
-    endPage = 9;
-  } else {
-    startPage = activePage - 4;
-    endPage = activePage + 4;
-  }
-
-  for (let pageNumber = startPage; pageNumber <= endPage; pageNumber++) {
-    items.push(
-      <Pagination.Item
-        key={pageNumber}
-        active={pageNumber === activePage}
-        onClick={() => handlePaginationByPageNumber(pageNumber)}
-      >
-        {pageNumber}
-      </Pagination.Item>
-    );
-  }
+  const totalFacilityCount =
+    query?.searchAllFacilities?.edges[0]?.node?.totalFacilityCount || 0;
 
   return (
     <>
@@ -138,19 +91,14 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
       />
-      {maxPages > 1 && (
-        <Pagination>
-          <Pagination.First onClick={() => handlePaginationByPageNumber(1)} />
-          <Pagination.Prev onClick={previousTenPagination} />
-          {startPage !== 1 && <Pagination.Ellipsis />}
-          <Pagination>{items}</Pagination>
-          {endPage !== maxPages && <Pagination.Ellipsis />}
-          <Pagination.Next onClick={nextTenPagination} />
-          <Pagination.Last
-            onClick={() => handlePaginationByPageNumber(maxPages)}
-          />
-        </Pagination>
-      )}
+      <PaginationBar
+        setOffset={setOffset}
+        setActivePage={setActivePage}
+        offsetValue={offsetValue}
+        activePage={activePage}
+        maxResultsPerPage={maxResultsPerPage}
+        totalCount={totalFacilityCount}
+      />
       {organisation ? (
         <AddOrganisationFacility
           organisationRowId={organisation.rowId}

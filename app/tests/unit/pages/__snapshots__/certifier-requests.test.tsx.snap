@@ -12,23 +12,27 @@ exports[`certifier requests list page It matches the last accepted Snapshot 1`] 
       " $fragmentRefs": Object {
         "defaultLayout_session": true,
       },
-      "ciipUserBySub": Object {
-        " $fragmentRefs": Object {
-          "CertificationRequestsTable_query": true,
-        },
-      },
     }
   }
   title="Certification Requests"
 >
-  <Relay(CertificationRequestsTableComponent)
+  <SearchTableComponent
+    defaultOrderByDisplay="Facility"
+    defaultOrderByField="facility_name"
     query={
       Object {
         " $fragmentRefs": Object {
-          "CertificationRequestsTable_query": true,
+          "CertificationRequestsContainer_query": true,
+        },
+        "session": Object {
+          " $fragmentRefs": Object {
+            "defaultLayout_session": true,
+          },
         },
       }
     }
-  />
+  >
+    <Component />
+  </SearchTableComponent>
 </Relay(DefaultLayout)>
 `;

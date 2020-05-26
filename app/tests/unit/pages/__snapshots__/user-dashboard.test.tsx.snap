@@ -13,15 +13,7 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
         "defaultLayout_session": true,
       },
       "ciipUserBySub": Object {
-        "certificationRequests": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
-                "id": "1",
-              },
-            },
-          ],
-        },
+        "hasCertificationRequests": true,
         "id": "ciip-reporter@mailinator.com",
         "rowId": 6,
       },
@@ -58,15 +50,7 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
                 "defaultLayout_session": true,
               },
               "ciipUserBySub": Object {
-                "certificationRequests": Object {
-                  "edges": Array [
-                    Object {
-                      "node": Object {
-                        "id": "1",
-                      },
-                    },
-                  ],
-                },
+                "hasCertificationRequests": true,
                 "id": "ciip-reporter@mailinator.com",
                 "rowId": 6,
               },
@@ -204,9 +188,7 @@ exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
         "defaultLayout_session": true,
       },
       "ciipUserBySub": Object {
-        "certificationRequests": Object {
-          "edges": Array [],
-        },
+        "hasCertificationRequests": false,
         "id": "ciip-reporter@mailinator.com",
         "rowId": 6,
       },
@@ -243,9 +225,7 @@ exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
                 "defaultLayout_session": true,
               },
               "ciipUserBySub": Object {
-                "certificationRequests": Object {
-                  "edges": Array [],
-                },
+                "hasCertificationRequests": false,
                 "id": "ciip-reporter@mailinator.com",
                 "rowId": 6,
               },
