@@ -15408,14 +15408,14 @@ react-textarea-autosize@^7.1.0:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
 
-react-toastify@^6.0.0-rc.2:
-  version "6.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-6.0.0-rc.2.tgz#1812ef499e08d446dc45d1c3f65135fb74251cd9"
-  integrity sha512-hKTEEPxhEiGu3GvmIys7BxIfqvUN0bW6172koTw02iRt4P40h0QoaTQGZd9UIy7HWInXryunSAIaisrD3Rsmxw==
+react-toastify@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-6.0.5.tgz#6435b2bf6a298863bc71342dcc88e8283cdb4630"
+  integrity sha512-1YXSb6Jr478c1TJEyVpxLHFvtmeXGMvdpZc0fke/7lK+MoLBC+NFgB74bq+C2SZe6LdK+K1voEURJoY88WqWvA==
   dependencies:
     classnames "^2.2.6"
     prop-types "^15.7.2"
-    react-transition-group "^4.4.0"
+    react-transition-group "^4.4.1"
 
 react-transition-group@^2.2.1:
   version "2.9.0"
@@ -15427,17 +15427,7 @@ react-transition-group@^2.2.1:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react-transition-group@^4.0.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.3.0.tgz#fea832e386cf8796c58b61874a3319704f5ce683"
-  integrity sha512-1qRV1ZuVSdxPlPf4O8t7inxUGpdyO5zG9IoNfJxSO0ImU2A1YWkEQvFPuIPZmMLkg5hYs7vv5mMOyfgSkvAwvw==
-  dependencies:
-    "@babel/runtime" "^7.5.5"
-    dom-helpers "^5.0.1"
-    loose-envify "^1.4.0"
-    prop-types "^15.6.2"
-
-react-transition-group@^4.4.0:
+react-transition-group@^4.0.0, react-transition-group@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.1.tgz#63868f9325a38ea5ee9535d828327f85773345c9"
   integrity sha512-Djqr7OQ2aPUiYurhPalTrVy9ddmFCCzwhqQmtN+J3+3DzLO209Fdr70QrN8Z3DsglWql6iY1lDWAfpFiBtuKGw==

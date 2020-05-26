@@ -163,7 +163,7 @@
     "react-relay-network-modern": "^4.7.0",
     "react-relay-network-modern-ssr": "^1.2.4",
     "react-signature-canvas": "^1.0.3",
-    "react-toastify": "^6.0.0-rc.2",
+    "react-toastify": "^6.0.5",
     "relay-runtime": "^9.0.0",
     "sinon": "^9.0.2",
     "standard-version": "^8.0.0",
