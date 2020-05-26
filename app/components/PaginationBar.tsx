@@ -2,8 +2,8 @@ import React from 'react';
 import {Pagination} from 'react-bootstrap';
 
 interface Props {
-  setOffset: (...args: number[]) => void;
-  setActivePage: (...args: number[]) => void;
+  setOffset: (offset: number) => void;
+  setActivePage: (page: number) => void;
   offsetValue: number;
   activePage: number;
   maxResultsPerPage: number;
