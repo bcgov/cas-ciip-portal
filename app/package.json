@@ -174,7 +174,7 @@
     "@percy/cypress": "^2.3.1",
     "@storybook/addon-a11y": "^5.3.18",
     "@storybook/addon-actions": "^5.3.19",
-    "@storybook/addon-cssresources": "^5.3.18",
+    "@storybook/addon-cssresources": "^5.3.19",
     "@storybook/addon-info": "^5.3.19",
     "@storybook/addon-storyshots": "^5.3.19",
     "@storybook/addons": "^5.3.18",
