@@ -75,11 +75,19 @@ select concat('current user is: ', (select current_user));
 
 select results_eq(
   $$
-    select uuid from ggircs_portal.ciip_user
+    select count(*) from ggircs_portal.ciip_user
   $$,
-  ARRAY['11111111-1111-1111-1111-111111111111'::uuid],
-    'Industry user can view data from ciip_user where the uuid column matches their session uuid'
+  ARRAY['8'::bigint],
+    'Industry user can view all data from ciip_user'
 );
+
+-- select results_eq(
+--   $$
+--     select uuid from ggircs_portal.ciip_user
+--   $$,
+--   ARRAY['11111111-1111-1111-1111-111111111111'::uuid],
+--     'Industry user can view data from ciip_user where the uuid column matches their session uuid'
+-- );
 
 select lives_ok(
   $$
