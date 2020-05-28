@@ -75,11 +75,30 @@ exports[`It matches the last accepted Snapshot 1`] = `
       }
       review={false}
     />
+    <Relay(CertificationSignatureComponent)
+      application={
+        Object {
+          " $fragmentRefs": Object {
+            "ApplicationDetailsContainer_application": true,
+            "CertificationSignature_application": true,
+          },
+          "latestDraftRevision": Object {
+            "certificationUrl": Object {
+              " $fragmentRefs": Object {
+                "ApplicationRecertificationContainer_certificationUrl": true,
+              },
+              "certificationSignature": "test",
+              "hashMatches": true,
+            },
+          },
+        }
+      }
+    />
   </Relay(DefaultLayout)>
   <JSXStyle
-    id="1964638049"
+    id="86400541"
   >
-    .signatureCanvas{border:1px solid #bbb;padding:30px;width:80%;background:#eee;border-radius:6px;margin-bottom:60px;}
+    .signatureCanvas{border:1px solid #bbb;padding:30px;width:80%;background:#eee;border-radius:6px;margin-bottom:60px;}#disclaimer-text{max-height:19.2em;background:#eee;overflow-y:scroll;}.show-scrollbar::-webkit-scrollbar{-webkit-appearance:none;width:8px;}.show-scrollbar::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}
   </JSXStyle>
 </Fragment>
 `;
@@ -119,9 +138,9 @@ exports[`It renders ApplicationRecertificationContainer if hashMatches is false 
     />
   </Relay(DefaultLayout)>
   <JSXStyle
-    id="1964638049"
+    id="86400541"
   >
-    .signatureCanvas{border:1px solid #bbb;padding:30px;width:80%;background:#eee;border-radius:6px;margin-bottom:60px;}
+    .signatureCanvas{border:1px solid #bbb;padding:30px;width:80%;background:#eee;border-radius:6px;margin-bottom:60px;}#disclaimer-text{max-height:19.2em;background:#eee;overflow-y:scroll;}.show-scrollbar::-webkit-scrollbar{-webkit-appearance:none;width:8px;}.show-scrollbar::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}
   </JSXStyle>
 </Fragment>
 `;
