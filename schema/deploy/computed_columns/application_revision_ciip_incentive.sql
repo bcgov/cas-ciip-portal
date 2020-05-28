@@ -50,7 +50,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     );
 
     -- ** Test for invalid number of products when a reported product.requires_emission_allocation = false ** --
-    non-energy_product_count := 0;
+    non_energy_product_count := 0;
     for i in 1..array_length(reported_products, 1)
       loop
         if reported_products[i].product_id > 7 then
