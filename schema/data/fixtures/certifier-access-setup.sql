@@ -16,6 +16,8 @@ alter table ggircs_portal.certification_url
   disable trigger _signed_by_certifier_email;
 alter table ggircs_portal.certification_url
   disable trigger _random_id;
+alter table ggircs_portal.certification_url
+  disable trigger _100_timestamps;
 
 truncate ggircs_portal.certification_url restart identity cascade;
 truncate ggircs_portal.application restart identity cascade;
