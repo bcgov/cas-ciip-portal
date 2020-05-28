@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login redirect page It matches the last accepted Snapshot 1`] = `
+<Relay(DefaultLayout)
+  allowedGroups={
+    Array [
+      "User",
+    ]
+  }
+  needsSession={false}
+  needsUser={false}
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+      "ciipUserBySub": Object {
+        "id": "sjkdfh",
+      },
+    }
+  }
+  title="Submission Certification"
+>
+  <Row
+    noGutters={false}
+    style={
+      Object {
+        "marginTop": "60px",
+      }
+    }
+  >
+    <Col
+      md={
+        Object {
+          "offset": 3,
+          "span": 6,
+        }
+      }
+    >
+      <h3
+        className="blue"
+      >
+        Your certification is requested.
+      </h3>
+      <p>
+        <strong>
+          Old MacDonald
+        </strong>
+         on behalf of
+         
+        <strong>
+          MacDonald's Agriculture Ltd.
+        </strong>
+        , for facility
+         
+        <strong>
+          Farm
+        </strong>
+         has requested that you review, certify, and sign off on the information contained in this CIIP application.
+      </p>
+      <p>
+        Please continue to the certification page.
+      </p>
+      <Col
+        md={
+          Object {
+            "offset": 1,
+            "span": 5,
+          }
+        }
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+          variant="primary"
+        >
+          Continue
+        </Button>
+      </Col>
+    </Col>
+  </Row>
+</Relay(DefaultLayout)>
+`;
