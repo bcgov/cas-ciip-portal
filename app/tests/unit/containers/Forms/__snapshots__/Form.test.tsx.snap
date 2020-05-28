@@ -71,6 +71,7 @@ exports[`The Form Component should match the snapshot 1`] = `
     showErrorList={false}
     transformErrors={[Function]}
     uiSchema={Object {}}
+    validate={[Function]}
     widgets={
       Object {
         "SearchWidget": [Function],
@@ -684,6 +685,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
     showErrorList={false}
     transformErrors={[Function]}
     uiSchema={Object {}}
+    validate={[Function]}
     widgets={
       Object {
         "SearchWidget": [Function],
@@ -1303,6 +1305,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
     showErrorList={false}
     transformErrors={[Function]}
     uiSchema={Object {}}
+    validate={[Function]}
     widgets={
       Object {
         "SearchWidget": [Function],
