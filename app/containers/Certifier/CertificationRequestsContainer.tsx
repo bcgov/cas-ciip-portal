@@ -50,7 +50,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
     Facility: 'facility_name',
     Organisation: 'operator_name',
     Status: 'application_revision_status',
-    'Certified By': 'certified_by',
+    'Certified By': 'certified_by_last_name',
     'Date Certified': 'certified_at',
     '': null
   };
