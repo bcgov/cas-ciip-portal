@@ -18,7 +18,8 @@ begin;
        (x.production_data ->> 'productAmount')::numeric as product_amount,
        (x.production_data ->> 'productRowId')::integer as product_id,
        (x.production_data ->> 'productUnits')::varchar(1000) as product_units,
-       (x.production_data ->> 'productEmissions')::numeric as product_emissions
+       (x.production_data ->> 'productEmissions')::numeric as product_emissions,
+       (x.production_data ->> 'requiresEmissionAllocation')::boolean as requires_emission_allocation
     from x
  );
 
@@ -31,5 +32,6 @@ comment on column ggircs_portal.ciip_production.product_amount is 'The yearly am
 comment on column ggircs_portal.ciip_production.product_id is 'The id of the product';
 comment on column ggircs_portal.ciip_production.product_units is 'The units for the product';
 comment on column ggircs_portal.ciip_production.product_emissions is 'The amount of emissions, in tCO2e, allocated to the product';
+comment on column ggircs_portal.ciip_production.requires_emission_allocation is 'Whether or not the product requires reporting an emission allocaiton';
 
 commit;
