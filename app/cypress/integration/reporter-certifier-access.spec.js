@@ -22,15 +22,6 @@ describe('When logged in as a certifier(reporter)', () => {
     );
     cy.url().should('include', '/certifier');
     cy.get('#page-content');
-    cy.get(
-      ':nth-child(5) > .legal-checklist > div.jsx-3053415049 > input.jsx-3053415049'
-    ).click();
-    cy.get(
-      ':nth-child(6) > .legal-checklist > div.jsx-3053415049 > input.jsx-3053415049'
-    ).click();
-    cy.get(
-      ':nth-child(7) > .legal-checklist > div.jsx-3053415049 > input.jsx-3053415049'
-    ).click();
     cy.contains('Certifier Signature');
     cy.get('.btn-success').click();
     cy.visit('/certifier/requests');
