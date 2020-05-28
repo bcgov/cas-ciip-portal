@@ -19,7 +19,8 @@ begin;
        (x.production_data ->> 'productRowId')::integer as product_id,
        (x.production_data ->> 'productUnits')::varchar(1000) as product_units,
        (x.production_data ->> 'productEmissions')::numeric as product_emissions,
-       (x.production_data ->> 'requiresEmissionAllocation')::boolean as requires_emission_allocation
+       (x.production_data ->> 'requiresEmissionAllocation')::boolean as requires_emission_allocation,
+       (x.production_data ->> 'isEnergyProduct')::boolean as is_energy_product
     from x
  );
 
@@ -33,5 +34,6 @@ comment on column ggircs_portal.ciip_production.product_id is 'The id of the pro
 comment on column ggircs_portal.ciip_production.product_units is 'The units for the product';
 comment on column ggircs_portal.ciip_production.product_emissions is 'The amount of emissions, in tCO2e, allocated to the product';
 comment on column ggircs_portal.ciip_production.requires_emission_allocation is 'Whether or not the product requires reporting an emission allocaiton';
+comment on column ggircs_portal.ciip_production.is_energy_product is 'Boolean value indicates if the product is an energy product that is reported alongside other products';
 
 commit;

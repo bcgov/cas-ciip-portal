@@ -53,7 +53,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     non_energy_product_count := 0;
     for i in 1..array_length(reported_products, 1)
       loop
-        if reported_products[i].product_id > 7 then
+        if reported_products[i].is_energy_product = false then
           non_energy_product_count = non_energy_product_count+1;
         end if;
       end loop;

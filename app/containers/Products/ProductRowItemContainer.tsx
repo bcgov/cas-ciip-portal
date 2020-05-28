@@ -172,6 +172,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
           productState: product.productState,
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
           isCiipProduct: e.formData.isCiipProduct,
+          isEnergyProduct: false,
           addPurchasedElectricityEmissions:
             e.formData.addPurchasedElectricityEmissions,
           subtractExportedElectricityEmissions:

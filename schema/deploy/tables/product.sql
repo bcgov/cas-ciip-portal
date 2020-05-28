@@ -19,6 +19,7 @@ create table ggircs_portal.product (
   subtract_generated_heat_emissions boolean not null default false,
   add_emissions_from_eios boolean not null default false,
   is_read_only boolean not null default false,
+  is_energy_product boolean not null default false,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
@@ -77,6 +78,7 @@ comment on column ggircs_portal.product.subtract_generated_electricity_emissions
 comment on column ggircs_portal.product.subtract_generated_heat_emissions is  'Boolean value indicates if generated heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)';
 comment on column ggircs_portal.product.add_emissions_from_eios is  'Boolean value indicates if EIO facility emissions should be added to the facility emissions when calculating the product emission intensity';
 comment on column ggircs_portal.product.is_read_only is 'Boolean value indicates if the product is read-only and cannot be changed regardless of state';
+comment on column ggircs_portal.product.is_energy_product is 'Boolean value indicates if the product is an energy product that is reported alongside other products';
 comment on column ggircs_portal.product.product_state is 'The current state of the product within the lifecycle (draft, published, archived)';
 comment on column ggircs_portal.product.created_at is 'Creation date of row';
 comment on column ggircs_portal.product.created_by is 'Creator of row';

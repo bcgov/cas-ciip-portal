@@ -106,7 +106,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       formData.forEach((product, index: number) => {
         if (product.requiresEmissionAllocation === false)
           hasFalseRequiresEmissionAllocation = true;
-        if (product.productRowId > 7) {
+        if (product.isEnergyProduct === false) {
           nonEnergyProductCount++;
           productsInConflict.push(index + 1);
         }
@@ -115,9 +115,9 @@ export const FormComponent: React.FunctionComponent<Props> = ({
 
     if (hasFalseRequiresEmissionAllocation && nonEnergyProductCount > 1)
       errors['0'].addError(
-        `More than one non-energy product that does not require allocation of emissions cannot be reported together. -- Products in conflict: ${productsInConflict.join(
+        `Products: ${productsInConflict.join(
           ','
-        )}`
+        )} cannot be reported together as at least one of these products does not require manual allocation of emissions.`
       );
 
     return errors;

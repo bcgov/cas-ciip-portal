@@ -17,6 +17,9 @@
           },
           "requiresProductAmount": {
             "type": "boolean"
+          },
+          "isEnergyProduct": {
+            "type": "boolean"
           }
         },
 
@@ -95,7 +98,9 @@
         "ui:help": "Report emissions associated to CIIP product, in tCO2e"
       },
       "requiresEmissionAllocation": { "ui:widget": "hidden" },
-      "requiresProductAmount": { "ui:widget": "hidden" }
+      "requiresProductAmount": { "ui:widget": "hidden" },
+      "isEnergyProduct": { "ui:widget": "hidden" }
+
     }
   }
 }

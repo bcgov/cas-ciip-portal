@@ -9523,6 +9523,11 @@ type Product implements Node {
   isCiipProduct: Boolean!
 
   """
+  Boolean value indicates if the product is an energy product that is reported alongside other products
+  """
+  isEnergyProduct: Boolean!
+
+  """
   Boolean value indicates if the product is read-only and cannot be changed regardless of state
   """
   isReadOnly: Boolean!
@@ -9618,6 +9623,9 @@ input ProductCondition {
   """Checks for equality with the object’s `isCiipProduct` field."""
   isCiipProduct: Boolean
 
+  """Checks for equality with the object’s `isEnergyProduct` field."""
+  isEnergyProduct: Boolean
+
   """Checks for equality with the object’s `isReadOnly` field."""
   isReadOnly: Boolean
 
@@ -9706,6 +9714,11 @@ input ProductInput {
   Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean
+
+  """
+  Boolean value indicates if the product is an energy product that is reported alongside other products
+  """
+  isEnergyProduct: Boolean
 
   """
   Boolean value indicates if the product is read-only and cannot be changed regardless of state
@@ -9808,6 +9821,11 @@ input ProductPatch {
   Boolean value indicates if the product is benchmarked and has an associated incentive
   """
   isCiipProduct: Boolean
+
+  """
+  Boolean value indicates if the product is an energy product that is reported alongside other products
+  """
+  isEnergyProduct: Boolean
 
   """
   Boolean value indicates if the product is read-only and cannot be changed regardless of state
@@ -9916,6 +9934,8 @@ enum ProductsOrderBy {
   ID_DESC
   IS_CIIP_PRODUCT_ASC
   IS_CIIP_PRODUCT_DESC
+  IS_ENERGY_PRODUCT_ASC
+  IS_ENERGY_PRODUCT_DESC
   IS_READ_ONLY_ASC
   IS_READ_ONLY_DESC
   NATURAL
