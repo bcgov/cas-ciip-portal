@@ -64,13 +64,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
         const organisation = node.operatorName;
 
-        let certifierName = '';
-        if (node.certifiedByFirstName && node.certifiedByLastName)
-          certifierName = `${node.certifiedByFirstName} ${node.certifiedByLastName}`;
-        else if (node.certifiedByFirstName && !node.certifiedByLastName)
-          certifierName = node.certifiedByFirstName;
-        else if (!node.certifiedByFirstName && node.certifiedByLastName)
-          certifierName = node.certifiedByLastName;
+        const certifierName = `${node.certifiedByFirstName || ''} ${node.certifiedByLastName || ''}`;
 
         if (!node?.certificationUrlByCertificationUrlId?.id) return null;
 
