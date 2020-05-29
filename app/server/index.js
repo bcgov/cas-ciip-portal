@@ -279,7 +279,7 @@ app.prepare().then(() => {
     })
   );
 
-  if (NO_AUTH || AS_ANALYST || AS_REPORTER || AS_ADMIN)
+  if (NO_AUTH || AS_ANALYST || AS_REPORTER || AS_CERTIFIER || AS_ADMIN)
     server.post('/login', (req, res) => res.redirect(302, getRedirectURL(req)));
   else
     server.post('/login', keycloak.protect(), (req, res) =>
