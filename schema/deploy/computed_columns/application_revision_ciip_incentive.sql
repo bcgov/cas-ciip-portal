@@ -50,13 +50,14 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     );
 
     -- ** Test for invalid number of products when a reported product.requires_emission_allocation = false ** --
-    non_energy_product_count := 0;
-    for i in 1..array_length(reported_products, 1)
-      loop
-        if reported_products[i].is_energy_product = false then
-          non_energy_product_count = non_energy_product_count+1;
-        end if;
-      end loop;
+    non_energy_product_count := (
+      select count(*)
+      from ggircs_portal.ciip_production
+      where
+        version_number = application_revision.version_number
+        and application_id = application_revision.application_id
+        and is_energy_product=false
+    );
 
     if (select count(*) from ggircs_portal.ciip_production
       where
