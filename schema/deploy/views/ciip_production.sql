@@ -33,7 +33,7 @@ comment on column ggircs_portal.ciip_production.product_amount is 'The yearly am
 comment on column ggircs_portal.ciip_production.product_id is 'The id of the product';
 comment on column ggircs_portal.ciip_production.product_units is 'The units for the product';
 comment on column ggircs_portal.ciip_production.product_emissions is 'The amount of emissions, in tCO2e, allocated to the product';
-comment on column ggircs_portal.ciip_production.requires_emission_allocation is 'Whether or not the product requires reporting an emission allocaiton';
+comment on column ggircs_portal.ciip_production.requires_emission_allocation is 'Whether or not the product requires reporting an emission allocation';
 comment on column ggircs_portal.ciip_production.is_energy_product is 'Boolean value indicates if the product is an energy product that is reported alongside other products';
 
 commit;

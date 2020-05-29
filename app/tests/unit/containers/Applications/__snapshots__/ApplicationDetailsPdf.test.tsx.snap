@@ -1032,17 +1032,23 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "productRowId": 0,
+                    "isEnergyProduct": false,
+                    "productAmount": -20000000,
+                    "productEmissions": -60000000,
+                    "productRowId": -40000000,
+                    "productUnits": "in qui",
+                    "requiresEmissionAllocation": true,
+                    "requiresProductAmount": true,
+                  },
+                  Object {
+                    "isEnergyProduct": false,
+                    "productRowId": -20000000,
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },
                   Object {
-                    "productRowId": -40000000,
-                    "requiresEmissionAllocation": false,
-                    "requiresProductAmount": false,
-                  },
-                  Object {
-                    "productRowId": -40000000,
+                    "isEnergyProduct": false,
+                    "productRowId": -60000000,
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },
@@ -1116,6 +1122,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         },
                       },
                       "properties": Object {
+                        "isEnergyProduct": Object {
+                          "type": "boolean",
+                        },
                         "productRowId": Object {
                           "title": "Product or Service",
                           "type": "integer",
@@ -1146,6 +1155,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "items": Object {
+                    "isEnergyProduct": Object {
+                      "ui:widget": "hidden",
+                    },
                     "productAmount": Object {
                       "ui:col-md": 4,
                       "ui:help": "Report the annual production for the product, following the guidance document provided",

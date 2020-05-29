@@ -2215,7 +2215,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       onKeyDown={[Function]}
                       onMouseUp={[Function]}
                       type="text"
-                      value="-60,000,000"
+                      value="-20,000,000"
                     />
                     <span
                       className="font-italic text-muted"
@@ -2250,7 +2250,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       readOnly={true}
                       required={true}
                       type="text"
-                      value="consequat Ut Duis"
+                      value="in qui"
                     />
                     <span
                       className="font-italic text-muted"
@@ -2272,6 +2272,15 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       id="root_0_requiresProductAmount"
                       type="hidden"
                       value={true}
+                    />
+                  </div>
+                  <div
+                    className="hidden"
+                  >
+                    <input
+                      id="root_0_isEnergyProduct"
+                      type="hidden"
+                      value={false}
                     />
                   </div>
                 </div>
@@ -2364,6 +2373,15 @@ exports[`Form should match the snapshot with the production form 1`] = `
                   >
                     <input
                       id="root_1_requiresProductAmount"
+                      type="hidden"
+                      value={false}
+                    />
+                  </div>
+                  <div
+                    className="hidden"
+                  >
+                    <input
+                      id="root_1_isEnergyProduct"
                       type="hidden"
                       value={false}
                     />
