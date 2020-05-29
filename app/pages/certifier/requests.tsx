@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons';
 import {graphql} from 'react-relay';
 import {NextRouter} from 'next/router';
 import {CiipPageComponentProps} from 'next-env';
@@ -7,6 +9,7 @@ import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
 import SearchTable from 'components/SearchTable';
 import CertificationRequestsContainer from 'containers/Certifier/CertificationRequestsContainer';
+import SignatureDisclaimerCard from 'components/SignatureDisclaimerCard';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -101,6 +104,16 @@ export default class CertifierRequests extends Component<Props> {
             />
           )}
         </SearchTable>
+        {this.state.selectedRequests.length > 0 && (
+          <SignatureDisclaimerCard>
+            Please review the information below before approving all the
+            applications selected above.{' '}
+            <a href="/resources/disclaimer" target="_blank">
+              (<FontAwesomeIcon icon={faExternalLinkAlt} />
+              expand)
+            </a>
+          </SignatureDisclaimerCard>
+        )}
       </DefaultLayout>
     );
   }

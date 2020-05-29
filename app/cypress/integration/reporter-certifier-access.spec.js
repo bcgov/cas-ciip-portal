@@ -26,6 +26,9 @@ describe('When logged in as a certifier(reporter)', () => {
     cy.get('.btn-success').click();
     cy.visit('/certifier/requests');
     cy.get('#page-content');
+    cy.should('not.contain', 'Certifier Signature');
+    cy.get('.checkbox-cell input[type="checkbox"]').click();
+    cy.contains('Legal Disclaimer');
     cy.contains('View').click();
     cy.url().should('include', '/certifier/certify');
     cy.visit('/reporter/user-dashboard');
