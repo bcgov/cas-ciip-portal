@@ -40,6 +40,14 @@ export default class CertifierRequests extends Component<Props> {
     }
   `;
 
+  state = {selectedRequests: []};
+
+  constructor(props) {
+    super(props);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.handleSelectAll = this.handleSelectAll.bind(this);
+  }
+
   static async getInitialProps() {
     return {
       variables: {
@@ -48,6 +56,28 @@ export default class CertifierRequests extends Component<Props> {
         offsetValue: 0
       }
     };
+  }
+
+  handleSelect(id, toBeSelected) {
+    this.setState(({selectedRequests}: any) => {
+      if (toBeSelected && !selectedRequests.includes(id)) {
+        return {selectedRequests: selectedRequests.concat(id)};
+      }
+
+      if (!toBeSelected && selectedRequests.includes(id)) {
+        const index = Number(selectedRequests.indexOf(id));
+        const newArray = selectedRequests
+          .slice(0, index)
+          .concat(selectedRequests.slice(index + 1));
+        return {selectedRequests: newArray};
+      }
+    });
+  }
+
+  handleSelectAll(selectAll, ids) {
+    this.setState({
+      selectedRequests: selectAll ? ids : []
+    });
   }
 
   render() {
@@ -63,7 +93,13 @@ export default class CertifierRequests extends Component<Props> {
           defaultOrderByField="facility_name"
           defaultOrderByDisplay="Facility"
         >
-          {(props) => <CertificationRequestsContainer {...props} />}
+          {(props) => (
+            <CertificationRequestsContainer
+              handleSelect={this.handleSelect}
+              handleSelectAll={this.handleSelectAll}
+              {...props}
+            />
+          )}
         </SearchTable>
       </DefaultLayout>
     );

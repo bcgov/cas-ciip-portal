@@ -20,6 +20,8 @@ interface Props {
   searchValue: string[];
   offsetValue: number;
   handleEvent: (...args: any[]) => void;
+  handleSelect: (...args: any[]) => void;
+  handleSelectAll: (...args: any[]) => void;
   relay: RelayRefetchProp;
   query: CertificationRequestsContainer_query;
 }
@@ -30,9 +32,20 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   searchField,
   searchValue,
   handleEvent,
+  handleSelect,
+  handleSelectAll,
   relay,
   query
 }) => {
+  const initialSelections = {};
+  const requestIds = query.searchCertificationRequests.edges.map(
+    ({node}) => node.certificationUrlByCertificationUrlId.id
+  );
+  requestIds.forEach((id) => {
+    initialSelections[id] = false;
+  });
+
+  const [selections, setSelections] = useState(initialSelections);
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
   useEffect(() => {
@@ -55,6 +68,27 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
     '': null
   };
 
+  const onCheck = (checked, id) => {
+    setSelections((prev) => {
+      return {
+        ...prev,
+        [id]: checked
+      };
+    });
+    handleSelect(id, checked);
+  };
+
+  const onSelectAll = (selectAll) => {
+    setSelections((prev) => {
+      const newState = {};
+      Object.keys(prev).forEach((id) => {
+        newState[id] = selectAll;
+      });
+      return newState;
+    });
+    handleSelectAll(selectAll, requestIds);
+  };
+
   const body = (
     <tbody>
       {query.searchCertificationRequests.edges.map(({node}) => {
@@ -64,12 +98,23 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
         const organisation = node.operatorName;
 
-        const certifierName = `${node.certifiedByFirstName || ''} ${node.certifiedByLastName || ''}`;
+        const certifierName = `${node.certifiedByFirstName || ''} ${
+          node.certifiedByLastName || ''
+        }`;
 
         if (!node?.certificationUrlByCertificationUrlId?.id) return null;
 
         return (
           <tr key={node.certificationUrlByCertificationUrlId.id}>
+            <td className="checkbox-cell">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={selections[node.certificationUrlByCertificationUrlId.id]}
+                  onChange={(e) => onCheck(e.target.checked, node.certificationUrlByCertificationUrlId.id)}
+                />
+              </label>
+            </td>
             <td>{facility}</td>
             <td>{organisation}</td>
             <td>{status}</td>
@@ -85,6 +130,23 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
           </tr>
         );
       })}
+      <style>{`
+        .checkbox-cell {
+          position: relative;
+        }
+        .checkbox-cell label {
+          margin-bottom: 0;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+      `}</style>
     </tbody>
   );
 
@@ -103,6 +165,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
         body={body}
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
+        handleSelectAll={(selectAll) => onSelectAll(selectAll)}
       />
       <PaginationBar
         setOffset={setOffset}
@@ -137,7 +200,6 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
-              rowId
               applicationId
               versionNumber
               certifiedAt
