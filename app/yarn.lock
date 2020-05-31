@@ -9429,10 +9429,10 @@ graphql-tools@^4.0.4:
     iterall "^1.1.3"
     uuid "^3.1.0"
 
-graphql-voyager@^1.0.0-rc.30:
-  version "1.0.0-rc.30"
-  resolved "https://registry.yarnpkg.com/graphql-voyager/-/graphql-voyager-1.0.0-rc.30.tgz#77cabbf2e224f9140e3c809e0fff3050b0d0522b"
-  integrity sha512-TkUpwURHQVEpSCwhpCoHTY8V2zMPqR5giteQWEM/5wW6oBRk/wQyczHOwi/o3+t2COcsjjE6hIasWgQXFkMoyg==
+graphql-voyager@^1.0.0-rc.31:
+  version "1.0.0-rc.31"
+  resolved "https://registry.yarnpkg.com/graphql-voyager/-/graphql-voyager-1.0.0-rc.31.tgz#fced59a1aef56936bcae2438e9dfba18c658d48f"
+  integrity sha512-eCaFL8niR3DZo1LUcFV8txwR+MDVIQsrFPmFC7Zwab8UyH5x3SLhx3aDrt998RVJRmY5aFP4q79RY2F3QtGRqA==
   dependencies:
     "@f/animate" "^1.0.1"
     "@material-ui/core" "^3.9.3"

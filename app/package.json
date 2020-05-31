@@ -143,7 +143,7 @@
     "graphile-build-pg": "^4.7.0",
     "graphile-worker": "^0.6.0",
     "graphql": "^14.6.0",
-    "graphql-voyager": "^1.0.0-rc.30",
+    "graphql-voyager": "^1.0.0-rc.31",
     "isomorphic-fetch": "^2.2.1",
     "keycloak-connect": "^10.0.0",
     "moment-timezone": "^0.5.31",
