@@ -203,7 +203,7 @@
     "easygraphql-tester": "^5.1.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "enzyme-to-json": "^3.4.4",
+    "enzyme-to-json": "^3.5.0",
     "eslint": "^6.5.1",
     "eslint-config-xo": "^0.29.1",
     "eslint-config-xo-react": "^0.23.0",
