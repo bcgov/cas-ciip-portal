@@ -26,46 +26,48 @@ insert into ggircs_portal.product (
   subtract_exported_heat_emissions,
   subtract_generated_electricity_emissions,
   subtract_generated_heat_emissions,
-  add_emissions_from_eios
+  add_emissions_from_eios,
+  is_energy_product
 )
 overriding system value
 values
-  (1, 'simple product (no allocation, emissions = facility emissions)', 'published',
-  false, true, true, false, false, false, false, false, false, false),
-  (2, 'product A with allocation of emissions', 'published',
-  true, true, true, false, false, false, false, false, false, false),
-  (3, 'product B with allocation of emissions', 'published',
-  true, true, true, false, false, false, false, false, false, false),
-  (4, 'non-ciip product', 'published',
-  true, false, true, false, false, false, false, false, false, false),
-  (5, 'product with added purchased electricity emissions', 'published',
-  false, true, true, true, false, false, false, false, false, false),
-  (6, 'product with excluded exported electricity emissions', 'published',
-  false, true, true, false, true, false, false, false, false, false),
-  (7, 'product with added purchased heat emissions', 'published',
-  false, true, true, false, false, true, false, false, false, false),
-  (8, 'product with excluded exported heat emissions', 'published',
-  false, true, true, false, false, false, true, false, false, false),
-  (9, 'product with excluded generated electricity emissions', 'published',
-  false, true, true, false, false, false, false, true, false, false),
-  (10, 'product with excluded generated heat emissions', 'published',
-  false, true, true, false, false, false, false, false, true, false),
-  (11, 'Purchased electricity', 'published',
-  true, false, true, false, false, false, false, false, false, false),
-  (12, 'Exported electricity', 'published',
-  true, true, true, false, false, false, false, false, false, false),
-  (13, 'Purchased heat', 'published',
-  true, false, true, false, false, false, false, false, false, false),
-  (14, 'Exported heat', 'published',
-  true, true, true, false, false, false, false, false, false, false),
-  (15, 'Electricity generated on site', 'published',
-  true, false, true, false, false, false, false, false, false, false),
-  (16, 'Heat generated on site', 'published',
-  true, false, true, false, false, false, false, false, false, false),
-  (17, 'product with added EIO emissions', 'published',
-  false, true, true, false, false, false, false, false, false, true),
-  (18, 'Emissions from EIOs', 'published',
-  true, false, true, false, false, false, false, false, false, false)
+  (1, 'Purchased electricity', 'published',
+  true, false, true, false, false, false, false, false, false, false, true),
+  (2, 'Exported electricity', 'published',
+  true, true, true, false, false, false, false, false, false, false, true),
+  (3, 'Purchased heat', 'published',
+  true, false, true, false, false, false, false, false, false, false, true),
+  (4, 'Exported heat', 'published',
+  true, true, true, false, false, false, false, false, false, false, true),
+  (5, 'Electricity generated on site', 'published',
+  true, false, true, false, false, false, false, false, false, false, true),
+  (6, 'Heat generated on site', 'published',
+  true, false, true, false, false, false, false, false, false, false, true),
+  (7, 'Emissions from EIOs', 'published',
+  true, false, true, false, false, false, false, false, false, false, true),
+  (8, 'simple product (no allocation, emissions = facility emissions)', 'published',
+  false, true, true, false, false, false, false, false, false, false, false),
+  (9, 'product A with allocation of emissions', 'published',
+  true, true, true, false, false, false, false, false, false, false, false),
+  (10, 'product B with allocation of emissions', 'published',
+  true, true, true, false, false, false, false, false, false, false, false),
+  (11, 'non-ciip product', 'published',
+  true, false, true, false, false, false, false, false, false, false, false),
+  (12, 'product with added purchased electricity emissions', 'published',
+  false, true, true, true, false, false, false, false, false, false, false),
+  (13, 'product with excluded exported electricity emissions', 'published',
+  false, true, true, false, true, false, false, false, false, false, false),
+  (14, 'product with added purchased heat emissions', 'published',
+  false, true, true, false, false, true, false, false, false, false, false),
+  (15, 'product with excluded exported heat emissions', 'published',
+  false, true, true, false, false, false, true, false, false, false, false),
+  (16, 'product with excluded generated electricity emissions', 'published',
+  false, true, true, false, false, false, false, true, false, false, false),
+  (17, 'product with excluded generated heat emissions', 'published',
+  false, true, true, false, false, false, false, false, true, false, false),
+  (18, 'product with added EIO emissions', 'published',
+  false, true, true, false, false, false, false, false, false, true, false)
+
 ;
 
 insert into ggircs_portal.benchmark
@@ -82,14 +84,14 @@ insert into ggircs_portal.benchmark
 )
 overriding system value
 values
-(1, 1, 0.25, 0.75, 1, 2018, 2018, 0, 1),
-(2, 2, 0.10, 0.30, 1, 2018, 2018, 0, 1),
-(3, 3, 0, 1, 1, 2018, 2018, 0.42, 0.42),
-(4, 5, 0, 1, 1, 2018, 2018, 0.42, 0.42),
-(5, 6, 0, 1, 1, 2018, 2018, 0.42, 0.42),
-(6, 7, 0, 1, 1, 2018, 2018, 0.42, 0.42),
-(8, 9, 0, 1, 1, 2018, 2018, 0.42, 0.42),
-(9, 17, 0, 1, 1, 2018, 2018, 0.42, 0.42);
+(1, 8, 0.25, 0.75, 1, 2018, 2018, 0, 1),
+(2, 9, 0.10, 0.30, 1, 2018, 2018, 0, 1),
+(3, 10, 0, 1, 1, 2018, 2018, 0.42, 0.42),
+(4, 11, 0, 1, 1, 2018, 2018, 0.42, 0.42),
+(5, 12, 0, 1, 1, 2018, 2018, 0.42, 0.42),
+(6, 13, 0, 1, 1, 2018, 2018, 0.42, 0.42),
+(8, 14, 0, 1, 1, 2018, 2018, 0.42, 0.42),
+(9, 18, 0, 1, 1, 2018, 2018, 0.42, 0.42);
 
 
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
@@ -142,7 +144,7 @@ select lives_ok(
 update ggircs_portal.form_result
 set form_result = '[
   {
-    "productRowId": 1,
+    "productRowId": 8,
     "productAmount": 100
   }
 ]'
@@ -161,17 +163,17 @@ select is(
 update ggircs_portal.form_result
 set form_result = '[
   {
-    "productRowId": 2,
+    "productRowId": 9,
     "productAmount": 100,
     "productEmissions": 15
   },
   {
-    "productRowId": 3,
+    "productRowId": 10,
     "productAmount": 100,
     "productEmissions": 5
   },
   {
-    "productRowId": 4,
+    "productRowId": 11,
     "productAmount": 100,
     "productEmissions": 20
   }
@@ -187,7 +189,7 @@ select is(
     select incentive_ratio
     from ggircs_portal.application_revision_ciip_incentive(
       (select * from record)
-    ) where product_id = 2
+    ) where product_id = 9
   ),
   0.75,
   'the correct incentive ratio is returned with a product with allocation of emissions'
@@ -202,9 +204,9 @@ select is(
     select payment_allocation_factor
     from ggircs_portal.application_revision_ciip_incentive(
       (select * from record)
-    ) where product_id = 2
+    ) where product_id = 9
   ),
-  0.75, -- product 2 has 15t and product 3 5t,
+  0.75, -- product 9 has 15t and product 3 5t,
   'payment is automatically allocated between ciip products based on their share of emissions'
 );
 
@@ -217,7 +219,7 @@ select is(
     select incentive_ratio
     from ggircs_portal.application_revision_ciip_incentive(
       (select * from record)
-    ) where product_id = 3
+    ) where product_id = 10
   ),
   0.42,
   'incentive ratio is bound by minimum and maximum'
@@ -228,11 +230,11 @@ select is(
 update ggircs_portal.form_result
 set form_result = '[
   {
-    "productRowId": 5,
+    "productRowId": 12,
     "productAmount": 100
   },
   {
-    "productRowId": 11,
+    "productRowId": 1,
     "productAmount": 42,
     "productEmissions": 11
   }
@@ -248,7 +250,7 @@ select is(
     select product_emissions
     from ggircs_portal.application_revision_ciip_incentive(
       (select * from record)
-    ) where product_id = 5
+    ) where product_id = 12
   ),
   61.0,
   'purchased electricity emissions are added to the facility emissions for products that require it'
@@ -258,11 +260,11 @@ select is(
 update ggircs_portal.form_result
 set form_result = '[
   {
-    "productRowId": 6,
+    "productRowId": 13,
     "productAmount": 100
   },
   {
-    "productRowId": 12,
+    "productRowId": 2,
     "productAmount": 42,
     "productEmissions": 12
   }
@@ -278,7 +280,7 @@ select is(
     select product_emissions
     from ggircs_portal.application_revision_ciip_incentive(
       (select * from record)
-    ) where product_id = 6
+    ) where product_id = 13
   ),
   38.0,
   'exported electricity emissions are added to the facility emissions for products that require it'
@@ -288,11 +290,11 @@ select is(
 update ggircs_portal.form_result
 set form_result = '[
   {
-    "productRowId": 7,
+    "productRowId": 14,
     "productAmount": 100
   },
   {
-    "productRowId": 13,
+    "productRowId": 3,
     "productAmount": 42,
     "productEmissions": 13
   }
@@ -308,7 +310,7 @@ select is(
     select product_emissions
     from ggircs_portal.application_revision_ciip_incentive(
       (select * from record)
-    ) where product_id = 7
+    ) where product_id = 14
   ),
   63.0,
   'purchased heat emissions are removed from the facility emissions for products that require it'
@@ -318,11 +320,11 @@ select is(
 update ggircs_portal.form_result
 set form_result = '[
   {
-    "productRowId": 8,
+    "productRowId": 15,
     "productAmount": 100
   },
   {
-    "productRowId": 14,
+    "productRowId": 4,
     "productAmount": 42,
     "productEmissions": 14
   }
@@ -338,7 +340,7 @@ select is(
     select product_emissions
     from ggircs_portal.application_revision_ciip_incentive(
       (select * from record)
-    ) where product_id = 8
+    ) where product_id = 15
   ),
   36.0,
   'exported heat emissions are removed from the facility emissions for products that require it'
@@ -348,11 +350,11 @@ select is(
 update ggircs_portal.form_result
 set form_result = '[
   {
-    "productRowId": 17,
+    "productRowId": 18,
     "productAmount": 100
   },
   {
-    "productRowId": 18,
+    "productRowId": 7,
     "productAmount": 42,
     "productEmissions": 11
   }
@@ -368,10 +370,70 @@ select is(
     select product_emissions
     from ggircs_portal.application_revision_ciip_incentive(
       (select * from record)
-    ) where product_id = 17
+    ) where product_id = 18
   ),
   61.0,
   'EIO Emissions are added to the facility emissions for products that require it'
+);
+
+-- Report 2 non-energy products with requires_emission_allocation = false
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 11,
+    "productAmount": 100,
+    "requiresEmissionAllocation": false,
+    "isEnergyProduct": false
+  },
+  {
+    "productRowId": 12,
+    "productAmount": 42,
+    "requiresEmissionAllocation": true,
+    "isEnergyProduct": false
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select throws_like(
+  $$
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select ggircs_portal.application_revision_ciip_incentive((select * from record))
+  $$,
+  '%When a product has: requires_emission_allocation = false%',
+  'Throws when 2 non-energy products are reported and requires_emission_allocation=false'
+);
+
+-- Report 2 non-energy products with requires_emission_allocation = false
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 18,
+    "productAmount": 100,
+    "requiresEmissionAllocation": false
+  },
+  {
+    "productRowId": 7,
+    "productAmount": 42
+  },
+  {
+    "productRowId": 1,
+    "productAmount": 42
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select lives_ok(
+  $$
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select ggircs_portal.application_revision_ciip_incentive((select * from record))
+  $$,
+  'Does not throw when 2 non-energy products are reported and requires_emission_allocation=false but all other products are energy products'
 );
 
 -- Test roles

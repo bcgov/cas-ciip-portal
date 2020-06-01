@@ -173,6 +173,9 @@ exports[`The ProductionFields Component with archived product should match the s
           },
         },
         "properties": Object {
+          "isEnergyProduct": Object {
+            "type": "boolean",
+          },
           "productRowId": Object {
             "title": "Product or Service",
             "type": "integer",
@@ -195,6 +198,9 @@ exports[`The ProductionFields Component with archived product should match the s
     uiSchema={
       Object {
         "items": Object {
+          "isEnergyProduct": Object {
+            "ui:widget": "hidden",
+          },
           "productAmount": Object {
             "ui:col-md": 4,
             "ui:help": "Report the annual production for the product, following the guidance document provided",
@@ -382,6 +388,9 @@ exports[`The ProductionFields Component with published product should match the 
         },
       },
       "properties": Object {
+        "isEnergyProduct": Object {
+          "type": "boolean",
+        },
         "productRowId": Object {
           "title": "Product or Service",
           "type": "integer",
@@ -404,6 +413,9 @@ exports[`The ProductionFields Component with published product should match the 
   uiSchema={
     Object {
       "items": Object {
+        "isEnergyProduct": Object {
+          "ui:widget": "hidden",
+        },
         "productAmount": Object {
           "ui:col-md": 4,
           "ui:help": "Report the annual production for the product, following the guidance document provided",

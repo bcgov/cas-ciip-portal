@@ -25,6 +25,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     benchmark_data ggircs_portal.benchmark;
     product_data ggircs_portal.product;
     product_return ggircs_portal.ciip_incentive_by_product;
+    non_energy_product_count integer;
 
   begin
 
@@ -47,6 +48,27 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         version_number = application_revision.version_number
         and application_id = application_revision.application_id
     );
+
+    -- ** Test for invalid number of products when a reported product.requires_emission_allocation = false ** --
+    non_energy_product_count := (
+      select count(*)
+      from ggircs_portal.ciip_production
+      where
+        version_number = application_revision.version_number
+        and application_id = application_revision.application_id
+        and is_energy_product=false
+    );
+
+    if (select count(*) from ggircs_portal.ciip_production
+      where
+        version_number = application_revision.version_number
+        and application_id = application_revision.application_id
+        and requires_emission_allocation = false) > 0
+      and non_energy_product_count > 1
+    then
+      raise exception 'When a product has: requires_emission_allocation = false, only one reported product (excluding energy products) is allowed';
+    end if;
+    -- ** End test ** --
 
     reported_ciip_products = array(
       select row(ciip_production.*)

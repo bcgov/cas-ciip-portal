@@ -98,6 +98,31 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       return result?.requiresEmissionAllocation === true;
     });
 
+  const customValidation = (formData, errors) => {
+    let hasFalseRequiresEmissionAllocation = false;
+    let nonEnergyProductCount = 0;
+    const productsInConflict = [];
+    if (formData[0]?.productRowId) {
+      formData.forEach((product, index: number) => {
+        if (product.requiresEmissionAllocation === false)
+          hasFalseRequiresEmissionAllocation = true;
+        if (product.isEnergyProduct === false) {
+          nonEnergyProductCount++;
+          productsInConflict.push(index + 1);
+        }
+      });
+    }
+
+    if (hasFalseRequiresEmissionAllocation && nonEnergyProductCount > 1)
+      errors['0'].addError(
+        `Products: ${productsInConflict.join(
+          ','
+        )} cannot be reported together as at least one of these products does not require manual allocation of emissions.`
+      );
+
+    return errors;
+  };
+
   const formClass = uiSchema?.['ui:className'] || '';
   return (
     <div className={formClass}>
@@ -112,6 +137,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       <JsonSchemaForm
         safeRenderCompletion
         noHtml5Validate
+        validate={customValidation}
         showErrorList={false}
         ArrayFieldTemplate={FormArrayFieldTemplate}
         FieldTemplate={FormFieldTemplate}

@@ -33,6 +33,7 @@ export const ProductCreator: React.FunctionComponent<Props> = ({
           productState: 'DRAFT' as CiipProductState,
           requiresEmissionAllocation: e.formData.requiresEmissionAllocation,
           isCiipProduct: e.formData.isCiipProduct,
+          isEnergyProduct: false,
           addPurchasedElectricityEmissions:
             e.formData.addPurchasedElectricityEmissions,
           subtractExportedElectricityEmissions:

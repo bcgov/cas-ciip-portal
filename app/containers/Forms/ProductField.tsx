@@ -50,7 +50,8 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
       productRowId,
       productUnits: product?.units,
       requiresEmissionAllocation: product?.requiresEmissionAllocation,
-      requiresProductAmount: product?.requiresProductAmount
+      requiresProductAmount: product?.requiresProductAmount,
+      isEnergyProduct: product?.isEnergyProduct
     });
   };
 
@@ -79,6 +80,7 @@ export default createFragmentContainer(ProductFieldComponent, {
             productState
             requiresEmissionAllocation
             requiresProductAmount
+            isEnergyProduct
           }
         }
       }
