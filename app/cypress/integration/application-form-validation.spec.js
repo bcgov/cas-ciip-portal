@@ -75,21 +75,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_facility_facilityName').clear().type('Acme1');
     cy.get('#root_facility_facilityType').select('LFO');
     cy.get('#root_facility_bcghgid').clear().type('11001100223');
-    cy.get('#root_facility_naics').clear().type('1100223');
-
-    // Facility mailing address
-    cy.get('#root_facility_mailingAddress_streetAddress')
-      .clear()
-      .type('100 North Pole');
-    cy.get('#root_facility_mailingAddress_city').clear().type('Calgary');
-    cy.get('#root_facility_mailingAddress_postalCode').clear().type('H2O 0H0');
-    cy.get('#root_facility_mailingAddress_province').select('Alberta');
-
-    cy.get(
-      '#root_facility_isFacilityLocationDifferent .radio label span input[type=radio]'
-    )
-      .last()
-      .check();
 
     cy.contains('Continue').click();
     cy.get(

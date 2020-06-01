@@ -81,11 +81,11 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Operator
                 </TEXT>
                 <TEXT>
-                  culpa
+                  mollit eu esse
                 </TEXT>
                 <TEXT>
                    
-                  culpa
+                  in qui
                 </TEXT>
                 <TEXT>
                    
@@ -96,7 +96,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 </TEXT>
                 <TEXT>
                    
-                  k3u 2p4
+                  p4A2p4
                 </TEXT>
               </VIEW>
             </styled.VIEW>
@@ -186,17 +186,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Object {
                   "facility": Object {
-                    "bcghgid": "51234",
-                    "facilityName": "in qui",
-                    "facilityType": "IF_b",
-                    "isFacilityLocationDifferent": false,
-                    "mailingAddress": Object {
-                      "city": "mollit eu esse",
-                      "postalCode": "k3u 2p4",
-                      "province": "British Columbia",
-                      "streetAddress": "culpa",
-                    },
-                    "naics": "4512",
+                    "bcghgid": "4512",
+                    "facilityName": "consequat Ut Duis",
+                    "facilityType": "IF_a",
                   },
                   "operationalRepresentative": Object {
                     "email": "Fmsy@fkpuAfkpuAfkpuAfk.kn",
@@ -212,16 +204,16 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "position": "in qui",
                   },
                   "operator": Object {
-                    "bcCorporateRegistryNumber": "aF3451234",
+                    "bcCorporateRegistryNumber": "FK4512345",
                     "mailingAddress": Object {
                       "city": "mollit eu esse",
-                      "postalCode": "k3u 2p4",
+                      "postalCode": "p4A2p4",
                       "province": "British Columbia",
-                      "streetAddress": "culpa",
+                      "streetAddress": "in qui",
                     },
-                    "naics": "345",
-                    "name": "culpa",
-                    "tradeName": "est dolor",
+                    "naics": "123451",
+                    "name": "mollit eu esse",
+                    "tradeName": "mollit eu esse",
                   },
                 }
               }
@@ -279,48 +271,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   },
                   "properties": Object {
                     "facility": Object {
-                      "dependencies": Object {
-                        "isFacilityLocationDifferent": Object {
-                          "oneOf": Array [
-                            Object {
-                              "properties": Object {
-                                "isFacilityLocationDifferent": Object {
-                                  "const": false,
-                                },
-                              },
-                            },
-                            Object {
-                              "properties": Object {
-                                "facilityLocation": Object {
-                                  "properties": Object {
-                                    "latitude": Object {
-                                      "title": "Latitude",
-                                      "type": "number",
-                                    },
-                                    "locationNearestCity": Object {
-                                      "title": "Nearest City",
-                                      "type": "string",
-                                    },
-                                    "locationStreetAddress": Object {
-                                      "title": "Location of the facility",
-                                      "type": "string",
-                                    },
-                                    "longitude": Object {
-                                      "title": "Longitude",
-                                      "type": "number",
-                                    },
-                                  },
-                                  "title": "Facility Location",
-                                  "type": "object",
-                                },
-                                "isFacilityLocationDifferent": Object {
-                                  "const": true,
-                                },
-                              },
-                            },
-                          ],
-                        },
-                      },
                       "properties": Object {
                         "bcghgid": Object {
                           "format": "bcghgid",
@@ -343,30 +293,11 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "Facility Type",
                           "type": "string",
                         },
-                        "isFacilityLocationDifferent": Object {
-                          "enumNames": Array [
-                            " Yes",
-                            " No",
-                          ],
-                          "title": "Is the facility location different from the mailing address?",
-                          "type": "boolean",
-                        },
-                        "mailingAddress": Object {
-                          "$ref": "#/definitions/address",
-                          "title": "Facility Mailing Address",
-                        },
-                        "naics": Object {
-                          "format": "naics",
-                          "title": "NAICS code",
-                          "type": "string",
-                        },
                       },
                       "required": Array [
-                        "naics",
                         "bcghgid",
                         "facilityName",
                         "facilityType",
-                        "isFacilityLocationDifferent",
                       ],
                       "title": "Facility Information",
                       "type": "object",
@@ -460,27 +391,10 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "longitude",
                       ],
                     },
-                    "isFacilityLocationDifferent": Object {
-                      "ui:widget": "radio",
-                    },
-                    "mailingAddress": Object {
-                      "postalCode": Object {
-                        "ui:placeholder": "ex: A1A 1A1",
-                      },
-                      "ui:order": Array [
-                        "streetAddress",
-                        "city",
-                        "postalCode",
-                        "province",
-                      ],
-                    },
                     "ui:order": Array [
                       "facilityName",
                       "facilityType",
                       "bcghgid",
-                      "naics",
-                      "mailingAddress",
-                      "isFacilityLocationDifferent",
                       "facilityLocation",
                     ],
                   },

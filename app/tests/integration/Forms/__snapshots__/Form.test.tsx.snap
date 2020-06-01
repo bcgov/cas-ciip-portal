@@ -86,7 +86,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="mollit eu esse"
+                value="culpa"
               />
               <span
                 className="font-italic text-muted"
@@ -115,7 +115,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="mollit eu esse"
+                value="est dolor"
               />
               <span
                 className="font-italic text-muted"
@@ -144,7 +144,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="123451"
+                value="345"
               />
               <span
                 className="font-italic text-muted"
@@ -173,7 +173,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="FK4512345"
+                value="aF3451234"
               />
               <span
                 className="font-italic text-muted"
@@ -227,7 +227,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="in qui"
+                    value="culpa"
                   />
                   <span
                     className="font-italic text-muted"
@@ -285,7 +285,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="p4A2p4"
+                    value="k3u 2p4"
                   />
                   <span
                     className="font-italic text-muted"
@@ -821,7 +821,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="culpa"
+                value="in qui"
               />
               <span
                 className="font-italic text-muted"
@@ -911,312 +911,8 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="23"
-              />
-              <span
-                className="font-italic text-muted"
-              />
-            </div>
-            <div
-              className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-            >
-              <label
-                className="form-label"
-                htmlFor="root_facility_naics"
-              >
-                NAICS code
-                 *
-              </label>
-              <input
-                autoFocus={false}
-                className="form-control"
-                disabled={false}
-                id="root_facility_naics"
-                label="NAICS code"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                placeholder=""
-                readOnly={false}
-                required={true}
-                type="text"
                 value="51234"
               />
-              <span
-                className="font-italic text-muted"
-              />
-            </div>
-            <div
-              className="form-group field field-object col-12"
-            >
-              <div
-                className="form-row"
-              >
-                <div
-                  className="col-12"
-                />
-                <div
-                  className="col-12"
-                >
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="col-12"
-                >
-                  <legend
-                    id="root_facility_mailingAddress__title"
-                  >
-                    Facility Mailing Address
-                  </legend>
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_mailingAddress_streetAddress"
-                  >
-                    Street address
-                     *
-                  </label>
-                  <input
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_facility_mailingAddress_streetAddress"
-                    label="Street address"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    placeholder=""
-                    readOnly={false}
-                    required={true}
-                    type="text"
-                    value="consequat Ut Duis"
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_mailingAddress_city"
-                  >
-                    City
-                     *
-                  </label>
-                  <input
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_facility_mailingAddress_city"
-                    label="City"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    placeholder=""
-                    readOnly={false}
-                    required={true}
-                    type="text"
-                    value="in qui"
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_mailingAddress_postalCode"
-                  >
-                    Postal Code
-                     *
-                  </label>
-                  <input
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_facility_mailingAddress_postalCode"
-                    label="Postal Code"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    placeholder="ex: A1A 1A1"
-                    readOnly={false}
-                    required={true}
-                    type="text"
-                    value="f2p5f2"
-                  />
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-                <div
-                  className="form-group field field-string form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-                >
-                  <label
-                    className="form-label"
-                    htmlFor="root_facility_mailingAddress_province"
-                  >
-                    Province or Territory
-                     *
-                  </label>
-                  <select
-                    autoFocus={false}
-                    className="form-control"
-                    disabled={false}
-                    id="root_facility_mailingAddress_province"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    required={true}
-                    value="Northwest Territories"
-                  >
-                    <option
-                      value=""
-                    >
-                      
-                    </option>
-                    <option
-                      value="Alberta"
-                    >
-                      Alberta
-                    </option>
-                    <option
-                      value="British Columbia"
-                    >
-                      British Columbia
-                    </option>
-                    <option
-                      value="Manitoba"
-                    >
-                      Manitoba
-                    </option>
-                    <option
-                      value="New Brunswick"
-                    >
-                      New Brunswick
-                    </option>
-                    <option
-                      value="Newfoundland and Labrador"
-                    >
-                      Newfoundland and Labrador
-                    </option>
-                    <option
-                      value="Northwest Territories"
-                    >
-                      Northwest Territories
-                    </option>
-                    <option
-                      value="Nova Scotia"
-                    >
-                      Nova Scotia
-                    </option>
-                    <option
-                      value="Nunavut"
-                    >
-                      Nunavut
-                    </option>
-                    <option
-                      value="Ontario"
-                    >
-                      Ontario
-                    </option>
-                    <option
-                      value="Prince Edward Island"
-                    >
-                      Prince Edward Island
-                    </option>
-                    <option
-                      value="Quebec"
-                    >
-                      Quebec
-                    </option>
-                    <option
-                      value="Saskatchewan"
-                    >
-                      Saskatchewan
-                    </option>
-                    <option
-                      value="Yukon"
-                    >
-                      Yukon
-                    </option>
-                  </select>
-                  <span
-                    className="font-italic text-muted"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              className="form-group field field-boolean form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
-            >
-              <label
-                className="form-label"
-                htmlFor="root_facility_isFacilityLocationDifferent"
-              >
-                Is the facility location different from the mailing address?
-                 *
-              </label>
-              <div
-                className="field-radio-group"
-                id="root_facility_isFacilityLocationDifferent"
-              >
-                <div
-                  className="radio "
-                >
-                  <label>
-                    <span>
-                      <input
-                        autoFocus={false}
-                        checked={false}
-                        disabled={false}
-                        name="0.2"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        required={true}
-                        type="radio"
-                        value={true}
-                      />
-                      <span>
-                         Yes
-                      </span>
-                    </span>
-                  </label>
-                </div>
-                <div
-                  className="radio "
-                >
-                  <label>
-                    <span>
-                      <input
-                        autoFocus={false}
-                        checked={true}
-                        disabled={false}
-                        name="0.2"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        required={true}
-                        type="radio"
-                        value={false}
-                      />
-                      <span>
-                         No
-                      </span>
-                    </span>
-                  </label>
-                </div>
-              </div>
               <span
                 className="font-italic text-muted"
               />
