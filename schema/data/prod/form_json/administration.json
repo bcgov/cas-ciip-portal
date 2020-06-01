@@ -6,18 +6,11 @@
         "type": "object",
         "title": "Facility Information",
         "required": [
-          "naics",
           "bcghgid",
           "facilityName",
-          "facilityType",
-          "isFacilityLocationDifferent"
+          "facilityType"
         ],
         "properties": {
-          "naics": {
-            "type": "string",
-            "format": "naics",
-            "title": "NAICS code"
-          },
           "bcghgid": {
             "type": "string",
             "format": "bcghgid",
@@ -38,61 +31,6 @@
             ],
             "type": "string",
             "title": "Facility Type"
-          },
-          "mailingAddress": {
-            "$ref": "#/definitions/address",
-            "title": "Facility Mailing Address"
-          },
-          "isFacilityLocationDifferent": {
-            "type": "boolean",
-            "title": "Is the facility location different from the mailing address?",
-            "enumNames": [
-              " Yes",
-              " No"
-            ]
-          }
-        },
-        "dependencies": {
-          "isFacilityLocationDifferent": {
-            "oneOf": [
-              {
-                "properties": {
-                  "isFacilityLocationDifferent": {
-                    "const": false
-                  }
-                }
-              },
-              {
-                "properties": {
-                  "facilityLocation": {
-                    "type": "object",
-                    "title": "Facility Location",
-                    "properties": {
-                      "latitude": {
-                        "type": "number",
-                        "title": "Latitude"
-                      },
-                      "longitude": {
-                        "type": "number",
-                        "title": "Longitude"
-
-                      },
-                      "locationNearestCity": {
-                        "type": "string",
-                        "title": "Nearest City"
-                      },
-                      "locationStreetAddress": {
-                        "type": "string",
-                        "title": "Location of the facility"
-                      }
-                    }
-                  },
-                  "isFacilityLocationDifferent": {
-                    "const": true
-                  }
-                }
-              }
-            ]
           }
         }
       },
@@ -100,18 +38,12 @@
         "type": "object",
         "title": "Operator Information",
         "required": [
-          "duns",
           "name",
           "naics",
           "tradeName",
           "bcCorporateRegistryNumber"
         ],
         "properties": {
-          "duns": {
-            "type": "string",
-            "title": "DUNS number",
-            "format": "duns"
-          },
           "name": {
             "type": "string",
             "title": "Legal name"
@@ -227,22 +159,8 @@
         "facilityName",
         "facilityType",
         "bcghgid",
-        "naics",
-        "mailingAddress",
-        "isFacilityLocationDifferent",
         "facilityLocation"
       ],
-      "mailingAddress": {
-        "ui:order": [
-          "streetAddress",
-          "city",
-          "postalCode",
-          "province"
-        ],
-        "postalCode": {
-          "ui:placeholder": "ex: A1A 1A1"
-        }
-      },
       "facilityLocation": {
         "ui:order": [
           "locationStreetAddress",
@@ -250,15 +168,9 @@
           "latitude",
           "longitude"
         ]
-      },
-      "isFacilityLocationDifferent": {
-        "ui:widget": "radio"
       }
     },
     "operator": {
-      "duns": {
-        "ui:col-md": 4
-      },
       "naics": {
         "ui:col-md": 4
       },
@@ -267,7 +179,6 @@
         "tradeName",
         "naics",
         "bcCorporateRegistryNumber",
-        "duns",
         "mailingAddress"
       ],
       "mailingAddress": {
@@ -318,14 +229,12 @@
     }
   },
   "customFormats": {
-    "duns": "^\\d{9}$",
     "naics": "^\\d+$",
     "bcghgid": "^\\d+$",
     "bcCorporateRegistryNumber": "^[A-Za-z]{1,3}\\d{7}$",
     "postal-code": "[a-zA-Z][0-9][a-zA-Z]\\s?[0-9][a-zA-Z][0-9]"
   },
   "customFormatsErrorMessages": {
-    "duns": "DUNS number should be nine digits",
     "naics": "NAICS code should be numeric",
     "bcghgid": "BCGHGID code should be numeric",
     "bcCorporateRegistryNumber": "BC Corporate Registry number should be 1-3 letters followed by 7 digits",

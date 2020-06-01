@@ -39,7 +39,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_operator_bcCorporateRegistryNumber')
       .clear()
       .type('111112222233333');
-    cy.get('#root_operator_duns').clear().type('1112223');
 
     // Operator mailing address
     cy.get('#root_operator_mailingAddress_streetAddress')
@@ -76,26 +75,8 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_facility_facilityName').clear().type('Acme1');
     cy.get('#root_facility_facilityType').select('LFO');
     cy.get('#root_facility_bcghgid').clear().type('11001100223');
-    cy.get('#root_facility_naics').clear().type('1100223');
-
-    // Facility mailing address
-    cy.get('#root_facility_mailingAddress_streetAddress')
-      .clear()
-      .type('100 North Pole');
-    cy.get('#root_facility_mailingAddress_city').clear().type('Calgary');
-    cy.get('#root_facility_mailingAddress_postalCode').clear().type('H2O 0H0');
-    cy.get('#root_facility_mailingAddress_province').select('Alberta');
-
-    cy.get(
-      '#root_facility_isFacilityLocationDifferent .radio label span input[type=radio]'
-    )
-      .last()
-      .check();
 
     cy.contains('Continue').click();
-    cy.get('#root_operator_duns +div .error-detail').contains(
-      'DUNS number should be nine digits'
-    );
     cy.get(
       '#root_operator_bcCorporateRegistryNumber +div .error-detail'
     ).contains(
@@ -109,7 +90,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.percySnapshot('admin');
 
     // Fix invalid data
-    cy.get('#root_operator_duns').clear().type('111222333');
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
       .clear()
       .type('A1A 1A1');

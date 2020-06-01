@@ -81,7 +81,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Operator
                 </TEXT>
                 <TEXT>
-                  in qui
+                  mollit eu esse
                 </TEXT>
                 <TEXT>
                    
@@ -186,17 +186,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Object {
                   "facility": Object {
-                    "bcghgid": "51234",
-                    "facilityName": "in qui",
-                    "facilityType": "IF_b",
-                    "isFacilityLocationDifferent": false,
-                    "mailingAddress": Object {
-                      "city": "mollit eu esse",
-                      "postalCode": "k3u 2p4",
-                      "province": "British Columbia",
-                      "streetAddress": "culpa",
-                    },
-                    "naics": "4512",
+                    "bcghgid": "4512",
+                    "facilityName": "consequat Ut Duis",
+                    "facilityType": "IF_a",
                   },
                   "operationalRepresentative": Object {
                     "email": "Fmsy@fkpuAfkpuAfkpuAfk.kn",
@@ -212,17 +204,16 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "position": "in qui",
                   },
                   "operator": Object {
-                    "bcCorporateRegistryNumber": "K4512345",
-                    "duns": "123451234",
+                    "bcCorporateRegistryNumber": "FK4512345",
                     "mailingAddress": Object {
                       "city": "mollit eu esse",
                       "postalCode": "p4A2p4",
                       "province": "British Columbia",
                       "streetAddress": "in qui",
                     },
-                    "naics": "4512",
-                    "name": "in qui",
-                    "tradeName": "consequat Ut Duis",
+                    "naics": "123451",
+                    "name": "mollit eu esse",
+                    "tradeName": "mollit eu esse",
                   },
                 }
               }
@@ -280,48 +271,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   },
                   "properties": Object {
                     "facility": Object {
-                      "dependencies": Object {
-                        "isFacilityLocationDifferent": Object {
-                          "oneOf": Array [
-                            Object {
-                              "properties": Object {
-                                "isFacilityLocationDifferent": Object {
-                                  "const": false,
-                                },
-                              },
-                            },
-                            Object {
-                              "properties": Object {
-                                "facilityLocation": Object {
-                                  "properties": Object {
-                                    "latitude": Object {
-                                      "title": "Latitude",
-                                      "type": "number",
-                                    },
-                                    "locationNearestCity": Object {
-                                      "title": "Nearest City",
-                                      "type": "string",
-                                    },
-                                    "locationStreetAddress": Object {
-                                      "title": "Location of the facility",
-                                      "type": "string",
-                                    },
-                                    "longitude": Object {
-                                      "title": "Longitude",
-                                      "type": "number",
-                                    },
-                                  },
-                                  "title": "Facility Location",
-                                  "type": "object",
-                                },
-                                "isFacilityLocationDifferent": Object {
-                                  "const": true,
-                                },
-                              },
-                            },
-                          ],
-                        },
-                      },
                       "properties": Object {
                         "bcghgid": Object {
                           "format": "bcghgid",
@@ -344,30 +293,11 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "Facility Type",
                           "type": "string",
                         },
-                        "isFacilityLocationDifferent": Object {
-                          "enumNames": Array [
-                            " Yes",
-                            " No",
-                          ],
-                          "title": "Is the facility location different from the mailing address?",
-                          "type": "boolean",
-                        },
-                        "mailingAddress": Object {
-                          "$ref": "#/definitions/address",
-                          "title": "Facility Mailing Address",
-                        },
-                        "naics": Object {
-                          "format": "naics",
-                          "title": "NAICS code",
-                          "type": "string",
-                        },
                       },
                       "required": Array [
-                        "naics",
                         "bcghgid",
                         "facilityName",
                         "facilityType",
-                        "isFacilityLocationDifferent",
                       ],
                       "title": "Facility Information",
                       "type": "object",
@@ -417,11 +347,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "BC Corporate Registry number",
                           "type": "string",
                         },
-                        "duns": Object {
-                          "format": "duns",
-                          "title": "DUNS number",
-                          "type": "string",
-                        },
                         "mailingAddress": Object {
                           "$ref": "#/definitions/address",
                           "title": "Operator Mailing Address",
@@ -441,7 +366,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         },
                       },
                       "required": Array [
-                        "duns",
                         "name",
                         "naics",
                         "tradeName",
@@ -467,27 +391,10 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         "longitude",
                       ],
                     },
-                    "isFacilityLocationDifferent": Object {
-                      "ui:widget": "radio",
-                    },
-                    "mailingAddress": Object {
-                      "postalCode": Object {
-                        "ui:placeholder": "ex: A1A 1A1",
-                      },
-                      "ui:order": Array [
-                        "streetAddress",
-                        "city",
-                        "postalCode",
-                        "province",
-                      ],
-                    },
                     "ui:order": Array [
                       "facilityName",
                       "facilityType",
                       "bcghgid",
-                      "naics",
-                      "mailingAddress",
-                      "isFacilityLocationDifferent",
                       "facilityLocation",
                     ],
                   },
@@ -521,9 +428,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "bcCorporateRegistryNumber": Object {
                       "ui:col-md": 4,
                     },
-                    "duns": Object {
-                      "ui:col-md": 4,
-                    },
                     "mailingAddress": Object {
                       "postalCode": Object {
                         "ui:placeholder": "ex: A1A 1A1",
@@ -543,7 +447,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "tradeName",
                       "naics",
                       "bcCorporateRegistryNumber",
-                      "duns",
                       "mailingAddress",
                     ],
                   },

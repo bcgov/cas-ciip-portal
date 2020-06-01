@@ -36,23 +36,14 @@ values
 -- Ensure all form results contain no errors
 update ggircs_portal.form_result set form_result = '{
 "facility": {
-  "naics": "12345",
   "bcghgid": "123465",
   "facilityName": "test",
-  "facilityType": "L_c",
-  "mailingAddress": {
-    "city": "Victoria",
-    "province": "British Columbia",
-    "streetAddress": "123 street st",
-    "postalCode": "H0H0H0"
-  },
-  "isFacilityLocationDifferent": false
+  "facilityType": "L_c"
 },
 "operator": {
   "name": "Changed",
   "naics": "12345",
   "tradeName": "trade",
-  "duns": "123456789",
   "bcCorporateRegistryNumber": "G4447393",
   "mailingAddress": {
     "city": "Victoria",
