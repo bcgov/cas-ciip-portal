@@ -39,7 +39,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_operator_bcCorporateRegistryNumber')
       .clear()
       .type('111112222233333');
-    cy.get('#root_operator_duns').clear().type('1112223');
 
     // Operator mailing address
     cy.get('#root_operator_mailingAddress_streetAddress')
@@ -93,9 +92,6 @@ describe('When reviewing a submitted application as an analyst', () => {
       .check();
 
     cy.contains('Continue').click();
-    cy.get('#root_operator_duns +div .error-detail').contains(
-      'DUNS number should be nine digits'
-    );
     cy.get(
       '#root_operator_bcCorporateRegistryNumber +div .error-detail'
     ).contains(
@@ -109,7 +105,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.percySnapshot('admin');
 
     // Fix invalid data
-    cy.get('#root_operator_duns').clear().type('111222333');
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
       .clear()
       .type('A1A 1A1');

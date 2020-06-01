@@ -81,11 +81,11 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Operator
                 </TEXT>
                 <TEXT>
-                  in qui
+                  culpa
                 </TEXT>
                 <TEXT>
                    
-                  in qui
+                  culpa
                 </TEXT>
                 <TEXT>
                    
@@ -96,7 +96,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                 </TEXT>
                 <TEXT>
                    
-                  p4A2p4
+                  k3u 2p4
                 </TEXT>
               </VIEW>
             </styled.VIEW>
@@ -212,17 +212,16 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "position": "in qui",
                   },
                   "operator": Object {
-                    "bcCorporateRegistryNumber": "K4512345",
-                    "duns": "123451234",
+                    "bcCorporateRegistryNumber": "aF3451234",
                     "mailingAddress": Object {
                       "city": "mollit eu esse",
-                      "postalCode": "p4A2p4",
+                      "postalCode": "k3u 2p4",
                       "province": "British Columbia",
-                      "streetAddress": "in qui",
+                      "streetAddress": "culpa",
                     },
-                    "naics": "4512",
-                    "name": "in qui",
-                    "tradeName": "consequat Ut Duis",
+                    "naics": "345",
+                    "name": "culpa",
+                    "tradeName": "est dolor",
                   },
                 }
               }
@@ -417,11 +416,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "title": "BC Corporate Registry number",
                           "type": "string",
                         },
-                        "duns": Object {
-                          "format": "duns",
-                          "title": "DUNS number",
-                          "type": "string",
-                        },
                         "mailingAddress": Object {
                           "$ref": "#/definitions/address",
                           "title": "Operator Mailing Address",
@@ -441,7 +435,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         },
                       },
                       "required": Array [
-                        "duns",
                         "name",
                         "naics",
                         "tradeName",
@@ -521,9 +514,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     "bcCorporateRegistryNumber": Object {
                       "ui:col-md": 4,
                     },
-                    "duns": Object {
-                      "ui:col-md": 4,
-                    },
                     "mailingAddress": Object {
                       "postalCode": Object {
                         "ui:placeholder": "ex: A1A 1A1",
@@ -543,7 +533,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "tradeName",
                       "naics",
                       "bcCorporateRegistryNumber",
-                      "duns",
                       "mailingAddress",
                     ],
                   },
