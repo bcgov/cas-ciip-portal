@@ -66,7 +66,7 @@ class Certify extends Component<Props> {
             <Card.Text style={{padding: '10px 0 10px 0'}}>
               Please review the information below before approving an
               application.{' '}
-              <a href="/resources/disclaimer" target="_blank">
+              <a href="/resources/application-disclaimer" target="_blank">
                 (<FontAwesomeIcon icon={faExternalLinkAlt} />
                 expand)
               </a>
