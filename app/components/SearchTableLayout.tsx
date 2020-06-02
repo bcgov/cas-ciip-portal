@@ -15,6 +15,7 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
   const {
     handleEvent,
     handleSelectAll,
+    allSelected = false,
     displayNameToColumnNameMap,
     body
   } = props;
@@ -43,6 +44,7 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
                   <br />
                   <input
                     type="checkbox"
+                    checked={allSelected}
                     onChange={(e) => handleSelectAll(e.target.checked)}
                   />
                 </label>
