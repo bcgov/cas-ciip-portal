@@ -25,9 +25,9 @@ $fn$
     join ggircs_portal.ciip_user cu
       on cu.email_address = cer.certifier_email
       and cu.uuid = (select sub from ggircs_portal.session());
-$fn$ language sql strict stable;
+$fn$ language sql strict stable security definer;
 
-grant execute on function ggircs_portal_private.get_valid_facility_organisation to ciip_administrator, ciip_analyst, ciip_industry_user;
+grant execute on function ggircs_portal_private.get_valid_facility_for_certifier to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 do
   $policy$
