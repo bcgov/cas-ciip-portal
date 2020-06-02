@@ -1865,6 +1865,7 @@ type CiipIncentiveByProduct {
   emissionIntensity: BigFloat
   incentiveMultiplier: BigFloat
   incentiveProduct: BigFloat
+  incentiveProductMax: BigFloat
   incentiveRatio: BigFloat
   incrementalCarbonTax: BigFloat
   paymentAllocationFactor: BigFloat

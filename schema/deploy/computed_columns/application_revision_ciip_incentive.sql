@@ -17,6 +17,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     intensity_range numeric;
     incentive_ratio numeric;
     incentive_product numeric;
+    incentive_product_max numeric;
     app_reporting_year int;
     incremental_carbon_tax_facility numeric;
     payment_allocation_factor numeric; -- The portion of the facility's carbon tax allocated to the current product
@@ -177,6 +178,11 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
                             payment_allocation_factor *
                             incremental_carbon_tax_facility, 0);
 
+        incentive_product_max = coalesce (
+                            benchmark_data.incentive_multiplier *
+                            payment_allocation_factor *
+                            incremental_carbon_tax_facility, 0);
+
         select into product_return
           row_number() over (),
           product_data.id,
@@ -186,8 +192,9 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
           incentive_ratio,
           benchmark_data.incentive_multiplier,
           payment_allocation_factor,
-          incremental_carbon_tax_facility,
+          incremental_carbon_tax_facility as incremental_carbon_tax,
           incentive_product,
+          incentive_product_max,
           em_intensity,
           benchmark_data.benchmark,
           benchmark_data.eligibility_threshold;

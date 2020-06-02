@@ -36,10 +36,12 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
             <th>Emission Intensity</th>
             <th>Benchmark</th>
             <th>Eligibility Threshold</th>
+            <th>Threshold Chart</th>
             <th>Incentive Ratio</th>
             <th>Incentive Multiplier</th>
             <th>Payment Allocation</th>
             <th>Calculated Incentive (CAD)</th>
+            <th>Maximum Incentive (CAD)</th>
           </tr>
         </thead>
         <tbody>
