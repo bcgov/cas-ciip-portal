@@ -61,9 +61,11 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
   ciipIncentiveByProduct: graphql`
     fragment IncentiveSegmentContainer_ciipIncentiveByProduct on CiipIncentiveByProduct {
       productName
-      incrementalCarbonTax
-      emissionIntensity
+      incentiveRatio
+      incentiveMultiplier
+      paymentAllocationFactor
       incentiveProduct
+      emissionIntensity
       benchmark
       eligibilityThreshold
     }

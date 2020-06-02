@@ -32,10 +32,14 @@ export const IncentiveCalculator: React.FunctionComponent<Props> = ({
       <Table striped bordered hover responsive="lg">
         <thead>
           <tr>
-            <th>Product</th>
-            <th>Calculation Breakdown</th>
-            <th>Incentive for product</th>
-            <th>Chart</th>
+            <th>Product Name</th>
+            <th>Emission Intensity</th>
+            <th>Benchmark</th>
+            <th>Eligibility Threshold</th>
+            <th>Incentive Ratio</th>
+            <th>Incentive Multiplier</th>
+            <th>Payment Allocation</th>
+            <th>Calculated Incentive (CAD)</th>
           </tr>
         </thead>
         <tbody>
