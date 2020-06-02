@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {Button, Alert} from 'react-bootstrap';
 import moment from 'moment-timezone';
 import Link from 'next/link';
@@ -11,6 +11,29 @@ const TIME_ZONE = 'America/Vancouver';
 
 function formatListViewDate(date) {
   return date ? moment.tz(date, TIME_ZONE).format('MMM D, YYYY') : '';
+}
+
+function getDisplayedRequestIds(query) {
+  return query.searchCertificationRequests.edges.map(({node}) => node.certificationUrlByCertificationUrlId.id);
+}
+
+function resolveRefetchSelections(displayedRequestIds, selections, setSelections) {
+  const selectionsUpdate = {};
+  Object.keys(selections).forEach((id) => {
+    if (!displayedRequestIds.includes(id)) {
+      selectionsUpdate[id] = false;
+    }
+  });
+  setSelections((prev) => {
+    return {
+      ...prev,
+      ...selectionsUpdate
+    };
+  });
+}
+
+function isAllSelected(displayedRequestIds, selections) {
+  return displayedRequestIds.every((id) => Boolean(selections[id]));
 }
 
 interface Props {
@@ -38,10 +61,8 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   query
 }) => {
   const initialSelections = {};
-  const requestIds = query.searchCertificationRequests.edges.map(
-    ({node}) => node.certificationUrlByCertificationUrlId.id
-  );
-  requestIds.forEach((id) => {
+  const displayedRequestIds = useRef(getDisplayedRequestIds(query));
+  displayedRequestIds.current.forEach((id) => {
     initialSelections[id] = false;
   });
 
@@ -56,8 +77,12 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
       direction,
       offsetValue
     };
-    relay.refetch(refetchVariables);
-  });
+    relay.refetch(refetchVariables, undefined, (error) => {
+      if (error) return;
+      displayedRequestIds.current = getDisplayedRequestIds(query);
+      resolveRefetchSelections(displayedRequestIds.current, selections, setSelections);
+    });
+  }, [searchField, searchValue, orderByField, direction, offsetValue, query]);
 
   const displayNameToColumnNameMap = {
     Facility: 'facility_name',
@@ -86,7 +111,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
       });
       return newState;
     });
-    handleSelectAll(selectAll, requestIds);
+    handleSelectAll(selectAll, displayedRequestIds.current);
   };
 
   const body = (
@@ -162,6 +187,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   ) : (
     <>
       <SearchTableLayout
+        allSelected={isAllSelected(displayedRequestIds.current, selections)}
         body={body}
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
