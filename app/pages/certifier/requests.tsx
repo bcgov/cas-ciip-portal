@@ -47,8 +47,7 @@ export default class CertifierRequests extends Component<Props> {
 
   constructor(props) {
     super(props);
-    this.handleSelect = this.handleSelect.bind(this);
-    this.handleSelectAll = this.handleSelectAll.bind(this);
+    this.updateSelections = this.updateSelections.bind(this);
   }
 
   static async getInitialProps() {
@@ -61,26 +60,8 @@ export default class CertifierRequests extends Component<Props> {
     };
   }
 
-  handleSelect(id, toBeSelected) {
-    this.setState(({selectedRequests}: any) => {
-      if (toBeSelected && !selectedRequests.includes(id)) {
-        return {selectedRequests: selectedRequests.concat(id)};
-      }
-
-      if (!toBeSelected && selectedRequests.includes(id)) {
-        const index = Number(selectedRequests.indexOf(id));
-        const newArray = selectedRequests
-          .slice(0, index)
-          .concat(selectedRequests.slice(index + 1));
-        return {selectedRequests: newArray};
-      }
-    });
-  }
-
-  handleSelectAll(selectAll, ids) {
-    this.setState({
-      selectedRequests: selectAll ? ids : []
-    });
+  updateSelections(selectedRequests) {
+    this.setState({selectedRequests});
   }
 
   render() {
@@ -98,8 +79,8 @@ export default class CertifierRequests extends Component<Props> {
         >
           {(props) => (
             <CertificationRequestsContainer
-              handleSelect={this.handleSelect}
-              handleSelectAll={this.handleSelectAll}
+              selections={this.state.selectedRequests}
+              notifySelections={this.updateSelections}
               {...props}
             />
           )}

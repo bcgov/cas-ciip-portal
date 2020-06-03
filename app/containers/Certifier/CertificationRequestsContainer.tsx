@@ -17,23 +17,8 @@ function getDisplayedRequestIds(query) {
   return query.searchCertificationRequests.edges.map(({node}) => node.certificationUrlByCertificationUrlId.id);
 }
 
-function resolveRefetchSelections(displayedRequestIds, selections, setSelections) {
-  const selectionsUpdate = {};
-  Object.keys(selections).forEach((id) => {
-    if (!displayedRequestIds.includes(id)) {
-      selectionsUpdate[id] = false;
-    }
-  });
-  setSelections((prev) => {
-    return {
-      ...prev,
-      ...selectionsUpdate
-    };
-  });
-}
-
-function isAllSelected(displayedRequestIds, selections) {
-  return displayedRequestIds.every((id) => Boolean(selections[id]));
+function isAllSelected(ids, selections) {
+  return ids.length > 0 && ids.every((id) => selections.includes(id));
 }
 
 interface Props {
@@ -42,9 +27,9 @@ interface Props {
   searchField: string[];
   searchValue: string[];
   offsetValue: number;
+  selections: string[];
   handleEvent: (...args: any[]) => void;
-  handleSelect: (...args: any[]) => void;
-  handleSelectAll: (...args: any[]) => void;
+  notifySelections: (selectedIds: string[]) => void;
   relay: RelayRefetchProp;
   query: CertificationRequestsContainer_query;
 }
@@ -54,19 +39,15 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   orderByField,
   searchField,
   searchValue,
+  selections,
   handleEvent,
-  handleSelect,
-  handleSelectAll,
+  notifySelections,
   relay,
   query
 }) => {
-  const initialSelections = {};
   const displayedRequestIds = useRef(getDisplayedRequestIds(query));
-  displayedRequestIds.current.forEach((id) => {
-    initialSelections[id] = false;
-  });
+  const refetchQueryInitialized = useRef(false);
 
-  const [selections, setSelections] = useState(initialSelections);
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
   useEffect(() => {
@@ -80,7 +61,15 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
     relay.refetch(refetchVariables, undefined, (error) => {
       if (error) return;
       displayedRequestIds.current = getDisplayedRequestIds(query);
-      resolveRefetchSelections(displayedRequestIds.current, selections, setSelections);
+
+      if (refetchQueryInitialized.current) {
+        const resolvedSelections = selections.filter((id) =>
+          displayedRequestIds.current.includes(id)
+        );
+        notifySelections(resolvedSelections);
+      }
+
+      refetchQueryInitialized.current = true;
     });
   }, [searchField, searchValue, orderByField, direction, offsetValue, query]);
 
@@ -94,24 +83,16 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   };
 
   const onCheck = (checked, id) => {
-    setSelections((prev) => {
-      return {
-        ...prev,
-        [id]: checked
-      };
-    });
-    handleSelect(id, checked);
+    if (checked && !selections.includes(id)) {
+      notifySelections([...selections.slice(), id]);
+    } else if (!checked && selections.includes(id)) {
+      const i = selections.indexOf(id);
+      notifySelections([...selections.slice(0, i), ...selections.slice(i + 1)]);
+    }
   };
 
   const onSelectAll = (selectAll) => {
-    setSelections((prev) => {
-      const newState = {};
-      Object.keys(prev).forEach((id) => {
-        newState[id] = selectAll;
-      });
-      return newState;
-    });
-    handleSelectAll(selectAll, displayedRequestIds.current);
+    notifySelections(selectAll ? displayedRequestIds.current.slice() : []);
   };
 
   const body = (
@@ -135,7 +116,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
               <label>
                 <input
                   type="checkbox"
-                  checked={selections[node.certificationUrlByCertificationUrlId.id]}
+                  checked={selections.includes(node.certificationUrlByCertificationUrlId.id)}
                   onChange={(e) => onCheck(e.target.checked, node.certificationUrlByCertificationUrlId.id)}
                 />
               </label>
