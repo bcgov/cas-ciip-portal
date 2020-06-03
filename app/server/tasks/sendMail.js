@@ -6,6 +6,7 @@ const createCertificationRequestMail = require('../emailTemplates/certificationR
 const createSignedByCertifierMail = require('../emailTemplates/signedByCertifier.js');
 const createRecertificationRequestMail = require('../emailTemplates/recertificationRequest.js');
 const createOrganisationAccessRequestMail = require('../emailTemplates/requestForOrganisationAccess.js');
+const createOrganisationAccessApprovedMail = require('../emailTemplates/organisationAccessApproved.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -108,8 +109,19 @@ module.exports = async ({
       break;
     case 'request_for_organisation_access':
       console.log('here');
-      subject = 'CIIP Application recertification request';
+      subject = 'Organisation Access Requested';
       htmlContent = createOrganisationAccessRequestMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName
+      });
+      break;
+    case 'organisation_access_approved':
+      console.log('here');
+      subject = 'Organisation Access Approved';
+      htmlContent = createOrganisationAccessApprovedMail({
         email,
         firstName,
         lastName,
