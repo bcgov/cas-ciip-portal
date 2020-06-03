@@ -23,7 +23,7 @@ create or replace function ggircs_portal_private.validate_certifier()
       join ggircs_portal.ciip_user cu
         on cer.certifier_email = cu.email_address
         and cu.uuid = (select sub from ggircs_portal.session());
-  $fn$ language sql strict stable security definer;
+  $fn$ language sql strict stable;
 
   grant execute on function ggircs_portal_private.validate_certifier to ciip_administrator, ciip_analyst, ciip_industry_user;
 

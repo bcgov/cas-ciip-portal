@@ -25,9 +25,12 @@ $fn$
     join ggircs_portal.ciip_user cu
       on cu.email_address = cer.certifier_email
       and cu.uuid = (select sub from ggircs_portal.session());
-$fn$ language sql strict stable;
-
-grant execute on function ggircs_portal_private.get_valid_facility_organisation to ciip_administrator, ciip_analyst, ciip_industry_user;
+$fn$ language sql strict stable security definer;
+/** This function is set as security definer due to a circular access control issue with get_valid_application_facilities()
+    in application_policies.sql. This is because we have both certifier and reporter using one database role as we have no
+    way to differentiate between them at this time.
+**/
+grant execute on function ggircs_portal_private.get_valid_facility_for_certifier to ciip_administrator, ciip_analyst, ciip_industry_user;
 
 do
   $policy$
