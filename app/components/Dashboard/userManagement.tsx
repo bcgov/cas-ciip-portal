@@ -11,7 +11,7 @@ const UserManagement: React.FunctionComponent = () => {
       </Card.Body>
       <ListGroup variant="flush">
         <ListGroup.Item>
-          <Link href="/admin/user-list">
+          <Link href="/admin/users">
             <Card.Link href="#">View all users</Card.Link>
           </Link>
         </ListGroup.Item>
