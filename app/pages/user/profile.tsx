@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {userProfileQueryResponse} from 'userProfileQuery.graphql';
+import {profileQueryResponse} from 'profileQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import UserProfileContainer from 'containers/User/UserProfile';
 
 interface Props {
-  query: userProfileQueryResponse['query'];
+  query: profileQueryResponse['query'];
 }
-class UserProfile extends Component<Props> {
+class Profile extends Component<Props> {
   static query = graphql`
-    query userProfileQuery {
+    query profileQuery {
       query {
         session {
           ...defaultLayout_session
@@ -31,4 +31,4 @@ class UserProfile extends Component<Props> {
     );
   }
 }
-export default UserProfile;
+export default Profile;

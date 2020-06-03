@@ -83,7 +83,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >
@@ -548,7 +548,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >
@@ -810,7 +810,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >
@@ -1289,7 +1289,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >
@@ -1952,7 +1952,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >
@@ -2280,7 +2280,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >

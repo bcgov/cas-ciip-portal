@@ -18,7 +18,7 @@ import Registration from 'pages/registration';
 import Reporter from 'pages/reporter/index';
 import UserList from 'pages/admin/user-list';
 // Import UserOrganisationFacilities from 'pages/user-organisation-facilities';
-import UserProfile from 'pages/user-profile';
+import Profile from 'pages/user/profile';
 // Import ViewApplication from 'pages/reporter/view-application';
 import {getAllGroups} from '../lib/user-groups';
 import {Router} from './mockNextRouter';
@@ -65,4 +65,4 @@ export const ciip_application_swrs_import = () =>
 export const registration = () => render(Registration);
 export const user_dashboard = () => render(Reporter);
 export const user_list = () => render(UserList);
-export const user_profile = () => render(UserProfile);
+export const user_profile = () => render(Profile);

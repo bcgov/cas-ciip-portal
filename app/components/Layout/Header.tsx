@@ -43,7 +43,7 @@ const HeaderLayout = ({
                   <Form.Row>
                     {isRegistered && (
                       <Col>
-                        <Form action="/user-profile" method="get">
+                        <Form action="/user/profile" method="get">
                           <Button type="submit" variant="outline-light">
                             Profile
                           </Button>

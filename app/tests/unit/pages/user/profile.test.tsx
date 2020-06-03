@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import UserProfile from 'pages/user-profile';
+import Profile from 'pages/user/profile';
 const query = {
   user: {
     id: 'WyJ1c2VycyIsMV0='
@@ -8,7 +8,7 @@ const query = {
 };
 describe('user profile', () => {
   it('matches snapshot', () => {
-    const wrapper = shallow(<UserProfile query={query} />);
+    const wrapper = shallow(<Profile query={query} />);
     expect(wrapper).toMatchSnapshot();
   });
 });
