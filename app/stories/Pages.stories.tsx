@@ -15,7 +15,7 @@ import CiipApplicationSWRSImport from 'pages/reporter/ciip-application-swrs-impo
 // import OrganisationRequests from 'pages/analyst/organisation-requests';
 // import ProductsBenchmarks from 'pages/admin/products-benchmarks';
 import Registration from 'pages/registration';
-import UserDashboard from 'pages/reporter/user-dashboard';
+import Reporter from 'pages/reporter/index';
 import UserList from 'pages/admin/user-list';
 // Import UserOrganisationFacilities from 'pages/user-organisation-facilities';
 import UserProfile from 'pages/user-profile';
@@ -63,6 +63,6 @@ export const admin = () => render(Admin);
 export const ciip_application_swrs_import = () =>
   render(CiipApplicationSWRSImport);
 export const registration = () => render(Registration);
-export const user_dashboard = () => render(UserDashboard);
+export const user_dashboard = () => render(Reporter);
 export const user_list = () => render(UserList);
 export const user_profile = () => render(UserProfile);

@@ -95,7 +95,7 @@ exports[`The Form Component should match the snapshot 1`] = `
           <Link
             href={
               Object {
-                "pathname": "/reporter/user-dashboard",
+                "pathname": "/reporter",
               }
             }
           >
@@ -709,7 +709,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
           <Link
             href={
               Object {
-                "pathname": "/reporter/user-dashboard",
+                "pathname": "/reporter",
               }
             }
           >
@@ -1353,7 +1353,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
           <Link
             href={
               Object {
-                "pathname": "/reporter/user-dashboard",
+                "pathname": "/reporter",
               }
             }
           >

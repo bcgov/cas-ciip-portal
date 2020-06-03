@@ -41,7 +41,7 @@ class CompleteSubmit extends Component<Props> {
       >
         <Link
           href={{
-            pathname: '/reporter/user-dashboard'
+            pathname: '/reporter'
           }}
         >
           <Button

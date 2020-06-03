@@ -31,7 +31,7 @@ describe('When logged in as a certifier(reporter)', () => {
     cy.contains('Legal Disclaimer');
     cy.contains('View').click();
     cy.url().should('include', '/certifier/certify');
-    cy.visit('/reporter/user-dashboard');
+    cy.visit('/reporter');
     cy.get('.alert-link').contains('View all certification requests.').click();
     cy.url().should('include', '/certifier/requests');
   });

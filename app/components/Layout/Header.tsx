@@ -26,7 +26,7 @@ const HeaderLayout = ({
             <Row>
               {isIndustry ? (
                 <Col>
-                  <Link href="/reporter/user-dashboard">
+                  <Link href="/reporter">
                     <Button variant="outline-light">Industry</Button>
                   </Link>
                 </Col>

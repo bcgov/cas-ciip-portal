@@ -13,8 +13,8 @@ describe('When logged in as a reporter', () => {
   });
 
   it('The reporter should be able to load all pages within their access scope', () => {
-    cy.visit('/reporter/user-dashboard');
-    cy.url().should('include', '/reporter/user-dashboard');
+    cy.visit('/reporter');
+    cy.url().should('include', '/reporter');
     cy.get('tr');
     cy.contains('View Facilities').click();
     cy.url().should('include', '/reporter/facilities-list');
@@ -42,8 +42,8 @@ describe('When logged in as a reporter', () => {
         cy.get('.admin');
         cy.get('input').click({multiple: true});
         cy.get('.btn-success').click();
-        cy.visit('/reporter/user-dashboard');
-        cy.url().should('include', '/reporter/user-dashboard');
+        cy.visit('/reporter');
+        cy.url().should('include', '/reporter');
         cy.get('tr');
         cy.contains('View Facilities').click();
         cy.url().should('include', '/reporter/facilities-list');
@@ -56,7 +56,7 @@ describe('When logged in as a reporter', () => {
         cy.get('.btn').contains('Submit').click();
         cy.url().should('include', '/reporter/complete-submit');
         cy.contains('Dashboard').click();
-        cy.url().should('include', '/reporter/user-dashboard');
+        cy.url().should('include', '/reporter');
         cy.get('tr');
         cy.contains('View Facilities').click();
         cy.url().should('include', '/reporter/facilities-list');
