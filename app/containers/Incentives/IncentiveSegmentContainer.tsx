@@ -1,7 +1,5 @@
-import getConfig from 'next/config';
 import React from 'react';
 import {createFragmentContainer, graphql} from 'react-relay';
-import MathJax from 'react-mathjax2';
 import {IncentiveSegmentContainer_ciipIncentiveByProduct} from 'IncentiveSegmentContainer_ciipIncentiveByProduct.graphql';
 import BenchmarkChart from 'components/Incentives/BenchmarkChart';
 
@@ -15,30 +13,21 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
   const {
     productName,
     incentiveProduct,
+    incentiveProductMax,
     benchmark,
     eligibilityThreshold,
-    incrementalCarbonTax,
+    incentiveRatio,
+    incentiveMultiplier,
+    paymentAllocationFactor,
     emissionIntensity
   } = ciipIncentiveByProduct;
-
-  const formula = `
-  1 - \\left({ ${emissionIntensity} - ${benchmark}
-    \\over
-    ${eligibilityThreshold} - ${benchmark}
-  }\\right) \\times ${incrementalCarbonTax}`;
 
   return (
     <tr>
       <td>{productName}</td>
-      <td>
-        {process.env.NO_MATHJAX ||
-        getConfig()?.publicRuntimeConfig.NO_MATHJAX ? null : (
-          <MathJax.Context input="tex">
-            <MathJax.Node>{formula}</MathJax.Node>
-          </MathJax.Context>
-        )}
-      </td>
-      <td>CAD {incentiveProduct} </td>
+      <td>{Number.parseFloat(Number(emissionIntensity).toFixed(4))}</td>
+      <td>{Number.parseFloat(Number(benchmark).toFixed(4))}</td>
+      <td>{Number.parseFloat(Number(eligibilityThreshold).toFixed(4))}</td>
       <td>
         <BenchmarkChart
           emissionIntensity={Number(emissionIntensity)}
@@ -46,6 +35,11 @@ const IncentiveSegmentContainer: React.FunctionComponent<Props> = ({
           eligibilityThreshold={Number(eligibilityThreshold)}
         />
       </td>
+      <td>{Number.parseFloat(Number(incentiveRatio).toFixed(4))}</td>
+      <td>{Number.parseFloat(Number(incentiveMultiplier).toFixed(4))}</td>
+      <td>{Number.parseFloat(Number(paymentAllocationFactor).toFixed(4))}</td>
+      <td>{Number(incentiveProduct).toFixed(2)}</td>
+      <td>{Number(incentiveProductMax).toFixed(2)}</td>
       <style jsx>
         {`
           td {
@@ -61,11 +55,15 @@ export default createFragmentContainer(IncentiveSegmentContainer, {
   ciipIncentiveByProduct: graphql`
     fragment IncentiveSegmentContainer_ciipIncentiveByProduct on CiipIncentiveByProduct {
       productName
-      incrementalCarbonTax
-      emissionIntensity
+      incentiveRatio
+      incentiveMultiplier
+      paymentAllocationFactor
       incentiveProduct
+      incentiveProductMax
+      emissionIntensity
       benchmark
       eligibilityThreshold
+      incrementalCarbonTax
     }
   `
 });

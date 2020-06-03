@@ -14,6 +14,7 @@ create type ggircs_portal.ciip_incentive_by_product as (
   payment_allocation_factor numeric,
   incremental_carbon_tax numeric,
   incentive_product numeric,
+  incentive_product_max numeric,
   emission_intensity numeric,
   benchmark numeric,
   eligibility_threshold numeric

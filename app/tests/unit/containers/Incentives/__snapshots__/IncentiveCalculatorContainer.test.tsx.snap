@@ -33,16 +33,34 @@ exports[`IncentiveCalculator should render the page 1`] = `
     <thead>
       <tr>
         <th>
-          Product
+          Product Name
         </th>
         <th>
-          Calculation Breakdown
+          Emission Intensity
         </th>
         <th>
-          Incentive for product
+          Benchmark
         </th>
         <th>
-          Chart
+          Eligibility Threshold
+        </th>
+        <th>
+          Threshold Chart
+        </th>
+        <th>
+          Incentive Ratio
+        </th>
+        <th>
+          Incentive Multiplier
+        </th>
+        <th>
+          Payment Allocation
+        </th>
+        <th>
+          Calculated Incentive (CAD)
+        </th>
+        <th>
+          Maximum Incentive (CAD)
         </th>
       </tr>
     </thead>
