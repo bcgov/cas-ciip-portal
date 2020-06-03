@@ -27,7 +27,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
         >
           <a
             class="jsx-1103754433"
-            href="/reporter/facilities-list?organisationId="
+            href="/reporter/facilities?organisationId="
           >
             My Applications
           </a>

@@ -17,7 +17,7 @@ const Subheader = () => (
           <li>
             <Link
               href={{
-                pathname: '/reporter/facilities-list',
+                pathname: '/reporter/facilities',
                 query: {
                   organisationId: undefined
                 }

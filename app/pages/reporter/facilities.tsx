@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {NextRouter} from 'next/router';
-import {facilitiesListQueryResponse} from 'facilitiesListQuery.graphql';
+import {facilitiesQueryResponse} from 'facilitiesQuery.graphql';
 import SearchTable from 'components/SearchTable';
 import DefaultLayout from 'layouts/default-layout';
 import FacilitiesListContainer from 'containers/Facilities/FacilitiesListContainer';
@@ -10,12 +10,12 @@ import {USER} from 'data/group-constants';
 const ALLOWED_GROUPS = [USER];
 
 interface Props {
-  query: facilitiesListQueryResponse['query'];
+  query: facilitiesQueryResponse['query'];
   router: NextRouter;
 }
 class FacilitiesList extends Component<Props> {
   static query = graphql`
-    query facilitiesListQuery(
+    query facilitiesQuery(
       $orderByField: String
       $direction: String
       $searchField: String

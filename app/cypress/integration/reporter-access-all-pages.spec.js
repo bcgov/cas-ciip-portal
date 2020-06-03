@@ -17,7 +17,7 @@ describe('When logged in as a reporter', () => {
     cy.url().should('include', '/reporter');
     cy.get('tr');
     cy.contains('View Facilities').click();
-    cy.url().should('include', '/reporter/facilities-list');
+    cy.url().should('include', '/reporter/facilities');
     cy.get('tr');
     cy.contains('Resume').click();
     cy.url().should('include', '/reporter/ciip-application-legal-disclaimer');
@@ -46,7 +46,7 @@ describe('When logged in as a reporter', () => {
         cy.url().should('include', '/reporter');
         cy.get('tr');
         cy.contains('View Facilities').click();
-        cy.url().should('include', '/reporter/facilities-list');
+        cy.url().should('include', '/reporter/facilities');
         cy.get('tr');
         cy.contains('Resume').click();
         cy.url().should('include', '/reporter/ciip-application');
@@ -59,7 +59,7 @@ describe('When logged in as a reporter', () => {
         cy.url().should('include', '/reporter');
         cy.get('tr');
         cy.contains('View Facilities').click();
-        cy.url().should('include', '/reporter/facilities-list');
+        cy.url().should('include', '/reporter/facilities');
         cy.get('tr');
         cy.contains('View Submitted').click();
         cy.url().should('include', '/reporter/view-application');
