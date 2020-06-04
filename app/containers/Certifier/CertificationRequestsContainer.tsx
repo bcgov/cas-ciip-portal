@@ -13,8 +13,10 @@ function formatListViewDate(date) {
   return date ? moment.tz(date, TIME_ZONE).format('MMM D, YYYY') : '';
 }
 
-function getDisplayedRequestIds(query) {
-  return query.searchCertificationRequests.edges.map(({node}) => node.certificationUrlByCertificationUrlId.id);
+function getCertifiableRequestIds(query) {
+  return query.searchCertificationRequests.edges
+    .filter(({node}) => !node.certifiedAt)
+    .map(({node}) => node.certificationUrlByCertificationUrlId.id);
 }
 
 function isAllSelected(ids, selections) {
@@ -45,7 +47,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   relay,
   query
 }) => {
-  const displayedRequestIds = useRef(getDisplayedRequestIds(query));
+  const certifiableRequestIds = useRef(getCertifiableRequestIds(query));
   const refetchQueryInitialized = useRef(false);
 
   const [offsetValue, setOffset] = useState(0);
@@ -60,11 +62,11 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
     };
     relay.refetch(refetchVariables, undefined, (error) => {
       if (error) return;
-      displayedRequestIds.current = getDisplayedRequestIds(query);
+      certifiableRequestIds.current = getCertifiableRequestIds(query);
 
       if (refetchQueryInitialized.current) {
         const resolvedSelections = selections.filter((id) =>
-          displayedRequestIds.current.includes(id)
+          certifiableRequestIds.current.includes(id)
         );
         notifySelections(resolvedSelections);
       }
@@ -92,7 +94,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   };
 
   const onSelectAll = (selectAll) => {
-    notifySelections(selectAll ? displayedRequestIds.current.slice() : []);
+    notifySelections(selectAll ? certifiableRequestIds.current.slice() : []);
   };
 
   const body = (
@@ -114,11 +116,13 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
           <tr key={node.certificationUrlByCertificationUrlId.id}>
             <td className="checkbox-cell">
               <label>
-                <input
-                  type="checkbox"
-                  checked={selections.includes(node.certificationUrlByCertificationUrlId.id)}
-                  onChange={(e) => onCheck(e.target.checked, node.certificationUrlByCertificationUrlId.id)}
-                />
+                {!node.certifiedAt && (
+                  <input
+                    type="checkbox"
+                    checked={selections.includes(node.certificationUrlByCertificationUrlId.id)}
+                    onChange={(e) => onCheck(e.target.checked, node.certificationUrlByCertificationUrlId.id)}
+                  />
+                )}
               </label>
             </td>
             <td>{facility}</td>
@@ -164,7 +168,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   return (
     <>
       <SearchTableLayout
-        allSelected={isAllSelected(displayedRequestIds.current, selections)}
+        allSelected={isAllSelected(certifiableRequestIds.current, selections)}
         body={body}
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
