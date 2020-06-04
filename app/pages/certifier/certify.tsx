@@ -32,13 +32,14 @@ class Certify extends Component<Props> {
           )
         application(id: $applicationId) {
           latestDraftRevision {
+            certificationSignatureIsValid
             certificationUrl {
+              id
               certificationSignature
               hashMatches
               ...ApplicationRecertificationContainer_certificationUrl
             }
           }
-          ...CertificationSignature_application
           ...ApplicationDetailsContainer_application
             @arguments(version: $version)
         }
@@ -85,7 +86,15 @@ class Certify extends Component<Props> {
                 liveValidate={false}
               />
               {LegalDisclaimer}
-              <CertificationSignature application={query.application} />
+              <CertificationSignature
+                certificationIdsToSign={[
+                  query.application.latestDraftRevision.certificationUrl.id
+                ]}
+                submitted={
+                  query.application.latestDraftRevision
+                    .certificationSignatureIsValid
+                }
+              />
             </>
           ) : (
             <ApplicationRecertificationContainer

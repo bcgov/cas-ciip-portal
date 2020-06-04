@@ -10,6 +10,7 @@ import {USER} from 'data/group-constants';
 import SearchTable from 'components/SearchTable';
 import CertificationRequestsContainer from 'containers/Certifier/CertificationRequestsContainer';
 import SignatureDisclaimerCard from 'components/SignatureDisclaimerCard';
+import CertificationSignature from 'containers/Forms/CertificationSignature';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -86,14 +87,19 @@ export default class CertifierRequests extends Component<Props> {
           )}
         </SearchTable>
         {this.state.selectedRequests.length > 0 && (
-          <SignatureDisclaimerCard>
-            Please review the information below before approving all the
-            applications selected above.{' '}
-            <a href="/resources/disclaimer" target="_blank">
-              (<FontAwesomeIcon icon={faExternalLinkAlt} />
-              expand)
-            </a>
-          </SignatureDisclaimerCard>
+          <>
+            <SignatureDisclaimerCard>
+              Please review the information below before approving all the
+              applications selected above.{' '}
+              <a href="/resources/disclaimer" target="_blank">
+                (<FontAwesomeIcon icon={faExternalLinkAlt} />
+                expand)
+              </a>
+            </SignatureDisclaimerCard>
+            <CertificationSignature
+              certificationIdsToSign={this.state.selectedRequests}
+            />
+          </>
         )}
       </DefaultLayout>
     );
