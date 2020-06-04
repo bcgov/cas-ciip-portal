@@ -147,7 +147,7 @@
     "isomorphic-fetch": "^2.2.1",
     "keycloak-connect": "^10.0.0",
     "moment-timezone": "^0.5.31",
-    "next": "^9.4.2",
+    "next": "^9.4.4",
     "nodemailer": "^6.4.5",
     "pg": "^8.2.0",
     "popper.js": "^1.15.0",
