@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default () => {
+const LegalDisclaimerText: React.FunctionComponent = () => {
   return (
     <>
       <ol id="glossary">
@@ -137,3 +137,5 @@ export default () => {
     </>
   );
 };
+
+export default LegalDisclaimerText;

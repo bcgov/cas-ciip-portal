@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Program application-specific disclaimer page It matches the last accepted Snapshot 1`] = `
+<Relay(DefaultLayout)
+  needsSession={false}
+  needsUser={false}
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  title="CIIP Application Disclaimer"
+>
+  <Container
+    fluid={false}
+  >
+    <LegalDisclaimerText />
+  </Container>
+</Relay(DefaultLayout)>
+`;
