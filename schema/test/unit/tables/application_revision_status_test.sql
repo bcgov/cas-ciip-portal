@@ -79,6 +79,12 @@ alter table ggircs_portal.application_revision_status disable trigger _check_cer
 alter table ggircs_portal.application_revision_status disable trigger _read_only_status_for_non_current_version;
 alter table ggircs_portal.certification_url disable trigger _check_form_result_md5;
 alter table ggircs_portal.certification_url disable trigger _create_form_result_md5;
+alter table ggircs_portal.ciip_user_organisation
+  disable trigger _send_request_for_access_email;
+alter table ggircs_portal.ciip_user_organisation
+  disable trigger _send_access_approved_email;
+alter table ggircs_portal.application
+  disable trigger _send_draft_application_email;
 
 -- User 999 has access to application_revision 999, but not application_revision 1000
 insert into ggircs_portal.ciip_user(id, uuid) overriding system value

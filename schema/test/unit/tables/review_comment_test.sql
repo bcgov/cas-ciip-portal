@@ -84,6 +84,12 @@ alter table ggircs_portal.ciip_user_organisation
 alter table ggircs_portal.review_comment
   disable trigger _100_timestamps;
 alter table ggircs_portal.ciip_user disable trigger _welcome_email;
+alter table ggircs_portal.ciip_user_organisation
+  disable trigger _send_request_for_access_email;
+alter table ggircs_portal.ciip_user_organisation
+  disable trigger _send_access_approved_email;
+alter table ggircs_portal.application
+  disable trigger _send_draft_application_email;
 
 -- User 999 has access to review comment 999, but not review_comment 1000
 insert into ggircs_portal.ciip_user(id, uuid) overriding system value
