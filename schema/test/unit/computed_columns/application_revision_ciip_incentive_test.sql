@@ -95,6 +95,8 @@ values
 
 
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
+alter table ggircs_portal.application
+  disable trigger _send_draft_application_email;
 
 -- Set a jwt token so that the created_by columns are not null on creation of application;
 set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';

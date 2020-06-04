@@ -11,6 +11,11 @@ select has_function(
   'Function search_ciip_user_organisation should exist'
 );
 
+alter table ggircs_portal.ciip_user_organisation
+  disable trigger _send_request_for_access_email;
+alter table ggircs_portal.ciip_user_organisation
+  disable trigger _send_access_approved_email;
+
 -- Mock session sub (required for insert trigger function on ciip_user_organisation)
 set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
 -- insert test data into ciip_user_organisation

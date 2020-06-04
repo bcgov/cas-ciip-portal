@@ -12,6 +12,8 @@ select has_function(
 );
 
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
+alter table ggircs_portal.application
+  disable trigger _send_draft_application_email;
 truncate ggircs_portal.application cascade;
 
 -- Call create application_mutation_chain to create a test application

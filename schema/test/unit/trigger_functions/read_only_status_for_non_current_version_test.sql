@@ -22,6 +22,8 @@ $$
   offset 2;
 $$ language sql;
 
+alter table ggircs_portal.application
+  disable trigger _send_draft_application_email;
 truncate ggircs_portal.application restart identity cascade;
 
 select ggircs_portal.create_application_mutation_chain(1);

@@ -21,7 +21,7 @@ begin
     when tg_argv[0]='status_change' then
 
       -- Do not send any mail when a draft revision is created
-      if (new.application_revision_status = 'draft') then
+      if (new.application_revision_status = 'draft' or new.version_number = 0) then
         return new;
       end if;
 
@@ -44,6 +44,14 @@ begin
       case
         when new.application_revision_status = 'submitted' then
           status_change_type := 'status_change_submitted';
+          perform ggircs_portal_private.graphile_worker_job_definer(
+            'sendMail',
+            json_build_object(
+              'type', 'notify_admin_submitted',
+              'facilityName', application_details.facility_name,
+              'operatorName', application_details.operator_name
+            )
+          );
         else
           status_change_type := 'status_change_other';
       end case;

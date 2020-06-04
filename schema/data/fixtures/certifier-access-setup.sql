@@ -8,6 +8,10 @@ begin;
 
 alter table ggircs_portal.ciip_user_organisation
   disable trigger _set_user_id;
+alter table ggircs_portal.ciip_user_organisation
+  disable trigger _send_request_for_access_email;
+alter table ggircs_portal.ciip_user_organisation
+  disable trigger _send_access_approved_email;
 alter table ggircs_portal.application_revision_status
   disable trigger _status_change_email;
 alter table ggircs_portal.certification_url
@@ -18,6 +22,8 @@ alter table ggircs_portal.certification_url
   disable trigger _random_id;
 alter table ggircs_portal.certification_url
   disable trigger _100_timestamps;
+alter table ggircs_portal.application
+  disable trigger _send_draft_application_email;
 
 truncate ggircs_portal.certification_url restart identity cascade;
 truncate ggircs_portal.application restart identity cascade;

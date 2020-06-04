@@ -5,6 +5,11 @@ const createAmendmentMail = require('../emailTemplates/amendment.js');
 const createCertificationRequestMail = require('../emailTemplates/certificationRequest.js');
 const createSignedByCertifierMail = require('../emailTemplates/signedByCertifier.js');
 const createRecertificationRequestMail = require('../emailTemplates/recertificationRequest.js');
+const createOrganisationAccessRequestMail = require('../emailTemplates/requestForOrganisationAccess.js');
+const createOrganisationAccessApprovedMail = require('../emailTemplates/organisationAccessApproved.js');
+const createNotifyAdminApplicationSubmittedMail = require('../emailTemplates/notifyAdminApplicationSubmitted.js');
+const createNotifyAdminAccessRequestMail = require('../emailTemplates/notifyAdminOrganisationAccess');
+const createDraftApplicationStartedMail = require('../emailTemplates/draftApplicationStarted');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -104,6 +109,54 @@ module.exports = async ({
         facilityName,
         operatorName
       });
+      break;
+    case 'request_for_organisation_access':
+      subject = 'Organisation Access Requested';
+      htmlContent = createOrganisationAccessRequestMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName
+      });
+      break;
+    case 'organisation_access_approved':
+      subject = 'Organisation Access Approved';
+      htmlContent = createOrganisationAccessApprovedMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName
+      });
+      break;
+    case 'notify_admin_submitted':
+      subject = 'Application Submission';
+      htmlContent = createNotifyAdminApplicationSubmittedMail({
+        facilityName,
+        operatorName
+      });
+      email = process.env.ADMIN_EMAIL;
+      break;
+    case 'notify_admin_organisation_access':
+      subject = 'Organisation Access Request';
+      htmlContent = createNotifyAdminAccessRequestMail({
+        firstName,
+        lastName,
+        operatorName
+      });
+      email = process.env.ADMIN_EMAIL;
+      break;
+    case 'draft_application_started':
+      subject = 'Draft Application Started';
+      htmlContent = createDraftApplicationStartedMail({
+        firstName,
+        lastName,
+        email,
+        operatorName,
+        facilityName
+      });
+      email = process.env.ADMIN_EMAIL;
       break;
     default:
       htmlContent = null;

@@ -18,6 +18,16 @@ begin;
     for each row
     execute procedure ggircs_portal_private.set_user_id();
 
+  create trigger _send_request_for_access_email
+    before insert on ggircs_portal.ciip_user_organisation
+    for each row
+    execute procedure ggircs_portal_private.request_for_organisation_access();
+
+  create trigger _send_access_approved_email
+  before update of status on ggircs_portal.ciip_user_organisation
+  for each row
+  execute procedure ggircs_portal_private.organisation_access_approved();
+
   create unique index user_organisation_user_id_organisation_id_uindex on ggircs_portal.ciip_user_organisation(user_id, organisation_id);
 
   do

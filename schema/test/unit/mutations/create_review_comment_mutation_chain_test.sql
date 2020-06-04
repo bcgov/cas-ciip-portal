@@ -10,6 +10,9 @@ select has_function(
   'Function create_review_comment_mutation_chain should exist'
 );
 
+alter table ggircs_portal.application
+  disable trigger _send_draft_application_email;
+
 -- Insert organisation & facility test data
 insert into ggircs_portal.organisation(operator_name) values ('test org');
 insert into ggircs_portal.facility(organisation_id, facility_name) values (1, 'test facility');

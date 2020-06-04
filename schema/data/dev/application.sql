@@ -9,6 +9,7 @@ begin;
   select 'Dropping old application data: ';
   truncate ggircs_portal.application restart identity cascade;
 
+  alter table ggircs_portal.application disable trigger _send_draft_application_email;
   alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 
   -- Set a jwt token so that the created_by columns are not null on creation of application;
@@ -26,5 +27,6 @@ begin;
   update ggircs_portal.application_revision set legal_disclaimer_accepted = true where application_id=1;
 
   alter table ggircs_portal.application_revision_status enable trigger _status_change_email;
+  alter table ggircs_portal.application enable trigger _send_draft_application_email;
 
 commit;

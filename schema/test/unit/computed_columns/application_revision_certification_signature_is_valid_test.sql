@@ -14,6 +14,8 @@ truncate ggircs_portal.application restart identity cascade;
 truncate ggircs_portal.certification_url cascade;
 alter table ggircs_portal.application_revision_status disable trigger _status_change_email;
 alter table ggircs_portal.certification_url disable trigger _signed_by_certifier_email;
+alter table ggircs_portal.application
+  disable trigger _send_draft_application_email;
 
 -- Call create application_mutation_chain to create a test application
 select ggircs_portal.create_application_mutation_chain(1);
