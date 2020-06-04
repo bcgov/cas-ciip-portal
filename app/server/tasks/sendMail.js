@@ -9,6 +9,7 @@ const createOrganisationAccessRequestMail = require('../emailTemplates/requestFo
 const createOrganisationAccessApprovedMail = require('../emailTemplates/organisationAccessApproved.js');
 const createNotifyAdminApplicationSubmittedMail = require('../emailTemplates/notifyAdminApplicationSubmitted.js');
 const createNotifyAdminAccessRequestMail = require('../emailTemplates/notifyAdminOrganisationAccess');
+const createDraftApplicationStartedMail = require('../emailTemplates/draftApplicationStarted');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -143,6 +144,17 @@ module.exports = async ({
         firstName,
         lastName,
         operatorName
+      });
+      email = process.env.ADMIN_EMAIL;
+      break;
+    case 'draft_application_started':
+      subject = 'Draft Application Started';
+      htmlContent = createDraftApplicationStartedMail({
+        firstName,
+        lastName,
+        email,
+        operatorName,
+        facilityName
       });
       email = process.env.ADMIN_EMAIL;
       break;

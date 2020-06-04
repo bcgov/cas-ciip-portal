@@ -21,6 +21,7 @@ trigger_functions/check_for_immutable_application_revision_status [schema_ggircs
 trigger_functions/protect_read_only_products [schema_ggircs_portal_private] 2020-05-04T17:54:24Z Dylan Leard <dylan@button.is> # Trigger function protects any product rows/columns that should be read only
 trigger_functions/request_for_organisation_access [schema_ggircs_portal] 2020-06-03T22:05:30Z Dylan Leard <ddylan@button.is> # Trigger function sends an email to a reporter when they have requested access to an organisation
 trigger_functions/organisation_access_approved [schema_ggircs_portal] 2020-06-03T23:08:20Z Dylan Leard <dylan@button.is> # Trigger function sends an email when organisation access has been approved
+trigger_functions/draft_application_started [schema_ggircs_portal] 2020-06-04T00:08:08Z Dylan Leard <dylan@button.is> # Trigger sends an email to the reporter when they begin a draft application
 types/jwt_token [schema_ggircs_portal] 2019-10-17T00:28:40Z Alec Wenzowski <alec@button.is> # Add a schema for Keycloak JWT Tokens
 function_session [schema_ggircs_portal types/jwt_token] 2019-10-17T01:02:35Z Alec Wenzowski <alec@button.is> # Something
 types/ciip_user_organisation_status [schema_ggircs_portal] 2019-11-06T21:07:19Z Helen Liu <helen@button.is> # added new type file ciip_user_organisation_status

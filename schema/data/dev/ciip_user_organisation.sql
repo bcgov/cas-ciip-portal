@@ -7,9 +7,11 @@ begin;
 
   -- Temporarily disable _set_user_id trigger in order to hardcode user_id into table ccip_user_organisation
   alter table ggircs_portal.ciip_user_organisation
-  disable trigger _set_user_id;
+    disable trigger _set_user_id;
   alter table ggircs_portal.ciip_user_organisation
-  disable trigger _send_request_for_access_email;
+    disable trigger _send_request_for_access_email;
+  alter table ggircs_portal.ciip_user_organisation
+    disable trigger _send_access_approved_email;
 
   with rows as (
   insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id, status)
@@ -30,8 +32,10 @@ begin;
 
   -- Re-enable _set_user_id trigger
   alter table ggircs_portal.ciip_user_organisation
-  enable trigger _set_user_id;
+    enable trigger _set_user_id;
   alter table ggircs_portal.ciip_user_organisation
-  enable trigger _send_request_for_access_email;
+    enable trigger _send_request_for_access_email;
+  alter table ggircs_portal.ciip_user_organisation
+    enable trigger _send_access_approved_email;
 
 commit;

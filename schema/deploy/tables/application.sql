@@ -11,6 +11,11 @@ create table ggircs_portal.application (
     reporting_year int references ggircs_portal.reporting_year(reporting_year)
 );
 
+create trigger _send_draft_application_email
+  before insert on ggircs_portal.application
+  for each row
+  execute procedure ggircs_portal_private.draft_application_started();
+
 do
 $grant$
 begin

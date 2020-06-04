@@ -21,7 +21,7 @@ begin
     when tg_argv[0]='status_change' then
 
       -- Do not send any mail when a draft revision is created
-      if (new.application_revision_status = 'draft') then
+      if (new.application_revision_status = 'draft' or new.version_number = 0) then
         return new;
       end if;
 
