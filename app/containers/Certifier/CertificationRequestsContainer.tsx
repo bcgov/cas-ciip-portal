@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {Button, Alert} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import moment from 'moment-timezone';
 import Link from 'next/link';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
@@ -161,11 +161,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   const totalRequestCount =
     query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount || 0;
 
-  return query.searchCertificationRequests.edges.length === 0 ? (
-    <Alert variant="info">
-      You have no current certification requests matching your search criteria.
-    </Alert>
-  ) : (
+  return (
     <>
       <SearchTableLayout
         allSelected={isAllSelected(displayedRequestIds.current, selections)}
