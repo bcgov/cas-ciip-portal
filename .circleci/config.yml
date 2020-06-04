@@ -418,6 +418,7 @@ jobs:
           environment:
             SMTP_CONNECTION_STRING: smtp://@localhost:1025
             SENDER_EMAIL: BCCAS <example@cas.com>
+            ADMIN_EMAIL: GHGRegulator@gov.bc.ca
           command: |
             source ~/.asdf/asdf.sh
             pushd app
@@ -455,6 +456,7 @@ jobs:
           environment:
             SMTP_CONNECTION_STRING: smtp://@localhost:1025
             SENDER_EMAIL: BCCAS <example@cas.com>
+            ADMIN_EMAIL: GHGRegulator@gov.bc.ca
           command: |
             source ~/.asdf/asdf.sh
             pushd app

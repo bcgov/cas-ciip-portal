@@ -7,6 +7,8 @@ const createSignedByCertifierMail = require('../emailTemplates/signedByCertifier
 const createRecertificationRequestMail = require('../emailTemplates/recertificationRequest.js');
 const createOrganisationAccessRequestMail = require('../emailTemplates/requestForOrganisationAccess.js');
 const createOrganisationAccessApprovedMail = require('../emailTemplates/organisationAccessApproved.js');
+const createNotifyAdminApplicationSubmittedMail = require('../emailTemplates/notifyAdminApplicationSubmitted.js');
+const createNotifyAdminAccessRequestMail = require('../emailTemplates/notifyAdminOrganisationAccess');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -108,7 +110,6 @@ module.exports = async ({
       });
       break;
     case 'request_for_organisation_access':
-      console.log('here');
       subject = 'Organisation Access Requested';
       htmlContent = createOrganisationAccessRequestMail({
         email,
@@ -119,7 +120,6 @@ module.exports = async ({
       });
       break;
     case 'organisation_access_approved':
-      console.log('here');
       subject = 'Organisation Access Approved';
       htmlContent = createOrganisationAccessApprovedMail({
         email,
@@ -128,6 +128,23 @@ module.exports = async ({
         facilityName,
         operatorName
       });
+      break;
+    case 'notify_admin_submitted':
+      subject = 'Application Submission';
+      htmlContent = createNotifyAdminApplicationSubmittedMail({
+        facilityName,
+        operatorName
+      });
+      email = process.env.ADMIN_EMAIL;
+      break;
+    case 'notify_admin_organisation_access':
+      subject = 'Organisation Access Request';
+      htmlContent = createNotifyAdminAccessRequestMail({
+        firstName,
+        lastName,
+        operatorName
+      });
+      email = process.env.ADMIN_EMAIL;
       break;
     default:
       htmlContent = null;

@@ -66,6 +66,8 @@ objects:
             value: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
           - name: SENDER_EMAIL
             value: no-reply.cas@gov.bc.ca
+          - name: ADMIN_EMAIL
+            value: GHGRegulator@gov.bc.ca
           - name: FEEDBACK_SITE_URL
             value: https://ciip-portal-${OC_PROJECT}-feedback.pathfinder.gov.bc.ca
           - name: HOST
