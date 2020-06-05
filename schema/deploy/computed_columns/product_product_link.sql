@@ -17,7 +17,7 @@ begin;
             from ggircs_portal.product_link pl
             where pl.product_id = input_product.id
           )
-          select * from ggircs_portal.product p
+          select p.* from ggircs_portal.product p
             join linked_ids li
             on p.id = li.linked_product_id
             and p.product_state = 'published'
