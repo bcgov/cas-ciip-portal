@@ -4,7 +4,8 @@
 begin;
 
 create type ggircs_portal.search_certification_url_result as (
-    id varchar(1000),
+    id bigint,
+    certification_url_id varchar(1000),
     application_id integer,
     version_number integer,
     certified_at timestamptz,
@@ -18,5 +19,6 @@ create type ggircs_portal.search_certification_url_result as (
 );
 
 comment on type ggircs_portal.search_certification_url_result is '@primaryKey (id)
-@foreignKey (application_id) references ggircs_portal.application(id)';
+@foreignKey (application_id) references ggircs_portal.application(id)
+@foreignKey (certification_url_id) references ggircs_portal.certification_url(id)';
 commit;

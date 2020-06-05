@@ -26482,6 +26482,30 @@
               "deprecationReason": null
             },
             {
+              "name": "certificationUrlByCertificationUrlId",
+              "description": "Reads a single `CertificationUrl` that is related to this `SearchCertificationUrlResult`.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CertificationUrl",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "certificationUrlId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "certifiedAt",
               "description": null,
               "args": [],
@@ -26559,7 +26583,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "BigInt",
                 "ofType": null
               },
               "isDeprecated": false,

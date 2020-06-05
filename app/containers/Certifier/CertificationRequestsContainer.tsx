@@ -72,8 +72,10 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
         else if (!node.certifiedByFirstName && node.certifiedByLastName)
           certifierName = node.certifiedByLastName;
 
+        if (!node?.certificationUrlByCertificationUrlId?.id) return null;
+
         return (
-          <tr key={node.rowId}>
+          <tr key={node.certificationUrlByCertificationUrlId.id}>
             <td>{facility}</td>
             <td>{organisation}</td>
             <td>{status}</td>
@@ -153,6 +155,9 @@ export default createRefetchContainer(
               certifiedByLastName
               totalRequestCount
               applicationByApplicationId {
+                id
+              }
+              certificationUrlByCertificationUrlId {
                 id
               }
             }

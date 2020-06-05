@@ -4,6 +4,7 @@
 -- requires: views/ciip_electricity_and_heat
 
 begin;
+
 -- Function takes application id and version number:
 create or replace function ggircs_portal.application_revision_ciip_incentive(application_revision ggircs_portal.application_revision)
 returns setof ggircs_portal.ciip_incentive_by_product as $function$
@@ -27,6 +28,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     product_data ggircs_portal.product;
     product_return ggircs_portal.ciip_incentive_by_product;
     non_energy_product_count integer;
+    has_products boolean;
 
   begin
 
@@ -49,6 +51,15 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         version_number = application_revision.version_number
         and application_id = application_revision.application_id
     );
+
+    has_products := (select product_id from ggircs_portal.ciip_production  where
+        version_number = application_revision.version_number
+        and application_id = application_revision.application_id limit 1) is not null;
+
+    -- Validate that application is not missing any required energy products
+    if has_products=true then
+      perform ggircs_portal_private.validate_energy_products(reported_products);
+    end if;
 
     -- ** Test for invalid number of products when a reported product.requires_emission_allocation = false ** --
     non_energy_product_count := (
