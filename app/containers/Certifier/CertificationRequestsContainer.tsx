@@ -72,8 +72,10 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
         else if (!node.certifiedByFirstName && node.certifiedByLastName)
           certifierName = node.certifiedByLastName;
 
+        if (!node?.certificationUrlByCertificationUrlId?.id) return null;
+
         return (
-          <tr key={node?.certificationUrlByCertificationUrlId?.id}>
+          <tr key={node.certificationUrlByCertificationUrlId.id}>
             <td>{facility}</td>
             <td>{organisation}</td>
             <td>{status}</td>
