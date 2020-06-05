@@ -1,3 +1,14 @@
+/** NOTE:
+
+  The existence and order of these energy products is vital to:
+    - schema/deploy/computed_columns/application_revision_ciip_incentive.sql
+    - app/containers/Forms/Form.tsx
+  These files depend on these id's being in order from 1-7.
+  If any of these products are removed or their order in the products table is changed,
+  an update to these files will be required.
+
+**/
+
 begin;
 
 alter table ggircs_portal.product disable trigger _protect_read_only_products;
