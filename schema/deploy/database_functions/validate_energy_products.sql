@@ -52,6 +52,5 @@ create or replace function ggircs_portal_private.validate_energy_products(
     end;
 
     $function$ language 'plpgsql' stable;
-  end;
 
 commit;

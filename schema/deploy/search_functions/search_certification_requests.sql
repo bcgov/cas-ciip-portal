@@ -34,7 +34,7 @@ begin;
 
                       searchResult as (
                         select
-                        select row_number() over () as id,
+                        row_number() over () as id,
                         c.id as certification_url_id,
                         c.application_id,
                         c.version_number ,
