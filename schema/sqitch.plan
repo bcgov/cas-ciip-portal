@@ -126,4 +126,5 @@ policies/review_comment_policies [tables/review_comment] 2020-05-19T21:57:08Z Dy
 search_functions/search_certification_requests [tables/certification_url] 2020-05-22T23:03:47Z Dylan Leard <dylan@button.is> # Search function to retrieve a list of certification urls and related info for a certifier
 @v1.0.0-rc.1 2020-06-05T23:18:57Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.1
 tables/product_link [schema_ggircs_portal] 2020-06-05T21:12:40Z Dylan Leard <dylan@button.is> # Table contains links for products that require reporting other products
-policies/product_link_policies [tables/product_link] 2020-06-05T22:19:31Z Dylan Leard,,, <dleard@dleard-Aspire-V5-591G> # Applies row-level security policies for product_link table
+policies/product_link_policies [tables/product_link] 2020-06-05T22:19:31Z Dylan Leard <dylan@button.is> # Applies row-level security policies for product_link table
+computed_columns/product_product_link [tables/product_link] 2020-06-05T22:36:32Z Dylan Leard <dylan@button.is> # Computed column returns a set of linked products that exist for a product id
