@@ -31,14 +31,14 @@ insert into ggircs_portal.product (
 )
 overriding system value
 values
-  (1, 'Purchased electricity', 'published',
-  true, false, true, false, false, false, false, false, false, false, true),
-  (2, 'Exported electricity', 'published',
+  (1, 'Exported electricity', 'published',
   true, true, true, false, false, false, false, false, false, false, true),
-  (3, 'Purchased heat', 'published',
+  (3, 'Purchased electricity', 'published',
   true, false, true, false, false, false, false, false, false, false, true),
-  (4, 'Exported heat', 'published',
+  (2, 'Exported heat', 'published',
   true, true, true, false, false, false, false, false, false, false, true),
+  (4, 'Purchased heat', 'published',
+  true, false, true, false, false, false, false, false, false, false, true),
   (5, 'Electricity generated on site', 'published',
   true, false, true, false, false, false, false, false, false, false, true),
   (6, 'Heat generated on site', 'published',
@@ -236,7 +236,7 @@ set form_result = '[
     "productAmount": 100
   },
   {
-    "productRowId": 1,
+    "productRowId": 3,
     "productAmount": 42,
     "productEmissions": 11
   }
@@ -258,7 +258,31 @@ select is(
   'purchased electricity emissions are added to the facility emissions for products that require it'
 );
 
--- Report a product with no allocation of emissions which requires "Purchased Heat" to be reported
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 12,
+    "productAmount": 100
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select throws_like(
+  $$
+
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select * from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    )
+  $$,
+  '%Reported product requires purchased_electricity%',
+  'throws an exception if a product requires purchased electricity and it is not present'
+);
+
+-- Report a product with no allocation of emissions which requires "Exported Electricity" to be reported
 update ggircs_portal.form_result
 set form_result = '[
   {
@@ -266,7 +290,7 @@ set form_result = '[
     "productAmount": 100
   },
   {
-    "productRowId": 2,
+    "productRowId": 1,
     "productAmount": 42,
     "productEmissions": 12
   }
@@ -288,7 +312,31 @@ select is(
   'exported electricity emissions are added to the facility emissions for products that require it'
 );
 
--- Report a product with no allocation of emissions which requires "Exported Electricity" to be reported
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 13,
+    "productAmount": 100
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select throws_like(
+  $$
+
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select * from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    )
+  $$,
+  '%Reported product requires exported_electricity%',
+  'throws an exception if a product requires exported electricity and it is not present'
+);
+
+-- Report a product with no allocation of emissions which requires "Purchased Heat" to be reported
 update ggircs_portal.form_result
 set form_result = '[
   {
@@ -296,7 +344,7 @@ set form_result = '[
     "productAmount": 100
   },
   {
-    "productRowId": 3,
+    "productRowId": 4,
     "productAmount": 42,
     "productEmissions": 13
   }
@@ -318,7 +366,31 @@ select is(
   'purchased heat emissions are removed from the facility emissions for products that require it'
 );
 
--- Report a product with no allocation of emissions which requires "Expported Heat" to be reported
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 14,
+    "productAmount": 100
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select throws_like(
+  $$
+
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select * from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    )
+  $$,
+  '%Reported product requires purchased_heat%',
+  'throws an exception if a product requires purchased heat and it is not present'
+);
+
+-- Report a product with no allocation of emissions which requires "Exported Heat" to be reported
 update ggircs_portal.form_result
 set form_result = '[
   {
@@ -326,7 +398,7 @@ set form_result = '[
     "productAmount": 100
   },
   {
-    "productRowId": 4,
+    "productRowId": 2,
     "productAmount": 42,
     "productEmissions": 14
   }
@@ -346,6 +418,30 @@ select is(
   ),
   36.0,
   'exported heat emissions are removed from the facility emissions for products that require it'
+);
+
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 15,
+    "productAmount": 100
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select throws_like(
+  $$
+
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select * from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    )
+  $$,
+  '%Reported product requires exported_heat%',
+  'throws an exception if a product requires exported heat and it is not present'
 );
 
 -- Report a product with no allocation of emissions which requires "EIO Emissions" to be reported
@@ -376,6 +472,30 @@ select is(
   ),
   61.0,
   'EIO Emissions are added to the facility emissions for products that require it'
+);
+
+update ggircs_portal.form_result
+set form_result = '[
+  {
+    "productRowId": 18,
+    "productAmount": 100
+  }
+]'
+where application_id = 1 and version_number = 1 and form_id = 4;
+
+select throws_like(
+  $$
+
+    with record as (
+      select row(application_revision.*)::ggircs_portal.application_revision
+      from ggircs_portal.application_revision where application_id = 1 and version_number = 1
+    )
+    select * from ggircs_portal.application_revision_ciip_incentive(
+      (select * from record)
+    )
+  $$,
+  '%Reported product requires emissions_from_eios%',
+  'throws an exception if a product requires emissions from eios and it is not present'
 );
 
 -- Report 2 non-energy products with requires_emission_allocation = false

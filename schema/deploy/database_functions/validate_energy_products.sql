@@ -44,10 +44,11 @@ create or replace function ggircs_portal_private.validate_energy_products(
             when (product_data.add_emissions_from_eios and (select not 7 = any (product_ids))) then
               raise exception 'Reported product requires emissions_from_eios to be reported, but emissions_from_eios is missing';
             else
-              select true;
+              return;
           end case;
 
         end loop;
+      return;
     end;
 
     $function$ language 'plpgsql' stable;

@@ -28,6 +28,7 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
     product_data ggircs_portal.product;
     product_return ggircs_portal.ciip_incentive_by_product;
     non_energy_product_count integer;
+    has_products boolean;
 
   begin
 
@@ -51,8 +52,12 @@ returns setof ggircs_portal.ciip_incentive_by_product as $function$
         and application_id = application_revision.application_id
     );
 
+    has_products := (select product_id from ggircs_portal.ciip_production  where
+        version_number = application_revision.version_number
+        and application_id = application_revision.application_id limit 1) is not null;
+
     -- Validate that application is not missing any required energy products
-    if (select array_length(reported_products, 1)) > 0 and (select reported_products[0].product_id) is not null then
+    if has_products=true then
       perform ggircs_portal_private.validate_energy_products(reported_products);
     end if;
 
