@@ -100,6 +100,8 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
         {`
           .signatureCanvas {
             border: 1px solid #bbb;
+            padding: 30px;
+            width: 80%;
             background: #eee;
             border-radius: 6px;
             margin-bottom: 60px;

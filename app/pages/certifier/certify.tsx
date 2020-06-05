@@ -104,18 +104,6 @@ class Certify extends Component<Props> {
             />
           )}
         </DefaultLayout>
-        <style jsx global>
-          {`
-            .signatureCanvas {
-              border: 1px solid #bbb;
-              padding: 30px;
-              width: 80%;
-              background: #eee;
-              border-radius: 6px;
-              margin-bottom: 60px;
-            }
-          `}
-        </style>
       </>
     );
   }
