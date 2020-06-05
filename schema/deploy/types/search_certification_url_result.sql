@@ -5,7 +5,7 @@ begin;
 
 create type ggircs_portal.search_certification_url_result as (
     id bigint,
-    certification_url_id varchar(1000)
+    certification_url_id varchar(1000),
     application_id integer,
     version_number integer,
     certified_at timestamptz,
