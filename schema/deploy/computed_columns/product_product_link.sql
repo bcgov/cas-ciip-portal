@@ -6,7 +6,7 @@ begin;
   create or replace function ggircs_portal.product_product_link(
     input_product ggircs_portal.product
   )
-    returns set of ggircs_portal.product
+    returns setof ggircs_portal.product
     as
     $function$
 
@@ -20,7 +20,7 @@ begin;
           select * from ggircs_portal.product p
             join linked_ids li
             on p.id = li.linked_product_id
-            and p.product_state = 'published';
+            and p.product_state = 'published'
         );
     end;
     $function$
