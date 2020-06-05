@@ -44,11 +44,14 @@ export default class CertifierRequests extends Component<Props> {
     }
   `;
 
-  state = {selectedRequests: []};
+  state = {selectedRequests: [], forceRefetch: 0};
 
   constructor(props) {
     super(props);
     this.updateSelections = this.updateSelections.bind(this);
+    this.resetSelectionsAfterSubmission = this.resetSelectionsAfterSubmission.bind(
+      this
+    );
   }
 
   static async getInitialProps() {
@@ -61,8 +64,23 @@ export default class CertifierRequests extends Component<Props> {
     };
   }
 
+  resetSelectionsAfterSubmission() {
+    this.setState((prev: any) => {
+      return {
+        ...prev,
+        forceRefetch: Number(prev.forceRefetch) + 1,
+        selectedRequests: []
+      };
+    });
+  }
+
   updateSelections(selectedRequests) {
-    this.setState({selectedRequests});
+    this.setState((prev) => {
+      return {
+        ...prev,
+        selectedRequests
+      };
+    });
   }
 
   render() {
@@ -81,6 +99,7 @@ export default class CertifierRequests extends Component<Props> {
           {(props) => (
             <CertificationRequestsContainer
               selections={this.state.selectedRequests}
+              forceRefetch={this.state.forceRefetch}
               notifySelections={this.updateSelections}
               {...props}
             />
@@ -98,6 +117,7 @@ export default class CertifierRequests extends Component<Props> {
             </SignatureDisclaimerCard>
             <CertificationSignature
               certificationIdsToSign={this.state.selectedRequests}
+              reportSubmissions={this.resetSelectionsAfterSubmission}
             />
           </>
         )}

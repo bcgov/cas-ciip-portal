@@ -29,6 +29,7 @@ interface Props {
   searchField: string[];
   searchValue: string[];
   offsetValue: number;
+  forceRefetch?: number;
   selections: string[];
   handleEvent: (...args: any[]) => void;
   notifySelections: (selectedIds: string[]) => void;
@@ -42,6 +43,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   searchField,
   searchValue,
   selections,
+  forceRefetch = 0,
   handleEvent,
   notifySelections,
   relay,
@@ -52,13 +54,15 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
+
   useEffect(() => {
     const refetchVariables = {
       searchField,
       searchValue,
       orderByField,
       direction,
-      offsetValue
+      offsetValue,
+      forceRefetch
     };
     relay.refetch(refetchVariables, undefined, (error) => {
       if (error) return;
@@ -73,7 +77,15 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
       refetchQueryInitialized.current = true;
     });
-  }, [searchField, searchValue, orderByField, direction, offsetValue, query]);
+  }, [
+    searchField,
+    searchValue,
+    orderByField,
+    direction,
+    offsetValue,
+    forceRefetch,
+    query
+  ]);
 
   const displayNameToColumnNameMap = {
     Facility: 'facility_name',
@@ -197,6 +209,7 @@ export default createRefetchContainer(
           orderByField: {type: "String"}
           direction: {type: "String"}
           offsetValue: {type: "Int"}
+          forceRefetch: {type: "Int"}
         ) {
         searchCertificationRequests(
           searchField: $searchField
@@ -226,6 +239,9 @@ export default createRefetchContainer(
             }
           }
         }
+        allCertificationUrls(first: $forceRefetch) {
+          totalCount
+        }
       }
     `
   },
@@ -236,6 +252,7 @@ export default createRefetchContainer(
       $orderByField: String
       $direction: String
       $offsetValue: Int
+      $forceRefetch: Int
     ) {
       query {
         ...CertificationRequestsContainer_query
@@ -245,6 +262,7 @@ export default createRefetchContainer(
             searchField: $searchField
             searchValue: $searchValue
             offsetValue: $offsetValue
+            forceRefetch: $forceRefetch
           )
       }
     }

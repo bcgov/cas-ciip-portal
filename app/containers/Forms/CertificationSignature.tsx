@@ -3,17 +3,22 @@ import {createFragmentContainer, RelayProp} from 'react-relay';
 import SignaturePad from 'react-signature-canvas';
 import {Button, Container, Row, Col} from 'react-bootstrap';
 import updateCertificationUrlMutation from 'mutations/form/updateCertificationUrlMutation';
+import {updateCertificationUrlMutationResponse} from '__generated__/updateCertificationUrlMutation.graphql';
 
 interface Props {
   relay: RelayProp;
   submitted?: boolean;
   certificationIdsToSign: string[];
+  reportSubmissions?: (
+    responses: updateCertificationUrlMutationResponse[]
+  ) => void;
 }
 
 export const CertificationSignature: React.FunctionComponent<Props> = ({
   relay,
   certificationIdsToSign,
-  submitted = false
+  submitted = false,
+  reportSubmissions
 }) => {
   const sigCanvas: any = useRef({});
 
@@ -32,28 +37,31 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
 
   const saveSignatures = (signature) => {
     const {environment} = relay;
-    certificationIdsToSign.forEach(async function (id) {
-      const variables = {
-        input: {
-          id,
-          certificationUrlPatch: {
-            certificationSignature: signature
+    return Promise.all(
+      certificationIdsToSign.map(async function (id) {
+        const variables = {
+          input: {
+            id,
+            certificationUrlPatch: {
+              certificationSignature: signature
+            }
           }
-        }
-      };
-      const response = await updateCertificationUrlMutation(
-        environment,
-        variables
-      );
-      console.log(response);
-    });
+        };
+        const response = await updateCertificationUrlMutation(
+          environment,
+          variables
+        );
+        return response;
+      })
+    );
   };
 
   const toDataURL = async () => {
     const signature = sigCanvas.current
       .getTrimmedCanvas()
       .toDataURL('image/png');
-    saveSignatures(signature);
+    const responses = await saveSignatures(signature);
+    reportSubmissions?.(responses);
   };
 
   return (

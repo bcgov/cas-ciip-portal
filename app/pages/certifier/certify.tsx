@@ -71,40 +71,38 @@ class Certify extends Component<Props> {
     }
 
     return (
-      <>
-        <DefaultLayout
-          title="Submission Certification"
-          session={query.session}
-          allowedGroups={ALLOWED_GROUPS}
-        >
-          {hashMatches ? (
-            <>
-              <ApplicationDetailsContainer
-                query={query}
-                application={query.application}
-                review={false}
-                liveValidate={false}
-              />
-              {LegalDisclaimer}
-              <CertificationSignature
-                certificationIdsToSign={[
-                  query.application.latestDraftRevision.certificationUrl.id
-                ]}
-                submitted={
-                  query.application.latestDraftRevision
-                    .certificationSignatureIsValid
-                }
-              />
-            </>
-          ) : (
-            <ApplicationRecertificationContainer
-              certificationUrl={
-                query.application.latestDraftRevision.certificationUrl
+      <DefaultLayout
+        title="Submission Certification"
+        session={query.session}
+        allowedGroups={ALLOWED_GROUPS}
+      >
+        {hashMatches ? (
+          <>
+            <ApplicationDetailsContainer
+              query={query}
+              application={query.application}
+              review={false}
+              liveValidate={false}
+            />
+            {LegalDisclaimer}
+            <CertificationSignature
+              certificationIdsToSign={[
+                query.application.latestDraftRevision.certificationUrl.id
+              ]}
+              submitted={
+                query.application.latestDraftRevision
+                  .certificationSignatureIsValid
               }
             />
-          )}
-        </DefaultLayout>
-      </>
+          </>
+        ) : (
+          <ApplicationRecertificationContainer
+            certificationUrl={
+              query.application.latestDraftRevision.certificationUrl
+            }
+          />
+        )}
+      </DefaultLayout>
     );
   }
 }
