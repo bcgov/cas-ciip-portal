@@ -110,7 +110,7 @@ export default class CertifierRequests extends Component<Props> {
             <SignatureDisclaimerCard>
               Please review the information below before approving all the
               applications selected above.{' '}
-              <a href="/resources/disclaimer" target="_blank">
+              <a href="/resources/application-disclaimer" target="_blank">
                 (<FontAwesomeIcon icon={faExternalLinkAlt} />
                 expand)
               </a>
