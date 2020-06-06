@@ -12045,13 +12045,19 @@ type SearchCertificationUrlResult {
   applicationByApplicationId: Application
   applicationId: Int
   applicationRevisionStatus: CiipApplicationRevisionStatus
+
+  """
+  Reads a single `CertificationUrl` that is related to this `SearchCertificationUrlResult`.
+  """
+  certificationUrlByCertificationUrlId: CertificationUrl
+  certificationUrlId: String
   certifiedAt: Datetime
   certifiedByFirstName: String
   certifiedByLastName: String
   certifierEmail: String
   facilityName: String
   operatorName: String
-  rowId: String
+  rowId: BigInt
   totalRequestCount: Int
   versionNumber: Int
 }
