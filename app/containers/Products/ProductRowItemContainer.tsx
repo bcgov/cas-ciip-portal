@@ -5,7 +5,9 @@ import {
   Modal,
   Container,
   OverlayTrigger,
-  Tooltip
+  Tooltip,
+  Col,
+  Row
 } from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
@@ -21,7 +23,12 @@ import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import productSchema from './product-schema.json';
 import moment from 'moment-timezone';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTachometerAlt, faCube} from '@fortawesome/free-solid-svg-icons';
+import {
+  faTachometerAlt,
+  faCube,
+  faShareAlt,
+  faTrashAlt
+} from '@fortawesome/free-solid-svg-icons';
 import HeaderWidget from 'components/HeaderWidget';
 import PastBenchmarks from 'components/Benchmark/PastBenchmarks';
 
@@ -238,6 +245,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   const [productModalShow, setProductModalShow] = React.useState(false);
   const [benchmarkModalShow, setBenchmarkModalShow] = React.useState(false);
+  const [linkProductModalShow, setLinkProductModalShow] = React.useState(false);
 
   const modalButtons = (isProduct: boolean) => {
     if (isProduct) {
@@ -343,6 +351,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       onHide={() => {
         setProductModalShow(false);
         handleUpdateProductCount((productCount += 1));
+        console.log(product);
       }}
     >
       {innerModal(true)}
@@ -363,6 +372,65 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     </Modal>
   );
 
+  const linkProductModal = (
+    <Modal
+      centered
+      size="xl"
+      show={linkProductModalShow}
+      onHide={() => {
+        setLinkProductModalShow(false);
+      }}
+    >
+      <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
+        <Modal.Title>Product Associations</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{background: '#f5f5f5'}}>
+        <p>TESST TEXT TEST TEXT: blah blah blah</p>
+        <Container>
+          <Row>
+            <Col md={3}>
+              <h5>Product Name</h5>
+            </Col>
+            <Col md={{span: 3, offset: 1}}>
+              <h5>Is Associated With:</h5>
+            </Col>
+            <Col md={2}>
+              <h5>Add / Remove</h5>
+            </Col>
+          </Row>
+          &emsp;
+          <Row>
+            <Col md={3}>
+              <h6>{product.productName}</h6>
+            </Col>
+            <Col md={{span: 3, offset: 1}}>
+              <p>PROD A</p>
+              <p>PROD B</p>
+              <p>PROD C</p>
+            </Col>
+            <Col md={2} style={{textAlign: 'center'}}>
+              <FontAwesomeIcon
+                icon={faTrashAlt}
+                onClick={() => setLinkProductModalShow(true)}
+              />
+            </Col>
+          </Row>
+        </Container>
+      </Modal.Body>
+      <style jsx global>{`
+        .hidden-title label {
+          display: none;
+        }
+        .close {
+          color: white;
+        }
+        .hidden-button {
+          display: none;
+        }
+      `}</style>
+    </Modal>
+  );
+
   return (
     <>
       <tr>
@@ -374,6 +442,26 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         <td>{product.productState}</td>
         <td>{product.isCiipProduct ? 'Yes' : 'No'}</td>
         <td>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={
+              <Tooltip id="link-product">
+                {product.productState === 'ARCHIVED' ? 'View' : 'Edit'} Link
+                Products
+              </Tooltip>
+            }
+          >
+            <FontAwesomeIcon
+              className={
+                product.productState === 'ARCHIVED'
+                  ? 'editIcon-disabled'
+                  : 'editIcon'
+              }
+              icon={faShareAlt}
+              onClick={() => setLinkProductModalShow(true)}
+            />
+          </OverlayTrigger>
+          &emsp;
           <OverlayTrigger
             placement="bottom"
             overlay={
@@ -419,6 +507,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       </tr>
       {editProductModal}
       {editBenchmarkModal}
+      {linkProductModal}
       <style jsx global>
         {`
           .editIcon:hover {
@@ -473,6 +562,13 @@ export default createFragmentContainer(ProductRowItemComponent, {
             minimumIncentiveRatio
             maximumIncentiveRatio
             createdAt
+          }
+        }
+      }
+      productLink {
+        edges {
+          node {
+            productName
           }
         }
       }
