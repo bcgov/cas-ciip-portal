@@ -7,6 +7,7 @@ create table ggircs_portal.product_link (
   id integer primary key generated always as identity,
   product_id integer not null references ggircs_portal.product(id),
   linked_product_id integer not null references ggircs_portal.product(id),
+  is_deleted boolean not null default false,
   created_at timestamp with time zone not null default now(),
   created_by int references ggircs_portal.ciip_user,
   updated_at timestamp with time zone not null default now(),
@@ -44,6 +45,7 @@ comment on table ggircs_portal.product_link is 'Table containing the information
 comment on column ggircs_portal.product_link.id is 'Unique ID for the product link';
 comment on column ggircs_portal.product_link.product_id is 'The id of the product the link is created on';
 comment on column ggircs_portal.product_link.linked_product_id is 'The id of the product the linked required by product_id to also be reported';
+comment on column ggircs_portal.product_link.is_deleted is 'Boolean value indicates if the link has been terminated';
 comment on column ggircs_portal.product_link.created_at is 'Creation date of row';
 comment on column ggircs_portal.product_link.created_by is 'Creator of row';
 comment on column ggircs_portal.product_link.updated_at is 'Updated date of row';

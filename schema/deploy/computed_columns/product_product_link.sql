@@ -13,7 +13,7 @@ begin;
     begin
         return query (
           with linked_ids as (
-            select linked_product_id
+            select id, linked_product_id, is_deleted
             from ggircs_portal.product_link pl
             where pl.product_id = input_product.id
           )
@@ -21,6 +21,8 @@ begin;
             join linked_ids li
             on p.id = li.linked_product_id
             and p.product_state = 'published'
+            and li.is_deleted = 'false'
+            order by li.id
         );
     end;
     $function$
