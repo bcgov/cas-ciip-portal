@@ -233,7 +233,7 @@
     "relay-test-utils": "^9.1.0",
     "require-context.macro": "^1.2.2",
     "typescript": "3.9.3",
-    "wait-on": "^5.0.0",
+    "wait-on": "^5.0.1",
     "webpack": "^4.43.0",
     "xo": "^0.30.0"
   },
