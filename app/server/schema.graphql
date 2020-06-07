@@ -10137,6 +10137,9 @@ type ProductLink implements Node {
   """
   id: ID!
 
+  """Boolean value indicates if the link has been terminated"""
+  isDeleted: Boolean!
+
   """
   The id of the product the linked required by product_id to also be reported
   """
@@ -10178,6 +10181,9 @@ input ProductLinkCondition {
   """Checks for equality with the object’s `deletedBy` field."""
   deletedBy: Int
 
+  """Checks for equality with the object’s `isDeleted` field."""
+  isDeleted: Boolean
+
   """Checks for equality with the object’s `linkedProductId` field."""
   linkedProductId: Int
 
@@ -10207,6 +10213,9 @@ input ProductLinkInput {
 
   """The user who deleted the row"""
   deletedBy: Int
+
+  """Boolean value indicates if the link has been terminated"""
+  isDeleted: Boolean
 
   """
   The id of the product the linked required by product_id to also be reported
@@ -10238,6 +10247,9 @@ input ProductLinkPatch {
 
   """The user who deleted the row"""
   deletedBy: Int
+
+  """Boolean value indicates if the link has been terminated"""
+  isDeleted: Boolean
 
   """
   The id of the product the linked required by product_id to also be reported
@@ -10292,6 +10304,8 @@ enum ProductLinksOrderBy {
   DELETED_BY_DESC
   ID_ASC
   ID_DESC
+  IS_DELETED_ASC
+  IS_DELETED_DESC
   LINKED_PRODUCT_ID_ASC
   LINKED_PRODUCT_ID_DESC
   NATURAL

@@ -2,7 +2,7 @@ import {graphql} from 'react-relay';
 import {
   createProductLinkMutation as createProductLinkMutationType,
   createProductLinkMutationVariables
-} from 'createProductMutation.graphql';
+} from 'createProductLinkMutation.graphql';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import BaseMutation from 'mutations/BaseMutation';
 

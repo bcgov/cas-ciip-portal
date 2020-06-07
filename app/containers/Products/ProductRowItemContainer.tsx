@@ -33,6 +33,7 @@ import {
 import HeaderWidget from 'components/HeaderWidget';
 import PastBenchmarks from 'components/Benchmark/PastBenchmarks';
 import createProductLinkMutation from 'mutations/product_link/createProductLinkMutation';
+import updateProductLinkMutation from 'mutations/product_link/updateProductLinkMutation';
 
 interface Props {
   relay: RelayProp;
@@ -416,12 +417,33 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       input: {
         productLink: {
           productId: product.rowId,
-          linkedProductId: newLink
+          linkedProductId: newLink,
+          isDeleted: false
         }
       }
     };
 
     const response = await createProductLinkMutation(
+      relay.environment,
+      variables
+    );
+    handleUpdateProductCount((productCount += 1));
+    console.log(response);
+  };
+
+  // TODO: GET ID OF PRODUCT LINK (add to db function?)
+  const removeProductLink = async (removeLink: number) => {
+    const variables = {
+      input: {
+        productLink: {
+          productId: product.rowId,
+          linkedProductId: removeLink,
+          isDeleted: true
+        }
+      }
+    };
+
+    const response = await updateProductLinkMutation(
       relay.environment,
       variables
     );
@@ -457,14 +479,13 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         console.log(response);
       }
     });
-    previousLinks.forEach((id) => {
-      if (!newLinks.includes(id)) console.log('REMOVE:', id);
+    previousLinks.forEach(async (id) => {
+      if (!newLinks.includes(id)) {
+        console.log('REMOVE:', id);
+        const response = await removeProductLink(id);
+        console.log(response);
+      }
     });
-  };
-
-  const removeLink = () => {
-    data.splice(2, 1);
-    console.log(data);
   };
 
   const linkProductModal = (
@@ -513,9 +534,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
                 ObjectFieldTemplate={FormObjectFieldTemplate}
                 onSubmit={saveLinkedProducts}
               />
-            </Col>
-            <Col>
-              <Button onClick={removeLink}>remove</Button>
             </Col>
           </Row>
         </Container>

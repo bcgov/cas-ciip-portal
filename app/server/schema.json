@@ -13437,6 +13437,16 @@
               "defaultValue": null
             },
             {
+              "name": "isDeleted",
+              "description": "Checks for equality with the object’s `isDeleted` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "linkedProductId",
               "description": "Checks for equality with the object’s `linkedProductId` field.",
               "type": {
@@ -13555,6 +13565,18 @@
             },
             {
               "name": "ID_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IS_DELETED_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IS_DELETED_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -13853,6 +13875,22 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "isDeleted",
+              "description": "Boolean value indicates if the link has been terminated",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
                   "ofType": null
                 }
               },
@@ -36615,6 +36653,16 @@
               "defaultValue": null
             },
             {
+              "name": "isDeleted",
+              "description": "Boolean value indicates if the link has been terminated",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "linkedProductId",
               "description": "The id of the product the linked required by product_id to also be reported",
               "type": {
@@ -48281,6 +48329,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "isDeleted",
+              "description": "Boolean value indicates if the link has been terminated",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null
