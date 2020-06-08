@@ -5,7 +5,7 @@ import JsonSchemaForm from 'react-jsonschema-form';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
 import ProductRowIdField from 'containers/Forms/ProductRowIdField';
-import LinkProductModalArrayFieldTemplate from './LinkProductModalArrayFieldTemplate';
+import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
@@ -52,6 +52,7 @@ export const LinkedProductModalComponent: React.FunctionComponent<Props> = ({
   const linkUISchema = {
     'ui:add-text': '+',
     'ui:remove-text': '-',
+    linkProduct: true,
     items: {
       'ui:field': 'product',
       classNames: 'hidden-title',
@@ -116,7 +117,7 @@ export const LinkedProductModalComponent: React.FunctionComponent<Props> = ({
             <Col md={9}>
               <JsonSchemaForm
                 showErrorList={false}
-                ArrayFieldTemplate={LinkProductModalArrayFieldTemplate}
+                ArrayFieldTemplate={FormArrayFieldTemplate}
                 FieldTemplate={FormFieldTemplate}
                 formContext={{query}}
                 fields={CUSTOM_FIELDS}
