@@ -42,6 +42,7 @@ exports[`ProductList should render the product list 1`] = `
       "Ciip Benchmarked": "is_ciip_product",
       "Edit/View": null,
       "Eligibility Threshold": "eligibility_threshold",
+      "Link": null,
       "Modified (D/M/Y)": "updated_at",
       "Product": "product_name",
       "Status": "product_state",
