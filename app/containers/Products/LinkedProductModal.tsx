@@ -1,11 +1,11 @@
 import React from 'react';
-import {Modal, Container, Col, Row} from 'react-bootstrap';
+import {Modal, Container, Col, Row, Button} from 'react-bootstrap';
 import {JSONSchema6} from 'json-schema';
 import JsonSchemaForm from 'react-jsonschema-form';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
 import ProductRowIdField from 'containers/Forms/ProductRowIdField';
-import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
+import LinkProductModalArrayFieldTemplate from './LinkProductModalArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
@@ -76,28 +76,47 @@ export const LinkedProductModalComponent: React.FunctionComponent<Props> = ({
         <Modal.Title>Product Associations</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{background: '#f5f5f5'}}>
-        <p>TESST TEXT TEST TEXT: blah blah blah</p>
         <Container>
           <Row>
+            <Col md={12}>
+              <h5>Add/Edit Associations</h5>
+              <hr />
+              <p>
+                When you specify one or more products on the right, applications
+                reporting the product on the left will be prompted to report
+                these products as well.
+              </p>
+              <p>
+                Press the &apos;+&apos; button and select a product to add an
+                association, press the &apos;-&apos; button to remove an
+                association. Deleting an association will not delete the
+                products themselves.
+              </p>
+              <p>
+                Once you have created all the necessary associations, press
+                &apos;Save&apos; to apply them.
+              </p>
+              <hr />
+              <br />
+            </Col>
+          </Row>
+          <Row>
             <Col md={3}>
-              <h5>Product Name</h5>
+              <h4>Product Name:</h4>
             </Col>
-            <Col md={6}>
-              <h5>Associated Products:</h5>
-            </Col>
-            <Col md={2}>
-              <h5>Add / Remove</h5>
+            <Col md={9}>
+              <h4>Associated Products:</h4>
             </Col>
           </Row>
           &emsp;
           <Row>
             <Col md={3}>
-              <h6>{product.productName}</h6>
+              <h5>{product.productName}</h5>
             </Col>
-            <Col md={6}>
+            <Col md={9}>
               <JsonSchemaForm
                 showErrorList={false}
-                ArrayFieldTemplate={FormArrayFieldTemplate}
+                ArrayFieldTemplate={LinkProductModalArrayFieldTemplate}
                 FieldTemplate={FormFieldTemplate}
                 formContext={{query}}
                 fields={CUSTOM_FIELDS}
@@ -107,7 +126,20 @@ export const LinkedProductModalComponent: React.FunctionComponent<Props> = ({
                 uiSchema={linkUISchema}
                 ObjectFieldTemplate={FormObjectFieldTemplate}
                 onSubmit={saveLinkedProducts}
-              />
+              >
+                <div className="save-close">
+                  <Button
+                    className="save-button"
+                    variant="success"
+                    type="submit"
+                  >
+                    Save
+                  </Button>
+                  <Button variant="danger" onClick={setLinkProductModalShow}>
+                    Cancel
+                  </Button>
+                </div>
+              </JsonSchemaForm>
             </Col>
           </Row>
         </Container>
@@ -121,6 +153,13 @@ export const LinkedProductModalComponent: React.FunctionComponent<Props> = ({
         }
         .hidden-button {
           display: none;
+        }
+        .save-close {
+          text-align: right;
+          margin-right: 10px;
+        }
+        .save-button {
+          margin-right: 10px;
         }
       `}</style>
     </Modal>
