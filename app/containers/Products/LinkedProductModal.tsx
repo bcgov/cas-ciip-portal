@@ -136,7 +136,10 @@ export const LinkedProductModalComponent: React.FunctionComponent<Props> = ({
                   >
                     Save
                   </Button>
-                  <Button variant="danger" onClick={setLinkProductModalShow}>
+                  <Button
+                    variant="danger"
+                    onClick={() => setLinkProductModalShow(false)}
+                  >
                     Cancel
                   </Button>
                 </div>

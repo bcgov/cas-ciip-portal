@@ -17,7 +17,7 @@ import {
   faShareAlt
 } from '@fortawesome/free-solid-svg-icons';
 import createLinkedProductMutation from 'mutations/linked_product/createLinkedProductMutation';
-// Import updateLinkedProductMutation from 'mutations/linked_product/updateLinkedProductMutation';
+import updateLinkedProductMutation from 'mutations/linked_product/updateLinkedProductMutation';
 import InnerModal from './InnerProductBenchmarkModal';
 import LinkedProductModal from './LinkedProductModal';
 
@@ -147,7 +147,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const createLinkedProduct = async (newLink: number) => {
     const variables = {
       input: {
-        LinkedProduct: {
+        linkedProduct: {
           productId: product.rowId,
           linkedProductId: newLink,
           isDeleted: false
@@ -163,26 +163,27 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  // TODO: GET ID OF PRODUCT LINK (add to db function?)
-  const removeLinkedProduct = async (removeLink: number) => {
-    console.log(removeLink);
-    // Const variables = {
-    //   input: {
-    //     id: removeLink.id
-    //     linkedProduct: {
-    //       productId: product.rowId,
-    //       linkedProductId: removeLink,
-    //       isDeleted: true
-    //     }
-    //   }
-    // };
+  const removeLinkedProduct = async (removeLink: {
+    productRowId: number;
+    linkId: number;
+  }) => {
+    const variables = {
+      input: {
+        rowId: removeLink.linkId,
+        linkedProductPatch: {
+          productId: product.rowId,
+          linkedProductId: removeLink.productRowId,
+          isDeleted: true
+        }
+      }
+    };
 
-    // const response = await updateLinkedProductMutation(
-    //   relay.environment,
-    //   variables
-    // );
-    // handleUpdateProductCount((productCount += 1));
-    // console.log(response);
+    const response = await updateLinkedProductMutation(
+      relay.environment,
+      variables
+    );
+    handleUpdateProductCount((productCount += 1));
+    console.log(response);
   };
 
   const linkData = [];
@@ -195,7 +196,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   });
 
   const saveLinkedProducts = async (newData: IChangeEvent) => {
-    console.log(newData);
     const previousLinks = [];
     const newLinks = [];
 
@@ -208,18 +208,18 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
     newLinks.forEach(async (id) => {
       if (!previousLinks.includes(id)) {
-        console.log('ADD:', id);
         const response = await createLinkedProduct(id);
         console.log(response);
       }
     });
+
     previousLinks.forEach(async (id, index) => {
       if (!newLinks.includes(id)) {
-        console.log('REMOVE:', id);
-        const response = await removeLinkedProduct(newData[index]);
+        const response = await removeLinkedProduct(linkData[index]);
         console.log(response);
       }
     });
+    setLinkProductModalShow(false);
   };
 
   /** Modals **/

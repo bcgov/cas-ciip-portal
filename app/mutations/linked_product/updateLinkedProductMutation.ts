@@ -7,8 +7,10 @@ import {
 import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
-  mutation updateLinkedProductMutation($input: UpdateLinkedProductInput!) {
-    updateLinkedProduct(input: $input) {
+  mutation updateLinkedProductMutation(
+    $input: UpdateLinkedProductByRowIdInput!
+  ) {
+    updateLinkedProductByRowId(input: $input) {
       linkedProduct {
         id
         productId
