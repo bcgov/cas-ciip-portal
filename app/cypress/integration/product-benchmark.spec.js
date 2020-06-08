@@ -45,7 +45,7 @@ describe('The benchmark modal', () => {
   });
 
   it('Opens & displays the correct data in the benchmark modal', () => {
-    cy.get(':nth-child(1) > :nth-child(8) > .fa-tachometer-alt > path').click();
+    cy.get(':nth-child(1) > :nth-child(9) > .fa-tachometer-alt > path').click();
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').should('have.value', '0.12');
     cy.get('#root_startReportingYear').should('have.value', '2018');
@@ -59,7 +59,7 @@ describe('The benchmark modal', () => {
   });
 
   it('Allows editing a benchmark for a draft product', () => {
-    cy.get(':nth-child(1) > :nth-child(8) > .fa-tachometer-alt > path').click();
+    cy.get(':nth-child(1) > :nth-child(9) > .fa-tachometer-alt > path').click();
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('12');
     cy.get('.rjsf > .btn').contains('Save');
@@ -68,7 +68,7 @@ describe('The benchmark modal', () => {
   });
 
   it('Allows editing a benchmark for a published product', () => {
-    cy.get(':nth-child(2) > :nth-child(8) > .fa-tachometer-alt > path').click();
+    cy.get(':nth-child(2) > :nth-child(9) > .fa-tachometer-alt > path').click();
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('10');
     cy.get('.rjsf > .btn').contains('Save');
@@ -77,7 +77,7 @@ describe('The benchmark modal', () => {
   });
 
   it('Allows editing a benchmark for a published (read-only) product', () => {
-    cy.get(':nth-child(4) > :nth-child(8) > .fa-tachometer-alt > path').click();
+    cy.get(':nth-child(4) > :nth-child(9) > .fa-tachometer-alt > path').click();
     cy.get('#root_benchmark').should('have.prop', 'disabled', false);
     cy.get('#root_benchmark').clear().type('10');
     cy.get('.rjsf > .btn').contains('Save');
@@ -86,7 +86,7 @@ describe('The benchmark modal', () => {
   });
 
   it('Does not allow editing a benchmark for an archived product', () => {
-    cy.get(':nth-child(3) > :nth-child(8) > .fa-tachometer-alt > path').click();
+    cy.get(':nth-child(3) > :nth-child(9) > .fa-tachometer-alt > path').click();
     cy.get('#root_benchmark').should('have.prop', 'disabled', true);
     cy.get('.rjsf > .btn').should('have.class', 'hidden-button');
     cy.get('.close > [aria-hidden="true"]').click();
@@ -110,7 +110,7 @@ describe('The product modal', () => {
   });
 
   it('Opens & displays the correct data in the product modal', () => {
-    cy.get(':nth-child(1) > :nth-child(8) > .fa-cube > path').click();
+    cy.get(':nth-child(1) > :nth-child(9) > .fa-cube > path').click();
     cy.get('#root_productName').should('have.prop', 'disabled', false);
     cy.get('#root_productName').should('have.value', 'Product A');
     cy.get('#root_units').should('have.value', 'tonnes');
@@ -148,7 +148,7 @@ describe('The product modal', () => {
   });
 
   it('Allows editing a draft product', () => {
-    cy.get(':nth-child(1) > :nth-child(8) > .fa-cube > path').click();
+    cy.get(':nth-child(1) > :nth-child(9) > .fa-cube > path').click();
     cy.get('#root_productName').should('have.prop', 'disabled', false);
     cy.get('#root_productName').clear().type('changed');
     cy.get('.rjsf > .btn-primary').contains('Save');
@@ -158,27 +158,27 @@ describe('The product modal', () => {
   });
 
   it('Does not allow editing a published product', () => {
-    cy.get(':nth-child(2) > :nth-child(8) > .fa-cube > path').click();
+    cy.get(':nth-child(2) > :nth-child(9) > .fa-cube > path').click();
     cy.get('#root_productName').should('have.prop', 'disabled', true);
     cy.get('.rjsf > .btn').contains('Archive');
     cy.get('.close > [aria-hidden="true"]').click();
   });
 
   it('Does not allow editing an archived product', () => {
-    cy.get(':nth-child(3) > :nth-child(8) > .fa-cube > path').click();
+    cy.get(':nth-child(3) > :nth-child(9) > .fa-cube > path').click();
     cy.get('#root_productName').should('have.prop', 'disabled', true);
     cy.get('.rjsf > .btn').should('have.class', 'hidden-button');
     cy.get('.close > [aria-hidden="true"]').click();
   });
 
   it('Can publish a draft product', () => {
-    cy.get(':nth-child(1) > :nth-child(8) > .fa-cube > path').click();
+    cy.get(':nth-child(1) > :nth-child(9) > .fa-cube > path').click();
     cy.get('.rjsf > .btn-success').click();
     cy.get(':nth-child(1) > :nth-child(6)').contains('PUBLISHED');
   });
 
   it('Can archive a published product', () => {
-    cy.get(':nth-child(2) > :nth-child(8) > .fa-cube > path').click();
+    cy.get(':nth-child(2) > :nth-child(9) > .fa-cube > path').click();
     cy.get('.rjsf > .btn').click();
     cy.get(':nth-child(2) > :nth-child(6)').contains('ARCHIVED');
   });

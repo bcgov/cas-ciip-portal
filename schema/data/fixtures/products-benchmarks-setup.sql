@@ -4,7 +4,7 @@
 begin;
 
 delete from ggircs_portal.benchmark;
-delete from ggircs_portal.product;
+truncate ggircs_portal.product restart identity cascade;
 
 insert into ggircs_portal.product(
   id,
