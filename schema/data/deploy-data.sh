@@ -182,7 +182,7 @@ deployDevData() {
   _psql -f "./dev/application.sql"
   _psql -f "./dev/form_result.sql"
   _psql -f "./dev/certification_url.sql"
-  _psql -f "./dev/product_link.sql"
+  _psql -f "./dev/linked_product.sql"
   return 0;
 }
 

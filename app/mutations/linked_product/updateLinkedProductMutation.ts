@@ -1,15 +1,15 @@
 import {graphql} from 'react-relay';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
-  updateProductLinkMutation as updateProductLinkMutationType,
-  updateProductLinkMutationVariables
-} from 'updateProductLinkMutation.graphql';
+  updateLinkedProductMutation as updateLinkedProductMutationType,
+  updateLinkedProductMutationVariables
+} from 'updateLinkedProductMutation.graphql';
 import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
-  mutation updateProductLinkMutation($input: UpdateProductLinkInput!) {
-    updateProductLink(input: $input) {
-      productLink {
+  mutation updateLinkedProductMutation($input: UpdateLinkedProductInput!) {
+    updateLinkedProduct(input: $input) {
+      linkedProduct {
         id
         productId
         linkedProductId
@@ -20,14 +20,14 @@ const mutation = graphql`
 `;
 
 // TODO: May want to surface the onCompleted errors to the user (ie not reject, resolve & report)
-const updateProductLinkMutation = async (
+const updateLinkedProductMutation = async (
   environment: RelayModernEnvironment,
-  variables: updateProductLinkMutationVariables
+  variables: updateLinkedProductMutationVariables
 ) => {
-  const m = new BaseMutation<updateProductLinkMutationType>(
+  const m = new BaseMutation<updateLinkedProductMutationType>(
     'update-product-mutation'
   );
   return m.performMutation(environment, mutation, variables);
 };
 
-export default updateProductLinkMutation;
+export default updateLinkedProductMutation;

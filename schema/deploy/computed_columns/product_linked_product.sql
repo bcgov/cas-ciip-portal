@@ -1,9 +1,9 @@
--- Deploy ggircs-portal:computed_columns/product_product_link to pg
--- requires: tables/product_link
+-- Deploy ggircs-portal:computed_columns/product_linked_product to pg
+-- requires: tables/linked_product
 
 begin;
 
-  create or replace function ggircs_portal.product_product_link(
+  create or replace function ggircs_portal.product_linked_product(
     input_product ggircs_portal.product
   )
     returns setof ggircs_portal.product
@@ -14,7 +14,7 @@ begin;
         return query (
           with linked_ids as (
             select id, linked_product_id, is_deleted
-            from ggircs_portal.product_link pl
+            from ggircs_portal.linked_product pl
             where pl.product_id = input_product.id
           )
           select p.* from ggircs_portal.product p
@@ -28,8 +28,8 @@ begin;
     $function$
       language 'plpgsql' stable;
 
-  grant execute on function ggircs_portal.product_product_link to ciip_administrator, ciip_analyst, ciip_industry_user;
+  grant execute on function ggircs_portal.product_linked_product to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal.product_product_link is 'Computed column returns a set of linked products for a given product';
+comment on function ggircs_portal.product_linked_product is 'Computed column returns a set of linked products for a given product';
 
 commit;

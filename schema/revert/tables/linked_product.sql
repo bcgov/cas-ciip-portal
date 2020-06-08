@@ -2,6 +2,6 @@
 
 begin;
 
-drop table ggircs_portal.product_link;
+drop table ggircs_portal.linked_product;
 
 commit;

@@ -1,22 +1,22 @@
 import {graphql} from 'react-relay';
 import {
-  createProductLinkMutation as createProductLinkMutationType,
-  createProductLinkMutationVariables
-} from 'createProductLinkMutation.graphql';
+  createLinkedProductMutation as createLinkedProductMutationType,
+  createLinkedProductMutationVariables
+} from 'createLinkedProductMutation.graphql';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import BaseMutation from 'mutations/BaseMutation';
 
 const mutation = graphql`
-  mutation createProductLinkMutation($input: CreateProductLinkInput!) {
-    createProductLink(input: $input) {
-      productLink {
+  mutation createLinkedProductMutation($input: CreateLinkedProductInput!) {
+    createLinkedProduct(input: $input) {
+      linkedProduct {
         id
         rowId
         productId
         linkedProductId
       }
       query {
-        allProductLinks {
+        allLinkedProducts {
           totalCount
         }
       }
@@ -26,9 +26,9 @@ const mutation = graphql`
 
 const createProductMutation = async (
   environment: RelayModernEnvironment,
-  variables: createProductLinkMutationVariables
+  variables: createLinkedProductMutationVariables
 ) => {
-  return new BaseMutation<createProductLinkMutationType>(
+  return new BaseMutation<createLinkedProductMutationType>(
     'create-product-mutation'
   ).performMutation(environment, mutation, variables);
 };
