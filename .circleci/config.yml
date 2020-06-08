@@ -98,9 +98,8 @@ jobs:
       cache_version:
         type: integer
         default: 1
-    working_directory: << parameters.working_directory >>
     steps:
-      - checkout:
+      - checkout
       - gcp-gcr/gcr-auth
       - restore_cache:
           keys:
