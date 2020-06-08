@@ -21,6 +21,7 @@ import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import productSchema from './product-schema.json';
+import benchmarkSchemaFunction from './benchmark-schema';
 import moment from 'moment-timezone';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
@@ -43,46 +44,6 @@ interface Props {
   productCount: number;
 }
 
-// Schema for ProductRowItemContainer
-// TODO: Use a number widget for string types that should be numbers (with postgres numeric type)
-const benchmarkUISchema = {
-  current: {
-    'ui:col-md': 12,
-    classNames: 'hidden-title',
-    'ui:widget': 'header',
-    'ui:options': {
-      text: 'Current Benchmark Information'
-    }
-  },
-  benchmark: {
-    'ui:col-md': 3
-  },
-  eligibilityThreshold: {
-    'ui:col-md': 3
-  },
-  startReportingYear: {
-    'ui:col-md': 3,
-    'ui:help': 'The first reporting year where this benchmark is used'
-  },
-  endReportingYear: {
-    'ui:col-md': 3,
-    'ui:help': 'The last reporting year where this benchmark is used'
-  },
-  incentiveMultiplier: {
-    'ui:col-md': 3
-  },
-  minimumIncentiveRatio: {
-    'ui:col-md': 3
-  },
-  maximumIncentiveRatio: {
-    'ui:col-md': 3
-  }
-};
-
-/**  Note: There is some placeholder validation done on the front end here (dateRegexFormat, timeRangeOverlap, etc) that should be revisited
- *         when we have had a design / constraint brainstorming session for benchmarks.
- * */
-
 export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   relay,
   product,
@@ -95,60 +56,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   const pastBenchmarks = product.benchmarksByProductId?.edges.slice(1);
 
   // Schema for ProductRowItemContainer
-  const benchmarkSchema = useMemo<JSONSchema6>(() => {
+  const benchmarkSchema = useMemo(() => {
     const reportingYears = query.allReportingYears.edges.map(
       ({node}) => node.reportingYear
     );
-    return {
-      type: 'object',
-      required: [
-        'benchmark',
-        'eligibilityThreshold',
-        'minimumIncentiveRatio',
-        'maximumIncentiveRatio',
-        'incentiveMultiplier',
-        'startReportingYear',
-        'endReportingYear'
-      ],
-      properties: {
-        current: {
-          type: 'string'
-        },
-        benchmark: {
-          type: 'string',
-          title: 'Benchmark'
-        },
-        startReportingYear: {
-          type: 'number',
-          title: 'Start Reporting Period',
-          enum: reportingYears
-        },
-        endReportingYear: {
-          type: 'number',
-          title: 'End Reporting Period',
-          enum: reportingYears
-        },
-        eligibilityThreshold: {
-          type: 'string',
-          title: 'Eligibility Threshold'
-        },
-        incentiveMultiplier: {
-          type: 'string',
-          title: 'Incentive Multiplier',
-          defaultValue: '1'
-        },
-        minimumIncentiveRatio: {
-          type: 'string',
-          title: 'Minimum incentive ratio',
-          defaultValue: '0'
-        },
-        maximumIncentiveRatio: {
-          type: 'string',
-          title: 'Maximum incentive ratio',
-          defaultValue: '1'
-        }
-      }
-    };
+    return benchmarkSchemaFunction(reportingYears);
   }, [query.allReportingYears]);
 
   /**
@@ -309,9 +221,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             schema={
               isProduct
                 ? (productSchema.schema as JSONSchema6)
-                : benchmarkSchema
+                : (benchmarkSchema.schema as JSONSchema6)
             }
-            uiSchema={isProduct ? productSchema.uiSchema : benchmarkUISchema}
+            uiSchema={
+              isProduct ? productSchema.uiSchema : benchmarkSchema.uiSchema
+            }
             formData={isProduct ? product : currentBenchmark}
             showErrorList={false}
             ArrayFieldTemplate={FormArrayFieldTemplate}
