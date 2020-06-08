@@ -286,12 +286,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         <td>
           <OverlayTrigger
             placement="bottom"
-            overlay={
-              <Tooltip id="link-product">
-                {product.productState === 'ARCHIVED' ? 'View' : 'Edit'} Link
-                Products
-              </Tooltip>
-            }
+            overlay={<Tooltip id="link-product">Link Products</Tooltip>}
           >
             <FontAwesomeIcon
               className={
@@ -304,6 +299,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
             />
           </OverlayTrigger>
           &emsp;
+        </td>
+        <td>
           <OverlayTrigger
             placement="bottom"
             overlay={
