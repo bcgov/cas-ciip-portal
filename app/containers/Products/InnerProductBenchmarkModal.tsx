@@ -110,7 +110,7 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
                 : createBenchmark
             }
           >
-            {modalButtons}
+            {modalButtons()}
           </JsonSchemaForm>
           {isProduct ? null : (
             <PastBenchmarks pastBenchmarks={pastBenchmarks} />

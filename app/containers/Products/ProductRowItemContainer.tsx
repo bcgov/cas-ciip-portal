@@ -232,7 +232,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       onHide={() => {
         setProductModalShow(false);
         handleUpdateProductCount((productCount += 1));
-        console.log(product);
       }}
     >
       <InnerModal
