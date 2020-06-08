@@ -2,6 +2,8 @@ version: 2.1
 
 orbs:
   redhat-openshift: circleci/redhat-openshift@0.2.0
+  gcp-gcr: circleci/gcp-gcr@0.7.1
+  helm: circleci/helm@0.2.3
 
 jobs:
   tools:
@@ -82,6 +84,62 @@ jobs:
             - .cache/Cypress # contains the cypress binary. Needed for the e2e job
             - cas-ciip-portal
             - perl5
+
+  build_image:
+    executor: gcp-gcr/default
+    parameters:
+      dockerfile:
+        type: string
+        default: Dockerfile
+      image_tag:
+        type: string
+      image_name:
+        type: string
+      cache_version:
+        type: integer
+        default: 1
+    working_directory: << parameters.working_directory >>
+    steps:
+      - checkout:
+      - gcp-gcr/gcr-auth
+      - restore_cache:
+          keys:
+            - v<< parameters.cache_version>>-<< parameters.image_name >>-{{ .Branch }}
+          paths:
+            - /tmp/<< parameters.image_name >>.tar
+      - run:
+          name: Load cache
+          command: |
+            set +o pipefail
+            docker load -i /tmp/<< parameters.image_name >>.tar | true
+      - run:
+          name: Build tools Docker image
+          command: >
+            docker build --cache-from=<< parameters.image_name >>
+              -t << parameters.image_name >>:latest
+              -t gcr.io/${GOOGLE_PROJECT_ID}/<< parameters.image_name >>:latest
+              -t gcr.io/${GOOGLE_PROJECT_ID}/<< parameters.image_name >>:<< parameters.image_tag >>
+              -f << parameters.dockerfile >>
+              .
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            docker save -o /tmp/<< parameters.image_name >>.tar << parameters.image_name >>:latest
+      - save_cache:
+          key: v<< parameters.cache_version>>-<< parameters.image_name >>-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /tmp/<< parameters.image_name >>.tar
+      - gcp-gcr/push-image:
+          image: << parameters.image_name >>
+          tag: << parameters.image_tag >>
+          digest-path: /tmp/digest.txt
+      - gcp-gcr/tag-image:
+          image: << parameters.image_name >>
+          source-tag: << parameters.image_tag >>
+          target-tag: latest
+      - run:
+          command: |
+            echo "Digest is: $(</tmp/digest.txt)"
 
   lint:
     machine:
@@ -468,7 +526,8 @@ workflows:
   version: 2
   test:
     jobs:
-      - tools
+      - tools:
+          context: cas-pipeline
       - lint:
           requires:
             - tools
@@ -509,37 +568,12 @@ workflows:
               only:
                 - develop
                 - master
-      - pathfinder_lint:
-          requires:
-            - lint
-            - unit
-            - audit
-            - schema
-            - compile
-            - deploy-test-data
-            - e2e-snapshots
+      - build_image:
+          name: build_schema
           context: cas-pipeline
-          filters:
-            branches:
-              only:
-                - develop
-                - master
-      - pathfinder_configure:
-          context: cas-pipeline
-          requires:
-            - pathfinder_lint
-      - pathfinder_build_tools:
-          context: cas-pipeline
-          requires:
-            - pathfinder_configure
-      - pathfinder_build_schema:
-          context: cas-pipeline
-          requires:
-            - pathfinder_build_tools
-      - pathfinder_build_app:
-          context: cas-pipeline
-          requires:
-            - pathfinder_build_tools
+          image_name: cas-ciip-portal-schema
+          image_tag: ${CIRCLE_SHA1}
+          dockerfile: schema/Dockerfile
       # - test-local-cluster:
       #     context: cas-pipeline
       #     requires:
