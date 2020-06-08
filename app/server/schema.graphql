@@ -8535,6 +8535,41 @@ input LinkedProductPatch {
   updatedBy: Int
 }
 
+type LinkedProductReturn {
+  linkedProductId: Int
+  productName: String
+  productState: CiipProductState
+  rowId: Int
+}
+
+"""A connection to a list of `LinkedProductReturn` values."""
+type LinkedProductReturnsConnection {
+  """
+  A list of edges which contains the `LinkedProductReturn` and cursor to aid in pagination.
+  """
+  edges: [LinkedProductReturnsEdge!]!
+
+  """A list of `LinkedProductReturn` objects."""
+  nodes: [LinkedProductReturn]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `LinkedProductReturn` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `LinkedProductReturn` edge in the connection."""
+type LinkedProductReturnsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `LinkedProductReturn` at the end of the edge."""
+  node: LinkedProductReturn
+}
+
 """A connection to a list of `LinkedProduct` values."""
 type LinkedProductsConnection {
   """
@@ -10010,7 +10045,7 @@ type Product implements Node {
     based pagination. May not be used with `last`.
     """
     offset: Int
-  ): ProductsConnection!
+  ): LinkedProductReturnsConnection!
 
   """Reads and enables pagination through a set of `LinkedProduct`."""
   linkedProductsByLinkedProductId(

@@ -127,4 +127,5 @@ search_functions/search_certification_requests [tables/certification_url] 2020-0
 @v1.0.0-rc.1 2020-06-05T23:18:57Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.1
 tables/linked_product [schema_ggircs_portal] 2020-06-05T21:12:40Z Dylan Leard <dylan@button.is> # Table contains links for products that require reporting other products
 policies/linked_product_policies [tables/linked_product] 2020-06-05T22:19:31Z Dylan Leard <dylan@button.is> # Applies row-level security policies for linked_product table
-computed_columns/product_linked_product [tables/linked_product] 2020-06-05T22:36:32Z Dylan Leard <dylan@button.is> # Computed column returns a set of linked products that exist for a product id
+types/linked_product_return [schema_ggircs_portal] 2020-06-08T21:29:20Z Dylan Leard <dylan@button.is> # Return type for computed column product_linked_product
+computed_columns/product_linked_product [tables/linked_product types/linked_product_return] 2020-06-05T22:36:32Z Dylan Leard <dylan@button.is> # Computed column returns a set of linked products that exist for a product id

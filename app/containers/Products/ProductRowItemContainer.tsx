@@ -17,7 +17,7 @@ import {
   faShareAlt
 } from '@fortawesome/free-solid-svg-icons';
 import createLinkedProductMutation from 'mutations/linked_product/createLinkedProductMutation';
-import updateLinkedProductMutation from 'mutations/linked_product/updateLinkedProductMutation';
+// Import updateLinkedProductMutation from 'mutations/linked_product/updateLinkedProductMutation';
 import InnerModal from './InnerProductBenchmarkModal';
 import LinkedProductModal from './LinkedProductModal';
 
@@ -165,33 +165,37 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   // TODO: GET ID OF PRODUCT LINK (add to db function?)
   const removeLinkedProduct = async (removeLink: number) => {
-    const variables = {
-      input: {
-        linkedProduct: {
-          productId: product.rowId,
-          linkedProductId: removeLink,
-          isDeleted: true
-        }
-      }
-    };
+    console.log(removeLink);
+    // Const variables = {
+    //   input: {
+    //     id: removeLink.id
+    //     linkedProduct: {
+    //       productId: product.rowId,
+    //       linkedProductId: removeLink,
+    //       isDeleted: true
+    //     }
+    //   }
+    // };
 
-    const response = await updateLinkedProductMutation(
-      relay.environment,
-      variables
-    );
-    handleUpdateProductCount((productCount += 1));
-    console.log(response);
+    // const response = await updateLinkedProductMutation(
+    //   relay.environment,
+    //   variables
+    // );
+    // handleUpdateProductCount((productCount += 1));
+    // console.log(response);
   };
 
   const linkData = [];
 
   product?.linkedProduct?.edges?.forEach((edge) => {
-    const dataObject = {productRowId: null};
-    dataObject.productRowId = edge.node.rowId;
+    const dataObject = {productRowId: null, linkId: null};
+    dataObject.productRowId = edge.node.linkedProductId;
+    dataObject.linkId = edge.node.rowId;
     linkData.push(dataObject);
   });
 
   const saveLinkedProducts = async (newData: IChangeEvent) => {
+    console.log(newData);
     const previousLinks = [];
     const newLinks = [];
 
@@ -209,10 +213,10 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         console.log(response);
       }
     });
-    previousLinks.forEach(async (id) => {
+    previousLinks.forEach(async (id, index) => {
       if (!newLinks.includes(id)) {
         console.log('REMOVE:', id);
-        const response = await removeLinkedProduct(id);
+        const response = await removeLinkedProduct(newData[index]);
         console.log(response);
       }
     });
@@ -414,6 +418,8 @@ export default createFragmentContainer(ProductRowItemComponent, {
         edges {
           node {
             rowId
+            rowId
+            linkedProductId
           }
         }
       }
