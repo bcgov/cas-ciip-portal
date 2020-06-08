@@ -1,29 +1,16 @@
 import React, {useMemo} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {
-  Modal,
-  Container,
-  OverlayTrigger,
-  Tooltip,
-  Col,
-  Row
-} from 'react-bootstrap';
-import {JSONSchema6} from 'json-schema';
-import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
+import {Modal, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import {IChangeEvent} from 'react-jsonschema-form';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
 import updateProductMutation from 'mutations/product/updateProductMutation';
 import {CiipProductState} from 'updateProductMutation.graphql';
 import updateBenchmarkMutation from 'mutations/benchmark/updateBenchmarkMutation';
 import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
-import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 import benchmarkSchemaFunction from './benchmark-schema';
 import moment from 'moment-timezone';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
-import ProductRowIdField from 'containers/Forms/ProductRowIdField';
 import {
   faTachometerAlt,
   faCube,
@@ -32,6 +19,7 @@ import {
 import createProductLinkMutation from 'mutations/product_link/createProductLinkMutation';
 import updateProductLinkMutation from 'mutations/product_link/updateProductLinkMutation';
 import InnerModal from './InnerProductBenchmarkModal';
+import LinkedProductModal from './LinkedProductModal';
 
 interface Props {
   relay: RelayProp;
@@ -156,6 +144,80 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     updateProductCount(newCount);
   };
 
+  const createProductLink = async (newLink: number) => {
+    const variables = {
+      input: {
+        productLink: {
+          productId: product.rowId,
+          linkedProductId: newLink,
+          isDeleted: false
+        }
+      }
+    };
+
+    const response = await createProductLinkMutation(
+      relay.environment,
+      variables
+    );
+    handleUpdateProductCount((productCount += 1));
+    console.log(response);
+  };
+
+  // TODO: GET ID OF PRODUCT LINK (add to db function?)
+  const removeProductLink = async (removeLink: number) => {
+    const variables = {
+      input: {
+        productLink: {
+          productId: product.rowId,
+          linkedProductId: removeLink,
+          isDeleted: true
+        }
+      }
+    };
+
+    const response = await updateProductLinkMutation(
+      relay.environment,
+      variables
+    );
+    handleUpdateProductCount((productCount += 1));
+    console.log(response);
+  };
+
+  const linkData = [];
+
+  product?.productLink?.edges?.forEach((edge) => {
+    const dataObject = {productRowId: null};
+    dataObject.productRowId = edge.node.rowId;
+    linkData.push(dataObject);
+  });
+
+  const saveLinkedProducts = async (newData: IChangeEvent) => {
+    const previousLinks = [];
+    const newLinks = [];
+
+    linkData.forEach((obj) => {
+      previousLinks.push(obj.productRowId);
+    });
+    newData.formData.forEach((obj) => {
+      newLinks.push(obj.productRowId);
+    });
+
+    newLinks.forEach(async (id) => {
+      if (!previousLinks.includes(id)) {
+        console.log('ADD:', id);
+        const response = await createProductLink(id);
+        console.log(response);
+      }
+    });
+    previousLinks.forEach(async (id) => {
+      if (!newLinks.includes(id)) {
+        console.log('REMOVE:', id);
+        const response = await removeProductLink(id);
+        console.log(response);
+      }
+    });
+  };
+
   /** Modals **/
 
   const editProductModal = (
@@ -204,183 +266,6 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         createBenchmark={createBenchmark}
         pastBenchmarks={pastBenchmarks}
       />
-    </Modal>
-  );
-
-  const CUSTOM_FIELDS = {
-    productRowId: (props) => {
-      return <ProductRowIdField query={props.formContext.query} {...props} />;
-    }
-  };
-
-  const linkSchema: JSONSchema6 = {
-    type: 'array',
-    items: {
-      $ref: '#/definitions/product'
-    },
-    definitions: {
-      product: {
-        type: 'object',
-        properties: {
-          productRowId: {
-            type: 'integer'
-          }
-        }
-      }
-    }
-  };
-
-  const linkUISchema = {
-    'ui:add-text': '+',
-    'ui:remove-text': '-',
-    items: {
-      'ui:field': 'product',
-      classNames: 'hidden-title',
-      productRowId: {
-        'ui:col-md': 12,
-        'ui:widget': 'SearchWidget',
-        'ui:field': 'productRowId'
-      }
-    }
-  };
-
-  const createProductLink = async (newLink: number) => {
-    const variables = {
-      input: {
-        productLink: {
-          productId: product.rowId,
-          linkedProductId: newLink,
-          isDeleted: false
-        }
-      }
-    };
-
-    const response = await createProductLinkMutation(
-      relay.environment,
-      variables
-    );
-    handleUpdateProductCount((productCount += 1));
-    console.log(response);
-  };
-
-  // TODO: GET ID OF PRODUCT LINK (add to db function?)
-  const removeProductLink = async (removeLink: number) => {
-    const variables = {
-      input: {
-        productLink: {
-          productId: product.rowId,
-          linkedProductId: removeLink,
-          isDeleted: true
-        }
-      }
-    };
-
-    const response = await updateProductLinkMutation(
-      relay.environment,
-      variables
-    );
-    handleUpdateProductCount((productCount += 1));
-    console.log(response);
-  };
-
-  const data = [];
-
-  product.productLink.edges.forEach((edge) => {
-    const dataObject = {productRowId: null};
-    dataObject.productRowId = edge.node.rowId;
-    data.push(dataObject);
-  });
-
-  console.log(data);
-
-  const saveLinkedProducts = async (newData: IChangeEvent) => {
-    const previousLinks = [];
-    const newLinks = [];
-
-    data.forEach((obj) => {
-      previousLinks.push(obj.productRowId);
-    });
-    newData.formData.forEach((obj) => {
-      newLinks.push(obj.productRowId);
-    });
-
-    newLinks.forEach(async (id) => {
-      if (!previousLinks.includes(id)) {
-        console.log('ADD:', id);
-        const response = await createProductLink(id);
-        console.log(response);
-      }
-    });
-    previousLinks.forEach(async (id) => {
-      if (!newLinks.includes(id)) {
-        console.log('REMOVE:', id);
-        const response = await removeProductLink(id);
-        console.log(response);
-      }
-    });
-  };
-
-  const linkProductModal = (
-    <Modal
-      centered
-      size="xl"
-      show={linkProductModalShow}
-      onHide={() => {
-        console.log(product.productLink.edges);
-        setLinkProductModalShow(false);
-      }}
-    >
-      <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
-        <Modal.Title>Product Associations</Modal.Title>
-      </Modal.Header>
-      <Modal.Body style={{background: '#f5f5f5'}}>
-        <p>TESST TEXT TEST TEXT: blah blah blah</p>
-        <Container>
-          <Row>
-            <Col md={3}>
-              <h5>Product Name</h5>
-            </Col>
-            <Col md={6}>
-              <h5>Associated Products:</h5>
-            </Col>
-            <Col md={2}>
-              <h5>Add / Remove</h5>
-            </Col>
-          </Row>
-          &emsp;
-          <Row>
-            <Col md={3}>
-              <h6>{product.productName}</h6>
-            </Col>
-            <Col md={6}>
-              <JsonSchemaForm
-                showErrorList={false}
-                ArrayFieldTemplate={FormArrayFieldTemplate}
-                FieldTemplate={FormFieldTemplate}
-                formContext={{query}}
-                fields={CUSTOM_FIELDS}
-                formData={data}
-                widgets={{SearchWidget: SearchDropdownWidget}}
-                schema={linkSchema}
-                uiSchema={linkUISchema}
-                ObjectFieldTemplate={FormObjectFieldTemplate}
-                onSubmit={saveLinkedProducts}
-              />
-            </Col>
-          </Row>
-        </Container>
-      </Modal.Body>
-      <style jsx global>{`
-        .hidden-title label {
-          display: none;
-        }
-        .close {
-          color: white;
-        }
-        .hidden-button {
-          display: none;
-        }
-      `}</style>
     </Modal>
   );
 
@@ -460,7 +345,14 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       </tr>
       {editProductModal}
       {editBenchmarkModal}
-      {linkProductModal}
+      <LinkedProductModal
+        product={product}
+        linkProductModalShow={linkProductModalShow}
+        setLinkProductModalShow={setLinkProductModalShow}
+        query={query}
+        saveLinkedProducts={saveLinkedProducts}
+        linkData={linkData}
+      />
       <style jsx global>
         {`
           .editIcon:hover {
