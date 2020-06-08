@@ -1,7 +1,6 @@
 import React, {useMemo} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {
-  Button,
   Modal,
   Container,
   OverlayTrigger,
@@ -20,7 +19,6 @@ import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation
 import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import productSchema from './product-schema.json';
 import benchmarkSchemaFunction from './benchmark-schema';
 import moment from 'moment-timezone';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -31,10 +29,9 @@ import {
   faCube,
   faShareAlt
 } from '@fortawesome/free-solid-svg-icons';
-import HeaderWidget from 'components/HeaderWidget';
-import PastBenchmarks from 'components/Benchmark/PastBenchmarks';
 import createProductLinkMutation from 'mutations/product_link/createProductLinkMutation';
 import updateProductLinkMutation from 'mutations/product_link/updateProductLinkMutation';
+import InnerModal from './InnerProductBenchmarkModal';
 
 interface Props {
   relay: RelayProp;
@@ -51,8 +48,11 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   updateProductCount,
   productCount
 }) => {
-  const currentBenchmark = product.benchmarksByProductId?.edges[0]?.node;
+  const [productModalShow, setProductModalShow] = React.useState(false);
+  const [benchmarkModalShow, setBenchmarkModalShow] = React.useState(false);
+  const [linkProductModalShow, setLinkProductModalShow] = React.useState(false);
 
+  const currentBenchmark = product.benchmarksByProductId?.edges[0]?.node;
   const pastBenchmarks = product.benchmarksByProductId?.edges.slice(1);
 
   // Schema for ProductRowItemContainer
@@ -63,9 +63,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     return benchmarkSchemaFunction(reportingYears);
   }, [query.allReportingYears]);
 
-  /**
-   * Mutation functions
-   */
+  /** Mutation functions **/
 
   // Change a product status
   const updateStatus = async (state: CiipProductState) => {
@@ -158,107 +156,7 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     updateProductCount(newCount);
   };
 
-  const [productModalShow, setProductModalShow] = React.useState(false);
-  const [benchmarkModalShow, setBenchmarkModalShow] = React.useState(false);
-  const [linkProductModalShow, setLinkProductModalShow] = React.useState(false);
-
-  const modalButtons = (isProduct: boolean) => {
-    if (isProduct) {
-      if (product.productState === 'DRAFT')
-        return (
-          <>
-            <Button type="submit" variant="primary">
-              Save
-            </Button>
-            <Button
-              variant="success"
-              onClick={async () => updateStatus('PUBLISHED')}
-            >
-              Publish Product
-            </Button>
-          </>
-        );
-
-      if (product.productState === 'PUBLISHED' && !product.isReadOnly)
-        return (
-          <Button
-            variant="warning"
-            onClick={async () => updateStatus('ARCHIVED')}
-          >
-            Archive Product
-          </Button>
-        );
-      return <Button className="hidden-button" />;
-    }
-
-    if (
-      product.productState === 'DRAFT' ||
-      product.productState === 'PUBLISHED'
-    )
-      return <Button type="submit">Save</Button>;
-
-    return <Button className="hidden-button" />;
-  };
-
-  const innerModal = (isProduct: boolean) => (
-    <>
-      <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
-        <Modal.Title>
-          {isProduct ? 'Edit Product' : 'Edit Benchmark'}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body style={{background: '#f5f5f5'}}>
-        <Container>
-          <JsonSchemaForm
-            omitExtraData
-            liveOmit
-            disabled={
-              isProduct
-                ? product.productState !== 'DRAFT' || product.isReadOnly
-                : product.productState === 'ARCHIVED'
-            }
-            widgets={{header: HeaderWidget}}
-            schema={
-              isProduct
-                ? (productSchema.schema as JSONSchema6)
-                : (benchmarkSchema.schema as JSONSchema6)
-            }
-            uiSchema={
-              isProduct ? productSchema.uiSchema : benchmarkSchema.uiSchema
-            }
-            formData={isProduct ? product : currentBenchmark}
-            showErrorList={false}
-            ArrayFieldTemplate={FormArrayFieldTemplate}
-            FieldTemplate={FormFieldTemplate}
-            ObjectFieldTemplate={FormObjectFieldTemplate}
-            onSubmit={
-              isProduct
-                ? editProduct
-                : currentBenchmark && product.productState === 'DRAFT'
-                ? editBenchmark
-                : createBenchmark
-            }
-          >
-            {modalButtons(isProduct)}
-          </JsonSchemaForm>
-          {isProduct ? null : (
-            <PastBenchmarks pastBenchmarks={pastBenchmarks} />
-          )}
-        </Container>
-      </Modal.Body>
-      <style jsx global>{`
-        .hidden-title label {
-          display: none;
-        }
-        .close {
-          color: white;
-        }
-        .hidden-button {
-          display: none;
-        }
-      `}</style>
-    </>
-  );
+  /** Modals **/
 
   const editProductModal = (
     <Modal
@@ -271,7 +169,17 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         console.log(product);
       }}
     >
-      {innerModal(true)}
+      <InnerModal
+        isProduct
+        updateStatus={updateStatus}
+        product={product}
+        benchmarkSchema={benchmarkSchema}
+        currentBenchmark={currentBenchmark}
+        editProduct={editProduct}
+        editBenchmark={editBenchmark}
+        createBenchmark={createBenchmark}
+        pastBenchmarks={pastBenchmarks}
+      />
     </Modal>
   );
 
@@ -285,7 +193,17 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         handleUpdateProductCount((productCount += 1));
       }}
     >
-      {innerModal(false)}
+      <InnerModal
+        isProduct={false}
+        updateStatus={updateStatus}
+        product={product}
+        benchmarkSchema={benchmarkSchema}
+        currentBenchmark={currentBenchmark}
+        editProduct={editProduct}
+        editBenchmark={editBenchmark}
+        createBenchmark={createBenchmark}
+        pastBenchmarks={pastBenchmarks}
+      />
     </Modal>
   );
 
