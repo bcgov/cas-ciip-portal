@@ -79,7 +79,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     const continueApplication = () => {
       router.push({
         pathname: latestDraftlegalDisclaimerAccepted
-          ? '/reporter/ciip-application'
+          ? '/reporter/application'
           : '/reporter/ciip-application-legal-disclaimer',
         query: {
           applicationId,

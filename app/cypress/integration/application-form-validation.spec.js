@@ -1,5 +1,5 @@
 describe('When reviewing a submitted application as an analyst', () => {
-  const applicationUrl = `/reporter/ciip-application?applicationId=${window.btoa(
+  const applicationUrl = `/reporter/application?applicationId=${window.btoa(
     '["applications",1]'
   )}&version=1`;
 

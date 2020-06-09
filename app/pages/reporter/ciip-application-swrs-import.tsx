@@ -46,7 +46,7 @@ export default class Index extends Component<Props> {
 
         <Link
           href={{
-            pathname: '/reporter/ciip-application',
+            pathname: '/reporter/application',
             query: {
               ...router.query
             }

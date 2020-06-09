@@ -8,7 +8,7 @@ import Admin from 'pages/admin';
 // Import ApplicationReview from 'pages/analyst/application-review';
 // import Applications from 'pages/analyst/applications';
 import CiipApplicationSWRSImport from 'pages/reporter/ciip-application-swrs-import';
-// Import CiipApplication from 'pages/reporter/ciip-application';
+// Import Application from 'pages/reporter/application';
 // import CompleteSubmit from 'pages/reporter/complete-submit';
 // import Index from 'pages/index';
 // import LoginRedirect from 'pages/login-redirect';

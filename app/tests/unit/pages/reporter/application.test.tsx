@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import CiipApplication from 'pages/reporter/ciip-application';
+import Application from 'pages/reporter/application';
 
 const query = {
   session: {
@@ -25,11 +25,11 @@ const query = {
 
 // It matches the last accepted Snapshot
 it('It matches the last accepted Snapshot', () => {
-  const wrapper = shallow(<CiipApplication query={query} />);
+  const wrapper = shallow(<Application query={query} />);
   expect(wrapper).toMatchSnapshot();
 });
 
 it('It passes a query to the ApplicationWizard component', () => {
-  const wrapper = shallow(<CiipApplication query={query} />);
+  const wrapper = shallow(<Application query={query} />);
   expect(wrapper.find('Relay(ApplicationWizard)').prop('query')).toBe(query);
 });
