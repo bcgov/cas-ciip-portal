@@ -10,7 +10,7 @@ alter table ggircs_portal.certification_url disable trigger _certification_reque
 set jwt.claims.sub to '00000000-0000-0000-0000-000000000000';
 
 select has_function(
-  'ggircs_portal', 'search_certification_requests', array['text[]', 'text[]', 'text', 'text', 'int'],
+  'ggircs_portal', 'search_certification_requests', array['text[]', 'text[]', 'text', 'text', 'int','int'],
   'Function ggircs_portal.search_certification_requests should exist'
 );
 
@@ -19,7 +19,7 @@ insert into ggircs_portal.certification_url(application_id, version_number, cert
 
 select is(
   (
-    select certifier_email from ggircs_portal.search_certification_requests(ARRAY['facility_name'], ARRAY['a'], 'facility_name', 'asc', '0')
+    select certifier_email from ggircs_portal.search_certification_requests(ARRAY['facility_name'], ARRAY['a'], 'facility_name', 'asc', '0', 10000)
   ),
   'ciip@mailinator.com'::varchar(1000),
   'search_certification_requests returns only the certification_url results for the logged in user'
