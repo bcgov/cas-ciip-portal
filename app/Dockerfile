@@ -19,8 +19,8 @@ RUN apt-get update && \
 
 RUN useradd -ms /bin/bash ciip
 USER ciip
-COPY app/ /home/ciip/
 WORKDIR /home/ciip
+COPY --chown=ciip:ciip app/ /home/ciip/
 
 RUN git clone https://github.com/asdf-vm/asdf.git ~/asdf --branch v0.7.4
 RUN cd ~/asdf && git checkout v0.7.4
@@ -39,6 +39,7 @@ RUN ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 RUN asdf install
 RUN asdf reshim
 
+ENV NODE_ENV=production
 RUN yarn install --frozen-lockfile --production=false && \
     yarn build:relay && \
     yarn build:next && \
@@ -48,8 +49,7 @@ RUN yarn install --frozen-lockfile --production=false && \
 
 
 # Make everything in the tools home group-writable, to accomodate anyuid (in OpenShift)
-USER root
 COPY .bin/fix-permissions /usr/bin/fix-permissions
-RUN fix-permissions /home/tools
+RUN fix-permissions /home/ciip
 
 ENTRYPOINT ["bash"]
