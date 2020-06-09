@@ -8,7 +8,8 @@ begin;
     search_value text[],
     order_by_field text,
     direction text,
-    offset_value int
+    offset_value int,
+    max_results_per_page int
   )
   returns setof ggircs_portal.search_certification_url_result
   as
@@ -70,7 +71,7 @@ begin;
 
         if search_field[1] is null then
           return query execute
-            search_query || ' where certifier_email = ' || quote_literal(user_email) || ' ' || order_by_string || ' limit 20 offset ' || offset_value;
+            search_query || ' where certifier_email = ' || quote_literal(user_email) || ' ' || order_by_string || ' limit '|| max_results_per_page ||' offset ' || offset_value;
         else
           case
 
@@ -93,7 +94,7 @@ begin;
 
       return query execute
         search_query ||
-        ' where certifier_email = ' || quote_literal(user_email)|| ' ' || search_string || order_by_string || ' limit 20 offset ' || offset_value;
+        ' where certifier_email = ' || quote_literal(user_email)|| ' ' || search_string || order_by_string || ' limit '|| max_results_per_page ||' offset ' || offset_value;
       end if;
     end;
   $body$

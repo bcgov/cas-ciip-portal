@@ -23,6 +23,7 @@ class FacilitiesList extends Component<Props> {
       $organisationId: ID!
       $organisationRowId: String
       $offsetValue: Int
+      $maxResultsPerPage: Int
     ) {
       query {
         ...FacilitiesListContainer_query
@@ -34,6 +35,7 @@ class FacilitiesList extends Component<Props> {
             organisationId: $organisationId
             organisationRowId: $organisationRowId
             offsetValue: $offsetValue
+            maxResultsPerPage: $maxResultsPerPage
           )
         session {
           ...defaultLayout_session
@@ -47,7 +49,8 @@ class FacilitiesList extends Component<Props> {
       variables: {
         orderByField: 'facility_name',
         direction: 'ASC',
-        offsetValue: 0
+        offsetValue: 0,
+        maxResultsPerPage: 10
       }
     };
   }

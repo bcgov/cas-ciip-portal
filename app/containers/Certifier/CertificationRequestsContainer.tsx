@@ -54,6 +54,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
+  const maxResultsPerPage = 20;
 
   useEffect(() => {
     const refetchVariables = {
@@ -62,6 +63,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
       orderByField,
       direction,
       offsetValue,
+      maxResultsPerPage,
       forceRefetch
     };
     relay.refetch(refetchVariables, undefined, (error) => {
@@ -83,6 +85,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
     orderByField,
     direction,
     offsetValue,
+    maxResultsPerPage,
     forceRefetch,
     query
   ]);
@@ -179,8 +182,6 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
     </tbody>
   );
 
-  const maxResultsPerPage = 20;
-
   const totalRequestCount =
     query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount || 0;
 
@@ -217,6 +218,7 @@ export default createRefetchContainer(
           direction: {type: "String"}
           offsetValue: {type: "Int"}
           forceRefetch: {type: "Int"}
+          maxResultsPerPage: {type: "Int"}
         ) {
         searchCertificationRequests(
           searchField: $searchField
@@ -224,6 +226,7 @@ export default createRefetchContainer(
           orderByField: $orderByField
           direction: $direction
           offsetValue: $offsetValue
+          maxResultsPerPage: $maxResultsPerPage
         ) {
           edges {
             node {
@@ -260,6 +263,7 @@ export default createRefetchContainer(
       $direction: String
       $offsetValue: Int
       $forceRefetch: Int
+      $maxResultsPerPage: Int
     ) {
       query {
         ...CertificationRequestsContainer_query
@@ -270,6 +274,7 @@ export default createRefetchContainer(
             searchValue: $searchValue
             offsetValue: $offsetValue
             forceRefetch: $forceRefetch
+            maxResultsPerPage: $maxResultsPerPage
           )
       }
     }

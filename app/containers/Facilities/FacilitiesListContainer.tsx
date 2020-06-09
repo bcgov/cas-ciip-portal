@@ -38,6 +38,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   let [facilityCount, updateFacilityCount] = useState(facilityNumber);
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
+  const maxResultsPerPage = 10;
   useEffect(() => {
     const refetchVariables = {
       searchField,
@@ -45,6 +46,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
       orderByField,
       direction,
       facilityCount,
+      maxResultsPerPage,
       offsetValue
     };
     relay.refetch(refetchVariables);
@@ -78,8 +80,6 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
     console.log(response);
     updateFacilityCount((facilityCount += 1));
   };
-
-  const maxResultsPerPage = 10;
 
   const totalFacilityCount =
     query?.searchAllFacilities?.edges[0]?.node?.totalFacilityCount || 0;
@@ -123,6 +123,7 @@ export default createRefetchContainer(
           organisationRowId: {type: "String"}
           facilityCount: {type: "Int"}
           offsetValue: {type: "Int"}
+          maxResultsPerPage: {type: "Int"}
         ) {
         ...FacilitiesRowItemContainer_query
         searchAllFacilities(
@@ -132,6 +133,7 @@ export default createRefetchContainer(
           organisationRowId: $organisationRowId
           direction: $direction
           offsetValue: $offsetValue
+          maxResultsPerPage: $maxResultsPerPage
         ) {
           edges {
             node {
@@ -163,6 +165,7 @@ export default createRefetchContainer(
       $organisationRowId: String
       $facilityCount: Int
       $offsetValue: Int
+      $maxResultsPerPage: Int
     ) {
       query {
         ...FacilitiesListContainer_query
@@ -175,6 +178,7 @@ export default createRefetchContainer(
             organisationId: $organisationId
             facilityCount: $facilityCount
             offsetValue: $offsetValue
+            maxResultsPerPage: $maxResultsPerPage
           )
       }
     }

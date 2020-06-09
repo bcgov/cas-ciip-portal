@@ -10862,6 +10862,7 @@ type Query implements Node {
 
     """Only read the last `n` values of the set."""
     last: Int
+    maxResultsPerPage: Int
 
     """
     Skip the first `n` values from our `after` cursor, an alternative to cursor
@@ -10918,6 +10919,7 @@ type Query implements Node {
 
     """Only read the last `n` values of the set."""
     last: Int
+    maxResultsPerPage: Int
 
     """
     Skip the first `n` values from our `after` cursor, an alternative to cursor

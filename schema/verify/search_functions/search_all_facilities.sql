@@ -2,6 +2,6 @@
 
 begin;
 
-select pg_get_functiondef('ggircs_portal.search_all_facilities(text,text,text,text,text,int)'::regprocedure);
+select pg_get_functiondef('ggircs_portal.search_all_facilities(text,text,text,text,text,int,int)'::regprocedure);
 
 rollback;
