@@ -186,14 +186,18 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     console.log(response);
   };
 
-  const linkData = [];
+  const getLinkData = () => {
+    const dataArray = [];
+    product?.linkedProduct?.edges?.forEach((edge) => {
+      const dataObject = {productRowId: null, linkId: null};
+      dataObject.productRowId = edge.node.linkedProductId;
+      dataObject.linkId = edge.node.rowId;
+      dataArray.push(dataObject);
+    });
+    return dataArray;
+  };
 
-  product?.linkedProduct?.edges?.forEach((edge) => {
-    const dataObject = {productRowId: null, linkId: null};
-    dataObject.productRowId = edge.node.linkedProductId;
-    dataObject.linkId = edge.node.rowId;
-    linkData.push(dataObject);
-  });
+  const linkData = getLinkData();
 
   const saveLinkedProducts = async (newData: IChangeEvent) => {
     const previousLinks = [];
