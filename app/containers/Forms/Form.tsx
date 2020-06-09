@@ -184,6 +184,54 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   };
 
   const formClass = uiSchema?.['ui:className'] || '';
+
+  const getMissingProducts = () => {
+    if (formResult[0]?.productRowId) {
+      const reportedProducts = [];
+      const missingProducts = [];
+
+      formResult.forEach((result) => {
+        reportedProducts.push(result.productRowId);
+      });
+
+      reportedProducts.forEach((productId) => {
+        const product = query.products.edges.find(
+          ({node}) => node.rowId === productId
+        )?.node;
+        if (product?.linkedProduct?.edges?.length > 0) {
+          product.linkedProduct.edges.forEach((edge) => {
+            if (!reportedProducts.includes(edge.node.linkedProductId)) {
+              missingProducts.push({
+                linkId: edge.node.rowId,
+                product: product.productName,
+                missingLink: edge.node.productName
+              });
+            }
+          });
+        }
+      });
+      return missingProducts;
+    }
+  };
+
+  const showMissingProducts = () => {
+    const missingProducts = getMissingProducts();
+    const renderMissingProducts = missingProducts.map((missingObj) => (
+      <Alert key={missingObj.linkId} variant="warning">
+        {missingObj.product} requires reporting of: {missingObj.missingLink}
+      </Alert>
+    ));
+    if (missingProducts.length === 0) return null;
+    return (
+      <>
+        <Alert variant="warning">
+          <h5>Some required products are missing from your application:</h5>
+        </Alert>
+        {renderMissingProducts}
+      </>
+    );
+  };
+
   return (
     <div className={formClass}>
       <Row>
@@ -194,6 +242,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
       {hasErrors && (
         <div className="errors">Please correct the errors below.</div>
       )}
+      {showMissingProducts()}
       <JsonSchemaForm
         safeRenderCompletion
         noHtml5Validate
@@ -275,6 +324,23 @@ export default createFragmentContainer(FormComponent, {
           formJson
           ciipApplicationWizardByFormId {
             formPosition
+          }
+        }
+      }
+      products: allProducts(condition: {productState: PUBLISHED}) {
+        edges {
+          node {
+            rowId
+            productName
+            linkedProduct {
+              edges {
+                node {
+                  rowId
+                  productName
+                  linkedProductId
+                }
+              }
+            }
           }
         }
       }
