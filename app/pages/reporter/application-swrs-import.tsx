@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
 import Link from 'next/link';
 import {graphql} from 'react-relay';
-import {ciipApplicationSwrsImportQueryResponse} from 'ciipApplicationSwrsImportQuery.graphql';
+import {applicationSwrsImportQueryResponse} from 'applicationSwrsImportQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
@@ -10,12 +10,12 @@ import {USER} from 'data/group-constants';
 const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
-  query: ciipApplicationSwrsImportQueryResponse['query'];
+  query: applicationSwrsImportQueryResponse['query'];
 }
 
-export default class Index extends Component<Props> {
+export default class ApplicationSwrsImport extends Component<Props> {
   static query = graphql`
-    query ciipApplicationSwrsImportQuery {
+    query applicationSwrsImportQuery {
       query {
         session {
           ...defaultLayout_session
