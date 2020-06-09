@@ -14,26 +14,26 @@ truncate ggircs_portal.linked_product restart identity cascade;
 alter table ggircs_portal.product disable trigger _protect_read_only_products;
 
 insert into ggircs_portal.linked_product(product_id, linked_product_id) values
-(1,2), (1,3), (1,4), (1,5), (2,6), (3,7);
+(11,12), (11,13), (11,14), (11,15), (12,16), (13,17);
 
 select set_eq(
   $$
-    with prod as (select row(p.*)::ggircs_portal.product from ggircs_portal.product p where id=1)
+    with prod as (select row(p.*)::ggircs_portal.product from ggircs_portal.product p where id=11)
     select linked_product_id from ggircs_portal.product_linked_product((select * from prod));
   $$,
-  ARRAY['2'::integer, '3'::integer, '4'::integer, '5'::integer],
+  ARRAY['12'::integer, '13'::integer, '14'::integer, '15'::integer],
   'Computed column returns the linked products for the input product'
 );
 
-update ggircs_portal.product set product_state='archived' where id=2;
-update ggircs_portal.product set product_state='draft' where id=3;
+update ggircs_portal.product set product_state='archived' where id=12;
+update ggircs_portal.product set product_state='draft' where id=13;
 
 select set_eq(
   $$
-    with prod as (select row(p.*)::ggircs_portal.product from ggircs_portal.product p where id=1)
+    with prod as (select row(p.*)::ggircs_portal.product from ggircs_portal.product p where id=11)
     select linked_product_id from ggircs_portal.product_linked_product((select * from prod));
   $$,
-  ARRAY['4'::integer, '5'::integer],
+  ARRAY['14'::integer, '15'::integer],
   'Computed column only returns the linked products in state published for the input product'
 );
 
