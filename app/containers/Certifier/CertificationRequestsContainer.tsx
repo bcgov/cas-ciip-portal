@@ -131,8 +131,15 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
                 {!node.certifiedAt && (
                   <input
                     type="checkbox"
-                    checked={selections.includes(node.certificationUrlByCertificationUrlId.id)}
-                    onChange={(e) => onCheck(e.target.checked, node.certificationUrlByCertificationUrlId.id)}
+                    checked={selections.includes(
+                      node.certificationUrlByCertificationUrlId.id
+                    )}
+                    onChange={(e) =>
+                      onCheck(
+                        e.target.checked,
+                        node.certificationUrlByCertificationUrlId.id
+                      )
+                    }
                   />
                 )}
               </label>

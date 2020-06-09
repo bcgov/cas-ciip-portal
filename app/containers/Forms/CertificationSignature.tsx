@@ -35,7 +35,7 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
 
   const clear = () => sigCanvas.current.clear();
 
-  const saveSignatures = (signature) => {
+  const saveSignatures = async function (signature) {
     const {environment} = relay;
     return Promise.all(
       certificationIdsToSign.map(async function (id) {
@@ -61,7 +61,9 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
       .getTrimmedCanvas()
       .toDataURL('image/png');
     const responses = await saveSignatures(signature);
-    reportSubmissions?.(responses);
+    if (reportSubmissions) {
+      reportSubmissions(responses);
+    }
   };
 
   return (
