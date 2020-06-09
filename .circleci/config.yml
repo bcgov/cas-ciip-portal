@@ -573,6 +573,12 @@ workflows:
           image_name: cas-ciip-portal-schema
           image_tag: ${CIRCLE_SHA1}
           dockerfile: schema/Dockerfile
+      - build_image:
+          name: build_app
+          context: cas-pipeline
+          image_name: cas-ciip-portal-app
+          image_tag: ${CIRCLE_SHA1}
+          dockerfile: app/Dockerfile
       # - test-local-cluster:
       #     context: cas-pipeline
       #     requires:

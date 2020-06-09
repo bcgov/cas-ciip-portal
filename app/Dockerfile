@@ -1,25 +1,26 @@
-FROM alpine
+FROM debian:10
 
-ENV SUMMARY="A tools image for the cas-ciip-portal project" \
-    DESCRIPTION="This image contains the development tool needed to build the ciip portal repository. The tools are installed via asdf (when available)"
+ENV SUMMARY="An image for the cas-ciip-portal app" \
+    DESCRIPTION="This image contains the compiled ciip portal node app"
 
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
       io.k8s.description="$DESCRIPTION" \
       io.k8s.display-name="CAS CIIP Portal tools" \
-      io.openshift.tags="s2i,cas,ciip,builder-image" \
+      io.openshift.tags="cas,ciip, node" \
       name="cas-ciip-portal-tools" \
       version="1" \
       maintainer="Matthieu Foucault <matthieu@button.is>"
 
-RUN apk --no-cache add bash git build-base automake autoconf readline-dev \
-    ncurses-dev openssl-dev yaml-dev libxslt-dev libffi-dev libtool \
-    unixodbc-dev openssh-client curl gnupg coreutils
+RUN apt-get update && \
+    apt-get install -y git gnupg curl && \
+    apt-get clean
 
 
-RUN addgroup -S ciip && adduser -S ciip -G ciip
+RUN useradd -ms /bin/bash ciip
 USER ciip
 COPY app/ /home/ciip/
+WORKDIR /home/ciip
 
 RUN git clone https://github.com/asdf-vm/asdf.git ~/asdf --branch v0.7.4
 RUN cd ~/asdf && git checkout v0.7.4
