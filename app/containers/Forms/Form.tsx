@@ -216,6 +216,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
 
   const showMissingProducts = () => {
     const missingProducts = getMissingProducts();
+    if (!missingProducts) return null;
     const renderMissingProducts = missingProducts.map((missingObj) => (
       <Alert key={missingObj.linkId} variant="warning">
         {missingObj.product} requires reporting of: {missingObj.missingLink}
