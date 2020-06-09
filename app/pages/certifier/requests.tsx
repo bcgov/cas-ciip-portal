@@ -27,6 +27,7 @@ export default class CertifierRequests extends Component<Props> {
       $orderByField: String
       $direction: String
       $offsetValue: Int
+      $maxResultsPerPage: Int
     ) {
       query {
         session {
@@ -39,6 +40,7 @@ export default class CertifierRequests extends Component<Props> {
             orderByField: $orderByField
             direction: $direction
             offsetValue: $offsetValue
+            maxResultsPerPage: $maxResultsPerPage
           )
       }
     }
@@ -59,7 +61,8 @@ export default class CertifierRequests extends Component<Props> {
       variables: {
         orderByField: 'facility_name',
         direction: 'ASC',
-        offsetValue: 0
+        offsetValue: 0,
+        maxResultsPerPage: 20
       }
     };
   }

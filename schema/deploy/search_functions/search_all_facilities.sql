@@ -4,7 +4,7 @@
 
 begin;
 
-create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text, organisation_row_id text, offset_value int)
+create or replace function ggircs_portal.search_all_facilities(search_field text, search_value text, order_by_field text, direction text, organisation_row_id text, offset_value int, max_results_per_page int)
 
   returns setof ggircs_portal.facility_search_result as
     $function$
@@ -69,11 +69,11 @@ create or replace function ggircs_portal.search_all_facilities(search_field text
 
         if search_field is null or search_value is null
           then return query execute search_query_input_query ||
-          'select organisationInfo.*, total_facility_count from organisationInfo, total_count order by ' || order_by_field || ' ' || direction || ' limit 10 offset ' || offset_value;
+          'select organisationInfo.*, total_facility_count from organisationInfo, total_count order by ' || order_by_field || ' ' || direction || ' limit '|| max_results_per_page ||'  offset ' || offset_value;
         else
           return query execute search_query_input_query ||
             'select organisationInfo.*, total_facility_count from organisationInfo, total_count
-            where '|| search_field || '::text ilike ''%' || search_value || '%'' order by '|| order_by_field || ' ' || direction || ' limit 10 offset ' || offset_value;
+            where '|| search_field || '::text ilike ''%' || search_value || '%'' order by '|| order_by_field || ' ' || direction || ' limit '|| max_results_per_page ||' offset ' || offset_value;
         end if;
       end
     $function$ language plpgsql stable;
