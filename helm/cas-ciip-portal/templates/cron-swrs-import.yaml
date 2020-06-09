@@ -1,0 +1,78 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-swrs-import
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+spec:
+  suspend: true # This cron job is intended to be triggered manually
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      activeDeadlineSeconds: 600
+      template:
+        metadata:
+          labels:
+{{ include "cas-ciip-portal.labels" . | indent 14 }}
+        spec:
+          restartPolicy: Never
+          containers:
+            - env:
+                - name: PORTAL_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-user
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-password
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_DATABASE
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-name
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_HOST
+                  value: cas-ciip-portal-patroni
+                - name: PORTAL_PORT
+                  value: "5432"
+                - name: GGIRCS_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-user
+                      name: cas-ggircs
+                - name: GGIRCS_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-password
+                      name: cas-ggircs
+                - name: GGIRCS_DATABASE
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-name
+                      name: cas-ggircs
+                - name: GGIRCS_PORT
+                  value: "5432"
+                - name: GGIRCS_HOST
+                  value: cas-ggircs-patroni
+              name: {{ template "cas-ciip-portal.fullname" . }}-swrs-import
+              image: {{ .Values.image.psql.repository }}:{{ .Values.image.psql.tag }}
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 128Mi
+                requests:
+                  cpu: 500m
+                  memory: 64Mi
+              command:
+                - /usr/bin/env
+                - bash
+                - -c
+                - >
+                  touch .pgpass; chmod 0600 .pgpass;
+                  echo "$GGIRCS_HOST:$GGIRCS_PORT:$GGIRCS_DATABASE:$GGIRCS_USER:$GGIRCS_PASSWORD" >> .pgpass;
+                  echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass;
+                  PGPASSFILE=".pgpass" pg_dump -w -h $GGIRCS_HOST -p $GGIRCS_PORT -U $GGIRCS_USER --format=custom --schema="swrs" $GGIRCS_DATABASE |
+                  PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER

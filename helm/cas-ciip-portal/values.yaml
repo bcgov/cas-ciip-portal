@@ -1,0 +1,47 @@
+image:
+  schema:
+    repository: gcr.io/ggl-cas-storage/cas-ciip-portal-schema
+    tag: latest
+    pullPolicy: Always
+  app:
+    repository: gcr.io/ggl-cas-storage/cas-ciip-portal-app
+    tag: latest
+    pullPolicy: Always
+  psql:
+    repository:  gcr.io/ggl-cas-storage/cas-postgres
+    pullPolicy: Always
+    tag: "0.1.0"
+
+replicas: 2
+port: 3000
+resources:
+  limits:
+    cpu: 500m
+    memory: 4Gi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+route:
+  suffix: "-dev"
+
+persistence:
+  db: ciip
+  dbOwner: ciip
+  appUser: ciip_portal
+  readonlyUser: ciip_readonly
+
+env:
+  smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
+  senderEmail: no-reply.cas@gov.bc.ca
+  adminEmail: GHGRegulator@gov.bc.ca
+  appHost: https://ciip-dev.pathfinder.gov.bc.ca # This should be different from the route for the production site (appHost will be https://ciip.gov.bc.ca)
+
+fider:
+  host: # TODO move fider template in this repo
+
+cas-postgres:
+  patroni:
+    replicaCount: 3
+    env:
+      ALLOW_NOSSL: true

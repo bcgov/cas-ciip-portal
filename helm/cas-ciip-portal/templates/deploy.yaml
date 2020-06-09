@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    name: {{ template "cas-ciip-portal.fullname" . }}
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+{{ include "cas-ciip-portal.selectorLabels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "cas-ciip-portal.labels" . | indent 8 }}
+    spec:
+      containers:
+      - name: {{ template "cas-ciip-portal.fullname" . }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
+        env:
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                key: database-app-user
+                name: {{ template "cas-ciip-portal.fullname" . }}
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-app-password
+                name: {{ template "cas-ciip-portal.fullname" . }}
+          - name: PGDATABASE
+            valueFrom:
+              secretKeyRef:
+                key: database-name
+                name: {{ template "cas-ciip-portal.fullname" . }}
+          - name: PGPORT
+            value: "5432"
+          - name: PGHOST
+            value: {{ template "cas-ciip-portal.fullname" . }}-patroni
+          - name: PORT
+            value: {{ .Values.port | quote }}
+          - name: SMTP_CONNECTION_STRING
+            value: {{ .Values.env.smtpConnectionString }}
+          - name: SENDER_EMAIL
+            value: {{ .Values.env.senderEmail }}
+          - name: ADMIN_EMAIL
+            value: {{ .Values.env.adminEmail }}
+          - name: FEEDBACK_SITE_URL
+            value: {{ .Values.fider.host }}
+          - name: HOST
+            value: {{ .Values.env.appHost }}
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+        ports:
+        - containerPort: {{ .Values.port }}
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: {{ .Values.port }}
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        securityContext:
+          capabilities: {}
+          privileged: false
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

@@ -1,0 +1,87 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-app-users
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+spec:
+  suspend: true # This cron job is intended to be triggered manually
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      activeDeadlineSeconds: 600
+      template:
+        metadata:
+          labels:
+{{ include "cas-ciip-portal.labels" . | indent 14 }}
+        spec:
+          restartPolicy: Never
+          containers:
+            - env:
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-user
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-password
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PGDATABASE
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-name
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PGPORT
+                  value: "5432"
+                - name: PGHOST
+                  value: {{ template "cas-ciip-portal.fullname" . }}-patroni
+                - name: PORTAL_APP_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-app-user
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_APP_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-app-password
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_READONLY_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-readonly-user
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_READONLY_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-readonly-password
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: metadata.namespace
+              name: {{ template "cas-ciip-portal.fullname" . }}-app-users
+              image: {{ .Values.image.psql.repository }}:{{ .Values.image.psql.tag }}
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 128Mi
+                requests:
+                  cpu: 100m
+                  memory: 64Mi
+              command:
+                - /usr/bin/env
+                - bash
+                - -c
+                - |
+                  set -euo pipefail;
+                  create-user-db -d $(PGDATABASE) -u $(PORTAL_APP_USER) -p $(PORTAL_APP_PASSWORD) --schemas swrs,graphile_worker --privileges select,insert,update,delete
+                  psql -c "drop policy if exists jobs_policy on graphile_worker.jobs;";
+                  psql -c "drop policy if exists job_queues_policy on graphile_worker.job_queues;";
+                  psql -c "create policy jobs_policy on graphile_worker.jobs for all to $(PORTAL_APP_USER) using (true);";
+                  psql -c "create policy job_queues_policy on graphile_worker.job_queues for all to $(PORTAL_APP_USER) using (true);";
+                  psql -c "grant ciip_administrator,ciip_analyst,ciip_industry_user,ciip_guest to $(PORTAL_APP_USER);"
+                  create-user-db -d $(PGDATABASE) -u $(PORTAL_READONLY_USER) -p $(PORTAL_READONLY_PASSWORD) --schemas swrs,graphile_worker --privileges select

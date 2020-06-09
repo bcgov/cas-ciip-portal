@@ -4,3 +4,4 @@
 .scratch
 log/
 app/cypress/screenshots
+helm/**/charts

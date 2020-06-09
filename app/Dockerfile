@@ -54,4 +54,4 @@ RUN fix-permissions /home/ciip
 
 EXPOSE 3000
 
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["yarn", "start"]
