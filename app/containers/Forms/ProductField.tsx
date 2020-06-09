@@ -51,7 +51,17 @@ export const ProductFieldComponent: React.FunctionComponent<Props> = (
       productUnits: product?.units,
       requiresEmissionAllocation: product?.requiresEmissionAllocation,
       requiresProductAmount: product?.requiresProductAmount,
-      isEnergyProduct: product?.isEnergyProduct
+      isEnergyProduct: product?.isEnergyProduct,
+      addPurchasedElectricityEmissions:
+        product?.addPurchasedElectricityEmissions,
+      addPurchasedHeatEmissions: product?.addPurchasedHeatEmissions,
+      subtractExportedElectricityEmissions:
+        product?.subtractExportedElectricityEmissions,
+      subtractExportedHeatEmissions: product?.subtractExportedHeatEmissions,
+      subtractGeneratedElectricityEmissions:
+        product?.subtractGeneratedElectricityEmissions,
+      subtractGeneratedHeatEmissions: product?.subtractGeneratedHeatEmissions,
+      addEmissionsFromEios: product?.addEmissionsFromEios
     });
   };
 
@@ -81,6 +91,13 @@ export default createFragmentContainer(ProductFieldComponent, {
             requiresEmissionAllocation
             requiresProductAmount
             isEnergyProduct
+            addPurchasedElectricityEmissions
+            addPurchasedHeatEmissions
+            subtractExportedElectricityEmissions
+            subtractExportedHeatEmissions
+            subtractGeneratedElectricityEmissions
+            subtractGeneratedHeatEmissions
+            addEmissionsFromEios
           }
         }
       }
