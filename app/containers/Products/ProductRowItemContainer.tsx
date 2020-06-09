@@ -188,7 +188,8 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
 
   const getLinkData = () => {
     const dataArray = [];
-    product?.linkedProduct?.edges?.forEach((edge) => {
+    if (!product) return [];
+    product.linkedProduct.edges.forEach((edge) => {
       const dataObject = {productRowId: null, linkId: null};
       dataObject.productRowId = edge.node.linkedProductId;
       dataObject.linkId = edge.node.rowId;
