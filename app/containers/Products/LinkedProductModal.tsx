@@ -28,7 +28,13 @@ export const LinkedProductModalComponent: React.FunctionComponent<Props> = ({
 }) => {
   const CUSTOM_FIELDS = {
     productRowId: (props) => {
-      return <ProductRowIdField query={props.formContext.query} {...props} />;
+      return (
+        <ProductRowIdField
+          isLinkModal
+          query={props.formContext.query}
+          {...props}
+        />
+      );
     }
   };
 
