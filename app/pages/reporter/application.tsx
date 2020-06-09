@@ -56,7 +56,7 @@ class Application extends Component<Props> {
 
     if (!application?.latestDraftRevision?.legalDisclaimerAccepted) {
       router.push({
-        pathname: '/reporter/ciip-application-legal-disclaimer',
+        pathname: '/reporter/new-application-disclaimer',
         query: {
           applicationId: application.id,
           version: application.latestDraftRevision.versionNumber
