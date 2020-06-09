@@ -52,4 +52,6 @@ RUN yarn install --frozen-lockfile --production=false && \
 COPY .bin/fix-permissions /usr/bin/fix-permissions
 RUN fix-permissions /home/ciip
 
+EXPOSE 3000
+
 ENTRYPOINT ["bash"]
