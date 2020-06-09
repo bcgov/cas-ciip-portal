@@ -28071,7 +28071,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "BigInt",
+                "name": "String",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -28095,7 +28095,7 @@
               "args": [],
               "type": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "BigInt",
                 "ofType": null
               },
               "isDeprecated": false,
