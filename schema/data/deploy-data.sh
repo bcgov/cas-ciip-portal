@@ -155,7 +155,6 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
 esac; shift; done
 
 deployProdData() {
-  _psql -f "./prod/reporting_year.sql"
   _psql -f "./prod/form_json.sql"
   _psql -f "./prod/ciip_application_wizard.sql"
   _psql -f "./prod/fuel.sql"
@@ -169,6 +168,7 @@ deployProdData() {
 
 deployTestData() {
   deployProdData
+  _psql -f "./test/reporting_year.sql"
   _psql -f "./test/mock_current_timestamp.sql"
   _psql -f "./test/product.sql"
   _psql -f "./test/benchmark.sql"
