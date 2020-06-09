@@ -1,25 +1,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {CertificationSignatureComponent} from 'containers/Forms/CertificationSignature';
+import {CertificationSignature} from 'containers/Forms/CertificationSignature';
 
 describe('The Confirmation Component', () => {
   it('matches the snapshot', () => {
     const wrapper = shallow(
-      <CertificationSignatureComponent
-        application={{
-          ' $refType': 'CertificationSignature_application',
-          id: 'abc',
-          latestDraftRevision: {
-            id: 'abc',
-            applicationId: 1,
-            versionNumber: 1,
-            certificationSignatureIsValid: false,
-            certificationUrl: {
-              id: 'abc',
-              certificationSignature: undefined
-            }
-          }
-        }}
+      <CertificationSignature
+        certificationIdsToSign={[]}
+        reportSubmissions={null}
         relay={null}
       />
     );
@@ -28,21 +16,9 @@ describe('The Confirmation Component', () => {
 
   it('allows the certifier to sign if no signature exists', () => {
     const wrapper = shallow(
-      <CertificationSignatureComponent
-        application={{
-          ' $refType': 'CertificationSignature_application',
-          id: 'abc',
-          latestDraftRevision: {
-            id: 'abc',
-            applicationId: 1,
-            versionNumber: 1,
-            certificationSignatureIsValid: false,
-            certificationUrl: {
-              id: 'abc',
-              certificationSignature: undefined
-            }
-          }
-        }}
+      <CertificationSignature
+        certificationIdsToSign={[]}
+        reportSubmissions={null}
         relay={null}
       />
     );
@@ -51,21 +27,10 @@ describe('The Confirmation Component', () => {
 
   it('displays a success message if the application has been signed', () => {
     const wrapper = shallow(
-      <CertificationSignatureComponent
-        application={{
-          ' $refType': 'CertificationSignature_application',
-          id: 'abc',
-          latestDraftRevision: {
-            id: 'abc',
-            applicationId: 1,
-            versionNumber: 1,
-            certificationSignatureIsValid: true,
-            certificationUrl: {
-              id: 'abc',
-              certificationSignature: 'signed'
-            }
-          }
-        }}
+      <CertificationSignature
+        submitted
+        certificationIdsToSign={[]}
+        reportSubmissions={null}
         relay={null}
       />
     );
