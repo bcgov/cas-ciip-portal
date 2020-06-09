@@ -353,6 +353,9 @@ exports[`ProductList should match the previous snaphshot 1`] = `
           "id": "abc",
           "isCiipProduct": true,
           "isReadOnly": false,
+          "linkedProduct": Object {
+            "edges": Array [],
+          },
           "productName": "test product",
           "productState": "PUBLISHED",
           "requiresEmissionAllocation": true,
@@ -514,6 +517,9 @@ exports[`ProductList should match the previous snaphshot 1`] = `
           "id": "abc",
           "isCiipProduct": true,
           "isReadOnly": false,
+          "linkedProduct": Object {
+            "edges": Array [],
+          },
           "productName": "test product",
           "productState": "PUBLISHED",
           "requiresEmissionAllocation": true,
@@ -559,6 +565,9 @@ exports[`ProductList should match the previous snaphshot 1`] = `
         "id": "abc",
         "isCiipProduct": true,
         "isReadOnly": false,
+        "linkedProduct": Object {
+          "edges": Array [],
+        },
         "productName": "test product",
         "productState": "PUBLISHED",
         "requiresEmissionAllocation": true,

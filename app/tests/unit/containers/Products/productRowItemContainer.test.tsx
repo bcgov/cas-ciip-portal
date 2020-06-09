@@ -38,6 +38,9 @@ describe('ProductList', () => {
           }
         }
       ]
+    },
+    linkedProduct: {
+      edges: []
     }
   };
   const query = {
