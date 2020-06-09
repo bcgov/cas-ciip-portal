@@ -16,20 +16,20 @@ RUN apk --no-cache add bash git build-base automake autoconf readline-dev \
     ncurses-dev openssl-dev yaml-dev libxslt-dev libffi-dev libtool \
     unixodbc-dev openssh-client curl gnupg coreutils
 
-RUN adduser --home /home/ciip --system ciip -G root
+
+RUN addgroup -S ciip && adduser -S ciip -G ciip
 USER ciip
-WORKDIR /home/ciip
 COPY app/ /home/ciip/
 
 RUN git clone https://github.com/asdf-vm/asdf.git ~/asdf --branch v0.7.4
 RUN cd ~/asdf && git checkout v0.7.4
-ENV BASH_ENV="/home/asdf/asdf.sh"
+ENV BASH_ENV="/home/ciip/asdf/asdf.sh"
 # Because asdf is loaded via BASH_ENV, all commands using adsf need to be executed using /usr/bin/env bash -c
 SHELL ["/usr/bin/env", "bash", "-c"]
 
 COPY .tool-versions /home/ciip/.tool-versions
 # The app only needs yarn and node
-RUN sed -i -nr '/node|yarn/p' .tool-versions
+RUN sed -i -nr '/node|yarn/p' ~/.tool-versions
 RUN cat ~/.tool-versions | cut -f 1 -d ' ' | xargs -n 1 asdf plugin-add
 RUN asdf plugin-update --all
 # The nodejs release team keyring is needed to install the asdf node plugin
