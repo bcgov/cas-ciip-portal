@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
 import {Card, Alert} from 'react-bootstrap';
-import {ciipApplicationLegalDisclaimerQueryResponse} from 'ciipApplicationLegalDisclaimerQuery.graphql';
+import {newApplicationDisclaimerQueryResponse} from 'newApplicationDisclaimerQuery.graphql';
 import ApplicationConsent from 'containers/Applications/ApplicationConsent';
 import {CiipPageComponentProps} from 'next-env';
 import {NextRouter} from 'next/router';
@@ -11,12 +11,12 @@ import {USER} from 'data/group-constants';
 const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
-  query: ciipApplicationLegalDisclaimerQueryResponse['query'];
+  query: newApplicationDisclaimerQueryResponse['query'];
   router: NextRouter;
 }
-class CiipApplicationLegalDisclaimer extends Component<Props> {
+class NewApplicationDisclaimer extends Component<Props> {
   static query = graphql`
-    query ciipApplicationLegalDisclaimerQuery($applicationId: ID!) {
+    query newApplicationDisclaimerQuery($applicationId: ID!) {
       query {
         session {
           ...defaultLayout_session
@@ -95,4 +95,4 @@ class CiipApplicationLegalDisclaimer extends Component<Props> {
   }
 }
 
-export default CiipApplicationLegalDisclaimer;
+export default NewApplicationDisclaimer;

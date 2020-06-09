@@ -26,7 +26,7 @@ const HeaderLayout = ({
             <Row>
               {isIndustry ? (
                 <Col>
-                  <Link href="/reporter/user-dashboard">
+                  <Link href="/reporter">
                     <Button variant="outline-light">Industry</Button>
                   </Link>
                 </Col>
@@ -43,7 +43,7 @@ const HeaderLayout = ({
                   <Form.Row>
                     {isRegistered && (
                       <Col>
-                        <Form action="/user-profile" method="get">
+                        <Form action="/user/profile" method="get">
                           <Button type="submit" variant="outline-light">
                             Profile
                           </Button>

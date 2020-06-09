@@ -11,7 +11,7 @@ describe('When logged in as a reporter', () => {
   it('The index page redirects to the reporter dashboard', () => {
     cy.visit('/');
     cy.get('#page-content');
-    cy.url().should('include', '/reporter/user-dashboard');
+    cy.url().should('include', '/reporter');
   });
 });
 

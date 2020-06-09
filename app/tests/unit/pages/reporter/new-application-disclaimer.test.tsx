@@ -1,9 +1,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import CiipApplicationLegalDisclaimer from 'pages/reporter/ciip-application-legal-disclaimer';
-import {ciipApplicationLegalDisclaimerQueryResponse} from 'ciipApplicationLegalDisclaimerQuery.graphql';
+import NewApplicationDisclaimer from 'pages/reporter/new-application-disclaimer';
+import {newApplicationDisclaimerQueryResponse} from 'newApplicationDisclaimerQuery.graphql';
 
-const query: ciipApplicationLegalDisclaimerQueryResponse['query'] = {
+const query: newApplicationDisclaimerQueryResponse['query'] = {
   session: {
     ' $fragmentRefs': {
       defaultLayout_session: true
@@ -27,13 +27,13 @@ const router = {
 describe('Interstitial application legal disclaimer page', () => {
   it('It matches the last accepted Snapshot', () => {
     const wrapper = shallow(
-      <CiipApplicationLegalDisclaimer query={query} router={router} />
+      <NewApplicationDisclaimer query={query} router={router} />
     );
     expect(wrapper).toMatchSnapshot();
   });
   it('It passes an application to the ApplicationConsent component', () => {
     const wrapper = shallow(
-      <CiipApplicationLegalDisclaimer query={query} router={router} />
+      <NewApplicationDisclaimer query={query} router={router} />
     );
     expect(
       wrapper.find('Relay(ApplicationConsent)').first().prop('application')

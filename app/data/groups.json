@@ -7,7 +7,7 @@
   "User": {
     "pgRole": "ciip_industry_user",
     "priority": 10,
-    "path": "/reporter/user-dashboard"
+    "path": "/reporter"
   },
   "Realm Administrator": {
     "pgRole": "ciip_administrator",

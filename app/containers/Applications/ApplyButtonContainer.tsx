@@ -49,7 +49,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
       const response = await createApplicationMutation(environment, variables);
 
       router.push({
-        pathname: '/reporter/ciip-application-legal-disclaimer',
+        pathname: '/reporter/new-application-disclaimer',
         query: {
           applicationId: response.createApplicationMutationChain.application.id,
           version: 1,
@@ -79,8 +79,8 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     const continueApplication = () => {
       router.push({
         pathname: latestDraftlegalDisclaimerAccepted
-          ? '/reporter/ciip-application'
-          : '/reporter/ciip-application-legal-disclaimer',
+          ? '/reporter/application'
+          : '/reporter/new-application-disclaimer',
         query: {
           applicationId,
           version: latestDraftVersionNumber

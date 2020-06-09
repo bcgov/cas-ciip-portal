@@ -29,7 +29,7 @@ export const ApplicationConsent: React.FunctionComponent<Props> = (props) => {
     await updateApplicationRevisionMutation(environment, variables);
 
     router.push({
-      pathname: '/reporter/ciip-application',
+      pathname: '/reporter/application',
       query: {
         applicationId: props.application.id,
         version: props.application.latestDraftRevision.versionNumber

@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import UserDashboard from 'pages/reporter/user-dashboard';
-import {userDashboardQueryResponse} from 'userDashboardQuery.graphql';
+import Reporter from 'pages/reporter/index';
+import {reporterQueryResponse} from 'reporterQuery.graphql';
 
 const query = {
   session: {
@@ -19,7 +19,7 @@ const query = {
   }
 };
 
-const queryWithCertRequests: userDashboardQueryResponse['query'] = {
+const queryWithCertRequests: reporterQueryResponse['query'] = {
   session: {
     ciipUserBySub: {
       id: 'ciip-reporter@mailinator.com',
@@ -37,7 +37,7 @@ const queryWithCertRequests: userDashboardQueryResponse['query'] = {
 
 describe('Reporter Dashboard', () => {
   it('Reporter with no certification requests', () => {
-    const wrapper = shallow(<UserDashboard router={null} query={query} />);
+    const wrapper = shallow(<Reporter router={null} query={query} />);
     expect(wrapper).toMatchSnapshot();
     expect(
       wrapper.find('Relay(OrganisationsComponent)').prop('flagCertRequests')
@@ -45,7 +45,7 @@ describe('Reporter Dashboard', () => {
   });
   it('Reporter with certification requests', () => {
     const wrapper = shallow(
-      <UserDashboard router={null} query={queryWithCertRequests} />
+      <Reporter router={null} query={queryWithCertRequests} />
     );
     expect(wrapper).toMatchSnapshot();
     expect(

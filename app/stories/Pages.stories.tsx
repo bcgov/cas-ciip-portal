@@ -7,18 +7,18 @@ import {withA11y} from '@storybook/addon-a11y';
 import Admin from 'pages/admin';
 // Import ApplicationReview from 'pages/analyst/application-review';
 // import Applications from 'pages/analyst/applications';
-import CiipApplicationSWRSImport from 'pages/reporter/ciip-application-swrs-import';
-// Import CiipApplication from 'pages/reporter/ciip-application';
+import ApplicationSWRSImport from 'pages/reporter/application-swrs-import';
+// Import Application from 'pages/reporter/application';
 // import CompleteSubmit from 'pages/reporter/complete-submit';
 // import Index from 'pages/index';
 // import LoginRedirect from 'pages/login-redirect';
 // import OrganisationRequests from 'pages/analyst/organisation-requests';
 // import ProductsBenchmarks from 'pages/admin/products-benchmarks';
 import Registration from 'pages/registration';
-import UserDashboard from 'pages/reporter/user-dashboard';
-import UserList from 'pages/admin/user-list';
+import Reporter from 'pages/reporter/index';
+import Users from 'pages/admin/users';
 // Import UserOrganisationFacilities from 'pages/user-organisation-facilities';
-import UserProfile from 'pages/user-profile';
+import Profile from 'pages/user/profile';
 // Import ViewApplication from 'pages/reporter/view-application';
 import {getAllGroups} from '../lib/user-groups';
 import {Router} from './mockNextRouter';
@@ -60,9 +60,8 @@ export default {
 };
 
 export const admin = () => render(Admin);
-export const ciip_application_swrs_import = () =>
-  render(CiipApplicationSWRSImport);
+export const ciip_application_swrs_import = () => render(ApplicationSWRSImport);
 export const registration = () => render(Registration);
-export const user_dashboard = () => render(UserDashboard);
-export const user_list = () => render(UserList);
-export const user_profile = () => render(UserProfile);
+export const user_dashboard = () => render(Reporter);
+export const user_profile = () => render(Profile);
+export const user_list = () => render(Users);

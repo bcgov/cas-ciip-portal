@@ -18,8 +18,8 @@ describe('When logged in as an admin', () => {
     cy.visit('/admin');
     cy.url().should('include', '/admin');
     cy.get('.card-body');
-    cy.visit('/admin/user-list');
-    cy.url().should('include', '/admin/user-list');
+    cy.visit('/admin/users');
+    cy.url().should('include', '/admin/users');
     cy.get('tr');
     cy.visit('/admin/products-benchmarks');
     cy.url().should('include', '/admin/products-benchmarks');

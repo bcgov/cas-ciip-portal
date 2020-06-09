@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {userListQueryResponse} from 'userListQuery.graphql';
+import {usersQueryResponse} from 'usersQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import UserTable from 'containers/Admin/UserTable';
 import {ADMIN_GROUP} from 'data/group-constants';
@@ -8,12 +8,12 @@ import {ADMIN_GROUP} from 'data/group-constants';
 const ALLOWED_GROUPS = ADMIN_GROUP;
 
 interface Props {
-  query: userListQueryResponse['query'];
+  query: usersQueryResponse['query'];
 }
 
-class UserList extends Component<Props> {
+class Users extends Component<Props> {
   static query = graphql`
-    query userListQuery {
+    query usersQuery {
       query {
         ...UserTable_query
         session {
@@ -37,4 +37,4 @@ class UserList extends Component<Props> {
   }
 }
 
-export default UserList;
+export default Users;

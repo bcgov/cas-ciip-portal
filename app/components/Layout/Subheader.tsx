@@ -8,7 +8,7 @@ const Subheader = () => (
           <li className="active">
             <Link
               href={{
-                pathname: '/reporter/user-dashboard'
+                pathname: '/reporter'
               }}
             >
               <a>My Dashboard</a>
@@ -17,7 +17,7 @@ const Subheader = () => (
           <li>
             <Link
               href={{
-                pathname: '/reporter/facilities-list',
+                pathname: '/reporter/facilities',
                 query: {
                   organisationId: undefined
                 }

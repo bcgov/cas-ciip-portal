@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {ciipApplicationQueryResponse} from 'ciipApplicationQuery.graphql';
+import {applicationQueryResponse} from 'applicationQuery.graphql';
 import {CiipPageComponentProps} from 'next-env';
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationWizard from 'containers/Applications/ApplicationWizard';
@@ -10,12 +10,12 @@ import {NextRouter} from 'next/router';
 const ALLOWED_GROUPS = [USER];
 
 interface Props extends CiipPageComponentProps {
-  query: ciipApplicationQueryResponse['query'];
+  query: applicationQueryResponse['query'];
   router: NextRouter;
 }
-class CiipApplication extends Component<Props> {
+class Application extends Component<Props> {
   static query = graphql`
-    query ciipApplicationQuery(
+    query applicationQuery(
       $formResultId: ID!
       $applicationId: ID!
       $version: String!
@@ -56,7 +56,7 @@ class CiipApplication extends Component<Props> {
 
     if (!application?.latestDraftRevision?.legalDisclaimerAccepted) {
       router.push({
-        pathname: '/reporter/ciip-application-legal-disclaimer',
+        pathname: '/reporter/new-application-disclaimer',
         query: {
           applicationId: application.id,
           version: application.latestDraftRevision.versionNumber
@@ -72,4 +72,4 @@ class CiipApplication extends Component<Props> {
   }
 }
 
-export default CiipApplication;
+export default Application;

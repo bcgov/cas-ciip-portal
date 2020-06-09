@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Col, Row, ListGroup} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {NextRouter} from 'next/router';
-import {userDashboardQueryResponse} from 'userDashboardQuery.graphql';
+import {reporterQueryResponse} from 'reporterQuery.graphql';
 import Organisations from 'containers/Organisations/Organisations';
 import DefaultLayout from 'layouts/default-layout';
 import {createUserOrganisationMutation} from 'mutations/user_organisation/createUserOrganisation';
@@ -12,12 +12,12 @@ const ALLOWED_GROUPS = [USER];
 
 interface Props {
   router: NextRouter;
-  query: userDashboardQueryResponse['query'];
+  query: reporterQueryResponse['query'];
 }
 
-export default class UserDashBoard extends Component<Props> {
+export default class Reporter extends Component<Props> {
   static query = graphql`
-    query userDashboardQuery {
+    query reporterQuery {
       query {
         ...Organisations_query
         session {

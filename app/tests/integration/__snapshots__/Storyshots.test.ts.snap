@@ -83,7 +83,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >
@@ -548,7 +548,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >
@@ -810,7 +810,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >
@@ -1289,7 +1289,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >
@@ -1343,7 +1343,7 @@ Array [
               >
                 <a
                   className="jsx-1103754433"
-                  href="/reporter/user-dashboard"
+                  href="/reporter"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -1355,7 +1355,7 @@ Array [
               >
                 <a
                   className="jsx-1103754433"
-                  href="/reporter/facilities-list?organisationId="
+                  href="/reporter/facilities?organisationId="
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -1952,7 +1952,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >
@@ -2280,7 +2280,7 @@ Array [
                         className="col"
                       >
                         <form
-                          action="/user-profile"
+                          action="/user/profile"
                           className=""
                           method="get"
                         >

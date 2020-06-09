@@ -46,9 +46,9 @@ if (Cypress.env('NO_MAIL')) {
     it('should send notification emails to the certifier when the reporter sends a request, and to the reporter if the data is out of date', () => {
       const applicationId = window.btoa('["applications", 2]');
       cy.visit(
-        `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
+        `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
       );
-      cy.url().should('include', '/reporter/ciip-application');
+      cy.url().should('include', '/reporter/application');
       cy.get('#certifierEmail').clear().type('certifier@certi.fy');
       cy.get('.btn').contains('Submit for Certification').click();
       cy.wait(1000);
@@ -84,9 +84,9 @@ if (Cypress.env('NO_MAIL')) {
     it('should send a notification email to the reporter when application has been certified', () => {
       const applicationId = window.btoa('["applications", 2]');
       cy.visit(
-        `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
+        `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
       );
-      cy.url().should('include', '/reporter/ciip-application');
+      cy.url().should('include', '/reporter/application');
       cy.get('#certifierEmail').clear().type('certifier@certi.fy');
       cy.get('.btn').contains('Submit for Certification').click();
       cy.wait(500);
@@ -120,9 +120,9 @@ if (Cypress.env('NO_MAIL')) {
     it('should send a confirmation email to the reporter when application has been submitted', () => {
       const applicationId = window.btoa('["applications", 2]');
       cy.visit(
-        `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
+        `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
       );
-      cy.url().should('include', '/reporter/ciip-application');
+      cy.url().should('include', '/reporter/application');
       cy.get('.admin');
       cy.contains('Submit Application').click();
       cy.wait(1000);
@@ -159,9 +159,9 @@ if (Cypress.env('NO_MAIL')) {
       const applicationId = window.btoa('["applications", 2]');
       cy.request('DELETE', 'localhost:8025/api/v1/messages');
       cy.visit(
-        `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
+        `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
       );
-      cy.url().should('include', '/reporter/ciip-application');
+      cy.url().should('include', '/reporter/application');
       cy.get('#certifierEmail').clear().type('certifier@certi.fy');
       cy.get('.form-check-input').click();
       cy.get('.btn').contains('Submit for Certification').click();

@@ -14,9 +14,9 @@ describe('When logged in as a reporter', () => {
   it('The reporter should not be able to send an application for certification if there are errors', () => {
     const applicationId = window.btoa('["applications", 2]');
     cy.visit(
-      `/reporter/ciip-application?applicationId=${applicationId}&confirmationPage=true&version=1`
+      `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
     );
-    cy.url().should('include', '/reporter/ciip-application');
+    cy.url().should('include', '/reporter/application');
     cy.get('.errors').contains('Your Application contains errors');
     cy.get('Send to Certifier').should('not.exist');
   });
