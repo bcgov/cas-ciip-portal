@@ -49,7 +49,10 @@ values
 (43, 8, 2), -- Waste - CO2
 (44, 8, 3), -- Waste - bioCO2
 (45, 8, 4), -- Waste - CH4
-(46, 8, 5)  -- Waste - N20
+(46, 8, 5),  -- Waste - N20
+(47, 2, 9), -- Industrial Process - CH2F2
+(48, 2, 10), -- Industrial Process - CH2F5
+(49, 2, 11) -- Industrial Process - C2H2F4
 
 on conflict(id) do update set gas_id=excluded.gas_id, emission_category_id=excluded.emission_category_id
 returning 1
