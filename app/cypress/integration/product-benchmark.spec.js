@@ -93,7 +93,7 @@ describe('The benchmark modal', () => {
   });
 });
 
-describe('The product modal', () => {
+describe('The linking modal', () => {
   beforeEach(() => {
     cy.sqlFixture('fixtures/products-benchmarks-setup');
     cy.login(
@@ -109,78 +109,26 @@ describe('The product modal', () => {
     cy.logout();
   });
 
-  it('Opens & displays the correct data in the product modal', () => {
-    cy.get(':nth-child(1) > :nth-child(9) > .fa-cube > path').click();
-    cy.get('#root_productName').should('have.prop', 'disabled', false);
-    cy.get('#root_productName').should('have.value', 'Product A');
-    cy.get('#root_units').should('have.value', 'tonnes');
+  it('Can add and remove product links', () => {
+    cy.get('#page-content');
     cy.get(
-      '#root_requiresEmissionAllocation > :nth-child(1) > label > :nth-child(1) > input'
-    ).should('have.prop', 'checked', true);
+      'tbody > :nth-child(1) > :nth-child(8) > .svg-inline--fa > path'
+    ).click({force: true});
+    cy.get('#root-add').click();
+    cy.get('#root_0_productRowId').clear().type('Product B');
+    cy.get('.dropdown-item').click();
+    cy.get('.save-button').click();
     cy.get(
-      '#root_isCiipProduct > :nth-child(1) > label > :nth-child(1) > input'
-    ).should('have.prop', 'checked', true);
+      'tbody > :nth-child(1) > :nth-child(8) > .svg-inline--fa > path'
+    ).click({force: true});
+    cy.get('.remove-button-container > .btn').click();
+    cy.get('.save-button').click();
     cy.get(
-      '#root_requiresProductAmount > :nth-child(1) > label > :nth-child(1) > input'
-    ).should('have.prop', 'checked', true);
-    cy.get(
-      '#root_addPurchasedElectricityEmissions > :nth-child(1) > label > :nth-child(1) > input'
-    ).should('have.prop', 'checked', true);
-    cy.get(
-      '#root_addPurchasedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
-    ).should('have.prop', 'checked', true);
-    cy.get(
-      '#root_addEmissionsFromEios > :nth-child(1) > label > :nth-child(1) > input'
-    ).should('have.prop', 'checked', true);
-    cy.get(
-      '#root_subtractExportedElectricityEmissions > :nth-child(1) > label > :nth-child(1) > input'
-    ).should('have.prop', 'checked', true);
-    cy.get(
-      '#root_subtractExportedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
-    ).should('have.prop', 'checked', true);
-    cy.get(
-      '#root_subtractGeneratedElectricityEmissions > :nth-child(1) > label > :nth-child(1) > input'
-    ).should('have.prop', 'checked', true);
-    cy.get(
-      '#root_subtractGeneratedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
-    ).should('have.prop', 'checked', true);
-    cy.get('.close > [aria-hidden="true"]').click();
-  });
-
-  it('Allows editing a draft product', () => {
-    cy.get(':nth-child(1) > :nth-child(9) > .fa-cube > path').click();
-    cy.get('#root_productName').should('have.prop', 'disabled', false);
-    cy.get('#root_productName').clear().type('changed');
-    cy.get('.rjsf > .btn-primary').contains('Save');
-    cy.get('.rjsf > .btn-success').contains('Publish');
-    cy.get('.rjsf > .btn-primary').click();
-    cy.get('tbody > :nth-child(1) > :nth-child(1)').contains('changed');
-  });
-
-  it('Does not allow editing a published product', () => {
-    cy.get(':nth-child(2) > :nth-child(9) > .fa-cube > path').click();
-    cy.get('#root_productName').should('have.prop', 'disabled', true);
-    cy.get('.rjsf > .btn').contains('Archive');
-    cy.get('.close > [aria-hidden="true"]').click();
-  });
-
-  it('Does not allow editing an archived product', () => {
-    cy.get(':nth-child(3) > :nth-child(9) > .fa-cube > path').click();
-    cy.get('#root_productName').should('have.prop', 'disabled', true);
-    cy.get('.rjsf > .btn').should('have.class', 'hidden-button');
-    cy.get('.close > [aria-hidden="true"]').click();
-  });
-
-  it('Can publish a draft product', () => {
-    cy.get(':nth-child(1) > :nth-child(9) > .fa-cube > path').click();
-    cy.get('.rjsf > .btn-success').click();
-    cy.get(':nth-child(1) > :nth-child(6)').contains('PUBLISHED');
-  });
-
-  it('Can archive a published product', () => {
-    cy.get(':nth-child(2) > :nth-child(9) > .fa-cube > path').click();
-    cy.get('.rjsf > .btn').click();
-    cy.get(':nth-child(2) > :nth-child(6)').contains('ARCHIVED');
+      'tbody > :nth-child(1) > :nth-child(8) > .svg-inline--fa > path'
+    ).click({force: true});
+    cy.get('.modal-body > .container')
+      .contains('Product B')
+      .should('not.exist');
   });
 });
 

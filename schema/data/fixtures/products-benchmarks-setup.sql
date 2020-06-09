@@ -3,8 +3,7 @@
 
 begin;
 
-delete from ggircs_portal.benchmark;
-truncate ggircs_portal.product restart identity cascade;
+truncate ggircs_portal.product cascade;
 
 insert into ggircs_portal.product(
   id,
