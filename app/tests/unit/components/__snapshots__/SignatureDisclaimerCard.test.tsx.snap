@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignatureDisclaimerCard should match the last accepted snapshot 1`] = `
+<Card
+  body={false}
+  style={
+    Object {
+      "margin": "1rem 0",
+    }
+  }
+>
+  <CardBody>
+    <CardTitle
+      className="blue"
+    >
+      Legal Disclaimer
+    </CardTitle>
+    <CardText
+      style={
+        Object {
+          "padding": "10px 0 10px 0",
+        }
+      }
+    />
+    <Card
+      body={false}
+    >
+      <div
+        className="jsx-1739767654 show-scrollbar"
+        id="disclaimer-text"
+        tabIndex={0}
+      >
+        <CardBody>
+          <LegalDisclaimerText />
+        </CardBody>
+      </div>
+    </Card>
+  </CardBody>
+  <JSXStyle
+    id="1739767654"
+  >
+    #disclaimer-text.jsx-1739767654{max-height:19.2em;background:#eee;overflow-y:scroll;}.show-scrollbar.jsx-1739767654::-webkit-scrollbar{-webkit-appearance:none;width:8px;}.show-scrollbar.jsx-1739767654::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}
+  </JSXStyle>
+</Card>
+`;

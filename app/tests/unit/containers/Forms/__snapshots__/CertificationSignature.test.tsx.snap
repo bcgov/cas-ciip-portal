@@ -5,7 +5,7 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
   fluid={false}
 >
   <h3
-    className="jsx-4143358337"
+    className="jsx-2877110858"
   >
     Certifier Signature:
   </h3>
@@ -33,7 +33,7 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
     >
       <input
         accept="image/*"
-        className="jsx-4143358337"
+        className="jsx-2877110858"
         onChange={[Function]}
         type="file"
       />
@@ -72,9 +72,9 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
     </Col>
   </Row>
   <JSXStyle
-    id="4143358337"
+    id="2877110858"
   >
-    .signatureCanvas{border:1px solid #bbb;background:#eee;border-radius:6px;margin-bottom:60px;}
+    .signatureCanvas{border:1px solid #bbb;padding:30px;width:80%;background:#eee;border-radius:6px;margin-bottom:60px;}
   </JSXStyle>
 </Container>
 `;

@@ -1,21 +1,28 @@
 import React, {useRef} from 'react';
-import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
+import {createFragmentContainer, RelayProp} from 'react-relay';
 import SignaturePad from 'react-signature-canvas';
 import {Button, Container, Row, Col} from 'react-bootstrap';
-import {CertificationSignature_application} from 'CertificationSignature_application.graphql';
 import updateCertificationUrlMutation from 'mutations/form/updateCertificationUrlMutation';
+import {updateCertificationUrlMutationResponse} from '__generated__/updateCertificationUrlMutation.graphql';
 
 interface Props {
-  application: CertificationSignature_application;
   relay: RelayProp;
+  submitted?: boolean;
+  certificationIdsToSign: string[];
+  reportSubmissions?: (
+    responses: updateCertificationUrlMutationResponse[]
+  ) => void;
 }
 
-export const CertificationSignatureComponent: React.FunctionComponent<Props> = (
-  props
-) => {
+export const CertificationSignature: React.FunctionComponent<Props> = ({
+  relay,
+  certificationIdsToSign,
+  submitted = false,
+  reportSubmissions
+}) => {
   const sigCanvas: any = useRef({});
 
-  const uploadImage = (e) => {
+  const readImage = (e) => {
     e.persist();
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -27,24 +34,36 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = (
   };
 
   const clear = () => sigCanvas.current.clear();
-  const saveSignature = async () => {
+
+  const saveSignatures = async function (signature) {
+    const {environment} = relay;
+    return Promise.all(
+      certificationIdsToSign.map(async function (id) {
+        const variables = {
+          input: {
+            id,
+            certificationUrlPatch: {
+              certificationSignature: signature
+            }
+          }
+        };
+        const response = await updateCertificationUrlMutation(
+          environment,
+          variables
+        );
+        return response;
+      })
+    );
+  };
+
+  const toDataURL = async () => {
     const signature = sigCanvas.current
       .getTrimmedCanvas()
       .toDataURL('image/png');
-    const {environment} = props.relay;
-    const variables = {
-      input: {
-        id: props.application.latestDraftRevision.certificationUrl.id,
-        certificationUrlPatch: {
-          certificationSignature: signature
-        }
-      }
-    };
-    const response = await updateCertificationUrlMutation(
-      environment,
-      variables
-    );
-    console.log(response);
+    const responses = await saveSignatures(signature);
+    if (reportSubmissions) {
+      reportSubmissions(responses);
+    }
   };
 
   return (
@@ -60,25 +79,23 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = (
       </Row>
       <Row>
         <Col md={6}>
-          {props.application.latestDraftRevision
-            .certificationSignatureIsValid ? (
+          {submitted ? (
             <span style={{color: 'green'}}>Signed Successfully!</span>
           ) : (
             <input
               accept="image/*"
               type="file"
-              onChange={(e) => uploadImage(e)}
+              onChange={(e) => readImage(e)}
             />
           )}
         </Col>
         <Col md={{span: 3, offset: 2}}>
-          {!props.application.latestDraftRevision
-            .certificationSignatureIsValid && (
+          {!submitted && (
             <>
               <Button
                 variant="success"
                 style={{marginRight: '5px'}}
-                onClick={saveSignature}
+                onClick={toDataURL}
               >
                 Sign
               </Button>
@@ -93,6 +110,8 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = (
         {`
           .signatureCanvas {
             border: 1px solid #bbb;
+            padding: 30px;
+            width: 80%;
             background: #eee;
             border-radius: 6px;
             margin-bottom: 60px;
@@ -103,20 +122,4 @@ export const CertificationSignatureComponent: React.FunctionComponent<Props> = (
   );
 };
 
-export default createFragmentContainer(CertificationSignatureComponent, {
-  application: graphql`
-    fragment CertificationSignature_application on Application {
-      id
-      latestDraftRevision {
-        id
-        applicationId
-        versionNumber
-        certificationSignatureIsValid
-        certificationUrl {
-          id
-          certificationSignature
-        }
-      }
-    }
-  `
-});
+export default createFragmentContainer(CertificationSignature, {});

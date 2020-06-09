@@ -1,30 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`It matches the last accepted Snapshot 1`] = `
-<Fragment>
-  <Relay(DefaultLayout)
-    allowedGroups={
-      Array [
-        "User",
-      ]
+<Relay(DefaultLayout)
+  allowedGroups={
+    Array [
+      "User",
+    ]
+  }
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+      "ciipUserBySub": Object {
+        "firstName": "max",
+        "id": "abc",
+        "lastName": "powers",
+      },
     }
-    session={
+  }
+  title="Submission Certification"
+>
+  <Relay(ApplicationDetailsComponent)
+    application={
       Object {
         " $fragmentRefs": Object {
-          "defaultLayout_session": true,
+          "ApplicationDetailsContainer_application": true,
+          "CertificationSignature_application": true,
         },
-        "ciipUserBySub": Object {
-          "firstName": "max",
-          "id": "abc",
-          "lastName": "powers",
+        "latestDraftRevision": Object {
+          "certificationUrl": Object {
+            " $fragmentRefs": Object {
+              "ApplicationRecertificationContainer_certificationUrl": true,
+            },
+            "certificationSignature": "test",
+            "hashMatches": true,
+          },
         },
       }
     }
-    title="Submission Certification"
-  >
-    <Relay(ApplicationDetailsComponent)
-      application={
-        Object {
+    liveValidate={false}
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_query": true,
+        },
+        "application": Object {
           " $fragmentRefs": Object {
             "ApplicationDetailsContainer_application": true,
             "CertificationSignature_application": true,
@@ -38,109 +59,62 @@ exports[`It matches the last accepted Snapshot 1`] = `
               "hashMatches": true,
             },
           },
-        }
-      }
-      liveValidate={false}
-      query={
-        Object {
+        },
+        "session": Object {
           " $fragmentRefs": Object {
-            "ApplicationDetailsContainer_query": true,
+            "defaultLayout_session": true,
           },
-          "application": Object {
-            " $fragmentRefs": Object {
-              "ApplicationDetailsContainer_application": true,
-              "CertificationSignature_application": true,
-            },
-            "latestDraftRevision": Object {
-              "certificationUrl": Object {
-                " $fragmentRefs": Object {
-                  "ApplicationRecertificationContainer_certificationUrl": true,
-                },
-                "certificationSignature": "test",
-                "hashMatches": true,
-              },
-            },
+          "ciipUserBySub": Object {
+            "firstName": "max",
+            "id": "abc",
+            "lastName": "powers",
           },
-          "session": Object {
-            " $fragmentRefs": Object {
-              "defaultLayout_session": true,
-            },
-            "ciipUserBySub": Object {
-              "firstName": "max",
-              "id": "abc",
-              "lastName": "powers",
-            },
-          },
-        }
+        },
       }
-      review={false}
-    />
-    <Relay(CertificationSignatureComponent)
-      application={
-        Object {
-          " $fragmentRefs": Object {
-            "ApplicationDetailsContainer_application": true,
-            "CertificationSignature_application": true,
-          },
-          "latestDraftRevision": Object {
-            "certificationUrl": Object {
-              " $fragmentRefs": Object {
-                "ApplicationRecertificationContainer_certificationUrl": true,
-              },
-              "certificationSignature": "test",
-              "hashMatches": true,
-            },
-          },
-        }
-      }
-    />
-  </Relay(DefaultLayout)>
-  <JSXStyle
-    id="86400541"
-  >
-    .signatureCanvas{border:1px solid #bbb;padding:30px;width:80%;background:#eee;border-radius:6px;margin-bottom:60px;}#disclaimer-text{max-height:19.2em;background:#eee;overflow-y:scroll;}.show-scrollbar::-webkit-scrollbar{-webkit-appearance:none;width:8px;}.show-scrollbar::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}
-  </JSXStyle>
-</Fragment>
+    }
+    review={false}
+  />
+  <Relay(CertificationSignature)
+    certificationIdsToSign={
+      Array [
+        undefined,
+      ]
+    }
+  />
+</Relay(DefaultLayout)>
 `;
 
 exports[`It renders ApplicationRecertificationContainer if hashMatches is false 1`] = `
-<Fragment>
-  <Relay(DefaultLayout)
-    allowedGroups={
-      Array [
-        "User",
-      ]
+<Relay(DefaultLayout)
+  allowedGroups={
+    Array [
+      "User",
+    ]
+  }
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+      "ciipUserBySub": Object {
+        "firstName": "max",
+        "id": "abc",
+        "lastName": "powers",
+      },
     }
-    session={
+  }
+  title="Submission Certification"
+>
+  <Relay(ApplicationRecertification)
+    certificationUrl={
       Object {
         " $fragmentRefs": Object {
-          "defaultLayout_session": true,
+          "ApplicationRecertificationContainer_certificationUrl": true,
         },
-        "ciipUserBySub": Object {
-          "firstName": "max",
-          "id": "abc",
-          "lastName": "powers",
-        },
+        "certificationSignature": "test",
+        "hashMatches": false,
       }
     }
-    title="Submission Certification"
-  >
-    <Relay(ApplicationRecertification)
-      certificationUrl={
-        Object {
-          " $fragmentRefs": Object {
-            "ApplicationRecertificationContainer_certificationUrl": true,
-          },
-          "certificationSignature": "test",
-          "hashMatches": false,
-        }
-      }
-    />
-  </Relay(DefaultLayout)>
-  <JSXStyle
-    id="86400541"
-  >
-    .signatureCanvas{border:1px solid #bbb;padding:30px;width:80%;background:#eee;border-radius:6px;margin-bottom:60px;}#disclaimer-text{max-height:19.2em;background:#eee;overflow-y:scroll;}.show-scrollbar::-webkit-scrollbar{-webkit-appearance:none;width:8px;}.show-scrollbar::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}
-  </JSXStyle>
-</Fragment>
+  />
+</Relay(DefaultLayout)>
 `;

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Alert} from 'react-bootstrap';
+import React, {useEffect, useState, useRef} from 'react';
+import {Button} from 'react-bootstrap';
 import moment from 'moment-timezone';
 import Link from 'next/link';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
@@ -13,13 +13,26 @@ function formatListViewDate(date) {
   return date ? moment.tz(date, TIME_ZONE).format('MMM D, YYYY') : '';
 }
 
+function getCertifiableRequestIds(query) {
+  return query.searchCertificationRequests.edges
+    .filter(({node}) => !node.certifiedAt)
+    .map(({node}) => node.certificationUrlByCertificationUrlId.id);
+}
+
+function isAllSelected(ids, selections) {
+  return ids.length > 0 && ids.every((id) => selections.includes(id));
+}
+
 interface Props {
   direction: string;
   orderByField: string;
   searchField: string[];
   searchValue: string[];
   offsetValue: number;
+  forceRefetch?: number;
+  selections: string[];
   handleEvent: (...args: any[]) => void;
+  notifySelections: (selectedIds: string[]) => void;
   relay: RelayRefetchProp;
   query: CertificationRequestsContainer_query;
 }
@@ -29,30 +42,71 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   orderByField,
   searchField,
   searchValue,
+  selections,
+  forceRefetch = 0,
   handleEvent,
+  notifySelections,
   relay,
   query
 }) => {
+  const certifiableRequestIds = useRef(getCertifiableRequestIds(query));
+  const refetchQueryInitialized = useRef(false);
+
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
+
   useEffect(() => {
     const refetchVariables = {
       searchField,
       searchValue,
       orderByField,
       direction,
-      offsetValue
+      offsetValue,
+      forceRefetch
     };
-    relay.refetch(refetchVariables);
-  });
+    relay.refetch(refetchVariables, undefined, (error) => {
+      if (error) return;
+      certifiableRequestIds.current = getCertifiableRequestIds(query);
+
+      if (refetchQueryInitialized.current) {
+        const resolvedSelections = selections.filter((id) =>
+          certifiableRequestIds.current.includes(id)
+        );
+        notifySelections(resolvedSelections);
+      }
+
+      refetchQueryInitialized.current = true;
+    });
+  }, [
+    searchField,
+    searchValue,
+    orderByField,
+    direction,
+    offsetValue,
+    forceRefetch,
+    query
+  ]);
 
   const displayNameToColumnNameMap = {
     Facility: 'facility_name',
     Organisation: 'operator_name',
     Status: 'application_revision_status',
-    'Certified By': 'certified_by',
+    'Certified By': 'certified_by_last_name',
     'Date Certified': 'certified_at',
     '': null
+  };
+
+  const onCheck = (checked, id) => {
+    if (checked && !selections.includes(id)) {
+      notifySelections([...selections.slice(), id]);
+    } else if (!checked && selections.includes(id)) {
+      const i = selections.indexOf(id);
+      notifySelections([...selections.slice(0, i), ...selections.slice(i + 1)]);
+    }
+  };
+
+  const onSelectAll = (selectAll) => {
+    notifySelections(selectAll ? certifiableRequestIds.current.slice() : []);
   };
 
   const body = (
@@ -64,18 +118,32 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
         const organisation = node.operatorName;
 
-        let certifierName = '';
-        if (node.certifiedByFirstName && node.certifiedByLastName)
-          certifierName = `${node.certifiedByFirstName} ${node.certifiedByLastName}`;
-        else if (node.certifiedByFirstName && !node.certifiedByLastName)
-          certifierName = node.certifiedByFirstName;
-        else if (!node.certifiedByFirstName && node.certifiedByLastName)
-          certifierName = node.certifiedByLastName;
+        const certifierName = `${node.certifiedByFirstName || ''} ${
+          node.certifiedByLastName || ''
+        }`;
 
         if (!node?.certificationUrlByCertificationUrlId?.id) return null;
 
         return (
           <tr key={node.certificationUrlByCertificationUrlId.id}>
+            <td className="checkbox-cell">
+              <label>
+                {!node.certifiedAt && (
+                  <input
+                    type="checkbox"
+                    checked={selections.includes(
+                      node.certificationUrlByCertificationUrlId.id
+                    )}
+                    onChange={(e) =>
+                      onCheck(
+                        e.target.checked,
+                        node.certificationUrlByCertificationUrlId.id
+                      )
+                    }
+                  />
+                )}
+              </label>
+            </td>
             <td>{facility}</td>
             <td>{organisation}</td>
             <td>{status}</td>
@@ -91,6 +159,23 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
           </tr>
         );
       })}
+      <style>{`
+        .checkbox-cell {
+          position: relative;
+        }
+        .checkbox-cell label {
+          margin-bottom: 0;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+      `}</style>
     </tbody>
   );
 
@@ -99,16 +184,14 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
   const totalRequestCount =
     query?.searchCertificationRequests?.edges[0]?.node?.totalRequestCount || 0;
 
-  return query.searchCertificationRequests.edges.length === 0 ? (
-    <Alert variant="info">
-      You have no current certification requests matching your search criteria.
-    </Alert>
-  ) : (
+  return (
     <>
       <SearchTableLayout
+        allSelected={isAllSelected(certifiableRequestIds.current, selections)}
         body={body}
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
+        handleSelectAll={(selectAll) => onSelectAll(selectAll)}
       />
       <PaginationBar
         setOffset={setOffset}
@@ -133,6 +216,7 @@ export default createRefetchContainer(
           orderByField: {type: "String"}
           direction: {type: "String"}
           offsetValue: {type: "Int"}
+          forceRefetch: {type: "Int"}
         ) {
         searchCertificationRequests(
           searchField: $searchField
@@ -143,7 +227,6 @@ export default createRefetchContainer(
         ) {
           edges {
             node {
-              rowId
               applicationId
               versionNumber
               certifiedAt
@@ -163,6 +246,9 @@ export default createRefetchContainer(
             }
           }
         }
+        allCertificationUrls(first: $forceRefetch) {
+          totalCount
+        }
       }
     `
   },
@@ -173,6 +259,7 @@ export default createRefetchContainer(
       $orderByField: String
       $direction: String
       $offsetValue: Int
+      $forceRefetch: Int
     ) {
       query {
         ...CertificationRequestsContainer_query
@@ -182,6 +269,7 @@ export default createRefetchContainer(
             searchField: $searchField
             searchValue: $searchValue
             offsetValue: $offsetValue
+            forceRefetch: $forceRefetch
           )
       }
     }
