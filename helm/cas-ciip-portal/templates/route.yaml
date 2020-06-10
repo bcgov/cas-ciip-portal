@@ -8,7 +8,7 @@ metadata:
 spec:
   host: ciip{{ .Values.route.suffix }}.pathfinder.gov.bc.ca
   port:
-    targetPort: ${PREFIX}portal-app
+    targetPort: {{ template "cas-ciip-portal.fullname" . }}
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect

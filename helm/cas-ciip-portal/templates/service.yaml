@@ -12,6 +12,7 @@ spec:
     protocol: TCP
     targetPort: 3000
   selector:
+    component: app
 {{ include "cas-ciip-portal.selectorLabels" . | indent 4 }}
   sessionAffinity: None
   type: ClusterIP

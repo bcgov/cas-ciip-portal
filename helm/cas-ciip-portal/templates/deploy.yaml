@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ template "cas-ciip-portal.fullname" . }}
   labels:
+    component: app
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
 
 spec:
@@ -13,10 +14,12 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
+      component: app
 {{ include "cas-ciip-portal.selectorLabels" . | indent 6 }}
   template:
     metadata:
       labels:
+        component: app
 {{ include "cas-ciip-portal.labels" . | indent 8 }}
     spec:
       containers:
