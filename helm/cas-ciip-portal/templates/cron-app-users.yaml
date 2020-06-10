@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ template "cas-ciip-portal.fullname" . }}-app-users
+  name: {{ template "cas-ciip-portal.fullname" . }}-app-user
   labels:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
 spec:
@@ -19,16 +19,14 @@ spec:
           restartPolicy: Never
           containers:
             - env:
+                # This job needs to be run as the superuser as the swrs and graphile_worker schemas are owned by the portal user (ciip)
                 - name: PGUSER
-                  valueFrom:
-                    secretKeyRef:
-                      key: database-user
-                      name: {{ template "cas-ciip-portal.fullname" . }}
+                  value: postgres
                 - name: PGPASSWORD
                   valueFrom:
                     secretKeyRef:
-                      key: database-password
-                      name: {{ template "cas-ciip-portal.fullname" . }}
+                      key: password-superuser
+                      name: {{ template "cas-ciip-portal.fullname" . }}-patroni
                 - name: PGDATABASE
                   valueFrom:
                     secretKeyRef:
@@ -63,7 +61,7 @@ spec:
                     fieldRef:
                       apiVersion: v1
                       fieldPath: metadata.namespace
-              name: {{ template "cas-ciip-portal.fullname" . }}-app-users
+              name: {{ template "cas-ciip-portal.fullname" . }}-app-user
               image: {{ .Values.image.psql.repository }}:{{ .Values.image.psql.tag }}
               resources:
                 limits:

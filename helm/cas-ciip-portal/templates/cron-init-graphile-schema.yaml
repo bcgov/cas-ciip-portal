@@ -19,30 +19,21 @@ spec:
           restartPolicy: Never
           containers:
             - env:
-                - name: PGDATABASE
-                  value: postgres
-                - name: PGUSER
-                  value: admin
-                - name: PGPASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      key: password-admin
-                      name: {{ template "cas-ciip-portal.fullname" . }}-patroni
                 - name: PGPORT
                   value: "5432"
                 - name: PGHOST
                   value: {{ template "cas-ciip-portal.fullname" . }}-patroni
-                - name: PORTAL_USER
+                - name: PGUSER
                   valueFrom:
                     secretKeyRef:
                       key: database-user
                       name: {{ template "cas-ciip-portal.fullname" . }}
-                - name: PORTAL_PASSWORD
+                - name: PGPASSWORD
                   valueFrom:
                     secretKeyRef:
                       key: database-password
                       name: {{ template "cas-ciip-portal.fullname" . }}
-                - name: PORTAL_DATABASE
+                - name: PGDATABASE
                   valueFrom:
                     secretKeyRef:
                       key: database-name
