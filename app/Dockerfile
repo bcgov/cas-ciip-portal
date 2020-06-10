@@ -49,6 +49,8 @@ RUN yarn install --frozen-lockfile --production=false && \
 
 
 # Make everything in the tools home group-writable, to accomodate anyuid (in OpenShift)
+# Needs to be done as root to chown
+USER root
 COPY .bin/fix-permissions /usr/bin/fix-permissions
 RUN fix-permissions /home/ciip
 
