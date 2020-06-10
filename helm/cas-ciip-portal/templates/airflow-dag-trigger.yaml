@@ -1,0 +1,50 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-dag-trigger
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1200
+  template:
+    metadata:
+      name: {{ template "cas-ciip-portal.fullname" . }}-dag-trigger
+      labels:
+{{ include "cas-ciip-portal.labels" . | indent 8 }}
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: {{ template "cas-ciip-portal.fullname" . }}-dag-trigger
+        image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
+        imagePullPolicy: {{ .Values.image.app.pullPolicy }}
+        env:
+          - name: AIRFLOW_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: cas-airflow-admin
+          - name: AIRFLOW_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: cas-airflow-admin
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+        command:
+          - /usr/bin/env
+          - bash
+          - -c
+          - |
+            set -euo pipefail;
+            curl -u $(AIRFLOW_USERNAME):$(AIRFLOW_PASSWORD) -X POST \
+            https://cas-airflow-$(NAMESPACE).pathfinder.gov.bc.ca/api/experimental/dags/ciip_deploy_db/dag_runs \
+            -H 'Cache-Control: no-cache' \
+            -H 'Content-Type: application/json' \
+            -d '{}'

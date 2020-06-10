@@ -62,4 +62,4 @@ spec:
                 - /usr/bin/env
                 - bash
                 - -c
-                - deploy-data --oc-project=$(NAMESPACE)
+                - data/deploy-data.sh --oc-project=$(NAMESPACE)
