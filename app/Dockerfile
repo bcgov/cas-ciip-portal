@@ -49,6 +49,8 @@ RUN yarn install --frozen-lockfile --production=false && \
     yarn install --frozen-lockfile --production=true && \
     yarn cache clean
 
+COPY .bin/docker-entrypoint.sh ${CIIP_HOME}
+
 # Make everything in the home group-writable, to accomodate anyuid (in OpenShift)
 # /etc/passwd needs to be group-writable too -_-
 # Needs to be done as root to chown
