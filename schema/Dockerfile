@@ -2,7 +2,7 @@
 FROM perl:5.26
 
 ENV HOME=/usr/src/cas-ciip-portal-schema
-COPY schema/* ${HOME}/
+COPY schema/ ${HOME}/
 WORKDIR ${HOME}
 
 RUN apt-get update && \
@@ -11,7 +11,6 @@ RUN apt-get update && \
 
 RUN cpanm --notest -l extlib --installdeps .
 COPY .bin/fix-permissions /usr/bin/fix-permissions
-COPY .bin/deploy-data.sh /usr/bin/deploy-data
 RUN chmod g=u /etc/passwd && fix-permissions ./
 
 # CPAN can install scripts. They should be available from mod_perl too.
