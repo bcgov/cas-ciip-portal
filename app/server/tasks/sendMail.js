@@ -125,7 +125,8 @@ module.exports = async ({
         firstName,
         lastName,
         facilityName,
-        operatorName
+        operatorName,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     case 'organisation_access_approved':
