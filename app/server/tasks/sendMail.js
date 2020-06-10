@@ -10,8 +10,11 @@ const createOrganisationAccessApprovedMail = require('../emailTemplates/organisa
 const createNotifyAdminApplicationSubmittedMail = require('../emailTemplates/notifyAdminApplicationSubmitted.js');
 const createNotifyAdminAccessRequestMail = require('../emailTemplates/notifyAdminOrganisationAccess');
 const createDraftApplicationStartedMail = require('../emailTemplates/draftApplicationStarted');
+const getEmailShortForm = require('../helpers/getEmailShortForm');
 const dotenv = require('dotenv');
 dotenv.config();
+
+const ADMIN_EMAIL_SHORT = getEmailShortForm(process.env.ADMIN_EMAIL);
 
 module.exports = async ({
   type,
@@ -46,7 +49,12 @@ module.exports = async ({
     // New CIIP user welcome
     case 'welcome':
       subject = 'Welcome to CIIP';
-      htmlContent = createWelcomeMail({email, firstName, lastName});
+      htmlContent = createWelcomeMail({
+        email,
+        firstName,
+        lastName,
+        contactEmail: ADMIN_EMAIL_SHORT
+      });
       break;
     // Confirmation of CIIP Application submission
     case 'status_change_submitted':
