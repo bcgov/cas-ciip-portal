@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ template "cas-ciip-portal.fullname" . }}-deploy-data
+  name: {{ template "cas-ciip-portal.fullname" . }}-schema-deploy-data
   labels:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
 spec:
@@ -49,7 +49,7 @@ spec:
                     fieldRef:
                       apiVersion: v1
                       fieldPath: metadata.namespace
-              name: {{ template "cas-ciip-portal.fullname" . }}-deploy-data
+              name: {{ template "cas-ciip-portal.fullname" . }}-schema-deploy-data
               image: {{ .Values.image.schema.repository }}:{{ .Values.image.schema.tag }}
               resources:
                 limits:
