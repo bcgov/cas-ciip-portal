@@ -136,7 +136,8 @@ module.exports = async ({
         firstName,
         lastName,
         facilityName,
-        operatorName
+        operatorName,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     case 'notify_admin_submitted':
