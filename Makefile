@@ -82,12 +82,10 @@ clean_old_tags: $(call make_help,clean_old_tags,Cleans old image tags from the t
 install: whoami
 install:
 	@helm dep up ./helm/cas-ciip-portal
-	@helm upgrade --install --atomic --timeout 900s --namespace $(OC_PROJECT) --set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) cas-ggircs ./helm/cas-ggircs
-	@curl -u $(AIRFLOW_USERNAME):$(AIRFLOW_PASSWORD) -X POST \
-		https://cas-airflow-$(OC_PROJECT).pathfinder.gov.bc.ca/api/experimental/dags/ciip_deploy_db/dag_runs \
-		-H 'Cache-Control: no-cache' \
-		-H 'Content-Type: application/json' \
-		-d '{}'
+	@helm upgrade --install --atomic --timeout 900s --namespace $(OC_PROJECT) \
+	--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
+	--values \
+	cas-ggircs ./helm/cas-ggircs
 
 .PHONY: install_test
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)
