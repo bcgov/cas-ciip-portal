@@ -164,9 +164,9 @@ module.exports = async ({
         lastName,
         email,
         operatorName,
-        facilityName
+        facilityName,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
-      email = process.env.ADMIN_EMAIL;
       break;
     default:
       htmlContent = null;
