@@ -93,7 +93,7 @@ module.exports = async ({
       break;
     // Certifier signs application
     case 'signed_by_certifier':
-      subject = 'CIIP application certified';
+      subject = 'CIIP Application Certified';
       htmlContent = createSignedByCertifierMail({
         email,
         firstName,
@@ -102,7 +102,8 @@ module.exports = async ({
         operatorName,
         certifierEmail,
         certifierFirstName,
-        certifierLastName
+        certifierLastName,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     // Request for recertification (data changed)
