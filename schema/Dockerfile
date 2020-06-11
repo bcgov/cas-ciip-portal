@@ -7,8 +7,9 @@ ENV HOME=/root
 COPY schema/ ${HOME}/
 WORKDIR ${HOME}
 
+# jq is used by trigger-airflow-dag.sh
 RUN apt-get update && \
-  apt-get install -y postgresql-client && \
+  apt-get install -y postgresql-client jq && \
   apt-get clean
 
 RUN cpanm --notest -l extlib --installdeps .
