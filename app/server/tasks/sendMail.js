@@ -75,7 +75,8 @@ module.exports = async ({
         lastName,
         facilityName,
         operatorName,
-        status
+        status,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     // Request for certification
