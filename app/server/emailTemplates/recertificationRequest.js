@@ -17,17 +17,24 @@ const createRecertificationRequestMail = ({
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;" >
           <h3>Hello, <strong>${firstName} ${lastName}</strong>.</h3>
-          <h4>Your CIIP Application requires a new certificaton URL.</h4>
-          <p>
-            Your certifier attempted to review your application, however the data has been
-            changed since the certification URL was generated. A new URL needs to be generated and sent to the certifier from
-            the Application Summary page
-          </p>
+          <h4>Your CIIP Application has changed and must be certified again.</h4>
           <h4>Application Details:</h4>
           <p>Operator: ${operatorName}</p>
           <p>Facility: ${facilityName}</p>
-          <br/>
-          <a href=${createUrl()}>CIIP Portal</a>
+          <p>
+            Your Certifying Official attempted to review your application, however the data has been
+            changed since you last requested their certification.
+          </p>
+          <p>
+            Further steps are necessary to complete a CIIP application:
+            <ul>
+              <li>
+                Please <a href=${createUrl()}>log in to the CIIP Portal</a> and resume the application for the facility named above:
+                <ul>
+                  <li>Scroll to the bottom of the "Summary" page and make a new request for certification by entering the Certifying Official's email and clicking the blue "Submit for Certification" button.</li>
+                </ul>
+              </li>
+          </p>
         </td>
       </tr>
       <tr>
