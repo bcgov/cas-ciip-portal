@@ -84,7 +84,7 @@ install:
 	@helm dep up ./helm/cas-ciip-portal
 	@helm upgrade --install --atomic --timeout 900s --namespace $(OC_PROJECT) \
 	--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
-	--values \
+	--values ./helm/cas-ggircs/values-$(OC_PROJECT).yaml \
 	cas-ggircs ./helm/cas-ggircs
 
 .PHONY: install_test
