@@ -20,6 +20,7 @@ ENV PATH="$PATH:$HOME/extlib/bin"
 ENV PERL5LIB=${HOME}/extlib/lib/perl5
 
 COPY .bin/docker-entrypoint.sh ${CIIP_HOME}
+COPY .bin/trigger-airflow-dag.sh ${CIIP_HOME}
 
 # Make everything in the home group-writable, to accomodate anyuid (in OpenShift)
 # /etc/passwd needs to be group-writable too -_-

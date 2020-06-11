@@ -19,8 +19,8 @@ spec:
       restartPolicy: Never
       containers:
       - name: {{ template "cas-ciip-portal.fullname" . }}-dag-trigger
-        image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
-        imagePullPolicy: {{ .Values.image.app.pullPolicy }}
+        image: {{ .Values.image.schema.repository }}:{{ .Values.image.schema.tag }}
+        imagePullPolicy: {{ .Values.image.schema.pullPolicy }}
         env:
           - name: AIRFLOW_USERNAME
             valueFrom:
@@ -41,10 +41,4 @@ spec:
           - /usr/bin/env
           - bash
           - -c
-          - |
-            set -euo pipefail;
-            curl -u $(AIRFLOW_USERNAME):$(AIRFLOW_PASSWORD) -X POST \
-            https://cas-airflow-$(NAMESPACE).pathfinder.gov.bc.ca/api/experimental/dags/ciip_deploy_db/dag_runs \
-            -H 'Cache-Control: no-cache' \
-            -H 'Content-Type: application/json' \
-            -d '{}'
+          - ./trigger-airflow-dag.sh ciip_deploy_db
