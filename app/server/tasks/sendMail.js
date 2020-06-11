@@ -27,7 +27,6 @@ module.exports = async ({
   reporterEmail,
   certifierFirstName,
   certifierLastName,
-  certifierUrl,
   certifierEmail
 }) => {
   if (!process.env.SMTP_CONNECTION_STRING && !process.env.NO_MAIL)
@@ -81,7 +80,7 @@ module.exports = async ({
       break;
     // Request for certification
     case 'certification_request':
-      subject = 'CIIP application certification request';
+      subject = 'CIIP Application Certification Request';
       htmlContent = createCertificationRequestMail({
         email,
         firstName,
@@ -89,8 +88,7 @@ module.exports = async ({
         facilityName,
         operatorName,
         reporterEmail,
-        certifierUrl,
-        host: process.env.HOST
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     // Certifier signs application
