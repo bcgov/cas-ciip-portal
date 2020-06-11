@@ -44,6 +44,7 @@ if (Cypress.env('NO_MAIL')) {
     });
 
     it('should send notification emails to the certifier when the reporter sends a request, and to the reporter if the data is out of date', () => {
+      cy.request('DELETE', 'localhost:8025/api/v1/messages');
       const applicationId = window.btoa('["applications", 2]');
       cy.visit(
         `/reporter/application?applicationId=${applicationId}&confirmationPage=true&version=1`
@@ -59,11 +60,8 @@ if (Cypress.env('NO_MAIL')) {
         expect(response.body[0].To[0].Mailbox).to.contain('certifier');
         // eslint-disable-next-line jest/valid-expect
         expect(response.body[0].Content.Body).to.contain(
-          'has requested that you review'
+          'Your certification is requested'
         );
-        // eslint-disable-next-line jest/valid-expect
-        expect(response.body[0].Content.Body).to.contain('/certifier/requests');
-        cy.request('DELETE', 'localhost:8025/api/v1/messages');
         cy.get('input')
           .invoke('val')
           .then(($url) => {
@@ -79,6 +77,7 @@ if (Cypress.env('NO_MAIL')) {
             cy.wait(500);
           });
       });
+      cy.request('DELETE', 'localhost:8025/api/v1/messages');
     });
 
     it('should send a notification email to the reporter when application has been certified', () => {
