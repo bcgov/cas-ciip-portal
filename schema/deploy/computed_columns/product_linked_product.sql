@@ -35,6 +35,6 @@ begin;
 
   grant execute on function ggircs_portal.product_linked_product to ciip_administrator, ciip_analyst, ciip_industry_user;
 
-comment on function ggircs_portal.product_linked_product is 'Computed column returns a set of linked products for a given product';
+comment on function ggircs_portal.product_linked_product is 'Computed column returns a set of linked products for a given product where product.product_state=published';
 
 commit;

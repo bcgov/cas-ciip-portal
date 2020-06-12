@@ -18,6 +18,38 @@ interface Props {
   linkData: any;
 }
 
+const linkSchema: JSONSchema6 = {
+  type: 'array',
+  items: {
+    $ref: '#/definitions/product'
+  },
+  definitions: {
+    product: {
+      type: 'object',
+      properties: {
+        productRowId: {
+          type: 'integer'
+        }
+      }
+    }
+  }
+};
+
+const linkUISchema = {
+  'ui:add-text': '+',
+  'ui:remove-text': '-',
+  linkProduct: true,
+  items: {
+    'ui:field': 'product',
+    classNames: 'hidden-title',
+    productRowId: {
+      'ui:col-md': 12,
+      'ui:widget': 'SearchWidget',
+      'ui:field': 'productRowId'
+    }
+  }
+};
+
 export const LinkedProductModalComponent: React.FunctionComponent<Props> = ({
   product,
   linkProductModalShow,
@@ -35,38 +67,6 @@ export const LinkedProductModalComponent: React.FunctionComponent<Props> = ({
           {...props}
         />
       );
-    }
-  };
-
-  const linkSchema: JSONSchema6 = {
-    type: 'array',
-    items: {
-      $ref: '#/definitions/product'
-    },
-    definitions: {
-      product: {
-        type: 'object',
-        properties: {
-          productRowId: {
-            type: 'integer'
-          }
-        }
-      }
-    }
-  };
-
-  const linkUISchema = {
-    'ui:add-text': '+',
-    'ui:remove-text': '-',
-    linkProduct: true,
-    items: {
-      'ui:field': 'product',
-      classNames: 'hidden-title',
-      productRowId: {
-        'ui:col-md': 12,
-        'ui:widget': 'SearchWidget',
-        'ui:field': 'productRowId'
-      }
     }
   };
 

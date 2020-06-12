@@ -2035,7 +2035,7 @@ exports[`The Form Component should render an alert reminder to report any missin
           <Link
             href={
               Object {
-                "pathname": "/reporter/user-dashboard",
+                "pathname": "/reporter",
               }
             }
           >

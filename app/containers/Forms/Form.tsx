@@ -187,12 +187,8 @@ export const FormComponent: React.FunctionComponent<Props> = ({
 
   const getMissingProducts = () => {
     if (formResult[0]?.productRowId) {
-      const reportedProducts = [];
+      const reportedProducts = formResult.map((r) => r.productRowId);
       const missingProducts = [];
-
-      formResult.forEach((result) => {
-        reportedProducts.push(result.productRowId);
-      });
 
       reportedProducts.forEach((productId) => {
         const product = query.products.edges.find(

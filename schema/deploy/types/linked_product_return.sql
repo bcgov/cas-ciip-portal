@@ -3,6 +3,7 @@
 
 begin;
 
+-- linked_product_return is the custom return type for computed column product_linked_product
 create type ggircs_portal.linked_product_return as (
     id integer,
     linked_product_id integer,

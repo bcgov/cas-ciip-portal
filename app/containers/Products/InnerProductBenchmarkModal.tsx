@@ -10,18 +10,32 @@ import HeaderWidget from 'components/HeaderWidget';
 import PastBenchmarks from 'components/Benchmark/PastBenchmarks';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 
+interface benchmark {
+  id: string;
+  rowId: number;
+  benchmark: string;
+  eligibilityThreshold: string;
+  incentiveMultiplier: string;
+  startReportingYear: number;
+  endReportingYear: number;
+  minimumIncentiveRatio: string;
+  maximumIncentiveRatio: string;
+  createdAt: string;
+}
+
 interface Props {
   updateStatus: (...args: any[]) => void;
   product: ProductRowItemContainer_product;
-  benchmarkSchema: any;
-  currentBenchmark: any;
-  editProduct: any;
-  editBenchmark: any;
-  createBenchmark: any;
-  pastBenchmarks: any;
+  benchmarkSchema: JSONSchema6;
+  currentBenchmark: benchmark;
+  editProduct: (IChangeEvent) => void;
+  editBenchmark: (IChangeEvent) => void;
+  createBenchmark: (IChangeEvent) => void;
+  pastBenchmarks: benchmark[];
   isProduct: boolean;
 }
 
+// Conditionally renders the inside of the Edit/View Product/Benchmark modal based on the value of isProduct
 export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
   updateStatus,
   product,

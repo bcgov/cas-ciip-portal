@@ -21,7 +21,6 @@ const mutation = graphql`
   }
 `;
 
-// TODO: May want to surface the onCompleted errors to the user (ie not reject, resolve & report)
 const updateLinkedProductMutation = async (
   environment: RelayModernEnvironment,
   variables: updateLinkedProductMutationVariables

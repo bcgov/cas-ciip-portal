@@ -20,6 +20,8 @@ interface Props extends FieldProps<number> {
 export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
   props
 ) => {
+  // The last id in the Product table for energy products (ids 1-7)
+  const lastEnergyProductIndex = 7;
   /**
    * Injects the list of products in the schema, and remove `query` from the props
    * Other props are passed as-is to the StringField.
@@ -32,12 +34,12 @@ export const ProductRowIdFieldComponent: React.FunctionComponent<Props> = (
         ...props.schema,
         enum: props.isLinkModal
           ? props.query.published.edges
-              .filter(({node}) => node.rowId > 7)
+              .filter(({node}) => node.rowId > lastEnergyProductIndex)
               .map(({node}) => node.rowId)
           : props.query.published.edges.map(({node}) => node.rowId),
         enumNames: props.isLinkModal
           ? props.query.published.edges
-              .filter(({node}) => node.rowId > 7)
+              .filter(({node}) => node.rowId > lastEnergyProductIndex)
               .map(({node}) => node.productName)
           : props.query.published.edges.map(({node}) => node.productName)
       },
