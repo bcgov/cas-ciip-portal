@@ -25,10 +25,10 @@ cas-postgres:
     walE:
       enable: true
       # the GCS bucket name should be {{ namespace }}-{{ gcs.bucketSuffix }}
-      gcsBucket: wksv3k-dev-ciip-backups
+      gcsBucket: wksv3k-test-ciip-backups
       # kubernetesSecret should be gcp-{{ namespace }}-{{ gcs.bucketSuffix }}-service-account-key
-      kubernetesSecret: gcp-wksv3k-dev-ciip-backups-service-account-key # pragma: allowlist secret
+      kubernetesSecret: gcp-wksv3k-test-ciip-backups-service-account-key # pragma: allowlist secret
     # options below are required if walE.enable is true
-  namespace: wksv3k-dev
+  namespace: wksv3k-test
   gcs:
     bucketSuffix: ciip-backups
