@@ -12817,7 +12817,7 @@
             },
             {
               "name": "linkedProduct",
-              "description": "Computed column returns a set of linked products for a given product",
+              "description": "Computed column returns a set of linked products for a given product where product.product_state=published",
               "args": [
                 {
                   "name": "after",

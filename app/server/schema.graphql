@@ -10026,7 +10026,9 @@ type Product implements Node {
   """
   isReadOnly: Boolean!
 
-  """Computed column returns a set of linked products for a given product"""
+  """
+  Computed column returns a set of linked products for a given product where product.product_state=published
+  """
   linkedProduct(
     """Read all values in the set after (below) this cursor."""
     after: Cursor
