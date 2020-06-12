@@ -4,6 +4,9 @@ metadata:
   name: {{ template "cas-ciip-portal.fullname" . }}-dag-trigger
   labels:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": "pre-install,pre-upgrade"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
 spec:
   backoffLimit: 0
   activeDeadlineSeconds: 1200
