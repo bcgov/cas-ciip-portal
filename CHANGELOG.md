@@ -2,6 +2,67 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.2](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2020-06-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* portal schema does not support s2i builds
+
+### Features
+
+* "Select All" --> controlled input ([9b22557](https://github.com/bcgov/cas-ciip-portal/commit/9b22557c6224079831a0724ddb39e47c66a5d13d))
+* /admin/user-list --> /admin/users ([39cf005](https://github.com/bcgov/cas-ciip-portal/commit/39cf005efd6b92cb8ed0c817f8ee1e95f9d6123a))
+* /reporter/ciip-application --> /reporter/application ([18319e1](https://github.com/bcgov/cas-ciip-portal/commit/18319e1ad989daaaf0df8acf2f899b9d1a831f73))
+* /reporter/ciip-application-legal-disclaimer --> /reporter/new-application-disclaimer ([ea51257](https://github.com/bcgov/cas-ciip-portal/commit/ea5125700b52178bfd517cd99abf4656a48df120))
+* /reporter/ciip-application-swrs-import --> /reporter/application-swrs-import ([1749d7c](https://github.com/bcgov/cas-ciip-portal/commit/1749d7c6bf9d6f81aceca5dbc57561515942d4d0))
+* /reporter/facilities-list --> /reporter/facilities ([2c1e78e](https://github.com/bcgov/cas-ciip-portal/commit/2c1e78ed6aeb1482fe4748cbd746a016727207ed))
+* /reporter/user-dashboard --> /reporter ([e2690cd](https://github.com/bcgov/cas-ciip-portal/commit/e2690cd60bb54f8c5506cc4ea7a35ed2321aed38))
+* /user-profile --> /user/profile ([8ff1640](https://github.com/bcgov/cas-ciip-portal/commit/8ff16400b7ca2fbf565d917438261f1fe5424bbc))
+* add comment to energy_product.sql prod deploy file ([69de869](https://github.com/bcgov/cas-ciip-portal/commit/69de869cd1fa95500696dec362bda2f9a648f02f))
+* add hydrofluorocarbons to industrial process emissions ([ba9f973](https://github.com/bcgov/cas-ciip-portal/commit/ba9f97328cc3c7ea0c6acef8b5a46c617d6dc0b5))
+* add jq to schema image ([0bb6254](https://github.com/bcgov/cas-ciip-portal/commit/0bb62540702a96e32fec63f40884a2e9043b722c))
+* Add localhost shortcut to login as certifier ([a29d2b5](https://github.com/bcgov/cas-ciip-portal/commit/a29d2b50b1ac4644a53b50b5014d8e165d757dff))
+* airflow-dag-trigger job waits for the dag to complete ([14f18c4](https://github.com/bcgov/cas-ciip-portal/commit/14f18c4f4c205c98046bd9eff9038e4f0c1b6742))
+* airflow-dag-trigger shouldn't be a hook ([28c2908](https://github.com/bcgov/cas-ciip-portal/commit/28c29083af35da2c2f05987ed00c9ce1d0f0b3b0))
+* build app docker image ([a9a5d54](https://github.com/bcgov/cas-ciip-portal/commit/a9a5d5428d8b923412d9c80f6e3a4749072a028a))
+* build app docker image on circle ([999ec52](https://github.com/bcgov/cas-ciip-portal/commit/999ec524dea31954deb07bec1c8845509a14de7b))
+* build schema docker image on CircleCI and push to gcp-gcr ([56af560](https://github.com/bcgov/cas-ciip-portal/commit/56af5603cfeb086b84791181280d13d266c70566))
+* deploy ciip portal with helm chart ([75f8bad](https://github.com/bcgov/cas-ciip-portal/commit/75f8badebe333632b86c642f303feb6cf1eb84dc))
+* enable wal-g in ciip patroni db ([899684b](https://github.com/bcgov/cas-ciip-portal/commit/899684bafd49535a68b514fb4e99b40f1f92c730))
+* Only certifiable requests can be selected ([6ccfe0d](https://github.com/bcgov/cas-ciip-portal/commit/6ccfe0d733536c4585fd818981e33fb5ee75c674))
+* remove schema/.s2i ([47588d4](https://github.com/bcgov/cas-ciip-portal/commit/47588d43e9a8e564aa7e818e6d1a00e77d18ce0d))
+* Reusable component for signature disclaimer ([acd13e9](https://github.com/bcgov/cas-ciip-portal/commit/acd13e962c34281b07423c62ab8167f511c3b70a))
+* schema image uses docker-entrypoint.sh ([b530194](https://github.com/bcgov/cas-ciip-portal/commit/b530194a9df22e64b1a701defd3b65f41b01676b))
+* Select all certification requests in list ([ffb6c94](https://github.com/bcgov/cas-ciip-portal/commit/ffb6c949a8ff49b6262e55ca3eea7fd5a6fdd1c1))
+* Selections are updated on query change ([8e644d3](https://github.com/bcgov/cas-ciip-portal/commit/8e644d3606f9e612472fe755faf84129eb4cad26))
+* throw validation errors if required energy products are not reported ([d2b4275](https://github.com/bcgov/cas-ciip-portal/commit/d2b42752d67b75ca637ba4f740d3cdb75f33ffc4))
+* update cron-deploy-data and add airflow-dag-trigger ([403c778](https://github.com/bcgov/cas-ciip-portal/commit/403c778e01eeb605192b0d946a190246d5e6d758))
+* Update link to application disclaimer on certify page ([67bdd2b](https://github.com/bcgov/cas-ciip-portal/commit/67bdd2b7e180990e79d74a5e187e4241596fd749))
+* Update table rows after certifying ([6ef447f](https://github.com/bcgov/cas-ciip-portal/commit/6ef447f9a05fe88201c9b3efc39a4935c62cc7d9))
+* Update URL for application disclaimer text ([95d7f11](https://github.com/bcgov/cas-ciip-portal/commit/95d7f1165c87c9ebd44c05caac40521e21eb2a05))
+
+
+### Bug Fixes
+
+* add deploy-data script in schema docker image ([292e8af](https://github.com/bcgov/cas-ciip-portal/commit/292e8af8d739775a45a8b88630a686de3421c4f2))
+* app dockerfile works with any uid ([28bb4d2](https://github.com/bcgov/cas-ciip-portal/commit/28bb4d2aa6f09e4e557cef4511743776c17024d0))
+* expose port in app docker image ([16aded1](https://github.com/bcgov/cas-ciip-portal/commit/16aded1fa46360ed48bc85fda0f2309634f6ff29))
+* fix app dockerfile files ownership ([2b861b4](https://github.com/bcgov/cas-ciip-portal/commit/2b861b43dafc2c6b36bd40ba21c26d80c33e0e70))
+* fix app dockerfile typo and try to create ciip group ([6d9e426](https://github.com/bcgov/cas-ciip-portal/commit/6d9e426b35f7da81857ea41285a66d411435caee))
+* Fix cert request sorting by certifier surname ([ed41a33](https://github.com/bcgov/cas-ciip-portal/commit/ed41a33c418f663cbea4c3790008f61446e79dce))
+* fix credentials in cron jobs ([182e57b](https://github.com/bcgov/cas-ciip-portal/commit/182e57bd16f1d0012d47aae5c49bc53b75ae5286))
+* fix deploy-data cronjob name ([9a96e19](https://github.com/bcgov/cas-ciip-portal/commit/9a96e19fac96a36dfd8c9772511ba0e946639286))
+* fix helm templates config ([884eab0](https://github.com/bcgov/cas-ciip-portal/commit/884eab0fe42a0d9902746dae64029ac59fcb47f0))
+* fix issues in circleci config ([c112bd6](https://github.com/bcgov/cas-ciip-portal/commit/c112bd6d4cdde2223a6fda89360941ee77407d5c))
+* fix make install command ([0407107](https://github.com/bcgov/cas-ciip-portal/commit/0407107971ef234f4bbc192f5226fa821a5dd98f))
+* fix makefile install command ([30b7c37](https://github.com/bcgov/cas-ciip-portal/commit/30b7c37f48f8ef9a050fa6fdc76ae57ec53ec310))
+* fix-permissions should be done by root user ([899d87d](https://github.com/bcgov/cas-ciip-portal/commit/899d87d9624b424a290661892df1590e8878950d))
+* increase deployment timeout to 40m ([797089e](https://github.com/bcgov/cas-ciip-portal/commit/797089efa3a18bd2337faa03f167eb6251cc0c13))
+* remove hardcoded 'limit' value in search functions ([4a5173e](https://github.com/bcgov/cas-ciip-portal/commit/4a5173e4531c8e7cfe8a3b0996c93302eaf9f2aa))
+* shipit timeout should be a number of seconds ([4a55f0e](https://github.com/bcgov/cas-ciip-portal/commit/4a55f0e047eb69aae4cab05dd037e774eb13288b))
+* update dockerfile multiline command ([45ca090](https://github.com/bcgov/cas-ciip-portal/commit/45ca0900163787d89d3272f074d9d21922145907))
+
 ## [1.0.0-rc.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-alpha.2...v1.0.0-rc.1) (2020-06-05)
 
 
