@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.3](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2020-06-12)
+
+
+### Bug Fixes
+
+* airflow-dag-trigger job should be a hook to allow upgrade ([ecde3fc](https://github.com/bcgov/cas-ciip-portal/commit/ecde3fce07aa82b8b7282cd363a798523fc56a3d))
+* helm values namespace was -dev instead of -test ([280ae79](https://github.com/bcgov/cas-ciip-portal/commit/280ae79df88b8209763af6efb0b92079240fe345))
+
 ## [1.0.0-rc.2](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2020-06-12)
 
 
