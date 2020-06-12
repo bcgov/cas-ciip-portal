@@ -14,10 +14,12 @@ const HeaderLayout = ({
       <div className="banner">
         <div className="header-left">
           <Link href="/">
-            <img
-              src="/static/logo-banner.png"
-              alt="Go to the Government of British Columbia website"
-            />
+            <a>
+              <img
+                src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                alt="logo for Province of British Columbia CleanBC"
+              />
+            </a>
           </Link>
           <h1>CleanBC Industrial Incentive Program</h1>
         </div>
@@ -94,11 +96,10 @@ const HeaderLayout = ({
           font-weight: normal;
           margin: 8px 5px 5px 18px;
         }
-        .header-left {
-          display: flex;
-        }
         .header-left img {
-          height: 100%;
+          height: 46px;
+          position: relative;
+          top: -4px;
         }
         .header-right {
           margin-right: -25px;

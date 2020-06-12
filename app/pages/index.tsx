@@ -100,23 +100,21 @@ export default class Index extends Component<Props> {
               What is the CleanBC Industrial Incentive Program?
             </h3>
             <p>
-              In 2018, B.C.’s $30 carbon tax rate was raised to $35, and in
-              2019, the carbon tax rate rose from $35 to $40. As the price of
-              carbon rises, the CleanBC Program for Industry will support
-              competitiveness and facilitate emission reductions using revenues
-              from the carbon tax that industry pays above $30 per tonne carbon
-              dioxide equivalent (tCO2e).
-            </p>
-            <p>
               The CleanBC Industrial Incentive Program (CIIP) is part of the
               CleanBC Program for Industry, which applies to large industrial
               operations that report their emissions under the Greenhouse Gas
               Industrial Reporting and Control Act (GGIRCA).
             </p>
             <p>
-              The CIIP helps industrial operations across the province by
-              reducing net carbon-tax costs for facilities near world-leading
-              emissions benchmarks.
+              The CIIP helps encourage cleaner industrial operations across the
+              province by reducing carbon tax costs for facilities that can
+              demonstrate they operate near world-leading emissions benchmarks.
+            </p>
+            <p>
+              As the price of carbon rises, the CleanBC Program for Industry
+              will support competitiveness and facilitate emission reductions
+              using revenues from the carbon tax that industry pays above $30
+              per tonne carbon dioxide equivalent (tCO2e).
             </p>
           </Col>
           <RegistrationLoginButtons
