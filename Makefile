@@ -82,7 +82,7 @@ clean_old_tags: $(call make_help,clean_old_tags,Cleans old image tags from the t
 install: whoami
 install:
 	@helm dep up ./helm/cas-ciip-portal
-	@helm upgrade --install --atomic --timeout 900s --namespace $(OC_PROJECT) \
+	@helm upgrade --install --atomic --timeout 1200s --namespace $(OC_PROJECT) \
 	--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
 	--values ./helm/cas-ciip-portal/values-$(OC_PROJECT).yaml \
 	cas-ciip-portal ./helm/cas-ciip-portal
