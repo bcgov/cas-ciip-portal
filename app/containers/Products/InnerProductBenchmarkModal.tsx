@@ -26,7 +26,10 @@ interface benchmark {
 interface Props {
   updateStatus: (...args: any[]) => void;
   product: ProductRowItemContainer_product;
-  benchmarkSchema: JSONSchema6;
+  benchmarkSchema: {
+    schema: JSONSchema6;
+    uiSchema: JSONSchema6;
+  };
   currentBenchmark: benchmark;
   editProduct: (IChangeEvent) => void;
   editBenchmark: (IChangeEvent) => void;
@@ -106,7 +109,7 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
             schema={
               isProduct
                 ? (productSchema.schema as JSONSchema6)
-                : (benchmarkSchema.schema as JSONSchema6)
+                : benchmarkSchema.schema
             }
             uiSchema={
               isProduct ? productSchema.uiSchema : benchmarkSchema.uiSchema
