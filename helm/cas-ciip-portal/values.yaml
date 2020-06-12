@@ -35,6 +35,13 @@ fider:
 
 cas-postgres:
   patroni:
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 2Gi
+      requests:
+        cpu: 15m
+        memory: 600Mi
     replicaCount: 3
     env:
       ALLOW_NOSSL: true
