@@ -1,0 +1,27 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+
+spec:
+  host: ciip{{ .Values.route.suffix }}.pathfinder.gov.bc.ca
+  port:
+    targetPort: {{ template "cas-ciip-portal.fullname" . }}
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  to:
+    kind: Service
+    name:  {{ template "cas-ciip-portal.fullname" . }}
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    - status: 'True'
+      type: Admitted
+    host: ciip{{ .Values.route.suffix }}.pathfinder.gov.bc.ca
+    routerName: router
+    wildcardPolicy: None

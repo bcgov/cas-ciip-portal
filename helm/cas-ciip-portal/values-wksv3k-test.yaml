@@ -1,0 +1,34 @@
+replicas: 2
+resources:
+  limits:
+    cpu: 1000m
+    memory: 4Gi
+  requests:
+    cpu: 50m
+    memory: 256Mi
+
+route:
+  suffix: "-test"
+
+env:
+  smtpConnectionString: smtp://example.com
+  senderEmail: no-reply-dev.cas@gov.bc.ca
+  adminEmail: matthieu@button.is
+  appHost: https://ciip-test.pathfinder.gov.bc.ca # This should be different from the route for the production site (appHost will be https://ciip.gov.bc.ca)
+
+fider:
+  host: https://ciip-portal-wksv3k-test-feedback.pathfinder.gov.bc.ca/
+# TODO move fider template in this repo
+
+cas-postgres:
+  patroni:
+    walE:
+      enable: true
+      # the GCS bucket name should be {{ namespace }}-{{ gcs.bucketSuffix }}
+      gcsBucket: wksv3k-dev-ciip-backups
+      # kubernetesSecret should be gcp-{{ namespace }}-{{ gcs.bucketSuffix }}-service-account-key
+      kubernetesSecret: gcp-wksv3k-dev-ciip-backups-service-account-key # pragma: allowlist secret
+    # options below are required if walE.enable is true
+  namespace: wksv3k-dev
+  gcs:
+    bucketSuffix: ciip-backups

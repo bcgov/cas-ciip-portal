@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-dag-trigger
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1200
+  template:
+    metadata:
+      name: {{ template "cas-ciip-portal.fullname" . }}-dag-trigger
+      labels:
+{{ include "cas-ciip-portal.labels" . | indent 8 }}
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: {{ template "cas-ciip-portal.fullname" . }}-dag-trigger
+        image: {{ .Values.image.schema.repository }}:{{ .Values.image.schema.tag }}
+        imagePullPolicy: {{ .Values.image.schema.pullPolicy }}
+        env:
+          - name: AIRFLOW_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: cas-airflow-admin
+          - name: AIRFLOW_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: cas-airflow-admin
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+        command:
+          - /usr/bin/env
+          - bash
+          - -c
+          - ./trigger-airflow-dag.sh ciip_deploy_db

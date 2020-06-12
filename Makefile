@@ -1,5 +1,5 @@
 SHELL := /usr/bin/env bash
-ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build_tools build install install_test))
+ifeq ($(MAKECMDGOALS),$(filter $(MAKECMDGOALS),help whoami lint configure build_app build_schema build_tools build install install_test clean_old_tags))
 include .pipeline/oc.mk
 include .pipeline/make.mk
 endif
@@ -72,53 +72,20 @@ build_app: whoami
 build: $(call make_help,build,Builds the source into an image in the tools project namespace)
 build: build_tools build_schema build_app
 
-PORTAL_DB = "ciip_portal"
-PORTAL_USER = "portal"
-PORTAL_APP_USER = $(PORTAL_USER)_app
+.PHONY: clean_old_tags
+clean_old_tags: $(call make_help,clean_old_tags,Cleans old image tags from the tools project namespace)
+	$(call oc_clean_tools_istags,$(PROJECT_PREFIX)portal-app)
+	$(call oc_clean_tools_istags,$(PROJECT_PREFIX)portal-schema)
+	$(call oc_clean_tools_istags,$(PROJECT_PREFIX)portal-tools)
 
 .PHONY: install
 install: whoami
 install:
-	# Retrieve or generate password for the user owning the portal database
-	$(eval PORTAL_PASSWORD = $(shell if [ -n "$$($(OC) -n "$(OC_PROJECT)" get secret/$(PROJECT_PREFIX)portal-postgres --ignore-not-found -o name)" ]; then \
-$(OC) -n "$(OC_PROJECT)" get secret/$(PROJECT_PREFIX)portal-postgres -o go-template='{{index .data "database-password"}}' | base64 -d; else \
-openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
-	# Retrieve or generate password for the user with read-only access to the ggircs database
-	$(eval PORTAL_APP_PASSWORD = $(shell if [ -n "$$($(OC) -n "$(OC_PROJECT)" get secret/$(PROJECT_PREFIX)portal-postgres --ignore-not-found -o name)" ]; then \
-$(OC) -n "$(OC_PROJECT)" get secret/$(PROJECT_PREFIX)portal-postgres -o go-template='{{index .data "database-app-password"}}' | base64 -d; else \
-openssl rand -base64 32 | tr -d /=+ | cut -c -16; fi))
-	# Add database name, user names and passwords to the OC template variables
-	$(eval OC_TEMPLATE_VARS += PORTAL_PASSWORD="$(shell echo -n "$(PORTAL_PASSWORD)" | base64)" PORTAL_USER="$(shell echo -n "$(PORTAL_USER)" | base64)" PORTAL_DB="$(shell echo -n "$(PORTAL_DB)" | base64)")
-	$(eval OC_TEMPLATE_VARS += PORTAL_APP_PASSWORD="$(shell echo -n "$(PORTAL_APP_PASSWORD)" | base64)" PORTAL_APP_USER="$(shell echo -n "$(PORTAL_APP_USER)" | base64)")
-	# Tag images from tools namespace
-	$(call oc_promote,$(PROJECT_PREFIX)portal-schema)
-	$(call oc_promote,$(PROJECT_PREFIX)portal-app)
-	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)postgres-master)
-	# Create secrets if they don't exist yet
-	$(call oc_create_secrets)
-	# Create portal user and db
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_USER) -d $(PORTAL_DB) -p $(PORTAL_PASSWORD) --owner)
-	# Allow portal user to create roles
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,alter-role $(PORTAL_USER) createrole)
-
-	# TODO: remove after https://github.com/bcgov/cas-postgres/pull/30 is merged
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,psql -d $(PORTAL_DB) -c "create extension if not exists pgcrypto;")
-	# Import data from SWRS database
-	$(call oc_run_job,$(PROJECT_PREFIX)swrs-import)
-
-	# Retrieve the git sha1 of the last etl deploy
-	$(eval PREVIOUS_DEPLOY_SHA1=$(shell $(OC) -n $(OC_PROJECT) get job $(PROJECT_PREFIX)portal-schema-deploy --ignore-not-found -o go-template='{{index .metadata.labels "cas-pipeline/commit.id"}}'))
-	# Redeploy portal schema
-	$(if $(PREVIOUS_DEPLOY_SHA1), $(call oc_run_job,$(PROJECT_PREFIX)portal-schema-revert,GIT_SHA1=$(PREVIOUS_DEPLOY_SHA1)))
-	$(call oc_run_job,$(PROJECT_PREFIX)portal-schema-deploy)
-	# Populate graphile_worker schema
-	$(call oc_run_job,$(PROJECT_PREFIX)graphile-worker-schema)
-	# Update app user with the correct privileges and password.
-	# This must be executed after the graphile-worker-schema job so that the graphile_worker schema exists
-	$(call oc_exec_all_pods,$(PROJECT_PREFIX)postgres-master,create-user-db -u $(PORTAL_APP_USER) -d $(PORTAL_DB) -p $(PORTAL_APP_PASSWORD) --schemas graphile_worker --privileges select$(,)insert$(,)update$(,)delete)
-	# Deploy the application and wait for a pod to be healthy
-	$(call oc_deploy)
-	$(call oc_wait_for_deploy_ready,$(PROJECT_PREFIX)portal-app)
+	@helm dep up ./helm/cas-ciip-portal
+	@helm upgrade --install --atomic --timeout 1200s --namespace $(OC_PROJECT) \
+	--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
+	--values ./helm/cas-ciip-portal/values-$(OC_PROJECT).yaml \
+	cas-ciip-portal ./helm/cas-ciip-portal
 
 .PHONY: install_test
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)

@@ -3,6 +3,7 @@ dependencies:
 deploy:
   override:
     - git submodule update --init
-    - make install
+    - make install:
+        timeout: 1200s
 review:
   checklist: []

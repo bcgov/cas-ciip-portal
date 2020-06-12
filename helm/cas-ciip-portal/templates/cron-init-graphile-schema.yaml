@@ -1,0 +1,57 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-init-graphile-schema
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+spec:
+  suspend: true # This cron job is intended to be triggered manually
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      activeDeadlineSeconds: 600
+      template:
+        metadata:
+          labels:
+{{ include "cas-ciip-portal.labels" . | indent 14 }}
+        spec:
+          restartPolicy: Never
+          containers:
+            - env:
+                - name: PGPORT
+                  value: "5432"
+                - name: PGHOST
+                  value: {{ template "cas-ciip-portal.fullname" . }}-patroni
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-user
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-password
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PGDATABASE
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-name
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+              name: {{ template "cas-ciip-portal.fullname" . }}-init-graphile-schema
+              image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 128Mi
+                requests:
+                  cpu: 100m
+                  memory: 64Mi
+              command:
+                - /usr/bin/env
+                - bash
+                - -c
+                - |
+                  set -euo pipefail;
+                  export DATABASE_URL="postgres://$PGUSER:$PGPASSWORD@$PGHOST:$PGPORT/$PGDATABASE";
+                  yarn graphile-worker --schema-only;
