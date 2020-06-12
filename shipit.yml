@@ -4,6 +4,6 @@ deploy:
   override:
     - git submodule update --init
     - make install:
-        timeout: 1200s
+        timeout: 45m
 review:
   checklist: []
