@@ -5,8 +5,8 @@ route:
 
 env:
   smtpConnectionString: smtp://cas-ciip-portal-mailhog:1025
-  senderEmail: no-reply-dev.cas@gov.bc.ca
-  adminEmail: admin@ciip.test
+  senderEmail: BC Climate Action Secretariat <no-reply-dev.cas@gov.bc.ca>
+  adminEmail: CIIP Admin, BC Climate Action Secretariat <admin@ciip.test>
 
 fider:
   host: https://ciip-portal-wksv3k-test-feedback.pathfinder.gov.bc.ca/
