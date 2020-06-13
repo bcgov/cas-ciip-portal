@@ -42,6 +42,8 @@ cas-postgres:
       requests:
         cpu: 15m
         memory: 600Mi
+    persistentVolume:
+      size: 20Gi
     replicaCount: 3
     env:
       ALLOW_NOSSL: true
