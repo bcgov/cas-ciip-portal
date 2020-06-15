@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.4](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.2...v1.0.0-rc.4) (2020-06-15)
+
+
+### Features
+
+* add a computed column to retrieve linked products ([04e5837](https://github.com/bcgov/cas-ciip-portal/commit/04e58371331b6deccb9fc6b387e2ee98bf084373))
+* add dummy data for product_link table ([e725d90](https://github.com/bcgov/cas-ciip-portal/commit/e725d90a0885fa876ab06338ad86eb742e69f47f))
+* add is_deleted column to product_link table, order computed column results by product_link table id ([e995bdb](https://github.com/bcgov/cas-ciip-portal/commit/e995bdb89996d20664e0973f9818eb212d42d9fd))
+* add new column for linking products ([d5910d8](https://github.com/bcgov/cas-ciip-portal/commit/d5910d8b706bf7cb2db909c27925c247f4736f69))
+* add placeholder modal for linking products ([1fcd156](https://github.com/bcgov/cas-ciip-portal/commit/1fcd1560bb7fcbfbae154fe5167a8df290897363))
+* add policies file for product_link table ([f22487e](https://github.com/bcgov/cas-ciip-portal/commit/f22487e34b1c046a2d55a150b054e2bcef9100dc))
+* add product_link table ([0134f42](https://github.com/bcgov/cas-ciip-portal/commit/0134f423cdfd3a23ff5558a3574ccd66dd3d2870))
+* add remove product link mutation ([fc69a9e](https://github.com/bcgov/cas-ciip-portal/commit/fc69a9e860097f1a12f7bba3f71271fb81a56c94))
+* can create links between products ([ef6d452](https://github.com/bcgov/cas-ciip-portal/commit/ef6d452973d380c76358c3ecb34b90af70615f84))
+* clean-up ui functions, close modal on save ([18476aa](https://github.com/bcgov/cas-ciip-portal/commit/18476aa845e4c20711c646d4f73cd8fef38807d3))
+* dev and test routes are subdomains of ciip.gov.bc.ca ([5a7cb50](https://github.com/bcgov/cas-ciip-portal/commit/5a7cb50a8fde2d9cc7c2b5e21bb686365858e90a))
+* filter energy products out of link choices ([ea46cc5](https://github.com/bcgov/cas-ciip-portal/commit/ea46cc504d6627deeb641ccd5d61795fb193f054))
+* prod deployment temporarily creates an insecure route ([d0bff35](https://github.com/bcgov/cas-ciip-portal/commit/d0bff3538c13178c771f94948249a5363ed9566e))
+* prod route is https://ciip.gov.bc.ca ([b1ceba6](https://github.com/bcgov/cas-ciip-portal/commit/b1ceba641a3fa3abae4fff534d026d4a905ff137))
+* remove link by rowId wip ([a381e7d](https://github.com/bcgov/cas-ciip-portal/commit/a381e7d91c7a298a8463f6b73cecff251f1e35fa))
+* render modalButtons ([e99433b](https://github.com/bcgov/cas-ciip-portal/commit/e99433b7fd343cf01476d09b4c9de9abe765395c))
+* show warning in production tab if linked products are missing ([b2b0671](https://github.com/bcgov/cas-ciip-portal/commit/b2b0671871e9820ccf09f0db9ca1d9b4782bfae3))
+* style the product link modal ([ff06627](https://github.com/bcgov/cas-ciip-portal/commit/ff06627915922c7321f4cb50166ec1515fb42daf))
+* update schema ([2969ace](https://github.com/bcgov/cas-ciip-portal/commit/2969acec46069269784531f9a8e4a16c8331e2b4))
+* update schema after rebase ([324bb0a](https://github.com/bcgov/cas-ciip-portal/commit/324bb0a6a8e6bfda1c39345e6cced7ed303ac429))
+* use passthrough termination for router ([b2ec81a](https://github.com/bcgov/cas-ciip-portal/commit/b2ec81a5189e2f6caf9c18c52408155b8b8de222))
+
+
+### Bug Fixes
+
+* airflow dag trigger should not be a hook during install ([30d7aa3](https://github.com/bcgov/cas-ciip-portal/commit/30d7aa3aacdd260e36886983c0349e9c4798b1fe))
+* airflow-dag-trigger job should be a hook to allow upgrade ([ecde3fc](https://github.com/bcgov/cas-ciip-portal/commit/ecde3fce07aa82b8b7282cd363a798523fc56a3d))
+* Fix landing page copy and logo for GCPE ([bd68181](https://github.com/bcgov/cas-ciip-portal/commit/bd68181d9f883b16708679aa45ce58e088de3730))
+* fix some typos ([88efc6a](https://github.com/bcgov/cas-ciip-portal/commit/88efc6abf88797fedc13881fc84d11c58d7910e7))
+* helm values namespace was -dev instead of -test ([280ae79](https://github.com/bcgov/cas-ciip-portal/commit/280ae79df88b8209763af6efb0b92079240fe345))
+* routes must conform to DNS 952 form ([354dc1f](https://github.com/bcgov/cas-ciip-portal/commit/354dc1f5eb5a2cecb732df98fb8df316f3aee014))
+* trigger-airflow-dag.sh handles failed state ([913617c](https://github.com/bcgov/cas-ciip-portal/commit/913617cb7176fd4acffdd7a97e68a2ffa8b78268))
+
 ## [1.0.0-rc.3](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2020-06-12)
 
 
