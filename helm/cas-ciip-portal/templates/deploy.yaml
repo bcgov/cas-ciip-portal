@@ -57,7 +57,7 @@ spec:
           - name: FEEDBACK_SITE_URL
             value: {{ .Values.fider.host }}
           - name: HOST
-            value: {{ .Values.env.appHost }}
+            value: {{ .Values.route.host }}
           - name: NAMESPACE
             valueFrom:
               fieldRef:

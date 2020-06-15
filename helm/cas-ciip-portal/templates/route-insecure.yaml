@@ -1,8 +1,8 @@
-{{- if not .Values.route.insecure }}
+{{- if .Values.route.insecure }}
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: {{ template "cas-ciip-portal.fullname" . }}
+  name: {{ template "cas-ciip-portal.fullname" . }}-insecure
   labels:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
 
@@ -10,9 +10,6 @@ spec:
   host: {{ .Values.route.host }}
   port:
     targetPort: {{ template "cas-ciip-portal.fullname" . }}
-  tls:
-    termination: passthrough
-    insecureEdgeTerminationPolicy: Redirect
   to:
     kind: Service
     name:  {{ template "cas-ciip-portal.fullname" . }}

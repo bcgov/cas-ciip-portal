@@ -8,13 +8,13 @@ resources:
     memory: 256Mi
 
 route:
-  suffix: "-dev"
+  host: http://dev.ciip.gov.bc.ca
+  insecure: true # temporary setting until cert is generated
 
 env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
   senderEmail: no-reply-dev.cas@gov.bc.ca
   adminEmail: matthieu@button.is
-  appHost: https://ciip-dev.pathfinder.gov.bc.ca # This should be different from the route for the production site (appHost will be https://ciip.gov.bc.ca)
 
 fider:
   host: # TODO move fider template in this repo

@@ -16,7 +16,11 @@ replicas: 2
 port: 3000
 resources: {}
 route:
-  suffix: ""
+  # route.host defines the host name for the route template,
+  # and the HOST env variable for the app deployment
+  host: https://ciip.gov.bc.ca
+  # set to true to create a route with tls and edge redirection disabled
+  insecure: false
 
 persistence:
   db: ciip
@@ -28,7 +32,6 @@ env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
   senderEmail: no-reply.cas@gov.bc.ca
   adminEmail: GHGRegulator@gov.bc.ca
-  appHost: https://ciip.pathfinder.gov.bc.ca # This should be different from the route for the production site (appHost will be https://ciip.gov.bc.ca)
 
 fider:
   host: # TODO move fider template in this repo
