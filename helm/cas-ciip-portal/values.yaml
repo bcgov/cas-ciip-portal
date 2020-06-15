@@ -18,7 +18,7 @@ resources: {}
 route:
   # route.host defines the host name for the route template,
   # and the HOST env variable for the app deployment
-  host: https://ciip.gov.bc.ca
+  host: ciip.gov.bc.ca
   # set to true to create a route with tls and edge redirection disabled
   insecure: false
 

@@ -57,7 +57,7 @@ spec:
           - name: FEEDBACK_SITE_URL
             value: {{ .Values.fider.host }}
           - name: HOST
-            value: {{ .Values.route.host }}
+            value: http{{ if not .Values.route.insecure }}s{{ end }}://{{ .Values.route.host }}
           - name: NAMESPACE
             valueFrom:
               fieldRef:
