@@ -8,7 +8,8 @@ resources:
     memory: 256Mi
 
 route:
-  host: https://ciip-dev.pathfinder.gov.bc.ca
+  host: http://dev.ciip.gov.bc.ca
+  insecure: true # temporary setting until cert is generated
 
 env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
