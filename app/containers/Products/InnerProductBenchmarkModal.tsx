@@ -23,18 +23,19 @@ interface benchmark {
   createdAt: string;
 }
 
+interface pastBenchmark {
+  node: benchmark;
+}
+
 interface Props {
   updateStatus: (...args: any[]) => void;
   product: ProductRowItemContainer_product;
-  benchmarkSchema: {
-    schema: JSONSchema6;
-    uiSchema: JSONSchema6;
-  };
+  benchmarkSchema: any;
   currentBenchmark: benchmark;
   editProduct: (IChangeEvent) => void;
   editBenchmark: (IChangeEvent) => void;
   createBenchmark: (IChangeEvent) => void;
-  pastBenchmarks: benchmark[];
+  pastBenchmarks: pastBenchmark[];
   isProduct: boolean;
 }
 
@@ -109,7 +110,7 @@ export const ProductBenchmarkInnerModal: React.FunctionComponent<Props> = ({
             schema={
               isProduct
                 ? (productSchema.schema as JSONSchema6)
-                : benchmarkSchema.schema
+                : (benchmarkSchema.schema as JSONSchema6)
             }
             uiSchema={
               isProduct ? productSchema.uiSchema : benchmarkSchema.uiSchema
