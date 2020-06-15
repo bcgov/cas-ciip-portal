@@ -11,7 +11,7 @@ spec:
   port:
     targetPort: {{ template "cas-ciip-portal.fullname" . }}
   tls:
-    termination: edge
+    termination: passthrough
     insecureEdgeTerminationPolicy: Redirect
   to:
     kind: Service
