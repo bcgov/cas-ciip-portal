@@ -1275,9 +1275,6 @@ exports[`The Form Component should render alert reminder to check the guidance i
             },
             "formResult": Array [
               Object {
-                "requiresEmissionAllocation": false,
-              },
-              Object {
                 "requiresEmissionAllocation": true,
               },
             ],
@@ -1287,9 +1284,6 @@ exports[`The Form Component should render alert reminder to check the guidance i
     }
     formData={
       Array [
-        Object {
-          "requiresEmissionAllocation": false,
-        },
         Object {
           "requiresEmissionAllocation": true,
         },
@@ -1336,6 +1330,694 @@ exports[`The Form Component should render alert reminder to check the guidance i
       </AlertHeading>
       Please refer to the guidance documents to calculate the emission allocations for each product or service, and ensure that you report all the necessary product or services
     </Alert>
+    <div
+      className="form-submit"
+    >
+      <Row
+        noGutters={false}
+      >
+        <Col
+          md={3}
+          style={
+            Object {
+              "lineHeight": "48px",
+            }
+          }
+        >
+          <Link
+            href={
+              Object {
+                "pathname": "/reporter",
+              }
+            }
+          >
+            Save & Exit
+          </Link>
+        </Col>
+        <Col
+          className="form-nav"
+          md={9}
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <Button
+            active={false}
+            disabled={false}
+            onClick={[MockFunction]}
+            size="lg"
+            style={
+              Object {
+                "marginRight": "10px",
+              }
+            }
+            type="button"
+            variant="secondary"
+          >
+            Back
+          </Button>
+          <Button
+            active={false}
+            disabled={false}
+            size="lg"
+            type="submit"
+            variant="primary"
+          >
+            Continue
+          </Button>
+        </Col>
+      </Row>
+    </div>
+  </Form>
+  <JSXStyle
+    id="841285729"
+  >
+    .
+    r
+    j
+    s
+    f
+     
+    .
+    f
+    o
+    r
+    m
+    -
+    r
+    o
+    w
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    :
+    2
+    0
+    p
+    x
+     
+    0
+     
+    2
+    0
+    p
+    x
+    ;
+    }
+    .
+    e
+    m
+    i
+    s
+    s
+    i
+    o
+    n
+    -
+    f
+    o
+    r
+    m
+     
+    .
+    r
+    j
+    s
+    f
+     
+    .
+    f
+    o
+    r
+    m
+    -
+    r
+    o
+    w
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    :
+    0
+    ;
+    }
+    .
+    n
+    o
+    -
+    c
+    o
+    l
+    -
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+     
+    .
+    f
+    o
+    r
+    m
+    -
+    r
+    o
+    w
+    &gt;
+    .
+    c
+    o
+    l
+    ,
+    .
+    n
+    o
+    -
+    c
+    o
+    l
+    -
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+     
+    .
+    f
+    o
+    r
+    m
+    -
+    r
+    o
+    w
+    &gt;
+    [
+    c
+    l
+    a
+    s
+    s
+    *
+    =
+    '
+    c
+    o
+    l
+    -
+    '
+    ]
+    {
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    0
+    ;
+    }
+    .
+    f
+    o
+    r
+    m
+    -
+    s
+    u
+    b
+    m
+    i
+    t
+    {
+    b
+    o
+    r
+    d
+    e
+    r
+    :
+    1
+    p
+    x
+     
+    s
+    o
+    l
+    i
+    d
+     
+    #
+    b
+    b
+    b
+    ;
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    3
+    0
+    p
+    x
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    e
+    e
+    e
+    ;
+    b
+    o
+    r
+    d
+    e
+    r
+    -
+    r
+    a
+    d
+    i
+    u
+    s
+    :
+    6
+    p
+    x
+    ;
+    }
+    .
+    e
+    r
+    r
+    o
+    r
+    s
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    l
+    e
+    f
+    t
+    :
+    2
+    0
+    p
+    x
+    ;
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    2
+    0
+    p
+    x
+    ;
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    c
+    e
+    5
+    c
+    5
+    c
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    w
+    h
+    i
+    t
+    e
+    ;
+    f
+    o
+    n
+    t
+    -
+    s
+    i
+    z
+    e
+    :
+    2
+    0
+    p
+    x
+    ;
+    }
+    u
+    l
+    .
+    e
+    r
+    r
+    o
+    r
+    -
+    d
+    e
+    t
+    a
+    i
+    l
+    {
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    0
+    ;
+    l
+    i
+    s
+    t
+    -
+    s
+    t
+    y
+    l
+    e
+    :
+    n
+    o
+    n
+    e
+    ;
+    }
+    u
+    l
+    .
+    e
+    r
+    r
+    o
+    r
+    -
+    d
+    e
+    t
+    a
+    i
+    l
+     
+    l
+    i
+    .
+    t
+    e
+    x
+    t
+    -
+    d
+    a
+    n
+    g
+    e
+    r
+    {
+    b
+    a
+    c
+    k
+    g
+    r
+    o
+    u
+    n
+    d
+    :
+    #
+    c
+    e
+    5
+    c
+    5
+    c
+    ;
+    c
+    o
+    l
+    o
+    r
+    :
+    w
+    h
+    i
+    t
+    e
+     
+    !
+    i
+    m
+    p
+    o
+    r
+    t
+    a
+    n
+    t
+    ;
+    p
+    a
+    d
+    d
+    i
+    n
+    g
+    :
+    5
+    p
+    x
+    ;
+    }
+  </JSXStyle>
+</div>
+`;
+
+exports[`The Form Component should render an alert reminder to report any missing linked products 1`] = `
+<div
+  className=""
+>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      md={8}
+    >
+      <h1
+        className="form-title"
+      >
+        Foo
+      </h1>
+    </Col>
+  </Row>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="warning"
+  >
+    <h5>
+      Some required products are missing from your application:
+    </h5>
+  </Alert>
+  <Alert
+    closeLabel="Close alert"
+    key="2"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="warning"
+  >
+    foo
+     requires reporting of: 
+    bar
+  </Alert>
+  <Form
+    ArrayFieldTemplate={[Function]}
+    ErrorList={[Function]}
+    FieldTemplate={[Function]}
+    ObjectFieldTemplate={[Function]}
+    disabled={false}
+    fields={
+      Object {
+        "NumberField": [Function],
+        "emission": [Function],
+        "emissionCategoryRowId": [Function],
+        "emissionGas": [Function],
+        "emissionSource": [Function],
+        "fuel": [Function],
+        "fuelRowId": [Function],
+        "product": [Function],
+        "productRowId": [Function],
+      }
+    }
+    formContext={
+      Object {
+        "query": Object {
+          " $fragmentRefs": Object {
+            "EmissionCategoryRowIdField_query": true,
+            "FuelField_query": true,
+            "FuelRowIdField_query": true,
+            "ProductField_query": true,
+            "ProductRowIdField_query": true,
+          },
+          " $refType": "Form_query",
+          "products": Object {
+            "edges": Array [
+              Object {
+                "node": Object {
+                  "linkedProduct": Object {
+                    "edges": Array [
+                      Object {
+                        "node": Object {
+                          "linkedProductId": 3,
+                          "productName": "bar",
+                          "rowId": 2,
+                        },
+                      },
+                    ],
+                  },
+                  "productName": "foo",
+                  "rowId": 1,
+                },
+              },
+            ],
+          },
+          "result": Object {
+            "formJsonByFormId": Object {
+              "ciipApplicationWizardByFormId": Object {
+                "formPosition": 3,
+              },
+              "formJson": Object {},
+              "name": "Foo",
+            },
+            "formResult": Array [
+              Object {
+                "productRowId": 1,
+              },
+              Object {
+                "requiresEmissionAllocation": false,
+              },
+            ],
+          },
+        },
+      }
+    }
+    formData={
+      Array [
+        Object {
+          "productRowId": 1,
+        },
+        Object {
+          "requiresEmissionAllocation": false,
+        },
+      ]
+    }
+    liveValidate={false}
+    noHtml5Validate={true}
+    noValidate={false}
+    omitExtraData={false}
+    onError={[Function]}
+    onSubmit={[MockFunction]}
+    safeRenderCompletion={true}
+    showErrorList={false}
+    transformErrors={[Function]}
+    uiSchema={Object {}}
+    validate={[Function]}
+    widgets={
+      Object {
+        "SearchWidget": [Function],
+      }
+    }
+  >
     <div
       className="form-submit"
     >

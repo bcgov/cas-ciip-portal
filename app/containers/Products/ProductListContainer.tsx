@@ -51,6 +51,7 @@ export const ProductList: React.FunctionComponent<Props> = ({
       'Allocation of Emissions': 'requires_emission_allocation',
       Status: 'product_state',
       'Ciip Benchmarked': 'is_ciip_product',
+      Link: null,
       'Edit/View': null
     };
     const body = (

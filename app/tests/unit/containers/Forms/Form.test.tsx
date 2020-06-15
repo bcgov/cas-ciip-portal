@@ -108,10 +108,7 @@ describe('The Form Component', () => {
           },
           ' $refType': 'Form_query',
           result: {
-            formResult: [
-              {requiresEmissionAllocation: false},
-              {requiresEmissionAllocation: true}
-            ],
+            formResult: [{requiresEmissionAllocation: true}],
             formJsonByFormId: {
               formJson: {},
               ciipApplicationWizardByFormId: {
@@ -127,6 +124,63 @@ describe('The Form Component', () => {
     );
     expect(wrapper.find('Alert')).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render an alert reminder to report any missing linked products', () => {
+    const wrapper = shallow(
+      <FormComponent
+        query={{
+          ' $fragmentRefs': {
+            FuelField_query: true,
+            ProductField_query: true,
+            FuelRowIdField_query: true,
+            ProductRowIdField_query: true,
+            EmissionCategoryRowIdField_query: true
+          },
+          ' $refType': 'Form_query',
+          result: {
+            formResult: [
+              {productRowId: 1},
+              {requiresEmissionAllocation: false}
+            ],
+            formJsonByFormId: {
+              formJson: {},
+              ciipApplicationWizardByFormId: {
+                formPosition: 3
+              },
+              name: 'Foo'
+            }
+          },
+          products: {
+            edges: [
+              {
+                node: {
+                  rowId: 1,
+                  productName: 'foo',
+                  linkedProduct: {
+                    edges: [
+                      {
+                        node: {
+                          rowId: 2,
+                          productName: 'bar',
+                          linkedProductId: 3
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }}
+        onComplete={jest.fn()}
+        onBack={jest.fn()}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('Alert').at(1).text()).toContain(
+      'requires reporting of: bar'
+    );
   });
 
   /* It('should render the continue and back button on subsequent forms', () => {

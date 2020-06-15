@@ -47,6 +47,62 @@ exports[`ProductList should match the previous snaphshot 1`] = `
         defaultShow={false}
         overlay={
           <Tooltip
+            id="link-product"
+            placement="right"
+          >
+            Link Products
+          </Tooltip>
+        }
+        placement="bottom"
+        trigger={
+          Array [
+            "hover",
+            "focus",
+          ]
+        }
+      >
+        <FontAwesomeIcon
+          border={false}
+          className="editIcon"
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                448,
+                512,
+                Array [],
+                "f1e0",
+                "M352 320c-22.608 0-43.387 7.819-59.79 20.895l-102.486-64.054a96.551 96.551 0 0 0 0-41.683l102.486-64.054C308.613 184.181 329.392 192 352 192c53.019 0 96-42.981 96-96S405.019 0 352 0s-96 42.981-96 96c0 7.158.79 14.13 2.276 20.841L155.79 180.895C139.387 167.819 118.608 160 96 160c-53.019 0-96 42.981-96 96s42.981 96 96 96c22.608 0 43.387-7.819 59.79-20.895l102.486 64.054A96.301 96.301 0 0 0 256 416c0 53.019 42.981 96 96 96s96-42.981 96-96-42.981-96-96-96z",
+              ],
+              "iconName": "share-alt",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          onClick={[Function]}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size={null}
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </OverlayTrigger>
+       
+    </td>
+    <td
+      className="jsx-204006405"
+    >
+      <OverlayTrigger
+        defaultShow={false}
+        overlay={
+          <Tooltip
             id="benchmark"
             placement="right"
           >
@@ -158,308 +214,163 @@ exports[`ProductList should match the previous snaphshot 1`] = `
     show={false}
     size="xl"
   >
-    <ModalHeader
-      closeButton={true}
-      closeLabel="Close"
-      style={
+    <ProductBenchmarkInnerModal
+      benchmarkSchema={
         Object {
-          "background": "#003366",
-          "color": "white",
-        }
-      }
-    >
-      <ModalTitle>
-        Edit Product
-      </ModalTitle>
-    </ModalHeader>
-    <ModalBody
-      style={
-        Object {
-          "background": "#f5f5f5",
-        }
-      }
-    >
-      <Container
-        fluid={false}
-      >
-        <Form
-          ArrayFieldTemplate={[Function]}
-          ErrorList={[Function]}
-          FieldTemplate={[Function]}
-          ObjectFieldTemplate={[Function]}
-          disabled={true}
-          formData={
-            Object {
-              "addEmissionsFromEios": false,
-              "addPurchasedElectricityEmissions": false,
-              "addPurchasedHeatEmissions": false,
-              "benchmarksByProductId": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "benchmark": 1,
-                      "createdAt": "2020-05-06",
-                      "eligibilityThreshold": 10,
-                      "endReportingYear": 2020,
-                      "id": "bench",
-                      "incentiveMultiplier": 1,
-                      "maximumIncentiveRatio": 1,
-                      "minimumIncentiveRatio": 0,
-                      "rowId": 1,
-                      "startReportingYear": 2019,
-                    },
-                  },
+          "schema": Object {
+            "properties": Object {
+              "benchmark": Object {
+                "title": "Benchmark",
+                "type": "string",
+              },
+              "current": Object {
+                "type": "string",
+              },
+              "eligibilityThreshold": Object {
+                "title": "Eligibility Threshold",
+                "type": "string",
+              },
+              "endReportingYear": Object {
+                "enum": Array [
+                  2019,
+                  2020,
                 ],
+                "title": "End Reporting Period",
+                "type": "number",
               },
-              "id": "abc",
-              "isCiipProduct": true,
-              "isReadOnly": false,
-              "productName": "test product",
-              "productState": "PUBLISHED",
-              "requiresEmissionAllocation": true,
-              "requiresProductAmount": true,
-              "rowId": 1,
-              "subtractExportedElectricityEmissions": false,
-              "subtractExportedHeatEmissions": false,
-              "subtractGeneratedElectricityEmissions": false,
-              "subtractGeneratedHeatEmissions": false,
-              "units": "kl",
-              "updatedAt": "2020-05-06",
-            }
-          }
-          liveOmit={true}
-          liveValidate={false}
-          noHtml5Validate={false}
-          noValidate={false}
-          omitExtraData={true}
-          onSubmit={[Function]}
-          safeRenderCompletion={false}
-          schema={
-            Object {
-              "properties": Object {
-                "addEmissionsFromEios": Object {
-                  "default": false,
-                  "enumNames": Array [
-                    " Yes",
-                    " No",
-                  ],
-                  "title": "Emissions from EIOs are added to facility emissions",
-                  "type": "boolean",
-                },
-                "addPurchasedElectricityEmissions": Object {
-                  "default": false,
-                  "enumNames": Array [
-                    " Yes",
-                    " No",
-                  ],
-                  "title": "Purchased electricity is added to facility emissions",
-                  "type": "boolean",
-                },
-                "addPurchasedHeatEmissions": Object {
-                  "default": false,
-                  "enumNames": Array [
-                    " Yes",
-                    " No",
-                  ],
-                  "title": "Purchased heat is added to facility emissions",
-                  "type": "boolean",
-                },
-                "additions": Object {
-                  "type": "string",
-                },
-                "basic": Object {
-                  "type": "string",
-                },
-                "isCiipProduct": Object {
-                  "default": true,
-                  "enumNames": Array [
-                    " Yes",
-                    " No",
-                  ],
-                  "title": "CIIP (benchmarked) product",
-                  "type": "boolean",
-                },
-                "productName": Object {
-                  "title": "Name",
-                  "type": "string",
-                },
-                "requiresEmissionAllocation": Object {
-                  "default": true,
-                  "enumNames": Array [
-                    " Yes",
-                    " No",
-                  ],
-                  "title": "Allocation of emissions is required",
-                  "type": "boolean",
-                },
-                "requiresProductAmount": Object {
-                  "default": true,
-                  "enumNames": Array [
-                    " Yes",
-                    " No",
-                  ],
-                  "title": "Production amount needs to be reported",
-                  "type": "boolean",
-                },
-                "subtractExportedElectricityEmissions": Object {
-                  "default": false,
-                  "enumNames": Array [
-                    " Yes",
-                    " No",
-                  ],
-                  "title": "Exported electricity is subtracted from facility emissions",
-                  "type": "boolean",
-                },
-                "subtractExportedHeatEmissions": Object {
-                  "default": false,
-                  "enumNames": Array [
-                    " Yes",
-                    " No",
-                  ],
-                  "title": "Exported heat is subtracted from facility emissions",
-                  "type": "boolean",
-                },
-                "subtractGeneratedElectricityEmissions": Object {
-                  "default": false,
-                  "enumNames": Array [
-                    " Yes",
-                    " No",
-                  ],
-                  "title": "Generated electricity is subtracted from facility emissions",
-                  "type": "boolean",
-                },
-                "subtractGeneratedHeatEmissions": Object {
-                  "default": false,
-                  "enumNames": Array [
-                    " Yes",
-                    " No",
-                  ],
-                  "title": "Generated heat is subtracted from facility emissions",
-                  "type": "boolean",
-                },
-                "subtractions": Object {
-                  "type": "string",
-                },
-                "units": Object {
-                  "title": "Units of measurement",
-                  "type": "string",
+              "incentiveMultiplier": Object {
+                "defaultValue": "1",
+                "title": "Incentive Multiplier",
+                "type": "string",
+              },
+              "maximumIncentiveRatio": Object {
+                "defaultValue": "1",
+                "title": "Maximum incentive ratio",
+                "type": "string",
+              },
+              "minimumIncentiveRatio": Object {
+                "defaultValue": "0",
+                "title": "Minimum incentive ratio",
+                "type": "string",
+              },
+              "startReportingYear": Object {
+                "enum": Array [
+                  2019,
+                  2020,
+                ],
+                "title": "Start Reporting Period",
+                "type": "number",
+              },
+            },
+            "required": Array [
+              "benchmark",
+              "eligibilityThreshold",
+              "minimumIncentiveRatio",
+              "maximumIncentiveRatio",
+              "incentiveMultiplier",
+              "startReportingYear",
+              "endReportingYear",
+            ],
+            "type": "object",
+          },
+          "uiSchema": Object {
+            "benchmark": Object {
+              "ui:col-md": 3,
+            },
+            "current": Object {
+              "classNames": "hidden-title",
+              "ui:col-md": 12,
+              "ui:options": Object {
+                "text": "Current Benchmark Information",
+              },
+              "ui:widget": "header",
+            },
+            "eligibilityThreshold": Object {
+              "ui:col-md": 3,
+            },
+            "endReportingYear": Object {
+              "ui:col-md": 3,
+              "ui:help": "The last reporting year where this benchmark is used",
+            },
+            "incentiveMultiplier": Object {
+              "ui:col-md": 3,
+            },
+            "maximumIncentiveRatio": Object {
+              "ui:col-md": 3,
+            },
+            "minimumIncentiveRatio": Object {
+              "ui:col-md": 3,
+            },
+            "startReportingYear": Object {
+              "ui:col-md": 3,
+              "ui:help": "The first reporting year where this benchmark is used",
+            },
+          },
+        }
+      }
+      createBenchmark={[Function]}
+      currentBenchmark={
+        Object {
+          "benchmark": 1,
+          "createdAt": "2020-05-06",
+          "eligibilityThreshold": 10,
+          "endReportingYear": 2020,
+          "id": "bench",
+          "incentiveMultiplier": 1,
+          "maximumIncentiveRatio": 1,
+          "minimumIncentiveRatio": 0,
+          "rowId": 1,
+          "startReportingYear": 2019,
+        }
+      }
+      editBenchmark={[Function]}
+      editProduct={[Function]}
+      isProduct={true}
+      pastBenchmarks={Array []}
+      product={
+        Object {
+          "addEmissionsFromEios": false,
+          "addPurchasedElectricityEmissions": false,
+          "addPurchasedHeatEmissions": false,
+          "benchmarksByProductId": Object {
+            "edges": Array [
+              Object {
+                "node": Object {
+                  "benchmark": 1,
+                  "createdAt": "2020-05-06",
+                  "eligibilityThreshold": 10,
+                  "endReportingYear": 2020,
+                  "id": "bench",
+                  "incentiveMultiplier": 1,
+                  "maximumIncentiveRatio": 1,
+                  "minimumIncentiveRatio": 0,
+                  "rowId": 1,
+                  "startReportingYear": 2019,
                 },
               },
-              "required": Array [
-                "productName",
-                "requiresEmissionAllocation",
-                "isCiipProduct",
-                "addPurchasedElectricityEmissions",
-                "subtractExportedElectricityEmissions",
-                "addPurchasedHeatEmissions",
-                "subtractExportedHeatEmissions",
-                "subtractGeneratedElectricityEmissions",
-                "subtractGeneratedHeatEmissions",
-                "addEmissionsFromEios",
-                "requiresProductAmount",
-              ],
-              "type": "object",
-            }
-          }
-          showErrorList={false}
-          uiSchema={
-            Object {
-              "addEmissionsFromEios": Object {
-                "ui:col-md": 4,
-                "ui:widget": "radio",
-              },
-              "addPurchasedElectricityEmissions": Object {
-                "ui:col-md": 4,
-                "ui:widget": "radio",
-              },
-              "addPurchasedHeatEmissions": Object {
-                "ui:col-md": 4,
-                "ui:widget": "radio",
-              },
-              "additions": Object {
-                "classNames": "hidden-title",
-                "ui:col-md": 12,
-                "ui:options": Object {
-                  "text": "Additions to Facility Emissions",
-                },
-                "ui:widget": "header",
-              },
-              "basic": Object {
-                "classNames": "hidden-title",
-                "ui:col-md": 12,
-                "ui:options": Object {
-                  "text": "Basic Information",
-                },
-                "ui:widget": "header",
-              },
-              "isCiipProduct": Object {
-                "ui:col-md": 4,
-                "ui:help": "Non-CIIP products emissions are excluded from payment allocation. If a product has a fixed incentive ratio instead of a benchmark, please create a benchmark and use the mininmum and maximum incentive ratio options",
-                "ui:widget": "radio",
-              },
-              "productName": Object {
-                "ui:col-md": 6,
-              },
-              "requiresEmissionAllocation": Object {
-                "ui:col-md": 4,
-                "ui:widget": "radio",
-              },
-              "requiresProductAmount": Object {
-                "ui:col-md": 4,
-                "ui:widget": "radio",
-              },
-              "subtractExportedElectricityEmissions": Object {
-                "ui:col-md": 4,
-                "ui:widget": "radio",
-              },
-              "subtractExportedHeatEmissions": Object {
-                "ui:col-md": 4,
-                "ui:widget": "radio",
-              },
-              "subtractGeneratedElectricityEmissions": Object {
-                "ui:col-md": 4,
-                "ui:widget": "radio",
-              },
-              "subtractGeneratedHeatEmissions": Object {
-                "ui:col-md": 4,
-                "ui:widget": "radio",
-              },
-              "subtractions": Object {
-                "classNames": "hidden-title",
-                "ui:col-md": 12,
-                "ui:options": Object {
-                  "text": "Subtractions from Facility Emissions",
-                },
-                "ui:widget": "header",
-              },
-              "units": Object {
-                "ui:col-md": 6,
-              },
-            }
-          }
-          widgets={
-            Object {
-              "header": [Function],
-            }
-          }
-        >
-          <Button
-            active={false}
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-            variant="warning"
-          >
-            Archive Product
-          </Button>
-        </Form>
-      </Container>
-    </ModalBody>
-    <JSXStyle
-      id="548042990"
-    >
-      .hidden-title label{display:none;}.close{color:white;}.hidden-button{display:none;}
-    </JSXStyle>
+            ],
+          },
+          "id": "abc",
+          "isCiipProduct": true,
+          "isReadOnly": false,
+          "linkedProduct": Object {
+            "edges": Array [],
+          },
+          "productName": "test product",
+          "productState": "PUBLISHED",
+          "requiresEmissionAllocation": true,
+          "requiresProductAmount": true,
+          "rowId": 1,
+          "subtractExportedElectricityEmissions": false,
+          "subtractExportedHeatEmissions": false,
+          "subtractGeneratedElectricityEmissions": false,
+          "subtractGeneratedHeatEmissions": false,
+          "units": "kl",
+          "updatedAt": "2020-05-06",
+        }
+      }
+      updateStatus={[Function]}
+    />
   </Bootstrap(Modal)>
   <Bootstrap(Modal)
     centered={true}
@@ -467,177 +378,233 @@ exports[`ProductList should match the previous snaphshot 1`] = `
     show={false}
     size="xl"
   >
-    <ModalHeader
-      closeButton={true}
-      closeLabel="Close"
-      style={
+    <ProductBenchmarkInnerModal
+      benchmarkSchema={
         Object {
-          "background": "#003366",
-          "color": "white",
-        }
-      }
-    >
-      <ModalTitle>
-        Edit Benchmark
-      </ModalTitle>
-    </ModalHeader>
-    <ModalBody
-      style={
-        Object {
-          "background": "#f5f5f5",
-        }
-      }
-    >
-      <Container
-        fluid={false}
-      >
-        <Form
-          ArrayFieldTemplate={[Function]}
-          ErrorList={[Function]}
-          FieldTemplate={[Function]}
-          ObjectFieldTemplate={[Function]}
-          disabled={false}
-          formData={
-            Object {
-              "benchmark": 1,
-              "createdAt": "2020-05-06",
-              "eligibilityThreshold": 10,
-              "endReportingYear": 2020,
-              "id": "bench",
-              "incentiveMultiplier": 1,
-              "maximumIncentiveRatio": 1,
-              "minimumIncentiveRatio": 0,
-              "rowId": 1,
-              "startReportingYear": 2019,
-            }
-          }
-          liveOmit={true}
-          liveValidate={false}
-          noHtml5Validate={false}
-          noValidate={false}
-          omitExtraData={true}
-          onSubmit={[Function]}
-          safeRenderCompletion={false}
-          schema={
-            Object {
-              "properties": Object {
-                "benchmark": Object {
-                  "title": "Benchmark",
-                  "type": "string",
-                },
-                "current": Object {
-                  "type": "string",
-                },
-                "eligibilityThreshold": Object {
-                  "title": "Eligibility Threshold",
-                  "type": "string",
-                },
-                "endReportingYear": Object {
-                  "enum": Array [
-                    2019,
-                    2020,
-                  ],
-                  "title": "End Reporting Period",
-                  "type": "number",
-                },
-                "incentiveMultiplier": Object {
-                  "defaultValue": "1",
-                  "title": "Incentive Multiplier",
-                  "type": "string",
-                },
-                "maximumIncentiveRatio": Object {
-                  "defaultValue": "1",
-                  "title": "Maximum incentive ratio",
-                  "type": "string",
-                },
-                "minimumIncentiveRatio": Object {
-                  "defaultValue": "0",
-                  "title": "Minimum incentive ratio",
-                  "type": "string",
-                },
-                "startReportingYear": Object {
-                  "enum": Array [
-                    2019,
-                    2020,
-                  ],
-                  "title": "Start Reporting Period",
-                  "type": "number",
-                },
-              },
-              "required": Array [
-                "benchmark",
-                "eligibilityThreshold",
-                "minimumIncentiveRatio",
-                "maximumIncentiveRatio",
-                "incentiveMultiplier",
-                "startReportingYear",
-                "endReportingYear",
-              ],
-              "type": "object",
-            }
-          }
-          showErrorList={false}
-          uiSchema={
-            Object {
+          "schema": Object {
+            "properties": Object {
               "benchmark": Object {
-                "ui:col-md": 3,
+                "title": "Benchmark",
+                "type": "string",
               },
               "current": Object {
-                "classNames": "hidden-title",
-                "ui:col-md": 12,
-                "ui:options": Object {
-                  "text": "Current Benchmark Information",
-                },
-                "ui:widget": "header",
+                "type": "string",
               },
               "eligibilityThreshold": Object {
-                "ui:col-md": 3,
+                "title": "Eligibility Threshold",
+                "type": "string",
               },
               "endReportingYear": Object {
-                "ui:col-md": 3,
-                "ui:help": "The last reporting year where this benchmark is used",
+                "enum": Array [
+                  2019,
+                  2020,
+                ],
+                "title": "End Reporting Period",
+                "type": "number",
               },
               "incentiveMultiplier": Object {
-                "ui:col-md": 3,
+                "defaultValue": "1",
+                "title": "Incentive Multiplier",
+                "type": "string",
               },
               "maximumIncentiveRatio": Object {
-                "ui:col-md": 3,
+                "defaultValue": "1",
+                "title": "Maximum incentive ratio",
+                "type": "string",
               },
               "minimumIncentiveRatio": Object {
-                "ui:col-md": 3,
+                "defaultValue": "0",
+                "title": "Minimum incentive ratio",
+                "type": "string",
               },
               "startReportingYear": Object {
-                "ui:col-md": 3,
-                "ui:help": "The first reporting year where this benchmark is used",
+                "enum": Array [
+                  2019,
+                  2020,
+                ],
+                "title": "Start Reporting Period",
+                "type": "number",
               },
-            }
-          }
-          widgets={
-            Object {
-              "header": [Function],
-            }
-          }
-        >
-          <Button
-            active={false}
-            disabled={false}
-            type="submit"
-            variant="primary"
-          >
-            Save
-          </Button>
-        </Form>
-        <PastBenchmarksComponent
-          pastBenchmarks={Array []}
-        />
-      </Container>
-    </ModalBody>
-    <JSXStyle
-      id="548042990"
-    >
-      .hidden-title label{display:none;}.close{color:white;}.hidden-button{display:none;}
-    </JSXStyle>
+            },
+            "required": Array [
+              "benchmark",
+              "eligibilityThreshold",
+              "minimumIncentiveRatio",
+              "maximumIncentiveRatio",
+              "incentiveMultiplier",
+              "startReportingYear",
+              "endReportingYear",
+            ],
+            "type": "object",
+          },
+          "uiSchema": Object {
+            "benchmark": Object {
+              "ui:col-md": 3,
+            },
+            "current": Object {
+              "classNames": "hidden-title",
+              "ui:col-md": 12,
+              "ui:options": Object {
+                "text": "Current Benchmark Information",
+              },
+              "ui:widget": "header",
+            },
+            "eligibilityThreshold": Object {
+              "ui:col-md": 3,
+            },
+            "endReportingYear": Object {
+              "ui:col-md": 3,
+              "ui:help": "The last reporting year where this benchmark is used",
+            },
+            "incentiveMultiplier": Object {
+              "ui:col-md": 3,
+            },
+            "maximumIncentiveRatio": Object {
+              "ui:col-md": 3,
+            },
+            "minimumIncentiveRatio": Object {
+              "ui:col-md": 3,
+            },
+            "startReportingYear": Object {
+              "ui:col-md": 3,
+              "ui:help": "The first reporting year where this benchmark is used",
+            },
+          },
+        }
+      }
+      createBenchmark={[Function]}
+      currentBenchmark={
+        Object {
+          "benchmark": 1,
+          "createdAt": "2020-05-06",
+          "eligibilityThreshold": 10,
+          "endReportingYear": 2020,
+          "id": "bench",
+          "incentiveMultiplier": 1,
+          "maximumIncentiveRatio": 1,
+          "minimumIncentiveRatio": 0,
+          "rowId": 1,
+          "startReportingYear": 2019,
+        }
+      }
+      editBenchmark={[Function]}
+      editProduct={[Function]}
+      isProduct={false}
+      pastBenchmarks={Array []}
+      product={
+        Object {
+          "addEmissionsFromEios": false,
+          "addPurchasedElectricityEmissions": false,
+          "addPurchasedHeatEmissions": false,
+          "benchmarksByProductId": Object {
+            "edges": Array [
+              Object {
+                "node": Object {
+                  "benchmark": 1,
+                  "createdAt": "2020-05-06",
+                  "eligibilityThreshold": 10,
+                  "endReportingYear": 2020,
+                  "id": "bench",
+                  "incentiveMultiplier": 1,
+                  "maximumIncentiveRatio": 1,
+                  "minimumIncentiveRatio": 0,
+                  "rowId": 1,
+                  "startReportingYear": 2019,
+                },
+              },
+            ],
+          },
+          "id": "abc",
+          "isCiipProduct": true,
+          "isReadOnly": false,
+          "linkedProduct": Object {
+            "edges": Array [],
+          },
+          "productName": "test product",
+          "productState": "PUBLISHED",
+          "requiresEmissionAllocation": true,
+          "requiresProductAmount": true,
+          "rowId": 1,
+          "subtractExportedElectricityEmissions": false,
+          "subtractExportedHeatEmissions": false,
+          "subtractGeneratedElectricityEmissions": false,
+          "subtractGeneratedHeatEmissions": false,
+          "units": "kl",
+          "updatedAt": "2020-05-06",
+        }
+      }
+      updateStatus={[Function]}
+    />
   </Bootstrap(Modal)>
+  <LinkedProductModalComponent
+    linkData={Array []}
+    linkProductModalShow={false}
+    product={
+      Object {
+        "addEmissionsFromEios": false,
+        "addPurchasedElectricityEmissions": false,
+        "addPurchasedHeatEmissions": false,
+        "benchmarksByProductId": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "benchmark": 1,
+                "createdAt": "2020-05-06",
+                "eligibilityThreshold": 10,
+                "endReportingYear": 2020,
+                "id": "bench",
+                "incentiveMultiplier": 1,
+                "maximumIncentiveRatio": 1,
+                "minimumIncentiveRatio": 0,
+                "rowId": 1,
+                "startReportingYear": 2019,
+              },
+            },
+          ],
+        },
+        "id": "abc",
+        "isCiipProduct": true,
+        "isReadOnly": false,
+        "linkedProduct": Object {
+          "edges": Array [],
+        },
+        "productName": "test product",
+        "productState": "PUBLISHED",
+        "requiresEmissionAllocation": true,
+        "requiresProductAmount": true,
+        "rowId": 1,
+        "subtractExportedElectricityEmissions": false,
+        "subtractExportedHeatEmissions": false,
+        "subtractGeneratedElectricityEmissions": false,
+        "subtractGeneratedHeatEmissions": false,
+        "units": "kl",
+        "updatedAt": "2020-05-06",
+      }
+    }
+    query={
+      Object {
+        "allReportingYears": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "reportingYear": 2019,
+              },
+            },
+            Object {
+              "node": Object {
+                "reportingYear": 2020,
+              },
+            },
+          ],
+        },
+        "nextReportingYear": Object {
+          "reportingYear": 2020,
+        },
+      }
+    }
+    saveLinkedProducts={[Function]}
+    setLinkProductModalShow={[Function]}
+  />
   <JSXStyle
     id="204006405"
   >

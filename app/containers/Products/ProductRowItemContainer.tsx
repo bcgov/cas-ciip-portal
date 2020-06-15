@@ -1,29 +1,25 @@
 import React, {useMemo} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
-import {
-  Button,
-  Modal,
-  Container,
-  OverlayTrigger,
-  Tooltip
-} from 'react-bootstrap';
-import {JSONSchema6} from 'json-schema';
-import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
+import {Modal, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import {IChangeEvent} from 'react-jsonschema-form';
 import {ProductRowItemContainer_product} from 'ProductRowItemContainer_product.graphql';
 import {ProductRowItemContainer_query} from 'ProductRowItemContainer_query.graphql';
 import updateProductMutation from 'mutations/product/updateProductMutation';
 import {CiipProductState} from 'updateProductMutation.graphql';
 import updateBenchmarkMutation from 'mutations/benchmark/updateBenchmarkMutation';
 import createBenchmarkMutation from 'mutations/benchmark/createBenchmarkMutation';
-import FormArrayFieldTemplate from 'containers/Forms/FormArrayFieldTemplate';
-import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
-import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import productSchema from './product-schema.json';
+import benchmarkSchemaFunction from './benchmark-schema';
 import moment from 'moment-timezone';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTachometerAlt, faCube} from '@fortawesome/free-solid-svg-icons';
-import HeaderWidget from 'components/HeaderWidget';
-import PastBenchmarks from 'components/Benchmark/PastBenchmarks';
+import {
+  faTachometerAlt,
+  faCube,
+  faShareAlt
+} from '@fortawesome/free-solid-svg-icons';
+import createLinkedProductMutation from 'mutations/linked_product/createLinkedProductMutation';
+import updateLinkedProductMutation from 'mutations/linked_product/updateLinkedProductMutation';
+import InnerModal from './InnerProductBenchmarkModal';
+import LinkedProductModal from './LinkedProductModal';
 
 interface Props {
   relay: RelayProp;
@@ -33,46 +29,6 @@ interface Props {
   productCount: number;
 }
 
-// Schema for ProductRowItemContainer
-// TODO: Use a number widget for string types that should be numbers (with postgres numeric type)
-const benchmarkUISchema = {
-  current: {
-    'ui:col-md': 12,
-    classNames: 'hidden-title',
-    'ui:widget': 'header',
-    'ui:options': {
-      text: 'Current Benchmark Information'
-    }
-  },
-  benchmark: {
-    'ui:col-md': 3
-  },
-  eligibilityThreshold: {
-    'ui:col-md': 3
-  },
-  startReportingYear: {
-    'ui:col-md': 3,
-    'ui:help': 'The first reporting year where this benchmark is used'
-  },
-  endReportingYear: {
-    'ui:col-md': 3,
-    'ui:help': 'The last reporting year where this benchmark is used'
-  },
-  incentiveMultiplier: {
-    'ui:col-md': 3
-  },
-  minimumIncentiveRatio: {
-    'ui:col-md': 3
-  },
-  maximumIncentiveRatio: {
-    'ui:col-md': 3
-  }
-};
-
-/**  Note: There is some placeholder validation done on the front end here (dateRegexFormat, timeRangeOverlap, etc) that should be revisited
- *         when we have had a design / constraint brainstorming session for benchmarks.
- * */
-
 export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   relay,
   product,
@@ -80,70 +36,22 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
   updateProductCount,
   productCount
 }) => {
-  const currentBenchmark = product.benchmarksByProductId?.edges[0]?.node;
+  const [productModalShow, setProductModalShow] = React.useState(false);
+  const [benchmarkModalShow, setBenchmarkModalShow] = React.useState(false);
+  const [linkProductModalShow, setLinkProductModalShow] = React.useState(false);
 
+  const currentBenchmark = product.benchmarksByProductId?.edges[0]?.node;
   const pastBenchmarks = product.benchmarksByProductId?.edges.slice(1);
 
   // Schema for ProductRowItemContainer
-  const benchmarkSchema = useMemo<JSONSchema6>(() => {
+  const benchmarkSchema = useMemo(() => {
     const reportingYears = query.allReportingYears.edges.map(
       ({node}) => node.reportingYear
     );
-    return {
-      type: 'object',
-      required: [
-        'benchmark',
-        'eligibilityThreshold',
-        'minimumIncentiveRatio',
-        'maximumIncentiveRatio',
-        'incentiveMultiplier',
-        'startReportingYear',
-        'endReportingYear'
-      ],
-      properties: {
-        current: {
-          type: 'string'
-        },
-        benchmark: {
-          type: 'string',
-          title: 'Benchmark'
-        },
-        startReportingYear: {
-          type: 'number',
-          title: 'Start Reporting Period',
-          enum: reportingYears
-        },
-        endReportingYear: {
-          type: 'number',
-          title: 'End Reporting Period',
-          enum: reportingYears
-        },
-        eligibilityThreshold: {
-          type: 'string',
-          title: 'Eligibility Threshold'
-        },
-        incentiveMultiplier: {
-          type: 'string',
-          title: 'Incentive Multiplier',
-          defaultValue: '1'
-        },
-        minimumIncentiveRatio: {
-          type: 'string',
-          title: 'Minimum incentive ratio',
-          defaultValue: '0'
-        },
-        maximumIncentiveRatio: {
-          type: 'string',
-          title: 'Maximum incentive ratio',
-          defaultValue: '1'
-        }
-      }
-    };
+    return benchmarkSchemaFunction(reportingYears);
   }, [query.allReportingYears]);
 
-  /**
-   * Mutation functions
-   */
+  /** Mutation functions **/
 
   // Change a product status
   const updateStatus = async (state: CiipProductState) => {
@@ -236,104 +144,90 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
     updateProductCount(newCount);
   };
 
-  const [productModalShow, setProductModalShow] = React.useState(false);
-  const [benchmarkModalShow, setBenchmarkModalShow] = React.useState(false);
+  const createLinkedProduct = async (newLink: number) => {
+    const variables = {
+      input: {
+        linkedProduct: {
+          productId: product.rowId,
+          linkedProductId: newLink,
+          isDeleted: false
+        }
+      }
+    };
 
-  const modalButtons = (isProduct: boolean) => {
-    if (isProduct) {
-      if (product.productState === 'DRAFT')
-        return (
-          <>
-            <Button type="submit" variant="primary">
-              Save
-            </Button>
-            <Button
-              variant="success"
-              onClick={async () => updateStatus('PUBLISHED')}
-            >
-              Publish Product
-            </Button>
-          </>
-        );
-
-      if (product.productState === 'PUBLISHED' && !product.isReadOnly)
-        return (
-          <Button
-            variant="warning"
-            onClick={async () => updateStatus('ARCHIVED')}
-          >
-            Archive Product
-          </Button>
-        );
-      return <Button className="hidden-button" />;
-    }
-
-    if (
-      product.productState === 'DRAFT' ||
-      product.productState === 'PUBLISHED'
-    )
-      return <Button type="submit">Save</Button>;
-
-    return <Button className="hidden-button" />;
+    const response = await createLinkedProductMutation(
+      relay.environment,
+      variables
+    );
+    handleUpdateProductCount((productCount += 1));
+    console.log(response);
   };
 
-  const innerModal = (isProduct: boolean) => (
-    <>
-      <Modal.Header closeButton style={{color: 'white', background: '#003366'}}>
-        <Modal.Title>
-          {isProduct ? 'Edit Product' : 'Edit Benchmark'}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body style={{background: '#f5f5f5'}}>
-        <Container>
-          <JsonSchemaForm
-            omitExtraData
-            liveOmit
-            disabled={
-              isProduct
-                ? product.productState !== 'DRAFT' || product.isReadOnly
-                : product.productState === 'ARCHIVED'
-            }
-            widgets={{header: HeaderWidget}}
-            schema={
-              isProduct
-                ? (productSchema.schema as JSONSchema6)
-                : benchmarkSchema
-            }
-            uiSchema={isProduct ? productSchema.uiSchema : benchmarkUISchema}
-            formData={isProduct ? product : currentBenchmark}
-            showErrorList={false}
-            ArrayFieldTemplate={FormArrayFieldTemplate}
-            FieldTemplate={FormFieldTemplate}
-            ObjectFieldTemplate={FormObjectFieldTemplate}
-            onSubmit={
-              isProduct
-                ? editProduct
-                : currentBenchmark && product.productState === 'DRAFT'
-                ? editBenchmark
-                : createBenchmark
-            }
-          >
-            {modalButtons(isProduct)}
-          </JsonSchemaForm>
-          {isProduct ? null : (
-            <PastBenchmarks pastBenchmarks={pastBenchmarks} />
-          )}
-        </Container>
-      </Modal.Body>
-      <style jsx global>{`
-        .hidden-title label {
-          display: none;
+  const removeLinkedProduct = async (removeLink: {
+    productRowId: number;
+    linkId: number;
+  }) => {
+    const variables = {
+      input: {
+        rowId: removeLink.linkId,
+        linkedProductPatch: {
+          productId: product.rowId,
+          linkedProductId: removeLink.productRowId,
+          isDeleted: true
         }
-        .close {
-          color: white;
-        }
-        .hidden-button {
-          display: none;
-        }
-      `}</style>
-    </>
-  );
+      }
+    };
+
+    const response = await updateLinkedProductMutation(
+      relay.environment,
+      variables
+    );
+    handleUpdateProductCount((productCount += 1));
+    console.log(response);
+  };
+
+  const getLinkData = () => {
+    const dataArray = [];
+    if (!product) return [];
+    product.linkedProduct.edges.forEach((edge) => {
+      const dataObject = {productRowId: null, linkId: null};
+      dataObject.productRowId = edge.node.linkedProductId;
+      dataObject.linkId = edge.node.rowId;
+      dataArray.push(dataObject);
+    });
+    return dataArray;
+  };
+
+  const linkData = getLinkData();
+
+  const saveLinkedProducts = async (newData: IChangeEvent) => {
+    const previousLinks = [];
+    const newLinks = [];
+
+    linkData.forEach((obj) => {
+      previousLinks.push(obj.productRowId);
+    });
+    newData.formData.forEach((obj) => {
+      newLinks.push(obj.productRowId);
+    });
+
+    newLinks.forEach(async (id) => {
+      if (!previousLinks.includes(id)) {
+        const response = await createLinkedProduct(id);
+        console.log(response);
+      }
+    });
+
+    previousLinks.forEach(async (id, index) => {
+      if (!newLinks.includes(id)) {
+        const response = await removeLinkedProduct(linkData[index]);
+        console.log(response);
+      }
+    });
+    setLinkProductModalShow(false);
+  };
+
+  /** Modals **/
 
   const editProductModal = (
     <Modal
@@ -345,7 +239,17 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         handleUpdateProductCount((productCount += 1));
       }}
     >
-      {innerModal(true)}
+      <InnerModal
+        isProduct
+        updateStatus={updateStatus}
+        product={product}
+        benchmarkSchema={benchmarkSchema}
+        currentBenchmark={currentBenchmark}
+        editProduct={editProduct}
+        editBenchmark={editBenchmark}
+        createBenchmark={createBenchmark}
+        pastBenchmarks={pastBenchmarks}
+      />
     </Modal>
   );
 
@@ -359,7 +263,17 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         handleUpdateProductCount((productCount += 1));
       }}
     >
-      {innerModal(false)}
+      <InnerModal
+        isProduct={false}
+        updateStatus={updateStatus}
+        product={product}
+        benchmarkSchema={benchmarkSchema}
+        currentBenchmark={currentBenchmark}
+        editProduct={editProduct}
+        editBenchmark={editBenchmark}
+        createBenchmark={createBenchmark}
+        pastBenchmarks={pastBenchmarks}
+      />
     </Modal>
   );
 
@@ -373,6 +287,23 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
         <td>{product.requiresEmissionAllocation ? 'Yes' : 'No'}</td>
         <td>{product.productState}</td>
         <td>{product.isCiipProduct ? 'Yes' : 'No'}</td>
+        <td>
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="link-product">Link Products</Tooltip>}
+          >
+            <FontAwesomeIcon
+              className={
+                product.productState === 'ARCHIVED'
+                  ? 'editIcon-disabled'
+                  : 'editIcon'
+              }
+              icon={faShareAlt}
+              onClick={() => setLinkProductModalShow(true)}
+            />
+          </OverlayTrigger>
+          &emsp;
+        </td>
         <td>
           <OverlayTrigger
             placement="bottom"
@@ -419,6 +350,14 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       </tr>
       {editProductModal}
       {editBenchmarkModal}
+      <LinkedProductModal
+        product={product}
+        linkProductModalShow={linkProductModalShow}
+        setLinkProductModalShow={setLinkProductModalShow}
+        query={query}
+        saveLinkedProducts={saveLinkedProducts}
+        linkData={linkData}
+      />
       <style jsx global>
         {`
           .editIcon:hover {
@@ -476,6 +415,15 @@ export default createFragmentContainer(ProductRowItemComponent, {
           }
         }
       }
+      linkedProduct {
+        edges {
+          node {
+            rowId
+            rowId
+            linkedProductId
+          }
+        }
+      }
     }
   `,
   query: graphql`
@@ -490,6 +438,7 @@ export default createFragmentContainer(ProductRowItemComponent, {
           }
         }
       }
+      ...ProductRowIdField_query
     }
   `
 });

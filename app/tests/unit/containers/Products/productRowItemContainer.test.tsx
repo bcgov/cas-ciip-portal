@@ -38,6 +38,9 @@ describe('ProductList', () => {
           }
         }
       ]
+    },
+    linkedProduct: {
+      edges: []
     }
   };
   const query = {
@@ -71,9 +74,9 @@ describe('ProductList', () => {
       <ProductRowItemComponent product={product} query={query} />
     );
     expect(
-      r.find('OverlayTrigger').first().prop('overlay').props.children.join('')
+      r.find('OverlayTrigger').at(1).prop('overlay').props.children.join('')
     ).toEqual('Edit Benchmark');
-    expect(r.find('Form').last().prop('disabled')).toBe(false);
+    expect(r.find('FontAwesomeIcon').at(1).prop('className')).toBe('editIcon');
   });
 
   it('should not allow product editing when the product is PUBLISHED', async () => {
@@ -83,7 +86,9 @@ describe('ProductList', () => {
     expect(
       r.find('OverlayTrigger').last().prop('overlay').props.children.join('')
     ).toEqual('View Product');
-    expect(r.find('Form').first().prop('disabled')).toBe(true);
+    expect(r.find('FontAwesomeIcon').at(2).prop('className')).toBe(
+      'editIcon-disabled'
+    );
   });
 
   it('should allow benchmark and product editing when the product is DRAFT', async () => {
@@ -94,11 +99,11 @@ describe('ProductList', () => {
     expect(
       r.find('OverlayTrigger').last().prop('overlay').props.children.join('')
     ).toEqual('Edit Product');
-    expect(r.find('Form').first().prop('disabled')).toBe(false);
+    expect(r.find('FontAwesomeIcon').at(1).prop('className')).toBe('editIcon');
     expect(
-      r.find('OverlayTrigger').first().prop('overlay').props.children.join('')
+      r.find('OverlayTrigger').at(1).prop('overlay').props.children.join('')
     ).toEqual('Edit Benchmark');
-    expect(r.find('Form').last().prop('disabled')).toBe(false);
+    expect(r.find('FontAwesomeIcon').at(1).prop('className')).toBe('editIcon');
   });
 
   it('should not allow product editing when the product is read-only', async () => {
@@ -108,8 +113,10 @@ describe('ProductList', () => {
       <ProductRowItemComponent product={product} query={query} />
     );
     expect(
-      r.find('OverlayTrigger').last().prop('overlay').props.children.join('')
+      r.find('OverlayTrigger').at(2).prop('overlay').props.children.join('')
     ).toEqual('View Product');
-    expect(r.find('Form').first().prop('disabled')).toBe(true);
+    expect(r.find('FontAwesomeIcon').at(2).prop('className')).toEqual(
+      'editIcon-disabled'
+    );
   });
 });

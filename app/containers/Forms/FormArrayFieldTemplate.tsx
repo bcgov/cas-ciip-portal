@@ -16,11 +16,32 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
         return (
           <div key={element.index}>
             <Form.Row>
-              <Col xs={12} md={element.hasRemove ? 11 : 12}>
-                {element.children}
-              </Col>
+              {uiSchema.linkProduct ? (
+                <Col xs={12} md={element.hasRemove ? 6 : 9}>
+                  {element.children}
+                </Col>
+              ) : (
+                <Col xs={12} md={element.hasRemove ? 11 : 12}>
+                  {element.children}
+                </Col>
+              )}
 
-              {element.hasRemove && (
+              {element.hasRemove && uiSchema.linkProduct && (
+                <Col
+                  xs={12}
+                  md={{span: 1, offset: 1}}
+                  className="remove-button-container"
+                >
+                  <Button
+                    type="button"
+                    variant="danger"
+                    onClick={element.onDropIndexClick(element.index)}
+                  >
+                    {uiSchema['ui:remove-text'] || 'Remove'}
+                  </Button>
+                </Col>
+              )}
+              {element.hasRemove && !uiSchema.linkProduct && (
                 <Col xs={12} md={1}>
                   <div className="remove-button-container">
                     <Button
@@ -34,23 +55,37 @@ const FormArrayFieldTemplate: React.FunctionComponent<ArrayFieldTemplateProps> =
                 </Col>
               )}
             </Form.Row>
-            <hr />
+            {!uiSchema.linkProduct && <hr />}
           </div>
         );
       })}
       {canAdd && (
         <Form.Row>
-          <Col xs={12}>
-            <div className="add-button-container">
-              <Button
-                id={`${idSchema.$id}-add`}
-                type="button"
-                onClick={onAddClick}
-              >
-                {uiSchema['ui:add-text'] || 'Add'}
-              </Button>
-            </div>
-          </Col>
+          {uiSchema.linkProduct ? (
+            <Col xs={12} md={{span: 1, offset: 6}}>
+              <div className="add-button-container">
+                <Button
+                  id={`${idSchema.$id}-add`}
+                  type="button"
+                  onClick={onAddClick}
+                >
+                  {uiSchema['ui:add-text'] || 'Add'}
+                </Button>
+              </div>
+            </Col>
+          ) : (
+            <Col xs={12}>
+              <div className="add-button-container">
+                <Button
+                  id={`${idSchema.$id}-add`}
+                  type="button"
+                  onClick={onAddClick}
+                >
+                  {uiSchema['ui:add-text'] || 'Add'}
+                </Button>
+              </div>
+            </Col>
+          )}
         </Form.Row>
       )}
       <style jsx>
