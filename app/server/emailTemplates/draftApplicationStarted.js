@@ -23,9 +23,12 @@ const createDraftApplicationStartedMail = ({
           <p>Further steps are necessary to complete a CIIP application:</p>
           <ul>
             <li>
-              A certification request has been sent to the certifier from your organization that you indicated at the bottom of the application. To complete your application, please ensure that person reviews and certifies the information provided in your application.
+              Fill in each section of the application form and fix any errors that may be highlighted.
+            </li>
+            <li>
+              Once the application has been filled, you will be prompted to request signoff from a Certifying Official at your Reporting Operation. Please ensure that person reviews and certifies the information provided in your application.
               <ul>
-                <li>You will be notified via email when this step is complete.</li>
+                <li>You will be notified via email when that step is complete.</li>
               </ul>
             </li>
             <li>
