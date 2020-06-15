@@ -33,8 +33,12 @@ while true; do
       exit 0
       ;;
     '{"state":"running"}' )
-      echo -n '.'
-      sleep 1
+      echo 'running'
+      sleep 10
+      ;;
+    '{"state":"failed"}' )
+      echo 'DAG failed'
+      exit 1
       ;;
     *error* )
       echo "$state"
