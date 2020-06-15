@@ -4,9 +4,17 @@ metadata:
   name: {{ template "cas-ciip-portal.fullname" . }}-dag-trigger
   labels:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
+{{- if .Release.IsUpgrade }}
+# This job requires the cas-postgres dependency to be running,
+# and is required for the app deployment to become ready.
+# Therefore, it needs to be part of the initial install (instead of a pre/post install hook)
+# For upgrades, it needs to be a hook so that the delete policy kicks in
+# and the previous job template gets deleted (as editing job templates is not allowed)
+# It can be a hook during upgrades as the cas-postgres dependency will already be running
   annotations:
-    "helm.sh/hook": "pre-install,pre-upgrade"
+    "helm.sh/hook": "pre-upgrade"
     "helm.sh/hook-delete-policy": "before-hook-creation"
+{{- end }}
 spec:
   backoffLimit: 0
   activeDeadlineSeconds: 1200
