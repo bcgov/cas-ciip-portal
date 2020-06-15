@@ -6,7 +6,7 @@ metadata:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
 
 spec:
-  host: ciip{{ .Values.route.suffix }}.pathfinder.gov.bc.ca
+  host: {{ .Values.route.host }}
   port:
     targetPort: {{ template "cas-ciip-portal.fullname" . }}
   tls:
@@ -22,6 +22,6 @@ status:
   - conditions:
     - status: 'True'
       type: Admitted
-    host: ciip{{ .Values.route.suffix }}.pathfinder.gov.bc.ca
+    host: {{ .Values.route.host }}
     routerName: router
     wildcardPolicy: None
