@@ -7,6 +7,10 @@ resources:
     cpu: 100m
     memory: 256Mi
 
+route:
+  host: http://ciip.gov.bc.ca
+  insecure: true # temporary setting until cert is generated
+
 fider:
   host: https://ciip-feedback.pathfinder.gov.bc.ca/
 # TODO move fider template in this repo
