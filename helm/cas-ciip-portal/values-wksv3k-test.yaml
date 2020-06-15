@@ -8,7 +8,7 @@ resources:
     memory: 256Mi
 
 route:
-  host: http://test.ciip.gov.bc.ca
+  host: test.ciip.gov.bc.ca
   insecure: true # temporary setting until cert is generated
 
 env:

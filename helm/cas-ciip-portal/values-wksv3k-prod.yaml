@@ -8,7 +8,7 @@ resources:
     memory: 256Mi
 
 route:
-  host: http://ciip.gov.bc.ca
+  host: ciip.gov.bc.ca
   insecure: true # temporary setting until cert is generated
 
 fider:
