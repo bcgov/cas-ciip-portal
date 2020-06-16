@@ -77,9 +77,13 @@ spec:
                 - |
                   set -euo pipefail;
                   create-user-db -d $(PGDATABASE) -u $(PORTAL_APP_USER) -p $(PORTAL_APP_PASSWORD) --schemas swrs,graphile_worker --privileges select,insert,update,delete
-                  psql -c "drop policy if exists jobs_policy on graphile_worker.jobs;";
-                  psql -c "drop policy if exists job_queues_policy on graphile_worker.job_queues;";
-                  psql -c "create policy jobs_policy on graphile_worker.jobs for all to $(PORTAL_APP_USER) using (true);";
-                  psql -c "create policy job_queues_policy on graphile_worker.job_queues for all to $(PORTAL_APP_USER) using (true);";
-                  psql -c "grant ciip_administrator,ciip_analyst,ciip_industry_user,ciip_guest to $(PORTAL_APP_USER);"
                   create-user-db -d $(PGDATABASE) -u $(PORTAL_READONLY_USER) -p $(PORTAL_READONLY_PASSWORD) --schemas swrs,graphile_worker --privileges select
+                  psql<<EOF
+                    drop policy if exists jobs_policy on graphile_worker.jobs;
+                    drop policy if exists job_queues_policy on graphile_worker.job_queues;
+                    create policy jobs_policy on graphile_worker.jobs for all to $(PORTAL_APP_USER) using (true);
+                    create policy job_queues_policy on graphile_worker.job_queues for all to $(PORTAL_APP_USER) using (true);
+                    grant ciip_administrator,ciip_analyst,ciip_industry_user,ciip_guest to $(PORTAL_APP_USER);
+                    grant usage on schema swrs to ciip_administrator, ciip_analyst, ciip_industry_user;
+                    grant select on all tables in schema swrs to ciip_administrator, ciip_analyst, ciip_industry_user;
+                  EOF
