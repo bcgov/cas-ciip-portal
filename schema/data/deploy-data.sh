@@ -115,19 +115,21 @@ deploySwrsIfNotExists() {
   return 0
 }
 
+revertPortal() {
+  echo "Reverting the portal schema in $database"
+  pushd ..
+  sqitch_revert
+  popd
+}
+
 deployPortal() {
   deploySwrsIfNotExists
   echo "Deploying the portal schema to $database"
   pushd ..
-  sqitch_revert
   _sqitch deploy
   popd
 }
 
-deployPortalIfNotExists() {
-  _psql -c "select 1 from pg_catalog.pg_namespace where nspname = 'ggircs_portal'" | grep -q 1 || deployPortal
-  return 0
-}
 
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -d | --drop-db )
@@ -196,10 +198,9 @@ if [[ " ${actions[*]} " =~ " deploySwrs " ]]; then
   deploySwrs
 fi
 if [[ " ${actions[*]} " =~ " deployPortal " ]]; then
-  deployPortal
+  revertPortal
 fi
-
-deployPortalIfNotExists
+deployPortal
 
 if [[ " ${actions[*]} " =~ " deployProd " ]]; then
   echo 'Deploying production data'
