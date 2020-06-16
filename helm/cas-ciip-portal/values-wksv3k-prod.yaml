@@ -1,12 +1,4 @@
 replicas: 3
-resources:
-  limits:
-    cpu: 1000m
-    memory: 4Gi
-  requests:
-    cpu: 100m
-    memory: 256Mi
-
 route:
   host: ciip.gov.bc.ca
   insecure: true # temporary setting until cert is generated

@@ -25,10 +25,18 @@ spec:
       labels:
 {{ include "cas-ciip-portal.labels" . | indent 8 }}
     spec:
+      activeDeadlineSeconds: 1200
       restartPolicy: Never
       containers:
       - name: {{ template "cas-ciip-portal.fullname" . }}-dag-trigger
         image: {{ .Values.image.schema.repository }}:{{ .Values.image.schema.tag }}
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
         imagePullPolicy: {{ .Values.image.schema.pullPolicy }}
         env:
           - name: AIRFLOW_USERNAME
