@@ -14,7 +14,14 @@ image:
 
 replicas: 2
 port: 3000
-resources: {}
+resources:
+  limits:
+    cpu: 500m
+    memory: 1Gi
+  requests:
+    cpu: 10m
+    memory: 124Mi
+
 route:
   # route.host defines the host name for the route template,
   # and the HOST env variable for the app deployment

@@ -20,6 +20,7 @@ spec:
           labels:
 {{ include "cas-ciip-portal.labels" . | indent 14 }}
         spec:
+          activeDeadlineSeconds: 600
           restartPolicy: Never
           containers:
             - env:
@@ -53,12 +54,11 @@ spec:
                       name: {{ template "cas-ciip-portal.fullname" . }}
               name: {{ template "cas-ciip-portal.fullname" . }}-init-db
               image: {{ .Values.image.psql.repository }}:{{ .Values.image.psql.tag }}
-              resources:
                 limits:
-                  cpu: 1000m
+                  cpu: 50m
                   memory: 128Mi
                 requests:
-                  cpu: 100m
+                  cpu: 10m
                   memory: 64Mi
               command:
                 - /usr/bin/env
