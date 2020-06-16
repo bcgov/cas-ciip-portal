@@ -28,6 +28,8 @@ route:
   host: ciip.gov.bc.ca
   # set to true to create a route with tls and edge redirection disabled
   insecure: false
+  # used for both acme.sh rwx volumes
+  storageClassName: netapp-file-standard
 
 persistence:
   db: ciip
