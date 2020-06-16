@@ -81,5 +81,17 @@ spec:
           capabilities: {}
           privileged: false
         terminationMessagePath: /dev/termination-log
+        volumeMounts:
+          - mountPath: /root/.acme.sh
+            name: acme-home
+          - mountPath: /root/static/.well-known/acme-challenge
+            name: acme-challenge
+      volumes:
+        - name: acme-home
+          persistentVolumeClaim:
+            claimName: {{ template "cas-ciip-portal.fullname" . }}-acme-home
+        - name: acme-challenge
+          persistentVolumeClaim:
+            claimName: {{ template "cas-ciip-portal.fullname" . }}-acme-challenge
       dnsPolicy: ClusterFirst
       restartPolicy: Always

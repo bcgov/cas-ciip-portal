@@ -1,0 +1,53 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-acme-issue
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+
+spec:
+  suspend: true # This cron job is intended to be triggered manually
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      activeDeadlineSeconds: 600
+      template:
+        metadata:
+          labels:
+{{ include "cas-ciip-portal.labels" . | indent 14 }}
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: {{ template "cas-ciip-portal.fullname" . }}-acme-issue
+              image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 128Mi
+                requests:
+                  cpu: 100m
+                  memory: 64Mi
+              command:
+                - /usr/bin/env
+                - bash
+                - -c
+                - |
+                  set -euo pipefail;
+                  git clone --branch 2.8.6 https://github.com/acmesh-official/acme.sh.git /root/acme.sh
+                  cd /root/acme.sh
+                  ./acme.sh install --force
+                  . "/root/.acme.sh/acme.sh.env"
+                  acme.sh --issue -d {{ .Values.route.host }} -w /root/static
+              volumeMounts:
+                - mountPath: /root/.acme.sh
+                  name: acme-home
+                - mountPath: /root/static/.well-known/acme-challenge
+                  name: acme-challenge
+          volumes:
+            - name: acme-home
+              persistentVolumeClaim:
+                claimName: {{ template "cas-ciip-portal.fullname" . }}-acme-home
+            - name: acme-challenge
+              persistentVolumeClaim:
+                claimName: {{ template "cas-ciip-portal.fullname" . }}-acme-challenge

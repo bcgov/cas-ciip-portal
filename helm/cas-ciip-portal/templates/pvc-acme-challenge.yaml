@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-acme-challenge
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Mi
+  storageClassName: {{ .Values.route.storageClassName }}

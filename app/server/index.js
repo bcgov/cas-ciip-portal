@@ -1,4 +1,7 @@
 const express = require('express');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const {postgraphile} = require('postgraphile');
 const next = require('next');
 const PgManyToManyPlugin = require('@graphile-contrib/pg-many-to-many');
@@ -294,11 +297,32 @@ app.prepare().then(() => {
     return handle(req, res);
   });
 
-  server.listen(port, (err) => {
-    if (err) {
-      throw err;
-    }
+  // eslint-disable-next-line unicorn/prefer-starts-ends-with, @typescript-eslint/prefer-string-starts-ends-with
+  if (/^https/.test(process.env.HOST)) {
+    const domain = /^https:\/\/(.+?)\/?$/.exec(process.env.HOST)[1];
+    const key = fs.readFileSync(
+      `/root/.acme.sh/${domain}/${domain}.key`,
+      'utf8'
+    );
+    const cert = fs.readFileSync(
+      `/root/.acme.sh/${domain}/${domain}.crt`,
+      'utf8'
+    );
+    const options = {key, cert};
+    https.createServer(options, server).listen(port, (err) => {
+      if (err) {
+        throw err;
+      }
 
-    console.log(`> Ready on http://localhost:${port}`);
-  });
+      console.log(`> Ready on https://localhost:${port}`);
+    });
+  } else {
+    http.createServer(server).listen(port, (err) => {
+      if (err) {
+        throw err;
+      }
+
+      console.log(`> Ready on http://localhost:${port}`);
+    });
+  }
 });
