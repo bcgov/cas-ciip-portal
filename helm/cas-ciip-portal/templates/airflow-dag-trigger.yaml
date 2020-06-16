@@ -14,6 +14,7 @@ metadata:
   annotations:
     "helm.sh/hook": "pre-upgrade"
     "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook-weight": "0"
 {{- end }}
 spec:
   backoffLimit: 0
