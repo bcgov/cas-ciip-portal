@@ -54,6 +54,7 @@ spec:
                       name: {{ template "cas-ciip-portal.fullname" . }}
               name: {{ template "cas-ciip-portal.fullname" . }}-init-db
               image: {{ .Values.image.psql.repository }}:{{ .Values.image.psql.tag }}
+              resources:
                 limits:
                   cpu: 50m
                   memory: 128Mi
