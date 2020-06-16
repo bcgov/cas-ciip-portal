@@ -297,7 +297,8 @@ app.prepare().then(() => {
     return handle(req, res);
   });
 
-  if (process.env.HOST.startsWith('https')) {
+  // eslint-disable-next-line unicorn/prefer-starts-ends-with, @typescript-eslint/prefer-string-starts-ends-with
+  if (/^https/.test(process.env.HOST)) {
     const domain = /^https:\/\/(.+?)\/?$/.exec(process.env.HOST)[1];
     const key = fs.readFileSync(
       `/root/.acme.sh/${domain}/${domain}.key`,
