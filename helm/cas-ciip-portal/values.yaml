@@ -45,6 +45,9 @@ env:
 fider:
   host: # TODO move fider template in this repo
 
+mailhog:
+  enable: false
+
 cas-postgres:
   patroni:
     resources:

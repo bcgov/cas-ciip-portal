@@ -4,13 +4,17 @@ route:
   insecure: false # cert has been issued
 
 env:
-  smtpConnectionString: smtp://example.com
+  smtpConnectionString: smtp://@localhost:1025
   senderEmail: no-reply-dev.cas@gov.bc.ca
-  adminEmail: matthieu@button.is
+  adminEmail: admin@ciip.test
+  appHost: https://ciip-test.pathfinder.gov.bc.ca # This should be different from the route for the production site (appHost will be https://ciip.gov.bc.ca)
 
 fider:
   host: https://ciip-portal-wksv3k-test-feedback.pathfinder.gov.bc.ca/
 # TODO move fider template in this repo
+
+mailhog:
+  enable: true
 
 cas-postgres:
   patroni:
