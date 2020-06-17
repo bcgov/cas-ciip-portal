@@ -84,7 +84,7 @@ spec:
         volumeMounts:
           - mountPath: /root/.acme.sh
             name: acme-home
-          - mountPath: /root/static/.well-known/acme-challenge
+          - mountPath: /root/.well-known/acme-challenge
             name: acme-challenge
       volumes:
         - name: acme-home
