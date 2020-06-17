@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.6](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2020-06-17)
+
+
+### Bug Fixes
+
+* acme requires .well-known to be accessible ([286c237](https://github.com/bcgov/cas-ciip-portal/commit/286c23799337667d9cc370005cbe1471487378e1))
+* init db should be run as the superuser ([1057133](https://github.com/bcgov/cas-ciip-portal/commit/105713349f9bdf579f874b14b54f60be686e509b)), closes [/github.com/zalando/spilo/issues/188#issuecomment-440279726](https://github.com/bcgov//github.com/zalando/spilo/issues/188/issues/issuecomment-440279726)
+
 ## [1.0.0-rc.5](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2020-06-17)
 
 
