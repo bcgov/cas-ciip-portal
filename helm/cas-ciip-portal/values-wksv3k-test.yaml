@@ -4,7 +4,7 @@ route:
   insecure: false # cert has been issued
 
 env:
-  smtpConnectionString: smtp://@localhost:1025
+  smtpConnectionString: smtp://mailhog:1025
   senderEmail: no-reply-dev.cas@gov.bc.ca
   adminEmail: admin@ciip.test
   appHost: https://ciip-test.pathfinder.gov.bc.ca # This should be different from the route for the production site (appHost will be https://ciip.gov.bc.ca)

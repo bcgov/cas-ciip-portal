@@ -10,5 +10,5 @@ dependencies:
   repository: https://bcgov.github.io/cas-postgres/
 - name: mailhog
   version: "3.2.0"
-  repository: "file://../mailhog"
+  repository: "https://hub.helm.sh/charts/codecentric/mailhog/3.2.0"
   condition: mailhog.enable
