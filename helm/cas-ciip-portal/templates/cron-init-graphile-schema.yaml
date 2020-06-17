@@ -47,10 +47,10 @@ spec:
               image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
               resources:
                 limits:
-                  cpu: 50m
+                  cpu: 500m
                   memory: 128Mi
                 requests:
-                  cpu: 10m
+                  cpu: 100m
                   memory: 64Mi
               command:
                 - /usr/bin/env

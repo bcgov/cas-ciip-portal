@@ -10,5 +10,5 @@ spec:
   - ReadWriteMany
   resources:
     requests:
-      storage: 5Mi
+      storage: 25Mi
   storageClassName: {{ .Values.route.storageClassName }}
