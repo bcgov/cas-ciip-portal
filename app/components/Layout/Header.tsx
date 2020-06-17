@@ -87,7 +87,6 @@ const HeaderLayout = ({
           border-bottom: 2px solid #fcba19;
           padding: 10px 65px;
           color: #fff;
-          display: flex;
           height: 65px;
           top: 0px;
           width: 100%;
