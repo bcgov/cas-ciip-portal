@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.5](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2020-06-17)
+
+
+### Features
+
+* use acme.sh to provision ssl certificates ([52235b3](https://github.com/bcgov/cas-ciip-portal/commit/52235b3b8fd8bf01eab899b94bbbde62adf831b0))
+
+
+### Bug Fixes
+
+* add missing key in cron-init-db template ([37963fb](https://github.com/bcgov/cas-ciip-portal/commit/37963fbc7ba872fd264024430cbce13094a5d2a1))
+* cron charts should be pre-install/upgrade hooks ([f178f9e](https://github.com/bcgov/cas-ciip-portal/commit/f178f9e3af784a4363d0c48a5839aa8fc468b19b))
+* deploy-data script always deploys the latest sqitch changes ([115ce1c](https://github.com/bcgov/cas-ciip-portal/commit/115ce1cf2b5c3b33234eae2119b34e371c285278))
+* Fix block layout of site header on Safari ([2740b62](https://github.com/bcgov/cas-ciip-portal/commit/2740b6246ee867491db3b8b7eab968740d3f6ed0))
+* grant access to swrs schema to ciip user roles on every deploy ([f12ab4e](https://github.com/bcgov/cas-ciip-portal/commit/f12ab4e2a5d55fa3c817519ca67188dc11a175ea))
+* ignore non-equivalent eslint rules ([66d81b2](https://github.com/bcgov/cas-ciip-portal/commit/66d81b26c33526a95d1c772a2d26d109398905a7))
+* increase acme challenge PVC size to be above 20Mi min ([eb74d22](https://github.com/bcgov/cas-ciip-portal/commit/eb74d22e6b9ad74222f00b7e52d8cae68a00b596))
+
 ## [1.0.0-rc.4](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.2...v1.0.0-rc.4) (2020-06-15)
 
 
