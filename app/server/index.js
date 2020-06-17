@@ -126,6 +126,10 @@ const getRedirectURL = (req) => {
 app.prepare().then(() => {
   const server = express();
 
+  server.use(
+    '/.well-known',
+    express.static(path.resolve(__dirname, '../.well-known'))
+  );
   server.use(bodyParser.json());
   server.use(cors());
 

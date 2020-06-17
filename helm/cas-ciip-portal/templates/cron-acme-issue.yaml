@@ -33,16 +33,16 @@ spec:
                 - bash
                 - -c
                 - |
-                  set -euo pipefail;
-                  git clone --branch 2.8.6 https://github.com/acmesh-official/acme.sh.git /root/acme.sh
-                  cd /root/acme.sh
-                  ./acme.sh install --force
-                  . "/root/.acme.sh/acme.sh.env"
-                  acme.sh --issue -d {{ .Values.route.host }} -w /root/static
+                  set -euxo pipefail;
+                  git clone --branch 2.8.6 https://github.com/acmesh-official/acme.sh.git /root/acme.sh;
+                  cd /root/acme.sh;
+                  ./acme.sh install --force;
+                  . "/root/.acme.sh/acme.sh.env";
+                  ./acme.sh --issue -d {{ .Values.route.host }} -w /root;
               volumeMounts:
                 - mountPath: /root/.acme.sh
                   name: acme-home
-                - mountPath: /root/static/.well-known/acme-challenge
+                - mountPath: /root/.well-known/acme-challenge
                   name: acme-challenge
           volumes:
             - name: acme-home
