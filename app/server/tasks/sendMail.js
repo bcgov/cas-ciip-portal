@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const createWelcomeMail = require('../emailTemplates/welcome.js');
 const createConfirmationMail = require('../emailTemplates/confirmation.js');
+const createApplicationDecisionMail = require('../emailTemplates/applicationDecision.js');
 const createAmendmentMail = require('../emailTemplates/amendment.js');
 const createCertificationRequestMail = require('../emailTemplates/certificationRequest.js');
 const createSignedByCertifierMail = require('../emailTemplates/signedByCertifier.js');
@@ -66,16 +67,38 @@ module.exports = async ({
         operatorName
       });
       break;
-    // Notice of amendment to CIIP Application submission
-    case 'status_change_other':
-      subject = 'Your CIIP Application status has changed';
-      htmlContent = createAmendmentMail({
+    case 'status_change_approved':
+      subject = 'Your CIIP Application has been approved';
+      htmlContent = createApplicationDecisionMail({
         email,
         firstName,
         lastName,
         facilityName,
         operatorName,
         status,
+        contactEmail: ADMIN_EMAIL_SHORT
+      });
+      break;
+    case 'status_change_rejected':
+      subject = 'Your CIIP application has been rejected';
+      htmlContent = createApplicationDecisionMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName,
+        status,
+        contactEmail: ADMIN_EMAIL_SHORT
+      });
+      break;
+    case 'status_change_requested_changes':
+      subject = 'Your CIIP application: Changes requested';
+      htmlContent = createAmendmentMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName,
         contactEmail: ADMIN_EMAIL_SHORT
       });
       break;

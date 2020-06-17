@@ -52,6 +52,12 @@ begin
               'operatorName', application_details.operator_name
             )
           );
+        when new.application_revision_status = 'approved' then
+          status_change_type := 'status_change_approved';
+        when new.application_revision_status = 'rejected' then
+          status_change_type := 'status_change_rejected';
+        when new.application_revision_status = 'requested changes' then
+          status_change_type := 'status_change_requested_changes';
         else
           status_change_type := 'status_change_other';
       end case;
