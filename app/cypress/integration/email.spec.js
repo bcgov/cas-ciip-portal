@@ -19,9 +19,9 @@ if (Cypress.env('NO_MAIL')) {
       cy.wait(500);
       cy.request('localhost:8025/api/v1/messages').then((response) => {
         expect(response.status).to.eq(200);
-        expect(response.body[0].Content.Body).to.contain(
-          'Thank you for registering'
-        );
+        const message = response.body[0];
+        expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
+        expect(message.Content.Body).to.contain('Thank you for registering');
         cy.request('DELETE', 'localhost:8025/api/v1/messages');
       });
     });
@@ -64,6 +64,7 @@ if (Cypress.env('NO_MAIL')) {
         const reporterMail = messages.find((msg) =>
           msg.To[0].Mailbox.includes('reporter')
         );
+        expect(reporterMail.Content.Headers.Subject[0]).to.contain('CIIP');
         // Email encoding makes it difficult to check text verbatim:
         expect(reporterMail.Content.Body).to.satisfy(
           (msg) =>
@@ -90,6 +91,7 @@ if (Cypress.env('NO_MAIL')) {
         const adminMail = messages.find((msg) =>
           msg.To[0].Mailbox.includes('GHGRegulator')
         );
+        expect(adminMail.Content.Headers.Subject[0]).to.contain('CIIP');
         // Email encoding makes it difficult to check text verbatim:
         expect(adminMail.Content.Body).to.satisfy(
           (msg) =>
@@ -110,6 +112,7 @@ if (Cypress.env('NO_MAIL')) {
       cy.request('localhost:8025/api/v1/messages').then((response) => {
         const message = response.body[0];
         expect(message.To[0].Mailbox).to.contain('reporter');
+        expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
         expect(message.Content.Body).to.contain(
           'approved you as an authorized representative'
         );
@@ -146,6 +149,7 @@ if (Cypress.env('NO_MAIL')) {
       cy.request('localhost:8025/api/v1/messages').then((response) => {
         const message = response.body[0];
         expect(message.To[0].Mailbox).to.contain('reporter');
+        expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
         expect(message.Content.Body).to.satisfy(
           (msg) =>
             msg.includes('Thank you for starting an application') &&
@@ -184,8 +188,10 @@ if (Cypress.env('NO_MAIL')) {
       cy.wait(1000);
       cy.request('localhost:8025/api/v1/messages').then((response) => {
         expect(response.status).to.eq(200);
-        expect(response.body[0].To[0].Mailbox).to.contain('certifier');
-        expect(response.body[0].Content.Body).to.contain(
+        const message = response.body[0];
+        expect(message.To[0].Mailbox).to.contain('certifier');
+        expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
+        expect(message.Content.Body).to.contain(
           'Your certification is requested'
         );
         cy.get('input')
@@ -230,8 +236,10 @@ if (Cypress.env('NO_MAIL')) {
           cy.wait(500);
           cy.request('localhost:8025/api/v1/messages').then((response) => {
             expect(response.status).to.eq(200);
-            expect(response.body[0].To[0].Mailbox).to.contain('ciip-reporter');
-            expect(response.body[0].Content.Body).to.contain(
+            const message = response.body[0];
+            expect(message.To[0].Mailbox).to.contain('ciip-reporter');
+            expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
+            expect(message.Content.Body).to.contain(
               'has been signed by your certifier'
             );
             cy.request('DELETE', 'localhost:8025/api/v1/messages');
@@ -259,6 +267,7 @@ if (Cypress.env('NO_MAIL')) {
         const reporterMail = messages.find((msg) =>
           msg.To[0].Mailbox.includes('ciip-reporter')
         );
+        expect(reporterMail.Content.Headers.Subject[0]).to.contain('CIIP');
         expect(reporterMail.Content.Body).to.contain(
           'Thank you for your submission'
         );
@@ -270,6 +279,7 @@ if (Cypress.env('NO_MAIL')) {
         const adminMail = messages.find((msg) =>
           msg.To[0].Mailbox.includes('GHGRegulator')
         );
+        expect(adminMail.Content.Headers.Subject[0]).to.contain('CIIP');
         expect(adminMail.Content.Body).to.contain(
           'has submitted or updated their application'
         );

@@ -142,7 +142,7 @@ module.exports = async ({
       });
       break;
     case 'request_for_organisation_access':
-      subject = 'Organisation Access Requested';
+      subject = 'CIIP Application: Organisation Access Requested';
       htmlContent = createOrganisationAccessRequestMail({
         email,
         firstName,
@@ -153,7 +153,7 @@ module.exports = async ({
       });
       break;
     case 'organisation_access_approved':
-      subject = 'Organisation Access Approved';
+      subject = 'CIIP Application: Organisation Access Approved';
       htmlContent = createOrganisationAccessApprovedMail({
         email,
         firstName,
@@ -164,7 +164,7 @@ module.exports = async ({
       });
       break;
     case 'notify_admin_submitted':
-      subject = 'Application Submission';
+      subject = 'CIIP Application Submission';
       htmlContent = createNotifyAdminApplicationSubmittedMail({
         facilityName,
         operatorName
@@ -172,7 +172,7 @@ module.exports = async ({
       email = process.env.ADMIN_EMAIL;
       break;
     case 'notify_admin_organisation_access':
-      subject = 'Organisation Access Request';
+      subject = 'CIIP Organisation Access Request';
       htmlContent = createNotifyAdminAccessRequestMail({
         firstName,
         lastName,
@@ -181,7 +181,7 @@ module.exports = async ({
       email = process.env.ADMIN_EMAIL;
       break;
     case 'draft_application_started':
-      subject = 'Draft Application Started';
+      subject = 'CIIP Draft Application Started';
       htmlContent = createDraftApplicationStartedMail({
         firstName,
         lastName,
