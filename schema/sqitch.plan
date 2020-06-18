@@ -131,3 +131,4 @@ types/linked_product_return [schema_ggircs_portal] 2020-06-08T21:29:20Z Dylan Le
 computed_columns/product_linked_product [tables/linked_product types/linked_product_return] 2020-06-05T22:36:32Z Dylan Leard <dylan@button.is> # Computed column returns a set of linked products that exist for a product id
 @v1.0.0-rc.5 2020-06-17T18:45:39Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.5
 @v1.0.0-rc.6 2020-06-17T23:02:56Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.6
+@v1.0.0-rc.7 2020-06-18T18:52:29Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.7
