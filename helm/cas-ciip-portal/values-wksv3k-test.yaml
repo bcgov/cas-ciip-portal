@@ -16,8 +16,8 @@ fider:
 mailhog:
   enable: true
   securityContext:
-    runAsUser: 1009900000
-    fsGroup: 1009900000
+    runAsUser: 1009960000
+    fsGroup: 1009960000
     runAsNonRoot: true
 
 cas-postgres:
