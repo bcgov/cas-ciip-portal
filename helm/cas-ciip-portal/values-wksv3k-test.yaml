@@ -1,7 +1,7 @@
 replicas: 2
 route:
   host: test.ciip.gov.bc.ca
-  insecure: true # temporary setting until cert is generated
+  insecure: false # cert has been issued
 
 env:
   smtpConnectionString: smtp://example.com
