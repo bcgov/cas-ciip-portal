@@ -1,7 +1,7 @@
 replicas: 2
 route:
   host: dev.ciip.gov.bc.ca
-  insecure: true # temporary setting until cert is generated
+  insecure: false # cert has been issued
 
 env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false

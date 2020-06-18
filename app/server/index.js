@@ -309,7 +309,7 @@ app.prepare().then(() => {
       'utf8'
     );
     const cert = fs.readFileSync(
-      `/root/.acme.sh/${domain}/${domain}.crt`,
+      `/root/.acme.sh/${domain}/fullchain.cer`,
       'utf8'
     );
     const options = {key, cert};
