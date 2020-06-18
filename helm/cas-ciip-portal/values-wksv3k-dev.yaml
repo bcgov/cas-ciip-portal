@@ -4,7 +4,7 @@ route:
   insecure: false # cert has been issued
 
 env:
-  smtpConnectionString: smtp://mailhog:1025
+  smtpConnectionString: smtp://cas-mailhog:1025
   senderEmail: no-reply-dev.cas@gov.bc.ca
   adminEmail: admin@ciip.dev
   appHost: https://ciip-dev.pathfinder.gov.bc.ca # This should be different from the route for the production site (appHost will be https://ciip.gov.bc.ca)
@@ -14,6 +14,10 @@ fider:
 
 mailhog:
   enable: true
+  securityContext:
+    runAsUser: 1009900000
+    fsGroup: 1009900000
+    runAsNonRoot: true
 
 cas-postgres:
   patroni:
