@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.7](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.6...v1.0.0-rc.7) (2020-06-18)
+
+
+### Features
+
+* helm hook for first cert provision ([2ddee1b](https://github.com/bcgov/cas-ciip-portal/commit/2ddee1b51c5a3adf0d8c97414cc33b32c519f15c))
+
+
+### Bug Fixes
+
+* liveness needs to be checked using https ([ea9749c](https://github.com/bcgov/cas-ciip-portal/commit/ea9749c4862afc7d20620d37d886013d792271ba))
+
 ## [1.0.0-rc.6](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2020-06-17)
 
 
