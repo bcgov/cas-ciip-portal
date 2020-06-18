@@ -15,7 +15,9 @@ const createWelcomeMail = ({firstName, lastName, email, contactEmail}) => {
           <p>Further steps are necessary to complete a CIIP application:</p>
           <ul>
             <li>
-              Please <a href=${createUrl()}>log in to the CIIP Portal</a> to request access to an operator.
+              Please log in to the CIIP Portal to <a href=${createUrl(
+                'reporter'
+              )}>request access to an operator</a>.
               <ul>
                 <li>You will be notified via email when your access has been approved.</li>
               </ul>

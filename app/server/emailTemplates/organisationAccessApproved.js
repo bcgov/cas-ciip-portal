@@ -3,8 +3,14 @@ const createOrganisationAccessApprovedMail = ({
   email,
   firstName,
   lastName,
+  operatorName,
+  organisationId,
   contactEmail
 }) => {
+  const organisationLongId = Buffer.from(
+    `[organisations, ${organisationId}]`
+  ).toString('base64');
+  const encodedOrgId = encodeURIComponent(organisationLongId);
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
       <tr>
@@ -16,11 +22,14 @@ const createOrganisationAccessApprovedMail = ({
       <tr style="border-top: 0px">
         <td style="padding: 20px 10px 30px 10px;" >
           <h3>Hello, ${firstName} ${lastName}.</h3>
-          <h4>CleanBC Industrial Incentive Program administrators have approved you as an authorized representative for an Operation you requested access to. You can now submit a CIIP application on their behalf.</h4>
+          <p>CleanBC Industrial Incentive Program administrators have approved you as an authorized representative for an Operation you requested access to. You can now submit a CIIP application on their behalf:</p>
+          <p><strong>${operatorName}</strong></p>
           <p>Further steps are necessary to complete a CIIP application:</p>
           <ul>
             <li>
-              Please <a href=${createUrl()}>log in to the CIIP Portal</a> and view Operation Facilities to access the CIIP application.
+              Please log in to the CIIP Portal and <a href=${createUrl(
+                `reporter/facilities?organisationId=${encodedOrgId}&organisationRowId=${organisationId}`
+              )}>view Operation Facilities</a> to access the CIIP application.
             </li>
             <li>
               To complete an application, it must be filled out, certified, and submitted.

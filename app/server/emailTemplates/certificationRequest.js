@@ -6,6 +6,7 @@ const createCertificationRequestMail = ({
   facilityName,
   operatorName,
   reporterEmail,
+  certifierUrl,
   contactEmail
 }) => {
   return `
@@ -30,7 +31,7 @@ const createCertificationRequestMail = ({
             <strong>Please follow the steps below to certify the facility's CIIP application:</strong>
             <ul>
               <li>
-                Please log in to the CIIP Portal to review a summary of the data contained in the CIIP application. The application details can be found here.
+                Please log in to the CIIP Portal to <a href="${certifierUrl}">review a summary of the data</a> contained in the CIIP application. The application details can be found <a href="${certifierUrl}">here</a>.
                 <ul>
                   <li>Complete the certification by reading the legal statement, signing in the grey "Certifying Official Signature" box or uploading a signature file, and then clicking the green "Sign" button at the bottom of the page.</li>
                 </ul>

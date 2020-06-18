@@ -19,16 +19,20 @@ const ADMIN_EMAIL_SHORT = getEmailShortForm(process.env.ADMIN_EMAIL);
 
 module.exports = async ({
   type,
+  applicationId,
   email,
   firstName,
   lastName,
   facilityName,
   operatorName,
+  organisationId,
   status,
   reporterEmail,
   certifierFirstName,
   certifierLastName,
-  certifierEmail
+  certifierEmail,
+  certifierUrl,
+  versionNumber
 }) => {
   if (!process.env.SMTP_CONNECTION_STRING && !process.env.NO_MAIL)
     throw new Error('SMTP connection string is undefined');
@@ -60,11 +64,14 @@ module.exports = async ({
     case 'status_change_submitted':
       subject = 'CIIP Application Submission Confirmation';
       htmlContent = createConfirmationMail({
+        applicationId,
         email,
         firstName,
         lastName,
         facilityName,
-        operatorName
+        operatorName,
+        organisationId,
+        versionNumber
       });
       break;
     case 'status_change_approved':
@@ -75,6 +82,7 @@ module.exports = async ({
         lastName,
         facilityName,
         operatorName,
+        organisationId,
         status,
         contactEmail: ADMIN_EMAIL_SHORT
       });
@@ -94,11 +102,13 @@ module.exports = async ({
     case 'status_change_requested_changes':
       subject = 'Your CIIP application: Changes requested';
       htmlContent = createAmendmentMail({
+        applicationId,
         email,
         firstName,
         lastName,
         facilityName,
         operatorName,
+        versionNumber,
         contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
@@ -112,6 +122,7 @@ module.exports = async ({
         facilityName,
         operatorName,
         reporterEmail,
+        certifierUrl,
         contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
@@ -119,6 +130,8 @@ module.exports = async ({
     case 'signed_by_certifier':
       subject = 'CIIP Application Certified';
       htmlContent = createSignedByCertifierMail({
+        applicationId,
+        versionNumber,
         email,
         firstName,
         lastName,
@@ -134,6 +147,7 @@ module.exports = async ({
     case 'recertification':
       subject = 'CIIP Application recertification request';
       htmlContent = createRecertificationRequestMail({
+        applicationId,
         email,
         firstName,
         lastName,
@@ -158,16 +172,18 @@ module.exports = async ({
         email,
         firstName,
         lastName,
-        facilityName,
         operatorName,
+        organisationId,
         contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     case 'notify_admin_submitted':
       subject = 'CIIP Application Submission';
       htmlContent = createNotifyAdminApplicationSubmittedMail({
+        applicationId,
         facilityName,
-        operatorName
+        operatorName,
+        versionNumber
       });
       email = process.env.ADMIN_EMAIL;
       break;
@@ -183,6 +199,7 @@ module.exports = async ({
     case 'draft_application_started':
       subject = 'CIIP Draft Application Started';
       htmlContent = createDraftApplicationStartedMail({
+        applicationId,
         firstName,
         lastName,
         email,

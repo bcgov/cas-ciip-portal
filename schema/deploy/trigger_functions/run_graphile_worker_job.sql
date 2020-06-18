@@ -26,7 +26,7 @@ begin
       end if;
 
       -- Get application details
-      with ad as (select o.operator_name, f.facility_name, u.first_name, u.last_name, u.email_address
+      with ad as (select o.operator_name, f.organisation_id, f.facility_name, u.first_name, u.last_name, u.email_address
             from ggircs_portal.application_revision ar
             join ggircs_portal.application a
             on ar.application_id = a.id
@@ -39,7 +39,7 @@ begin
             join ggircs_portal.ciip_user u
             on u.id = ar.created_by
             )
-      select operator_name, facility_name, first_name, last_name, email_address from ad into application_details;
+      select operator_name, organisation_id, facility_name, first_name, last_name, email_address from ad into application_details;
       -- Choose type of email to sent based on what the status of the application has been changed to
       case
         when new.application_revision_status = 'submitted' then
@@ -48,8 +48,10 @@ begin
             'sendMail',
             json_build_object(
               'type', 'notify_admin_submitted',
+              'applicationId', new.application_id,
               'facilityName', application_details.facility_name,
-              'operatorName', application_details.operator_name
+              'operatorName', application_details.operator_name,
+              'versionNumber', new.version_number
             )
           );
         when new.application_revision_status = 'approved' then
@@ -66,12 +68,15 @@ begin
       perform ggircs_portal_private.graphile_worker_job_definer('sendMail',
             json_build_object(
               'type', status_change_type,
+              'applicationId', new.application_id,
               'firstName', application_details.first_name,
               'lastName', application_details.last_name,
               'email', application_details.email_address,
               'facilityName', application_details.facility_name,
               'operatorName', application_details.operator_name,
-              'status', new.application_revision_status));
+              'organisationId', application_details.organisation_id,
+              'status', new.application_revision_status,
+              'versionNumber', new.version_number));
       return new;
 
     -- **ON REQUEST FOR CERTIFICATION**
@@ -134,6 +139,8 @@ begin
       perform ggircs_portal_private.graphile_worker_job_definer('sendMail',
             json_build_object(
               'type', 'signed_by_certifier',
+              'applicationId', new.application_id,
+              'versionNumber', new.version_number,
               'email', application_details.email_address,
               'firstName', application_details.first_name,
               'lastName', application_details.last_name,
@@ -147,7 +154,7 @@ begin
     -- **ON SIGNED BY CERTIFIER**
     when tg_argv[0] = 'recertification' then
 
-      with ad as (select o.operator_name, f.facility_name, u.first_name, u.last_name, u.email_address
+      with ad as (select a.id, o.operator_name, f.facility_name, u.first_name, u.last_name, u.email_address
             from ggircs_portal.application_revision ar
             join ggircs_portal.application a
             on ar.application_id = a.id
@@ -160,7 +167,7 @@ begin
             join ggircs_portal.ciip_user u
             on u.id = new.created_by
             )
-      select operator_name, facility_name, first_name, last_name, email_address from ad into application_details;
+      select id, operator_name, facility_name, first_name, last_name, email_address from ad into application_details;
 
       with certifier as (select u.first_name, u.last_name from ggircs_portal.ciip_user u where u.id = new.certified_by)
       select first_name, last_name from certifier into certifier_details;
@@ -168,6 +175,7 @@ begin
       perform ggircs_portal_private.graphile_worker_job_definer('sendMail',
             json_build_object(
               'type', 'recertification',
+              'applicationId', application_details.id,
               'email', application_details.email_address,
               'firstName', application_details.first_name,
               'lastName', application_details.last_name,
