@@ -4,7 +4,7 @@ route:
   insecure: false # cert has been issued
 
 env:
-  smtpConnectionString: smtp://cas-mailhog:1025
+  smtpConnectionString: smtp://cas-ciip-portal-mailhog:1025
   senderEmail: no-reply-dev.cas@gov.bc.ca
   adminEmail: admin@ciip.dev
 

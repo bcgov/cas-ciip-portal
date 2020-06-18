@@ -47,6 +47,13 @@ fider:
 
 mailhog:
   enable: false
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
 
 cas-postgres:
   patroni:
