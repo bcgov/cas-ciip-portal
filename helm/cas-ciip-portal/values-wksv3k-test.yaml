@@ -19,7 +19,7 @@ mailhog:
     runAsUser: 1009960000
     fsGroup: 1009960000
     runAsNonRoot: true
-  host: https://cas-mailhog-wksv3k-test.pathfinder.gov.bc.ca/
+  host: cas-mailhog-wksv3k-test.pathfinder.gov.bc.ca/
 
 cas-postgres:
   patroni:

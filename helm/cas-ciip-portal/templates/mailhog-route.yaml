@@ -10,6 +10,9 @@ spec:
   host: {{ .Values.mailhog.host }}
   port:
     targetPort: {{ .Values.service.port.http }}
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
   to:
     kind: Service
     name:  {{ template "cas-ciip-portal.fullname" . }}-mailhog
