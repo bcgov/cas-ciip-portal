@@ -1,27 +1,3 @@
-"""All input for the `addApps` mutation."""
-input AddAppsInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  max: Int
-}
-
-"""The output of our `addApps` mutation."""
-type AddAppsPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-}
-
 """The application data"""
 type Application implements Node {
   """Reads and enables pagination through a set of `ApplicationRevision`."""
@@ -8651,13 +8627,6 @@ enum LinkedProductsOrderBy {
 The root mutation type which contains root level fields which mutate data.
 """
 type Mutation {
-  addApps(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: AddAppsInput!
-  ): AddAppsPayload
-
   """Creates a single `Application`."""
   createApplication(
     """
