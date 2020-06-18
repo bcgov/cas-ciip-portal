@@ -4,6 +4,10 @@ metadata:
   name: {{ template "cas-ciip-portal.fullname" . }}-acme-issue
   labels:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": "post-upgrade,post-install"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook-weight": "-5"
 
 spec:
   suspend: true # This cron job is intended to be triggered manually
@@ -34,11 +38,14 @@ spec:
                 - -c
                 - |
                   set -euxo pipefail;
-                  git clone --branch 2.8.6 https://github.com/acmesh-official/acme.sh.git /root/acme.sh;
-                  cd /root/acme.sh;
-                  ./acme.sh install --force;
-                  . "/root/.acme.sh/acme.sh.env";
-                  ./acme.sh --issue -d {{ .Values.route.host }} -w /root;
+                  if [ ! -f /root/.acme.sh/{{ .Values.route.host }}/{{ .Values.route.host }}.cer ]; then
+                    echo "Getting a new cert from Let's Encrypt for {{ .Values.route.host }}";
+                    git clone --branch 2.8.6 https://github.com/acmesh-official/acme.sh.git /root/acme.sh;
+                    cd /root/acme.sh;
+                    ./acme.sh install --force;
+                    . "/root/.acme.sh/acme.sh.env";
+                    ./acme.sh --issue -d {{ .Values.route.host }} -w /root;
+                  fi;
               volumeMounts:
                 - mountPath: /root/.acme.sh
                   name: acme-home
