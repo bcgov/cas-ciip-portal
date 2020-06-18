@@ -9,7 +9,7 @@ metadata:
 spec:
   host: {{ .Values.mailhog.host }}
   port:
-    targetPort: {{ .Values.service.port.http }}
+    targetPort: http
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
