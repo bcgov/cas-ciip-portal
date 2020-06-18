@@ -7,9 +7,9 @@ metadata:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
 
 spec:
-  host: cas-mailhog-{{ .Values.route.host }}
+  host: {{ .Values.mailhog.host }}
   port:
-    targetPort: 8025
+    targetPort: {{ .Values.service.port.http }}
   to:
     kind: Service
     name:  {{ template "cas-ciip-portal.fullname" . }}-mailhog
@@ -20,7 +20,7 @@ status:
   - conditions:
     - status: 'True'
       type: Admitted
-    host: cas-mailhog-{{ .Values.route.host }}
+    host: {{ .Values.mailhog.host }}
     routerName: router
     wildcardPolicy: None
 {{- end }}
