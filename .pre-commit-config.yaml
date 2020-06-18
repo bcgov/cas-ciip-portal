@@ -21,7 +21,7 @@ repos:
     - id: check-json
     - id: check-vcs-permalinks
     - id: check-yaml
-      exclude: ^helm/cas-ciip-portal/templates/
+      exclude: ^helm/.*/templates/
     - id: end-of-file-fixer
       exclude: current_version\.txt
     - id: trailing-whitespace

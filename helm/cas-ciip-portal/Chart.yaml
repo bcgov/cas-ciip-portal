@@ -8,3 +8,7 @@ dependencies:
 - name: cas-postgres
   version: "0.4.0"
   repository: https://bcgov.github.io/cas-postgres/
+- name: mailhog
+  version: "3.2.0"
+  repository: "https://codecentric.github.io/helm-charts/"
+  condition: mailhog.enable

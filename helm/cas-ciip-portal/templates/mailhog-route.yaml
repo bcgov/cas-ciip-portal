@@ -1,0 +1,29 @@
+{{- if .Values.mailhog.enable }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-mailhog
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+
+spec:
+  host: {{ .Values.mailhog.host }}
+  port:
+    targetPort: {{ .Values.service.port.http }}
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name:  {{ template "cas-ciip-portal.fullname" . }}-mailhog
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    - status: 'True'
+      type: Admitted
+    host: {{ .Values.mailhog.host }}
+    routerName: router
+    wildcardPolicy: None
+{{- end }}

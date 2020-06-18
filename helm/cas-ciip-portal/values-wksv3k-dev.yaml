@@ -4,12 +4,20 @@ route:
   insecure: false # cert has been issued
 
 env:
-  smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
+  smtpConnectionString: smtp://cas-ciip-portal-mailhog:1025
   senderEmail: no-reply-dev.cas@gov.bc.ca
-  adminEmail: matthieu@button.is
+  adminEmail: admin@ciip.dev
 
 fider:
   host: # TODO move fider template in this repo
+
+mailhog:
+  enable: true
+  securityContext:
+    runAsUser: 1009900000
+    fsGroup: 1009900000
+    runAsNonRoot: true
+  host: cas-mailhog-wksv3k-dev.pathfinder.gov.bc.ca/
 
 cas-postgres:
   patroni:

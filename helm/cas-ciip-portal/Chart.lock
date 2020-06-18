@@ -2,5 +2,8 @@ dependencies:
 - name: cas-postgres
   repository: https://bcgov.github.io/cas-postgres/
   version: 0.4.0
-digest: sha256:dd246fbfdcecd3c442e20411c0d115d94f749bc07405f6281e5fb09e0f54d3be
-generated: "2020-06-11T15:05:21.372206714-07:00"
+- name: mailhog
+  repository: https://codecentric.github.io/helm-charts/
+  version: 3.2.0
+digest: sha256:c4bbd04bd8aba3d1681ceddba57828a880dd108a08658367e33d66a1d966c10e
+generated: "2020-06-18T10:12:58.530773635-07:00"
