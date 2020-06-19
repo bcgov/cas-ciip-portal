@@ -545,7 +545,7 @@ jobs:
           path: ~/cas-ciip-portal
       - run:
           name: Check that the sqitch changes before a tag were not modified
-          command: ~/cas-ciip-portal/.bin/sqitch-check-immutable-files.sh ~/cas-ciip-portal/schema master
+          command: ~/cas-ciip-portal/.bin/sqitch-check-immutable-files.sh ~/cas-ciip-portal/schema origin/master
 
 workflows:
   version: 2
