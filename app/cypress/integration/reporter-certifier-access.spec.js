@@ -9,6 +9,7 @@ describe('When logged in as a certifier(reporter)', () => {
   });
 
   afterEach(() => {
+    cy.logout();
     cy.sqlFixture('fixtures/certifier-access-teardown');
   });
 

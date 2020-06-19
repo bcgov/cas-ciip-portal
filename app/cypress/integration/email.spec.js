@@ -47,12 +47,12 @@ function requestAccessToOrg() {
     .click();
   cy.wait(500);
   cy.contains('Request Access').click();
+  cy.wait(500);
 }
 
 describe('Organisation access request emails', () => {
   beforeEach(() => {
     cy.sqlFixture('fixtures/email/org-access-setup');
-    cy.logout();
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
@@ -61,6 +61,7 @@ describe('Organisation access request emails', () => {
     cy.wait(500);
   });
   afterEach(() => {
+    cy.logout();
     cy.sqlFixture('fixtures/email/org-access-teardown');
   });
   it('sends the reporter an email when they request organisation access', () => {
@@ -130,9 +131,8 @@ describe('Organisation access request emails', () => {
 });
 
 describe('Draft application started email', () => {
-  before(() => {
+  beforeEach(() => {
     cy.sqlFixture('fixtures/email/draft-application-setup');
-    cy.logout();
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
@@ -140,7 +140,8 @@ describe('Draft application started email', () => {
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
     cy.wait(500);
   });
-  after(() => {
+  afterEach(() => {
+    cy.logout();
     cy.sqlFixture('fixtures/email/draft-application-teardown');
   });
   it('emails the reporter when they start a new application', () => {
@@ -174,7 +175,6 @@ describe('Certification & Confirmation emails', () => {
     cy.sqlFixture('fixtures/email-setup');
   });
   beforeEach(() => {
-    cy.logout();
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
@@ -182,6 +182,7 @@ describe('Certification & Confirmation emails', () => {
   });
   after(() => {
     cy.wait(1000);
+    cy.logout();
     cy.sqlFixture('fixtures/email-teardown');
   });
 
@@ -302,7 +303,6 @@ describe('Certification email opt-out', () => {
     cy.sqlFixture('fixtures/email-setup');
   });
   beforeEach(() => {
-    cy.logout();
     cy.login(
       Cypress.env('TEST_REPORTER_USERNAME'),
       Cypress.env('TEST_REPORTER_PASSWORD')
@@ -310,6 +310,7 @@ describe('Certification email opt-out', () => {
   });
   after(() => {
     cy.wait(1000);
+    cy.logout();
     cy.sqlFixture('fixtures/email-teardown');
   });
   it('should not send a notification email to the certifier if the reporter opts out', () => {
@@ -351,7 +352,6 @@ describe('Application status change emails', () => {
   beforeEach(() => {
     cy.sqlFixture('fixtures/email/status-change-setup');
     cy.request('DELETE', 'localhost:8025/api/v1/messages');
-    cy.logout();
     cy.login(
       Cypress.env('TEST_ANALYST_USERNAME'),
       Cypress.env('TEST_ANALYST_PASSWORD')
@@ -359,6 +359,7 @@ describe('Application status change emails', () => {
     cy.wait(500);
   });
   afterEach(() => {
+    cy.logout();
     cy.sqlFixture('fixtures/email/status-change-teardown');
   });
 

@@ -9,6 +9,7 @@ describe('When logged in as a reporter', () => {
   });
 
   afterEach(() => {
+    cy.logout();
     cy.sqlFixture('fixtures/reporter-all-access-teardown');
   });
 
