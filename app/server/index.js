@@ -157,7 +157,7 @@ app.prepare().then(() => {
   const store = new PgSession({
     pool: pgPool,
     schemaName: 'ggircs_portal_private',
-    tableName: 'session'
+    tableName: 'connect_session'
   });
   server.use(
     session({
