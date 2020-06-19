@@ -9,6 +9,11 @@ if (Cypress.env('NO_MAIL')) {
   });
 }
 
+// Note: this only replaces carriage returns, newlines and equals, but should be okay normalize differences in text content encoding of email body on CI vs. localhost.
+function decoded(emailEncoded) {
+  return String.raw`${emailEncoded}`.replace(/([=\n\r])/gm, '');
+}
+
 describe('When a user is created', () => {
   before(() => {
     cy.sqlFixture('fixtures/add-user');
@@ -24,7 +29,9 @@ describe('When a user is created', () => {
       const message = response.body[0];
       expect(message.To[0].Mailbox).to.contain('newcypressuser');
       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(message.Content.Body).to.contain('Thank you for registering');
+      expect(decoded(message.Content.Body)).to.contain(
+        'Thank you for registering'
+      );
       cy.request('DELETE', 'localhost:8025/api/v1/messages');
     });
   });
@@ -68,8 +75,7 @@ describe('Organisation access request emails', () => {
         msg.To[0].Mailbox.includes('reporter')
       );
       expect(reporterMail.Content.Headers.Subject[0]).to.contain('CIIP');
-      // Email encoding makes it difficult to check text verbatim:
-      expect(reporterMail.Content.Body).to.satisfy(
+      expect(decoded(reporterMail.Content.Body)).to.satisfy(
         (msg) =>
           msg.includes('You have requested access') &&
           msg.includes('MacDonalds Agriculture, Ltd.')
@@ -96,7 +102,7 @@ describe('Organisation access request emails', () => {
       );
       expect(adminMail.Content.Headers.Subject[0]).to.contain('CIIP');
       // Email encoding makes it difficult to check text verbatim:
-      expect(adminMail.Content.Body).to.satisfy(
+      expect(decoded(adminMail.Content.Body)).to.satisfy(
         (msg) =>
           msg.includes('Cypress Reporter') &&
           msg.includes('has requested') &&
@@ -116,7 +122,7 @@ describe('Organisation access request emails', () => {
       const message = response.body[0];
       expect(message.To[0].Mailbox).to.contain('reporter');
       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(message.Content.Body).to.contain(
+      expect(decoded(message.Content.Body)).to.contain(
         'approved you as an authorized representative'
       );
     });
@@ -153,7 +159,7 @@ describe('Draft application started email', () => {
       const message = response.body[0];
       expect(message.To[0].Mailbox).to.contain('reporter');
       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(message.Content.Body).to.satisfy(
+      expect(decoded(message.Content.Body)).to.satisfy(
         (msg) =>
           msg.includes('Thank you for starting an application') &&
           msg.includes('MacDonalds Agriculture, Ltd.') &&
@@ -194,7 +200,7 @@ describe('Certification & Confirmation emails', () => {
       const message = response.body[0];
       expect(message.To[0].Mailbox).to.contain('certifier');
       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(message.Content.Body).to.contain(
+      expect(decoded(message.Content.Body)).to.contain(
         'Your certification is requested'
       );
       cy.get('input')
@@ -242,7 +248,7 @@ describe('Certification & Confirmation emails', () => {
           const message = response.body[0];
           expect(message.To[0].Mailbox).to.contain('ciip-reporter');
           expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-          expect(message.Content.Body).to.contain(
+          expect(decoded(message.Content.Body)).to.contain(
             'has been signed by your certifier'
           );
           cy.request('DELETE', 'localhost:8025/api/v1/messages');
@@ -271,7 +277,7 @@ describe('Certification & Confirmation emails', () => {
         msg.To[0].Mailbox.includes('ciip-reporter')
       );
       expect(reporterMail.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(reporterMail.Content.Body).to.contain(
+      expect(decoded(reporterMail.Content.Body)).to.contain(
         'Thank you for your submission'
       );
       expect(messages).to.satisfy((messages) => {
@@ -283,7 +289,7 @@ describe('Certification & Confirmation emails', () => {
         msg.To[0].Mailbox.includes('GHGRegulator')
       );
       expect(adminMail.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(adminMail.Content.Body).to.contain(
+      expect(decoded(adminMail.Content.Body)).to.contain(
         'has submitted or updated their application'
       );
       cy.request('DELETE', 'localhost:8025/api/v1/messages');
@@ -363,7 +369,7 @@ describe('Application status change emails', () => {
       const message = response.body[0];
       expect(message.To[0].Mailbox).to.contain('reporter');
       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(message.Content.Body).to.satisfy(
+      expect(decoded(message.Content.Body)).to.satisfy(
         (msg) =>
           msg.includes('Your CIIP Application') &&
           msg.includes('approved') &&
@@ -379,7 +385,7 @@ describe('Application status change emails', () => {
       const message = response.body[0];
       expect(message.To[0].Mailbox).to.contain('reporter');
       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(message.Content.Body).to.satisfy(
+      expect(decoded(message.Content.Body)).to.satisfy(
         (msg) =>
           msg.includes('Your CIIP Application') &&
           msg.includes('rejected') &&
@@ -395,7 +401,7 @@ describe('Application status change emails', () => {
       const message = response.body[0];
       expect(message.To[0].Mailbox).to.contain('reporter');
       expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
-      expect(message.Content.Body).to.satisfy(
+      expect(decoded(message.Content.Body)).to.satisfy(
         (msg) =>
           msg.includes('Changes are requested to your CIIP application') &&
           msg.includes('MacDonalds Agriculture, Ltd.') &&
