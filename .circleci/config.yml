@@ -521,12 +521,37 @@ jobs:
             yarn test:e2e-snapshots
             popd
 
+  sqitch-plan-ends-with-tag:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - checkout:
+          path: ~/cas-ciip-portal
+      - run:
+          name: Check that the sqitch.plan file ends with a tag
+          command: |
+            if ! ~/cas-ciip-portal/.bin/sqitch-last-change-is-tag.sh; then
+              echo "Deployment to the test and prod environments require that the sqitch.plan ends with a tag"
+              exit 1
+            fi
+
+  sqitch-files-before-tag-are-immutable:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/cas-ciip-portal
+    steps:
+      - checkout:
+          path: ~/cas-ciip-portal
+      - run:
+          name: Check that the sqitch changes before a tag were not modified
+          command: ~/cas-ciip-portal/.bin/sqitch-check-immutable-files.sh ~/cas-ciip-portal/schema master
+
 workflows:
   version: 2
   test:
     jobs:
-      - tools:
-          context: cas-pipeline
+      - tools
       - lint:
           requires:
             - tools
@@ -567,6 +592,12 @@ workflows:
               only:
                 - develop
                 - master
+      - sqitch-plan-ends-with-tag:
+          filters:
+            branches:
+              only:
+                - master
+      - sqitch-files-before-tag-are-immutable
       - build_image:
           name: build_schema
           context: cas-pipeline
