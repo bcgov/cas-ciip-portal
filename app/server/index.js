@@ -3,14 +3,14 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 const {postgraphile} = require('postgraphile');
-const next = require('next');
+const nextjs = require('next');
 const PgManyToManyPlugin = require('@graphile-contrib/pg-many-to-many');
 
 const crypto = require('crypto');
 const pg = require('pg');
 const port = Number.parseInt(process.env.PORT, 10) || 3004;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({dev});
+const app = nextjs({dev});
 const handle = app.getRequestHandler();
 const session = require('express-session');
 const PgSession = require('connect-pg-simple')(session);
@@ -182,6 +182,14 @@ app.prepare().then(() => {
     'confidential-port': 0
   };
   const keycloak = new Keycloak({store}, kcConfig);
+
+  // Nuke the siteminder session token on logout if we can
+  // this will be ignored by the user agent unless we're
+  // currently deployed to a subdomain of gov.bc.ca
+  server.post('/logout', (_req, res, next) => {
+    res.clearCookie('SMSESSION', {domain: '.gov.bc.ca', secure: true});
+    next();
+  });
 
   server.use(
     keycloak.middleware({
