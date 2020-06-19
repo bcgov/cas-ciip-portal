@@ -37,6 +37,10 @@ persistence:
   appUser: ciip_portal
   readonlyUser: ciip_readonly
 
+dag:
+  # a command to be executed at the beginning of the init-db job, running in the psql image abov
+  preInitDb: ""
+
 env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
   senderEmail: no-reply.cas@gov.bc.ca
