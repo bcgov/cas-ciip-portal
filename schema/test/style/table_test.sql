@@ -4,7 +4,7 @@ reset client_min_messages;
 
 begin;
 
-set search_path to ggircs_portal,public;
+set search_path to ggircs_portal,ggircs_portal_private,public;
 
 select * from no_plan();
 
