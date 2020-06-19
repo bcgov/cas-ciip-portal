@@ -6,11 +6,14 @@ const {postgraphile} = require('postgraphile');
 const next = require('next');
 const PgManyToManyPlugin = require('@graphile-contrib/pg-many-to-many');
 
+const crypto = require('crypto');
+const pg = require('pg');
 const port = Number.parseInt(process.env.PORT, 10) || 3004;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
 const session = require('express-session');
+const PgSession = require('connect-pg-simple')(session);
 const bodyParser = require('body-parser');
 const Keycloak = require('keycloak-connect');
 const cors = require('cors');
@@ -68,11 +71,26 @@ if (process.env.PGPORT) {
 databaseURL += '/';
 databaseURL += process.env.PGDATABASE || 'ciip_portal_dev';
 
+// True if the host has been configured to use https
+// eslint-disable-next-line unicorn/prefer-starts-ends-with, @typescript-eslint/prefer-string-starts-ends-with
+const secure = /^https/.test(process.env.HOST);
+
+// Ensure we properly crypt our cookie session store with a pre-shared key in a secure environment
+if (secure && typeof process.env.SESSION_SECRET !== typeof String())
+  throw new Error('export SESSION_SECRET to encrypt session cookies');
+if (secure && process.env.SESSION_SECRET.length < 24)
+  throw new Error('exported SESSION_SECRET must be at least 24 characters');
+if (!process.env.SESSION_SECRET)
+  console.warn('SESSION_SECRET missing from environment');
+const secret = process.env.SESSION_SECRET || crypto.randomBytes(32).toString();
+
+const pgPool = new pg.Pool({connectionString: databaseURL});
+
 // Graphile-worker function
 async function worker() {
   // Run a worker to execute jobs:
   await run({
-    connectionString: databaseURL,
+    pgPool,
     concurrency: 5,
     pollInterval: 1000,
     taskDirectory: path.resolve(__dirname, 'tasks')
@@ -126,6 +144,9 @@ const getRedirectURL = (req) => {
 app.prepare().then(() => {
   const server = express();
 
+  // Enable serving ACME HTTP-01 challenge response written to disk by acme.sh
+  // https://letsencrypt.org/docs/challenge-types/#http-01-challenge
+  // https://github.com/acmesh-official/acme.sh
   server.use(
     '/.well-known',
     express.static(path.resolve(__dirname, '../.well-known'))
@@ -133,13 +154,18 @@ app.prepare().then(() => {
   server.use(bodyParser.json());
   server.use(cors());
 
-  const memoryStore = new session.MemoryStore();
+  const store = new PgSession({
+    pool: pgPool,
+    schemaName: 'ggircs_portal_private',
+    tableName: 'session'
+  });
   server.use(
     session({
-      secret: 'change me pls for the love of Jibbers Crabst',
+      secret,
       resave: false,
       saveUninitialized: true,
-      store: memoryStore
+      cookie: {secure},
+      store
     })
   );
 
@@ -155,7 +181,7 @@ app.prepare().then(() => {
     'public-client': true,
     'confidential-port': 0
   };
-  const keycloak = new Keycloak({store: memoryStore}, kcConfig);
+  const keycloak = new Keycloak({store}, kcConfig);
 
   server.use(
     keycloak.middleware({
@@ -164,8 +190,11 @@ app.prepare().then(() => {
     })
   );
 
+  // The graphile config object should be swapped in dev/prod
+  // https://www.graphile.org/postgraphile/usage-library/#for-development
+  // https://www.graphile.org/postgraphile/usage-library/#for-production
   server.use(
-    postgraphile(databaseURL, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
+    postgraphile(pgPool, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
       appendPlugins: [PgManyToManyPlugin],
       graphiql: true,
       classicIds: true,
@@ -301,8 +330,7 @@ app.prepare().then(() => {
     return handle(req, res);
   });
 
-  // eslint-disable-next-line unicorn/prefer-starts-ends-with, @typescript-eslint/prefer-string-starts-ends-with
-  if (/^https/.test(process.env.HOST)) {
+  if (secure) {
     const domain = /^https:\/\/(.+?)\/?$/.exec(process.env.HOST)[1];
     const key = fs.readFileSync(
       `/root/.acme.sh/${domain}/${domain}.key`,

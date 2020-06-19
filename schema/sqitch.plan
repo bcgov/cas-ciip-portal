@@ -132,3 +132,5 @@ computed_columns/product_linked_product [tables/linked_product types/linked_prod
 @v1.0.0-rc.5 2020-06-17T18:45:39Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.5
 @v1.0.0-rc.6 2020-06-17T23:02:56Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.6
 @v1.0.0-rc.7 2020-06-18T18:52:29Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.7
+
+tables/session [schema_ggircs_portal_private] 2020-06-19T01:45:52Z Alec Wenzowski <alec@button.is> # session support for connect-pg-simple

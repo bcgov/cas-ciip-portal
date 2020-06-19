@@ -27,6 +27,11 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
         env:
+          - name: SESSION_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: session-secret
+                name: {{ template "cas-ciip-portal.fullname" . }}
           - name: PGUSER
             valueFrom:
               secretKeyRef:
