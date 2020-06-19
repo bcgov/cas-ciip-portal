@@ -325,4 +325,82 @@ describe('Certification email opt-out', () => {
   });
 });
 
-describe.skip('Application status change emails', () => {});
+function makeApplicationDecision(decision) {
+  const applicationId = window.btoa('["applications", 1]');
+  const applicationRevisionId = window.btoa('["application_revisions", 1, 1]');
+  cy.visit(
+    `/analyst/application-review?applicationId=${encodeURIComponent(
+      applicationId
+    )}&applicationRevisionId=${encodeURIComponent(
+      applicationRevisionId
+    )}&version=1`
+  );
+  cy.get('#dropdown').click();
+  cy.wait(500);
+  cy.contains(decision).click();
+  cy.wait(500);
+}
+
+describe('Application status change emails', () => {
+  beforeEach(() => {
+    cy.sqlFixture('fixtures/email/status-change-setup');
+    cy.request('DELETE', 'localhost:8025/api/v1/messages');
+    cy.logout();
+    cy.login(
+      Cypress.env('TEST_ANALYST_USERNAME'),
+      Cypress.env('TEST_ANALYST_PASSWORD')
+    );
+    cy.wait(500);
+  });
+  afterEach(() => {
+    cy.sqlFixture('fixtures/email/status-change-teardown');
+  });
+
+  it('should send the reporter an email when their application has been approved', () => {
+    makeApplicationDecision('APPROVED');
+
+    cy.request('localhost:8025/api/v1/messages').then((response) => {
+      const message = response.body[0];
+      expect(message.To[0].Mailbox).to.contain('reporter');
+      expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
+      expect(message.Content.Body).to.satisfy(
+        (msg) =>
+          msg.includes('Your CIIP Application') &&
+          msg.includes('approved') &&
+          msg.includes('MacDonalds Agriculture, Ltd.') &&
+          msg.includes('Farm')
+      );
+    });
+  });
+  it('should send the reporter an email when their application has been rejected', () => {
+    makeApplicationDecision('REJECTED');
+
+    cy.request('localhost:8025/api/v1/messages').then((response) => {
+      const message = response.body[0];
+      expect(message.To[0].Mailbox).to.contain('reporter');
+      expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
+      expect(message.Content.Body).to.satisfy(
+        (msg) =>
+          msg.includes('Your CIIP Application') &&
+          msg.includes('rejected') &&
+          msg.includes('MacDonalds Agriculture, Ltd.') &&
+          msg.includes('Farm')
+      );
+    });
+  });
+  it('should send the reporter an email when changes to their application have been requested', () => {
+    makeApplicationDecision('REQUESTED_CHANGES');
+
+    cy.request('localhost:8025/api/v1/messages').then((response) => {
+      const message = response.body[0];
+      expect(message.To[0].Mailbox).to.contain('reporter');
+      expect(message.Content.Headers.Subject[0]).to.contain('CIIP');
+      expect(message.Content.Body).to.satisfy(
+        (msg) =>
+          msg.includes('Changes are requested to your CIIP application') &&
+          msg.includes('MacDonalds Agriculture, Ltd.') &&
+          msg.includes('Farm')
+      );
+    });
+  });
+});
