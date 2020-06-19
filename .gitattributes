@@ -1,0 +1,1 @@
+schema/sqitch.plan merge=union
