@@ -3,6 +3,9 @@ route:
   host: dev.ciip.gov.bc.ca
   insecure: false # cert has been issued
 
+dag:
+  preInitDb: "dropdb $(PORTAL_DATABASE)"
+
 env:
   smtpConnectionString: smtp://cas-ciip-portal-mailhog:1025
   senderEmail: no-reply-dev.cas@gov.bc.ca

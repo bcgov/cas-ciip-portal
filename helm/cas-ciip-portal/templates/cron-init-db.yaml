@@ -67,6 +67,7 @@ spec:
                 - -c
                 - |
                   set -euo pipefail;
+                  {{ .Values.dag.preInitDb }}
                   create-user-db -d $(PORTAL_DATABASE) -u $(PORTAL_USER) -p $(PORTAL_PASSWORD) --owner;
                   alter-role $(PORTAL_USER) createrole;
                   psql -d $(PORTAL_DATABASE) -c "create extension if not exists pgcrypto;"

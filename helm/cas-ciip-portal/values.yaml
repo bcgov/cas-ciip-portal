@@ -37,6 +37,9 @@ persistence:
   appUser: ciip_portal
   readonlyUser: ciip_readonly
 
+dag:
+  preInitDb: ""
+
 env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
   senderEmail: no-reply.cas@gov.bc.ca
