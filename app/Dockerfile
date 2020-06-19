@@ -46,7 +46,6 @@ RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 CYPRESS_INSTALL_BINARY=0 \
     yarn install --frozen-lockfile --production=false && \
     yarn build:relay && \
     yarn build:next && \
-    yarn build:storybook && \
     yarn install --frozen-lockfile --production=true && \
     yarn cache clean
 
