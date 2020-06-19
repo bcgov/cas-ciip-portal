@@ -38,6 +38,7 @@ persistence:
   readonlyUser: ciip_readonly
 
 dag:
+  # a command to be executed at the beginning of the init-db job, running in the psql image abov
   preInitDb: ""
 
 env:

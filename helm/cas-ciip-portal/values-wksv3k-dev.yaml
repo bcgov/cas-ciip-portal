@@ -4,7 +4,7 @@ route:
   insecure: false # cert has been issued
 
 dag:
-  preInitDb: "dropdb $(PORTAL_DATABASE)"
+  preInitDb: "dropdb --if-exists $(PORTAL_DATABASE)"
 
 env:
   smtpConnectionString: smtp://cas-ciip-portal-mailhog:1025
