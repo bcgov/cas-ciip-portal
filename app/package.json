@@ -149,7 +149,7 @@
     "keycloak-connect": "^10.0.0",
     "moment-timezone": "^0.5.31",
     "next": "^9.4.4",
-    "nodemailer": "^6.4.8",
+    "nodemailer": "^6.4.10",
     "pg": "^8.2.0",
     "popper.js": "^1.15.0",
     "postgraphile": "^4.7.0",
