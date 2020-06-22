@@ -1,11 +1,23 @@
 const createUrl = require('../helpers/createUrl');
 const createConfirmationMail = ({
+  applicationId,
   firstName,
   lastName,
   email,
   facilityName,
-  operatorName
+  operatorName,
+  organisationId,
+  versionNumber,
+  contactEmail
 }) => {
+  const appId = Buffer.from(`["applications", ${applicationId}]`).toString(
+    'base64'
+  );
+  const encodedAppId = encodeURIComponent(appId);
+  const orgId = Buffer.from(`["organisations", ${organisationId}]`).toString(
+    'base64'
+  );
+  const encodedOrgId = encodeURIComponent(orgId);
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
       <tr>
@@ -19,8 +31,13 @@ const createConfirmationMail = ({
           <h3>Hello, ${firstName} ${lastName}.</h3>
           <h4>Thank you for your submission to the CleanBC Industrial Incentive Program.</h4>
           <p>Your application on behalf of <strong>${operatorName}</strong> for facility <strong>${facilityName}</strong> has been received.</p>
-          <br/>
-          <a href=${createUrl()}>CIIP Portal</a>
+          <p>You will receive notification via email when a decision on your application has been made, or if changes are requested.</p>
+          <p>You can <a href="${createUrl(
+            `reporter/view-application?applicationId=${encodedAppId}&version=${versionNumber}`
+          )}">view your submitted application here</a> and monitor the status of your application(s) <a href="${createUrl(
+    `reporter/facilities?organisationId=${encodedOrgId}&organisationRowId=${organisationId}`
+  )}">on the Operation Facilities dashboard</a>.</p>
+          <p>If you have any questions during the application process, please contact <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry">${contactEmail}</a></p>
         </td>
       </tr>
       <tr>

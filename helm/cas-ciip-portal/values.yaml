@@ -43,8 +43,8 @@ dag:
 
 env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
-  senderEmail: no-reply.cas@gov.bc.ca
-  adminEmail: GHGRegulator@gov.bc.ca
+  senderEmail: BCCAS <no-reply.cas@gov.bc.ca>
+  adminEmail: GHG Regulator <GHGRegulator@gov.bc.ca>
 
 fider:
   host: # TODO move fider template in this repo

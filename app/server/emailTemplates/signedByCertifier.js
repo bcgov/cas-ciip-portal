@@ -1,5 +1,7 @@
 const createUrl = require('../helpers/createUrl');
 const createSignedByCertifierMail = ({
+  applicationId,
+  versionNumber,
   email,
   firstName,
   lastName,
@@ -7,8 +9,13 @@ const createSignedByCertifierMail = ({
   operatorName,
   certifierEmail,
   certifierFirstName,
-  certifierLastName
+  certifierLastName,
+  contactEmail
 }) => {
+  const appId = Buffer.from(`["applications", ${applicationId}]`).toString(
+    'base64'
+  );
+  const encodedAppId = encodeURIComponent(appId);
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
       <tr>
@@ -24,8 +31,19 @@ const createSignedByCertifierMail = ({
           <h4>Application Details:</h4>
           <p>Operator: ${operatorName}</p>
           <p>Facility: ${facilityName}</p>
-          <br/>
-          <a href=${createUrl()}>CIIP Portal</a>
+          <p>Further steps are necessary to submit the CIIP application:</p>
+          <ul>
+            <li>
+              Please log in to the CIIP Portal and <a href="${createUrl(
+                `reporter/application?applicationId=${encodedAppId}&version=${versionNumber}&confirmationPage=true`
+              )}">resume the application</a> for the facility named above:
+              <ul>
+                <li>Scroll to the bottom of the "Summary" page and submit the completed application by reading the disclosure statement and clicking the blue "Submit Application" button.</li>
+              </ul>
+            </li>
+            <li>You will be notified via email when your application has been approved or if any further information is required to process your application.</li>
+          </ul>
+          <p>If you have any questions during the application process, please contact <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry">${contactEmail}</a></p>
         </td>
       </tr>
       <tr>

@@ -133,3 +133,6 @@ computed_columns/product_linked_product [tables/linked_product types/linked_prod
 @v1.0.0-rc.6 2020-06-17T23:02:56Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.6
 @v1.0.0-rc.7 2020-06-18T18:52:29Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.7
 tables/connect_session [schema_ggircs_portal_private] 2020-06-19T01:45:52Z Alec Wenzowski <alec@button.is> # session support for connect-pg-simple
+trigger_functions/draft_application_started [trigger_functions/draft_application_started@v1.0.0-rc.5 schema_ggircs_portal] 2020-06-19T23:22:37Z Kristen Cooke <kristen@button.is> # Adds applicationId to job data for draft application started email
+trigger_functions/organisation_access_approved [trigger_functions/organisation_access_approved@v1.0.0-rc.5 schema_ggircs_portal] 2020-06-19T23:47:12Z Kristen Cooke <kristen@button.is> # Adds operatorName and organisationId to job data for org access approved email
+trigger_functions/run_graphile_worker_job [trigger_functions/run_graphile_worker_job@v1.0.0-rc.5 schema_ggircs_portal] 2020-06-20T00:11:19Z Kristen Cooke <kristen@button.is> # Adds more data to application status change and signed by certifier email jobs

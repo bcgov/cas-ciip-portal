@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const createWelcomeMail = require('../emailTemplates/welcome.js');
 const createConfirmationMail = require('../emailTemplates/confirmation.js');
+const createApplicationDecisionMail = require('../emailTemplates/applicationDecision.js');
 const createAmendmentMail = require('../emailTemplates/amendment.js');
 const createCertificationRequestMail = require('../emailTemplates/certificationRequest.js');
 const createSignedByCertifierMail = require('../emailTemplates/signedByCertifier.js');
@@ -10,22 +11,28 @@ const createOrganisationAccessApprovedMail = require('../emailTemplates/organisa
 const createNotifyAdminApplicationSubmittedMail = require('../emailTemplates/notifyAdminApplicationSubmitted.js');
 const createNotifyAdminAccessRequestMail = require('../emailTemplates/notifyAdminOrganisationAccess');
 const createDraftApplicationStartedMail = require('../emailTemplates/draftApplicationStarted');
+const getEmailShortForm = require('../helpers/getEmailShortForm');
 const dotenv = require('dotenv');
 dotenv.config();
 
+const ADMIN_EMAIL_SHORT = getEmailShortForm(process.env.ADMIN_EMAIL);
+
 module.exports = async ({
   type,
+  applicationId,
   email,
   firstName,
   lastName,
   facilityName,
   operatorName,
+  organisationId,
   status,
   reporterEmail,
   certifierFirstName,
   certifierLastName,
+  certifierEmail,
   certifierUrl,
-  certifierEmail
+  versionNumber
 }) => {
   if (!process.env.SMTP_CONNECTION_STRING && !process.env.NO_MAIL)
     throw new Error('SMTP connection string is undefined');
@@ -46,34 +53,69 @@ module.exports = async ({
     // New CIIP user welcome
     case 'welcome':
       subject = 'Welcome to CIIP';
-      htmlContent = createWelcomeMail({email, firstName, lastName});
+      htmlContent = createWelcomeMail({
+        email,
+        firstName,
+        lastName,
+        contactEmail: ADMIN_EMAIL_SHORT
+      });
       break;
     // Confirmation of CIIP Application submission
     case 'status_change_submitted':
       subject = 'CIIP Application Submission Confirmation';
       htmlContent = createConfirmationMail({
-        email,
-        firstName,
-        lastName,
-        facilityName,
-        operatorName
-      });
-      break;
-    // Notice of amendment to CIIP Application submission
-    case 'status_change_other':
-      subject = 'Your CIIP Application status has changed';
-      htmlContent = createAmendmentMail({
+        applicationId,
         email,
         firstName,
         lastName,
         facilityName,
         operatorName,
-        status
+        organisationId,
+        versionNumber,
+        contactEmail: ADMIN_EMAIL_SHORT
+      });
+      break;
+    case 'status_change_approved':
+      subject = 'Your CIIP Application has been approved';
+      htmlContent = createApplicationDecisionMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName,
+        organisationId,
+        status,
+        contactEmail: ADMIN_EMAIL_SHORT
+      });
+      break;
+    case 'status_change_rejected':
+      subject = 'Your CIIP application has been rejected';
+      htmlContent = createApplicationDecisionMail({
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName,
+        status,
+        contactEmail: ADMIN_EMAIL_SHORT
+      });
+      break;
+    case 'status_change_requested_changes':
+      subject = 'Your CIIP application: Changes requested';
+      htmlContent = createAmendmentMail({
+        applicationId,
+        email,
+        firstName,
+        lastName,
+        facilityName,
+        operatorName,
+        versionNumber,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     // Request for certification
     case 'certification_request':
-      subject = 'CIIP application certification request';
+      subject = 'CIIP Application Certification Request';
       htmlContent = createCertificationRequestMail({
         email,
         firstName,
@@ -82,13 +124,15 @@ module.exports = async ({
         operatorName,
         reporterEmail,
         certifierUrl,
-        host: process.env.HOST
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     // Certifier signs application
     case 'signed_by_certifier':
-      subject = 'CIIP application certified';
+      subject = 'CIIP Application Certified';
       htmlContent = createSignedByCertifierMail({
+        applicationId,
+        versionNumber,
         email,
         firstName,
         lastName,
@@ -96,50 +140,57 @@ module.exports = async ({
         operatorName,
         certifierEmail,
         certifierFirstName,
-        certifierLastName
+        certifierLastName,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     // Request for recertification (data changed)
     case 'recertification':
       subject = 'CIIP Application recertification request';
       htmlContent = createRecertificationRequestMail({
+        applicationId,
         email,
         firstName,
         lastName,
         facilityName,
-        operatorName
+        operatorName,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     case 'request_for_organisation_access':
-      subject = 'Organisation Access Requested';
+      subject = 'CIIP Application: Organisation Access Requested';
       htmlContent = createOrganisationAccessRequestMail({
         email,
         firstName,
         lastName,
         facilityName,
-        operatorName
+        operatorName,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     case 'organisation_access_approved':
-      subject = 'Organisation Access Approved';
+      subject = 'CIIP Application: Organisation Access Approved';
       htmlContent = createOrganisationAccessApprovedMail({
         email,
         firstName,
         lastName,
-        facilityName,
-        operatorName
+        operatorName,
+        organisationId,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     case 'notify_admin_submitted':
-      subject = 'Application Submission';
+      subject = 'CIIP Application Submission';
       htmlContent = createNotifyAdminApplicationSubmittedMail({
+        applicationId,
         facilityName,
-        operatorName
+        operatorName,
+        versionNumber
       });
       email = process.env.ADMIN_EMAIL;
       break;
     case 'notify_admin_organisation_access':
-      subject = 'Organisation Access Request';
+      subject = 'CIIP Organisation Access Request';
       htmlContent = createNotifyAdminAccessRequestMail({
         firstName,
         lastName,
@@ -148,15 +199,16 @@ module.exports = async ({
       email = process.env.ADMIN_EMAIL;
       break;
     case 'draft_application_started':
-      subject = 'Draft Application Started';
+      subject = 'CIIP Draft Application Started';
       htmlContent = createDraftApplicationStartedMail({
+        applicationId,
         firstName,
         lastName,
         email,
         operatorName,
-        facilityName
+        facilityName,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
-      email = process.env.ADMIN_EMAIL;
       break;
     default:
       htmlContent = null;

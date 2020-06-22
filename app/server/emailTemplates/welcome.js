@@ -1,5 +1,5 @@
 const createUrl = require('../helpers/createUrl');
-const createWelcomeMail = ({firstName, lastName, email}) => {
+const createWelcomeMail = ({firstName, lastName, email, contactEmail}) => {
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
       <tr>
@@ -12,8 +12,19 @@ const createWelcomeMail = ({firstName, lastName, email}) => {
         <td style="padding: 20px 10px 30px 10px;" >
           <h3>Hello, ${firstName} ${lastName}.</h3>
           <h4>Thank you for registering for the CleanBC Industrial Incentive Program.</h4>
-          <br/>
-          <a href=${createUrl()}>CIIP Portal</a>
+          <p>Further steps are necessary to complete a CIIP application:</p>
+          <ul>
+            <li>
+              Please log in to the CIIP Portal to <a href=${createUrl(
+                'reporter'
+              )}>request access to an operator</a>.
+              <ul>
+                <li>You will be notified via email when your access has been approved.</li>
+              </ul>
+            </li>
+            <li>You will be able to fill out an application once you have been approved as an authorised representative.</li>
+          </ul>
+          <p>If you have any questions during the application process, please contact <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry">${contactEmail}</a></p>
         </td>
       </tr>
       <tr>
