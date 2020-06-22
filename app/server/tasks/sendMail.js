@@ -71,7 +71,8 @@ module.exports = async ({
         facilityName,
         operatorName,
         organisationId,
-        versionNumber
+        versionNumber,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     case 'status_change_approved':
@@ -152,7 +153,8 @@ module.exports = async ({
         firstName,
         lastName,
         facilityName,
-        operatorName
+        operatorName,
+        contactEmail: ADMIN_EMAIL_SHORT
       });
       break;
     case 'request_for_organisation_access':

@@ -7,7 +7,8 @@ const createConfirmationMail = ({
   facilityName,
   operatorName,
   organisationId,
-  versionNumber
+  versionNumber,
+  contactEmail
 }) => {
   const appId = Buffer.from(`["applications", ${applicationId}]`).toString(
     'base64'
@@ -36,6 +37,7 @@ const createConfirmationMail = ({
           )}">view your submitted application here</a> and monitor the status of your application(s) <a href="${createUrl(
     `reporter/facilities?organisationId=${encodedOrgId}&organisationRowId=${organisationId}`
   )}">on the Operation Facilities dashboard</a>.</p>
+          <p>If you have any questions during the application process, please contact <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry">${contactEmail}</a></p>
         </td>
       </tr>
       <tr>

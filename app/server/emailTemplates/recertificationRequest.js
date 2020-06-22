@@ -5,7 +5,8 @@ const createRecertificationRequestMail = ({
   firstName,
   lastName,
   facilityName,
-  operatorName
+  operatorName,
+  contactEmail
 }) => {
   const appId = Buffer.from(`["applications", ${applicationId}]`).toString(
     'base64'
@@ -43,7 +44,9 @@ const createRecertificationRequestMail = ({
                   <li>Scroll to the bottom of the "Summary" page and make a new request for certification by entering the Certifying Official's email and clicking the blue "Submit for Certification" button.</li>
                 </ul>
               </li>
+            </ul>
           </p>
+          <p>If you have any questions during the application process, please contact <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry">${contactEmail}</a></p>
         </td>
       </tr>
       <tr>
