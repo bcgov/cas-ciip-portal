@@ -73,24 +73,14 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = (props) => {
         </Card>
       ) : (
         <>
-          <span style={{marginTop: '20px'}}>
-            Can&apos;t find your Operator in the list?
-          </span>
+          <span style={{marginTop: '20px'}}>Operator not in the list?</span>
           <br />
-          <span
-            id="add-organisation"
+          <Button
+            variant="success"
             onClick={() => setModalVisible(!isModalVisible)}
           >
-            <span className="blue">Click here to add a new Operator.</span>
-            <style jsx>
-              {`
-                #add-organisation {
-                  text-decoration: underline;
-                  cursor: pointer;
-                }
-              `}
-            </style>
-          </span>
+            Add Operator +
+          </Button>
         </>
       )}
       <Modal
