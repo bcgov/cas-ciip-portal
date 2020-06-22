@@ -12,6 +12,7 @@ dag:
       -- don't kill the connections to other databases
       and datname = '$(PORTAL_DATABASE)';
       drop database if exists $(PORTAL_DATABASE);
+      drop user if exists $(PORTAL_USER);
     EOF
 
 env:
