@@ -1,4 +1,4 @@
--- Verify ggircs-portal:database_functions/graphile_worker_job_definer_001 on pg
+-- Verify ggircs-portal:database_functions/graphile_worker_job_definer on pg
 
 begin;
 
