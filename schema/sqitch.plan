@@ -138,3 +138,4 @@ trigger_functions/organisation_access_approved [trigger_functions/organisation_a
 trigger_functions/run_graphile_worker_job [trigger_functions/run_graphile_worker_job@v1.0.0-rc.5 schema_ggircs_portal] 2020-06-20T00:11:19Z Kristen Cooke <kristen@button.is> # Adds more data to application status change and signed by certifier email jobs
 tables/graphile_worker_timestamp [schema_ggircs_portal_private] 2020-06-19T20:30:46Z Dylan Leard <dylan@button.is> # Table tracks calls to graphile_worker.addjob()
 database_functions/graphile_worker_job_definer [database_functions/graphile_worker_job_definer@v1.0.0-rc.5] 2020-06-22T16:36:16Z Dylan Leard <dylan@button.is> # change to graphile_worker_job_definer adds add_job() throttling
+policies/graphile_worker_timestamp_policies [tables/graphile_worker_timestamp] 2020-06-22T18:21:46Z Dylan Leard <dylan@button.is> # Row level security policies for graphile_worker_timestamp table
