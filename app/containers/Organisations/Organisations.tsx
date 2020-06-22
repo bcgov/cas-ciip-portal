@@ -10,8 +10,6 @@ import {
 } from 'react-bootstrap';
 import {Organisations_query} from 'Organisations_query.graphql';
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
-import AddOrganisationFacility from 'components/AddOrganisationFacility';
-import createOrganisationMutation from 'mutations/organisation/createOrganisationMutation';
 import LoadingSpinner from 'components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
@@ -59,14 +57,6 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
     props.handleOrgChange(null);
     props.handleContextChange();
     props.handleInputChange('');
-  };
-
-  const handleAddOrganisation = async (variables) => {
-    const {environment} = props.relay;
-    const response = await createOrganisationMutation(environment, variables);
-    console.log(response);
-    const {operatorName, rowId} = response.createOrganisation.organisation;
-    selectOrg(operatorName, rowId);
   };
 
   const {edges} = session.ciipUserBySub.ciipUserOrganisationsByUserId;
@@ -224,10 +214,9 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
               </Dropdown>
             )}
             <hr />
-            <AddOrganisationFacility
-              onAddOrganisation={handleAddOrganisation}
-            />
-
+            If you cannot find your operator in the list, please{' '}
+            <a href="mailto:ghgregulator@gov.bc.ca">contact CAS</a> for
+            assistance.
             <style jsx>
               {`
                 .org-scroll {
