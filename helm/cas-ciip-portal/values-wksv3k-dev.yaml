@@ -13,7 +13,12 @@ dag:
       and datname = '$(PORTAL_DATABASE)';
       drop database if exists $(PORTAL_DATABASE);
       drop user if exists $(PORTAL_USER);
+      drop user if exists ciip_portal;
+      drop user if exists ciip_readonly;
     EOF
+
+# dropping users shouldn't be necessary, but the create-user-db script does not
+# restore ownership or grants connect privilege if the role exists
 
 env:
   smtpConnectionString: smtp://cas-ciip-portal-mailhog:1025
