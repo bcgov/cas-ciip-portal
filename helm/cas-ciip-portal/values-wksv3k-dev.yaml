@@ -4,7 +4,15 @@ route:
   insecure: false # cert has been issued
 
 dag:
-  preInitDb: 'psql -c "drop database if exists $(PORTAL_DATABASE)"'
+  preInitDb: |
+    psql<<EOF
+      select pg_terminate_backend(pid) from pg_stat_activity where
+      -- don't kill my own connection!
+      pid <> pg_backend_pid()
+      -- don't kill the connections to other databases
+      and datname = '$(PORTAL_DATABASE)';
+      drop database if exists $(PORTAL_DATABASE);
+    EOF
 
 env:
   smtpConnectionString: smtp://cas-ciip-portal-mailhog:1025
