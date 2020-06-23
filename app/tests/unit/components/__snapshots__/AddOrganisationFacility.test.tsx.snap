@@ -9,20 +9,25 @@ Array [
       }
     }
   >
-    Can't find your Operator in the list?
+    Operator not in the list?
   </span>,
   <br />,
-  <span
-    className="jsx-67075016"
-    id="add-organisation"
+  <Button
+    active={false}
+    disabled={false}
     onClick={[Function]}
+    type="button"
+    variant="success"
   >
-    <span
-      className="jsx-67075016 blue"
+    <button
+      className="btn btn-success"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
     >
-      Click here to add a new Operator.
-    </span>
-  </span>,
+      Add Operator +
+    </button>
+  </Button>,
   <Bootstrap(Modal)
     centered={true}
     onHide={[Function]}
