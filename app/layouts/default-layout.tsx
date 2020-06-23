@@ -42,13 +42,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
     allowedGroups.length === 0 ||
     userGroups.some((g) => allowedGroups.includes(g));
 
-  if (!canAccess) {
-    router.push({
-      pathname: getUserGroupLandingRoute(userGroups)
-    });
-    return null;
-  }
-
   if ((needsSession || needsUser) && !session) {
     router.push({
       pathname: '/login-redirect',
@@ -65,6 +58,13 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       query: {
         redirectTo: router.asPath
       }
+    });
+    return null;
+  }
+
+  if (!canAccess) {
+    router.push({
+      pathname: getUserGroupLandingRoute(userGroups)
     });
     return null;
   }
