@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import {Dropdown, FormControl, Card, Table} from 'react-bootstrap';
 import {AddOrganisation_query} from 'AddOrganisation_query.graphql';
-import AddOrganisationFacility from 'components/AddOrganisationFacility';
+import AddOrganisationModal from 'components/AddOrganisationModal';
 import createOrganisationMutation from 'mutations/organisation/createOrganisationMutation';
 import Organisation from './Organisation';
 
@@ -88,7 +88,7 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
             </Table>
           )}
           <hr />
-          <AddOrganisationFacility onAddOrganisation={handleAddOrganisation} />
+          <AddOrganisationModal onAddOrganisation={handleAddOrganisation} />
           <style jsx>
             {`
               .org-scroll {
