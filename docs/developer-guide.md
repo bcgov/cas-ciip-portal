@@ -121,7 +121,7 @@ Here are some key differences between the two, found in [this beautiful post](ht
 
 ### Sqitch
 
-We use Sqitch to manage our database with Sqitch via the sqitch.plan in the schema directory.
+We manage our database with [sqitch] via the sqitch.plan in the `/schema` directory.
 To add something to the database:
 - `sqitch add <new database entity> --require <dependency for new entity> --set schema=<schema>` (--require can be repeated for many dependencies)
 To deploy changes:
