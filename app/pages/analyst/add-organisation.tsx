@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
-import {addOrganisationPageQueryResponse} from 'addOrganisationQuery.graphql';
+import {addOrganisationQueryResponse} from 'addOrganisationQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import AddOrganisation from 'containers/Organisations/AddOrganisation';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
@@ -8,7 +8,7 @@ import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP];
 
 interface Props {
-  query: addOrganisationPageQueryResponse['query'];
+  query: addOrganisationQueryResponse['query'];
 }
 class AddOrganisationPage extends Component<Props> {
   static query = graphql`
