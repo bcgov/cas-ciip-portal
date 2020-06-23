@@ -7,7 +7,6 @@ import {withA11y} from '@storybook/addon-a11y';
 import Admin from 'pages/admin';
 // Import ApplicationReview from 'pages/analyst/application-review';
 // import Applications from 'pages/analyst/applications';
-import ApplicationSWRSImport from 'pages/reporter/application-swrs-import';
 // Import Application from 'pages/reporter/application';
 // import CompleteSubmit from 'pages/reporter/complete-submit';
 // import Index from 'pages/index';
@@ -60,7 +59,6 @@ export default {
 };
 
 export const admin = () => render(Admin);
-export const ciip_application_swrs_import = () => render(ApplicationSWRSImport);
 export const registration = () => render(Registration);
 export const user_dashboard = () => render(Reporter);
 export const user_profile = () => render(Profile);
