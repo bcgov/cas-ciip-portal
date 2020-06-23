@@ -67,5 +67,13 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
     setOffset={[Function]}
     totalCount={1}
   />
+  If you cannot find your facility in the list, please
+   
+  <a
+    href="mailto:ghgregulator@gov.bc.ca"
+  >
+    contact CAS
+  </a>
+   for assistance.
 </Fragment>
 `;

@@ -17,10 +17,10 @@ Array [
     disabled={false}
     onClick={[Function]}
     type="button"
-    variant="success"
+    variant="outline-primary"
   >
     <button
-      className="btn btn-success"
+      className="btn btn-outline-primary"
       disabled={false}
       onClick={[Function]}
       type="button"

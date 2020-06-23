@@ -253,6 +253,21 @@ Array [
                     Add new organisation
                   </a>
                 </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Add new facility
+                  </a>
+                </div>
               </div>
             </div>
             <div

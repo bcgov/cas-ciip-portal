@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import AddOrganisationFacility from 'components/AddOrganisationFacility';
+import AddOrganisationFacility from 'components/AddOrganisationModal';
 
 describe('AddOrganisationFacility Component', () => {
   it('should match the last snapshot', () => {
@@ -15,16 +15,5 @@ describe('AddOrganisationFacility Component', () => {
       <AddOrganisationFacility onAddOrganisation={jest.fn()} />
     );
     expect(render.find('Button').text()).toBe('Add Operator +');
-  });
-
-  it('should render the Add Facility Button when passed the onAddFacility prop', () => {
-    const render = mount(<AddOrganisationFacility onAddFacility={jest.fn()} />);
-    expect(render.find('Button').text()).toBe('Add a new Facility');
-  });
-
-  it('should open the modal when Add Facility Button is clicked', () => {
-    const render = mount(<AddOrganisationFacility onAddFacility={jest.fn()} />);
-    render.find('Button').simulate('click');
-    expect(render.find('Modal').exists()).toBe(true);
   });
 });
