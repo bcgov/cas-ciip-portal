@@ -119,8 +119,47 @@ Here are some key differences between the two, found in [this beautiful post](ht
 - No need to test as many implementation details
 
 
+### Sqitch
+
+We manage our database with [sqitch] via the sqitch.plan in the `/schema` directory.
+To add something to the database:
+- `sqitch add <new database entity> --require <dependency for new entity> --set schema=<schema>` (--require can be repeated for many dependencies)
+To deploy changes:
+- `sqitch deploy <Name of change>` (Name of change is optional, & deploys up to that change. If not set, it will deploy all changes)
+To roll back changes:
+- `sqitch revert <Name of change>` (Name of change is optional, & reverts back to that change. If not set, it will revert all changes)
+
+
+## Incremental Database changes
+
+Releases are tagged in the sqitch plan, ex: `@v1.0.0-rc.7 2020-06-18T18:52:29Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.7`
+Any database entities in the plan before a release are immutable and any changes to them must be done as follows:
+
+### Tables (or other non-idempotent changes)
+
+Changes to tables require creating a new entry in the sqitch plan for that table, for example:
+`sqitch add tables/application_001 --require tables/application`
+This will create a deploy,revert and verify files for tables/application_001
+- In the deploy file, any necessary changes can be made to the table with `alter table`.
+- In the revert file, any changes made in the deploy file must be undone, again with `alter table`
+- The verify file should just verify the existence of the table, and can probably be the same as the original verify file
+
+### Functions (or other idempotent changes)
+
+Changes to functions are done via the `sqitch rework` command, which only works with idempotent changes, ie `create or replace function`.
+example: `sqitch rework -c <NAME OF FILE TO BE CHANGED>`
+This will create deploy, revert and verify files, for the changed item like so: `function_file_name@TAG.sql`
+The `TAGGED` files should contain the original deploy, revert, verify code.
+The `UNTAGGED` files will contain the changes:
+- The deploy file will contain the updated function code
+- The revert file will contain the original, (or in the case of several changes, the previous) function code to return the function to its previous state
+- The verify file will likely be the same as the original verify file
+
+
+
 
 [Watchman]: https://facebook.github.io/watchman/
 [extended json syntax]: https://facebook.github.io/watchman/docs/cmd/trigger.html#extended-syntax
 [multitail]: https://linux.die.net/man/1/multitail
 [submodule]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
+[sqitch]: https://sqitch.org/docs/manual/sqitchtutorial/
