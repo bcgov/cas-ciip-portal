@@ -1,19 +1,22 @@
 import React, {useState} from 'react';
+import {graphql, createFragmentContainer} from 'react-relay';
+import {AddFacilityModal_query} from 'AddFacilityModal_query.graphql';
 import {Button, Modal, Card} from 'react-bootstrap';
 import JsonSchemaForm, {IChangeEvent} from 'react-jsonschema-form';
 import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
-import addOperatorSchema from 'components/organisation/addOrganisationSchema';
 import addFacilitySchema from 'components/facility/addFacilitySchema';
+import OrganisationRowIdField from './OrganisationRowIdField';
+import SearchDropdownWidget from 'components/Forms/SearchDropdownWidget';
+import NumberField from 'containers/Forms/NumberField';
 
 interface Props {
-  onAddOrganisation?: (...args: any[]) => void;
+  query: AddFacilityModal_query;
   onAddFacility?: (...args: any[]) => void;
-  organisationRowId?: number;
 }
 
-const AddOrganisationFacility: React.FunctionComponent<Props> = (props) => {
-  const {onAddOrganisation, onAddFacility, organisationRowId} = props;
+const AddFacilityModal: React.FunctionComponent<Props> = (props) => {
+  const {onAddFacility, query} = props;
   const [isModalVisible, setModalVisible] = useState(false);
 
   const customFormats = {
@@ -21,8 +24,23 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = (props) => {
     duns: /^\d{9}$/
   };
 
+  const CUSTOM_FIELDS = {
+    organisationRowId: (props) => (
+      <OrganisationRowIdField query={props.formContext.query} {...props} />
+    ),
+    NumberField
+  };
+
+  const addFacilityUiSchema = {
+    organisationRowId: {
+      'ui:col-md': 6,
+      'ui:widget': 'SearchWidget',
+      'ui:field': 'organisationRowId'
+    }
+  };
+
   const saveNewFacility = async (e: IChangeEvent) => {
-    const {facilityName, facilityType, bcghgid} = e.formData;
+    const {facilityName, facilityType, bcghgid, organisationRowId} = e.formData;
     const variables = {
       input: {
         facility: {
@@ -34,78 +52,49 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = (props) => {
       }
     };
     setModalVisible(!isModalVisible);
+    console.log(variables);
     onAddFacility(variables);
-  };
-
-  const saveNewOrganisation = async (e: IChangeEvent) => {
-    const {operatorName, craBusinessNumber} = e.formData;
-    const variables = {
-      input: {
-        organisation: {
-          operatorName,
-          craBusinessNumber
-        }
-      }
-    };
-    setModalVisible(!isModalVisible);
-    onAddOrganisation(variables);
   };
 
   return (
     <>
-      {onAddFacility ? (
-        <Card style={{marginTop: '50px'}}>
-          <Card.Body>
-            <Card.Title>
-              Can&apos;t find the Facility you&apos;re looking for?
-            </Card.Title>
-            <Card.Text>
-              You can add a facility if it is new or hasn&apos;t reported
-              before.
-            </Card.Text>
-            <Button
-              variant="outline-primary"
-              onClick={() => setModalVisible(!isModalVisible)}
-            >
-              Add a new Facility
-            </Button>
-          </Card.Body>
-        </Card>
-      ) : (
-        <>
-          <span style={{marginTop: '20px'}}>Operator not in the list?</span>
-          <br />
+      <Card style={{marginTop: '50px'}}>
+        <Card.Body>
+          <Card.Title>
+            Can&apos;t find the Facility you&apos;re looking for?
+          </Card.Title>
+          <Card.Text>
+            You can add a facility if it is new or hasn&apos;t reported before.
+          </Card.Text>
           <Button
             variant="outline-primary"
             onClick={() => setModalVisible(!isModalVisible)}
           >
-            Add Operator +
+            Add a new Facility
           </Button>
-        </>
-      )}
+        </Card.Body>
+      </Card>
       <Modal
         centered
         size="lg"
         show={isModalVisible}
         onHide={() => setModalVisible(false)}
       >
-        {onAddFacility ? (
-          <Modal.Header>
-            <h5>Add a new Facility</h5>
-          </Modal.Header>
-        ) : (
-          <Modal.Header>
-            <h5>Add a new Operator</h5>
-          </Modal.Header>
-        )}
+        <Modal.Header>
+          <h5>Add a new Facility</h5>
+        </Modal.Header>
         <Modal.Body>
           <JsonSchemaForm
-            schema={onAddFacility ? addFacilitySchema : addOperatorSchema}
+            schema={addFacilitySchema}
+            uiSchema={addFacilityUiSchema}
             customFormats={customFormats}
+            formContext={{query}}
+            fields={CUSTOM_FIELDS}
+            widgets={{SearchWidget: SearchDropdownWidget}}
             showErrorList={false}
             FieldTemplate={FormFieldTemplate}
             ObjectFieldTemplate={FormObjectFieldTemplate}
-            onSubmit={onAddFacility ? saveNewFacility : saveNewOrganisation}
+            onSubmit={saveNewFacility}
           >
             <div>
               <Button
@@ -129,4 +118,10 @@ const AddOrganisationFacility: React.FunctionComponent<Props> = (props) => {
   );
 };
 
-export default AddOrganisationFacility;
+export default createFragmentContainer(AddFacilityModal, {
+  query: graphql`
+    fragment AddFacilityModal_query on Query {
+      ...OrganisationRowIdField_query
+    }
+  `
+});
