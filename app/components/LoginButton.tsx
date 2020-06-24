@@ -9,7 +9,9 @@ const LoginForm: React.FunctionComponent<
   let loginURI = '/login';
 
   if (router.query.redirectTo)
-    loginURI += `?redirectTo=${router.query.redirectTo as string}`;
+    loginURI += `?redirectTo=${encodeURIComponent(
+      router.query.redirectTo as string
+    )}`;
 
   return (
     <Form action={loginURI} method="post">
