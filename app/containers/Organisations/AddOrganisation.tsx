@@ -27,10 +27,10 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
     props.handleInputChange(event.target.value);
   };
 
-  const selectOrg = (name, id, tradeName, cra) => {
+  const selectOrg = (name, id, tradeName, cra, swrsReportId) => {
     props.handleOrgChange(id);
     props.handleInputChange('');
-    setSelectedOrgDetails({name, id, tradeName, cra});
+    setSelectedOrgDetails({name, id, tradeName, cra, swrsReportId});
   };
 
   const handleAddOrganisation = async (variables) => {
@@ -76,6 +76,7 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
                   <th>Operator Name</th>
                   <th>Trade Name</th>
                   <th>CRA Business Number</th>
+                  <th>SWRS Report Id</th>
                 </tr>
               </thead>
               <tbody>
@@ -83,6 +84,7 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
                   <td>{selectedOrgDetails?.name}</td>
                   <td>{selectedOrgDetails?.tradeName}</td>
                   <td>{selectedOrgDetails?.cra}</td>
+                  <td>{selectedOrgDetails?.swrsReportId}</td>
                 </tr>
               </tbody>
             </Table>
@@ -111,10 +113,6 @@ export default createFragmentContainer(AddOrganisationComponent, {
         edges {
           node {
             id
-            rowId
-            operatorName
-            operatorTradeName
-            craBusinessNumber
             ...Organisation_organisation
           }
         }

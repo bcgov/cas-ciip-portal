@@ -26,10 +26,24 @@ export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
     props.handleInputChange(event.target.value);
   };
 
-  const selectFacility = (name, id, operatorName, facilityType, bcghgid) => {
+  const selectFacility = (
+    name,
+    id,
+    operatorName,
+    facilityType,
+    bcghgid,
+    swrsReportId
+  ) => {
     props.handleFacilityChange(id);
     props.handleInputChange('');
-    setSelectedFacilityDetails({name, id, operatorName, facilityType, bcghgid});
+    setSelectedFacilityDetails({
+      name,
+      id,
+      operatorName,
+      facilityType,
+      bcghgid,
+      swrsReportId
+    });
   };
 
   const handleAddFacility = async (variables) => {
@@ -76,6 +90,7 @@ export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
                   <th>Facility Name</th>
                   <th>Facility Type</th>
                   <th>BCGHGID</th>
+                  <th>SWRS Report ID</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,6 +99,7 @@ export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
                   <td>{selectedFacilityDetails?.name}</td>
                   <td>{selectedFacilityDetails?.facilityType}</td>
                   <td>{selectedFacilityDetails?.bcghgid}</td>
+                  <td>{selectedFacilityDetails?.swrsReportId}</td>
                 </tr>
               </tbody>
             </Table>

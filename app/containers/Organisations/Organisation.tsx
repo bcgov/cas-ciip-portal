@@ -22,7 +22,8 @@ export const OrganisationComponent = (props) => {
           organisation.operatorName,
           organisation.rowId,
           organisation.operatorTradeName,
-          organisation.craBusinessNumber
+          organisation.craBusinessNumber,
+          organisation.swrsReportId
         )
       }
     >
@@ -38,6 +39,7 @@ export default createFragmentContainer(OrganisationComponent, {
       operatorName
       operatorTradeName
       craBusinessNumber
+      swrsReportId
     }
   `
 });

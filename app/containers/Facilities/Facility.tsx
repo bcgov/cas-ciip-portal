@@ -23,7 +23,8 @@ export const FacilityComponent = (props) => {
           facility.rowId,
           facility.organisationByOrganisationId.operatorName,
           facility.facilityType,
-          facility.bcghgid
+          facility.bcghgid,
+          facility.swrsReportId
         )
       }
     >
@@ -42,6 +43,7 @@ export default createFragmentContainer(FacilityComponent, {
       }
       facilityType
       bcghgid
+      swrsReportId
     }
   `
 });
