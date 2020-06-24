@@ -97,7 +97,6 @@ export default createRefetchContainer(
           searchValue: {type: "String"}
           orderByField: {type: "String"}
           direction: {type: "String"}
-          organisationId: {type: "ID!"}
           organisationRowId: {type: "String"}
           offsetValue: {type: "Int"}
           maxResultsPerPage: {type: "Int"}
@@ -120,10 +119,6 @@ export default createRefetchContainer(
             }
           }
         }
-        organisation(id: $organisationId) {
-          id
-          rowId
-        }
       }
     `
   },
@@ -133,7 +128,6 @@ export default createRefetchContainer(
       $searchValue: String
       $orderByField: String
       $direction: String
-      $organisationId: ID!
       $organisationRowId: String
       $offsetValue: Int
       $maxResultsPerPage: Int
@@ -146,7 +140,6 @@ export default createRefetchContainer(
             searchField: $searchField
             searchValue: $searchValue
             organisationRowId: $organisationRowId
-            organisationId: $organisationId
             offsetValue: $offsetValue
             maxResultsPerPage: $maxResultsPerPage
           )
