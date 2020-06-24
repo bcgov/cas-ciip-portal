@@ -48,8 +48,7 @@ export const AddFacilityComponent: React.FunctionComponent<Props> = (props) => {
 
   const handleAddFacility = async (variables) => {
     const {environment} = props.relay;
-    const response = await createFacilityMutation(environment, variables);
-    console.log(response);
+    await createFacilityMutation(environment, variables);
   };
 
   return (

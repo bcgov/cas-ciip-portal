@@ -35,8 +35,7 @@ export const AddOrganisationComponent: React.FunctionComponent<Props> = (
 
   const handleAddOrganisation = async (variables) => {
     const {environment} = props.relay;
-    const response = await createOrganisationMutation(environment, variables);
-    console.log(response);
+    await createOrganisationMutation(environment, variables);
   };
 
   return (

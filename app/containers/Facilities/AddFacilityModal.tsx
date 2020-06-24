@@ -20,8 +20,7 @@ const AddFacilityModal: React.FunctionComponent<Props> = (props) => {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const customFormats = {
-    'postal-code': /[a-z]\d[a-z]\s?\d[a-z]\d/i,
-    duns: /^\d{9}$/
+    'postal-code': /[a-z]\d[a-z]\s?\d[a-z]\d/i
   };
 
   const CUSTOM_FIELDS = {

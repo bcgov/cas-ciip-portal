@@ -8,7 +8,7 @@ interface Props extends FieldProps<number> {
 }
 
 /**
- * Fetches the list of fuels and their row ids
+ * Fetches the list of organisations and their row ids
  */
 export const OrganisationRowIdFieldComponent: React.FunctionComponent<Props> = (
   props
