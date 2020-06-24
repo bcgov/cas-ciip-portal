@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
+import {Card} from 'react-bootstrap';
 import {addOrganisationQueryResponse} from 'addOrganisationQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import AddOrganisation from 'containers/Organisations/AddOrganisation';
@@ -43,6 +44,46 @@ class AddOrganisationPage extends Component<Props> {
         title="Add Organisation"
         allowedGroups={ALLOWED_GROUPS}
       >
+        <Card>
+          <Card.Header as="h5">Attention</Card.Header>
+          <Card.Body>
+            <Card.Text>
+              <p>
+                Manually adding an organisation via this UI has the potential to
+                create duplicate and swrs-orphaned organisations in the data.
+              </p>
+              <p>
+                This is an escape hatch and should be used as a last resort in
+                the case that a reporter will not be able to meet the
+                application deadline without it.
+              </p>
+              <p>
+                Adding an organisation in this way will allow the reporter to
+                apply for CIIP, but will also create an organisation that has no
+                relation to swrs data.
+              </p>
+              <br />
+              <p>Some steps to take before adding an organisation manually:</p>
+              <ol>
+                <li>
+                  Search below for the organisation, in case the reporter was
+                  simply making typos when searching for an existing
+                  organisation.
+                </li>
+                <li>
+                  If you have reason to believe that a swrs report containing
+                  information for this organisation is going to be received in
+                  the near future, instruct the reporter to try applying again
+                  in a few days when their swrs report has been received.
+                </li>
+                <li>
+                  Attempt some external investigation to find out why this
+                  organisation is missing.
+                </li>
+              </ol>
+            </Card.Text>
+          </Card.Body>
+        </Card>
         <AddOrganisation
           query={query}
           orgInput={this.state.orgInput}
