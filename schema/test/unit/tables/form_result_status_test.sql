@@ -32,7 +32,7 @@ insert into ggircs_portal.organisation(id) overriding system value values(999), 
 insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.application_revision(application_id, version_number) overriding system value values(999, 1), (999, 2), (1000, 1), (1000,2), (1000,3);
-insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id) overriding system value values(999, 999, 999), (1000, 1000, 1000);
+insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id, 'status') overriding system value values(999, 999, 999, 'approved'), (1000, 1000, 1000, 'approved');
 insert into ggircs_portal.form_result(id, form_id, application_id, version_number, form_result) overriding system value
   values (999, 1, 999, 1, '{}'), (1000, 1, 1000, 1, '{}');
 insert into ggircs_portal.form_result_status(id, application_id, form_id, form_result_status) overriding system value
@@ -141,6 +141,17 @@ select throws_like(
   $$,
   'permission denied%',
     'Industry User cannot delete rows from form_result_status_table'
+);
+
+set role ciip_administrator;
+update ggircs_portal.ciip_user_organisation set status='pending' where id=999;
+
+set role ciip_industry_user;
+select is_empty(
+  $$
+    select * from ggircs_portal.form_result_status where application_id= 999;
+  $$,
+  'Industry User cannot access form_result_status where org access has not been approved'
 );
 
 -- CIIP_ANALYST

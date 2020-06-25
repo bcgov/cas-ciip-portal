@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(39);
+select plan(40);
 
 -- Table exists
 select has_table(
@@ -97,7 +97,7 @@ values (999, '11111111-1111-1111-1111-111111111111'), (1000, '22222222-2222-2222
 insert into ggircs_portal.organisation(id) overriding system value values(999), (1000);
 insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
-insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id) overriding system value values(999, 999, 999), (1000, 1000, 1000);
+insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id, status) overriding system value values(999, 999, 999, 'approved'), (1000, 1000, 1000, 'approved');
 insert into ggircs_portal.review_comment(id, application_id, form_id, description, comment_type, created_by, resolved) overriding system value
   values (999, 999, 1, 'User can see this', 'requested change', 999, false), (1000, 999, 1, 'User cannot see this', 'internal', 1,false);
 
@@ -186,6 +186,17 @@ select throws_like(
   $$,
   'permission denied%',
     'Industry User cannot delete rows from table_review_comment'
+);
+
+set role ciip_administrator;
+update ggircs_portal.ciip_user_organisation set status='pending' where id=999;
+
+set role ciip_industry_user;
+select is_empty(
+  $$
+    select * from ggircs_portal.review_comment where application_id= 999;
+  $$,
+  'Industry User cannot access review_comments where org access has not been approved'
 );
 
 

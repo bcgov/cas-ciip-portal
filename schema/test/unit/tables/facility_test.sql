@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(18);
+select plan(19);
 
 create role test_superuser superuser;
 
@@ -143,6 +143,17 @@ select throws_like(
   $$,
   'permission denied%',
   'ciip_industry_user cannot delete data in facility table'
+);
+
+set role ciip_administrator;
+update ggircs_portal.ciip_user_organisation set status='pending' where id=999;
+
+set role ciip_industry_user;
+select is_empty(
+  $$
+    select * from ggircs_portal.facility where id= 999;
+  $$,
+  'Industry User cannot access facilities where org access has not been approved'
 );
 
 -- CIIP ANALYST

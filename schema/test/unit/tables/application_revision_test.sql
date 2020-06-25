@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(21);
+select plan(22);
 
 -- Table exists
 select has_table(
@@ -35,7 +35,7 @@ values (999, '11111111-1111-1111-1111-111111111111'), (1000, '22222222-2222-2222
 insert into ggircs_portal.organisation(id) overriding system value values(999), (1000);
 insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
-insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id) overriding system value values(999, 999, 999), (1000, 1000, 1000);
+insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id, status) overriding system value values(999, 999, 999, 'approved'), (1000, 1000, 1000, 'approved');
 insert into ggircs_portal.application_revision(application_id, version_number) overriding system value values(999, 1), (1000, 1);
 
 insert into ggircs_portal.ciip_user(id, uuid, email_address) overriding system value values (1001, '33333333-3333-3333-3333-333333333333', 'certifier@test.test');
@@ -143,6 +143,17 @@ select is_empty(
     select * from ggircs_portal.application_revision where application_id=1000 and version_number = 1 and legal_disclaimer_accepted=true;
   $$,
     'Industry User cannot update rows in table_application_revision that are not connected by application_revision -> application -> facility -> ciip_user_organisation -> user -> user.uuid = session.sub'
+);
+
+set role ciip_administrator;
+update ggircs_portal.ciip_user_organisation set status='pending' where id=999;
+
+set role ciip_industry_user;
+select is_empty(
+  $$
+    select * from ggircs_portal.application_revision where application_id= 999;
+  $$,
+  'Industry User application_revision where org access has not been approved'
 );
 
 -- CIIP_ANALYST
