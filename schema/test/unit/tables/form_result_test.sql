@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(22);
+select plan(23);
 
 select has_table(
     'ggircs_portal', 'form_result',
@@ -32,7 +32,7 @@ insert into ggircs_portal.organisation(id) overriding system value values(999), 
 insert into ggircs_portal.facility(id, organisation_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.application(id, facility_id) overriding system value values(999, 999), (1000, 1000);
 insert into ggircs_portal.application_revision(application_id, version_number) overriding system value values(999, 1), (999, 2), (1000, 1), (1000,2), (1000,3);
-insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id) overriding system value values(999, 999, 999), (1000, 1000, 1000);
+insert into ggircs_portal.ciip_user_organisation(id, user_id, organisation_id, status) overriding system value values(999, 999, 999, 'approved'), (1000, 1000, 1000, 'approved');
 insert into ggircs_portal.form_result(id, form_id, application_id, version_number, form_result) overriding system value
   values (999, 1, 999, 1, '{}'), (1000, 1, 1000, 1, '{}');
 
@@ -145,6 +145,17 @@ select throws_like(
   $$,
   'permission denied%',
     'Industry User cannot delete rows from table_form_result'
+);
+
+set role ciip_administrator;
+update ggircs_portal.ciip_user_organisation set status='pending' where id=999;
+
+set role ciip_industry_user;
+select is_empty(
+  $$
+    select * from ggircs_portal.form_result where application_id= 999;
+  $$,
+  'Industry User cannot access form_results where org access has not been approved'
 );
 
 -- attempt to update a row that user does not have access to
