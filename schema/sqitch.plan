@@ -142,3 +142,6 @@ search_functions/search_certification_requests [search_functions/search_certific
 policies/facility_policies [policies/facility_policies@v1.0.0-rc.5] 2020-06-25T18:19:13Z Dylan Leard <dylan@button.is> # Migration: add organisation request approved requirement
 database_functions/get_valid_applications_for_reporter [database_functions/get_valid_applications_for_reporter@v1.0.0-rc.5] 2020-06-25T18:22:04Z Dylan Leard <dylan@button.is> # Migration: add organisation request approved requirement to rls
 computed_columns/facility_has_swrs_report [computed_columns/facility_has_swrs_report@v1.0.0-rc.5 function_opened_reporting_year] 2020-06-24T23:54:56Z Dylan Leard <dylan@button.is> # Migration: removes reporting_year parameter & retrieves current year via a function
+swrs_functions/import_swrs_organisation_facility [swrs_functions/import_swrs_organisation_facility@v1.0.0-rc.5] 2020-06-25T21:18:57Z Dylan Leard <dylan@button.is> # Migration: update on conflict columns
+tables/organisation_001 [tables/organisation] 2020-06-25T21:27:04Z Dylan Leard <dylan@button.is> # Migration: add uindex for swrs_organisation_id
+tables/facility_001 [tables/facility] 2020-06-25T21:36:21Z Dylan Leard <dylan@button.is> # Migration: add unique index for swrs_facility_id

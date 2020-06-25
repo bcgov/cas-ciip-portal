@@ -28,9 +28,9 @@ begin
            business_legal_name, cra_business_number from swrs.organisation
     join latest_reports on report_id = latest_reports.id
     join swrs.report on organisation.report_id = report.id
-  ) on conflict(swrs_report_id) do update
+  ) on conflict(swrs_organisation_id) do update
   set report_id = excluded.report_id,
-      swrs_organisation_id = excluded.swrs_organisation_id,
+      swrs_report_id = excluded.swrs_report_id,
       operator_name = excluded.operator_name,
       cra_business_number = excluded.cra_business_number;
 
@@ -70,10 +70,10 @@ begin
     join swrs.report on facility.report_id = report.id
     left join swrs.identifier on facility.id = identifier.facility_bcghgid_id
     join ggircs_portal.organisation on ggircs_portal.organisation.swrs_organisation_id = swrs.report.swrs_organisation_id
-  ) on conflict(swrs_report_id) do update
+  ) on conflict(swrs_facility_id) do update
   set organisation_id = excluded.organisation_id,
       report_id = excluded.report_id,
-      swrs_facility_id = excluded.swrs_facility_id,
+      swrs_report_id = excluded.swrs_report_id,
       facility_name = excluded.facility_name,
       facility_type = excluded.facility_type,
       bcghgid = excluded.bcghgid;
