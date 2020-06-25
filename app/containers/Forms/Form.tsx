@@ -23,6 +23,7 @@ import ProductRowIdField from './ProductRowIdField';
 import FuelRowIdField from './FuelRowIdField';
 import NumberField from './NumberField';
 import EmissionCategoryRowIdField from './EmissionCategoryRowIdField';
+import ProblemReportField from './ProblemReportField';
 
 interface Props {
   query: Form_query;
@@ -50,7 +51,8 @@ const CUSTOM_FIELDS = {
   emissionCategoryRowId: (props) => (
     <EmissionCategoryRowIdField query={props.formContext.query} {...props} />
   ),
-  NumberField
+  NumberField,
+  ProblemReportField
 };
 
 export const FormComponent: React.FunctionComponent<Props> = ({

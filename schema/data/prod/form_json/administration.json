@@ -2,6 +2,9 @@
   "schema": {
     "type": "object",
     "properties": {
+      "comments": {
+        "type":"string"
+      },
       "facility": {
         "type": "object",
         "title": "Facility Information",
@@ -154,6 +157,13 @@
     }
   },
   "uiSchema": {
+    "comments": {
+      "ui:field": "ProblemReportField",
+      "ui:options": {
+        "label": false
+      },
+      "ui:col-md": 12
+    },
     "facility": {
       "ui:order": [
         "facilityName",
@@ -197,6 +207,7 @@
       }
     },
     "ui:order": [
+      "comments",
       "operator",
       "operationalRepresentative",
       "facility"

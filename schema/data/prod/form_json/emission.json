@@ -2,6 +2,9 @@
   "schema": {
     "type": "object",
     "properties": {
+      "comments": {
+        "type":"string"
+      },
       "sourceTypes": {
         "title": "Source Types",
         "minItems": 1,
@@ -59,6 +62,17 @@
     }
   },
   "uiSchema": {
+    "comments": {
+      "ui:field": "ProblemReportField",
+      "ui:options": {
+        "label": false
+      },
+      "ui:col-md": 12
+    },
+    "ui:order": [
+      "comments",
+      "sourceTypes"
+    ],
     "ui:className": "emission-form no-col-padding",
     "ui:field": "emission",
     "sourceTypes": {
