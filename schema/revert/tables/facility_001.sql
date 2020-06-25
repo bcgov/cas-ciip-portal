@@ -2,6 +2,6 @@
 
 begin;
 
--- Unique indexes cannot be dropped, migration will be rolled back by original revert
+drop index facility_swrs_facility_id_uindex;
 
 commit;
