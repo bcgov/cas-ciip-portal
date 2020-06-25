@@ -2,6 +2,6 @@
 
 begin;
 
-drop index facility_swrs_facility_id_uindex;
+drop index ggircs_portal.facility_swrs_facility_id_uindex;
 
 commit;

@@ -2,6 +2,6 @@
 
 begin;
 
-drop index organisation_swrs_organisation_id_uindex;
+drop index ggircs_portal.organisation_swrs_organisation_id_uindex;
 
 commit;
