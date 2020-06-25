@@ -7,6 +7,7 @@
     "test": "jest",
     "test:e2e-snapshots": "percy exec -- cypress run",
     "test:e2e": "cypress run",
+    "precypress": "node cypress/support/listAuthenticatedPages.js",
     "cypress": "cypress open",
     "cucumber:pretty": "cucumber-js --format node_modules/cucumber-pretty --format-options '{\"descriptionEnabled\":true}'",
     "predev": "npm run build:schema && npm run build:relay",
