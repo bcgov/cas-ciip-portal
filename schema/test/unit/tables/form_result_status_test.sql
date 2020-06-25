@@ -3,7 +3,7 @@ create extension if not exists pgtap;
 reset client_min_messages;
 
 begin;
-select plan(18);
+select plan(19);
 
 select has_table(
     'ggircs_portal', 'form_result_status',
