@@ -13,7 +13,9 @@ const mutation = graphql`
         id
         facilityName
       }
-      clientMutationId
+      query {
+        ...AddFacility_query
+      }
     }
   }
 `;

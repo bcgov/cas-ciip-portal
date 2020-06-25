@@ -28,5 +28,15 @@ describe('When logged in as an analyst', () => {
     cy.visit('/analyst');
     cy.url().should('include', '/analyst');
     cy.get('.card-body');
+    cy.contains('Add new organisation').click();
+    cy.url().should('include', '/analyst/add-organisation');
+    cy.visit('/analyst');
+    cy.url().should('include', '/analyst');
+    cy.get('.card-body');
+    cy.contains('Add new facility').click();
+    cy.url().should('include', '/analyst/add-facility');
+    cy.visit('/analyst');
+    cy.url().should('include', '/analyst');
+    cy.get('.card-body');
   });
 });

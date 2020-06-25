@@ -2,11 +2,8 @@ import React, {useEffect, useState} from 'react';
 import PaginationBar from 'components/PaginationBar';
 import {graphql, createRefetchContainer, RelayRefetchProp} from 'react-relay';
 import SearchTableLayout from 'components/SearchTableLayout';
-import createFacilityMutation from 'mutations/facility/createFacilityMutation';
-import AddOrganisationFacility from 'components/AddOrganisationFacility';
 import {FacilitiesListContainer_query} from 'FacilitiesListContainer_query.graphql';
 import FacilitiesRowItemContainer from './FacilitiesRowItemContainer';
-import {useRouter} from 'next/router';
 
 interface Props {
   direction: string;
@@ -29,13 +26,6 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   query
 }) => {
   const {edges} = query.searchAllFacilities;
-  const router = useRouter();
-  // Allows for undefined organisation (coming from subheader My Applications)
-  // TODO: Refactor facilities-list / organisations pages
-  let organisation;
-  if (router.query.organisationId) organisation = query.organisation;
-  const facilityNumber = query.allFacilities.totalCount;
-  let [facilityCount, updateFacilityCount] = useState(facilityNumber);
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
   const maxResultsPerPage = 10;
@@ -45,7 +35,6 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
       searchValue,
       orderByField,
       direction,
-      facilityCount,
       maxResultsPerPage,
       offsetValue
     };
@@ -74,13 +63,6 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
     </tbody>
   );
 
-  const handleAddFacility = async (variables) => {
-    const {environment} = relay;
-    const response = await createFacilityMutation(environment, variables);
-    console.log(response);
-    updateFacilityCount((facilityCount += 1));
-  };
-
   const totalFacilityCount =
     query?.searchAllFacilities?.edges[0]?.node?.totalFacilityCount || 0;
 
@@ -99,12 +81,8 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         maxResultsPerPage={maxResultsPerPage}
         totalCount={totalFacilityCount}
       />
-      {organisation ? (
-        <AddOrganisationFacility
-          organisationRowId={organisation.rowId}
-          onAddFacility={handleAddFacility}
-        />
-      ) : null}
+      If you cannot find your facility in the list, please{' '}
+      <a href="mailto:ghgregulator@gov.bc.ca">contact CAS</a> for assistance.
     </>
   );
 };
@@ -119,9 +97,7 @@ export default createRefetchContainer(
           searchValue: {type: "String"}
           orderByField: {type: "String"}
           direction: {type: "String"}
-          organisationId: {type: "ID!"}
           organisationRowId: {type: "String"}
-          facilityCount: {type: "Int"}
           offsetValue: {type: "Int"}
           maxResultsPerPage: {type: "Int"}
         ) {
@@ -143,15 +119,6 @@ export default createRefetchContainer(
             }
           }
         }
-        # TODO: This is here to trigger a refactor as updating the edge / running the query in the mutation is not triggering a refresh
-        # Find a way to not pull the totalcount?
-        allFacilities(first: $facilityCount) {
-          totalCount
-        }
-        organisation(id: $organisationId) {
-          id
-          rowId
-        }
       }
     `
   },
@@ -161,9 +128,7 @@ export default createRefetchContainer(
       $searchValue: String
       $orderByField: String
       $direction: String
-      $organisationId: ID!
       $organisationRowId: String
-      $facilityCount: Int
       $offsetValue: Int
       $maxResultsPerPage: Int
     ) {
@@ -175,8 +140,6 @@ export default createRefetchContainer(
             searchField: $searchField
             searchValue: $searchValue
             organisationRowId: $organisationRowId
-            organisationId: $organisationId
-            facilityCount: $facilityCount
             offsetValue: $offsetValue
             maxResultsPerPage: $maxResultsPerPage
           )

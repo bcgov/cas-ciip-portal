@@ -238,6 +238,36 @@ Array [
                     Organisation access requests
                   </a>
                 </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Add new organisation
+                  </a>
+                </div>
+                <div
+                  className="list-group-item"
+                  data-rb-event-key={null}
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <a
+                    className="card-link"
+                    href="#"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                  >
+                    Add new facility
+                  </a>
+                </div>
               </div>
             </div>
             <div
@@ -1375,7 +1405,7 @@ Array [
               >
                 <a
                   className="jsx-1103754433"
-                  href="/reporter/facilities?organisationId="
+                  href="/reporter/facilities"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -1634,27 +1664,15 @@ Array [
                   <hr
                     className="jsx-3491480756"
                   />
-                  <span
-                    style={
-                      Object {
-                        "marginTop": "20px",
-                      }
-                    }
+                  If you cannot find your operator in the list, please
+                   
+                  <a
+                    className="jsx-3491480756"
+                    href="mailto:ghgregulator@gov.bc.ca"
                   >
-                    Can't find your Operator in the list?
-                  </span>
-                  <br />
-                  <span
-                    className="jsx-67075016"
-                    id="add-organisation"
-                    onClick={[Function]}
-                  >
-                    <span
-                      className="jsx-67075016 blue"
-                    >
-                      Click here to add a new Operator.
-                    </span>
-                  </span>
+                    contact CAS
+                  </a>
+                   for assistance.
                 </div>
               </div>
             </div>

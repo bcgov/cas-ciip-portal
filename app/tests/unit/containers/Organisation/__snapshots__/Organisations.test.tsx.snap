@@ -224,9 +224,15 @@ exports[`Organisations should announce there are certification requests to view 
         <hr
           className="jsx-3491480756"
         />
-        <AddOrganisationFacility
-          onAddOrganisation={[Function]}
-        />
+        If you cannot find your operator in the list, please
+         
+        <a
+          className="jsx-3491480756"
+          href="mailto:ghgregulator@gov.bc.ca"
+        >
+          contact CAS
+        </a>
+         for assistance.
         <JSXStyle
           id="3491480756"
         >
@@ -380,9 +386,15 @@ exports[`Organisations should render no organisations if the user has not reques
         <hr
           className="jsx-3491480756"
         />
-        <AddOrganisationFacility
-          onAddOrganisation={[Function]}
-        />
+        If you cannot find your operator in the list, please
+         
+        <a
+          className="jsx-3491480756"
+          href="mailto:ghgregulator@gov.bc.ca"
+        >
+          contact CAS
+        </a>
+         for assistance.
         <JSXStyle
           id="3491480756"
         >
@@ -591,9 +603,15 @@ exports[`Organisations should render the user's requested organisations 1`] = `
         <hr
           className="jsx-3491480756"
         />
-        <AddOrganisationFacility
-          onAddOrganisation={[Function]}
-        />
+        If you cannot find your operator in the list, please
+         
+        <a
+          className="jsx-3491480756"
+          href="mailto:ghgregulator@gov.bc.ca"
+        >
+          contact CAS
+        </a>
+         for assistance.
         <JSXStyle
           id="3491480756"
         >

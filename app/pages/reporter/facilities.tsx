@@ -20,7 +20,6 @@ class FacilitiesList extends Component<Props> {
       $direction: String
       $searchField: String
       $searchValue: String
-      $organisationId: ID!
       $organisationRowId: String
       $offsetValue: Int
       $maxResultsPerPage: Int
@@ -32,7 +31,6 @@ class FacilitiesList extends Component<Props> {
             direction: $direction
             searchField: $searchField
             searchValue: $searchValue
-            organisationId: $organisationId
             organisationRowId: $organisationRowId
             offsetValue: $offsetValue
             maxResultsPerPage: $maxResultsPerPage

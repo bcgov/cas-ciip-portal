@@ -18,7 +18,13 @@ export const OrganisationComponent = (props) => {
   return (
     <Dropdown.Item
       onSelect={() =>
-        props.selectOrg(organisation.operatorName, organisation.rowId)
+        props.selectOrg(
+          organisation.operatorName,
+          organisation.rowId,
+          organisation.operatorTradeName,
+          organisation.craBusinessNumber,
+          organisation.swrsReportId
+        )
       }
     >
       {organisation.operatorName}
@@ -31,6 +37,9 @@ export default createFragmentContainer(OrganisationComponent, {
     fragment Organisation_organisation on Organisation {
       rowId
       operatorName
+      operatorTradeName
+      craBusinessNumber
+      swrsReportId
     }
   `
 });

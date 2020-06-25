@@ -15,9 +15,13 @@ const addFacilitySchema: JSONSchema6 = {
     bcghgid: {
       type: 'string',
       title: 'BCGHG ID Number'
+    },
+    organisationRowId: {
+      title: 'Parent Operator',
+      type: 'integer'
     }
   },
-  required: ['facilityName', 'facilityType', 'bcghgid']
+  required: ['facilityName', 'facilityType', 'bcghgid', 'organisationRowId']
 };
 
 export default addFacilitySchema;
