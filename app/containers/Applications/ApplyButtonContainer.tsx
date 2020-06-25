@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Button, Modal} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
@@ -24,6 +24,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   } = applyButtonDetails;
   const {hasSwrsReport, rowId} = facilityByFacilityId;
   const applicationId = applyButtonDetails?.applicationByApplicationId?.id;
+  const [showMissingReportModal, setShowMissingReportModal] = useState(false);
 
   const router = useRouter();
 
@@ -58,10 +59,74 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
       });
     };
 
+    const missingReportModal = (
+      <Modal
+        show={showMissingReportModal}
+        onHide={() => setShowMissingReportModal(false)}
+      >
+        <Modal.Header>
+          <Modal.Title>Attention: Missing Emissions Report</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            We can&apos;t find a copy of your company&apos;s latest emissions
+            report in our records.
+          </p>
+          <p>
+            Please note that it may take approximately{' '}
+            <strong>10 business days</strong> to import any emissions report
+            data submitted through the Single Window Reporting System into your
+            CleanBC Industrial Incentive Program (CIIP) application.
+          </p>
+          <p>
+            You can either cancel your application now and return at least 10
+            business days after you have submitted your emissions report, or
+            proceed without an emission report.{' '}
+            <strong>
+              Please note that If you choose to proceed without importing data
+              from your emissions report, then you will have to input some of
+              the same data captured in the Single Window System.
+            </strong>
+          </p>
+          <p>
+            Submission of a CIIP application does not guarantee compliance under
+            the <em>Greenhouse Gas Industrial Reporting and Control Act</em> or
+            its regulations.
+          </p>
+          <p>
+            For any questions, please{' '}
+            <a href="mailto: ghgregulator@gov.bc.ca">contact</a> the Climate
+            Action Secretariat at GHGRegulator@gov.bc.ca
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={startApplication}>
+            Begin Application Anyway
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() => setShowMissingReportModal(false)}
+          >
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+
+    const checkForSwrsReport = () => {
+      if (hasSwrsReport) startApplication();
+      else {
+        setShowMissingReportModal(true);
+      }
+    };
+
     return (
-      <Button variant="primary" onClick={startApplication}>
-        Apply for CIIP for this facility
-      </Button>
+      <>
+        {missingReportModal}
+        <Button variant="primary" onClick={checkForSwrsReport}>
+          Apply for CIIP for this facility
+        </Button>
+      </>
     );
   }
 
@@ -137,7 +202,7 @@ export default createFragmentContainer(ApplyButton, {
       applicationRevisionStatus
       facilityByFacilityId {
         rowId
-        hasSwrsReport(reportingYear: 2018)
+        hasSwrsReport
       }
     }
   `,

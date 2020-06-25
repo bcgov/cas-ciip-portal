@@ -16982,18 +16982,7 @@
             {
               "name": "hasSwrsReport",
               "description": null,
-              "args": [
-                {
-                  "name": "reportingYear",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                }
-              ],
+              "args": [],
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",

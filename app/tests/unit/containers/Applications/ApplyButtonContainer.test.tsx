@@ -27,7 +27,38 @@ describe('The apply button', () => {
 
     expect(r).toMatchSnapshot();
     expect(r.exists('Button')).toBe(true);
-    expect(r.find('Button').text()).toBe('Apply for CIIP for this facility');
+    expect(r.find('Button').at(2).text()).toBe(
+      'Apply for CIIP for this facility'
+    );
+  });
+
+  it('should render a warning modal if no swrs report exists', () => {
+    const r = shallow(
+      <ApplyButton
+        relay={null}
+        applyButtonDetails={{
+          ' $refType': 'ApplyButtonContainer_applyButtonDetails',
+          applicationByApplicationId: null,
+          applicationRevisionStatus: null,
+          facilityByFacilityId: {
+            rowId: 1,
+            hasSwrsReport: false
+          }
+        }}
+        query={{
+          ' $refType': 'ApplyButtonContainer_query',
+          openedReportingYear: {
+            reportingYear: 2018
+          }
+        }}
+      />
+    );
+
+    expect(r).toMatchSnapshot();
+    expect(r.exists('ModalTitle')).toBe(true);
+    expect(r.find('ModalTitle').text()).toBe(
+      'Attention: Missing Emissions Report'
+    );
   });
 
   it('should render a disabled button if no applicationByApplicationId exists and the application window is closed', () => {
