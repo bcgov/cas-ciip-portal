@@ -126,6 +126,90 @@ exports[`The apply button should render a disabled button if no applicationByApp
 </Button>
 `;
 
+exports[`The apply button should render a warning modal if no swrs report exists 1`] = `
+<Fragment>
+  <Bootstrap(Modal)
+    onHide={[Function]}
+    show={false}
+  >
+    <ModalHeader
+      closeButton={false}
+      closeLabel="Close"
+    >
+      <ModalTitle>
+        Attention: Missing Emissions Report
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      <p>
+        We can't find a copy of your company's latest emissions report in our records.
+      </p>
+      <p>
+        Please note that it may take approximately
+         
+        <strong>
+          10 business days
+        </strong>
+         to import any emissions report data submitted through the Single Window Reporting System into your CleanBC Industrial Incentive Program (CIIP) application.
+      </p>
+      <p>
+        You can either cancel your application now and return at least 10 business days after you have submitted your emissions report, or proceed without an emission report.
+         
+        <strong>
+          Please note that If you choose to proceed without importing data from your emissions report, then you will have to input some of the same data captured in the Single Window System.
+        </strong>
+      </p>
+      <p>
+        Submission of a CIIP application does not guarantee compliance under the 
+        <em>
+          Greenhouse Gas Industrial Reporting and Control Act
+        </em>
+         or its regulations.
+      </p>
+      <p>
+        For any questions, please
+         
+        <a
+          href="mailto: ghgregulator@gov.bc.ca"
+        >
+          contact
+        </a>
+         the Climate Action Secretariat at GHGRegulator@gov.bc.ca
+      </p>
+    </ModalBody>
+    <ModalFooter>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="danger"
+      >
+        Begin Application Anyway
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="secondary"
+      >
+        Cancel
+      </Button>
+    </ModalFooter>
+  </Bootstrap(Modal)>
+  <Button
+    active={false}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+    variant="primary"
+  >
+    Apply for CIIP for this facility
+  </Button>
+</Fragment>
+`;
+
 exports[`The apply button should render an Apply For CIIP button if no applicationByApplicationId exists and the application window is open 1`] = `
 <Fragment>
   <Bootstrap(Modal)

@@ -100,7 +100,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={async () => startApplication}>
+          <Button variant="danger" onClick={startApplication}>
             Begin Application Anyway
           </Button>
           <Button
