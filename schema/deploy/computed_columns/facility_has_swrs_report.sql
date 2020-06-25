@@ -3,7 +3,7 @@
 
 begin;
 
-drop function ggircs_portal.facility_has_swrs_report;
+drop function if exists ggircs_portal.facility_has_swrs_report;
 
 create or replace function ggircs_portal.facility_has_swrs_report(facility ggircs_portal.facility)
   returns boolean
