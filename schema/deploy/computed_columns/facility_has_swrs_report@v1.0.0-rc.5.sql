@@ -1,8 +1,7 @@
--- Revert ggircs-portal:computed_columns/facility_has_swrs_report_001 from pg
+-- Deploy ggircs-portal:function_facility_has_swrs_report to pg
+-- requires: table_facility
 
 begin;
-
-drop function ggircs_portal.facility_has_swrs_report;
 
 create or replace function ggircs_portal.facility_has_swrs_report(facility ggircs_portal.facility, reporting_year integer)
   returns boolean
