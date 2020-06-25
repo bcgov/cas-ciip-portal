@@ -11,6 +11,7 @@ $fn$
       on o.id = cuo.organisation_id
     join ggircs_portal.ciip_user cu
       on cuo.user_id = cu.id
+      and cuo.status = 'approved'
       and cu.uuid = (select sub from ggircs_portal.session());
 $fn$ language sql strict stable;
 

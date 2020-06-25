@@ -139,3 +139,4 @@ trigger_functions/run_graphile_worker_job [trigger_functions/run_graphile_worker
 database_functions/graphile_worker_job_definer [database_functions/graphile_worker_job_definer@v1.0.0-rc.5] 2020-06-22T16:36:16Z Dylan Leard <dylan@button.is> # change to graphile_worker_job_definer adds add_job() throttling
 search_functions/search_all_facilities [search_functions/search_all_facilities@v1.0.0-rc.5] 2020-06-25T16:08:13Z Dylan Leard <dylan@button.is> # Migration: add guard if clause, fixes failure with null data
 search_functions/search_certification_requests [search_functions/search_certification_requests@v1.0.0-rc.5] 2020-06-25T16:09:26Z Dylan Leard <dylan@button.is> # Migration: add guard if clause, fixes failure on null data
+policies/facility_policies [policies/facility_policies@v1.0.0-rc.5] 2020-06-25T18:19:13Z Dylan Leard <dylan@button.is> # Migration: add organisation request approved requirement
