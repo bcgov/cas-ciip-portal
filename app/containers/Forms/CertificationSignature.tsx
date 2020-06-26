@@ -1,7 +1,8 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
+import {useRouter} from 'next/router';
 import {createFragmentContainer, RelayProp} from 'react-relay';
 import SignaturePad from 'react-signature-canvas';
-import {Button, Container, Row, Col} from 'react-bootstrap';
+import {Button, Container, Row, Col, Toast} from 'react-bootstrap';
 import updateCertificationUrlMutation from 'mutations/form/updateCertificationUrlMutation';
 import {updateCertificationUrlMutationResponse} from '__generated__/updateCertificationUrlMutation.graphql';
 
@@ -21,6 +22,8 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
   reportSubmissions
 }) => {
   const sigCanvas: any = useRef({});
+  const [showToast, setShowToast] = useState(false);
+  const router = useRouter();
 
   const readImage = (e) => {
     e.persist();
@@ -63,7 +66,7 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
     const responses = await saveSignatures(signature);
     if (reportSubmissions) {
       reportSubmissions(responses);
-    }
+    } else setShowToast(true);
   };
 
   return (
@@ -89,7 +92,20 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
             />
           )}
         </Col>
-        <Col md={{span: 3, offset: 2}}>
+        <Col md={3}>
+          <Toast
+            autohide
+            show={showToast}
+            delay={2000}
+            onClose={async () => router.push('/certifier/requests')}
+          >
+            <Toast.Body style={{textAlign: 'center'}}>
+              <p style={{color: 'green'}}>Signed successfully!</p>
+              <p style={{color: 'black'}}>Redirecting to request list..</p>
+            </Toast.Body>
+          </Toast>
+        </Col>
+        <Col md={3}>
           {!submitted && (
             <>
               <Button
