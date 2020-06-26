@@ -39,12 +39,61 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
       />
     </Col>
     <Col
-      md={
-        Object {
-          "offset": 2,
-          "span": 3,
+      md={3}
+    >
+      <Toast
+        animation={true}
+        autohide={true}
+        delay={2000}
+        onClose={[Function]}
+        show={false}
+        transition={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": Object {
+              "appear": false,
+              "in": false,
+              "mountOnEnter": false,
+              "timeout": 300,
+              "unmountOnExit": false,
+            },
+            "displayName": "Fade",
+            "render": [Function],
+          }
         }
-      }
+      >
+        <ToastBody
+          style={
+            Object {
+              "textAlign": "center",
+            }
+          }
+        >
+          <p
+            className="jsx-2877110858"
+            style={
+              Object {
+                "color": "green",
+              }
+            }
+          >
+            Signed successfully!
+          </p>
+          <p
+            className="jsx-2877110858"
+            style={
+              Object {
+                "color": "black",
+              }
+            }
+          >
+            Redirecting to request list..
+          </p>
+        </ToastBody>
+      </Toast>
+    </Col>
+    <Col
+      md={3}
     >
       <Button
         active={false}
