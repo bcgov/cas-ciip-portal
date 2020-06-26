@@ -16,7 +16,7 @@
     "build:relay": "relay-compiler --verbose",
     "build:next": "next build",
     "build:storybook": "build-storybook -o static/storybook",
-    "start": "NODE_ENV=production node server",
+    "start": "NODE_ENV=production node --unhandled-rejections=strict server",
     "format": "xo --fix",
     "lint": "xo",
     "prestorybook": "npm run build:relay",
