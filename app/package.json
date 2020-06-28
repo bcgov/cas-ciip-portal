@@ -184,7 +184,7 @@
     "@types/jest": "^25.2.1",
     "@types/react-jsonschema-form": "^1.7.2",
     "@types/react-relay": "^7.0.7",
-    "@types/relay-runtime": "^8.0.10",
+    "@types/relay-runtime": "^9.1.5",
     "@types/relay-test-utils": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
