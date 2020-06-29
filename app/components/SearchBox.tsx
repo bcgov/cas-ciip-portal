@@ -6,7 +6,7 @@ import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
-  handleEvent: (action: string, value?: string) => Promise<void>;
+  handleEvent: (action: string, value?: string) => any;
   dropdownSortItems: string[];
   displayNameToColumnNameMap: object;
 }
