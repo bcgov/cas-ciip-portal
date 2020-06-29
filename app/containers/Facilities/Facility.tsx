@@ -8,18 +8,17 @@ export const FacilityComponent = (props) => {
     return null;
   }
 
-  if (
-    !facility.facilityName
-      .toLowerCase()
-      .includes(props.facilityInput.toLowerCase())
-  )
+  let {facilityName} = facility;
+
+  if (!facility.facilityName) facilityName = 'UNDEFINED FACILITY NAME';
+  if (!facilityName.toLowerCase().includes(props.facilityInput.toLowerCase()))
     return null;
 
   return (
     <Dropdown.Item
       onSelect={() =>
         props.selectFacility(
-          facility.facilityName,
+          facilityName,
           facility.rowId,
           facility.organisationByOrganisationId.operatorName,
           facility.facilityType,
@@ -28,7 +27,7 @@ export const FacilityComponent = (props) => {
         )
       }
     >
-      {facility.facilityName}
+      {facilityName}
     </Dropdown.Item>
   );
 };
