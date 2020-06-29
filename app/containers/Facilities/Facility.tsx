@@ -10,7 +10,8 @@ export const FacilityComponent = (props) => {
 
   let {facilityName} = facility;
 
-  if (!facility.facilityName) facilityName = 'UNDEFINED FACILITY NAME';
+  if (!facility.facilityName)
+    facilityName = `empty name (swrs facility id = ${facility.swrsFacilityId})`;
   if (!facilityName.toLowerCase().includes(props.facilityInput.toLowerCase()))
     return null;
 
@@ -43,6 +44,7 @@ export default createFragmentContainer(FacilityComponent, {
       facilityType
       bcghgid
       swrsReportId
+      swrsFacilityId
     }
   `
 });
