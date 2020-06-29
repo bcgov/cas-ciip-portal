@@ -41,7 +41,7 @@ exports[`The Confirmation Component matches the snapshot 1`] = `
     <Col
       md={
         Object {
-          "offset": 3,
+          "offset": 2,
           "span": 3,
         }
       }
