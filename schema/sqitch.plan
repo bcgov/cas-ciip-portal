@@ -146,3 +146,4 @@ swrs_functions/import_swrs_organisation_facility [swrs_functions/import_swrs_org
 tables/organisation_001 [tables/organisation] 2020-06-25T21:27:04Z Dylan Leard <dylan@button.is> # Migration: add uindex for swrs_organisation_id
 tables/facility_001 [tables/facility] 2020-06-25T21:36:21Z Dylan Leard <dylan@button.is> # Migration: add unique index for swrs_facility_id
 @v1.0.0-rc.8 2020-06-26T15:55:59Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.8
+tables/application_001 [tables/application] 2020-06-29T17:43:45Z Dylan Leard <dylan@button.is> # Migration: add uindex for application table on facility_id + reporting_year
