@@ -6,7 +6,7 @@ import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
-  handleEvent: (action: string, value?: string) => any;
+  handleEvent: (action: string, column?: string, value?: string) => void;
   dropdownSortItems: string[];
   displayNameToColumnNameMap: object;
 }
@@ -18,17 +18,16 @@ const SearchBox: React.FunctionComponent<Props> = ({
 }) => {
   const handleSubmit = async (e: IChangeEvent) => {
     if (e.formData.searchField) {
-      await handleEvent(
-        'applySearchField',
-        displayNameToColumnNameMap[e.formData.searchField]
+      handleEvent(
+        'applySearch',
+        displayNameToColumnNameMap[e.formData.searchField],
+        e.formData.searchValue
       );
-      handleEvent('applySearchValue', e.formData.searchValue);
     }
   };
 
   const handleClear = () => {
-    handleEvent('applySearchField', undefined);
-    handleEvent('applySearchValue', undefined);
+    handleEvent('applySearch', undefined, undefined);
   };
 
   const schema: JSONSchema6 = {
