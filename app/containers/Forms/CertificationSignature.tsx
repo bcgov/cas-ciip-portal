@@ -1,4 +1,5 @@
 import React, {useRef} from 'react';
+import {useRouter} from 'next/router';
 import {createFragmentContainer, RelayProp} from 'react-relay';
 import SignaturePad from 'react-signature-canvas';
 import {Button, Container, Row, Col} from 'react-bootstrap';
@@ -21,6 +22,7 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
   reportSubmissions
 }) => {
   const sigCanvas: any = useRef({});
+  const router = useRouter();
 
   const readImage = (e) => {
     e.persist();
@@ -45,6 +47,9 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
             certificationUrlPatch: {
               certificationSignature: signature
             }
+          },
+          messages: {
+            success: 'Signed Successfully! Redirecting to requests page'
           }
         };
         const response = await updateCertificationUrlMutation(
@@ -63,7 +68,7 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
     const responses = await saveSignatures(signature);
     if (reportSubmissions) {
       reportSubmissions(responses);
-    }
+    } else router.push('/certifier/requests');
   };
 
   return (
@@ -89,7 +94,7 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
             />
           )}
         </Col>
-        <Col md={{span: 3, offset: 2}}>
+        <Col md={{offset: 2, span: 3}}>
           {!submitted && (
             <>
               <Button
