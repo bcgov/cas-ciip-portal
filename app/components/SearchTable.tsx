@@ -28,21 +28,22 @@ class SearchTableComponent extends Component<Props> {
     });
   };
 
-  applySearchField = (column) => {
-    this.setState({
-      searchField: column,
-      searchValue: null
-    });
-  };
-
-  applySearchValue = (value) => {
-    if (this.state.searchField !== undefined) {
-      this.setState({searchValue: value});
+  applySearch = (column, value) => {
+    if (column)
+      this.setState({
+        searchField: column,
+        searchValue: value
+      });
+    else {
+      this.setState({
+        searchField: undefined,
+        searchValue: undefined
+      });
     }
   };
 
-  handleEvent = (action, value) => {
-    this[action](value);
+  handleEvent = (action, value, column) => {
+    this[action](value, column);
   };
 
   render() {

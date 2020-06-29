@@ -3,7 +3,7 @@ import {Container, Row, Col, Table} from 'react-bootstrap';
 import SortableTableHeader from 'components/SortableTableHeader';
 import SearchBox from 'components/SearchBox';
 interface Props {
-  handleEvent: (...args: any[]) => void;
+  handleEvent: (action: string, value?: string, column?: string) => any;
   handleSelectAll?: (...args: any[]) => void;
   allSelected?: boolean;
   displayNameToColumnNameMap: any;
