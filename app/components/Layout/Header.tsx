@@ -3,12 +3,7 @@ import {Row, Col, Form, Button} from 'react-bootstrap';
 import Link from 'next/link';
 import LoginButton from 'components/LoginButton';
 
-const HeaderLayout = ({
-  isLoggedIn = false,
-  isRegistered = false,
-  isAdmin = false,
-  isIndustry = false
-}) => (
+const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
   <header>
     <div className="container full-width">
       <div className="banner">
@@ -26,17 +21,12 @@ const HeaderLayout = ({
         <div className="login-btns header-right">
           <div className="container">
             <Row>
-              {isIndustry ? (
+              {isRegistered ? (
                 <Col>
-                  <Link href="/reporter">
-                    <Button variant="outline-light">Industry</Button>
-                  </Link>
-                </Col>
-              ) : null}
-              {isAdmin ? (
-                <Col>
-                  <Link href="/admin">
-                    <Button variant="outline-light">Admin</Button>
+                  <Link href="/">
+                    <a>
+                      <Button variant="outline-light">Dashboard</Button>
+                    </a>
                   </Link>
                 </Col>
               ) : null}
