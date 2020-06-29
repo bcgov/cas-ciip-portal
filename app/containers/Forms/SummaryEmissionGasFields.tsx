@@ -59,7 +59,11 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = (props) => {
           (props.formData.annualEmission || previousEmission) ? (
             <>
               <span className="diffFrom">
-                {previousEmission ? previousEmission : <i>[No Data Entered]</i>}
+                {previousEmission || previousEmission === 0 ? (
+                  previousEmission
+                ) : (
+                  <i>[No Data Entered]</i>
+                )}
               </span>
               &nbsp;---&gt;&nbsp;
               <span className="diffTo">
@@ -90,7 +94,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = (props) => {
           (props.formData.annualCO2e || previousAnnualCO2e) ? (
             <>
               <span className="diffFrom">
-                {previousAnnualCO2e ? (
+                {previousAnnualCO2e || previousAnnualCO2e === 0 ? (
                   previousAnnualCO2e
                 ) : (
                   <i>[No Data Entered]</i>
