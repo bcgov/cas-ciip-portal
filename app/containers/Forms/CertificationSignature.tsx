@@ -94,7 +94,7 @@ export const CertificationSignature: React.FunctionComponent<Props> = ({
             />
           )}
         </Col>
-        <Col md={{offset: 3, span: 3}}>
+        <Col md={{offset: 2, span: 3}}>
           {!submitted && (
             <>
               <Button
