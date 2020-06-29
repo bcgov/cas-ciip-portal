@@ -6,7 +6,7 @@ import FormFieldTemplate from 'containers/Forms/FormFieldTemplate';
 import FormObjectFieldTemplate from 'containers/Forms/FormObjectFieldTemplate';
 
 interface Props {
-  handleEvent: (action: string, value?: string) => void;
+  handleEvent: (action: string, value?: string) => Promise<void>;
   dropdownSortItems: string[];
   displayNameToColumnNameMap: object;
 }
@@ -16,9 +16,9 @@ const SearchBox: React.FunctionComponent<Props> = ({
   dropdownSortItems,
   displayNameToColumnNameMap
 }) => {
-  const handleSubmit = (e: IChangeEvent) => {
-    if (e.formData.searchField !== undefined) {
-      handleEvent(
+  const handleSubmit = async (e: IChangeEvent) => {
+    if (e.formData.searchField) {
+      await handleEvent(
         'applySearchField',
         displayNameToColumnNameMap[e.formData.searchField]
       );

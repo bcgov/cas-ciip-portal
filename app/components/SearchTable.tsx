@@ -36,7 +36,7 @@ class SearchTableComponent extends Component<Props> {
   };
 
   applySearchValue = (value) => {
-    if (this.state.searchField !== undefined) {
+    if (this.state.searchField) {
       this.setState({searchValue: value});
     }
   };
