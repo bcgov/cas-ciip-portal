@@ -24,9 +24,7 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
               {isRegistered ? (
                 <Col>
                   <Link href="/">
-                    <a>
-                      <Button variant="outline-light">Dashboard</Button>
-                    </a>
+                    <a className="btn btn-outline-light">Dashboard</a>
                   </Link>
                 </Col>
               ) : null}
@@ -35,11 +33,12 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
                   <Form.Row>
                     {isRegistered && (
                       <Col>
-                        <Form action="/user/profile" method="get">
-                          <Button type="submit" variant="outline-light">
-                            Profile
-                          </Button>
-                        </Form>
+                        <a
+                          href="/user/profile"
+                          className="btn btn-outline-light"
+                        >
+                          Profile
+                        </a>
                       </Col>
                     )}
                     <Col>
@@ -113,21 +112,6 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
           flex-grow: 1;
           align-items: center;
           justify-content: flex-end;
-        }
-        .btn {
-          font-weight: bolder;
-        }
-        .link {
-          color: white;
-          text-decoration: none;
-        }
-        a:link,
-        a:visited {
-          color: white;
-        }
-        a:hover,
-        a:active {
-          color: white;
         }
 
         /*
