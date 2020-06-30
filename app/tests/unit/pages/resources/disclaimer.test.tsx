@@ -21,9 +21,7 @@ const router = {
 
 describe('BCGov core disclaimer page', () => {
   it('It matches the last accepted Snapshot', () => {
-    const wrapper = shallow(
-      <Disclaimer query={query} router={router} />
-    );
+    const wrapper = shallow(<Disclaimer query={query} router={router} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

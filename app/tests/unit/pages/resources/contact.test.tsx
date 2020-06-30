@@ -21,9 +21,7 @@ const router = {
 
 describe('Contact page', () => {
   it('It matches the last accepted Snapshot', () => {
-    const wrapper = shallow(
-      <Contact query={query} router={router} />
-    );
+    const wrapper = shallow(<Contact query={query} router={router} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

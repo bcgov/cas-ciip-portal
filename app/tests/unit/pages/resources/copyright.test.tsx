@@ -21,9 +21,7 @@ const router = {
 
 describe('BCGov core copyright page', () => {
   it('It matches the last accepted Snapshot', () => {
-    const wrapper = shallow(
-      <Copyright query={query} router={router} />
-    );
+    const wrapper = shallow(<Copyright query={query} router={router} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

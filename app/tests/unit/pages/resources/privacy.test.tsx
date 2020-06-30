@@ -21,9 +21,7 @@ const router = {
 
 describe('BCGov core privacy page', () => {
   it('It matches the last accepted Snapshot', () => {
-    const wrapper = shallow(
-      <Privacy query={query} router={router} />
-    );
+    const wrapper = shallow(<Privacy query={query} router={router} />);
     expect(wrapper).toMatchSnapshot();
   });
 });
