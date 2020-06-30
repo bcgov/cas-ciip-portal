@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Contact page It matches the last accepted Snapshot 1`] = `
+<Relay(DefaultLayout)
+  needsSession={false}
+  needsUser={false}
+  session={
+    Object {
+      " $fragmentRefs": Object {
+        "defaultLayout_session": true,
+      },
+    }
+  }
+  title="Contact Us"
+>
+  <Container
+    fluid={false}
+  >
+    <p>
+      Please email
+       
+      <a
+        href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry"
+      >
+        GHGRegulator@gov.bc.ca
+      </a>
+       
+      with any questions or concerns.
+    </p>
+  </Container>
+</Relay(DefaultLayout)>
+`;
