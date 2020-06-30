@@ -445,44 +445,6 @@ jobs:
             make test PSQL="psql -h localhost" CI_NO_PIPELINE=true
             popd
 
-  e2e:
-    machine:
-      image: ubuntu-1604:201903-01
-    working_directory: ~/cas-ciip-portal
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: "Checkout Submodules"
-          command: |
-            git submodule update --init
-      - run:
-          name: start postgres
-          command: |
-            source ~/.bashrc
-            pg_ctl start
-            createdb `whoami`
-      - run:
-          name: deploy schemas and data
-          command: |
-            source ~/.bashrc
-            ./.bin/deploy-data.sh -dev
-      - run:
-          name: Create Mailhog server via docker image
-          command: docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
-      - run:
-          name: run end-to-end tests with cypress
-          environment:
-            SMTP_CONNECTION_STRING: smtp://@localhost:1025
-            SENDER_EMAIL: BCCAS <example@cas.com>
-            ADMIN_EMAIL: GHG Regulator <GHGRegulator@gov.bc.ca>
-          command: |
-            source ~/.asdf/asdf.sh
-            pushd app
-            NO_PDF=true NO_MATHJAX=true yarn start & yarn wait-on http://localhost:3004
-            yarn test:e2e
-            popd
-
   e2e-snapshots:
     machine:
       image: ubuntu-1604:201903-01
@@ -509,7 +471,7 @@ jobs:
           name: Create Mailhog server via docker image
           command: docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
       - run:
-          name: run end-to-end tests with percy and cypress
+          name: run end-to-end tests with happo and cypress
           environment:
             SMTP_CONNECTION_STRING: smtp://@localhost:1025
             SENDER_EMAIL: BCCAS <example@cas.com>
@@ -576,22 +538,9 @@ workflows:
       - deploy-test-data:
           requires:
             - tools
-      - e2e:
-          requires:
-            - compile
-          filters:
-            branches:
-              ignore:
-                - develop
-                - master
       - e2e-snapshots:
           requires:
             - compile
-          filters:
-            branches:
-              only:
-                - develop
-                - master
       - sqitch-plan-ends-with-tag:
           filters:
             branches:

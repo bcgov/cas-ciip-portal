@@ -88,7 +88,7 @@ describe('When reviewing a submitted application as an analyst', () => {
       '#root_operationalRepresentative_mailingAddress_postalCode +div .error-detail'
     ).contains('Format should be A1A 1A1');
 
-    cy.percySnapshot('admin');
+    // Cy.percySnapshot('admin');
 
     // Fix invalid data
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
@@ -110,7 +110,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get(
       '#root_sourceTypes_0_gases_0_annualEmission +div .error-detail'
     ).contains('is a required property');
-    cy.percySnapshot('Emissions form');
+    // Cy.percySnapshot('Emissions form');
 
     // Fix invalid data
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').type('42');
@@ -132,7 +132,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_0_emissionCategoryRowId +div .error-detail').contains(
       'is a required property'
     );
-    cy.percySnapshot('fuel');
+    // Cy.percySnapshot('fuel');
 
     // Fix invalid data
     cy.get('#root_0_fuelRowId').type('Diesel');
@@ -159,7 +159,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_0_productEmissions +div .error-detail').contains(
       'is a required property'
     );
-    cy.percySnapshot('production');
+    // Cy.percySnapshot('production');
 
     // Fix invalid data
     cy.get('#root_0_productRowId').clear().type('Aluminum');

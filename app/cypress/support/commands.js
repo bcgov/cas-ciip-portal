@@ -1,4 +1,4 @@
-import '@percy/cypress';
+import 'happo-cypress';
 
 Cypress.Commands.add('login', (username, password) => {
   // Open the login page, fill in the form with username and password and submit.

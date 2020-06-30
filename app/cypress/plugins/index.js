@@ -1,6 +1,5 @@
-const percyHealthCheck = require('@percy/cypress/task');
+const happoTask = require('happo-cypress/task');
 
-module.exports = (on, _config) => {
-  on('task', percyHealthCheck);
-  require('cypress-plugin-retries/lib/plugin')(on);
+module.exports = (on) => {
+  on('task', happoTask);
 };
