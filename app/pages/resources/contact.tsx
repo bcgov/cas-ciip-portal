@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Container} from 'react-bootstrap';
 import {graphql} from 'react-relay';
 import {CiipPageComponentProps} from 'next-env';
 import {contactQueryResponse} from 'contactQuery.graphql';
@@ -29,7 +30,17 @@ class Contact extends Component<Props> {
         needsSession={false}
         needsUser={false}
         title="Contact Us"
-      />
+      >
+        <Container>
+          <p>
+            Please email{' '}
+            <a href="mailto:GHGRegulator@gov.bc.ca?subject=CIIP Portal Inquiry">
+              GHGRegulator@gov.bc.ca
+            </a>{' '}
+            with any questions or concerns.
+          </p>
+        </Container>
+      </DefaultLayout>
     );
   }
 }

@@ -41,7 +41,10 @@ exports[`It matches the last accepted Snapshot 1`] = `
         class="jsx-3795960356"
       >
         <a
-          href="/resources/accessibility"
+          class="jsx-3795960356"
+          href="https://www2.gov.bc.ca/gov/content/home/accessible-government"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           Accessibility
         </a>

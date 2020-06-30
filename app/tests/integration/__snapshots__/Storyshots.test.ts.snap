@@ -418,9 +418,10 @@ Array [
               className="jsx-3795960356"
             >
               <a
-                href="/resources/accessibility"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
+                className="jsx-3795960356"
+                href="https://www2.gov.bc.ca/gov/content/home/accessible-government"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 Accessibility
               </a>
@@ -666,9 +667,10 @@ Array [
               className="jsx-3795960356"
             >
               <a
-                href="/resources/accessibility"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
+                className="jsx-3795960356"
+                href="https://www2.gov.bc.ca/gov/content/home/accessible-government"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 Accessibility
               </a>
@@ -1131,9 +1133,10 @@ Array [
               className="jsx-3795960356"
             >
               <a
-                href="/resources/accessibility"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
+                className="jsx-3795960356"
+                href="https://www2.gov.bc.ca/gov/content/home/accessible-government"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 Accessibility
               </a>
@@ -1768,9 +1771,10 @@ Array [
               className="jsx-3795960356"
             >
               <a
-                href="/resources/accessibility"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
+                className="jsx-3795960356"
+                href="https://www2.gov.bc.ca/gov/content/home/accessible-government"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 Accessibility
               </a>
@@ -2082,9 +2086,10 @@ Array [
               className="jsx-3795960356"
             >
               <a
-                href="/resources/accessibility"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
+                className="jsx-3795960356"
+                href="https://www2.gov.bc.ca/gov/content/home/accessible-government"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 Accessibility
               </a>
@@ -2396,9 +2401,10 @@ Array [
               className="jsx-3795960356"
             >
               <a
-                href="/resources/accessibility"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
+                className="jsx-3795960356"
+                href="https://www2.gov.bc.ca/gov/content/home/accessible-government"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 Accessibility
               </a>

@@ -18,7 +18,13 @@ const Footer = () => {
             <Link href="/resources/privacy">Privacy</Link>
           </li>
           <li>
-            <Link href="/resources/accessibility">Accessibility</Link>
+            <a
+              href="https://www2.gov.bc.ca/gov/content/home/accessible-government"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Accessibility
+            </a>
           </li>
           <li>
             <Link href="/resources/copyright">Copyright</Link>
