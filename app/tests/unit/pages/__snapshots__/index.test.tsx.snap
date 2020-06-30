@@ -74,7 +74,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       >
         <img
           className="jsx-348810478"
-          src="../../static/icons/icon-register.svg"
+          src="/static/icons/icon-register.svg"
         />
         <h5
           className="jsx-348810478 blue"
@@ -96,7 +96,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       >
         <img
           className="jsx-348810478"
-          src="../../static/icons/icon-request.svg"
+          src="/static/icons/icon-request.svg"
         />
         <h5
           className="jsx-348810478 blue"
@@ -118,7 +118,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       >
         <img
           className="jsx-348810478"
-          src="../../static/icons/icon-apply.svg"
+          src="/static/icons/icon-apply.svg"
         />
         <h5
           className="jsx-348810478 blue"
@@ -148,8 +148,8 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         className="jsx-348810478 with-shadow img-fluid"
         id="photo"
         sizes=" (max-width: 575.98px) calc(100vw - 30px) (max-width: 767.98px) 510px, (min-width: 768px) 635px "
-        src="../../static/landing-photo-1020.jpg"
-        srcSet=" ../../static/landing-photo-375.jpg 375w, ../../static/landing-photo-750.jpg 750w, ../../static/landing-photo-1020.jpg 1020w, ../../static/landing-photo-1270.jpg 1270w "
+        src="/static/landing-photo-1020.jpg"
+        srcSet=" /static/landing-photo-375.jpg 375w, /static/landing-photo-750.jpg 750w, /static/landing-photo-1020.jpg 1020w, /static/landing-photo-1270.jpg 1270w "
       />
     </Col>
     <Col
@@ -244,7 +244,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
               }
             }
           >
-            Please email us at 
+            Please email us at
             <strong
               className="jsx-348810478"
             >
@@ -264,7 +264,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
           rel="noopener noreferrer"
           target="_blank"
         >
-           
+
           fact sheet
         </a>
         .
