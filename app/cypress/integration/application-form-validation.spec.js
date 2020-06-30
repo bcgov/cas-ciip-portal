@@ -88,8 +88,6 @@ describe('When reviewing a submitted application as an analyst', () => {
       '#root_operationalRepresentative_mailingAddress_postalCode +div .error-detail'
     ).contains('Format should be A1A 1A1');
 
-    // Cy.percySnapshot('admin');
-
     // Fix invalid data
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
       .clear()
@@ -97,6 +95,8 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_operator_bcCorporateRegistryNumber')
       .clear()
       .type('LLC1234567');
+
+    cy.get('form.rjsf').happoScreenshot({component: 'Administration Form'});
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Emission');
   });
@@ -110,10 +110,10 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get(
       '#root_sourceTypes_0_gases_0_annualEmission +div .error-detail'
     ).contains('is a required property');
-    // Cy.percySnapshot('Emissions form');
 
     // Fix invalid data
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').type('42');
+    cy.get('form.rjsf').happoScreenshot({component: 'Emissions form'});
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Fuel');
   });
@@ -132,7 +132,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_0_emissionCategoryRowId +div .error-detail').contains(
       'is a required property'
     );
-    // Cy.percySnapshot('fuel');
 
     // Fix invalid data
     cy.get('#root_0_fuelRowId').type('Diesel');
@@ -141,6 +140,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_0_emissionCategoryRowId').select(
       'General Stationary Combustion'
     );
+    cy.get('form.rjsf').happoScreenshot({component: 'Fuels Form'});
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Production');
   });
@@ -159,7 +159,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_0_productEmissions +div .error-detail').contains(
       'is a required property'
     );
-    // Cy.percySnapshot('production');
 
     // Fix invalid data
     cy.get('#root_0_productRowId').clear().type('Aluminum');
@@ -167,6 +166,9 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_0_productAmount').type('123');
     cy.get('#root_0_productEmissions').type('456');
 
+    cy.get('form.rjsf').happoScreenshot({
+      component: 'Products and Energy Form'
+    });
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Summary');
   });
