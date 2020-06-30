@@ -3,12 +3,7 @@ import {Row, Col, Form, Button} from 'react-bootstrap';
 import Link from 'next/link';
 import LoginButton from 'components/LoginButton';
 
-const HeaderLayout = ({
-  isLoggedIn = false,
-  isRegistered = false,
-  isAdmin = false,
-  isIndustry = false
-}) => (
+const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
   <header>
     <div className="container full-width">
       <div className="banner">
@@ -26,17 +21,10 @@ const HeaderLayout = ({
         <div className="login-btns header-right">
           <div className="container">
             <Row>
-              {isIndustry ? (
+              {isRegistered ? (
                 <Col>
-                  <Link href="/reporter">
-                    <Button variant="outline-light">Industry</Button>
-                  </Link>
-                </Col>
-              ) : null}
-              {isAdmin ? (
-                <Col>
-                  <Link href="/admin">
-                    <Button variant="outline-light">Admin</Button>
+                  <Link href="/">
+                    <a className="btn btn-outline-light">Dashboard</a>
                   </Link>
                 </Col>
               ) : null}
@@ -45,11 +33,9 @@ const HeaderLayout = ({
                   <Form.Row>
                     {isRegistered && (
                       <Col>
-                        <Form action="/user/profile" method="get">
-                          <Button type="submit" variant="outline-light">
-                            Profile
-                          </Button>
-                        </Form>
+                        <Link href="/user/profile">
+                          <a className="btn btn-outline-light">Profile</a>
+                        </Link>
                       </Col>
                     )}
                     <Col>
@@ -123,21 +109,6 @@ const HeaderLayout = ({
           flex-grow: 1;
           align-items: center;
           justify-content: flex-end;
-        }
-        .btn {
-          font-weight: bolder;
-        }
-        .link {
-          color: white;
-          text-decoration: none;
-        }
-        a:link,
-        a:visited {
-          color: white;
-        }
-        a:hover,
-        a:active {
-          color: white;
         }
 
         /*

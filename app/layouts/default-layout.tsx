@@ -74,8 +74,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       <Header
         isLoggedIn={Boolean(session)}
         isRegistered={Boolean(session?.ciipUserBySub)}
-        isAdmin={userGroups.includes('Incentive Administrator')}
-        isIndustry={userGroups.includes('User')}
       />
       {showSubheader && <Subheader />}
       {title ? (
