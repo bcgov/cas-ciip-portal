@@ -33,12 +33,9 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
                   <Form.Row>
                     {isRegistered && (
                       <Col>
-                        <a
-                          href="/user/profile"
-                          className="btn btn-outline-light"
-                        >
-                          Profile
-                        </a>
+                        <Link href="/user/profile">
+                          <a className="btn btn-outline-light">Profile</a>
+                        </Link>
                       </Col>
                     )}
                     <Col>
