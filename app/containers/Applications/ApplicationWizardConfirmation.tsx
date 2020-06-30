@@ -69,22 +69,17 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 
     console.log(response);
     try {
-      setUrl(
-        `${
-          window.location.host
-        }/certifier/certification-redirect?rowId=${encodeURIComponent(
-          response.createCertificationUrl.certificationUrl.rowId
-        )}&id=${encodeURIComponent(props.application.id)}`
-      );
+      const certifierUrl = `${window.location.protocol}//${
+        window.location.host
+      }/certifier/certification-redirect?rowId=${encodeURIComponent(
+        response.createCertificationUrl.certificationUrl.rowId
+      )}&id=${encodeURIComponent(props.application.id)}`;
+      setUrl(certifierUrl);
       const updateVariables = {
         input: {
           id: response.createCertificationUrl.certificationUrl.id,
           certificationUrlPatch: {
-            certifierUrl: `${
-              window.location.host
-            }/certifier/certification-redirect?rowId=${encodeURIComponent(
-              response.createCertificationUrl.certificationUrl.rowId
-            )}&id=${encodeURIComponent(props.application.id)}`,
+            certifierUrl,
             certifierEmail: email,
             sendCertificationRequest: sendEmail
           }
