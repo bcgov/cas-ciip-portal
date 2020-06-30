@@ -76,6 +76,8 @@ Array [
                         <a
                           className="jsx-2453800556 btn btn-outline-light"
                           href="/user/profile"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
                         >
                           Profile
                         </a>
@@ -555,6 +557,8 @@ Array [
                         <a
                           className="jsx-2453800556 btn btn-outline-light"
                           href="/user/profile"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
                         >
                           Profile
                         </a>
@@ -801,6 +805,8 @@ Array [
                         <a
                           className="jsx-2453800556 btn btn-outline-light"
                           href="/user/profile"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
                         >
                           Profile
                         </a>
@@ -1264,6 +1270,8 @@ Array [
                         <a
                           className="jsx-2453800556 btn btn-outline-light"
                           href="/user/profile"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
                         >
                           Profile
                         </a>
@@ -1899,6 +1907,8 @@ Array [
                         <a
                           className="jsx-2453800556 btn btn-outline-light"
                           href="/user/profile"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
                         >
                           Profile
                         </a>
@@ -2211,6 +2221,8 @@ Array [
                         <a
                           className="jsx-2453800556 btn btn-outline-light"
                           href="/user/profile"
+                          onClick={[Function]}
+                          onMouseEnter={[Function]}
                         >
                           Profile
                         </a>
