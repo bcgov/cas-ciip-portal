@@ -31,8 +31,7 @@ select ggircs_portal.create_application_mutation_chain(1);
 select ggircs_portal.create_application_mutation_chain(2);
 
 -- Ensure products referenced in form_result are in the database
-delete from ggircs_portal.benchmark;
-delete from ggircs_portal.product;
+truncate ggircs_portal.product restart identity cascade;
 
 insert into ggircs_portal.product(id, product_name, units, product_state, requires_emission_allocation, requires_product_amount)
 overriding system value
