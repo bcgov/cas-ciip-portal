@@ -15,9 +15,11 @@ module.exports = {
     }),
     ie: new RemoteBrowserTarget('internet explorer', {
       viewport: '1024x768',
+      scrollStitch: true,
     }),
     safari: new RemoteBrowserTarget('safari', {
       viewport: '1024x768',
+      scrollStitch: true,
     }),
   },
 };
