@@ -11,17 +11,9 @@ const query: contactQueryResponse['query'] = {
   }
 };
 
-const router = {
-  query: {
-    applicationId: 'skjdh839',
-    hasSwrsReport: true,
-    version: 1
-  }
-};
-
 describe('Contact page', () => {
   it('It matches the last accepted Snapshot', () => {
-    const wrapper = shallow(<Contact query={query} router={router} />);
+    const wrapper = shallow(<Contact query={query} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

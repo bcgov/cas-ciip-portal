@@ -11,17 +11,9 @@ const query: privacyQueryResponse['query'] = {
   }
 };
 
-const router = {
-  query: {
-    applicationId: 'skjdh839',
-    hasSwrsReport: true,
-    version: 1
-  }
-};
-
 describe('BCGov core privacy page', () => {
   it('It matches the last accepted Snapshot', () => {
-    const wrapper = shallow(<Privacy query={query} router={router} />);
+    const wrapper = shallow(<Privacy query={query} />);
     expect(wrapper).toMatchSnapshot();
   });
 });
