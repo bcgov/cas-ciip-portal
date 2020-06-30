@@ -244,7 +244,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
               }
             }
           >
-            Please email us at
+            Please email us at 
             <strong
               className="jsx-348810478"
             >
@@ -264,7 +264,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
           rel="noopener noreferrer"
           target="_blank"
         >
-
+           
           fact sheet
         </a>
         .
