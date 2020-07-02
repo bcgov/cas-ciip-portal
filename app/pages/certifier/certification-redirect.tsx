@@ -85,8 +85,6 @@ class CertificationRedirect extends Component<Props> {
       <DefaultLayout
         title="Submission Certification"
         session={query.session}
-        needsUser={false}
-        needsSession={false}
         allowedGroups={ALLOWED_GROUPS}
       >
         {certificationUrl ? (

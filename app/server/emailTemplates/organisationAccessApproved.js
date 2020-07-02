@@ -7,10 +7,6 @@ const createOrganisationAccessApprovedMail = ({
   organisationId,
   contactEmail
 }) => {
-  const organisationLongId = Buffer.from(
-    `[organisations, ${organisationId}]`
-  ).toString('base64');
-  const encodedOrgId = encodeURIComponent(organisationLongId);
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
       <tr>
@@ -28,7 +24,7 @@ const createOrganisationAccessApprovedMail = ({
           <ul>
             <li>
               Please log in to the CIIP Portal and <a href=${createUrl(
-                `reporter/facilities?organisationId=${encodedOrgId}&organisationRowId=${organisationId}`
+                `reporter/facilities?organisationRowId=${organisationId}`
               )}>view Operation Facilities</a> to access the CIIP application.
             </li>
             <li>

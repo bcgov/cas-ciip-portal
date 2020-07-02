@@ -14,10 +14,6 @@ const createConfirmationMail = ({
     'base64'
   );
   const encodedAppId = encodeURIComponent(appId);
-  const orgId = Buffer.from(`["organisations", ${organisationId}]`).toString(
-    'base64'
-  );
-  const encodedOrgId = encodeURIComponent(orgId);
   return `
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="600">
       <tr>
@@ -35,7 +31,7 @@ const createConfirmationMail = ({
           <p>You can <a href="${createUrl(
             `reporter/view-application?applicationId=${encodedAppId}&version=${versionNumber}`
           )}">view your submitted application here</a> and monitor the status of your application(s) <a href="${createUrl(
-    `reporter/facilities?organisationId=${encodedOrgId}&organisationRowId=${organisationId}`
+    `reporter/facilities?organisationRowId=${organisationId}`
   )}">on the Operation Facilities dashboard</a>.</p>
           <p>If you have any questions during the application process, please contact <a href="mailto:${contactEmail}?subject=CIIP Portal Inquiry">${contactEmail}</a></p>
         </td>
