@@ -239,6 +239,7 @@
     "xo": "^0.30.0"
   },
   "resolutions": {
+    "**/lodash": "https://github.com/bcgov/cas-lodash#patch-SNYK-JS-LODASH-567746",
     "@storybook/**/marked": ">=0.7.0",
     "**/minimist": "1.2.5",
     "**/yargs-parser": "18.1.2"
