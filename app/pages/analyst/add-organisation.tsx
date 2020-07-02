@@ -50,7 +50,7 @@ class AddOrganisationPage extends Component<Props> {
             <Card.Text>
               <p>
                 Manually adding an organisation via this UI has the potential to
-                create duplicate and swrs-orphaned organisations in the data.
+                create duplicate and SWRS-orphaned organisations in the data.
               </p>
               <p>
                 This is an escape hatch and should be used as a last resort in
@@ -60,7 +60,7 @@ class AddOrganisationPage extends Component<Props> {
               <p>
                 Adding an organisation in this way will allow the reporter to
                 apply for CIIP, but will also create an organisation that has no
-                relation to swrs data.
+                relation to SWRS data.
               </p>
               <br />
               <p>Some steps to take before adding an organisation manually:</p>
@@ -71,10 +71,10 @@ class AddOrganisationPage extends Component<Props> {
                   organisation.
                 </li>
                 <li>
-                  If you have reason to believe that a swrs report containing
+                  If you have reason to believe that a SWRS report containing
                   information for this organisation is going to be received in
                   the near future, instruct the reporter to try applying again
-                  in a few days when their swrs report has been received.
+                  in a few days when their SWRS report has been received.
                 </li>
                 <li>
                   Attempt some external investigation to find out why this
