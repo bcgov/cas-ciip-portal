@@ -27,29 +27,29 @@ alter table ggircs_portal.certification_url
   enable trigger _recertification_request;
 
 -- Delete records related to first application:
-delete from ggircs_portal.form_result_status where application_id = 101;
-delete from ggircs_portal.form_result where application_id = 101;
-delete from ggircs_portal.application_revision_status where application_id = 101;
-delete from ggircs_portal.application_revision where application_id = 101;
-delete from ggircs_portal.application where id = 101;
+delete from ggircs_portal.form_result_status where application_id = 1;
+delete from ggircs_portal.form_result where application_id = 1;
+delete from ggircs_portal.application_revision_status where application_id = 1;
+delete from ggircs_portal.application_revision where application_id = 1;
+delete from ggircs_portal.application where id = 1;
 delete from ggircs_portal.facility where id = 100;
 
 -- Delete records related to second application:
-delete from ggircs_portal.form_result_status where application_id = 102;
-delete from ggircs_portal.form_result where application_id = 102;
-delete from ggircs_portal.certification_url where application_id = 102;
-delete from ggircs_portal.application_revision_status where application_id = 102;
-delete from ggircs_portal.application_revision where application_id = 102;
-delete from ggircs_portal.application where id = 102;
+delete from ggircs_portal.form_result_status where application_id = 2;
+delete from ggircs_portal.form_result where application_id = 2;
+delete from ggircs_portal.certification_url where application_id = 2;
+delete from ggircs_portal.application_revision_status where application_id = 2;
+delete from ggircs_portal.application_revision where application_id = 2;
+delete from ggircs_portal.application where id = 2;
 delete from ggircs_portal.facility where id = 111;
 
 -- Delete records related to third application:
-delete from ggircs_portal.form_result_status where application_id = 103;
-delete from ggircs_portal.form_result where application_id = 103;
-delete from ggircs_portal.certification_url where application_id = 103;
-delete from ggircs_portal.application_revision_status where application_id = 103;
-delete from ggircs_portal.application_revision where application_id = 103;
-delete from ggircs_portal.application where id = 103;
+delete from ggircs_portal.form_result_status where application_id = 3;
+delete from ggircs_portal.form_result where application_id = 3;
+delete from ggircs_portal.certification_url where application_id = 3;
+delete from ggircs_portal.application_revision_status where application_id = 3;
+delete from ggircs_portal.application_revision where application_id = 3;
+delete from ggircs_portal.application where id = 3;
 delete from ggircs_portal.facility where id = 122;
 
 -- Delete organisation and relationship with user:

@@ -7,45 +7,39 @@ const DASHBOARD_URLS = {
 const REQUIRED_QUERY_PARAMS = {
   facilities: '?organisationRowId=200',
   application: `?applicationId=${encodeURIComponent(
-    window.btoa('["applications", 101]')
+    window.btoa('["applications", 1]')
   )}&version=1&formResultId=${encodeURIComponent(
-    window.btoa('["form_results", 201]')
+    window.btoa('["form_results", 1]')
   )}`,
   'view-application': `?applicationId=${encodeURIComponent(
-    window.btoa('["applications", 101]')
+    window.btoa('["applications", 1]')
   )}&version=1`,
   'new-application-disclaimer': `?applicationId=${encodeURIComponent(
-    window.btoa('["applications", 101]')
+    window.btoa('["applications", 1]')
   )}&version=1`,
   certify: `?applicationId=${encodeURIComponent(
-    window.btoa('["applications", 102]')
+    window.btoa('["applications", 2]')
   )}&version=1`,
   'certification-redirect': `?rowId=${encodeURIComponent(
     'sss999'
-  )}&id=${encodeURIComponent(window.btoa('["applications", 102]'))}`,
+  )}&id=${encodeURIComponent(window.btoa('["applications", 2]'))}`,
   'application-review': `?applicationId=${encodeURIComponent(
-    window.btoa('["applications", 103]')
+    window.btoa('["applications", 3]')
   )}&applicationRevisionId=${encodeURIComponent(
-    window.btoa('["application_revisions", 103, 1]')
+    window.btoa('["application_revisions", 3, 1]')
   )}&version=1`
 };
-// NOTE: Of the pages with required query params, only the fixtures for the facilities and new-application-disclaimer pages currently work, hence the others are skipped:
-// Notably, the fixtures do work when running them manually and then manually visiting the page in the browser... while in the test environment there are syntax errors.
-const SKIP = new Set(
-  Object.keys(REQUIRED_QUERY_PARAMS).filter(
-    (page) => page !== 'facilities' && page !== 'new-application-disclaimer'
-  )
-);
+
 let DEBUG;
 
 // Uncomment this to limit tests to a single page:
-// DEBUG = 'application';
+// DEBUG = 'certification-redirect';
 
 const {AUTHENTICATED_PAGES} = Cypress.env;
 
 function testRedirectsForScopedPages(scope, pages) {
   pages.forEach((page) => {
-    if (DEBUG ? DEBUG !== page : SKIP.has(page)) return;
+    if (DEBUG && DEBUG !== page) return;
 
     it(`should land the ${scope} on the ${page} page after redirecting through login`, () => {
       let url = `/${scope}/${page}${
