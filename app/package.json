@@ -5,6 +5,7 @@
   "scripts": {
     "pretest": "npm run build:relay",
     "test": "jest",
+    "pretest:e2e-snapshots": "node cypress/support/listAuthenticatedPages.js",
     "test:e2e-snapshots": "percy exec -- cypress run",
     "pretest:e2e": "node cypress/support/listAuthenticatedPages.js",
     "test:e2e": "cypress run",
