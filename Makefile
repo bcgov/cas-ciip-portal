@@ -81,11 +81,19 @@ clean_old_tags: $(call make_help,clean_old_tags,Cleans old image tags from the t
 .PHONY: install
 install: whoami
 install:
-	@helm dep up ./helm/cas-ciip-portal
-	@helm upgrade --install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
+	@set -euo pipefail; \
+	helm dep up ./helm/cas-ciip-portal; \
+	if ! helm status cas-ciip-portal; then \
+		helm install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
+		--set route.insecure=true \
+		--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
+		--values ./helm/cas-ciip-portal/values-$(OC_PROJECT).yaml \
+		cas-ciip-portal ./helm/cas-ciip-portal; \
+	fi; \
+	helm upgrade --install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
 	--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
 	--values ./helm/cas-ciip-portal/values-$(OC_PROJECT).yaml \
-	cas-ciip-portal ./helm/cas-ciip-portal
+	cas-ciip-portal ./helm/cas-ciip-portal;
 
 .PHONY: install_test
 install_test: OC_PROJECT=$(OC_TEST_PROJECT)

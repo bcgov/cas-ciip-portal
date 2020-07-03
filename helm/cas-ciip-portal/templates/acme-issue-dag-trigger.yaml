@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-acme-issue-trigger
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": "post-install"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook-weight": "0"
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1200
+  template:
+    metadata:
+      name: {{ template "cas-ciip-portal.fullname" . }}-acme-issue-trigger
+      labels:
+{{ include "cas-ciip-portal.labels" . | indent 8 }}
+    spec:
+      activeDeadlineSeconds: 1200
+      restartPolicy: Never
+      containers:
+      - name: {{ template "cas-ciip-portal.fullname" . }}-acme-issue-trigger
+        image: {{ .Values.image.schema.repository }}:{{ .Values.image.schema.tag }}
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        imagePullPolicy: {{ .Values.image.schema.pullPolicy }}
+        env:
+          - name: AIRFLOW_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: cas-airflow-admin
+          - name: AIRFLOW_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: cas-airflow-admin
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+        command:
+          - /usr/bin/env
+          - bash
+          - -c
+          - ./trigger-airflow-dag.sh ciip_portal_acme_issue
