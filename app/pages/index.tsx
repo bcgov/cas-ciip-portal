@@ -128,7 +128,7 @@ export default class Index extends Component<Props> {
           </Col>
           <Col md={4}>
             <div className="value-prop">
-              <img src="../../static/icons/icon-register.svg" />
+              <img src="/static/icons/icon-register.svg" />
               <h5 className="blue">1. Register as an Industrial Reporter</h5>
               <p>
                 Before you can apply for the CIIP on behalf of an eligible
@@ -140,7 +140,7 @@ export default class Index extends Component<Props> {
 
           <Col md={4}>
             <div className="value-prop">
-              <img src="../../static/icons/icon-request.svg" />
+              <img src="/static/icons/icon-request.svg" />
               <h5 className="blue">2. Request to apply for an Operation</h5>
               <p>
                 Once you’ve registered you can request to apply on behalf one or
@@ -151,7 +151,7 @@ export default class Index extends Component<Props> {
 
           <Col md={4}>
             <div className="value-prop">
-              <img src="../../static/icons/icon-apply.svg" />
+              <img src="/static/icons/icon-apply.svg" />
               <h5 className="blue">3. Apply on behalf of the Operation</h5>
               <p>
                 The CIIP team will verify and approve your request and then you
@@ -172,12 +172,12 @@ export default class Index extends Component<Props> {
                      (min-width: 768px) 635px
               "
               srcSet="
-                      ../../static/landing-photo-375.jpg 375w,
-                      ../../static/landing-photo-750.jpg 750w,
-                      ../../static/landing-photo-1020.jpg 1020w,
-                      ../../static/landing-photo-1270.jpg 1270w
+                      /static/landing-photo-375.jpg 375w,
+                      /static/landing-photo-750.jpg 750w,
+                      /static/landing-photo-1020.jpg 1020w,
+                      /static/landing-photo-1270.jpg 1270w
               "
-              src="../../static/landing-photo-1020.jpg"
+              src="/static/landing-photo-1020.jpg"
             />
           </Col>
           <Col md={{span: 5}}>

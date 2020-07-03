@@ -8,8 +8,8 @@ class MyDocument extends Document {
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta charSet="utf-8" />
-          <link rel="stylesheet" href="../../static/bootstrap.min.css" />
-          <link rel="stylesheet" href="../../static/base.css" />
+          <link rel="stylesheet" href="/static/bootstrap.min.css" />
+          <link rel="stylesheet" href="/static/base.css" />
         </Head>
         <body>
           <Main />

@@ -42,7 +42,5 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('.fuel').get('.diffFrom > i').contains('[No Data Entered]');
     cy.get('.fuel').get('.diffTo').contains('10');
     cy.get('.production').get('.diffTo').contains('800');
-    // Take snapshot
-    cy.percySnapshot();
   });
 });
