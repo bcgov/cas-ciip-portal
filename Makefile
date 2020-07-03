@@ -83,7 +83,7 @@ install: whoami
 install:
 	@set -euo pipefail; \
 	helm dep up ./helm/cas-ciip-portal; \
-	if ! helm status cas-ciip-portal; then \
+	if ! helm status --namespace $(OC_PROJECT) cas-ciip-portal; then \
 		helm install --atomic --timeout 2400s --namespace $(OC_PROJECT) \
 		--set route.insecure=true \
 		--set image.schema.tag=$(GIT_SHA1) --set image.app.tag=$(GIT_SHA1) \
