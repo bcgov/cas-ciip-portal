@@ -154,6 +154,15 @@ app.prepare().then(() => {
   server.use(bodyParser.json());
   server.use(cors());
 
+  // Tell search + crawlers not to index non-production environments:
+  server.use(({res, next}) => {
+    if (!process.env.NAMESPACE || !process.env.NAMESPACE.endsWith('-prod')) {
+      res.append('X-Robots-Tag', 'noindex, noimageindex, nofollow, noarchive');
+    }
+
+    next();
+  });
+
   const store = new PgSession({
     pool: pgPool,
     schemaName: 'ggircs_portal_private',
