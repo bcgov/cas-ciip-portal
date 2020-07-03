@@ -46,6 +46,9 @@ env:
   senderEmail: BCCAS <no-reply.cas@gov.bc.ca>
   adminEmail: GHG Regulator <GHGRegulator@gov.bc.ca>
 
+analytics:
+  enable: false
+
 fider:
   host: # TODO move fider template in this repo
 

@@ -61,6 +61,8 @@ spec:
             value: {{ .Values.env.adminEmail }}
           - name: FEEDBACK_SITE_URL
             value: {{ .Values.fider.host }}
+          - name: ENABLE_ANALYTICS
+            value: {{ .Values.analytics.enable | quote }}
           - name: HOST
             value: http{{ if not .Values.route.insecure }}s{{ end }}://{{ .Values.route.host }}
           - name: NAMESPACE

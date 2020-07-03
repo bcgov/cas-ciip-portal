@@ -8,6 +8,9 @@ env:
   senderEmail: BC Climate Action Secretariat <no-reply-dev.cas@gov.bc.ca>
   adminEmail: CIIP Admin, BC Climate Action Secretariat <admin@ciip.test>
 
+analytics:
+  enable: true
+
 fider:
   host: https://ciip-portal-wksv3k-test-feedback.pathfinder.gov.bc.ca/
 # TODO move fider template in this repo
