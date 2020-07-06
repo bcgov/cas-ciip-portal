@@ -188,7 +188,7 @@ describe('The Create Product modal', () => {
     cy.get(
       '#root_subtractGeneratedHeatEmissions > :nth-child(1) > label > :nth-child(1) > input'
     ).click();
-    cy.get('.modal-body > .container').happoScreenshot({
+    cy.get('.card-body').happoScreenshot({
       component: 'Create Product Modal'
     });
     cy.contains('Add Product').click();
