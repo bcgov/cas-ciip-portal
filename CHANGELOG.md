@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.9](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.8...v1.0.0-rc.9) (2020-07-06)
+
+
+### Features
+
+* 'Industry'/'Admin' header link --> 'Dashboard' ([3bf2a8b](https://github.com/bcgov/cas-ciip-portal/commit/3bf2a8b74f4ee7b45d7bc91728b7a3362d39a98f))
+* add a success toast on signed cert request & redirect to requests list ([1138aa0](https://github.com/bcgov/cas-ciip-portal/commit/1138aa001ca2c6d98777e1e9365f416a9c9b2c18))
+* add cypress axe tests for certifier & guest ([1d90b96](https://github.com/bcgov/cas-ciip-portal/commit/1d90b96cff2e2fb4ba00b588b221fb7ba50700ad))
+* Add pages from DevHub for footer links ([dd8bfef](https://github.com/bcgov/cas-ciip-portal/commit/dd8bfeff47abf1dc9da103c4c7e52ea21a02b3d6))
+* create accessibility cypress tests for reporter, analyst, admin ([a81b9be](https://github.com/bcgov/cas-ciip-portal/commit/a81b9bea12ca85c072af4c822484420fa73d6d0c))
+* Ensure test analytics module only present in test env ([6ab9b25](https://github.com/bcgov/cas-ciip-portal/commit/6ab9b2511c0e48a624dab2993e9bb8912cd0d744))
+* initial install deploys with insecure route first to issue cert ([5a65085](https://github.com/bcgov/cas-ciip-portal/commit/5a6508508574d21adcfe07ed7d45f34e1ed7b935))
+* Install test analytics module ([1a1dd2e](https://github.com/bcgov/cas-ciip-portal/commit/1a1dd2eebd1c53883220a33193a965de8f92dfae))
+* Set robots directives in header for non-prod environments ([7482c96](https://github.com/bcgov/cas-ciip-portal/commit/7482c965bb3451d7da4910514f8d350d75546321))
+* Updated factsheet for 2020 on landing page ([ff72c03](https://github.com/bcgov/cas-ciip-portal/commit/ff72c0320b825a886050a92ea93a6c222c2b2aa5))
+* updated keycloak realm exports ([ec5c0ec](https://github.com/bcgov/cas-ciip-portal/commit/ec5c0eccf690bcfe3fe7ad02b7417ecde4d00f74))
+* use happo instead of Percy for e2e snapshots ([a244a00](https://github.com/bcgov/cas-ciip-portal/commit/a244a004e14ac8c51bd54a5bc04bef94f89b8882))
+
+
+### Bug Fixes
+
+* add swrs_facility_id value to unnamed facilities in dropdown ([270ee51](https://github.com/bcgov/cas-ciip-portal/commit/270ee5144cfffbdaf8ac3f9d68b1818e3111c0db))
+* add uindex to application (fixes multiple 'apply' button clicks bug) ([c6ecdee](https://github.com/bcgov/cas-ciip-portal/commit/c6ecdee3a3c30da69cf566378a5727f8464fd79e))
+* await searchField state change before setting searchValue state ([b38adc1](https://github.com/bcgov/cas-ciip-portal/commit/b38adc135e243f18ec05df1832f5478dba25e4ed))
+* Capitalize SWRS acronym ([5ced885](https://github.com/bcgov/cas-ciip-portal/commit/5ced8850999e54ef62ad69ddb7de366b252134f4))
+* Certifier clipboard URL should have protocol ([1449a0e](https://github.com/bcgov/cas-ciip-portal/commit/1449a0e90b225a657597436e4f0c4f00931e756b))
+* Ensure certification redirect page diverts through login ([87ff2ec](https://github.com/bcgov/cas-ciip-portal/commit/87ff2ecbb4656dc9515a3b72504a95f9b13b036a))
+* Ensure login redirects processed before non-permissible redirects ([79f6268](https://github.com/bcgov/cas-ciip-portal/commit/79f6268d3fa46b66cddf1e24796ed05a086a1a40))
+* Ensure redirect URL encoded to preserve all query params ([6998fb6](https://github.com/bcgov/cas-ciip-portal/commit/6998fb6372d673074c6f95249fdd4098c4d4df6f))
+* handle null facility names in search dropdown ([f87c79d](https://github.com/bcgov/cas-ciip-portal/commit/f87c79ddfa51456cc2b6a8a18c19d023aa7afac3))
+* helm status should be run on the correct namespace ([5abf5ac](https://github.com/bcgov/cas-ciip-portal/commit/5abf5ac075561d2653244e4d81818b0188c51bca))
+* parse zeroes as data rather than falsey when populating diff table ([336e955](https://github.com/bcgov/cas-ciip-portal/commit/336e955161413953bd61c6eb69ae24eaccf48479))
+* set searchField & searchValue state at the same time ([fc858e4](https://github.com/bcgov/cas-ciip-portal/commit/fc858e41e6a00125a9405cb932e2a5ec20eb6767))
+* static assets should not use relative url ([9b3c683](https://github.com/bcgov/cas-ciip-portal/commit/9b3c6836b913a8bfd533319215090a19cea0a9ea))
+* update CO2 gas types to match SWRS data and update gas descriptions ([6e5c241](https://github.com/bcgov/cas-ciip-portal/commit/6e5c241d0f45fe194ae354e97b7ca4eef6df34b8))
+* update logic with nullish coalescing ([71de797](https://github.com/bcgov/cas-ciip-portal/commit/71de797b82fe610490d924e88aec1093fa45b1cc))
+* update typescript definitions for handleEvent ([4214670](https://github.com/bcgov/cas-ciip-portal/commit/4214670381e47f537d51c1c0c9b2e8f856960adf))
+* User Profile header link should be nextjs Link ([e5a4cec](https://github.com/bcgov/cas-ciip-portal/commit/e5a4cec53ef7d45020aed78ed5fad9bdbb77391d))
+
 ## [1.0.0-rc.8](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.7...v1.0.0-rc.8) (2020-06-26)
 
 
