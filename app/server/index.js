@@ -190,6 +190,13 @@ app.prepare().then(() => {
     'public-client': true,
     'confidential-port': 0
   };
+  const kcRegistrationUrl = `${kcConfig['auth-server-url']}/realms/${
+    kcConfig.realm
+  }/protocol/openid-connect/registrations?client_id=${
+    kcConfig.resource
+  }&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(
+    `${process.env.HOST}/login?auth_callback=1`
+  )}`;
   const keycloak = new Keycloak({store}, kcConfig);
 
   // Nuke the siteminder session token on logout if we can
@@ -342,6 +349,8 @@ app.prepare().then(() => {
 
   // Keycloak callbak; do not keycloak.protect() to avoid users being authenticated against their will via XSS attack
   server.get('/login', (req, res) => res.redirect(302, getRedirectURL(req)));
+
+  server.get('/register', ({res}) => res.redirect(302, kcRegistrationUrl));
 
   server.get('*', async (req, res) => {
     return handle(req, res);

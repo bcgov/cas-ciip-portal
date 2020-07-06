@@ -49,9 +49,9 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
                 ) : (
                   <Form.Row>
                     <Col>
-                      <LoginButton type="submit" variant="outline-light">
-                        Register
-                      </LoginButton>
+                      <Link href="/register">
+                        <a className="btn btn-outline-light">Register</a>
+                      </Link>
                     </Col>
                     <Col>
                       <LoginButton type="submit" variant="outline-light">

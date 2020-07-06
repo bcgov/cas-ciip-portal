@@ -46,12 +46,15 @@ exports[`It matches the last accepted Snapshot 1`] = `
             >
               <FormRow>
                 <Col>
-                  <LoginForm
-                    type="submit"
-                    variant="outline-light"
+                  <Link
+                    href="/register"
                   >
-                    Register
-                  </LoginForm>
+                    <a
+                      className="jsx-2453800556 btn btn-outline-light"
+                    >
+                      Register
+                    </a>
+                  </Link>
                 </Col>
                 <Col>
                   <LoginForm
