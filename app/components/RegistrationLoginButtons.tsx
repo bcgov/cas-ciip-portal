@@ -1,6 +1,7 @@
 import React from 'react';
 import {Col, Card} from 'react-bootstrap';
 import LoginButton from './LoginButton';
+import Link from 'next/link';
 
 interface Props {
   applicationDeadline: string;
@@ -21,14 +22,14 @@ const RegistrationLoginButtons: React.FunctionComponent<Props> = ({
             {applicationDeadline}. As part of the application, information about
             the operation’s energy use, emissions, and production is required.
           </Card.Text>
-          <LoginButton
-            style={{padding: '15px'}}
-            className="full-width"
-            variant="primary"
-            size="lg"
-          >
-            Register and Apply
-          </LoginButton>
+          <Link href="/register">
+            <a
+              style={{padding: '15px', display: 'block'}}
+              className="full-width btn btn-primary btn-lg"
+            >
+              Register and Apply
+            </a>
+          </Link>
         </Card.Body>
       </Card>
       <LoginButton className="login-link" variant="outline-dark">
