@@ -360,6 +360,9 @@ export const ProductRowItemComponent: React.FunctionComponent<Props> = ({
       />
       <style jsx global>
         {`
+          .hidden-title label {
+            display: none;
+          }
           .editIcon:hover {
             color: red;
             cursor: pointer;
