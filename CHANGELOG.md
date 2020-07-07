@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.10](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.9...v1.0.0-rc.10) (2020-07-07)
+
+
+### Features
+
+* Register button leads directly to SSO registration ([cdb53cc](https://github.com/bcgov/cas-ciip-portal/commit/cdb53cc3355e96fb52eec941d105acfe2174e861))
+* Update snowplow collector to prod origin ([94f20dd](https://github.com/bcgov/cas-ciip-portal/commit/94f20ddb3107f0b0068ab2b3fb62605e505e89b7))
+
+
+### Bug Fixes
+
+* hide jsonschema titles with css ([c83342f](https://github.com/bcgov/cas-ciip-portal/commit/c83342f71ab3f01efc775632458d9e309e791b2d))
+
 ## [1.0.0-rc.9](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.8...v1.0.0-rc.9) (2020-07-06)
 
 
