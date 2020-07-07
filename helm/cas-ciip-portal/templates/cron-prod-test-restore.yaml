@@ -66,7 +66,8 @@ spec:
                 - bash
                 - -c
                 - >
-                  walg backup-fetch prod-bak;
+                  rm -rf prod-bak
+                  envdir $WALE_ENV_DIR wal-g backup-fetch prod-bak LATEST;
                   cd prod-bak;
                   touch recovery.signal;
                   ls -lah;
@@ -76,12 +77,11 @@ spec:
                   name: prod-backup
           volumes:
             - name: prod-backup
-              csi:
-                driver: inline.storage.kubernetes.io
+              persistentVolumeClaim:
+                claimName: {{ template "cas-ciip-portal.fullname" . }}-prod-backup
 
-
+            # pg_ctl -D prod-bak start -w -o "-h localhost -p 5433--restore_command=\'PGPASSWORD=$PGPASSWORD_SUPERUSER envdir $WALE_ENV_DIR wal-g wal-fetch %f %p\' --recovery_target_time=\'2020-06-11 11:09:00-07\' --recovery_target_action=promote";
             # touch .pgpass; chmod 0600 .pgpass;
-            # echo "$GGIRCS_HOST:$GGIRCS_PORT:$GGIRCS_DATABASE:$GGIRCS_USER:$GGIRCS_PASSWORD" >> .pgpass;
             # echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass;
             # PGPASSFILE=".pgpass" pg_dump -w -h $GGIRCS_HOST -p $GGIRCS_PORT -U $GGIRCS_USER --format=custom --schema="swrs" $GGIRCS_DATABASE |
             # PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER

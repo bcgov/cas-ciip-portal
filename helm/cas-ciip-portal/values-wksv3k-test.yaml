@@ -18,6 +18,9 @@ fider:
   host: https://ciip-portal-wksv3k-test-feedback.pathfinder.gov.bc.ca/
 # TODO move fider template in this repo
 
+restoreFromProd:
+  enable: true
+
 mailhog:
   enable: true
   securityContext:

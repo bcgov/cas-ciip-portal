@@ -1,0 +1,15 @@
+{{- if .Values.restoreFromProd.enable }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-prod-backup
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: {{ .Values.route.storageClassName }}
