@@ -23,10 +23,8 @@ Options
     Drops the $database database before deploying
   -prod, --prod-data
     Deploy production data only
-  -test, --test-data
-    Deploy testing data. Inlcudes prod data
   -dev, --dev-data
-    Deploy development data. Includes test and prod data
+    Deploy development data. Includes prod data
   -s, --deploy-swrs-schema
     Redeploys the swrs schema and inserts the swrs test reports. This requires the .cas-ggircs submodule to be initialized
   -p, --deploy-portal-schema
@@ -138,9 +136,6 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
   -prod | --prod-data | --oc-project=*-prod )
     actions+=('deployProd')
     ;;
-  -test | --test-data | --oc-project=*-test )
-    actions+=('deployTest')
-    ;;
   -dev | --dev-data | --oc-project=*-dev )
     actions+=('deployDev')
     ;;
@@ -168,17 +163,12 @@ deployProdData() {
   return 0;
 }
 
-deployTestData() {
-  deployProdData
-  _psql -f "./test/reporting_year.sql"
-  _psql -f "./test/mock_current_timestamp.sql"
-  _psql -f "./test/product.sql"
-  _psql -f "./test/benchmark.sql"
-  return 0;
-}
-
 deployDevData() {
-  deployTestData
+  deployProdData
+  _psql -f "./dev/reporting_year.sql"
+  _psql -f "./dev/mock_current_timestamp.sql"
+  _psql -f "./dev/product.sql"
+  _psql -f "./dev/benchmark.sql"
   _psql -f "./dev/user.sql"
   _psql -f "./dev/ciip_user_organisation.sql"
   _psql -f "./dev/application.sql"
@@ -205,10 +195,6 @@ deployPortal
 if [[ " ${actions[*]} " =~ " deployProd " ]]; then
   echo 'Deploying production data'
   deployProdData
-fi
-if [[ " ${actions[*]} " =~ " deployTest " ]]; then
-  echo 'Deploying testing data'
-  deployTestData
 fi
 if [[ " ${actions[*]} " =~ " deployDev " ]]; then
   echo 'Deploying development data'

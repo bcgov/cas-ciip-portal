@@ -257,33 +257,6 @@ jobs:
           paths:
             - cas-ciip-portal # persist the build for e2e tests
 
-  deploy-test-data:
-    machine:
-      image: ubuntu-1604:201903-01
-    working_directory: ~/cas-ciip-portal
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: "Checkout Submodules"
-          command: |
-            git submodule update --init
-      - run:
-          name: start postgres
-          command: |
-            source ~/.bashrc
-            pg_ctl start
-      - run:
-          name: deploy schemas and data
-          command: |
-            source ~/.bashrc
-            ./.bin/deploy-data.sh -dev
-      - run:
-          name: deploying the data a second time should not fail on primary key conflicts
-          command: |
-            source ~/.bashrc
-            ./.bin/deploy-data.sh -dev
-
   acceptance:
     machine:
       image: ubuntu-1604:201903-01
@@ -533,9 +506,6 @@ workflows:
           requires:
             - tools
       - acceptance:
-          requires:
-            - tools
-      - deploy-test-data:
           requires:
             - tools
       - e2e-snapshots:
