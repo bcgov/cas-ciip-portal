@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`404 page It matches the last accepted Snapshot 1`] = `
+<Fragment>
+  <Relay(DefaultLayout)
+    needsSession={false}
+    needsUser={false}
+    session={null}
+  >
+    <Row
+      className="justify-content-center"
+      noGutters={false}
+      style={
+        Object {
+          "paddingTop": "3em",
+        }
+      }
+    >
+      <Col
+        md={
+          Object {
+            "span": 6,
+          }
+        }
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }
+      >
+        <h1
+          className="jsx-3660830980"
+        >
+          Page not found
+        </h1>
+        <p
+          className="jsx-3660830980"
+        >
+          Sorry, we couldn't find the page you were looking for.
+        </p>
+        <p
+          className="jsx-3660830980"
+        >
+          <Link
+            href="/"
+          >
+            <a
+              className="jsx-3660830980 full-width btn btn-primary"
+            >
+              Return Home
+            </a>
+          </Link>
+        </p>
+      </Col>
+    </Row>
+  </Relay(DefaultLayout)>
+  <JSXStyle
+    id="3660830980"
+  >
+    p.jsx-3660830980{margin:2em 0;}
+  </JSXStyle>
+</Fragment>
+`;
