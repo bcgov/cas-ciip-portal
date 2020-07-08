@@ -40,6 +40,7 @@ persistence:
 dag:
   # a command to be executed at the beginning of the init-db job, running in the psql image abov
   preInitDb: ""
+  name: "ciip_deploy_db"
 
 env:
   smtpConnectionString: smtp://apps.smtp.gov.bc.ca/?port=25&ignoreTLS=true&secure=false
