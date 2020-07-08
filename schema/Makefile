@@ -21,23 +21,18 @@ PG_SHAREDIR=$(shell pg_config --sharedir)
 DEPLOY_DEFAULT_DATA=deploy_dev_data
 
 .PHONY: test
-test: | test_deploy_revert $(DEPLOY_DEFAULT_DATA) prove_unit prove_style dropdb
+test: | test_deploy_revert test_data prove_unit prove_style dropdb
 
 .PHONY: unit
 unit: | $(DEPLOY_DEFAULT_DATA) prove_unit
 
 .PHONY: test_data
-test_data: | deploy_prod_data prove_prod_data deploy_test_data prove_test_data deploy_dev_data prove_dev_data
+test_data: | deploy_prod_data prove_prod_data deploy_dev_data prove_dev_data
 
 .PHONY: deploy_prod_data
 deploy_prod_data:
 	# Deploy prod data in $(TEST_DB)
 	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -prod
-
-.PHONY: deploy_test_data
-deploy_test_data:
-	# Deploy test data in $(TEST_DB)
-	@@SQITCH_TARGET="db:pg:" PGHOST=localhost PGDATABASE=$(TEST_DB) ./data/deploy-data.sh -d -test
 
 .PHONY: deploy_dev_data
 deploy_dev_data:
@@ -78,10 +73,6 @@ prove_prod_data:
 	# Run prod_data tests using pg_prove
 	@@$(PG_PROVE) --failures -d $(TEST_DB) test/data/prod_data_test.sql
 
-.PHONY: prove_test_data
-prove_test_data:
-	# Run test_data tests using pg_prove
-	@@$(PG_PROVE) --failures -d $(TEST_DB) test/data/test_data_test.sql
 
 .PHONY: prove_dev_data
 prove_dev_data:
