@@ -58,4 +58,4 @@ spec:
           - /usr/bin/env
           - bash
           - -c
-          - ./trigger-airflow-dag.sh ciip_deploy_db
+          - ./trigger-airflow-dag.sh {{ .Values.dag.name }}
