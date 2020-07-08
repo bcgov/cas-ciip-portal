@@ -26,6 +26,7 @@ exports[`The Form Component should match the snapshot 1`] = `
     fields={
       Object {
         "NumberField": [Function],
+        "ProblemReportField": [Function],
         "emission": [Function],
         "emissionCategoryRowId": [Function],
         "emissionGas": [Function],
@@ -630,6 +631,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
     fields={
       Object {
         "NumberField": [Function],
+        "ProblemReportField": [Function],
         "emission": [Function],
         "emissionCategoryRowId": [Function],
         "emissionGas": [Function],
@@ -1244,6 +1246,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
     fields={
       Object {
         "NumberField": [Function],
+        "ProblemReportField": [Function],
         "emission": [Function],
         "emissionCategoryRowId": [Function],
         "emissionGas": [Function],
@@ -1929,6 +1932,7 @@ exports[`The Form Component should render an alert reminder to report any missin
     fields={
       Object {
         "NumberField": [Function],
+        "ProblemReportField": [Function],
         "emission": [Function],
         "emissionCategoryRowId": [Function],
         "emissionGas": [Function],

@@ -81,22 +81,22 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   Operator
                 </TEXT>
                 <TEXT>
-                  mollit eu esse
+                  consequat Ut Duis
                 </TEXT>
                 <TEXT>
                    
-                  in qui
+                  est dolor
                 </TEXT>
                 <TEXT>
                    
-                  mollit eu esse
+                  consequat Ut Duis
                   ,
                    
-                  British Columbia
+                  Manitoba
                 </TEXT>
                 <TEXT>
                    
-                  p4A2p4
+                  u5f3u5
                 </TEXT>
               </VIEW>
             </styled.VIEW>
@@ -185,35 +185,36 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               }
               formData={
                 Object {
+                  "comments": "culpa",
                   "facility": Object {
-                    "bcghgid": "4512",
-                    "facilityName": "consequat Ut Duis",
-                    "facilityType": "IF_a",
+                    "bcghgid": "23",
+                    "facilityName": "culpa",
+                    "facilityType": "IF_b",
                   },
                   "operationalRepresentative": Object {
-                    "email": "Fmsy@fkpuAfkpuAfkpuAfk.kn",
-                    "firstName": "mollit eu esse",
-                    "lastName": "consequat Ut Duis",
+                    "email": "gszFg@puAfkpu.cfh",
+                    "firstName": "in qui",
+                    "lastName": "est dolor",
                     "mailingAddress": Object {
-                      "city": "in qui",
-                      "postalCode": "f2p5f2",
-                      "province": "Northwest Territories",
-                      "streetAddress": "consequat Ut Duis",
+                      "city": "consequat Ut Duis",
+                      "postalCode": "u5f3u5",
+                      "province": "Manitoba",
+                      "streetAddress": "est dolor",
                     },
-                    "phone": "est dolor",
-                    "position": "in qui",
+                    "phone": "culpa",
+                    "position": "consequat Ut Duis",
                   },
                   "operator": Object {
-                    "bcCorporateRegistryNumber": "FK4512345",
+                    "bcCorporateRegistryNumber": "P5123451",
                     "mailingAddress": Object {
-                      "city": "mollit eu esse",
-                      "postalCode": "p4A2p4",
-                      "province": "British Columbia",
-                      "streetAddress": "in qui",
+                      "city": "consequat Ut Duis",
+                      "postalCode": "u5f3u5",
+                      "province": "Manitoba",
+                      "streetAddress": "est dolor",
                     },
-                    "naics": "123451",
-                    "name": "mollit eu esse",
-                    "tradeName": "mollit eu esse",
+                    "naics": "23",
+                    "name": "consequat Ut Duis",
+                    "tradeName": "culpa",
                   },
                 }
               }
@@ -270,6 +271,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                   },
                   "properties": Object {
+                    "comments": Object {
+                      "type": "string",
+                    },
                     "facility": Object {
                       "properties": Object {
                         "bcghgid": Object {
@@ -382,6 +386,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               tagName="VIEW"
               uiSchema={
                 Object {
+                  "comments": Object {
+                    "ui:col-md": 12,
+                    "ui:field": "ProblemReportField",
+                    "ui:options": Object {
+                      "label": false,
+                    },
+                  },
                   "facility": Object {
                     "facilityLocation": Object {
                       "ui:order": Array [
@@ -451,6 +462,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     ],
                   },
                   "ui:order": Array [
+                    "comments",
                     "operator",
                     "operationalRepresentative",
                     "facility",
@@ -525,6 +537,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               }
               formData={
                 Object {
+                  "comments": "est dolor",
                   "sourceTypes": Array [
                     Object {
                       "gases": Array [
@@ -666,6 +679,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                   },
                   "properties": Object {
+                    "comments": Object {
+                      "type": "string",
+                    },
                     "sourceTypes": Object {
                       "items": Object {
                         "$ref": "#/definitions/sourceType",
@@ -682,6 +698,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               tagName="VIEW"
               uiSchema={
                 Object {
+                  "comments": Object {
+                    "ui:col-md": 12,
+                    "ui:field": "ProblemReportField",
+                    "ui:options": Object {
+                      "label": false,
+                    },
+                  },
                   "sourceTypes": Object {
                     "items": Object {
                       "gases": Object {
@@ -714,6 +737,10 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   },
                   "ui:className": "emission-form no-col-padding",
                   "ui:field": "emission",
+                  "ui:order": Array [
+                    "comments",
+                    "sourceTypes",
+                  ],
                 }
               }
               widgets={
@@ -785,10 +812,11 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "emissionCategoryRowId": -40000000,
-                    "fuelRowId": -60000000,
-                    "fuelUnits": "in qui",
-                    "quantity": -20000000,
+                    "comments": "in qui",
+                    "emissionCategoryRowId": -20000000,
+                    "fuelRowId": -40000000,
+                    "fuelUnits": "est dolor",
+                    "quantity": 0,
                   },
                 ]
               }
@@ -802,6 +830,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                   "definitions": Object {
                     "fuel": Object {
                       "properties": Object {
+                        "comments": Object {
+                          "type": "string",
+                        },
                         "emissionCategoryRowId": Object {
                           "title": "Emission Category",
                           "type": "number",
@@ -839,6 +870,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "items": Object {
+                    "comments": Object {
+                      "ui:col-md": 12,
+                      "ui:field": "ProblemReportField",
+                      "ui:options": Object {
+                        "label": false,
+                      },
+                    },
                     "emissionCategoryRowId": Object {
                       "ui:field": "emissionCategoryRowId",
                     },
@@ -856,6 +894,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                     "ui:field": "fuel",
                     "ui:order": Array [
+                      "comments",
                       "fuelRowId",
                       "quantity",
                       "fuelUnits",
@@ -935,23 +974,16 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
+                    "comments": "in qui",
                     "isEnergyProduct": false,
-                    "productAmount": -20000000,
-                    "productEmissions": -60000000,
-                    "productRowId": -40000000,
-                    "productUnits": "in qui",
-                    "requiresEmissionAllocation": true,
-                    "requiresProductAmount": true,
-                  },
-                  Object {
-                    "isEnergyProduct": false,
-                    "productRowId": -20000000,
+                    "productRowId": -60000000,
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },
                   Object {
+                    "comments": "est dolor",
                     "isEnergyProduct": false,
-                    "productRowId": -60000000,
+                    "productRowId": -80000000,
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },
@@ -1025,6 +1057,9 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                         },
                       },
                       "properties": Object {
+                        "comments": Object {
+                          "type": "string",
+                        },
                         "isEnergyProduct": Object {
                           "type": "boolean",
                         },
@@ -1058,6 +1093,13 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               uiSchema={
                 Object {
                   "items": Object {
+                    "comments": Object {
+                      "ui:col-md": 12,
+                      "ui:field": "ProblemReportField",
+                      "ui:options": Object {
+                        "label": false,
+                      },
+                    },
                     "isEnergyProduct": Object {
                       "ui:widget": "hidden",
                     },
@@ -1086,6 +1128,7 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                     "ui:field": "product",
                     "ui:order": Array [
+                      "comments",
                       "productRowId",
                       "productAmount",
                       "productUnits",

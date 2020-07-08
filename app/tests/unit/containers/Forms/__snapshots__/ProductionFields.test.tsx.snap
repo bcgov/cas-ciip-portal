@@ -173,6 +173,9 @@ exports[`The ProductionFields Component with archived product should match the s
           },
         },
         "properties": Object {
+          "comments": Object {
+            "type": "string",
+          },
           "isEnergyProduct": Object {
             "type": "boolean",
           },
@@ -198,6 +201,13 @@ exports[`The ProductionFields Component with archived product should match the s
     uiSchema={
       Object {
         "items": Object {
+          "comments": Object {
+            "ui:col-md": 12,
+            "ui:field": "ProblemReportField",
+            "ui:options": Object {
+              "label": false,
+            },
+          },
           "isEnergyProduct": Object {
             "ui:widget": "hidden",
           },
@@ -226,6 +236,7 @@ exports[`The ProductionFields Component with archived product should match the s
           },
           "ui:field": "product",
           "ui:order": Array [
+            "comments",
             "productRowId",
             "productAmount",
             "productUnits",
@@ -388,6 +399,9 @@ exports[`The ProductionFields Component with published product should match the 
         },
       },
       "properties": Object {
+        "comments": Object {
+          "type": "string",
+        },
         "isEnergyProduct": Object {
           "type": "boolean",
         },
@@ -413,6 +427,13 @@ exports[`The ProductionFields Component with published product should match the 
   uiSchema={
     Object {
       "items": Object {
+        "comments": Object {
+          "ui:col-md": 12,
+          "ui:field": "ProblemReportField",
+          "ui:options": Object {
+            "label": false,
+          },
+        },
         "isEnergyProduct": Object {
           "ui:widget": "hidden",
         },
@@ -441,6 +462,7 @@ exports[`The ProductionFields Component with published product should match the 
         },
         "ui:field": "product",
         "ui:order": Array [
+          "comments",
           "productRowId",
           "productAmount",
           "productUnits",
