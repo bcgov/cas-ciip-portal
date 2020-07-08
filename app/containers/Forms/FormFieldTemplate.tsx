@@ -57,6 +57,8 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
   const lg = uiSchema['ui:col-lg'] || md;
   const xl = uiSchema['ui:col-xl'] || lg;
 
+  const renderLabel = uiSchema['ui:options']?.label !== false;
+
   return (
     <Form.Group
       as={Col}
@@ -67,10 +69,12 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
       xl={xl}
       className={classNames}
     >
-      <Form.Label htmlFor={id}>
-        {label}
-        {required ? <>&nbsp;*</> : null}
-      </Form.Label>
+      {renderLabel && (
+        <Form.Label htmlFor={id}>
+          {label}
+          {required ? <>&nbsp;*</> : null}
+        </Form.Label>
+      )}
       {description}
       {children}
       {errors}

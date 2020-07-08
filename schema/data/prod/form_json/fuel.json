@@ -8,6 +8,9 @@
       "fuel": {
         "type": "object",
         "properties": {
+          "comments": {
+            "type":"string"
+          },
           "fuelRowId": {
             "title": "Fuel Name",
             "type": "number"
@@ -33,8 +36,15 @@
     "ui:add-text": "Add a fuel",
     "ui:remove-text": "Remove fuel",
     "items": {
+      "comments": {
+        "ui:field": "ProblemReportField",
+        "ui:options": {
+          "label": false
+        },
+        "ui:col-md": 12
+      },
       "ui:field": "fuel",
-      "ui:order": ["fuelRowId", "quantity", "fuelUnits","emissionCategoryRowId"],
+      "ui:order": ["comments", "fuelRowId", "quantity", "fuelUnits","emissionCategoryRowId"],
       "fuelRowId": {
         "ui:widget": "SearchWidget",
         "ui:field": "fuelRowId",

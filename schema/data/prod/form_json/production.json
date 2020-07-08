@@ -8,6 +8,9 @@
       "product": {
         "type": "object",
         "properties": {
+          "comments": {
+            "type":"string"
+          },
           "productRowId": {
             "title": "Product or Service",
             "type": "integer"
@@ -78,8 +81,15 @@
     "ui:add-text": "Add a Product",
     "ui:remove-text": "Remove Product",
     "items": {
+      "comments": {
+        "ui:field": "ProblemReportField",
+        "ui:options": {
+          "label": false
+        },
+        "ui:col-md": 12
+      },
       "ui:field": "product",
-      "ui:order": ["productRowId", "productAmount", "productUnits", "*"],
+      "ui:order": ["comments", "productRowId", "productAmount", "productUnits", "*"],
       "productRowId": {
         "ui:col-md": 12,
         "ui:widget": "SearchWidget",

@@ -39,6 +39,43 @@ exports[`Form should match the snapshot with the administration form 1`] = `
           />
         </div>
         <div
+          className="form-group field field-string form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+        >
+          <span
+            className="jsx-977984390 title"
+          >
+            <button
+              className="btn btn-link"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-exclamation-circle fa-w-16 "
+                data-icon="exclamation-circle"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+               
+              Edit Reported Problem
+            </button>
+          </span>
+          <span
+            className="font-italic text-muted"
+          />
+        </div>
+        <div
           className="form-group field field-object col-12"
         >
           <div
@@ -86,7 +123,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="culpa"
+                value="est dolor"
               />
               <span
                 className="font-italic text-muted"
@@ -115,7 +152,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="est dolor"
+                value="in qui"
               />
               <span
                 className="font-italic text-muted"
@@ -144,7 +181,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="345"
+                value="51234"
               />
               <span
                 className="font-italic text-muted"
@@ -173,7 +210,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="aF3451234"
+                value="U1234512"
               />
               <span
                 className="font-italic text-muted"
@@ -227,7 +264,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="culpa"
+                    value="mollit eu esse"
                   />
                   <span
                     className="font-italic text-muted"
@@ -256,7 +293,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="mollit eu esse"
+                    value="culpa"
                   />
                   <span
                     className="font-italic text-muted"
@@ -285,7 +322,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="k3u 2p4"
+                    value="A1k4A1"
                   />
                   <span
                     className="font-italic text-muted"
@@ -310,7 +347,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onChange={[Function]}
                     onFocus={[Function]}
                     required={true}
-                    value="British Columbia"
+                    value="New Brunswick"
                   >
                     <option
                       value=""
@@ -439,7 +476,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="mollit eu esse"
+                value="culpa"
               />
               <span
                 className="font-italic text-muted"
@@ -468,7 +505,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="consequat Ut Duis"
+                value="in qui"
               />
               <span
                 className="font-italic text-muted"
@@ -497,7 +534,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="in qui"
+                value="mollit eu esse"
               />
               <span
                 className="font-italic text-muted"
@@ -526,7 +563,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="email"
-                value="Fmsy@fkpuAfkpuAfkpuAfk.kn"
+                value="mzFgms@AfkpuAfkpuAfkp.ncf"
               />
               <span
                 className="font-italic text-muted"
@@ -555,7 +592,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="tel"
-                value="est dolor"
+                value="consequat Ut Duis"
               />
               <span
                 className="font-italic text-muted"
@@ -609,7 +646,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="consequat Ut Duis"
+                    value="in qui"
                   />
                   <span
                     className="font-italic text-muted"
@@ -638,7 +675,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="in qui"
+                    value="mollit eu esse"
                   />
                   <span
                     className="font-italic text-muted"
@@ -667,7 +704,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     readOnly={false}
                     required={true}
                     type="text"
-                    value="f2p5f2"
+                    value="p4A2p4"
                   />
                   <span
                     className="font-italic text-muted"
@@ -692,7 +729,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                     onChange={[Function]}
                     onFocus={[Function]}
                     required={true}
-                    value="Northwest Territories"
+                    value="British Columbia"
                   >
                     <option
                       value=""
@@ -821,7 +858,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="in qui"
+                value="mollit eu esse"
               />
               <span
                 className="font-italic text-muted"
@@ -846,7 +883,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 onChange={[Function]}
                 onFocus={[Function]}
                 required={true}
-                value="IF_b"
+                value="SFO"
               >
                 <option
                   value=""
@@ -911,7 +948,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 readOnly={false}
                 required={true}
                 type="text"
-                value="51234"
+                value="123451"
               />
               <span
                 className="font-italic text-muted"
@@ -1031,6 +1068,43 @@ exports[`Form should match the snapshot with the emission form 1`] = `
             </button>
           </div>
           <div
+            className="form-group field field-string form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+          >
+            <span
+              className="jsx-977984390 title"
+            >
+              <button
+                className="btn btn-link"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-exclamation-circle fa-w-16 "
+                  data-icon="exclamation-circle"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 512 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+                 
+                Edit Reported Problem
+              </button>
+            </span>
+            <span
+              className="font-italic text-muted"
+            />
+          </div>
+          <div
             className="col-12"
           >
             <span
@@ -1092,7 +1166,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                   }
                                 }
                               >
-                                consequat Ut Duis
+                                mollit eu esse
                               </h5>
                             </div>
                             <div
@@ -1170,7 +1244,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                           <div
                                             className="col-md-4"
                                           >
-                                            mollit eu esse
+                                            est dolor
                                              
                                             <br
                                               className="jsx-1154833918"
@@ -1189,7 +1263,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               <small
                                                 className="jsx-1154833918"
                                               >
-                                                in qui
+                                                culpa
                                               </small>
                                             </div>
                                           </div>
@@ -1214,7 +1288,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                                 onKeyDown={[Function]}
                                                 onMouseUp={[Function]}
                                                 type="text"
-                                                value="50,000,000"
+                                                value="40,000,000"
                                               />
                                               <span
                                                 className="font-italic text-muted"
@@ -1240,7 +1314,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               <li
                                                 className="jsx-1154833918"
                                               >
-                                                -60000000
+                                                -80000000
                                               </li>
                                               <li
                                                 className="jsx-1154833918"
@@ -1268,7 +1342,1413 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                                 disabled={false}
                                                 id="root_sourceTypes_0_gases_0_annualCO2e"
                                               >
-                                                -20,000,000
+                                                -40,000,000
+                                              </span>
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr
+                                className="jsx-4148384647"
+                              />
+                            </div>
+                            <div
+                              className="jsx-4148384647"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-group field field-object  hidden-title col-12"
+                                  >
+                                    <div
+                                      className="form-row"
+                                    >
+                                      <div
+                                        className="col-12"
+                                      />
+                                      <div
+                                        className="col-12"
+                                      >
+                                        <span
+                                          className="font-italic text-muted"
+                                        />
+                                      </div>
+                                      <div
+                                        className=" emission-row col-md-12 col-12"
+                                      >
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <div
+                                            className="col-md-4"
+                                          >
+                                            est dolor
+                                             
+                                            <br
+                                              className="jsx-1154833918"
+                                            />
+                                            <div
+                                              className="col-md-10"
+                                              style={
+                                                Object {
+                                                  "color": "#888",
+                                                  "lineHeight": "17px",
+                                                  "margin": 0,
+                                                  "padding": 0,
+                                                }
+                                              }
+                                            >
+                                              <small
+                                                className="jsx-1154833918"
+                                              >
+                                                culpa
+                                              </small>
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualEmission"
+                                              />
+                                              <input
+                                                className="form-control"
+                                                disabled={false}
+                                                id="root_sourceTypes_0_gases_1_annualEmission"
+                                                inputMode="numeric"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                onMouseUp={[Function]}
+                                                type="text"
+                                                value="40,000,000"
+                                              />
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-2"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <ul
+                                              className="jsx-1154833918 gwp"
+                                            >
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                X
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                -80000000
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                =
+                                              </li>
+                                            </ul>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualCO2e"
+                                              />
+                                              <span
+                                                disabled={false}
+                                                id="root_sourceTypes_0_gases_1_annualCO2e"
+                                              >
+                                                -40,000,000
+                                              </span>
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr
+                                className="jsx-4148384647"
+                              />
+                            </div>
+                            <div
+                              className="jsx-4148384647"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-group field field-object  hidden-title col-12"
+                                  >
+                                    <div
+                                      className="form-row"
+                                    >
+                                      <div
+                                        className="col-12"
+                                      />
+                                      <div
+                                        className="col-12"
+                                      >
+                                        <span
+                                          className="font-italic text-muted"
+                                        />
+                                      </div>
+                                      <div
+                                        className=" emission-row col-md-12 col-12"
+                                      >
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <div
+                                            className="col-md-4"
+                                          >
+                                            est dolor
+                                             
+                                            <br
+                                              className="jsx-1154833918"
+                                            />
+                                            <div
+                                              className="col-md-10"
+                                              style={
+                                                Object {
+                                                  "color": "#888",
+                                                  "lineHeight": "17px",
+                                                  "margin": 0,
+                                                  "padding": 0,
+                                                }
+                                              }
+                                            >
+                                              <small
+                                                className="jsx-1154833918"
+                                              >
+                                                culpa
+                                              </small>
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualEmission"
+                                              />
+                                              <input
+                                                className="form-control"
+                                                disabled={false}
+                                                id="root_sourceTypes_0_gases_2_annualEmission"
+                                                inputMode="numeric"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                onMouseUp={[Function]}
+                                                type="text"
+                                                value="40,000,000"
+                                              />
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-2"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <ul
+                                              className="jsx-1154833918 gwp"
+                                            >
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                X
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                -80000000
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                =
+                                              </li>
+                                            </ul>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualCO2e"
+                                              />
+                                              <span
+                                                disabled={false}
+                                                id="root_sourceTypes_0_gases_2_annualCO2e"
+                                              >
+                                                -40,000,000
+                                              </span>
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr
+                                className="jsx-4148384647"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr
+                  className="jsx-4148384647"
+                />
+              </div>
+              <div
+                className="jsx-4148384647"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-md-12 col-12"
+                  >
+                    <div
+                      className="form-group field field-object col-12"
+                    >
+                      <div
+                        className="form-row"
+                      >
+                        <div
+                          className="col-12"
+                        />
+                        <div
+                          className="col-12"
+                        >
+                          <span
+                            className="font-italic text-muted"
+                          />
+                        </div>
+                        <div
+                          className="form-group field field-string  hidden-title form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                        >
+                          <label
+                            className="form-label"
+                            htmlFor="root_sourceTypes_1_sourceTypeName"
+                          >
+                            sourceTypeName
+                          </label>
+                          <div
+                            className="SourceFieldHeading row"
+                            style={
+                              Object {
+                                "margin": "20px 0 20px 0",
+                              }
+                            }
+                          >
+                            <div
+                              className="col-md-4 col-12"
+                            >
+                              <h5
+                                className="jsx-4136336479"
+                                style={
+                                  Object {
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                mollit eu esse
+                              </h5>
+                            </div>
+                            <div
+                              className="col-md-3 col-12"
+                            >
+                              <h6
+                                className="jsx-4136336479"
+                              >
+                                Tonnes
+                              </h6>
+                            </div>
+                            <div
+                              className="col-md-2 col-12"
+                            >
+                              <h6
+                                className="jsx-4136336479"
+                              >
+                                GWP
+                              </h6>
+                            </div>
+                            <div
+                              className="col-md-3 col-12"
+                            >
+                              <h6
+                                className="jsx-4136336479"
+                              >
+                                Tonnes (CO2e)
+                              </h6>
+                            </div>
+                          </div>
+                          <span
+                            className="font-italic text-muted"
+                          />
+                        </div>
+                        <div
+                          className="col-12"
+                        >
+                          <span
+                            className="font-italic text-muted"
+                          />
+                          <div
+                            className="jsx-4148384647 field field-array field-array-of-object"
+                          >
+                            <div
+                              className="jsx-4148384647"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-group field field-object  hidden-title col-12"
+                                  >
+                                    <div
+                                      className="form-row"
+                                    >
+                                      <div
+                                        className="col-12"
+                                      />
+                                      <div
+                                        className="col-12"
+                                      >
+                                        <span
+                                          className="font-italic text-muted"
+                                        />
+                                      </div>
+                                      <div
+                                        className=" emission-row col-md-12 col-12"
+                                      >
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <div
+                                            className="col-md-4"
+                                          >
+                                            est dolor
+                                             
+                                            <br
+                                              className="jsx-1154833918"
+                                            />
+                                            <div
+                                              className="col-md-10"
+                                              style={
+                                                Object {
+                                                  "color": "#888",
+                                                  "lineHeight": "17px",
+                                                  "margin": 0,
+                                                  "padding": 0,
+                                                }
+                                              }
+                                            >
+                                              <small
+                                                className="jsx-1154833918"
+                                              >
+                                                culpa
+                                              </small>
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualEmission"
+                                              />
+                                              <input
+                                                className="form-control"
+                                                disabled={false}
+                                                id="root_sourceTypes_1_gases_0_annualEmission"
+                                                inputMode="numeric"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                onMouseUp={[Function]}
+                                                type="text"
+                                                value="40,000,000"
+                                              />
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-2"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <ul
+                                              className="jsx-1154833918 gwp"
+                                            >
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                X
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                -80000000
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                =
+                                              </li>
+                                            </ul>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualCO2e"
+                                              />
+                                              <span
+                                                disabled={false}
+                                                id="root_sourceTypes_1_gases_0_annualCO2e"
+                                              >
+                                                -40,000,000
+                                              </span>
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr
+                                className="jsx-4148384647"
+                              />
+                            </div>
+                            <div
+                              className="jsx-4148384647"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-group field field-object  hidden-title col-12"
+                                  >
+                                    <div
+                                      className="form-row"
+                                    >
+                                      <div
+                                        className="col-12"
+                                      />
+                                      <div
+                                        className="col-12"
+                                      >
+                                        <span
+                                          className="font-italic text-muted"
+                                        />
+                                      </div>
+                                      <div
+                                        className=" emission-row col-md-12 col-12"
+                                      >
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <div
+                                            className="col-md-4"
+                                          >
+                                            est dolor
+                                             
+                                            <br
+                                              className="jsx-1154833918"
+                                            />
+                                            <div
+                                              className="col-md-10"
+                                              style={
+                                                Object {
+                                                  "color": "#888",
+                                                  "lineHeight": "17px",
+                                                  "margin": 0,
+                                                  "padding": 0,
+                                                }
+                                              }
+                                            >
+                                              <small
+                                                className="jsx-1154833918"
+                                              >
+                                                culpa
+                                              </small>
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualEmission"
+                                              />
+                                              <input
+                                                className="form-control"
+                                                disabled={false}
+                                                id="root_sourceTypes_1_gases_1_annualEmission"
+                                                inputMode="numeric"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                onMouseUp={[Function]}
+                                                type="text"
+                                                value="40,000,000"
+                                              />
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-2"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <ul
+                                              className="jsx-1154833918 gwp"
+                                            >
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                X
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                -80000000
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                =
+                                              </li>
+                                            </ul>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualCO2e"
+                                              />
+                                              <span
+                                                disabled={false}
+                                                id="root_sourceTypes_1_gases_1_annualCO2e"
+                                              >
+                                                -40,000,000
+                                              </span>
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr
+                                className="jsx-4148384647"
+                              />
+                            </div>
+                            <div
+                              className="jsx-4148384647"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-group field field-object  hidden-title col-12"
+                                  >
+                                    <div
+                                      className="form-row"
+                                    >
+                                      <div
+                                        className="col-12"
+                                      />
+                                      <div
+                                        className="col-12"
+                                      >
+                                        <span
+                                          className="font-italic text-muted"
+                                        />
+                                      </div>
+                                      <div
+                                        className=" emission-row col-md-12 col-12"
+                                      >
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <div
+                                            className="col-md-4"
+                                          >
+                                            est dolor
+                                             
+                                            <br
+                                              className="jsx-1154833918"
+                                            />
+                                            <div
+                                              className="col-md-10"
+                                              style={
+                                                Object {
+                                                  "color": "#888",
+                                                  "lineHeight": "17px",
+                                                  "margin": 0,
+                                                  "padding": 0,
+                                                }
+                                              }
+                                            >
+                                              <small
+                                                className="jsx-1154833918"
+                                              >
+                                                culpa
+                                              </small>
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualEmission"
+                                              />
+                                              <input
+                                                className="form-control"
+                                                disabled={false}
+                                                id="root_sourceTypes_1_gases_2_annualEmission"
+                                                inputMode="numeric"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                onMouseUp={[Function]}
+                                                type="text"
+                                                value="40,000,000"
+                                              />
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-2"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <ul
+                                              className="jsx-1154833918 gwp"
+                                            >
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                X
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                -80000000
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                =
+                                              </li>
+                                            </ul>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualCO2e"
+                                              />
+                                              <span
+                                                disabled={false}
+                                                id="root_sourceTypes_1_gases_2_annualCO2e"
+                                              >
+                                                -40,000,000
+                                              </span>
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr
+                                className="jsx-4148384647"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr
+                  className="jsx-4148384647"
+                />
+              </div>
+              <div
+                className="jsx-4148384647"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-md-12 col-12"
+                  >
+                    <div
+                      className="form-group field field-object col-12"
+                    >
+                      <div
+                        className="form-row"
+                      >
+                        <div
+                          className="col-12"
+                        />
+                        <div
+                          className="col-12"
+                        >
+                          <span
+                            className="font-italic text-muted"
+                          />
+                        </div>
+                        <div
+                          className="form-group field field-string  hidden-title form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                        >
+                          <label
+                            className="form-label"
+                            htmlFor="root_sourceTypes_2_sourceTypeName"
+                          >
+                            sourceTypeName
+                          </label>
+                          <div
+                            className="SourceFieldHeading row"
+                            style={
+                              Object {
+                                "margin": "20px 0 20px 0",
+                              }
+                            }
+                          >
+                            <div
+                              className="col-md-4 col-12"
+                            >
+                              <h5
+                                className="jsx-4136336479"
+                                style={
+                                  Object {
+                                    "textAlign": "left",
+                                  }
+                                }
+                              >
+                                mollit eu esse
+                              </h5>
+                            </div>
+                            <div
+                              className="col-md-3 col-12"
+                            >
+                              <h6
+                                className="jsx-4136336479"
+                              >
+                                Tonnes
+                              </h6>
+                            </div>
+                            <div
+                              className="col-md-2 col-12"
+                            >
+                              <h6
+                                className="jsx-4136336479"
+                              >
+                                GWP
+                              </h6>
+                            </div>
+                            <div
+                              className="col-md-3 col-12"
+                            >
+                              <h6
+                                className="jsx-4136336479"
+                              >
+                                Tonnes (CO2e)
+                              </h6>
+                            </div>
+                          </div>
+                          <span
+                            className="font-italic text-muted"
+                          />
+                        </div>
+                        <div
+                          className="col-12"
+                        >
+                          <span
+                            className="font-italic text-muted"
+                          />
+                          <div
+                            className="jsx-4148384647 field field-array field-array-of-object"
+                          >
+                            <div
+                              className="jsx-4148384647"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-group field field-object  hidden-title col-12"
+                                  >
+                                    <div
+                                      className="form-row"
+                                    >
+                                      <div
+                                        className="col-12"
+                                      />
+                                      <div
+                                        className="col-12"
+                                      >
+                                        <span
+                                          className="font-italic text-muted"
+                                        />
+                                      </div>
+                                      <div
+                                        className=" emission-row col-md-12 col-12"
+                                      >
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <div
+                                            className="col-md-4"
+                                          >
+                                            est dolor
+                                             
+                                            <br
+                                              className="jsx-1154833918"
+                                            />
+                                            <div
+                                              className="col-md-10"
+                                              style={
+                                                Object {
+                                                  "color": "#888",
+                                                  "lineHeight": "17px",
+                                                  "margin": 0,
+                                                  "padding": 0,
+                                                }
+                                              }
+                                            >
+                                              <small
+                                                className="jsx-1154833918"
+                                              >
+                                                culpa
+                                              </small>
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualEmission"
+                                              />
+                                              <input
+                                                className="form-control"
+                                                disabled={false}
+                                                id="root_sourceTypes_2_gases_0_annualEmission"
+                                                inputMode="numeric"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                onMouseUp={[Function]}
+                                                type="text"
+                                                value="40,000,000"
+                                              />
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-2"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <ul
+                                              className="jsx-1154833918 gwp"
+                                            >
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                X
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                -80000000
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                =
+                                              </li>
+                                            </ul>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualCO2e"
+                                              />
+                                              <span
+                                                disabled={false}
+                                                id="root_sourceTypes_2_gases_0_annualCO2e"
+                                              >
+                                                -40,000,000
+                                              </span>
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr
+                                className="jsx-4148384647"
+                              />
+                            </div>
+                            <div
+                              className="jsx-4148384647"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-group field field-object  hidden-title col-12"
+                                  >
+                                    <div
+                                      className="form-row"
+                                    >
+                                      <div
+                                        className="col-12"
+                                      />
+                                      <div
+                                        className="col-12"
+                                      >
+                                        <span
+                                          className="font-italic text-muted"
+                                        />
+                                      </div>
+                                      <div
+                                        className=" emission-row col-md-12 col-12"
+                                      >
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <div
+                                            className="col-md-4"
+                                          >
+                                            est dolor
+                                             
+                                            <br
+                                              className="jsx-1154833918"
+                                            />
+                                            <div
+                                              className="col-md-10"
+                                              style={
+                                                Object {
+                                                  "color": "#888",
+                                                  "lineHeight": "17px",
+                                                  "margin": 0,
+                                                  "padding": 0,
+                                                }
+                                              }
+                                            >
+                                              <small
+                                                className="jsx-1154833918"
+                                              >
+                                                culpa
+                                              </small>
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualEmission"
+                                              />
+                                              <input
+                                                className="form-control"
+                                                disabled={false}
+                                                id="root_sourceTypes_2_gases_1_annualEmission"
+                                                inputMode="numeric"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                onMouseUp={[Function]}
+                                                type="text"
+                                                value="40,000,000"
+                                              />
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-2"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <ul
+                                              className="jsx-1154833918 gwp"
+                                            >
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                X
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                -80000000
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                =
+                                              </li>
+                                            </ul>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualCO2e"
+                                              />
+                                              <span
+                                                disabled={false}
+                                                id="root_sourceTypes_2_gases_1_annualCO2e"
+                                              >
+                                                -40,000,000
+                                              </span>
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr
+                                className="jsx-4148384647"
+                              />
+                            </div>
+                            <div
+                              className="jsx-4148384647"
+                            >
+                              <div
+                                className="form-row"
+                              >
+                                <div
+                                  className="col-md-12 col-12"
+                                >
+                                  <div
+                                    className="form-group field field-object  hidden-title col-12"
+                                  >
+                                    <div
+                                      className="form-row"
+                                    >
+                                      <div
+                                        className="col-12"
+                                      />
+                                      <div
+                                        className="col-12"
+                                      >
+                                        <span
+                                          className="font-italic text-muted"
+                                        />
+                                      </div>
+                                      <div
+                                        className=" emission-row col-md-12 col-12"
+                                      >
+                                        <div
+                                          className="form-row"
+                                        >
+                                          <div
+                                            className="col-md-4"
+                                          >
+                                            est dolor
+                                             
+                                            <br
+                                              className="jsx-1154833918"
+                                            />
+                                            <div
+                                              className="col-md-10"
+                                              style={
+                                                Object {
+                                                  "color": "#888",
+                                                  "lineHeight": "17px",
+                                                  "margin": 0,
+                                                  "padding": 0,
+                                                }
+                                              }
+                                            >
+                                              <small
+                                                className="jsx-1154833918"
+                                              >
+                                                culpa
+                                              </small>
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualEmission"
+                                              />
+                                              <input
+                                                className="form-control"
+                                                disabled={false}
+                                                id="root_sourceTypes_2_gases_2_annualEmission"
+                                                inputMode="numeric"
+                                                onBlur={[Function]}
+                                                onChange={[Function]}
+                                                onFocus={[Function]}
+                                                onKeyDown={[Function]}
+                                                onMouseUp={[Function]}
+                                                type="text"
+                                                value="40,000,000"
+                                              />
+                                              <span
+                                                className="font-italic text-muted"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div
+                                            className="col-md-2"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <ul
+                                              className="jsx-1154833918 gwp"
+                                            >
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                X
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                -80000000
+                                              </li>
+                                              <li
+                                                className="jsx-1154833918"
+                                              >
+                                                =
+                                              </li>
+                                            </ul>
+                                          </div>
+                                          <div
+                                            className="col-md-3"
+                                            style={
+                                              Object {
+                                                "textAlign": "center",
+                                              }
+                                            }
+                                          >
+                                            <div
+                                              className="form-group field field-number form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                                            >
+                                              <label
+                                                className="form-label"
+                                                htmlFor="emissions.annualCO2e"
+                                              />
+                                              <span
+                                                disabled={false}
+                                                id="root_sourceTypes_2_gases_2_annualCO2e"
+                                              >
+                                                -40,000,000
                                               </span>
                                               <span
                                                 className="font-italic text-muted"
@@ -1413,6 +2893,43 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                     />
                   </div>
                   <div
+                    className="form-group field field-string form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                  >
+                    <span
+                      className="jsx-977984390 title"
+                    >
+                      <button
+                        className="btn btn-link"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-exclamation-circle fa-w-16 "
+                          data-icon="exclamation-circle"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 512 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                         
+                        Edit Reported Problem
+                      </button>
+                    </span>
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
                     className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                   >
                     <label
@@ -1448,7 +2965,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                       onKeyDown={[Function]}
                       onMouseUp={[Function]}
                       type="text"
-                      value="-80,000,000"
+                      value="-40,000,000"
                     />
                     <span
                       className="font-italic text-muted"
@@ -1477,7 +2994,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                       readOnly={true}
                       required={true}
                       type="text"
-                      value="mollit eu esse"
+                      value="culpa"
                     />
                     <span
                       className="font-italic text-muted"
@@ -1502,7 +3019,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                       onChange={[Function]}
                       onFocus={[Function]}
                       required={true}
-                      value={0}
+                      value={-60000000}
                     >
                       <option
                         value=""
@@ -1564,6 +3081,43 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                   <div
                     className="col-12"
                   >
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                  >
+                    <span
+                      className="jsx-977984390 title"
+                    >
+                      <button
+                        className="btn btn-link"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-exclamation-circle fa-w-16 "
+                          data-icon="exclamation-circle"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 512 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                         
+                        Edit Reported Problem
+                      </button>
+                    </span>
                     <span
                       className="font-italic text-muted"
                     />
@@ -1654,6 +3208,199 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                       className="form-control"
                       disabled={false}
                       id="root_1_emissionCategoryRowId"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      required={true}
+                      value={-60000000}
+                    >
+                      <option
+                        value=""
+                      >
+                        
+                      </option>
+                      <option
+                        value={42}
+                      >
+                        &lt;mock-value-for-field-"displayName"&gt;
+                      </option>
+                    </select>
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col-md-1 col-12"
+            >
+              <div
+                className="jsx-4148384647 remove-button-container"
+              >
+                <button
+                  className="btn btn-danger"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Remove fuel
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr
+            className="jsx-4148384647"
+          />
+        </div>
+        <div
+          className="jsx-4148384647"
+        >
+          <div
+            className="form-row"
+          >
+            <div
+              className="col-md-11 col-12"
+            >
+              <div
+                className="form-group field field-object col-12"
+              >
+                <div
+                  className="form-row"
+                >
+                  <div
+                    className="col-12"
+                  />
+                  <div
+                    className="col-12"
+                  >
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                  >
+                    <span
+                      className="jsx-977984390 title"
+                    >
+                      <button
+                        className="btn btn-link"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-exclamation-circle fa-w-16 "
+                          data-icon="exclamation-circle"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 512 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                         
+                        Edit Reported Problem
+                      </button>
+                    </span>
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_2_fuelRowId"
+                    >
+                      Fuel Name
+                       *
+                    </label>
+                    one
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-number form-group col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_2_quantity"
+                    >
+                      Quantity
+                       *
+                    </label>
+                    <input
+                      className="form-control"
+                      disabled={false}
+                      id="root_2_quantity"
+                      inputMode="numeric"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseUp={[Function]}
+                      type="text"
+                      value="-40,000,000"
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_2_fuelUnits"
+                    >
+                      Units
+                       *
+                    </label>
+                    <input
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_2_fuelUnits"
+                      label="Units"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      placeholder=""
+                      readOnly={true}
+                      required={true}
+                      type="text"
+                      value="culpa"
+                    />
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-number form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="root_2_emissionCategoryRowId"
+                    >
+                      Emission Category
+                       *
+                    </label>
+                    <select
+                      autoFocus={false}
+                      className="form-control"
+                      disabled={false}
+                      id="root_2_emissionCategoryRowId"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onFocus={[Function]}
@@ -1835,6 +3582,43 @@ exports[`Form should match the snapshot with the production form 1`] = `
                     />
                   </div>
                   <div
+                    className="form-group field field-string form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                  >
+                    <span
+                      className="jsx-977984390 title"
+                    >
+                      <button
+                        className="btn btn-link"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-exclamation-circle fa-w-16 "
+                          data-icon="exclamation-circle"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 512 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                         
+                        Edit Reported Problem
+                      </button>
+                    </span>
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
                     className="form-group field field-integer form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
                   >
                     <label
@@ -1882,7 +3666,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       onKeyDown={[Function]}
                       onMouseUp={[Function]}
                       type="text"
-                      value="-20,000,000"
+                      value="-80,000,000"
                     />
                     <span
                       className="font-italic text-muted"
@@ -1917,7 +3701,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                       readOnly={true}
                       required={true}
                       type="text"
-                      value="in qui"
+                      value="mollit eu esse"
                     />
                     <span
                       className="font-italic text-muted"
@@ -1995,6 +3779,43 @@ exports[`Form should match the snapshot with the production form 1`] = `
                   <div
                     className="col-12"
                   >
+                    <span
+                      className="font-italic text-muted"
+                    />
+                  </div>
+                  <div
+                    className="form-group field field-string form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+                  >
+                    <span
+                      className="jsx-977984390 title"
+                    >
+                      <button
+                        className="btn btn-link"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-exclamation-circle fa-w-16 "
+                          data-icon="exclamation-circle"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          style={Object {}}
+                          viewBox="0 0 512 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                         
+                        Edit Reported Problem
+                      </button>
+                    </span>
                     <span
                       className="font-italic text-muted"
                     />
