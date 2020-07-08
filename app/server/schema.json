@@ -6099,6 +6099,18 @@
               "deprecationReason": null
             },
             {
+              "name": "reportId",
+              "description": "The id of the swrs report (swrs.report.id) that was imported when starting the application",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "reportingYear",
               "description": "The foreign key to ggircs_portal.reporting_year, references reporting_year",
               "args": [],
@@ -14528,6 +14540,16 @@
               "defaultValue": null
             },
             {
+              "name": "reportId",
+              "description": "Checks for equality with the object’s `reportId` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "reportingYear",
               "description": "Checks for equality with the object’s `reportingYear` field.",
               "type": {
@@ -14598,6 +14620,18 @@
             },
             {
               "name": "PRIMARY_KEY_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REPORT_ID_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "REPORT_ID_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -31571,6 +31605,16 @@
               "defaultValue": null
             },
             {
+              "name": "reportId",
+              "description": "The id of the swrs report (swrs.report.id) that was imported when starting the application",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "reportingYear",
               "description": "The foreign key to ggircs_portal.reporting_year, references reporting_year",
               "type": {
@@ -42467,6 +42511,16 @@
             {
               "name": "facilityId",
               "description": "The foreign key to ggircs_portal.facility, references id",
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "reportId",
+              "description": "The id of the swrs report (swrs.report.id) that was imported when starting the application",
               "type": {
                 "kind": "SCALAR",
                 "name": "Int",
