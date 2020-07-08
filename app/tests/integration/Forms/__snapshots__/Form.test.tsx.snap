@@ -68,7 +68,7 @@ exports[`Form should match the snapshot with the administration form 1`] = `
                 />
               </svg>
                
-              Problem Reported
+              Edit Reported Problem
             </button>
           </span>
           <span
@@ -1097,7 +1097,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                   />
                 </svg>
                  
-                Problem Reported
+                Edit Reported Problem
               </button>
             </span>
             <span
@@ -2922,7 +2922,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                           />
                         </svg>
                          
-                        Problem Reported
+                        Edit Reported Problem
                       </button>
                     </span>
                     <span
@@ -3115,7 +3115,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                           />
                         </svg>
                          
-                        Problem Reported
+                        Edit Reported Problem
                       </button>
                     </span>
                     <span
@@ -3308,7 +3308,7 @@ exports[`Form should match the snapshot with the fuel form 1`] = `
                           />
                         </svg>
                          
-                        Problem Reported
+                        Edit Reported Problem
                       </button>
                     </span>
                     <span
@@ -3611,7 +3611,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                           />
                         </svg>
                          
-                        Problem Reported
+                        Edit Reported Problem
                       </button>
                     </span>
                     <span
@@ -3813,7 +3813,7 @@ exports[`Form should match the snapshot with the production form 1`] = `
                           />
                         </svg>
                          
-                        Problem Reported
+                        Edit Reported Problem
                       </button>
                     </span>
                     <span

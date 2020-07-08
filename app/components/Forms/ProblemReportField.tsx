@@ -11,14 +11,14 @@ const ProblemReportField: React.FunctionComponent<FieldProps<string>> = (
 ) => {
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.formData);
-  const title = props.formData ? 'Problem Reported' : 'Report a Problem';
+  const title = props.formData ? 'Edit Reported Problem' : 'Report a Problem';
   const titleIcon = props.formData ? faExclamationCircle : faQuestionCircle;
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
 
   const handleCancel = () => {
-    setValue(undefined);
+    setValue(props.formData);
     setExpanded(false);
   };
 
@@ -61,6 +61,9 @@ const ProblemReportField: React.FunctionComponent<FieldProps<string>> = (
           <p>
             Please leave a detailed message below explaining any issues
             encountered on this page.
+            <br />
+            This message will be sent with your application when it is
+            submitted.
             <br />A representative from the Climate Action Secretariat may
             contact you for further clarification.
           </p>

@@ -49,7 +49,7 @@ exports[`The ProblemReportField component  Should match the snapshot 1`] = `
         transform={null}
       />
        
-      Problem Reported
+      Edit Reported Problem
     </Button>
   </span>
   <div
@@ -59,6 +59,10 @@ exports[`The ProblemReportField component  Should match the snapshot 1`] = `
       className="jsx-977984390"
     >
       Please leave a detailed message below explaining any issues encountered on this page.
+      <br
+        className="jsx-977984390"
+      />
+      This message will be sent with your application when it is submitted.
       <br
         className="jsx-977984390"
       />
