@@ -21,7 +21,7 @@ PG_SHAREDIR=$(shell pg_config --sharedir)
 DEPLOY_DEFAULT_DATA=deploy_dev_data
 
 .PHONY: test
-test: | test_data test_deploy_revert $(DEPLOY_DEFAULT_DATA) prove_unit prove_style dropdb
+test: | test_deploy_revert test_data prove_unit prove_style dropdb
 
 .PHONY: unit
 unit: | $(DEPLOY_DEFAULT_DATA) prove_unit
