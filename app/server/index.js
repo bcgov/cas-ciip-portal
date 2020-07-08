@@ -28,7 +28,7 @@ const {
 } = require('../lib/user-groups');
 const {run} = require('graphile-worker');
 const path = require('path');
-const namespaceMap = require('../data/namespace-map');
+const namespaceMap = require('../data/kc-namespace-map');
 
 let databaseURL = 'postgres://';
 

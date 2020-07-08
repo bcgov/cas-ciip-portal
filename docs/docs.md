@@ -32,7 +32,9 @@
 
 ### Authentication
 
-We use Keycloak to manage authentication of users (using username/password or IDIR) and define their privileges using groups. The Keycloak realm configuration is available in `app/keycloak-realm-export.json`
+We use Keycloak to manage authentication of users (using username/password or IDIR) and define their privileges using groups. The Keycloak realm configurations are available in `app/keycloak-*-realm-export.json`.
+
+Our application is deployed in the `dev`, `test`, and `prod` environments. Because we restore the `prod` data into the `test` environment, both deployments must share the same keycloak instance (so that the users uids are identical). Our `dev` deployment uses a separate keycloak instance to avoid polluting the production keycloak realm with fake users (although that will inevitably happen when performing QA in `test`). The mapping between the Openshift namespaces and the keycloak namespaces is defined in `app/data/kc-namespace-map.json`
 
 ### Mailhog
 - MailHog can be run via docker with:
