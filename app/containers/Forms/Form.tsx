@@ -23,7 +23,7 @@ import ProductRowIdField from './ProductRowIdField';
 import FuelRowIdField from './FuelRowIdField';
 import NumberField from './NumberField';
 import EmissionCategoryRowIdField from './EmissionCategoryRowIdField';
-import ProblemReportField from './ProblemReportField';
+import ProblemReportField from 'components/Forms/ProblemReportField';
 
 interface Props {
   query: Form_query;
