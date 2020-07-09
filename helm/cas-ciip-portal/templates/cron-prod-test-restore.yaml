@@ -95,8 +95,7 @@ spec:
                   cd ..
                   chmod -R 0750 ./prod-bak
                   echo STARTING SERVER IN RECOVERY MODE...
-                  pg_ctl -D prod-bak start -w -o "-c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf' --restore_command='wal-g wal-fetch %f %p' --recovery_target_time='2020-07-09 3:10:00-07' --recovery_target_action=promote"
-                  wal-g catchup-fetch /home/postgres/prod-bak LATEST
+                  pg_ctl -D prod-bak start -w -o "-c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf' --restore_command='wal-g wal-fetch %f %p' --recovery_target_action=promote"
                   echo recovery.signal SHOULD BE GONE...
                   cd prod-bak
                   ls -lah
@@ -127,3 +126,5 @@ spec:
             # PGPASSFILE=".pgpass" pg_dump -w -h $GGIRCS_HOST -p $GGIRCS_PORT -U $GGIRCS_USER --format=custom --schema="swrs" $GGIRCS_DATABASE |
             # PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
             # echo $(date +%Y-%m-%d) $(date +%H:%M:%S%:::z)
+
+            # wal-g catchup-fetch /home/postgres/prod-bak LATEST
