@@ -43,6 +43,8 @@ spec:
                   value: cas-ciip-portal-patroni
                 - name: PORTAL_PORT
                   value: "5432"
+                - name: GOOGLE_APPLICATION_CREDENTIALS
+                  value: "/home/postgres/credentials/credentials.json"
                 - name: GOOGLE_APPLICATION_CREDENTIALS_JSON
                   valueFrom:
                     secretKeyRef:
@@ -57,21 +59,55 @@ spec:
               resources:
                 limits:
                   cpu: 500m
-                  memory: 128Mi
+                  memory: 1Gi
                 requests:
                   cpu: 100m
-                  memory: 64Mi
+                  memory: 500Mi
               command:
                 - /usr/bin/env
                 - bash
                 - -c
-                - >
+                - |
+                  if ! whoami &> /dev/null; then
+                    if [ -w /etc/passwd ]; then
+                      echo "postgres:x:$(id -u):0:postgres user:/home/postgres:/sbin/nologin" >> /etc/passwd
+                    fi
+                  fi
                   rm -rf prod-bak
-                  envdir $WALE_ENV_DIR wal-g backup-fetch prod-bak LATEST;
-                  cd prod-bak;
-                  touch recovery.signal;
-                  ls -lah;
-                  cd ..;
+                  rm -rf credentials
+                  echo ADDING GCS CREDENTIALS...
+                  mkdir credentials
+                  cd credentials
+                  touch credentials.json
+                  echo $GOOGLE_APPLICATION_CREDENTIALS_JSON > credentials.json
+                  cd ..
+                  echo DOING WAL-G FETCH NOW...
+                  wal-g backup-fetch prod-bak LATEST
+                  cd prod-bak
+                  echo ADDING recovery.signal...
+                  touch recovery.signal
+                  ls -lah
+                  echo FIXING PG_HBA...
+                  rm pg_hba.conf
+                  touch pg_hba.conf
+                  echo 'local all             all                                trust' >> pg_hba.conf
+                  cat pg_hba.conf
+                  cd ..
+                  chmod -R 0750 ./prod-bak
+                  echo STARTING SERVER IN RECOVERY MODE...
+                  pg_ctl -D prod-bak start -w -o "-c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf' --restore_command='wal-g wal-fetch %f %p' --recovery_target_time='2020-07-09 3:10:00-07' --recovery_target_action=promote"
+                  wal-g catchup-fetch /home/postgres/prod-bak LATEST
+                  echo recovery.signal SHOULD BE GONE...
+                  cd prod-bak
+                  ls -lah
+                  cd ..
+                  cd pg_log
+                  ls -lah
+                  cat postgresql-4.csv
+                  echo LISTING DATABASES...
+                  psql -c '\l'
+                  echo LISTING DATABASE TABLES...
+                  psql -d ciip -c '\dt ggircs_portal.*'
               volumeMounts:
                 - mountPath: /root/bak
                   name: prod-backup
@@ -80,8 +116,14 @@ spec:
               persistentVolumeClaim:
                 claimName: {{ template "cas-ciip-portal.fullname" . }}-prod-backup
 
-            # pg_ctl -D prod-bak start -w -o "-h localhost -p 5433--restore_command=\'PGPASSWORD=$PGPASSWORD_SUPERUSER envdir $WALE_ENV_DIR wal-g wal-fetch %f %p\' --recovery_target_time=\'2020-06-11 11:09:00-07\' --recovery_target_action=promote";
+            # cd ..
+            # pg_ctl -D prod-bak start -w -o "--restore_command='PGPASSWORD='$PGPASSWORD_SUPERUSER' wal-g wal-fetch %f %p' --recovery_target_time='2020-07-08 10:09:00-07' --recovery_target_action=promote"
+            # psql -d ciip -c '\dt ggircs_portal.*'
+            # ls -lah
+
+
             # touch .pgpass; chmod 0600 .pgpass;
             # echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass;
             # PGPASSFILE=".pgpass" pg_dump -w -h $GGIRCS_HOST -p $GGIRCS_PORT -U $GGIRCS_USER --format=custom --schema="swrs" $GGIRCS_DATABASE |
             # PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
+            # echo $(date +%Y-%m-%d) $(date +%H:%M:%S%:::z)

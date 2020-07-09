@@ -13,3 +13,4 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: {{ .Values.route.storageClassName }}
+{{- end }}
