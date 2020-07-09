@@ -45,7 +45,8 @@ class ErrorBoundary extends Component {
           <pre>
             <code>
               {this.state.error?.toString()}
-              {this.state.errorInfo?.componentStack}
+              {process.env.NODE_ENV !== 'production' &&
+                this.state.errorInfo?.componentStack}
             </code>
           </pre>
         </DefaultLayoutComponent>
