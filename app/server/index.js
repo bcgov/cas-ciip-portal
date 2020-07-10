@@ -220,7 +220,7 @@ app.prepare().then(() => {
   server.use(
     postgraphile(pgPool, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
       appendPlugins: [PgManyToManyPlugin],
-      graphiql: true,
+      graphiql: process.env.IS_LOCAL_ENVIRONMENT === 'true',
       classicIds: true,
       enableQueryBatching: true,
       dynamicJson: true,
