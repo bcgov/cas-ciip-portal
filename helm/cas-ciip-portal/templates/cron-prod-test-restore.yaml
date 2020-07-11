@@ -24,21 +24,30 @@ spec:
           restartPolicy: Never
           containers:
             - env:
-                - name: PORTAL_USER
+                - name: PORTAL_USER_OLD
                   valueFrom:
                     secretKeyRef:
                       key: database-user
                       name: {{ template "cas-ciip-portal.fullname" . }}
-                - name: PORTAL_PASSWORD
+                - name: PORTAL_USER
+                  value: postgres
+                - name: PORTAL_PASSWORD_OLD
                   valueFrom:
                     secretKeyRef:
                       key: database-password
                       name: {{ template "cas-ciip-portal.fullname" . }}
-                - name: PORTAL_DATABASE
+                - name: PORTAL_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: password-superuser
+                      name: cas-ciip-portal-patroni
+                - name: PORTAL_DATABASE_OLD
                   valueFrom:
                     secretKeyRef:
                       key: database-name
                       name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_DATABASE
+                  value: ciip
                 - name: PORTAL_HOST
                   value: cas-ciip-portal-patroni
                 - name: PORTAL_PORT
@@ -96,17 +105,51 @@ spec:
                   chmod -R 0750 ./prod-bak
                   echo STARTING SERVER IN RECOVERY MODE...
                   pg_ctl -D prod-bak start -w -o "-c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf' --restore_command='wal-g wal-fetch %f %p' --recovery_target_action=promote"
+                  echo DOING CATCHUP-FETCH...
+                  wal-g catchup-fetch /home/postgres/prod-bak base_00000008000000050000008E
                   echo recovery.signal SHOULD BE GONE...
                   cd prod-bak
                   ls -lah
                   cd ..
+                  echo RESTART POSTGRES IN NON-RECOVERY MODE...
+                  pg_ctl -D prod-bak stop -w -o "-c archive_mode='off' -c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf'"
+                  cd prod-bak
+                  rm recovery.signal
+                  rm -rf backup_label
+                  rm -rf backup_label.old
+                  cd ..
+                  pg_ctl -D prod-bak start -w -o "-c log_statement='all' -c logging_collector=on -c archive_mode='off' -c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf'"
                   cd pg_log
                   ls -lah
-                  cat postgresql-4.csv
+                  cat postgresql-5.csv
                   echo LISTING DATABASES...
                   psql -c '\l'
                   echo LISTING DATABASE TABLES...
                   psql -d ciip -c '\dt ggircs_portal.*'
+                  echo FINDING MISSING SCHEMA FROM ERROR...
+                  psql -c 'select * from pg_type where typnamespace=68555'
+                  psql -c 'select * from pg_class where relnamespace=68555'
+                  psql -c 'select * from pg_operator where oprnamespace=68555'
+                  psql -c 'select * from pg_conversion where connamespace=68555'
+                  psql -c 'select * from pg_opclass where opcnamespace=68555'
+                  psql -c 'select * from pg_aggregate where aggfnoid = 68555 or aggtransfn  = 68555 or aggfinalfn = 68555'
+                  psql -c 'select * from pg_proc where pronamespace=68555'
+                  echo CREATE .PGPASS FILE...
+                  touch .pgpass
+                  chmod 0600 .pgpass
+                  echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass
+                  echo CREATE REMOVE_ME TABLE IN TEST...
+                  PGPASSFILE=".pgpass" psql -w -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER -c 'create table ggircs_portal.remove_me(id int)'
+                  PGPASSFILE=".pgpass" psql -w -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER -c '\dt ggircs_portal.*'
+                  echo RESTORING TO TEST...
+                  pg_dump -w --format=custom ciip |
+                  PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
+                  echo LISTING TABLES IN TEST, REMOVE_ME SHOULD BE GONE...
+                  PGPASSFILE=".pgpass" psql -w -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER -c '\dt ggircs_portal.*'
+                  PGPASSFILE=".pgpass" psql -w -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER -c 'drop table ggircs_portal.remove_me'
+                  echo VIEW LOG...
+                  ls -lah
+                  cat postgresql-5.csv
               volumeMounts:
                 - mountPath: /root/bak
                   name: prod-backup
@@ -114,17 +157,3 @@ spec:
             - name: prod-backup
               persistentVolumeClaim:
                 claimName: {{ template "cas-ciip-portal.fullname" . }}-prod-backup
-
-            # cd ..
-            # pg_ctl -D prod-bak start -w -o "--restore_command='PGPASSWORD='$PGPASSWORD_SUPERUSER' wal-g wal-fetch %f %p' --recovery_target_time='2020-07-08 10:09:00-07' --recovery_target_action=promote"
-            # psql -d ciip -c '\dt ggircs_portal.*'
-            # ls -lah
-
-
-            # touch .pgpass; chmod 0600 .pgpass;
-            # echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass;
-            # PGPASSFILE=".pgpass" pg_dump -w -h $GGIRCS_HOST -p $GGIRCS_PORT -U $GGIRCS_USER --format=custom --schema="swrs" $GGIRCS_DATABASE |
-            # PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
-            # echo $(date +%Y-%m-%d) $(date +%H:%M:%S%:::z)
-
-            # wal-g catchup-fetch /home/postgres/prod-bak LATEST
