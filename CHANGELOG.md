@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.11](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.10...v1.0.0-rc.11) (2020-07-13)
+
+
+### Features
+
+* 404 page ([e170f65](https://github.com/bcgov/cas-ciip-portal/commit/e170f6504fdb7ecd34730706706925b19f24dffa))
+* add comments field to every form, rendered by ProblemReportField ([8658189](https://github.com/bcgov/cas-ciip-portal/commit/865818999aadd776a584ba8c92fe82f83fb5ab01))
+* add report_id column to application table ([e351d83](https://github.com/bcgov/cas-ciip-portal/commit/e351d83ce49addf52ce1a341348232a302834705))
+* creating an application adds the report id the application table ([00077d9](https://github.com/bcgov/cas-ciip-portal/commit/00077d975ba050a7c3d6edab8bd83f7286c751c8))
+* enable analytics in prod namespace ([d7b0e78](https://github.com/bcgov/cas-ciip-portal/commit/d7b0e788891ee86d1e98663fb238b2fcd5cdaa70))
+* error-boundary doesn't render the stack trace in prod builds ([cfd3e9a](https://github.com/bcgov/cas-ciip-portal/commit/cfd3e9a1f54d73dd93b89f43496bf63cc4e15020))
+* move test data to dev ([f5a5b25](https://github.com/bcgov/cas-ciip-portal/commit/f5a5b258fdfb4fb94ef2f4bd2863b597d06bdead))
+* relay errors are thrown and rendered by error-boundary ([94a6ca4](https://github.com/bcgov/cas-ciip-portal/commit/94a6ca47969fcf3c724273d6bb1b397a4163b2f6))
+* test deployment uses prod keycloak namespace ([92fc271](https://github.com/bcgov/cas-ciip-portal/commit/92fc27117c61fa3c280e14158c450d283d5de5bc))
+* triggered airflow dag name is defined in values.yaml ([1bf64e6](https://github.com/bcgov/cas-ciip-portal/commit/1bf64e62d9f3c9d3babb8ae59c6e516263e39f64))
+* update graphql schema ([5fa0bcf](https://github.com/bcgov/cas-ciip-portal/commit/5fa0bcf9f76de5daad669267dd853c7aba4aba86))
+* update ProblemReportField text and cancel button behavior ([3cb1b1f](https://github.com/bcgov/cas-ciip-portal/commit/3cb1b1f71ed9162013d88a9b4a6cd076a7c8fe3e))
+
+
+### Bug Fixes
+
+* only load graphiql when in local environment ([0c9fd24](https://github.com/bcgov/cas-ciip-portal/commit/0c9fd2459d9f43adda13ac8e1dbe95176358daad))
+* use NODE_ENV to decide whether to run graphiql ([0a027e0](https://github.com/bcgov/cas-ciip-portal/commit/0a027e0018b02b36688fb3f2b56227aea863ac33))
+
 ## [1.0.0-rc.10](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.9...v1.0.0-rc.10) (2020-07-07)
 
 

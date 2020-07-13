@@ -152,3 +152,4 @@ tables/application_001 [tables/application] 2020-06-29T17:43:45Z Dylan Leard <dy
 
 tables/application_002 [tables/application] 2020-07-08T22:11:32Z Matthieu Foucault <matthieu@button.is> # add report_id column to application table
 mutations/create_application_mutation_chain [mutations/create_application_mutation_chain@v1.0.0-rc.9] 2020-07-08T22:20:11Z Matthieu Foucault <matthieu@button.is> # insert facility report_id when creating an application
+@v1.0.0-rc.11 2020-07-13T17:25:31Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.11
