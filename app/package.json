@@ -246,7 +246,7 @@
     "@storybook/**/marked": ">=0.7.0",
     "**/minimist": "1.2.5",
     "**/yargs-parser": "18.1.2",
-    "**/lodash": "4.17.18"
+    "**/lodash": "4.17.19"
   },
   "jest": {
     "testMatch": [
