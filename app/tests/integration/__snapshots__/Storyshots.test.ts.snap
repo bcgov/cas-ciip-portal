@@ -14,43 +14,43 @@ Array [
       className="jsx-1155151846 page-wrap"
     >
       <header
-        className="jsx-2770632519"
+        className="jsx-3597025167"
       >
         <nav
-          className="jsx-2770632519"
+          className="jsx-3597025167"
         >
           <div
-            className="jsx-2770632519 header-left"
+            className="jsx-3597025167 header-left"
           >
             <a
-              className="jsx-2770632519"
+              className="jsx-3597025167"
               href="/"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
               <picture
-                className="jsx-2770632519"
+                className="jsx-3597025167"
               >
                 <source
-                  className="jsx-2770632519"
+                  className="jsx-3597025167"
                   media="(max-width: 767.98px)"
                   srcSet="/static/bcid-reverse.svg"
                 />
                 <img
                   alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-2770632519"
+                  className="jsx-3597025167"
                   src="/static/BCID_CleanBC_rev_tagline_colour.svg"
                 />
               </picture>
             </a>
             <h2
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               CleanBC Industrial Incentive Program
             </h2>
             <button
               aria-label="Menu toggle"
-              className="jsx-2770632519"
+              className="jsx-3597025167"
               id="menu-toggle"
               onClick={[Function]}
               type="button"
@@ -76,7 +76,7 @@ Array [
             </button>
           </div>
           <ul
-            className="jsx-2770632519 header-right"
+            className="jsx-3597025167 header-right"
             style={
               Object {
                 "display": "flex",
@@ -84,10 +84,10 @@ Array [
             }
           >
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2770632519 nav-button"
+                className="jsx-3597025167 nav-button"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
@@ -96,10 +96,10 @@ Array [
               </a>
             </li>
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2770632519 nav-button"
+                className="jsx-3597025167 nav-button"
                 href="/user/profile"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
@@ -108,7 +108,7 @@ Array [
               </a>
             </li>
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <form
                 action="/logout"
@@ -116,7 +116,7 @@ Array [
                 method="post"
               >
                 <button
-                  className="jsx-2770632519 nav-button"
+                  className="jsx-3597025167 nav-button"
                   type="submit"
                 >
                   Logout
@@ -515,43 +515,43 @@ Array [
       className="jsx-1155151846 page-wrap"
     >
       <header
-        className="jsx-2770632519"
+        className="jsx-3597025167"
       >
         <nav
-          className="jsx-2770632519"
+          className="jsx-3597025167"
         >
           <div
-            className="jsx-2770632519 header-left"
+            className="jsx-3597025167 header-left"
           >
             <a
-              className="jsx-2770632519"
+              className="jsx-3597025167"
               href="/"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
               <picture
-                className="jsx-2770632519"
+                className="jsx-3597025167"
               >
                 <source
-                  className="jsx-2770632519"
+                  className="jsx-3597025167"
                   media="(max-width: 767.98px)"
                   srcSet="/static/bcid-reverse.svg"
                 />
                 <img
                   alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-2770632519"
+                  className="jsx-3597025167"
                   src="/static/BCID_CleanBC_rev_tagline_colour.svg"
                 />
               </picture>
             </a>
             <h2
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               CleanBC Industrial Incentive Program
             </h2>
             <button
               aria-label="Menu toggle"
-              className="jsx-2770632519"
+              className="jsx-3597025167"
               id="menu-toggle"
               onClick={[Function]}
               type="button"
@@ -577,7 +577,7 @@ Array [
             </button>
           </div>
           <ul
-            className="jsx-2770632519 header-right"
+            className="jsx-3597025167 header-right"
             style={
               Object {
                 "display": "flex",
@@ -585,10 +585,10 @@ Array [
             }
           >
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2770632519 nav-button"
+                className="jsx-3597025167 nav-button"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
@@ -597,10 +597,10 @@ Array [
               </a>
             </li>
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2770632519 nav-button"
+                className="jsx-3597025167 nav-button"
                 href="/user/profile"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
@@ -609,7 +609,7 @@ Array [
               </a>
             </li>
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <form
                 action="/logout"
@@ -617,7 +617,7 @@ Array [
                 method="post"
               >
                 <button
-                  className="jsx-2770632519 nav-button"
+                  className="jsx-3597025167 nav-button"
                   type="submit"
                 >
                   Logout
@@ -1000,43 +1000,43 @@ Array [
       className="jsx-1155151846 page-wrap"
     >
       <header
-        className="jsx-2770632519"
+        className="jsx-3597025167"
       >
         <nav
-          className="jsx-2770632519"
+          className="jsx-3597025167"
         >
           <div
-            className="jsx-2770632519 header-left"
+            className="jsx-3597025167 header-left"
           >
             <a
-              className="jsx-2770632519"
+              className="jsx-3597025167"
               href="/"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
               <picture
-                className="jsx-2770632519"
+                className="jsx-3597025167"
               >
                 <source
-                  className="jsx-2770632519"
+                  className="jsx-3597025167"
                   media="(max-width: 767.98px)"
                   srcSet="/static/bcid-reverse.svg"
                 />
                 <img
                   alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-2770632519"
+                  className="jsx-3597025167"
                   src="/static/BCID_CleanBC_rev_tagline_colour.svg"
                 />
               </picture>
             </a>
             <h2
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               CleanBC Industrial Incentive Program
             </h2>
             <button
               aria-label="Menu toggle"
-              className="jsx-2770632519"
+              className="jsx-3597025167"
               id="menu-toggle"
               onClick={[Function]}
               type="button"
@@ -1062,7 +1062,7 @@ Array [
             </button>
           </div>
           <ul
-            className="jsx-2770632519 header-right"
+            className="jsx-3597025167 header-right"
             style={
               Object {
                 "display": "flex",
@@ -1070,10 +1070,10 @@ Array [
             }
           >
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2770632519 nav-button"
+                className="jsx-3597025167 nav-button"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
@@ -1082,10 +1082,10 @@ Array [
               </a>
             </li>
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2770632519 nav-button"
+                className="jsx-3597025167 nav-button"
                 href="/user/profile"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
@@ -1094,7 +1094,7 @@ Array [
               </a>
             </li>
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <form
                 action="/logout"
@@ -1102,7 +1102,7 @@ Array [
                 method="post"
               >
                 <button
-                  className="jsx-2770632519 nav-button"
+                  className="jsx-3597025167 nav-button"
                   type="submit"
                 >
                   Logout
@@ -1657,43 +1657,43 @@ Array [
       className="jsx-1155151846 page-wrap"
     >
       <header
-        className="jsx-2770632519"
+        className="jsx-3597025167"
       >
         <nav
-          className="jsx-2770632519"
+          className="jsx-3597025167"
         >
           <div
-            className="jsx-2770632519 header-left"
+            className="jsx-3597025167 header-left"
           >
             <a
-              className="jsx-2770632519"
+              className="jsx-3597025167"
               href="/"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
               <picture
-                className="jsx-2770632519"
+                className="jsx-3597025167"
               >
                 <source
-                  className="jsx-2770632519"
+                  className="jsx-3597025167"
                   media="(max-width: 767.98px)"
                   srcSet="/static/bcid-reverse.svg"
                 />
                 <img
                   alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-2770632519"
+                  className="jsx-3597025167"
                   src="/static/BCID_CleanBC_rev_tagline_colour.svg"
                 />
               </picture>
             </a>
             <h2
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               CleanBC Industrial Incentive Program
             </h2>
             <button
               aria-label="Menu toggle"
-              className="jsx-2770632519"
+              className="jsx-3597025167"
               id="menu-toggle"
               onClick={[Function]}
               type="button"
@@ -1719,7 +1719,7 @@ Array [
             </button>
           </div>
           <ul
-            className="jsx-2770632519 header-right"
+            className="jsx-3597025167 header-right"
             style={
               Object {
                 "display": "flex",
@@ -1727,10 +1727,10 @@ Array [
             }
           >
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2770632519 nav-button"
+                className="jsx-3597025167 nav-button"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
@@ -1739,10 +1739,10 @@ Array [
               </a>
             </li>
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2770632519 nav-button"
+                className="jsx-3597025167 nav-button"
                 href="/user/profile"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
@@ -1751,7 +1751,7 @@ Array [
               </a>
             </li>
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <form
                 action="/logout"
@@ -1759,7 +1759,7 @@ Array [
                 method="post"
               >
                 <button
-                  className="jsx-2770632519 nav-button"
+                  className="jsx-3597025167 nav-button"
                   type="submit"
                 >
                   Logout
@@ -1991,43 +1991,43 @@ Array [
       className="jsx-1155151846 page-wrap"
     >
       <header
-        className="jsx-2770632519"
+        className="jsx-3597025167"
       >
         <nav
-          className="jsx-2770632519"
+          className="jsx-3597025167"
         >
           <div
-            className="jsx-2770632519 header-left"
+            className="jsx-3597025167 header-left"
           >
             <a
-              className="jsx-2770632519"
+              className="jsx-3597025167"
               href="/"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
               <picture
-                className="jsx-2770632519"
+                className="jsx-3597025167"
               >
                 <source
-                  className="jsx-2770632519"
+                  className="jsx-3597025167"
                   media="(max-width: 767.98px)"
                   srcSet="/static/bcid-reverse.svg"
                 />
                 <img
                   alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-2770632519"
+                  className="jsx-3597025167"
                   src="/static/BCID_CleanBC_rev_tagline_colour.svg"
                 />
               </picture>
             </a>
             <h2
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               CleanBC Industrial Incentive Program
             </h2>
             <button
               aria-label="Menu toggle"
-              className="jsx-2770632519"
+              className="jsx-3597025167"
               id="menu-toggle"
               onClick={[Function]}
               type="button"
@@ -2053,7 +2053,7 @@ Array [
             </button>
           </div>
           <ul
-            className="jsx-2770632519 header-right"
+            className="jsx-3597025167 header-right"
             style={
               Object {
                 "display": "flex",
@@ -2061,10 +2061,10 @@ Array [
             }
           >
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2770632519 nav-button"
+                className="jsx-3597025167 nav-button"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
@@ -2073,10 +2073,10 @@ Array [
               </a>
             </li>
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2770632519 nav-button"
+                className="jsx-3597025167 nav-button"
                 href="/user/profile"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
@@ -2085,7 +2085,7 @@ Array [
               </a>
             </li>
             <li
-              className="jsx-2770632519"
+              className="jsx-3597025167"
             >
               <form
                 action="/logout"
@@ -2093,7 +2093,7 @@ Array [
                 method="post"
               >
                 <button
-                  className="jsx-2770632519 nav-button"
+                  className="jsx-3597025167 nav-button"
                   type="submit"
                 >
                   Logout

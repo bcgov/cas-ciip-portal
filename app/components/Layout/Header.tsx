@@ -118,7 +118,7 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => {
       </nav>
       <style jsx>
         {`
-          /* Mobile-first styles: 
+          /* Mobile-first styles:
           * Justified flex layout accommodating a smaller logo and main nav
           * is accessible behind hamburger menu instead of button links.
           */
@@ -179,8 +179,8 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => {
               box-shadow 0.15s ease-in-out;
           }
 
-          /* Small desktop and up: 
-          * Replaces hamburger menu with button links and pushes apart .header-left 
+          /* Small desktop and up:
+          * Replaces hamburger menu with button links and pushes apart .header-left
           * (logo + title) and .header-right (nav buttons) content
           */
           @media screen and ${DESKTOP_BREAKPOINT_QUERY} {
@@ -214,7 +214,7 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => {
           }
 
           /* Custom query to prevent title heading from wrapping in screen widths
-          * between 992px to 1092px: 
+          * between 992px to 1092px:
           */
           @media screen and (min-width: 1092px) {
             header h2 {
