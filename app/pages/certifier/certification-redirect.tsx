@@ -88,7 +88,7 @@ class CertificationRedirect extends Component<Props> {
         allowedGroups={ALLOWED_GROUPS}
       >
         {certificationUrl ? (
-          <Row style={{marginTop: '60px'}}>
+          <Row>
             <Col md={{offset: 3, span: 6}}>
               <h3 className="blue">Your certification is requested.</h3>
               <p>

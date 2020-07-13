@@ -49,7 +49,7 @@ export default class LoginRedirect extends Component<Props> {
         needsSession={false}
         needsUser={false}
       >
-        <Row style={{marginTop: '60px'}}>
+        <Row>
           <Col md={6}>
             <h3 className="blue">
               You need to be logged in to access this page.

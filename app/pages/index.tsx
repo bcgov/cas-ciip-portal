@@ -94,7 +94,7 @@ export default class Index extends Component<Props> {
         needsUser={false}
         allowedGroups={ALLOWED_GROUPS}
       >
-        <Row style={{marginTop: '60px'}}>
+        <Row>
           <Col md={6}>
             <h3 className="blue">
               What is the CleanBC Industrial Incentive Program?
