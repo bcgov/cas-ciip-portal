@@ -3,6 +3,9 @@ route:
   host: ciip.gov.bc.ca
   insecure: false # cert has been issued
 
+analytics:
+  enable: true
+
 fider:
   host: https://ciip-feedback.pathfinder.gov.bc.ca/
 # TODO move fider template in this repo
