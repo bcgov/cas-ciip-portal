@@ -1,161 +1,242 @@
-import React from 'react';
-import {Row, Col, Form, Button} from 'react-bootstrap';
+import React, {useState, useRef, useEffect} from 'react';
+import {Form} from 'react-bootstrap';
 import Link from 'next/link';
 import LoginButton from 'components/LoginButton';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faBars} from '@fortawesome/free-solid-svg-icons';
 
-const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => (
-  <header>
-    <div className="container full-width">
-      <div className="banner">
+const DESKTOP_BREAKPOINT_QUERY = '(min-width: 992px)';
+
+const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => {
+  let mediaMatch;
+  /**
+   * Window isn't available at first for statically optimized pages like the 404 page:
+   */
+  try {
+    mediaMatch = window.matchMedia(DESKTOP_BREAKPOINT_QUERY);
+  } catch (error) {}
+
+  const desktopMediaQuery = useRef(mediaMatch);
+  const [navMenuHidden, setNavMenuHidden] = useState(
+    desktopMediaQuery.current && !desktopMediaQuery.current.matches
+  );
+
+  const toggleNavMenu = () => {
+    setNavMenuHidden((prev) => {
+      // Ensure nav menu is never hidden on desktop
+      if (desktopMediaQuery.current && desktopMediaQuery.current.matches)
+        return;
+      return !prev;
+    });
+  };
+
+  // Listen for media query change (ie: device is rotated or window resized) to reset
+  // the nav menu toggle and ensure it's not accidentally hidden on desktop
+  useEffect(() => {
+    const query = desktopMediaQuery.current;
+    const listener = query?.addEventListener('change', ({target}: any) => {
+      setNavMenuHidden(!target.matches);
+    });
+    return () => {
+      query?.removeEventListener('change', listener);
+    };
+  });
+
+  return (
+    <header>
+      <nav>
         <div className="header-left">
           <Link href="/">
             <a>
-              <img
-                src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                alt="logo for Province of British Columbia CleanBC"
-              />
+              <picture>
+                <source
+                  media="(max-width: 767.98px)"
+                  srcSet="/static/bcid-reverse.svg"
+                />
+                <img
+                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                  alt="logo for Province of British Columbia CleanBC"
+                />
+              </picture>
             </a>
           </Link>
-          <h1>CleanBC Industrial Incentive Program</h1>
+          <h2>CleanBC Industrial Incentive Program</h2>
+          <button
+            id="menu-toggle"
+            type="button"
+            aria-label="Menu toggle"
+            onClick={toggleNavMenu}
+          >
+            <FontAwesomeIcon color="white" icon={faBars} size="2x" />
+          </button>
         </div>
-        <div className="login-btns header-right">
-          <div className="container">
-            <Row>
-              {isRegistered ? (
-                <Col>
-                  <Link href="/">
-                    <a className="btn btn-outline-light">Dashboard</a>
+        <ul
+          className="header-right"
+          style={navMenuHidden ? {display: 'none'} : {display: 'flex'}}
+        >
+          {isRegistered ? (
+            <li>
+              <Link href="/">
+                <a className="nav-button">Dashboard</a>
+              </Link>
+            </li>
+          ) : null}
+          {isLoggedIn ? (
+            <>
+              {isRegistered && (
+                <li>
+                  <Link href="/user/profile">
+                    <a className="nav-button">Profile</a>
                   </Link>
-                </Col>
-              ) : null}
-              <div>
-                {isLoggedIn ? (
-                  <Form.Row>
-                    {isRegistered && (
-                      <Col>
-                        <Link href="/user/profile">
-                          <a className="btn btn-outline-light">Profile</a>
-                        </Link>
-                      </Col>
-                    )}
-                    <Col>
-                      <Form action="/logout" method="post">
-                        <Button type="submit" variant="outline-light">
-                          Logout
-                        </Button>
-                      </Form>
-                    </Col>
-                  </Form.Row>
-                ) : (
-                  <Form.Row>
-                    <Col>
-                      <Link href="/register">
-                        <a className="btn btn-outline-light">Register</a>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <LoginButton type="submit" variant="outline-light">
-                        Login
-                      </LoginButton>
-                    </Col>
-                  </Form.Row>
-                )}
-              </div>
-            </Row>
-          </div>
-        </div>
-      </div>
-    </div>
-    <style jsx>
-      {`
-        header {
-          background-color: #036;
-          border-bottom: 2px solid #fcba19;
-          padding: 10px 65px;
-          color: #fff;
-          height: 65px;
-          top: 0px;
-          width: 100%;
-        }
-        header h1 {
-          font-weight: normal;
-          margin: 8px 5px 5px 18px;
-        }
-        .header-left img {
-          height: 46px;
-          position: relative;
-          top: -4px;
-        }
-        .header-right {
-          margin-right: -25px;
-        }
-        header .banner {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin: 0 10px 0 0;
-        }
-
-        header .other {
-          display: flex;
-          flex-grow: 1;
-          /*  border-style: dotted;
-              border-width: 1px;
-              border-color: lightgrey; */
-        }
-
-        .buttons {
-          display: flex;
-          flex-grow: 1;
-          align-items: center;
-          justify-content: flex-end;
-        }
-
-        /*
-            These are sample media queries only. Media queries are quite subjective
-            but, in general, should be made for the three different classes of screen
-            size: phone, tablet, full.
+                </li>
+              )}
+              <li>
+                <Form action="/logout" method="post">
+                  <button type="submit" className="nav-button">
+                    Logout
+                  </button>
+                </Form>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link href="/register">
+                  <a className="nav-button">Register</a>
+                </Link>
+              </li>
+              <li>
+                <LoginButton>
+                  <button className="nav-button" type="submit">
+                    Login
+                  </button>
+                </LoginButton>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
+      <style jsx>
+        {`
+          /* Mobile-first styles: 
+          * Justified flex layout accommodating a smaller logo and main nav
+          * is accessible behind hamburger menu instead of button links.
           */
 
-        @media screen and (min-width: 900px) {
-          header h1 {
-            font-size: 1.4em;
-            visibility: visible;
-          }
-        }
-
-        @media (max-width: 899px) {
           header {
-            padding: 10px 0 !important;
-            margin-bottom: 58px;
+            background-color: #036;
+            border-bottom: 2px solid #fcba19;
+            padding: 10px;
+            color: #fff;
           }
-          header h1 {
-            font-size: calc(6px + 2vw);
-            visibility: visible;
-            height: 20px;
-          }
-          .full-width.container {
-            max-width: 100%;
-            padding: 0;
-          }
-          .banner {
-            flex-flow: wrap;
-            margin: 0 !important;
-          }
-          .header-right {
-            background: #004085;
-            width: 100%;
-            padding: 10px 10px 10px 35px;
-            margin: 14px 0;
-            z-index: 1;
+          header h2 {
+            font-weight: normal;
+            font-size: calc(1rem + 1vw);
+            margin: 0 0.5em;
+            text-align: center;
           }
           .header-left {
-            padding: 0 0 0 20px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
           }
-        }
-      `}
-    </style>
-  </header>
-);
+          .header-left img {
+            height: 46px;
+          }
+          .header-right {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            text-align: right;
+            margin: 0;
+            padding: 0.8em 1em 0 0;
+          }
+          nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          li {
+            list-style-type: none;
+          }
+          button {
+            background: none;
+            border: none;
+          }
+          .nav-button {
+            color: #f8f9fa;
+            display: inline-block;
+            text-align: center;
+            user-select: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            transition: color 0.15s ease-in-out,
+              background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+              box-shadow 0.15s ease-in-out;
+          }
+
+          /* Small desktop and up: 
+          * Replaces hamburger menu with button links and pushes apart .header-left 
+          * (logo + title) and .header-right (nav buttons) content
+          */
+          @media screen and ${DESKTOP_BREAKPOINT_QUERY} {
+            nav {
+              flex-direction: row;
+              justify-content: space-between;
+              padding: 0 15px;
+            }
+            .header-left {
+              width: auto;
+            }
+            header h2 {
+              margin: 0 0 0 18px;
+            }
+            button#menu-toggle {
+              display: none;
+            }
+            .header-right {
+              flex-direction: row;
+              width: auto;
+              text-align: right;
+              margin: 0;
+              padding: 0;
+            }
+            .nav-button {
+              border-color: #f8f9fa;
+            }
+            li {
+              padding-left: 12px;
+            }
+          }
+
+          /* Custom query to prevent title heading from wrapping in screen widths
+          * between 992px to 1092px: 
+          */
+          @media screen and (min-width: 1092px) {
+            header h2 {
+              font-size: 2rem;
+            }
+          }
+
+          /* Larger desktops and up:
+          * Gives same effect as .container class on nav to align its contents
+          * with page grid:
+          */
+          @media screen and (min-width: 1200px) {
+            nav {
+              max-width: 1140px;
+              margin-left: auto;
+              margin-right: auto;
+            }
+          }
+        `}
+      </style>
+    </header>
+  );
+};
 
 export default HeaderLayout;
