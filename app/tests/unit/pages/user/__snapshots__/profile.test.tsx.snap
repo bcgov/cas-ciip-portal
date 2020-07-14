@@ -1,7 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`user profile matches snapshot 1`] = `
-<Relay(DefaultLayout)>
+<Relay(DefaultLayout)
+  allowedGroups={
+    Array [
+      "Incentive Analyst",
+      "Realm Administrator",
+      "Incentive Administrator",
+      "User",
+    ]
+  }
+>
   <Relay(UserProfile)
     user={null}
   />
