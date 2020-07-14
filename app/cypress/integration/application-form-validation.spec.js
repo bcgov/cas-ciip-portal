@@ -32,6 +32,7 @@ describe('When reviewing a submitted application as an analyst', () => {
   it('The application admin form shows validation errors', () => {
     cy.visit(adminFormUrl);
     cy.get('#page-content');
+    cy.get('form.rjsf').happoScreenshot({component: 'Administration Form'});
 
     // Operator details
     cy.get('#root_operator_name').clear().type('John Smith');
@@ -96,7 +97,6 @@ describe('When reviewing a submitted application as an analyst', () => {
       .clear()
       .type('LLC1234567');
 
-    cy.get('form.rjsf').happoScreenshot({component: 'Administration Form'});
     cy.contains('Continue').click();
     cy.get('#page-content h1').contains('Emission');
   });
