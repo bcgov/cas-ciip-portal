@@ -17,8 +17,8 @@ with rows as (
 insert into ggircs_portal.product(id, product_name, units, product_state, requires_emission_allocation, is_ciip_product, requires_product_amount, is_read_only, is_energy_product)
 overriding system value
 values
-(1, 'Exported electricity', 'MWh', 'published' ,true, true, true, true, true),
-(2, 'Exported heat', 'GJ', 'published' ,true, false, true, true, true),
+(1, 'Sold electricity', 'MWh', 'published' ,true, true, true, true, true),
+(2, 'Sold heat', 'GJ', 'published' ,true, false, true, true, true),
 (3, 'Purchased electricity', 'GWh', 'published' ,true, false, true, true, true),
 (4, 'Purchased heat', 'GJ', 'published' ,true, false, true, true, true),
 (5, 'Generated electricity', 'GWh', 'published' ,true, false, true, true, true),

@@ -159,12 +159,12 @@ export const FormComponent: React.FunctionComponent<Props> = ({
 
     if (hasRequireExportedElectricity && !energyProductsReported.includes(1))
       errors['0'].addError(
-        'Exported Electricity is a required product based on the products you have reported, please refer to the guidance document'
+        'Sold Electricity is a required product based on the products you have reported, please refer to the guidance document'
       );
 
     if (hasRequireExportedHeat && !energyProductsReported.includes(2))
       errors['0'].addError(
-        'Exported Heat is a required product based on the products you have reported, please refer to the guidance document'
+        'Sold Heat is a required product based on the products you have reported, please refer to the guidance document'
       );
 
     if (hasRequireGeneratedElectricity && !energyProductsReported.includes(5))

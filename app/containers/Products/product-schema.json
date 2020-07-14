@@ -63,7 +63,7 @@
       },
       "subtractExportedElectricityEmissions": {
         "type": "boolean",
-        "title": "Exported electricity is subtracted from facility emissions",
+        "title": "Sold electricity is subtracted from facility emissions",
         "enumNames": [" Yes", " No"],
         "default": false
       },
@@ -75,7 +75,7 @@
       },
       "subtractExportedHeatEmissions": {
         "type": "boolean",
-        "title": "Exported heat is subtracted from facility emissions",
+        "title": "Sold heat is subtracted from facility emissions",
         "enumNames": [" Yes", " No"],
         "default": false
       }
