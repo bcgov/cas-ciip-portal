@@ -56,19 +56,22 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
     return null;
   }
 
+  // Redirect users attempting to access a page that their group doesn't allow
+  // to their landing route. This needs to happen before redirecting to the registration
+  // to ensure that a pending analyst doesn't get redirect to the registration page
+  if (!canAccess) {
+    router.push({
+      pathname: getUserGroupLandingRoute(userGroups)
+    });
+    return null;
+  }
+
   if (needsUser && !session.ciipUserBySub) {
     router.push({
       pathname: '/registration',
       query: {
         redirectTo: router.asPath
       }
-    });
-    return null;
-  }
-
-  if (!canAccess) {
-    router.push({
-      pathname: getUserGroupLandingRoute(userGroups)
     });
     return null;
   }
