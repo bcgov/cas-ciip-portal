@@ -13166,7 +13166,7 @@
             },
             {
               "name": "subtractExportedElectricityEmissions",
-              "description": "Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "description": "Boolean value indicates if sold electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -13182,7 +13182,7 @@
             },
             {
               "name": "subtractExportedHeatEmissions",
-              "description": "Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "description": "Boolean value indicates if sold heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -36880,7 +36880,7 @@
             },
             {
               "name": "subtractExportedElectricityEmissions",
-              "description": "Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "description": "Boolean value indicates if sold electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -36890,7 +36890,7 @@
             },
             {
               "name": "subtractExportedHeatEmissions",
-              "description": "Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "description": "Boolean value indicates if sold heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -48563,7 +48563,7 @@
             },
             {
               "name": "subtractExportedElectricityEmissions",
-              "description": "Boolean value indicates if exported electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "description": "Boolean value indicates if sold electricity emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
@@ -48573,7 +48573,7 @@
             },
             {
               "name": "subtractExportedHeatEmissions",
-              "description": "Boolean value indicates if exported heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
+              "description": "Boolean value indicates if sold heat emissions should be subtracted from the facility emissions when calculating the product emission intensity (applies only to products where requires_emission_allocation is false)",
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",

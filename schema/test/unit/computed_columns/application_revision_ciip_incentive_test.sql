@@ -31,11 +31,11 @@ insert into ggircs_portal.product (
 )
 overriding system value
 values
-  (1, 'Exported electricity', 'published',
+  (1, 'Sold electricity', 'published',
   true, true, true, false, false, false, false, false, false, false, true),
   (3, 'Purchased electricity', 'published',
   true, false, true, false, false, false, false, false, false, false, true),
-  (2, 'Exported heat', 'published',
+  (2, 'Sold heat', 'published',
   true, true, true, false, false, false, false, false, false, false, true),
   (4, 'Purchased heat', 'published',
   true, false, true, false, false, false, false, false, false, false, true),
@@ -55,7 +55,7 @@ values
   true, false, true, false, false, false, false, false, false, false, false),
   (12, 'product with added purchased electricity emissions', 'published',
   false, true, true, true, false, false, false, false, false, false, false),
-  (13, 'product with excluded exported electricity emissions', 'published',
+  (13, 'product with excluded sold electricity emissions', 'published',
   false, true, true, false, true, false, false, false, false, false, false),
   (14, 'product with added purchased heat emissions', 'published',
   false, true, true, false, false, true, false, false, false, false, false),
@@ -282,7 +282,7 @@ select throws_like(
   'throws an exception if a product requires purchased electricity and it is not present'
 );
 
--- Report a product with no allocation of emissions which requires "Exported Electricity" to be reported
+-- Report a product with no allocation of emissions which requires "Sold Electricity" to be reported
 update ggircs_portal.form_result
 set form_result = '[
   {
@@ -309,7 +309,7 @@ select is(
     ) where product_id = 13
   ),
   38.0,
-  'exported electricity emissions are added to the facility emissions for products that require it'
+  'sold electricity emissions are added to the facility emissions for products that require it'
 );
 
 update ggircs_portal.form_result
@@ -333,7 +333,7 @@ select throws_like(
     )
   $$,
   '%Reported product requires exported_electricity%',
-  'throws an exception if a product requires exported electricity and it is not present'
+  'throws an exception if a product requires sold electricity and it is not present'
 );
 
 -- Report a product with no allocation of emissions which requires "Purchased Heat" to be reported
@@ -417,7 +417,7 @@ select is(
     ) where product_id = 15
   ),
   36.0,
-  'exported heat emissions are removed from the facility emissions for products that require it'
+  'sold heat emissions are removed from the facility emissions for products that require it'
 );
 
 update ggircs_portal.form_result

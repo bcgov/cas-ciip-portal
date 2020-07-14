@@ -10149,16 +10149,16 @@ type Product implements Node {
   rowId: Int!
 
   """
-  Boolean value indicates if exported electricity emissions should be subtracted
+  Boolean value indicates if sold electricity emissions should be subtracted
   from the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
   """
   subtractExportedElectricityEmissions: Boolean!
 
   """
-  Boolean value indicates if exported heat emissions should be subtracted from
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if sold heat emissions should be subtracted from the
+  facility emissions when calculating the product emission intensity (applies
+  only to products where requires_emission_allocation is false)
   """
   subtractExportedHeatEmissions: Boolean!
 
@@ -10339,16 +10339,16 @@ input ProductInput {
   requiresProductAmount: Boolean
 
   """
-  Boolean value indicates if exported electricity emissions should be subtracted
+  Boolean value indicates if sold electricity emissions should be subtracted
   from the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
   """
   subtractExportedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if exported heat emissions should be subtracted from
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if sold heat emissions should be subtracted from the
+  facility emissions when calculating the product emission intensity (applies
+  only to products where requires_emission_allocation is false)
   """
   subtractExportedHeatEmissions: Boolean
 
@@ -10446,16 +10446,16 @@ input ProductPatch {
   requiresProductAmount: Boolean
 
   """
-  Boolean value indicates if exported electricity emissions should be subtracted
+  Boolean value indicates if sold electricity emissions should be subtracted
   from the facility emissions when calculating the product emission intensity
   (applies only to products where requires_emission_allocation is false)
   """
   subtractExportedElectricityEmissions: Boolean
 
   """
-  Boolean value indicates if exported heat emissions should be subtracted from
-  the facility emissions when calculating the product emission intensity
-  (applies only to products where requires_emission_allocation is false)
+  Boolean value indicates if sold heat emissions should be subtracted from the
+  facility emissions when calculating the product emission intensity (applies
+  only to products where requires_emission_allocation is false)
   """
   subtractExportedHeatEmissions: Boolean
 
