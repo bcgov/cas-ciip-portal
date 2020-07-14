@@ -157,6 +157,12 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           .container.wide {
             max-width: 1600px;
           }
+
+          @media screen and (min-width: 992px) {
+            #page-content {
+              padding-top: 110px;
+            }
+          }
         `}
       </style>
     </div>

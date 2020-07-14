@@ -1,10 +1,8 @@
 import React from 'react';
 import {useRouter} from 'next/router';
-import {Form, Button, ButtonProps} from 'react-bootstrap';
+import {Form} from 'react-bootstrap';
 
-const LoginForm: React.FunctionComponent<
-  React.ComponentPropsWithoutRef<'button'> & ButtonProps
-> = (props) => {
+const LoginForm: React.FunctionComponent = ({children}) => {
   const router = useRouter();
   let loginURI = '/login';
 
@@ -15,7 +13,7 @@ const LoginForm: React.FunctionComponent<
 
   return (
     <Form action={loginURI} method="post">
-      <Button {...props} type="submit" />
+      {children}
     </Form>
   );
 };

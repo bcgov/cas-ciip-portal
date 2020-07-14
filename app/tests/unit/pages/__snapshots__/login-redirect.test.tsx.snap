@@ -9,11 +9,6 @@ exports[`Login redirect page It matches the last accepted Snapshot 1`] = `
 >
   <Row
     noGutters={false}
-    style={
-      Object {
-        "marginTop": "60px",
-      }
-    }
   >
     <Col
       md={6}

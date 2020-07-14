@@ -11,110 +11,129 @@ Array [
     }
   >
     <div
-      className="jsx-303545825 page-wrap"
+      className="jsx-1155151846 page-wrap"
     >
       <header
-        className="jsx-2453800556"
+        className="jsx-3597025167"
       >
-        <div
-          className="jsx-2453800556 container full-width"
+        <nav
+          className="jsx-3597025167"
         >
           <div
-            className="jsx-2453800556 banner"
+            className="jsx-3597025167 header-left"
           >
-            <div
-              className="jsx-2453800556 header-left"
+            <a
+              className="jsx-3597025167"
+              href="/"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <picture
+                className="jsx-3597025167"
+              >
+                <source
+                  className="jsx-3597025167"
+                  media="(max-width: 767.98px)"
+                  srcSet="/static/bcid-reverse.svg"
+                />
+                <img
+                  alt="logo for Province of British Columbia CleanBC"
+                  className="jsx-3597025167"
+                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                />
+              </picture>
+            </a>
+            <h2
+              className="jsx-3597025167"
+            >
+              CleanBC Industrial Incentive Program
+            </h2>
+            <button
+              aria-label="Menu toggle"
+              className="jsx-3597025167"
+              id="menu-toggle"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-bars fa-w-14 fa-2x "
+                color="white"
+                data-icon="bars"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+            </button>
+          </div>
+          <ul
+            className="jsx-3597025167 header-right"
+            style={
+              Object {
+                "display": "flex",
+              }
+            }
+          >
+            <li
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2453800556"
+                className="jsx-3597025167 nav-button"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
               >
-                <img
-                  alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-2453800556"
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                />
+                Dashboard
               </a>
-              <h1
-                className="jsx-2453800556"
-              >
-                CleanBC Industrial Incentive Program
-              </h1>
-            </div>
-            <div
-              className="jsx-2453800556 login-btns header-right"
+            </li>
+            <li
+              className="jsx-3597025167"
             >
-              <div
-                className="jsx-2453800556 container"
+              <a
+                className="jsx-3597025167 nav-button"
+                href="/user/profile"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
               >
-                <div
-                  className="row"
+                Profile
+              </a>
+            </li>
+            <li
+              className="jsx-3597025167"
+            >
+              <form
+                action="/logout"
+                className=""
+                method="post"
+              >
+                <button
+                  className="jsx-3597025167 nav-button"
+                  type="submit"
                 >
-                  <div
-                    className="col"
-                  >
-                    <a
-                      className="jsx-2453800556 btn btn-outline-light"
-                      href="/"
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                    >
-                      Dashboard
-                    </a>
-                  </div>
-                  <div
-                    className="jsx-2453800556"
-                  >
-                    <div
-                      className="form-row"
-                    >
-                      <div
-                        className="col"
-                      >
-                        <a
-                          className="jsx-2453800556 btn btn-outline-light"
-                          href="/user/profile"
-                          onClick={[Function]}
-                          onMouseEnter={[Function]}
-                        >
-                          Profile
-                        </a>
-                      </div>
-                      <div
-                        className="col"
-                      >
-                        <form
-                          action="/logout"
-                          className=""
-                          method="post"
-                        >
-                          <button
-                            className="btn btn-outline-light"
-                            disabled={false}
-                            type="submit"
-                          >
-                            Logout
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  Logout
+                </button>
+              </form>
+            </li>
+          </ul>
+        </nav>
       </header>
       <div
-        className="jsx-303545825 page-title"
+        className="jsx-1155151846 page-title"
       >
         <div
           className="narrow container"
         >
           <h1
-            className="jsx-303545825"
+            className="jsx-1155151846"
           >
             Administrator Dashboard
           </h1>
@@ -493,110 +512,129 @@ Array [
     }
   >
     <div
-      className="jsx-303545825 page-wrap"
+      className="jsx-1155151846 page-wrap"
     >
       <header
-        className="jsx-2453800556"
+        className="jsx-3597025167"
       >
-        <div
-          className="jsx-2453800556 container full-width"
+        <nav
+          className="jsx-3597025167"
         >
           <div
-            className="jsx-2453800556 banner"
+            className="jsx-3597025167 header-left"
           >
-            <div
-              className="jsx-2453800556 header-left"
+            <a
+              className="jsx-3597025167"
+              href="/"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <picture
+                className="jsx-3597025167"
+              >
+                <source
+                  className="jsx-3597025167"
+                  media="(max-width: 767.98px)"
+                  srcSet="/static/bcid-reverse.svg"
+                />
+                <img
+                  alt="logo for Province of British Columbia CleanBC"
+                  className="jsx-3597025167"
+                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                />
+              </picture>
+            </a>
+            <h2
+              className="jsx-3597025167"
+            >
+              CleanBC Industrial Incentive Program
+            </h2>
+            <button
+              aria-label="Menu toggle"
+              className="jsx-3597025167"
+              id="menu-toggle"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-bars fa-w-14 fa-2x "
+                color="white"
+                data-icon="bars"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+            </button>
+          </div>
+          <ul
+            className="jsx-3597025167 header-right"
+            style={
+              Object {
+                "display": "flex",
+              }
+            }
+          >
+            <li
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2453800556"
+                className="jsx-3597025167 nav-button"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
               >
-                <img
-                  alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-2453800556"
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                />
+                Dashboard
               </a>
-              <h1
-                className="jsx-2453800556"
-              >
-                CleanBC Industrial Incentive Program
-              </h1>
-            </div>
-            <div
-              className="jsx-2453800556 login-btns header-right"
+            </li>
+            <li
+              className="jsx-3597025167"
             >
-              <div
-                className="jsx-2453800556 container"
+              <a
+                className="jsx-3597025167 nav-button"
+                href="/user/profile"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
               >
-                <div
-                  className="row"
+                Profile
+              </a>
+            </li>
+            <li
+              className="jsx-3597025167"
+            >
+              <form
+                action="/logout"
+                className=""
+                method="post"
+              >
+                <button
+                  className="jsx-3597025167 nav-button"
+                  type="submit"
                 >
-                  <div
-                    className="col"
-                  >
-                    <a
-                      className="jsx-2453800556 btn btn-outline-light"
-                      href="/"
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                    >
-                      Dashboard
-                    </a>
-                  </div>
-                  <div
-                    className="jsx-2453800556"
-                  >
-                    <div
-                      className="form-row"
-                    >
-                      <div
-                        className="col"
-                      >
-                        <a
-                          className="jsx-2453800556 btn btn-outline-light"
-                          href="/user/profile"
-                          onClick={[Function]}
-                          onMouseEnter={[Function]}
-                        >
-                          Profile
-                        </a>
-                      </div>
-                      <div
-                        className="col"
-                      >
-                        <form
-                          action="/logout"
-                          className=""
-                          method="post"
-                        >
-                          <button
-                            className="btn btn-outline-light"
-                            disabled={false}
-                            type="submit"
-                          >
-                            Logout
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  Logout
+                </button>
+              </form>
+            </li>
+          </ul>
+        </nav>
       </header>
       <div
-        className="jsx-303545825 page-title"
+        className="jsx-1155151846 page-title"
       >
         <div
           className="narrow container"
         >
           <h1
-            className="jsx-303545825"
+            className="jsx-1155151846"
           >
             Registration
           </h1>
@@ -959,101 +997,120 @@ Array [
     }
   >
     <div
-      className="jsx-303545825 page-wrap"
+      className="jsx-1155151846 page-wrap"
     >
       <header
-        className="jsx-2453800556"
+        className="jsx-3597025167"
       >
-        <div
-          className="jsx-2453800556 container full-width"
+        <nav
+          className="jsx-3597025167"
         >
           <div
-            className="jsx-2453800556 banner"
+            className="jsx-3597025167 header-left"
           >
-            <div
-              className="jsx-2453800556 header-left"
+            <a
+              className="jsx-3597025167"
+              href="/"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <picture
+                className="jsx-3597025167"
+              >
+                <source
+                  className="jsx-3597025167"
+                  media="(max-width: 767.98px)"
+                  srcSet="/static/bcid-reverse.svg"
+                />
+                <img
+                  alt="logo for Province of British Columbia CleanBC"
+                  className="jsx-3597025167"
+                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                />
+              </picture>
+            </a>
+            <h2
+              className="jsx-3597025167"
+            >
+              CleanBC Industrial Incentive Program
+            </h2>
+            <button
+              aria-label="Menu toggle"
+              className="jsx-3597025167"
+              id="menu-toggle"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-bars fa-w-14 fa-2x "
+                color="white"
+                data-icon="bars"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+            </button>
+          </div>
+          <ul
+            className="jsx-3597025167 header-right"
+            style={
+              Object {
+                "display": "flex",
+              }
+            }
+          >
+            <li
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2453800556"
+                className="jsx-3597025167 nav-button"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
               >
-                <img
-                  alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-2453800556"
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                />
+                Dashboard
               </a>
-              <h1
-                className="jsx-2453800556"
-              >
-                CleanBC Industrial Incentive Program
-              </h1>
-            </div>
-            <div
-              className="jsx-2453800556 login-btns header-right"
+            </li>
+            <li
+              className="jsx-3597025167"
             >
-              <div
-                className="jsx-2453800556 container"
+              <a
+                className="jsx-3597025167 nav-button"
+                href="/user/profile"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
               >
-                <div
-                  className="row"
+                Profile
+              </a>
+            </li>
+            <li
+              className="jsx-3597025167"
+            >
+              <form
+                action="/logout"
+                className=""
+                method="post"
+              >
+                <button
+                  className="jsx-3597025167 nav-button"
+                  type="submit"
                 >
-                  <div
-                    className="col"
-                  >
-                    <a
-                      className="jsx-2453800556 btn btn-outline-light"
-                      href="/"
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                    >
-                      Dashboard
-                    </a>
-                  </div>
-                  <div
-                    className="jsx-2453800556"
-                  >
-                    <div
-                      className="form-row"
-                    >
-                      <div
-                        className="col"
-                      >
-                        <a
-                          className="jsx-2453800556 btn btn-outline-light"
-                          href="/user/profile"
-                          onClick={[Function]}
-                          onMouseEnter={[Function]}
-                        >
-                          Profile
-                        </a>
-                      </div>
-                      <div
-                        className="col"
-                      >
-                        <form
-                          action="/logout"
-                          className=""
-                          method="post"
-                        >
-                          <button
-                            className="btn btn-outline-light"
-                            disabled={false}
-                            type="submit"
-                          >
-                            Logout
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  Logout
+                </button>
+              </form>
+            </li>
+          </ul>
+        </nav>
       </header>
       <div>
         <nav
@@ -1095,13 +1152,13 @@ Array [
         </nav>
       </div>
       <div
-        className="jsx-303545825 page-title"
+        className="jsx-1155151846 page-title"
       >
         <div
           className="narrow container"
         >
           <h1
-            className="jsx-303545825"
+            className="jsx-1155151846"
           >
             My Operators
           </h1>
@@ -1597,110 +1654,129 @@ Array [
     }
   >
     <div
-      className="jsx-303545825 page-wrap"
+      className="jsx-1155151846 page-wrap"
     >
       <header
-        className="jsx-2453800556"
+        className="jsx-3597025167"
       >
-        <div
-          className="jsx-2453800556 container full-width"
+        <nav
+          className="jsx-3597025167"
         >
           <div
-            className="jsx-2453800556 banner"
+            className="jsx-3597025167 header-left"
           >
-            <div
-              className="jsx-2453800556 header-left"
+            <a
+              className="jsx-3597025167"
+              href="/"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <picture
+                className="jsx-3597025167"
+              >
+                <source
+                  className="jsx-3597025167"
+                  media="(max-width: 767.98px)"
+                  srcSet="/static/bcid-reverse.svg"
+                />
+                <img
+                  alt="logo for Province of British Columbia CleanBC"
+                  className="jsx-3597025167"
+                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                />
+              </picture>
+            </a>
+            <h2
+              className="jsx-3597025167"
+            >
+              CleanBC Industrial Incentive Program
+            </h2>
+            <button
+              aria-label="Menu toggle"
+              className="jsx-3597025167"
+              id="menu-toggle"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-bars fa-w-14 fa-2x "
+                color="white"
+                data-icon="bars"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+            </button>
+          </div>
+          <ul
+            className="jsx-3597025167 header-right"
+            style={
+              Object {
+                "display": "flex",
+              }
+            }
+          >
+            <li
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2453800556"
+                className="jsx-3597025167 nav-button"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
               >
-                <img
-                  alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-2453800556"
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                />
+                Dashboard
               </a>
-              <h1
-                className="jsx-2453800556"
-              >
-                CleanBC Industrial Incentive Program
-              </h1>
-            </div>
-            <div
-              className="jsx-2453800556 login-btns header-right"
+            </li>
+            <li
+              className="jsx-3597025167"
             >
-              <div
-                className="jsx-2453800556 container"
+              <a
+                className="jsx-3597025167 nav-button"
+                href="/user/profile"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
               >
-                <div
-                  className="row"
+                Profile
+              </a>
+            </li>
+            <li
+              className="jsx-3597025167"
+            >
+              <form
+                action="/logout"
+                className=""
+                method="post"
+              >
+                <button
+                  className="jsx-3597025167 nav-button"
+                  type="submit"
                 >
-                  <div
-                    className="col"
-                  >
-                    <a
-                      className="jsx-2453800556 btn btn-outline-light"
-                      href="/"
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                    >
-                      Dashboard
-                    </a>
-                  </div>
-                  <div
-                    className="jsx-2453800556"
-                  >
-                    <div
-                      className="form-row"
-                    >
-                      <div
-                        className="col"
-                      >
-                        <a
-                          className="jsx-2453800556 btn btn-outline-light"
-                          href="/user/profile"
-                          onClick={[Function]}
-                          onMouseEnter={[Function]}
-                        >
-                          Profile
-                        </a>
-                      </div>
-                      <div
-                        className="col"
-                      >
-                        <form
-                          action="/logout"
-                          className=""
-                          method="post"
-                        >
-                          <button
-                            className="btn btn-outline-light"
-                            disabled={false}
-                            type="submit"
-                          >
-                            Logout
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  Logout
+                </button>
+              </form>
+            </li>
+          </ul>
+        </nav>
       </header>
       <div
-        className="jsx-303545825 page-title"
+        className="jsx-1155151846 page-title"
       >
         <div
           className="narrow container"
         >
           <h1
-            className="jsx-303545825"
+            className="jsx-1155151846"
           >
             User List
           </h1>
@@ -1912,101 +1988,120 @@ Array [
     }
   >
     <div
-      className="jsx-303545825 page-wrap"
+      className="jsx-1155151846 page-wrap"
     >
       <header
-        className="jsx-2453800556"
+        className="jsx-3597025167"
       >
-        <div
-          className="jsx-2453800556 container full-width"
+        <nav
+          className="jsx-3597025167"
         >
           <div
-            className="jsx-2453800556 banner"
+            className="jsx-3597025167 header-left"
           >
-            <div
-              className="jsx-2453800556 header-left"
+            <a
+              className="jsx-3597025167"
+              href="/"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <picture
+                className="jsx-3597025167"
+              >
+                <source
+                  className="jsx-3597025167"
+                  media="(max-width: 767.98px)"
+                  srcSet="/static/bcid-reverse.svg"
+                />
+                <img
+                  alt="logo for Province of British Columbia CleanBC"
+                  className="jsx-3597025167"
+                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
+                />
+              </picture>
+            </a>
+            <h2
+              className="jsx-3597025167"
+            >
+              CleanBC Industrial Incentive Program
+            </h2>
+            <button
+              aria-label="Menu toggle"
+              className="jsx-3597025167"
+              id="menu-toggle"
+              onClick={[Function]}
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-bars fa-w-14 fa-2x "
+                color="white"
+                data-icon="bars"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+            </button>
+          </div>
+          <ul
+            className="jsx-3597025167 header-right"
+            style={
+              Object {
+                "display": "flex",
+              }
+            }
+          >
+            <li
+              className="jsx-3597025167"
             >
               <a
-                className="jsx-2453800556"
+                className="jsx-3597025167 nav-button"
                 href="/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
               >
-                <img
-                  alt="logo for Province of British Columbia CleanBC"
-                  className="jsx-2453800556"
-                  src="/static/BCID_CleanBC_rev_tagline_colour.svg"
-                />
+                Dashboard
               </a>
-              <h1
-                className="jsx-2453800556"
-              >
-                CleanBC Industrial Incentive Program
-              </h1>
-            </div>
-            <div
-              className="jsx-2453800556 login-btns header-right"
+            </li>
+            <li
+              className="jsx-3597025167"
             >
-              <div
-                className="jsx-2453800556 container"
+              <a
+                className="jsx-3597025167 nav-button"
+                href="/user/profile"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
               >
-                <div
-                  className="row"
+                Profile
+              </a>
+            </li>
+            <li
+              className="jsx-3597025167"
+            >
+              <form
+                action="/logout"
+                className=""
+                method="post"
+              >
+                <button
+                  className="jsx-3597025167 nav-button"
+                  type="submit"
                 >
-                  <div
-                    className="col"
-                  >
-                    <a
-                      className="jsx-2453800556 btn btn-outline-light"
-                      href="/"
-                      onClick={[Function]}
-                      onMouseEnter={[Function]}
-                    >
-                      Dashboard
-                    </a>
-                  </div>
-                  <div
-                    className="jsx-2453800556"
-                  >
-                    <div
-                      className="form-row"
-                    >
-                      <div
-                        className="col"
-                      >
-                        <a
-                          className="jsx-2453800556 btn btn-outline-light"
-                          href="/user/profile"
-                          onClick={[Function]}
-                          onMouseEnter={[Function]}
-                        >
-                          Profile
-                        </a>
-                      </div>
-                      <div
-                        className="col"
-                      >
-                        <form
-                          action="/logout"
-                          className=""
-                          method="post"
-                        >
-                          <button
-                            className="btn btn-outline-light"
-                            disabled={false}
-                            type="submit"
-                          >
-                            Logout
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  Logout
+                </button>
+              </form>
+            </li>
+          </ul>
+        </nav>
       </header>
       <div
         className="content narrow container"

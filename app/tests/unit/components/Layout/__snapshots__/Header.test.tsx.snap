@@ -2,79 +2,126 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <header
-  className="jsx-2453800556"
+  className="jsx-3597025167"
 >
-  <div
-    className="jsx-2453800556 container full-width"
+  <nav
+    className="jsx-3597025167"
   >
     <div
-      className="jsx-2453800556 banner"
+      className="jsx-3597025167 header-left"
     >
-      <div
-        className="jsx-2453800556 header-left"
+      <Link
+        href="/"
       >
-        <Link
-          href="/"
+        <a
+          className="jsx-3597025167"
         >
-          <a
-            className="jsx-2453800556"
+          <picture
+            className="jsx-3597025167"
           >
+            <source
+              className="jsx-3597025167"
+              media="(max-width: 767.98px)"
+              srcSet="/static/bcid-reverse.svg"
+            />
             <img
               alt="logo for Province of British Columbia CleanBC"
-              className="jsx-2453800556"
+              className="jsx-3597025167"
               src="/static/BCID_CleanBC_rev_tagline_colour.svg"
             />
+          </picture>
+        </a>
+      </Link>
+      <h2
+        className="jsx-3597025167"
+      >
+        CleanBC Industrial Incentive Program
+      </h2>
+      <button
+        aria-label="Menu toggle"
+        className="jsx-3597025167"
+        id="menu-toggle"
+        onClick={[Function]}
+        type="button"
+      >
+        <FontAwesomeIcon
+          border={false}
+          className=""
+          color="white"
+          fixedWidth={false}
+          flip={null}
+          icon={
+            Object {
+              "icon": Array [
+                448,
+                512,
+                Array [],
+                "f0c9",
+                "M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z",
+              ],
+              "iconName": "bars",
+              "prefix": "fas",
+            }
+          }
+          inverse={false}
+          listItem={false}
+          mask={null}
+          pull={null}
+          pulse={false}
+          rotation={null}
+          size="2x"
+          spin={false}
+          swapOpacity={false}
+          symbol={false}
+          title=""
+          transform={null}
+        />
+      </button>
+    </div>
+    <ul
+      className="jsx-3597025167 header-right"
+      style={
+        Object {
+          "display": "flex",
+        }
+      }
+    >
+      <li
+        className="jsx-3597025167"
+      >
+        <Link
+          href="/register"
+        >
+          <a
+            className="jsx-3597025167 nav-button"
+          >
+            Register
           </a>
         </Link>
-        <h1
-          className="jsx-2453800556"
-        >
-          CleanBC Industrial Incentive Program
-        </h1>
-      </div>
-      <div
-        className="jsx-2453800556 login-btns header-right"
+      </li>
+      <li
+        className="jsx-3597025167"
       >
-        <div
-          className="jsx-2453800556 container"
-        >
-          <Row
-            noGutters={false}
+        <LoginForm>
+          <button
+            className="jsx-3597025167 nav-button"
+            type="submit"
           >
-            <div
-              className="jsx-2453800556"
-            >
-              <FormRow>
-                <Col>
-                  <Link
-                    href="/register"
-                  >
-                    <a
-                      className="jsx-2453800556 btn btn-outline-light"
-                    >
-                      Register
-                    </a>
-                  </Link>
-                </Col>
-                <Col>
-                  <LoginForm
-                    type="submit"
-                    variant="outline-light"
-                  >
-                    Login
-                  </LoginForm>
-                </Col>
-              </FormRow>
-            </div>
-          </Row>
-        </div>
-      </div>
-    </div>
-  </div>
+            Login
+          </button>
+        </LoginForm>
+      </li>
+    </ul>
+  </nav>
   <JSXStyle
-    id="2453800556"
+    dynamic={
+      Array [
+        "(min-width: 992px)",
+      ]
+    }
+    id="1232402113"
   >
-    header.jsx-2453800556{background-color:#036;border-bottom:2px solid #fcba19;padding:10px 65px;color:#fff;height:65px;top:0px;width:100%;}header.jsx-2453800556 h1.jsx-2453800556{font-weight:normal;margin:8px 5px 5px 18px;}.header-left.jsx-2453800556 img.jsx-2453800556{height:46px;position:relative;top:-4px;}.header-right.jsx-2453800556{margin-right:-25px;}header.jsx-2453800556 .banner.jsx-2453800556{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:0 10px 0 0;}header.jsx-2453800556 .other.jsx-2453800556{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;}.buttons.jsx-2453800556{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:end;-webkit-justify-content:flex-end;-ms-flex-pack:end;justify-content:flex-end;}@media screen and (min-width:900px){header.jsx-2453800556 h1.jsx-2453800556{font-size:1.4em;visibility:visible;}}@media (max-width:899px){header.jsx-2453800556{padding:10px 0 !important;margin-bottom:58px;}header.jsx-2453800556 h1.jsx-2453800556{font-size:calc(6px + 2vw);visibility:visible;height:20px;}.full-width.container.jsx-2453800556{max-width:100%;padding:0;}.banner.jsx-2453800556{-webkit-flex-flow:wrap;-ms-flex-flow:wrap;flex-flow:wrap;margin:0 !important;}.header-right.jsx-2453800556{background:#004085;width:100%;padding:10px 10px 10px 35px;margin:14px 0;z-index:1;}.header-left.jsx-2453800556{padding:0 0 0 20px;}}
+    header.__jsx-style-dynamic-selector{background-color:#036;border-bottom:2px solid #fcba19;padding:10px;color:#fff;}header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{font-weight:normal;font-size:calc(1rem + 1vw);margin:0 0.5em;text-align:center;}.header-left.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}.header-left.__jsx-style-dynamic-selector img.__jsx-style-dynamic-selector{height:46px;}.header-right.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:right;margin:0;padding:0.8em 1em 0 0;}nav.__jsx-style-dynamic-selector{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}li.__jsx-style-dynamic-selector{list-style-type:none;}button.__jsx-style-dynamic-selector{background:none;border:none;}.nav-button.__jsx-style-dynamic-selector{color:#f8f9fa;display:inline-block;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:0.375rem 0.75rem;font-size:1rem;border-radius:0.25rem;-webkit-transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out,border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out,border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;}@media screen and (min-width: 992px){nav.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;padding:0 15px;}.header-left.__jsx-style-dynamic-selector{width:auto;}header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{margin:0 0 0 18px;}button#menu-toggle.__jsx-style-dynamic-selector{display:none;}.header-right.__jsx-style-dynamic-selector{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:auto;text-align:right;margin:0;padding:0;}.nav-button.__jsx-style-dynamic-selector{border-color:#f8f9fa;}li.__jsx-style-dynamic-selector{padding-left:12px;}}@media screen and (min-width:1092px){header.__jsx-style-dynamic-selector h2.__jsx-style-dynamic-selector{font-size:2rem;}}@media screen and (min-width:1200px){nav.__jsx-style-dynamic-selector{max-width:1140px;margin-left:auto;margin-right:auto;}}
   </JSXStyle>
 </header>
 `;

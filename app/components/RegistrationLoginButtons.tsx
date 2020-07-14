@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Card} from 'react-bootstrap';
+import {Col, Card, Button} from 'react-bootstrap';
 import LoginButton from './LoginButton';
 import Link from 'next/link';
 
@@ -32,8 +32,10 @@ const RegistrationLoginButtons: React.FunctionComponent<Props> = ({
           </Link>
         </Card.Body>
       </Card>
-      <LoginButton className="login-link" variant="outline-dark">
-        Already have an account? Click here to login.
+      <LoginButton>
+        <Button className="login-link" variant="outline-dark">
+          Already have an account? Click here to login.
+        </Button>
       </LoginButton>
       <style jsx global>{`
         .login-link {
