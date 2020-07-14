@@ -3,7 +3,9 @@ import {graphql} from 'react-relay';
 import {profileQueryResponse} from 'profileQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import UserProfileContainer from 'containers/User/UserProfile';
+import {INCENTIVE_ANALYST, ADMIN_GROUP, USER} from 'data/group-constants';
 
+const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP, USER];
 interface Props {
   query: profileQueryResponse['query'];
 }
@@ -25,7 +27,7 @@ class Profile extends Component<Props> {
     const {session} = this.props.query;
 
     return (
-      <DefaultLayout session={session}>
+      <DefaultLayout session={session} allowedGroups={ALLOWED_GROUPS}>
         <UserProfileContainer user={session ? session.ciipUserBySub : null} />
       </DefaultLayout>
     );
