@@ -41,20 +41,10 @@ spec:
                     secretKeyRef:
                       key: database-app-user
                       name: {{ template "cas-ciip-portal.fullname" . }}
-                - name: PORTAL_APP_PASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      key: database-app-password
-                      name: {{ template "cas-ciip-portal.fullname" . }}
                 - name: PORTAL_READONLY_USER
                   valueFrom:
                     secretKeyRef:
                       key: database-readonly-user
-                      name: {{ template "cas-ciip-portal.fullname" . }}
-                - name: PORTAL_READONLY_PASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      key: database-readonly-password
                       name: {{ template "cas-ciip-portal.fullname" . }}
                 - name: PORTAL_HOST
                   value: {{ template "cas-ciip-portal.fullname" . }}-patroni
@@ -107,8 +97,6 @@ spec:
                   chmod -R 0750 ./prod-bak
                   echo STARTING SERVER IN RECOVERY MODE...
                   pg_ctl -D prod-bak start -w -o "-c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf' --restore_command='wal-g wal-fetch %f %p' --recovery_target_action=promote"
-                  #echo DOING CATCHUP-FETCH...
-                  #wal-g catchup-fetch /home/postgres/prod-bak base_00000008000000050000008E
                   echo RESTART POSTGRES IN NON-RECOVERY MODE...
                   pg_ctl -D prod-bak stop
                   cd prod-bak
@@ -118,12 +106,6 @@ spec:
                   cd ..
                   pg_ctl -D prod-bak start -w -o "-c log_statement='all' -c logging_collector=on -c archive_mode='off' -c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf'"
 
-                  # These policies will be recreated by the app-users task, we shouldn't try to dump them as the portal user doesn't exist yet
-                  #psql -d ciip<<EOF
-                  #  drop policy if exists jobs_policy on graphile_worker.jobs;
-                  #  drop policy if exists job_queues_policy on graphile_worker.job_queues;
-                  #EOF
-                  echo CREATE .PGPASS FILE...
                   echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass
                   chmod 0600 .pgpass
                   # we need to recreate users first as the ACL created in sqitch need to be dumped to the test DB
