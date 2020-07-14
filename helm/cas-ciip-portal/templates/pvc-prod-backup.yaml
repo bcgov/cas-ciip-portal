@@ -5,12 +5,15 @@ metadata:
   name: {{ template "cas-ciip-portal.fullname" . }}-prod-backup
   labels:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
-
+  annotations:
+    "helm.sh/hook": "pre-upgrade,pre-install"
+    "helm.sh/hook-delete-policy": "hook-succeeded,before-hook-creation"
+    "helm.sh/hook-weight": "-5"
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
-  storageClassName: {{ .Values.route.storageClassName }}
+      storage: 20Gi
+  storageClassName: gluster-block
 {{- end }}

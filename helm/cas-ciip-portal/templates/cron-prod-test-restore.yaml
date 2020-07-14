@@ -14,42 +14,50 @@ spec:
   jobTemplate:
     spec:
       backoffLimit: 0
-      activeDeadlineSeconds: 600
+      activeDeadlineSeconds: 3600
       template:
         metadata:
           labels:
 {{ include "cas-ciip-portal.labels" . | indent 14 }}
         spec:
-          activeDeadlineSeconds: 600
+          activeDeadlineSeconds: 3600
           restartPolicy: Never
           containers:
             - env:
-                - name: PORTAL_USER_OLD
-                  valueFrom:
-                    secretKeyRef:
-                      key: database-user
-                      name: {{ template "cas-ciip-portal.fullname" . }}
                 - name: PORTAL_USER
                   value: postgres
-                - name: PORTAL_PASSWORD_OLD
-                  valueFrom:
-                    secretKeyRef:
-                      key: database-password
-                      name: {{ template "cas-ciip-portal.fullname" . }}
                 - name: PORTAL_PASSWORD
                   valueFrom:
                     secretKeyRef:
                       key: password-superuser
-                      name: cas-ciip-portal-patroni
-                - name: PORTAL_DATABASE_OLD
+                      name: {{ template "cas-ciip-portal.fullname" . }}-patroni
+                - name: PORTAL_DATABASE
                   valueFrom:
                     secretKeyRef:
                       key: database-name
                       name: {{ template "cas-ciip-portal.fullname" . }}
-                - name: PORTAL_DATABASE
-                  value: ciip
+                - name: PORTAL_APP_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-app-user
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_APP_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-app-password
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_READONLY_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-readonly-user
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_READONLY_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-readonly-password
+                      name: {{ template "cas-ciip-portal.fullname" . }}
                 - name: PORTAL_HOST
-                  value: cas-ciip-portal-patroni
+                  value: {{ template "cas-ciip-portal.fullname" . }}-patroni
                 - name: PORTAL_PORT
                   value: "5432"
                 - name: GOOGLE_APPLICATION_CREDENTIALS
@@ -77,6 +85,7 @@ spec:
                 - bash
                 - -c
                 - |
+                  set -euo pipefail;
                   if ! whoami &> /dev/null; then
                     if [ -w /etc/passwd ]; then
                       echo "postgres:x:$(id -u):0:postgres user:/home/postgres:/sbin/nologin" >> /etc/passwd
@@ -86,72 +95,50 @@ spec:
                   rm -rf credentials
                   echo ADDING GCS CREDENTIALS...
                   mkdir credentials
-                  cd credentials
-                  touch credentials.json
-                  echo $GOOGLE_APPLICATION_CREDENTIALS_JSON > credentials.json
-                  cd ..
+                  echo $GOOGLE_APPLICATION_CREDENTIALS_JSON > credentials/credentials.json
                   echo DOING WAL-G FETCH NOW...
                   wal-g backup-fetch prod-bak LATEST
                   cd prod-bak
                   echo ADDING recovery.signal...
                   touch recovery.signal
-                  ls -lah
                   echo FIXING PG_HBA...
-                  rm pg_hba.conf
-                  touch pg_hba.conf
-                  echo 'local all             all                                trust' >> pg_hba.conf
-                  cat pg_hba.conf
+                  echo 'local all             all                                trust' > pg_hba.conf
                   cd ..
                   chmod -R 0750 ./prod-bak
                   echo STARTING SERVER IN RECOVERY MODE...
                   pg_ctl -D prod-bak start -w -o "-c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf' --restore_command='wal-g wal-fetch %f %p' --recovery_target_action=promote"
-                  echo DOING CATCHUP-FETCH...
-                  wal-g catchup-fetch /home/postgres/prod-bak base_00000008000000050000008E
-                  echo recovery.signal SHOULD BE GONE...
-                  cd prod-bak
-                  ls -lah
-                  cd ..
+                  #echo DOING CATCHUP-FETCH...
+                  #wal-g catchup-fetch /home/postgres/prod-bak base_00000008000000050000008E
                   echo RESTART POSTGRES IN NON-RECOVERY MODE...
-                  pg_ctl -D prod-bak stop -w -o "-c archive_mode='off' -c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf'"
+                  pg_ctl -D prod-bak stop
                   cd prod-bak
                   rm recovery.signal
                   rm -rf backup_label
                   rm -rf backup_label.old
                   cd ..
                   pg_ctl -D prod-bak start -w -o "-c log_statement='all' -c logging_collector=on -c archive_mode='off' -c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf'"
-                  cd pg_log
-                  ls -lah
-                  cat postgresql-5.csv
-                  echo LISTING DATABASES...
-                  psql -c '\l'
-                  echo LISTING DATABASE TABLES...
-                  psql -d ciip -c '\dt ggircs_portal.*'
-                  echo FINDING MISSING SCHEMA FROM ERROR...
-                  psql -c 'select * from pg_type where typnamespace=68555'
-                  psql -c 'select * from pg_class where relnamespace=68555'
-                  psql -c 'select * from pg_operator where oprnamespace=68555'
-                  psql -c 'select * from pg_conversion where connamespace=68555'
-                  psql -c 'select * from pg_opclass where opcnamespace=68555'
-                  psql -c 'select * from pg_aggregate where aggfnoid = 68555 or aggtransfn  = 68555 or aggfinalfn = 68555'
-                  psql -c 'select * from pg_proc where pronamespace=68555'
+
+                  # These policies will be recreated by the app-users task, we shouldn't try to dump them as the portal user doesn't exist yet
+                  #psql -d ciip<<EOF
+                  #  drop policy if exists jobs_policy on graphile_worker.jobs;
+                  #  drop policy if exists job_queues_policy on graphile_worker.job_queues;
+                  #EOF
                   echo CREATE .PGPASS FILE...
-                  touch .pgpass
-                  chmod 0600 .pgpass
                   echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass
-                  echo CREATE REMOVE_ME TABLE IN TEST...
-                  PGPASSFILE=".pgpass" psql -w -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER -c 'create table ggircs_portal.remove_me(id int)'
-                  PGPASSFILE=".pgpass" psql -w -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER -c '\dt ggircs_portal.*'
+                  chmod 0600 .pgpass
+                  # we need to recreate users first as the ACL created in sqitch need to be dumped to the test DB
+                  # no need to grant any privileges on schemas or set passwords here, this will be done in the app-users job
+                  PGPASSWORD="$PORTAL_PASSWORD" PGHOST=$PORTAL_HOST PGUSER=$PORTAL_USER psql<<EOF
+                    create user $PORTAL_APP_USER;
+                    grant connect on database ciip to $PORTAL_APP_USER;
+                    create user $PORTAL_READONLY_USER;
+                    grant connect on database ciip to $PORTAL_READONLY_USER;
+                  EOF
                   echo RESTORING TO TEST...
-                  pg_dump -w --format=custom ciip |
-                  PGPASSFILE=".pgpass" pg_restore -w --clean --if-exists --no-owner --no-privileges -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
-                  echo LISTING TABLES IN TEST, REMOVE_ME SHOULD BE GONE...
-                  PGPASSFILE=".pgpass" psql -w -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER -c '\dt ggircs_portal.*'
-                  PGPASSFILE=".pgpass" psql -w -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER -c 'drop table ggircs_portal.remove_me'
-                  echo VIEW LOG...
-                  ls -lah
-                  cat postgresql-5.csv
+                  pg_dump --no-password --format=custom --schema=sqitch --schema=graphile_worker --schema=ggircs_portal --schema=ggircs_portal_private --schema=swrs ciip |
+                  PGPASSFILE=".pgpass" pg_restore --no-password --exit-on-error -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
               volumeMounts:
-                - mountPath: /root/bak
+                - mountPath: /home/postgres/
                   name: prod-backup
           volumes:
             - name: prod-backup
