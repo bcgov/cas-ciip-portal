@@ -28,7 +28,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
 
   const router = useRouter();
 
-  if (!query.openedReportingYear.reportingYear) {
+  if (!query.openedReportingYear?.reportingYear) {
     if (!applicationId || applicationRevisionStatus === 'DRAFT') {
       return (
         <Button disabled variant="info">

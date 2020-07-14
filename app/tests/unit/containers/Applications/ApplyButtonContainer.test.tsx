@@ -76,9 +76,7 @@ describe('The apply button', () => {
         }}
         query={{
           ' $refType': 'ApplyButtonContainer_query',
-          openedReportingYear: {
-            reportingYear: null
-          }
+          openedReportingYear: null
         }}
       />
     );
@@ -147,9 +145,7 @@ describe('The apply button', () => {
         }}
         query={{
           ' $refType': 'ApplyButtonContainer_query',
-          openedReportingYear: {
-            reportingYear: null
-          }
+          openedReportingYear: null
         }}
       />
     );
@@ -186,9 +182,7 @@ describe('The apply button', () => {
         }}
         query={{
           ' $refType': 'ApplyButtonContainer_query',
-          openedReportingYear: {
-            reportingYear: null
-          }
+          openedReportingYear: null
         }}
       />
     );
@@ -224,9 +218,7 @@ describe('The apply button', () => {
         }}
         query={{
           ' $refType': 'ApplyButtonContainer_query',
-          openedReportingYear: {
-            reportingYear: null
-          }
+          openedReportingYear: null
         }}
       />
     );
@@ -262,9 +254,7 @@ describe('The apply button', () => {
         }}
         query={{
           ' $refType': 'ApplyButtonContainer_query',
-          openedReportingYear: {
-            reportingYear: null
-          }
+          openedReportingYear: null
         }}
       />
     );
@@ -300,9 +290,7 @@ describe('The apply button', () => {
         }}
         query={{
           ' $refType': 'ApplyButtonContainer_query',
-          openedReportingYear: {
-            reportingYear: null
-          }
+          openedReportingYear: null
         }}
       />
     );
