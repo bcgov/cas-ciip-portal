@@ -25,6 +25,9 @@ env:
   senderEmail: BC Climate Action Secretariat <no-reply-dev.cas@gov.bc.ca>
   adminEmail: CIIP Admin, BC Climate Action Secretariat <admin@ciip.dev>
 
+sitewide_notice:
+  content: <div class="alert alert-warning">This is the DEV environment. All emails will be sent to <a href="https://cas-mailhog-wksv3k-dev.pathfinder.gov.bc.ca">the dev inbox</a> instead of the real recipients.</div>
+
 fider:
   host: # TODO move fider template in this repo
 

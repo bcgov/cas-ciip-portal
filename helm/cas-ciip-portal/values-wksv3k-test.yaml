@@ -11,6 +11,9 @@ env:
 analytics:
   enable: true
 
+sitewide_notice:
+  content: <div class="alert alert-warning">This is the TEST environment. All emails will be sent to <a href="https://cas-mailhog-wksv3k-test.pathfinder.gov.bc.ca">the test inbox</a> instead of the real recipients.</div>
+
 fider:
   host: https://ciip-portal-wksv3k-test-feedback.pathfinder.gov.bc.ca/
 # TODO move fider template in this repo

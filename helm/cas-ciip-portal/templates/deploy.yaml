@@ -63,6 +63,8 @@ spec:
             value: {{ .Values.fider.host }}
           - name: ENABLE_ANALYTICS
             value: {{ .Values.analytics.enable | quote }}
+          - name: SITEWIDE_NOTICE
+            value: {{ .Values.sitewide_notice.content | quote }}
           - name: HOST
             value: http{{ if not .Values.route.insecure }}s{{ end }}://{{ .Values.route.host }}
           - name: NAMESPACE

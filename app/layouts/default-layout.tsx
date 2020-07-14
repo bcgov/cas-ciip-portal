@@ -3,11 +3,15 @@ import {Container} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {defaultLayout_session} from '__generated__/defaultLayout_session.graphql';
 import {useRouter} from 'next/router';
+import getConfig from 'next/config';
 import Header from 'components/Layout/Header';
 import Footer from 'components/Layout/Footer';
 import Subheader from 'components/Layout/Subheader';
 import {getUserGroupLandingRoute} from 'lib/user-groups';
 import Help from 'components/helpers/Help';
+import SiteNoticeBanner from 'components/Layout/SiteNoticeBanner';
+
+const SITEWIDE_NOTICE = getConfig()?.publicRuntimeConfig.SITEWIDE_NOTICE;
 
 interface Props {
   title?: string | JSX.Element;
@@ -75,6 +79,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
         isLoggedIn={Boolean(session)}
         isRegistered={Boolean(session?.ciipUserBySub)}
       />
+      {SITEWIDE_NOTICE && <SiteNoticeBanner content={SITEWIDE_NOTICE} />}
       {showSubheader && <Subheader />}
       {title ? (
         <div className="page-title">

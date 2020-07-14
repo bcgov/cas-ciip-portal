@@ -47,6 +47,10 @@ env:
   senderEmail: BCCAS <no-reply.cas@gov.bc.ca>
   adminEmail: GHG Regulator <GHGRegulator@gov.bc.ca>
 
+# NOTE: To be displayed properly, content must be an HTML Bootstrap alert, ie: <div class="alert alert-info">Message</div>
+sitewide_notice:
+  content: null
+
 analytics:
   enable: false
 

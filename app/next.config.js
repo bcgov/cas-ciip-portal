@@ -24,6 +24,7 @@ module.exports = {
     NO_PDF: process.env.NO_PDF,
     NO_MATHJAX: process.env.NO_MATHJAX,
     FEEDBACK_SITE_URL: process.env.FEEDBACK_SITE_URL,
-    ENABLE_ANALYTICS: process.env.ENABLE_ANALYTICS
+    ENABLE_ANALYTICS: process.env.ENABLE_ANALYTICS,
+    SITEWIDE_NOTICE: process.env.SITEWIDE_NOTICE
   }
 };
