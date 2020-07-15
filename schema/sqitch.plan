@@ -153,3 +153,4 @@ tables/application_002 [tables/application] 2020-07-08T22:11:32Z Matthieu Foucau
 mutations/create_application_mutation_chain [mutations/create_application_mutation_chain@v1.0.0-rc.9] 2020-07-08T22:20:11Z Matthieu Foucault <matthieu@button.is> # insert facility report_id when creating an application
 @v1.0.0-rc.11 2020-07-13T17:25:31Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.11
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v1.0.0-rc.11 tables/benchmark views/ciip_production] 2020-07-14T21:21:37Z Kristen Cooke <kristen@button.is> # Reflect update to product names: Exported heat/electricity --> Sold heat/electricity
+@v1.0.0-rc.12 2020-07-15T20:11:57Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.12
