@@ -107,11 +107,7 @@ class ProductsBenchmarks extends Component<Props> {
     const {query} = this.props;
     const {totalProductCount} = this.state;
     return (
-      <DefaultLayout
-        session={query.session}
-        title="Manage Products"
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout session={query.session} title="Manage Products">
         <div style={{textAlign: 'right'}}>
           <Button
             style={{marginTop: '-220px'}}
