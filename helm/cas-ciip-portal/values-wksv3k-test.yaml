@@ -14,9 +14,29 @@ analytics:
 sitewide_notice:
   content: <div class="alert alert-warning">This is the TEST environment. All emails will be sent to <a href="https://cas-mailhog-wksv3k-test.pathfinder.gov.bc.ca">the test inbox</a> instead of the real recipients.</div>
 
+dag:
+  # cleanup the test db before deploying to test
+  preInitDb: |
+    psql<<EOF
+      select pg_terminate_backend(pid) from pg_stat_activity where
+      -- don't kill my own connection!
+      pid <> pg_backend_pid()
+      -- don't kill the connections to other databases
+      and datname = '$(PORTAL_DATABASE)';
+      drop database if exists $(PORTAL_DATABASE);
+      drop user if exists $(PORTAL_USER);
+      drop user if exists ciip_portal;
+      drop user if exists ciip_readonly;
+    EOF
+  # this airflow dag runs the prod-test-restor cron job instead of the swrs import
+  name: "ciip_deploy_db_test"
+
 fider:
   host: https://ciip-portal-wksv3k-test-feedback.pathfinder.gov.bc.ca/
 # TODO move fider template in this repo
+
+restoreFromProd:
+  enable: true
 
 mailhog:
   enable: true

@@ -57,6 +57,9 @@ analytics:
 fider:
   host: # TODO move fider template in this repo
 
+restoreFromProd:
+  enable: false
+
 mailhog:
   enable: false
   resources:

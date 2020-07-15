@@ -1,0 +1,130 @@
+{{- if .Values.restoreFromProd.enable }}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-prod-test-restore
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": "pre-upgrade,pre-install"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook-weight": "-5"
+spec:
+  suspend: true # This cron job is intended to be triggered manually
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      activeDeadlineSeconds: 3600
+      template:
+        metadata:
+          labels:
+{{ include "cas-ciip-portal.labels" . | indent 14 }}
+        spec:
+          activeDeadlineSeconds: 3600
+          restartPolicy: Never
+          containers:
+            - env:
+                - name: PORTAL_USER
+                  value: postgres
+                - name: PORTAL_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: password-superuser
+                      name: {{ template "cas-ciip-portal.fullname" . }}-patroni
+                - name: PORTAL_DATABASE
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-name
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_APP_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-app-user
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_READONLY_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: database-readonly-user
+                      name: {{ template "cas-ciip-portal.fullname" . }}
+                - name: PORTAL_HOST
+                  value: {{ template "cas-ciip-portal.fullname" . }}-patroni
+                - name: PORTAL_PORT
+                  value: "5432"
+                - name: GOOGLE_APPLICATION_CREDENTIALS
+                  value: "/home/postgres/credentials/credentials.json"
+                - name: GOOGLE_APPLICATION_CREDENTIALS_JSON
+                  valueFrom:
+                    secretKeyRef:
+                      key: credentials.json
+                      name: gcp-wksv3k-prod-ciip-backup-read-only-service-account-key
+                - name: WALG_GS_PREFIX
+                  value: "gs://wksv3k-prod-ciip-backups/wal"
+                - name: WALE_GS_PREFIX
+                  value: "gs://wksv3k-prod-ciip-backups/wal"
+              name: {{ template "cas-ciip-portal.fullname" . }}-prod-test-restore
+              image: {{ .Values.image.psql.repository }}:{{ .Values.image.psql.tag }}
+              resources:
+                limits:
+                  cpu: 500m
+                  memory: 1Gi
+                requests:
+                  cpu: 100m
+                  memory: 500Mi
+              command:
+                - /usr/bin/env
+                - bash
+                - -c
+                - |
+                  set -euo pipefail;
+                  if ! whoami &> /dev/null; then
+                    if [ -w /etc/passwd ]; then
+                      echo "postgres:x:$(id -u):0:postgres user:/home/postgres:/sbin/nologin" >> /etc/passwd
+                    fi
+                  fi
+                  rm -rf prod-bak
+                  rm -rf credentials
+                  echo ADDING GCS CREDENTIALS...
+                  mkdir credentials
+                  echo $GOOGLE_APPLICATION_CREDENTIALS_JSON > credentials/credentials.json
+                  echo DOING WAL-G FETCH NOW...
+                  wal-g backup-fetch prod-bak LATEST
+                  cd prod-bak
+                  echo ADDING recovery.signal...
+                  touch recovery.signal
+                  echo FIXING PG_HBA...
+                  echo 'local all             all                                trust' > pg_hba.conf
+                  cd ..
+                  chmod -R 0750 ./prod-bak
+                  echo STARTING SERVER IN RECOVERY MODE...
+                  pg_ctl -D prod-bak start -w -o "-c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf' --restore_command='wal-g wal-fetch %f %p' --recovery_target_action=promote"
+                  echo RESTART POSTGRES IN NON-RECOVERY MODE...
+                  pg_ctl -D prod-bak stop
+                  cd prod-bak
+                  rm recovery.signal
+                  rm -rf backup_label
+                  rm -rf backup_label.old
+                  cd ..
+                  pg_ctl -D prod-bak start -w -o "-c log_statement='all' -c logging_collector=on -c archive_mode='off' -c archive_command='' -c ssl='off' -c hba_file='/home/postgres/prod-bak/pg_hba.conf' -c ident_file='/home/postgres/prod-bak/pg_ident.conf'"
+
+                  echo "$PORTAL_HOST:$PORTAL_PORT:$PORTAL_DATABASE:$PORTAL_USER:$PORTAL_PASSWORD" >> .pgpass
+                  chmod 0600 .pgpass
+                  # we need to recreate users first as the ACL created in sqitch need to be dumped to the test DB
+                  # no need to grant any privileges on schemas or set passwords here, this will be done in the app-users job
+                  PGPASSWORD="$PORTAL_PASSWORD" PGHOST=$PORTAL_HOST PGUSER=$PORTAL_USER psql<<EOF
+                    create user $PORTAL_APP_USER;
+                    grant connect on database ciip to $PORTAL_APP_USER;
+                    create user $PORTAL_READONLY_USER;
+                    grant connect on database ciip to $PORTAL_READONLY_USER;
+                  EOF
+                  echo RESTORING TO TEST...
+                  pg_dump --no-password --format=custom --schema=sqitch --schema=graphile_worker --schema=ggircs_portal --schema=ggircs_portal_private --schema=swrs ciip |
+                  PGPASSFILE=".pgpass" pg_restore --no-password --exit-on-error -d $PORTAL_DATABASE -h $PORTAL_HOST -p $PORTAL_PORT -U $PORTAL_USER
+              volumeMounts:
+                - mountPath: /home/postgres/
+                  name: prod-backup
+          volumes:
+            - name: prod-backup
+              persistentVolumeClaim:
+                claimName: {{ template "cas-ciip-portal.fullname" . }}-prod-backup
+{{- end }}
