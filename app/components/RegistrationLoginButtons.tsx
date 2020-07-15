@@ -33,7 +33,7 @@ const RegistrationLoginButtons: React.FunctionComponent<Props> = ({
         </Card.Body>
       </Card>
       <LoginButton>
-        <Button className="login-link" variant="outline-dark">
+        <Button className="login-link" type="submit" variant="outline-dark">
           Already have an account? Click here to login.
         </Button>
       </LoginButton>
