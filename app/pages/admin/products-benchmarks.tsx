@@ -15,6 +15,8 @@ interface Props {
 }
 
 class ProductsBenchmarks extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query productsBenchmarksQuery(
       $orderByField: String

@@ -2,11 +2,6 @@
 
 exports[`It matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
-  allowedGroups={
-    Array [
-      "User",
-    ]
-  }
   session={
     Object {
       " $fragmentRefs": Object {
@@ -86,11 +81,6 @@ exports[`It matches the last accepted Snapshot 1`] = `
 
 exports[`It renders ApplicationRecertificationContainer if hashMatches is false 1`] = `
 <Relay(DefaultLayout)
-  allowedGroups={
-    Array [
-      "User",
-    ]
-  }
   session={
     Object {
       " $fragmentRefs": Object {

@@ -16,6 +16,8 @@ interface Props extends CiipPageComponentProps {
 }
 
 class CertificationRedirect extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query certificationRedirectQuery($rowId: String!) {
       query {
@@ -82,11 +84,7 @@ class CertificationRedirect extends Component<Props> {
     const expired = currentMoment.format('x') > expiresAtMoment.format('x');
     const certificationUrl = query?.certificationUrlByRowId?.rowId && !expired;
     return (
-      <DefaultLayout
-        title="Submission Certification"
-        session={query.session}
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout title="Submission Certification" session={query.session}>
         {certificationUrl ? (
           <Row>
             <Col md={{offset: 3, span: 6}}>

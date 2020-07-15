@@ -20,6 +20,8 @@ interface Props extends CiipPageComponentProps {
 }
 
 export default class CertifierRequests extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query requestsQuery(
       $searchField: [String]
@@ -89,11 +91,7 @@ export default class CertifierRequests extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout
-        title="Certification Requests"
-        session={query.session}
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout title="Certification Requests" session={query.session}>
         <SearchTable
           query={this.props.query}
           defaultOrderByField="facility_name"

@@ -13,6 +13,8 @@ interface Props extends CiipPageComponentProps {
   query: completeSubmitQueryResponse['query'];
 }
 class CompleteSubmit extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query completeSubmitQuery {
       query {
@@ -30,7 +32,6 @@ class CompleteSubmit extends Component<Props> {
     return (
       <DefaultLayout
         session={session}
-        allowedGroups={ALLOWED_GROUPS}
         title={
           <>
             Thank you for your submission. Your application has been sent and is

@@ -24,12 +24,7 @@ class Privacy extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout
-        session={session}
-        needsSession={false}
-        needsUser={false}
-        title="Privacy"
-      >
+      <DefaultLayout session={session} title="Privacy">
         <Container>
           <p>
             <strong>Introduction</strong>

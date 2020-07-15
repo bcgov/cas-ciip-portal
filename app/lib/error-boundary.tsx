@@ -24,11 +24,7 @@ class ErrorBoundary extends Component {
       const feedbackUrl = getConfig()?.publicRuntimeConfig.FEEDBACK_SITE_URL;
       // You can render any custom fallback UI
       return (
-        <DefaultLayoutComponent
-          needsSession={false}
-          needsUser={false}
-          session={null}
-        >
+        <DefaultLayoutComponent session={null}>
           <Alert variant="danger">
             <Alert.Heading>An unexpected error has occured</Alert.Heading>
             <p>

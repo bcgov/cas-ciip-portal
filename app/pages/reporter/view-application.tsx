@@ -20,6 +20,8 @@ interface Props extends CiipPageComponentProps {
 }
 
 class ViewApplication extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query viewApplicationQuery($applicationId: ID!, $version: String!) {
       query {
@@ -65,7 +67,6 @@ class ViewApplication extends Component<Props> {
         showSubheader
         session={session}
         title="Summary of your application"
-        allowedGroups={ALLOWED_GROUPS}
       >
         <Row>
           <Col md={8}>

@@ -15,6 +15,8 @@ interface Props extends CiipPageComponentProps {
   router: NextRouter;
 }
 class NewApplicationDisclaimer extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query newApplicationDisclaimerQuery($applicationId: ID!) {
       query {
@@ -53,11 +55,7 @@ class NewApplicationDisclaimer extends Component<Props> {
     }
 
     return (
-      <DefaultLayout
-        session={session}
-        allowedGroups={ALLOWED_GROUPS}
-        title="Legal Disclaimer"
-      >
+      <DefaultLayout session={session} title="Legal Disclaimer">
         <Card className="mb-2">
           <Card.Header>
             Please review and confirm the information below

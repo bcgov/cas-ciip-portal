@@ -30,6 +30,8 @@ export type CiipPageComponent = NextComponentType<
 > &
   ComponentClass<CiipPageComponentProps> & {
     static query: GraphQLTaggedNode;
+    static isAccessProtected: boolean;
+    static allowedGroups: string[];
   };
 
 // This is overriding the form props defined in @types/react-jsonschema-form as they

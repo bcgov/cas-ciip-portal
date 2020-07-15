@@ -24,12 +24,7 @@ class Disclaimer extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout
-        session={session}
-        needsSession={false}
-        needsUser={false}
-        title="Disclaimer"
-      >
+      <DefaultLayout session={session} title="Disclaimer">
         <Container>
           <p>
             <strong>Warranty Disclaimer</strong>

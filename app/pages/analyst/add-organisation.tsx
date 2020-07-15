@@ -12,6 +12,8 @@ interface Props {
   query: addOrganisationQueryResponse['query'];
 }
 class AddOrganisationPage extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query addOrganisationQuery {
       query {
@@ -39,11 +41,7 @@ class AddOrganisationPage extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout
-        session={query.session}
-        title="Add Organisation"
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout session={query.session} title="Add Organisation">
         <Card>
           <Card.Header as="h5">Attention</Card.Header>
           <Card.Body>

@@ -14,6 +14,8 @@ interface Props extends CiipPageComponentProps {
   query: analystQueryResponse['query'];
 }
 class Analyst extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query analystQuery {
       query {
@@ -29,11 +31,7 @@ class Analyst extends Component<Props> {
       query: {session}
     } = this.props;
     return (
-      <DefaultLayout
-        session={session}
-        title="Analyst Dashboard"
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout session={session} title="Analyst Dashboard">
         <div>
           <Row>
             <ApplicationManagement />

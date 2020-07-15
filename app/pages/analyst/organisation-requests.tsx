@@ -12,6 +12,8 @@ interface Props {
   query: organisationRequestsQueryResponse['query'];
 }
 class OrganisationRequests extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query organisationRequestsQuery(
       $orderByField: String
@@ -46,11 +48,7 @@ class OrganisationRequests extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout
-        session={query.session}
-        title="Organisation Requests"
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout session={query.session} title="Organisation Requests">
         <SearchTable
           query={query}
           defaultOrderByField="status"

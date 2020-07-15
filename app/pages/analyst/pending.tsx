@@ -11,6 +11,8 @@ interface Props extends CiipPageComponentProps {
   query: pendingAnalystQueryResponse['query'];
 }
 class PendingAnalyst extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query pendingAnalystQuery {
       query {
@@ -26,11 +28,7 @@ class PendingAnalyst extends Component<Props> {
       query: {session}
     } = this.props;
     return (
-      <DefaultLayout
-        session={session}
-        title="Approval Required"
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout session={session} title="Approval Required">
         <div>
           You have not been authorized to access the CleanBC Industrial
           Incentive Program application. Please contact ghgregulator@gov.bc.ca

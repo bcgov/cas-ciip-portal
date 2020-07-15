@@ -16,6 +16,8 @@ interface Props {
 }
 
 export default class Reporter extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query reporterQuery {
       query {
@@ -77,12 +79,7 @@ export default class Reporter extends Component<Props> {
     const hasCertificationRequests = this.props?.query?.session?.ciipUserBySub
       ?.hasCertificationRequests;
     return (
-      <DefaultLayout
-        showSubheader
-        session={session}
-        title="My Operators"
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout showSubheader session={session} title="My Operators">
         <Row>
           <Col md={{span: 8}}>
             <Organisations

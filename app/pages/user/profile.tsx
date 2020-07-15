@@ -10,6 +10,8 @@ interface Props {
   query: profileQueryResponse['query'];
 }
 class Profile extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query profileQuery {
       query {
@@ -27,7 +29,7 @@ class Profile extends Component<Props> {
     const {session} = this.props.query;
 
     return (
-      <DefaultLayout session={session} allowedGroups={ALLOWED_GROUPS}>
+      <DefaultLayout session={session}>
         <UserProfileContainer user={session ? session.ciipUserBySub : null} />
       </DefaultLayout>
     );

@@ -2,11 +2,6 @@
 
 exports[`certifier requests list page It matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
-  allowedGroups={
-    Array [
-      "User",
-    ]
-  }
   session={
     Object {
       " $fragmentRefs": Object {
