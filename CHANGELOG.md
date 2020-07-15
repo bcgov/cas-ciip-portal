@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-rc.12](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.11...v1.0.0-rc.12) (2020-07-15)
+
+
+### Features
+
+* "Exported heat/electricity" --> "Sold heat/electricity" ([1d33735](https://github.com/bcgov/cas-ciip-portal/commit/1d33735eb9c6b93b8667aaeb30db23c9b26638e3))
+* add conditional PVC and update values files ([a9bac46](https://github.com/bcgov/cas-ciip-portal/commit/a9bac46e70a2657b26b5b4171e6838566c33f91a))
+* Favicons and <title> for appearance in tabs + search ([f18804c](https://github.com/bcgov/cas-ciip-portal/commit/f18804c4f3fe127d837c5c3b5a9adb38a2b32a62))
+* only deploy cron if restoreFromProd.enable is true ([94c000d](https://github.com/bcgov/cas-ciip-portal/commit/94c000d56bb9a9e7c2722f2f418a9fc6a3a61c53))
+* remove recovery_target from command (appears to be default set somewhere) ([07c0ff9](https://github.com/bcgov/cas-ciip-portal/commit/07c0ff91f2458fc7bbe8db504524d09fc4db0e1c))
+* restore prod data all the way to the last backup ([dae917b](https://github.com/bcgov/cas-ciip-portal/commit/dae917bf7d9bcd099fa049c9a79755ad378f6292))
+* Sitewide notice banner for dev and test (configurable for prod as well) ([0652514](https://github.com/bcgov/cas-ciip-portal/commit/065251407a5178a1b118081bdf92c9cc9af0dfee))
+
+
+### Bug Fixes
+
+* ApplyButtonContainer should handle null openedReportingYear ([82a51bb](https://github.com/bcgov/cas-ciip-portal/commit/82a51bbd9bc28ed53b3b8992899a9430809c2868))
+* default-layout should redirect to landing route before registration ([c31f3c4](https://github.com/bcgov/cas-ciip-portal/commit/c31f3c416b20ffec5995aca38c752894729d7496))
+* Ensure landing page login button submits ([afadb57](https://github.com/bcgov/cas-ciip-portal/commit/afadb57224497bad9fb1c2299bdaa08469ad394a))
+* pending analysts should not be allowed on user/profile page ([dc9ab4a](https://github.com/bcgov/cas-ciip-portal/commit/dc9ab4a5b64003bcefb0c11419cc8d897ce75ab1))
+* Responsive layout for site header ([c7b3f46](https://github.com/bcgov/cas-ciip-portal/commit/c7b3f463779b4fade969b97731d8d49e9186fb0c))
+
 ## [1.0.0-rc.11](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.10...v1.0.0-rc.11) (2020-07-13)
 
 
