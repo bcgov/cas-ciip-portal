@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default () => {
   return (
     <>
-      <DefaultLayout needsUser={false} needsSession={false} session={null}>
+      <DefaultLayout session={null}>
         <Row className="justify-content-center" style={{paddingTop: '3em'}}>
           <Col md={{span: 6}} style={{textAlign: 'center'}}>
             <h1>Page not found</h1>

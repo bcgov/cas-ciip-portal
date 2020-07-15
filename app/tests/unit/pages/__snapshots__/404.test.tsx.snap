@@ -3,8 +3,6 @@
 exports[`404 page It matches the last accepted Snapshot 1`] = `
 <Fragment>
   <Relay(DefaultLayout)
-    needsSession={false}
-    needsUser={false}
     session={null}
   >
     <Row
