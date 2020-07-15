@@ -1,3 +1,4 @@
+{{- if .Values.restoreFromProd.enable }}
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
@@ -126,3 +127,4 @@ spec:
             - name: prod-backup
               persistentVolumeClaim:
                 claimName: {{ template "cas-ciip-portal.fullname" . }}-prod-backup
+{{- end }}
