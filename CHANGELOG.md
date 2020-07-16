@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0...v1.0.1) (2020-07-16)
+
+
+### Bug Fixes
+
+* fix redirection loop when redirected to analyst/pending ([da063e5](https://github.com/bcgov/cas-ciip-portal/commit/da063e5fa8bdd20343feb5bd9937bd9666c9b985))
+
 ## [1.0.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.12...v1.0.0) (2020-07-16)
 
 

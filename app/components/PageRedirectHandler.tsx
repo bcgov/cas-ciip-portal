@@ -68,7 +68,8 @@ const PageRedirectHandler: React.FunctionComponent<Props> = ({
       if (
         isAccessProtected &&
         !response?.session?.ciipUserBySub &&
-        router.route !== '/registration'
+        router.route !== '/registration' &&
+        router.route !== '/analyst/pending'
       ) {
         router.push({
           pathname: '/registration',
