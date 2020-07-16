@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef} from 'react';
 import {Form} from 'react-bootstrap';
 import Link from 'next/link';
 import LoginButton from 'components/LoginButton';
@@ -29,18 +29,6 @@ const HeaderLayout = ({isLoggedIn = false, isRegistered = false}) => {
       return !prev;
     });
   };
-
-  // Listen for media query change (ie: device is rotated or window resized) to reset
-  // the nav menu toggle and ensure it's not accidentally hidden on desktop
-  useEffect(() => {
-    const query = desktopMediaQuery.current;
-    const listener = query?.addEventListener('change', ({target}: any) => {
-      setNavMenuHidden(!target.matches);
-    });
-    return () => {
-      query?.removeEventListener('change', listener);
-    };
-  });
 
   return (
     <header>
