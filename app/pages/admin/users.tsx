@@ -12,6 +12,8 @@ interface Props {
 }
 
 class Users extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query usersQuery {
       query {
@@ -26,11 +28,7 @@ class Users extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout
-        session={query.session}
-        title="User List"
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout session={query.session} title="User List">
         <UserTable query={query} />
       </DefaultLayout>
     );

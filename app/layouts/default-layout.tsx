@@ -2,12 +2,10 @@ import React from 'react';
 import {Container} from 'react-bootstrap';
 import {graphql, createFragmentContainer} from 'react-relay';
 import {defaultLayout_session} from '__generated__/defaultLayout_session.graphql';
-import {useRouter} from 'next/router';
 import getConfig from 'next/config';
 import Header from 'components/Layout/Header';
 import Footer from 'components/Layout/Footer';
 import Subheader from 'components/Layout/Subheader';
-import {getUserGroupLandingRoute} from 'lib/user-groups';
 import Help from 'components/helpers/Help';
 import SiteNoticeBanner from 'components/Layout/SiteNoticeBanner';
 
@@ -17,10 +15,7 @@ interface Props {
   title?: string | JSX.Element;
   showSubheader?: boolean;
   session: defaultLayout_session;
-  needsUser?: boolean;
-  needsSession?: boolean;
   width?: 'narrow' | 'wide';
-  allowedGroups?: string[];
   help?: {
     title: string;
     helpMessage: string;
@@ -33,49 +28,8 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
   showSubheader,
   session,
   width = 'narrow',
-  needsUser = true,
-  needsSession = true,
-  allowedGroups = [],
   help
 }) => {
-  const router = useRouter();
-
-  const userGroups = session?.userGroups || ['Guest'];
-
-  const canAccess =
-    allowedGroups.length === 0 ||
-    userGroups.some((g) => allowedGroups.includes(g));
-
-  if ((needsSession || needsUser) && !session) {
-    router.push({
-      pathname: '/login-redirect',
-      query: {
-        redirectTo: router.asPath
-      }
-    });
-    return null;
-  }
-
-  // Redirect users attempting to access a page that their group doesn't allow
-  // to their landing route. This needs to happen before redirecting to the registration
-  // to ensure that a pending analyst doesn't get redirect to the registration page
-  if (!canAccess) {
-    router.push({
-      pathname: getUserGroupLandingRoute(userGroups)
-    });
-    return null;
-  }
-
-  if (needsUser && !session.ciipUserBySub) {
-    router.push({
-      pathname: '/registration',
-      query: {
-        redirectTo: router.asPath
-      }
-    });
-    return null;
-  }
-
   return (
     <div className="page-wrap">
       <Header
@@ -181,8 +135,6 @@ export {DefaultLayout as DefaultLayoutComponent};
 export default createFragmentContainer(DefaultLayout, {
   session: graphql`
     fragment defaultLayout_session on JwtToken {
-      userGroups
-      priorityGroup
       ciipUserBySub {
         __typename
       }

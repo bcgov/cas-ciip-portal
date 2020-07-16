@@ -25,12 +25,7 @@ class ApplicationDisclaimer extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout
-        session={session}
-        needsSession={false}
-        needsUser={false}
-        title="CIIP Application Disclaimer"
-      >
+      <DefaultLayout session={session} title="CIIP Application Disclaimer">
         <Container>
           <LegalDisclaimerText />
         </Container>

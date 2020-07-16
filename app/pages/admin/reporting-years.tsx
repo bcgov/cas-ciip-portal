@@ -12,6 +12,8 @@ interface Props {
 }
 
 class ReportingYears extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query reportingYearsQuery {
       query {
@@ -26,11 +28,7 @@ class ReportingYears extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout
-        session={query.session}
-        title="Reporting Years"
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout session={query.session} title="Reporting Years">
         <ReportingYearTable query={query} />
       </DefaultLayout>
     );

@@ -24,12 +24,7 @@ class Copyright extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout
-        session={session}
-        needsSession={false}
-        needsUser={false}
-        title="Copyright"
-      >
+      <DefaultLayout session={session} title="Copyright">
         <Container>
           <p>
             The following policy governs the operation and management of the

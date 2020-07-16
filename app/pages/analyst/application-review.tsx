@@ -17,6 +17,8 @@ interface Props extends CiipPageComponentProps {
 }
 
 class ApplicationReview extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query applicationReviewQuery(
       $applicationRevisionId: ID!
@@ -59,11 +61,7 @@ class ApplicationReview extends Component<Props> {
     const {session} = query || {};
     const formResults = query.application.orderedFormResults.edges;
     return (
-      <DefaultLayout
-        session={session}
-        width="wide"
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout session={session} width="wide">
         <ApplicationRevisionStatusContainer
           applicationRevisionStatus={query.application.reviewRevisionStatus}
           applicationRowId={query.application.rowId}

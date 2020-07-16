@@ -281,7 +281,12 @@ app.prepare().then(() => {
           };
         }
 
-        const claims = {};
+        const groups = getUserGroups(req);
+        const priorityGroup = getPriorityGroup(groups);
+
+        const claims = {
+          role: groupData[priorityGroup].pgRole
+        };
         if (
           !req.kauth ||
           !req.kauth.grant ||
@@ -295,9 +300,8 @@ app.prepare().then(() => {
         // claims['role'] = 'pg_monitor';
         const token = req.kauth.grant.id_token.content;
 
-        const groups = getUserGroups(req);
         token.user_groups = groups.join(',');
-        token.priority_group = getPriorityGroup(groups);
+        token.priority_group = priorityGroup;
 
         const properties = [
           'jti',
@@ -325,7 +329,6 @@ app.prepare().then(() => {
         properties.forEach((property) => {
           claims[`jwt.claims.${property}`] = token[property];
         });
-        claims.role = groupData[token.priority_group].pgRole;
         return claims;
       }
     })

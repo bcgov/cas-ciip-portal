@@ -18,6 +18,8 @@ interface Props {
 }
 
 class Certify extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query certifyQuery($applicationId: ID!, $version: String!) {
       query {
@@ -71,11 +73,7 @@ class Certify extends Component<Props> {
     }
 
     return (
-      <DefaultLayout
-        title="Submission Certification"
-        session={query.session}
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout title="Submission Certification" session={query.session}>
         {hashMatches ? (
           <>
             <ApplicationDetailsContainer

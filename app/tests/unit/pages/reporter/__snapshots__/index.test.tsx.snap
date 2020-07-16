@@ -2,11 +2,6 @@
 
 exports[`Reporter Dashboard Reporter with certification requests 1`] = `
 <Relay(DefaultLayout)
-  allowedGroups={
-    Array [
-      "User",
-    ]
-  }
   session={
     Object {
       " $fragmentRefs": Object {
@@ -177,11 +172,6 @@ exports[`Reporter Dashboard Reporter with certification requests 1`] = `
 
 exports[`Reporter Dashboard Reporter with no certification requests 1`] = `
 <Relay(DefaultLayout)
-  allowedGroups={
-    Array [
-      "User",
-    ]
-  }
   session={
     Object {
       " $fragmentRefs": Object {

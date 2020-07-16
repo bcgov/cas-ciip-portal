@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`It matches the last accepted Snapshot 1`] = `
+exports[`The DefaultLayout component matches the last accepted Snapshot 1`] = `
 <div
   className="jsx-1155151846 page-wrap"
 >

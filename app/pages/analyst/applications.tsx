@@ -13,6 +13,8 @@ interface Props {
 }
 
 class Applications extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   // In downstream component
   // onClick={(event) => handleApplicationsAction({action: Applications.SORT_ACTION})})
   // I didn't fully understand how to make this work, so I moved on with the way I did.
@@ -50,11 +52,7 @@ class Applications extends Component<Props> {
   render() {
     const {query} = this.props;
     return (
-      <DefaultLayout
-        title="Applications"
-        session={query.session}
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout title="Applications" session={query.session}>
         <SearchTable
           query={query}
           defaultOrderByField="operator_name"

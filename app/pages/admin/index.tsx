@@ -16,6 +16,8 @@ interface Props extends CiipPageComponentProps {
   query: adminQueryResponse['query'];
 }
 class Admin extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query adminQuery {
       query {
@@ -31,11 +33,7 @@ class Admin extends Component<Props> {
       query: {session}
     } = this.props;
     return (
-      <DefaultLayout
-        session={session}
-        allowedGroups={ALLOWED_GROUPS}
-        title="Administrator Dashboard"
-      >
+      <DefaultLayout session={session} title="Administrator Dashboard">
         <div>
           <Row>
             <UserManagement />

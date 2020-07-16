@@ -2,13 +2,6 @@
 
 exports[`The application-review page It matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
-  allowedGroups={
-    Array [
-      "Incentive Analyst",
-      "Realm Administrator",
-      "Incentive Administrator",
-    ]
-  }
   session={
     Object {
       " $fragmentRefs": Object {

@@ -2,8 +2,6 @@
 
 exports[`BCGov core privacy page It matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
-  needsSession={false}
-  needsUser={false}
   session={
     Object {
       " $fragmentRefs": Object {

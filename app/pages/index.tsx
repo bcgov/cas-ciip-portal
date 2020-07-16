@@ -16,6 +16,7 @@ interface Props extends CiipPageComponentProps {
   query: pagesQueryResponse['query'];
 }
 export default class Index extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
   static query = graphql`
     query pagesQuery {
       query {
@@ -87,13 +88,7 @@ export default class Index extends Component<Props> {
       });
 
     return (
-      <DefaultLayout
-        showSubheader={false}
-        session={session}
-        needsSession={false}
-        needsUser={false}
-        allowedGroups={ALLOWED_GROUPS}
-      >
+      <DefaultLayout showSubheader={false} session={session}>
         <Row>
           <Col md={6}>
             <h3 className="blue">

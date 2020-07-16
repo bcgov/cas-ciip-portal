@@ -10,6 +10,7 @@ interface Props extends CiipPageComponentProps {
 }
 
 class Contact extends Component<Props> {
+  static isAccessProtected = false;
   static query = graphql`
     query contactQuery {
       query {
@@ -25,12 +26,7 @@ class Contact extends Component<Props> {
     const {query} = this.props;
     const {session} = query || {};
     return (
-      <DefaultLayout
-        session={session}
-        needsSession={false}
-        needsUser={false}
-        title="Contact Us"
-      >
+      <DefaultLayout session={session} title="Contact Us">
         <Container>
           <p>
             Please email{' '}

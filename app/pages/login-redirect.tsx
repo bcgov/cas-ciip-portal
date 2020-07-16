@@ -43,12 +43,7 @@ export default class LoginRedirect extends Component<Props> {
       .format('MMMM DD, YYYY');
 
     return (
-      <DefaultLayout
-        showSubheader={false}
-        session={session}
-        needsSession={false}
-        needsUser={false}
-      >
+      <DefaultLayout showSubheader={false} session={session}>
         <Row>
           <Col md={6}>
             <h3 className="blue">

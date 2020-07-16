@@ -14,6 +14,8 @@ interface Props extends CiipPageComponentProps {
   router: NextRouter;
 }
 class Application extends Component<Props> {
+  static allowedGroups = ALLOWED_GROUPS;
+  static isAccessProtected = true;
   static query = graphql`
     query applicationQuery(
       $formResultId: ID!
@@ -65,7 +67,7 @@ class Application extends Component<Props> {
     }
 
     return (
-      <DefaultLayout session={session} allowedGroups={ALLOWED_GROUPS}>
+      <DefaultLayout session={session}>
         <ApplicationWizard query={query} />
       </DefaultLayout>
     );
