@@ -59,7 +59,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
     props.handleInputChange('');
   };
 
-  const {edges} = session.ciipUserBySub.ciipUserOrganisationsByUserId;
+  const userOrgs = session.ciipUserBySub.ciipUserOrganisationsByUserId.edges;
   return (
     <>
       {props.flagCertRequests && (
@@ -86,7 +86,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
         </Card.Body>
       </Card>
       <br />
-      {edges.length > 0 && (
+      {userOrgs.length > 0 && (
         <Table
           striped
           bordered
@@ -101,7 +101,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
             </tr>
           </thead>
           <tbody>
-            {edges.map(({node}) => {
+            {userOrgs.map(({node}) => {
               return <UserOrganisation key={node.id} userOrganisation={node} />;
             })}
           </tbody>
@@ -198,17 +198,23 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
                     onChange={changeInput}
                   />
                   <div className="org-scroll">
-                    {allOrganisations.edges.map(({node}) => {
-                      return (
-                        <Organisation
-                          key={node.id}
-                          select
-                          organisation={node}
-                          orgInput={props.orgInput}
-                          selectOrg={selectOrg}
-                        />
-                      );
-                    })}
+                    {allOrganisations.edges
+                      .filter((org) => {
+                        return !userOrgs.some(
+                          (uo) => uo.node.organisationId === org.node.rowId
+                        );
+                      })
+                      .map(({node}) => {
+                        return (
+                          <Organisation
+                            key={node.id}
+                            select
+                            organisation={node}
+                            orgInput={props.orgInput}
+                            selectOrg={selectOrg}
+                          />
+                        );
+                      })}
                   </div>
                 </Dropdown.Menu>
               </Dropdown>
@@ -244,6 +250,8 @@ export default createFragmentContainer(OrganisationsComponent, {
             edges {
               node {
                 id
+                organisationId
+                status
                 ...UserOrganisation_userOrganisation
               }
             }
@@ -255,6 +263,7 @@ export default createFragmentContainer(OrganisationsComponent, {
         edges {
           node {
             id
+            rowId
             ...Organisation_organisation
           }
         }
