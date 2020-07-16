@@ -154,3 +154,4 @@ mutations/create_application_mutation_chain [mutations/create_application_mutati
 @v1.0.0-rc.11 2020-07-13T17:25:31Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.11
 computed_columns/application_revision_ciip_incentive [computed_columns/application_revision_ciip_incentive@v1.0.0-rc.11 tables/benchmark views/ciip_production] 2020-07-14T21:21:37Z Kristen Cooke <kristen@button.is> # Reflect update to product names: Exported heat/electricity --> Sold heat/electricity
 @v1.0.0-rc.12 2020-07-15T20:11:57Z Matthieu Foucault <matthieu@button.is> # release v1.0.0-rc.12
+@v1.0.0 2020-07-16T00:27:28Z Matthieu Foucault <matthieu@button.is> # release v1.0.0

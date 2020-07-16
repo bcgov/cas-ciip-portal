@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.12...v1.0.0) (2020-07-16)
+
+
+### Features
+
+* Add documentation for reporters ([52b0077](https://github.com/bcgov/cas-ciip-portal/commit/52b0077b52f817d3717ceef01772eacbc4ef9e28))
+* add PageRedirectHandler HOC ([9154469](https://github.com/bcgov/cas-ciip-portal/commit/91544693a375991319486ea0360d2242aa82ef23))
+
+
+### Bug Fixes
+
+* PageRedirectHandler should always checkSessionAndGroups ([ca417dc](https://github.com/bcgov/cas-ciip-portal/commit/ca417dc152d47e4a2bdc00d1fc027ab1e3462986))
+* unauthenticated graphql requests should use the ciip_guest role ([555957e](https://github.com/bcgov/cas-ciip-portal/commit/555957e29c38bb5104c9db92a474b2e197f6022b))
+
 ## [1.0.0-rc.12](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.0-rc.11...v1.0.0-rc.12) (2020-07-15)
 
 
