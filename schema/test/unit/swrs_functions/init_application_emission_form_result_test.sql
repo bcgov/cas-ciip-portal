@@ -4,7 +4,7 @@ reset client_min_messages;
 
 begin;
 
-select plan(12);
+select plan(28);
 
 select has_function(
   'ggircs_portal', 'init_application_emission_form_result', array['integer', 'integer'],
