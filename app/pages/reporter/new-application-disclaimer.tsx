@@ -72,7 +72,7 @@ class NewApplicationDisclaimer extends Component<Props> {
             </Card.Text>
             <Card.Text style={{padding: '10px 0 10px 0'}}>
               The Operator agrees to repay any incentive amounts erroneously
-              paid or which are, upon audit or review by the Province of British
+              paid or which, upon audit or review by the Province of British
               Columbia, are determined by the Province to be either inconsistent
               with{' '}
               <Card.Link href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program">
