@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.2...v1.0.3) (2020-07-20)
+
+
+### Bug Fixes
+
+* Only list orgs in dropdown to which the user hasn't requested or been given access ([c69d165](https://github.com/bcgov/cas-ciip-portal/commit/c69d165101fdf4cb30764ebf92f944b9a906b8db))
+* search_products function returns the correct values for add options ([e1748d2](https://github.com/bcgov/cas-ciip-portal/commit/e1748d23857fca68e216b8583e0f11a329a7a6f0))
+
 ### [1.0.2](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.1...v1.0.2) (2020-07-16)
 
 
