@@ -54,6 +54,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
 
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const maxResultsPerPage = 20;
 
   useEffect(() => {
@@ -66,8 +67,10 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
       maxResultsPerPage,
       forceRefetch
     };
+    setIsLoading(true);
     relay.refetch(refetchVariables, undefined, (error) => {
       if (error) return;
+      setIsLoading(false);
       certifiableRequestIds.current = getCertifiableRequestIds(query);
 
       if (refetchQueryInitialized.current) {
@@ -193,6 +196,7 @@ export const CertificationRequestsComponent: React.FunctionComponent<Props> = ({
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
         handleSelectAll={(selectAll) => onSelectAll(selectAll)}
+        isLoading={isLoading}
       />
       <PaginationBar
         setOffset={setOffset}

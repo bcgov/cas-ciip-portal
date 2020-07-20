@@ -7,7 +7,8 @@ interface Props {
   handleSelectAll?: (...args: any[]) => void;
   allSelected?: boolean;
   displayNameToColumnNameMap: any;
-  body: any;
+  body: JSX.Element;
+  isLoading?: boolean;
 }
 export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
   props
@@ -17,7 +18,8 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
     handleSelectAll,
     allSelected = false,
     displayNameToColumnNameMap,
-    body
+    body,
+    isLoading
   } = props;
 
   return (
@@ -34,7 +36,12 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
         </Row>
       </Container>
 
-      <Table striped bordered hover style={{textAlign: 'center'}}>
+      <Table
+        striped
+        bordered
+        hover
+        className={isLoading ? 'search-table loading' : 'search-table'}
+      >
         <thead>
           <tr>
             {handleSelectAll && (
@@ -63,7 +70,10 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
           </tr>
         </thead>
         {body}
-        <style jsx>{`
+        <style jsx global>{`
+          .search-table {
+            text-align: center;
+          }
           .master-select {
             background: #003366;
             color: white;
@@ -82,6 +92,9 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
             right: 0;
             bottom: 0;
             left: 0;
+          }
+          .search-table.loading td {
+            visibility: hidden;
           }
         `}</style>
       </Table>
