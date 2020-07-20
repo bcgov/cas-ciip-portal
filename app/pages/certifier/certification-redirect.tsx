@@ -93,7 +93,7 @@ class CertificationRedirect extends Component<Props> {
                 <strong>{`${firstName} ${lastName}`}</strong> on behalf of{' '}
                 <strong>{organisationName}</strong>, for facility{' '}
                 <strong>{facilityName}</strong> has requested that you review,
-                certify, and sign off on the information contained in this CIIP
+                certify, and approve the information contained in this CIIP
                 application.
               </p>
               {session?.ciipUserBySub ? (

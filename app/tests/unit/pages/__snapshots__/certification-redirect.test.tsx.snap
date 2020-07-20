@@ -44,7 +44,7 @@ exports[`Login redirect page It matches the last accepted Snapshot 1`] = `
         <strong>
           Farm
         </strong>
-         has requested that you review, certify, and sign off on the information contained in this CIIP application.
+         has requested that you review, certify, and approve the information contained in this CIIP application.
       </p>
       <p>
         Please continue to the certification page.
