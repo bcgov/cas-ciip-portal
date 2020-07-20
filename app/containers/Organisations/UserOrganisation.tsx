@@ -59,6 +59,7 @@ export default createFragmentContainer(UserOrganisationComponent, {
     fragment UserOrganisation_userOrganisation on CiipUserOrganisation {
       id
       status
+      organisationId
       organisationByOrganisationId {
         id
         rowId
