@@ -3,6 +3,7 @@ import React from 'react';
 const LegalDisclaimerText: React.FunctionComponent = () => {
   return (
     <>
+      <p>In this application:</p>
       <ol id="glossary">
         <li>
           (a) &quot;CIIP&quot; means the{' '}
@@ -20,8 +21,8 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
         </li>
         <li>
           (d) &quot;Operator&quot; means the person identified in the Greenhouse
-          Gas Emission Reporting Regulation responsible for the industrial
-          operation considered in this application;
+          Gas Emission Reporting Regulation responsible for the Reporting
+          Operation;
         </li>
         <li>
           (e) &quot;Province&quot; means Her Majesty the Queen in Right of
@@ -33,12 +34,12 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
         </li>
         <li>
           (g) &quot;Representative&quot; means the individual completing this
-          application.
+          application on behalf of the Operator.
         </li>
       </ol>
       <p>
-        By the Certifying Official approving and the Representative or Operator
-        submitting an application to the CleanBC Industrial Incentive Program:
+        By approving and submitting this application, the Certifying Official
+        and Representative agree as follows:
       </p>
       <ol id="consents">
         <li>
@@ -57,8 +58,8 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
         </li>
         <li>
           The Operator agrees to repay any incentive amounts erroneously paid or
-          which are, upon audit or review by the Province of British Columbia,
-          are determined by the Province to be either inconsistent with{' '}
+          which, upon audit or review by the Province of British Columbia, are
+          determined by the Province to be either inconsistent with{' '}
           <a href="https://www2.gov.bc.ca/gov/content/environment/climate-change/industry/cleanbc-program-for-industry/cleanbc-industrial-incentive-program">
             CIIP Rules
           </a>{' '}
@@ -99,6 +100,17 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
           in effect for one year.
         </li>
         <li>
+          The Operator consents to the release, by the Province&apos;s Ministry
+          of Environment and Climate Change Strategy to the Ministry of Finance,
+          of information contained in this application or in emission reports
+          made under GGIRCA and submitted in relation to the Reporting
+          Operation, for the purposes of administering the CleanBC Program for
+          Industry. This consent is specific to this application and to the
+          emission reports made in respect of the three reporting periods prior
+          to the submission of this application. This consent will remain in
+          effect for one year.
+        </li>
+        <li>
           The Operator acknowledges that information provided by the Ministry of
           Environment and Climate Change Strategy to the Ministry of Finance may
           be used for the purposes of administering and enforcing the{' '}
@@ -110,7 +122,7 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
           confidentiality of information.
         </li>
         <li>
-          The Operator may at any time withdrawal its consent under paragraph{' '}
+          The Operator may at any time withdraw its consent under paragraph{' '}
           <strong>d</strong> by submitting a withdrawal of consent in a form
           specified by the Province&apos;s Fuel and Carbon Tax Section. Forms
           may be obtained by submitting a request in writing to the Fuel and
@@ -118,7 +130,7 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
           Finance, PO Box 9447 Stn Prov Govt, Victoria BC V8W 9V7.
         </li>
         <li>
-          The Operator may at any time withdrawal its consent under paragraph{' '}
+          The Operator may at any time withdraw its consent under paragraph{' '}
           <strong>e</strong> or <strong>f</strong> by submitting a withdrawal of
           consent in a form specified by the director appointed under GGIRCA.
           Forms may be obtained by submitting an email request to{' '}

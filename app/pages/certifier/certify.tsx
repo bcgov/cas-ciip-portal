@@ -63,7 +63,7 @@ class Certify extends Component<Props> {
     ) {
       LegalDisclaimer = (
         <SignatureDisclaimerCard>
-          Please review the information below before approving an application.{' '}
+          Please review the information below before approving the application.{' '}
           <a href="/resources/application-disclaimer" target="_blank">
             (<FontAwesomeIcon icon={faExternalLinkAlt} />
             expand)

@@ -2,6 +2,9 @@
 
 exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
 <Fragment>
+  <p>
+    In this application:
+  </p>
   <ol
     id="glossary"
   >
@@ -26,7 +29,7 @@ exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
       ;
     </li>
     <li>
-      (d) "Operator" means the person identified in the Greenhouse Gas Emission Reporting Regulation responsible for the industrial operation considered in this application;
+      (d) "Operator" means the person identified in the Greenhouse Gas Emission Reporting Regulation responsible for the Reporting Operation;
     </li>
     <li>
       (e) "Province" means Her Majesty the Queen in Right of British Columbia;
@@ -35,11 +38,11 @@ exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
       (f) "Reporting Operation" means the industrial operation identified in the application;
     </li>
     <li>
-      (g) "Representative" means the individual completing this application.
+      (g) "Representative" means the individual completing this application on behalf of the Operator.
     </li>
   </ol>
   <p>
-    By the Certifying Official approving and the Representative or Operator submitting an application to the CleanBC Industrial Incentive Program:
+    By approving and submitting this application, the Certifying Official and Representative agree as follows:
   </p>
   <ol
     className="jsx-3350969095"
@@ -58,7 +61,7 @@ exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
     <li
       className="jsx-3350969095"
     >
-      The Operator agrees to repay any incentive amounts erroneously paid or which are, upon audit or review by the Province of British Columbia, are determined by the Province to be either inconsistent with
+      The Operator agrees to repay any incentive amounts erroneously paid or which, upon audit or review by the Province of British Columbia, are determined by the Province to be either inconsistent with
        
       <a
         className="jsx-3350969095"
@@ -87,6 +90,11 @@ exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
     <li
       className="jsx-3350969095"
     >
+      The Operator consents to the release, by the Province's Ministry of Environment and Climate Change Strategy to the Ministry of Finance, of information contained in this application or in emission reports made under GGIRCA and submitted in relation to the Reporting Operation, for the purposes of administering the CleanBC Program for Industry. This consent is specific to this application and to the emission reports made in respect of the three reporting periods prior to the submission of this application. This consent will remain in effect for one year.
+    </li>
+    <li
+      className="jsx-3350969095"
+    >
       The Operator acknowledges that information provided by the Ministry of Environment and Climate Change Strategy to the Ministry of Finance may be used for the purposes of administering and enforcing the
        
       <em
@@ -104,7 +112,7 @@ exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
     <li
       className="jsx-3350969095"
     >
-      The Operator may at any time withdrawal its consent under paragraph
+      The Operator may at any time withdraw its consent under paragraph
        
       <strong
         className="jsx-3350969095"
@@ -116,7 +124,7 @@ exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
     <li
       className="jsx-3350969095"
     >
-      The Operator may at any time withdrawal its consent under paragraph
+      The Operator may at any time withdraw its consent under paragraph
        
       <strong
         className="jsx-3350969095"
