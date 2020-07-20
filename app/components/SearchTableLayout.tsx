@@ -94,7 +94,25 @@ export const SearchTableLayoutComponent: React.FunctionComponent<Props> = (
             left: 0;
           }
           .search-table.loading td {
-            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+          }
+
+          .search-table.loading tbody {
+            position: relative;
+          }
+          .search-table.loading tbody::after {
+            width: 2rem;
+            height: 2rem;
+            vertical-align: text-bottom;
+            background-color: black;
+            border-radius: 50%;
+            opacity: 0;
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            animation: spinner-grow 0.75s linear infinite;
           }
         `}</style>
       </Table>
