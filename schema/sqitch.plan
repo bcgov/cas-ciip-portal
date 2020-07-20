@@ -157,3 +157,5 @@ computed_columns/application_revision_ciip_incentive [computed_columns/applicati
 @v1.0.0 2020-07-16T00:27:28Z Matthieu Foucault <matthieu@button.is> # release v1.0.0
 @v1.0.1 2020-07-16T01:12:49Z Matthieu Foucault <matthieu@button.is> # release v1.0.1
 @v1.0.2 2020-07-16T19:48:33Z Matthieu Foucault <matthieu@button.is> # release v1.0.2
+search_functions/search_products [search_functions/search_products@v1.0.0-rc.12] 2020-07-20T17:26:50Z Matthieu Foucault <matthieu@button.is> # fix wrong fields being returned by search_product function
+@v1.0.3 2020-07-20T17:36:02Z Matthieu Foucault <matthieu@button.is> # release v1.0.3

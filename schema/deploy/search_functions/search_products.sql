@@ -39,14 +39,14 @@ returns setof ggircs_portal.product as
           then return query execute search_query_input_query ||
             'select
               id, product_name, units,
-              product_state, requires_emission_allocation, is_ciip_product, requires_product_amount, subtract_exported_electricity_emissions, subtract_exported_electricity_emissions, subtract_exported_heat_emissions, subtract_exported_heat_emissions,
+              product_state, requires_emission_allocation, is_ciip_product, requires_product_amount, add_purchased_electricity_emissions, subtract_exported_electricity_emissions, add_purchased_heat_emissions, subtract_exported_heat_emissions,
               subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, is_read_only, is_energy_product, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
               from innerTable order by ' || order_by_field || ' ' || direction;
       else
         return query execute search_query_input_query ||
           'select
             id, product_name, units, product_state,
-            requires_emission_allocation, is_ciip_product, requires_product_amount, subtract_exported_electricity_emissions, subtract_exported_electricity_emissions, subtract_exported_heat_emissions, subtract_exported_heat_emissions,
+            requires_emission_allocation, is_ciip_product, requires_product_amount, add_purchased_electricity_emissions, subtract_exported_electricity_emissions, add_purchased_heat_emissions, subtract_exported_heat_emissions,
             subtract_generated_electricity_emissions, subtract_generated_heat_emissions, add_emissions_from_eios, is_read_only, is_energy_product, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
             from innerTable
           where
