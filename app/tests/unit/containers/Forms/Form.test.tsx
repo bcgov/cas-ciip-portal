@@ -61,7 +61,7 @@ describe('The Form Component', () => {
       />
     );
     expect(wrapper.find('.form-nav').find('Button')).toHaveLength(1);
-    expect(wrapper.find('Button').text()).toBe('Continue');
+    expect(wrapper.find('Button').text()).toBe('Next Page');
   });
 
   it('should not render an alert reminder to check the guidance if no product requires emission allocation', () => {
@@ -91,7 +91,7 @@ describe('The Form Component', () => {
         onBack={jest.fn()}
       />
     );
-    expect(wrapper.find('Alert')).toHaveLength(0);
+    expect(wrapper.find('Alert')).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -122,7 +122,7 @@ describe('The Form Component', () => {
         onBack={jest.fn()}
       />
     );
-    expect(wrapper.find('Alert')).toHaveLength(1);
+    expect(wrapper.find('Alert')).toHaveLength(2);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -178,7 +178,7 @@ describe('The Form Component', () => {
       />
     );
     expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('Alert').at(1).text()).toContain(
+    expect(wrapper.find('Alert').at(2).text()).toContain(
       'requires reporting of: bar'
     );
   });

@@ -4,6 +4,27 @@ exports[`The Form Component should match the snapshot 1`] = `
 <div
   className=""
 >
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="info"
+  >
+    Note: Your form input will be saved automatically as you type.
+  </Alert>
   <Row
     noGutters={false}
   >
@@ -134,7 +155,7 @@ exports[`The Form Component should match the snapshot 1`] = `
             type="submit"
             variant="primary"
           >
-            Continue
+            Next Page
           </Button>
         </Col>
       </Row>
@@ -609,6 +630,27 @@ exports[`The Form Component should not render an alert reminder to check the gui
 <div
   className=""
 >
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="info"
+  >
+    Note: Your form input will be saved automatically as you type.
+  </Alert>
   <Row
     noGutters={false}
   >
@@ -749,7 +791,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
             type="submit"
             variant="primary"
           >
-            Continue
+            Next Page
           </Button>
         </Col>
       </Row>
@@ -1224,6 +1266,27 @@ exports[`The Form Component should render alert reminder to check the guidance i
 <div
   className=""
 >
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="info"
+  >
+    Note: Your form input will be saved automatically as you type.
+  </Alert>
   <Row
     noGutters={false}
   >
@@ -1388,7 +1451,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
             type="submit"
             variant="primary"
           >
-            Continue
+            Next Page
           </Button>
         </Col>
       </Row>
@@ -1863,6 +1926,27 @@ exports[`The Form Component should render an alert reminder to report any missin
 <div
   className=""
 >
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="info"
+  >
+    Note: Your form input will be saved automatically as you type.
+  </Alert>
   <Row
     noGutters={false}
   >
@@ -2077,7 +2161,7 @@ exports[`The Form Component should render an alert reminder to report any missin
             type="submit"
             variant="primary"
           >
-            Continue
+            Next Page
           </Button>
         </Col>
       </Row>
