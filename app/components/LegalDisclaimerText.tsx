@@ -20,9 +20,8 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
           <em>Greenhouse Gas Industrial Reporting and Control Act</em>;
         </li>
         <li>
-          (d) &quot;Operator&quot; means the person identified in the Greenhouse
-          Gas Emission Reporting Regulation responsible for the Reporting
-          Operation;
+          (d) &quot;Operator&quot; means the person identified as responsible
+          for the Reporting Operation;
         </li>
         <li>
           (e) &quot;Province&quot; means Her Majesty the Queen in Right of
@@ -130,10 +129,11 @@ const LegalDisclaimerText: React.FunctionComponent = () => {
           Finance, PO Box 9447 Stn Prov Govt, Victoria BC V8W 9V7.
         </li>
         <li>
-          The Operator may at any time withdraw its consent under paragraph{' '}
-          <strong>e</strong> or <strong>f</strong> by submitting a withdrawal of
-          consent in a form specified by the director appointed under GGIRCA.
-          Forms may be obtained by submitting an email request to{' '}
+          The Operator may at any time withdraw its consent under paragraphs{' '}
+          <strong>e</strong>, <strong>f</strong>, or <strong>g</strong> by
+          submitting a withdrawal of consent in a form specified by the director
+          appointed under GGIRCA. Forms may be obtained by submitting an email
+          request to{' '}
           <a href="mailto:ghgregulator@gov.bc.ca">ghgregulator@gov.bc.ca</a>.
         </li>
         <style jsx global>{`
