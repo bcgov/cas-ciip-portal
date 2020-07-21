@@ -171,5 +171,17 @@ describe('When reviewing a submitted application as an analyst', () => {
     });
     cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Summary');
+    cy.get('.admin.summary-card').happoScreenshot({
+      component: 'Admin Summary Card'
+    });
+    cy.get('.emission.summary-card').happoScreenshot({
+      component: 'Emission Summary Card'
+    });
+    cy.get('.fuel.summary-card').happoScreenshot({
+      component: 'Fuel Summary Card'
+    });
+    cy.get('.production.summary-card').happoScreenshot({
+      component: 'Production Summary Card'
+    });
   });
 });
