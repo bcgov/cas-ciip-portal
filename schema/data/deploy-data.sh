@@ -165,6 +165,7 @@ deployProdData() {
 
 deployDevData() {
   deployProdData
+  _psql -f "./dev/facility.sql"
   _psql -f "./dev/reporting_year.sql"
   _psql -f "./dev/mock_current_timestamp.sql"
   _psql -f "./dev/product.sql"

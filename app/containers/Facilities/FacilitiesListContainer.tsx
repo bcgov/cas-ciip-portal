@@ -28,6 +28,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
   const {edges} = query.searchAllFacilities;
   const [offsetValue, setOffset] = useState(0);
   const [activePage, setActivePage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const maxResultsPerPage = 10;
   useEffect(() => {
     const refetchVariables = {
@@ -38,8 +39,11 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
       maxResultsPerPage,
       offsetValue
     };
-    relay.refetch(refetchVariables);
-  });
+    setIsLoading(true);
+    relay.refetch(refetchVariables, undefined, () => {
+      setIsLoading(false);
+    });
+  }, [searchField, searchValue, orderByField, direction, offsetValue, relay]);
 
   const displayNameToColumnNameMap = {
     'Organisation Name': 'organisation_name',
@@ -72,6 +76,7 @@ export const FacilitiesList: React.FunctionComponent<Props> = ({
         body={body}
         displayNameToColumnNameMap={displayNameToColumnNameMap}
         handleEvent={handleEvent}
+        isLoading={isLoading}
       />
       <PaginationBar
         setOffset={setOffset}

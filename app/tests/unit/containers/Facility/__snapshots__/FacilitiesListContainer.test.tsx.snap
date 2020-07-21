@@ -58,6 +58,7 @@ exports[`FacilitiesListContainer should match the previous snapshot 1`] = `
       }
     }
     handleEvent={[MockFunction]}
+    isLoading={false}
   />
   <PaginationBarComponent
     activePage={1}
