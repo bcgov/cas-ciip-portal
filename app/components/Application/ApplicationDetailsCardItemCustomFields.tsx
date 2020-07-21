@@ -1,6 +1,6 @@
 import React from 'react';
-import SummaryEmissionGasFields from 'containers/Forms/SummaryEmissionGasFields';
-import SummaryEmissionSourceFields from 'containers/Forms/SummaryEmissionSourceFields';
+import EmissionGasFields from 'containers/Forms/EmissionGasFields';
+import EmissionSourceFields from 'containers/Forms/EmissionSourceFields';
 import ProductField from 'containers/Forms/ProductField';
 import ProductRowIdField from 'containers/Forms/ProductRowIdField';
 import {FieldProps} from 'react-jsonschema-form';
@@ -106,9 +106,9 @@ const customFields = (
         </span>
       );
     },
-    emissionSource: SummaryEmissionSourceFields,
+    emissionSource: EmissionSourceFields,
     emissionGas: (props) => (
-      <SummaryEmissionGasFields setHasErrors={setHasErrors} {...props} />
+      <EmissionGasFields setHasErrors={setHasErrors} {...props} />
     ),
     product: (props) => (
       <ProductField query={props.formContext.query} {...props} />

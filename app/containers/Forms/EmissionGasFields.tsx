@@ -138,7 +138,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
         .gwp {
           list-style: none;
           display: inline-flex;
-          padding: 0;
+          padding: 5px 0;
         }
         .gwp li {
           margin: 0 10px;
