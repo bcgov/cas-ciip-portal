@@ -29,7 +29,7 @@ exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
       ;
     </li>
     <li>
-      (d) "Operator" means the person identified in the Greenhouse Gas Emission Reporting Regulation responsible for the Reporting Operation;
+      (d) "Operator" means the person identified as responsible for the Reporting Operation;
     </li>
     <li>
       (e) "Province" means Her Majesty the Queen in Right of British Columbia;
@@ -124,18 +124,24 @@ exports[`LegalDisclaimerText Component should match the last snapshot 1`] = `
     <li
       className="jsx-3350969095"
     >
-      The Operator may at any time withdraw its consent under paragraph
+      The Operator may at any time withdraw its consent under paragraphs
        
       <strong
         className="jsx-3350969095"
       >
         e
       </strong>
-       or 
+      , 
       <strong
         className="jsx-3350969095"
       >
         f
+      </strong>
+      , or 
+      <strong
+        className="jsx-3350969095"
+      >
+        g
       </strong>
        by submitting a withdrawal of consent in a form specified by the director appointed under GGIRCA. Forms may be obtained by submitting an email request to
        
