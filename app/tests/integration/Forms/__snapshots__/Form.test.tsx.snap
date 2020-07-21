@@ -1160,7 +1160,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             sourceTypeName
                           </label>
                           <div
-                            className="SourceFieldHeading row"
+                            className="source-field-heading row"
                             style={
                               Object {
                                 "margin": "20px 0 20px 0",
@@ -1171,7 +1171,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-4 col-12"
                             >
                               <h5
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                                 style={
                                   Object {
                                     "textAlign": "left",
@@ -1185,7 +1185,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-3 col-12"
                             >
                               <h6
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                               >
                                 Tonnes
                               </h6>
@@ -1194,7 +1194,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-2 col-12"
                             >
                               <h6
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                               >
                                 GWP
                               </h6>
@@ -1203,7 +1203,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-3 col-12"
                             >
                               <h6
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                               >
                                 Tonnes (CO2e)
                               </h6>
@@ -1259,7 +1259,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             est dolor
                                              
                                             <br
-                                              className="jsx-1154833918"
+                                              className="jsx-381954189"
                                             />
                                             <div
                                               className="col-md-10"
@@ -1273,7 +1273,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               }
                                             >
                                               <small
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 culpa
                                               </small>
@@ -1316,20 +1316,20 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             }
                                           >
                                             <ul
-                                              className="jsx-1154833918 gwp"
+                                              className="jsx-381954189 gwp"
                                             >
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 X
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 -80000000
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 =
                                               </li>
@@ -1408,7 +1408,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             est dolor
                                              
                                             <br
-                                              className="jsx-1154833918"
+                                              className="jsx-381954189"
                                             />
                                             <div
                                               className="col-md-10"
@@ -1422,7 +1422,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               }
                                             >
                                               <small
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 culpa
                                               </small>
@@ -1465,20 +1465,20 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             }
                                           >
                                             <ul
-                                              className="jsx-1154833918 gwp"
+                                              className="jsx-381954189 gwp"
                                             >
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 X
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 -80000000
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 =
                                               </li>
@@ -1557,7 +1557,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             est dolor
                                              
                                             <br
-                                              className="jsx-1154833918"
+                                              className="jsx-381954189"
                                             />
                                             <div
                                               className="col-md-10"
@@ -1571,7 +1571,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               }
                                             >
                                               <small
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 culpa
                                               </small>
@@ -1614,20 +1614,20 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             }
                                           >
                                             <ul
-                                              className="jsx-1154833918 gwp"
+                                              className="jsx-381954189 gwp"
                                             >
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 X
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 -80000000
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 =
                                               </li>
@@ -1714,7 +1714,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             sourceTypeName
                           </label>
                           <div
-                            className="SourceFieldHeading row"
+                            className="source-field-heading row"
                             style={
                               Object {
                                 "margin": "20px 0 20px 0",
@@ -1725,7 +1725,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-4 col-12"
                             >
                               <h5
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                                 style={
                                   Object {
                                     "textAlign": "left",
@@ -1739,7 +1739,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-3 col-12"
                             >
                               <h6
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                               >
                                 Tonnes
                               </h6>
@@ -1748,7 +1748,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-2 col-12"
                             >
                               <h6
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                               >
                                 GWP
                               </h6>
@@ -1757,7 +1757,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-3 col-12"
                             >
                               <h6
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                               >
                                 Tonnes (CO2e)
                               </h6>
@@ -1813,7 +1813,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             est dolor
                                              
                                             <br
-                                              className="jsx-1154833918"
+                                              className="jsx-381954189"
                                             />
                                             <div
                                               className="col-md-10"
@@ -1827,7 +1827,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               }
                                             >
                                               <small
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 culpa
                                               </small>
@@ -1870,20 +1870,20 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             }
                                           >
                                             <ul
-                                              className="jsx-1154833918 gwp"
+                                              className="jsx-381954189 gwp"
                                             >
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 X
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 -80000000
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 =
                                               </li>
@@ -1962,7 +1962,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             est dolor
                                              
                                             <br
-                                              className="jsx-1154833918"
+                                              className="jsx-381954189"
                                             />
                                             <div
                                               className="col-md-10"
@@ -1976,7 +1976,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               }
                                             >
                                               <small
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 culpa
                                               </small>
@@ -2019,20 +2019,20 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             }
                                           >
                                             <ul
-                                              className="jsx-1154833918 gwp"
+                                              className="jsx-381954189 gwp"
                                             >
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 X
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 -80000000
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 =
                                               </li>
@@ -2111,7 +2111,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             est dolor
                                              
                                             <br
-                                              className="jsx-1154833918"
+                                              className="jsx-381954189"
                                             />
                                             <div
                                               className="col-md-10"
@@ -2125,7 +2125,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               }
                                             >
                                               <small
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 culpa
                                               </small>
@@ -2168,20 +2168,20 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             }
                                           >
                                             <ul
-                                              className="jsx-1154833918 gwp"
+                                              className="jsx-381954189 gwp"
                                             >
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 X
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 -80000000
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 =
                                               </li>
@@ -2268,7 +2268,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                             sourceTypeName
                           </label>
                           <div
-                            className="SourceFieldHeading row"
+                            className="source-field-heading row"
                             style={
                               Object {
                                 "margin": "20px 0 20px 0",
@@ -2279,7 +2279,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-4 col-12"
                             >
                               <h5
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                                 style={
                                   Object {
                                     "textAlign": "left",
@@ -2293,7 +2293,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-3 col-12"
                             >
                               <h6
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                               >
                                 Tonnes
                               </h6>
@@ -2302,7 +2302,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-2 col-12"
                             >
                               <h6
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                               >
                                 GWP
                               </h6>
@@ -2311,7 +2311,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                               className="col-md-3 col-12"
                             >
                               <h6
-                                className="jsx-4136336479"
+                                className="jsx-2818596207"
                               >
                                 Tonnes (CO2e)
                               </h6>
@@ -2367,7 +2367,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             est dolor
                                              
                                             <br
-                                              className="jsx-1154833918"
+                                              className="jsx-381954189"
                                             />
                                             <div
                                               className="col-md-10"
@@ -2381,7 +2381,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               }
                                             >
                                               <small
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 culpa
                                               </small>
@@ -2424,20 +2424,20 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             }
                                           >
                                             <ul
-                                              className="jsx-1154833918 gwp"
+                                              className="jsx-381954189 gwp"
                                             >
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 X
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 -80000000
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 =
                                               </li>
@@ -2516,7 +2516,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             est dolor
                                              
                                             <br
-                                              className="jsx-1154833918"
+                                              className="jsx-381954189"
                                             />
                                             <div
                                               className="col-md-10"
@@ -2530,7 +2530,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               }
                                             >
                                               <small
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 culpa
                                               </small>
@@ -2573,20 +2573,20 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             }
                                           >
                                             <ul
-                                              className="jsx-1154833918 gwp"
+                                              className="jsx-381954189 gwp"
                                             >
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 X
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 -80000000
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 =
                                               </li>
@@ -2665,7 +2665,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             est dolor
                                              
                                             <br
-                                              className="jsx-1154833918"
+                                              className="jsx-381954189"
                                             />
                                             <div
                                               className="col-md-10"
@@ -2679,7 +2679,7 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                               }
                                             >
                                               <small
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 culpa
                                               </small>
@@ -2722,20 +2722,20 @@ exports[`Form should match the snapshot with the emission form 1`] = `
                                             }
                                           >
                                             <ul
-                                              className="jsx-1154833918 gwp"
+                                              className="jsx-381954189 gwp"
                                             >
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 X
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 -80000000
                                               </li>
                                               <li
-                                                className="jsx-1154833918"
+                                                className="jsx-381954189"
                                               >
                                                 =
                                               </li>
