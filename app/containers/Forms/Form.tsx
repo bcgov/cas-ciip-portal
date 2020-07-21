@@ -233,11 +233,15 @@ export const FormComponent: React.FunctionComponent<Props> = ({
 
   return (
     <div className={formClass}>
+      <Alert variant="info">
+        Note: Your form input will be saved automatically as you type
+      </Alert>
       <Row>
         <Col md={8}>
           <h1 className="form-title">{name}</h1>
         </Col>
       </Row>
+
       {hasErrors && (
         <div className="errors">Please correct the errors below.</div>
       )}
@@ -294,7 +298,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
                 </Button>
               )}
               <Button size="lg" type="submit">
-                Continue
+                Next Page
               </Button>
             </Col>
           </Row>
