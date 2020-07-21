@@ -29,8 +29,8 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('.emission').get('.diffTo').contains('6');
     cy.get('.fuel').get('.diffFrom').contains('400');
     cy.get('.fuel').get('.diffTo').contains('40,120');
-    cy.get('.production').get('.diffFrom').contains('8,760');
-    cy.get('.production').get('.diffTo').contains('80');
+    cy.get('.production').get('.diffFrom').contains('8,760,000');
+    cy.get('.production').get('.diffTo').contains('87,600');
     // Diff-From dropdown changed to version: swrs import
     cy.get('#dropdown-old').click();
     cy.get('.dropdown-item').click();
@@ -41,6 +41,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('.emission').get('.diffTo').contains('6');
     cy.get('.fuel').get('.diffFrom > i').contains('[No Data Entered]');
     cy.get('.fuel').get('.diffTo').contains('10');
-    cy.get('.production').get('.diffTo').contains('800');
+    cy.get('.production').get('.diffFrom > i').contains('[No Data Entered]');
+    cy.get('.production').get('.diffTo').contains('87,600');
   });
 });
