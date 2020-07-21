@@ -78,7 +78,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_facility_facilityType').select('LFO');
     cy.get('#root_facility_bcghgid').clear().type('11001100223');
 
-    cy.contains('Continue').click();
+    cy.contains('Next Page').click();
     cy.get(
       '#root_operator_bcCorporateRegistryNumber +div .error-detail'
     ).contains(
@@ -97,7 +97,7 @@ describe('When reviewing a submitted application as an analyst', () => {
       .clear()
       .type('LLC1234567');
 
-    cy.contains('Continue').click();
+    cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Emission');
   });
 
@@ -106,7 +106,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.visit(emissionFormUrl);
     cy.wait(1000);
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').clear();
-    cy.contains('Continue').click(); // Try to submit the form
+    cy.contains('Next Page').click(); // Try to submit the form
     cy.get(
       '#root_sourceTypes_0_gases_0_annualEmission +div .error-detail'
     ).contains('is a required property');
@@ -114,7 +114,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     // Fix invalid data
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').type('42');
     cy.get('form.rjsf').happoScreenshot({component: 'Emissions form'});
-    cy.contains('Continue').click();
+    cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Fuel');
   });
 
@@ -122,7 +122,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     // Fuel Form
     cy.visit(fuelFormUrl);
     cy.contains('Add a fuel').click();
-    cy.contains('Continue').click();
+    cy.contains('Next Page').click();
     cy.get('#root_0_fuelUnits +div .error-detail').contains(
       'is a required property'
     );
@@ -141,18 +141,18 @@ describe('When reviewing a submitted application as an analyst', () => {
       'General Stationary Combustion'
     );
     cy.get('form.rjsf').happoScreenshot({component: 'Fuels Form'});
-    cy.contains('Continue').click();
+    cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Production');
   });
 
   it('The application production form shows validation errors', () => {
     // Production Form
     cy.visit(productionFormUrl);
-    cy.contains('Continue').click();
+    cy.contains('Next Page').click();
     cy.get('.rbt +div .error-detail').contains('is a required property');
     cy.get('#root_0_productRowId').click();
     cy.get('#root_0_productRowId-item-0 > .dropdown-item').click();
-    cy.contains('Continue').click();
+    cy.contains('Next Page').click();
     cy.get('#root_0_productAmount +div .error-detail').contains(
       'is a required property'
     );
@@ -169,7 +169,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('form.rjsf').happoScreenshot({
       component: 'Products and Energy Form'
     });
-    cy.contains('Continue').click();
+    cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Summary');
   });
 });
