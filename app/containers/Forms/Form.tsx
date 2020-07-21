@@ -234,7 +234,7 @@ export const FormComponent: React.FunctionComponent<Props> = ({
   return (
     <div className={formClass}>
       <Alert variant="info">
-        Note: Your form input will be saved automatically as you type
+        Note: Your form input will be saved automatically as you type.
       </Alert>
       <Row>
         <Col md={8}>
