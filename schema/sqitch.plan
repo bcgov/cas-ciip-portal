@@ -163,3 +163,4 @@ trigger_functions/request_for_organisation_access [trigger_functions/request_for
 @v1.1.0 2020-07-22T16:32:21Z Matthieu Foucault <matthieu@button.is> # release v1.1.0
 @v1.2.0 2020-07-27T18:36:49Z Matthieu Foucault <matthieu@button.is> # release v1.2.0
 @v1.3.0 2020-07-29T20:54:44Z Matthieu Foucault <matthieu@button.is> # release v1.3.0
+tables/application_revision_001 [tables/application_revision] 2020-07-22T23:13:57Z Dylan Leard <dylan@button.is> # Migration: add override column to application_revision
