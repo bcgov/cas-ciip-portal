@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
 import {graphql, createFragmentContainer} from 'react-relay';
-import JsonSchemaForm, {
-  IChangeEvent,
-  ErrorSchema,
-  AjvError
-} from 'react-jsonschema-form';
+import {IChangeEvent, ErrorSchema, AjvError} from 'react-jsonschema-form';
+import JsonSchemaForm from 'components/Forms/Form';
 import {Form_query} from 'Form_query.graphql';
 import {Button, Row, Col, Alert} from 'react-bootstrap';
 import globalFormStyles from './FormSharedStyles';
