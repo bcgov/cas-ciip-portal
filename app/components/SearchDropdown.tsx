@@ -8,6 +8,8 @@ interface Props {
   options: Array<{id: string | number; name: string}>;
   inputProps: {id: string};
   onChange: (items: Array<{id: string | number; name: string}>) => void;
+  onBlur?: (...args: any[]) => void;
+  onMenuToggle?: (...args: any[]) => void;
   selected?: Array<{id: string | number; name: string}>;
   errorSchema?: any;
 }
@@ -19,7 +21,9 @@ export const SearchDropdownComponent: React.FunctionComponent<Props> = ({
   options,
   selected,
   inputProps,
-  onChange
+  onChange,
+  onBlur,
+  onMenuToggle
 }) => {
   return (
     <>
@@ -41,6 +45,8 @@ export const SearchDropdownComponent: React.FunctionComponent<Props> = ({
         labelKey="name"
         selected={selected}
         onChange={(items) => onChange(items)}
+        onBlur={onBlur}
+        onMenuToggle={onMenuToggle}
       />
       <style jsx global>
         {`

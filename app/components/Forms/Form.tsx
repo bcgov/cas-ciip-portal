@@ -4,7 +4,7 @@ import {toErrorList} from 'react-jsonschema-form/lib/validate';
  * Extends the Form class from 'react-jsonchema-form'
  * to enable validation on blur for all fields
  */
-export default class Form extends JsonSchemaForm {
+export default class Form<T> extends JsonSchemaForm<T> {
   constructor(props) {
     super(props);
     const superOnBlur = this.onBlur;

@@ -8,6 +8,7 @@ import ErrorList from 'components/Forms/ErrorList';
 const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
   formData,
   onChange,
+  onBlur,
   registry,
   autofocus,
   idSchema,
@@ -80,7 +81,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
               disabled={disabled}
               readonly={readonly}
               name="annualEmission"
-              onBlur={null}
+              onBlur={onBlur}
               onChange={(value) =>
                 onChange({
                   ...formData,
@@ -126,7 +127,7 @@ const EmissionGasFields: React.FunctionComponent<FieldProps> = ({
               formContext={formContext}
               disabled={disabled}
               name="annualCO2e"
-              onBlur={null}
+              onBlur={onBlur}
               onChange={() => {
                 throw new Error('Annual CO2e should not be edited directly');
               }}
