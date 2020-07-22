@@ -1,13 +1,5 @@
 import React, {useRef, useState, SyntheticEvent} from 'react';
-import {
-  Accordion,
-  Alert,
-  Button,
-  Row,
-  Col,
-  Card,
-  Form
-} from 'react-bootstrap';
+import {Accordion, Alert, Button, Row, Col, Card, Form} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
@@ -64,6 +56,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const [hasErrors, setHasErrors] = useState(false);
   const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
+  const [overrideJustification, setOverrideJustification] = useState('');
+  const [overrideActive, setOverrideActive] = useState(false);
+  const [emptyError, setEmptyError] = useState('');
 
   const checkEnableSubmitForCertification = (e) => {
     const isEmail = Boolean(e.target.value.match(/.+@.+\..+/i));
@@ -72,6 +67,29 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       debounce(() => setEnableSubmitForCertification(true), 200)();
     } else {
       debounce(() => setEnableSubmitForCertification(false), 200)();
+    }
+  };
+
+  const handleOverrideChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setOverrideJustification(e.target.value);
+  };
+
+  const handleOverrideCancel = () => {
+    setEmptyError('');
+    setOverrideJustification('');
+  };
+
+  const handleOverrideDelete = () => {
+    setOverrideJustification('');
+    setOverrideActive(false);
+  };
+
+  const handleOverrideSave = () => {
+    if (overrideJustification === '')
+      setEmptyError('Justification cannot be empty');
+    else {
+      setEmptyError('');
+      setOverrideActive(true);
     }
   };
 
@@ -279,50 +297,95 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         Please review the information you have provided before continuing.
       </h5>
       <br />
-      <Alert variant="danger">
-        <Accordion>
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'flex-end'
-            }}
-          >
-            Your application contains errors shown below that must be fixed
-            before submission. You may either correct these or alternatively,
-            override and provide justification.
-            <Accordion.Toggle as={Button} variant="secondary" eventKey="0">
-              Override and Justify
-              <FontAwesomeIcon
-                icon={faCaretDown}
-                style={{marginLeft: '0.75em'}}
-              />
-            </Accordion.Toggle>
-          </div>
-          <Accordion.Collapse eventKey="0">
-            <Form>
-              <h4>Override Form Validation</h4>
-              <Form.Group controlId="overrideName">
-                <Form.Label>Your name:</Form.Label>
-                <Form.Control />
-              </Form.Group>
-              <Form.Group controlId="overrideJustification">
-                <Form.Label>Justification for incomplete form:</Form.Label>
-                <Form.Control as="textarea" rows={4} />
-              </Form.Group>
-              <Button variant="success">Save and Notify Administrator</Button>
-              <Accordion.Toggle
-                as={Button}
-                eventKey="0"
-                variant="light"
-                style={{marginLeft: '1em', border: '1px solid currentColor'}}
-              >
-                Cancel
+      {overrideActive ? (
+        <>
+          <Alert variant="danger">
+            <h4>Override Active</h4>
+          </Alert>
+          <Alert variant="secondary">
+            <p>
+              <strong>
+                You have chosen to override the errors present in your
+                application. This may cause a delay in processing your
+                application.
+              </strong>
+            </p>
+            <p>
+              <strong>Your Override Justification:</strong>
+            </p>
+            <p>{overrideJustification}</p>
+            <Button
+              style={{marginRight: '5px'}}
+              variant="secondary"
+              onClick={() => setOverrideActive(false)}
+            >
+              Edit Justification
+            </Button>
+            <Button variant="danger" onClick={handleOverrideDelete}>
+              Delete Override
+            </Button>
+          </Alert>
+        </>
+      ) : (
+        <Alert variant="danger">
+          <Accordion>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'flex-end'
+              }}
+            >
+              Your application contains errors shown below that must be fixed
+              before submission. You may either correct these or alternatively,
+              override and provide justification. Your justification will be
+              reviewed by CAS and may cause a delay in processing your
+              application.
+              <Accordion.Toggle as={Button} variant="secondary" eventKey="0">
+                Override and Justify
+                <FontAwesomeIcon
+                  icon={faCaretDown}
+                  style={{marginLeft: '0.75em'}}
+                />
               </Accordion.Toggle>
-            </Form>
-          </Accordion.Collapse>
-        </Accordion>
-      </Alert>
+            </div>
+            <Accordion.Collapse eventKey="0">
+              <>
+                <Form>
+                  <h4>Override Form Validation</h4>
+                  <Form.Group controlId="overrideJustification">
+                    <Form.Label>Justification for incomplete form:</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={4}
+                      value={overrideJustification}
+                      onChange={handleOverrideChange}
+                    />
+                  </Form.Group>
+                  <Button variant="success" onClick={handleOverrideSave}>
+                    Save
+                  </Button>
+                  <Accordion.Toggle
+                    as={Button}
+                    eventKey="0"
+                    variant="light"
+                    style={{
+                      marginLeft: '1em',
+                      border: '1px solid currentColor'
+                    }}
+                    onClick={handleOverrideCancel}
+                  >
+                    Cancel
+                  </Accordion.Toggle>
+                </Form>
+                {overrideJustification === '' && (
+                  <p style={{color: 'red'}}>{emptyError}</p>
+                )}
+              </>
+            </Accordion.Collapse>
+          </Accordion>
+        </Alert>
+      )}
 
       <ApplicationDetailsContainer
         liveValidate
@@ -332,7 +395,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         setHasErrors={setHasErrors}
       />
       <br />
-      {hasErrors ? (
+      {hasErrors && !overrideActive ? (
         <div className="errors">
           Your Application contains errors that must be fixed before submission.
         </div>
