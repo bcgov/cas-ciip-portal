@@ -15,6 +15,7 @@ describe('When reviewing a submitted application as an analyst', () => {
   const productionFormUrl = `${applicationUrl}&formResultId=${window.btoa(
     '["form_results",4]'
   )}`;
+  const summaryPageUrl = `${applicationUrl}&confirmationPage=true}`;
 
   beforeEach(() => {
     cy.sqlFixture('fixtures/form-validation-setup');
@@ -99,6 +100,10 @@ describe('When reviewing a submitted application as an analyst', () => {
 
     cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Emission');
+    cy.visit(summaryPageUrl);
+    cy.get('.admin.summary-card').happoScreenshot({
+      component: 'Admin Summary Card'
+    });
   });
 
   it('The application emissions form shows validation errors', () => {
@@ -116,6 +121,10 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('form.rjsf').happoScreenshot({component: 'Emissions form'});
     cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Fuel');
+    cy.visit(summaryPageUrl);
+    cy.get('.emission.summary-card').happoScreenshot({
+      component: 'Emission Summary Card'
+    });
   });
 
   it('The application fuels form shows validation errors', () => {
@@ -143,6 +152,10 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('form.rjsf').happoScreenshot({component: 'Fuels Form'});
     cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Production');
+    cy.visit(summaryPageUrl);
+    cy.get('.fuel.summary-card').happoScreenshot({
+      component: 'Fuel Summary Card'
+    });
   });
 
   it('The application production form shows validation errors', () => {
@@ -171,15 +184,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     });
     cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Summary');
-    cy.get('.admin.summary-card').happoScreenshot({
-      component: 'Admin Summary Card'
-    });
-    cy.get('.emission.summary-card').happoScreenshot({
-      component: 'Emission Summary Card'
-    });
-    cy.get('.fuel.summary-card').happoScreenshot({
-      component: 'Fuel Summary Card'
-    });
     cy.get('.production.summary-card').happoScreenshot({
       component: 'Production Summary Card'
     });
