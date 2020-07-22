@@ -1,5 +1,15 @@
 import React, {useRef, useState, SyntheticEvent} from 'react';
-import {Button, Row, Col, Card, Form} from 'react-bootstrap';
+import {
+  Accordion,
+  Alert,
+  Button,
+  Row,
+  Col,
+  Card,
+  Form
+} from 'react-bootstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
@@ -269,6 +279,50 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         Please review the information you have provided before continuing.
       </h5>
       <br />
+      <Alert variant="danger">
+        <Accordion>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'flex-end'
+            }}
+          >
+            Your application contains errors shown below that must be fixed
+            before submission. You may either correct these or alternatively,
+            override and provide justification.
+            <Accordion.Toggle as={Button} variant="secondary" eventKey="0">
+              Override and Justify
+              <FontAwesomeIcon
+                icon={faCaretDown}
+                style={{marginLeft: '0.75em'}}
+              />
+            </Accordion.Toggle>
+          </div>
+          <Accordion.Collapse eventKey="0">
+            <Form>
+              <h4>Override Form Validation</h4>
+              <Form.Group controlId="overrideName">
+                <Form.Label>Your name:</Form.Label>
+                <Form.Control />
+              </Form.Group>
+              <Form.Group controlId="overrideJustification">
+                <Form.Label>Justification for incomplete form:</Form.Label>
+                <Form.Control as="textarea" rows={4} />
+              </Form.Group>
+              <Button variant="success">Save and Notify Administrator</Button>
+              <Accordion.Toggle
+                as={Button}
+                eventKey="0"
+                variant="light"
+                style={{marginLeft: '1em', border: '1px solid currentColor'}}
+              >
+                Cancel
+              </Accordion.Toggle>
+            </Form>
+          </Accordion.Collapse>
+        </Accordion>
+      </Alert>
 
       <ApplicationDetailsContainer
         liveValidate
