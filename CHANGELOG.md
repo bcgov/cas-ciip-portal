@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.3...v1.1.0) (2020-07-22)
+
+
+### Features
+
+* fix grammar ([024d8bb](https://github.com/bcgov/cas-ciip-portal/commit/024d8bb36a8433657356911fe541414db8bd7737))
+* loading table shows loading animation in its center ([842c9b5](https://github.com/bcgov/cas-ciip-portal/commit/842c9b5c3503c2ea26298cce0813ef2a47cc12c2))
+* paginated tables make cells invisible when loading new page ([4530bd2](https://github.com/bcgov/cas-ciip-portal/commit/4530bd2a02e078b39ee3dbc8d0da7d11f41e02cb))
+* update form UX to be more clear about how/when data is saved ([c6fe797](https://github.com/bcgov/cas-ciip-portal/commit/c6fe7973eefc5637fea060938c1ee275ce714515))
+
+
+### Bug Fixes
+
+* Correct legal typos ([71932d9](https://github.com/bcgov/cas-ciip-portal/commit/71932d97ae8ed7726903f0d3def96ea874ccfacf))
+* Correct typos and update application disclaimer text ([dba1425](https://github.com/bcgov/cas-ciip-portal/commit/dba14250f812797b170dba197c331e8f214e729c))
+* Immediately remove requested org from access dropdown ([4f1ceef](https://github.com/bcgov/cas-ciip-portal/commit/4f1ceef01b9e0220ed25e996cedd201f5c77aa7d))
+* request_for_organisation_access doesn't need to query facilities ([287aa8c](https://github.com/bcgov/cas-ciip-portal/commit/287aa8cd676690305b1c63719597a532ccc4a96a))
+* Update text on certification redirect page ([e24b3ea](https://github.com/bcgov/cas-ciip-portal/commit/e24b3ea4def777e644c3826b96ff8cdcfa7f83db))
+
 ### [1.0.3](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.2...v1.0.3) (2020-07-20)
 
 
