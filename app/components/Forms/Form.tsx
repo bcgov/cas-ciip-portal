@@ -13,7 +13,7 @@ export default class Form<T> extends JsonSchemaForm<T> {
       // Id is 'root_path_to_field'
       const fieldPath = id.split('_');
       // Error schema is an object whose shape matches the form data
-      const {formData, errorSchema} = this.state;
+      const {formData, errorSchema} = this.state as any;
       const {errorSchema: newErrorSchema} = this.validate(formData);
 
       // We only want to retrieve the errors for the blurred field in newErrorSchema
