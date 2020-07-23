@@ -42,7 +42,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     }
 
     this.counter++;
-    const {configs} = this;
+    const {configs, mutationName} = this;
     async function commitMutation(
       environment,
       options: {
@@ -58,21 +58,25 @@ export default class BaseMutation<T extends BaseMutationType = never> {
           configs,
           onError: (error) => {
             reject(error);
-            failure_message &&
+            if (failure_message) {
               toast(failure_message, {
                 className: 'mutation-toast Toastify__toast--error',
                 autoClose: false,
-                position: 'bottom-right'
+                position: 'bottom-right',
+                // Don't show duplicate errors if the same mutation fails several times in a row
+                toastId: mutationName
               });
+            }
           },
           onCompleted: (response, errors) => {
             errors ? reject(errors) : resolve(response);
-            success_message &&
+            if (success_message) {
               toast(success_message, {
                 className: 'mutation-toast Toastify__toast--success',
                 autoClose: 5000,
                 position: 'bottom-right'
               });
+            }
           }
         });
       });
