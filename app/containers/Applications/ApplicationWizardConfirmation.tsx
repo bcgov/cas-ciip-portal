@@ -385,7 +385,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                     <Form.Control
                       as="textarea"
                       rows={4}
-                      value={overrideJustification}
+                      value={overrideJustification || ''}
                       onChange={handleOverrideChange}
                     />
                   </Form.Group>
