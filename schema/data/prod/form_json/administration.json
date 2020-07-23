@@ -168,17 +168,8 @@
       "ui:order": [
         "facilityName",
         "facilityType",
-        "bcghgid",
-        "facilityLocation"
-      ],
-      "facilityLocation": {
-        "ui:order": [
-          "locationStreetAddress",
-          "locationNearestCity",
-          "latitude",
-          "longitude"
-        ]
-      }
+        "bcghgid"
+      ]
     },
     "operator": {
       "naics": {
