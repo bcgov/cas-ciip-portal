@@ -28,7 +28,7 @@
             "type": "number"
           }
         },
-        "required": ["fuelRowId", "quantity", "fuelUnits","emissionCategoryRowId"]
+        "required": ["fuelRowId", "quantity","emissionCategoryRowId"]
       }
     }
   },

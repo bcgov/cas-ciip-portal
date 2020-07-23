@@ -64,7 +64,7 @@
                   "type": "string"
                 }
               },
-              "required": ["productAmount", "productUnits"]
+              "required": ["productAmount"]
             },
             {
               "properties": {
