@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`It matches the last accepted Snapshot 1`] = `
+exports[`The certify page It matches the last accepted Snapshot 1`] = `
 <Relay(DefaultLayout)
   session={
     Object {
@@ -31,6 +31,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
             "certificationSignature": "test",
             "hashMatches": true,
           },
+          "overrideJustification": null,
         },
       }
     }
@@ -53,6 +54,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
               "certificationSignature": "test",
               "hashMatches": true,
             },
+            "overrideJustification": null,
           },
         },
         "session": Object {
@@ -79,7 +81,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
 </Relay(DefaultLayout)>
 `;
 
-exports[`It renders ApplicationRecertificationContainer if hashMatches is false 1`] = `
+exports[`The certify page It renders ApplicationRecertificationContainer if hashMatches is false 1`] = `
 <Relay(DefaultLayout)
   session={
     Object {

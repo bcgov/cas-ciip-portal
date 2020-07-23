@@ -21,9 +21,11 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           rowId: 1,
           latestDraftRevision: {
+            id: 'abc',
             versionNumber: 1,
             certificationSignatureIsValid: false,
-            certificationUrl: undefined
+            certificationUrl: undefined,
+            overrideJustification: null
           }
         }}
         relay={null}
@@ -50,9 +52,11 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           rowId: 1,
           latestDraftRevision: {
+            id: 'abc',
             versionNumber: 1,
             certificationSignatureIsValid: false,
-            certificationUrl: undefined
+            certificationUrl: undefined,
+            overrideJustification: null
           }
         }}
         relay={null}
@@ -84,12 +88,16 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           rowId: 1,
           latestDraftRevision: {
+            id: 'abc',
             versionNumber: 1,
             certificationSignatureIsValid: true,
             certificationUrl: {
+              id: 'abc',
               certificationSignature: 'signed',
-              hashMatches: true
-            }
+              hashMatches: true,
+              certifierUrl: 'jkl'
+            },
+            overrideJustification: null
           }
         }}
         relay={null}
@@ -118,12 +126,16 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           rowId: 1,
           latestDraftRevision: {
+            id: 'abc',
             versionNumber: 1,
             certificationSignatureIsValid: false,
             certificationUrl: {
+              id: 'abc',
               certificationSignature: 'signed',
-              hashMatches: false
-            }
+              hashMatches: false,
+              certifierUrl: 'jkl'
+            },
+            overrideJustification: null
           }
         }}
         relay={null}
@@ -152,12 +164,16 @@ describe('The Confirmation Component', () => {
           id: 'abc',
           rowId: 1,
           latestDraftRevision: {
+            id: 'abc',
             versionNumber: 1,
             certificationSignatureIsValid: false,
             certificationUrl: {
+              id: 'abc',
               certificationSignature: undefined,
-              hashMatches: true
-            }
+              hashMatches: true,
+              certifierUrl: 'jkl'
+            },
+            overrideJustification: null
           }
         }}
         relay={null}
@@ -167,5 +183,69 @@ describe('The Confirmation Component', () => {
     expect(wrapper.find('h5').at(1).text()).toBe(
       'Your application has been sent to a certifier. Submission will be possible once they have verified the data in the application.'
     );
+  });
+
+  it('should show the override errors box if no override is currently set', () => {
+    const wrapper = shallow(
+      <ApplicationWizardConfirmationComponent
+        query={{
+          ' $fragmentRefs': {
+            ApplicationDetailsContainer_query: true
+          },
+          ' $refType': 'ApplicationWizardConfirmation_query'
+        }}
+        application={{
+          ' $refType': 'ApplicationWizardConfirmation_application',
+          ' $fragmentRefs': {
+            SubmitApplication_application: true,
+            ApplicationDetailsContainer_application: true
+          },
+          id: 'abc',
+          rowId: 1,
+          latestDraftRevision: {
+            id: 'abc',
+            versionNumber: 1,
+            certificationSignatureIsValid: false,
+            certificationUrl: undefined,
+            overrideJustification: null
+          }
+        }}
+        relay={null}
+      />
+    );
+    expect(wrapper.find('Alert').find('div').text()).toContain(
+      'Override and Justify'
+    );
+  });
+
+  it('should show the override active alert if an override is currently set', () => {
+    const wrapper = shallow(
+      <ApplicationWizardConfirmationComponent
+        query={{
+          ' $fragmentRefs': {
+            ApplicationDetailsContainer_query: true
+          },
+          ' $refType': 'ApplicationWizardConfirmation_query'
+        }}
+        application={{
+          ' $refType': 'ApplicationWizardConfirmation_application',
+          ' $fragmentRefs': {
+            SubmitApplication_application: true,
+            ApplicationDetailsContainer_application: true
+          },
+          id: 'abc',
+          rowId: 1,
+          latestDraftRevision: {
+            id: 'abc',
+            versionNumber: 1,
+            certificationSignatureIsValid: false,
+            certificationUrl: undefined,
+            overrideJustification: 'I did a bad thing and I dont want to fix it'
+          }
+        }}
+        relay={null}
+      />
+    );
+    expect(wrapper.find('Alert').at(0).text()).toContain('Override Active');
   });
 });

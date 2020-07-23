@@ -91,6 +91,7 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
               " $fragmentRefs": Object {
                 "IncentiveCalculatorContainer_applicationRevision": true,
               },
+              "overrideJustification": null,
             },
             "session": Object {
               " $fragmentRefs": Object {
@@ -107,6 +108,7 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
             " $fragmentRefs": Object {
               "IncentiveCalculatorContainer_applicationRevision": true,
             },
+            "overrideJustification": null,
           }
         }
       />
