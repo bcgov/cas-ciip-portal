@@ -8,6 +8,7 @@ import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation
 import {ApplicationWizardConfirmation_application} from 'ApplicationWizardConfirmation_application.graphql';
 import createCertificationUrlMutation from 'mutations/form/createCertificationUrl';
 import updateCertificationUrlMutation from 'mutations/form/updateCertificationUrlMutation';
+import updateApplicationRevisionMutation from 'mutations/application/updateApplicationRevisionMutation';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
@@ -56,9 +57,13 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const [hasErrors, setHasErrors] = useState(false);
   const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
-  const [overrideJustification, setOverrideJustification] = useState('');
-  const [overrideActive, setOverrideActive] = useState(false);
   const [emptyError, setEmptyError] = useState('');
+  const [overrideJustification, setOverrideJustification] = useState(
+    props.application.latestDraftRevision.overrideJustification
+  );
+  const [overrideActive, setOverrideActive] = useState(
+    props.application.latestDraftRevision.overrideJustification !== null
+  );
 
   const checkEnableSubmitForCertification = (e) => {
     const isEmail = Boolean(e.target.value.match(/.+@.+\..+/i));
@@ -76,21 +81,43 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 
   const handleOverrideCancel = () => {
     setEmptyError('');
-    setOverrideJustification('');
+    setOverrideActive(
+      props.application.latestDraftRevision.overrideJustification !== null
+    );
   };
 
-  const handleOverrideDelete = () => {
-    setOverrideJustification('');
+  const handleOverrideDelete = async () => {
+    const {environment} = props.relay;
+    const variables = {
+      input: {
+        id: props.application.latestDraftRevision.id,
+        applicationRevisionPatch: {
+          overrideJustification: null
+        }
+      }
+    };
+
+    await updateApplicationRevisionMutation(environment, variables);
+    setOverrideJustification(null);
     setOverrideActive(false);
   };
 
-  const handleOverrideSave = () => {
-    if (overrideJustification === '')
-      setEmptyError('Justification cannot be empty');
-    else {
+  const handleOverrideSave = async () => {
+    if (overrideJustification) {
+      const {environment} = props.relay;
+      const variables = {
+        input: {
+          id: props.application.latestDraftRevision.id,
+          applicationRevisionPatch: {
+            overrideJustification
+          }
+        }
+      };
+
+      await updateApplicationRevisionMutation(environment, variables);
       setEmptyError('');
       setOverrideActive(true);
-    }
+    } else setEmptyError('Justification cannot be empty');
   };
 
   const copyToClipboard = () => {
@@ -378,7 +405,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                     Cancel
                   </Accordion.Toggle>
                 </Form>
-                {overrideJustification === '' && (
+                {!overrideJustification && (
                   <p style={{color: 'red'}}>{emptyError}</p>
                 )}
               </>
@@ -445,8 +472,10 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
       ...SubmitApplication_application
       ...ApplicationDetailsContainer_application @arguments(version: $version)
       latestDraftRevision {
+        id
         versionNumber
         certificationSignatureIsValid
+        overrideJustification
         certificationUrl {
           id
           certificationSignature

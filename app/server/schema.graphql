@@ -448,6 +448,11 @@ type ApplicationRevision implements Node {
   """Whether or not reporter agreed the legal disclaimer"""
   legalDisclaimerAccepted: Boolean!
 
+  """
+  Reporter defined justification for overriding error validation when submitting this revision
+  """
+  overrideJustification: String
+
   """The date the application revision status was updated"""
   updatedAt: Datetime!
 
@@ -483,6 +488,9 @@ input ApplicationRevisionCondition {
   """Checks for equality with the object’s `legalDisclaimerAccepted` field."""
   legalDisclaimerAccepted: Boolean
 
+  """Checks for equality with the object’s `overrideJustification` field."""
+  overrideJustification: String
+
   """Checks for equality with the object’s `updatedAt` field."""
   updatedAt: Datetime
 
@@ -514,6 +522,11 @@ input ApplicationRevisionInput {
 
   """Whether or not reporter agreed the legal disclaimer"""
   legalDisclaimerAccepted: Boolean
+
+  """
+  Reporter defined justification for overriding error validation when submitting this revision
+  """
+  overrideJustification: String
 
   """The date the application revision status was updated"""
   updatedAt: Datetime
@@ -550,6 +563,11 @@ input ApplicationRevisionPatch {
 
   """Whether or not reporter agreed the legal disclaimer"""
   legalDisclaimerAccepted: Boolean
+
+  """
+  Reporter defined justification for overriding error validation when submitting this revision
+  """
+  overrideJustification: String
 
   """The date the application revision status was updated"""
   updatedAt: Datetime
@@ -606,6 +624,8 @@ enum ApplicationRevisionsOrderBy {
   LEGAL_DISCLAIMER_ACCEPTED_ASC
   LEGAL_DISCLAIMER_ACCEPTED_DESC
   NATURAL
+  OVERRIDE_JUSTIFICATION_ASC
+  OVERRIDE_JUSTIFICATION_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
   UPDATED_AT_ASC

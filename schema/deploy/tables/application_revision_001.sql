@@ -3,7 +3,7 @@
 
 begin;
 
-alter table ggircs_portal.application_revision add column override_justification varchar(10000) default '';
+alter table ggircs_portal.application_revision add column override_justification varchar(10000);
 
 comment on column ggircs_portal.application_revision.override_justification is 'Reporter defined justification for overriding error validation when submitting this revision';
 

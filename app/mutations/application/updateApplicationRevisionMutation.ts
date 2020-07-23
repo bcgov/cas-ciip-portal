@@ -17,6 +17,7 @@ const mutation = graphql`
         applicationId
         versionNumber
         legalDisclaimerAccepted
+        overrideJustification
       }
     }
   }
