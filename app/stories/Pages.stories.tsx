@@ -58,6 +58,10 @@ export default {
   decorators: [withA11y]
 };
 
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+useRouter.mockImplementation(() => ({
+  asPath: '/reporter'
+}));
 export const admin = () => render(Admin);
 export const registration = () => render(Registration);
 export const user_dashboard = () => render(Reporter);

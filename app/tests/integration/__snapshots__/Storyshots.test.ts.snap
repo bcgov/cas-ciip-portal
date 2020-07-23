@@ -1114,20 +1114,20 @@ Array [
       </header>
       <div>
         <nav
-          className="jsx-1103754433 navigation-main"
+          className="jsx-1717546368 navigation-main"
           id="navbar"
         >
           <div
-            className="jsx-1103754433 container"
+            className="jsx-1717546368 container"
           >
             <ul
-              className="jsx-1103754433"
+              className="jsx-1717546368"
             >
               <li
-                className="jsx-1103754433 active"
+                className="jsx-1717546368 active"
               >
                 <a
-                  className="jsx-1103754433"
+                  className="jsx-1717546368"
                   href="/reporter"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
@@ -1136,10 +1136,10 @@ Array [
                 </a>
               </li>
               <li
-                className="jsx-1103754433"
+                className="jsx-1717546368 "
               >
                 <a
-                  className="jsx-1103754433"
+                  className="jsx-1717546368"
                   href="/reporter/facilities"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
