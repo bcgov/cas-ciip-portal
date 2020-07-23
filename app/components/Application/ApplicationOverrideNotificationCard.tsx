@@ -8,7 +8,6 @@ interface Props {
 const ApplicationOverrideNotification: React.FunctionComponent<Props> = ({
   overrideJustification
 }) => {
-  console.log(overrideJustification);
   return (
     <Card style={{margin: '1rem 0'}}>
       <Card.Header className="bg-danger">

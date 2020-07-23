@@ -61,7 +61,7 @@ describe('The Confirmation Component', () => {
     expect(wrapper.find('CardHeader').at(0).text()).toBe(
       'Application Certification'
     );
-    expect(wrapper.find('Button').at(0).text()).toBe(
+    expect(wrapper.find('Button').last().text()).toBe(
       'Submit for Certification'
     );
   });

@@ -394,19 +394,10 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     },
                   },
                   "facility": Object {
-                    "facilityLocation": Object {
-                      "ui:order": Array [
-                        "locationStreetAddress",
-                        "locationNearestCity",
-                        "latitude",
-                        "longitude",
-                      ],
-                    },
                     "ui:order": Array [
                       "facilityName",
                       "facilityType",
                       "bcghgid",
-                      "facilityLocation",
                     ],
                   },
                   "operationalRepresentative": Object {

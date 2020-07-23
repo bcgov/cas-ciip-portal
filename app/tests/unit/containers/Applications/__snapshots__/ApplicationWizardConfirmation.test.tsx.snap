@@ -15,6 +15,95 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   <br
     className="jsx-1753635690"
   />
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="danger"
+  >
+    <h4
+      className="jsx-1753635690"
+    >
+      Override Active
+    </h4>
+  </Alert>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="secondary"
+  >
+    <p
+      className="jsx-1753635690"
+    >
+      <strong
+        className="jsx-1753635690"
+      >
+        You have chosen to override the errors present in your application. This may cause a delay in processing your application.
+      </strong>
+    </p>
+    <p
+      className="jsx-1753635690"
+    >
+      <strong
+        className="jsx-1753635690"
+      >
+        Your Override Justification:
+      </strong>
+    </p>
+    <p
+      className="jsx-1753635690"
+    />
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
+      type="button"
+      variant="secondary"
+    >
+      Edit Justification
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+      variant="danger"
+    >
+      Delete Override
+    </Button>
+  </Alert>
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -150,6 +239,95 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
   <br
     className="jsx-1753635690"
   />
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="danger"
+  >
+    <h4
+      className="jsx-1753635690"
+    >
+      Override Active
+    </h4>
+  </Alert>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="secondary"
+  >
+    <p
+      className="jsx-1753635690"
+    >
+      <strong
+        className="jsx-1753635690"
+      >
+        You have chosen to override the errors present in your application. This may cause a delay in processing your application.
+      </strong>
+    </p>
+    <p
+      className="jsx-1753635690"
+    >
+      <strong
+        className="jsx-1753635690"
+      >
+        Your Override Justification:
+      </strong>
+    </p>
+    <p
+      className="jsx-1753635690"
+    />
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
+      type="button"
+      variant="secondary"
+    >
+      Edit Justification
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+      variant="danger"
+    >
+      Delete Override
+    </Button>
+  </Alert>
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -308,6 +486,95 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
   <br
     className="jsx-1753635690"
   />
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="danger"
+  >
+    <h4
+      className="jsx-1753635690"
+    >
+      Override Active
+    </h4>
+  </Alert>
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
+    }
+    variant="secondary"
+  >
+    <p
+      className="jsx-1753635690"
+    >
+      <strong
+        className="jsx-1753635690"
+      >
+        You have chosen to override the errors present in your application. This may cause a delay in processing your application.
+      </strong>
+    </p>
+    <p
+      className="jsx-1753635690"
+    >
+      <strong
+        className="jsx-1753635690"
+      >
+        Your Override Justification:
+      </strong>
+    </p>
+    <p
+      className="jsx-1753635690"
+    />
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      style={
+        Object {
+          "marginRight": "5px",
+        }
+      }
+      type="button"
+      variant="secondary"
+    >
+      Edit Justification
+    </Button>
+    <Button
+      active={false}
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+      variant="danger"
+    >
+      Delete Override
+    </Button>
+  </Alert>
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
