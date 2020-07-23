@@ -81,6 +81,18 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
           padding: 5px 10px;
         }
 
+        .summary-item > svg {
+          // padding on an svg element (e.g. icons) may make its height/width 0 and render the svg invisible (or giant on chrome)
+          padding: 0;
+          margin-top: 10px;
+        }
+
+        .summary-item ul.error-detail {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+        }
+
         .summary-item > source-field-heading {
           padding: 0;
         }
