@@ -6,6 +6,7 @@ import {certifyQueryResponse} from 'certifyQuery.graphql';
 import ApplicationDetailsContainer from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationRecertificationContainer from 'containers/Applications/ApplicationRecertificationContainer';
 import CertificationSignature from 'containers/Forms/CertificationSignature';
+import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
 import SignatureDisclaimerCard from 'components/SignatureDisclaimerCard';
@@ -35,6 +36,7 @@ class Certify extends Component<Props> {
         application(id: $applicationId) {
           latestDraftRevision {
             certificationSignatureIsValid
+            overrideJustification
             certificationUrl {
               id
               certificationSignature
@@ -51,6 +53,7 @@ class Certify extends Component<Props> {
 
   render() {
     const {query} = this.props;
+    const {overrideJustification} = query?.application?.latestDraftRevision;
     const {
       hashMatches
     } = this.props.query.application.latestDraftRevision.certificationUrl;
@@ -76,6 +79,11 @@ class Certify extends Component<Props> {
       <DefaultLayout title="Submission Certification" session={query.session}>
         {hashMatches ? (
           <>
+            {overrideJustification && (
+              <ApplicationOverrideNotification
+                overrideJustification={overrideJustification}
+              />
+            )}
             <ApplicationDetailsContainer
               query={query}
               application={query.application}
