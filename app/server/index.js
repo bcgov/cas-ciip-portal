@@ -89,12 +89,23 @@ const pgPool = new pg.Pool({connectionString: databaseURL});
 // Graphile-worker function
 async function worker() {
   // Run a worker to execute jobs:
-  await run({
+  const runner = await run({
     pgPool,
     concurrency: 5,
     pollInterval: 1000,
+    noHandleSignals: true,
     taskDirectory: path.resolve(__dirname, 'tasks')
   });
+
+  const sigtermHandler = async () => {
+    try {
+      await runner.stop();
+    } finally {
+      process.removeListener('SIGTERM', sigtermHandler);
+    }
+  };
+
+  process.addListener('SIGTERM', sigtermHandler);
 }
 
 // Start graphile-worker
@@ -406,4 +417,16 @@ app.prepare().then(() => {
       console.log(`> Ready on http://localhost:${port}`);
     });
   }
+
+  process.on('SIGTERM', () => {
+    console.info('SIGTERM signal received.');
+    console.log('Closing http server.');
+    server.close(() => {
+      console.log('Http server closed.');
+      pgPool.end(() => {
+        console.log('Database connection closed.');
+        process.exit(0);
+      });
+    });
+  });
 });
