@@ -108,11 +108,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           .with-shadow {
             box-shadow: 1px 8px 13px -5px #00336694;
           }
-          // .accordion button {
-          //   text-align: left;
-          //   padding-left: 0;
-          //   color: #1a5a96;
-          // }
           .accordion .card-body {
             font-size: 15px;
           }
