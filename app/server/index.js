@@ -2,10 +2,10 @@ const express = require('express');
 const http = require('http');
 const https = require('https');
 const fs = require('fs');
-const {postgraphile} = require('postgraphile');
+const {postgraphile, makePluginHook} = require('postgraphile');
 const nextjs = require('next');
 const PgManyToManyPlugin = require('@graphile-contrib/pg-many-to-many');
-
+const PostgraphileLogConsola = require('postgraphile-log-consola');
 const crypto = require('crypto');
 const pg = require('pg');
 const port = Number.parseInt(process.env.PORT, 10) || 3004;
@@ -214,16 +214,36 @@ app.prepare().then(() => {
     })
   );
 
-  // The graphile config object should be swapped in dev/prod
-  // https://www.graphile.org/postgraphile/usage-library/#for-development
-  // https://www.graphile.org/postgraphile/usage-library/#for-production
+  // Use consola for logging instead of default logger
+  const pluginHook = makePluginHook([PostgraphileLogConsola]);
+  let postgraphileOptions = {
+    pluginHook,
+    appendPlugins: [PgManyToManyPlugin],
+    classicIds: true,
+    enableQueryBatching: true,
+    dynamicJson: true
+  };
+
+  if (process.env.NODE_ENV === 'production') {
+    postgraphileOptions = {
+      ...postgraphileOptions,
+      retryOnInitFail: true,
+      extendedErrors: ['errcode']
+    };
+  } else {
+    postgraphileOptions = {
+      ...postgraphileOptions,
+      graphiql: true,
+      enhanceGraphiql: true,
+      allowExplain: true,
+      extendedErrors: ['hint', 'detail', 'errcode'],
+      showErrorStack: 'json'
+    };
+  }
+
   server.use(
     postgraphile(pgPool, process.env.DATABASE_SCHEMA || 'ggircs_portal', {
-      appendPlugins: [PgManyToManyPlugin],
-      graphiql: process.env.NODE_ENV !== 'production',
-      classicIds: true,
-      enableQueryBatching: true,
-      dynamicJson: true,
+      ...postgraphileOptions,
       pgSettings(req) {
         if (NO_AUTH) {
           const groups = getAllGroups();
