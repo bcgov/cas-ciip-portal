@@ -15,6 +15,7 @@ describe('When reviewing a submitted application as an analyst', () => {
   const productionFormUrl = `${applicationUrl}&formResultId=${window.btoa(
     '["form_results",4]'
   )}`;
+  const summaryPageUrl = `${applicationUrl}&confirmationPage=true}`;
 
   beforeEach(() => {
     cy.sqlFixture('fixtures/form-validation-setup');
@@ -89,6 +90,13 @@ describe('When reviewing a submitted application as an analyst', () => {
       '#root_operationalRepresentative_mailingAddress_postalCode +div .error-detail'
     ).contains('Format should be A1A 1A1');
 
+    cy.visit(summaryPageUrl);
+    cy.get('.admin.summary-card').happoScreenshot({
+      component: 'Admin Summary Card',
+      variant: 'with errors'
+    });
+    cy.visit(adminFormUrl);
+
     // Fix invalid data
     cy.get('#root_operationalRepresentative_mailingAddress_postalCode')
       .clear()
@@ -99,6 +107,11 @@ describe('When reviewing a submitted application as an analyst', () => {
 
     cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Emission');
+    cy.visit(summaryPageUrl);
+    cy.get('.admin.summary-card').happoScreenshot({
+      component: 'Admin Summary Card',
+      variant: 'no errors'
+    });
   });
 
   it('The application emissions form shows validation errors', () => {
@@ -111,11 +124,23 @@ describe('When reviewing a submitted application as an analyst', () => {
       '#root_sourceTypes_0_gases_0_annualEmission +div .error-detail'
     ).contains('is a required property');
 
+    cy.visit(summaryPageUrl);
+    cy.get('.emission.summary-card').happoScreenshot({
+      component: 'Emission Summary Card',
+      variant: 'with errors'
+    });
+    cy.visit(emissionFormUrl);
+
     // Fix invalid data
     cy.get('#root_sourceTypes_0_gases_0_annualEmission').type('42');
     cy.get('form.rjsf').happoScreenshot({component: 'Emissions form'});
     cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Fuel');
+    cy.visit(summaryPageUrl);
+    cy.get('.emission.summary-card').happoScreenshot({
+      component: 'Emission Summary Card',
+      variant: 'no errors'
+    });
   });
 
   it('The application fuels form shows validation errors', () => {
@@ -133,6 +158,13 @@ describe('When reviewing a submitted application as an analyst', () => {
       'is a required property'
     );
 
+    cy.visit(summaryPageUrl);
+    cy.get('.fuel.summary-card').happoScreenshot({
+      component: 'Fuel Summary Card',
+      variant: 'with errors'
+    });
+    cy.visit(fuelFormUrl);
+
     // Fix invalid data
     cy.get('#root_0_fuelRowId').type('Diesel');
     cy.get('#root_0_fuelRowId-item-1 > .dropdown-item').click();
@@ -143,6 +175,11 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('form.rjsf').happoScreenshot({component: 'Fuels Form'});
     cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Production');
+    cy.visit(summaryPageUrl);
+    cy.get('.fuel.summary-card').happoScreenshot({
+      component: 'Fuel Summary Card',
+      variant: 'no errors'
+    });
   });
 
   it('The application production form shows validation errors', () => {
@@ -160,6 +197,13 @@ describe('When reviewing a submitted application as an analyst', () => {
       'is a required property'
     );
 
+    cy.visit(summaryPageUrl);
+    cy.get('.production.summary-card').happoScreenshot({
+      component: 'Production Summary Card',
+      variant: 'with errors'
+    });
+    cy.visit(productionFormUrl);
+
     // Fix invalid data
     cy.get('#root_0_productRowId').clear().type('Aluminum');
     cy.get('.dropdown-item').click();
@@ -171,5 +215,9 @@ describe('When reviewing a submitted application as an analyst', () => {
     });
     cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Summary');
+    cy.get('.production.summary-card').happoScreenshot({
+      component: 'Production Summary Card',
+      variant: 'no errors'
+    });
   });
 });

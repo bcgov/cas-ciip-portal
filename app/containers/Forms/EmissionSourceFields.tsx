@@ -6,7 +6,7 @@ const EmissionSourceFields: React.FunctionComponent<FieldProps> = ({
   formData
 }) => {
   return (
-    <Row style={{margin: '20px 0 20px 0'}} className="SourceFieldHeading">
+    <Row style={{margin: '20px 0 20px 0'}} className="source-field-heading">
       <Col xs={12} md={4}>
         <h5 style={{textAlign: 'left'}}>{formData}</h5>
       </Col>
@@ -23,10 +23,11 @@ const EmissionSourceFields: React.FunctionComponent<FieldProps> = ({
         .hidden-title label {
           display: none;
         }
-        .SourceFieldHeading {
+        .source-field-heading {
           border-top: 4px solid #0000007a;
           padding: 30px 10px 10px 0px;
           margin-top: 30px !important;
+          width: 100%;
         }
       `}</style>
       <style jsx>{`

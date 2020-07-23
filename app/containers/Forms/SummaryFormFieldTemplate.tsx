@@ -15,7 +15,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
 
   if (schema.type === 'array')
     return (
-      <Col xs={12} className="summary-array-col">
+      <Col xs={12} className={`${classNames} summary-array-col`}>
         {description}
         {children}
         {errors}
@@ -23,7 +23,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
     );
   if (schema.type === 'object')
     return (
-      <Col xs={12} className="summary-formrow">
+      <Col xs={12} className={`${classNames} summary-formrow`}>
         <Form.Row>
           {description}
           {children}
@@ -45,7 +45,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
       <style jsx global>{`
         .summary-formgroup.form-group.field {
           width: 100%;
-          margin: 0 10px;
+          margin: 0;
         }
         .summary-formrow h3 {
           margin-top: 35px;
@@ -56,7 +56,7 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
           display: inline-flex;
         }
         .summary-label {
-          width: 30%;
+          flex-basis: 30%;
           display: inline-block;
           border: 1px solid;
           margin-bottom: -1px;
@@ -67,29 +67,53 @@ const FormFieldTemplate: React.FunctionComponent<FieldTemplateProps> = ({
           display: none;
         }
         .summary-item {
-          display: inline-block;
-          width: 70%;
+          flex-basis: 70%;
+          // Allows the item to grow to 100% when summary-label is hidden
+          flex-grow: 1;
+          display: inline-flex;
+          align-items: flex-start;
           border: 1px solid;
+          border-color: #aaa;
           margin-bottom: -1px;
           margin-left: -1px;
-          padding: 5px;
-          border-color: #aaa;
+        }
+        .summary-item > * {
           padding: 5px 10px;
+        }
+
+        .summary-item > svg {
+          // padding on an svg element (e.g. icons) may make its height/width 0 and render the svg invisible (or giant on chrome)
+          padding: 0;
+          margin-top: 10px;
+        }
+
+        .summary-item ul.error-detail {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+        }
+
+        .summary-item > source-field-heading {
+          padding: 0;
         }
         .emission .form-row .summary-formgroup:nth-of-type(2n) {
           margin-top: 50px;
           margin-bottom: 20px;
         }
-        .emission h3 {
-          margin: 0;
-        }
+
         .form-row .summary-formgroup:nth-of-type(2n) {
           background-color: #f1f1f1;
         }
-        .emission .summary-item {
-          border: 0;
-          padding: 20px 20px 10px 0;
+        .emission .summary-label {
+          border: none;
         }
+        .emission .summary-item {
+          border: none;
+          display: inline-flex;
+          justify-content: space-around;
+          align-items: flex-start;
+        }
+
         .summary-card .card-body {
           padding-top: 0;
           padding-bottom: 50px;
