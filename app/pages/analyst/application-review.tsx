@@ -69,11 +69,9 @@ class ApplicationReview extends Component<Props> {
           applicationRevisionStatus={query.application.reviewRevisionStatus}
           applicationRowId={query.application.rowId}
         />
-        {overrideJustification && (
-          <ApplicationOverrideNotification
-            overrideJustification={overrideJustification}
-          />
-        )}
+        <ApplicationOverrideNotification
+          overrideJustification={overrideJustification}
+        />
         <hr />
         <Row className="application-container">
           <Col md={8} className="application-body">

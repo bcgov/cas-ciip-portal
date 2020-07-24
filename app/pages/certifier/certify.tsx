@@ -79,11 +79,9 @@ class Certify extends Component<Props> {
       <DefaultLayout title="Submission Certification" session={query.session}>
         {hashMatches ? (
           <>
-            {overrideJustification && (
-              <ApplicationOverrideNotification
-                overrideJustification={overrideJustification}
-              />
-            )}
+            <ApplicationOverrideNotification
+              overrideJustification={overrideJustification}
+            />
             <ApplicationDetailsContainer
               query={query}
               application={query.application}
