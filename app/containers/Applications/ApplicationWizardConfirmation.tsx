@@ -1,15 +1,13 @@
 import React, {useRef, useState, SyntheticEvent} from 'react';
-import {Accordion, Alert, Button, Row, Col, Card, Form} from 'react-bootstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCaretDown} from '@fortawesome/free-solid-svg-icons';
+import {Button, Row, Col, Card, Form} from 'react-bootstrap';
 import {createFragmentContainer, graphql, RelayProp} from 'react-relay';
 import SubmitApplication from 'components/SubmitApplication';
 import {ApplicationWizardConfirmation_query} from 'ApplicationWizardConfirmation_query.graphql';
 import {ApplicationWizardConfirmation_application} from 'ApplicationWizardConfirmation_application.graphql';
 import createCertificationUrlMutation from 'mutations/form/createCertificationUrl';
 import updateCertificationUrlMutation from 'mutations/form/updateCertificationUrlMutation';
-import updateApplicationRevisionMutation from 'mutations/application/updateApplicationRevisionMutation';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
+import ApplicationOverrideJustification from 'components/Application/ApplicationOverrideJustification';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
@@ -55,7 +53,6 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const [url, setUrl] = useState<string>();
   const [isChecked, toggleChecked] = useState(true);
   const [hasErrors, setHasErrors] = useState(false);
-  const [accordionOpen, setAccordionOpen] = useState(false);
   const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
   const [emptyError, setEmptyError] = useState('');
@@ -63,7 +60,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     props.application.latestDraftRevision.overrideJustification
   );
   const [overrideActive, setOverrideActive] = useState(
-    props.application.latestDraftRevision.overrideJustification !== null
+    revision.overrideJustification !== null
   );
 
   const checkEnableSubmitForCertification = (e) => {
@@ -335,101 +332,14 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         Please review the information you have provided before continuing.
       </h5>
       <br />
-      {overrideActive ? (
-        <>
-          <Alert variant="danger">
-            <h4>Override Active</h4>
-          </Alert>
-          <Alert variant="secondary">
-            <p>
-              <strong>
-                You have chosen to override the errors present in your
-                application. This may cause a delay in processing your
-                application.
-              </strong>
-            </p>
-            <p>
-              <strong>Your Override Justification:</strong>
-            </p>
-            <p>{overrideJustification}</p>
-            <Button
-              style={{marginRight: '5px'}}
-              variant="secondary"
-              onClick={handleOverrideEdit}
-            >
-              Edit Justification
-            </Button>
-            <Button variant="danger" onClick={handleOverrideDelete}>
-              Delete Override
-            </Button>
-          </Alert>
-        </>
-      ) : (
-        <Alert variant="danger">
-          <Accordion>
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'flex-end'
-              }}
-            >
-              Your application contains errors shown below that must be fixed
-              before submission. You may either correct these or alternatively,
-              override and provide justification. Your justification will be
-              reviewed by CAS and may cause a delay in processing your
-              application.
-              <Accordion.Toggle
-                as={Button}
-                variant="secondary"
-                eventKey="0"
-                onClick={() => setAccordionOpen(!accordionOpen)}
-              >
-                Override and Justify
-                <FontAwesomeIcon
-                  icon={faCaretDown}
-                  style={{marginLeft: '0.75em'}}
-                />
-              </Accordion.Toggle>
-            </div>
-            <Accordion.Collapse in={accordionOpen} eventKey="0">
-              <>
-                <Form>
-                  <h4>Override Form Validation</h4>
-                  <Form.Group controlId="overrideJustification">
-                    <Form.Label>Justification for incomplete form:</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={4}
-                      value={overrideJustification || ''}
-                      onChange={handleOverrideChange}
-                    />
-                  </Form.Group>
-                  <Button variant="success" onClick={handleOverrideSave}>
-                    Save
-                  </Button>
-                  <Accordion.Toggle
-                    as={Button}
-                    eventKey="0"
-                    variant="light"
-                    style={{
-                      marginLeft: '1em',
-                      border: '1px solid currentColor'
-                    }}
-                    onClick={handleOverrideCancel}
-                  >
-                    Cancel
-                  </Accordion.Toggle>
-                </Form>
-                {!overrideJustification && (
-                  <p style={{color: 'red'}}>{emptyError}</p>
-                )}
-              </>
-            </Accordion.Collapse>
-          </Accordion>
-        </Alert>
-      )}
-
+      <ApplicationOverrideJustification
+        overrideActive={overrideActive}
+        setOverrideActive={setOverrideActive}
+        applicationOverrideJustification={
+          props.application.latestDraftRevision.overrideJustification
+        }
+        revisionId={props.application.latestDraftRevision.id}
+      />
       <ApplicationDetailsContainer
         liveValidate
         query={props.query}
@@ -464,7 +374,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       ) : (
         certificationMessage
       )}
-      <style jsx global>
+      <style jsx>
         {`
           .errors {
             margin-left: 20px;

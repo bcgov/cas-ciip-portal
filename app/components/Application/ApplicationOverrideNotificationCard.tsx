@@ -9,9 +9,9 @@ const ApplicationOverrideNotification: React.FunctionComponent<Props> = ({
   overrideJustification
 }) => {
   return (
-    <Card style={{margin: '1rem 0'}}>
+    <Card id="justification-card">
       <Card.Header className="bg-danger">
-        <h4>Override is active</h4>
+        Error validation override is active
       </Card.Header>
       <Card.Body>
         <Card.Text>
@@ -28,6 +28,9 @@ const ApplicationOverrideNotification: React.FunctionComponent<Props> = ({
         </Card>
       </Card.Body>
       <style jsx>{`
+        #justification-card {
+          margin: 1rem 0;
+        }
         #justification {
           max-height: 19.2em;
           background: #eee;
