@@ -55,6 +55,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const [url, setUrl] = useState<string>();
   const [isChecked, toggleChecked] = useState(true);
   const [hasErrors, setHasErrors] = useState(false);
+  const [accordionOpen, setAccordionOpen] = useState(false);
   const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
   const [emptyError, setEmptyError] = useState('');
@@ -80,9 +81,13 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   };
 
   const handleOverrideCancel = () => {
+    setAccordionOpen(false);
     setEmptyError('');
     setOverrideActive(
       props.application.latestDraftRevision.overrideJustification !== null
+    );
+    setOverrideJustification(
+      props.application.latestDraftRevision.overrideJustification || null
     );
   };
 
@@ -104,6 +109,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 
   const handleOverrideSave = async () => {
     if (overrideJustification) {
+      setAccordionOpen(false);
       const {environment} = props.relay;
       const variables = {
         input: {
@@ -118,6 +124,11 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       setEmptyError('');
       setOverrideActive(true);
     } else setEmptyError('Justification cannot be empty');
+  };
+
+  const handleOverrideEdit = () => {
+    setOverrideActive(false);
+    setAccordionOpen(true);
   };
 
   const copyToClipboard = () => {
@@ -344,7 +355,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
             <Button
               style={{marginRight: '5px'}}
               variant="secondary"
-              onClick={() => setOverrideActive(false)}
+              onClick={handleOverrideEdit}
             >
               Edit Justification
             </Button>
@@ -368,7 +379,12 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
               override and provide justification. Your justification will be
               reviewed by CAS and may cause a delay in processing your
               application.
-              <Accordion.Toggle as={Button} variant="secondary" eventKey="0">
+              <Accordion.Toggle
+                as={Button}
+                variant="secondary"
+                eventKey="0"
+                onClick={() => setAccordionOpen(!accordionOpen)}
+              >
                 Override and Justify
                 <FontAwesomeIcon
                   icon={faCaretDown}
@@ -376,7 +392,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                 />
               </Accordion.Toggle>
             </div>
-            <Accordion.Collapse eventKey="0">
+            <Accordion.Collapse in={accordionOpen} eventKey="0">
               <>
                 <Form>
                   <h4>Override Form Validation</h4>
