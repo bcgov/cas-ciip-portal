@@ -80,6 +80,7 @@ const NumberField: React.FunctionComponent<FieldProps> = ({
       defaultValue={(schema as any).defaultValue}
       value={formData}
       onValueChange={({floatValue}) => onChange(floatValue)}
+      onBlur={() => onBlur(idSchema.$id, formData)}
     />
   );
 };

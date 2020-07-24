@@ -148,9 +148,6 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.visit(fuelFormUrl);
     cy.contains('Add a fuel').click();
     cy.contains('Next Page').click();
-    cy.get('#root_0_fuelUnits +div .error-detail').contains(
-      'is a required property'
-    );
     cy.get('#root_0_quantity +div .error-detail').contains(
       'is a required property'
     );

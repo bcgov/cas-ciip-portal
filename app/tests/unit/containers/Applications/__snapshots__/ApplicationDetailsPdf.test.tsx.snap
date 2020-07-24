@@ -542,25 +542,25 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": -60000000,
-                          "annualEmission": 30000000,
-                          "gasDescription": "consequat Ut Duis",
-                          "gasType": "in qui",
-                          "gwp": 0,
+                          "annualCO2e": -20000000,
+                          "annualEmission": 50000000,
+                          "gasDescription": "in qui",
+                          "gasType": "mollit eu esse",
+                          "gwp": -60000000,
                         },
                         Object {
-                          "annualCO2e": -60000000,
-                          "annualEmission": 30000000,
-                          "gasDescription": "consequat Ut Duis",
-                          "gasType": "in qui",
-                          "gwp": 0,
+                          "annualCO2e": -80000000,
+                          "annualEmission": 20000000,
+                          "gasDescription": "mollit eu esse",
+                          "gasType": "culpa",
+                          "gwp": -20000000,
                         },
                         Object {
-                          "annualCO2e": -60000000,
-                          "annualEmission": 30000000,
-                          "gasDescription": "consequat Ut Duis",
-                          "gasType": "in qui",
-                          "gwp": 0,
+                          "annualCO2e": -40000000,
+                          "annualEmission": 40000000,
+                          "gasDescription": "culpa",
+                          "gasType": "est dolor",
+                          "gwp": -80000000,
                         },
                       ],
                       "sourceTypeName": "est dolor",
@@ -568,11 +568,11 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": -60000000,
-                          "annualEmission": 30000000,
-                          "gasDescription": "consequat Ut Duis",
-                          "gasType": "in qui",
-                          "gwp": 0,
+                          "annualCO2e": 0,
+                          "annualEmission": 10000000,
+                          "gasDescription": "est dolor",
+                          "gasType": "consequat Ut Duis",
+                          "gwp": -40000000,
                         },
                         Object {
                           "annualCO2e": -60000000,
@@ -582,40 +582,26 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                           "gwp": 0,
                         },
                         Object {
-                          "annualCO2e": -60000000,
-                          "annualEmission": 30000000,
-                          "gasDescription": "consequat Ut Duis",
-                          "gasType": "in qui",
-                          "gwp": 0,
+                          "annualCO2e": -20000000,
+                          "annualEmission": 50000000,
+                          "gasDescription": "in qui",
+                          "gasType": "mollit eu esse",
+                          "gwp": -60000000,
                         },
                       ],
-                      "sourceTypeName": "est dolor",
+                      "sourceTypeName": "mollit eu esse",
                     },
                     Object {
                       "gases": Array [
                         Object {
-                          "annualCO2e": -60000000,
-                          "annualEmission": 30000000,
-                          "gasDescription": "consequat Ut Duis",
-                          "gasType": "in qui",
-                          "gwp": 0,
-                        },
-                        Object {
-                          "annualCO2e": -60000000,
-                          "annualEmission": 30000000,
-                          "gasDescription": "consequat Ut Duis",
-                          "gasType": "in qui",
-                          "gwp": 0,
-                        },
-                        Object {
-                          "annualCO2e": -60000000,
-                          "annualEmission": 30000000,
-                          "gasDescription": "consequat Ut Duis",
-                          "gasType": "in qui",
-                          "gwp": 0,
+                          "annualCO2e": -80000000,
+                          "annualEmission": 20000000,
+                          "gasDescription": "mollit eu esse",
+                          "gasType": "culpa",
+                          "gwp": -20000000,
                         },
                       ],
-                      "sourceTypeName": "est dolor",
+                      "sourceTypeName": "consequat Ut Duis",
                     },
                   ],
                 }
@@ -656,8 +642,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "required": Array [
                         "gasType",
                         "annualEmission",
-                        "gwp",
-                        "annualCO2e",
                       ],
                       "type": "object",
                     },
@@ -812,11 +796,25 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
+                    "comments": "consequat Ut Duis",
+                    "emissionCategoryRowId": -60000000,
+                    "fuelRowId": -40000000,
+                    "fuelUnits": "in qui",
+                    "quantity": 0,
+                  },
+                  Object {
+                    "comments": "culpa",
+                    "emissionCategoryRowId": -40000000,
+                    "fuelRowId": -20000000,
+                    "fuelUnits": "est dolor",
+                    "quantity": -80000000,
+                  },
+                  Object {
                     "comments": "in qui",
                     "emissionCategoryRowId": -20000000,
-                    "fuelRowId": -40000000,
-                    "fuelUnits": "est dolor",
-                    "quantity": 0,
+                    "fuelRowId": 0,
+                    "fuelUnits": "mollit eu esse",
+                    "quantity": -60000000,
                   },
                 ]
               }
@@ -853,7 +851,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                       "required": Array [
                         "fuelRowId",
                         "quantity",
-                        "fuelUnits",
                         "emissionCategoryRowId",
                       ],
                       "type": "object",
@@ -974,16 +971,25 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
               formData={
                 Array [
                   Object {
-                    "comments": "in qui",
+                    "comments": "mollit eu esse",
                     "isEnergyProduct": false,
+                    "productAmount": 0,
                     "productRowId": -60000000,
+                    "productUnits": "in qui",
+                    "requiresEmissionAllocation": false,
+                    "requiresProductAmount": true,
+                  },
+                  Object {
+                    "comments": "consequat Ut Duis",
+                    "isEnergyProduct": false,
+                    "productRowId": -40000000,
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },
                   Object {
-                    "comments": "est dolor",
+                    "comments": "culpa",
                     "isEnergyProduct": false,
-                    "productRowId": -80000000,
+                    "productRowId": -20000000,
                     "requiresEmissionAllocation": false,
                     "requiresProductAmount": false,
                   },
@@ -1043,7 +1049,6 @@ exports[`ApplicationDetailsPdf should render application pdf donwload link 1`] =
                               },
                               "required": Array [
                                 "productAmount",
-                                "productUnits",
                               ],
                             },
                             Object {

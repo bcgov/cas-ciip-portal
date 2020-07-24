@@ -159,7 +159,6 @@ exports[`The ProductionFields Component with archived product should match the s
                 },
                 "required": Array [
                   "productAmount",
-                  "productUnits",
                 ],
               },
               Object {
@@ -385,7 +384,6 @@ exports[`The ProductionFields Component with published product should match the 
               },
               "required": Array [
                 "productAmount",
-                "productUnits",
               ],
             },
             Object {

@@ -7,7 +7,8 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
   schema,
   id,
   placeholder,
-  value
+  value,
+  onBlur
 }) => {
   const getOptions = useCallback(
     () =>
@@ -32,6 +33,14 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
     onChange(items[0]?.id);
   };
 
+  const handleBlur = () => {
+    onBlur(id, value);
+  };
+
+  const handleMenuToggle = (...args) => {
+    console.log('menu toggle', args);
+  };
+
   return (
     <SearchDropdown
       id={id}
@@ -40,6 +49,8 @@ const SearchDropdownWidget: React.FunctionComponent<WidgetProps> = ({
       placeholder={placeholder}
       selected={getSelected()}
       onChange={handleChange}
+      onBlur={handleBlur}
+      onMenuToggle={handleMenuToggle}
     />
   );
 };
