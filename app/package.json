@@ -149,7 +149,7 @@
     "graphql": "^14.6.0",
     "graphql-voyager": "^1.0.0-rc.30",
     "isomorphic-fetch": "^2.2.1",
-    "keycloak-connect": "^10.0.0",
+    "keycloak-connect": "^11.0.0",
     "moment-timezone": "^0.5.31",
     "next": "^9.4.4",
     "nodemailer": "^6.4.8",
