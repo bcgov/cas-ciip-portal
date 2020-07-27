@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OverrideNotificationCard Should render null if overrideJustification prop is null 1`] = `""`;
+
+exports[`OverrideNotificationCard Should render the notification card & justification text if the overrideJustification prop is not null 1`] = `
+<Card
+  body={false}
+  id="justification-card"
+>
+  <CardHeader
+    className="bg-danger"
+  >
+    Error validation override is active
+  </CardHeader>
+  <CardBody
+    tabIndex={0}
+  >
+    <CardText>
+      <strong
+        className="jsx-576105227"
+      >
+        There were errors in this application that the reporter has chosen to override. Justification for overriding the errors is provided in the box below:
+      </strong>
+    </CardText>
+    <Card
+      body={false}
+    >
+      <div
+        className="jsx-576105227 scrollbar"
+        id="justification"
+      >
+        <CardBody>
+          bad stuff happened
+        </CardBody>
+      </div>
+    </Card>
+  </CardBody>
+  <JSXStyle
+    id="576105227"
+  >
+    #justification-card.jsx-576105227{margin:1rem 0;}#justification.jsx-576105227{max-height:19.2em;background:#eee;overflow-y:scroll;}.scrollbar.jsx-576105227::-webkit-scrollbar{-webkit-appearance:none;width:8px;}.scrollbar.jsx-576105227::-webkit-scrollbar-thumb{border-radius:4px;background-color:rgba(0,0,0,0.5);box-shadow:0 0 1px rgba(255,255,255,0.5);}
+  </JSXStyle>
+</Card>
+`;

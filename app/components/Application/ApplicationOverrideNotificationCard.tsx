@@ -5,7 +5,7 @@ interface Props {
   overrideJustification: string;
 }
 
-const ApplicationOverrideNotification: React.FunctionComponent<Props> = ({
+export const ApplicationOverrideNotification: React.FunctionComponent<Props> = ({
   overrideJustification
 }) => {
   if (overrideJustification)

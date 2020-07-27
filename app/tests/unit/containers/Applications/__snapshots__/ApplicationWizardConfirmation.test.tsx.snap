@@ -15,169 +15,12 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   <br
     className="jsx-1753635690"
   />
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="danger"
-  >
-    <ForwardRef>
-      <div
-        className="jsx-1753635690"
-        style={
-          Object {
-            "display": "flex",
-            "flexWrap": "wrap",
-            "justifyContent": "flex-end",
-          }
-        }
-      >
-        Your application contains errors shown below that must be fixed before submission. You may either correct these or alternatively, override and provide justification. Your justification will be reviewed by CAS and may cause a delay in processing your application.
-        <ForwardRef
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "defaultProps": Object {
-                "active": false,
-                "disabled": false,
-                "type": "button",
-                "variant": "primary",
-              },
-              "displayName": "Button",
-              "render": [Function],
-            }
-          }
-          eventKey="0"
-          onClick={[Function]}
-          variant="secondary"
-        >
-          Override and Justify
-          <FontAwesomeIcon
-            border={false}
-            className=""
-            fixedWidth={false}
-            flip={null}
-            icon={
-              Object {
-                "icon": Array [
-                  320,
-                  512,
-                  Array [],
-                  "f0d7",
-                  "M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z",
-                ],
-                "iconName": "caret-down",
-                "prefix": "fas",
-              }
-            }
-            inverse={false}
-            listItem={false}
-            mask={null}
-            pull={null}
-            pulse={false}
-            rotation={null}
-            size={null}
-            spin={false}
-            style={
-              Object {
-                "marginLeft": "0.75em",
-              }
-            }
-            swapOpacity={false}
-            symbol={false}
-            title=""
-            transform={null}
-          />
-        </ForwardRef>
-      </div>
-      <AccordionCollapse
-        eventKey="0"
-        in={false}
-      >
-        <Form
-          inline={false}
-        >
-          <h4
-            className="jsx-1753635690"
-          >
-            Override Form Validation
-          </h4>
-          <FormGroup
-            controlId="overrideJustification"
-          >
-            <FormLabel
-              column={false}
-              srOnly={false}
-            >
-              Justification for incomplete form:
-            </FormLabel>
-            <FormControl
-              as="textarea"
-              onChange={[Function]}
-              rows={4}
-              value=""
-            />
-          </FormGroup>
-          <Button
-            active={false}
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-            variant="success"
-          >
-            Save
-          </Button>
-          <ForwardRef
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "defaultProps": Object {
-                  "active": false,
-                  "disabled": false,
-                  "type": "button",
-                  "variant": "primary",
-                },
-                "displayName": "Button",
-                "render": [Function],
-              }
-            }
-            eventKey="0"
-            onClick={[Function]}
-            style={
-              Object {
-                "border": "1px solid currentColor",
-                "marginLeft": "1em",
-              }
-            }
-            variant="light"
-          >
-            Cancel
-          </ForwardRef>
-        </Form>
-        <p
-          className="jsx-1753635690"
-          style={
-            Object {
-              "color": "red",
-            }
-          }
-        />
-      </AccordionCollapse>
-    </ForwardRef>
-  </Alert>
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationOverrideJustification={null}
+    overrideActive={false}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -192,6 +35,147 @@ exports[`The Confirmation Component match the snapshot 1`] = `
           "certificationUrl": undefined,
           "id": "abc",
           "overrideJustification": null,
+          "versionNumber": 1,
+        },
+        "rowId": 1,
+      }
+    }
+    liveValidate={true}
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_query": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_query",
+      }
+    }
+    review={false}
+    setHasErrors={[Function]}
+  />
+  <br
+    className="jsx-1753635690"
+  />
+  <br />
+  <Card
+    body={false}
+  >
+    <CardHeader>
+      Application Certification
+    </CardHeader>
+    <CardBody>
+      <CardText>
+        Thank you for reviewing your application to the CleanBC Industrial Incentive Program.
+      </CardText>
+      <CardText>
+        Your application is almost complete.
+        <ul>
+          <li>
+            Please send the secure URL below to a Certifying Official in your organisation to approve the application. You will be notified via email when this step is complete.
+          </li>
+          <li>
+            Once you have received notification that the application has been certified, you will need to return here to submit the application.
+          </li>
+          <li>
+            Once submitted, you will be notified via email when your application has been approved or if any further information is required to process your application.
+          </li>
+        </ul>
+      </CardText>
+      <CardText>
+        Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
+      </CardText>
+      <Form
+        inline={false}
+        onSubmit={[Function]}
+      >
+        <FormRow>
+          <FormGroup
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "Col",
+                "render": [Function],
+              }
+            }
+            controlId="certifierEmail"
+            md="4"
+          >
+            <FormControl
+              name="email"
+              placeholder="Certifier Email"
+              type="email"
+            />
+          </FormGroup>
+        </FormRow>
+        <FormGroup>
+          <FormCheck
+            checked={true}
+            className="text-muted"
+            disabled={false}
+            inline={false}
+            isInvalid={false}
+            isValid={false}
+            label="Notify certifier via email that this application is ready for certification"
+            name="sendEmailChecked"
+            onChange={[Function]}
+            title=""
+            type="checkbox"
+          />
+        </FormGroup>
+        <Button
+          active={false}
+          disabled={false}
+          type="submit"
+          variant="info"
+        >
+          Submit for Certification
+        </Button>
+      </Form>
+    </CardBody>
+    <CardFooter />
+  </Card>
+  <JSXStyle
+    id="1753635690"
+  >
+    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`The Confirmation Component should render the override justification component with the right props if an override is currently set 1`] = `
+<Fragment>
+  <h1
+    className="jsx-1753635690"
+  >
+    Summary of your application:
+  </h1>
+  <h5
+    className="jsx-1753635690"
+  >
+    Please review the information you have provided before continuing.
+  </h5>
+  <br
+    className="jsx-1753635690"
+  />
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationOverrideJustification="I did a bad thing and I dont want to fix it"
+    overrideActive={true}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
+  <Relay(ApplicationDetailsComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "certificationSignatureIsValid": false,
+          "certificationUrl": undefined,
+          "id": "abc",
+          "overrideJustification": "I did a bad thing and I dont want to fix it",
           "versionNumber": 1,
         },
         "rowId": 1,
@@ -295,7 +279,148 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   <JSXStyle
     id="1753635690"
   >
-    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`The Confirmation Component should render the override justification component with the right props if no override is currently set 1`] = `
+<Fragment>
+  <h1
+    className="jsx-1753635690"
+  >
+    Summary of your application:
+  </h1>
+  <h5
+    className="jsx-1753635690"
+  >
+    Please review the information you have provided before continuing.
+  </h5>
+  <br
+    className="jsx-1753635690"
+  />
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationOverrideJustification={null}
+    overrideActive={false}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
+  <Relay(ApplicationDetailsComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "certificationSignatureIsValid": false,
+          "certificationUrl": undefined,
+          "id": "abc",
+          "overrideJustification": null,
+          "versionNumber": 1,
+        },
+        "rowId": 1,
+      }
+    }
+    liveValidate={true}
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_query": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_query",
+      }
+    }
+    review={false}
+    setHasErrors={[Function]}
+  />
+  <br
+    className="jsx-1753635690"
+  />
+  <br />
+  <Card
+    body={false}
+  >
+    <CardHeader>
+      Application Certification
+    </CardHeader>
+    <CardBody>
+      <CardText>
+        Thank you for reviewing your application to the CleanBC Industrial Incentive Program.
+      </CardText>
+      <CardText>
+        Your application is almost complete.
+        <ul>
+          <li>
+            Please send the secure URL below to a Certifying Official in your organisation to approve the application. You will be notified via email when this step is complete.
+          </li>
+          <li>
+            Once you have received notification that the application has been certified, you will need to return here to submit the application.
+          </li>
+          <li>
+            Once submitted, you will be notified via email when your application has been approved or if any further information is required to process your application.
+          </li>
+        </ul>
+      </CardText>
+      <CardText>
+        Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
+      </CardText>
+      <Form
+        inline={false}
+        onSubmit={[Function]}
+      >
+        <FormRow>
+          <FormGroup
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "Col",
+                "render": [Function],
+              }
+            }
+            controlId="certifierEmail"
+            md="4"
+          >
+            <FormControl
+              name="email"
+              placeholder="Certifier Email"
+              type="email"
+            />
+          </FormGroup>
+        </FormRow>
+        <FormGroup>
+          <FormCheck
+            checked={true}
+            className="text-muted"
+            disabled={false}
+            inline={false}
+            isInvalid={false}
+            isValid={false}
+            label="Notify certifier via email that this application is ready for certification"
+            name="sendEmailChecked"
+            onChange={[Function]}
+            title=""
+            type="checkbox"
+          />
+        </FormGroup>
+        <Button
+          active={false}
+          disabled={false}
+          type="submit"
+          variant="info"
+        >
+          Submit for Certification
+        </Button>
+      </Form>
+    </CardBody>
+    <CardFooter />
+  </Card>
+  <JSXStyle
+    id="1753635690"
+  >
+    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
   </JSXStyle>
 </Fragment>
 `;
@@ -315,169 +440,12 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
   <br
     className="jsx-1753635690"
   />
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="danger"
-  >
-    <ForwardRef>
-      <div
-        className="jsx-1753635690"
-        style={
-          Object {
-            "display": "flex",
-            "flexWrap": "wrap",
-            "justifyContent": "flex-end",
-          }
-        }
-      >
-        Your application contains errors shown below that must be fixed before submission. You may either correct these or alternatively, override and provide justification. Your justification will be reviewed by CAS and may cause a delay in processing your application.
-        <ForwardRef
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "defaultProps": Object {
-                "active": false,
-                "disabled": false,
-                "type": "button",
-                "variant": "primary",
-              },
-              "displayName": "Button",
-              "render": [Function],
-            }
-          }
-          eventKey="0"
-          onClick={[Function]}
-          variant="secondary"
-        >
-          Override and Justify
-          <FontAwesomeIcon
-            border={false}
-            className=""
-            fixedWidth={false}
-            flip={null}
-            icon={
-              Object {
-                "icon": Array [
-                  320,
-                  512,
-                  Array [],
-                  "f0d7",
-                  "M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z",
-                ],
-                "iconName": "caret-down",
-                "prefix": "fas",
-              }
-            }
-            inverse={false}
-            listItem={false}
-            mask={null}
-            pull={null}
-            pulse={false}
-            rotation={null}
-            size={null}
-            spin={false}
-            style={
-              Object {
-                "marginLeft": "0.75em",
-              }
-            }
-            swapOpacity={false}
-            symbol={false}
-            title=""
-            transform={null}
-          />
-        </ForwardRef>
-      </div>
-      <AccordionCollapse
-        eventKey="0"
-        in={false}
-      >
-        <Form
-          inline={false}
-        >
-          <h4
-            className="jsx-1753635690"
-          >
-            Override Form Validation
-          </h4>
-          <FormGroup
-            controlId="overrideJustification"
-          >
-            <FormLabel
-              column={false}
-              srOnly={false}
-            >
-              Justification for incomplete form:
-            </FormLabel>
-            <FormControl
-              as="textarea"
-              onChange={[Function]}
-              rows={4}
-              value=""
-            />
-          </FormGroup>
-          <Button
-            active={false}
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-            variant="success"
-          >
-            Save
-          </Button>
-          <ForwardRef
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "defaultProps": Object {
-                  "active": false,
-                  "disabled": false,
-                  "type": "button",
-                  "variant": "primary",
-                },
-                "displayName": "Button",
-                "render": [Function],
-              }
-            }
-            eventKey="0"
-            onClick={[Function]}
-            style={
-              Object {
-                "border": "1px solid currentColor",
-                "marginLeft": "1em",
-              }
-            }
-            variant="light"
-          >
-            Cancel
-          </ForwardRef>
-        </Form>
-        <p
-          className="jsx-1753635690"
-          style={
-            Object {
-              "color": "red",
-            }
-          }
-        />
-      </AccordionCollapse>
-    </ForwardRef>
-  </Alert>
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationOverrideJustification={null}
+    overrideActive={false}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -620,7 +588,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
   <JSXStyle
     id="1753635690"
   >
-    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
   </JSXStyle>
 </Fragment>
 `;
@@ -640,169 +608,12 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
   <br
     className="jsx-1753635690"
   />
-  <Alert
-    closeLabel="Close alert"
-    show={true}
-    transition={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "appear": false,
-          "in": false,
-          "mountOnEnter": false,
-          "timeout": 300,
-          "unmountOnExit": false,
-        },
-        "displayName": "Fade",
-        "render": [Function],
-      }
-    }
-    variant="danger"
-  >
-    <ForwardRef>
-      <div
-        className="jsx-1753635690"
-        style={
-          Object {
-            "display": "flex",
-            "flexWrap": "wrap",
-            "justifyContent": "flex-end",
-          }
-        }
-      >
-        Your application contains errors shown below that must be fixed before submission. You may either correct these or alternatively, override and provide justification. Your justification will be reviewed by CAS and may cause a delay in processing your application.
-        <ForwardRef
-          as={
-            Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "defaultProps": Object {
-                "active": false,
-                "disabled": false,
-                "type": "button",
-                "variant": "primary",
-              },
-              "displayName": "Button",
-              "render": [Function],
-            }
-          }
-          eventKey="0"
-          onClick={[Function]}
-          variant="secondary"
-        >
-          Override and Justify
-          <FontAwesomeIcon
-            border={false}
-            className=""
-            fixedWidth={false}
-            flip={null}
-            icon={
-              Object {
-                "icon": Array [
-                  320,
-                  512,
-                  Array [],
-                  "f0d7",
-                  "M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z",
-                ],
-                "iconName": "caret-down",
-                "prefix": "fas",
-              }
-            }
-            inverse={false}
-            listItem={false}
-            mask={null}
-            pull={null}
-            pulse={false}
-            rotation={null}
-            size={null}
-            spin={false}
-            style={
-              Object {
-                "marginLeft": "0.75em",
-              }
-            }
-            swapOpacity={false}
-            symbol={false}
-            title=""
-            transform={null}
-          />
-        </ForwardRef>
-      </div>
-      <AccordionCollapse
-        eventKey="0"
-        in={false}
-      >
-        <Form
-          inline={false}
-        >
-          <h4
-            className="jsx-1753635690"
-          >
-            Override Form Validation
-          </h4>
-          <FormGroup
-            controlId="overrideJustification"
-          >
-            <FormLabel
-              column={false}
-              srOnly={false}
-            >
-              Justification for incomplete form:
-            </FormLabel>
-            <FormControl
-              as="textarea"
-              onChange={[Function]}
-              rows={4}
-              value=""
-            />
-          </FormGroup>
-          <Button
-            active={false}
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-            variant="success"
-          >
-            Save
-          </Button>
-          <ForwardRef
-            as={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "defaultProps": Object {
-                  "active": false,
-                  "disabled": false,
-                  "type": "button",
-                  "variant": "primary",
-                },
-                "displayName": "Button",
-                "render": [Function],
-              }
-            }
-            eventKey="0"
-            onClick={[Function]}
-            style={
-              Object {
-                "border": "1px solid currentColor",
-                "marginLeft": "1em",
-              }
-            }
-            variant="light"
-          >
-            Cancel
-          </ForwardRef>
-        </Form>
-        <p
-          className="jsx-1753635690"
-          style={
-            Object {
-              "color": "red",
-            }
-          }
-        />
-      </AccordionCollapse>
-    </ForwardRef>
-  </Alert>
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationOverrideJustification={null}
+    overrideActive={false}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -885,7 +696,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
   <JSXStyle
     id="1753635690"
   >
-    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
   </JSXStyle>
 </Fragment>
 `;

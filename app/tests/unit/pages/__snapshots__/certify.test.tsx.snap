@@ -16,6 +16,9 @@ exports[`The certify page It matches the last accepted Snapshot 1`] = `
   }
   title="Submission Certification"
 >
+  <ApplicationOverrideNotification
+    overrideJustification={null}
+  />
   <Relay(ApplicationDetailsComponent)
     application={
       Object {

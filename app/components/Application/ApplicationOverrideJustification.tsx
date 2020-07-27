@@ -13,7 +13,7 @@ interface Props {
   relay: RelayProp;
 }
 
-const ApplicationOverrideJustificationComponent: React.FunctionComponent<Props> = ({
+export const ApplicationOverrideJustificationComponent: React.FunctionComponent<Props> = ({
   overrideActive,
   setOverrideActive,
   applicationOverrideJustification,

@@ -21,6 +21,9 @@ exports[`The application-review page It matches the last accepted Snapshot 1`] =
     }
     applicationRowId={1}
   />
+  <ApplicationOverrideNotification
+    overrideJustification={null}
+  />
   <hr
     className="jsx-1070550671"
   />

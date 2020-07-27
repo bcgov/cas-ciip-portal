@@ -185,7 +185,7 @@ describe('The Confirmation Component', () => {
     );
   });
 
-  it('should show the override errors box if no override is currently set', () => {
+  it('should render the override justification component with the right props if no override is currently set', () => {
     const wrapper = shallow(
       <ApplicationWizardConfirmationComponent
         query={{
@@ -213,12 +213,20 @@ describe('The Confirmation Component', () => {
         relay={null}
       />
     );
-    expect(wrapper.find('Alert').find('div').text()).toContain(
-      'Override and Justify'
-    );
+    expect(wrapper).toMatchSnapshot();
+    expect(
+      wrapper
+        .find('Relay(ApplicationOverrideJustificationComponent)')
+        .prop('applicationOverrideJustification')
+    ).toBe(null);
+    expect(
+      wrapper
+        .find('Relay(ApplicationOverrideJustificationComponent)')
+        .prop('overrideActive')
+    ).toBe(false);
   });
 
-  it('should show the override active alert if an override is currently set', () => {
+  it('should render the override justification component with the right props if an override is currently set', () => {
     const wrapper = shallow(
       <ApplicationWizardConfirmationComponent
         query={{
@@ -246,6 +254,16 @@ describe('The Confirmation Component', () => {
         relay={null}
       />
     );
-    expect(wrapper.find('Alert').at(0).text()).toContain('Override Active');
+    expect(wrapper).toMatchSnapshot();
+    expect(
+      wrapper
+        .find('Relay(ApplicationOverrideJustificationComponent)')
+        .prop('applicationOverrideJustification')
+    ).toBe('I did a bad thing and I dont want to fix it');
+    expect(
+      wrapper
+        .find('Relay(ApplicationOverrideJustificationComponent)')
+        .prop('overrideActive')
+    ).toBe(true);
   });
 });
