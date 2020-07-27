@@ -101,59 +101,67 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
   } = props.applicationRevisionStatus.applicationRevisionByApplicationIdAndVersionNumber;
 
   return (
-    <Row>
-      <Col md={3}>
-        <h3>Application Status*: </h3>
-        <p>
-          * Status changes will be immediately confirmed by email notification
-        </p>
-      </Col>
-      {confirmStatusChangeModal}
-      {isCurrentVersion ? (
-        <Col md={2}>
-          <Dropdown style={{width: '100%'}}>
-            <Dropdown.Toggle
-              style={{width: '100%', textTransform: 'capitalize'}}
+    <>
+      <Row>
+        <Col md={3}>
+          <h3>Application Status*: </h3>
+        </Col>
+        {confirmStatusChangeModal}
+        {isCurrentVersion ? (
+          <Col md={2}>
+            <Dropdown style={{width: '100%'}}>
+              <Dropdown.Toggle
+                style={{width: '100%', textTransform: 'capitalize'}}
+                variant={
+                  statusBadgeColor[
+                    props.applicationRevisionStatus.applicationRevisionStatus
+                  ]
+                }
+                id="dropdown"
+              >
+                {props.applicationRevisionStatus.applicationRevisionStatus}
+              </Dropdown.Toggle>
+              <Dropdown.Menu style={{width: '100%'}}>
+                {Object.keys(statusBadgeColor)
+                  .filter(
+                    (status) =>
+                      !['DRAFT', currentRevisionStatus].includes(status)
+                  )
+                  .map((status) => (
+                    <DropdownMenuItemComponent
+                      key={status}
+                      itemEventKey={status}
+                      itemFunc={renderStatusConfirmationModal}
+                      itemTitle={status}
+                    />
+                  ))}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Col>
+        ) : (
+          <Col md={2}>
+            <Button
+              disabled
               variant={
                 statusBadgeColor[
                   props.applicationRevisionStatus.applicationRevisionStatus
                 ]
               }
-              id="dropdown"
             >
               {props.applicationRevisionStatus.applicationRevisionStatus}
-            </Dropdown.Toggle>
-            <Dropdown.Menu style={{width: '100%'}}>
-              {Object.keys(statusBadgeColor)
-                .filter(
-                  (status) => !['DRAFT', currentRevisionStatus].includes(status)
-                )
-                .map((status) => (
-                  <DropdownMenuItemComponent
-                    key={status}
-                    itemEventKey={status}
-                    itemFunc={renderStatusConfirmationModal}
-                    itemTitle={status}
-                  />
-                ))}
-            </Dropdown.Menu>
-          </Dropdown>
+            </Button>
+          </Col>
+        )}
+      </Row>
+      <Row>
+        <Col md={12}>
+          <p>
+            * Status changes will be immediately confirmed by email
+            notification.
+          </p>
         </Col>
-      ) : (
-        <Col md={2}>
-          <Button
-            disabled
-            variant={
-              statusBadgeColor[
-                props.applicationRevisionStatus.applicationRevisionStatus
-              ]
-            }
-          >
-            {props.applicationRevisionStatus.applicationRevisionStatus}
-          </Button>
-        </Col>
-      )}
-    </Row>
+      </Row>
+    </>
   );
 };
 
