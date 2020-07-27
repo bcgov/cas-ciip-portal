@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const https = require('https');
+const morgan = require('morgan');
 const fs = require('fs');
 const {postgraphile, makePluginHook} = require('postgraphile');
 const nextjs = require('next');
@@ -155,6 +156,7 @@ const getRedirectURL = (req) => {
 app.prepare().then(() => {
   const server = express();
 
+  server.use(morgan('combined'));
   // Enable serving ACME HTTP-01 challenge response written to disk by acme.sh
   // https://letsencrypt.org/docs/challenge-types/#http-01-challenge
   // https://github.com/acmesh-official/acme.sh
