@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.1.0...v1.2.0) (2020-07-27)
+
+
+### Features
+
+* add cron job template to renew https certificate ([b2b9efa](https://github.com/bcgov/cas-ciip-portal/commit/b2b9efa2d8fc7551376ae0fb5deba93f3dc05c4c))
+* add http request logging with morgan ([71c690e](https://github.com/bcgov/cas-ciip-portal/commit/71c690e322124360f729a696ab38a5536e311d8d))
+* add onBlur support to all custom widgets and fields ([4688b32](https://github.com/bcgov/cas-ciip-portal/commit/4688b32b81ce4de5212be5be5ac702d568c50c39))
+* application form fields are validated on blur ([aebadc2](https://github.com/bcgov/cas-ciip-portal/commit/aebadc22824171610b854e7844a45d6134e30bc0))
+* disable graphile worker signal handling and add SIGTERM listeners ([25f7be1](https://github.com/bcgov/cas-ciip-portal/commit/25f7be163dffb5028d0d2a87ac2f975a7cd9d423))
+* improve rendering of summary emission form ([4775c25](https://github.com/bcgov/cas-ciip-portal/commit/4775c25a11f88aff7dad9281a448d3e31605d09d))
+* prevent toastify from creating too many toasts ([b19c463](https://github.com/bcgov/cas-ciip-portal/commit/b19c463a9368e0ae1502c1feae5b14b632d45fad))
+* read-only form fields should not be marked as required ([a188335](https://github.com/bcgov/cas-ciip-portal/commit/a188335aa57e0afb1a0ad6d3a932434a4e15b27d))
+* use recommended postgraphile options in development and production ([0569dbb](https://github.com/bcgov/cas-ciip-portal/commit/0569dbbc671a8d59f83a73eb123a342ab746ff19))
+
+
+### Bug Fixes
+
+* do not set padding on svg elements and remove list-style on errors ([9f5581b](https://github.com/bcgov/cas-ciip-portal/commit/9f5581b7b342157e1ad50580b207d7312fb39435))
+* subheader active link changes depending on the route ([eef241f](https://github.com/bcgov/cas-ciip-portal/commit/eef241fda0908cd629dd72892e3e3b57236288ef))
+
 ## [1.1.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.0.3...v1.1.0) (2020-07-22)
 
 
