@@ -95,10 +95,24 @@ describe('When reviewing a submitted application as an analyst', () => {
       component: 'Admin Summary Card',
       variant: 'with errors'
     });
+
+    // Override Justification screenshots
     cy.get('.override-accordion').happoScreenshot({
-      component: 'Summary Page',
-      variant: 'with errors'
+      component: 'Override Justification',
+      variant: 'closed'
     });
+    cy.get('.override-accordion > .btn').click();
+    cy.get('.override-accordion').happoScreenshot({
+      component: 'Override Justification',
+      variant: 'open'
+    });
+    cy.get('#overrideJustification').clear().type('justification goes here');
+    cy.get('.btn-success').click();
+    cy.get('.alert-secondary').happoScreenshot({
+      component: 'Override Justification',
+      variant: 'override active'
+    });
+    cy.get('.btn-danger').click();
     cy.visit(adminFormUrl);
 
     // Fix invalid data
