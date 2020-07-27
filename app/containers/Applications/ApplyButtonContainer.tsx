@@ -25,6 +25,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
   const {hasSwrsReport, rowId} = facilityByFacilityId;
   const applicationId = applyButtonDetails?.applicationByApplicationId?.id;
   const [showMissingReportModal, setShowMissingReportModal] = useState(false);
+  const [applyButtonClicked, setApplyButtonClicked] = useState(false);
 
   const router = useRouter();
 
@@ -40,6 +41,7 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
 
   if (!applicationId) {
     const startApplication = async () => {
+      setApplyButtonClicked(true);
       const {environment} = relay;
       const variables = {
         input: {
@@ -100,7 +102,11 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={startApplication}>
+          <Button
+            variant="danger"
+            disabled={applyButtonClicked}
+            onClick={startApplication}
+          >
             Begin Application Anyway
           </Button>
           <Button
@@ -123,7 +129,11 @@ export const ApplyButton: React.FunctionComponent<Props> = ({
     return (
       <>
         {missingReportModal}
-        <Button variant="primary" onClick={checkForSwrsReport}>
+        <Button
+          variant="primary"
+          disabled={applyButtonClicked}
+          onClick={checkForSwrsReport}
+        >
           Apply for CIIP for this facility
         </Button>
       </>
