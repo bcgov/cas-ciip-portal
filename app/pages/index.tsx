@@ -219,7 +219,7 @@ export default class Index extends Component<Props> {
             </p>
           </Col>
         </div>
-        <style jsx>{`
+        <style jsx global>{`
           .value-prop {
             display: flex;
             flex-direction: column;
@@ -242,6 +242,11 @@ export default class Index extends Component<Props> {
           @media (min-width: 767.98px) {
             #photo-row {
               margin-top: 100px;
+            }
+          }
+          @media screen and (min-width: 992px) {
+            #page-content {
+              padding-top: 110px;
             }
           }
         `}</style>

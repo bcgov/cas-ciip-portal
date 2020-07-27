@@ -12,22 +12,22 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={6}
     >
       <h3
-        className="jsx-348810478 blue"
+        className="jsx-260136842 blue"
       >
         What is the CleanBC Industrial Incentive Program?
       </h3>
       <p
-        className="jsx-348810478"
+        className="jsx-260136842"
       >
         The CleanBC Industrial Incentive Program (CIIP) is part of the CleanBC Program for Industry, which applies to large industrial operations that report their emissions under the Greenhouse Gas Industrial Reporting and Control Act (GGIRCA).
       </p>
       <p
-        className="jsx-348810478"
+        className="jsx-260136842"
       >
         The CIIP helps encourage cleaner industrial operations across the province by reducing carbon tax costs for facilities that can demonstrate they operate near world-leading emissions benchmarks.
       </p>
       <p
-        className="jsx-348810478"
+        className="jsx-260136842"
       >
         As the price of carbon rises, the CleanBC Program for Industry will support competitiveness and facilitate emission reductions using revenues from the carbon tax that industry pays above $30 per tonne carbon dioxide equivalent (tCO2e).
       </p>
@@ -49,7 +49,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={12}
     >
       <h4
-        className="jsx-348810478 blue"
+        className="jsx-260136842 blue"
       >
         How to Apply
       </h4>
@@ -58,19 +58,19 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-348810478 value-prop"
+        className="jsx-260136842 value-prop"
       >
         <img
-          className="jsx-348810478"
+          className="jsx-260136842"
           src="/static/icons/icon-register.svg"
         />
         <h5
-          className="jsx-348810478 blue"
+          className="jsx-260136842 blue"
         >
           1. Register as an Industrial Reporter
         </h5>
         <p
-          className="jsx-348810478"
+          className="jsx-260136842"
         >
           Before you can apply for the CIIP on behalf of an eligible operation, you must register with the Ministry of Environment and Climate Change Strategy.
         </p>
@@ -80,19 +80,19 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-348810478 value-prop"
+        className="jsx-260136842 value-prop"
       >
         <img
-          className="jsx-348810478"
+          className="jsx-260136842"
           src="/static/icons/icon-request.svg"
         />
         <h5
-          className="jsx-348810478 blue"
+          className="jsx-260136842 blue"
         >
           2. Request to apply for an Operation
         </h5>
         <p
-          className="jsx-348810478"
+          className="jsx-260136842"
         >
           Once you’ve registered you can request to apply on behalf one or multiple eligible Operations.
         </p>
@@ -102,19 +102,19 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       md={4}
     >
       <div
-        className="jsx-348810478 value-prop"
+        className="jsx-260136842 value-prop"
       >
         <img
-          className="jsx-348810478"
+          className="jsx-260136842"
           src="/static/icons/icon-apply.svg"
         />
         <h5
-          className="jsx-348810478 blue"
+          className="jsx-260136842 blue"
         >
           3. Apply on behalf of the Operation
         </h5>
         <p
-          className="jsx-348810478"
+          className="jsx-260136842"
         >
           The CIIP team will verify and approve your request and then you can apply for the CleanBC Industrial Incentive Program.
         </p>
@@ -122,7 +122,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
     </Col>
   </Row>
   <div
-    className="jsx-348810478 row"
+    className="jsx-260136842 row"
     id="photo-row"
   >
     <Col
@@ -133,7 +133,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       }
     >
       <img
-        className="jsx-348810478 with-shadow img-fluid"
+        className="jsx-260136842 with-shadow img-fluid"
         id="photo"
         sizes=" (max-width: 575.98px) calc(100vw - 30px) (max-width: 767.98px) 510px, (min-width: 768px) 635px "
         src="/static/landing-photo-1020.jpg"
@@ -148,7 +148,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
       }
     >
       <h3
-        className="jsx-348810478 blue"
+        className="jsx-260136842 blue"
       >
         Key Dates
       </h3>
@@ -158,23 +158,23 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         striped={true}
       >
         <thead
-          className="jsx-348810478"
+          className="jsx-260136842"
         >
           <tr
-            className="jsx-348810478"
+            className="jsx-260136842"
           >
             <th
-              className="jsx-348810478"
+              className="jsx-260136842"
             >
               Date
             </th>
             <th
-              className="jsx-348810478"
+              className="jsx-260136842"
             />
           </tr>
         </thead>
         <tbody
-          className="jsx-348810478"
+          className="jsx-260136842"
         >
           <tr
             key="j87kj39uhf8930"
@@ -234,7 +234,7 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
           >
             Please email us at 
             <strong
-              className="jsx-348810478"
+              className="jsx-260136842"
             >
               GHGRegulator@gov.bc.ca
             </strong>
@@ -243,11 +243,11 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
         </CardBody>
       </Card>
       <p
-        className="jsx-348810478"
+        className="jsx-260136842"
       >
         Further information on the CleanBC Industrial Incentive Program is available in this
         <a
-          className="jsx-348810478"
+          className="jsx-260136842"
           href="https://www2.gov.bc.ca/assets/gov/environment/climate-change/ind/cleanbc-program-for-industry/ciip_factsheet.pdf?bcgovtm=20200506_GCPE_AM_COVID_11_NOTIFICATION_BCGOVNEWS_BCGOV_EN_BC__NOTIFICATION&forcedownload=true"
           rel="noopener noreferrer"
           target="_blank"
@@ -260,9 +260,9 @@ exports[`landing It matches the last accepted Snapshot 1`] = `
     </Col>
   </div>
   <JSXStyle
-    id="348810478"
+    id="260136842"
   >
-    .value-prop.jsx-348810478{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding-right:30px;}.value-prop.jsx-348810478 img.jsx-348810478{max-width:100px;padding:30px 0;}.value-prop.jsx-348810478 h4.jsx-348810478{margin-bottom:20px;}li.jsx-348810478{list-style:none;}#photo.jsx-348810478{margin:53px 0;}@media (min-width:767.98px){#photo-row.jsx-348810478{margin-top:100px;}}
+    .value-prop{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding-right:30px;}.value-prop img{max-width:100px;padding:30px 0;}.value-prop h4{margin-bottom:20px;}li{list-style:none;}#photo{margin:53px 0;}@media (min-width:767.98px){#photo-row{margin-top:100px;}}@media screen and (min-width:992px){#page-content{padding-top:110px;}}
   </JSXStyle>
 </Relay(DefaultLayout)>
 `;

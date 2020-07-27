@@ -57,6 +57,13 @@ export default class LoginRedirect extends Component<Props> {
           </Col>
           <RegistrationLoginButtons applicationDeadline={deadline} />
         </Row>
+        <style jsx global>{`
+          @media screen and (min-width: 768px) {
+            #page-content {
+              padding-top: 110px;
+            }
+          }
+        `}</style>
       </DefaultLayout>
     );
   }

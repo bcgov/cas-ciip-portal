@@ -63,7 +63,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
             flex-direction: column;
           }
           .content {
-            padding-top: 50px;
+            padding-top: 1.5em;
             flex: 1 0 auto;
           }
           .footer {
@@ -118,12 +118,6 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
           }
           .container.wide {
             max-width: 1600px;
-          }
-
-          @media screen and (min-width: 992px) {
-            #page-content {
-              padding-top: 110px;
-            }
           }
         `}
       </style>
