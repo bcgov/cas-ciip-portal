@@ -8,9 +8,50 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
     md={3}
   >
     <h3>
-      Application Status: 
+      Application Status*: 
     </h3>
+    <p>
+      * Status changes will be immediately confirmed by email notification
+    </p>
   </Col>
+  <Bootstrap(Modal)
+    onHide={[Function]}
+    show={false}
+  >
+    <ModalHeader
+      closeButton={false}
+      closeLabel="Close"
+    >
+      <ModalTitle>
+        Confirm Status Change
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      <p>
+        Changing this status will result in an email being sent to the reporter notifying them that their application status has been changed.
+      </p>
+    </ModalBody>
+    <ModalFooter>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="success"
+      >
+        Confirm
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="secondary"
+      >
+        Cancel
+      </Button>
+    </ModalFooter>
+  </Bootstrap(Modal)>
   <Col
     md={2}
   >
@@ -34,9 +75,50 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
     md={3}
   >
     <h3>
-      Application Status: 
+      Application Status*: 
     </h3>
+    <p>
+      * Status changes will be immediately confirmed by email notification
+    </p>
   </Col>
+  <Bootstrap(Modal)
+    onHide={[Function]}
+    show={false}
+  >
+    <ModalHeader
+      closeButton={false}
+      closeLabel="Close"
+    >
+      <ModalTitle>
+        Confirm Status Change
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      <p>
+        Changing this status will result in an email being sent to the reporter notifying them that their application status has been changed.
+      </p>
+    </ModalBody>
+    <ModalFooter>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="success"
+      >
+        Confirm
+      </Button>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="secondary"
+      >
+        Cancel
+      </Button>
+    </ModalFooter>
+  </Bootstrap(Modal)>
   <Col
     md={2}
   >
@@ -69,18 +151,6 @@ exports[`ApplicationRevisionStatusItem should render the application status in a
           }
         }
       >
-        <DropdownMenuItemComponent
-          itemEventKey="DRAFT"
-          itemFunc={[Function]}
-          itemTitle="DRAFT"
-          key="DRAFT"
-        />
-        <DropdownMenuItemComponent
-          itemEventKey="SUBMITTED"
-          itemFunc={[Function]}
-          itemTitle="SUBMITTED"
-          key="SUBMITTED"
-        />
         <DropdownMenuItemComponent
           itemEventKey="REJECTED"
           itemFunc={[Function]}
