@@ -95,6 +95,10 @@ describe('When reviewing a submitted application as an analyst', () => {
       component: 'Admin Summary Card',
       variant: 'with errors'
     });
+    cy.get('.override-accordion').happoScreenshot({
+      component: 'Summary Page',
+      variant: 'with errors'
+    });
     cy.visit(adminFormUrl);
 
     // Fix invalid data
