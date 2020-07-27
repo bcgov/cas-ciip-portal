@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`user profile matches snapshot 1`] = `
-<Relay(DefaultLayout)>
+<Relay(DefaultLayout)
+  showSubheader={true}
+  title="User Profile"
+>
   <Relay(UserProfile)
     user={null}
   />

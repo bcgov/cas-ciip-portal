@@ -2103,6 +2103,58 @@ Array [
           </ul>
         </nav>
       </header>
+      <div>
+        <nav
+          className="jsx-1717546368 navigation-main"
+          id="navbar"
+        >
+          <div
+            className="jsx-1717546368 container"
+          >
+            <ul
+              className="jsx-1717546368"
+            >
+              <li
+                className="jsx-1717546368 active"
+              >
+                <a
+                  className="jsx-1717546368"
+                  href="/reporter"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  My Dashboard
+                </a>
+              </li>
+              <li
+                className="jsx-1717546368 "
+              >
+                <a
+                  className="jsx-1717546368"
+                  href="/reporter/facilities"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                >
+                  My Applications
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div
+        className="jsx-3172037009 page-title"
+      >
+        <div
+          className="narrow container"
+        >
+          <h1
+            className="jsx-3172037009"
+          >
+            User Profile
+          </h1>
+        </div>
+      </div>
       <div
         className="content narrow container"
         id="page-content"

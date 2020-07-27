@@ -29,7 +29,7 @@ class Profile extends Component<Props> {
     const {session} = this.props.query;
 
     return (
-      <DefaultLayout session={session}>
+      <DefaultLayout showSubheader session={session} title="User Profile">
         <UserProfileContainer user={session ? session.ciipUserBySub : null} />
       </DefaultLayout>
     );
