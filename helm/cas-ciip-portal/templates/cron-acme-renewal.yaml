@@ -1,0 +1,54 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "cas-ciip-portal.fullname" . }}-acme-issue
+  labels:
+{{ include "cas-ciip-portal.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": "post-upgrade,post-install"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook-weight": "-5"
+
+spec:
+  suspend: true # This cron job is intended to be triggered manually
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      activeDeadlineSeconds: 600
+      template:
+        metadata:
+          labels:
+{{ include "cas-ciip-portal.labels" . | indent 14 }}
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: {{ template "cas-ciip-portal.fullname" . }}-acme-issue
+              image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 128Mi
+                requests:
+                  cpu: 100m
+                  memory: 64Mi
+              command:
+                - /usr/bin/env
+                - bash
+                - -c
+                - |
+                  set -euxo pipefail;
+                  # renews the certificate if needed
+                  /root/.acme.sh/acme.sh --cron --home /root/.acme.sh
+              volumeMounts:
+                - mountPath: /root/.acme.sh
+                  name: acme-home
+                - mountPath: /root/.well-known/acme-challenge
+                  name: acme-challenge
+          volumes:
+            - name: acme-home
+              persistentVolumeClaim:
+                claimName: {{ template "cas-ciip-portal.fullname" . }}-acme-home
+            - name: acme-challenge
+              persistentVolumeClaim:
+                claimName: {{ template "cas-ciip-portal.fullname" . }}-acme-challenge
