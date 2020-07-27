@@ -1,176 +1,196 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationRevisionStatusItem should render the application status in a disabled button if isCurrentVersion is false 1`] = `
-<Row
-  noGutters={false}
->
-  <Col
-    md={3}
+<Fragment>
+  <Row
+    noGutters={false}
   >
-    <h3>
-      Application Status*: 
-    </h3>
-    <p>
-      * Status changes will be immediately confirmed by email notification
-    </p>
-  </Col>
-  <Bootstrap(Modal)
-    onHide={[Function]}
-    show={false}
-  >
-    <ModalHeader
-      closeButton={false}
-      closeLabel="Close"
+    <Col
+      md={3}
     >
-      <ModalTitle>
-        Confirm Status Change
-      </ModalTitle>
-    </ModalHeader>
-    <ModalBody>
-      <p>
-        Changing this status will result in an email being sent to the reporter notifying them that their application status has been changed.
-      </p>
-    </ModalBody>
-    <ModalFooter>
+      <h3>
+        Application Status*: 
+      </h3>
+    </Col>
+    <Bootstrap(Modal)
+      onHide={[Function]}
+      show={false}
+    >
+      <ModalHeader
+        closeButton={false}
+        closeLabel="Close"
+      >
+        <ModalTitle>
+          Confirm Status Change
+        </ModalTitle>
+      </ModalHeader>
+      <ModalBody>
+        <p>
+          Changing this status will result in an email being sent to the reporter notifying them that their application status has been changed.
+        </p>
+      </ModalBody>
+      <ModalFooter>
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+          variant="success"
+        >
+          Confirm
+        </Button>
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+          variant="secondary"
+        >
+          Cancel
+        </Button>
+      </ModalFooter>
+    </Bootstrap(Modal)>
+    <Col
+      md={2}
+    >
       <Button
         active={false}
-        disabled={false}
-        onClick={[Function]}
+        disabled={true}
         type="button"
-        variant="success"
-      >
-        Confirm
-      </Button>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-        variant="secondary"
-      >
-        Cancel
-      </Button>
-    </ModalFooter>
-  </Bootstrap(Modal)>
-  <Col
-    md={2}
-  >
-    <Button
-      active={false}
-      disabled={true}
-      type="button"
-      variant="info"
-    >
-      SUBMITTED
-    </Button>
-  </Col>
-</Row>
-`;
-
-exports[`ApplicationRevisionStatusItem should render the application status in a dropdown if isCurrentVersion is true 1`] = `
-<Row
-  noGutters={false}
->
-  <Col
-    md={3}
-  >
-    <h3>
-      Application Status*: 
-    </h3>
-    <p>
-      * Status changes will be immediately confirmed by email notification
-    </p>
-  </Col>
-  <Bootstrap(Modal)
-    onHide={[Function]}
-    show={false}
-  >
-    <ModalHeader
-      closeButton={false}
-      closeLabel="Close"
-    >
-      <ModalTitle>
-        Confirm Status Change
-      </ModalTitle>
-    </ModalHeader>
-    <ModalBody>
-      <p>
-        Changing this status will result in an email being sent to the reporter notifying them that their application status has been changed.
-      </p>
-    </ModalBody>
-    <ModalFooter>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-        variant="success"
-      >
-        Confirm
-      </Button>
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-        variant="secondary"
-      >
-        Cancel
-      </Button>
-    </ModalFooter>
-  </Bootstrap(Modal)>
-  <Col
-    md={2}
-  >
-    <Dropdown
-      navbar={false}
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
-    >
-      <DropdownToggle
-        id="dropdown"
-        style={
-          Object {
-            "textTransform": "capitalize",
-            "width": "100%",
-          }
-        }
         variant="info"
       >
         SUBMITTED
-      </DropdownToggle>
-      <DropdownMenu
-        alignRight={false}
-        flip={true}
+      </Button>
+    </Col>
+  </Row>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      md={12}
+    >
+      <p>
+        * Status changes will be immediately confirmed by email notification.
+      </p>
+    </Col>
+  </Row>
+</Fragment>
+`;
+
+exports[`ApplicationRevisionStatusItem should render the application status in a dropdown if isCurrentVersion is true 1`] = `
+<Fragment>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      md={3}
+    >
+      <h3>
+        Application Status*: 
+      </h3>
+    </Col>
+    <Bootstrap(Modal)
+      onHide={[Function]}
+      show={false}
+    >
+      <ModalHeader
+        closeButton={false}
+        closeLabel="Close"
+      >
+        <ModalTitle>
+          Confirm Status Change
+        </ModalTitle>
+      </ModalHeader>
+      <ModalBody>
+        <p>
+          Changing this status will result in an email being sent to the reporter notifying them that their application status has been changed.
+        </p>
+      </ModalBody>
+      <ModalFooter>
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+          variant="success"
+        >
+          Confirm
+        </Button>
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+          variant="secondary"
+        >
+          Cancel
+        </Button>
+      </ModalFooter>
+    </Bootstrap(Modal)>
+    <Col
+      md={2}
+    >
+      <Dropdown
+        navbar={false}
         style={
           Object {
             "width": "100%",
           }
         }
       >
-        <DropdownMenuItemComponent
-          itemEventKey="REJECTED"
-          itemFunc={[Function]}
-          itemTitle="REJECTED"
-          key="REJECTED"
-        />
-        <DropdownMenuItemComponent
-          itemEventKey="APPROVED"
-          itemFunc={[Function]}
-          itemTitle="APPROVED"
-          key="APPROVED"
-        />
-        <DropdownMenuItemComponent
-          itemEventKey="REQUESTED_CHANGES"
-          itemFunc={[Function]}
-          itemTitle="REQUESTED_CHANGES"
-          key="REQUESTED_CHANGES"
-        />
-      </DropdownMenu>
-    </Dropdown>
-  </Col>
-</Row>
+        <DropdownToggle
+          id="dropdown"
+          style={
+            Object {
+              "textTransform": "capitalize",
+              "width": "100%",
+            }
+          }
+          variant="info"
+        >
+          SUBMITTED
+        </DropdownToggle>
+        <DropdownMenu
+          alignRight={false}
+          flip={true}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <DropdownMenuItemComponent
+            itemEventKey="REJECTED"
+            itemFunc={[Function]}
+            itemTitle="REJECTED"
+            key="REJECTED"
+          />
+          <DropdownMenuItemComponent
+            itemEventKey="APPROVED"
+            itemFunc={[Function]}
+            itemTitle="APPROVED"
+            key="APPROVED"
+          />
+          <DropdownMenuItemComponent
+            itemEventKey="REQUESTED_CHANGES"
+            itemFunc={[Function]}
+            itemTitle="REQUESTED_CHANGES"
+            key="REQUESTED_CHANGES"
+          />
+        </DropdownMenu>
+      </Dropdown>
+    </Col>
+  </Row>
+  <Row
+    noGutters={false}
+  >
+    <Col
+      md={12}
+    >
+      <p>
+        * Status changes will be immediately confirmed by email notification.
+      </p>
+    </Col>
+  </Row>
+</Fragment>
 `;
