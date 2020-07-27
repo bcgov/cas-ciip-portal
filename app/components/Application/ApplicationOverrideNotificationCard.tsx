@@ -49,6 +49,7 @@ export const ApplicationOverrideNotification: React.FunctionComponent<Props> = (
         `}</style>
       </Card>
     );
+  return null;
 };
 
 export default ApplicationOverrideNotification;
