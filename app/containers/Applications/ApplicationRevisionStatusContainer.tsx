@@ -1,5 +1,5 @@
-import React from 'react';
-import {Row, Col, Dropdown, Button} from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Row, Col, Dropdown, Button, Modal} from 'react-bootstrap';
 import {graphql, createFragmentContainer, RelayProp} from 'react-relay';
 import DropdownMenuItemComponent from 'components/DropdownMenuItemComponent';
 import createApplicationRevisionStatusMutation from 'mutations/application/createApplicationRevisionStatusMutation';
@@ -25,17 +25,20 @@ const statusBadgeColor: Record<
 export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  // Save Application status to database
-  const setApplicationRevisionStatus = async (eventKey, event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    event.persist();
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [currentRevisionStatus, setCurrentRevisionStatus] = useState(
+    props.applicationRevisionStatus.applicationRevisionStatus
+  );
 
+  // Save Application status to database
+  const setApplicationRevisionStatus = async (
+    status: CiipApplicationRevisionStatus
+  ) => {
     const variables = {
       input: {
         applicationRevisionStatus: {
           applicationId: props.applicationRowId,
-          applicationRevisionStatus: eventKey,
+          applicationRevisionStatus: status,
           versionNumber: props.applicationRevisionStatus.versionNumber
         }
       },
@@ -48,6 +51,51 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
     console.log(response);
   };
 
+  const handleConfirm = async () => {
+    setShowConfirmationModal(false);
+    await setApplicationRevisionStatus(currentRevisionStatus);
+  };
+
+  const handleCancel = () => {
+    setShowConfirmationModal(false);
+    setCurrentRevisionStatus(
+      props.applicationRevisionStatus.applicationRevisionStatus
+    );
+  };
+
+  const renderStatusConfirmationModal = (
+    eventKey: CiipApplicationRevisionStatus
+  ) => {
+    setCurrentRevisionStatus(eventKey);
+    setShowConfirmationModal(true);
+  };
+
+  const confirmStatusChangeModal = (
+    <Modal
+      show={showConfirmationModal}
+      onHide={() => setShowConfirmationModal(false)}
+    >
+      <Modal.Header>
+        <Modal.Title>Confirm Status Change</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>
+          Changing this status will result in an email being sent to the
+          reporter notifying them that their application status has been
+          changed.
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="success" onClick={handleConfirm}>
+          Confirm
+        </Button>
+        <Button variant="secondary" onClick={handleCancel}>
+          Cancel
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
   const {
     isCurrentVersion
   } = props.applicationRevisionStatus.applicationRevisionByApplicationIdAndVersionNumber;
@@ -55,9 +103,12 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
   return (
     <Row>
       <Col md={3}>
-        <h3>Application Status: </h3>
+        <h3>Application Status*: </h3>
+        <p>
+          * Status changes will be immediately confirmed by email notification
+        </p>
       </Col>
-
+      {confirmStatusChangeModal}
       {isCurrentVersion ? (
         <Col md={2}>
           <Dropdown style={{width: '100%'}}>
@@ -73,14 +124,18 @@ export const ApplicationRevisionStatusComponent: React.FunctionComponent<Props> 
               {props.applicationRevisionStatus.applicationRevisionStatus}
             </Dropdown.Toggle>
             <Dropdown.Menu style={{width: '100%'}}>
-              {Object.keys(statusBadgeColor).map((status) => (
-                <DropdownMenuItemComponent
-                  key={status}
-                  itemEventKey={status}
-                  itemFunc={setApplicationRevisionStatus}
-                  itemTitle={status}
-                />
-              ))}
+              {Object.keys(statusBadgeColor)
+                .filter(
+                  (status) => !['DRAFT', currentRevisionStatus].includes(status)
+                )
+                .map((status) => (
+                  <DropdownMenuItemComponent
+                    key={status}
+                    itemEventKey={status}
+                    itemFunc={renderStatusConfirmationModal}
+                    itemTitle={status}
+                  />
+                ))}
             </Dropdown.Menu>
           </Dropdown>
         </Col>
