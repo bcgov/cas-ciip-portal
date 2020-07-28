@@ -31,6 +31,11 @@ const {run} = require('graphile-worker');
 const path = require('path');
 const namespaceMap = require('../data/kc-namespace-map');
 
+/**
+ * Override keycloak accessDenied handler to redirect to our 403 page
+ */
+Keycloak.prototype.accessDenied = ({res}) => res.redirect('/403');
+
 let databaseURL = 'postgres://';
 
 const NO_AUTH = process.argv.includes('NO_AUTH');
