@@ -97,12 +97,12 @@ describe('When reviewing a submitted application as an analyst', () => {
     });
 
     // Override Justification screenshots
-    cy.get('.override-accordion').happoScreenshot({
+    cy.get('.fade').happoScreenshot({
       component: 'Override Justification',
       variant: 'closed'
     });
     cy.get('.override-accordion > .btn').click();
-    cy.get('.override-accordion').happoScreenshot({
+    cy.get('.fade').happoScreenshot({
       component: 'Override Justification',
       variant: 'open'
     });
