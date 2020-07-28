@@ -162,7 +162,7 @@ exports[`The Form Component should match the snapshot 1`] = `
     </div>
   </Form>
   <JSXStyle
-    id="841285729"
+    id="3174955380"
   >
     .
     r
@@ -620,6 +620,36 @@ exports[`The Form Component should match the snapshot 1`] = `
     5
     p
     x
+    ;
+    }
+    .
+    f
+    o
+    r
+    m
+    -
+    t
+    i
+    t
+    l
+    e
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    t
+    o
+    p
+    :
+    0
+    .
+    5
+    e
+    m
     ;
     }
   </JSXStyle>
@@ -798,7 +828,7 @@ exports[`The Form Component should not render an alert reminder to check the gui
     </div>
   </Form>
   <JSXStyle
-    id="841285729"
+    id="3174955380"
   >
     .
     r
@@ -1256,6 +1286,36 @@ exports[`The Form Component should not render an alert reminder to check the gui
     5
     p
     x
+    ;
+    }
+    .
+    f
+    o
+    r
+    m
+    -
+    t
+    i
+    t
+    l
+    e
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    t
+    o
+    p
+    :
+    0
+    .
+    5
+    e
+    m
     ;
     }
   </JSXStyle>
@@ -1458,7 +1518,7 @@ exports[`The Form Component should render alert reminder to check the guidance i
     </div>
   </Form>
   <JSXStyle
-    id="841285729"
+    id="3174955380"
   >
     .
     r
@@ -1916,6 +1976,36 @@ exports[`The Form Component should render alert reminder to check the guidance i
     5
     p
     x
+    ;
+    }
+    .
+    f
+    o
+    r
+    m
+    -
+    t
+    i
+    t
+    l
+    e
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    t
+    o
+    p
+    :
+    0
+    .
+    5
+    e
+    m
     ;
     }
   </JSXStyle>
@@ -2168,7 +2258,7 @@ exports[`The Form Component should render an alert reminder to report any missin
     </div>
   </Form>
   <JSXStyle
-    id="841285729"
+    id="3174955380"
   >
     .
     r
@@ -2626,6 +2716,36 @@ exports[`The Form Component should render an alert reminder to report any missin
     5
     p
     x
+    ;
+    }
+    .
+    f
+    o
+    r
+    m
+    -
+    t
+    i
+    t
+    l
+    e
+    {
+    m
+    a
+    r
+    g
+    i
+    n
+    -
+    t
+    o
+    p
+    :
+    0
+    .
+    5
+    e
+    m
     ;
     }
   </JSXStyle>

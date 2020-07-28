@@ -10,6 +10,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
     }
   }
 >
+  <SupportedBrowserNotice />
   <Relay(ApplicationWizard)
     query={
       Object {

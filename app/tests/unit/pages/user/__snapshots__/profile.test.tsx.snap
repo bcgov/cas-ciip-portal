@@ -5,6 +5,7 @@ exports[`user profile matches snapshot 1`] = `
   showSubheader={true}
   title="User Profile"
 >
+  <SupportedBrowserNotice />
   <Relay(UserProfile)
     user={null}
   />

@@ -7,6 +7,7 @@ import {CiipPageComponentProps} from 'next-env';
 import {NextRouter} from 'next/router';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
+import SupportedBrowserNotice from 'components/SupportedBrowserNotice';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -56,6 +57,7 @@ class NewApplicationDisclaimer extends Component<Props> {
 
     return (
       <DefaultLayout session={session} title="Legal Disclaimer">
+        <SupportedBrowserNotice />
         <Card className="mb-2">
           <Card.Header>
             Please review and confirm the information below

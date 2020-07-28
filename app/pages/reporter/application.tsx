@@ -6,6 +6,7 @@ import DefaultLayout from 'layouts/default-layout';
 import ApplicationWizard from 'containers/Applications/ApplicationWizard';
 import {USER} from 'data/group-constants';
 import {NextRouter} from 'next/router';
+import SupportedBrowserNotice from 'components/SupportedBrowserNotice';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -68,6 +69,7 @@ class Application extends Component<Props> {
 
     return (
       <DefaultLayout session={session}>
+        <SupportedBrowserNotice />
         <ApplicationWizard query={query} />
       </DefaultLayout>
     );

@@ -8,6 +8,7 @@ import ApplicationComments from 'containers/Applications/ApplicationCommentsCont
 import ReviseApplicationButton from 'containers/Applications/ReviseApplicationButtonContainer';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
+import SupportedBrowserNotice from 'components/SupportedBrowserNotice';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -70,6 +71,7 @@ class ViewApplication extends Component<Props> {
       >
         <Row>
           <Col md={8}>
+            <SupportedBrowserNotice />
             <ApplicationDetails
               query={query}
               application={query.application}

@@ -33,4 +33,7 @@ export default css.global`
     color: white !important;
     padding: 5px;
   }
+  .form-title {
+    margin-top: 0.5em;
+  }
 `;

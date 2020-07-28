@@ -1175,6 +1175,75 @@ Array [
             className="col-md-8"
           >
             <div
+              className="fade alert alert-warning alert-dismissible show"
+              role="alert"
+            >
+              <button
+                className="close"
+                onClick={[Function]}
+                type="button"
+              >
+                <span
+                  aria-hidden="true"
+                >
+                  ×
+                </span>
+                <span
+                  className="sr-only"
+                >
+                  Close alert
+                </span>
+              </button>
+              <strong>
+                Note:
+              </strong>
+               For best results, use an updated version of 
+              <a
+                className="alert-link"
+                href="https://www.google.com/chrome/"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Chrome
+              </a>
+              , 
+              <a
+                className="alert-link"
+                href="https://www.mozilla.org/firefox/new"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Firefox
+              </a>
+              , 
+              <a
+                className="alert-link"
+                href="https://www.microsoft.com/edge"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Edge
+              </a>
+               or 
+              <a
+                className="alert-link"
+                href="https://support.apple.com/en-us/HT204416"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Safari
+              </a>
+              .
+            </div>
+            <div
               className="fade alert alert-info show"
               role="alert"
             >
@@ -2159,6 +2228,75 @@ Array [
         className="content narrow container"
         id="page-content"
       >
+        <div
+          className="fade alert alert-warning alert-dismissible show"
+          role="alert"
+        >
+          <button
+            className="close"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+            >
+              ×
+            </span>
+            <span
+              className="sr-only"
+            >
+              Close alert
+            </span>
+          </button>
+          <strong>
+            Note:
+          </strong>
+           For best results, use an updated version of 
+          <a
+            className="alert-link"
+            href="https://www.google.com/chrome/"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Chrome
+          </a>
+          , 
+          <a
+            className="alert-link"
+            href="https://www.mozilla.org/firefox/new"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Firefox
+          </a>
+          , 
+          <a
+            className="alert-link"
+            href="https://www.microsoft.com/edge"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Edge
+          </a>
+           or 
+          <a
+            className="alert-link"
+            href="https://support.apple.com/en-us/HT204416"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Safari
+          </a>
+          .
+        </div>
         <div>
           <button
             className="button-edit btn btn-primary"

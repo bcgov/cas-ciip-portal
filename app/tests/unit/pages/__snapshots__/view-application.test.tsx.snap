@@ -18,6 +18,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
     <Col
       md={8}
     >
+      <SupportedBrowserNotice />
       <Relay(ApplicationDetailsComponent)
         application={
           Object {

@@ -9,6 +9,7 @@ import CertificationSignature from 'containers/Forms/CertificationSignature';
 import DefaultLayout from 'layouts/default-layout';
 import {USER} from 'data/group-constants';
 import SignatureDisclaimerCard from 'components/SignatureDisclaimerCard';
+import SupportedBrowserNotice from 'components/SupportedBrowserNotice';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -74,6 +75,7 @@ class Certify extends Component<Props> {
 
     return (
       <DefaultLayout title="Submission Certification" session={query.session}>
+        <SupportedBrowserNotice />
         {hashMatches ? (
           <>
             <ApplicationDetailsContainer

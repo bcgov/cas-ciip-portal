@@ -16,6 +16,7 @@ exports[`It matches the last accepted Snapshot 1`] = `
   }
   title="Submission Certification"
 >
+  <SupportedBrowserNotice />
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -95,6 +96,7 @@ exports[`It renders ApplicationRecertificationContainer if hashMatches is false 
   }
   title="Submission Certification"
 >
+  <SupportedBrowserNotice />
   <Relay(ApplicationRecertification)
     certificationUrl={
       Object {

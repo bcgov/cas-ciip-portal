@@ -13,6 +13,7 @@ import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnviron
 import LoadingSpinner from 'components/LoadingSpinner';
 import Organisation from './Organisation';
 import UserOrganisation from './UserOrganisation';
+import SupportedBrowserNotice from 'components/SupportedBrowserNotice';
 
 interface Props {
   query: Organisations_query;
@@ -62,6 +63,7 @@ export const OrganisationsComponent: React.FunctionComponent<Props> = (
   const userOrgs = session.ciipUserBySub.ciipUserOrganisationsByUserId.edges;
   return (
     <>
+      <SupportedBrowserNotice />
       {props.flagCertRequests && (
         <Alert variant="info">
           One or more reporting operations has requested that you certify an

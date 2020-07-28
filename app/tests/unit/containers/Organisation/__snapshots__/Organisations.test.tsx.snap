@@ -2,6 +2,7 @@
 
 exports[`Organisations should announce there are certification requests to view 1`] = `
 <Fragment>
+  <SupportedBrowserNotice />
   <Alert
     closeLabel="Close alert"
     show={true}
@@ -246,6 +247,7 @@ exports[`Organisations should announce there are certification requests to view 
 
 exports[`Organisations should render no organisations if the user has not requested any access 1`] = `
 <Fragment>
+  <SupportedBrowserNotice />
   <Card
     bg="light"
     body={false}
@@ -408,6 +410,7 @@ exports[`Organisations should render no organisations if the user has not reques
 
 exports[`Organisations should render the user's requested organisations 1`] = `
 <Fragment>
+  <SupportedBrowserNotice />
   <Card
     bg="light"
     body={false}

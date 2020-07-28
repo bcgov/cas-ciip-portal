@@ -11,6 +11,7 @@ exports[`certifier requests list page It matches the last accepted Snapshot 1`] 
   }
   title="Certification Requests"
 >
+  <SupportedBrowserNotice />
   <SearchTableComponent
     defaultOrderByDisplay="Facility"
     defaultOrderByField="facility_name"

@@ -4,6 +4,7 @@ import {profileQueryResponse} from 'profileQuery.graphql';
 import DefaultLayout from 'layouts/default-layout';
 import UserProfileContainer from 'containers/User/UserProfile';
 import {INCENTIVE_ANALYST, ADMIN_GROUP, USER} from 'data/group-constants';
+import SupportedBrowserNotice from 'components/SupportedBrowserNotice';
 
 const ALLOWED_GROUPS = [INCENTIVE_ANALYST, ...ADMIN_GROUP, USER];
 interface Props {
@@ -30,6 +31,7 @@ class Profile extends Component<Props> {
 
     return (
       <DefaultLayout showSubheader session={session} title="User Profile">
+        <SupportedBrowserNotice />
         <UserProfileContainer user={session ? session.ciipUserBySub : null} />
       </DefaultLayout>
     );

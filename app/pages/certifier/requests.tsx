@@ -11,6 +11,7 @@ import SearchTable from 'components/SearchTable';
 import CertificationRequestsContainer from 'containers/Certifier/CertificationRequestsContainer';
 import SignatureDisclaimerCard from 'components/SignatureDisclaimerCard';
 import CertificationSignature from 'containers/Forms/CertificationSignature';
+import SupportedBrowserNotice from 'components/SupportedBrowserNotice';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -92,6 +93,7 @@ export default class CertifierRequests extends Component<Props> {
     const {query} = this.props;
     return (
       <DefaultLayout title="Certification Requests" session={query.session}>
+        <SupportedBrowserNotice />
         <SearchTable
           query={this.props.query}
           defaultOrderByField="facility_name"

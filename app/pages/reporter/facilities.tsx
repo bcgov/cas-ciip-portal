@@ -6,6 +6,7 @@ import SearchTable from 'components/SearchTable';
 import DefaultLayout from 'layouts/default-layout';
 import FacilitiesListContainer from 'containers/Facilities/FacilitiesListContainer';
 import {USER} from 'data/group-constants';
+import SupportedBrowserNotice from 'components/SupportedBrowserNotice';
 
 const ALLOWED_GROUPS = [USER];
 
@@ -59,6 +60,7 @@ class FacilitiesList extends Component<Props> {
     const {session} = this.props.query;
     return (
       <DefaultLayout showSubheader session={session} title="Facilities">
+        <SupportedBrowserNotice />
         <SearchTable
           query={this.props.query}
           defaultOrderByField="facility_name"

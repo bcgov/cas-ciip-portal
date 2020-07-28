@@ -11,6 +11,7 @@ exports[`Interstitial application legal disclaimer page It matches the last acce
   }
   title="Legal Disclaimer"
 >
+  <SupportedBrowserNotice />
   <Card
     body={false}
     className="mb-2"
