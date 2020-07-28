@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ template "cas-ciip-portal.fullname" . }}-acme-issue
+  name: {{ template "cas-ciip-portal.fullname" . }}-acme-renewal
   labels:
 {{ include "cas-ciip-portal.labels" . | indent 4 }}
   annotations:
@@ -23,7 +23,7 @@ spec:
         spec:
           restartPolicy: Never
           containers:
-            - name: {{ template "cas-ciip-portal.fullname" . }}-acme-issue
+            - name: {{ template "cas-ciip-portal.fullname" . }}-acme-renewal
               image: {{ .Values.image.app.repository }}:{{ .Values.image.app.tag }}
               resources:
                 limits:
