@@ -162,3 +162,4 @@ search_functions/search_products [search_functions/search_products@v1.0.0-rc.12]
 trigger_functions/request_for_organisation_access [trigger_functions/request_for_organisation_access@v1.0.0-rc.12] 2020-07-16T20:03:30Z Matthieu Foucault <matthieu@button.is> # remove unused select clause failing if there are multiple facilities
 @v1.1.0 2020-07-22T16:32:21Z Matthieu Foucault <matthieu@button.is> # release v1.1.0
 @v1.2.0 2020-07-27T18:36:49Z Matthieu Foucault <matthieu@button.is> # release v1.2.0
+@v1.3.0 2020-07-29T20:54:44Z Matthieu Foucault <matthieu@button.is> # release v1.3.0
