@@ -12,7 +12,6 @@ const mutation = `
     $input: CreateApplicationMutationChainInput!
   ) {
     createApplicationMutationChain(input: $input) {
-      clientMutationId
       application {
         id
       }

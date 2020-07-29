@@ -14,7 +14,6 @@ const mutation = graphql`
         applicationOpenTime
         applicationCloseTime
       }
-      clientMutationId
     }
   }
 `;

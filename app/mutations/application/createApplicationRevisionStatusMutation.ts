@@ -12,7 +12,6 @@ const mutation = graphql`
     $version: String
   ) {
     createApplicationRevisionStatus(input: $input) {
-      clientMutationId
       applicationRevisionStatus {
         id
         versionNumber

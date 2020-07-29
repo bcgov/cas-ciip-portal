@@ -13,7 +13,6 @@ const mutation = graphql`
     $version: String!
   ) {
     createFormResultStatus(input: $input) {
-      clientMutationId
       formResultStatus {
         ...ApplicationReviewContainer_formResultStatus
       }

@@ -5,43 +5,31 @@ import {
 } from 'react-relay-network-modern/node8';
 
 const debouncedMutationNameTimeoutIds = new Map<string, number>();
-const clientMutationIdMutationNameMap = new Map<string, string>();
 
-export const debounceMutation = (
-  mutationName: string,
-  clientMutationId: string
-) => {
-  clientMutationIdMutationNameMap.set(clientMutationId, mutationName);
-};
-
-const debounceMutationMiddleware = (): Middleware => {
-  return next => async req => {
+const debounceMutationMiddleware = (timeout = 1000): Middleware => {
+  return (next) => async (req) => {
     if (!(req instanceof RelayNetworkLayerRequest) || !req.isMutation()) {
       return next(req);
     }
 
-    const {clientMutationId} = req.variables.input;
-    const mutationName = clientMutationIdMutationNameMap.get(clientMutationId);
-    console.log(mutationName);
-    if (!mutationName) {
+    if (!req.cacheConfig?.debounce) {
       return next(req);
     }
 
     const debounced = async () => {
-      return new Promise<RelayNetworkLayerResponse>(resolve => {
-        const timerId = debouncedMutationNameTimeoutIds.get(mutationName);
+      return new Promise<RelayNetworkLayerResponse>((resolve) => {
+        const {name} = req.operation;
+        const timerId = debouncedMutationNameTimeoutIds.get(name);
         if (timerId) {
           window.clearTimeout(timerId);
         }
 
         debouncedMutationNameTimeoutIds.set(
-          mutationName,
+          name,
           window.setTimeout(() => {
-            debouncedMutationNameTimeoutIds.delete(mutationName);
-            clientMutationIdMutationNameMap.delete(clientMutationId);
-            console.log('resolve!!!');
+            debouncedMutationNameTimeoutIds.delete(name);
             resolve(next(req));
-          }, 1000)
+          }, timeout)
         );
       });
     };

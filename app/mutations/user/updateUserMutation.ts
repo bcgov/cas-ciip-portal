@@ -17,7 +17,6 @@ const mutationQuery = graphql`
         occupation
         phoneNumber
       }
-      clientMutationId
     }
   }
 `;
@@ -45,6 +44,7 @@ const updateUserMutation = async (
     mutationQuery,
     variables,
     updateUserPayload,
+    null,
     true
   );
 };

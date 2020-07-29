@@ -13,7 +13,6 @@ const mutation = graphql`
     $version: String!
   ) {
     createReviewCommentMutationChain(input: $input) {
-      clientMutationId
       reviewCommentEdge {
         node {
           ...ApplicationCommentsByForm_reviewComment

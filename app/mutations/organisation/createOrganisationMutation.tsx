@@ -9,7 +9,6 @@ import BaseMutation from 'mutations/BaseMutation';
 const mutation = graphql`
   mutation createOrganisationMutation($input: CreateOrganisationInput!) {
     createOrganisation(input: $input) {
-      clientMutationId
       organisation {
         id
         rowId

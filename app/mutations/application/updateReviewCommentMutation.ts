@@ -9,7 +9,6 @@ import BaseMutation from 'mutations/BaseMutation';
 const mutation = graphql`
   mutation updateReviewCommentMutation($input: UpdateReviewCommentInput!) {
     updateReviewComment(input: $input) {
-      clientMutationId
       reviewComment {
         resolved
         ...ApplicationCommentsByForm_reviewComment

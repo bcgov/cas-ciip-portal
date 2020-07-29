@@ -9,7 +9,6 @@ import BaseMutation from 'mutations/BaseMutation';
 const mutation = graphql`
   mutation updateFormResultMutation($input: UpdateFormResultInput!) {
     updateFormResult(input: $input) {
-      clientMutationId
       formResult {
         id
         formResult

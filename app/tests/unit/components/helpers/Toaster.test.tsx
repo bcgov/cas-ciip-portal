@@ -50,8 +50,7 @@ const fakeInput = {
   input: {
     ciipUser: {
       emailAddress: 'test@test.com'
-    },
-    clientMutationId: 'create-facility-mutation-0'
+    }
   },
   messages: {
     success: 'Wohoo',

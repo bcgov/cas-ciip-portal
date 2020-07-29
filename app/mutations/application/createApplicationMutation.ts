@@ -11,7 +11,6 @@ const mutation = graphql`
     $input: CreateApplicationMutationChainInput!
   ) {
     createApplicationMutationChain(input: $input) {
-      clientMutationId
       application {
         id
         latestDraftRevision {

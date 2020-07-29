@@ -9,7 +9,6 @@ import BaseMutation from 'mutations/BaseMutation';
 const mutation = graphql`
   mutation createBenchmarkMutation($input: CreateBenchmarkInput!) {
     createBenchmark(input: $input) {
-      clientMutationId
       benchmark {
         id
         rowId

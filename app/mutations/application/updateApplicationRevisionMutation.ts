@@ -11,7 +11,6 @@ const mutation = graphql`
     $input: UpdateApplicationRevisionInput!
   ) {
     updateApplicationRevision(input: $input) {
-      clientMutationId
       applicationRevision {
         id
         applicationId

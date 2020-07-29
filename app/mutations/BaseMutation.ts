@@ -5,7 +5,6 @@ import {
 import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {DeclarativeMutationConfig} from 'relay-runtime';
 import {toast} from 'react-toastify';
-import {debounceMutation} from '../lib/relay-environment/debounce-mutations';
 
 interface BaseMutationType {
   response: any;
@@ -27,7 +26,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     mutation: GraphQLTaggedNode,
     variables: T['variables'],
     optimisticResponse?: any,
-    updater?: any,
+    updater?: (...args: any[]) => any,
     shouldDebounceMutation = false
   ) {
     const success_message = variables.messages?.success
@@ -36,19 +35,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
     const failure_message = variables.messages?.failure
       ? variables.messages.failure
       : 'Oops! Seems like something went wrong';
-    const clientMutationId = `${this.mutationName}-${this.counter}`;
-    variables.input.clientMutationId = clientMutationId;
 
-    if (shouldDebounceMutation) {
-      debounceMutation(this.mutationName, clientMutationId);
-    }
-
-    if (optimisticResponse) {
-      const key = Object.keys(optimisticResponse)[0];
-      optimisticResponse[key].clientMutationId = clientMutationId;
-    }
-
-    this.counter++;
     const {configs, mutationName} = this;
     async function commitMutation(
       environment,
@@ -63,6 +50,7 @@ export default class BaseMutation<T extends BaseMutationType = never> {
         commitMutationDefault<T>(environment, {
           ...options,
           configs,
+          cacheConfig: {debounce: shouldDebounceMutation},
           onError: (error) => {
             reject(error);
             if (failure_message) {

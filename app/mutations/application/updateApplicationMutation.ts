@@ -9,7 +9,6 @@ import BaseMutation from 'mutations/BaseMutation';
 const mutation = graphql`
   mutation updateApplicationMutation($input: UpdateApplicationInput!) {
     updateApplication(input: $input) {
-      clientMutationId
       application {
         id
         rowId
