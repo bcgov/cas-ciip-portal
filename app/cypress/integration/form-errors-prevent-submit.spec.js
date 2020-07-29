@@ -19,6 +19,6 @@ describe('When logged in as a reporter', () => {
     );
     cy.url().should('include', '/reporter/application');
     cy.get('.errors').contains('Your Application contains errors');
-    cy.get('Send to Certifier').should('not.exist');
+    cy.get('Submit for Certification').should('not.exist');
   });
 });
