@@ -20,7 +20,7 @@ describe('ApplicationRevisionStatusItem', () => {
       />
     );
     expect(r.exists('Dropdown')).toBe(true);
-    expect(r.exists('Button')).toBe(false);
+    expect(r.find('DropdownToggle').text()).toBe('SUBMITTED');
     expect(r).toMatchSnapshot();
   });
 
@@ -41,7 +41,7 @@ describe('ApplicationRevisionStatusItem', () => {
       />
     );
     expect(r.exists('Dropdown')).toBe(false);
-    expect(r.find('Button').props().disabled).toBe(true);
+    expect(r.find('Button').at(2).props().disabled).toBe(true);
     expect(r).toMatchSnapshot();
   });
 });

@@ -346,6 +346,7 @@ function makeApplicationDecision(decision) {
   cy.get('#dropdown').click();
   cy.wait(500);
   cy.contains(decision).click();
+  cy.get('.btn-success').click();
   cy.wait(500);
 }
 
