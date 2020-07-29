@@ -55,10 +55,6 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const [hasErrors, setHasErrors] = useState(false);
   const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
-  const [emptyError, setEmptyError] = useState('');
-  const [overrideJustification, setOverrideJustification] = useState(
-    props.application.latestDraftRevision.overrideJustification
-  );
   const [overrideActive, setOverrideActive] = useState(
     revision.overrideJustification !== null
   );
@@ -71,61 +67,6 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     } else {
       debounce(() => setEnableSubmitForCertification(false), 200)();
     }
-  };
-
-  const handleOverrideChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setOverrideJustification(e.target.value);
-  };
-
-  const handleOverrideCancel = () => {
-    setAccordionOpen(false);
-    setEmptyError('');
-    setOverrideActive(
-      props.application.latestDraftRevision.overrideJustification !== null
-    );
-    setOverrideJustification(
-      props.application.latestDraftRevision.overrideJustification || null
-    );
-  };
-
-  const handleOverrideDelete = async () => {
-    const {environment} = props.relay;
-    const variables = {
-      input: {
-        id: props.application.latestDraftRevision.id,
-        applicationRevisionPatch: {
-          overrideJustification: null
-        }
-      }
-    };
-
-    await updateApplicationRevisionMutation(environment, variables);
-    setOverrideJustification(null);
-    setOverrideActive(false);
-  };
-
-  const handleOverrideSave = async () => {
-    if (overrideJustification) {
-      setAccordionOpen(false);
-      const {environment} = props.relay;
-      const variables = {
-        input: {
-          id: props.application.latestDraftRevision.id,
-          applicationRevisionPatch: {
-            overrideJustification
-          }
-        }
-      };
-
-      await updateApplicationRevisionMutation(environment, variables);
-      setEmptyError('');
-      setOverrideActive(true);
-    } else setEmptyError('Justification cannot be empty');
-  };
-
-  const handleOverrideEdit = () => {
-    setOverrideActive(false);
-    setAccordionOpen(true);
   };
 
   const copyToClipboard = () => {

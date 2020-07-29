@@ -101,6 +101,8 @@ exports[`The Confirmation Component match the snapshot 1`] = `
           >
             <FormControl
               name="email"
+              onChange={[Function]}
+              onKeyDown={[Function]}
               placeholder="Certifier Email"
               type="email"
             />
@@ -123,7 +125,7 @@ exports[`The Confirmation Component match the snapshot 1`] = `
         </FormGroup>
         <Button
           active={false}
-          disabled={false}
+          disabled={true}
           type="submit"
           variant="info"
         >
@@ -385,6 +387,8 @@ exports[`The Confirmation Component should render the override justification com
           >
             <FormControl
               name="email"
+              onChange={[Function]}
+              onKeyDown={[Function]}
               placeholder="Certifier Email"
               type="email"
             />
@@ -407,7 +411,7 @@ exports[`The Confirmation Component should render the override justification com
         </FormGroup>
         <Button
           active={false}
-          disabled={false}
+          disabled={true}
           type="submit"
           variant="info"
         >
