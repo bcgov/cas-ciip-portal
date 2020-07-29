@@ -27,15 +27,43 @@ interface Target extends EventTarget {
   };
 }
 
+function debounce(fn, wait, immediate?) {
+  let timeout;
+  return function (...args) {
+    const later = () => {
+      timeout = null;
+      if (!immediate) fn.apply(this, args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (immediate && !timeout) fn.apply(this, args);
+  };
+}
+
 export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Props> = (
   props
 ) => {
+  const [
+    enableSubmitForCertification,
+    setEnableSubmitForCertification
+  ] = useState(false);
   const [copySuccess, setCopySuccess] = useState('');
   const [url, setUrl] = useState<string>();
   const [isChecked, toggleChecked] = useState(true);
   const [hasErrors, setHasErrors] = useState(false);
   const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
+
+  const checkEnableSubmitForCertification = (e) => {
+    const isEmail = Boolean(e.target.value.match(/.+@.+\..+/i));
+
+    if (isEmail) {
+      debounce(() => setEnableSubmitForCertification(true), 200)();
+    } else {
+      debounce(() => setEnableSubmitForCertification(false), 200)();
+    }
+  };
 
   const copyToClipboard = () => {
     copyArea.current.select();
@@ -136,6 +164,8 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                   name="email"
                   type="email"
                   placeholder="Certifier Email"
+                  onKeyDown={checkEnableSubmitForCertification}
+                  onChange={checkEnableSubmitForCertification}
                 />
               </Form.Group>
             </Form.Row>
@@ -149,7 +179,11 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
                 onChange={() => toggleChecked(!isChecked)}
               />
             </Form.Group>
-            <Button variant="info" type="submit">
+            <Button
+              variant="info"
+              type="submit"
+              disabled={!enableSubmitForCertification}
+            >
               Submit for Certification
             </Button>
           </Form>
