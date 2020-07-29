@@ -393,6 +393,9 @@ app.prepare().then(() => {
 
   server.get('/register', ({res}) => res.redirect(302, kcRegistrationUrl));
 
+  // Automatically authenticate client when landing on index page if they are logged in Keycloak
+  server.get('/', keycloak.checkSso());
+
   server.get('*', async (req, res) => {
     return handle(req, res);
   });
