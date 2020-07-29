@@ -34,6 +34,7 @@ describe('The application-review page', () => {
       }
     },
     applicationRevision: {
+      overrideJustification: null,
       ' $fragmentRefs': {
         IncentiveCalculatorContainer_applicationRevision: true
       }
@@ -56,5 +57,55 @@ describe('The application-review page', () => {
         .first()
         .prop('applicationRevision')
     ).toBe(query.applicationRevision);
+  });
+
+  it('It renders the ApplicationOverrideNotification component if an override has been set', () => {
+    const overrideQuery: applicationReviewQueryResponse['query'] = {
+      session: {
+        ' $fragmentRefs': {
+          defaultLayout_session: true
+        }
+      },
+      application: {
+        ' $fragmentRefs': {
+          ApplicationDetailsContainer_application: true
+        },
+        rowId: 1,
+        reviewRevisionStatus: {
+          ' $fragmentRefs': {
+            ApplicationRevisionStatusContainer_applicationRevisionStatus: true
+          }
+        },
+        orderedFormResults: {
+          edges: [
+            {
+              node: {
+                id: 'abc',
+                ' $fragmentRefs': {
+                  ApplicationCommentsContainer_formResult: true
+                }
+              }
+            }
+          ]
+        }
+      },
+      applicationRevision: {
+        overrideJustification: 'oops',
+        ' $fragmentRefs': {
+          IncentiveCalculatorContainer_applicationRevision: true
+        }
+      },
+      ' $fragmentRefs': {
+        ApplicationDetailsContainer_query: true
+      }
+    };
+    const wrapper = shallow(
+      <ApplicationReview router={null} query={overrideQuery} />
+    );
+    expect(
+      wrapper
+        .find('ApplicationOverrideNotification')
+        .props('overrideJustification')
+    ).toStrictEqual({overrideJustification: 'oops'});
   });
 });

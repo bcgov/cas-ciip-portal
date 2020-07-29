@@ -7,6 +7,7 @@ import ApplicationRevisionStatusContainer from 'containers/Applications/Applicat
 import DefaultLayout from 'layouts/default-layout';
 import ApplicationDetails from 'containers/Applications/ApplicationDetailsContainer';
 import ApplicationComments from 'containers/Applications/ApplicationCommentsContainer';
+import ApplicationOverrideNotification from 'components/Application/ApplicationOverrideNotificationCard';
 import {CiipPageComponentProps} from 'next-env';
 import {INCENTIVE_ANALYST, ADMIN_GROUP} from 'data/group-constants';
 
@@ -48,6 +49,7 @@ class ApplicationReview extends Component<Props> {
           }
         }
         applicationRevision(id: $applicationRevisionId) {
+          overrideJustification
           ...IncentiveCalculatorContainer_applicationRevision
         }
         ...ApplicationDetailsContainer_query
@@ -58,6 +60,7 @@ class ApplicationReview extends Component<Props> {
 
   render() {
     const {query} = this.props;
+    const {overrideJustification} = query?.applicationRevision;
     const {session} = query || {};
     const formResults = query.application.orderedFormResults.edges;
     return (
@@ -65,6 +68,9 @@ class ApplicationReview extends Component<Props> {
         <ApplicationRevisionStatusContainer
           applicationRevisionStatus={query.application.reviewRevisionStatus}
           applicationRowId={query.application.rowId}
+        />
+        <ApplicationOverrideNotification
+          overrideJustification={overrideJustification}
         />
         <hr />
         <Row className="application-container">

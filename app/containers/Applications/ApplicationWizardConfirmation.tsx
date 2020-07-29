@@ -7,6 +7,7 @@ import {ApplicationWizardConfirmation_application} from 'ApplicationWizardConfir
 import createCertificationUrlMutation from 'mutations/form/createCertificationUrl';
 import updateCertificationUrlMutation from 'mutations/form/updateCertificationUrlMutation';
 import ApplicationDetailsContainer from './ApplicationDetailsContainer';
+import ApplicationOverrideJustification from 'components/Application/ApplicationOverrideJustification';
 /*
  * The ApplicationWizardConfirmation renders a summary of the data submitted in the application,
  * and allows the user to submit their application.
@@ -54,6 +55,9 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
   const [hasErrors, setHasErrors] = useState(false);
   const copyArea = useRef(null);
   const revision = props.application.latestDraftRevision;
+  const [overrideActive, setOverrideActive] = useState(
+    revision.overrideJustification !== null
+  );
 
   const checkEnableSubmitForCertification = (e) => {
     const isEmail = Boolean(e.target.value.match(/.+@.+\..+/i));
@@ -269,7 +273,14 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         Please review the information you have provided before continuing.
       </h5>
       <br />
-
+      <ApplicationOverrideJustification
+        overrideActive={overrideActive}
+        setOverrideActive={setOverrideActive}
+        applicationOverrideJustification={
+          props.application.latestDraftRevision.overrideJustification
+        }
+        revisionId={props.application.latestDraftRevision.id}
+      />
       <ApplicationDetailsContainer
         liveValidate
         query={props.query}
@@ -278,7 +289,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
         setHasErrors={setHasErrors}
       />
       <br />
-      {hasErrors ? (
+      {hasErrors && !overrideActive ? (
         <div className="errors">
           Your Application contains errors that must be fixed before submission.
         </div>
@@ -304,7 +315,7 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
       ) : (
         certificationMessage
       )}
-      <style jsx global>
+      <style jsx>
         {`
           .errors {
             margin-left: 20px;
@@ -328,8 +339,10 @@ export default createFragmentContainer(ApplicationWizardConfirmationComponent, {
       ...SubmitApplication_application
       ...ApplicationDetailsContainer_application @arguments(version: $version)
       latestDraftRevision {
+        id
         versionNumber
         certificationSignatureIsValid
+        overrideJustification
         certificationUrl {
           id
           certificationSignature

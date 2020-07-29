@@ -4601,6 +4601,16 @@
               "defaultValue": null
             },
             {
+              "name": "overrideJustification",
+              "description": "Checks for equality with the object’s `overrideJustification` field.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "updatedAt",
               "description": "Checks for equality with the object’s `updatedAt` field.",
               "type": {
@@ -4659,6 +4669,16 @@
           "kind": "SCALAR",
           "name": "Boolean",
           "description": "The `Boolean` scalar type represents `true` or `false`.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "String",
+          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -4747,6 +4767,18 @@
             },
             {
               "name": "NATURAL",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "OVERRIDE_JUSTIFICATION_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "OVERRIDE_JUSTIFICATION_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -5473,6 +5505,18 @@
                   "name": "Boolean",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "overrideJustification",
+              "description": "Reporter defined justification for overriding error validation when submitting this revision",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -6254,16 +6298,6 @@
               "ofType": null
             }
           ],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "String",
-          "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -31974,6 +32008,16 @@
               "defaultValue": null
             },
             {
+              "name": "overrideJustification",
+              "description": "Reporter defined justification for overriding error validation when submitting this revision",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "updatedAt",
               "description": "The date the application revision status was updated",
               "type": {
@@ -42805,6 +42849,16 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "overrideJustification",
+              "description": "Reporter defined justification for overriding error validation when submitting this revision",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               },
               "defaultValue": null

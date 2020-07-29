@@ -15,6 +15,12 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   <br
     className="jsx-1753635690"
   />
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationOverrideJustification={null}
+    overrideActive={false}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -27,6 +33,8 @@ exports[`The Confirmation Component match the snapshot 1`] = `
         "latestDraftRevision": Object {
           "certificationSignatureIsValid": false,
           "certificationUrl": undefined,
+          "id": "abc",
+          "overrideJustification": null,
           "versionNumber": 1,
         },
         "rowId": 1,
@@ -130,7 +138,293 @@ exports[`The Confirmation Component match the snapshot 1`] = `
   <JSXStyle
     id="1753635690"
   >
-    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`The Confirmation Component should render the override justification component with the right props if an override is currently set 1`] = `
+<Fragment>
+  <h1
+    className="jsx-1753635690"
+  >
+    Summary of your application:
+  </h1>
+  <h5
+    className="jsx-1753635690"
+  >
+    Please review the information you have provided before continuing.
+  </h5>
+  <br
+    className="jsx-1753635690"
+  />
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationOverrideJustification="I did a bad thing and I dont want to fix it"
+    overrideActive={true}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
+  <Relay(ApplicationDetailsComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "certificationSignatureIsValid": false,
+          "certificationUrl": undefined,
+          "id": "abc",
+          "overrideJustification": "I did a bad thing and I dont want to fix it",
+          "versionNumber": 1,
+        },
+        "rowId": 1,
+      }
+    }
+    liveValidate={true}
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_query": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_query",
+      }
+    }
+    review={false}
+    setHasErrors={[Function]}
+  />
+  <br
+    className="jsx-1753635690"
+  />
+  <br />
+  <Card
+    body={false}
+  >
+    <CardHeader>
+      Application Certification
+    </CardHeader>
+    <CardBody>
+      <CardText>
+        Thank you for reviewing your application to the CleanBC Industrial Incentive Program.
+      </CardText>
+      <CardText>
+        Your application is almost complete.
+        <ul>
+          <li>
+            Please send the secure URL below to a Certifying Official in your organisation to approve the application. You will be notified via email when this step is complete.
+          </li>
+          <li>
+            Once you have received notification that the application has been certified, you will need to return here to submit the application.
+          </li>
+          <li>
+            Once submitted, you will be notified via email when your application has been approved or if any further information is required to process your application.
+          </li>
+        </ul>
+      </CardText>
+      <CardText>
+        Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
+      </CardText>
+      <Form
+        inline={false}
+        onSubmit={[Function]}
+      >
+        <FormRow>
+          <FormGroup
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "Col",
+                "render": [Function],
+              }
+            }
+            controlId="certifierEmail"
+            md="4"
+          >
+            <FormControl
+              name="email"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Certifier Email"
+              type="email"
+            />
+          </FormGroup>
+        </FormRow>
+        <FormGroup>
+          <FormCheck
+            checked={true}
+            className="text-muted"
+            disabled={false}
+            inline={false}
+            isInvalid={false}
+            isValid={false}
+            label="Notify certifier via email that this application is ready for certification"
+            name="sendEmailChecked"
+            onChange={[Function]}
+            title=""
+            type="checkbox"
+          />
+        </FormGroup>
+        <Button
+          active={false}
+          disabled={true}
+          type="submit"
+          variant="info"
+        >
+          Submit for Certification
+        </Button>
+      </Form>
+    </CardBody>
+    <CardFooter />
+  </Card>
+  <JSXStyle
+    id="1753635690"
+  >
+    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+  </JSXStyle>
+</Fragment>
+`;
+
+exports[`The Confirmation Component should render the override justification component with the right props if no override is currently set 1`] = `
+<Fragment>
+  <h1
+    className="jsx-1753635690"
+  >
+    Summary of your application:
+  </h1>
+  <h5
+    className="jsx-1753635690"
+  >
+    Please review the information you have provided before continuing.
+  </h5>
+  <br
+    className="jsx-1753635690"
+  />
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationOverrideJustification={null}
+    overrideActive={false}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
+  <Relay(ApplicationDetailsComponent)
+    application={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_application": true,
+          "SubmitApplication_application": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_application",
+        "id": "abc",
+        "latestDraftRevision": Object {
+          "certificationSignatureIsValid": false,
+          "certificationUrl": undefined,
+          "id": "abc",
+          "overrideJustification": null,
+          "versionNumber": 1,
+        },
+        "rowId": 1,
+      }
+    }
+    liveValidate={true}
+    query={
+      Object {
+        " $fragmentRefs": Object {
+          "ApplicationDetailsContainer_query": true,
+        },
+        " $refType": "ApplicationWizardConfirmation_query",
+      }
+    }
+    review={false}
+    setHasErrors={[Function]}
+  />
+  <br
+    className="jsx-1753635690"
+  />
+  <br />
+  <Card
+    body={false}
+  >
+    <CardHeader>
+      Application Certification
+    </CardHeader>
+    <CardBody>
+      <CardText>
+        Thank you for reviewing your application to the CleanBC Industrial Incentive Program.
+      </CardText>
+      <CardText>
+        Your application is almost complete.
+        <ul>
+          <li>
+            Please send the secure URL below to a Certifying Official in your organisation to approve the application. You will be notified via email when this step is complete.
+          </li>
+          <li>
+            Once you have received notification that the application has been certified, you will need to return here to submit the application.
+          </li>
+          <li>
+            Once submitted, you will be notified via email when your application has been approved or if any further information is required to process your application.
+          </li>
+        </ul>
+      </CardText>
+      <CardText>
+        Once you have reviewed the application and ensured all the data is correct, the application has to be certified.
+      </CardText>
+      <Form
+        inline={false}
+        onSubmit={[Function]}
+      >
+        <FormRow>
+          <FormGroup
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "displayName": "Col",
+                "render": [Function],
+              }
+            }
+            controlId="certifierEmail"
+            md="4"
+          >
+            <FormControl
+              name="email"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              placeholder="Certifier Email"
+              type="email"
+            />
+          </FormGroup>
+        </FormRow>
+        <FormGroup>
+          <FormCheck
+            checked={true}
+            className="text-muted"
+            disabled={false}
+            inline={false}
+            isInvalid={false}
+            isValid={false}
+            label="Notify certifier via email that this application is ready for certification"
+            name="sendEmailChecked"
+            onChange={[Function]}
+            title=""
+            type="checkbox"
+          />
+        </FormGroup>
+        <Button
+          active={false}
+          disabled={true}
+          type="submit"
+          variant="info"
+        >
+          Submit for Certification
+        </Button>
+      </Form>
+    </CardBody>
+    <CardFooter />
+  </Card>
+  <JSXStyle
+    id="1753635690"
+  >
+    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
   </JSXStyle>
 </Fragment>
 `;
@@ -150,6 +444,12 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
   <br
     className="jsx-1753635690"
   />
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationOverrideJustification={null}
+    overrideActive={false}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -163,8 +463,12 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
           "certificationSignatureIsValid": false,
           "certificationUrl": Object {
             "certificationSignature": "signed",
+            "certifierUrl": "jkl",
             "hashMatches": false,
+            "id": "abc",
           },
+          "id": "abc",
+          "overrideJustification": null,
           "versionNumber": 1,
         },
         "rowId": 1,
@@ -288,7 +592,7 @@ exports[`The Confirmation Component should show a "data has changed" dialogue wh
   <JSXStyle
     id="1753635690"
   >
-    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
   </JSXStyle>
 </Fragment>
 `;
@@ -308,6 +612,12 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
   <br
     className="jsx-1753635690"
   />
+  <Relay(ApplicationOverrideJustificationComponent)
+    applicationOverrideJustification={null}
+    overrideActive={false}
+    revisionId="abc"
+    setOverrideActive={[Function]}
+  />
   <Relay(ApplicationDetailsComponent)
     application={
       Object {
@@ -321,8 +631,12 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
           "certificationSignatureIsValid": false,
           "certificationUrl": Object {
             "certificationSignature": undefined,
+            "certifierUrl": "jkl",
             "hashMatches": true,
+            "id": "abc",
           },
+          "id": "abc",
+          "overrideJustification": null,
           "versionNumber": 1,
         },
         "rowId": 1,
@@ -359,6 +673,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
             "width": "100%",
           }
         }
+        value="jkl"
       />
     </Col>
     <Col
@@ -385,7 +700,7 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
   <JSXStyle
     id="1753635690"
   >
-    .errors{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
+    .errors.jsx-1753635690{margin-left:20px;padding:20px;background:#ce5c5c;color:white;font-size:20px;}
   </JSXStyle>
 </Fragment>
 `;
