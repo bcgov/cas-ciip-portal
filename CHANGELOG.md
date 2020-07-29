@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.2.0...v1.3.0) (2020-07-29)
+
+
+### Features
+
+* add explanatory text, filter out 'DRAFT' and current status from dropdown, add confirmation modal for status change ([7b6b3ed](https://github.com/bcgov/cas-ciip-portal/commit/7b6b3ed0f2d41d4ea2f969afdc2dc61eb2a04207))
+* add new row for status change message to better match design ([b0eadfe](https://github.com/bcgov/cas-ciip-portal/commit/b0eadfe4cb758ff2094863711eeabc6cc13bbb77))
+* redirect user to a more friendly page if keycloak auth fails ([e947938](https://github.com/bcgov/cas-ciip-portal/commit/e947938af7631b7ddc65f1f29236ccb15ad2245c))
+
+
+### Bug Fixes
+
+* Require certifier email before submitting for certification ([0a1d7be](https://github.com/bcgov/cas-ciip-portal/commit/0a1d7bec245243e046aca1ff5fa97b14b05edb61))
+* **acme-renewal:** name of cron job and container should be acme-renewal ([9b72fbc](https://github.com/bcgov/cas-ciip-portal/commit/9b72fbcdf7af40f0afcc0787edaa17c66989612e))
+* add ggircs_portal schema to portal_read_only user's privileges ([18a4114](https://github.com/bcgov/cas-ciip-portal/commit/18a411461d6c55539a5fbd069b97400f0def2675))
+* disable apply button on click ([80d5fb6](https://github.com/bcgov/cas-ciip-portal/commit/80d5fb6b2e3dcf92f6344a520308e4944aa13e93))
+
 ## [1.2.0](https://github.com/bcgov/cas-ciip-portal/compare/v1.1.0...v1.2.0) (2020-07-27)
 
 
