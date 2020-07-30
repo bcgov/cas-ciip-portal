@@ -164,3 +164,4 @@ trigger_functions/request_for_organisation_access [trigger_functions/request_for
 @v1.2.0 2020-07-27T18:36:49Z Matthieu Foucault <matthieu@button.is> # release v1.2.0
 @v1.3.0 2020-07-29T20:54:44Z Matthieu Foucault <matthieu@button.is> # release v1.3.0
 tables/application_revision_001 [tables/application_revision] 2020-07-22T23:13:57Z Dylan Leard <dylan@button.is> # Migration: add override column to application_revision
+database_functions/read_only_user_policies [schema_ggircs_portal schema_ggircs_portal_private] 2020-07-30T18:10:31Z Dylan Leard <dylan@button.is> # function adds RLS policies for the read_only_user (metabase)
