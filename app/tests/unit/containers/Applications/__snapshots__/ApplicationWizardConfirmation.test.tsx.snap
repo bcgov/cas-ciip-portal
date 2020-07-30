@@ -657,37 +657,22 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
   <br
     className="jsx-1753635690"
   />
-  <h5>
-    Your application has been sent to a certifier. Submission will be possible once they have verified the data in the application.
-  </h5>
-  <Row
-    noGutters={false}
+  <Card
+    body={false}
+    className="text-center"
   >
-    <Col
-      md={6}
-    >
-      <input
-        readOnly={true}
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
-        value="jkl"
-      />
-    </Col>
-    <Col
-      md={2}
-    >
-      <Button
-        active={false}
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-        variant="primary"
-      >
-        Copy Link
-      </Button>
+    <CardHeader>
+      Pending Certification
+    </CardHeader>
+    <CardBody>
+      <p>
+        Your application has been sent to a certifier. Submission will be possible once they have verified the data in the application.
+      </p>
+      <p>
+        You may copy the direct link to the certification page below.
+      </p>
+    </CardBody>
+    <CardFooter>
       <span
         style={
           Object {
@@ -695,8 +680,46 @@ exports[`The Confirmation Component should show a certifier has not yet signed m
           }
         }
       />
-    </Col>
-  </Row>
+       
+      <Row
+        noGutters={false}
+      >
+        <Col
+          md={6}
+        >
+          <input
+            readOnly={true}
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+            value="jkl"
+          />
+        </Col>
+        <Col
+          md={2}
+        >
+          <Button
+            active={false}
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+            variant="primary"
+          >
+            Copy Link
+          </Button>
+          <span
+            style={
+              Object {
+                "color": "green",
+              }
+            }
+          />
+        </Col>
+      </Row>
+    </CardFooter>
+  </Card>
   <JSXStyle
     id="1753635690"
   >

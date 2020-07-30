@@ -180,7 +180,7 @@ describe('The Confirmation Component', () => {
       />
     );
     expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find('h5').at(1).text()).toBe(
+    expect(wrapper.find('CardBody').find('p').at(0).text()).toBe(
       'Your application has been sent to a certifier. Submission will be possible once they have verified the data in the application.'
     );
   });

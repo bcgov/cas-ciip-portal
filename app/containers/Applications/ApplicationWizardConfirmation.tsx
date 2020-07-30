@@ -218,9 +218,36 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
 
   if (!revision.certificationUrl) {
     certificationMessage = url ? (
-      <>
-        <span style={{color: 'green'}}>{copySuccess}</span> {copyUrl}
-      </>
+      <Card className="text-center">
+        <Card.Header>Ready for Certification</Card.Header>
+        <Card.Body>
+          {isChecked ? (
+            <Card.Text>
+              <p>
+                Your request for certification has now been sent to your
+                certifier via email.
+              </p>
+              <p>
+                You may copy the direct link to the certification page below.
+              </p>
+            </Card.Text>
+          ) : (
+            <Card.Text>
+              <p>
+                Your application is ready to be reviewed by a certifier. You
+                opted not to notify them by email, but your request will still
+                be visible via their dashboard.
+              </p>
+              <p>
+                You may copy the direct link to the certification page below.
+              </p>
+            </Card.Text>
+          )}
+        </Card.Body>
+        <Card.Footer>
+          <span style={{color: 'green'}}>{copySuccess}</span> {copyUrl}
+        </Card.Footer>
+      </Card>
     ) : (
       generateCertification
     );
@@ -229,13 +256,19 @@ export const ApplicationWizardConfirmationComponent: React.FunctionComponent<Pro
     revision.certificationUrl.hashMatches
   ) {
     certificationMessage = (
-      <>
-        <h5>
-          Your application has been sent to a certifier. Submission will be
-          possible once they have verified the data in the application.
-        </h5>
-        {copyUrl}
-      </>
+      <Card className="text-center">
+        <Card.Header>Pending Certification</Card.Header>
+        <Card.Body>
+          <p>
+            Your application has been sent to a certifier. Submission will be
+            possible once they have verified the data in the application.
+          </p>
+          <p>You may copy the direct link to the certification page below.</p>
+        </Card.Body>
+        <Card.Footer>
+          <span style={{color: 'green'}}>{copySuccess}</span> {copyUrl}
+        </Card.Footer>
+      </Card>
     );
   } else {
     certificationMessage = (
