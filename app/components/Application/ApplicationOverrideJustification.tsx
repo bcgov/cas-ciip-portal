@@ -79,6 +79,8 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
     setAccordionOpen(true);
   };
 
+  if (overrideJustification && !hasErrors) handleOverrideDelete();
+
   if (hasErrors && overrideActive) {
     return (
       <>
