@@ -11,6 +11,7 @@ interface Props {
   applicationOverrideJustification: string;
   revisionId: string;
   relay: RelayProp;
+  hasErrors: boolean;
 }
 
 export const ApplicationOverrideJustificationComponent: React.FunctionComponent<Props> = ({
@@ -18,7 +19,8 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
   setOverrideActive,
   applicationOverrideJustification,
   revisionId,
-  relay
+  relay,
+  hasErrors
 }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
   const [overrideJustification, setOverrideJustification] = useState(
@@ -77,7 +79,7 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
     setAccordionOpen(true);
   };
 
-  if (overrideActive) {
+  if (hasErrors && overrideActive) {
     return (
       <>
         <Alert variant="danger">
@@ -110,79 +112,83 @@ export const ApplicationOverrideJustificationComponent: React.FunctionComponent<
     );
   }
 
-  return (
-    <>
-      <Alert variant="danger">
-        <Accordion>
-          <div className="override-accordion">
-            Your application contains errors shown below that must be fixed
-            before submission. You may either correct these or alternatively,
-            override and provide justification. Your justification will be
-            reviewed by CAS and may cause a delay in processing your
-            application.
-            <Accordion.Toggle
-              as={Button}
-              variant="secondary"
-              eventKey="0"
-              onClick={() => setAccordionOpen(!accordionOpen)}
-            >
-              Override and Justify
-              <FontAwesomeIcon
-                icon={faCaretDown}
-                style={{marginLeft: '0.75em'}}
-              />
-            </Accordion.Toggle>
-          </div>
-          <Accordion.Collapse in={accordionOpen} eventKey="0">
-            <>
-              <Form>
-                <h4>Override Form Validation</h4>
-                <Form.Group controlId="overrideJustification">
-                  <Form.Label>Justification for incomplete form:</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={4}
-                    value={overrideJustification || ''}
-                    onChange={handleOverrideChange}
-                  />
-                </Form.Group>
-                <Button variant="success" onClick={handleOverrideSave}>
-                  Save
-                </Button>
-                <Accordion.Toggle
-                  as={Button}
-                  eventKey="0"
-                  variant="light"
-                  style={{
-                    marginLeft: '1em',
-                    border: '1px solid currentColor'
-                  }}
-                  onClick={handleOverrideCancel}
-                >
-                  Cancel
-                </Accordion.Toggle>
-              </Form>
-              {!overrideJustification && (
-                <p className="justification-text">{emptyError}</p>
-              )}
-            </>
-          </Accordion.Collapse>
-        </Accordion>
-      </Alert>
-      <style jsx>
-        {`
-          .override-accordion {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-          }
-          .justification-text {
-            color: red;
-          }
-        `}
-      </style>
-    </>
-  );
+  if (hasErrors) {
+    return (
+      <>
+        <Alert variant="danger">
+          <Accordion>
+            <div className="override-accordion">
+              Your application contains errors shown below that must be fixed
+              before submission. You may either correct these or alternatively,
+              override and provide justification. Your justification will be
+              reviewed by CAS and may cause a delay in processing your
+              application.
+              <Accordion.Toggle
+                as={Button}
+                variant="secondary"
+                eventKey="0"
+                onClick={() => setAccordionOpen(!accordionOpen)}
+              >
+                Override and Justify
+                <FontAwesomeIcon
+                  icon={faCaretDown}
+                  style={{marginLeft: '0.75em'}}
+                />
+              </Accordion.Toggle>
+            </div>
+            <Accordion.Collapse in={accordionOpen} eventKey="0">
+              <>
+                <Form>
+                  <h4>Override Form Validation</h4>
+                  <Form.Group controlId="overrideJustification">
+                    <Form.Label>Justification for incomplete form:</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={4}
+                      value={overrideJustification || ''}
+                      onChange={handleOverrideChange}
+                    />
+                  </Form.Group>
+                  <Button variant="success" onClick={handleOverrideSave}>
+                    Save
+                  </Button>
+                  <Accordion.Toggle
+                    as={Button}
+                    eventKey="0"
+                    variant="light"
+                    style={{
+                      marginLeft: '1em',
+                      border: '1px solid currentColor'
+                    }}
+                    onClick={handleOverrideCancel}
+                  >
+                    Cancel
+                  </Accordion.Toggle>
+                </Form>
+                {!overrideJustification && (
+                  <p className="justification-text">{emptyError}</p>
+                )}
+              </>
+            </Accordion.Collapse>
+          </Accordion>
+        </Alert>
+        <style jsx>
+          {`
+            .override-accordion {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: flex-end;
+            }
+            .justification-text {
+              color: red;
+            }
+          `}
+        </style>
+      </>
+    );
+  }
+
+  return null;
 };
 
 export default createFragmentContainer(
