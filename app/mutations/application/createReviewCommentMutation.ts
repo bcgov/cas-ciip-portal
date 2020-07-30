@@ -1,5 +1,5 @@
 import {graphql, DeclarativeMutationConfig} from 'react-relay';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
   createReviewCommentMutationVariables,
   createReviewCommentMutation as createReviewCommentMutationType

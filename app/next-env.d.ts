@@ -1,11 +1,12 @@
 import {NextComponentType, NextPageContext} from 'next';
-import {GraphQLTaggedNode} from 'relay-runtime';
+import {GraphQLTaggedNode, MutationConfig} from 'relay-runtime';
 import {NextRouter} from 'next/router';
 import {ComponentClass} from 'react';
 import {
   FormProps as OriginalFromProps,
   ErrorSchema
 } from 'react-jsonschema-form';
+import {CacheConfig} from 'react-relay-network-modern/node8';
 
 interface CiipPageInitialProps {
   pageProps: {
@@ -61,4 +62,12 @@ declare module 'react-jsonschema-form/lib/utils' {
 // Missing type declarations from /lib/validate
 declare module 'react-jsonschema-form/lib/validate' {
   export function toErrorList(errorSchema: ErrorSchema): any[];
+}
+
+export interface CacheConfigWithDebounce extends CacheConfig {
+  debounceKey?: string;
+}
+
+export interface MutationConfigWithDebounce<T> extends MutationConfig<T> {
+  cacheConfig?: CacheConfigWithDebounce;
 }

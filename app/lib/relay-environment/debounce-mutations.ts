@@ -3,8 +3,9 @@ import {
   RelayNetworkLayerRequest,
   RelayNetworkLayerResponse
 } from 'react-relay-network-modern/node8';
+import {CacheConfigWithDebounce} from 'next-env';
 
-const debouncedMutationNameTimeoutIds = new Map<string, number>();
+const debouncedMutationsTimeoutIds = new Map<string, number>();
 
 const debounceMutationMiddleware = (timeout = 1000): Middleware => {
   return (next) => async (req) => {
@@ -12,22 +13,22 @@ const debounceMutationMiddleware = (timeout = 1000): Middleware => {
       return next(req);
     }
 
-    if (!req.cacheConfig?.debounce) {
+    const {debounceKey} = (req.cacheConfig as CacheConfigWithDebounce) || {};
+    if (!debounceKey) {
       return next(req);
     }
 
     const debounced = async () => {
       return new Promise<RelayNetworkLayerResponse>((resolve) => {
-        const {name} = req.operation;
-        const timerId = debouncedMutationNameTimeoutIds.get(name);
+        const timerId = debouncedMutationsTimeoutIds.get(debounceKey);
         if (timerId) {
           window.clearTimeout(timerId);
         }
 
-        debouncedMutationNameTimeoutIds.set(
-          name,
+        debouncedMutationsTimeoutIds.set(
+          debounceKey,
           window.setTimeout(() => {
-            debouncedMutationNameTimeoutIds.delete(name);
+            debouncedMutationsTimeoutIds.delete(debounceKey);
             resolve(next(req));
           }, timeout)
         );

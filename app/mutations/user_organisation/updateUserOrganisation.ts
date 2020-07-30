@@ -1,5 +1,5 @@
 import {graphql} from 'react-relay';
-import {RelayModernEnvironment} from 'relay-runtime/lib/store/RelayModernEnvironment';
+import RelayModernEnvironment from 'relay-runtime/lib/store/RelayModernEnvironment';
 import {
   updateUserOrganisationMutation as updateUserOrganisationMutationType,
   updateUserOrganisationMutationVariables
