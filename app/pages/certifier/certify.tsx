@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {graphql} from 'react-relay';
+import {Alert} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons';
 import {certifyQueryResponse} from 'certifyQuery.graphql';
@@ -89,15 +90,22 @@ class Certify extends Component<Props> {
               liveValidate={false}
             />
             {LegalDisclaimer}
-            <CertificationSignature
-              certificationIdsToSign={[
-                query.application.latestDraftRevision.certificationUrl.id
-              ]}
-              submitted={
-                query.application.latestDraftRevision
-                  .certificationSignatureIsValid
-              }
-            />
+            {query.application.latestDraftRevision
+              .certificationSignatureIsValid ? (
+              <Alert variant="success">
+                <strong>Application has been certified</strong>
+              </Alert>
+            ) : (
+              <CertificationSignature
+                certificationIdsToSign={[
+                  query.application.latestDraftRevision.certificationUrl.id
+                ]}
+                submitted={
+                  query.application.latestDraftRevision
+                    .certificationSignatureIsValid
+                }
+              />
+            )}
           </>
         ) : (
           <ApplicationRecertificationContainer
