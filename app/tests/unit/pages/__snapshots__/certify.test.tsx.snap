@@ -27,6 +27,7 @@ exports[`The certify page It matches the last accepted Snapshot 1`] = `
           "CertificationSignature_application": true,
         },
         "latestDraftRevision": Object {
+          "certificationSignatureIsValid": true,
           "certificationUrl": Object {
             " $fragmentRefs": Object {
               "ApplicationRecertificationContainer_certificationUrl": true,
@@ -50,6 +51,7 @@ exports[`The certify page It matches the last accepted Snapshot 1`] = `
             "CertificationSignature_application": true,
           },
           "latestDraftRevision": Object {
+            "certificationSignatureIsValid": true,
             "certificationUrl": Object {
               " $fragmentRefs": Object {
                 "ApplicationRecertificationContainer_certificationUrl": true,
@@ -74,13 +76,29 @@ exports[`The certify page It matches the last accepted Snapshot 1`] = `
     }
     review={false}
   />
-  <Relay(CertificationSignature)
-    certificationIdsToSign={
-      Array [
-        undefined,
-      ]
+  <Alert
+    closeLabel="Close alert"
+    show={true}
+    transition={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "appear": false,
+          "in": false,
+          "mountOnEnter": false,
+          "timeout": 300,
+          "unmountOnExit": false,
+        },
+        "displayName": "Fade",
+        "render": [Function],
+      }
     }
-  />
+    variant="success"
+  >
+    <strong>
+      Application has been certified
+    </strong>
+  </Alert>
 </Relay(DefaultLayout)>
 `;
 

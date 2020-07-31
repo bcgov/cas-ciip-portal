@@ -19,6 +19,7 @@ describe('The certify page', () => {
     },
     application: {
       latestDraftRevision: {
+        certificationSignatureIsValid: true,
         certificationUrl: {
           certificationSignature: 'test',
           hashMatches: true,
@@ -46,6 +47,11 @@ describe('The certify page', () => {
     expect(
       wrapper.find('Relay(ApplicationDetailsComponent)').prop('application')
     ).toBe(query.application);
+  });
+
+  it('It renders an application certified message instead of the ApplicationSignature component if certification signature is valid', () => {
+    const wrapper = shallow(<Certify query={query} />);
+    expect(wrapper.find('Alert').text()).toBe('Application has been certified');
   });
 
   it('It renders ApplicationRecertificationContainer if hashMatches is false', () => {
