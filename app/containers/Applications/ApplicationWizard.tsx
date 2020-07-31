@@ -27,6 +27,19 @@ const ApplicationWizard = ({query}) => {
   const {formResultId} = router.query;
   const confirmationPage = Boolean(router.query.confirmationPage);
   const orderedFormResults = application.orderedFormResults.edges;
+
+  // Redirect a certifier given a bad link to the certify page for the application
+  if (!application.currentUserCanEdit) {
+    router.push({
+      pathname: '/certifier/certify',
+      query: {
+        applicationId: application.id,
+        version: router.query.version
+      }
+    });
+    return null;
+  }
+
   if (!confirmationPage && !formResultId) {
     setRouterQueryParam(
       router,
@@ -96,6 +109,7 @@ export default createFragmentContainer(ApplicationWizard, {
       ) {
       application(id: $applicationId) {
         id
+        currentUserCanEdit
         orderedFormResults(versionNumberInput: $version) {
           edges {
             node {

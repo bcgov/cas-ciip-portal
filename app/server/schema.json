@@ -5796,6 +5796,18 @@
               "deprecationReason": null
             },
             {
+              "name": "currentUserCanEdit",
+              "description": "returns a boolean value based on whether the current user has edit permission on the application",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "facilityByFacilityId",
               "description": "Reads a single `Facility` that is related to this `Application`.",
               "args": [],

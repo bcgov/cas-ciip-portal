@@ -12,10 +12,15 @@ begin;
   $body$
     declare
       return_value boolean;
-      current_user_id = (select id from ggircs_portal.ciip_user where uuid=(select sub from ggircs_portal.session));
-      org_id = (select organisation_id from app join ggircs_portal.facility f on app.facility_id = f.id);
+      current_user_id int;
+      org_id int;
     begin
-      return (select exists(select * from ggircs_portal.ciip_user_organisation where user_id=current_user_id and organisation_id=org_id and status='approved'));
+      current_user_id:= (select id from ggircs_portal.ciip_user where uuid=(select sub from ggircs_portal.session()));
+      org_id:= (select organisation_id from ggircs_portal.application a join ggircs_portal.facility f on a.facility_id = f.id and a.id=app.id);
+      if (select exists(select * from ggircs_portal.ciip_user_organisation where user_id=current_user_id and organisation_id=org_id and status='approved')) then
+        return true;
+      end if;
+      return false;
     end;
   $body$
   language 'plpgsql' stable;
