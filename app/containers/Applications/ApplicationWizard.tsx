@@ -80,7 +80,6 @@ const ApplicationWizard = ({query}) => {
     }
   };
 
-  if (!application) return <>This is not the application you are looking for</>;
   return (
     <>
       <ApplicationFormNavbar

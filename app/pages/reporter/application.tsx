@@ -57,6 +57,12 @@ class Application extends Component<Props> {
     const {session} = query || {};
     const {application} = query || {};
 
+    // Route to 404 page if no application is present
+    if (!application) {
+      router.push({pathname: '/404'});
+      return null;
+    }
+
     if (!application?.latestDraftRevision?.legalDisclaimerAccepted) {
       router.push({
         pathname: '/reporter/new-application-disclaimer',
