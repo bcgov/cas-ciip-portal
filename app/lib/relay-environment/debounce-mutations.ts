@@ -5,33 +5,55 @@ import {
 } from 'react-relay-network-modern/node8';
 import {CacheConfigWithDebounce} from 'next-env';
 
-const debouncedMutationsTimeoutIds = new Map<string, number>();
+let debouncedMutation: {
+  debounceKey: string;
+  debouncedFn: () => void;
+  timeoutId: number;
+} = null;
 
 const debounceMutationMiddleware = (timeout = 1000): Middleware => {
   return (next) => async (req) => {
     if (!(req instanceof RelayNetworkLayerRequest) || !req.isMutation()) {
+      if (debouncedMutation) {
+        debouncedMutation.debouncedFn();
+      }
+
       return next(req);
     }
 
     const {debounceKey} = (req.cacheConfig as CacheConfigWithDebounce) || {};
     if (!debounceKey) {
+      if (debouncedMutation) {
+        debouncedMutation.debouncedFn();
+      }
+
       return next(req);
+    }
+
+    if (debouncedMutation && debouncedMutation.debounceKey !== debounceKey) {
+      window.clearTimeout(debouncedMutation.timeoutId);
+      debouncedMutation.debouncedFn();
     }
 
     const debounced = async () => {
       return new Promise<RelayNetworkLayerResponse>((resolve) => {
-        const timerId = debouncedMutationsTimeoutIds.get(debounceKey);
-        if (timerId) {
-          window.clearTimeout(timerId);
+        if (
+          debouncedMutation &&
+          debouncedMutation.debounceKey === debounceKey
+        ) {
+          window.clearTimeout(debouncedMutation.timeoutId);
         }
 
-        debouncedMutationsTimeoutIds.set(
+        const debouncedFn = () => {
+          window.clearTimeout(debouncedMutation.timeoutId);
+          resolve(next(req));
+        };
+
+        debouncedMutation = {
           debounceKey,
-          window.setTimeout(() => {
-            debouncedMutationsTimeoutIds.delete(debounceKey);
-            resolve(next(req));
-          }, timeout)
-        );
+          debouncedFn,
+          timeoutId: window.setTimeout(debouncedFn, timeout)
+        };
       });
     };
 

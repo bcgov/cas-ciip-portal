@@ -79,6 +79,7 @@ describe('When reviewing a submitted application as an analyst', () => {
     cy.get('#root_facility_facilityType').select('LFO');
     cy.get('#root_facility_bcghgid').clear().type('abcd');
 
+    cy.wait(2000);
     cy.contains('Next Page').click();
     cy.get('#root_facility_bcghgid +div .error-detail').contains(
       'BCGHGID code should be numeric'
@@ -137,6 +138,7 @@ describe('When reviewing a submitted application as an analyst', () => {
       .clear()
       .type('LLC1234567');
 
+    cy.wait(2000);
     cy.contains('Next Page').click();
     cy.get('#page-content h1').contains('Emission');
     cy.visit(summaryPageUrl);

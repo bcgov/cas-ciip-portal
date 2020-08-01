@@ -7,6 +7,7 @@ import {
   ErrorSchema
 } from 'react-jsonschema-form';
 import {CacheConfig} from 'react-relay-network-modern/node8';
+import 'jest-extended'; // Allows Typescript to recognize the functions from jest-extended
 
 interface CiipPageInitialProps {
   pageProps: {

@@ -225,6 +225,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.5.4",
     "jest-canvas-mock": "^2.1.2",
+    "jest-extended": "^0.11.5",
     "jest-mock-random": "^1.0.2",
     "jest-raw-loader": "^1.0.1",
     "json-schema": "^0.2.5",
@@ -268,7 +269,8 @@
     },
     "setupFilesAfterEnv": [
       "<rootDir>lib/setupTests.ts",
-      "jest-canvas-mock"
+      "jest-canvas-mock",
+      "jest-extended"
     ],
     "transform": {
       ".*(ts|tsx|js|jsx)$": "babel-jest",
