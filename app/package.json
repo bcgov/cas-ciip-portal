@@ -241,7 +241,7 @@
     "require-context.macro": "^1.2.2",
     "typescript": "3.9.3",
     "wait-on": "^5.0.0",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.1",
     "xo": "^0.30.0"
   },
   "resolutions": {
