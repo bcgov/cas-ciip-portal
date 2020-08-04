@@ -39,7 +39,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       {SITEWIDE_NOTICE && <SiteNoticeBanner content={SITEWIDE_NOTICE} />}
       {showSubheader && <Subheader />}
       {title ? (
-        <div className="page-title">
+        <div className="page-title" role="region" aria-label="page title">
           <Container className={width}>
             <h1>{title}</h1>
             {help && <Help title={help.title} helpMessage={help.helpMessage} />}
